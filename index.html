@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Paws & Picnic</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--p1:#FFF5F0;--p2:#FFE8DD;--p3:#F5C4B0;--p4:#E89880;--p5:#C97060;--g:#D4A96A;--w:#FFFCFA;--t:#4A2E24;--m:#8A6558;--l:#C4A090;--b:rgba(232,152,128,0.2)}
+body{background:var(--p1);font-family:Montserrat,sans-serif;font-weight:300;color:var(--t);overflow-x:hidden}
+.wrap{max-width:520px;margin:0 auto;padding:0 20px}
+h2{font-family:'Cormorant Garamond',serif;font-size:1.6em;font-weight:600;color:var(--t)}
+.tag{text-align:center;font-size:.6em;font-weight:700;text-transform:uppercase;letter-spacing:.3em;color:var(--p4);margin-bottom:18px}
+.div{display:flex;align-items:center;gap:10px;margin:26px 0}
+.div span{flex:1;height:1px;background:linear-gradient(to right,transparent,var(--p3),transparent)}
+
+/* HERO */
+.hero{position:relative;height:100vh;min-height:560px;max-height:800px;overflow:hidden}
+.hero img{width:100%;height:100%;object-fit:cover;background:linear-gradient(135deg,#ffd4b8,#ffb894)}
+.hover{position:absolute;inset:0;background:linear-gradient(to bottom,transparent 30%,rgba(74,46,36,.65) 100%)}
+.hc{position:absolute;bottom:0;left:0;right:0;padding:32px 24px 50px;text-align:center}
+.logo{width:90px;height:90px;border-radius:50%;margin:0 auto 16px;overflow:hidden;border:2px solid rgba(255,255,255,.5);box-shadow:0 0 0 6px rgba(255,255,255,.1);background:linear-gradient(135deg,#ffd4b8,#ffb894)}
+.logo img{width:100%;height:100%;object-fit:cover}
+.hbrand{font-family:'Cormorant Garamond',serif;font-size:2.8em;font-weight:600;color:#fff;text-shadow:0 2px 20px rgba(74,46,36,.4);line-height:1.1}
+.hbrand em{font-style:italic}
+.hsub{font-family:'Cormorant Garamond',serif;font-style:italic;color:rgba(255,255,255,.85);margin-top:6px;text-shadow:0 1px 8px rgba(74,46,36,.3)}
+.hloc{display:inline-block;margin-top:14px;background:rgba(255,255,255,.18);backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.3);color:#fff;font-size:.7em;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:6px 16px;border-radius:30px}
+
+/* STEPS */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.card{background:var(–w);border:1px solid var(–b);border-radius:16px;padding:18px 14px;text-align:center;box-shadow:0 2px 10px rgba(201,112,96,.08)}
+.card-ico{font-size:1.6em;margin-bottom:7px}
+.card-n{font-size:.58em;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(–p3);margin-bottom:3px}
+.card-t{font-family:'Cormorant Garamond',serif;font-size:.98em;font-weight:600;color:var(–t)}
+.card-d{font-size:.7em;color:var(–l);margin-top:3px;line-height:1.4}
+
+/* PACKAGES */
+.pkgwrap{border-radius:18px;overflow:hidden;box-shadow:0 2px 18px rgba(201,112,96,.1);margin-bottom:18px}
+.pkg{background:var(–w);border-bottom:1px solid rgba(232,152,128,.12)}
+.pkg:last-child{border-bottom:none}
+.pkg-h{display:flex;align-items:flex-start;justify-content:space-between;padding:18px 18px 14px;gap:12px}
+.pkg-name{font-family:'Cormorant Garamond',serif;font-size:1.2em;font-weight:700;color:var(–t);margin-bottom:2px}
+.pkg-pr{font-size:.76em;color:var(–m)}
+.bookbtn{font-size:.66em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:8px 16px;border-radius:8px;border:none;cursor:pointer;background:var(–p2);color:var(–p5);white-space:nowrap;flex-shrink:0}
+.bookbtn:hover{background:var(–p4);color:#fff}
+.pkg-prev{padding:0 18px 4px;font-size:.78em;color:var(–m);line-height:1.6}
+.showall{padding:8px 18px 16px;font-size:.66em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(–p5);cursor:pointer;display:inline-block}
+.details{max-height:0;overflow:hidden;transition:max-height .5s ease;background:rgba(255,245,240,.6)}
+.details.open{max-height:600px}
+.details-in{padding:14px 18px 18px;font-size:.77em;color:var(–m);line-height:1.8}
+.details-in p{margin-bottom:7px}
+.details-in strong{font-weight:600;color:var(–t);text-transform:uppercase;font-size:.9em}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.chip{font-size:.67em;font-weight:500;padding:3px 10px;background:var(–p1);border:1px solid var(–p2);border-radius:20px;color:var(–m)}
+
+/* DEPOSIT */
+.dep{background:linear-gradient(135deg,var(–p2),rgba(255,232,221,.4));border:1.5px solid var(–p3);border-radius:18px;padding:22px;text-align:center;box-shadow:0 2px 12px rgba(201,112,96,.1)}
+.dep-amt{font-family:'Cormorant Garamond',serif;font-size:2.4em;font-weight:700;color:var(–p5);margin:4px 0}
+
+/* ADDONS */
+.addgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-bottom:9px}
+.addon{background:var(–w);border:1px solid var(–b);border-radius:14px;padding:12px;display:flex;align-items:center;gap:9px}
+.addon-ico{font-size:1.3em;flex-shrink:0}
+.addon-name{font-size:.74em;font-weight:600;color:var(–t)}
+.addon-note{font-size:.64em;color:var(–l)}
+.addon-price{font-family:'Cormorant Garamond',serif;font-size:.95em;font-weight:600;color:var(–p5);margin-top:1px}
+.cat{font-family:'Cormorant Garamond',serif;font-size:1.02em;font-weight:600;color:var(–t);margin:14px 0 9px;text-align:center;font-style:italic}
+
+/* LOCATIONS */
+.locgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.loc{background:var(–w);border:1.5px solid var(–b);border-radius:16px;padding:20px 13px;text-align:center;box-shadow:0 2px 10px rgba(201,112,96,.08)}
+.loc-ico{font-size:1.9em;margin-bottom:7px}
+.loc-name{font-family:'Cormorant Garamond',serif;font-size:1em;font-weight:600;color:var(–t)}
+.loc-d{font-size:.69em;color:var(–l);margin-top:3px;line-height:1.4}
+
+/* BANNER */
+.banner{position:relative;width:100%;height:220px;overflow:hidden;margin:8px 0}
+.banner img{width:100%;height:100%;object-fit:cover;background:linear-gradient(135deg,#c97060,#8b4030)}
+.banner-ov{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,245,240,.85) 0%,transparent 30%,transparent 70%,rgba(255,245,240,.85) 100%)}
+.banner-txt{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px}
+.bq{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15em;color:#fff;text-shadow:0 2px 16px rgba(74,46,36,.5);line-height:1.5}
+
+/* REVIEWS */
+.rev{background:var(–w);border:1px solid var(–b);border-radius:16px;padding:20px;margin-bottom:11px}
+.rev-stars{font-size:.78em;letter-spacing:3px;color:var(–g);margin-bottom:8px}
+.rev-txt{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.02em;color:var(–t);line-height:1.7}
+.rev-who{font-size:.69em;font-weight:500;color:var(–l);margin-top:10px;text-transform:uppercase;letter-spacing:.05em}
+
+/* FAQ */
+.faq{border-bottom:1px solid rgba(232,152,128,.12);padding:14px 0}
+.faq-q{display:flex;justify-content:space-between;align-items:center;cursor:pointer;gap:12px}
+.faq-qt{font-size:.9em;font-weight:600;color:var(–t)}
+.faq-tog{color:var(–p5);font-size:1.2em;transition:transform .3s}
+.faq.open .faq-tog{transform:rotate(45deg)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;font-size:.8em;color:var(–m);line-height:1.75}
+.faq.open .faq-a{max-height:180px;padding-top:9px}
+
+/* CONTACT */
+.contact{text-align:center;padding-bottom:60px}
+.contact h2{margin-bottom:10px}
+.contact-desc{font-size:.82em;color:var(–m);line-height:1.7;max-width:300px;margin:0 auto 18px}
+.contact a.email-link{display:block;font-size:.84em;color:var(–p5);text-decoration:underline;margin-bottom:7px;font-weight:500}
+.email-btn{display:inline-block;width:100%;max-width:320px;padding:15px;background:var(–g);color:#fff;font-size:.8em;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;border-radius:10px;margin-top:6px;margin-bottom:20px}
+.soc-row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-bottom:16px}
+.soc{padding:11px 18px;background:var(–w);border:1.5px solid var(–b);border-radius:12px;color:var(–t);font-size:.78em;font-weight:500;text-decoration:none;display:flex;align-items:center;gap:7px}
+.foot{font-size:.72em;color:var(–l);line-height:1.6}
+.foot-brand{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.88em;color:var(–p3);margin-top:18px}
+
+/* MODAL */
+.modal-bg{position:fixed;inset:0;z-index:999;background:rgba(74,46,36,.45);backdrop-filter:blur(6px);display:none;align-items:flex-end;justify-content:center}
+.modal-bg.open{display:flex}
+.modal{background:var(–w);width:100%;max-width:520px;border-radius:26px 26px 0 0;padding:26px 22px 44px;max-height:90vh;overflow-y:auto;position:relative;animation:up .35s}
+@keyframes up{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modal-handle{width:38px;height:4px;background:var(–p3);border-radius:4px;margin:0 auto 18px}
+.modal-close{position:absolute;top:14px;right:18px;background:none;border:none;font-size:1.4em;cursor:pointer;color:var(–l)}
+.mlabel{font-size:.66em;font-weight:700;text-transform:uppercase;letter-spacing:.15em;color:var(–p4);display:block;margin-bottom:7px}
+.mchips{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:18px}
+.mchip{padding:8px 16px;border-radius:24px;cursor:pointer;font-size:.72em;font-weight:600;border:1.5px solid var(–b);background:var(–w);color:var(–m)}
+.mchip.on{border-color:var(–p4);background:var(–p2);color:var(–p5)}
+.locgrid2{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:18px}
+.lchip{padding:9px;border-radius:12px;cursor:pointer;text-align:center;border:1.5px solid var(–b);background:var(–w);font-size:.7em;font-weight:500;color:var(–m)}
+.lchip .li{font-size:1.3em;display:block;margin-bottom:3px}
+.lchip.on{border-color:var(–p4);background:var(–p2);color:var(–p5);font-weight:600}
+.cal-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.cal-nav button{background:none;border:none;cursor:pointer;font-size:1.1em;color:var(–p4);padding:4px 8px}
+.cal-month{font-family:'Cormorant Garamond',serif;font-size:1.05em;font-weight:600;color:var(–t)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px;margin-bottom:18px}
+.cal-dn{font-size:.6em;font-weight:600;text-align:center;color:var(–l);padding:3px 0;text-transform:uppercase}
+.cal-d{aspect-ratio:1;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.76em;cursor:pointer;color:var(–m)}
+.cal-d:hover{background:var(–p2)}
+.cal-d.sel{background:var(–p4);color:#fff;font-weight:600}
+.cal-d.today{border:1.5px solid var(–p3);color:var(–p5);font-weight:600}
+.cal-d.past,.cal-d.empty{opacity:.28;pointer-events:none}
+.timegrid{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:20px}
+.tslot{padding:9px 4px;border-radius:10px;text-align:center;cursor:pointer;border:1.5px solid var(–b);background:var(–w);font-size:.73em;font-weight:500;color:var(–m)}
+.tslot:hover{border-color:var(–p4);background:var(–p2)}
+.tslot.sel{background:var(–p4);border-color:var(–p4);color:#fff;font-weight:600}
+.tslot.taken{opacity:.3;cursor:not-allowed;text-decoration:line-through}
+.addon-list{display:flex;flex-direction:column;gap:7px;margin-bottom:20px;max-height:200px;overflow-y:auto}
+.addon-row{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;background:var(–p1);border-radius:9px;border:1px solid var(–b);font-size:.74em}
+.toggle{width:34px;height:19px;border-radius:10px;background:var(–p2);border:none;cursor:pointer;position:relative;flex-shrink:0}
+.toggle::after{content:'';position:absolute;top:2.5px;left:2.5px;width:14px;height:14px;border-radius:50%;background:#fff;transition:transform .25s}
+.toggle.on{background:var(–p4)}
+.toggle.on::after{transform:translateX(15px)}
+.inp{padding:10px 13px;border-radius:11px;border:1.5px solid var(–b);background:var(–w);font-family:Montserrat,sans-serif;font-size:.78em;color:var(–t);outline:none;width:100%}
+.inp:focus{border-color:var(–p4)}
+.waiver-box{background:var(–p1);border:1px solid var(–p3);border-radius:13px;padding:13px;margin-bottom:13px}
+.waiver-scroll{max-height:110px;overflow-y:auto;font-size:.7em;color:var(–m);line-height:1.8;margin-bottom:10px}
+.cancel-note{background:rgba(232,152,128,.1);border-left:3px solid var(–p4);padding:10px 13px;font-size:.71em;color:var(–m);line-height:1.7;margin-bottom:18px}
+.sumbar{background:var(–p1);border-radius:12px;padding:12px 14px;margin-bottom:16px;font-size:.76em;color:var(–m);border:1px solid var(–b)}
+.sumbar span{color:var(–p5);font-weight:600}
+.paybtn{width:100%;padding:15px;border:none;border-radius:14px;cursor:pointer;font-size:.8em;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:linear-gradient(135deg,var(–p4),var(–p5));color:#fff;box-shadow:0 5px 18px rgba(201,112,96,.3)}
+.paybtn:disabled{opacity:.45;cursor:not-allowed}
+
+/* PHOTO LOADER */
+#loader{position:fixed;bottom:14px;right:14px;z-index:998;background:var(–w);border:1.5px solid var(–p3);border-radius:14px;padding:13px 15px;box-shadow:0 4px 20px rgba(201,112,96,.15);font-size:.71em;color:var(–t);max-width:200px}
+</style>
+
+</head>
+<body>
+
+<!-- HERO -->
+
+<section class="hero">
+  <img id="heroImg" src="" alt="">
+  <div class="hover"></div>
+  <div class="hc">
+    <div class="logo"><img id="logoImg" src="" alt=""></div>
+    <div class="hbrand">Paws <em>&</em> Picnic</div>
+    <div class="hsub">luxe picnics · furry friends · los angeles</div>
+    <div class="hloc">📍 Los Angeles, CA</div>
+  </div>
+</section>
+
+<div class="wrap">
+<div class="div"><span></span><span style="flex:0;color:var(--p4)">✦</span><span></span></div>
+
+<!-- HOW IT WORKS -->
+
+<div class="tag">How It Works</div>
+<div class="grid2">
+  <div class="card"><div class="card-ico">🎨</div><div class="card-n">Step 1</div><div class="card-t">Your Style</div><div class="card-d">Pink or Blue</div></div>
+  <div class="card"><div class="card-ico">📍</div><div class="card-n">Step 2</div><div class="card-t">Location</div><div class="card-d">Lake, beach or backyard</div></div>
+  <div class="card"><div class="card-ico">💳</div><div class="card-n">Step 3</div><div class="card-t">Book & Deposit</div><div class="card-d">$75 via Stripe</div></div>
+  <div class="card"><div class="card-ico">🌸</div><div class="card-n">Step 4</div><div class="card-t">Show Up & Enjoy</div><div class="card-d">We handle everything!</div></div>
+</div>
+
+<div class="div"><span></span><span style="flex:0;color:var(--p4)">✦</span><span></span></div>
+
+<div style="text-align:center;margin-bottom:4px">
+  <div style="font-family:'Cormorant Garamond',serif;font-size:1.25em;font-style:italic;font-weight:600;color:var(--t);line-height:1.6;margin-bottom:7px">Designed for you and your dog —<br>just as perfect for solo or friends.</div>
+  <div style="font-size:.79em;color:var(--m)">No pet? No problem. <strong style="color:var(--p5)">Everyone is welcome.</strong></div>
+</div>
+
+<div class="div"><span></span><span style="flex:0;color:var(--p4)">✦</span><span></span></div>
+
+<!-- PACKAGES -->
+
+<div class="tag">Packages</div>
+<div class="pkgwrap">
+  <div class="pkg">
+    <div class="pkg-h"><div><div class="pkg-name">🧺 Basic Picnic</div><div class="pkg-pr">$100/hr · 2hr minimum</div></div><button class="bookbtn" onclick="openModal('Basic Picnic','$100/hr · 2hr min')">BOOK</button></div>
+    <div class="pkg-prev" id="pv-b">Perfect for a simple, cozy outdoor experience...</div>
+    <span class="showall" onclick="tog('b')">SHOW ALL</span>
+    <div class="details" id="d-b"><div class="details-in"><p><strong>Includes</strong></p><p>Picnic table · cozy blanket · decorative cushions · plates, cutlery, glassware · boho tent · candles · dried flowers · waste bin · dog bowls</p><div class="chips"><span class="chip">⏱ Min. 2hrs</span><span class="chip">+$75/extra hr</span></div></div></div>
+  </div>
+  <div class="pkg">
+    <div class="pkg-h"><div><div class="pkg-name">✨ Luxury Picnic</div><div class="pkg-pr">$135/hr · 2hr minimum</div></div><button class="bookbtn" onclick="openModal('Luxury Picnic','$135/hr · 2hr min')">BOOK</button></div>
+    <div class="pkg-prev" id="pv-l">Aesthetic upgraded setup for special moments & photos...</div>
+    <span class="showall" onclick="tog('l')">SHOW ALL</span>
+    <div class="details" id="d-l"><div class="details-in"><p><strong>Everything in Basic +</strong></p><p>Premium décor · wine glasses · dog toys · treat box · extra florals · Golden hour styling</p><div class="chips"><span class="chip">📸 Photo-ready</span><span class="chip">✨ Premium</span></div></div></div>
+  </div>
+  <div class="pkg">
+    <div class="pkg-h"><div><div class="pkg-name">🎂 Birthday Picnic</div><div class="pkg-pr">$150/hr · 2hr minimum</div></div><button class="bookbtn" onclick="openModal('Birthday Picnic','$150/hr · 2hr min')">BOOK</button></div>
+    <div class="pkg-prev" id="pv-bd">Unforgettable dog birthdays — luxury themed setup 🎉</div>
+    <span class="showall" onclick="tog('bd')">SHOW ALL</span>
+    <div class="details" id="d-bd"><div class="details-in"><p><strong>Includes</strong></p><p>Full luxury setup · birthday décor · dog cake · treat box + toys · party hat 👑</p><p><strong>Optional:</strong> Photographer (+$450)</p><div class="chips"><span class="chip">🎂 Cake</span><span class="chip">👑 Party hat</span></div></div></div>
+  </div>
+  <div class="pkg">
+    <div class="pkg-h"><div><div class="pkg-name">⏰ Additional Hour</div><div class="pkg-pr">$75 per hour</div></div><button class="bookbtn" onclick="openModal('Additional Hour','+$75/hr')">ADD</button></div>
+    <div class="pkg-prev">Extend the magic for any package.</div>
+  </div>
+</div>
+
+<div class="div"><span></span><span style="flex:0;color:var(--p4)">✦</span><span></span></div>
+
+<!-- DEPOSIT -->
+
+<div class="dep">
+  <div style="font-size:1.7em;margin-bottom:7px">💸</div>
+  <div style="font-family:'Cormorant Garamond',serif;font-size:1.25em;font-weight:600;color:var(--t);margin-bottom:5px">Booking Deposit</div>
+  <div class="dep-amt">$75</div>
+  <div style="font-size:.74em;color:var(--m);line-height:1.6">Non-refundable · Secures your date<br>Balance due on the day of your picnic</div>
+</div>
+
+<div class="div"><span></span><span style="flex:0;color:var(--p4)">✦</span><span></span></div>
+
+<!-- ADD-ONS -->
+
+<div class="tag">🎀 Add-Ons & Extras</div>
+<div class="cat">Décor & Setup</div>
+<div class="addgrid">
+  <div class="addon"><div class="addon-ico">☂️</div><div><div class="addon-name">Boho Umbrella</div><div class="addon-price">+$30</div></div></div>
+  <div class="addon"><div class="addon-ico">📋</div><div><div class="addon-name">Chalkboard</div><div class="addon-price">+$15</div></div></div>
+  <div class="addon"><div class="addon-ico">🏕️</div><div><div class="addon-name">Pet Tent</div><div class="addon-note">Pink or Blue</div><div class="addon-price">+$29</div></div></div>
+  <div class="addon"><div class="addon-ico">🔊</div><div><div class="addon-name">Music Speaker</div><div class="addon-price">+$20</div></div></div>
+</div>
+<div class="cat">Dog Play & Toys</div>
+<div class="addgrid">
+  <div class="addon"><div class="addon-ico">🎾</div><div><div class="addon-name">Play Set</div><div class="addon-price">+$25</div></div></div>
+  <div class="addon"><div class="addon-ico">💎</div><div><div class="addon-name">Luxury Toy Bundle</div><div class="addon-price">+$45</div></div></div>
+  <div class="addon"><div class="addon-ico">🧸</div><div><div class="addon-name">Luxury Toy Set</div><div class="addon-price">+$25</div></div></div>
+  <div class="addon"><div class="addon-ico">🐕</div><div><div class="addon-name">Extra Dog Guest</div><div class="addon-price">+$20</div></div></div>
+</div>
+<div class="cat">🐾 Dog-Friendly Food</div>
+<div style="font-size:.7em;color:var(--m);text-align:center;margin-bottom:10px;font-style:italic">Handmade with pet-safe ingredients</div>
+<div class="addgrid">
+  <div class="addon"><div class="addon-ico">🍪</div><div><div class="addon-name">Dog Snacks</div><div class="addon-price">+$30</div></div></div>
+  <div class="addon"><div class="addon-ico">🎂</div><div><div class="addon-name">Birthday Cake</div><div class="addon-price">+$29</div></div></div>
+  <div class="addon"><div class="addon-ico">🍩</div><div><div class="addon-name">Dog Donut</div><div class="addon-price">+$6 each</div></div></div>
+  <div class="addon"><div class="addon-ico">🦴</div><div><div class="addon-name">Bone Cookies</div><div class="addon-price">+$3 each</div></div></div>
+  <div class="addon"><div class="addon-ico">🥐</div><div><div class="addon-name">Dog Cannoli</div><div class="addon-price">+$9 each</div></div></div>
+  <div class="addon"><div class="addon-ico">🍾</div><div><div class="addon-name">Champagne</div><div class="addon-note">Non-alcoholic</div><div class="addon-price">+$30</div></div></div>
+</div>
+<div class="cat">Premium Services</div>
+<div class="addgrid"><div class="addon" style="grid-column:1/-1"><div class="addon-ico">🎥</div><div><div class="addon-name">Professional Videographer</div><div class="addon-price">+$450</div></div></div></div>
+
+<div class="div"><span></span><span style="flex:0;color:var(--p4)">✦</span><span></span></div>
+
+<!-- LOCATIONS -->
+
+<div class="tag">📍 Locations</div>
+<div class="locgrid">
+  <div class="loc"><div class="loc-ico">🌳</div><div class="loc-name">Balboa Lake</div><div class="loc-d">Valley escape</div></div>
+  <div class="loc"><div class="loc-ico">🏖️</div><div class="loc-name">Huntington Beach</div><div class="loc-d">Surf City sunsets</div></div>
+  <div class="loc"><div class="loc-ico">🌊</div><div class="loc-name">Leo Carrillo</div><div class="loc-d">Malibu's wild side</div></div>
+  <div class="loc"><div class="loc-ico">🌹</div><div class="loc-name">Brookside Park</div><div class="loc-d">Rose Bowl classic</div></div>
+  <div class="loc" style="grid-column:1/-1"><div class="loc-ico">🏡</div><div class="loc-name">My Backyard</div><div class="loc-d">Private & intimate</div></div>
+</div>
+</div>
+
+<!-- BANNER -->
+
+<div class="banner"><img id="bannerImg" src="" alt=""><div class="banner-ov"></div><div class="banner-txt"><div class="bq">"Luxury pet picnics by the ocean,<br>sunset celebrations & birthday parties." 🐾</div></div></div>
+
+<div class="wrap">
+<div class="div"><span></span><span style="flex:0;color:var(--p4)">✦</span><span></span></div>
+
+<!-- REVIEWS -->
+
+<div class="tag">Happy Tails</div>
+<div class="rev"><div class="rev-stars">★ ★ ★ ★ ★</div><div class="rev-txt">"Set everything up beautifully. Our golden retriever was obsessed with the treats. 10/10!"</div><div class="rev-who">— Jessica M., Silver Lake</div></div>
+<div class="rev"><div class="rev-stars">★ ★ ★ ★ ★</div><div class="rev-txt">"Luxury Picnic at Leo Carrillo — absolutely stunning golden hour setup!"</div><div class="rev-who">— Tyler & Mia, Santa Monica</div></div>
+<div class="rev"><div class="rev-stars">★ ★ ★ ★ ★</div><div class="rev-txt">"Birthday Picnic at Brookside Park for my pup. The cutest thing in all of LA."</div><div class="rev-who">— Алина Р., Glendale</div></div>
+
+<div class="div"><span></span><span style="flex:0;color:var(--p4)">✦</span><span></span></div>
+
+<!-- FAQ -->
+
+<div class="tag">Common Questions</div>
+<div class="faq"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span class="faq-qt">Do I need to bring my own dog?</span><span class="faq-tog">+</span></div><div class="faq-a">BYOP — Bring Your Own Pup! We provide treats & goodies. No pet? Everyone is welcome!</div></div>
+<div class="faq"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span class="faq-qt">What's the $75 deposit?</span><span class="faq-tog">+</span></div><div class="faq-a">Non-refundable deposit to lock your date. Balance due on the day of your picnic.</div></div>
+<div class="faq"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span class="faq-qt">Where in LA do you set up?</span><span class="faq-tog">+</span></div><div class="faq-a">Balboa Lake, Huntington Beach, Leo Carrillo, Brookside Park, or your backyard.</div></div>
+<div class="faq"><div class="faq-q" onclick="this.parentElement.classList.toggle('open')"><span class="faq-qt">Is payment secure?</span><span class="faq-tog">+</span></div><div class="faq-a">Yes — processed securely through Stripe, trusted by millions worldwide.</div></div>
+
+<div class="div"><span></span><span style="flex:0;color:var(--p4)">✦</span><span></span></div>
+
+<!-- CONTACT -->
+
+<div class="contact">
+  <div class="tag">Get in Touch</div>
+  <h2>Get in Touch</h2>
+  <div class="contact-desc">Got questions about your next picnic? Our planning team is here to help.</div>
+  <a class="email-link" href="mailto:pawspicnic@yahoo.com">pawspicnic@yahoo.com</a>
+  <a class="email-link" href="tel:+18184240749">(818) 424-0749</a>
+  <a class="email-btn" href="mailto:pawspicnic@yahoo.com">Email Us</a>
+  <div class="soc-row">
+    <a href="#" class="soc" onclick="return false">📸 Instagram</a>
+    <a href="#" class="soc" onclick="return false">🎵 TikTok</a>
+  </div>
+  <div class="foot">We respond within a few hours! 🐾</div>
+  <div class="foot-brand">Paws & Picnic · Los Angeles, CA</div>
+</div>
+</div>
+
+<!-- BOOKING MODAL -->
+
+<div class="modal-bg" id="modalBg" onclick="if(event.target===this)closeModal()">
+<div class="modal">
+  <button class="modal-close" onclick="closeModal()">✕</button>
+  <div class="modal-handle"></div>
+  <div style="font-family:'Cormorant Garamond',serif;font-size:1.45em;font-weight:600;color:var(--t);margin-bottom:3px" id="mName"></div>
+  <div style="font-size:.78em;color:var(--m);margin-bottom:20px" id="mPrice"></div>
+
+<span class="mlabel">Style</span>
+
+  <div class="mchips"><div class="mchip on" onclick="selChip(this,'.mchips')">💗 Pink</div><div class="mchip" onclick="selChip(this,'.mchips')">💙 Blue</div></div>
+
+<span class="mlabel">Location</span>
+
+  <div class="locgrid2">
+    <div class="lchip on" onclick="selChip(this,'.locgrid2')"><span class="li">🌳</span>Balboa Lake</div>
+    <div class="lchip" onclick="selChip(this,'.locgrid2')"><span class="li">🏖️</span>Huntington</div>
+    <div class="lchip" onclick="selChip(this,'.locgrid2')"><span class="li">🌊</span>Leo Carrillo</div>
+    <div class="lchip" onclick="selChip(this,'.locgrid2')"><span class="li">🌹</span>Brookside</div>
+    <div class="lchip" style="grid-column:1/-1" onclick="selChip(this,'.locgrid2')"><span class="li">🏡</span>My Backyard</div>
+  </div>
+
+<span class="mlabel">Date</span>
+
+  <div class="cal-nav"><button onclick="prevM()">‹</button><div class="cal-month" id="calM"></div><button onclick="nextM()">›</button></div>
+  <div class="cal-grid" id="calG"></div>
+
+<span class="mlabel">Time</span>
+
+  <div class="timegrid" id="timeG"></div>
+
+<span class="mlabel">Add-Ons</span>
+
+  <div class="addon-list" id="addList"></div>
+
+<span class="mlabel">Liability Waiver</span>
+
+  <div class="waiver-box">
+    <div class="waiver-scroll">By booking a <strong>Paws & Picnic</strong> event, I understand activities involve inherent risks including dog bites and injuries, and voluntarily assume all risks. I release and hold harmless Paws & Picnic from all claims. If I bring a dog, I confirm it is healthy, vaccinated, non-aggressive, and under my control. I agree to indemnify Paws & Picnic from any claims arising from my participation.</div>
+    <div style="display:flex;align-items:center;gap:9px;border-top:1px solid var(--b);padding-top:10px">
+      <input type="checkbox" id="wv" onchange="updSum()" style="width:19px;height:19px;accent-color:var(--p5)">
+      <label for="wv" style="cursor:pointer;font-size:.76em;color:var(--t);font-weight:600">I agree to the liability waiver</label>
+    </div>
+  </div>
+
+<span class="mlabel">Contact Info</span>
+
+  <div style="display:flex;flex-direction:column;gap:7px;margin-bottom:18px">
+    <input class="inp" type="text" placeholder="Full name">
+    <input class="inp" type="tel" placeholder="Phone">
+    <input class="inp" type="email" placeholder="Email">
+  </div>
+
+  <div class="cancel-note">⚠️ <strong>Cancellation:</strong> Deposit must be paid within 48h or booking auto-cancels. Balance due 24h before picnic.</div>
+  <div class="sumbar" id="sumBar">Select a date and time to continue</div>
+  <button class="paybtn" id="payBtn" onclick="confirmBook()" disabled>Pay Deposit $75 →</button>
+</div>
+</div>
+
+<!-- PHOTO LOADER -->
+
+<div id="loader">
+  <div style="font-weight:700;color:var(--p5);margin-bottom:9px;font-size:.9em">📸 Photos</div>
+  <div style="color:var(--l);margin-bottom:3px">Hero:</div>
+  <input type="file" accept="image/*" onchange="loadPhoto(this,'heroImg')" style="width:100%;margin-bottom:8px;font-size:.8em">
+  <div style="color:var(--l);margin-bottom:3px">Logo:</div>
+  <input type="file" accept="image/*" onchange="loadPhoto(this,'logoImg')" style="width:100%;margin-bottom:8px;font-size:.8em">
+  <div style="color:var(--l);margin-bottom:3px">Banner:</div>
+  <input type="file" accept="image/*" onchange="loadPhoto(this,'bannerImg')" style="width:100%;margin-bottom:10px;font-size:.8em">
+  <button onclick="document.getElementById('loader').style.display='none'" style="width:100%;padding:7px;background:linear-gradient(135deg,var(--p4),var(--p5));color:#fff;border:none;border-radius:9px;cursor:pointer;font-size:.78em;font-weight:600">Done ✓</button>
+</div>
+
+<script>
+// Show All toggle
+function tog(id){const d=document.getElementById('d-'+id),t=d.previousElementSibling,p=document.getElementById('pv-'+id),o=d.classList.contains('open');d.classList.toggle('open');t.textContent=o?'SHOW ALL':'SHOW LESS';if(p)p.style.display=o?'block':'none'}
+
+// Chip select
+function selChip(el,scope){el.closest(scope).querySelectorAll('[class*="chip"],[class*="lchip"]').forEach(c=>c.classList.remove('on'));el.classList.add('on')}
+
+// Booking slots
+const booked={};
+function dk(d){return`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+function blocked(k){const s=new Set();(booked[k]||[]).forEach(h=>{for(let i=0;i<4;i++)s.add(h+i)});return s}
+function avail(k,h){const n=new Date(),sl=new Date(k+'T'+String(h).padStart(2,'0')+':00');if(sl-n<12*36e5)return false;return!blocked(k).has(h)}
+function hl(h){return`${h===0?12:h>12?h-12:h}:00 ${h<12?'AM':'PM'}`}
+
+const MO=['January','February','March','April','May','June','July','August','September','October','November','December'],DN=['Su','Mo','Tu','We','Th','Fr','Sa'];
+let cy,cm,sd=null,st=null,sh=null;
+
+function initCal(){const n=new Date();cy=n.getFullYear();cm=n.getMonth();drawCal()}
+function drawCal(){document.getElementById('calM').textContent=MO[cm]+' '+cy;const g=document.getElementById('calG');g.innerHTML='';DN.forEach(d=>{const e=document.createElement('div');e.className='cal-dn';e.textContent=d;g.appendChild(e)});const f=new Date(cy,cm,1).getDay(),nd=new Date(cy,cm+1,0).getDate(),t=new Date();for(let i=0;i<f;i++){const e=document.createElement('div');e.className='cal-d empty';g.appendChild(e)}for(let d=1;d<=nd;d++){const e=document.createElement('div');e.className='cal-d';e.textContent=d;const dd=new Date(cy,cm,d);if(dd<new Date(t.getFullYear(),t.getMonth(),t.getDate()))e.classList.add('past');else{if(dd.toDateString()===t.toDateString())e.classList.add('today');if(sd&&sd.getDate()===d&&sd.getMonth()===cm&&sd.getFullYear()===cy)e.classList.add('sel');e.onclick=()=>pickDate(e,new Date(cy,cm,d))}g.appendChild(e)}}
+function prevM(){cm===0?(cm=11,cy--):cm--;drawCal()}
+function nextM(){cm===11?(cm=0,cy++):cm++;drawCal()}
+function pickDate(e,d){sd=d;st=null;sh=null;document.querySelectorAll('.cal-d.sel').forEach(x=>x.classList.remove('sel'));e.classList.add('sel');drawTimes();updSum()}
+function drawTimes(){const g=document.getElementById('timeG');g.innerHTML='';if(!sd){g.innerHTML='<div style="font-size:.74em;color:var(--l);grid-column:1/-1;text-align:center;padding:7px">Pick a date first</div>';return}const k=dk(sd);for(let h=9;h<=19;h++){const ok=avail(k,h),e=document.createElement('div');e.className='tslot'+(ok?'':' taken');e.textContent=hl(h);if(ok)e.onclick=()=>{document.querySelectorAll('.tslot.sel').forEach(x=>x.classList.remove('sel'));e.classList.add('sel');st=hl(h);sh=h;updSum()};g.appendChild(e)}}
+function updSum(){const b=document.getElementById('sumBar'),btn=document.getElementById('payBtn'),w=document.getElementById('wv');if(sd&&st&&w.checked){b.innerHTML=`<span>${sd.toLocaleDateString('en-US',{weekday:'short',month:'long',day:'numeric'})}</span> at <span>${st}</span> · Waiver ✓`;btn.disabled=false}else if(sd&&st){b.innerHTML='✓ Please agree to the waiver';btn.disabled=true}else{b.innerHTML='Select a date and time to continue';btn.disabled=true}}
+
+const AOS=[['☂️','Boho Umbrella','+$30'],['📋','Chalkboard','+$15'],['🏕️','Pet Tent (Pink/Blue)','+$29'],['🔊','Music Speaker','+$20'],['🎾','Play Set','+$25'],['💎','Luxury Toy Bundle','+$45'],['🐕','Extra Dog','+$20'],['🍪','Dog Snacks','+$30'],['🎂','Birthday Cake','+$29'],['🍩','Dog Donut','+$6ea'],['🦴','Bone Cookies','+$3ea'],['🥐','Dog Cannoli','+$9ea'],['🍾','Champagne','+$30'],['🎥','Videographer','+$450']];
+function drawAddons(){document.getElementById('addList').innerHTML=AOS.map(a=>`<div class="addon-row"><div style="display:flex;align-items:center;gap:8px;color:var(--t);font-weight:500"><span>${a[0]}</span>${a[1]}</div><div style="display:flex;align-items:center;gap:7px"><span style="font-size:.72em;color:var(--m)">${a[2]}</span><button class="toggle" onclick="this.classList.toggle('on')"></button></div></div>`).join('')}
+
+function openModal(n,p){sd=null;st=null;sh=null;document.getElementById('mName').textContent=n;document.getElementById('mPrice').textContent=p;document.getElementById('wv').checked=false;document.getElementById('sumBar').innerHTML='Select a date and time to continue';document.getElementById('payBtn').disabled=true;initCal();drawTimes();drawAddons();document.getElementById('modalBg').classList.add('open');document.body.style.overflow='hidden'}
+function closeModal(){document.getElementById('modalBg').classList.remove('open');document.body.style.overflow=''}
+function confirmBook(){if(!sd||!st)return;const k=dk(sd);if(!booked[k])booked[k]=[];booked[k].push(sh);alert(`🐾 Request Sent!\n\n${document.getElementById('mName').textContent}\n${sd.toLocaleDateString('en-US',{weekday:'long',month:'long',day:'numeric'})}\n\nWe'll contact you to confirm!`);closeModal()}
+
+function loadPhoto(input,id){if(!input.files[0])return;const r=new FileReader();r.onload=e=>{const img=document.getElementById(id);if(img)img.src=e.target.result};r.readAsDataURL(input.files[0])}
+</script>
+
+</body>
+</html>
