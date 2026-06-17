@@ -18,12 +18,6 @@ html, body {
   overflow: hidden;
 }
 
-/* mobile: allow select screen to scroll */
-@media (max-height: 700px), (max-width: 600px) {
-  html, body { overflow: auto; }
-  #screen-select { overflow-y: auto; justify-content: flex-start; padding-top: 16px; }
-}
-
 /* -------- screens -------- */
 
 .screen { display: none; width: 100%; height: 100vh; }
@@ -283,16 +277,32 @@ html, body {
 #btn-start:active:not(:disabled) { transform: translateY(0); }
 #btn-start:disabled { opacity: 0.4; cursor: not-allowed; }
 
-@media (max-width: 600px) {
-  #btn-start {
-    position: sticky;
-    bottom: 16px;
-    width: 100%;
-    max-width: 360px;
-    z-index: 10;
-    margin-top: 8px;
+@media (max-width: 768px) {
+  html, body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: auto;
+    min-height: 100%;
   }
-  #screen-select { padding-bottom: 80px; }
+  .screen { height: auto; min-height: 100vh; }
+  #screen-select {
+    justify-content: flex-start;
+    padding-top: 16px;
+    padding-bottom: 110px;
+    overflow-y: visible;
+  }
+  #btn-start {
+    position: fixed;
+    bottom: 24px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 360px;
+    z-index: 999;
+    margin: 0;
+  }
+  #btn-start:hover:not(:disabled) { transform: translateX(-50%) translateY(-2px); }
+  #btn-start:active:not(:disabled) { transform: translateX(-50%); }
 }
 
 /* -------- victory screen -------- */
