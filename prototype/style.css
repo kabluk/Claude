@@ -278,6 +278,23 @@ html, body {
 #btn-start:active:not(:disabled) { transform: translateY(0); }
 #btn-start:disabled { opacity: 0.4; cursor: not-allowed; }
 
+#btn-slap {
+  padding: 14px 48px;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: #fff;
+  transition: transform 0.1s, box-shadow 0.2s;
+  box-shadow: 0 4px 24px rgba(139,0,0,0.45);
+}
+#btn-slap:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(204,51,0,0.6); }
+#btn-slap:active:not(:disabled) { transform: translateY(0); }
+#btn-slap:disabled { opacity: 0.4; cursor: not-allowed; }
+
 @media (max-width: 768px) {
   html, body {
     overflow-x: hidden;
@@ -289,7 +306,7 @@ html, body {
   #screen-select {
     justify-content: flex-start;
     padding-top: 16px;
-    padding-bottom: 110px;
+    padding-bottom: 160px;
     overflow-y: visible;
   }
   #btn-start {
@@ -304,6 +321,18 @@ html, body {
   }
   #btn-start:hover:not(:disabled) { transform: translateX(-50%) translateY(-2px); }
   #btn-start:active:not(:disabled) { transform: translateX(-50%); }
+  #btn-slap {
+    position: fixed;
+    bottom: 86px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: calc(100% - 40px);
+    max-width: 360px;
+    z-index: 999;
+    margin: 0;
+  }
+  #btn-slap:hover:not(:disabled) { transform: translateX(-50%) translateY(-2px); }
+  #btn-slap:active:not(:disabled) { transform: translateX(-50%); }
 }
 
 /* -------- arena selector -------- */
