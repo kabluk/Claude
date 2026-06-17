@@ -11,8 +11,8 @@ class Game {
     this.ui.arena = arenaId || 'street';
     this.vsAI  = vsAI;
 
-    this.p1 = new Fighter(1, CONFIG.P1_START_X, p1Data.style, p1Data.face, p1Data.name, p1Data.photoColors, p1Data.traits);
-    this.p2 = new Fighter(2, CONFIG.P2_START_X, p2Data.style, p2Data.face, p2Data.name, p2Data.photoColors, p2Data.traits);
+    this.p1 = new Fighter(1, CONFIG.P1_START_X, p1Data.style, p1Data.face, p1Data.name, p1Data.photoColors, p1Data.traits, p1Data.phrases);
+    this.p2 = new Fighter(2, CONFIG.P2_START_X, p2Data.style, p2Data.face, p2Data.name, p2Data.photoColors, p2Data.traits, p2Data.phrases);
 
     this.ai = vsAI ? new AIController(this.p2, this.p1) : null;
 
