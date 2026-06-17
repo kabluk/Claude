@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Photo Fighters — Prototype</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== CHARACTER SELECT ===== -->
+<div id="screen-select" class="screen active">
+  <h1>⚡ Photo Fighters</h1>
+
+  <div class="select-grid">
+
+    <!-- Player 1 -->
+    <div class="player-card p1">
+      <h2>⚔ Игрок 1</h2>
+
+      <div class="photo-area" id="photoArea1" title="Нажми или перетащи фото">
+        <input type="file" id="photoInput1" accept="image/*">
+        <div class="upload-hint">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="3"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <span>Загрузи фото</span>
+          <span style="font-size:11px;opacity:0.5">Или нажми здесь</span>
+        </div>
+        <img id="photoPreview1" style="display:none">
+      </div>
+
+      <input type="text" class="name-input" id="name1" placeholder="Имя бойца" maxlength="20">
+
+      <div class="style-label">Стиль боя</div>
+      <div class="style-grid" id="styleGrid1"></div>
+    </div>
+
+    <!-- Player 2 -->
+    <div class="player-card p2">
+      <h2>🛡 Игрок 2</h2>
+
+      <div class="photo-area" id="photoArea2" title="Нажми или перетащи фото">
+        <input type="file" id="photoInput2" accept="image/*">
+        <div class="upload-hint">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="3"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <span>Загрузи фото</span>
+          <span style="font-size:11px;opacity:0.5">Или нажми здесь</span>
+        </div>
+        <img id="photoPreview2" style="display:none">
+      </div>
+
+      <input type="text" class="name-input" id="name2" placeholder="Имя бойца" maxlength="20">
+
+      <div class="style-label">Стиль боя</div>
+      <div class="style-grid" id="styleGrid2"></div>
+    </div>
+
+  </div>
+
+  <!-- VS AI toggle -->
+  <div class="mode-toggle" id="modeToggle" title="Включить AI противника для P2">
+    <div class="toggle-track" id="toggleTrack">
+      <div class="toggle-thumb"></div>
+    </div>
+    <span id="modeLabel">P2 управляется AI</span>
+  </div>
+
+  <button id="btn-start" disabled>НАЧАТЬ БОЙ</button>
+</div>
+
+
+<!-- ===== FIGHT ===== -->
+<div id="screen-fight" class="screen">
+  <canvas id="gameCanvas"></canvas>
+</div>
+
+
+<!-- ===== VICTORY ===== -->
+<div id="screen-victory" class="screen">
+  <h2 id="victoryTitle">🏆 ПОБЕДА!</h2>
+  <canvas id="victoryFaceCanvas" width="120" height="120"
+          style="border-radius:50%;border:4px solid #FFD700;box-shadow:0 0 30px rgba(255,215,0,0.5)"></canvas>
+  <div class="victory-name" id="victoryName">—</div>
+
+  <div class="stats-grid" id="statsGrid">
+    <div class="stat"><div class="stat-val" id="stat1">0</div><div class="stat-lbl">Урон P1</div></div>
+    <div class="stat"><div class="stat-val" id="stat2">0</div><div class="stat-lbl">Урон P2</div></div>
+    <div class="stat"><div class="stat-val" id="stat3">0</div><div class="stat-lbl">Нокдауны P1</div></div>
+    <div class="stat"><div class="stat-val" id="stat4">0</div><div class="stat-lbl">Нокдауны P2</div></div>
+  </div>
+
+  <div class="round-wins" id="roundWinsDisplay"></div>
+
+  <div class="victory-buttons">
+    <button class="btn-secondary" id="btn-rematch">↩ Реванш</button>
+    <button class="btn-primary"   id="btn-newchars">👥 Новые бойцы</button>
+  </div>
+</div>
+
+
+<!-- ===== SCRIPTS ===== -->
+<script src="js/config.js"></script>
+<script src="js/FaceProcessor.js"></script>
+<script src="js/InputManager.js"></script>
+<script src="js/Fighter.js"></script>
+<script src="js/AIController.js"></script>
+<script src="js/UI.js"></script>
+<script src="js/Game.js"></script>
+<script>
+
+// ---- state ----
+const playerData = [
+  { face: null, style: 'boxer', name: '' },
+  { face: null, style: 'karate', name: '' }
+];
+let vsAI = true;
+let lastP1Data = null, lastP2Data = null;
+let currentGame = null;
+
+// ---- style grids ----
+for (const pid of [1, 2]) {
+  const grid = document.getElementById(`styleGrid${pid}`);
+  Object.entries(CONFIG.STYLES).forEach(([key, val]) => {
+    const btn = document.createElement('div');
+    btn.className = 'style-btn' + (playerData[pid-1].style === key ? ' selected' : '');
+    btn.title = val.desc;
+    btn.innerHTML = `<span class="emoji">${val.emoji}</span><span class="sname">${val.name}</span>`;
+    btn.addEventListener('click', () => {
+      grid.querySelectorAll('.style-btn').forEach(b => b.classList.remove('selected'));
+      btn.classList.add('selected');
+      playerData[pid-1].style = key;
+      updateStartBtn();
+    });
+    grid.appendChild(btn);
+  });
+}
+
+// ---- photo upload ----
+for (const pid of [1, 2]) {
+  const input   = document.getElementById(`photoInput${pid}`);
+  const area    = document.getElementById(`photoArea${pid}`);
+  const preview = document.getElementById(`photoPreview${pid}`);
+
+  const handleFile = (file) => {
+    FaceProcessor.processPhoto(file, 120).then(canvas => {
+      playerData[pid-1].face = canvas;
+      preview.src = canvas.toDataURL();
+      preview.style.display = 'block';
+      area.classList.add('has-photo');
+      updateStartBtn();
+    }).catch(() => {
+      alert('Не удалось загрузить изображение. Попробуй другое фото.');
+    });
+  };
+
+  input.addEventListener('change', (e) => {
+    if (e.target.files[0]) handleFile(e.target.files[0]);
+  });
+
+  area.addEventListener('dragover', (e) => { e.preventDefault(); area.classList.add('drag-over'); });
+  area.addEventListener('dragleave', () => area.classList.remove('drag-over'));
+  area.addEventListener('drop', (e) => {
+    e.preventDefault();
+    area.classList.remove('drag-over');
+    if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+  });
+}
+
+// ---- name inputs ----
+document.getElementById('name1').addEventListener('input', (e) => {
+  playerData[0].name = e.target.value.trim();
+});
+document.getElementById('name2').addEventListener('input', (e) => {
+  playerData[1].name = e.target.value.trim();
+});
+
+// ---- AI toggle ----
+document.getElementById('modeToggle').addEventListener('click', () => {
+  vsAI = !vsAI;
+  document.getElementById('toggleTrack').classList.toggle('on', vsAI);
+  document.getElementById('modeLabel').textContent = vsAI ? 'P2 управляется AI' : 'P2 — живой игрок';
+  const p2card = document.querySelector('.player-card.p2');
+  p2card.style.opacity = vsAI ? '0.55' : '1';
+  p2card.style.pointerEvents = vsAI ? 'none' : '';
+  updateStartBtn();
+});
+// start with AI on
+document.getElementById('toggleTrack').classList.add('on');
+document.querySelector('.player-card.p2').style.opacity = '0.55';
+document.querySelector('.player-card.p2').style.pointerEvents = 'none';
+
+// ---- start button ----
+function updateStartBtn() {
+  const ok = playerData[0].face && (vsAI || playerData[1].face);
+  document.getElementById('btn-start').disabled = !ok;
+}
+
+document.getElementById('btn-start').addEventListener('click', startFight);
+
+function getFighterData(idx) {
+  const pd = playerData[idx];
+  const face = pd.face || FaceProcessor.createDefaultFace(120);
+  const name = pd.name || CONFIG.STYLES[pd.style].name;
+  return { face, style: pd.style, name };
+}
+
+function startFight() {
+  const p1 = getFighterData(0);
+  const p2 = vsAI
+    ? { face: FaceProcessor.createDefaultFace(120, '#AA5533'), style: playerData[1].style, name: 'AI ' + CONFIG.STYLES[playerData[1].style].name }
+    : getFighterData(1);
+
+  lastP1Data = p1; lastP2Data = p2;
+
+  showScreen('fight');
+  currentGame = new Game(p1, p2, vsAI);
+}
+
+// ---- victory screen ----
+function showVictoryScreen(winner, wins, fighters) {
+  showScreen('victory');
+
+  if (winner) {
+    document.getElementById('victoryTitle').textContent = '🏆 ' + winner.name.toUpperCase() + ' ПОБЕДИЛ!';
+    const vCtx = document.getElementById('victoryFaceCanvas').getContext('2d');
+    vCtx.clearRect(0, 0, 120, 120);
+    vCtx.save();
+    vCtx.beginPath(); vCtx.arc(60, 60, 60, 0, Math.PI * 2); vCtx.clip();
+    vCtx.drawImage(winner.face, 0, 0, 120, 120);
+    vCtx.restore();
+  } else {
+    document.getElementById('victoryTitle').textContent = '🤝 НИЧЬЯ!';
+  }
+
+  const [p1, p2] = fighters;
+  document.getElementById('victoryName').textContent =
+    winner ? `${CONFIG.STYLES[winner.style].emoji} ${winner.name}` : '';
+  document.getElementById('stat1').textContent = p1.dmgDealt;
+  document.getElementById('stat2').textContent = p2.dmgDealt;
+  document.getElementById('stat3').textContent = p1.knockdowns;
+  document.getElementById('stat4').textContent = p2.knockdowns;
+
+  const rw = document.getElementById('roundWinsDisplay');
+  rw.innerHTML = `<span style="color:#66aaff">${fighters[0].name}</span>
+    <span style="margin:0 4px">${wins[0]}</span>
+    <span style="color:var(--muted)">—</span>
+    <span style="margin:0 4px">${wins[1]}</span>
+    <span style="color:#ff6688">${fighters[1].name}</span>`;
+}
+
+document.getElementById('btn-rematch').addEventListener('click', () => {
+  if (lastP1Data && lastP2Data) {
+    showScreen('fight');
+    currentGame = new Game(lastP1Data, lastP2Data, vsAI);
+  }
+});
+
+document.getElementById('btn-newchars').addEventListener('click', () => {
+  showScreen('select');
+});
+
+// ---- helpers ----
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(`screen-${id}`).classList.add('active');
+}
+
+</script>
+</body>
+</html>
