@@ -34,6 +34,18 @@ class FaceProcessor {
     });
   }
 
+  // Fast path: process directly from an already-loaded canvas (avoids re-reading file)
+  static processFromCanvas(srcCanvas, size = 120) {
+    const w = srcCanvas.width, h = srcCanvas.height;
+    const cropH = Math.round(h * 0.65);
+    const side = Math.min(w, cropH);
+    const sx = Math.round((w - side) / 2);
+    const out = document.createElement('canvas');
+    out.width = size; out.height = size;
+    out.getContext('2d').drawImage(srcCanvas, sx, 0, side, side, 0, 0, size, size);
+    return FaceProcessor.pixelate(out, 5);
+  }
+
   static pixelate(canvas, blockSize = 5) {
     const w = canvas.width, h = canvas.height;
     const small = document.createElement('canvas');

@@ -267,89 +267,85 @@ for (const pid of [1,2]) {
   const preview = document.getElementById(`photoPreview${pid}`);
 
   const handleFile = file => {
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      const img = new Image();
-      img.onload = () => {
-        // Build original canvas for analysis (full quality, no pixelation)
-        const origCanvas = document.createElement('canvas');
-        origCanvas.width = 240; origCanvas.height = 240;
-        const origCtx = origCanvas.getContext('2d');
-        const shortSide = Math.min(img.width, img.height);
-        const srcX = (img.width - shortSide) / 2;
-        const srcY = 0;
-        origCtx.drawImage(img, srcX, srcY, shortSide, shortSide, 0, 0, 240, 240);
+    if (!file || !file.type.startsWith('image/')) return;
+    // Use blob URL — avoids loading full file into memory as base64 (critical on iOS)
+    const blobURL = URL.createObjectURL(file);
+    const img = new Image();
+    img.onload = () => {
+      URL.revokeObjectURL(blobURL);
 
-        // Fallback color extraction (instant)
-        const colorCanvas = document.createElement('canvas');
-        colorCanvas.width = 120; colorCanvas.height = 120;
-        colorCanvas.getContext('2d').drawImage(origCanvas, 0, 0, 120, 120);
-        const photoColors = PhotoAnalyzer.analyze(colorCanvas);
-        playerData[pid-1].photoColors = photoColors;
+      // Build analysis canvas (center-cropped square, 240×240)
+      const origCanvas = document.createElement('canvas');
+      origCanvas.width = 240; origCanvas.height = 240;
+      const origCtx = origCanvas.getContext('2d');
+      const shortSide = Math.min(img.width, img.height);
+      origCtx.drawImage(img, (img.width - shortSide) / 2, 0, shortSide, shortSide, 0, 0, 240, 240);
 
-        // Process photo for display
-        FaceProcessor.processPhoto(file, 120).then(canvas => {
-          playerData[pid-1].face = canvas;
-          const descTraits = PhotoAnalyzer.parseDescription(document.getElementById(`desc${pid}`).value);
-          playerData[pid-1].traits = descTraits;
+      // Color extraction from analysis canvas
+      const photoColors = PhotoAnalyzer.analyze(origCanvas);
+      playerData[pid-1].photoColors = photoColors;
 
-          preview.src = canvas.toDataURL();
-          preview.style.display = 'block';
-          area.classList.add('has-photo');
-          area.classList.remove('scanned');
-          area.classList.add('scanning');
-          updateStartBtn();
+      // Face canvas — process directly from canvas, no second FileReader read
+      const faceCanvas = FaceProcessor.processFromCanvas(origCanvas, 120);
+      playerData[pid-1].face = faceCanvas;
+      const descTraits = PhotoAnalyzer.parseDescription(document.getElementById(`desc${pid}`).value);
+      playerData[pid-1].traits = descTraits;
 
-          // AI analysis (if key set)
-          if (claudeApiKey) {
-            AIAnalyzer.analyze(origCanvas, claudeApiKey).then(result => {
-              area.classList.remove('scanning');
-              area.classList.add('scanned');
+      preview.src = faceCanvas.toDataURL();
+      preview.style.display = 'block';
+      area.classList.add('has-photo');
+      area.classList.remove('scanned');
+      area.classList.add('scanning');
+      updateStartBtn();
 
-              // Apply AI result
-              if (result.colors) playerData[pid-1].photoColors = result.colors;
-              if (result.traits) {
-                playerData[pid-1].traits = Object.assign({}, descTraits, result.traits);
-                if (result.gender === 'female') {
-                  playerData[pid-1].traits.scaleX = 0.88;
-                  playerData[pid-1].traits.longHair = playerData[pid-1].traits.longHair ?? true;
-                }
-              }
-              if (result.phrases && result.phrases.length) {
-                playerData[pid-1].phrases = result.phrases;
-              }
-              if (result.style && CONFIG.STYLES[result.style]) {
-                playerData[pid-1].style = result.style;
-                // Sync style grid UI
-                const grid = document.getElementById(`styleGrid${pid}`);
-                grid.querySelectorAll('.style-btn').forEach((b, i) => {
-                  b.classList.toggle('selected', Object.keys(CONFIG.STYLES)[i] === result.style);
-                });
-              }
-              const who = result.name ? `✓ ${result.name}` : '✓ Персонаж определён';
-              const phraseHint = result.phrases?.length ? ` · ${result.phrases.length} фразы` : '';
-              showAiToast(`🤖 ${who}${phraseHint}`, false);
-              if (result.name && !playerData[pid-1].name) {
-                playerData[pid-1].name = result.name;
-                document.getElementById(`name${pid}`).value = result.name;
-              }
-            }).catch(err => {
-              area.classList.remove('scanning');
-              area.classList.add('scanned');
-              showAiToast(`⚠ AI ошибка: ${err.message}`, true);
-            });
-          } else {
-            setTimeout(() => {
-              area.classList.remove('scanning');
-              area.classList.add('scanned');
-            }, 1200);
+      // AI analysis (if key set)
+      if (claudeApiKey) {
+        AIAnalyzer.analyze(origCanvas, claudeApiKey).then(result => {
+          area.classList.remove('scanning');
+          area.classList.add('scanned');
+
+          if (result.colors) playerData[pid-1].photoColors = result.colors;
+          if (result.traits) {
+            playerData[pid-1].traits = Object.assign({}, descTraits, result.traits);
+            if (result.gender === 'female') {
+              playerData[pid-1].traits.scaleX = 0.88;
+              playerData[pid-1].traits.longHair = playerData[pid-1].traits.longHair ?? true;
+            }
           }
-        }).catch(() => alert('Не удалось загрузить фото. Попробуй другое.'));
-      };
-      img.onerror = () => alert('Не удалось загрузить фото. Попробуй другое.');
-      img.src = e.target.result;
+          if (result.phrases && result.phrases.length) {
+            playerData[pid-1].phrases = result.phrases;
+          }
+          if (result.style && CONFIG.STYLES[result.style]) {
+            playerData[pid-1].style = result.style;
+            const grid = document.getElementById(`styleGrid${pid}`);
+            grid.querySelectorAll('.style-btn').forEach((b, i) => {
+              b.classList.toggle('selected', Object.keys(CONFIG.STYLES)[i] === result.style);
+            });
+          }
+          const who = result.name ? `✓ ${result.name}` : '✓ Персонаж определён';
+          const phraseHint = result.phrases?.length ? ` · ${result.phrases.length} фразы` : '';
+          showAiToast(`🤖 ${who}${phraseHint}`, false);
+          if (result.name && !playerData[pid-1].name) {
+            playerData[pid-1].name = result.name;
+            document.getElementById(`name${pid}`).value = result.name;
+          }
+        }).catch(err => {
+          area.classList.remove('scanning');
+          area.classList.add('scanned');
+          showAiToast(`⚠ AI ошибка: ${err.message}`, true);
+        });
+      } else {
+        setTimeout(() => {
+          area.classList.remove('scanning');
+          area.classList.add('scanned');
+        }, 1200);
+      }
     };
-    reader.readAsDataURL(file);
+    img.onerror = () => {
+      URL.revokeObjectURL(blobURL);
+      alert('Не удалось загрузить фото. Попробуй другое.');
+    };
+    img.src = blobURL;
   };
 
   input.addEventListener('change', e => { if(e.target.files[0]) handleFile(e.target.files[0]); });
@@ -381,7 +377,8 @@ document.querySelector('.player-card.p2').style.pointerEvents='none';
 function updateStartBtn() {
   const ready = !!(playerData[0].face && (vsAI || playerData[1].face));
   document.getElementById('btn-start').disabled = !ready;
-  document.getElementById('btn-slap').disabled  = !ready;
+  const slapBtn = document.getElementById('btn-slap');
+  if (slapBtn) slapBtn.disabled = !ready;
 }
 
 // ---- start fight ----
