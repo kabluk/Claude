@@ -568,3 +568,32 @@ html, body {
 .win-dot { width: 12px; height: 12px; border-radius: 50%; }
 .win-dot.filled { background: #FFD700; }
 .win-dot.empty  { background: rgba(255,255,255,0.15); border: 1px solid var(--border); }
+
+/* -------- scan animation -------- */
+
+.photo-area.scanning::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, transparent, #00FFFF, #CC44FF, transparent);
+  box-shadow: 0 0 12px #00FFFF;
+  animation: scanLine 1.5s linear forwards;
+  z-index: 10;
+}
+
+@keyframes scanLine {
+  from { top: 0; }
+  to   { top: 100%; }
+}
+
+.photo-area.scanning { border-color: #00FFFF; }
+.photo-area.scanned  { border-color: #44FF88; border-style: solid; }
+
+/* -------- description input -------- */
+
+.desc-input {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: -6px;
+}

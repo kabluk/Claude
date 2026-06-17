@@ -24,7 +24,7 @@ class FaceProcessor {
           const srcSize = shortSide;
 
           ctx.drawImage(img, srcX, srcY, srcSize, srcSize, 0, 0, size, size);
-          resolve(out);
+          resolve(FaceProcessor.pixelate(out, 5));
         };
         img.onerror = reject;
         img.src = e.target.result;
@@ -32,6 +32,22 @@ class FaceProcessor {
       reader.onerror = reject;
       reader.readAsDataURL(file);
     });
+  }
+
+  static pixelate(canvas, blockSize = 5) {
+    const w = canvas.width, h = canvas.height;
+    const small = document.createElement('canvas');
+    small.width = Math.ceil(w / blockSize);
+    small.height = Math.ceil(h / blockSize);
+    const sCtx = small.getContext('2d');
+    sCtx.imageSmoothingEnabled = false;
+    sCtx.drawImage(canvas, 0, 0, small.width, small.height);
+    const out = document.createElement('canvas');
+    out.width = w; out.height = h;
+    const oCtx = out.getContext('2d');
+    oCtx.imageSmoothingEnabled = false;
+    oCtx.drawImage(small, 0, 0, w, h);
+    return out;
   }
 
   static createDefaultFace(size = 120, colorHex = '#FFB347') {

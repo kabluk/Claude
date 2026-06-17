@@ -5,13 +5,20 @@ class Game {
     this.canvas.width  = CONFIG.CANVAS_WIDTH;
     this.canvas.height = CONFIG.CANVAS_HEIGHT;
 
+    // Offscreen pixel-art canvas (half resolution, scaled up 2x)
+    this.pixelCanvas = document.createElement('canvas');
+    this.pixelCanvas.width  = 400;
+    this.pixelCanvas.height = 225;
+    this.pixelCtx = this.pixelCanvas.getContext('2d');
+    this.pixelCtx.imageSmoothingEnabled = false;
+
     this.input = new InputManager();
     this.ui    = new UI(this.ctx);
     this.ui.arena = arenaId || 'street';
     this.vsAI  = vsAI;
 
-    this.p1 = new Fighter(1, CONFIG.P1_START_X, p1Data.style, p1Data.face, p1Data.name);
-    this.p2 = new Fighter(2, CONFIG.P2_START_X, p2Data.style, p2Data.face, p2Data.name);
+    this.p1 = new Fighter(1, CONFIG.P1_START_X, p1Data.style, p1Data.face, p1Data.name, p1Data.photoColors, p1Data.traits);
+    this.p2 = new Fighter(2, CONFIG.P2_START_X, p2Data.style, p2Data.face, p2Data.name, p2Data.photoColors, p2Data.traits);
 
     this.ai = vsAI ? new AIController(this.p2, this.p1) : null;
 
@@ -159,14 +166,26 @@ class Game {
   }
 
   _render() {
-    const ctx = this.ctx;
-    ctx.save();
+    const pctx = this.pixelCtx;
+    const ctx  = this.ctx;
+
+    // --- Render game world to pixel canvas at half resolution ---
+    pctx.clearRect(0, 0, 400, 225);
+    pctx.save();
+    pctx.scale(0.5, 0.5);
     if (this._shakeFrames>0) {
-      ctx.translate((Math.random()-0.5)*this._shakeFrames*2,(Math.random()-0.5)*this._shakeFrames*1.5);
+      pctx.translate((Math.random()-0.5)*this._shakeFrames*2,(Math.random()-0.5)*this._shakeFrames*1.5);
     }
-    this.ui.drawArena(ctx, this.frame);
-    this.p1.draw(ctx, this.frame);
-    this.p2.draw(ctx, this.frame);
+    this.ui.drawArena(pctx, this.frame);
+    this.p1.draw(pctx, this.frame);
+    this.p2.draw(pctx, this.frame);
+    pctx.restore();
+
+    // --- Scale pixel canvas up 2x to main canvas (no smoothing = chunky pixels) ---
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(this.pixelCanvas, 0, 0, 800, 450);
+
+    // --- Draw HUD and overlays at full resolution on main canvas ---
     if (this._state==='fight'||this._state==='roundEnd') {
       this.ui.drawHUD(this.p1,this.p2,this.round,this.wins,this.timer,CONFIG.MAX_ROUNDS);
     }
@@ -174,7 +193,6 @@ class Game {
       this.ui.drawAnnouncement(ctx, this._announceText, this._announceAlpha??1);
     }
     this._drawControls(ctx);
-    ctx.restore();
   }
 
   _drawControls(ctx) {
