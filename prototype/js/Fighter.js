@@ -41,6 +41,7 @@ class Fighter {
     this.invFrames=80; this.flashFrames=0; this.flashColor='#fff';
     this.hitEffect=null; this.hitRegistered=false;
     this.dmgDealt=0; this.dmgTaken=0; this.knockdowns=0; this.comboHits=0;
+    this.consecutiveHits=0; this.blazeTimer=0; this._starAngle=0;
   }
 
   get hurtbox() { return {x:this.x-28,y:this.y-148,w:56,h:148}; }
@@ -63,6 +64,7 @@ class Fighter {
   receiveHit(damage,knockback,attacker) {
     if (this.invFrames>0) return false;
     if (this.state===STATES.KNOCKDOWN||this.state===STATES.GETUP) return false;
+    this.consecutiveHits = 0;
     const dir=attacker.x<this.x?1:-1;
     const towardAtk=this.facingRight===(attacker.x>this.x);
     const blocking=this.state===STATES.BLOCK&&towardAtk;
@@ -100,6 +102,8 @@ class Fighter {
     if (this.flashFrames>0) this.flashFrames--;
     if (this.invFrames>0)   this.invFrames--;
     if (this._phraseCooldown>0) this._phraseCooldown--;
+    if (this.blazeTimer > 0) this.blazeTimer--;
+    if (this.hp / this.maxHp <= 0.22) this._starAngle += 0.12;
     this.hitRegistered=false;
     this.facingRight=opponent.x>this.x;
 
@@ -223,6 +227,17 @@ class Fighter {
     }
 
     this._drawShadow(ctx);
+    if (this.blazeTimer > 0) {
+      const pulse = 0.5 + Math.sin(this.blazeTimer * 0.18) * 0.25;
+      ctx.save();
+      ctx.globalAlpha = pulse * 0.65;
+      ctx.fillStyle = '#FF6600';
+      ctx.beginPath(); ctx.ellipse(0, -74, 42, 88, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.globalAlpha = pulse * 0.28;
+      ctx.fillStyle = '#FFAA00';
+      ctx.beginPath(); ctx.ellipse(0, -74, 55, 104, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.restore();
+    }
     this._drawCharacter(ctx,dir,frameCount,flash);
     ctx.restore();
 
@@ -579,6 +594,7 @@ class Fighter {
       ctx.fillStyle='#d4956a'; ctx.fillRect(hx-hr,hy-hr,hr*2,hr*2);
     }
     if (flash) { ctx.fillStyle=this.flashColor+'70'; ctx.fillRect(hx-hr,hy-hr,hr*2,hr*2); }
+    this._drawFaceDamage(ctx, hx, hy, hr);
     ctx.restore();
 
     // Head outline
@@ -590,6 +606,17 @@ class Fighter {
 
     // Draw traits accessories
     this._drawTraitAccessories(ctx, hx, hy, hr, traits, flash);
+
+    // Spinning stars when near death
+    if (this.hp / this.maxHp <= 0.20) {
+      ctx.fillStyle = '#FFD700';
+      for (let i = 0; i < 3; i++) {
+        const a = this._starAngle + (i * Math.PI * 2 / 3);
+        const sx = hx + Math.cos(a) * (hr + 14);
+        const sy = hy + Math.sin(a) * (hr + 10);
+        this._drawStar(ctx, sx, sy, 6);
+      }
+    }
 
     ctx.restore();
 
@@ -659,6 +686,37 @@ class Fighter {
       // Hat band
       ctx.fillStyle = '#8B0000';
       ctx.fillRect(hx - hr * 0.65, hy - hr + 2, hr * 1.3, 5);
+    }
+  }
+
+  _drawFaceDamage(ctx, hx, hy, hr) {
+    const pct = this.hp / this.maxHp;
+    if (pct > 0.70) return;
+    // Stage 1: red flush
+    const stage1 = Math.min(1, (0.70 - pct) / 0.25);
+    ctx.fillStyle = `rgba(220,55,30,${(stage1 * 0.32).toFixed(2)})`;
+    ctx.fillRect(hx - hr, hy - hr, hr * 2, hr * 2);
+    // Stage 2: swollen left eye
+    if (pct <= 0.45) {
+      ctx.fillStyle = 'rgba(70,15,0,0.72)';
+      ctx.beginPath(); ctx.ellipse(hx - 10, hy - 4, 12, 7, 0.25, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = 'rgba(150,50,10,0.45)';
+      ctx.beginPath(); ctx.ellipse(hx - 13, hy - 7, 6, 3, 0.2, 0, Math.PI * 2); ctx.fill();
+    }
+    // Stage 3: both eyes + blood + X
+    if (pct <= 0.20) {
+      ctx.fillStyle = 'rgba(70,15,0,0.72)';
+      ctx.beginPath(); ctx.ellipse(hx + 10, hy - 4, 12, 7, -0.25, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = 'rgba(170,0,0,0.50)';
+      ctx.beginPath();
+      ctx.moveTo(hx - 4, hy - 2); ctx.quadraticCurveTo(hx - 1, hy + 9, hx + 4, hy + 16);
+      ctx.lineTo(hx + 8, hy + 15); ctx.quadraticCurveTo(hx + 3, hy + 8, hx, hy - 2);
+      ctx.closePath(); ctx.fill();
+      ctx.strokeStyle = 'rgba(30,0,0,0.8)'; ctx.lineWidth = 2.5;
+      ctx.beginPath(); ctx.moveTo(hx-17,hy-8); ctx.lineTo(hx-7,hy); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(hx-7,hy-8); ctx.lineTo(hx-17,hy); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(hx+7,hy-8); ctx.lineTo(hx+17,hy); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(hx+17,hy-8); ctx.lineTo(hx+7,hy); ctx.stroke();
     }
   }
 
