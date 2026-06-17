@@ -1,13 +1,30 @@
 class Fighter {
-  constructor(id, x, style, faceCanvas, name) {
+  constructor(id, x, style, faceCanvas, name, photoColors, traits) {
     this.id     = id;
     this.style  = style;
-    this.cfg    = CONFIG.STYLES[style];
+    this.cfg    = Object.assign({}, CONFIG.STYLES[style]);
     this.face   = faceCanvas;
     this.name   = name || this.cfg.name;
     this.maxHp  = Math.round(100 * this.cfg.hpMult);
     this.maxSp  = 100;
     this._idlePhase = Math.random() * Math.PI * 2;
+
+    // Apply photo colors
+    this.photoColors = photoColors || null;
+    this.traits = traits || {};
+
+    if (photoColors && photoColors.shirt) {
+      this.cfg.torsoColor = photoColors.shirt;
+      this.cfg.armsColor  = photoColors.shirt;
+    }
+    if (photoColors && photoColors.pants) {
+      this.cfg.legsColor = photoColors.pants;
+    }
+
+    // Body scale from traits
+    this._scaleX = (traits && traits.scaleX) ? traits.scaleX : 1.0;
+    this._scaleY = (traits && traits.scaleY) ? traits.scaleY : 1.0;
+
     this.resetForMatch(x);
   }
 
@@ -151,6 +168,24 @@ class Fighter {
       this.vx=(this.facingRight?1:-1)*5;
   }
 
+  // ================ IDLE POSE ================
+
+  _getIdlePose(frame) {
+    const t = frame * 0.048 + this._idlePhase;
+    // Weight shift (slow, left-right)
+    const weight = Math.sin(t * 0.38) * 2.2;
+    // Knee bounce (in sync with weight shift, faster)
+    const kneeAmp = (Math.cos(t * 0.76) * 0.5 + 0.5) * 3.5;
+    // Chest breath
+    const breath = Math.sin(t * 0.9) * 1.4;
+    // Guard hands sway
+    const guardSway = Math.sin(t * 1.1) * 0.5;
+    // Head subtle movement
+    const headX = Math.sin(t * 0.5) * 1.2;
+    const headY = Math.sin(t * 0.9) * 0.8;
+    return { weight, kneeAmp, breath, guardSway, headX, headY };
+  }
+
   // ================ DRAWING ================
 
   draw(ctx,frameCount) {
@@ -159,6 +194,11 @@ class Fighter {
 
     ctx.save();
     ctx.translate(Math.round(this.x),Math.round(this.y));
+
+    // Apply body scale from traits
+    if (this._scaleX !== 1.0 || this._scaleY !== 1.0) {
+      ctx.scale(this._scaleX, this._scaleY);
+    }
 
     if (this.state===STATES.KNOCKDOWN||this.state===STATES.DEFEAT) {
       const prog=Math.min(this.stateFrame/16,1);
@@ -184,8 +224,13 @@ class Fighter {
 
   _drawCharacter(ctx,dir,frame,flash) {
     const {state,stateFrame,style,cfg}=this;
-    const bobY=state===STATES.IDLE?Math.sin(frame*0.05+this._idlePhase)*2.5:0;
-    ctx.translate(0,bobY);
+
+    // Idle pose system
+    let idlePose = null;
+    if (state===STATES.IDLE) {
+      idlePose = this._getIdlePose(frame);
+      ctx.translate(idlePose.weight, idlePose.breath);
+    }
 
     // Pose adjustments
     let crouchY=0,leanX=0,leanAngle=0;
@@ -199,15 +244,15 @@ class Fighter {
     ctx.translate(0,crouchY);
 
     // Draw layers back-to-front
-    this._drawLegs(ctx,dir,frame,flash,crouchY>0);
+    this._drawLegs(ctx,dir,frame,flash,crouchY>0,idlePose);
     this._drawTorso(ctx,dir,flash,crouchY>0);
-    this._drawArms(ctx,dir,frame,flash);
+    this._drawArms(ctx,dir,frame,flash,idlePose);
     this._drawNeck(ctx,dir,flash);
-    this._drawHead(ctx,dir,flash,frame);
+    this._drawHead(ctx,dir,flash,frame,idlePose);
   }
 
   // ---- LEGS (filled shapes) ----
-  _drawLegs(ctx,dir,frame,flash,crouching) {
+  _drawLegs(ctx,dir,frame,flash,crouching,idlePose) {
     const {state,stateFrame,cfg}=this;
     const col=flash?this.flashColor:cfg.torsoColor;
     const dark=this._darken(cfg.torsoColor,40);
@@ -216,10 +261,19 @@ class Fighter {
     let lThighAngle=0,rThighAngle=0,lShinAngle=0,rShinAngle=0;
     const thighLen=42,shinLen=40;
 
+    if (state===STATES.IDLE && idlePose) {
+      // Slight outward stance + knee bounce from idlePose
+      const kBend = idlePose.kneeAmp * 0.015;
+      lThighAngle = 0.15; rThighAngle = -0.15;
+      lShinAngle = kBend; rShinAngle = kBend;
+    }
     if (state===STATES.WALK) {
       const p=frame*0.22;
       lThighAngle=Math.sin(p)*0.45; rThighAngle=Math.sin(p+Math.PI)*0.45;
       lShinAngle=Math.max(0,Math.sin(p+0.4))*0.3; rShinAngle=Math.max(0,Math.sin(p+Math.PI+0.4))*0.3;
+      // Foot stomp: slight body dip when foot hits ground
+      const stomp = Math.max(0, Math.sin(p * 2)) * 1.5;
+      ctx.translate(0, stomp);
     }
     if (state===STATES.JUMP||!this.onGround) {lThighAngle=-0.3;rThighAngle=0.3;lShinAngle=0.3;rShinAngle=0.3;}
     if (crouching) {lThighAngle=0.6;rThighAngle=-0.6;lShinAngle=0.6;rShinAngle=0.6;}
@@ -324,7 +378,7 @@ class Fighter {
   }
 
   // ---- ARMS (chunky) ----
-  _drawArms(ctx,dir,frame,flash) {
+  _drawArms(ctx,dir,frame,flash,idlePose) {
     const {state,stateFrame,style,cfg}=this;
     const col=flash?this.flashColor:cfg.armsColor;
     const SY=-110;
@@ -337,9 +391,13 @@ class Fighter {
       const p=frame*0.22;
       fAngle=Math.sin(p+Math.PI)*0.42*dir; bAngle=Math.sin(p)*0.42*dir;
     }
-    if (state===STATES.IDLE) {
-      const sway=Math.sin(frame*0.05+this._idlePhase)*0.08;
-      fAngle+=sway; bAngle-=sway;
+    if (state===STATES.IDLE && idlePose) {
+      // Low guard position: arms bent up around chest, hands in front
+      const gs = idlePose.guardSway;
+      fAngle = (-0.35 + gs) * dir;
+      bAngle = (-0.25 - gs) * dir;
+      fForeAngle = -0.55;
+      bForeAngle = -0.45;
     }
     if (state===STATES.PUNCH_L||state===STATES.PUNCH_H) {
       const atk=CONFIG.ATTACKS[state];
@@ -401,8 +459,25 @@ class Fighter {
   }
 
   // ---- HEAD (with face photo) ----
-  _drawHead(ctx,dir,flash,frame) {
+  _drawHead(ctx,dir,flash,frame,idlePose) {
     const hx=0,hy=-148,hr=27;
+    const traits = this.traits || {};
+
+    // Apply head movement from idle pose
+    let headOffX = 0, headOffY = 0;
+    if (idlePose) {
+      headOffX = idlePose.headX;
+      headOffY = idlePose.headY;
+    }
+
+    ctx.save();
+    ctx.translate(headOffX, headOffY);
+
+    // Bald cap (drawn behind face clip)
+    if (traits.bald) {
+      ctx.fillStyle = '#d4956a';
+      ctx.beginPath(); ctx.arc(hx, hy, hr+2, 0, Math.PI*2); ctx.fill();
+    }
 
     // Clip face to circle
     ctx.save();
@@ -421,10 +496,77 @@ class Fighter {
     // Style headgear
     this._drawHeadGear(ctx,dir,hx,hy,hr,flash,frame);
 
+    // Draw traits accessories
+    this._drawTraitAccessories(ctx, hx, hy, hr, traits, flash);
+
+    ctx.restore();
+
     // Block guard
     if (this.state===STATES.BLOCK) {
       ctx.strokeStyle=this.cfg.armsColor; ctx.lineWidth=13; ctx.lineCap='round';
       ctx.beginPath(); ctx.moveTo(-30,hy+8); ctx.lineTo(30,hy-10); ctx.stroke();
+    }
+  }
+
+  _drawTraitAccessories(ctx, hx, hy, hr, traits, flash) {
+    if (!traits) return;
+
+    // Beard
+    if (traits.beard) {
+      ctx.fillStyle = this.photoColors && this.photoColors.hair ? this.photoColors.hair : '#553300';
+      ctx.beginPath();
+      ctx.ellipse(hx, hy + hr * 0.55, hr * 0.72, hr * 0.45, 0, 0, Math.PI);
+      ctx.fill();
+      // Beard texture lines
+      ctx.strokeStyle = 'rgba(0,0,0,0.25)'; ctx.lineWidth = 1;
+      for (let i = -1; i <= 1; i++) {
+        ctx.beginPath();
+        ctx.moveTo(hx + i * 8, hy + hr * 0.28);
+        ctx.lineTo(hx + i * 10, hy + hr * 0.85);
+        ctx.stroke();
+      }
+    }
+
+    // Mustache
+    if (traits.mustache) {
+      const mCol = this.photoColors && this.photoColors.hair ? this.photoColors.hair : '#553300';
+      ctx.fillStyle = mCol;
+      ctx.beginPath();
+      ctx.ellipse(hx - 6, hy + 5, 8, 4, -0.3, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.ellipse(hx + 6, hy + 5, 8, 4, 0.3, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    // Glasses
+    if (traits.glasses) {
+      ctx.strokeStyle = '#222'; ctx.lineWidth = 2;
+      // Left lens
+      ctx.beginPath(); ctx.arc(hx - 10, hy - 4, 8, 0, Math.PI * 2); ctx.stroke();
+      // Right lens
+      ctx.beginPath(); ctx.arc(hx + 10, hy - 4, 8, 0, Math.PI * 2); ctx.stroke();
+      // Bridge
+      ctx.beginPath(); ctx.moveTo(hx - 2, hy - 4); ctx.lineTo(hx + 2, hy - 4); ctx.stroke();
+      // Temple arms
+      ctx.beginPath(); ctx.moveTo(hx - 18, hy - 4); ctx.lineTo(hx - hr + 2, hy - 4); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(hx + 18, hy - 4); ctx.lineTo(hx + hr - 2, hy - 4); ctx.stroke();
+      // Tint
+      ctx.fillStyle = 'rgba(0,80,160,0.15)';
+      ctx.beginPath(); ctx.arc(hx - 10, hy - 4, 8, 0, Math.PI * 2); ctx.fill();
+      ctx.beginPath(); ctx.arc(hx + 10, hy - 4, 8, 0, Math.PI * 2); ctx.fill();
+    }
+
+    // Hat (drawn last, on top)
+    if (traits.hat) {
+      ctx.fillStyle = '#1a1a1a';
+      // Brim
+      ctx.beginPath(); ctx.ellipse(hx, hy - hr + 4, hr + 6, 5, 0, 0, Math.PI * 2); ctx.fill();
+      // Crown
+      ctx.fillRect(hx - hr * 0.65, hy - hr - 20, hr * 1.3, 24);
+      // Hat band
+      ctx.fillStyle = '#8B0000';
+      ctx.fillRect(hx - hr * 0.65, hy - hr + 2, hr * 1.3, 5);
     }
   }
 
