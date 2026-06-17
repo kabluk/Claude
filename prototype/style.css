@@ -112,7 +112,6 @@ html, body {
   cursor: pointer;
   transition: border-color 0.2s, background 0.2s;
   position: relative;
-  overflow: hidden;
 }
 
 .photo-area:hover, .photo-area.drag-over {
@@ -127,6 +126,7 @@ html, body {
   object-fit: cover;
   border-radius: 10px;
   opacity: 0.92;
+  pointer-events: none;
 }
 
 .photo-area .upload-hint {
@@ -143,11 +143,11 @@ html, body {
 
 .photo-area input[type="file"] {
   position: absolute;
-  top: 0; left: 0;
-  width: 1px; height: 1px;
+  inset: 0;
   opacity: 0;
-  font-size: 0;
-  pointer-events: none;
+  cursor: pointer;
+  font-size: 16px;
+  z-index: 10;
 }
 
 .photo-area.has-photo .upload-hint { display: none; }
