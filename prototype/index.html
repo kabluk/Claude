@@ -97,7 +97,10 @@
   <!-- AI result toast -->
   <div class="ai-toast" id="aiToast" style="display:none"></div>
 
-  <button id="btn-start" disabled>⚡ НАЧАТЬ БОЙ</button>
+  <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+    <button id="btn-start" disabled>⚡ НАЧАТЬ БОЙ</button>
+    <button id="btn-slap"  disabled style="background:linear-gradient(135deg,#8b0000,#cc3300)">👋 СЛЭП!</button>
+  </div>
 </div>
 
 
@@ -168,6 +171,7 @@
 <script src="js/AIController.js"></script>
 <script src="js/UI.js"></script>
 <script src="js/Game.js"></script>
+<script src="js/SlapGame.js"></script>
 <script>
 
 const ARENA_INFO = [
@@ -375,11 +379,14 @@ document.querySelector('.player-card.p2').style.opacity='0.55';
 document.querySelector('.player-card.p2').style.pointerEvents='none';
 
 function updateStartBtn() {
-  document.getElementById('btn-start').disabled=!(playerData[0].face&&(vsAI||playerData[1].face));
+  const ready = !!(playerData[0].face && (vsAI || playerData[1].face));
+  document.getElementById('btn-start').disabled = !ready;
+  document.getElementById('btn-slap').disabled  = !ready;
 }
 
 // ---- start fight ----
 document.getElementById('btn-start').addEventListener('click', startFight);
+document.getElementById('btn-slap').addEventListener('click', startSlapFight);
 
 function getFighterData(idx) {
   const pd = playerData[idx];
@@ -407,6 +414,17 @@ function startFight() {
   showScreen('fight');
   currentGame=new Game(p1,p2,vsAI,arenaId);
   setupTouchControls();
+}
+
+function startSlapFight() {
+  const p1 = getFighterData(0);
+  const p2 = vsAI
+    ? {face:FaceProcessor.createDefaultFace(120,'#AA5533'), style:playerData[1].style,
+       name:'AI '+CONFIG.STYLES[playerData[1].style].name, photoColors:null, traits:{}, phrases:[]}
+    : getFighterData(1);
+  lastP1Data=p1; lastP2Data=p2;
+  showScreen('fight');
+  currentGame = new SlapGame(p1, p2, vsAI);
 }
 
 // ---- touch controls ----
