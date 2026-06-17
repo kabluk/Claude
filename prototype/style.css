@@ -147,7 +147,6 @@ html, body {
   opacity: 0;
   cursor: pointer;
   font-size: 0;
-  z-index: 2;
 }
 
 .photo-area.has-photo .upload-hint { display: none; }
