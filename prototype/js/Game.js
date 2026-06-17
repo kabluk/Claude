@@ -4,13 +4,7 @@ class Game {
     this.ctx    = this.canvas.getContext('2d');
     this.canvas.width  = CONFIG.CANVAS_WIDTH;
     this.canvas.height = CONFIG.CANVAS_HEIGHT;
-
-    // Offscreen pixel-art canvas (half resolution, scaled up 2x)
-    this.pixelCanvas = document.createElement('canvas');
-    this.pixelCanvas.width  = 400;
-    this.pixelCanvas.height = 225;
-    this.pixelCtx = this.pixelCanvas.getContext('2d');
-    this.pixelCtx.imageSmoothingEnabled = false;
+    this.ctx.imageSmoothingEnabled = false;
 
     this.input = new InputManager();
     this.ui    = new UI(this.ctx);
@@ -166,26 +160,14 @@ class Game {
   }
 
   _render() {
-    const pctx = this.pixelCtx;
-    const ctx  = this.ctx;
-
-    // --- Render game world to pixel canvas at half resolution ---
-    pctx.clearRect(0, 0, 400, 225);
-    pctx.save();
-    pctx.scale(0.5, 0.5);
+    const ctx = this.ctx;
+    ctx.save();
     if (this._shakeFrames>0) {
-      pctx.translate((Math.random()-0.5)*this._shakeFrames*2,(Math.random()-0.5)*this._shakeFrames*1.5);
+      ctx.translate((Math.random()-0.5)*this._shakeFrames*2,(Math.random()-0.5)*this._shakeFrames*1.5);
     }
-    this.ui.drawArena(pctx, this.frame);
-    this.p1.draw(pctx, this.frame);
-    this.p2.draw(pctx, this.frame);
-    pctx.restore();
-
-    // --- Scale pixel canvas up 2x to main canvas (no smoothing = chunky pixels) ---
-    ctx.imageSmoothingEnabled = false;
-    ctx.drawImage(this.pixelCanvas, 0, 0, 800, 450);
-
-    // --- Draw HUD and overlays at full resolution on main canvas ---
+    this.ui.drawArena(ctx, this.frame);
+    this.p1.draw(ctx, this.frame);
+    this.p2.draw(ctx, this.frame);
     if (this._state==='fight'||this._state==='roundEnd') {
       this.ui.drawHUD(this.p1,this.p2,this.round,this.wins,this.timer,CONFIG.MAX_ROUNDS);
     }
@@ -193,6 +175,7 @@ class Game {
       this.ui.drawAnnouncement(ctx, this._announceText, this._announceAlpha??1);
     }
     this._drawControls(ctx);
+    ctx.restore();
   }
 
   _drawControls(ctx) {
