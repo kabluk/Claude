@@ -72,6 +72,31 @@
     <span id="modeLabel">P2 управляется AI</span>
   </div>
 
+  <!-- API Key row -->
+  <div class="api-key-row" id="apiKeyRow">
+    <span class="api-icon">🤖</span>
+    <span class="api-label">Claude AI анализ фото:</span>
+    <span class="api-status" id="apiStatus">не настроен</span>
+    <button class="api-edit-btn" id="apiEditBtn">Настроить</button>
+  </div>
+
+  <!-- API key modal -->
+  <div class="api-modal-backdrop" id="apiModalBackdrop" style="display:none">
+    <div class="api-modal">
+      <div class="api-modal-title">🤖 Claude API ключ</div>
+      <div class="api-modal-hint">Получи бесплатный ключ на <strong>console.anthropic.com</strong><br>
+        AI сам определит кто на фото и добавит его фразы в бой</div>
+      <input type="password" class="api-key-input" id="apiKeyInput" placeholder="sk-ant-...">
+      <div class="api-modal-btns">
+        <button class="api-cancel-btn" id="apiCancelBtn">Отмена</button>
+        <button class="api-save-btn" id="apiSaveBtn">Сохранить</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI result toast -->
+  <div class="ai-toast" id="aiToast" style="display:none"></div>
+
   <button id="btn-start" disabled>⚡ НАЧАТЬ БОЙ</button>
 </div>
 
@@ -137,6 +162,7 @@
 <script src="js/config.js"></script>
 <script src="js/FaceProcessor.js"></script>
 <script src="js/PhotoAnalyzer.js"></script>
+<script src="js/AIAnalyzer.js"></script>
 <script src="js/InputManager.js"></script>
 <script src="js/Fighter.js"></script>
 <script src="js/AIController.js"></script>
@@ -152,12 +178,51 @@ const ARENA_INFO = [
 ];
 
 const playerData = [
-  { face:null, style:'boxer',  name:'', photoColors:null, traits:{} },
-  { face:null, style:'karate', name:'', photoColors:null, traits:{} }
+  { face:null, style:'boxer',  name:'', photoColors:null, traits:{}, phrases:[] },
+  { face:null, style:'karate', name:'', photoColors:null, traits:{}, phrases:[] }
 ];
 let vsAI     = true;
 let arenaId  = 'street';
 let lastP1Data=null, lastP2Data=null, currentGame=null;
+
+// ---- API key ----
+let claudeApiKey = localStorage.getItem('claudeApiKey') || '';
+function updateApiStatus() {
+  const status = document.getElementById('apiStatus');
+  if (claudeApiKey) {
+    status.textContent = '✓ активен';
+    status.style.color = '#44ee88';
+  } else {
+    status.textContent = 'не настроен';
+    status.style.color = '#888';
+  }
+}
+updateApiStatus();
+
+document.getElementById('apiEditBtn').addEventListener('click', () => {
+  document.getElementById('apiKeyInput').value = claudeApiKey;
+  document.getElementById('apiModalBackdrop').style.display = 'flex';
+});
+document.getElementById('apiCancelBtn').addEventListener('click', () => {
+  document.getElementById('apiModalBackdrop').style.display = 'none';
+});
+document.getElementById('apiSaveBtn').addEventListener('click', () => {
+  const val = document.getElementById('apiKeyInput').value.trim();
+  claudeApiKey = val;
+  localStorage.setItem('claudeApiKey', val);
+  updateApiStatus();
+  document.getElementById('apiModalBackdrop').style.display = 'none';
+});
+
+function showAiToast(msg, isError) {
+  const t = document.getElementById('aiToast');
+  t.textContent = msg;
+  t.style.background = isError ? '#8b0000' : '#1a3a1a';
+  t.style.borderColor = isError ? '#ff4444' : '#44ee88';
+  t.style.display = 'block';
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => { t.style.display = 'none'; }, 4000);
+}
 
 // ---- style grids ----
 for (const pid of [1,2]) {
@@ -198,41 +263,84 @@ for (const pid of [1,2]) {
   const preview = document.getElementById(`photoPreview${pid}`);
 
   const handleFile = file => {
-    // First load the original for color analysis (before pixelation)
     const reader = new FileReader();
     reader.onload = (e) => {
       const img = new Image();
       img.onload = () => {
-        // Build original (non-pixelated) canvas for color analysis
+        // Build original canvas for analysis (full quality, no pixelation)
         const origCanvas = document.createElement('canvas');
-        origCanvas.width = 120; origCanvas.height = 120;
+        origCanvas.width = 240; origCanvas.height = 240;
         const origCtx = origCanvas.getContext('2d');
-        const shortSide = Math.min(img.width, img.height * 0.65);
+        const shortSide = Math.min(img.width, img.height);
         const srcX = (img.width - shortSide) / 2;
-        origCtx.drawImage(img, srcX, 0, shortSide, shortSide, 0, 0, 120, 120);
-        const photoColors = PhotoAnalyzer.analyze(origCanvas);
+        const srcY = 0;
+        origCtx.drawImage(img, srcX, srcY, shortSide, shortSide, 0, 0, 240, 240);
+
+        // Fallback color extraction (instant)
+        const colorCanvas = document.createElement('canvas');
+        colorCanvas.width = 120; colorCanvas.height = 120;
+        colorCanvas.getContext('2d').drawImage(origCanvas, 0, 0, 120, 120);
+        const photoColors = PhotoAnalyzer.analyze(colorCanvas);
         playerData[pid-1].photoColors = photoColors;
 
-        // Now process (pixelate) the photo for display
+        // Process photo for display
         FaceProcessor.processPhoto(file, 120).then(canvas => {
           playerData[pid-1].face = canvas;
-          const traits = PhotoAnalyzer.parseDescription(document.getElementById(`desc${pid}`).value);
-          playerData[pid-1].traits = traits;
+          const descTraits = PhotoAnalyzer.parseDescription(document.getElementById(`desc${pid}`).value);
+          playerData[pid-1].traits = descTraits;
 
           preview.src = canvas.toDataURL();
           preview.style.display = 'block';
           area.classList.add('has-photo');
-
-          // Scan animation
           area.classList.remove('scanned');
           area.classList.add('scanning');
-          setTimeout(() => {
-            area.classList.remove('scanning');
-            area.classList.add('scanned');
-          }, 1500);
-
           updateStartBtn();
-        }).catch(()=>alert('Не удалось загрузить фото. Попробуй другое.'));
+
+          // AI analysis (if key set)
+          if (claudeApiKey) {
+            AIAnalyzer.analyze(origCanvas, claudeApiKey).then(result => {
+              area.classList.remove('scanning');
+              area.classList.add('scanned');
+
+              // Apply AI result
+              if (result.colors) playerData[pid-1].photoColors = result.colors;
+              if (result.traits) {
+                playerData[pid-1].traits = Object.assign({}, descTraits, result.traits);
+                if (result.gender === 'female') {
+                  playerData[pid-1].traits.scaleX = 0.88;
+                  playerData[pid-1].traits.longHair = playerData[pid-1].traits.longHair ?? true;
+                }
+              }
+              if (result.phrases && result.phrases.length) {
+                playerData[pid-1].phrases = result.phrases;
+              }
+              if (result.style && CONFIG.STYLES[result.style]) {
+                playerData[pid-1].style = result.style;
+                // Sync style grid UI
+                const grid = document.getElementById(`styleGrid${pid}`);
+                grid.querySelectorAll('.style-btn').forEach((b, i) => {
+                  b.classList.toggle('selected', Object.keys(CONFIG.STYLES)[i] === result.style);
+                });
+              }
+              const who = result.name ? `✓ ${result.name}` : '✓ Персонаж определён';
+              const phraseHint = result.phrases?.length ? ` · ${result.phrases.length} фразы` : '';
+              showAiToast(`🤖 ${who}${phraseHint}`, false);
+              if (result.name && !playerData[pid-1].name) {
+                playerData[pid-1].name = result.name;
+                document.getElementById(`name${pid}`).value = result.name;
+              }
+            }).catch(err => {
+              area.classList.remove('scanning');
+              area.classList.add('scanned');
+              showAiToast(`⚠ AI ошибка: ${err.message}`, true);
+            });
+          } else {
+            setTimeout(() => {
+              area.classList.remove('scanning');
+              area.classList.add('scanned');
+            }, 1200);
+          }
+        }).catch(() => alert('Не удалось загрузить фото. Попробуй другое.'));
       };
       img.onerror = () => alert('Не удалось загрузить фото. Попробуй другое.');
       img.src = e.target.result;
@@ -275,15 +383,17 @@ document.getElementById('btn-start').addEventListener('click', startFight);
 
 function getFighterData(idx) {
   const pd = playerData[idx];
-  // Re-read description traits at fight start
-  const traits = PhotoAnalyzer.parseDescription(document.getElementById(`desc${idx+1}`).value);
-  pd.traits = traits;
+  if (!pd.phrases?.length) {
+    const descTraits = PhotoAnalyzer.parseDescription(document.getElementById(`desc${idx+1}`).value);
+    pd.traits = Object.assign({}, pd.traits, descTraits);
+  }
   return {
     face:        pd.face || FaceProcessor.createDefaultFace(120),
     style:       pd.style,
     name:        pd.name || CONFIG.STYLES[pd.style].name,
     photoColors: pd.photoColors || null,
-    traits:      pd.traits || {}
+    traits:      pd.traits || {},
+    phrases:     pd.phrases || []
   };
 }
 
@@ -291,7 +401,7 @@ function startFight() {
   const p1 = getFighterData(0);
   const p2 = vsAI
     ? {face:FaceProcessor.createDefaultFace(120,'#AA5533'), style:playerData[1].style,
-       name:'AI '+CONFIG.STYLES[playerData[1].style].name, photoColors:null, traits:{}}
+       name:'AI '+CONFIG.STYLES[playerData[1].style].name, photoColors:null, traits:{}, phrases:[]}
     : getFighterData(1);
   lastP1Data=p1; lastP2Data=p2;
   showScreen('fight');

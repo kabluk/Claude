@@ -1,5 +1,5 @@
 class Fighter {
-  constructor(id, x, style, faceCanvas, name, photoColors, traits) {
+  constructor(id, x, style, faceCanvas, name, photoColors, traits, phrases) {
     this.id     = id;
     this.style  = style;
     this.cfg    = Object.assign({}, CONFIG.STYLES[style]);
@@ -9,7 +9,6 @@ class Fighter {
     this.maxSp  = 100;
     this._idlePhase = Math.random() * Math.PI * 2;
 
-    // Apply photo colors
     this.photoColors = photoColors || null;
     this.traits = traits || {};
 
@@ -21,9 +20,14 @@ class Fighter {
       this.cfg.legsColor = photoColors.pants;
     }
 
-    // Body scale from traits
     this._scaleX = (traits && traits.scaleX) ? traits.scaleX : 1.0;
     this._scaleY = (traits && traits.scaleY) ? traits.scaleY : 1.0;
+
+    // Phrase / speech bubble system
+    this.phrases       = phrases || [];
+    this._phraseText   = '';
+    this._phraseTimer  = 0;   // counts down, 150 = 2.5s
+    this._phraseCooldown = 0;
 
     this.resetForMatch(x);
   }
@@ -84,12 +88,25 @@ class Fighter {
     return true;
   }
 
+  _triggerPhrase() {
+    if (!this.phrases.length || this._phraseCooldown > 0) return;
+    this._phraseText = this.phrases[Math.floor(Math.random() * this.phrases.length)];
+    this._phraseTimer  = 150;
+    this._phraseCooldown = 220;
+  }
+
   update(input,frameCount,opponent) {
     this.stateFrame++;
     if (this.flashFrames>0) this.flashFrames--;
     if (this.invFrames>0)   this.invFrames--;
+    if (this._phraseCooldown>0) this._phraseCooldown--;
     this.hitRegistered=false;
     this.facingRight=opponent.x>this.x;
+
+    // Phrase triggers
+    if (this.state===STATES.SPECIAL && this.stateFrame===1) this._triggerPhrase();
+    if (this.state===STATES.VICTORY && this.stateFrame===35) this._triggerPhrase();
+    if ((this.state===STATES.IDLE||this.state===STATES.WALK) && this.stateFrame>0 && this.stateFrame%300===0) this._triggerPhrase();
 
     switch(this.state) {
       case STATES.IDLE:
@@ -195,7 +212,6 @@ class Fighter {
     ctx.save();
     ctx.translate(Math.round(this.x),Math.round(this.y));
 
-    // Apply body scale from traits
     if (this._scaleX !== 1.0 || this._scaleY !== 1.0) {
       ctx.scale(this._scaleX, this._scaleY);
     }
@@ -215,6 +231,58 @@ class Fighter {
       if (this.hitEffect.t>0) this._drawHitFx(ctx);
       else this.hitEffect=null;
     }
+
+    // Speech bubble (world-space, not affected by body scale)
+    if (this._phraseTimer > 0) {
+      this._phraseTimer--;
+      if (this._phraseText) this._drawSpeechBubble(ctx);
+    }
+  }
+
+  _drawSpeechBubble(ctx) {
+    const t = this._phraseTimer;
+    const elapsed = 150 - t;
+    const alpha = Math.min(1, elapsed / 10) * Math.min(1, t / 10);
+    if (alpha <= 0) return;
+
+    const bx = this.x;
+    const by = this.y - 190;
+    const dir = this.facingRight ? 1 : -1;
+
+    ctx.save();
+    ctx.globalAlpha = alpha;
+    ctx.font = 'bold 12px Arial, sans-serif';
+    const tw = Math.min(ctx.measureText(this._phraseText).width, 200);
+    const bw = tw + 22;
+    const bh = 28;
+    const ox = dir * Math.min(50, bw * 0.3); // offset bubble toward opponent side
+
+    ctx.fillStyle = '#fffff0';
+    ctx.strokeStyle = '#222';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.roundRect(bx + ox - bw / 2, by - bh, bw, bh, 8);
+    ctx.fill();
+    ctx.stroke();
+
+    // Tail
+    const tailX = bx + ox - dir * bw * 0.25;
+    ctx.beginPath();
+    ctx.moveTo(tailX - 6, by);
+    ctx.lineTo(tailX + 6, by);
+    ctx.lineTo(tailX, by + 11);
+    ctx.closePath();
+    ctx.fillStyle = '#fffff0';
+    ctx.fill();
+    ctx.strokeStyle = '#222';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    ctx.fillStyle = '#111';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(this._phraseText, bx + ox, by - bh / 2, 200);
+    ctx.restore();
   }
 
   _drawShadow(ctx) {
@@ -472,6 +540,30 @@ class Fighter {
 
     ctx.save();
     ctx.translate(headOffX, headOffY);
+
+    // Long hair (drawn behind everything)
+    if (traits.longHair && !traits.bald) {
+      const hairCol = (this.photoColors && this.photoColors.hair) ? this.photoColors.hair : '#3a2010';
+      ctx.fillStyle = hairCol;
+      // Left strand
+      ctx.beginPath();
+      ctx.moveTo(hx - hr + 4, hy - hr * 0.6);
+      ctx.quadraticCurveTo(hx - hr - 14, hy + 20, hx - hr - 4, hy + 58);
+      ctx.quadraticCurveTo(hx - hr + 6, hy + 66, hx - 8, hy + 52);
+      ctx.quadraticCurveTo(hx - 2, hy + 18, hx - hr + 10, hy - 2);
+      ctx.fill();
+      // Right strand
+      ctx.beginPath();
+      ctx.moveTo(hx + hr - 4, hy - hr * 0.6);
+      ctx.quadraticCurveTo(hx + hr + 14, hy + 20, hx + hr + 4, hy + 58);
+      ctx.quadraticCurveTo(hx + hr - 6, hy + 66, hx + 8, hy + 52);
+      ctx.quadraticCurveTo(hx + 2, hy + 18, hx + hr - 10, hy - 2);
+      ctx.fill();
+      // Top hair
+      ctx.beginPath();
+      ctx.arc(hx, hy - hr * 0.1, hr + 4, Math.PI * 1.2, Math.PI * 1.8);
+      ctx.fill();
+    }
 
     // Bald cap (drawn behind face clip)
     if (traits.bald) {

@@ -597,3 +597,93 @@ html, body {
   color: var(--muted);
   margin-top: -6px;
 }
+
+/* -------- API key row -------- */
+
+.api-key-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 8px auto 0;
+  max-width: 480px;
+  padding: 8px 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 13px;
+  flex-wrap: wrap;
+}
+.api-icon  { font-size: 18px; }
+.api-label { color: var(--muted); flex: 1; min-width: 0; }
+.api-status { font-weight: 600; color: #888; white-space: nowrap; }
+.api-edit-btn {
+  padding: 4px 12px;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  background: var(--surface);
+  color: var(--text);
+  font-size: 12px;
+  cursor: pointer;
+}
+.api-edit-btn:hover { border-color: var(--accent); }
+
+/* -------- API modal -------- */
+
+.api-modal-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.75);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+.api-modal {
+  background: var(--surface);
+  border: 1px solid var(--accent);
+  border-radius: 16px;
+  padding: 24px 20px;
+  max-width: 340px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.api-modal-title { font-size: 18px; font-weight: 700; text-align: center; }
+.api-modal-hint  { font-size: 12px; color: var(--muted); line-height: 1.5; text-align: center; }
+.api-key-input {
+  width: 100%;
+  padding: 10px 12px;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-size: 13px;
+  font-family: monospace;
+}
+.api-key-input:focus { outline: none; border-color: var(--accent); }
+.api-modal-btns { display: flex; gap: 10px; }
+.api-cancel-btn, .api-save-btn {
+  flex: 1; padding: 10px; border-radius: 8px;
+  font-size: 14px; font-weight: 600; cursor: pointer; border: none;
+}
+.api-cancel-btn { background: rgba(255,255,255,0.08); color: var(--muted); }
+.api-save-btn   { background: var(--accent); color: #fff; }
+
+/* -------- AI toast -------- */
+
+.ai-toast {
+  position: fixed;
+  bottom: 80px; left: 50%; transform: translateX(-50%);
+  background: #1a3a1a;
+  border: 1px solid #44ee88;
+  color: #cfffcf;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  z-index: 900;
+  white-space: nowrap;
+  max-width: 90vw;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
