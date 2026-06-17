@@ -1,0 +1,84 @@
+class FaceProcessor {
+  // Smart-crops uploaded photo to a square canvas focused on the face.
+  // Without an AI model we use heuristic: face is usually in the top 65%
+  // center of a portrait photo.
+  static processPhoto(file, size = 120) {
+    return new Promise((resolve, reject) => {
+      if (!file || !file.type.startsWith('image/')) {
+        reject(new Error('Not an image'));
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          const out = document.createElement('canvas');
+          out.width = size;
+          out.height = size;
+          const ctx = out.getContext('2d');
+
+          // Crop: center-x, top 65% of height → square
+          const shortSide = Math.min(img.width, img.height * 0.65);
+          const srcX = (img.width - shortSide) / 2;
+          const srcY = 0;
+          const srcSize = shortSide;
+
+          ctx.drawImage(img, srcX, srcY, srcSize, srcSize, 0, 0, size, size);
+          resolve(FaceProcessor.pixelate(out, 5));
+        };
+        img.onerror = reject;
+        img.src = e.target.result;
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // Fast path: process directly from an already-loaded canvas (avoids re-reading file)
+  static processFromCanvas(srcCanvas, size = 120) {
+    const w = srcCanvas.width, h = srcCanvas.height;
+    const cropH = Math.round(h * 0.65);
+    const side = Math.min(w, cropH);
+    const sx = Math.round((w - side) / 2);
+    const out = document.createElement('canvas');
+    out.width = size; out.height = size;
+    out.getContext('2d').drawImage(srcCanvas, sx, 0, side, side, 0, 0, size, size);
+    return FaceProcessor.pixelate(out, 5);
+  }
+
+  static pixelate(canvas, blockSize = 5) {
+    const w = canvas.width, h = canvas.height;
+    const small = document.createElement('canvas');
+    small.width = Math.ceil(w / blockSize);
+    small.height = Math.ceil(h / blockSize);
+    const sCtx = small.getContext('2d');
+    sCtx.imageSmoothingEnabled = false;
+    sCtx.drawImage(canvas, 0, 0, small.width, small.height);
+    const out = document.createElement('canvas');
+    out.width = w; out.height = h;
+    const oCtx = out.getContext('2d');
+    oCtx.imageSmoothingEnabled = false;
+    oCtx.drawImage(small, 0, 0, w, h);
+    return out;
+  }
+
+  static createDefaultFace(size = 120, colorHex = '#FFB347') {
+    const canvas = document.createElement('canvas');
+    canvas.width = size;
+    canvas.height = size;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = colorHex;
+    ctx.fillRect(0, 0, size, size);
+    ctx.fillStyle = '#333';
+    const eye = size * 0.12;
+    ctx.beginPath();
+    ctx.arc(size * 0.33, size * 0.38, eye, 0, Math.PI * 2);
+    ctx.arc(size * 0.67, size * 0.38, eye, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.fillStyle = '#333';
+    ctx.beginPath();
+    ctx.arc(size / 2, size * 0.62, size * 0.18, 0.1, Math.PI - 0.1);
+    ctx.fill();
+    return canvas;
+  }
+}
