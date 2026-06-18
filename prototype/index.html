@@ -2,11 +2,12 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Photo Fighters — Prototype</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<div id="dbg" style="position:fixed;top:0;left:0;right:0;background:#c00;color:#fff;padding:8px 12px;font-size:14px;z-index:99999;display:none"></div>
 
 <!-- ===== CHARACTER SELECT ===== -->
 <div id="screen-select" class="screen active">
@@ -346,13 +347,11 @@ for (const pid of [1,2]) {
   };
 
   input.addEventListener('change', e => {
+    const dbg = document.getElementById('dbg');
     const f = e.target.files[0];
-    if (f) {
-      showAiToast('📂 Файл выбран: ' + f.name, false);
-      handleFile(f);
-    } else {
-      showAiToast('⚠ Файл не получен', true);
-    }
+    dbg.textContent = f ? ('P' + pid + ': ' + f.name + ' ' + f.type + ' ' + f.size + 'b') : ('P' + pid + ': NO FILE');
+    dbg.style.display = 'block';
+    if (f) handleFile(f);
   });
   area.addEventListener('dragover', e=>{e.preventDefault();area.classList.add('drag-over');});
   area.addEventListener('dragleave',()=>area.classList.remove('drag-over'));
