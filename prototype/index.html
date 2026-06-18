@@ -349,7 +349,11 @@ for (const pid of [1,2]) {
     reader.readAsDataURL(file);
   };
 
-  input.addEventListener('change', e => { if(e.target.files[0]) handleFile(e.target.files[0]); });
+  input.addEventListener('change', e => {
+    const f = e.target.files[0];
+    alert('change: ' + (f ? f.name + ' / ' + f.type + ' / ' + f.size : 'НЕТ ФАЙЛА'));
+    if(f) handleFile(f);
+  });
   area.addEventListener('dragover', e=>{e.preventDefault();area.classList.add('drag-over');});
   area.addEventListener('dragleave',()=>area.classList.remove('drag-over'));
   area.addEventListener('drop', e=>{
