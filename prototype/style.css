@@ -142,12 +142,7 @@ html, body {
 .photo-area .upload-hint svg { opacity: 0.5; }
 
 .photo-area input[type="file"] {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  cursor: pointer;
-  font-size: 16px;
-  z-index: 10;
+  display: none;
 }
 
 .photo-area.has-photo .upload-hint { display: none; }
