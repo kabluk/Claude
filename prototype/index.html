@@ -17,7 +17,7 @@
     <div class="player-card p1">
       <h2>⚔ Игрок 1</h2>
       <div class="photo-area" id="photoArea1">
-        <input type="file" id="photoInput1" accept="image/*" style="position:fixed;left:-9999px;top:0;width:1px;height:1px;opacity:0">
+        <input type="file" id="photoInput1" accept="image/*">
         <div class="upload-hint">
           <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <rect x="3" y="3" width="18" height="18" rx="3"/>
@@ -40,7 +40,7 @@
     <div class="player-card p2">
       <h2>🛡 Игрок 2</h2>
       <div class="photo-area" id="photoArea2">
-        <input type="file" id="photoInput2" accept="image/*" style="position:fixed;left:-9999px;top:0;width:1px;height:1px;opacity:0">
+        <input type="file" id="photoInput2" accept="image/*">
         <div class="upload-hint">
           <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
             <rect x="3" y="3" width="18" height="18" rx="3"/>
@@ -348,7 +348,6 @@ for (const pid of [1,2]) {
     img.src = blobURL;
   };
 
-  area.addEventListener('click', () => input.click());
   input.addEventListener('change', e => { if(e.target.files[0]) handleFile(e.target.files[0]); });
   area.addEventListener('dragover', e=>{e.preventDefault();area.classList.add('drag-over');});
   area.addEventListener('dragleave',()=>area.classList.remove('drag-over'));
