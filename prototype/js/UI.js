@@ -284,7 +284,7 @@ class UI {
     // Blossoms
     const bpink = 'rgba(255,160,190,0.7)';
     ctx.fillStyle=bpink;
-    [[0,-90,30],[−25,-105,22],[20,-95,20],[−10,-115,18],[10,-80,15]].forEach(([bx,by,r]) => {
+    [[0,-90,30],[-25,-105,22],[20,-95,20],[-10,-115,18],[10,-80,15]].forEach(([bx,by,r]) => {
       ctx.beginPath(); ctx.arc(x+bx,baseY+by+Math.sin(frame*0.02)*2,r,0,Math.PI*2); ctx.fill();
     });
   }
