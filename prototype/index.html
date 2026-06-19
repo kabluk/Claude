@@ -480,15 +480,21 @@ function getFighterData(idx) {
 }
 
 function startFight() {
-  const p1 = getFighterData(0);
-  const p2 = vsAI
-    ? {face:FaceProcessor.createDefaultFace(120,'#AA5533'), style:playerData[1].style,
-       name:'AI '+CONFIG.STYLES[playerData[1].style].name, photoColors:null, traits:{}, phrases:[]}
-    : getFighterData(1);
-  lastP1Data=p1; lastP2Data=p2;
-  showScreen('fight');
-  currentGame=new Game(p1,p2,vsAI,arenaId);
-  setupTouchControls();
+  try {
+    const p1 = getFighterData(0);
+    const p2 = vsAI
+      ? {face:FaceProcessor.createDefaultFace(120,'#AA5533'), style:playerData[1].style,
+         name:'AI '+CONFIG.STYLES[playerData[1].style].name, photoColors:null, traits:{}, phrases:[]}
+      : getFighterData(1);
+    lastP1Data=p1; lastP2Data=p2;
+    showScreen('fight');
+    currentGame=new Game(p1,p2,vsAI,arenaId);
+    setupTouchControls();
+  } catch(e) {
+    const dbg = document.getElementById('dbg');
+    dbg.textContent = 'startFight ошибка: ' + e.message;
+    dbg.style.display = 'block';
+  }
 }
 
 function startSlapFight() {
