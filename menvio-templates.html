@@ -12,7 +12,10 @@ html{scroll-behavior:smooth}
 /* ── SVG ICONS ── */
 .icon{display:inline-block;width:18px;height:18px;vertical-align:middle;fill:currentColor}
 
-/* ── TOOLBAR ── */
+/* ── RADIO TABS (CSS-only, no JS needed) ── */
+.r{display:none}
+
+/* toolbar */
 #bar{
   position:fixed;top:0;left:0;right:0;z-index:9999;
   background:#0f0f0f;border-bottom:1px solid #222;
@@ -26,13 +29,26 @@ html{scroll-behavior:smooth}
   font-family:Karla,sans-serif;font-size:12px;font-weight:500;
   padding:7px 16px;border-radius:100px;cursor:pointer;
   border:1px solid #333;background:transparent;color:#666;
-  white-space:nowrap;transition:all 200ms;flex-shrink:0;
+  white-space:nowrap;transition:all 200ms;flex-shrink:0;display:inline-block;
 }
 .tb:hover{border-color:#555;color:#ccc}
-.tb.on{background:#fff;color:#000;border-color:#fff}
 
+/* hide all templates by default */
 .tpl{display:none}
-.tpl.on{display:block}
+
+/* show template when its radio is checked */
+#r1:checked ~ #wrap #t1{display:block}
+#r2:checked ~ #wrap #t2{display:block}
+#r3:checked ~ #wrap #t3{display:block}
+#r4:checked ~ #wrap #t4{display:block}
+#r5:checked ~ #wrap #t5{display:block}
+
+/* active tab label style */
+#r1:checked ~ #bar label[for=r1]{background:#fff;color:#000;border-color:#fff}
+#r2:checked ~ #bar label[for=r2]{background:#fff;color:#000;border-color:#fff}
+#r3:checked ~ #bar label[for=r3]{background:#fff;color:#000;border-color:#fff}
+#r4:checked ~ #bar label[for=r4]{background:#fff;color:#000;border-color:#fff}
+#r5:checked ~ #bar label[for=r5]{background:#fff;color:#000;border-color:#fff}
 
 /* ════════════════════════════════════════
    T1 · DARK LUXURY
@@ -540,18 +556,27 @@ html{scroll-behavior:smooth}
 </head>
 <body>
 
+<!-- RADIO INPUTS (must be before bar and wrap in DOM) -->
+<input class="r" type="radio" name="tab" id="r1" checked>
+<input class="r" type="radio" name="tab" id="r2">
+<input class="r" type="radio" name="tab" id="r3">
+<input class="r" type="radio" name="tab" id="r4">
+<input class="r" type="radio" name="tab" id="r5">
+
 <!-- TOOLBAR -->
 <div id="bar">
   <span class="bar-label">Menvio Templates:</span>
-  <button class="tb on" onclick="show(1)">① Dark Luxury</button>
-  <button class="tb" onclick="show(2)">② Warm Bistro</button>
-  <button class="tb" onclick="show(3)">③ Fresh & Bold</button>
-  <button class="tb" onclick="show(4)">④ Minimal Tokyo</button>
-  <button class="tb" onclick="show(5)">⑤ Warm Story</button>
+  <label for="r1" class="tb">① Dark Luxury</label>
+  <label for="r2" class="tb">② Warm Bistro</label>
+  <label for="r3" class="tb">③ Fresh & Bold</label>
+  <label for="r4" class="tb">④ Minimal Tokyo</label>
+  <label for="r5" class="tb">⑤ Warm Story</label>
 </div>
 
+<div id="wrap">
+
 <!-- ═══════════ T1 · DARK LUXURY ═══════════ -->
-<div class="tpl t1 on" id="t1">
+<div class="tpl t1" id="t1">
   <div class="t1-hero">
     <div class="t1-eyebrow">New York City &nbsp;·&nbsp; Est. 2019 &nbsp;·&nbsp; By Reservation</div>
     <div class="t1-name">Noir</div>
@@ -1086,14 +1111,6 @@ html{scroll-behavior:smooth}
   </div>
 </div>
 
-<script>
-function show(n){
-  document.querySelectorAll('.tpl').forEach(t=>t.classList.remove('on'));
-  document.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));
-  document.getElementById('t'+n).classList.add('on');
-  document.querySelectorAll('.tb')[n-1].classList.add('on');
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-</script>
+</div><!-- end #wrap -->
 </body>
 </html>
