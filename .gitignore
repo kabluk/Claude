@@ -40,3 +40,4 @@ next-env.d.ts
 # Misc
 coverage/
 .turbo/
+__pycache__/
