@@ -793,9 +793,146 @@ html{scroll-behavior:smooth}
   .t2-grid{grid-template-columns:1fr}
 }
 
-/* ── SHARED FOOD PHOTO STYLES ── */
-.food-img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
-.food-img-wrap{width:100%;height:100%;overflow:hidden;position:relative}
+/* ── FOOD PHOTO SIMULATIONS (CSS gradient art, no external images) ── */
+[class^="food-"]{width:100%;height:100%;display:block}
+
+/* T1 – WAGYU STEAK (dark studio, amber spotlight) */
+.food-steak{background:
+  radial-gradient(ellipse 50% 50% at 50% 52%,transparent 54%,#050302 100%),
+  radial-gradient(circle 2.5px at 38% 46%,rgba(240,232,210,.55) 0%,transparent 100%),
+  radial-gradient(circle 2px at 53% 37%,rgba(235,228,206,.5) 0%,transparent 100%),
+  radial-gradient(ellipse 3% 13% at 66% 33%,#2d5016 0%,transparent 100%),
+  repeating-linear-gradient(162deg,transparent,transparent 18px,rgba(8,3,0,.48) 18px,rgba(8,3,0,.48) 27px),
+  radial-gradient(ellipse 58% 50% at 44% 56%,#9b2e0e 0%,#6b1e08 42%,#3a1008 72%,transparent 92%),
+  radial-gradient(ellipse 80% 65% at 47% 62%,#1e1a16 0%,#141210 52%,transparent 76%),
+  radial-gradient(ellipse 62% 52% at 43% 43%,#2a1508 0%,#080604 70%),
+  #080604}
+
+/* T2 – CARBONARA (warm, bright, classic Italian daylight) */
+.food-carbonara{background:
+  radial-gradient(circle 2.5px at 37% 44%,#1a0800 0%,transparent 100%),
+  radial-gradient(circle 2px at 51% 38%,#1a0800 0%,transparent 100%),
+  radial-gradient(circle 2px at 47% 58%,#1a0800 0%,transparent 100%),
+  radial-gradient(circle 2px at 55% 56%,#1a0800 0%,transparent 100%),
+  radial-gradient(ellipse 5% 4% at 30% 44%,#8B3010 0%,transparent 100%),
+  radial-gradient(ellipse 4% 3% at 59% 59%,#7a2808 0%,transparent 100%),
+  radial-gradient(ellipse 3% 3% at 43% 62%,#8B3010 0%,transparent 100%),
+  radial-gradient(circle 22px at 45% 50%,#f5a830 0%,#e08820 60%,transparent 100%),
+  radial-gradient(ellipse 63% 56% at 46% 51%,rgba(210,165,50,.9) 0%,rgba(185,140,30,.6) 36%,rgba(165,125,20,.2) 62%,transparent 80%),
+  radial-gradient(ellipse 56% 46% at 46% 49%,rgba(255,255,255,.18) 0%,transparent 100%),
+  radial-gradient(ellipse 100% 100% at 50% 50%,#fdf5e3 0%,#f0e2c0 100%)}
+
+/* T2 – TRUFFLE TAGLIATELLE (earthy, dark, luxe) */
+.food-truffle{background:
+  radial-gradient(ellipse 8% 5% at 46% 46%,#0d0a08 0%,transparent 100%),
+  radial-gradient(ellipse 6% 4% at 38% 56%,#0d0a08 0%,transparent 100%),
+  radial-gradient(ellipse 7% 4% at 56% 53%,#100d0a 0%,transparent 100%),
+  radial-gradient(circle 4px at 35% 42%,rgba(255,252,240,.7) 0%,transparent 100%),
+  radial-gradient(circle 3px at 59% 49%,rgba(255,252,240,.6) 0%,transparent 100%),
+  radial-gradient(ellipse 51% 36% at 46% 50%,rgba(220,175,80,.3) 0%,transparent 100%),
+  radial-gradient(ellipse 70% 36% at 45% 48%,rgba(200,155,40,.8) 0%,rgba(175,130,25,.5) 40%,transparent 72%),
+  radial-gradient(ellipse 70% 20% at 45% 59%,rgba(190,145,30,.6) 0%,transparent 80%),
+  radial-gradient(ellipse 70% 20% at 45% 38%,rgba(195,150,35,.6) 0%,transparent 80%),
+  radial-gradient(ellipse 100% 100% at 45% 45%,#3d2a14 0%,#2a1c0a 70%,#1a1008 100%)}
+
+/* T2 – PAPPARDELLE BOAR (rustic terracotta, wide ribbons) */
+.food-pappardelle{background:
+  radial-gradient(circle 6px at 61% 33%,rgba(45,80,22,.8) 0%,transparent 100%),
+  radial-gradient(ellipse 61% 35% at 45% 63%,rgba(100,20,15,.9) 0%,rgba(70,15,10,.7) 52%,transparent 80%),
+  radial-gradient(ellipse 80% 25% at 45% 42%,rgba(210,165,60,.86) 0%,rgba(185,140,35,.5) 52%,transparent 80%),
+  radial-gradient(ellipse 80% 20% at 44% 53%,rgba(205,160,55,.76) 0%,transparent 76%),
+  radial-gradient(ellipse 75% 18% at 46% 36%,rgba(200,155,50,.7) 0%,transparent 72%),
+  radial-gradient(ellipse 100% 100% at 48% 50%,#7a4020 0%,#5a2c12 52%,#3a1a08 100%)}
+
+/* T4 – SUSHI PLATTER (clean white, minimal Japanese) */
+.food-sushi{background:
+  radial-gradient(circle 12px at 77% 62%,#4d8c22 0%,#3d7018 80%,transparent 100%),
+  radial-gradient(ellipse 8% 4% at 71% 76%,#1a0e00 0%,#120900 52%,transparent 100%),
+  radial-gradient(ellipse 6% 8% at 85% 52%,rgba(240,160,150,.5) 0%,transparent 100%),
+  radial-gradient(ellipse 4% 7% at 59% 46%,#e8d890 0%,#c8b870 72%,transparent 100%),
+  radial-gradient(ellipse 8% 14% at 59% 52%,#f5f0e8 0%,#e8e0d0 72%,transparent 100%),
+  radial-gradient(ellipse 4% 7% at 46% 44%,#e87030 0%,#c85820 72%,transparent 100%),
+  radial-gradient(ellipse 8% 14% at 46% 52%,#f5f0e8 0%,#e8e0d0 72%,transparent 100%),
+  radial-gradient(ellipse 4% 7% at 33% 44%,#c83840 0%,#a02830 72%,transparent 100%),
+  radial-gradient(ellipse 8% 14% at 33% 52%,#f5f0e8 0%,#e8e0d0 72%,transparent 100%),
+  #f8f6f2}
+
+/* T5 – FARM TABLE SPREAD (warm golden, rustic overhead) */
+.food-farmtable{background:
+  radial-gradient(ellipse 5% 12% at 79% 46%,rgba(200,180,100,.4) 0%,rgba(180,150,60,.2) 62%,transparent 100%),
+  radial-gradient(ellipse 18% 14% at 51% 53%,#3a6b1e 0%,#2a5012 62%,transparent 100%),
+  radial-gradient(ellipse 16% 10% at 73% 57%,#c8820e 0%,#a06808 62%,transparent 100%),
+  radial-gradient(ellipse 20% 14% at 25% 59%,#1e1a12 0%,#141008 62%,transparent 100%),
+  radial-gradient(ellipse 50% 50% at 50% 50%,transparent 62%,rgba(140,80,20,.3) 100%),
+  radial-gradient(ellipse 100% 100% at 50% 50%,#e8c880 0%,#c8a050 42%,#a07830 82%,#805a20 100%)}
+
+/* T6 – INDIAN CURRY plate/hero (deep orange, dark moody) */
+.food-curry{background:
+  radial-gradient(ellipse 20% 6% at 50% 42%,rgba(255,248,235,.5) 0%,transparent 100%),
+  radial-gradient(ellipse 75% 70% at 48% 52%,#d46020 0%,#b04010 42%,#8a2c08 72%,#5a1a04 100%),
+  radial-gradient(circle at 50% 50%,transparent 56%,rgba(6,15,6,.82) 100%)}
+
+/* T6 – SAMOSA CHAAT (crispy gold triangles, dark green bg) */
+.food-samosa{background:
+  radial-gradient(circle 3px at 42% 28%,rgba(50,100,25,.8) 0%,transparent 100%),
+  radial-gradient(circle 2px at 63% 38%,rgba(50,100,25,.7) 0%,transparent 100%),
+  radial-gradient(circle 3px at 38% 55%,#cc2020 0%,transparent 100%),
+  radial-gradient(circle 2.5px at 56% 48%,#bb1818 0%,transparent 100%),
+  radial-gradient(circle 2px at 48% 62%,#cc2020 0%,transparent 100%),
+  radial-gradient(circle 12px at 65% 59%,rgba(255,255,255,.85) 0%,transparent 100%),
+  radial-gradient(circle 9px at 30% 63%,rgba(255,255,255,.75) 0%,transparent 100%),
+  linear-gradient(160deg,transparent 36%,rgba(80,30,10,.6) 36%,rgba(80,30,10,.6) 38%,transparent 38%),
+  linear-gradient(140deg,transparent 46%,rgba(60,20,8,.5) 46%,rgba(60,20,8,.5) 48%,transparent 48%),
+  radial-gradient(ellipse 22% 18% at 61% 53%,#b86c18 0%,#8a4c10 52%,#5a3008 100%),
+  radial-gradient(ellipse 25% 20% at 37% 56%,#ca7c20 0%,#9a5814 52%,#6a3808 100%),
+  radial-gradient(ellipse 80% 70% at 46% 56%,#1a3d10 0%,#0d2208 72%),
+  #060f06}
+
+/* T6 – SEEKH KEBAB (charred cylinder, dark charcoal) */
+.food-kebab{background:
+  radial-gradient(ellipse 15% 4% at 48% 69%,rgba(200,150,180,.3) 0%,transparent 100%),
+  radial-gradient(ellipse 26% 8% at 48% 76%,rgba(50,140,40,.8) 0%,rgba(35,110,25,.5) 72%,transparent 100%),
+  repeating-linear-gradient(76deg,transparent,transparent 22px,rgba(10,5,2,.44) 22px,rgba(10,5,2,.44) 31px),
+  linear-gradient(76deg,transparent 46%,rgba(180,140,80,.35) 46%,rgba(180,140,80,.35) 54%,transparent 54%),
+  radial-gradient(ellipse 65% 22% at 47% 48%,#7a3a14 0%,#5a2810 52%,#3a180a 82%,transparent 100%),
+  radial-gradient(ellipse 60% 40% at 47% 36%,rgba(200,120,50,.26) 0%,transparent 100%),
+  #0d0b09}
+
+/* T6 – ONION BHAJI (golden fried rounds) */
+.food-bhaji{background:
+  radial-gradient(circle 2px at 35% 35%,rgba(50,110,25,.7) 0%,transparent 100%),
+  radial-gradient(circle 2px at 69% 30%,rgba(50,110,25,.6) 0%,transparent 100%),
+  radial-gradient(ellipse 10% 6% at 76% 69%,#3a2210 0%,#201408 62%,transparent 100%),
+  radial-gradient(ellipse 16% 14% at 63% 48%,#a06020 0%,#804818 62%,#5a3010 100%),
+  radial-gradient(ellipse 16% 14% at 37% 46%,#a86818 0%,#885018 62%,#604010 100%),
+  radial-gradient(ellipse 20% 18% at 48% 59%,#c07a22 0%,#a06018 56%,#6a3c10 100%),
+  radial-gradient(ellipse 70% 60% at 48% 52%,rgba(180,100,20,.12) 0%,transparent 100%),
+  #0a0e0a}
+
+/* T6 – LAMB ROGAN JOSH (deep red curry, bone-in, rich) */
+.food-roganjosh{background:
+  radial-gradient(circle 5px at 47% 28%,rgba(45,90,20,.8) 0%,transparent 100%),
+  radial-gradient(circle 4px at 55% 32%,rgba(45,90,20,.7) 0%,transparent 100%),
+  radial-gradient(ellipse 20% 6% at 50% 37%,rgba(255,250,240,.56) 0%,transparent 100%),
+  radial-gradient(circle 10px at 65% 53%,rgba(220,80,20,.6) 0%,transparent 100%),
+  radial-gradient(circle 8px at 35% 59%,rgba(200,60,15,.5) 0%,transparent 100%),
+  radial-gradient(ellipse 4% 12% at 39% 47%,rgba(240,235,220,.6) 0%,transparent 100%),
+  radial-gradient(ellipse 30% 25% at 39% 51%,#6a1808 0%,#4a1004 62%,transparent 100%),
+  radial-gradient(ellipse 25% 20% at 59% 55%,#5a1408 0%,#3a0c04 62%,transparent 100%),
+  radial-gradient(ellipse 75% 65% at 48% 55%,#a82c12 0%,#8a1c0a 36%,#5a1006 62%,#2a0804 92%),
+  radial-gradient(ellipse 100% 100% at 46% 53%,#1e0808 0%,#0c0404 72%,#060202 100%)}
+
+/* T6 – HYDERABADI BIRYANI (saffron gold rice, caramelized onion) */
+.food-biryani{background:
+  radial-gradient(circle 5px at 56% 28%,rgba(40,100,20,.76) 0%,transparent 100%),
+  radial-gradient(circle 4px at 45% 24%,rgba(40,100,20,.66) 0%,transparent 100%),
+  linear-gradient(80deg,transparent 40%,rgba(220,120,30,.5) 40%,rgba(220,120,30,.5) 41%,transparent 41%),
+  linear-gradient(70deg,transparent 48%,rgba(200,100,20,.4) 48%,rgba(200,100,20,.4) 49%,transparent 49%),
+  radial-gradient(ellipse 3% 2% at 38% 45%,rgba(220,195,140,.8) 0%,transparent 100%),
+  radial-gradient(ellipse 3% 2% at 57% 41%,rgba(215,190,135,.7) 0%,transparent 100%),
+  radial-gradient(ellipse 30% 8% at 48% 61%,rgba(80,35,8,.8) 0%,rgba(60,25,6,.6) 62%,transparent 100%),
+  radial-gradient(ellipse 65% 60% at 47% 46%,#d4a020 0%,#b88018 32%,#9a6412 56%,#6a4008 82%,transparent 100%),
+  radial-gradient(ellipse 100% 100% at 50% 56%,#2a1808 0%,#1a1004 62%,#0a0802 100%)}
 
 /* ── THEMATIC BACKGROUND DECORATIONS ── */
 .bg-deco{
@@ -815,7 +952,7 @@ html{scroll-behavior:smooth}
              linear-gradient(to top,#0C0A09 0%,transparent 30%),
              linear-gradient(to bottom,#0C0A09 0%,transparent 20%);
 }
-.t1-hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.t1-hero-photo [class^="food-"]{width:100%;height:100%}
 .t1-hero-content{position:relative;z-index:2;max-width:60%}
 
 /* T2: card photo */
@@ -823,11 +960,11 @@ html{scroll-behavior:smooth}
   height:200px;overflow:hidden;position:relative;
   background:#f5ece0;
 }
-.t2-card-thumb img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform 400ms}
-.t2-card:hover .t2-card-thumb img{transform:scale(1.04)}
+.t2-card-thumb [class^="food-"]{transition:transform 400ms}
+.t2-card:hover .t2-card-thumb [class^="food-"]{transform:scale(1.04)}
 .t2-card-thumb::after{
   content:'';position:absolute;bottom:0;left:0;right:0;height:40px;
-  background:linear-gradient(to top,#fffaf5,transparent);
+  background:linear-gradient(to top,#fffaf5,transparent);pointer-events:none;
 }
 
 /* T4: sushi hero photo */
@@ -836,7 +973,6 @@ html{scroll-behavior:smooth}
   border:1px solid rgba(8,145,178,.15);
   box-shadow:0 20px 60px rgba(8,145,178,.08);
 }
-.t4-hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center}
 
 /* T5: hero photo */
 .t5-hero-photo{
@@ -846,18 +982,11 @@ html{scroll-behavior:smooth}
   box-shadow:0 12px 40px rgba(146,64,14,.12);
   border:1px solid rgba(240,223,200,.4);
 }
-.t5-hero-photo img{width:100%;height:100%;object-fit:cover;object-position:center}
 
-/* T6: card + split photos */
-.t6-card-img img,.t6-split-img img{
-  width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform 400ms;
-}
-.t6-card:hover .t6-card-img img{transform:scale(1.05)}
-
-/* T6 hero food plate photo */
-.t6-food-plate img{
-  width:100%;height:100%;object-fit:cover;border-radius:50%;
-}
+/* T6: card + split food art zoom */
+.t6-card-img [class^="food-"]{transition:transform 400ms}
+.t6-card:hover .t6-card-img [class^="food-"]{transform:scale(1.05)}
+.t6-split:hover .t6-split-img [class^="food-"]{transform:scale(1.04)}
 </style>
 </head>
 <body>
@@ -940,7 +1069,7 @@ html{scroll-behavior:smooth}
     </div>
     <!-- Steak hero photo (right side) -->
     <div class="t1-hero-photo">
-      <img src="https://images.unsplash.com/photo-1546964124-0cce460f38ef?w=900&h=700&fit=crop&auto=format&q=80" alt="Wagyu Ribeye">
+      <div class="food-steak" role="img" aria-label="Wagyu Ribeye"></div>
     </div>
     <div class="t1-hero-content">
     <div class="t1-eyebrow">New York City &nbsp;·&nbsp; Est. 2019 &nbsp;·&nbsp; By Reservation</div>
@@ -1115,7 +1244,7 @@ html{scroll-behavior:smooth}
     <div class="t2-grid">
       <div class="t2-card">
         <div class="t2-card-thumb">
-          <img src="https://images.unsplash.com/photo-1612874742237-6526221588e3?w=600&h=400&fit=crop&auto=format&q=80" alt="Spaghetti Carbonara" loading="lazy">
+          <div class="food-carbonara" role="img" aria-label="Spaghetti Carbonara"></div>
         </div>
         <div class="t2-card-body">
           <div class="t2-card-name">Spaghetti Carbonara</div>
@@ -1131,7 +1260,7 @@ html{scroll-behavior:smooth}
       </div>
       <div class="t2-card">
         <div class="t2-card-thumb">
-          <img src="https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?w=600&h=400&fit=crop&auto=format&q=80" alt="Tagliatelle al Tartufo" loading="lazy">
+          <div class="food-truffle" role="img" aria-label="Tagliatelle al Tartufo"></div>
         </div>
         <div class="t2-card-body">
           <div class="t2-card-name">Tagliatelle al Tartufo</div>
@@ -1147,7 +1276,7 @@ html{scroll-behavior:smooth}
       </div>
       <div class="t2-card">
         <div class="t2-card-thumb">
-          <img src="https://images.unsplash.com/photo-1598866594230-a7c12756260f?w=600&h=400&fit=crop&auto=format&q=80" alt="Pappardelle al Cinghiale" loading="lazy">
+          <div class="food-pappardelle" role="img" aria-label="Pappardelle al Cinghiale"></div>
         </div>
         <div class="t2-card-body">
           <div class="t2-card-name">Pappardelle al Cinghiale</div>
@@ -1388,7 +1517,7 @@ html{scroll-behavior:smooth}
     </div>
     <div class="t4-hero-right">
       <div class="t4-hero-photo">
-        <img src="https://images.unsplash.com/photo-1562802378-063ec186a863?w=700&h=640&fit=crop&auto=format&q=80" alt="Signature Sushi" loading="lazy">
+        <div class="food-sushi" role="img" aria-label="Signature Sushi Platter"></div>
       </div>
     </div>
   </div>
@@ -1526,7 +1655,7 @@ html{scroll-behavior:smooth}
     <div class="t5-tagline">"Good food, good people, good memories"</div>
     <div class="t5-divider"><span class="t5-divider-icon">✦</span></div>
     <div class="t5-hero-photo">
-      <img src="https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=1200&h=560&fit=crop&auto=format&q=80" alt="Farm table spread" loading="lazy">
+      <div class="food-farmtable" role="img" aria-label="Farm table spread"></div>
     </div>
     <div class="t5-hero-meta">
       <span class="t5-hero-meta-item">
@@ -1733,7 +1862,7 @@ html{scroll-behavior:smooth}
     <!-- Decorative food plate -->
     <div class="t6-food-block">
       <div class="t6-food-plate" style="font-size:0">
-        <img src="https://images.unsplash.com/photo-1585937421612-70a008356fbe?w=720&h=720&fit=crop&auto=format&q=80" alt="Indian Curry">
+        <div class="food-curry" role="img" aria-label="Indian Curry"></div>
         <span class="t6-spice" style="width:8px;height:8px;top:10%;left:20%;"></span>
         <span class="t6-spice" style="width:5px;height:5px;top:25%;right:15%;opacity:.4"></span>
         <span class="t6-spice" style="width:6px;height:6px;bottom:20%;left:10%;opacity:.5"></span>
@@ -1786,7 +1915,7 @@ html{scroll-behavior:smooth}
     <div class="t6-grid">
       <div class="t6-card">
         <div class="t6-card-img" style="background:#0d2208">
-          <img src="https://images.unsplash.com/photo-1601050690597-df0568f70950?w=600&h=360&fit=crop&auto=format&q=80" alt="Samosa Chaat" loading="lazy">
+          <div class="food-samosa" role="img" aria-label="Samosa Chaat"></div>
         </div>
         <div class="t6-card-body">
           <div class="t6-card-name">Samosa Chaat</div>
@@ -1799,7 +1928,7 @@ html{scroll-behavior:smooth}
       </div>
       <div class="t6-card">
         <div class="t6-card-img" style="background:#1f0e06">
-          <img src="https://images.unsplash.com/photo-1529543544282-ea669407fca3?w=600&h=360&fit=crop&auto=format&q=80" alt="Seekh Kebab" loading="lazy">
+          <div class="food-kebab" role="img" aria-label="Seekh Kebab"></div>
         </div>
         <div class="t6-card-body">
           <div class="t6-card-name">Seekh Kebab</div>
@@ -1812,7 +1941,7 @@ html{scroll-behavior:smooth}
       </div>
       <div class="t6-card">
         <div class="t6-card-img" style="background:#151008">
-          <img src="https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&h=360&fit=crop&auto=format&q=80" alt="Onion Bhaji" loading="lazy">
+          <div class="food-bhaji" role="img" aria-label="Onion Bhaji"></div>
         </div>
         <div class="t6-card-body">
           <div class="t6-card-name">Onion Bhaji</div>
@@ -1828,7 +1957,7 @@ html{scroll-behavior:smooth}
     <!-- Split row 1: Signature Curry -->
     <div class="t6-split">
       <div class="t6-split-img" style="background:#0a1808">
-        <img src="https://images.unsplash.com/photo-1572441710672-0ea5475f02c8?w=800&h=640&fit=crop&auto=format&q=80" alt="Lamb Rogan Josh" loading="lazy">
+        <div class="food-roganjosh" role="img" aria-label="Lamb Rogan Josh"></div>
       </div>
       <div>
         <div class="t6-split-label">Chef's Masterpiece</div>
@@ -1848,7 +1977,7 @@ html{scroll-behavior:smooth}
     <!-- Split row 2: Biryani -->
     <div class="t6-split rev">
       <div class="t6-split-img" style="background:#1f1508">
-        <img src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=800&h=640&fit=crop&auto=format&q=80" alt="Hyderabadi Biryani" loading="lazy">
+        <div class="food-biryani" role="img" aria-label="Hyderabadi Biryani"></div>
       </div>
       <div>
         <div class="t6-split-label">Slow-Cooked · Dum Style</div>
