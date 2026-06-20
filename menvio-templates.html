@@ -987,6 +987,50 @@ html{scroll-behavior:smooth}
 .t6-card-img [class^="food-"]{transition:transform 400ms}
 .t6-card:hover .t6-card-img [class^="food-"]{transform:scale(1.05)}
 .t6-split:hover .t6-split-img [class^="food-"]{transform:scale(1.04)}
+/* ── WHATSAPP ORDER FLOAT BUTTON ── */
+.wa-float{
+  position:fixed;bottom:24px;left:50%;transform:translateX(-50%);
+  z-index:9997;display:none;align-items:center;gap:0;
+  border-radius:100px;overflow:hidden;
+  box-shadow:0 8px 40px rgba(37,211,102,.35),0 2px 12px rgba(0,0,0,.2);
+  font-family:system-ui,-apple-system,sans-serif;
+  animation:waSlideUp 320ms cubic-bezier(.34,1.56,.64,1);
+}
+.wa-float.visible{display:flex}
+@keyframes waSlideUp{from{opacity:0;transform:translateX(-50%) translateY(60px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+.wa-summary{
+  background:rgba(20,20,20,.92);backdrop-filter:blur(12px);
+  padding:13px 20px;display:flex;flex-direction:column;gap:2px;
+  border-right:1px solid rgba(255,255,255,.08);
+}
+.wa-items-label{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.4)}
+.wa-items-count{font-size:14px;font-weight:600;color:#fff}
+.wa-btn{
+  background:#25D366;color:#fff;border:none;cursor:pointer;
+  padding:0 22px;height:100%;min-height:58px;
+  display:flex;align-items:center;gap:10px;
+  font-size:14px;font-weight:600;letter-spacing:.3px;
+  transition:background 200ms;
+}
+.wa-btn:hover{background:#20b858}
+.wa-btn svg{flex-shrink:0}
+.wa-clear{
+  background:rgba(20,20,20,.92);backdrop-filter:blur(12px);
+  border:none;cursor:pointer;padding:0 14px;
+  color:rgba(255,255,255,.3);font-size:18px;
+  border-left:1px solid rgba(255,255,255,.08);
+  min-height:58px;transition:color 200ms;
+}
+.wa-clear:hover{color:rgba(255,255,255,.7)}
+
+/* order button for list-style templates */
+.order-plus{
+  background:transparent;border:1px solid currentColor;opacity:.35;
+  border-radius:100px;width:28px;height:28px;font-size:16px;font-weight:300;
+  cursor:pointer;display:inline-flex;align-items:center;justify-content:center;
+  transition:all 180ms;flex-shrink:0;line-height:1;padding:0;
+}
+.order-plus:hover{opacity:1;background:rgba(255,255,255,.1);transform:scale(1.1)}
 </style>
 </head>
 <body>
@@ -1115,7 +1159,7 @@ html{scroll-behavior:smooth}
           <div class="t1-item-desc">Daily selection · classic mignonette · lemon · house cocktail sauce</div>
           <div class="t1-badges"><span class="t1-badge">Market Price</span><span class="t1-badge">Seasonal</span></div>
         </div>
-        <div class="t1-price">$5 ea</div>
+        <div class="t1-price" style="display:flex;align-items:center;gap:12px">$5 ea<button class="order-plus" style="color:#CA8A04" onclick="addToCart('t1','Oysters on the Half Shell',5)">+</button></div>
       </div>
       <div class="t1-item">
         <div class="t1-left">
@@ -1123,14 +1167,14 @@ html{scroll-behavior:smooth}
           <div class="t1-item-desc">A5 Miyazaki wagyu · black truffle · quail egg · sourdough crisps · aged dijon</div>
           <div class="t1-badges"><span class="t1-badge">Chef's Selection</span></div>
         </div>
-        <div class="t1-price">$38</div>
+        <div class="t1-price" style="display:flex;align-items:center;gap:12px">$38<button class="order-plus" style="color:#CA8A04" onclick="addToCart('t1','Wagyu Beef Tartare',38)">+</button></div>
       </div>
       <div class="t1-item">
         <div class="t1-left">
           <div class="t1-item-name">Hamachi Crudo</div>
           <div class="t1-item-desc">Yellowtail · yuzu ponzu · serrano · avocado oil · micro shiso · toasted sesame</div>
         </div>
-        <div class="t1-price">$29</div>
+        <div class="t1-price" style="display:flex;align-items:center;gap:12px">$29<button class="order-plus" style="color:#CA8A04" onclick="addToCart('t1','Hamachi Crudo',29)">+</button></div>
       </div>
     </div>
 
@@ -1142,14 +1186,14 @@ html{scroll-behavior:smooth}
           <div class="t1-item-desc">45-day dry aged USDA prime · compound butter · roasted garlic · bone marrow jus</div>
           <div class="t1-badges"><span class="t1-badge">Signature</span><span class="t1-badge">USDA Prime</span></div>
         </div>
-        <div class="t1-price">$89</div>
+        <div class="t1-price" style="display:flex;align-items:center;gap:12px">$89<button class="order-plus" style="color:#CA8A04" onclick="addToCart('t1','Dry-Aged Ribeye 16oz',89)">+</button></div>
       </div>
       <div class="t1-item">
         <div class="t1-left">
           <div class="t1-item-name">Filet Mignon 8oz</div>
           <div class="t1-item-desc">Center cut tenderloin · bordelaise reduction · truffle pomme purée · watercress</div>
         </div>
-        <div class="t1-price">$72</div>
+        <div class="t1-price" style="display:flex;align-items:center;gap:12px">$72<button class="order-plus" style="color:#CA8A04" onclick="addToCart('t1','Filet Mignon 8oz',72)">+</button></div>
       </div>
       <div class="t1-item">
         <div class="t1-left">
@@ -1157,7 +1201,7 @@ html{scroll-behavior:smooth}
           <div class="t1-item-desc">Long-bone prime ribeye · tableside carving · au poivre · béarnaise · seasonal sides</div>
           <div class="t1-badges"><span class="t1-badge">For Two</span><span class="t1-badge">Pre-Order Recommended</span></div>
         </div>
-        <div class="t1-price">$195</div>
+        <div class="t1-price" style="display:flex;align-items:center;gap:12px">$195<button class="order-plus" style="color:#CA8A04" onclick="addToCart('t1','Tomahawk for Two 36oz',195)">+</button></div>
       </div>
     </div>
   </div>
@@ -1254,7 +1298,7 @@ html{scroll-behavior:smooth}
           </div>
           <div class="t2-card-foot" style="margin-top:16px">
             <div class="t2-card-price">$22</div>
-            <button class="t2-card-btn">Add to order</button>
+            <button class="t2-card-btn" onclick="addToCart('t2','Spaghetti Carbonara',22)">Add to order</button>
           </div>
         </div>
       </div>
@@ -1270,7 +1314,7 @@ html{scroll-behavior:smooth}
           </div>
           <div class="t2-card-foot" style="margin-top:16px">
             <div class="t2-card-price">$34</div>
-            <button class="t2-card-btn">Add to order</button>
+            <button class="t2-card-btn" onclick="addToCart('t2','Tagliatelle al Tartufo',34)">Add to order</button>
           </div>
         </div>
       </div>
@@ -1286,7 +1330,7 @@ html{scroll-behavior:smooth}
           </div>
           <div class="t2-card-foot" style="margin-top:16px">
             <div class="t2-card-price">$28</div>
-            <button class="t2-card-btn">Add to order</button>
+            <button class="t2-card-btn" onclick="addToCart('t2','Pappardelle al Cinghiale',28)">Add to order</button>
           </div>
         </div>
       </div>
@@ -1369,6 +1413,7 @@ html{scroll-behavior:smooth}
         <div class="t3-item-right">
           <div class="t3-item-price">$14</div>
           <div class="t3-item-kcal">760 kcal</div>
+          <button class="order-plus" style="color:#DC2626;margin-top:6px" onclick="addToCart('t3','The Lab Classic',14)">+</button>
         </div>
       </div>
       <div class="t3-item">
@@ -1385,6 +1430,7 @@ html{scroll-behavior:smooth}
         <div class="t3-item-right">
           <div class="t3-item-price">$19</div>
           <div class="t3-item-kcal">920 kcal</div>
+          <button class="order-plus" style="color:#DC2626;margin-top:6px" onclick="addToCart('t3','Bacon Truffle',19)">+</button>
         </div>
       </div>
       <div class="t3-item">
@@ -1401,6 +1447,7 @@ html{scroll-behavior:smooth}
         <div class="t3-item-right">
           <div class="t3-item-price">$16</div>
           <div class="t3-item-kcal">840 kcal</div>
+          <button class="order-plus" style="color:#DC2626;margin-top:6px" onclick="addToCart('t3','The Inferno',16)">+</button>
         </div>
       </div>
       <div class="t3-item">
@@ -1416,6 +1463,7 @@ html{scroll-behavior:smooth}
         <div class="t3-item-right">
           <div class="t3-item-price">$15</div>
           <div class="t3-item-kcal">710 kcal</div>
+          <button class="order-plus" style="color:#DC2626;margin-top:6px" onclick="addToCart('t3','Mushroom Swiss',15)">+</button>
         </div>
       </div>
     </div>
@@ -1544,6 +1592,7 @@ html{scroll-behavior:smooth}
         <div class="t4-price-col">
           <div class="t4-price">$28</div>
           <div class="t4-price-note">3 pieces</div>
+          <button class="order-plus" style="color:#0891B2;margin-top:8px" onclick="addToCart('t4','Bluefin Tuna Sashimi',28)">+</button>
         </div>
       </div>
       <div class="t4-item">
@@ -1556,6 +1605,7 @@ html{scroll-behavior:smooth}
         <div class="t4-price-col">
           <div class="t4-price">$24</div>
           <div class="t4-price-note">2 pieces</div>
+          <button class="order-plus" style="color:#0891B2;margin-top:8px" onclick="addToCart('t4','Hokkaido Scallop Sashimi',24)">+</button>
         </div>
       </div>
       <div class="t4-item">
@@ -1702,6 +1752,7 @@ html{scroll-behavior:smooth}
           <span class="t5-tag sig">Signature Dish</span>
           <span class="t5-tag">Gluten-Free</span>
           <span class="t5-tag">Dairy-Free</span>
+          <button class="order-plus" style="color:#CA8A04;margin-left:auto" onclick="addToCart('t5','Oak-Smoked Brisket',28)">+</button>
         </div>
       </div>
 
@@ -1716,6 +1767,7 @@ html{scroll-behavior:smooth}
         <div class="t5-item-tags">
           <span class="t5-tag sig">Local Legend</span>
           <span class="t5-tag">Choose Your Heat</span>
+          <button class="order-plus" style="color:#CA8A04;margin-left:auto" onclick="addToCart('t5','Nashville Hot Chicken',22)">+</button>
         </div>
       </div>
 
@@ -1922,7 +1974,7 @@ html{scroll-behavior:smooth}
           <div class="t6-card-desc">Crispy potato samosas · tangy tamarind chutney · mint yogurt · pomegranate · sev</div>
           <div class="t6-card-foot">
             <div class="t6-card-price">$12</div>
-            <button class="t6-card-btn">Add to order</button>
+            <button class="t6-card-btn" onclick="addToCart('t6','Samosa Chaat',12)">Add to order</button>
           </div>
         </div>
       </div>
@@ -1935,7 +1987,7 @@ html{scroll-behavior:smooth}
           <div class="t6-card-desc">Spiced minced lamb · ginger · coriander · mint chutney · pickled onion rings</div>
           <div class="t6-card-foot">
             <div class="t6-card-price">$16</div>
-            <button class="t6-card-btn">Add to order</button>
+            <button class="t6-card-btn" onclick="addToCart('t6','Seekh Kebab',16)">Add to order</button>
           </div>
         </div>
       </div>
@@ -1948,7 +2000,7 @@ html{scroll-behavior:smooth}
           <div class="t6-card-desc">Crispy spiced onion fritters · cumin · turmeric · green chilli · tamarind dip</div>
           <div class="t6-card-foot">
             <div class="t6-card-price">$10</div>
-            <button class="t6-card-btn">Add to order</button>
+            <button class="t6-card-btn" onclick="addToCart('t6','Onion Bhaji',10)">Add to order</button>
           </div>
         </div>
       </div>
@@ -1970,6 +2022,7 @@ html{scroll-behavior:smooth}
           <span class="t6-split-tag">Signature</span>
           <span class="t6-split-tag">Gluten-Free</span>
           <span class="t6-split-tag">Medium Spice</span>
+          <button class="order-plus" style="color:#D4A017" onclick="addToCart('t6','Lamb Rogan Josh',28)">+</button>
         </div>
       </div>
     </div>
@@ -1989,6 +2042,7 @@ html{scroll-behavior:smooth}
         <div class="t6-split-tags">
           <span class="t6-split-tag">Lamb · Chicken · Veg</span>
           <span class="t6-split-tag">Serves 1-2</span>
+          <button class="order-plus" style="color:#D4A017" onclick="addToCart('t6','Hyderabadi Biryani',24)">+</button>
         </div>
       </div>
     </div>
@@ -2007,5 +2061,121 @@ html{scroll-behavior:smooth}
 </div>
 
 </div><!-- end #wrap -->
+
+<!-- ── WHATSAPP ORDER BUTTONS (one per template, hidden until items added) ── -->
+<div class="wa-float" id="wa-t1">
+  <div class="wa-summary"><span class="wa-items-label">Your order</span><span class="wa-items-count" id="wa-t1-label">0 items · $0</span></div>
+  <button class="wa-btn" onclick="sendWA('t1')">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Order via WhatsApp
+  </button>
+  <button class="wa-clear" onclick="clearCart('t1')" title="Clear order">×</button>
+</div>
+<div class="wa-float" id="wa-t2">
+  <div class="wa-summary"><span class="wa-items-label">Your order</span><span class="wa-items-count" id="wa-t2-label">0 items · $0</span></div>
+  <button class="wa-btn" onclick="sendWA('t2')">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Order via WhatsApp
+  </button>
+  <button class="wa-clear" onclick="clearCart('t2')" title="Clear order">×</button>
+</div>
+<div class="wa-float" id="wa-t3">
+  <div class="wa-summary"><span class="wa-items-label">Your order</span><span class="wa-items-count" id="wa-t3-label">0 items · $0</span></div>
+  <button class="wa-btn" onclick="sendWA('t3')">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Order via WhatsApp
+  </button>
+  <button class="wa-clear" onclick="clearCart('t3')" title="Clear order">×</button>
+</div>
+<div class="wa-float" id="wa-t4">
+  <div class="wa-summary"><span class="wa-items-label">Your order</span><span class="wa-items-count" id="wa-t4-label">0 items · $0</span></div>
+  <button class="wa-btn" onclick="sendWA('t4')">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Order via WhatsApp
+  </button>
+  <button class="wa-clear" onclick="clearCart('t4')" title="Clear order">×</button>
+</div>
+<div class="wa-float" id="wa-t5">
+  <div class="wa-summary"><span class="wa-items-label">Your order</span><span class="wa-items-count" id="wa-t5-label">0 items · $0</span></div>
+  <button class="wa-btn" onclick="sendWA('t5')">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Order via WhatsApp
+  </button>
+  <button class="wa-clear" onclick="clearCart('t5')" title="Clear order">×</button>
+</div>
+<div class="wa-float" id="wa-t6">
+  <div class="wa-summary"><span class="wa-items-label">Your order</span><span class="wa-items-count" id="wa-t6-label">0 items · $0</span></div>
+  <button class="wa-btn" onclick="sendWA('t6')">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    Order via WhatsApp
+  </button>
+  <button class="wa-clear" onclick="clearCart('t6')" title="Clear order">×</button>
+</div>
+
+<script>
+// ── MENVIO WHATSAPP ORDER SYSTEM ──
+const RESTAURANTS = {
+  t1:{name:'Noir Steakhouse', phone:'12125550147'},
+  t2:{name:'La Piazza',       phone:'12125550198'},
+  t3:{name:'Burger Lab',      phone:'13235550199'},
+  t4:{name:'Sakura Japanese', phone:'12125550198'},
+  t5:{name:'The Oak Table',   phone:'16155550198'},
+  t6:{name:'Masala House',    phone:'13125550182'},
+};
+
+const carts = {t1:{},t2:{},t3:{},t4:{},t5:{},t6:{}};
+
+function addToCart(tid, name, price){
+  const c = carts[tid];
+  if(c[name]) c[name].qty++;
+  else c[name] = {name, price, qty:1};
+  updateFloat(tid);
+  // brief pulse on button
+  event && event.target && flashBtn(event.target);
+}
+
+function flashBtn(el){
+  el.style.transform='scale(0.92)';
+  el.style.background='rgba(37,211,102,.18)';
+  setTimeout(()=>{el.style.transform='';el.style.background='';},220);
+}
+
+function updateFloat(tid){
+  const items = Object.values(carts[tid]);
+  const count = items.reduce((s,i)=>s+i.qty,0);
+  const total = items.reduce((s,i)=>s+i.price*i.qty,0);
+  const btn = document.getElementById('wa-'+tid);
+  const lbl = document.getElementById('wa-'+tid+'-label');
+  if(count>0){
+    lbl.textContent = count+' item'+(count>1?'s':'')+' · $'+total.toFixed(0);
+    btn.classList.add('visible');
+  } else {
+    btn.classList.remove('visible');
+  }
+}
+
+function clearCart(tid){
+  carts[tid]={};
+  updateFloat(tid);
+}
+
+function sendWA(tid){
+  const items = Object.values(carts[tid]);
+  if(!items.length) return;
+  const r = RESTAURANTS[tid];
+  let msg = 'Hello '+r.name+'! 🍽️\n\nI\'d like to order:\n\n';
+  let total = 0;
+  items.forEach(i=>{
+    const sub = i.price*i.qty;
+    msg += '• '+i.name;
+    if(i.qty>1) msg += ' ×'+i.qty;
+    msg += ' — $'+sub.toFixed(0)+'\n';
+    total += sub;
+  });
+  msg += '\n💰 Total: $'+total.toFixed(0);
+  msg += '\n\nPlease confirm my order. Thank you!';
+  window.open('https://wa.me/'+r.phone+'?text='+encodeURIComponent(msg),'_blank');
+}
+</script>
 </body>
 </html>
