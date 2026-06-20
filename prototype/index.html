@@ -294,6 +294,18 @@ function processPhoto(file, pid, area, preview) {
       ctx.drawImage(img, (img.width-s)/2, 0, s, s, 0, 0, 240, 240);
 
       playerData[pid-1].photoColors = PhotoAnalyzer.analyze(c);
+
+      // Full photo canvas — 2x res, portrait crop to fit 56×148 fighter area
+      const full = document.createElement('canvas');
+      full.width = 112; full.height = 296;
+      const fCtx = full.getContext('2d');
+      const tR = 112/296, iR = img.width/img.height;
+      let sx2, sy2, sw2, sh2;
+      if (iR > tR) { sh2=img.height; sw2=sh2*tR; sx2=(img.width-sw2)/2; sy2=0; }
+      else         { sw2=img.width;  sh2=sw2/tR; sx2=0; sy2=(img.height-sh2)/2; }
+      fCtx.drawImage(img, sx2, sy2, sw2, sh2, 0, 0, 112, 296);
+      playerData[pid-1].fullPhoto = full;
+
       const face = FaceProcessor.processFromCanvas(c, 120);
       playerData[pid-1].face = face;
       playerData[pid-1].traits = PhotoAnalyzer.parseDescription(
@@ -471,6 +483,7 @@ function getFighterData(idx) {
   }
   return {
     face:        pd.face || FaceProcessor.createDefaultFace(120),
+    fullPhoto:   pd.fullPhoto || null,
     style:       pd.style,
     name:        pd.name || CONFIG.STYLES[pd.style].name,
     photoColors: pd.photoColors || null,
