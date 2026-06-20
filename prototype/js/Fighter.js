@@ -1,9 +1,10 @@
 class Fighter {
-  constructor(id, x, style, faceCanvas, name, photoColors, traits, phrases) {
+  constructor(id, x, style, faceCanvas, name, photoColors, traits, phrases, fullPhoto) {
     this.id     = id;
     this.style  = style;
     this.cfg    = Object.assign({}, CONFIG.STYLES[style]);
     this.face   = faceCanvas;
+    this.fullPhoto = fullPhoto || null;
     this.name   = name || this.cfg.name;
     this.maxHp  = Math.round(100 * this.cfg.hpMult);
     this.maxSp  = 100;
@@ -325,6 +326,19 @@ class Fighter {
     ctx.translate(leanX,0);
     if (leanAngle) ctx.rotate(leanAngle);
     ctx.translate(0,crouchY);
+
+    if (this.fullPhoto) {
+      const W = 56, H = 148;
+      ctx.save();
+      if (dir < 0) ctx.scale(-1, 1);
+      ctx.drawImage(this.fullPhoto, -W/2, -H, W, H);
+      if (flash) {
+        ctx.fillStyle = this.flashColor + '80';
+        ctx.fillRect(-W/2, -H, W, H);
+      }
+      ctx.restore();
+      return;
+    }
 
     // Draw layers back-to-front
     this._drawLegs(ctx,dir,frame,flash,crouchY>0,idlePose);
