@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menvio — 5 Menu Templates</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display+SC:wght@400;700&family=Karla:wght@300;400;500;600;700&family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+
+/* ── SVG ICONS ── */
+.icon{display:inline-block;width:18px;height:18px;vertical-align:middle;fill:currentColor}
+
+/* ── TOOLBAR ── */
+#bar{
+  position:fixed;top:0;left:0;right:0;z-index:9999;
+  background:#0f0f0f;border-bottom:1px solid #222;
+  display:flex;align-items:center;gap:6px;padding:8px 16px;
+  overflow-x:auto;-webkit-overflow-scrolling:touch;
+}
+#bar::-webkit-scrollbar{display:none}
+.bar-label{font-family:Karla,sans-serif;font-size:10px;letter-spacing:3px;
+  text-transform:uppercase;color:#444;white-space:nowrap;margin-right:6px}
+.tb{
+  font-family:Karla,sans-serif;font-size:12px;font-weight:500;
+  padding:7px 16px;border-radius:100px;cursor:pointer;
+  border:1px solid #333;background:transparent;color:#666;
+  white-space:nowrap;transition:all 200ms;flex-shrink:0;
+}
+.tb:hover{border-color:#555;color:#ccc}
+.tb.on{background:#fff;color:#000;border-color:#fff}
+
+.tpl{display:none}
+.tpl.on{display:block}
+
+/* ════════════════════════════════════════
+   T1 · DARK LUXURY
+   Fonts: Playfair Display SC + Karla
+   Colors: #1C1917 · #CA8A04 · #0C0A09
+   Style: Liquid Glass · Premium dark + gold
+════════════════════════════════════════ */
+.t1{background:#0C0A09;color:#E8DCC8;min-height:100vh;padding-top:52px}
+
+.t1-hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;text-align:center;
+  padding:60px 24px;position:relative;
+  background:radial-gradient(ellipse 80% 60% at 50% 40%,#1f1505 0%,#0C0A09 100%);
+}
+.t1-hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(circle at 20% 80%,rgba(202,138,4,.06) 0%,transparent 50%),
+             radial-gradient(circle at 80% 20%,rgba(202,138,4,.04) 0%,transparent 50%);
+}
+.t1-eyebrow{
+  font-family:Karla,sans-serif;font-size:10px;letter-spacing:5px;
+  text-transform:uppercase;color:#CA8A04;margin-bottom:32px;
+  position:relative;
+}
+.t1-name{
+  font-family:'Playfair Display SC',serif;
+  font-size:clamp(56px,11vw,120px);font-weight:400;
+  color:#E8DCC8;line-height:.95;letter-spacing:-2px;
+  position:relative;margin-bottom:32px;
+}
+.t1-rule{
+  width:48px;height:1px;background:linear-gradient(90deg,transparent,#CA8A04,transparent);
+  margin:0 auto 32px;
+}
+.t1-sub{
+  font-family:Karla,sans-serif;font-size:13px;letter-spacing:3px;
+  text-transform:uppercase;color:#3a3128;position:relative;
+}
+.t1-meta{
+  margin-top:32px;display:flex;gap:32px;justify-content:center;
+  font-family:Karla,sans-serif;font-size:12px;color:#4a3f30;
+  flex-wrap:wrap;position:relative;
+}
+.t1-meta-item{display:flex;align-items:center;gap:6px}
+.t1-scroll-hint{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  font-family:Karla,sans-serif;font-size:10px;letter-spacing:3px;
+  text-transform:uppercase;color:#2a2218;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  animation:bounce 2s infinite;
+}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+.t1-nav{
+  position:sticky;top:52px;z-index:100;
+  background:rgba(12,10,9,.95);backdrop-filter:blur(12px);
+  border-bottom:1px solid #1a1612;
+  display:flex;overflow-x:auto;
+}
+.t1-nav::-webkit-scrollbar{display:none}
+.t1-nav a{
+  font-family:Karla,sans-serif;font-size:10px;letter-spacing:3px;
+  text-transform:uppercase;color:#3a3128;text-decoration:none;
+  padding:18px 28px;border-bottom:1px solid transparent;
+  transition:all 250ms;white-space:nowrap;cursor:pointer;
+}
+.t1-nav a:hover,.t1-nav a.on{color:#CA8A04;border-bottom-color:#CA8A04}
+
+.t1-body{max-width:860px;margin:0 auto;padding:80px 24px 0}
+.t1-section{margin-bottom:80px}
+.t1-cat{
+  display:flex;align-items:center;gap:20px;
+  font-family:Karla,sans-serif;font-size:10px;letter-spacing:5px;
+  text-transform:uppercase;color:#CA8A04;margin-bottom:40px;
+}
+.t1-cat::after{content:'';flex:1;height:1px;background:#1a1612}
+
+.t1-item{
+  display:flex;justify-content:space-between;align-items:start;
+  padding:28px 0;border-bottom:1px solid #111;gap:24px;
+  transition:background 200ms;
+}
+.t1-left{flex:1}
+.t1-item-name{
+  font-family:'Playfair Display SC',serif;font-size:19px;
+  color:#E8DCC8;margin-bottom:8px;font-weight:400;
+}
+.t1-item-desc{
+  font-family:Karla,sans-serif;font-size:13px;
+  color:#3a3128;line-height:1.7;
+}
+.t1-badges{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+.t1-badge{
+  font-family:Karla,sans-serif;font-size:9px;letter-spacing:2px;
+  text-transform:uppercase;color:#CA8A04;
+  border:1px solid #241c0e;padding:3px 10px;border-radius:100px;
+}
+.t1-price{
+  font-family:'Playfair Display SC',serif;font-size:21px;
+  color:#CA8A04;white-space:nowrap;flex-shrink:0;
+}
+.t1-footer{
+  text-align:center;padding:80px 24px;border-top:1px solid #111;
+  font-family:Karla,sans-serif;font-size:10px;letter-spacing:3px;
+  text-transform:uppercase;color:#1a1612;
+  display:flex;flex-direction:column;gap:12px;align-items:center;
+}
+
+/* ════════════════════════════════════════
+   T2 · WARM BISTRO
+   Fonts: Cormorant Garamond + DM Sans
+   Colors: #DC2626 · #CA8A04 · #450A0A · bg #FEF2F2
+   Style: Scroll Storytelling · Vibrant
+════════════════════════════════════════ */
+.t2{background:#FEF9F9;min-height:100vh;padding-top:52px}
+
+.t2-hero{
+  min-height:88vh;display:flex;align-items:flex-end;padding:60px 6%;
+  position:relative;overflow:hidden;
+  background:linear-gradient(150deg,#7f1d1d 0%,#b91c1c 35%,#dc2626 60%,#f87171 100%);
+}
+.t2-hero::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.7) 0%,rgba(0,0,0,.1) 60%,transparent 100%);
+}
+.t2-hero-info{
+  position:absolute;top:40px;right:6%;z-index:2;text-align:right;
+}
+.t2-hero-info p{
+  font-family:'DM Sans',sans-serif;font-size:13px;
+  color:rgba(255,255,255,.65);margin-bottom:4px;
+  display:flex;align-items:center;gap:6px;justify-content:flex-end;
+}
+.t2-content{position:relative;z-index:2}
+.t2-label{
+  font-family:'Cormorant Garamond',serif;font-style:italic;
+  font-size:17px;color:rgba(255,255,255,.7);margin-bottom:12px;display:block;
+}
+.t2-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(48px,9vw,100px);color:#fff;
+  line-height:.9;font-weight:300;margin-bottom:18px;
+}
+.t2-tagline{
+  font-family:'DM Sans',sans-serif;font-size:14px;
+  color:rgba(255,255,255,.6);letter-spacing:.5px;
+}
+
+.t2-nav{
+  background:#fff;border-bottom:2px solid #fce7e7;
+  display:flex;overflow-x:auto;
+  position:sticky;top:52px;z-index:100;
+  box-shadow:0 2px 24px rgba(220,38,38,.08);
+}
+.t2-nav::-webkit-scrollbar{display:none}
+.t2-nav a{
+  font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;
+  color:#b0806a;text-decoration:none;padding:16px 24px;
+  border-bottom:2px solid transparent;transition:all 250ms;white-space:nowrap;cursor:pointer;
+}
+.t2-nav a:hover,.t2-nav a.on{color:#DC2626;border-bottom-color:#DC2626}
+
+.t2-body{max-width:1100px;margin:0 auto;padding:60px 6%}
+.t2-cat-hd{margin-bottom:36px}
+.t2-cat-name{
+  font-family:'Cormorant Garamond',serif;font-size:40px;
+  color:#450A0A;font-weight:300;margin-bottom:6px;
+}
+.t2-cat-sub{
+  font-family:'DM Sans',sans-serif;font-size:13px;
+  color:#c08070;font-style:italic;
+}
+.t2-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:20px;margin-bottom:60px;
+}
+.t2-card{
+  background:#fff;border-radius:16px;overflow:hidden;
+  border:1px solid #fce7e7;
+  box-shadow:0 2px 16px rgba(220,38,38,.06);
+  transition:transform 200ms,box-shadow 200ms;cursor:pointer;
+}
+.t2-card:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(220,38,38,.14)}
+.t2-card-thumb{
+  height:190px;display:flex;align-items:center;justify-content:center;
+  font-size:72px;position:relative;overflow:hidden;
+}
+.t2-card-body{padding:20px}
+.t2-card-name{
+  font-family:'Cormorant Garamond',serif;font-size:22px;
+  color:#450A0A;margin-bottom:6px;
+}
+.t2-card-story{
+  font-family:'DM Sans',sans-serif;font-size:13px;
+  color:#a07868;line-height:1.7;margin-bottom:14px;
+}
+.t2-card-foot{display:flex;justify-content:space-between;align-items:center}
+.t2-card-price{
+  font-family:'Cormorant Garamond',serif;font-size:26px;
+  color:#CA8A04;font-weight:600;
+}
+.t2-card-btn{
+  font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;
+  background:#450A0A;color:#fff;border:none;cursor:pointer;
+  padding:9px 20px;border-radius:100px;transition:background 200ms;
+}
+.t2-card-btn:hover{background:#7f1d1d}
+.t2-allergens{display:flex;gap:6px;margin-top:12px;flex-wrap:wrap}
+.t2-all{
+  font-family:'DM Sans',sans-serif;font-size:10px;
+  background:#fef2f2;color:#c08070;padding:3px 9px;
+  border-radius:100px;border:1px solid #fce7e7;
+}
+
+/* ════════════════════════════════════════
+   T3 · FRESH & BOLD
+   Fonts: Space Grotesk
+   Colors: #DC2626 · #CA8A04 · bg #fff
+   Style: Vibrant Block-based
+════════════════════════════════════════ */
+.t3{background:#fff;min-height:100vh;padding-top:52px}
+
+.t3-hero{
+  background:#DC2626;padding:52px 6% 64px;
+  position:relative;overflow:hidden;
+}
+.t3-hero-bg{
+  position:absolute;right:-2%;top:-20%;
+  width:50%;height:140%;opacity:.06;
+  font-size:320px;line-height:1;
+  font-family:Space Grotesk,sans-serif;font-weight:700;color:#fff;
+  user-select:none;pointer-events:none;
+  letter-spacing:-20px;
+}
+.t3-eyebrow{
+  font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;
+  letter-spacing:4px;text-transform:uppercase;
+  color:rgba(255,255,255,.55);margin-bottom:14px;
+}
+.t3-name{
+  font-family:'Space Grotesk',sans-serif;font-size:clamp(44px,9vw,96px);
+  font-weight:700;color:#fff;line-height:.95;margin-bottom:20px;
+  position:relative;z-index:1;
+}
+.t3-stats{
+  display:flex;gap:24px;flex-wrap:wrap;
+  font-family:'Space Grotesk',sans-serif;font-size:13px;
+  color:rgba(255,255,255,.7);position:relative;z-index:1;
+}
+.t3-stat{display:flex;align-items:center;gap:6px}
+
+.t3-nav{
+  background:#111;display:flex;overflow-x:auto;
+  position:sticky;top:52px;z-index:100;
+}
+.t3-nav::-webkit-scrollbar{display:none}
+.t3-nav a{
+  font-family:'Space Grotesk',sans-serif;font-size:11px;font-weight:600;
+  letter-spacing:2px;text-transform:uppercase;
+  color:#555;text-decoration:none;padding:16px 24px;
+  transition:color 200ms;white-space:nowrap;cursor:pointer;
+}
+.t3-nav a:hover,.t3-nav a.on{color:#DC2626}
+
+.t3-body{max-width:980px;margin:0 auto;padding:52px 6%}
+.t3-cat-row{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.t3-cat-name{font-family:'Space Grotesk',sans-serif;font-size:30px;font-weight:700;color:#111}
+.t3-badge-new{
+  font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:1px;background:#DC2626;color:#fff;
+  padding:4px 10px;border-radius:6px;
+}
+.t3-badge-hot{
+  font-family:'Space Grotesk',sans-serif;font-size:10px;font-weight:700;
+  letter-spacing:1px;background:#CA8A04;color:#fff;
+  padding:4px 10px;border-radius:6px;
+}
+.t3-items{display:flex;flex-direction:column;gap:3px;margin-bottom:48px}
+.t3-item{
+  display:flex;align-items:center;gap:20px;
+  background:#f8f8f8;padding:20px 22px;border-radius:12px;
+  transition:background 200ms;cursor:pointer;
+}
+.t3-item:hover{background:#f0f0f0}
+.t3-item-icon{
+  width:52px;height:52px;border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;flex-shrink:0;
+}
+.t3-item-info{flex:1;min-width:0}
+.t3-item-row{display:flex;align-items:center;gap:10px;margin-bottom:4px;flex-wrap:wrap}
+.t3-item-name{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600;color:#111}
+.t3-item-desc{font-family:'Space Grotesk',sans-serif;font-size:13px;color:#888;line-height:1.5}
+.t3-item-right{text-align:right;flex-shrink:0}
+.t3-item-price{font-family:'Space Grotesk',sans-serif;font-size:22px;font-weight:700;color:#111}
+.t3-item-kcal{font-family:'Space Grotesk',sans-serif;font-size:11px;color:#ccc;margin-top:2px}
+.t3-divider{height:3px;background:#111;border-radius:2px;margin:40px 0}
+
+/* ════════════════════════════════════════
+   T4 · MINIMAL TOKYO
+   Fonts: Noto Serif JP + Noto Sans JP
+   Colors: #0891B2 · #22C55E · bg #ECFEFF · text #164E63
+   Style: Minimal Single Column
+════════════════════════════════════════ */
+.t4{background:#fff;min-height:100vh;padding-top:52px}
+
+.t4-hero{
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:80vh;border-bottom:1px solid #e0f7fa;
+}
+.t4-hero-left{
+  padding:80px 8% 80px 8%;
+  display:flex;flex-direction:column;justify-content:center;
+  border-right:1px solid #e0f7fa;
+}
+.t4-jp-tag{
+  font-family:'Noto Serif JP',serif;font-size:10px;
+  letter-spacing:4px;color:#0891B2;text-transform:uppercase;margin-bottom:28px;
+}
+.t4-name{
+  font-family:'Noto Serif JP',serif;
+  font-size:clamp(44px,6vw,72px);color:#164E63;
+  line-height:1.05;font-weight:400;margin-bottom:24px;
+}
+.t4-accent-line{width:36px;height:2px;background:#0891B2;margin-bottom:24px}
+.t4-desc{
+  font-family:'Noto Sans JP',sans-serif;font-size:14px;
+  color:#5a8a9a;line-height:1.8;max-width:380px;margin-bottom:36px;
+}
+.t4-hero-meta{
+  display:flex;flex-direction:column;gap:10px;
+}
+.t4-meta-row{
+  font-family:'Noto Sans JP',sans-serif;font-size:12px;
+  color:#8ab0bc;display:flex;align-items:center;gap:8px;
+}
+.t4-hero-right{
+  background:#f0fdff;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:20px;
+}
+.t4-hero-kanji{
+  font-family:'Noto Serif JP',serif;font-size:100px;
+  color:#cceeff;line-height:1;font-weight:700;letter-spacing:8px;
+}
+.t4-hero-en{
+  font-family:'Noto Sans JP',sans-serif;font-size:11px;
+  letter-spacing:4px;color:#aaddee;text-transform:uppercase;
+}
+
+.t4-nav{
+  background:#fff;border-bottom:1px solid #e0f7fa;
+  display:flex;overflow-x:auto;
+  position:sticky;top:52px;z-index:100;
+}
+.t4-nav::-webkit-scrollbar{display:none}
+.t4-nav a{
+  font-family:'Noto Sans JP',sans-serif;font-size:11px;letter-spacing:2px;
+  text-transform:uppercase;color:#aac8d0;text-decoration:none;
+  padding:16px 26px;border-bottom:2px solid transparent;
+  transition:all 250ms;white-space:nowrap;cursor:pointer;
+}
+.t4-nav a:hover,.t4-nav a.on{color:#164E63;border-bottom-color:#0891B2}
+
+.t4-body{max-width:780px;margin:0 auto;padding:64px 6%}
+.t4-section{margin-bottom:64px}
+.t4-cat-label{
+  font-family:'Noto Serif JP',serif;font-size:10px;
+  letter-spacing:5px;text-transform:uppercase;
+  color:#0891B2;margin-bottom:28px;
+}
+.t4-item{
+  display:grid;grid-template-columns:1fr auto;
+  gap:20px;padding:24px 0;border-bottom:1px solid #f0f9fb;align-items:start;
+}
+.t4-item-en{
+  font-family:'Noto Serif JP',serif;font-size:18px;
+  color:#164E63;margin-bottom:4px;
+}
+.t4-item-jp{
+  font-family:'Noto Serif JP',serif;font-size:12px;
+  color:#aac8d0;margin-bottom:8px;
+}
+.t4-item-desc{
+  font-family:'Noto Sans JP',sans-serif;font-size:12px;
+  color:#8ab0bc;line-height:1.7;
+}
+.t4-dots{display:flex;gap:5px;margin-top:10px}
+.t4-dot{width:6px;height:6px;border-radius:50%;background:#e0f7fa}
+.t4-dot.r{background:#DC2626}
+.t4-dot.g{background:#22C55E}
+.t4-price-col{text-align:right}
+.t4-price{
+  font-family:'Noto Serif JP',serif;font-size:20px;
+  color:#164E63;
+}
+.t4-price-note{
+  font-family:'Noto Sans JP',sans-serif;font-size:10px;
+  color:#aac8d0;margin-top:4px;
+}
+
+/* ════════════════════════════════════════
+   T5 · WARM STORY
+   Fonts: Lora + Karla
+   Colors: #92400E · #CA8A04 · bg #FFFBF5
+   Style: Scroll Storytelling · Earthy warm
+════════════════════════════════════════ */
+.t5{
+  background:#FFFBF5;min-height:100vh;padding-top:52px;
+}
+
+.t5-hero{
+  padding:72px 6% 80px;text-align:center;
+  background:linear-gradient(180deg,#fff 0%,#FFFBF5 100%);
+  border-bottom:1px solid #f0dfc8;
+}
+.t5-ornament{color:#CA8A04;font-size:24px;margin-bottom:16px;letter-spacing:12px}
+.t5-est{
+  font-family:Karla,sans-serif;font-size:10px;letter-spacing:5px;
+  text-transform:uppercase;color:#CA8A04;margin-bottom:18px;
+}
+.t5-name{
+  font-family:Lora,serif;font-size:clamp(40px,7vw,82px);
+  color:#1c1008;font-weight:400;line-height:1.05;margin-bottom:18px;
+}
+.t5-tagline{
+  font-family:Lora,serif;font-style:italic;font-size:18px;
+  color:#92400E;margin-bottom:32px;
+}
+.t5-divider{
+  display:flex;align-items:center;gap:16px;
+  max-width:280px;margin:0 auto 28px;
+}
+.t5-divider::before,.t5-divider::after{
+  content:'';flex:1;height:1px;background:#e8d0b4;
+}
+.t5-divider-icon{color:#CA8A04;font-size:14px}
+.t5-hero-meta{
+  font-family:Karla,sans-serif;font-size:13px;color:#b8956a;
+  display:flex;justify-content:center;gap:28px;flex-wrap:wrap;
+}
+.t5-hero-meta-item{display:flex;align-items:center;gap:6px}
+
+.t5-nav{
+  background:#1c1008;display:flex;overflow-x:auto;
+  position:sticky;top:52px;z-index:100;
+}
+.t5-nav::-webkit-scrollbar{display:none}
+.t5-nav a{
+  font-family:Lora,serif;font-size:14px;color:#6b4226;
+  text-decoration:none;padding:16px 26px;
+  border-bottom:2px solid transparent;transition:all 250ms;white-space:nowrap;cursor:pointer;
+}
+.t5-nav a:hover,.t5-nav a.on{color:#f5deb3;border-bottom-color:#CA8A04}
+
+.t5-body{max-width:820px;margin:0 auto;padding:64px 6%}
+.t5-section{margin-bottom:72px}
+.t5-cat-center{text-align:center;margin-bottom:40px}
+.t5-cat-orn{color:#CA8A04;font-size:18px;letter-spacing:8px}
+.t5-cat-name{
+  font-family:Lora,serif;font-size:36px;color:#1c1008;
+  margin:8px 0 6px;
+}
+.t5-cat-desc{
+  font-family:Lora,serif;font-style:italic;
+  font-size:14px;color:#b8956a;
+}
+.t5-item{
+  background:#fff;border-radius:14px;padding:28px 28px 24px;
+  margin-bottom:14px;border:1px solid #f0dfc8;
+  box-shadow:0 2px 12px rgba(146,64,14,.04);
+  transition:box-shadow 200ms;cursor:pointer;
+}
+.t5-item:hover{box-shadow:0 6px 24px rgba(146,64,14,.1)}
+.t5-item-top{display:flex;justify-content:space-between;align-items:start;margin-bottom:12px}
+.t5-item-name{
+  font-family:Lora,serif;font-size:22px;color:#1c1008;flex:1;
+}
+.t5-item-price{
+  font-family:Lora,serif;font-style:italic;
+  font-size:22px;color:#CA8A04;margin-left:20px;flex-shrink:0;
+}
+.t5-item-story{
+  font-family:Karla,sans-serif;font-size:13px;
+  color:#8a6040;line-height:1.8;margin-bottom:16px;
+}
+.t5-item-tags{display:flex;gap:8px;flex-wrap:wrap}
+.t5-tag{
+  font-family:Karla,sans-serif;font-size:11px;color:#CA8A04;
+  border:1px solid #f0dfc8;padding:3px 12px;border-radius:100px;
+  background:#fffbf5;
+}
+.t5-tag.sig{background:#1c1008;color:#f5deb3;border-color:#1c1008}
+.t5-footer{
+  text-align:center;padding:60px 24px;border-top:1px solid #f0dfc8;
+  font-family:Lora,serif;font-style:italic;font-size:15px;color:#b8956a;
+}
+
+@media(max-width:600px){
+  .t4-hero{grid-template-columns:1fr}
+  .t4-hero-right{display:none}
+  .t2-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- TOOLBAR -->
+<div id="bar">
+  <span class="bar-label">Menvio Templates:</span>
+  <button class="tb on" onclick="show(1)">① Dark Luxury</button>
+  <button class="tb" onclick="show(2)">② Warm Bistro</button>
+  <button class="tb" onclick="show(3)">③ Fresh & Bold</button>
+  <button class="tb" onclick="show(4)">④ Minimal Tokyo</button>
+  <button class="tb" onclick="show(5)">⑤ Warm Story</button>
+</div>
+
+<!-- ═══════════ T1 · DARK LUXURY ═══════════ -->
+<div class="tpl t1 on" id="t1">
+  <div class="t1-hero">
+    <div class="t1-eyebrow">New York City &nbsp;·&nbsp; Est. 2019 &nbsp;·&nbsp; By Reservation</div>
+    <div class="t1-name">Noir</div>
+    <div class="t1-rule"></div>
+    <div class="t1-sub">Contemporary Steakhouse</div>
+    <div class="t1-meta">
+      <span class="t1-meta-item">
+        <svg class="icon" style="color:#CA8A04" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm1 14.5V13h3v-2h-3V7h-2v4H8v2h3v3.5h2z"/></svg>
+        Dinner · Tue–Sun
+      </span>
+      <span class="t1-meta-item">
+        <svg class="icon" style="color:#CA8A04" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+        147 W 57th St, NYC
+      </span>
+      <span class="t1-meta-item">
+        <svg class="icon" style="color:#CA8A04" viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        (212) 555-0147
+      </span>
+    </div>
+    <div class="t1-scroll-hint">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="#2a2218"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"/></svg>
+      Scroll to explore
+    </div>
+  </div>
+
+  <nav class="t1-nav">
+    <a href="#" class="on">Raw Bar</a>
+    <a href="#">Starters</a>
+    <a href="#">Prime Cuts</a>
+    <a href="#">Sides</a>
+    <a href="#">Desserts</a>
+    <a href="#">Wine List</a>
+  </nav>
+
+  <div class="t1-body">
+    <div class="t1-section">
+      <div class="t1-cat">Raw Bar</div>
+      <div class="t1-item">
+        <div class="t1-left">
+          <div class="t1-item-name">Oysters on the Half Shell</div>
+          <div class="t1-item-desc">Daily selection · classic mignonette · lemon · house cocktail sauce</div>
+          <div class="t1-badges"><span class="t1-badge">Market Price</span><span class="t1-badge">Seasonal</span></div>
+        </div>
+        <div class="t1-price">$5 ea</div>
+      </div>
+      <div class="t1-item">
+        <div class="t1-left">
+          <div class="t1-item-name">Wagyu Beef Tartare</div>
+          <div class="t1-item-desc">A5 Miyazaki wagyu · black truffle · quail egg · sourdough crisps · aged dijon</div>
+          <div class="t1-badges"><span class="t1-badge">Chef's Selection</span></div>
+        </div>
+        <div class="t1-price">$38</div>
+      </div>
+      <div class="t1-item">
+        <div class="t1-left">
+          <div class="t1-item-name">Hamachi Crudo</div>
+          <div class="t1-item-desc">Yellowtail · yuzu ponzu · serrano · avocado oil · micro shiso · toasted sesame</div>
+        </div>
+        <div class="t1-price">$29</div>
+      </div>
+    </div>
+
+    <div class="t1-section">
+      <div class="t1-cat">Prime Cuts</div>
+      <div class="t1-item">
+        <div class="t1-left">
+          <div class="t1-item-name">Dry-Aged Ribeye 16oz</div>
+          <div class="t1-item-desc">45-day dry aged USDA prime · compound butter · roasted garlic · bone marrow jus</div>
+          <div class="t1-badges"><span class="t1-badge">Signature</span><span class="t1-badge">USDA Prime</span></div>
+        </div>
+        <div class="t1-price">$89</div>
+      </div>
+      <div class="t1-item">
+        <div class="t1-left">
+          <div class="t1-item-name">Filet Mignon 8oz</div>
+          <div class="t1-item-desc">Center cut tenderloin · bordelaise reduction · truffle pomme purée · watercress</div>
+        </div>
+        <div class="t1-price">$72</div>
+      </div>
+      <div class="t1-item">
+        <div class="t1-left">
+          <div class="t1-item-name">Tomahawk for Two 36oz</div>
+          <div class="t1-item-desc">Long-bone prime ribeye · tableside carving · au poivre · béarnaise · seasonal sides</div>
+          <div class="t1-badges"><span class="t1-badge">For Two</span><span class="t1-badge">Pre-Order Recommended</span></div>
+        </div>
+        <div class="t1-price">$195</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="t1-footer">
+    <div>147 West 57th Street, New York, NY 10019</div>
+    <div>Dinner Tuesday – Sunday &nbsp;·&nbsp; 6:00pm – 11:00pm</div>
+    <div style="color:#1a1612;margin-top:8px">Powered by Menvio</div>
+  </div>
+</div>
+
+<!-- ═══════════ T2 · WARM BISTRO ═══════════ -->
+<div class="tpl t2" id="t2">
+  <div class="t2-hero">
+    <div class="t2-hero-info">
+      <p>
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm1 14.5V13h3v-2h-3V7h-2v4H8v2h3v3.5h2z"/></svg>
+        12pm – 10pm daily
+      </p>
+      <p>
+        <svg class="icon" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+        Little Italy, New York
+      </p>
+    </div>
+    <div class="t2-content">
+      <span class="t2-label">Autentica cucina italiana</span>
+      <div class="t2-name">La Piazza</div>
+      <div class="t2-tagline">Family recipes since 1987 &nbsp;·&nbsp; Fresh pasta made daily</div>
+    </div>
+  </div>
+
+  <nav class="t2-nav">
+    <a href="#" class="on">Antipasti</a>
+    <a href="#">Fresh Pasta</a>
+    <a href="#">Secondi</a>
+    <a href="#">Dolci</a>
+    <a href="#">Vini</a>
+  </nav>
+
+  <div class="t2-body">
+    <div class="t2-cat-hd">
+      <div class="t2-cat-name">Fresh Pasta</div>
+      <div class="t2-cat-sub">Hand-rolled every morning in our kitchen by Chef Maria</div>
+    </div>
+    <div class="t2-grid">
+      <div class="t2-card">
+        <div class="t2-card-thumb" style="background:linear-gradient(135deg,#fdf3e7,#fde8c8)">
+          <span style="font-size:72px">🍝</span>
+        </div>
+        <div class="t2-card-body">
+          <div class="t2-card-name">Spaghetti Carbonara</div>
+          <div class="t2-card-story">Nonna Rosa's original 1952 recipe. Guanciale from Umbria, aged Pecorino Romano, farm eggs. No cream — ever.</div>
+          <div class="t2-allergens">
+            <span class="t2-all">Eggs</span><span class="t2-all">Dairy</span><span class="t2-all">Gluten</span>
+          </div>
+          <div class="t2-card-foot" style="margin-top:16px">
+            <div class="t2-card-price">$22</div>
+            <button class="t2-card-btn">Add to order</button>
+          </div>
+        </div>
+      </div>
+      <div class="t2-card">
+        <div class="t2-card-thumb" style="background:linear-gradient(135deg,#f3f0ff,#ede8ff)">
+          <span style="font-size:72px">🫐</span>
+        </div>
+        <div class="t2-card-body">
+          <div class="t2-card-name">Tagliatelle al Tartufo</div>
+          <div class="t2-card-story">Hand-rolled egg tagliatelle with fresh black truffle from Norcia. Simple, seasonal, and absolutely perfect.</div>
+          <div class="t2-allergens">
+            <span class="t2-all">Eggs</span><span class="t2-all">Gluten</span><span class="t2-all">Vegetarian</span>
+          </div>
+          <div class="t2-card-foot" style="margin-top:16px">
+            <div class="t2-card-price">$34</div>
+            <button class="t2-card-btn">Add to order</button>
+          </div>
+        </div>
+      </div>
+      <div class="t2-card">
+        <div class="t2-card-thumb" style="background:linear-gradient(135deg,#f0fdf4,#dcfce7)">
+          <span style="font-size:72px">🌿</span>
+        </div>
+        <div class="t2-card-body">
+          <div class="t2-card-name">Pappardelle al Cinghiale</div>
+          <div class="t2-card-story">Wide pasta ribbons with slow-braised wild boar ragù, rosemary, and aged Pecorino. A Tuscan Sunday tradition.</div>
+          <div class="t2-allergens">
+            <span class="t2-all">Gluten</span><span class="t2-all">Eggs</span>
+          </div>
+          <div class="t2-card-foot" style="margin-top:16px">
+            <div class="t2-card-price">$28</div>
+            <button class="t2-card-btn">Add to order</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ T3 · FRESH & BOLD ═══════════ -->
+<div class="tpl t3" id="t3">
+  <div class="t3-hero">
+    <div class="t3-hero-bg">LAB</div>
+    <div class="t3-eyebrow">Craft Burgers · Downtown Los Angeles</div>
+    <div class="t3-name">Burger Lab</div>
+    <div class="t3-stats">
+      <span class="t3-stat">
+        <svg class="icon" viewBox="0 0 24 24" fill="rgba(255,255,255,.7)"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm1 14.5V13h3v-2h-3V7h-2v4H8v2h3v3.5h2z"/></svg>
+        11am – 11pm
+      </span>
+      <span class="t3-stat">
+        <svg class="icon" viewBox="0 0 24 24" fill="rgba(255,255,255,.7)"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        4.9 · 2,847 reviews
+      </span>
+      <span class="t3-stat">
+        <svg class="icon" viewBox="0 0 24 24" fill="rgba(255,255,255,.7)"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+        Downtown LA
+      </span>
+    </div>
+  </div>
+
+  <nav class="t3-nav">
+    <a href="#" class="on">Burgers</a>
+    <a href="#">Sides</a>
+    <a href="#">Shakes</a>
+    <a href="#">Plant-Based</a>
+    <a href="#">Drinks</a>
+  </nav>
+
+  <div class="t3-body">
+    <div class="t3-cat-row">
+      <div class="t3-cat-name">Signature Burgers</div>
+    </div>
+    <div class="t3-items">
+      <div class="t3-item">
+        <div class="t3-item-icon" style="background:#fef2f2">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="#DC2626"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+        </div>
+        <div class="t3-item-info">
+          <div class="t3-item-row">
+            <span class="t3-item-name">The Lab Classic</span>
+            <span class="t3-badge-hot">BESTSELLER</span>
+          </div>
+          <div class="t3-item-desc">Double smash patty · American cheese · secret sauce · shredded lettuce · pickles · brioche bun</div>
+        </div>
+        <div class="t3-item-right">
+          <div class="t3-item-price">$14</div>
+          <div class="t3-item-kcal">760 kcal</div>
+        </div>
+      </div>
+      <div class="t3-item">
+        <div class="t3-item-icon" style="background:#fffbeb">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="#CA8A04"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/></svg>
+        </div>
+        <div class="t3-item-info">
+          <div class="t3-item-row">
+            <span class="t3-item-name">Bacon Truffle</span>
+            <span class="t3-badge-new">NEW</span>
+          </div>
+          <div class="t3-item-desc">Wagyu patty · thick-cut bacon · truffle aioli · aged gruyère · caramelized onions · pretzel bun</div>
+        </div>
+        <div class="t3-item-right">
+          <div class="t3-item-price">$19</div>
+          <div class="t3-item-kcal">920 kcal</div>
+        </div>
+      </div>
+      <div class="t3-item">
+        <div class="t3-item-icon" style="background:#fff1f2">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="#e11d48"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+        </div>
+        <div class="t3-item-info">
+          <div class="t3-item-row">
+            <span class="t3-item-name">The Inferno</span>
+            <span class="t3-badge-hot">3× SPICY</span>
+          </div>
+          <div class="t3-item-desc">Ghost pepper patty · habanero jack · jalapeños · sriracha mayo · fried shallots. Not for the faint-hearted.</div>
+        </div>
+        <div class="t3-item-right">
+          <div class="t3-item-price">$16</div>
+          <div class="t3-item-kcal">840 kcal</div>
+        </div>
+      </div>
+      <div class="t3-item">
+        <div class="t3-item-icon" style="background:#f0fdf4">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="#16a34a"><path d="M17 8C8 10 5.9 16.17 3.82 21h2.13l1-2.28C8.27 19.53 9.56 20 11 20c3.57 0 6.29-2.8 7.79-6.38.5.2 1.04.38 1.62.38 2.21 0 4-1.79 4-4s-1.79-4-4-4c-1.13 0-2.09.46-2.84 1.19C17.34 8.23 17 8 17 8z"/></svg>
+        </div>
+        <div class="t3-item-info">
+          <div class="t3-item-row">
+            <span class="t3-item-name">Mushroom Swiss</span>
+          </div>
+          <div class="t3-item-desc">Beef patty · sautéed cremini mushrooms · Swiss cheese · herb aioli · arugula · toasted sesame bun</div>
+        </div>
+        <div class="t3-item-right">
+          <div class="t3-item-price">$15</div>
+          <div class="t3-item-kcal">710 kcal</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="t3-divider"></div>
+
+    <div class="t3-cat-row"><div class="t3-cat-name">Sides</div></div>
+    <div class="t3-items">
+      <div class="t3-item">
+        <div class="t3-item-icon" style="background:#fefce8">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="#ca8a04"><path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7z"/></svg>
+        </div>
+        <div class="t3-item-info">
+          <div class="t3-item-row"><span class="t3-item-name">Lab Fries</span></div>
+          <div class="t3-item-desc">Double-fried · house seasoning blend · garlic aioli dip</div>
+        </div>
+        <div class="t3-item-right">
+          <div class="t3-item-price">$6</div>
+          <div class="t3-item-kcal">380 kcal</div>
+        </div>
+      </div>
+      <div class="t3-item">
+        <div class="t3-item-icon" style="background:#fdf4ff">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="#a855f7"><path d="M18.06 22.99h1.66c.84 0 1.53-.64 1.63-1.46L23 5.05h-5V1h-1.97v4.05h-4.97l.3 2.34c1.71.47 3.31 1.32 4.27 2.26 1.44 1.42 2.43 2.89 2.43 5.29v8.05zM1 21.99V21h15.03v.99c0 .55-.45 1-1.01 1H2.01c-.56 0-1.01-.45-1.01-1zm15.03-7c0-8-15.03-8-15.03 0h15.03zM1.02 17h15v2H1z"/></svg>
+        </div>
+        <div class="t3-item-info">
+          <div class="t3-item-row">
+            <span class="t3-item-name">Mac & Cheese Bites</span>
+            <span class="t3-badge-new">NEW</span>
+          </div>
+          <div class="t3-item-desc">Panko-crusted · four-cheese blend · jalapeño ranch</div>
+        </div>
+        <div class="t3-item-right">
+          <div class="t3-item-price">$8</div>
+          <div class="t3-item-kcal">510 kcal</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ T4 · MINIMAL TOKYO ═══════════ -->
+<div class="tpl t4" id="t4">
+  <div class="t4-hero">
+    <div class="t4-hero-left">
+      <div class="t4-jp-tag">桜 · Omakase & À la carte · Midtown NYC</div>
+      <div class="t4-name">Sakura</div>
+      <div class="t4-accent-line"></div>
+      <div class="t4-desc">Seasonal Japanese cuisine guided by the philosophy of ma — the beauty of negative space. Each ingredient speaks for itself.</div>
+      <div class="t4-hero-meta">
+        <div class="t4-meta-row">
+          <svg class="icon" viewBox="0 0 24 24" fill="#8ab0bc"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm1 14.5V13h3v-2h-3V7h-2v4H8v2h3v3.5h2z"/></svg>
+          Tuesday – Sunday · 6pm – 10pm
+        </div>
+        <div class="t4-meta-row">
+          <svg class="icon" viewBox="0 0 24 24" fill="#8ab0bc"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          Reservations only · (212) 555-0198
+        </div>
+      </div>
+    </div>
+    <div class="t4-hero-right">
+      <div class="t4-hero-kanji">桜</div>
+      <div class="t4-hero-en">Sakura · Japanese Cuisine</div>
+    </div>
+  </div>
+
+  <nav class="t4-nav">
+    <a href="#" class="on">Sashimi</a>
+    <a href="#">Nigiri</a>
+    <a href="#">Maki</a>
+    <a href="#">Hot Dishes</a>
+    <a href="#">Dessert</a>
+    <a href="#">Sake</a>
+  </nav>
+
+  <div class="t4-body">
+    <div class="t4-section">
+      <div class="t4-cat-label">Sashimi · 刺身</div>
+      <div class="t4-item">
+        <div>
+          <div class="t4-item-en">Bluefin Tuna</div>
+          <div class="t4-item-jp">本まぐろ · Hon Maguro · Aomori Prefecture</div>
+          <div class="t4-item-desc">Lean and fatty cuts · aged 3 days · wasabi · soy</div>
+          <div class="t4-dots"><span class="t4-dot"></span><span class="t4-dot"></span><span class="t4-dot"></span></div>
+        </div>
+        <div class="t4-price-col">
+          <div class="t4-price">$28</div>
+          <div class="t4-price-note">3 pieces</div>
+        </div>
+      </div>
+      <div class="t4-item">
+        <div>
+          <div class="t4-item-en">Hokkaido Scallop</div>
+          <div class="t4-item-jp">帆立貝 · Hotate · Live, same-day</div>
+          <div class="t4-item-desc">Live scallop · yuzu kosho · micro shiso · sea salt</div>
+          <div class="t4-dots"><span class="t4-dot g"></span><span class="t4-dot"></span><span class="t4-dot"></span></div>
+        </div>
+        <div class="t4-price-col">
+          <div class="t4-price">$24</div>
+          <div class="t4-price-note">2 pieces</div>
+        </div>
+      </div>
+      <div class="t4-item">
+        <div>
+          <div class="t4-item-en">Salmon Belly</div>
+          <div class="t4-item-jp">大西洋鮭 · Sake Toro · Norwegian</div>
+          <div class="t4-item-desc">Torched tableside · ponzu · toasted sesame · scallion</div>
+          <div class="t4-dots"><span class="t4-dot"></span><span class="t4-dot r"></span><span class="t4-dot"></span></div>
+        </div>
+        <div class="t4-price-col">
+          <div class="t4-price">$22</div>
+          <div class="t4-price-note">3 pieces</div>
+        </div>
+      </div>
+      <div class="t4-item">
+        <div>
+          <div class="t4-item-en">Yellowtail</div>
+          <div class="t4-item-jp">ハマチ · Hamachi · Kagoshima Farm</div>
+          <div class="t4-item-desc">Farm-raised · jalapeño · citrus oil · crispy shallot</div>
+          <div class="t4-dots"><span class="t4-dot r"></span><span class="t4-dot r"></span><span class="t4-dot"></span></div>
+        </div>
+        <div class="t4-price-col">
+          <div class="t4-price">$20</div>
+          <div class="t4-price-note">3 pieces</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="t4-section">
+      <div class="t4-cat-label">Hot Dishes · 温料理</div>
+      <div class="t4-item">
+        <div>
+          <div class="t4-item-en">Black Cod Miso</div>
+          <div class="t4-item-jp">銀ダラ西京焼き</div>
+          <div class="t4-item-desc">3-day Saikyo miso marinade · pickled ginger · dashi · mitsuba</div>
+          <div class="t4-dots"><span class="t4-dot g"></span><span class="t4-dot"></span><span class="t4-dot"></span></div>
+        </div>
+        <div class="t4-price-col">
+          <div class="t4-price">$44</div>
+          <div class="t4-price-note">main course</div>
+        </div>
+      </div>
+      <div class="t4-item">
+        <div>
+          <div class="t4-item-en">A5 Wagyu Sukiyaki</div>
+          <div class="t4-item-jp">A5和牛すき焼き · Miyazaki Prefecture</div>
+          <div class="t4-item-desc">Tare broth · tofu · enoki mushrooms · chrysanthemum · raw egg</div>
+          <div class="t4-dots"><span class="t4-dot"></span><span class="t4-dot"></span><span class="t4-dot"></span></div>
+        </div>
+        <div class="t4-price-col">
+          <div class="t4-price">$68</div>
+          <div class="t4-price-note">main course</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ T5 · WARM STORY ═══════════ -->
+<div class="tpl t5" id="t5">
+  <div class="t5-hero">
+    <div class="t5-ornament">— ✦ —</div>
+    <div class="t5-est">Est. 2003 · Nashville, Tennessee</div>
+    <div class="t5-name">The Oak Table</div>
+    <div class="t5-tagline">"Good food, good people, good memories"</div>
+    <div class="t5-divider"><span class="t5-divider-icon">✦</span></div>
+    <div class="t5-hero-meta">
+      <span class="t5-hero-meta-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="#b8956a"><path d="M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2zm1 14.5V13h3v-2h-3V7h-2v4H8v2h3v3.5h2z"/></svg>
+        Mon–Sun · 11am – 9pm
+      </span>
+      <span class="t5-hero-meta-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="#b8956a"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+        East Nashville
+      </span>
+      <span class="t5-hero-meta-item">
+        <svg class="icon" viewBox="0 0 24 24" fill="#b8956a"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        (615) 555-0198
+      </span>
+    </div>
+  </div>
+
+  <nav class="t5-nav">
+    <a href="#" class="on">Starters</a>
+    <a href="#">From the Grill</a>
+    <a href="#">Comfort Mains</a>
+    <a href="#">Sides</a>
+    <a href="#">Sweets</a>
+    <a href="#">Drinks</a>
+  </nav>
+
+  <div class="t5-body">
+    <div class="t5-section">
+      <div class="t5-cat-center">
+        <div class="t5-cat-orn">✦ ✦ ✦</div>
+        <div class="t5-cat-name">From the Grill</div>
+        <div class="t5-cat-desc">Wood-fired over Tennessee white oak · slow and patient</div>
+      </div>
+
+      <div class="t5-item">
+        <div class="t5-item-top">
+          <div class="t5-item-name">Oak-Smoked Brisket</div>
+          <div class="t5-item-price">$28</div>
+        </div>
+        <div class="t5-item-story">
+          Grandpa Joe started smoking brisket in his backyard in 1978. Twenty-five years later, his recipe is still the heart of this place. 14-hour low-and-slow smoke over white oak. Served with pickles, white bread, and our house-made BBQ sauce.
+        </div>
+        <div class="t5-item-tags">
+          <span class="t5-tag sig">Signature Dish</span>
+          <span class="t5-tag">Gluten-Free</span>
+          <span class="t5-tag">Dairy-Free</span>
+        </div>
+      </div>
+
+      <div class="t5-item">
+        <div class="t5-item-top">
+          <div class="t5-item-name">Nashville Hot Chicken</div>
+          <div class="t5-item-price">$22</div>
+        </div>
+        <div class="t5-item-story">
+          Born three blocks from here, this dish defines East Nashville. Cayenne-spiced fried chicken thigh on white bread with house pickles and slaw. Choose your heat: mild, medium, hot, or "why would you do this to yourself."
+        </div>
+        <div class="t5-item-tags">
+          <span class="t5-tag sig">Local Legend</span>
+          <span class="t5-tag">Choose Your Heat</span>
+        </div>
+      </div>
+
+      <div class="t5-item">
+        <div class="t5-item-top">
+          <div class="t5-item-name">Cast Iron Pork Chop</div>
+          <div class="t5-item-price">$26</div>
+        </div>
+        <div class="t5-item-story">
+          A thick-cut heritage pork chop seared in a screaming-hot cast iron just like Grandma used to. Apple cider brine, sage butter, roasted garlic. Served with collard greens and creamy stone-ground grits.
+        </div>
+        <div class="t5-item-tags">
+          <span class="t5-tag">Heritage Pork</span>
+          <span class="t5-tag">Seasonal</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="t5-footer">
+    "We cook the way families used to — slowly, carefully, with love."
+    <div style="font-style:normal;font-family:Karla,sans-serif;font-size:11px;color:#d8b89a;margin-top:12px;letter-spacing:2px;text-transform:uppercase">
+      The Oak Table · 412 Gallatin Ave, Nashville · (615) 555-0198
+    </div>
+    <div style="font-style:normal;font-family:Karla,sans-serif;font-size:10px;color:#e8d0b4;margin-top:8px;letter-spacing:1px">
+      Powered by Menvio
+    </div>
+  </div>
+</div>
+
+<script>
+function show(n){
+  document.querySelectorAll('.tpl').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.tb').forEach(b=>b.classList.remove('on'));
+  document.getElementById('t'+n).classList.add('on');
+  document.querySelectorAll('.tb')[n-1].classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
