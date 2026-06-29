@@ -1,14 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ScreenNav from '../components/ScreenNav.jsx'
 import { useI18n } from '../i18n/I18nContext.jsx'
+import { useAppState } from '../state/AppState.jsx'
+
+// Stable field_key per interview section — used as the Answer key (autosave).
+const FIELD_KEYS = ['parties', 'marriage', 'children', 'property', 'finance', 'review']
 
 export default function Wizard() {
   const { t, fmt } = useI18n()
+  const { caseRec, getAnswer, saveAnswer, updateCase } = useAppState()
   const sections = t.wizard.steps
-  const [active, setActive] = useState(0)
   const total = sections.length
+  const [active, setActive] = useState(() =>
+    Math.min(caseRec.wizard_step ?? 0, total - 1),
+  )
   const pct = Math.round(((active + 1) / total) * 100)
   const cur = sections[active]
+  const fieldKey = FIELD_KEYS[active]
+
+  // Remember the current position so returning resumes here.
+  useEffect(() => {
+    updateCase({ wizard_step: active })
+  }, [active]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <section className="screen">
@@ -45,13 +58,21 @@ export default function Wizard() {
         </div>
 
         <div className="placeholder-block">
-          <strong>{cur.question}</strong>
-          <div className="skeleton-row w-60" />
-          <div className="skeleton-row w-80" />
-          <div className="skeleton-row w-40" />
+          <label className="field__label" htmlFor="answer">
+            {cur.question}
+          </label>
+          <textarea
+            id="answer"
+            rows={3}
+            placeholder={t.wizard.answerPlaceholder}
+            value={getAnswer(fieldKey)}
+            onChange={(e) => saveAnswer(fieldKey, e.target.value)}
+          />
           {/* Field explanation — translated for the user's understanding. */}
           <p className="field-explain">{cur.hint}</p>
-          <p style={{ marginBottom: 0, opacity: 0.7 }}>{t.wizard.note}</p>
+          <p className="autosave">
+            <span className="autosave__dot" /> {t.wizard.saved}
+          </p>
         </div>
 
         <div

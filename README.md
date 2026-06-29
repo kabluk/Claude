@@ -12,6 +12,7 @@
 - Vite 5
 - Чистый CSS (дизайн-система в `src/styles.css`), без UI-библиотек
 - Собственная i18n без зависимостей (Context + localStorage)
+- Хранение данных на клиенте (localStorage), без бэкенда
 
 Дизайн вдохновлён референсом юридического лендинга Veritas Law Firm:
 глубокий тёмно-синий фон, тёплый золотой акцент, серифные заголовки.
@@ -30,6 +31,30 @@
 
 Все строки — в `src/i18n/translations.js`; провайдер и хук `useI18n()` — в
 `src/i18n/I18nContext.jsx`.
+
+## Хранение данных
+
+Данные хранятся локально (localStorage) — отдельный слой репозитория без
+бэкенда. Сущности:
+
+| Сущность    | Поля                                                |
+| ----------- | --------------------------------------------------- |
+| **User**    | `email`, `county`, `language`                       |
+| **Case**    | `type`, `has_children`, `status`, `wizard_step`     |
+| **Answer**  | `case_id`, `field_key`, `value`                     |
+| **Payment** | `case_id`, `amount`, `status` (пока всегда `unpaid`)|
+
+- **Autosave**: ответы визарда сохраняются по мере ввода (`Answer` по
+  `field_key`); позиция в визарде (`wizard_step`) тоже сохраняется — при
+  возврате прогресс не теряется
+- Выбор типа дела, округа, наличия детей и e-mail пишутся сразу при изменении
+- Для каждого дела создаётся `Payment` со статусом `unpaid` (платёжного
+  потока пока нет)
+- Текущие `User` и `Case` связаны через запись `session`
+
+Слой: `src/data/storage.js` (низкоуровневый localStorage),
+`src/data/repository.js` (сущности и CRUD), `src/state/AppState.jsx`
+(React-контекст, хук `useAppState()`, autosave).
 
 ## Запуск
 
@@ -61,7 +86,12 @@ src/
 ├─ main.jsx              точка входа, BrowserRouter
 ├─ App.jsx               маршруты
 ├─ styles.css            дизайн-система
-├─ data/steps.js         определение 6 шагов и навигации
+├─ data/
+│  ├─ steps.js           определение 6 шагов и навигации
+│  ├─ storage.js         localStorage-обёртка (read/write/uid)
+│  └─ repository.js      сущности User/Case/Answer/Payment + CRUD
+├─ state/
+│  └─ AppState.jsx       контекст, useAppState(), autosave
 ├─ i18n/
 │  ├─ translations.js    словари 5 языков + список языков
 │  └─ I18nContext.jsx    провайдер, useI18n(), localStorage

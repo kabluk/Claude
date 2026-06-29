@@ -1,5 +1,7 @@
+import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useI18n } from '../i18n/I18nContext.jsx'
+import { useAppState } from '../state/AppState.jsx'
 
 // Form codes + official English names are NEVER translated (filed in English).
 // Only the explanatory sub-line is localized.
@@ -14,7 +16,13 @@ const DOCS = [
 export default function Preview() {
   const navigate = useNavigate()
   const { t } = useI18n()
+  const { caseRec, updateCase, price } = useAppState()
   const p = t.preview
+
+  // Package assembled — mark the case ready (payment remains unpaid for now).
+  useEffect(() => {
+    if (caseRec.status !== 'ready') updateCase({ status: 'ready' })
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <section className="screen">
@@ -44,7 +52,7 @@ export default function Preview() {
         <aside className="summary">
           <div className="summary__row">
             <span>{p.rowPrep}</span>
-            <span>$129</span>
+            <span>${price}</span>
           </div>
           <div className="summary__row">
             <span>{p.rowInstr}</span>
@@ -56,7 +64,7 @@ export default function Preview() {
           </div>
           <div className="summary__total">
             <span>{p.total}</span>
-            <b>$129</b>
+            <b>${price}</b>
           </div>
           <button
             className="btn btn--primary btn--block"

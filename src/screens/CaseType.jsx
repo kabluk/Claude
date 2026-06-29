@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import ScreenNav from '../components/ScreenNav.jsx'
 import { useI18n } from '../i18n/I18nContext.jsx'
+import { useAppState } from '../state/AppState.jsx'
 
 // icon + English legal term (meta) stay constant; titles/descriptions translate.
 const CASES = [
@@ -11,7 +12,13 @@ const CASES = [
 
 export default function CaseType() {
   const { t } = useI18n()
-  const [selected, setSelected] = useState(null)
+  const { caseRec, updateCase } = useAppState()
+  const [selected, setSelected] = useState(caseRec.type || null)
+
+  const choose = (key) => {
+    setSelected(key)
+    updateCase({ type: key, status: 'in_progress' })
+  }
 
   return (
     <section className="screen">
@@ -24,7 +31,7 @@ export default function CaseType() {
           <button
             key={c.key}
             className={`option-card ${selected === c.key ? 'is-selected' : ''}`}
-            onClick={() => setSelected(c.key)}
+            onClick={() => choose(c.key)}
           >
             <span className="option-card__icon" aria-hidden="true">
               {c.icon}

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import ScreenNav from '../components/ScreenNav.jsx'
 import { useI18n } from '../i18n/I18nContext.jsx'
+import { useAppState } from '../state/AppState.jsx'
 
 // County names are proper jurisdiction names — kept in English, not translated.
 const COUNTIES = [
@@ -13,8 +14,19 @@ const COUNTIES = [
 
 export default function County() {
   const { t } = useI18n()
-  const [county, setCounty] = useState('')
-  const [hasMinors, setHasMinors] = useState(false)
+  const { user, caseRec, updateUser, updateCase } = useAppState()
+  const [county, setCounty] = useState(user.county || '')
+  const [hasMinors, setHasMinors] = useState(!!caseRec.has_children)
+
+  const chooseCounty = (value) => {
+    setCounty(value)
+    updateUser({ county: value })
+  }
+  const toggleMinors = () => {
+    const next = !hasMinors
+    setHasMinors(next)
+    updateCase({ has_children: next })
+  }
 
   return (
     <section className="screen">
@@ -31,7 +43,7 @@ export default function County() {
             <select
               id="county"
               value={county}
-              onChange={(e) => setCounty(e.target.value)}
+              onChange={(e) => chooseCounty(e.target.value)}
             >
               <option value="" disabled>
                 {t.county.placeholder}
@@ -51,7 +63,7 @@ export default function County() {
           <button
             type="button"
             className="toggle"
-            onClick={() => setHasMinors((v) => !v)}
+            onClick={toggleMinors}
             aria-pressed={hasMinors}
             style={{ width: '100%', textAlign: 'left' }}
           >
