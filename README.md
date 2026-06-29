@@ -119,6 +119,32 @@ fillable-PDF (AcroForm) через `pdf-lib` — текст по координ�
 Добавить форму: положить официальный PDF в `public/forms/`, посмотреть имена
 полей через `inspectFormFields`, затем `registerForm({ id, title, url, mapping })`.
 
+### FL-100 (Petition) — первая форма
+
+`src/pdf/fl100.js` + `src/pdf/counties.js`:
+
+- **`buildFL100Profile`** — value-side профиль (логический `field_key` → значение)
+  из данных визарда: шапка (стороны, суд из `CountyInfo`, `attorney_for="Self
+  (Pro Per)"`, `petition_type`, `case_number` пусто), §1–§10 (relationship,
+  residency, даты + авто-расчёт `time_married` годы/месяцы, таблица детей с
+  возрастом, `grounds="Irreconcilable differences"`, custody, separate/community
+  property, spousal support, restore name), подпись.
+- **`computeTimeMarried`** — автоматический расчёт срока брака (годы/месяцы) из
+  дат брака и разъезда.
+- **`fl105Required`** — бизнес-правило: при несовершеннолетних детях в пакет
+  обязательно добавляется FL-105 (показывается у кнопки в кабинете).
+- **`FL100_TEMPLATE`** (FormTemplate) с полем `revision` для фиксации версии
+  официальной формы. Зарегистрирована через `registerForm`.
+- Кнопка **«Сформировать FL-100 (DRAFT)»** в личном кабинете
+  (`components/Fl100Generate.jsx`) — берёт данные дела, прогоняет через движок,
+  отдаёт скачиваемый PDF с водяным знаком DRAFT (при отсутствии PDF/маппинга —
+  аккуратное сообщение).
+
+> **Статус маппинга:** `FL100_TEMPLATE.mapping` пока пуст (TODO). Логический
+> `field_key → реальное имя поля PDF` заполняется после того, как официальный
+> fillable PDF будет закоммичен в `public/forms/FL-100.pdf` и его поля
+> прочитаны через `inspectFormFields('FL-100')`. `revision` проставляется тогда же.
+
 ## Запуск
 
 ```bash

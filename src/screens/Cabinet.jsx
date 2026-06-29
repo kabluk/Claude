@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { useI18n } from '../i18n/I18nContext.jsx'
 import { useAppState } from '../state/AppState.jsx'
+import Fl100Generate from '../components/Fl100Generate.jsx'
 
 export default function Cabinet() {
   const navigate = useNavigate()
@@ -28,6 +29,7 @@ export default function Cabinet() {
           <h3>{c.pdfTitle}</h3>
           <p>{c.pdfDesc}</p>
           <button className="btn btn--dark btn--block">{c.pdfBtn}</button>
+          <Fl100Generate />
         </div>
 
         <div className="cab-card">
