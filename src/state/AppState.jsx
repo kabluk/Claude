@@ -31,6 +31,19 @@ export function AppStateProvider({ children }) {
   const getAnswer = (fieldKey) =>
     answers.find((a) => a.field_key === fieldKey)?.value ?? ''
 
+  // Single financial profile for the case (incomes, timeshare, support result).
+  // Stored as one JSON Answer under 'finance_profile'.
+  let financeProfile = {}
+  try {
+    financeProfile = JSON.parse(getAnswer('finance_profile') || '{}') || {}
+  } catch {
+    financeProfile = {}
+  }
+  const updateFinanceProfile = (patch) => {
+    const next = { ...financeProfile, ...patch }
+    saveAnswer('finance_profile', JSON.stringify(next))
+  }
+
   // Start a brand-new case for the same user (fresh answers + unpaid payment).
   const startNewCase = () => {
     const fresh = store.newCase(user.id)
@@ -49,6 +62,8 @@ export function AppStateProvider({ children }) {
     updateCase,
     saveAnswer,
     getAnswer,
+    financeProfile,
+    updateFinanceProfile,
     startNewCase,
   }
 

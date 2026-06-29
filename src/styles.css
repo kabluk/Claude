@@ -941,18 +941,77 @@ textarea:focus {
   align-self: flex-start;
 }
 
+.calc__payer {
+  margin: 16px 0 0;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold-300);
+  font-weight: 600;
+}
+
 .calc__amount {
   font-family: var(--serif);
   font-size: 46px;
   font-weight: 600;
   color: var(--gold-400);
-  margin: 14px 0 4px;
+  margin: 4px 0 12px;
+  line-height: 1;
+}
+
+.calc__per {
+  font-family: var(--sans);
+  font-size: 16px;
+  color: rgba(247, 244, 238, 0.55);
+  margin-left: 6px;
+}
+
+.calc__breakdown {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 10px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 14px;
+  color: rgba(247, 244, 238, 0.8);
+}
+
+.calc__breakdown b {
+  color: var(--paper);
+  font-size: 16px;
+}
+
+.calc__breakdown--muted {
+  font-size: 13px;
+  color: rgba(247, 244, 238, 0.55);
+}
+
+.calc__breakdown--muted b {
+  color: var(--gold-300);
+  font-size: 14px;
+}
+
+.calc__formula {
+  margin: 14px 0 0;
+  font-size: 12px;
+  color: rgba(247, 244, 238, 0.5);
+  font-family: var(--serif);
+  font-style: italic;
 }
 
 .calc__note {
   font-size: 13px;
   color: rgba(247, 244, 238, 0.6);
   line-height: 1.5;
+}
+
+.calc__disclaimer {
+  margin: 18px 0 0;
+  padding-top: 16px;
+  border-top: 1px solid rgba(200, 162, 92, 0.3);
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: rgba(247, 244, 238, 0.7);
 }
 
 .stub-badge {
