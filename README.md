@@ -96,6 +96,29 @@
   (`finance_profile` через `useAppState().updateFinanceProfile`), переживают
   перезагрузку. Переведено на все 5 языков.
 
+## Движок заполнения судебных PDF
+
+Переиспользуемый модуль (`src/pdf/`) заполняет **встроенные поля** официальных
+fillable-PDF (AcroForm) через `pdf-lib` — текст по координатам не рисуется.
+
+- `engine.js` — ядро: `loadPdf`, `listFields` (через `getFields`),
+  `applyMapping` (field_key → имя поля PDF), `setFieldValues` (text/checkbox/
+  dropdown/radio/optionlist с отчётом set/missing/skipped), `addDraftWatermark`,
+  `fillPdf` (load → map → fill → watermark → save).
+- `profile.js` — `buildCaseProfile`: единый плоский профиль дела из
+  User/Case/Answers; **все итоги (активы, долги, расходы, алименты) считаются
+  здесь, в приложении**, а не в форме.
+- `forms.js` — реестр форм: `registerForm`/`getForm`/`listForms`,
+  `inspectFormFields` (посмотреть имена полей), `fillForm` (заполнить
+  зарегистрированную форму из профиля). Формы добавляются **по одной**.
+- `selftest.js` — генерирует тестовый fillable-PDF и прогоняет через движок
+  (тестовая загрузка одного PDF; конкретных форм пока нет).
+- Водяной знак превью: «DRAFT — проверьте перед подачей» (Unicode-шрифт
+  `public/fonts/DejaVuSans-Bold.ttf` для кириллицы).
+
+Добавить форму: положить официальный PDF в `public/forms/`, посмотреть имена
+полей через `inspectFormFields`, затем `registerForm({ id, title, url, mapping })`.
+
 ## Запуск
 
 ```bash
