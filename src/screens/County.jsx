@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import ScreenNav from '../components/ScreenNav.jsx'
+import { useI18n } from '../i18n/I18nContext.jsx'
 
+// County names are proper jurisdiction names — kept in English, not translated.
 const COUNTIES = [
   'Los Angeles',
   'San Diego',
@@ -10,22 +12,20 @@ const COUNTIES = [
 ]
 
 export default function County() {
+  const { t } = useI18n()
   const [county, setCounty] = useState('')
   const [hasMinors, setHasMinors] = useState(false)
 
   return (
     <section className="screen">
-      <p className="screen__eyebrow">Шаг 2 из 6 · Юрисдикция</p>
-      <h1 className="screen__title">Округ и состав семьи</h1>
-      <p className="screen__lead">
-        Укажите округ суда, в который будете подавать документы, и есть ли в семье
-        несовершеннолетние дети — это влияет на состав пакета форм.
-      </p>
+      <p className="screen__eyebrow">{t.county.eyebrow}</p>
+      <h1 className="screen__title">{t.county.title}</h1>
+      <p className="screen__lead">{t.county.lead}</p>
 
       <div className="panel">
         <div className="field">
           <label className="field__label" htmlFor="county">
-            Округ (County)
+            {t.county.label}
           </label>
           <div className="select-wrap">
             <select
@@ -34,7 +34,7 @@ export default function County() {
               onChange={(e) => setCounty(e.target.value)}
             >
               <option value="" disabled>
-                Выберите округ…
+                {t.county.placeholder}
               </option>
               {COUNTIES.map((c) => (
                 <option key={c} value={c}>
@@ -43,13 +43,11 @@ export default function County() {
               ))}
             </select>
           </div>
-          <p className="field__hint">
-            Доступны округа Южной Калифорнии. Другие округа — скоро.
-          </p>
+          <p className="field__hint">{t.county.hint}</p>
         </div>
 
         <div className="field" style={{ marginBottom: 0 }}>
-          <span className="field__label">Несовершеннолетние дети</span>
+          <span className="field__label">{t.county.toggleTitle}</span>
           <button
             type="button"
             className="toggle"
@@ -58,10 +56,8 @@ export default function County() {
             style={{ width: '100%', textAlign: 'left' }}
           >
             <span className="toggle__text">
-              <strong>Есть несовершеннолетние дети</strong>
-              <span>
-                Добавит формы по опеке и алиментам на детей (FL-105, FL-150 и др.)
-              </span>
+              <strong>{t.county.toggleStrong}</strong>
+              <span>{t.county.toggleSpan}</span>
             </span>
             <span className={`switch ${hasMinors ? 'is-on' : ''}`}>
               <span className="switch__dot" />

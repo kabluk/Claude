@@ -1,46 +1,38 @@
 import { useNavigate } from 'react-router-dom'
-
-const CHECKLIST = [
-  'Распечатать все формы в одном экземпляре + 2 копии',
-  'Подписать там, где отмечено маркером',
-  'Подать в канцелярию суда вашего округа',
-  'Оплатить судебный сбор (filing fee)',
-  'Вручить копии второму супругу (service of process)',
-]
+import { useI18n } from '../i18n/I18nContext.jsx'
 
 export default function Cabinet() {
   const navigate = useNavigate()
+  const { t } = useI18n()
+  const c = t.cabinet
 
   return (
     <section className="screen">
-      <p className="screen__eyebrow">Шаг 6 из 6 · Готово</p>
-      <h1 className="screen__title">Личный кабинет</h1>
-      <p className="screen__lead">
-        Ваш пакет готов. Скачайте документы, изучите инструкцию по подаче и
-        пройдите по чек-листу. Все функции — заглушки на этапе каркаса.
-      </p>
+      <p className="screen__eyebrow">{c.eyebrow}</p>
+      <h1 className="screen__title">{c.title}</h1>
+      <p className="screen__lead">{c.lead}</p>
 
       <div className="cabinet-grid">
         <div className="cab-card">
           <span className="cab-card__icon">📄</span>
-          <h3>Скачать PDF</h3>
-          <p>Полный пакет судебных форм, заполненный по вашим ответам.</p>
-          <button className="btn btn--dark btn--block">Скачать пакет (.pdf)</button>
+          <h3>{c.pdfTitle}</h3>
+          <p>{c.pdfDesc}</p>
+          <button className="btn btn--dark btn--block">{c.pdfBtn}</button>
         </div>
 
         <div className="cab-card">
           <span className="cab-card__icon">📘</span>
-          <h3>Инструкция</h3>
-          <p>Пошаговое руководство по подаче документов в суд вашего округа.</p>
-          <button className="btn btn--ghost btn--block">Открыть инструкцию</button>
+          <h3>{c.instrTitle}</h3>
+          <p>{c.instrDesc}</p>
+          <button className="btn btn--ghost btn--block">{c.instrBtn}</button>
         </div>
 
         <div className="cab-card">
           <span className="cab-card__icon">✅</span>
-          <h3>Чек-лист</h3>
+          <h3>{c.checkTitle}</h3>
           <ul className="checklist">
-            {CHECKLIST.map((item) => (
-              <li key={item}>{item}</li>
+            {c.items.map((item, i) => (
+              <li key={i}>{item}</li>
             ))}
           </ul>
         </div>
@@ -48,10 +40,10 @@ export default function Cabinet() {
 
       <div className="actions">
         <button className="btn btn--ghost" onClick={() => navigate('/preview')}>
-          ← Назад
+          ← {t.common.back}
         </button>
         <button className="btn btn--primary" onClick={() => navigate('/')}>
-          Новое дело →
+          {c.newCase} →
         </button>
       </div>
     </section>

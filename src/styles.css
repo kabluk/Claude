@@ -102,11 +102,127 @@ button {
   opacity: 0.8;
 }
 
+.topbar__right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
 .topbar__step {
   font-size: 13px;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--gold-300);
+}
+
+/* ---------- Language switcher ---------- */
+.lang {
+  position: relative;
+}
+
+.lang__btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(200, 162, 92, 0.45);
+  color: var(--paper);
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.lang__btn:hover {
+  background: rgba(200, 162, 92, 0.16);
+  border-color: var(--gold-400);
+}
+
+.lang__flag {
+  border-radius: 3px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.18);
+  display: block;
+  flex: none;
+}
+
+.lang__name {
+  white-space: nowrap;
+}
+
+.lang__caret {
+  font-size: 11px;
+  color: var(--gold-300);
+  transition: transform 0.18s ease;
+}
+
+.lang__caret.is-open {
+  transform: rotate(180deg);
+}
+
+.lang__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 50;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  min-width: 190px;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+}
+
+.lang__item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: transparent;
+  border: none;
+  color: var(--ink);
+  font-size: 14.5px;
+  text-align: left;
+}
+
+.lang__item:hover {
+  background: var(--paper);
+}
+
+.lang__item.is-active {
+  background: rgba(200, 162, 92, 0.14);
+  font-weight: 600;
+}
+
+.lang__item-name {
+  flex: 1;
+}
+
+.lang__check {
+  color: var(--gold-500);
+  font-weight: 700;
+}
+
+/* ---------- Forms-language footnote ---------- */
+.forms-note {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 16px 24px 0;
+  font-size: 12.5px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.field-explain {
+  margin: 14px 0 4px;
+  font-size: 13.5px;
+  color: var(--navy-700);
+  border-left: 2px solid var(--gold-400);
+  padding-left: 12px;
 }
 
 /* ---------- Global step progress ---------- */

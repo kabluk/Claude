@@ -1,5 +1,8 @@
+import { useI18n } from '../i18n/I18nContext.jsx'
+
 // Persistent legal disclaimer shown at the bottom of every screen.
 export default function Disclaimer() {
+  const { t } = useI18n()
   return (
     <footer className="disclaimer">
       <div className="disclaimer__inner">
@@ -7,9 +10,8 @@ export default function Disclaimer() {
           ⚖
         </span>
         <p style={{ margin: 0 }}>
-          <strong>Califormis</strong> — это software для самостоятельной подготовки
-          документов. Мы не предоставляем юридических консультаций. Информация ≠
-          юридический совет.
+          <strong>Califormis</strong>
+          {t.disclaimerBody}
         </p>
       </div>
     </footer>

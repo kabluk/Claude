@@ -1,9 +1,11 @@
 import { useNavigate } from 'react-router-dom'
 import { nextStep, prevStep } from '../data/steps.js'
+import { useI18n } from '../i18n/I18nContext.jsx'
 
 // Bottom Back / Next navigation, wired to the global step order.
-export default function ScreenNav({ current, nextLabel = 'Далее', nextDisabled = false }) {
+export default function ScreenNav({ current, nextLabel, nextDisabled = false }) {
   const navigate = useNavigate()
+  const { t } = useI18n()
   const prev = prevStep(current)
   const next = nextStep(current)
 
@@ -11,7 +13,7 @@ export default function ScreenNav({ current, nextLabel = 'Далее', nextDisab
     <div className="actions">
       {prev ? (
         <button className="btn btn--ghost" onClick={() => navigate(prev.path)}>
-          ← Назад
+          ← {t.common.back}
         </button>
       ) : (
         <span />
@@ -23,7 +25,7 @@ export default function ScreenNav({ current, nextLabel = 'Далее', nextDisab
           disabled={nextDisabled}
           onClick={() => navigate(next.path)}
         >
-          {nextLabel} →
+          {nextLabel || t.common.next} →
         </button>
       ) : (
         <span />

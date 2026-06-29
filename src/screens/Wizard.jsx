@@ -1,30 +1,20 @@
 import { useState } from 'react'
 import ScreenNav from '../components/ScreenNav.jsx'
-
-// Interview sub-steps inside the wizard container (no logic yet — just the shell).
-const WIZARD_STEPS = [
-  { key: 'parties', title: 'Стороны' },
-  { key: 'marriage', title: 'Брак' },
-  { key: 'children', title: 'Дети' },
-  { key: 'property', title: 'Имущество' },
-  { key: 'finance', title: 'Финансы' },
-  { key: 'review', title: 'Проверка' },
-]
+import { useI18n } from '../i18n/I18nContext.jsx'
 
 export default function Wizard() {
+  const { t, fmt } = useI18n()
+  const sections = t.wizard.steps
   const [active, setActive] = useState(0)
-  const total = WIZARD_STEPS.length
+  const total = sections.length
   const pct = Math.round(((active + 1) / total) * 100)
-  const cur = WIZARD_STEPS[active]
+  const cur = sections[active]
 
   return (
     <section className="screen">
-      <p className="screen__eyebrow">Шаг 3 из 6 · Интервью</p>
-      <h1 className="screen__title">Визард-интервью</h1>
-      <p className="screen__lead">
-        Ответьте на серию вопросов — мы заполним судебные формы за вас. Это
-        каркас интервью: поля и логика добавятся позже.
-      </p>
+      <p className="screen__eyebrow">{t.wizard.eyebrow}</p>
+      <h1 className="screen__title">{t.wizard.title}</h1>
+      <p className="screen__lead">{t.wizard.lead}</p>
 
       <div className="panel">
         <div className="wizard__head">
@@ -32,7 +22,7 @@ export default function Wizard() {
             {cur.title}
           </strong>
           <span className="wizard__count">
-            Вопрос {active + 1} из {total} · {pct}%
+            {fmt(t.wizard.counter, { a: active + 1, b: total, p: pct })}
           </span>
         </div>
 
@@ -41,9 +31,9 @@ export default function Wizard() {
         </div>
 
         <div className="wizard__steps">
-          {WIZARD_STEPS.map((s, i) => (
+          {sections.map((s, i) => (
             <button
-              key={s.key}
+              key={i}
               className={`wizard__chip ${
                 i === active ? 'is-active' : i < active ? 'is-done' : ''
               }`}
@@ -55,13 +45,13 @@ export default function Wizard() {
         </div>
 
         <div className="placeholder-block">
-          <strong>Раздел «{cur.title}»</strong>
+          <strong>{cur.question}</strong>
           <div className="skeleton-row w-60" />
           <div className="skeleton-row w-80" />
           <div className="skeleton-row w-40" />
-          <p style={{ marginBottom: 0 }}>
-            Здесь появятся поля интервью для этого раздела.
-          </p>
+          {/* Field explanation — translated for the user's understanding. */}
+          <p className="field-explain">{cur.hint}</p>
+          <p style={{ marginBottom: 0, opacity: 0.7 }}>{t.wizard.note}</p>
         </div>
 
         <div
@@ -73,19 +63,19 @@ export default function Wizard() {
             disabled={active === 0}
             onClick={() => setActive((i) => Math.max(0, i - 1))}
           >
-            ← Предыдущий вопрос
+            ← {t.wizard.prev}
           </button>
           <button
             className="btn btn--dark"
             disabled={active === total - 1}
             onClick={() => setActive((i) => Math.min(total - 1, i + 1))}
           >
-            Следующий вопрос →
+            {t.wizard.next} →
           </button>
         </div>
       </div>
 
-      <ScreenNav current={3} nextLabel="К калькулятору" />
+      <ScreenNav current={3} nextLabel={t.wizard.toCalculator} />
     </section>
   )
 }
