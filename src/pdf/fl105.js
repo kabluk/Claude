@@ -380,6 +380,10 @@ export const FL105_TEMPLATE = {
   url: '/forms/FL-105.pdf',
   // Footer reads: "FL-105/GC-120 [Rev. January 1, 2025]".
   revision: 'Rev. January 1, 2025',
+  // Upstream official source — used by `npm run check-forms` to detect a new
+  // publication (hash change ⇒ re-check revision & field mapping).
+  upstreamUrl: 'https://www.courts.ca.gov/documents/fl105.pdf',
+  sourceSha256: 'b3ed9b3dff1de55ce5d002e80e31c5b6e13bb7ab9c58c9e8cca017785d2d1977',
   mapping: FL105_MAPPING,
   // Shrink the residence "person/address" and "residence" cells so long values
   // (name + full address) don't overflow the narrow columns when flattened.

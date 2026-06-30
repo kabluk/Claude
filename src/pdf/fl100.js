@@ -293,6 +293,10 @@ export const FL100_TEMPLATE = {
   // Revision date printed on the official form (pins the version in-repo).
   // Footer reads: "FL-100 [Rev. January 1, 2020]".
   revision: 'Rev. January 1, 2020',
+  // Upstream official source — used by `npm run check-forms` to detect a new
+  // publication (hash change ⇒ re-check revision & field mapping).
+  upstreamUrl: 'https://www.courts.ca.gov/documents/fl100.pdf',
+  sourceSha256: 'fa30a2916677af5aecbd555aeceb06ef410eb1221da1b5f928348a5e7b17b6b6',
   mapping: FL100_MAPPING,
   // §10b community-property list: shrink the font and lower the field's top edge
   // so its text sits inside the box instead of overlapping the printed

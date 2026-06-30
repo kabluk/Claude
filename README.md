@@ -119,6 +119,20 @@ fillable-PDF (AcroForm) через `pdf-lib` — текст по координ�
 Добавить форму: положить официальный PDF в `public/forms/`, посмотреть имена
 полей через `inspectFormFields`, затем `registerForm({ id, title, url, mapping })`.
 
+### Проверка актуальности форм
+
+```bash
+npm run check-forms
+```
+
+Скачивает текущую официальную версию каждой формы с `courts.ca.gov` и сверяет
+её **SHA-256** с baseline (`sourceSha256` в FormTemplate). Хеш сменился ⇒ форму
+перепубликовали: перекачать PDF в `public/forms/`, обновить `revision` и
+`sourceSha256`, затем перепроверить маппинг полей (имена могли измениться).
+Код возврата 1 при изменениях — удобно для CI. (Строку «Rev. …» в этих PDF
+не прочитать автоматически — текст закодирован глифами, поэтому сверяем по
+хешу источника.) Скрипт: `scripts/check-forms.mjs`.
+
 ### FL-100 (Petition) — первая форма
 
 `src/pdf/fl100.js` + `src/pdf/counties.js`:
