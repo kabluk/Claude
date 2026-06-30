@@ -4,6 +4,7 @@ import { useAppState } from '../state/AppState.jsx'
 import { generateFL100 } from '../pdf/fl100.js'
 import { generateFL110 } from '../pdf/fl110.js'
 import { generateFL150 } from '../pdf/fl150.js'
+import { generateFL140 } from '../pdf/fl140.js'
 import { generateFL105, fl105Required, fl105NeedsContinuation } from '../pdf/fl105.js'
 
 function download(bytes, filename) {
@@ -39,7 +40,11 @@ export default function Fl100Generate() {
       download(fl100.bytes, 'FL-100-DRAFT.pdf')
       const fl110 = await generateFL110(state)
       download(fl110.bytes, 'FL-110-DRAFT.pdf')
-      // FL-150 (Income & Expense Declaration) — financial disclosure, always.
+      // Financial disclosure set (SERVED on the other party, NOT filed with the
+      // court): FL-140 (cover declaration) + FL-150 (Income & Expense). FL-142
+      // (Schedule of Assets and Debts) is listed on FL-140 but not yet generated.
+      const fl140 = await generateFL140(state)
+      download(fl140.bytes, 'FL-140-DRAFT.pdf')
       const fl150 = await generateFL150(state)
       download(fl150.bytes, 'FL-150-DRAFT.pdf')
       if (needsFl105) {
@@ -78,6 +83,7 @@ export default function Fl100Generate() {
         {status === 'working' ? c.fl100Generating : c.fl100Btn}
       </button>
       <p className="fl100__hint">{c.fl100Hint}</p>
+      <p className="fl100__hint">ℹ {c.disclosureNote}</p>
       {status === 'error' && <p className="fl100__error">{c.fl100Error}</p>}
       {needsFl105 && <p className="fl100__fl105">⚠ {c.fl105Required}</p>}
       {continuation && <p className="fl100__fl105">⚠ {c.fl105Continuation}</p>}

@@ -241,6 +241,8 @@ export const translations = {
       fl100Btn: 'Generate FL-100 (DRAFT)',
       fl100Generating: 'Generating…',
       fl100Hint: 'Fills the official FL-100 with your case data and stamps a DRAFT watermark.',
+      disclosureNote:
+        'Disclosure documents (FL-140 + FL-142 + FL-150) are SERVED on the other party — do NOT file them with the court. Only FL-141, which confirms that service was completed, is filed with the court.',
       fl100Error: 'FL-100 template is not available yet (PDF/mapping pending).',
       fl105Required: 'Minor children → form FL-105 will be added to the packet.',
       fl105Continuation:
@@ -485,6 +487,8 @@ export const translations = {
       fl100Btn: 'Generar FL-100 (DRAFT)',
       fl100Generating: 'Generando…',
       fl100Hint: 'Rellena el FL-100 oficial con los datos de su caso y añade una marca de agua DRAFT.',
+      disclosureNote:
+        'Los documentos de divulgación (FL-140 + FL-142 + FL-150) se ENTREGAN a la otra parte — NO los presente ante el tribunal. Solo se presenta el FL-141, que confirma que se realizó la entrega.',
       fl100Error: 'La plantilla FL-100 aún no está disponible (PDF/mapeo pendiente).',
       fl105Required: 'Hijos menores → se añadirá el formulario FL-105 al paquete.',
       fl105Continuation:
@@ -728,6 +732,8 @@ export const translations = {
       fl100Btn: 'Сформировать FL-100 (DRAFT)',
       fl100Generating: 'Формирую…',
       fl100Hint: 'Заполняет официальный FL-100 данными дела и ставит водяной знак DRAFT.',
+      disclosureNote:
+        'Документы о раскрытии (FL-140 + FL-142 + FL-150) ВРУЧАЮТСЯ второй стороне — их НЕ подают в суд. В суд подаётся только FL-141, подтверждающий, что вручение состоялось.',
       fl100Error: 'Шаблон FL-100 пока недоступен (PDF/маппинг в процессе).',
       fl105Required: 'Есть несовершеннолетние дети → в пакет добавится форма FL-105.',
       fl105Continuation:
@@ -961,6 +967,8 @@ export const translations = {
       fl100Btn: '生成 FL-100（DRAFT）',
       fl100Generating: '正在生成…',
       fl100Hint: '用您的案件数据填写官方 FL-100，并加盖 DRAFT 水印。',
+      disclosureNote:
+        '披露文件（FL-140 + FL-142 + FL-150）需送达对方当事人——请勿提交给法院。只有确认已完成送达的 FL-141 才提交给法院。',
       fl100Error: 'FL-100 模板尚不可用（PDF／映射待定）。',
       fl105Required: '有未成年子女 → 将向文件包添加表格 FL-105。',
       fl105Continuation: '子女超过 4 名或居住史不同 — 需要 FL-105 的续页副本。',
@@ -1203,6 +1211,8 @@ export const translations = {
       fl100Btn: 'Tạo FL-100 (DRAFT)',
       fl100Generating: 'Đang tạo…',
       fl100Hint: 'Điền FL-100 chính thức bằng dữ liệu vụ việc của bạn và đóng dấu mờ DRAFT.',
+      disclosureNote:
+        'Các tài liệu công bố (FL-140 + FL-142 + FL-150) được TỐNG ĐẠT cho bên kia — KHÔNG nộp cho tòa án. Chỉ FL-141, xác nhận việc tống đạt đã hoàn tất, mới được nộp cho tòa án.',
       fl100Error: 'Mẫu FL-100 hiện chưa có sẵn (PDF/ánh xạ đang chờ).',
       fl105Required: 'Có con chưa thành niên → biểu mẫu FL-105 sẽ được thêm vào bộ hồ sơ.',
       fl105Continuation:
