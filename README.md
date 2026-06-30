@@ -242,13 +242,37 @@ npm run check-forms
 ### FL-150 (Income & Expense Declaration) — четвёртая форма
 
 `src/pdf/fl150.js` — официальная **FL-150 [Rev. September 1, 2024]** (4 стр.,
-266 полей), зафиксирована в `public/forms/FL-150.pdf`. Заполняется то, что
-надёжно есть в деле: шапка (контакт из `buildPartyContact`, суд из `CountyInfo`,
-стороны на всех 4 страницах, case number), §8 «I get paid $… per month»
-(`petitioner_income`), оценка дохода второй стороны (`respondent_income`),
-итог месячных расходов (`monthly_expenses` → item 13r TOTAL + «Actual expenses»),
-подпись (дата + печатное имя). Детальная сетка доходов item 11 оставлена
-пользователю; суммы — из единого финансового источника. В пакет входит всегда.
+266 полей), зафиксирована в `public/forms/FL-150.pdf`. **Полный маппинг всех
+содержательных секций**, а не только шапка:
+
+- **Шапка** (все 4 страницы): контакт из `buildPartyContact`, суд из
+  `CountyInfo`, стороны, case number.
+- **§1 Employment**: работодатель, адрес, телефон, должность, дата начала, часы
+  в неделю, gross «per month». (Поле телефона имеет точку в имени —
+  экранируется `\\.` для `getField`.)
+- **§2 Age & education**: возраст, high school yes/no, годы колледжа.
+- **§3 Tax**: год, статус (single/HoH/MFS/MFJ), штат (CA), exemptions.
+- **§4** оценка дохода второй стороны (`respondent_income`).
+- **§5 Income** (колонка *Average monthly*): зарплата, overtime, commissions,
+  public assistance, spousal/partner support, pension, SS, disability,
+  unemployment, workers' comp, other — построчно.
+- **§6 Investment income**, **§7 Self-employment**.
+- **§10 Deductions** (строки a–g → L1–L7 по порядку; L5 несёт чекбокс
+  «federally tax deductible» = строка e «spousal support»).
+- **§11 Assets**: cash, stocks, all other property (real/personal чекбоксы).
+- **§13 Expenses** — построчно (13a Home с под-строками rent/mortgage,
+  property tax, insurance, maintenance; 13b–13q), **итог 13r TOTAL считается
+  в приложении** + чекбокс «Actual expenses».
+- **§16–17 Child support**: число детей, тайм-шер %% (из `finance_profile`),
+  наличие/компания/стоимость страховки детей.
+- Подпись (дата + печатное имя).
+
+Источник данных — единый: калькулятор/`finance_profile`, ответы `children`/
+`assets`, плюс JSON-ответ `fl150_profile` для секций, которые соберёт будущая
+секция визарда (employment, разбивка доходов/расходов, страховка детей);
+отсутствующие значения просто остаются пустыми. **Все итоги (расходы) считаются
+в приложении**, не в форме. Воспроизводимая проверка fill + read-back по всем
+страницам: `node scripts/demo-fl150.mjs`. В пакет входит всегда.
 
 ### Контактный блок заявителя — структурно и единым источником
 
