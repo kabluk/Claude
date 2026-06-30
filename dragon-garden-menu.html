@@ -1102,10 +1102,20 @@ body.admin-mode .admin-toggle{display:block}
   <div class="cart-count" id="cart-count" style="display:none">0</div>
 </button>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
+// ── SUPABASE CONFIG — fill in after setup ──────────────────
+// Leave empty strings to disable (WA orders still work)
+const SUPABASE_URL = '';
+const SUPABASE_ANON_KEY = '';
+// ──────────────────────────────────────────────────────────
+
 const RESTAURANT = {name:'Dragon Garden LA', phone:'18189719922'};
 const cart = {};
 const TABLE = new URLSearchParams(location.search).get('table') || null;
+const sb = (SUPABASE_URL && SUPABASE_ANON_KEY)
+  ? supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  : null;
 
 function addItem(name, price) {
   if (!cart[name]) cart[name] = {price, qty: 0};
@@ -1131,14 +1141,28 @@ function updateFloat() {
   }
 }
 
-function sendWA() {
-  const items = Object.entries(cart).filter(([,v]) => v.qty > 0);
-  if (!items.length) return;
-  const total = items.reduce((s, [,v]) => s + v.price * v.qty, 0);
+async function sendWA() {
+  const entries = Object.entries(cart).filter(([,v]) => v.qty > 0);
+  if (!entries.length) return;
+  const total = entries.reduce((s, [,v]) => s + v.price * v.qty, 0);
+
+  // Save to Supabase if configured (fire-and-forget, don't block WA)
+  if (sb) {
+    const orderItems = entries.map(([name, {price, qty}]) => ({name, price, qty}));
+    sb.from('orders').insert({
+      restaurant_id: 'dragon-garden',
+      table_num: TABLE,
+      items: orderItems,
+      total: parseFloat(total.toFixed(2)),
+      status: 'new'
+    }).then(({error}) => { if (error) console.warn('Supabase:', error.message); });
+  }
+
+  // Build WA message and open
   let msg = TABLE
     ? `🪑 Table ${TABLE} — Order from Dragon Garden LA:\n\n`
     : `Hello ${RESTAURANT.name}! I'd like to order:\n\n`;
-  items.forEach(([name, {price, qty}]) => {
+  entries.forEach(([name, {price, qty}]) => {
     msg += `• ${qty}x ${name} — $${(price * qty).toFixed(2)}\n`;
   });
   msg += `\nTotal: $${total.toFixed(2)}`;
