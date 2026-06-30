@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Kitchen Display — Dragon Garden LA</title>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#080808;
+  --bg2:#0f0f0f;
+  --bg3:#141414;
+  --new:#c0272d;
+  --new-bg:rgba(192,39,45,.1);
+  --new-border:rgba(192,39,45,.4);
+  --cooking:#c9a84c;
+  --cooking-bg:rgba(201,168,76,.08);
+  --cooking-border:rgba(201,168,76,.35);
+  --done:#3a8a4a;
+  --done-bg:rgba(58,138,74,.07);
+  --done-border:rgba(58,138,74,.25);
+  --text:#e8dcc8;
+  --muted:#5a5040;
+  --border:rgba(255,255,255,.07);
+}
+html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Helvetica Neue',Arial,sans-serif;overflow-x:hidden}
+
+.header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 20px;background:var(--bg2);
+  border-bottom:1px solid var(--border);
+  position:sticky;top:0;z-index:100
+}
+.header-left{display:flex;align-items:center;gap:16px}
+.logo{font-size:.95rem;font-weight:500;letter-spacing:.06em;color:var(--cooking)}
+.restaurant{font-size:.78rem;color:var(--muted);letter-spacing:.04em}
+.live-dot{width:8px;height:8px;border-radius:50%;background:#3a8a4a;
+  box-shadow:0 0 6px #3a8a4a;animation:pulse-dot 2s infinite}
+@keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:.4}}
+.header-clock{font-size:1.1rem;font-weight:300;letter-spacing:.1em;color:var(--text)}
+.header-right{display:flex;align-items:center;gap:10px}
+.badge-count{font-size:.7rem;padding:3px 9px;border-radius:20px;letter-spacing:.08em}
+.badge-new{background:var(--new-bg);border:1px solid var(--new-border);color:var(--new)}
+.badge-cooking{background:var(--cooking-bg);border:1px solid var(--cooking-border);color:var(--cooking)}
+.btn-sm{padding:7px 14px;border-radius:4px;font-size:.75rem;cursor:pointer;
+  letter-spacing:.06em;border:1px solid var(--border);background:transparent;
+  color:var(--muted);transition:.15s}
+.btn-sm:hover{color:var(--text);border-color:rgba(255,255,255,.2)}
+
+.board{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  background:var(--border);min-height:calc(100vh - 56px)}
+.lane{background:var(--bg);padding:16px 14px;display:flex;flex-direction:column;gap:12px}
+.lane-head{display:flex;align-items:center;justify-content:space-between;
+  padding-bottom:12px;border-bottom:1px solid var(--border);margin-bottom:4px}
+.lane-title{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;font-weight:500}
+.lane-new .lane-title{color:var(--new)}
+.lane-cooking .lane-title{color:var(--cooking)}
+.lane-done .lane-title{color:var(--done)}
+.lane-count{font-size:.65rem;padding:2px 8px;border-radius:10px}
+.lane-new .lane-count{background:var(--new-bg);color:var(--new)}
+.lane-cooking .lane-count{background:var(--cooking-bg);color:var(--cooking)}
+.lane-done .lane-count{background:var(--done-bg);color:var(--done)}
+
+.order-card{
+  background:var(--bg2);border-radius:6px;overflow:hidden;
+  border:1px solid var(--border);transition:.2s;
+  animation:slide-in .25s ease
+}
+@keyframes slide-in{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+
+.card-new{border-color:var(--new-border)}
+.card-new.fresh{animation:pulse-card 2s ease 3}
+@keyframes pulse-card{0%,100%{box-shadow:none}50%{box-shadow:0 0 16px rgba(192,39,45,.4)}}
+
+.card-cooking{border-color:var(--cooking-border)}
+.card-done{border-color:var(--done-border);opacity:.55}
+
+.card-top{
+  padding:12px 14px 10px;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between
+}
+.card-table{font-size:1.3rem;font-weight:600;letter-spacing:.02em}
+.card-new .card-table{color:var(--new)}
+.card-cooking .card-table{color:var(--cooking)}
+.card-done .card-table{color:var(--done)}
+
+.card-meta{text-align:right}
+.card-time{font-size:.72rem;color:var(--muted)}
+.card-age{font-size:.9rem;font-weight:500;color:var(--text)}
+.card-age.urgent{color:var(--new)}
+
+.card-items{padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+.item-row{display:flex;align-items:baseline;gap:8px}
+.item-qty{font-size:.82rem;color:var(--cooking);font-weight:600;min-width:20px}
+.item-name{font-size:.88rem;color:var(--text);flex:1}
+.item-price{font-size:.75rem;color:var(--muted)}
+
+.card-footer{
+  padding:10px 14px;border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between
+}
+.card-total{font-size:.82rem;color:var(--muted)}
+.card-total strong{color:var(--text)}
+
+.action-btn{
+  padding:8px 16px;border-radius:4px;font-size:.78rem;
+  font-weight:500;letter-spacing:.06em;cursor:pointer;border:none;
+  transition:.15s;text-transform:uppercase
+}
+.btn-take{background:var(--new);color:#fff}
+.btn-take:hover{background:#a81f25}
+.btn-take:active{transform:scale(.97)}
+.btn-done{background:var(--done);color:#fff}
+.btn-done:hover{background:#2d6e3a}
+.btn-done:active{transform:scale(.97)}
+.btn-archive{background:transparent;color:var(--muted);border:1px solid var(--border);font-size:.72rem;padding:6px 12px}
+.btn-archive:hover{color:var(--text)}
+
+.empty{text-align:center;padding:48px 16px;color:var(--muted);font-size:.82rem;line-height:1.7}
+.empty-icon{font-size:2rem;margin-bottom:12px;opacity:.3}
+
+.setup{max-width:540px;margin:60px auto;padding:0 24px}
+.setup h2{font-size:1.2rem;font-weight:400;color:var(--cooking);margin-bottom:8px}
+.setup p{font-size:.85rem;color:var(--muted);line-height:1.7;margin-bottom:24px}
+.setup-step{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:20px;margin-bottom:16px}
+.setup-step h3{font-size:.82rem;letter-spacing:.1em;color:var(--text);text-transform:uppercase;margin-bottom:12px}
+.setup-step code{display:block;background:var(--bg3);padding:12px;border-radius:4px;
+  font-size:.8rem;color:#c9a84c;font-family:monospace;line-height:1.6;
+  border:1px solid var(--border);white-space:pre-wrap;margin-top:8px}
+.setup-step p{font-size:.8rem;color:var(--muted);margin-bottom:0}
+.setup-input{width:100%;background:var(--bg3);border:1px solid var(--border);
+  border-radius:4px;padding:10px 12px;color:var(--text);font-family:monospace;
+  font-size:.82rem;outline:none;margin-top:8px}
+.setup-input:focus{border-color:rgba(201,168,76,.4)}
+.setup-btn{width:100%;margin-top:20px;padding:13px;background:var(--new);
+  color:#fff;border:none;border-radius:4px;font-size:.9rem;
+  letter-spacing:.06em;cursor:pointer}
+.setup-btn:hover{background:#a81f25}
+
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+  background:#1e1e1e;border:1px solid var(--border);border-radius:6px;
+  padding:10px 20px;font-size:.82rem;color:var(--text);
+  opacity:0;transition:.3s;pointer-events:none;z-index:999;white-space:nowrap}
+.toast.show{opacity:1}
+
+@media(max-width:640px){
+  .board{grid-template-columns:1fr}
+  .lane{min-height:auto}
+}
+</style>
+</head>
+<body>
+
+<div id="setup-screen" style="display:none">
+  <div class="setup">
+    <h2>Kitchen Display Setup</h2>
+    <p>Connect to Supabase to receive orders in real time. Takes 5 minutes.</p>
+
+    <div class="setup-step">
+      <h3>Step 1 — Create Supabase project</h3>
+      <p>Go to <strong>supabase.com</strong> → New Project → Free tier → copy your URL and anon key.</p>
+    </div>
+
+    <div class="setup-step">
+      <h3>Step 2 — Create orders table</h3>
+      <p>In Supabase → SQL Editor → run this:</p>
+      <code>CREATE TABLE orders (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  created_at TIMESTAMPTZ DEFAULT NOW(),
+  restaurant_id TEXT DEFAULT 'dragon-garden',
+  table_num TEXT,
+  items JSONB,
+  total NUMERIC(10,2),
+  status TEXT DEFAULT 'new'
+    CHECK (status IN ('new','cooking','done')),
+  status_updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
+CREATE POLICY "anon_all" ON orders FOR ALL USING (true) WITH CHECK (true);</code>
+    </div>
+
+    <div class="setup-step">
+      <h3>Step 3 — Enter your credentials</h3>
+      <input class="setup-input" id="inp-url" placeholder="https://xxxx.supabase.co">
+      <input class="setup-input" id="inp-key" placeholder="eyJhbGci... (anon key)" style="margin-top:8px">
+    </div>
+
+    <button class="setup-btn" onclick="saveConfig()">Connect Kitchen Display →</button>
+  </div>
+</div>
+
+<div id="main-screen" style="display:none">
+  <div class="header">
+    <div class="header-left">
+      <div class="live-dot" id="live-dot" title="Connected"></div>
+      <div>
+        <div class="logo">KITCHEN DISPLAY</div>
+        <div class="restaurant">Dragon Garden LA</div>
+      </div>
+    </div>
+    <div class="header-clock" id="clock">--:--</div>
+    <div class="header-right">
+      <span class="badge-count badge-new" id="count-new">0 NEW</span>
+      <span class="badge-count badge-cooking" id="count-cooking">0 COOKING</span>
+      <button class="btn-sm" onclick="loadOrders()">↻ Refresh</button>
+    </div>
+  </div>
+
+  <div class="board">
+    <div class="lane lane-new">
+      <div class="lane-head">
+        <span class="lane-title">New Orders</span>
+        <span class="lane-count" id="lc-new">0</span>
+      </div>
+      <div id="col-new"></div>
+    </div>
+    <div class="lane lane-cooking">
+      <div class="lane-head">
+        <span class="lane-title">Cooking</span>
+        <span class="lane-count" id="lc-cooking">0</span>
+      </div>
+      <div id="col-cooking"></div>
+    </div>
+    <div class="lane lane-done">
+      <div class="lane-head">
+        <span class="lane-title">Done</span>
+        <span class="lane-count" id="lc-done">0</span>
+      </div>
+      <div id="col-done"></div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const CONFIG_KEY = 'menvio_kitchen_config';
+let sb = null;
+let knownIds = new Set();
+
+function loadConfig() {
+  try { return JSON.parse(localStorage.getItem(CONFIG_KEY)); } catch(e) { return null; }
+}
+function saveConfig() {
+  const url = document.getElementById('inp-url').value.trim();
+  const key = document.getElementById('inp-key').value.trim();
+  if (!url || !key) { showToast('Enter both URL and anon key'); return; }
+  localStorage.setItem(CONFIG_KEY, JSON.stringify({url, key}));
+  location.reload();
+}
+
+const cfg = loadConfig();
+if (!cfg) {
+  document.getElementById('setup-screen').style.display = 'block';
+} else {
+  document.getElementById('main-screen').style.display = 'block';
+  sb = supabase.createClient(cfg.url, cfg.key);
+  init();
+}
+
+async function init() {
+  startClock();
+  await loadOrders();
+  subscribeRealtime();
+  setInterval(tickTimers, 30000);
+  setInterval(loadOrders, 15000);
+}
+
+function startClock() {
+  function tick() {
+    const now = new Date();
+    document.getElementById('clock').textContent =
+      now.toLocaleTimeString('en-US', {hour:'2-digit', minute:'2-digit', hour12:true});
+  }
+  tick(); setInterval(tick, 1000);
+}
+
+async function loadOrders() {
+  setLiveDot('loading');
+  const cutoff = new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString();
+  const { data, error } = await sb
+    .from('orders')
+    .select('*')
+    .gte('created_at', cutoff)
+    .neq('status', 'archived')
+    .order('created_at', { ascending: true });
+
+  if (error) { setLiveDot('error'); console.error(error); return; }
+  setLiveDot('ok');
+  renderBoard(data || []);
+
+  (data || []).forEach(o => {
+    if (o.status === 'new' && !knownIds.has(o.id)) {
+      if (knownIds.size > 0) { playBeep(); showToast('🔴 New order — Table ' + (o.table_num || '?')); }
+      knownIds.add(o.id);
+    } else {
+      knownIds.add(o.id);
+    }
+  });
+}
+
+function renderBoard(orders) {
+  const cols = { new: [], cooking: [], done: [] };
+  orders.forEach(o => { if (cols[o.status]) cols[o.status].push(o); });
+
+  document.getElementById('col-new').innerHTML = cols.new.map(o => cardHTML(o)).join('') || emptyHTML('No new orders');
+  document.getElementById('col-cooking').innerHTML = cols.cooking.map(o => cardHTML(o)).join('') || emptyHTML('Nothing cooking');
+  document.getElementById('col-done').innerHTML = cols.done.map(o => cardHTML(o)).join('') || emptyHTML('');
+
+  ['new','cooking','done'].forEach(s => {
+    document.getElementById('lc-' + s).textContent = cols[s].length;
+  });
+  document.getElementById('count-new').textContent = cols.new.length + ' NEW';
+  document.getElementById('count-cooking').textContent = cols.cooking.length + ' COOKING';
+}
+
+function cardHTML(o) {
+  const age = minutesAgo(o.created_at);
+  const urgent = o.status === 'new' && age >= 8;
+  const items = Array.isArray(o.items) ? o.items : [];
+
+  let btn = '';
+  if (o.status === 'new')     btn = `<button class="action-btn btn-take" onclick="setStatus('${o.id}','cooking')">▶ Take Order</button>`;
+  if (o.status === 'cooking') btn = `<button class="action-btn btn-done"  onclick="setStatus('${o.id}','done')">✓ Done</button>`;
+  if (o.status === 'done')    btn = `<button class="action-btn btn-archive" onclick="setStatus('${o.id}','archived')">Archive</button>`;
+
+  const freshClass = (o.status === 'new' && age < 2) ? ' fresh' : '';
+
+  return `
+<div class="order-card card-${o.status}${freshClass}" id="card-${o.id}">
+  <div class="card-top">
+    <div class="card-table">${o.table_num ? 'Table ' + o.table_num : 'Walk-in'}</div>
+    <div class="card-meta">
+      <div class="card-time">${formatTime(o.created_at)}</div>
+      <div class="card-age${urgent?' urgent':''}">${age}m ago</div>
+    </div>
+  </div>
+  <div class="card-items">
+    ${items.map(i => `
+      <div class="item-row">
+        <span class="item-qty">${i.qty}×</span>
+        <span class="item-name">${i.name}</span>
+        <span class="item-price">$${(i.price * i.qty).toFixed(2)}</span>
+      </div>`).join('')}
+  </div>
+  <div class="card-footer">
+    <div class="card-total">Total: <strong>$${Number(o.total).toFixed(2)}</strong></div>
+    ${btn}
+  </div>
+</div>`;
+}
+
+function emptyHTML(msg) {
+  if (!msg) return '';
+  return `<div class="empty"><div class="empty-icon">✓</div>${msg}</div>`;
+}
+
+async function setStatus(id, status) {
+  const { error } = await sb
+    .from('orders')
+    .update({ status, status_updated_at: new Date().toISOString() })
+    .eq('id', id);
+  if (error) { showToast('Error updating status'); return; }
+  await loadOrders();
+}
+
+function subscribeRealtime() {
+  sb.channel('orders-channel')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, () => {
+      loadOrders();
+    })
+    .subscribe(status => {
+      setLiveDot(status === 'SUBSCRIBED' ? 'ok' : 'error');
+    });
+}
+
+function tickTimers() { loadOrders(); }
+
+function minutesAgo(ts) {
+  return Math.floor((Date.now() - new Date(ts).getTime()) / 60000);
+}
+function formatTime(ts) {
+  return new Date(ts).toLocaleTimeString('en-US', {hour:'2-digit', minute:'2-digit', hour12:true});
+}
+
+function setLiveDot(state) {
+  const dot = document.getElementById('live-dot');
+  if (!dot) return;
+  dot.style.background = state === 'ok' ? '#3a8a4a' : state === 'loading' ? '#c9a84c' : '#c0272d';
+  dot.style.boxShadow = `0 0 6px ${dot.style.background}`;
+}
+
+function playBeep() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    [0, 150].forEach(delay => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.connect(gain); gain.connect(ctx.destination);
+      osc.frequency.value = 880;
+      gain.gain.setValueAtTime(0.3, ctx.currentTime + delay/1000);
+      gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + delay/1000 + 0.3);
+      osc.start(ctx.currentTime + delay/1000);
+      osc.stop(ctx.currentTime + delay/1000 + 0.3);
+    });
+  } catch(e) {}
+}
+
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+</script>
+</body>
+</html>
