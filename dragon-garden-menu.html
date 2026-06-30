@@ -250,6 +250,12 @@ nav label:hover{color:#c9a84c}
   font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8a7e6e;
   font-family:'Noto Sans JP',sans-serif}
 
+/* ── Table badge ── */
+.table-badge{display:inline-flex;align-items:center;gap:6px;margin-top:10px;
+  padding:5px 12px;background:rgba(192,39,45,.12);border:1px solid rgba(192,39,45,.3);
+  border-radius:2px;font-size:11px;color:#e8dcc8;letter-spacing:.08em}
+.table-badge strong{color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:15px}
+
 /* ── Footer ── */
 .menu-footer{text-align:center;padding:24px 20px;border-top:1px solid var(--border)}
 .footer-logo{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.25em;
@@ -347,6 +353,9 @@ body.admin-mode .admin-toggle{display:block}
     </div>
     <div class="hero-rule"></div>
     <div class="hero-tagline">Chinese · Japanese · Hot Pot · Lounge</div>
+    <div id="table-badge" style="display:none" class="table-badge">
+      🪑 Table <strong id="table-num"></strong>
+    </div>
   </div>
 </div>
 
@@ -1096,6 +1105,7 @@ body.admin-mode .admin-toggle{display:block}
 <script>
 const RESTAURANT = {name:'Dragon Garden LA', phone:'18189719922'};
 const cart = {};
+const TABLE = new URLSearchParams(location.search).get('table') || null;
 
 function addItem(name, price) {
   if (!cart[name]) cart[name] = {price, qty: 0};
@@ -1125,11 +1135,14 @@ function sendWA() {
   const items = Object.entries(cart).filter(([,v]) => v.qty > 0);
   if (!items.length) return;
   const total = items.reduce((s, [,v]) => s + v.price * v.qty, 0);
-  let msg = `Hello ${RESTAURANT.name}! I'd like to order:\n\n`;
+  let msg = TABLE
+    ? `🪑 Table ${TABLE} — Order from Dragon Garden LA:\n\n`
+    : `Hello ${RESTAURANT.name}! I'd like to order:\n\n`;
   items.forEach(([name, {price, qty}]) => {
     msg += `• ${qty}x ${name} — $${(price * qty).toFixed(2)}\n`;
   });
-  msg += `\nEstimated Total: $${total.toFixed(2)}\n\nThank you!`;
+  msg += `\nTotal: $${total.toFixed(2)}`;
+  if (TABLE) msg += `\n\n— Table ${TABLE}`;
   window.open(`https://wa.me/${RESTAURANT.phone}?text=${encodeURIComponent(msg)}`, '_blank');
 }
 
@@ -1209,7 +1222,14 @@ function soAddBtn(card, name) {
   card.appendChild(btn);
 }
 
-document.addEventListener('DOMContentLoaded', soInit);
+document.addEventListener('DOMContentLoaded', () => {
+  soInit();
+  if (TABLE) {
+    document.getElementById('table-num').textContent = TABLE;
+    document.getElementById('table-badge').style.display = 'inline-flex';
+    document.title = `Dragon Garden LA — Table ${TABLE}`;
+  }
+});
 </script>
 
 </body>
