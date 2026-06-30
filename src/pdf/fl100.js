@@ -129,7 +129,10 @@ export function buildFL100Profile({ user = {}, caseRec = {}, answers = [] }) {
 
     // --- §1 relationship / petition type (string + checkbox flags) ---
     relationship_type: 'Marriage',
-    rel_marriage: true,
+    rel_marriage: true, // FormTitle "Marriage" (Dissolution of Marriage)
+    rel_married: true, // §1a "We are married"
+    rel_dp_ca: false, // §1b domestic partnership established in CA
+    rel_dp_notca: false, // §1c domestic partnership NOT established in CA
     pt_dissolution: isDissolution,
 
     // --- §2 residence (only the chosen party/parties) ---
@@ -137,6 +140,7 @@ export function buildFL100Profile({ user = {}, caseRec = {}, answers = [] }) {
     respondent_ca_resident: respondentResident,
 
     // --- §3 statistical facts (dates formatted MM/DD/YYYY) ---
+    marriage_stats: true, // §3a checkbox (marriage statistical facts)
     date_of_marriage: fmtDateUS(a.date_of_marriage || a.marriage_date),
     date_of_separation: fmtDateUS(a.date_of_separation || a.separation_date),
     time_married_years: tm.years,
@@ -229,6 +233,12 @@ export const FL100_MAPPING = {
   // title checkboxes: Dissolution (Divorce) of Marriage
   pt_dissolution: p1('CaptionP1_sf[0].FormTitle[0].DissolutionOf_cb[0]'),
   rel_marriage: p1('CaptionP1_sf[0].FormTitle[0].Marriage_cb[0]'),
+  // §1 legal relationship
+  rel_married: p1('WeAreMarried_cb[0]'), // §1a We are married
+  rel_dp_ca: p1('DPEstablishedInCalifornia[0]'), // §1b
+  rel_dp_notca: p1('DPNOTEstablishedinCA_cb[0]'), // §1c
+  // §3a marriage statistical-facts checkbox
+  marriage_stats: p1('CheckBox61[0]'),
   // §2 residency requirements
   petitioner_ca_resident: p1('PetitionerMeetsResidencyReqs_cb[0]'),
   respondent_ca_resident: p1('RespondentMeetsResidencyReqs_cb[0]'),
