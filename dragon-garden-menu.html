@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Dragon Garden LA — Menu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600&family=Noto+Sans+JP:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,600;1,300&display=swap" rel="stylesheet">
+
+<style>
+/* ── Reset ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0a0a;color:#e8dcc8;font-family:'Noto Sans JP',sans-serif;min-height:100vh;overflow-x:hidden}
+
+/* ── Color tokens ── */
+:root{
+  --bg:#0a0a0a;
+  --bg2:#111010;
+  --bg3:#181614;
+  --red:#c0272d;
+  --red2:#9e1f24;
+  --gold:#c9a84c;
+  --gold2:#a07830;
+  --cream:#e8dcc8;
+  --muted:#8a7e6e;
+  --card:#141210;
+  --border:rgba(201,168,76,.18);
+}
+
+/* ── Radio tab switcher ── */
+#r1,#r2,#r3,#r4,#r5{display:none}
+#r1:checked ~ #wrap #t1,
+#r2:checked ~ #wrap #t2,
+#r3:checked ~ #wrap #t3,
+#r4:checked ~ #wrap #t4,
+#r5:checked ~ #wrap #t5{display:block}
+#r1:checked ~ nav label[for=r1],
+#r2:checked ~ nav label[for=r2],
+#r3:checked ~ nav label[for=r3],
+#r4:checked ~ nav label[for=r4],
+#r5:checked ~ nav label[for=r5]{color:#c9a84c;border-bottom:2px solid #c9a84c}
+
+/* ── Hero ── */
+.hero{position:relative;height:320px;overflow:hidden;display:flex;align-items:flex-end;background:#0a0a0a}
+.hero-art{position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 40% at 75% 45%, rgba(192,39,45,.22) 0%, transparent 65%),
+    radial-gradient(ellipse 80% 60% at 20% 70%, rgba(201,168,76,.08) 0%, transparent 60%),
+    radial-gradient(ellipse 100% 100% at 50% 0%, #1a0a0a 0%, #0a0a0a 60%);
+}
+/* Dragon scale pattern */
+.hero-scales{position:absolute;inset:0;opacity:.07;
+  background-image:
+    radial-gradient(ellipse 32px 20px at 0px 10px, transparent 60%, rgba(192,39,45,1) 61%, rgba(192,39,45,1) 68%, transparent 69%),
+    radial-gradient(ellipse 32px 20px at 16px 0px, transparent 60%, rgba(192,39,45,1) 61%, rgba(192,39,45,1) 68%, transparent 69%);
+  background-size:32px 20px;
+}
+.hero-lantern{position:absolute;right:24px;top:24px;width:60px;height:90px;opacity:.35}
+.hero-lantern rect{rx:6}
+.hero-content{position:relative;z-index:2;padding:28px 24px 32px;width:100%}
+.hero-en{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.35em;color:#c9a84c;text-transform:uppercase;margin-bottom:6px}
+.hero-name{font-family:'Noto Serif JP',serif;font-size:36px;font-weight:300;color:#f0e6d0;line-height:1.05;letter-spacing:.02em}
+.hero-name span{display:block;font-size:14px;font-weight:300;color:#8a7e6e;letter-spacing:.18em;margin-top:4px}
+.hero-rule{width:48px;height:1px;background:linear-gradient(90deg,#c9a84c,transparent);margin:14px 0 10px}
+.hero-tagline{font-size:12px;color:#8a7e6e;letter-spacing:.08em}
+
+/* ── Nav tabs ── */
+nav{position:sticky;top:0;z-index:100;background:#0f0e0c;border-bottom:1px solid var(--border);
+  display:flex;overflow-x:auto;scrollbar-width:none}
+nav::-webkit-scrollbar{display:none}
+nav label{flex:0 0 auto;padding:14px 18px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:#5a5040;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;
+  transition:color .2s;font-family:'Noto Sans JP',sans-serif;font-weight:500}
+nav label:hover{color:#c9a84c}
+
+/* ── Section content ── */
+#wrap > section{display:none;padding-bottom:120px}
+
+/* ── Section header ── */
+.sec-head{padding:32px 20px 8px;position:relative}
+.sec-jp{font-family:'Noto Serif JP',serif;font-size:28px;font-weight:300;color:rgba(201,168,76,.25);
+  position:absolute;right:20px;top:24px;letter-spacing:.1em}
+.sec-en{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.3em;color:#c9a84c;
+  text-transform:uppercase;margin-bottom:4px}
+.sec-title{font-family:'Noto Serif JP',serif;font-size:22px;font-weight:300;color:#f0e6d0}
+.sec-sub{font-size:11px;color:#5a5040;margin-top:4px;letter-spacing:.05em}
+.sec-divider{height:1px;background:linear-gradient(90deg,var(--border),transparent);margin:16px 20px 8px}
+
+/* ── Dish card ── */
+.dish-card{display:flex;gap:0;margin:0 16px 12px;background:var(--card);
+  border:1px solid rgba(201,168,76,.1);border-radius:4px;overflow:hidden;position:relative}
+.dish-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;
+  background:linear-gradient(180deg,var(--red),transparent)}
+.dish-photo{width:90px;min-height:90px;flex-shrink:0}
+.dish-info{padding:12px 14px 10px;flex:1;min-width:0}
+.dish-name{font-family:'Noto Serif JP',serif;font-size:14px;font-weight:400;color:#e8dcc8;
+  margin-bottom:2px;line-height:1.3}
+.dish-name-jp{font-size:10px;color:#5a5040;letter-spacing:.15em;margin-bottom:6px}
+.dish-desc{font-size:11px;color:#6a5e50;line-height:1.5;margin-bottom:8px}
+.dish-footer{display:flex;align-items:center;justify-content:space-between}
+.dish-price{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:#c9a84c}
+.dish-badge{font-size:9px;letter-spacing:.1em;padding:2px 7px;border-radius:2px;text-transform:uppercase}
+.badge-spicy{background:rgba(192,39,45,.2);color:#c0272d;border:1px solid rgba(192,39,45,.3)}
+.badge-veg{background:rgba(72,140,60,.2);color:#5aab4a;border:1px solid rgba(72,140,60,.3)}
+.badge-chef{background:rgba(201,168,76,.15);color:#c9a84c;border:1px solid rgba(201,168,76,.25)}
+.badge-new{background:rgba(80,120,200,.2);color:#7090e0;border:1px solid rgba(80,120,200,.3)}
+.add-btn{width:28px;height:28px;border-radius:50%;border:1px solid var(--red);background:transparent;
+  color:var(--red);font-size:18px;line-height:1;cursor:pointer;display:flex;align-items:center;
+  justify-content:center;transition:all .2s;flex-shrink:0}
+.add-btn:active{background:var(--red);color:#fff;transform:scale(.9)}
+
+/* ── CSS Food Art ── */
+.food-hotpot{
+  background:
+    radial-gradient(ellipse 40% 15% at 50% 45%, rgba(255,255,255,.12) 0%, transparent 100%),
+    radial-gradient(ellipse 20% 20% at 30% 38%, rgba(255,80,30,.6) 0%, transparent 70%),
+    radial-gradient(ellipse 20% 20% at 70% 38%, rgba(255,80,30,.6) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 50% at 50% 50%, #8b1a1a 0%, #5a0e0e 60%, #1a0505 100%),
+    radial-gradient(ellipse 80% 80% at 50% 60%, #2a1010 0%, #0d0505 100%),
+    #0d0505}
+.food-sushi-roll{
+  background:
+    radial-gradient(ellipse 30% 30% at 30% 40%, rgba(220,80,80,.7) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 30% at 65% 55%, rgba(255,200,100,.5) 0%, transparent 70%),
+    radial-gradient(ellipse 25% 25% at 50% 30%, rgba(255,255,255,.2) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 70% at 50% 50%, #1a1a1a 0%, #0d0d0d 100%),
+    #0d0d0d}
+.food-dimsum{
+  background:
+    radial-gradient(ellipse 30% 25% at 35% 50%, rgba(255,220,180,.55) 0%, transparent 70%),
+    radial-gradient(ellipse 25% 22% at 65% 45%, rgba(255,200,150,.5) 0%, transparent 70%),
+    radial-gradient(ellipse 20% 18% at 50% 62%, rgba(255,200,150,.45) 0%, transparent 65%),
+    radial-gradient(ellipse 70% 60% at 50% 55%, rgba(201,120,40,.15) 0%, transparent 80%),
+    radial-gradient(ellipse 90% 90% at 50% 50%, #1a1208 0%, #0d0a05 100%),
+    #0d0a05}
+.food-ramen{
+  background:
+    radial-gradient(ellipse 55% 25% at 50% 60%, rgba(255,200,100,.3) 0%, transparent 80%),
+    radial-gradient(ellipse 30% 30% at 30% 35%, rgba(220,80,60,.55) 0%, transparent 70%),
+    radial-gradient(ellipse 25% 30% at 68% 40%, rgba(255,220,150,.4) 0%, transparent 65%),
+    radial-gradient(ellipse 70% 55% at 50% 52%, rgba(140,70,20,.4) 0%, transparent 80%),
+    radial-gradient(ellipse 80% 80% at 50% 50%, #18100a 0%, #0d0805 100%),
+    #0d0805}
+.food-wagyu{
+  background:
+    repeating-linear-gradient(128deg, transparent, transparent 8px, rgba(255,255,255,.04) 8px, rgba(255,255,255,.04) 10px),
+    radial-gradient(ellipse 60% 50% at 48% 52%, #5a2010 0%, #3a1008 45%, #200a04 75%, transparent 92%),
+    radial-gradient(ellipse 80% 70% at 50% 55%, #140804 0%, #0a0402 100%),
+    #0a0402}
+.food-hotpot2{
+  background:
+    radial-gradient(circle 8px at 35% 30%, rgba(255,120,30,.8) 0%, transparent 100%),
+    radial-gradient(circle 6px at 55% 25%, rgba(255,150,50,.7) 0%, transparent 100%),
+    radial-gradient(circle 10px at 45% 35%, rgba(255,80,20,.6) 0%, transparent 100%),
+    radial-gradient(ellipse 70% 50% at 50% 55%, #7a1515 0%, #4a0a0a 60%, #1a0505 100%),
+    #100404}
+.food-edamame{
+  background:
+    radial-gradient(ellipse 25% 20% at 35% 48%, rgba(120,180,60,.7) 0%, transparent 70%),
+    radial-gradient(ellipse 20% 18% at 62% 52%, rgba(100,160,50,.65) 0%, transparent 70%),
+    radial-gradient(ellipse 18% 15% at 50% 38%, rgba(140,200,70,.6) 0%, transparent 65%),
+    radial-gradient(ellipse 80% 70% at 50% 55%, rgba(30,60,15,.5) 0%, transparent 80%),
+    #0a0f05}
+.food-cocktail{
+  background:
+    radial-gradient(ellipse 20% 60% at 50% 45%, rgba(255,80,120,.35) 0%, rgba(200,50,100,.15) 60%, transparent 80%),
+    radial-gradient(ellipse 30% 20% at 50% 20%, rgba(255,180,80,.3) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 80% at 50% 50%, #1a0814 0%, #100510 100%),
+    #100510}
+.food-peking{
+  background:
+    radial-gradient(ellipse 40% 30% at 48% 48%, rgba(180,60,20,.7) 0%, rgba(140,30,10,.4) 60%, transparent 80%),
+    radial-gradient(ellipse 30% 20% at 65% 40%, rgba(220,160,60,.3) 0%, transparent 65%),
+    radial-gradient(ellipse 70% 60% at 50% 55%, rgba(80,20,5,.6) 0%, transparent 80%),
+    radial-gradient(ellipse 90% 90% at 50% 50%, #180a04 0%, #0d0503 100%),
+    #0d0503}
+.food-matcha{
+  background:
+    radial-gradient(ellipse 40% 35% at 50% 48%, rgba(100,160,80,.5) 0%, rgba(60,120,40,.2) 70%, transparent 90%),
+    radial-gradient(ellipse 20% 15% at 50% 30%, rgba(200,220,180,.15) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 70% at 50% 55%, rgba(20,40,10,.6) 0%, transparent 80%),
+    #060d04}
+
+/* ── Hot Pot Section Special ── */
+.hotpot-banner{margin:16px;border-radius:4px;overflow:hidden;position:relative;
+  background:linear-gradient(135deg,#1a0505 0%,#2a0a0a 50%,#1a0508 100%);
+  border:1px solid rgba(192,39,45,.3);padding:20px}
+.hotpot-banner::before{content:'';position:absolute;inset:0;opacity:.06;
+  background-image:
+    radial-gradient(ellipse 32px 20px at 0px 10px, transparent 60%, rgba(192,39,45,1) 61%, rgba(192,39,45,1) 68%, transparent 69%),
+    radial-gradient(ellipse 32px 20px at 16px 0px, transparent 60%, rgba(192,39,45,1) 61%, rgba(192,39,45,1) 68%, transparent 69%);
+  background-size:32px 20px}
+.hotpot-title{font-family:'Noto Serif JP',serif;font-size:16px;color:#e8dcc8;margin-bottom:6px;position:relative}
+.hotpot-desc{font-size:11px;color:#7a6a5a;line-height:1.6;position:relative}
+.hotpot-note{display:inline-block;margin-top:10px;padding:4px 12px;background:rgba(192,39,45,.15);
+  border:1px solid rgba(192,39,45,.3);border-radius:2px;font-size:10px;color:#c0272d;
+  letter-spacing:.08em;position:relative}
+
+/* ── Broth selector ── */
+.broth-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0 16px 8px}
+.broth-card{background:var(--card);border:1px solid var(--border);border-radius:4px;
+  padding:12px;position:relative;overflow:hidden}
+.broth-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px}
+.broth-red::after{background:linear-gradient(90deg,#c0272d,transparent)}
+.broth-gold::after{background:linear-gradient(90deg,#c9a84c,transparent)}
+.broth-name{font-family:'Noto Serif JP',serif;font-size:12px;color:#e8dcc8;margin-bottom:3px}
+.broth-detail{font-size:10px;color:#5a5040;line-height:1.4}
+.broth-price{font-family:'Cormorant Garamond',serif;font-size:16px;color:#c9a84c;margin-top:6px}
+
+/* ── Add-ins grid ── */
+.addins-title{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#5a5040;
+  padding:12px 16px 6px}
+.addins-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;padding:0 16px}
+.addin-item{background:var(--card);border:1px solid rgba(201,168,76,.08);border-radius:4px;
+  padding:10px 8px;text-align:center}
+.addin-emoji{font-size:18px;display:block;margin-bottom:4px}
+.addin-name{font-size:10px;color:#8a7e6e;display:block}
+.addin-price{font-family:'Cormorant Garamond',serif;font-size:14px;color:#c9a84c;display:block}
+
+/* ── Info section ── */
+.info-block{margin:16px;background:var(--card);border:1px solid var(--border);
+  border-radius:4px;padding:20px}
+.info-block h3{font-family:'Noto Serif JP',serif;font-weight:300;font-size:16px;
+  color:#e8dcc8;margin-bottom:14px}
+.info-row{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid rgba(201,168,76,.08)}
+.info-row:last-child{border-bottom:none}
+.info-icon{width:32px;height:32px;background:rgba(192,39,45,.1);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.info-label{font-size:10px;color:#5a5040;letter-spacing:.08em;margin-bottom:2px}
+.info-val{font-size:13px;color:#e8dcc8}
+.social-row{display:flex;gap:10px;margin-top:16px}
+.social-btn{flex:1;padding:10px;background:rgba(201,168,76,.08);border:1px solid var(--border);
+  border-radius:4px;font-size:11px;color:#c9a84c;text-align:center;cursor:pointer;
+  text-decoration:none;letter-spacing:.05em}
+
+/* ── WA Float ── */
+.wa-float{position:fixed;bottom:24px;right:20px;z-index:999;
+  background:linear-gradient(135deg,#c9a84c,#a07830);
+  color:#0a0a0a;border:none;border-radius:28px;padding:13px 20px;
+  font-size:13px;font-weight:700;font-family:'Noto Sans JP',sans-serif;
+  letter-spacing:.05em;cursor:pointer;box-shadow:0 4px 20px rgba(201,168,76,.35);
+  display:none;align-items:center;gap:8px;transition:all .2s}
+.wa-float:active{transform:scale(.96)}
+.wa-float svg{width:20px;height:20px}
+.wa-float .cart-count{background:#c0272d;color:#fff;border-radius:50%;
+  width:20px;height:20px;font-size:11px;display:flex;align-items:center;justify-content:center}
+
+/* ── Category label ── */
+.cat-label{margin:20px 16px 8px;padding:6px 12px;border-left:2px solid var(--red);
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:#8a7e6e;
+  font-family:'Noto Sans JP',sans-serif}
+
+/* ── Table badge ── */
+.table-badge{display:inline-flex;align-items:center;gap:6px;margin-top:10px;
+  padding:5px 12px;background:rgba(192,39,45,.12);border:1px solid rgba(192,39,45,.3);
+  border-radius:2px;font-size:11px;color:#e8dcc8;letter-spacing:.08em}
+.table-badge strong{color:var(--gold);font-family:'Cormorant Garamond',serif;font-size:15px}
+
+/* ── Footer ── */
+.menu-footer{text-align:center;padding:24px 20px;border-top:1px solid var(--border)}
+.footer-logo{font-family:'Cormorant Garamond',serif;font-size:11px;letter-spacing:.25em;
+  color:#3a3028;text-transform:uppercase;margin-bottom:4px}
+.footer-link{font-size:10px;color:#4a4035;letter-spacing:.1em}
+.footer-link a{color:#c9a84c;text-decoration:none}
+
+/* ── SVG decorative overlay ── */
+.deco-svg{position:fixed;pointer-events:none;z-index:0;opacity:.05;top:0;right:0;width:200px;height:300px}
+
+/* ── Sold Out ── */
+.dish-card.sold-out{opacity:.45}
+.dish-card.sold-out .dish-photo{filter:grayscale(.8) brightness(.65)}
+.dish-card.sold-out .dish-name{text-decoration:line-through;color:var(--muted)}
+.dish-card.sold-out .add-btn{opacity:0;pointer-events:none}
+.sold-out-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  background:rgba(8,8,8,.9);border:1px solid rgba(255,255,255,.1);
+  color:#fff;font-size:9px;letter-spacing:.18em;padding:4px 10px;
+  text-transform:uppercase;border-radius:2px;pointer-events:none;white-space:nowrap;
+  font-family:'Noto Sans JP',sans-serif;z-index:3}
+
+/* ── Admin mode ── */
+.admin-bar{display:none;position:fixed;top:0;left:0;right:0;
+  background:rgba(192,39,45,.95);backdrop-filter:blur(8px);
+  padding:10px 16px;font-size:11px;letter-spacing:.1em;color:#fff;
+  text-align:center;z-index:9999;font-family:'Noto Sans JP',sans-serif}
+body.admin-mode .admin-bar{display:block}
+body.admin-mode nav{top:38px}
+
+.admin-toggle{display:none;position:absolute;bottom:8px;right:8px;
+  background:rgba(192,39,45,.12);border:1px solid rgba(192,39,45,.35);
+  color:var(--red);font-size:9px;letter-spacing:.1em;
+  padding:3px 8px;border-radius:2px;cursor:pointer;text-transform:uppercase;
+  z-index:5;font-family:'Noto Sans JP',sans-serif;transition:.15s}
+body.admin-mode .admin-toggle{display:block}
+.admin-toggle:hover{background:rgba(192,39,45,.25)}
+.admin-toggle.is-sold-out{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.35);color:var(--gold)}
+</style>
+</head>
+<body>
+
+<!-- Admin bar (visible only in admin mode) -->
+<div class="admin-bar">ADMIN MODE · Tap "Sold Out" on any dish · Resets at midnight</div>
+
+<!-- Tab radio inputs -->
+<input type="radio" id="r1" name="tab" checked>
+<input type="radio" id="r2" name="tab">
+<input type="radio" id="r3" name="tab">
+<input type="radio" id="r4" name="tab">
+<input type="radio" id="r5" name="tab">
+
+<!-- Decorative SVG fixed overlay -->
+<svg class="deco-svg" viewBox="0 0 200 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Dragon scale pattern -->
+  <ellipse cx="100" cy="40" rx="60" ry="35" stroke="#c9a84c" stroke-width="1" fill="none"/>
+  <ellipse cx="60" cy="70" rx="50" ry="30" stroke="#c9a84c" stroke-width=".8" fill="none"/>
+  <ellipse cx="140" cy="70" rx="50" ry="30" stroke="#c9a84c" stroke-width=".8" fill="none"/>
+  <ellipse cx="100" cy="100" rx="60" ry="35" stroke="#c9a84c" stroke-width=".6" fill="none"/>
+  <!-- Lantern shape -->
+  <rect x="155" y="150" width="30" height="50" rx="8" stroke="#c0272d" stroke-width="1" fill="none"/>
+  <line x1="170" y1="148" x2="170" y2="142" stroke="#c0272d" stroke-width="1"/>
+  <line x1="155" y1="175" x2="185" y2="175" stroke="#c0272d" stroke-width=".5"/>
+  <line x1="155" y1="163" x2="185" y2="163" stroke="#c0272d" stroke-width=".5"/>
+  <line x1="155" y1="187" x2="185" y2="187" stroke="#c0272d" stroke-width=".5"/>
+  <!-- Chinese knot -->
+  <path d="M20 200 Q40 180 60 200 Q40 220 20 200Z" stroke="#c9a84c" stroke-width=".8" fill="none"/>
+  <path d="M20 220 Q40 200 60 220 Q40 240 20 220Z" stroke="#c9a84c" stroke-width=".6" fill="none"/>
+  <!-- Bamboo -->
+  <line x1="10" y1="240" x2="10" y2="300" stroke="#c9a84c" stroke-width="2"/>
+  <line x1="8" y1="258" x2="12" y2="258" stroke="#c9a84c" stroke-width="1.5"/>
+  <line x1="8" y1="272" x2="12" y2="272" stroke="#c9a84c" stroke-width="1.5"/>
+  <line x1="8" y1="286" x2="12" y2="286" stroke="#c9a84c" stroke-width="1.5"/>
+  <path d="M10 258 Q25 252 30 242" stroke="#c9a84c" stroke-width=".8" fill="none"/>
+  <path d="M10 272 Q28 268 35 258" stroke="#c9a84c" stroke-width=".8" fill="none"/>
+</svg>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-art"></div>
+  <div class="hero-scales"></div>
+  <!-- Lantern SVG -->
+  <svg class="hero-lantern" viewBox="0 0 60 90" fill="none">
+    <rect x="8" y="14" width="44" height="60" rx="10" stroke="rgba(192,39,45,.7)" stroke-width="1.5" fill="rgba(192,39,45,.08)"/>
+    <line x1="30" y1="12" x2="30" y2="4" stroke="rgba(201,168,76,.8)" stroke-width="2"/>
+    <circle cx="30" cy="3" r="3" fill="rgba(201,168,76,.6)"/>
+    <line x1="8" y1="34" x2="52" y2="34" stroke="rgba(192,39,45,.4)" stroke-width=".8"/>
+    <line x1="8" y1="54" x2="52" y2="54" stroke="rgba(192,39,45,.4)" stroke-width=".8"/>
+    <path d="M22 74 L30 86 L38 74" stroke="rgba(192,39,45,.6)" stroke-width="1" fill="none"/>
+    <text x="30" y="48" text-anchor="middle" font-size="18" fill="rgba(192,39,45,.5)" font-family="serif">龍</text>
+  </svg>
+  <div class="hero-content">
+    <div class="hero-en">Est. Glendale, California</div>
+    <div class="hero-name">Dragon Garden
+      <span>ドラゴンガーデン</span>
+    </div>
+    <div class="hero-rule"></div>
+    <div class="hero-tagline">Chinese · Japanese · Hot Pot · Lounge</div>
+    <div id="table-badge" style="display:none" class="table-badge">
+      🪑 Table <strong id="table-num"></strong>
+    </div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav>
+  <label for="r1">Hot Pot</label>
+  <label for="r2">À la Carte</label>
+  <label for="r3">Sushi & Raw</label>
+  <label for="r4">Drinks</label>
+  <label for="r5">Info</label>
+</nav>
+
+<div id="wrap">
+
+<!-- ═══════════════════════════════════════════
+     T1 — HOT POT
+═══════════════════════════════════════════ -->
+<section id="t1">
+  <div class="sec-head">
+    <div class="sec-jp">火鍋</div>
+    <div class="sec-en">Signature Experience</div>
+    <div class="sec-title">Hot Pot</div>
+    <div class="sec-sub">All-you-can-order proteins & vegetables · 90-min table limit</div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <div class="hotpot-banner">
+    <div class="hotpot-title">Choose Your Broth</div>
+    <div class="hotpot-desc">Select one or two broths for your table. Each pot is freshly prepared with our house blend of aromatics and spices. Refills included.</div>
+    <div class="hotpot-note">Broth for 2 · Shared Base</div>
+  </div>
+
+  <div class="broth-grid">
+    <div class="broth-card broth-red">
+      <div class="broth-name">Dragon Fire</div>
+      <div class="broth-detail">Sichuan mala, dried chilies, numbing peppercorn, beef tallow</div>
+      <div class="broth-price">$6</div>
+    </div>
+    <div class="broth-card broth-gold">
+      <div class="broth-name">Golden Bone</div>
+      <div class="broth-detail">12-hr pork & chicken broth, goji berry, ginger, mild</div>
+      <div class="broth-price">$6</div>
+    </div>
+    <div class="broth-card broth-red">
+      <div class="broth-name">Tomato Garden</div>
+      <div class="broth-detail">San Marzano tomatoes, basil, light heat, umami-rich</div>
+      <div class="broth-price">$5</div>
+    </div>
+    <div class="broth-card broth-gold">
+      <div class="broth-name">Miso Dashi</div>
+      <div class="broth-detail">White shiro miso, kombu, shiitake, bonito · Japanese style</div>
+      <div class="broth-price">$7</div>
+    </div>
+  </div>
+
+  <div class="cat-label">Protein Plates</div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-wagyu"></div>
+    <div class="dish-info">
+      <div class="dish-name">Wagyu Beef Ribeye</div>
+      <div class="dish-name-jp">和牛リブアイ</div>
+      <div class="dish-desc">USDA Choice wagyu, hand-sliced paper-thin, marbled and richly flavored</div>
+      <div class="dish-footer">
+        <div>
+          <div class="dish-price">$24</div>
+          <div class="dish-badge badge-chef">Chef's Pick</div>
+        </div>
+        <button class="add-btn" onclick="addItem('Wagyu Beef Ribeye',24)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-hotpot"></div>
+    <div class="dish-info">
+      <div class="dish-name">Lamb Shoulder Slices</div>
+      <div class="dish-name-jp">ラム肩スライス</div>
+      <div class="dish-desc">Inner Mongolian lamb, lean and tender, pairs perfectly with mala broth</div>
+      <div class="dish-footer">
+        <div>
+          <div class="dish-price">$18</div>
+          <div class="dish-badge badge-spicy">Bold Flavor</div>
+        </div>
+        <button class="add-btn" onclick="addItem('Lamb Shoulder Slices',18)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-hotpot2"></div>
+    <div class="dish-info">
+      <div class="dish-name">Black Pork Belly</div>
+      <div class="dish-name-jp">黒豚バラ肉</div>
+      <div class="dish-desc">Kurobuta pork belly slices, perfectly marbled, melt-in-mouth texture</div>
+      <div class="dish-footer">
+        <div>
+          <div class="dish-price">$16</div>
+        </div>
+        <button class="add-btn" onclick="addItem('Black Pork Belly',16)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-hotpot"></div>
+    <div class="dish-info">
+      <div class="dish-name">Tiger Shrimp Platter</div>
+      <div class="dish-name-jp">タイガーエビ</div>
+      <div class="dish-desc">Fresh U-10 tiger shrimp, shell-on, heads removed, 8 pieces</div>
+      <div class="dish-footer">
+        <div>
+          <div class="dish-price">$19</div>
+          <div class="dish-badge badge-new">Fresh Daily</div>
+        </div>
+        <button class="add-btn" onclick="addItem('Tiger Shrimp Platter',19)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-hotpot2"></div>
+    <div class="dish-info">
+      <div class="dish-name">Fish Fillet Slices</div>
+      <div class="dish-name-jp">白身魚スライス</div>
+      <div class="dish-desc">Tilapia hand-sliced thin, golden batter option available on request</div>
+      <div class="dish-footer">
+        <div>
+          <div class="dish-price">$14</div>
+        </div>
+        <button class="add-btn" onclick="addItem('Fish Fillet Slices',14)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cat-label">Vegetables & Tofu</div>
+
+  <div class="addins-grid">
+    <div class="addin-item">
+      <span class="addin-emoji">🥬</span>
+      <span class="addin-name">Napa Cabbage</span>
+      <span class="addin-price">$4</span>
+    </div>
+    <div class="addin-item">
+      <span class="addin-emoji">🍄</span>
+      <span class="addin-name">Enoki Mushroom</span>
+      <span class="addin-price">$5</span>
+    </div>
+    <div class="addin-item">
+      <span class="addin-emoji">🥢</span>
+      <span class="addin-name">Silken Tofu</span>
+      <span class="addin-price">$4</span>
+    </div>
+    <div class="addin-item">
+      <span class="addin-emoji">🌿</span>
+      <span class="addin-name">Chrysanthemum</span>
+      <span class="addin-price">$4</span>
+    </div>
+    <div class="addin-item">
+      <span class="addin-emoji">🍠</span>
+      <span class="addin-name">Taro Slices</span>
+      <span class="addin-price">$5</span>
+    </div>
+    <div class="addin-item">
+      <span class="addin-emoji">🌾</span>
+      <span class="addin-name">Rice Noodles</span>
+      <span class="addin-price">$4</span>
+    </div>
+  </div>
+
+  <div class="cat-label">Dipping Sauces</div>
+  <div class="addins-grid" style="margin-bottom:16px">
+    <div class="addin-item">
+      <span class="addin-emoji">🥣</span>
+      <span class="addin-name">Sesame Paste</span>
+      <span class="addin-price">$2</span>
+    </div>
+    <div class="addin-item">
+      <span class="addin-emoji">🌶️</span>
+      <span class="addin-name">Chili Oil</span>
+      <span class="addin-price">$2</span>
+    </div>
+    <div class="addin-item">
+      <span class="addin-emoji">🧄</span>
+      <span class="addin-name">Garlic Sauce</span>
+      <span class="addin-price">$2</span>
+    </div>
+  </div>
+
+  <div class="menu-footer">
+    <div class="footer-logo">Powered by Menvio</div>
+    <div class="footer-link"><a href="https://menvio.com">menvio.com</a> — Digital QR Menus</div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     T2 — À LA CARTE
+═══════════════════════════════════════════ -->
+<section id="t2">
+  <div class="sec-head">
+    <div class="sec-jp">点心</div>
+    <div class="sec-en">Kitchen Favorites</div>
+    <div class="sec-title">À la Carte</div>
+    <div class="sec-sub">Appetizers · Dim Sum · Mains · Noodles</div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <div class="cat-label">Starters & Dim Sum</div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-dimsum"></div>
+    <div class="dish-info">
+      <div class="dish-name">Har Gow · Crystal Shrimp</div>
+      <div class="dish-name-jp">海老餃子</div>
+      <div class="dish-desc">Delicate rice-flour skin, whole shrimp filling, steamed to order · 4 pcs</div>
+      <div class="dish-footer">
+        <div>
+          <div class="dish-price">$10</div>
+          <div class="dish-badge badge-chef">House Special</div>
+        </div>
+        <button class="add-btn" onclick="addItem('Har Gow Crystal Shrimp',10)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-dimsum"></div>
+    <div class="dish-info">
+      <div class="dish-name">Siu Mai Pork Dumplings</div>
+      <div class="dish-name-jp">焼売</div>
+      <div class="dish-desc">Open-top dumplings, pork & shrimp, topped with flying fish roe · 4 pcs</div>
+      <div class="dish-footer">
+        <div>
+          <div class="dish-price">$9</div>
+        </div>
+        <button class="add-btn" onclick="addItem('Siu Mai Pork Dumplings',9)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-peking"></div>
+    <div class="dish-info">
+      <div class="dish-name">Peking Duck — Half</div>
+      <div class="dish-name-jp">北京ダック</div>
+      <div class="dish-desc">Crispy lacquered skin, served with mandarin pancakes, hoisin, scallion julienne</div>
+      <div class="dish-footer">
+        <div>
+          <div class="dish-price">$34</div>
+          <div class="dish-badge badge-chef">24hr Notice</div>
+        </div>
+        <button class="add-btn" onclick="addItem('Peking Duck Half',34)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-dimsum"></div>
+    <div class="dish-info">
+      <div class="dish-name">Crispy Pork Egg Rolls</div>
+      <div class="dish-name-jp">春巻き</div>
+      <div class="dish-desc">Hand-rolled, shredded pork, shiitake, glass noodle filling · 3 pcs</div>
+      <div class="dish-footer">
+        <div>
+          <div class="dish-price">$8</div>
+        </div>
+        <button class="add-btn" onclick="addItem('Crispy Pork Egg Rolls',8)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cat-label">Mains</div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-peking"></div>
+    <div class="dish-info">
+      <div class="dish-name">General Tso's Chicken</div>
+      <div class="dish-name-jp">酢豚風鶏</div>
+      <div class="dish-desc">Crispy dark-meat chicken, sweet chili glaze, dried chilies, broccoli</div>
+      <div class="dish-footer">
+        <div>
+          <div class="dish-price">$18</div>
+          <div class="dish-badge badge-spicy">Medium Heat</div>
+        </div>
+        <button class="add-btn" onclick="addItem("General Tso Chicken",18)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-wagyu"></div>
+    <div class="dish-info">
+      <div class="dish-name">Mongolian Beef</div>
+      <div class="dish-name-jp">モンゴリアンビーフ</div>
+      <div class="dish-desc">Tender flank steak, hoisin-soy glaze, scallion, crispy noodle bed</div>
+      <div class="dish-footer">
+        <div>
+          <div class="dish-price">$22</div>
+          <div class="dish-badge badge-chef">Chef's Fav</div>
+        </div>
+        <button class="add-btn" onclick="addItem('Mongolian Beef',22)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-edamame"></div>
+    <div class="dish-info">
+      <div class="dish-name">Mapo Tofu</div>
+      <div class="dish-name-jp">麻婆豆腐</div>
+      <div class="dish-desc">Silken tofu, Sichuan peppercorn, house chili bean paste, ground pork</div>
+      <div class="dish-footer">
+        <div>
+          <div class="dish-price">$16</div>
+          <div class="dish-badge badge-spicy">Spicy</div>
+        </div>
+        <button class="add-btn" onclick="addItem('Mapo Tofu',16)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cat-label">Noodles & Rice</div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-ramen"></div>
+    <div class="dish-info">
+      <div class="dish-name">Dragon Broth Ramen</div>
+      <div class="dish-name-jp">龍拉麺</div>
+      <div class="dish-desc">Tonkotsu-soy fusion, chashu pork belly, soft egg, nori, bamboo shoots</div>
+      <div class="dish-footer">
+        <div>
+          <div class="dish-price">$17</div>
+          <div class="dish-badge badge-new">New</div>
+        </div>
+        <button class="add-btn" onclick="addItem('Dragon Broth Ramen',17)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-dimsum"></div>
+    <div class="dish-info">
+      <div class="dish-name">Yangzhou Fried Rice</div>
+      <div class="dish-name-jp">揚州炒飯</div>
+      <div class="dish-desc">Jasmine rice, BBQ pork, shrimp, egg, peas, light soy, wok-tossed</div>
+      <div class="dish-footer">
+        <div>
+          <div class="dish-price">$14</div>
+        </div>
+        <button class="add-btn" onclick="addItem('Yangzhou Fried Rice',14)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-footer">
+    <div class="footer-logo">Powered by Menvio</div>
+    <div class="footer-link"><a href="https://menvio.com">menvio.com</a></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     T3 — SUSHI & RAW
+═══════════════════════════════════════════ -->
+<section id="t3">
+  <div class="sec-head">
+    <div class="sec-jp">寿司</div>
+    <div class="sec-en">Japanese Omakase Bar</div>
+    <div class="sec-title">Sushi & Raw</div>
+    <div class="sec-sub">All sushi served with pickled ginger, wasabi, premium soy</div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <div class="cat-label">Nigiri · 2 pieces</div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-sushi-roll"></div>
+    <div class="dish-info">
+      <div class="dish-name">Tuna Akami</div>
+      <div class="dish-name-jp">まぐろ</div>
+      <div class="dish-desc">Bluefin lean tuna, hand-pressed over seasoned shari rice</div>
+      <div class="dish-footer">
+        <div><div class="dish-price">$9</div></div>
+        <button class="add-btn" onclick="addItem('Tuna Akami Nigiri',9)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-sushi-roll"></div>
+    <div class="dish-info">
+      <div class="dish-name">Salmon Ora King</div>
+      <div class="dish-name-jp">サーモン</div>
+      <div class="dish-desc">Premium New Zealand Ora King salmon, lightly torched, yuzu zest</div>
+      <div class="dish-footer">
+        <div>
+          <div class="dish-price">$11</div>
+          <div class="dish-badge badge-chef">Best Seller</div>
+        </div>
+        <button class="add-btn" onclick="addItem('Salmon Ora King Nigiri',11)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-wagyu"></div>
+    <div class="dish-info">
+      <div class="dish-name">A5 Wagyu Nigiri</div>
+      <div class="dish-name-jp">A5和牛</div>
+      <div class="dish-desc">Japanese A5 wagyu, seared tableside, truffle salt, gold leaf</div>
+      <div class="dish-footer">
+        <div>
+          <div class="dish-price">$28</div>
+          <div class="dish-badge badge-chef">Omakase Star</div>
+        </div>
+        <button class="add-btn" onclick="addItem('A5 Wagyu Nigiri',28)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-sushi-roll"></div>
+    <div class="dish-info">
+      <div class="dish-name">Yellowtail Hamachi</div>
+      <div class="dish-name-jp">はまち</div>
+      <div class="dish-desc">Farmed Kagoshima yellowtail, micro shiso, jalapeño slice</div>
+      <div class="dish-footer">
+        <div><div class="dish-price">$10</div></div>
+        <button class="add-btn" onclick="addItem('Yellowtail Hamachi Nigiri',10)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cat-label">Signature Rolls · 8 pieces</div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-sushi-roll"></div>
+    <div class="dish-info">
+      <div class="dish-name">Dragon Roll</div>
+      <div class="dish-name-jp">ドラゴンロール</div>
+      <div class="dish-desc">Shrimp tempura, cucumber inside · avocado top, unagi sauce, sesame</div>
+      <div class="dish-footer">
+        <div>
+          <div class="dish-price">$18</div>
+          <div class="dish-badge badge-chef">Signature</div>
+        </div>
+        <button class="add-btn" onclick="addItem('Dragon Roll',18)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-sushi-roll"></div>
+    <div class="dish-info">
+      <div class="dish-name">Spicy Tuna Crunch</div>
+      <div class="dish-name-jp">スパイシーツナ</div>
+      <div class="dish-desc">Chopped spicy tuna, cucumber, crunchy panko, sriracha mayo drizzle</div>
+      <div class="dish-footer">
+        <div>
+          <div class="dish-price">$16</div>
+          <div class="dish-badge badge-spicy">Spicy</div>
+        </div>
+        <button class="add-btn" onclick="addItem('Spicy Tuna Crunch Roll',16)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-sushi-roll"></div>
+    <div class="dish-info">
+      <div class="dish-name">Rainbow Roll</div>
+      <div class="dish-name-jp">レインボーロール</div>
+      <div class="dish-desc">California roll topped with rotating assortment of 5 premium fish</div>
+      <div class="dish-footer">
+        <div><div class="dish-price">$22</div></div>
+        <button class="add-btn" onclick="addItem('Rainbow Roll',22)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cat-label">Sashimi · 5 pieces</div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-sushi-roll"></div>
+    <div class="dish-info">
+      <div class="dish-name">Chef's Sashimi Selection</div>
+      <div class="dish-name-jp">お刺身盛り合わせ</div>
+      <div class="dish-desc">15-piece assortment, market-fresh fish chosen by chef daily</div>
+      <div class="dish-footer">
+        <div>
+          <div class="dish-price">$38</div>
+          <div class="dish-badge badge-new">Market Price</div>
+        </div>
+        <button class="add-btn" onclick="addItem("Chef Sashimi Selection",38)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-footer">
+    <div class="footer-logo">Powered by Menvio</div>
+    <div class="footer-link"><a href="https://menvio.com">menvio.com</a></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     T4 — DRINKS & LOUNGE
+═══════════════════════════════════════════ -->
+<section id="t4">
+  <div class="sec-head">
+    <div class="sec-jp">酒</div>
+    <div class="sec-en">Bar & Lounge</div>
+    <div class="sec-title">Drinks</div>
+    <div class="sec-sub">Cocktails · Sake · Tea · Lounge available nightly</div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <div class="cat-label">Signature Cocktails</div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-cocktail"></div>
+    <div class="dish-info">
+      <div class="dish-name">Red Dragon</div>
+      <div class="dish-name-jp">紅龍</div>
+      <div class="dish-desc">Dragon fruit vodka, lychee, hibiscus, lime, edible gold shimmer</div>
+      <div class="dish-footer">
+        <div>
+          <div class="dish-price">$16</div>
+          <div class="dish-badge badge-chef">House Fav</div>
+        </div>
+        <button class="add-btn" onclick="addItem('Red Dragon Cocktail',16)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-cocktail"></div>
+    <div class="dish-info">
+      <div class="dish-name">Jade Garden Martini</div>
+      <div class="dish-name-jp">翡翠マティーニ</div>
+      <div class="dish-desc">Midori, cucumber gin, elderflower, yuzu foam, shiso garnish</div>
+      <div class="dish-footer">
+        <div><div class="dish-price">$17</div></div>
+        <button class="add-btn" onclick="addItem('Jade Garden Martini',17)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-cocktail"></div>
+    <div class="dish-info">
+      <div class="dish-name">Sakura Blossom</div>
+      <div class="dish-name-jp">桜の花</div>
+      <div class="dish-desc">Japanese whisky, cherry blossom syrup, vanilla bitters, smoked rosewood</div>
+      <div class="dish-footer">
+        <div>
+          <div class="dish-price">$19</div>
+          <div class="dish-badge badge-new">Seasonal</div>
+        </div>
+        <button class="add-btn" onclick="addItem('Sakura Blossom Cocktail',19)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cat-label">Sake & Wine</div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-cocktail"></div>
+    <div class="dish-info">
+      <div class="dish-name">Dassai 39 Junmai Daiginjo</div>
+      <div class="dish-name-jp">獺祭 三割九分</div>
+      <div class="dish-desc">Premium junmai daiginjo, fruity and elegant, served chilled · glass/bottle</div>
+      <div class="dish-footer">
+        <div><div class="dish-price">$14 / $58</div></div>
+        <button class="add-btn" onclick="addItem('Dassai 39 Sake Glass',14)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-cocktail"></div>
+    <div class="dish-info">
+      <div class="dish-name">Baijiu Old Fashioned</div>
+      <div class="dish-name-jp">白酒オールドファッション</div>
+      <div class="dish-desc">Moutai-style baijiu, house bitters, orange peel, crystal ice sphere</div>
+      <div class="dish-footer">
+        <div><div class="dish-price">$22</div></div>
+        <button class="add-btn" onclick="addItem('Baijiu Old Fashioned',22)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="cat-label">Hot Tea Service</div>
+
+  <div class="addins-grid" style="margin-bottom:8px">
+    <div class="addin-item">
+      <span class="addin-emoji">🍵</span>
+      <span class="addin-name">Pu-erh</span>
+      <span class="addin-price">$5</span>
+    </div>
+    <div class="addin-item">
+      <span class="addin-emoji">🌸</span>
+      <span class="addin-name">Jasmine Pearl</span>
+      <span class="addin-price">$5</span>
+    </div>
+    <div class="addin-item">
+      <span class="addin-emoji">🌿</span>
+      <span class="addin-name">Matcha Latte</span>
+      <span class="addin-price">$7</span>
+    </div>
+  </div>
+
+  <div class="cat-label">Desserts</div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-matcha"></div>
+    <div class="dish-info">
+      <div class="dish-name">Matcha Mochi Ice Cream</div>
+      <div class="dish-name-jp">抹茶もちアイス</div>
+      <div class="dish-desc">Ceremonial-grade matcha ice cream wrapped in soft rice dough · 3 pieces</div>
+      <div class="dish-footer">
+        <div><div class="dish-price">$10</div></div>
+        <button class="add-btn" onclick="addItem('Matcha Mochi Ice Cream',10)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="dish-card">
+    <div class="dish-photo food-cocktail"></div>
+    <div class="dish-info">
+      <div class="dish-name">Sesame Ball Trio</div>
+      <div class="dish-name-jp">ゴマ団子</div>
+      <div class="dish-desc">Crispy fried glutinous rice balls, red bean + lotus + black sesame fillings</div>
+      <div class="dish-footer">
+        <div><div class="dish-price">$9</div></div>
+        <button class="add-btn" onclick="addItem('Sesame Ball Trio',9)">+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="menu-footer">
+    <div class="footer-logo">Powered by Menvio</div>
+    <div class="footer-link"><a href="https://menvio.com">menvio.com</a></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     T5 — INFO
+═══════════════════════════════════════════ -->
+<section id="t5">
+  <div class="sec-head">
+    <div class="sec-jp">情報</div>
+    <div class="sec-en">Visit Us</div>
+    <div class="sec-title">Restaurant Info</div>
+    <div class="sec-sub">Dragon Garden LA · Glendale, California</div>
+  </div>
+  <div class="sec-divider"></div>
+
+  <div class="info-block">
+    <h3>Hours & Location</h3>
+    <div class="info-row">
+      <div class="info-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M8 1.5a4.5 4.5 0 100 9 4.5 4.5 0 000-9zM2.5 6a5.5 5.5 0 1111 0c0 3.5-5.5 9-5.5 9S2.5 9.5 2.5 6z" stroke="#c0272d" stroke-width="1.2"/>
+          <circle cx="8" cy="6" r="1.5" fill="#c0272d"/>
+        </svg>
+      </div>
+      <div>
+        <div class="info-label">Address</div>
+        <div class="info-val">216 N Brand Blvd, Glendale, CA 91203</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <circle cx="8" cy="8" r="5.5" stroke="#c9a84c" stroke-width="1.2"/>
+          <path d="M8 5v3.5l2 1.5" stroke="#c9a84c" stroke-width="1.2" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="info-label">Hours</div>
+        <div class="info-val">Mon–Thu: 11am–11pm</div>
+        <div class="info-val">Fri–Sun: 11am–1am</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M3 3h2l1 3.5L4.5 8c1 2 2 3 4 4l1.5-1.5L13 11.5V13.5C8 14 2 9 3 3z" stroke="#c9a84c" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div>
+        <div class="info-label">Phone</div>
+        <div class="info-val">(818) 971-9922</div>
+      </div>
+    </div>
+    <div class="info-row">
+      <div class="info-icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M2 5l6 4 6-4M2 3h12a1 1 0 011 1v8a1 1 0 01-1 1H2a1 1 0 01-1-1V4a1 1 0 011-1z" stroke="#c9a84c" stroke-width="1.2"/>
+        </svg>
+      </div>
+      <div>
+        <div class="info-label">Website</div>
+        <div class="info-val">dragongardenla.com</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <h3>Lounge & Private Dining</h3>
+    <div style="font-size:12px;color:#7a6a5a;line-height:1.7;margin-bottom:14px">
+      Dragon Garden features a full lounge with hookah service, craft cocktails, and late-night dining. Private dining rooms available for parties of 8–30 guests. Contact us for reservations and event inquiries.
+    </div>
+    <a href="tel:8189719922" class="social-btn" style="display:block;margin-bottom:8px">Call for Reservations</a>
+    <div class="social-row">
+      <a href="https://wa.me/18189719922" class="social-btn">WhatsApp</a>
+      <a href="https://www.dragongardenla.com" class="social-btn">Website</a>
+    </div>
+  </div>
+
+  <div class="info-block">
+    <h3>Allergen & Dietary Info</h3>
+    <div style="font-size:11px;color:#5a5040;line-height:1.8">
+      🌿 <span style="color:#5aab4a">Green</span> = Vegetarian available<br>
+      🌶️ <span style="color:#c0272d">Red</span> = Contains chili / spicy<br>
+      ⭐ Gold = Chef's recommendation<br><br>
+      Please inform your server of any allergies. Our kitchen handles shellfish, gluten, sesame, soy, and tree nuts. Cross-contamination possible.
+    </div>
+  </div>
+
+  <div class="menu-footer">
+    <div class="footer-logo">Powered by Menvio</div>
+    <div class="footer-link">QR menu created by <a href="https://menvio.com">Menvio.com</a><br>Want a menu like this? Contact us.</div>
+  </div>
+</section>
+
+</div><!-- /wrap -->
+
+<!-- WhatsApp Float Button -->
+<button class="wa-float" id="wa-btn" onclick="sendWA()">
+  <svg viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+  Order
+  <div class="cart-count" id="cart-count" style="display:none">0</div>
+</button>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+// ── SUPABASE CONFIG — fill in after setup ──────────────────
+// Leave empty strings to disable (WA orders still work)
+const SUPABASE_URL = '';
+const SUPABASE_ANON_KEY = '';
+// ──────────────────────────────────────────────────────────
+
+const RESTAURANT = {name:'Dragon Garden LA', phone:'18189719922'};
+const cart = {};
+const TABLE = new URLSearchParams(location.search).get('table') || null;
+const sb = (SUPABASE_URL && SUPABASE_ANON_KEY)
+  ? supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  : null;
+
+function addItem(name, price) {
+  if (!cart[name]) cart[name] = {price, qty: 0};
+  cart[name].qty++;
+  updateFloat();
+  // brief pulse animation on button
+  const btn = event.currentTarget;
+  btn.style.background = '#c0272d';
+  btn.style.color = '#fff';
+  setTimeout(() => { btn.style.background = ''; btn.style.color = ''; }, 300);
+}
+
+function updateFloat() {
+  const total = Object.values(cart).reduce((s, i) => s + i.qty, 0);
+  const waBtn = document.getElementById('wa-btn');
+  const countEl = document.getElementById('cart-count');
+  if (total > 0) {
+    waBtn.style.display = 'flex';
+    countEl.style.display = 'flex';
+    countEl.textContent = total;
+  } else {
+    waBtn.style.display = 'none';
+  }
+}
+
+async function sendWA() {
+  const entries = Object.entries(cart).filter(([,v]) => v.qty > 0);
+  if (!entries.length) return;
+  const total = entries.reduce((s, [,v]) => s + v.price * v.qty, 0);
+
+  // Save to Supabase if configured (fire-and-forget, don't block WA)
+  if (sb) {
+    const orderItems = entries.map(([name, {price, qty}]) => ({name, price, qty}));
+    sb.from('orders').insert({
+      restaurant_id: 'dragon-garden',
+      table_num: TABLE,
+      items: orderItems,
+      total: parseFloat(total.toFixed(2)),
+      status: 'new'
+    }).then(({error}) => { if (error) console.warn('Supabase:', error.message); });
+  }
+
+  // Build WA message and open
+  let msg = TABLE
+    ? `🪑 Table ${TABLE} — Order from Dragon Garden LA:\n\n`
+    : `Hello ${RESTAURANT.name}! I'd like to order:\n\n`;
+  entries.forEach(([name, {price, qty}]) => {
+    msg += `• ${qty}x ${name} — $${(price * qty).toFixed(2)}\n`;
+  });
+  msg += `\nTotal: $${total.toFixed(2)}`;
+  if (TABLE) msg += `\n\n— Table ${TABLE}`;
+  window.open(`https://wa.me/${RESTAURANT.phone}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+// ── SOLD OUT TOGGLE ──────────────────────────────────────
+const STORAGE_KEY = 'menvio_soldout_dragon';
+const ADMIN_PWD = 'menvio2025';
+let soldOut = new Set();
+
+function soInit() {
+  // Admin mode via ?admin=menvio2025
+  if (new URLSearchParams(location.search).get('admin') === ADMIN_PWD) {
+    document.body.classList.add('admin-mode');
+  }
+  // Load saved state, reset if it's a new day
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+    if (saved && saved.date === new Date().toDateString()) {
+      soldOut = new Set(saved.items || []);
+    }
+  } catch(e) {}
+  // Apply state to all dish cards
+  document.querySelectorAll('.dish-card').forEach(card => {
+    const name = soGetName(card);
+    if (!name) return;
+    if (soldOut.has(name)) soMark(card);
+    if (document.body.classList.contains('admin-mode')) soAddBtn(card, name);
+  });
+  // Schedule auto-reset at midnight
+  const now = new Date();
+  const midnight = new Date(now); midnight.setHours(24, 0, 0, 0);
+  setTimeout(() => {
+    localStorage.removeItem(STORAGE_KEY);
+    soldOut.clear();
+    document.querySelectorAll('.dish-card.sold-out').forEach(soUnmark);
+  }, midnight - now);
+}
+
+function soGetName(card) {
+  const btn = card.querySelector('.add-btn');
+  if (!btn) return null;
+  const m = btn.getAttribute('onclick').match(/addItem\('([^']+)'/);
+  return m ? m[1] : null;
+}
+
+function soMark(card) {
+  card.classList.add('sold-out');
+  if (!card.querySelector('.sold-out-label')) {
+    const lbl = document.createElement('div');
+    lbl.className = 'sold-out-label'; lbl.textContent = 'SOLD OUT';
+    card.appendChild(lbl);
+  }
+  const tb = card.querySelector('.admin-toggle');
+  if (tb) { tb.textContent = 'Restore'; tb.classList.add('is-sold-out'); }
+}
+
+function soUnmark(card) {
+  card.classList.remove('sold-out');
+  const lbl = card.querySelector('.sold-out-label');
+  if (lbl) lbl.remove();
+  const tb = card.querySelector('.admin-toggle');
+  if (tb) { tb.textContent = 'Sold Out'; tb.classList.remove('is-sold-out'); }
+}
+
+function soToggle(name, card) {
+  if (soldOut.has(name)) { soldOut.delete(name); soUnmark(card); }
+  else { soldOut.add(name); soMark(card); }
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({
+    date: new Date().toDateString(), items: [...soldOut]
+  }));
+}
+
+function soAddBtn(card, name) {
+  const btn = document.createElement('button');
+  btn.className = 'admin-toggle' + (soldOut.has(name) ? ' is-sold-out' : '');
+  btn.textContent = soldOut.has(name) ? 'Restore' : 'Sold Out';
+  btn.onclick = e => { e.stopPropagation(); soToggle(name, card); };
+  card.appendChild(btn);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  soInit();
+  if (TABLE) {
+    document.getElementById('table-num').textContent = TABLE;
+    document.getElementById('table-badge').style.display = 'inline-flex';
+    document.title = `Dragon Garden LA — Table ${TABLE}`;
+  }
+});
+</script>
+
+</body>
+</html>
