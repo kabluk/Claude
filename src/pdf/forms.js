@@ -46,11 +46,25 @@ export async function inspectFormFields(id) {
 }
 
 // Fill a registered form from the case profile. Pass watermark for previews.
-export async function fillForm(id, profile, { watermark = null, flatten = false } = {}) {
+// A form definition may carry `fontSizes` (per-field overrides); callers can
+// also pass one to override.
+export async function fillForm(
+  id,
+  profile,
+  { watermark = null, flatten = false, fontSizes, rectAdjust } = {},
+) {
   const form = getForm(id)
   if (!form) throw new Error(`Unknown form: ${id}`)
   const bytes = await fetchBytes(form.url)
-  return fillPdf({ bytes, values: profile, mapping: form.mapping, watermark, flatten })
+  return fillPdf({
+    bytes,
+    values: profile,
+    mapping: form.mapping,
+    watermark,
+    flatten,
+    fontSizes: fontSizes || form.fontSizes || {},
+    rectAdjust: rectAdjust || form.rectAdjust || {},
+  })
 }
 
 // Load the bundled Unicode font used for the (Cyrillic-capable) watermark.

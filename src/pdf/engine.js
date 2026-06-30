@@ -66,7 +66,9 @@ export function applyMapping(values, mapping) {
 
 // Set values keyed by PDF field name onto the AcroForm. Returns a report so
 // callers can see what matched, what was missing, and what was skipped.
-export function setFieldValues(form, pdfValues) {
+// fontSizes: optional { pdfFieldName: size } to shrink a text field so its value
+// doesn't collide with preprinted labels.
+export function setFieldValues(form, pdfValues, fontSizes = {}) {
   const report = { set: [], missing: [], skipped: [] }
   for (const [name, raw] of Object.entries(pdfValues)) {
     let field
@@ -77,8 +79,16 @@ export function setFieldValues(form, pdfValues) {
       continue
     }
     try {
-      if (field instanceof PDFTextField) field.setText(String(raw))
-      else if (field instanceof PDFCheckBox) isTruthy(raw) ? field.check() : field.uncheck()
+      if (field instanceof PDFTextField) {
+        field.setText(String(raw))
+        if (fontSizes[name] != null) {
+          try {
+            field.setFontSize(fontSizes[name])
+          } catch {
+            /* keep default size if override fails */
+          }
+        }
+      } else if (field instanceof PDFCheckBox) isTruthy(raw) ? field.check() : field.uncheck()
       else if (field instanceof PDFDropdown) field.select(String(raw))
       else if (field instanceof PDFOptionList) field.select(String(raw))
       else if (field instanceof PDFRadioGroup) field.select(String(raw))
@@ -92,6 +102,28 @@ export function setFieldValues(form, pdfValues) {
     }
   }
   return report
+}
+
+// Nudge widget rectangles (e.g. lower a field's top edge so its text doesn't
+// overlap a preprinted label). adjust: { dx, dy, dw, dh } added to {x,y,w,h}.
+export function adjustRects(form, rectAdjust = {}) {
+  for (const [name, adj] of Object.entries(rectAdjust)) {
+    let field
+    try {
+      field = form.getField(name)
+    } catch {
+      continue
+    }
+    for (const w of field.acroField.getWidgets()) {
+      const r = w.getRectangle()
+      w.setRectangle({
+        x: r.x + (adj.dx || 0),
+        y: r.y + (adj.dy || 0),
+        width: r.width + (adj.dw || 0),
+        height: r.height + (adj.dh || 0),
+      })
+    }
+  }
 }
 
 // Diagonal translucent DRAFT watermark across every page.
@@ -134,13 +166,17 @@ export async function fillPdf({
   mapping = {},
   watermark = null, // { text, fontBytes }
   flatten = false,
+  fontSizes = {}, // { pdfFieldName: size }
+  rectAdjust = {}, // { pdfFieldName: { dx,dy,dw,dh } }
 }) {
   const pdfDoc = await loadPdf(bytes)
   const fields = listFields(pdfDoc)
   const form = pdfDoc.getForm()
 
+  // Adjust geometry before writing values so appearances use the new rects.
+  adjustRects(form, rectAdjust)
   const pdfValues = applyMapping(values, mapping)
-  const report = setFieldValues(form, pdfValues)
+  const report = setFieldValues(form, pdfValues, fontSizes)
 
   if (watermark) {
     await addDraftWatermark(pdfDoc, watermark.text, watermark.fontBytes)

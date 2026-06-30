@@ -20,10 +20,11 @@ function download(bytes, filename) {
 export default function Fl100Generate() {
   const { t } = useI18n()
   const c = t.cabinet
-  const { user, caseRec, answers } = useAppState()
+  const { user, caseRec, answers, getAnswer, saveAnswer } = useAppState()
   const [status, setStatus] = useState('idle') // idle | working | error
 
   const needsFl105 = fl105Required({ caseRec })
+  const residency = getAnswer('residency_party') || 'petitioner' // §2 default: Petitioner
 
   const onGenerate = async () => {
     setStatus('working')
@@ -39,6 +40,21 @@ export default function Fl100Generate() {
 
   return (
     <div className="fl100">
+      <label className="fl100__reslabel" htmlFor="residency">
+        {c.residencyLabel}
+      </label>
+      <div className="select-wrap">
+        <select
+          id="residency"
+          value={residency}
+          onChange={(e) => saveAnswer('residency_party', e.target.value)}
+        >
+          <option value="petitioner">{c.resPetitioner}</option>
+          <option value="respondent">{c.resRespondent}</option>
+          <option value="both">{c.resBoth}</option>
+        </select>
+      </div>
+
       <button
         className="btn btn--primary btn--block"
         onClick={onGenerate}

@@ -37,6 +37,22 @@ export function computeTimeMarried(marriage, separation) {
   return { years, months: rem, total: months, text: `${years} yr ${rem} mo` }
 }
 
+// Court forms use US date format MM/DD/YYYY (wizard stores ISO yyyy-mm-dd).
+function fmtDateUS(s) {
+  const d = parseDate(s)
+  if (!d) return s || ''
+  const mm = String(d.getMonth() + 1).padStart(2, '0')
+  const dd = String(d.getDate()).padStart(2, '0')
+  return `${mm}/${dd}/${d.getFullYear()}`
+}
+
+// Money with thousands separators: 450000 → $450,000
+function fmtMoney(v) {
+  const n = Number(v)
+  if (!Number.isFinite(n)) return v || ''
+  return '$' + n.toLocaleString('en-US')
+}
+
 function ageFrom(dob) {
   const d = parseDate(dob)
   if (!d) return ''
@@ -76,11 +92,16 @@ export function buildFL100Profile({ user = {}, caseRec = {}, answers = [] }) {
   const tm = computeTimeMarried(a.date_of_marriage || a.marriage_date, a.date_of_separation || a.separation_date)
 
   const communityProperty = assets
-    .map((x) => [x.description, x.value ? `$${x.value}` : ''].filter(Boolean).join(' — '))
+    .map((x) => [x.description, x.value ? fmtMoney(x.value) : ''].filter(Boolean).join(' — '))
     .filter(Boolean)
     .join('; ')
 
   const isDissolution = caseRec.type === 'uncontested' || caseRec.type === 'contested'
+
+  // §2 residency — driven by user choice; default: Petitioner only.
+  const residency = (a.residency_party || 'petitioner').toLowerCase()
+  const petitionerResident = residency === 'petitioner' || residency === 'both'
+  const respondentResident = residency === 'respondent' || residency === 'both'
 
   const profile = {
     // --- caption / header ---
@@ -104,13 +125,13 @@ export function buildFL100Profile({ user = {}, caseRec = {}, answers = [] }) {
     rel_marriage: true,
     pt_dissolution: isDissolution,
 
-    // --- §2 residence ---
-    petitioner_ca_resident: a.petitioner_ca_resident || '',
-    respondent_ca_resident: a.respondent_ca_resident || '',
+    // --- §2 residence (only the chosen party/parties) ---
+    petitioner_ca_resident: petitionerResident,
+    respondent_ca_resident: respondentResident,
 
-    // --- §3 statistical facts ---
-    date_of_marriage: a.date_of_marriage || a.marriage_date || '',
-    date_of_separation: a.date_of_separation || a.separation_date || '',
+    // --- §3 statistical facts (dates formatted MM/DD/YYYY) ---
+    date_of_marriage: fmtDateUS(a.date_of_marriage || a.marriage_date),
+    date_of_separation: fmtDateUS(a.date_of_separation || a.separation_date),
     time_married_years: tm.years,
     time_married_months: tm.months,
 
@@ -140,16 +161,16 @@ export function buildFL100Profile({ user = {}, caseRec = {}, answers = [] }) {
     restore_former_name: '',
     other_requests: '',
 
-    // --- signature ---
-    signature_date: a.signature_date || '',
+    // --- signature (date formatted MM/DD/YYYY) ---
+    signature_date: fmtDateUS(a.signature_date),
     petitioner_printed_name: a.petitioner_name || '',
   }
 
-  // Children table: child_1_name / _dob / _age / _sex, …
+  // Children table: child_1_name / _dob (US) / _age / _sex, …
   children.forEach((c, i) => {
     const p = `child_${i + 1}`
     profile[`${p}_name`] = c.name || ''
-    profile[`${p}_dob`] = c.dob || ''
+    profile[`${p}_dob`] = fmtDateUS(c.dob)
     profile[`${p}_age`] = ageFrom(c.dob)
     profile[`${p}_sex`] = c.sex || ''
   })
@@ -252,6 +273,15 @@ export const FL100_TEMPLATE = {
   // Footer reads: "FL-100 [Rev. January 1, 2020]".
   revision: 'Rev. January 1, 2020',
   mapping: FL100_MAPPING,
+  // §10b community-property list: shrink the font and lower the field's top edge
+  // so its text sits inside the box instead of overlapping the printed
+  // "as follows (specify)" label (verified on flatten).
+  fontSizes: {
+    [p3('CommQuasiProperty_sf[0].ListProperty_ft[0]')]: 9,
+  },
+  rectAdjust: {
+    [p3('CommQuasiProperty_sf[0].ListProperty_ft[0]')]: { dh: -20 },
+  },
 }
 
 registerForm(FL100_TEMPLATE)

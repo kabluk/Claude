@@ -736,6 +736,20 @@ textarea:focus {
   margin-top: 12px;
 }
 
+.fl100__reslabel {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--navy-800);
+  margin-bottom: 8px;
+}
+
+.fl100 .select-wrap {
+  margin-bottom: 12px;
+}
+
 .fl100__hint {
   margin: 10px 0 0;
   font-size: 12px;
