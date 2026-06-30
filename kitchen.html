@@ -26,6 +26,7 @@
 }
 html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Helvetica Neue',Arial,sans-serif;overflow-x:hidden}
 
+/* ── HEADER ── */
 .header{
   display:flex;align-items:center;justify-content:space-between;
   padding:14px 20px;background:var(--bg2);
@@ -48,6 +49,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Helvet
   color:var(--muted);transition:.15s}
 .btn-sm:hover{color:var(--text);border-color:rgba(255,255,255,.2)}
 
+/* ── COLUMNS ── */
 .board{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
   background:var(--border);min-height:calc(100vh - 56px)}
 .lane{background:var(--bg);padding:16px 14px;display:flex;flex-direction:column;gap:12px}
@@ -62,6 +64,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Helvet
 .lane-cooking .lane-count{background:var(--cooking-bg);color:var(--cooking)}
 .lane-done .lane-count{background:var(--done-bg);color:var(--done)}
 
+/* ── ORDER CARD ── */
 .order-card{
   background:var(--bg2);border-radius:6px;overflow:hidden;
   border:1px solid var(--border);transition:.2s;
@@ -117,10 +120,16 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Helvet
 .btn-done:active{transform:scale(.97)}
 .btn-archive{background:transparent;color:var(--muted);border:1px solid var(--border);font-size:.72rem;padding:6px 12px}
 .btn-archive:hover{color:var(--text)}
+.btn-pos{background:rgba(201,168,76,.12);color:var(--cooking);border:1px solid rgba(201,168,76,.4);font-size:.78rem;padding:8px 14px;letter-spacing:.05em}
+.btn-pos:hover{background:rgba(201,168,76,.22)}
+.btn-pos:active{transform:scale(.97)}
+.pos-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(58,138,74,.15);color:var(--done);border:1px solid rgba(58,138,74,.35);border-radius:4px;font-size:.72rem;padding:5px 10px;letter-spacing:.06em}
 
+/* ── EMPTY STATE ── */
 .empty{text-align:center;padding:48px 16px;color:var(--muted);font-size:.82rem;line-height:1.7}
 .empty-icon{font-size:2rem;margin-bottom:12px;opacity:.3}
 
+/* ── SETUP SCREEN ── */
 .setup{max-width:540px;margin:60px auto;padding:0 24px}
 .setup h2{font-size:1.2rem;font-weight:400;color:var(--cooking);margin-bottom:8px}
 .setup p{font-size:.85rem;color:var(--muted);line-height:1.7;margin-bottom:24px}
@@ -139,6 +148,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Helvet
   letter-spacing:.06em;cursor:pointer}
 .setup-btn:hover{background:#a81f25}
 
+/* ── TOAST ── */
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
   background:#1e1e1e;border:1px solid var(--border);border-radius:6px;
   padding:10px 20px;font-size:.82rem;color:var(--text);
@@ -153,6 +163,7 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Helvet
 </head>
 <body>
 
+<!-- ── SETUP SCREEN (shown when not configured) ── -->
 <div id="setup-screen" style="display:none">
   <div class="setup">
     <h2>Kitchen Display Setup</h2>
@@ -191,6 +202,7 @@ CREATE POLICY "anon_all" ON orders FOR ALL USING (true) WITH CHECK (true);</code
   </div>
 </div>
 
+<!-- ── MAIN BOARD ── -->
 <div id="main-screen" style="display:none">
   <div class="header">
     <div class="header-left">
@@ -236,9 +248,12 @@ CREATE POLICY "anon_all" ON orders FOR ALL USING (true) WITH CHECK (true);</code
 <div class="toast" id="toast"></div>
 
 <script>
+// ── CONFIG ────────────────────────────────────────────────
 const CONFIG_KEY = 'menvio_kitchen_config';
+const POS_KEY = 'menvio_pos_entered';
 let sb = null;
 let knownIds = new Set();
+let posEntered = new Set(JSON.parse(localStorage.getItem(POS_KEY) || '[]'));
 
 function loadConfig() {
   try { return JSON.parse(localStorage.getItem(CONFIG_KEY)); } catch(e) { return null; }
@@ -251,6 +266,7 @@ function saveConfig() {
   location.reload();
 }
 
+// ── INIT ──────────────────────────────────────────────────
 const cfg = loadConfig();
 if (!cfg) {
   document.getElementById('setup-screen').style.display = 'block';
@@ -264,10 +280,11 @@ async function init() {
   startClock();
   await loadOrders();
   subscribeRealtime();
-  setInterval(tickTimers, 30000);
-  setInterval(loadOrders, 15000);
+  setInterval(tickTimers, 30000); // update age timers every 30s
+  setInterval(loadOrders, 15000); // fallback poll every 15s
 }
 
+// ── CLOCK ─────────────────────────────────────────────────
 function startClock() {
   function tick() {
     const now = new Date();
@@ -277,9 +294,10 @@ function startClock() {
   tick(); setInterval(tick, 1000);
 }
 
+// ── LOAD ORDERS ───────────────────────────────────────────
 async function loadOrders() {
   setLiveDot('loading');
-  const cutoff = new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString();
+  const cutoff = new Date(Date.now() - 4 * 60 * 60 * 1000).toISOString(); // last 4 hours
   const { data, error } = await sb
     .from('orders')
     .select('*')
@@ -291,9 +309,10 @@ async function loadOrders() {
   setLiveDot('ok');
   renderBoard(data || []);
 
+  // Detect new orders (sound + animation)
   (data || []).forEach(o => {
     if (o.status === 'new' && !knownIds.has(o.id)) {
-      if (knownIds.size > 0) { playBeep(); showToast('🔴 New order — Table ' + (o.table_num || '?')); }
+      if (knownIds.size > 0) { playBeep(); showToast(`🔴 New order — Table ${o.table_num || '?'}`); }
       knownIds.add(o.id);
     } else {
       knownIds.add(o.id);
@@ -301,6 +320,7 @@ async function loadOrders() {
   });
 }
 
+// ── RENDER ────────────────────────────────────────────────
 function renderBoard(orders) {
   const cols = { new: [], cooking: [], done: [] };
   orders.forEach(o => { if (cols[o.status]) cols[o.status].push(o); });
@@ -309,6 +329,7 @@ function renderBoard(orders) {
   document.getElementById('col-cooking').innerHTML = cols.cooking.map(o => cardHTML(o)).join('') || emptyHTML('Nothing cooking');
   document.getElementById('col-done').innerHTML = cols.done.map(o => cardHTML(o)).join('') || emptyHTML('');
 
+  // Counts
   ['new','cooking','done'].forEach(s => {
     document.getElementById('lc-' + s).textContent = cols[s].length;
   });
@@ -324,7 +345,12 @@ function cardHTML(o) {
   let btn = '';
   if (o.status === 'new')     btn = `<button class="action-btn btn-take" onclick="setStatus('${o.id}','cooking')">▶ Take Order</button>`;
   if (o.status === 'cooking') btn = `<button class="action-btn btn-done"  onclick="setStatus('${o.id}','done')">✓ Done</button>`;
-  if (o.status === 'done')    btn = `<button class="action-btn btn-archive" onclick="setStatus('${o.id}','archived')">Archive</button>`;
+  if (o.status === 'done') {
+    const posBtn = posEntered.has(o.id)
+      ? `<span class="pos-badge">✓ In POS</span>`
+      : `<button class="action-btn btn-pos" onclick="markPOS('${o.id}')">POS ✓</button>`;
+    btn = `<div style="display:flex;gap:8px;align-items:center">${posBtn}<button class="action-btn btn-archive" onclick="setStatus('${o.id}','archived')">Archive</button></div>`;
+  }
 
   const freshClass = (o.status === 'new' && age < 2) ? ' fresh' : '';
 
@@ -357,6 +383,7 @@ function emptyHTML(msg) {
   return `<div class="empty"><div class="empty-icon">✓</div>${msg}</div>`;
 }
 
+// ── STATUS CHANGE ─────────────────────────────────────────
 async function setStatus(id, status) {
   const { error } = await sb
     .from('orders')
@@ -366,6 +393,7 @@ async function setStatus(id, status) {
   await loadOrders();
 }
 
+// ── REALTIME ──────────────────────────────────────────────
 function subscribeRealtime() {
   sb.channel('orders-channel')
     .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, () => {
@@ -376,6 +404,7 @@ function subscribeRealtime() {
     });
 }
 
+// ── TIMERS ────────────────────────────────────────────────
 function tickTimers() { loadOrders(); }
 
 function minutesAgo(ts) {
@@ -385,6 +414,7 @@ function formatTime(ts) {
   return new Date(ts).toLocaleTimeString('en-US', {hour:'2-digit', minute:'2-digit', hour12:true});
 }
 
+// ── LIVE DOT ──────────────────────────────────────────────
 function setLiveDot(state) {
   const dot = document.getElementById('live-dot');
   if (!dot) return;
@@ -392,6 +422,7 @@ function setLiveDot(state) {
   dot.style.boxShadow = `0 0 6px ${dot.style.background}`;
 }
 
+// ── SOUND ─────────────────────────────────────────────────
 function playBeep() {
   try {
     const ctx = new (window.AudioContext || window.webkitAudioContext)();
@@ -408,6 +439,15 @@ function playBeep() {
   } catch(e) {}
 }
 
+// ── POS TRACKING ──────────────────────────────────────────
+function markPOS(id) {
+  posEntered.add(id);
+  localStorage.setItem(POS_KEY, JSON.stringify([...posEntered]));
+  loadOrders();
+  showToast('✓ Marked as entered in POS');
+}
+
+// ── TOAST ─────────────────────────────────────────────────
 let toastTimer;
 function showToast(msg) {
   const t = document.getElementById('toast');
