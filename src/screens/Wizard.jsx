@@ -195,8 +195,14 @@ export default function Wizard() {
   const renderParties = () => (
     <div className="wz-grid">
       {F('petitioner_name')}
-      {F('petitioner_address')}
       {F('respondent_name')}
+      {/* Petitioner contact — stored structurally (single source for form captions) */}
+      {F('party_street')}
+      {F('party_city')}
+      {F('party_state')}
+      {F('party_zip')}
+      {F('party_phone')}
+      {F('party_email')}
       {F('respondent_address')}
       {F('marriage_date', 'date')}
       {F('separation_date', 'date')}

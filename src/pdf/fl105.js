@@ -7,6 +7,7 @@
 
 import { registerForm, fillForm, loadWatermarkFont, DRAFT_WATERMARK } from './forms.js'
 import { countyInfo } from './counties.js'
+import { buildPartyContact } from './party.js'
 
 // ---- shared date helpers (wizard stores ISO yyyy-mm-dd; court forms use US) ----
 function parseDate(s) {
@@ -145,13 +146,20 @@ export function buildFL105Profile({ user = {}, caseRec = {}, answers = [] }) {
   const court = countyInfo(user.county) || {}
   const otherCases = parseList(a.other_cases)
   const otherPersons = parseList(a.other_persons)
+  const contact = buildPartyContact(a) // single-source petitioner contact block
 
   const p = {
     // caption
     petitioner_name: a.petitioner_name || '',
     respondent_name: a.respondent_name || '',
-    party_name: a.petitioner_name || '',
-    attorney_for: 'Self (Pro Per)',
+    party_name: contact.party_name,
+    party_street: contact.party_street,
+    party_city: contact.party_city,
+    party_state: contact.party_state,
+    party_zip: contact.party_zip,
+    party_phone: contact.party_phone,
+    party_email: contact.party_email,
+    attorney_for: contact.attorney_for,
     court_county: user.county || '',
     court_street: court.street || '',
     court_mailing: court.mailing || '',
@@ -250,6 +258,12 @@ export const FL105_MAPPING = {
   petitioner_name: P1(`${CAP}ProbateParty[0].Party1[0]`),
   respondent_name: P1(`${CAP}ProbateParty[0].Party2[0]`),
   party_name: P1(`${CAP}AttyInfo[0].AttyName_ft[0]`),
+  party_street: P1(`${CAP}AttyInfo[0].AttyStreet_ft[0]`),
+  party_city: P1(`${CAP}AttyInfo[0].AttyCity_ft[0]`),
+  party_state: P1(`${CAP}AttyInfo[0].AttyState_ft[0]`),
+  party_zip: P1(`${CAP}AttyInfo[0].AttyZip_ft[0]`),
+  party_phone: P1(`${CAP}AttyInfo[0].Phone[0]`),
+  party_email: P1(`${CAP}AttyInfo[0].Email[0]`),
   attorney_for: P1(`${CAP}AttyInfo[0].Name[0]`),
   court_county: P1(`${CAP}CrtInfo[0].CrtCounty[0]`),
   court_street: P1(`${CAP}CrtInfo[0].CrtStreet[0]`),

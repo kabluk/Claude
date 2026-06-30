@@ -191,6 +191,16 @@ fillable-PDF (AcroForm) через `pdf-lib` — текст по координ�
 - **Пакет.** Кнопка в кабинете генерит **FL-100 всегда**, а **FL-105 — только
   при наличии несовершеннолетних детей**, вместе, двумя PDF с водяным знаком.
 
+### Контактный блок заявителя — структурно и единым источником
+
+Адрес заявителя хранится **отдельными полями**: `party_street`, `party_city`,
+`party_state`, `party_zip`, `party_phone`, `party_email` (собираются в секции
+«Стороны» визарда). Общий билдер `src/pdf/party.js#buildPartyContact` —
+**единый источник**: и FL-100, и FL-105 заполняют шапку из него одинаково. В
+caption-маппинге: street→STREET ADDRESS, city→CITY, state→STATE, zip→ZIP CODE,
+phone→TELEPHONE NO., email→EMAIL ADDRESS; STATE BAR / FIRM NAME / FAX — пустые.
+Новые формы пакета подключают тот же билдер и получают тот же контакт.
+
 ## Запуск
 
 ```bash

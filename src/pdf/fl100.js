@@ -10,6 +10,7 @@
 
 import { registerForm, fillForm, loadWatermarkFont, DRAFT_WATERMARK } from './forms.js'
 import { countyInfo } from './counties.js'
+import { buildPartyContact } from './party.js'
 
 // ---- date helpers (wizard date inputs store ISO yyyy-mm-dd) ----
 function parseDate(s) {
@@ -97,6 +98,7 @@ export function buildFL100Profile({ user = {}, caseRec = {}, answers = [] }) {
     .join('; ')
 
   const isDissolution = caseRec.type === 'uncontested' || caseRec.type === 'contested'
+  const contact = buildPartyContact(a) // single-source petitioner contact block
 
   // §2 residency — driven by user choice; default: Petitioner only.
   const residency = (a.residency_party || 'petitioner').toLowerCase()
@@ -113,10 +115,15 @@ export function buildFL100Profile({ user = {}, caseRec = {}, answers = [] }) {
     court_mailing: court.mailing || '',
     court_city_zip: court.cityZip || '',
     court_branch: court.branch || '',
-    party_name: a.petitioner_name || '', // self-represented party
-    party_address: a.petitioner_address || '',
-    party_phone: a.petitioner_phone || '',
-    attorney_for: 'Self (Pro Per)',
+    // self-represented party contact (structured, single source)
+    party_name: contact.party_name,
+    party_street: contact.party_street,
+    party_city: contact.party_city,
+    party_state: contact.party_state,
+    party_zip: contact.party_zip,
+    party_phone: contact.party_phone,
+    party_email: contact.party_email,
+    attorney_for: contact.attorney_for,
     petition_type: PETITION_TYPE[caseRec.type] || 'Dissolution of Marriage',
     case_number: '', // assigned by the court at filing
 
@@ -205,10 +212,14 @@ export const FL100_MAPPING = {
   court_mailing: p1('CaptionP1_sf[0].CourtInfo[0].MailingAdd_ft[0]'),
   court_city_zip: p1('CaptionP1_sf[0].CourtInfo[0].CityZip_ft[0]'),
   court_branch: p1('CaptionP1_sf[0].CourtInfo[0].Branch_ft[0]'),
-  // caption — self-represented party block
+  // caption — self-represented party block (structured contact)
   party_name: p1('CaptionP1_sf[0].AttyInfo[0].AttyName_ft[0]'),
-  party_address: p1('CaptionP1_sf[0].AttyInfo[0].AttyStreet_ft[0]'),
+  party_street: p1('CaptionP1_sf[0].AttyInfo[0].AttyStreet_ft[0]'),
+  party_city: p1('CaptionP1_sf[0].AttyInfo[0].AttyCity_ft[0]'),
+  party_state: p1('CaptionP1_sf[0].AttyInfo[0].AttyState_ft[0]'),
+  party_zip: p1('CaptionP1_sf[0].AttyInfo[0].AttyZip_ft[0]'),
   party_phone: p1('CaptionP1_sf[0].AttyInfo[0].Phone_ft[0]'),
+  party_email: p1('CaptionP1_sf[0].AttyInfo[0].Email_ft[0]'),
   attorney_for: p1('CaptionP1_sf[0].AttyInfo[0].AttyFor_ft[0]'),
   case_number: [
     p1('CaptionP1_sf[0].CaseNumber[0].CaseNumber_ft[0]'),
