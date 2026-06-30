@@ -205,6 +205,22 @@ npm run check-forms
 - **Пакет.** Кнопка в кабинете генерит **FL-100 всегда**, а **FL-105 — только
   при наличии несовершеннолетних детей**, вместе, двумя PDF с водяным знаком.
 
+### FL-110 (Summons) — третья форма
+
+`src/pdf/fl110.js` — официальная **FL-110 [Rev. January 1, 2015]** (сверено
+06/30/2026), зафиксирована в `public/forms/FL-110.pdf`. Полей мало — всё
+переиспользуется из дела:
+
+- NOTICE TO RESPONDENT / AVISO AL DEMANDADO → `respondent_name` (англ.+исп.);
+- «Petitioner's name is» / «Nombre del demandante» → `petitioner_name`;
+- «name and address of the court» (item 1) → блок из `CountyInfo`;
+- «petitioner without an attorney» (item 2) → блок из структурного контакта
+  (`buildPartyContact`: имя/адрес/телефон/email — единый источник, как у
+  FL-100/FL-105);
+- `case_number`, Date/Clerk/Deputy — пусто (заполняет суд).
+- Статичный двуязычный текст уведомления и блок ATROS (стр. 2) **не трогаются**.
+- В пакет **входит всегда** (и с детьми, и без).
+
 ### Контактный блок заявителя — структурно и единым источником
 
 Адрес заявителя хранится **отдельными полями**: `party_street`, `party_city`,

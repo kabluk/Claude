@@ -25,3 +25,4 @@ export {
   fl105Required,
   fl105NeedsContinuation,
 } from './fl105.js'
+export { FL110_TEMPLATE, buildFL110Profile, generateFL110 } from './fl110.js'

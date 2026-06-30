@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useI18n } from '../i18n/I18nContext.jsx'
 import { useAppState } from '../state/AppState.jsx'
 import { generateFL100 } from '../pdf/fl100.js'
+import { generateFL110 } from '../pdf/fl110.js'
 import { generateFL105, fl105Required, fl105NeedsContinuation } from '../pdf/fl105.js'
 
 function download(bytes, filename) {
@@ -32,9 +33,11 @@ export default function Fl100Generate() {
   const onGenerate = async () => {
     setStatus('working')
     try {
-      // FL-100 always; FL-105 (UCCJEA) alongside it when there are minor children.
+      // FL-100 + FL-110 (Summons) always; FL-105 (UCCJEA) when minor children.
       const fl100 = await generateFL100(state)
       download(fl100.bytes, 'FL-100-DRAFT.pdf')
+      const fl110 = await generateFL110(state)
+      download(fl110.bytes, 'FL-110-DRAFT.pdf')
       if (needsFl105) {
         const fl105 = await generateFL105(state)
         download(fl105.bytes, 'FL-105-DRAFT.pdf')

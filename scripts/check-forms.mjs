@@ -17,8 +17,9 @@ import { createHash } from 'node:crypto'
 import { execFileSync } from 'node:child_process'
 import { FL100_TEMPLATE } from '../src/pdf/fl100.js'
 import { FL105_TEMPLATE } from '../src/pdf/fl105.js'
+import { FL110_TEMPLATE } from '../src/pdf/fl110.js'
 
-const FORMS = [FL100_TEMPLATE, FL105_TEMPLATE]
+const FORMS = [FL100_TEMPLATE, FL105_TEMPLATE, FL110_TEMPLATE]
 
 function fetchSha256(url) {
   // curl follows the environment's proxy/CA config (works behind the agent proxy
