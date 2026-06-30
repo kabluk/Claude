@@ -120,6 +120,10 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Helvet
 .btn-done:active{transform:scale(.97)}
 .btn-archive{background:transparent;color:var(--muted);border:1px solid var(--border);font-size:.72rem;padding:6px 12px}
 .btn-archive:hover{color:var(--text)}
+.btn-pos{background:rgba(201,168,76,.12);color:var(--cooking);border:1px solid rgba(201,168,76,.4);font-size:.78rem;padding:8px 14px;letter-spacing:.05em}
+.btn-pos:hover{background:rgba(201,168,76,.22)}
+.btn-pos:active{transform:scale(.97)}
+.pos-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(58,138,74,.15);color:var(--done);border:1px solid rgba(58,138,74,.35);border-radius:4px;font-size:.72rem;padding:5px 10px;letter-spacing:.06em}
 
 /* ── EMPTY STATE ── */
 .empty{text-align:center;padding:48px 16px;color:var(--muted);font-size:.82rem;line-height:1.7}
@@ -246,8 +250,10 @@ CREATE POLICY "anon_all" ON orders FOR ALL USING (true) WITH CHECK (true);</code
 <script>
 // ── CONFIG ────────────────────────────────────────────────
 const CONFIG_KEY = 'menvio_kitchen_config';
+const POS_KEY = 'menvio_pos_entered';
 let sb = null;
 let knownIds = new Set();
+let posEntered = new Set(JSON.parse(localStorage.getItem(POS_KEY) || '[]'));
 
 function loadConfig() {
   try { return JSON.parse(localStorage.getItem(CONFIG_KEY)); } catch(e) { return null; }
@@ -339,7 +345,12 @@ function cardHTML(o) {
   let btn = '';
   if (o.status === 'new')     btn = `<button class="action-btn btn-take" onclick="setStatus('${o.id}','cooking')">▶ Take Order</button>`;
   if (o.status === 'cooking') btn = `<button class="action-btn btn-done"  onclick="setStatus('${o.id}','done')">✓ Done</button>`;
-  if (o.status === 'done')    btn = `<button class="action-btn btn-archive" onclick="setStatus('${o.id}','archived')">Archive</button>`;
+  if (o.status === 'done') {
+    const posBtn = posEntered.has(o.id)
+      ? `<span class="pos-badge">✓ In POS</span>`
+      : `<button class="action-btn btn-pos" onclick="markPOS('${o.id}')">POS ✓</button>`;
+    btn = `<div style="display:flex;gap:8px;align-items:center">${posBtn}<button class="action-btn btn-archive" onclick="setStatus('${o.id}','archived')">Archive</button></div>`;
+  }
 
   const freshClass = (o.status === 'new' && age < 2) ? ' fresh' : '';
 
@@ -426,6 +437,14 @@ function playBeep() {
       osc.stop(ctx.currentTime + delay/1000 + 0.3);
     });
   } catch(e) {}
+}
+
+// ── POS TRACKING ──────────────────────────────────────────
+function markPOS(id) {
+  posEntered.add(id);
+  localStorage.setItem(POS_KEY, JSON.stringify([...posEntered]));
+  loadOrders();
+  showToast('✓ Marked as entered in POS');
 }
 
 // ── TOAST ─────────────────────────────────────────────────
