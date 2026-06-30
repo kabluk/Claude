@@ -3,6 +3,7 @@ import { useI18n } from '../i18n/I18nContext.jsx'
 import { useAppState } from '../state/AppState.jsx'
 import { generateFL100 } from '../pdf/fl100.js'
 import { generateFL110 } from '../pdf/fl110.js'
+import { generateFL150 } from '../pdf/fl150.js'
 import { generateFL105, fl105Required, fl105NeedsContinuation } from '../pdf/fl105.js'
 
 function download(bytes, filename) {
@@ -38,6 +39,9 @@ export default function Fl100Generate() {
       download(fl100.bytes, 'FL-100-DRAFT.pdf')
       const fl110 = await generateFL110(state)
       download(fl110.bytes, 'FL-110-DRAFT.pdf')
+      // FL-150 (Income & Expense Declaration) — financial disclosure, always.
+      const fl150 = await generateFL150(state)
+      download(fl150.bytes, 'FL-150-DRAFT.pdf')
       if (needsFl105) {
         const fl105 = await generateFL105(state)
         download(fl105.bytes, 'FL-105-DRAFT.pdf')
