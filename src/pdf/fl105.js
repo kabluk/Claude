@@ -32,12 +32,53 @@ const parseList = (raw) => {
     return []
   }
 }
-// Split "08/2021 – present" into { from, to } (only on spaced separators so ISO
-// dates aren't broken).
+// Split "08/21/2021 – present" into { from, to } (only on spaced separators so
+// ISO dates aren't broken).
 function splitPeriod(p) {
   if (!p) return { from: '', to: '' }
   const parts = String(p).split(/\s+(?:–|—|to|по|до)\s+|\s+-\s+/i)
   return { from: (parts[0] || '').trim(), to: (parts[1] || '').trim() }
+}
+// Tolerant date parse for clamping/sorting (MM/DD/YYYY, ISO, MM/YYYY, YYYY).
+function parseLoose(s) {
+  if (!s) return null
+  s = String(s).trim()
+  let m = /^(\d{4})-(\d{1,2})-(\d{1,2})/.exec(s)
+  if (m) return new Date(+m[1], +m[2] - 1, +m[3])
+  m = /^(\d{1,2})\/(\d{1,2})\/(\d{4})/.exec(s)
+  if (m) return new Date(+m[3], +m[1] - 1, +m[2])
+  m = /^(\d{1,2})\/(\d{4})$/.exec(s)
+  if (m) return new Date(+m[2], +m[1] - 1, 1)
+  m = /^(\d{4})$/.exec(s)
+  if (m) return new Date(+m[1], 0, 1)
+  return null
+}
+function dateUS(d) {
+  if (!d) return ''
+  return `${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}/${d.getFullYear()}`
+}
+const isPresent = (to) => !to || /present|now|current|настоящ|по наст/i.test(to)
+
+// Build residence rows for one table, clamped so nothing starts before
+// `lowerBound` (a child's — or the youngest child's — date of birth). Rows are
+// ordered most-recent first; row 1 is the current address (the form preprints
+// "to present", so it has no To cell).
+function buildResidenceRows(residences, lowerBound) {
+  return (residences || [])
+    .map((r) => {
+      const { from, to } = splitPeriod(r.period)
+      return { r, from, to, fromDate: parseLoose(from), toDate: parseLoose(to), present: isPresent(to) }
+    })
+    .filter((x) => !(x.toDate && lowerBound && x.toDate < lowerBound)) // drop pre-birth segments
+    .sort((a, b) => (b.fromDate?.getTime() || 0) - (a.fromDate?.getTime() || 0))
+    .map((x) => {
+      const clamp = x.fromDate && lowerBound && x.fromDate < lowerBound
+      return {
+        ...x,
+        fromDisp: clamp ? dateUS(lowerBound) : fmtDateUS(x.from),
+        toDisp: x.present ? 'Present' : fmtDateUS(x.to),
+      }
+    })
 }
 
 // FL-105 must include this form when there are minor children.
@@ -155,16 +196,24 @@ export function buildFL105Profile({ user = {}, caseRec = {}, answers = [] }) {
     p[`${k}_place`] = c.birthplace || ''
   })
 
-  // §3 residence history (shared table, up to 5 rows). Row 1 has no "To" cell.
-  const residences = children[0]?.residences || []
-  residences.slice(0, 5).forEach((r, i) => {
+  // §3 residence history (single shared table). Built per-child and clamped so
+  // no segment starts before the relevant child's birth. When the children lived
+  // together (one_residence) the table is the shared history clamped to the
+  // YOUNGEST child's DOB; otherwise it's the first child's own history (the rest
+  // go on a continuation copy — see fl105NeedsContinuation).
+  const youngestDob = children.reduce((max, c) => {
+    const d = parseLoose(c.dob)
+    return d && (!max || d > max) ? d : max
+  }, null)
+  const lowerBound = p.one_residence ? youngestDob : parseLoose(children[0]?.dob)
+  const rows = buildResidenceRows(children[0]?.residences || [], lowerBound)
+  rows.slice(0, 5).forEach((x, i) => {
     const n = i + 1
-    const { from, to } = splitPeriod(r.period)
-    p[`res_${n}_from`] = n === 1 ? r.period || from : from
-    if (n > 1) p[`res_${n}_to`] = to
-    p[`res_${n}_residence`] = r.city_state || ''
-    p[`res_${n}_person`] = r.lived_with || ''
-    p[`res_${n}_relationship`] = r.relationship || ''
+    p[`res_${n}_from`] = x.fromDisp // From: start date only (MM/DD/YYYY)
+    if (n > 1) p[`res_${n}_to`] = x.toDisp // To: end date or "Present"; row 1's "present" is preprinted
+    p[`res_${n}_residence`] = x.r.city_state || ''
+    p[`res_${n}_person`] = x.r.lived_with || ''
+    p[`res_${n}_relationship`] = x.r.relationship || ''
   })
 
   // §4 other cases (route each to its type's row)
@@ -318,6 +367,14 @@ export const FL105_TEMPLATE = {
   // Footer reads: "FL-105/GC-120 [Rev. January 1, 2025]".
   revision: 'Rev. January 1, 2025',
   mapping: FL105_MAPPING,
+  // Shrink the residence "person/address" and "residence" cells so long values
+  // (name + full address) don't overflow the narrow columns when flattened.
+  fontSizes: Object.fromEntries(
+    [1, 2, 3, 4, 5].flatMap((n) => [
+      [FL105_MAPPING[`res_${n}_person`], 8],
+      [FL105_MAPPING[`res_${n}_residence`], 8],
+    ]),
+  ),
 }
 
 registerForm(FL105_TEMPLATE)
