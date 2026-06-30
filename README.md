@@ -32,6 +32,24 @@
 Все строки — в `src/i18n/translations.js`; провайдер и хук `useI18n()` — в
 `src/i18n/I18nContext.jsx`.
 
+## SEO county-страницы (`/california/:county`)
+
+Data-driven лендинги под юрисдикцию (`src/screens/CountyPage.jsx`) — стиль
+Trust-Calm Modern, **вне** визард-оболочки. Данные — из того же `CountyInfo`
+(`src/data/counties.js`, единый источник с приложением и PDF-движком; не
+дублируется). CountyInfo расширен: `court_branches[]`, `filing_fee`,
+`fee_waiver_form`, `efiling_required`, `copies_needed`, `local_forms[]`,
+`particularities[]`, `faq[]` (двуязычные `{en,es}`). Полностью заполнен
+**Los Angeles**; остальные 4 округа — заглушки (`stub: true`, TODO), страница
+для них рендерит «coming soon» и базовый суд.
+
+Блоки: Hero (округ + EN/ES + $99 + CTA) · «Чем отличается развод» · Ваш суд
+(branches) · Стоимость (filing fee + fee waiver) · Локальные формы · Как подать
+(шаги + copies + e-filing) · Сроки (6 мес) · «Доступно на испанском» · FAQ ·
+Trust · CTA · перелинковка на другие округа. Переключатель **EN/ES** на странице.
+SEO: динамические `title`/`meta description` под «divorce in [county] county
+california», Open Graph, canonical, семантическая разметка и **FAQPage JSON-LD**.
+
 ## Хранение данных
 
 Данные хранятся локально (localStorage) — отдельный слой репозитория без

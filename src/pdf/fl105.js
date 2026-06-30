@@ -6,7 +6,7 @@
 // generated when there are minor children, alongside FL-100.
 
 import { registerForm, fillForm, loadWatermarkFont, DRAFT_WATERMARK } from './forms.js'
-import { countyInfo } from './counties.js'
+import { countyInfo } from '../data/counties.js'
 import { buildPartyContact } from './party.js'
 
 // ---- shared date helpers (wizard stores ISO yyyy-mm-dd; court forms use US) ----

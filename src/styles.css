@@ -1334,3 +1334,193 @@ textarea:focus {
     min-width: calc(50% - 4px);
   }
 }
+
+/* ============================================================
+   County SEO landing pages (/california/:county) — Trust-Calm Modern
+   ============================================================ */
+.cty {
+  background: var(--paper);
+  color: var(--ink);
+  min-height: 100%;
+}
+.cty-wrap {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* top bar */
+.cty-top {
+  background: #fff;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+.cty-top__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+.cty-brand {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--navy-950);
+}
+.cty-brand b { color: var(--gold-500); }
+.cty-toggle {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.cty-toggle__btn {
+  border: none;
+  background: #fff;
+  padding: 7px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+}
+.cty-toggle__btn.is-on { background: var(--navy-900); color: var(--paper); }
+
+/* hero */
+.cty-hero {
+  background: linear-gradient(180deg, #fbfaf7 0%, var(--paper) 100%);
+  padding: 72px 0 64px;
+  border-bottom: 1px solid var(--line);
+}
+.cty-eyebrow {
+  font-size: 12px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold-500);
+  font-weight: 700;
+  margin: 0 0 16px;
+}
+.cty-h1 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(34px, 6vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.5px;
+  color: var(--navy-950);
+  margin: 0 0 18px;
+  max-width: 760px;
+}
+.cty-lead {
+  font-size: 18px;
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 640px;
+  margin: 0 0 32px;
+}
+.cty-hero__cta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.cty-price { font-size: 15px; color: var(--muted); }
+.cty-price b { font-family: var(--serif); font-size: 24px; color: var(--navy-950); }
+
+.cty-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 12px;
+  padding: 15px 28px;
+  font-size: 16px;
+  font-weight: 600;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+}
+.cty-btn--primary { background: var(--gold-500); color: var(--navy-950); }
+.cty-btn--primary:hover { background: var(--gold-400); }
+.cty-btn--ghost { background: transparent; color: var(--navy-900); border-color: var(--line); }
+.cty-btn--ghost:hover { border-color: var(--navy-700); }
+
+/* sections */
+.cty-sec { padding: 56px 0; border-bottom: 1px solid var(--line); }
+.cty-sec--alt { background: #fbfaf7; }
+.cty-sec--accent { background: rgba(200, 162, 92, 0.08); }
+.cty-h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: clamp(24px, 3.5vw, 32px);
+  color: var(--navy-950);
+  margin: 0 0 24px;
+}
+.cty-h2--light { color: var(--paper); }
+.cty-note { font-size: 14.5px; color: var(--muted); line-height: 1.6; margin: 14px 0 0; }
+.cty-soon {
+  font-size: 15px; color: var(--muted); font-style: italic;
+  background: #fff; border: 1px dashed var(--line); border-radius: 12px; padding: 22px;
+}
+
+.cty-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.cty-card {
+  background: #fff; border: 1px solid var(--line); border-radius: 16px;
+  padding: 24px; box-shadow: var(--shadow-sm);
+}
+.cty-card p { margin: 10px 0 0; font-size: 15px; line-height: 1.6; color: var(--navy-900); }
+.cty-card__n {
+  display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%;
+  background: rgba(200,162,92,0.16); color: var(--gold-600, #9a7636); color: #9a7636;
+  font-weight: 700; font-size: 15px;
+}
+.cty-card__title { font-family: var(--serif); font-size: 19px; color: var(--navy-950); }
+
+.cty-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.cty-fee { display: flex; align-items: baseline; gap: 12px; margin-top: 6px; }
+.cty-fee__amt { font-family: var(--serif); font-size: 44px; font-weight: 700; color: var(--gold-500); }
+.cty-fee__lbl { font-size: 14px; color: var(--muted); }
+
+.cty-branches { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.cty-branches li {
+  background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px;
+}
+.cty-branches strong { display: block; color: var(--navy-950); font-size: 15.5px; }
+.cty-branches span { font-size: 14px; color: var(--muted); }
+
+.cty-forms { list-style: none; margin: 0; padding: 0; }
+.cty-forms li {
+  display: flex; gap: 14px; align-items: baseline;
+  padding: 13px 0; border-bottom: 1px solid var(--line); font-size: 15px; color: var(--navy-900);
+}
+.cty-forms li:last-child { border-bottom: none; }
+.cty-forms__code { font-family: var(--serif); font-weight: 700; color: var(--gold-500); min-width: 96px; }
+
+.cty-steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; counter-reset: s; }
+.cty-steps li { display: flex; gap: 16px; align-items: flex-start; font-size: 15.5px; line-height: 1.55; color: var(--navy-900); }
+.cty-steps__n {
+  flex: none; width: 30px; height: 30px; border-radius: 50%;
+  background: var(--navy-900); color: var(--paper); display: grid; place-items: center;
+  font-size: 14px; font-weight: 700;
+}
+
+.cty-faq { margin: 0; }
+.cty-faq__item { border-bottom: 1px solid var(--line); padding: 18px 0; }
+.cty-faq__item dt { font-weight: 600; font-size: 16.5px; color: var(--navy-950); margin: 0 0 8px; }
+.cty-faq__item dd { margin: 0; font-size: 15px; line-height: 1.6; color: var(--muted); }
+
+.cty-cta { background: var(--navy-950); padding: 64px 0; text-align: center; }
+.cty-cta__lead { color: rgba(247,244,238,0.75); font-size: 17px; margin: 0 0 28px; }
+
+.cty-other { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 12px 28px; }
+.cty-other a { color: var(--navy-700); font-weight: 600; font-size: 15px; }
+.cty-other a:hover { color: var(--gold-500); }
+
+.cty-foot {
+  background: var(--navy-950); color: rgba(247,244,238,0.7);
+  font-size: 13px; line-height: 1.6; padding: 22px 0;
+}
+
+@media (max-width: 760px) {
+  .cty-cards { grid-template-columns: 1fr; }
+  .cty-grid2 { grid-template-columns: 1fr; gap: 28px; }
+}

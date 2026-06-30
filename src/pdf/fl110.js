@@ -10,7 +10,7 @@
 // (single source — same names/address as FL-100/FL-105).
 
 import { registerForm, fillForm, loadWatermarkFont, DRAFT_WATERMARK } from './forms.js'
-import { countyInfo } from './counties.js'
+import { countyInfo } from '../data/counties.js'
 import { buildPartyContact } from './party.js'
 
 export function buildFL110Profile({ user = {}, caseRec = {}, answers = [] }) {
