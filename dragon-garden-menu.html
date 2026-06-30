@@ -259,9 +259,40 @@ nav label:hover{color:#c9a84c}
 
 /* ── SVG decorative overlay ── */
 .deco-svg{position:fixed;pointer-events:none;z-index:0;opacity:.05;top:0;right:0;width:200px;height:300px}
+
+/* ── Sold Out ── */
+.dish-card.sold-out{opacity:.45}
+.dish-card.sold-out .dish-photo{filter:grayscale(.8) brightness(.65)}
+.dish-card.sold-out .dish-name{text-decoration:line-through;color:var(--muted)}
+.dish-card.sold-out .add-btn{opacity:0;pointer-events:none}
+.sold-out-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+  background:rgba(8,8,8,.9);border:1px solid rgba(255,255,255,.1);
+  color:#fff;font-size:9px;letter-spacing:.18em;padding:4px 10px;
+  text-transform:uppercase;border-radius:2px;pointer-events:none;white-space:nowrap;
+  font-family:'Noto Sans JP',sans-serif;z-index:3}
+
+/* ── Admin mode ── */
+.admin-bar{display:none;position:fixed;top:0;left:0;right:0;
+  background:rgba(192,39,45,.95);backdrop-filter:blur(8px);
+  padding:10px 16px;font-size:11px;letter-spacing:.1em;color:#fff;
+  text-align:center;z-index:9999;font-family:'Noto Sans JP',sans-serif}
+body.admin-mode .admin-bar{display:block}
+body.admin-mode nav{top:38px}
+
+.admin-toggle{display:none;position:absolute;bottom:8px;right:8px;
+  background:rgba(192,39,45,.12);border:1px solid rgba(192,39,45,.35);
+  color:var(--red);font-size:9px;letter-spacing:.1em;
+  padding:3px 8px;border-radius:2px;cursor:pointer;text-transform:uppercase;
+  z-index:5;font-family:'Noto Sans JP',sans-serif;transition:.15s}
+body.admin-mode .admin-toggle{display:block}
+.admin-toggle:hover{background:rgba(192,39,45,.25)}
+.admin-toggle.is-sold-out{background:rgba(201,168,76,.12);border-color:rgba(201,168,76,.35);color:var(--gold)}
 </style>
 </head>
 <body>
+
+<!-- Admin bar (visible only in admin mode) -->
+<div class="admin-bar">ADMIN MODE · Tap "Sold Out" on any dish · Resets at midnight</div>
 
 <!-- Tab radio inputs -->
 <input type="radio" id="r1" name="tab" checked>
@@ -1101,6 +1132,84 @@ function sendWA() {
   msg += `\nEstimated Total: $${total.toFixed(2)}\n\nThank you!`;
   window.open(`https://wa.me/${RESTAURANT.phone}?text=${encodeURIComponent(msg)}`, '_blank');
 }
+
+// ── SOLD OUT TOGGLE ──────────────────────────────────────
+const STORAGE_KEY = 'menvio_soldout_dragon';
+const ADMIN_PWD = 'menvio2025';
+let soldOut = new Set();
+
+function soInit() {
+  // Admin mode via ?admin=menvio2025
+  if (new URLSearchParams(location.search).get('admin') === ADMIN_PWD) {
+    document.body.classList.add('admin-mode');
+  }
+  // Load saved state, reset if it's a new day
+  try {
+    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null');
+    if (saved && saved.date === new Date().toDateString()) {
+      soldOut = new Set(saved.items || []);
+    }
+  } catch(e) {}
+  // Apply state to all dish cards
+  document.querySelectorAll('.dish-card').forEach(card => {
+    const name = soGetName(card);
+    if (!name) return;
+    if (soldOut.has(name)) soMark(card);
+    if (document.body.classList.contains('admin-mode')) soAddBtn(card, name);
+  });
+  // Schedule auto-reset at midnight
+  const now = new Date();
+  const midnight = new Date(now); midnight.setHours(24, 0, 0, 0);
+  setTimeout(() => {
+    localStorage.removeItem(STORAGE_KEY);
+    soldOut.clear();
+    document.querySelectorAll('.dish-card.sold-out').forEach(soUnmark);
+  }, midnight - now);
+}
+
+function soGetName(card) {
+  const btn = card.querySelector('.add-btn');
+  if (!btn) return null;
+  const m = btn.getAttribute('onclick').match(/addItem\('([^']+)'/);
+  return m ? m[1] : null;
+}
+
+function soMark(card) {
+  card.classList.add('sold-out');
+  if (!card.querySelector('.sold-out-label')) {
+    const lbl = document.createElement('div');
+    lbl.className = 'sold-out-label'; lbl.textContent = 'SOLD OUT';
+    card.appendChild(lbl);
+  }
+  const tb = card.querySelector('.admin-toggle');
+  if (tb) { tb.textContent = 'Restore'; tb.classList.add('is-sold-out'); }
+}
+
+function soUnmark(card) {
+  card.classList.remove('sold-out');
+  const lbl = card.querySelector('.sold-out-label');
+  if (lbl) lbl.remove();
+  const tb = card.querySelector('.admin-toggle');
+  if (tb) { tb.textContent = 'Sold Out'; tb.classList.remove('is-sold-out'); }
+}
+
+function soToggle(name, card) {
+  if (soldOut.has(name)) { soldOut.delete(name); soUnmark(card); }
+  else { soldOut.add(name); soMark(card); }
+  localStorage.setItem(STORAGE_KEY, JSON.stringify({
+    date: new Date().toDateString(), items: [...soldOut]
+  }));
+}
+
+function soAddBtn(card, name) {
+  const btn = document.createElement('button');
+  btn.className = 'admin-toggle' + (soldOut.has(name) ? ' is-sold-out' : '');
+  btn.textContent = soldOut.has(name) ? 'Restore' : 'Sold Out';
+  btn.onclick = e => { e.stopPropagation(); soToggle(name, card); };
+  card.appendChild(btn);
+}
+
+document.addEventListener('DOMContentLoaded', soInit);
 </script>
 
 </body>
