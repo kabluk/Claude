@@ -80,6 +80,8 @@ export function buildFL100Profile({ user = {}, caseRec = {}, answers = [] }) {
     .filter(Boolean)
     .join('; ')
 
+  const isDissolution = caseRec.type === 'uncontested' || caseRec.type === 'contested'
+
   const profile = {
     // --- caption / header ---
     petitioner_name: a.petitioner_name || '',
@@ -97,8 +99,10 @@ export function buildFL100Profile({ user = {}, caseRec = {}, answers = [] }) {
     petition_type: PETITION_TYPE[caseRec.type] || 'Dissolution of Marriage',
     case_number: '', // assigned by the court at filing
 
-    // --- §1 relationship ---
+    // --- §1 relationship / petition type (string + checkbox flags) ---
     relationship_type: 'Marriage',
+    rel_marriage: true,
+    pt_dissolution: isDissolution,
 
     // --- §2 residence ---
     petitioner_ca_resident: a.petitioner_ca_resident || '',
@@ -112,10 +116,12 @@ export function buildFL100Profile({ user = {}, caseRec = {}, answers = [] }) {
 
     // --- §4 minor children ---
     has_minor_children: !!caseRec.has_children,
+    no_minor_children: !caseRec.has_children,
     num_children: children.length,
 
     // --- §5 grounds ---
     grounds: 'Irreconcilable differences',
+    gd_divorce: isDissolution,
 
     // --- §6 child custody/visitation ---
     custody_request: caseRec.has_children ? 'yes' : '',
@@ -125,6 +131,7 @@ export function buildFL100Profile({ user = {}, caseRec = {}, answers = [] }) {
 
     // --- §8 community property ---
     community_property: communityProperty,
+    community_property_listed: communityProperty !== '',
 
     // --- §9 spousal support ---
     spousal_support_request: '',
@@ -150,18 +157,101 @@ export function buildFL100Profile({ user = {}, caseRec = {}, answers = [] }) {
   return profile
 }
 
+// Real PDF field names live under FL-100[0].Page{1,2,3}[0].* — short helpers:
+const p1 = (s) => `FL-100[0].Page1[0].${s}`
+const p2 = (s) => `FL-100[0].Page2[0].${s}`
+const p3 = (s) => `FL-100[0].Page3[0].${s}`
+
+// logical field_key (from buildFL100Profile) → REAL PDF field name(s).
+// Field names were extracted with inspectFormFields('FL-100') and disambiguated
+// via each field's /TU tooltip. A value may target multiple fields (e.g. the
+// caption party names repeated on every page).
+export const FL100_MAPPING = {
+  // caption — parties (running header on every page)
+  petitioner_name: [
+    p1('CaptionP1_sf[0].TitlePartyName[0].Party1_ft[0]'),
+    p2('Parties[0].Party1_ft[0]'),
+    p3('Parties[0].Party1_ft[0]'),
+  ],
+  respondent_name: [
+    p1('CaptionP1_sf[0].TitlePartyName[0].Party2_ft[0]'),
+    p2('Parties[0].Party2_ft[0]'),
+    p3('Parties[0].Party2_ft[0]'),
+  ],
+  // caption — court (Los Angeles)
+  court_county: p1('CaptionP1_sf[0].CourtInfo[0].CrtCounty_ft[0]'),
+  court_street: p1('CaptionP1_sf[0].CourtInfo[0].Street_ft[0]'),
+  court_mailing: p1('CaptionP1_sf[0].CourtInfo[0].MailingAdd_ft[0]'),
+  court_city_zip: p1('CaptionP1_sf[0].CourtInfo[0].CityZip_ft[0]'),
+  court_branch: p1('CaptionP1_sf[0].CourtInfo[0].Branch_ft[0]'),
+  // caption — self-represented party block
+  party_name: p1('CaptionP1_sf[0].AttyInfo[0].AttyName_ft[0]'),
+  party_address: p1('CaptionP1_sf[0].AttyInfo[0].AttyStreet_ft[0]'),
+  party_phone: p1('CaptionP1_sf[0].AttyInfo[0].Phone_ft[0]'),
+  attorney_for: p1('CaptionP1_sf[0].AttyInfo[0].AttyFor_ft[0]'),
+  case_number: [
+    p1('CaptionP1_sf[0].CaseNumber[0].CaseNumber_ft[0]'),
+    p2('CaseNumber[0].CaseNumber_ft[0]'),
+    p3('CaseNumber[0].CaseNumber_ft[0]'),
+  ],
+  // title checkboxes: Dissolution (Divorce) of Marriage
+  pt_dissolution: p1('CaptionP1_sf[0].FormTitle[0].DissolutionOf_cb[0]'),
+  rel_marriage: p1('CaptionP1_sf[0].FormTitle[0].Marriage_cb[0]'),
+  // §2 residency requirements
+  petitioner_ca_resident: p1('PetitionerMeetsResidencyReqs_cb[0]'),
+  respondent_ca_resident: p1('RespondentMeetsResidencyReqs_cb[0]'),
+  // §3 statistical facts (+ computed time married)
+  date_of_marriage: p1('DateOfMarriage_dt[0]'),
+  date_of_separation: p1('DateOfSeparation_dt[0]'),
+  time_married_years: p1('MonthsSeparated_tf[0]'), // TU: "Years"
+  time_married_months: p1('MonthsSeparated_tf[1]'), // TU: "Months"
+  // §4 minor children
+  has_minor_children: p1('MinorChildren_sf[0].MinorChildrenList_cb[0]'),
+  no_minor_children: p1('ThereAreNoMinorChildren_cb[0]'),
+  child_1_name: p1('MinorChildren_sf[0].Child1Name_tf[0]'),
+  child_1_dob: p1('MinorChildren_sf[0].Child1Birthdate_dt[0]'),
+  child_1_age: p1('MinorChildren_sf[0].Child1Age_tf[0]'),
+  child_2_name: p1('MinorChildren_sf[0].Child2Name_tf[0]'),
+  child_2_dob: p1('MinorChildren_sf[0].Child2Birthdate_dt[0]'),
+  child_2_age: p1('MinorChildren_sf[0].Child2Age_tf[0]'),
+  child_3_name: p1('MinorChildren_sf[0].Child3Name_tf[0]'),
+  child_3_dob: p1('MinorChildren_sf[0].Child3Date_dt[0]'), // note: "Child3Date"
+  child_3_age: p1('MinorChildren_sf[0].Child3Age_tf[0]'),
+  child_4_name: p1('MinorChildren_sf[0].Child4Name_tf[0]'),
+  child_4_dob: p1('MinorChildren_sf[0].Child4Birthdate_dt[0]'),
+  child_4_age: p1('MinorChildren_sf[0].Child4Age_tf[0]'),
+  // §5 grounds: Divorce based on irreconcilable differences
+  gd_divorce: p2('SepTypeDef_cb[1]'), // TU: "Divorce"
+  grounds: p2('SepBasis_cb[0]'), // TU: "irreconcilable differences."
+  // §6 custody/visitation — joint
+  custody_request: [p2('ToBothJointly_cb[0]'), p2('ToBothJointly_cb[1]')],
+  // §9 spousal/partner support
+  spousal_support_request: p2('PaySupport_cb[0]'),
+  // §7 separate property (list)
+  separate_property: p2('ConfirmSeparateProperty_sf[0].SeparatePropertyList1_tf[0]'),
+  // §8 community property (determine rights; listed as follows)
+  community_property: p3('CommQuasiProperty_sf[0].ListProperty_ft[0]'),
+  community_property_listed: [
+    p3('CommQuasiProperty_sf[0].PropertyListed_cb[0]'),
+    p3('CommQuasiProperty_sf[0].WhereCPListed_cb[2]'),
+  ],
+  // §10 other relief
+  restore_former_name: [p3('SpecifyFormerName_tf[0]'), p3('RestoreFormerName_cb[0]')],
+  other_requests: [p3('SpecifyOtherRequests_tf[0]'), p3('OtherRequests_cb[0]')],
+  // signature
+  signature_date: p3('SigDate[0]'),
+  petitioner_printed_name: p3('PrintPetitionerName_tf[0]'),
+}
+
 // FormTemplate — pins the official form version in the repo.
 export const FL100_TEMPLATE = {
   id: 'FL-100',
   title: 'Petition — Marriage/Domestic Partnership',
   url: '/forms/FL-100.pdf',
-  // Revision date of the official Judicial Council form (set once the PDF is
-  // downloaded and committed, so the form version is fixed in the repo).
-  revision: null,
-  // logical field_key → REAL PDF field name.
-  // TODO: populate from inspectFormFields('FL-100') after the official fillable
-  // PDF is committed to public/forms/FL-100.pdf. Empty until then.
-  mapping: {},
+  // Revision date printed on the official form (pins the version in-repo).
+  // Footer reads: "FL-100 [Rev. January 1, 2020]".
+  revision: 'Rev. January 1, 2020',
+  mapping: FL100_MAPPING,
 }
 
 registerForm(FL100_TEMPLATE)

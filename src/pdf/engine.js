@@ -24,8 +24,10 @@ import {
 } from 'pdf-lib'
 import fontkit from '@pdf-lib/fontkit'
 
-export async function loadPdf(bytes) {
-  return PDFDocument.load(bytes)
+export async function loadPdf(bytes, opts = {}) {
+  // Official court forms are commonly permission-encrypted (no open password);
+  // ignoreEncryption lets us read & fill their AcroForm fields.
+  return PDFDocument.load(bytes, { ignoreEncryption: true, ...opts })
 }
 
 // Enumerate the PDF's embedded form fields (name + type).
@@ -37,20 +39,27 @@ export function listFields(pdfDoc) {
   }))
 }
 
+// For checkboxes: any non-empty value checks the box, except explicit negatives.
+// (A descriptive value like "Irreconcilable differences" means "check".)
 const isTruthy = (v) => {
   if (typeof v === 'boolean') return v
+  if (v == null) return false
   const s = String(v).trim().toLowerCase()
-  return s === 'true' || s === 'yes' || s === '1' || s === 'on' || s === 'y'
+  if (s === '') return false
+  return !['false', 'no', '0', 'off', 'n'].includes(s)
 }
 
 // Resolve { field_key: value } against a { field_key: pdfFieldName } mapping
-// into { pdfFieldName: value }, dropping empty values and unmapped keys.
+// into { pdfFieldName: value }, dropping empty values and unmapped keys. A
+// mapping target may be a single PDF field name or an array of names (e.g. a
+// caption value repeated on every page). `false` is kept (it unchecks a box).
 export function applyMapping(values, mapping) {
   const out = {}
-  for (const [key, pdfName] of Object.entries(mapping)) {
+  for (const [key, target] of Object.entries(mapping)) {
     const v = values[key]
     if (v === undefined || v === null || v === '') continue
-    out[pdfName] = v
+    const names = Array.isArray(target) ? target : [target]
+    for (const name of names) out[name] = v
   }
   return out
 }
