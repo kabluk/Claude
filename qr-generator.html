@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Menvio — QR Code Generator · Dragon Garden LA</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#0a0a0a;color:#e8dcc8;font-family:'Helvetica Neue',sans-serif;padding:32px 24px}
+h1{font-size:1.4rem;font-weight:300;letter-spacing:.08em;margin-bottom:4px;color:#c9a84c}
+.sub{font-size:.8rem;color:#5a5040;margin-bottom:32px;letter-spacing:.05em}
+
+.controls{background:#111;border:1px solid rgba(201,168,76,.15);border-radius:8px;padding:24px;margin-bottom:32px;display:flex;flex-wrap:wrap;gap:20px;align-items:flex-end}
+.field{display:flex;flex-direction:column;gap:6px}
+.field label{font-size:.72rem;letter-spacing:.1em;color:#c9a84c;text-transform:uppercase}
+.field input{background:#0a0a0a;border:1px solid rgba(201,168,76,.2);border-radius:4px;padding:9px 12px;color:#e8dcc8;font-size:.9rem;width:220px;outline:none}
+.field input:focus{border-color:rgba(201,168,76,.5)}
+.btn{background:#c0272d;color:#fff;border:none;border-radius:4px;padding:10px 22px;font-size:.85rem;cursor:pointer;letter-spacing:.05em;white-space:nowrap;height:38px}
+.btn:hover{background:#a81f25}
+.btn-outline{background:transparent;color:#c9a84c;border:1px solid rgba(201,168,76,.35);border-radius:4px;padding:9px 18px;font-size:.82rem;cursor:pointer;letter-spacing:.04em}
+.btn-outline:hover{background:rgba(201,168,76,.08)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px}
+
+.qr-card{background:#111;border:1px solid rgba(201,168,76,.12);border-radius:8px;padding:20px;text-align:center;position:relative}
+.qr-card:hover{border-color:rgba(201,168,76,.3)}
+.table-label{font-size:.7rem;letter-spacing:.15em;color:#c9a84c;text-transform:uppercase;margin-bottom:12px}
+.table-num{font-size:2rem;font-weight:300;color:#e8dcc8;margin-bottom:16px;line-height:1}
+.qr-wrap{display:flex;justify-content:center;margin-bottom:14px}
+.qr-wrap canvas,.qr-wrap img{border-radius:4px}
+.url-preview{font-size:.65rem;color:#4a4035;word-break:break-all;margin-bottom:12px;line-height:1.4}
+.card-actions{display:flex;gap:8px;justify-content:center}
+.card-btn{flex:1;padding:7px;font-size:.72rem;border-radius:4px;cursor:pointer;letter-spacing:.04em;border:1px solid rgba(201,168,76,.25);background:transparent;color:#c9a84c;transition:.15s}
+.card-btn:hover{background:rgba(201,168,76,.08)}
+.card-btn.dl{background:rgba(192,39,45,.12);border-color:rgba(192,39,45,.3);color:#c0272d}
+.card-btn.dl:hover{background:rgba(192,39,45,.2)}
+
+.print-hint{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.15);border-radius:6px;padding:16px 20px;margin-bottom:24px;font-size:.82rem;color:#8a7e6e;line-height:1.7}
+.print-hint strong{color:#c9a84c}
+
+@media print{
+  body{background:#fff;color:#000;padding:0}
+  .controls,.sub,.print-hint,.card-actions,.no-print{display:none!important}
+  .qr-card{border:1px solid #ddd;break-inside:avoid;background:#fff}
+  .table-label,.table-num{color:#000}
+  .url-preview{color:#666}
+  h1{color:#000}
+}
+</style>
+</head>
+<body>
+
+<h1>QR Code Generator — Dragon Garden LA</h1>
+<p class="sub">Each table gets a unique QR code · Powered by Menvio</p>
+
+<div class="print-hint">
+  <strong>How it works:</strong> Print these QR codes, laminate them, and place on each table.
+  When a guest scans Table 7, they open the menu with <strong>Table 7 pre-set</strong> — their order automatically includes the table number in the WhatsApp message. No typing needed.
+</div>
+
+<div class="controls no-print">
+  <div class="field">
+    <label>Base Menu URL</label>
+    <input type="text" id="base-url" value="https://kabluk.github.io/Claude/dragon-garden-menu.html">
+  </div>
+  <div class="field">
+    <label>Tables (e.g. 1-20 or 1,3,5)</label>
+    <input type="text" id="table-range" value="1-20">
+  </div>
+  <div class="field">
+    <label>QR Size (px)</label>
+    <input type="number" id="qr-size" value="160" min="100" max="400" style="width:100px">
+  </div>
+  <button class="btn" onclick="generate()">Generate QR Codes</button>
+  <button class="btn-outline no-print" onclick="window.print()">&#128424; Print All</button>
+</div>
+
+<div class="grid" id="grid"></div>
+
+<script>
+function parseTables(str) {
+  const tables = [];
+  str.split(',').forEach(part => {
+    part = part.trim();
+    if (part.includes('-')) {
+      const [a, b] = part.split('-').map(Number);
+      for (let i = a; i <= b; i++) tables.push(i);
+    } else if (part) {
+      tables.push(Number(part));
+    }
+  });
+  return tables;
+}
+
+function generate() {
+  const baseUrl = document.getElementById('base-url').value.trim();
+  const tableStr = document.getElementById('table-range').value.trim();
+  const size = parseInt(document.getElementById('qr-size').value) || 160;
+  const tables = parseTables(tableStr);
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+
+  tables.forEach(t => {
+    const url = baseUrl + (baseUrl.includes('?') ? '&' : '?') + 'table=' + t;
+    const card = document.createElement('div');
+    card.className = 'qr-card';
+    card.innerHTML = `
+      <div class="table-label">Table</div>
+      <div class="table-num">${t}</div>
+      <div class="qr-wrap" id="qr-${t}"></div>
+      <div class="url-preview">${url}</div>
+      <div class="card-actions no-print">
+        <button class="card-btn" onclick="copyUrl(${t}, '${encodeURIComponent(url)}');">Copy URL</button>
+        <button class="card-btn dl" onclick="downloadQR(${t});">Download</button>
+      </div>`;
+    grid.appendChild(card);
+
+    new QRCode(document.getElementById('qr-' + t), {
+      text: url,
+      width: size,
+      height: size,
+      colorDark: '#0a0a0a',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.M
+    });
+  });
+}
+
+function copyUrl(table, encodedUrl) {
+  navigator.clipboard.writeText(decodeURIComponent(encodedUrl))
+    .then(() => alert('URL copied for Table ' + table))
+    .catch(() => prompt('Copy this URL:', decodeURIComponent(encodedUrl)));
+}
+
+function downloadQR(table) {
+  const wrap = document.getElementById('qr-' + table);
+  const canvas = wrap.querySelector('canvas');
+  if (!canvas) { alert('QR not ready'); return; }
+  const link = document.createElement('a');
+  link.download = 'table-' + table + '-qr.png';
+  link.href = canvas.toDataURL('image/png');
+  link.click();
+}
+
+window.addEventListener('load', generate);
+</script>
+</body>
+</html>
