@@ -237,6 +237,8 @@ export const translations = {
       fl100Hint: 'Fills the official FL-100 with your case data and stamps a DRAFT watermark.',
       fl100Error: 'FL-100 template is not available yet (PDF/mapping pending).',
       fl105Required: 'Minor children → form FL-105 will be added to the packet.',
+      fl105Continuation:
+        'More than 4 children or different residence histories — a continuation copy of FL-105 is needed.',
       residencyLabel: 'Residency requirement met by',
       resPetitioner: 'Petitioner',
       resRespondent: 'Respondent',
@@ -473,6 +475,8 @@ export const translations = {
       fl100Hint: 'Rellena el FL-100 oficial con los datos de su caso y añade una marca de agua DRAFT.',
       fl100Error: 'La plantilla FL-100 aún no está disponible (PDF/mapeo pendiente).',
       fl105Required: 'Hijos menores → se añadirá el formulario FL-105 al paquete.',
+      fl105Continuation:
+        'Más de 4 hijos o historiales de residencia distintos — se necesita una copia de continuación de FL-105.',
       residencyLabel: 'Requisito de residencia cumplido por',
       resPetitioner: 'Demandante',
       resRespondent: 'Demandado',
@@ -708,6 +712,8 @@ export const translations = {
       fl100Hint: 'Заполняет официальный FL-100 данными дела и ставит водяной знак DRAFT.',
       fl100Error: 'Шаблон FL-100 пока недоступен (PDF/маппинг в процессе).',
       fl105Required: 'Есть несовершеннолетние дети → в пакет добавится форма FL-105.',
+      fl105Continuation:
+        'Больше 4 детей или разные истории проживания — нужна вторая (continuation) копия FL-105.',
       residencyLabel: 'Требование резидентства выполняет',
       resPetitioner: 'Истец',
       resRespondent: 'Ответчик',
@@ -933,6 +939,7 @@ export const translations = {
       fl100Hint: '用您的案件数据填写官方 FL-100，并加盖 DRAFT 水印。',
       fl100Error: 'FL-100 模板尚不可用（PDF／映射待定）。',
       fl105Required: '有未成年子女 → 将向文件包添加表格 FL-105。',
+      fl105Continuation: '子女超过 4 名或居住史不同 — 需要 FL-105 的续页副本。',
       residencyLabel: '满足居住要求的一方',
       resPetitioner: '申请人',
       resRespondent: '被申请人',
@@ -1168,6 +1175,8 @@ export const translations = {
       fl100Hint: 'Điền FL-100 chính thức bằng dữ liệu vụ việc của bạn và đóng dấu mờ DRAFT.',
       fl100Error: 'Mẫu FL-100 hiện chưa có sẵn (PDF/ánh xạ đang chờ).',
       fl105Required: 'Có con chưa thành niên → biểu mẫu FL-105 sẽ được thêm vào bộ hồ sơ.',
+      fl105Continuation:
+        'Hơn 4 con hoặc lịch sử cư trú khác nhau — cần bản tiếp theo (continuation) của FL-105.',
       residencyLabel: 'Bên đáp ứng yêu cầu cư trú',
       resPetitioner: 'Bên yêu cầu',
       resRespondent: 'Bên bị yêu cầu',

@@ -17,5 +17,11 @@ export {
   buildFL100Profile,
   generateFL100,
   computeTimeMarried,
-  fl105Required,
 } from './fl100.js'
+export {
+  FL105_TEMPLATE,
+  buildFL105Profile,
+  generateFL105,
+  fl105Required,
+  fl105NeedsContinuation,
+} from './fl105.js'
