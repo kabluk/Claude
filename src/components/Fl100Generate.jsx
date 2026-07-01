@@ -5,6 +5,7 @@ import { generateFL100 } from '../pdf/fl100.js'
 import { generateFL110 } from '../pdf/fl110.js'
 import { generateFL150 } from '../pdf/fl150.js'
 import { generateFL140 } from '../pdf/fl140.js'
+import { generateFL142, fl142NeedsContinuation } from '../pdf/fl142.js'
 import { generateFL105, fl105Required, fl105NeedsContinuation } from '../pdf/fl105.js'
 
 function download(bytes, filename) {
@@ -30,6 +31,7 @@ export default function Fl100Generate() {
   const state = { user, caseRec, answers }
   const needsFl105 = fl105Required({ caseRec })
   const continuation = needsFl105 && fl105NeedsContinuation(state)
+  const fl142Continuation = fl142NeedsContinuation(state)
   const residency = getAnswer('residency_party') || 'petitioner' // §2 default: Petitioner
 
   const onGenerate = async () => {
@@ -41,10 +43,12 @@ export default function Fl100Generate() {
       const fl110 = await generateFL110(state)
       download(fl110.bytes, 'FL-110-DRAFT.pdf')
       // Financial disclosure set (SERVED on the other party, NOT filed with the
-      // court): FL-140 (cover declaration) + FL-150 (Income & Expense). FL-142
-      // (Schedule of Assets and Debts) is listed on FL-140 but not yet generated.
+      // court): FL-140 (cover declaration) + FL-142 (Schedule of Assets and
+      // Debts) + FL-150 (Income & Expense).
       const fl140 = await generateFL140(state)
       download(fl140.bytes, 'FL-140-DRAFT.pdf')
+      const fl142 = await generateFL142(state)
+      download(fl142.bytes, 'FL-142-DRAFT.pdf')
       const fl150 = await generateFL150(state)
       download(fl150.bytes, 'FL-150-DRAFT.pdf')
       if (needsFl105) {
@@ -87,6 +91,7 @@ export default function Fl100Generate() {
       {status === 'error' && <p className="fl100__error">{c.fl100Error}</p>}
       {needsFl105 && <p className="fl100__fl105">⚠ {c.fl105Required}</p>}
       {continuation && <p className="fl100__fl105">⚠ {c.fl105Continuation}</p>}
+      {fl142Continuation && <p className="fl100__fl105">⚠ {c.fl142Continuation}</p>}
     </div>
   )
 }

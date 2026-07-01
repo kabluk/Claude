@@ -247,6 +247,8 @@ export const translations = {
       fl105Required: 'Minor children → form FL-105 will be added to the packet.',
       fl105Continuation:
         'More than 4 children or different residence histories — a continuation copy of FL-105 is needed.',
+      fl142Continuation:
+        'A category has more items than the form has rows — attach a numbered FL-142 continuation sheet for the extras.',
       residencyLabel: 'Residency requirement met by',
       resPetitioner: 'Petitioner',
       resRespondent: 'Respondent',
@@ -493,6 +495,8 @@ export const translations = {
       fl105Required: 'Hijos menores → se añadirá el formulario FL-105 al paquete.',
       fl105Continuation:
         'Más de 4 hijos o historiales de residencia distintos — se necesita una copia de continuación de FL-105.',
+      fl142Continuation:
+        'Una categoría tiene más elementos que filas — adjunte una hoja de continuación FL-142 numerada para los adicionales.',
       residencyLabel: 'Requisito de residencia cumplido por',
       resPetitioner: 'Demandante',
       resRespondent: 'Demandado',
@@ -738,6 +742,8 @@ export const translations = {
       fl105Required: 'Есть несовершеннолетние дети → в пакет добавится форма FL-105.',
       fl105Continuation:
         'Больше 4 детей или разные истории проживания — нужна вторая (continuation) копия FL-105.',
+      fl142Continuation:
+        'В категории больше записей, чем строк в форме — приложите нумерованный лист-продолжение FL-142 для остальных.',
       residencyLabel: 'Требование резидентства выполняет',
       resPetitioner: 'Истец',
       resRespondent: 'Ответчик',
@@ -972,6 +978,7 @@ export const translations = {
       fl100Error: 'FL-100 模板尚不可用（PDF／映射待定）。',
       fl105Required: '有未成年子女 → 将向文件包添加表格 FL-105。',
       fl105Continuation: '子女超过 4 名或居住史不同 — 需要 FL-105 的续页副本。',
+      fl142Continuation: '某一类别的条目多于表格行数 — 请附上编号的 FL-142 续页填写其余条目。',
       residencyLabel: '满足居住要求的一方',
       resPetitioner: '申请人',
       resRespondent: '被申请人',
@@ -1217,6 +1224,8 @@ export const translations = {
       fl105Required: 'Có con chưa thành niên → biểu mẫu FL-105 sẽ được thêm vào bộ hồ sơ.',
       fl105Continuation:
         'Hơn 4 con hoặc lịch sử cư trú khác nhau — cần bản tiếp theo (continuation) của FL-105.',
+      fl142Continuation:
+        'Một danh mục có nhiều mục hơn số dòng trong biểu mẫu — hãy đính kèm trang tiếp theo FL-142 có đánh số cho các mục còn lại.',
       residencyLabel: 'Bên đáp ứng yêu cầu cư trú',
       resPetitioner: 'Bên yêu cầu',
       resRespondent: 'Bên bị yêu cầu',
