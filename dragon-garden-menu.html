@@ -1110,7 +1110,7 @@ const SUPABASE_URL = '';
 const SUPABASE_ANON_KEY = '';
 // ──────────────────────────────────────────────────────────
 
-const RESTAURANT = {name:'Dragon Garden LA', phone:'18189719922'};
+const RESTAURANT = {id:'dragon-garden', name:'Dragon Garden LA', phone:'18189719922'};
 const cart = {};
 const TABLE = new URLSearchParams(location.search).get('table') || null;
 const sb = (SUPABASE_URL && SUPABASE_ANON_KEY)
@@ -1150,7 +1150,7 @@ async function sendWA() {
   if (sb) {
     const orderItems = entries.map(([name, {price, qty}]) => ({name, price, qty}));
     sb.from('orders').insert({
-      restaurant_id: 'dragon-garden',
+      restaurant_id: RESTAURANT.id,
       table_num: TABLE,
       items: orderItems,
       total: parseFloat(total.toFixed(2)),
