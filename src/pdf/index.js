@@ -27,6 +27,7 @@ export {
 } from './fl105.js'
 export { FL110_TEMPLATE, buildFL110Profile, generateFL110 } from './fl110.js'
 export { FL140_TEMPLATE, buildFL140Profile, generateFL140 } from './fl140.js'
+export { FL141_TEMPLATE, buildFL141Profile, generateFL141 } from './fl141.js'
 export { FL142_TEMPLATE, buildFL142Profile, generateFL142, fl142NeedsContinuation } from './fl142.js'
 export { FL150_TEMPLATE, buildFL150Profile, generateFL150 } from './fl150.js'
 export { FL180_TEMPLATE, buildFL180Profile, generateFL180 } from './fl180.js'
