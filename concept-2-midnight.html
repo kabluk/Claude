@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menvio — The QR Menu Your Guests Will Love</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:       #f2f4f8;
+  --text:     #090e1a;
+  --card:     #ffffff;
+  --primary:  #0d1f3c;
+  --accent:   #b8973a;
+  --cta:      #b8261a;
+  --muted:    #6b7a8d;
+  --border:   rgba(9,14,26,.08);
+  --ff-head:  'Cormorant Garamond', Georgia, serif;
+  --ff-body:  'Inter', system-ui, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--ff-body); font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+
+/* ── NAV ── */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(18px) saturate(180%);
+  -webkit-backdrop-filter: blur(18px) saturate(180%);
+  background: rgba(255,255,255,0.78);
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 6vw; height: 68px;
+}
+.nav-logo { font-family: var(--ff-head); font-weight: 700; font-size: 1.55rem; color: var(--primary); letter-spacing: -.02em; }
+.nav-links { display: flex; gap: 2.2rem; list-style: none; }
+.nav-links a { font-size: .82rem; font-weight: 500; color: var(--text); text-decoration: none; letter-spacing: .03em; text-transform: uppercase; opacity: .75; transition: opacity .2s; }
+.nav-links a:hover { opacity: 1; }
+.btn { display: inline-block; font-family: var(--ff-body); font-size: .82rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; text-decoration: none; border: none; cursor: pointer; transition: opacity .2s, transform .15s; }
+.btn:hover { opacity: .88; transform: translateY(-1px); }
+.btn-red { background: var(--cta); color: #fff; padding: .6rem 1.4rem; border-radius: 4px; }
+.btn-ghost { background: transparent; color: var(--primary); padding: .6rem 1.4rem; border-radius: 4px; border: 1.5px solid rgba(13,31,60,.35); }
+.btn-white { background: #fff; color: var(--primary); padding: .6rem 1.4rem; border-radius: 4px; }
+.btn-gold-outline { background: transparent; color: var(--accent); padding: .6rem 1.4rem; border-radius: 4px; border: 1.5px solid var(--accent); }
+
+/* ── HERO ── */
+.hero {
+  display: grid; grid-template-columns: 1fr 1fr;
+  min-height: calc(100vh - 68px);
+  padding: 0 6vw;
+  align-items: center; gap: 4rem;
+}
+.hero-left { padding: 5rem 0; }
+.hero-line { width: 48px; height: 1.5px; background: var(--accent); margin-bottom: 1.4rem; }
+.hero-tag {
+  display: inline-block; font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--accent); border: 1px solid rgba(184,151,58,.35); padding: .3rem .85rem; border-radius: 2px; margin-bottom: 1.6rem;
+}
+.hero-h1 {
+  font-family: var(--ff-head); font-weight: 700; font-size: clamp(2.8rem, 4.5vw, 5rem);
+  line-height: 1.06; letter-spacing: -.025em; color: var(--primary); margin-bottom: 1.4rem;
+}
+.hero-sub { font-size: .95rem; color: var(--muted); max-width: 400px; margin-bottom: 2.4rem; line-height: 1.75; }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+/* Phone mockup */
+.hero-right { display: flex; justify-content: center; align-items: center; }
+.phone {
+  width: 220px; height: 420px; background: var(--primary); border-radius: 36px;
+  box-shadow: 0 0 60px rgba(184,151,58,.28), 0 24px 60px rgba(9,14,26,.35);
+  padding: 18px 14px 24px; display: flex; flex-direction: column; gap: 0;
+  transform: perspective(900px) rotateY(-6deg) rotateX(2deg) translateY(-8px);
+  position: relative; overflow: hidden;
+}
+.phone::before { content:''; position:absolute; inset:0; border-radius:36px; border:1px solid rgba(184,151,58,.25); pointer-events:none; }
+.phone-bar { height: 3px; background: rgba(255,255,255,.15); border-radius: 2px; margin-bottom: 16px; }
+.phone-logo-line { font-family: var(--ff-head); font-size: .75rem; color: rgba(255,255,255,.5); letter-spacing: .12em; text-transform: uppercase; margin-bottom: 14px; text-align: center; }
+.phone-card { border-radius: 10px; margin-bottom: 8px; padding: 10px; }
+.phone-card:nth-child(3) { background: rgba(184,151,58,.18); height: 72px; }
+.phone-card:nth-child(4) { background: rgba(255,255,255,.07); height: 60px; }
+.phone-card:nth-child(5) { background: rgba(255,255,255,.07); height: 60px; }
+.phone-card-label { font-size: .52rem; color: rgba(255,255,255,.45); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 3px; }
+.phone-card-title { font-family: var(--ff-head); font-size: .85rem; color: rgba(255,255,255,.9); font-weight: 600; }
+.phone-card-price { font-size: .62rem; color: var(--accent); margin-top: 2px; }
+.phone-home { width: 36px; height: 5px; background: rgba(255,255,255,.2); border-radius: 3px; margin: auto 0 0; align-self: center; }
+
+/* ── STATS BAR ── */
+.stats-bar {
+  background: var(--primary); padding: 3.5rem 6vw;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+}
+.stat { text-align: center; position: relative; }
+.stat + .stat::before {
+  content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  height: 48px; width: 1px; background: rgba(255,255,255,.12);
+}
+.stat-number { font-family: var(--ff-head); font-size: 3.2rem; font-weight: 700; color: var(--accent); line-height: 1; letter-spacing: -.02em; }
+.stat-label { font-size: .75rem; font-weight: 500; color: rgba(255,255,255,.45); letter-spacing: .1em; text-transform: uppercase; margin-top: .4rem; }
+
+/* ── FEATURES ── */
+.features { padding: 7rem 6vw; }
+.section-tag { font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; }
+.section-h2 { font-family: var(--ff-head); font-weight: 600; font-size: clamp(2rem, 3.5vw, 3.2rem); color: var(--primary); letter-spacing: -.02em; margin-bottom: 3.5rem; max-width: 520px; line-height: 1.12; }
+.feature-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.8rem; }
+.feature-card {
+  background: var(--card); border-radius: 8px; padding: 2.4rem 2rem;
+  border: 1px solid var(--border); position: relative; overflow: hidden;
+  transition: box-shadow .25s, transform .25s;
+}
+.feature-card:hover { box-shadow: 0 12px 40px rgba(9,14,26,.09); transform: translateY(-3px); }
+.feature-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+}
+.feature-icon { font-size: 1.5rem; margin-bottom: 1.2rem; }
+.feature-h3 { font-family: var(--ff-head); font-size: 1.35rem; font-weight: 600; color: var(--primary); margin-bottom: .7rem; line-height: 1.2; }
+.feature-p { font-size: .88rem; color: var(--muted); line-height: 1.7; }
+
+/* ── QUOTE ── */
+.quote-section {
+  background: var(--primary);
+  background-image: radial-gradient(ellipse 80% 60% at 50% 50%, rgba(184,151,58,.07) 0%, transparent 70%);
+  padding: 7rem 6vw; text-align: center;
+}
+.quote-mark { font-family: var(--ff-head); font-size: 6rem; line-height: .6; color: rgba(184,151,58,.18); margin-bottom: 1rem; }
+.quote-text {
+  font-family: var(--ff-head); font-size: clamp(1.6rem, 3vw, 2.6rem);
+  font-style: italic; font-weight: 400; color: rgba(255,255,255,.92);
+  max-width: 800px; margin: 0 auto 2rem; line-height: 1.45; letter-spacing: -.01em;
+}
+.quote-attr { font-size: .78rem; font-weight: 500; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.quote-rule { width: 40px; height: 1px; background: var(--accent); margin: 1.4rem auto; }
+
+/* ── PRICING ── */
+.pricing { padding: 7rem 6vw; }
+.pricing-h2 { font-family: var(--ff-head); font-weight: 600; font-size: clamp(2rem, 3.2vw, 2.9rem); color: var(--primary); letter-spacing: -.02em; margin-bottom: 3.5rem; letter-spacing:-.02em; }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; align-items: start; }
+.price-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 2.4rem 2rem; }
+.price-card.featured { background: var(--primary); border-color: var(--primary); }
+.price-badge { display: inline-block; font-size: .65rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; background: var(--accent); color: #fff; padding: .25rem .7rem; border-radius: 2px; margin-bottom: 1.2rem; }
+.price-tier { font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: .5rem; }
+.price-card.featured .price-tier { color: rgba(255,255,255,.5); }
+.price-amount { font-family: var(--ff-head); font-size: 3rem; font-weight: 700; color: var(--primary); line-height: 1; margin-bottom: 1.6rem; }
+.price-card.featured .price-amount { color: var(--accent); }
+.price-amount span { font-family: var(--ff-body); font-size: .8rem; font-weight: 400; color: var(--muted); }
+.price-card.featured .price-amount span { color: rgba(255,255,255,.45); }
+.price-list { list-style: none; margin-bottom: 2rem; }
+.price-list li { font-size: .84rem; color: var(--text); padding: .45rem 0; border-bottom: 1px solid var(--border); display: flex; gap: .6rem; }
+.price-list li::before { content: '·'; color: var(--accent); font-weight: 700; flex-shrink: 0; }
+.price-card.featured .price-list li { color: rgba(255,255,255,.8); border-bottom-color: rgba(255,255,255,.08); }
+.price-btn { width: 100%; padding: .75rem; font-family: var(--ff-body); font-size: .82rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; border: none; border-radius: 4px; cursor: pointer; transition: opacity .2s, transform .15s; }
+.price-btn:hover { opacity: .88; transform: translateY(-1px); }
+.price-btn-red { background: var(--cta); color: #fff; }
+.price-btn-outline { background: transparent; color: var(--primary); border: 1.5px solid rgba(13,31,60,.25); }
+.price-btn-gold { background: var(--accent); color: #fff; }
+
+/* ── CTA SPLIT ── */
+.cta-split { display: grid; grid-template-columns: 1fr 1fr; min-height: 560px; }
+.cta-left {
+  background: var(--primary); padding: 6rem 5vw;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.cta-left h2 { font-family: var(--ff-head); font-size: clamp(2rem, 3vw, 3rem); font-weight: 700; color: #fff; letter-spacing: -.025em; margin-bottom: 1rem; line-height: 1.1; }
+.cta-left p { font-size: .9rem; color: rgba(255,255,255,.55); max-width: 340px; line-height: 1.75; }
+.cta-rule { width: 40px; height: 2px; background: var(--accent); margin: 2rem 0; }
+.cta-right { background: var(--card); padding: 6rem 5vw; display: flex; flex-direction: column; justify-content: center; }
+.cta-right h3 { font-family: var(--ff-head); font-size: 1.5rem; font-weight: 600; color: var(--primary); margin-bottom: 2rem; }
+.form-group { margin-bottom: 1.1rem; }
+.form-group label { display: block; font-size: .72rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: .4rem; }
+.form-group input, .form-group select {
+  width: 100%; padding: .7rem .9rem; font-family: var(--ff-body); font-size: .88rem;
+  background: #f8f9fb; border: 1px solid rgba(9,14,26,.12); border-radius: 4px; color: var(--text);
+  transition: border-color .2s;
+}
+.form-group input:focus, .form-group select:focus { outline: none; border-color: var(--accent); background: #fff; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.submit-btn {
+  width: 100%; margin-top: .8rem; padding: .85rem; background: var(--cta); color: #fff;
+  font-family: var(--ff-body); font-size: .85rem; font-weight: 600; letter-spacing: .06em; text-transform: uppercase;
+  border: none; border-radius: 4px; cursor: pointer; transition: opacity .2s, transform .15s;
+}
+.submit-btn:hover { opacity: .88; transform: translateY(-1px); }
+
+/* ── FOOTER ── */
+footer {
+  background: #090e1a; padding: 2.8rem 6vw;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid rgba(255,255,255,.06);
+}
+.footer-logo { font-family: var(--ff-head); font-size: 1.4rem; font-weight: 700; color: var(--accent); letter-spacing: -.01em; }
+.footer-copy { font-size: .75rem; color: rgba(255,255,255,.3); }
+.footer-links { display: flex; gap: 1.8rem; }
+.footer-links a { font-size: .72rem; font-weight: 500; letter-spacing: .06em; text-transform: uppercase; color: rgba(255,255,255,.35); text-decoration: none; transition: color .2s; }
+.footer-links a:hover { color: rgba(255,255,255,.7); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Menvio</div>
+  <ul class="nav-links">
+    <li><a href="#features">Features</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="#contact" class="btn btn-red">Start Free Trial</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-line"></div>
+    <span class="hero-tag">QR Menu Platform &middot; Est. 2024</span>
+    <h1 class="hero-h1">The QR menu your guests will love. Built in 48 hours.</h1>
+    <p class="hero-sub">Zero commission ordering. EU allergen compliance. Real food photography. Launched while your competition reprints paper menus.</p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-red">Start Free Trial</a>
+      <a href="#features" class="btn btn-ghost">View Demo</a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="phone">
+      <div class="phone-bar"></div>
+      <div class="phone-logo-line">Menvio</div>
+      <div class="phone-card" style="background:rgba(184,151,58,.16);height:72px;border-radius:10px;padding:10px;">
+        <div class="phone-card-label">Featured</div>
+        <div class="phone-card-title">Peking Duck</div>
+        <div class="phone-card-price">$38.00</div>
+      </div>
+      <div class="phone-card" style="background:rgba(255,255,255,.07);height:60px;border-radius:10px;padding:10px;">
+        <div class="phone-card-label">Main</div>
+        <div class="phone-card-title">Hot Pot Set</div>
+        <div class="phone-card-price">$26.00</div>
+      </div>
+      <div class="phone-card" style="background:rgba(255,255,255,.07);height:60px;border-radius:10px;padding:10px;">
+        <div class="phone-card-label">Main</div>
+        <div class="phone-card-title">Wagyu Slider</div>
+        <div class="phone-card-price">$22.00</div>
+      </div>
+      <div class="phone-card" style="background:rgba(255,255,255,.05);height:50px;border-radius:10px;padding:10px;">
+        <div class="phone-card-label">Dessert</div>
+        <div class="phone-card-title">Mango Pudding</div>
+        <div class="phone-card-price">$9.00</div>
+      </div>
+      <div class="phone-home"></div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat">
+    <div class="stat-number">48h</div>
+    <div class="stat-label">Launch Time</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">$0</div>
+    <div class="stat-label">Commission</div>
+  </div>
+  <div class="stat">
+    <div class="stat-number">&euro;20k</div>
+    <div class="stat-label">Fine Prevented</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="section-tag">Why Menvio</div>
+  <h2 class="section-h2">Everything a modern restaurant needs. Nothing it doesn&rsquo;t.</h2>
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="feature-icon">&#128172;</div>
+      <h3 class="feature-h3">WhatsApp Orders &mdash; 0% Commission</h3>
+      <p class="feature-p">Guests order directly via WhatsApp. You keep every penny. No Deliveroo, no UberEats, no commission. Your margin, intact.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#9989;</div>
+      <h3 class="feature-h3">EU Allergen Compliance</h3>
+      <p class="feature-p">Auto-generated allergen badges on every dish. Stay fully compliant with EU regulation &mdash; avoid fines up to &euro;20,000.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon">&#9889;</div>
+      <h3 class="feature-h3">Live in 48 Hours</h3>
+      <p class="feature-p">We design, photograph, and launch your complete digital menu. Guaranteed 48-hour delivery from first contact to live QR code.</p>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <div class="quote-mark">&ldquo;</div>
+  <p class="quote-text">Hot Pot orders via WhatsApp went up 40% in the first week. I update prices from my phone &mdash; no more $300 reprints.</p>
+  <div class="quote-rule"></div>
+  <div class="quote-attr">David Chen &middot; Dragon Garden LA</div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <h2 class="pricing-h2">Simple, transparent pricing.</h2>
+  <div class="pricing-grid">
+
+    <div class="price-card">
+      <div class="price-tier">Starter</div>
+      <div class="price-amount">$49<span>&nbsp;/ mo</span></div>
+      <ul class="price-list">
+        <li>6 design templates</li>
+        <li>WhatsApp ordering, zero commission</li>
+        <li>Unlimited menu updates</li>
+        <li>QR code + NFC card</li>
+        <li>Text-only menu</li>
+      </ul>
+      <button class="price-btn price-btn-outline">Get Started</button>
+    </div>
+
+    <div class="price-card featured">
+      <div class="price-badge">Most Popular</div>
+      <div class="price-tier">Pro</div>
+      <div class="price-amount">$69<span>&nbsp;/ mo</span></div>
+      <ul class="price-list">
+        <li>We build everything in 48h</li>
+        <li>Real food photography</li>
+        <li>2 languages</li>
+        <li>Analytics dashboard</li>
+        <li>EU allergen badges</li>
+        <li>Priority support</li>
+      </ul>
+      <button class="price-btn price-btn-gold">Get Started</button>
+    </div>
+
+    <div class="price-card">
+      <div class="price-tier">Concierge</div>
+      <div class="price-amount">$149<span>&nbsp;/ mo</span></div>
+      <ul class="price-list">
+        <li>Everything in Pro</li>
+        <li>AI food photos we create</li>
+        <li>Monthly updates we handle</li>
+        <li>5 languages</li>
+        <li>Dedicated account manager</li>
+      </ul>
+      <button class="price-btn price-btn-outline">Get Started</button>
+    </div>
+
+  </div>
+</section>
+
+<!-- CTA SPLIT -->
+<section class="cta-split" id="contact">
+  <div class="cta-left">
+    <h2>Ready to go digital?</h2>
+    <div class="cta-rule"></div>
+    <p>Join restaurants across Europe and North America who left paper menus &mdash; and commission fees &mdash; behind for good. Your menu, live in 48 hours.</p>
+  </div>
+  <div class="cta-right">
+    <h3>Launch My Menu</h3>
+    <form onsubmit="return false;">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" placeholder="David Chen">
+        </div>
+        <div class="form-group">
+          <label for="restaurant">Restaurant Name</label>
+          <input type="text" id="restaurant" placeholder="Dragon Garden LA">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone Number</label>
+        <input type="tel" id="phone" placeholder="+1 (555) 000-0000">
+      </div>
+      <div class="form-group">
+        <label for="plan">Choose a Plan</label>
+        <select id="plan">
+          <option value="">Select a plan&hellip;</option>
+          <option value="starter">Starter &mdash; $49/mo</option>
+          <option value="pro">Pro &mdash; $69/mo (Most Popular)</option>
+          <option value="concierge">Concierge &mdash; $149/mo</option>
+        </select>
+      </div>
+      <button type="submit" class="submit-btn">Launch My Menu &rarr;</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Menvio</div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+  </div>
+  <div class="footer-copy">&copy; 2024 Menvio. All rights reserved.</div>
+</footer>
+
+</body>
+</html>
