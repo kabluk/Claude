@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dragon Garden — Family Restaurant &amp; Lounge · Glendale CA</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg: #080604;
+  --card: #110e09;
+  --card2: #1a1410;
+  --text: #f0ebe3;
+  --muted: #6b5f52;
+  --accent: #C41E3A;
+  --gold: #C8A84B;
+  --accent-light: rgba(196,30,58,0.08);
+  --border: rgba(255,255,255,0.06);
+  --ease: cubic-bezier(.16,1,.3,1);
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Outfit', sans-serif;
+  overflow-x: hidden;
+}
+
+/* ── NOISE OVERLAY ── */
+body::before {
+  content: '';
+  position: fixed; inset: 0; z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.04;
+}
+
+/* ── CURSOR GLOW ── */
+#glow {
+  position: fixed; width: 500px; height: 500px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(196,30,58,0.12) 0%, transparent 70%);
+  pointer-events: none; z-index: 9998;
+  transition: opacity 0.3s;
+}
+
+/* ── LOADER ── */
+#loader {
+  position: fixed; inset: 0; z-index: 10000;
+  background: var(--bg);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 20px;
+  transition: opacity 0.6s;
+}
+.loader-text {
+  font-family: 'Cinzel', serif;
+  font-size: 22px;
+  letter-spacing: 0.3em;
+  color: var(--gold);
+}
+.loader-bar {
+  width: 160px; height: 1px;
+  background: var(--border);
+  position: relative; overflow: hidden;
+}
+.loader-bar::after {
+  content: '';
+  position: absolute; left: -100%; top: 0;
+  width: 100%; height: 100%;
+  background: var(--accent);
+  animation: barslide 1.4s var(--ease) infinite;
+}
+@keyframes barslide { to { left: 100%; } }
+.loader-sub {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.15em;
+}
+
+/* ── NAVBAR ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 20px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: all 0.4s var(--ease);
+}
+nav.scrolled {
+  background: rgba(8,6,4,0.92);
+  backdrop-filter: blur(20px);
+  padding: 14px 48px;
+  border-bottom: 1px solid var(--border);
+}
+.nav-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: 0.12em;
+  text-decoration: none;
+}
+.nav-logo span { color: var(--gold); }
+.nav-links { display: flex; gap: 36px; align-items: center; }
+.nav-links a {
+  font-size: 12px; font-weight: 500;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); text-decoration: none;
+  transition: color 0.3s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-cta {
+  padding: 9px 22px;
+  background: var(--accent);
+  color: #fff !important;
+  border-radius: 3px;
+  font-weight: 600 !important;
+  transition: all 0.4s var(--ease) !important;
+}
+.nav-cta:hover { background: #a01830 !important; transform: translateY(-1px); }
+
+/* ── HERO ── */
+.hero { height: 300vh; position: relative; }
+.hero-sticky {
+  position: sticky; top: 0; height: 100vh; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+}
+#heroCanvas {
+  position: absolute; top: 0; left: 0;
+  display: block; z-index: 1;
+}
+.hero-content {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column;
+  align-items: center; text-align: center; gap: 0;
+}
+.hero h1 {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(52px, 8vw, 110px);
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: 0.08em;
+  color: var(--text);
+  text-shadow: 0 4px 30px rgba(0,0,0,.9), 0 2px 10px rgba(0,0,0,.7), 0 0 60px rgba(0,0,0,.5);
+  margin-bottom: 6px;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--gold);
+}
+.hero .tagline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--text);
+  background: rgba(12,10,8,0.72);
+  padding: 5px 16px;
+  display: inline-block;
+  backdrop-filter: blur(4px);
+  margin-bottom: 5px;
+}
+.hero .sub {
+  font-size: 13px;
+  color: rgba(240,235,227,0.75);
+  background: rgba(12,10,8,0.72);
+  padding: 4px 14px;
+  display: inline-block;
+  backdrop-filter: blur(4px);
+  letter-spacing: 0.06em;
+  margin-bottom: 18px;
+}
+.hero .scroll-hint {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: rgba(12,10,8,0.72);
+  padding: 4px 14px;
+  display: inline-block;
+  backdrop-filter: blur(4px);
+  display: flex; align-items: center; gap: 8px;
+}
+.scroll-arrow { animation: bounce 2s infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(4px)} }
+
+/* ── MARQUEE ── */
+.marquee-section {
+  background: var(--accent);
+  padding: 14px 0;
+  overflow: hidden;
+  position: relative;
+}
+.marquee-track { display: flex; white-space: nowrap; }
+.marquee-content {
+  display: flex; gap: 48px; padding-right: 48px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  flex-shrink: 0;
+}
+.marquee-content span { display: flex; align-items: center; gap: 48px; }
+.marquee-dot {
+  width: 4px; height: 4px; border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  display: inline-block;
+}
+
+/* ── SECTIONS ── */
+section { padding: 120px 48px; max-width: 1280px; margin: 0 auto; }
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(32px, 4vw, 56px);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--text);
+  margin-bottom: 24px;
+}
+.section-body {
+  font-size: 16px; line-height: 1.8;
+  color: #b8a99a;
+  max-width: 600px;
+}
+
+/* ── MENU ACCORDION ── */
+.accordion-wrap {
+  display: flex;
+  gap: 3px;
+  height: 480px;
+  margin-top: 64px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.acc-panel {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: flex 0.6s cubic-bezier(.16,1,.3,1);
+  background: var(--card);
+}
+.acc-panel:hover, .acc-panel.active { flex: 5; }
+.acc-bg {
+  position: absolute; inset: 0;
+  background-size: cover;
+  background-position: center;
+  transition: transform 0.6s var(--ease);
+}
+.acc-panel:hover .acc-bg { transform: scale(1.05); }
+.acc-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,6,4,0.95) 0%, rgba(8,6,4,0.4) 50%, transparent 100%);
+}
+.acc-content {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 28px 24px;
+  opacity: 0;
+  transform: translateY(12px);
+  transition: all 0.4s var(--ease) 0.1s;
+}
+.acc-panel:hover .acc-content,
+.acc-panel.active .acc-content {
+  opacity: 1; transform: translateY(0);
+}
+.acc-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent); margin-bottom: 6px;
+}
+.acc-title {
+  font-family: 'Cinzel', serif;
+  font-size: 22px; font-weight: 700;
+  color: var(--text); margin-bottom: 8px;
+}
+.acc-desc { font-size: 13px; color: #9e8c78; line-height: 1.6; }
+.acc-tab-label {
+  position: absolute;
+  bottom: 50%; left: 50%;
+  transform: translate(-50%, 50%) rotate(-90deg);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--muted);
+  white-space: nowrap;
+  transition: opacity 0.3s;
+}
+.acc-panel:hover .acc-tab-label,
+.acc-panel.active .acc-tab-label { opacity: 0; }
+
+/* ── STATS ODOMETER ── */
+.stats-section {
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 80px 48px;
+}
+.stats-inner {
+  max-width: 1280px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+}
+.stat-item {
+  padding: 0 40px;
+  border-right: 1px solid var(--border);
+  text-align: center;
+}
+.stat-item:last-child { border-right: none; }
+.stat-number {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 52px; font-weight: 700;
+  color: var(--text);
+  display: flex; align-items: flex-start; justify-content: center;
+  gap: 0;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+.odo-wrap {
+  display: inline-flex;
+  overflow: hidden;
+  height: 52px;
+  align-items: flex-start;
+}
+.odo-strip {
+  display: flex; flex-direction: column;
+  transition: transform 1.2s cubic-bezier(.16,1,.3,1);
+}
+.odo-digit {
+  height: 52px; line-height: 52px;
+  font-size: 52px; font-weight: 700;
+}
+.stat-suffix {
+  font-size: 28px; font-weight: 700; color: var(--accent);
+  align-self: flex-start; padding-top: 4px;
+}
+.stat-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+/* ── STICKY STACK ── */
+.sticky-section {
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 100vh;
+}
+.sticky-left {
+  position: sticky; top: 0;
+  height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--card);
+  padding: 80px;
+}
+.sticky-mockup {
+  width: 100%;
+  max-width: 380px;
+  background: var(--card2);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+}
+.mock-header {
+  background: var(--accent);
+  padding: 16px 20px;
+  display: flex; align-items: center; gap: 10px;
+}
+.mock-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 14px; font-weight: 700;
+  color: #fff; letter-spacing: 0.1em;
+}
+.mock-body { padding: 20px; }
+.mock-step {
+  display: none;
+}
+.mock-step.active { display: block; }
+.mock-step-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 40px; font-weight: 700;
+  color: var(--accent); opacity: 0.2;
+  line-height: 1; margin-bottom: 8px;
+}
+.mock-step-title {
+  font-family: 'Cinzel', serif;
+  font-size: 18px; font-weight: 600;
+  color: var(--text); margin-bottom: 8px;
+}
+.mock-step-text { font-size: 13px; color: #9e8c78; line-height: 1.6; }
+.mock-step-img {
+  width: 100%; height: 160px;
+  background: var(--bg);
+  border-radius: 8px;
+  margin-top: 16px;
+  display: flex; align-items: center; justify-content: center;
+}
+
+.sticky-right { padding: 120px 80px; }
+.step-card {
+  padding: 48px 0;
+  border-bottom: 1px solid var(--border);
+  opacity: 0.35;
+  transition: opacity 0.4s var(--ease);
+}
+.step-card.active { opacity: 1; }
+.step-card:last-child { border-bottom: none; }
+.step-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.2em;
+  color: var(--accent); margin-bottom: 12px;
+}
+.step-title {
+  font-family: 'Cinzel', serif;
+  font-size: 28px; font-weight: 600;
+  color: var(--text); margin-bottom: 12px;
+}
+.step-body { font-size: 15px; color: #9e8c78; line-height: 1.8; }
+
+/* ── SPOTLIGHT CARDS ── */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2px;
+  margin-top: 64px;
+}
+.spot-card {
+  position: relative;
+  background: var(--card);
+  padding: 40px;
+  overflow: hidden;
+  cursor: default;
+  transition: all 0.4s var(--ease);
+}
+.spot-card::before {
+  content: ''; position: absolute; inset: -1px;
+  background: radial-gradient(circle 220px at var(--mx,50%) var(--my,50%), rgba(196,30,58,0.07), transparent 70%);
+  opacity: 0; transition: opacity 0.3s;
+  pointer-events: none;
+}
+.spot-card:hover::before { opacity: 1; }
+.spot-card:hover {
+  transform: perspective(800px) rotateY(calc((var(--rx,0) - 0.5) * 6deg)) rotateX(calc((0.5 - var(--ry,0)) * 6deg));
+}
+.spot-card-icon {
+  width: 48px; height: 48px;
+  background: var(--accent-light);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px;
+  color: var(--accent);
+}
+.spot-card-price {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.15em;
+  color: var(--gold); margin-bottom: 8px;
+}
+.spot-card-title {
+  font-family: 'Cinzel', serif;
+  font-size: 20px; font-weight: 600;
+  color: var(--text); margin-bottom: 10px;
+}
+.spot-card-desc { font-size: 14px; color: #9e8c78; line-height: 1.7; }
+
+/* ── ABOUT ── */
+.about-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.about-img {
+  width: 100%; aspect-ratio: 4/5;
+  background: var(--card);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+.about-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: grayscale(20%) contrast(1.05);
+}
+.about-img-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(8,6,4,0.5) 0%, transparent 50%);
+}
+.about-tag {
+  position: absolute; bottom: 20px; left: 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(8,6,4,0.8);
+  padding: 6px 14px;
+  backdrop-filter: blur(4px);
+}
+
+/* ── CTA SECTION ── */
+.cta-section {
+  text-align: center;
+  padding: 140px 48px;
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  overflow: hidden;
+}
+.cta-section::before {
+  content: '';
+  position: absolute;
+  top: -200px; left: 50%; transform: translateX(-50%);
+  width: 600px; height: 600px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(196,30,58,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cta-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(36px, 5vw, 72px);
+  font-weight: 700; line-height: 1.1;
+  color: var(--text); margin-bottom: 20px;
+}
+.cta-sub {
+  font-size: 16px; color: #9e8c78;
+  margin-bottom: 48px; letter-spacing: 0.04em;
+}
+.cta-buttons { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  padding: 16px 40px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 3px;
+  display: inline-block;
+  transition: all 0.4s var(--ease);
+}
+.btn-primary:hover { background: #a01830; transform: translateY(-2px); }
+.btn-secondary {
+  padding: 16px 40px;
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 13px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  text-decoration: none;
+  border-radius: 3px;
+  display: inline-block;
+  transition: all 0.4s var(--ease);
+}
+.btn-secondary:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+/* ── CONTACT ── */
+.contact-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 2px; margin-top: 64px;
+}
+.contact-item {
+  background: var(--card);
+  padding: 40px;
+  text-align: center;
+}
+.contact-icon {
+  width: 44px; height: 44px;
+  margin: 0 auto 16px;
+  background: var(--accent-light);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent);
+}
+.contact-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--muted);
+  margin-bottom: 8px;
+}
+.contact-value {
+  font-size: 15px; font-weight: 600; color: var(--text);
+  text-decoration: none; line-height: 1.5;
+  display: block;
+}
+.contact-value:hover { color: var(--gold); }
+.contact-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+/* ── FOOTER ── */
+footer {
+  padding: 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-top: 1px solid var(--border);
+}
+.footer-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 16px; font-weight: 700;
+  color: var(--muted); letter-spacing: 0.1em;
+}
+.footer-logo span { color: var(--gold); }
+.footer-right {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--muted);
+}
+
+/* ── FADE-UP UTILITY ── */
+.fade-up { opacity: 0; transform: translateY(40px); }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  nav { padding: 16px 24px; }
+  nav.scrolled { padding: 12px 24px; }
+  .nav-links { display: none; }
+  section { padding: 80px 24px; }
+  .stats-inner { grid-template-columns: repeat(2, 1fr); }
+  .stat-item { border-right: none; padding: 24px 0; border-bottom: 1px solid var(--border); }
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+  .cards-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .sticky-section { grid-template-columns: 1fr; }
+  .sticky-left { display: none; }
+  .sticky-right { padding: 60px 24px; }
+  .accordion-wrap { height: 340px; }
+  footer { flex-direction: column; gap: 16px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR GLOW -->
+<div id="glow"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-text">DRAGON GARDEN</div>
+  <div class="loader-bar"></div>
+  <div class="loader-sub">Loading experience...</div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">DRAGON <span>GARDEN</span></a>
+  <div class="nav-links">
+    <a href="#menu">Menu</a>
+    <a href="#experience">Experience</a>
+    <a href="#lounge">Lounge</a>
+    <a href="#contact">Contact</a>
+    <a href="tel:8189719922" class="nav-cta">Reserve</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-sticky">
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-content">
+      <h1>DRAGON<br><em>GARDEN</em></h1>
+      <div class="tagline">Chinese &amp; Japanese · Glendale, CA</div>
+      <div class="sub">Restaurant · Sushi Bar · Hot Pot · Lounge</div>
+      <div class="scroll-hint">
+        <span>Scroll to explore</span>
+        <span class="scroll-arrow">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track" id="marqueeTrack">
+    <div class="marquee-content" id="marqueeContent">
+      <span>
+        HOT POT <span class="marquee-dot"></span>
+        SUSHI BAR <span class="marquee-dot"></span>
+        DIM SUM <span class="marquee-dot"></span>
+        HOOKAH LOUNGE <span class="marquee-dot"></span>
+        LIVE DJ <span class="marquee-dot"></span>
+        200+ DISHES <span class="marquee-dot"></span>
+        PRIVATE EVENTS <span class="marquee-dot"></span>
+        OPEN DAILY <span class="marquee-dot"></span>
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- MENU SECTION -->
+<section id="menu">
+  <div class="fade-up">
+    <div class="section-label">The Menu</div>
+    <h2 class="section-title">200+ Dishes.<br>One Address.</h2>
+    <p class="section-body">From hand-rolled sushi to bubbling hot pot, from Cantonese dim sum to the exclusive lounge menu — Dragon Garden is four restaurants in one.</p>
+  </div>
+  <div class="accordion-wrap fade-up">
+    <div class="acc-panel active" data-idx="0">
+      <div class="acc-bg" style="background:linear-gradient(135deg,#1a0808,#2d1010);"></div>
+      <div class="acc-overlay"></div>
+      <div class="acc-tab-label">Hot Pot</div>
+      <div class="acc-content">
+        <div class="acc-label">Signature</div>
+        <div class="acc-title">Hot Pot</div>
+        <div class="acc-desc">Traditional broths — Sichuan spicy, classic mushroom, bone broth. Premium cuts, fresh seafood, house-made dipping sauces.</div>
+      </div>
+    </div>
+    <div class="acc-panel" data-idx="1">
+      <div class="acc-bg" style="background:linear-gradient(135deg,#0a1020,#101830);"></div>
+      <div class="acc-overlay"></div>
+      <div class="acc-tab-label">Sushi</div>
+      <div class="acc-content">
+        <div class="acc-label">Japanese</div>
+        <div class="acc-title">Sushi Bar</div>
+        <div class="acc-desc">In-house sushi chefs. Nigiri, specialty rolls, sashimi platters. Premium omakase available by reservation.</div>
+      </div>
+    </div>
+    <div class="acc-panel" data-idx="2">
+      <div class="acc-bg" style="background:linear-gradient(135deg,#0f0a02,#201500);"></div>
+      <div class="acc-overlay"></div>
+      <div class="acc-tab-label">Chinese</div>
+      <div class="acc-content">
+        <div class="acc-label">Chinese Classics</div>
+        <div class="acc-title">200+ Dishes</div>
+        <div class="acc-desc">Authentic Cantonese, Sichuan, and Beijing-style dishes. Family platters, wok-fired entrées, handmade dumplings.</div>
+      </div>
+    </div>
+    <div class="acc-panel" data-idx="3">
+      <div class="acc-bg" style="background:linear-gradient(135deg,#1a0a18,#2d102a);"></div>
+      <div class="acc-overlay"></div>
+      <div class="acc-tab-label">Lounge</div>
+      <div class="acc-content">
+        <div class="acc-label">After Dark</div>
+        <div class="acc-title">Lounge Menu</div>
+        <div class="acc-desc">Craft cocktails, premium hookah, small plates. DJ nights, private event packages, bottle service. Open until 2 AM.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-section">
+  <div class="stats-inner">
+    <div class="stat-item">
+      <div class="stat-number">
+        <div class="odo-wrap" data-value="200">
+          <div class="odo-strip"><div class="odo-digit">0</div><div class="odo-digit">1</div><div class="odo-digit">2</div></div>
+        </div>
+        <span class="stat-suffix">+</span>
+      </div>
+      <div class="stat-label">Dishes on the menu</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">
+        <div class="odo-wrap" data-value="7">
+          <div class="odo-strip"><div class="odo-digit">0</div><div class="odo-digit">7</div></div>
+        </div>
+      </div>
+      <div class="stat-label">Years of excellence</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">
+        <div class="odo-wrap" data-value="2">
+          <div class="odo-strip"><div class="odo-digit">0</div><div class="odo-digit">2</div></div>
+        </div>
+        <span class="stat-suffix">AM</span>
+      </div>
+      <div class="stat-label">Lounge open until</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number">
+        <div class="odo-wrap" data-value="4">
+          <div class="odo-strip"><div class="odo-digit">0</div><div class="odo-digit">4</div></div>
+        </div>
+      </div>
+      <div class="stat-label">Locations worldwide</div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE / STICKY STACK -->
+<div class="sticky-section" id="experience">
+  <div class="sticky-left">
+    <div class="sticky-mockup">
+      <div class="mock-header">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.8)" stroke-width="1.5"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2"/><path d="M12 8v4l3 3"/></svg>
+        <div class="mock-logo">YOUR EVENING</div>
+      </div>
+      <div class="mock-body">
+        <div class="mock-step active" id="mockStep0">
+          <div class="mock-step-num">01</div>
+          <div class="mock-step-title">Arrive &amp; Be Seated</div>
+          <div class="mock-step-text">Walk-ins welcome or reserve ahead. Family dining room or lounge seating — your choice.</div>
+          <div class="mock-step-img">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(196,30,58,0.4)" stroke-width="1"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+          </div>
+        </div>
+        <div class="mock-step" id="mockStep1">
+          <div class="mock-step-num">02</div>
+          <div class="mock-step-title">Explore the Menu</div>
+          <div class="mock-step-text">200+ dishes across Chinese and Japanese cuisine. Your server guides you through the highlights.</div>
+          <div class="mock-step-img">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(196,30,58,0.4)" stroke-width="1"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"/></svg>
+          </div>
+        </div>
+        <div class="mock-step" id="mockStep2">
+          <div class="mock-step-num">03</div>
+          <div class="mock-step-title">Stay for the Night</div>
+          <div class="mock-step-text">After dinner, the lounge opens. Premium hookah, DJ from 6 PM, craft cocktails until 2 AM.</div>
+          <div class="mock-step-img">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(196,30,58,0.4)" stroke-width="1"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sticky-right">
+    <div class="section-label">The Experience</div>
+    <h2 class="section-title" style="font-size:clamp(28px,3vw,44px);">One Place.<br>All Night.</h2>
+    <div class="step-card active" data-step="0">
+      <div class="step-num">01 / 03</div>
+      <div class="step-title">Arrive</div>
+      <div class="step-body">Reserve a table for a family dinner, a date night, or a group celebration. Walk-ins always welcome. Family dining room seats up to 200 guests.</div>
+    </div>
+    <div class="step-card" data-step="1">
+      <div class="step-num">02 / 03</div>
+      <div class="step-title">Dine</div>
+      <div class="step-body">Order from the full menu — sushi rolls, hot pot broths, Peking duck, dim sum. Fresh ingredients, generous portions, authentic recipes from three countries of origin.</div>
+    </div>
+    <div class="step-card" data-step="2">
+      <div class="step-num">03 / 03</div>
+      <div class="step-title">Stay</div>
+      <div class="step-body">When the night begins, so does the lounge. Premium hookah service, craft cocktails, and resident DJs every weekend. Private event packages available.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES CARDS -->
+<section id="lounge">
+  <div class="fade-up">
+    <div class="section-label">Offerings</div>
+    <h2 class="section-title">Everything<br>Under One Roof</h2>
+  </div>
+  <div class="cards-grid fade-up" id="cardsGrid">
+    <div class="spot-card">
+      <div class="spot-card-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8h1a4 4 0 010 8h-1M2 8h16v9a4 4 0 01-4 4H6a4 4 0 01-4-4V8zM6 1v3M10 1v3M14 1v3"/></svg>
+      </div>
+      <div class="spot-card-price">DAILY 11AM – 11PM</div>
+      <div class="spot-card-title">Family Restaurant</div>
+      <div class="spot-card-desc">200+ Chinese and Japanese classics served in a warm, family-friendly setting. Hot pot, sushi, dim sum, and everything in between. Generous portions, fresh ingredients every day.</div>
+    </div>
+    <div class="spot-card">
+      <div class="spot-card-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div class="spot-card-price">RESERVATIONS AVAILABLE</div>
+      <div class="spot-card-title">Sushi Bar</div>
+      <div class="spot-card-desc">In-house sushi chefs crafting nigiri, specialty rolls, and sashimi platters. Premium omakase experience available for groups. The full Japanese repertoire, executed with precision.</div>
+    </div>
+    <div class="spot-card">
+      <div class="spot-card-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M8.56 2.75c4.37 6.03 6.02 9.42 8.03 17.72m2.54-15.38c-3.72 4.35-8.94 5.66-16.88 5.85m19.5 1.9c-3.5-.93-6.63-.82-8.94 0-2.58.92-5.01 2.86-7.44 6.32"/></svg>
+      </div>
+      <div class="spot-card-price">TRADITIONAL EXPERIENCE</div>
+      <div class="spot-card-title">Hot Pot</div>
+      <div class="spot-card-desc">The dish that put Dragon Garden on the map in Armenia. Sichuan spicy, classic mushroom, and bone broth bases. Premium cuts of wagyu, lamb, and fresh seafood. Cook at the table.</div>
+    </div>
+    <div class="spot-card">
+      <div class="spot-card-icon">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      </div>
+      <div class="spot-card-price">DAILY 6PM – 2AM</div>
+      <div class="spot-card-title">Hookah Lounge &amp; DJ</div>
+      <div class="spot-card-desc">Glendale's most atmospheric late-night experience. Premium hookah service, craft cocktail program, resident DJs every weekend. Lounge phone: (747) 200-9922 for reservations.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section>
+  <div class="about-grid">
+    <div class="about-img fade-up">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&h=1000&fit=crop&q=80" alt="Dragon Garden interior" loading="lazy">
+      <div class="about-img-overlay"></div>
+      <div class="about-tag">Est. Armenia 2017 → Glendale 2024</div>
+    </div>
+    <div class="fade-up">
+      <div class="section-label">Our Story</div>
+      <h2 class="section-title">Born in Armenia.<br>Now in Glendale.</h2>
+      <p class="section-body" style="margin-bottom:24px;">Since 2017, Dragon Garden has been bringing the rich, authentic flavors of China and Japan to three locations across Armenia — known for introducing the traditional hot pot experience to the country.</p>
+      <p class="section-body" style="margin-bottom:32px;">The Glendale location at 216 N Orange Street is our first step onto American soil. We brought everything — the 200+ dish menu, the sushi bar, the hot pot tradition — and added an exclusive lounge with premium hookah and live DJ nights.</p>
+      <p class="section-body" style="color:var(--gold);">One restaurant. Every night, a different experience.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section">
+  <div class="cta-title fade-up">Reserve Your Table</div>
+  <p class="cta-sub fade-up">Walk-ins welcome. Reservations recommended for groups and weekend evenings.</p>
+  <div class="cta-buttons fade-up">
+    <a href="tel:8189719922" class="btn-primary" id="ctaBtn1">Call (818) 971-9922</a>
+    <a href="tel:7472009922" class="btn-secondary" id="ctaBtn2">Lounge (747) 200-9922</a>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="fade-up">
+    <div class="section-label">Find Us</div>
+    <h2 class="section-title">216 N Orange St<br>Glendale, CA</h2>
+  </div>
+  <div class="contact-grid fade-up">
+    <div class="contact-item">
+      <div class="contact-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8a19.79 19.79 0 01-3.07-8.63A2 2 0 012 1h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 8.09a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 15z"/></svg>
+      </div>
+      <div class="contact-label">Phone</div>
+      <a href="tel:8189719922" class="contact-value">(818) 971-9922</a>
+      <a href="tel:7472009922" class="contact-value">(747) 200-9922</a>
+      <div class="contact-sub">Restaurant · Lounge</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="contact-label">Address</div>
+      <a href="https://maps.google.com/?q=216+N+Orange+St+Glendale+CA" target="_blank" class="contact-value">216 N Orange St</a>
+      <div class="contact-sub">Glendale, CA 91203</div>
+    </div>
+    <div class="contact-item">
+      <div class="contact-icon">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <div class="contact-label">Hours</div>
+      <div class="contact-value">Daily 11AM – 11PM</div>
+      <div class="contact-sub">Lounge: Daily 6PM – 2AM</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">DRAGON <span>GARDEN</span></div>
+  <div class="footer-right">© 2024 Dragon Garden · Glendale, CA · All rights reserved</div>
+</footer>
+
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+// ── CANVAS FRAME SEQUENCE ──
+var canvas = document.getElementById('heroCanvas');
+var ctx = canvas.getContext('2d');
+var frames = [];
+var totalFrames = 121;
+var loaded = 0;
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  canvas.style.width = window.innerWidth + 'px';
+  canvas.style.height = window.innerHeight + 'px';
+  if (frames[0] && frames[0].complete) drawFrame(0);
+}
+window.addEventListener('resize', resize);
+resize();
+
+function drawFrame(idx) {
+  if (!frames[idx] || !frames[idx].complete) return;
+  var img = frames[idx];
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  var r = Math.max(canvas.width / img.width, canvas.height / img.height);
+  var w = img.width * r, h = img.height * r;
+  ctx.drawImage(img, (canvas.width - w) / 2, (canvas.height - h) / 2, w, h);
+}
+
+for (var i = 1; i <= totalFrames; i++) {
+  (function(n) {
+    var img = new Image();
+    img.src = 'assets/frames/frame-' + String(n).padStart(4, '0') + '.jpg';
+    img.onload = function() {
+      loaded++;
+      if (loaded === 1) drawFrame(0);
+      if (loaded >= Math.floor(totalFrames * 0.4)) {
+        var loader = document.getElementById('loader');
+        if (loader && loader.style.display !== 'none') {
+          loader.style.opacity = '0';
+          setTimeout(function() { loader.style.display = 'none'; }, 600);
+        }
+      }
+    };
+    frames[n - 1] = img;
+  })(i);
+}
+
+// Frame scrub
+gsap.to({ frame: 0 }, {
+  frame: totalFrames - 1,
+  snap: 'frame',
+  ease: 'none',
+  scrollTrigger: {
+    trigger: '.hero',
+    start: 'top top',
+    end: 'bottom top',
+    scrub: 0.3
+  },
+  onUpdate: function() {
+    drawFrame(Math.round(this.targets()[0].frame));
+  }
+});
+
+// Hero text fade out
+gsap.to('.hero-content', {
+  opacity: 0, y: -60, ease: 'none',
+  scrollTrigger: {
+    trigger: '.hero',
+    start: '10% top',
+    end: '35% top',
+    scrub: true
+  }
+});
+
+// ── NAVBAR ──
+window.addEventListener('scroll', function() {
+  var nav = document.getElementById('navbar');
+  if (window.scrollY > 80) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+// ── CURSOR GLOW ──
+var glow = document.getElementById('glow');
+var mx = 0, my = 0, gx = 0, gy = 0;
+document.addEventListener('mousemove', function(e) { mx = e.clientX; my = e.clientY; });
+function moveGlow() {
+  gx += (mx - gx) * 0.1; gy += (my - gy) * 0.1;
+  glow.style.transform = 'translate(' + (gx - 250) + 'px,' + (gy - 250) + 'px)';
+  requestAnimationFrame(moveGlow);
+}
+moveGlow();
+
+// ── KINETIC MARQUEE ──
+var marqueeContent = document.getElementById('marqueeContent');
+var clone = marqueeContent.cloneNode(true);
+document.getElementById('marqueeTrack').appendChild(clone);
+var marqueeX = 0;
+var marqueeSpeed = 0.8;
+var scrollVelocity = 0;
+var lastScrollY = 0;
+window.addEventListener('scroll', function() {
+  scrollVelocity = (window.scrollY - lastScrollY) * 0.5;
+  lastScrollY = window.scrollY;
+});
+(function animateMarquee() {
+  marqueeX -= marqueeSpeed + Math.abs(scrollVelocity) * 0.15;
+  scrollVelocity *= 0.9;
+  var w = marqueeContent.offsetWidth;
+  if (marqueeX <= -w) marqueeX = 0;
+  document.getElementById('marqueeTrack').style.transform = 'translateX(' + marqueeX + 'px)';
+  requestAnimationFrame(animateMarquee);
+})();
+
+// ── ACCORDION ──
+document.querySelectorAll('.acc-panel').forEach(function(panel) {
+  panel.addEventListener('mouseenter', function() {
+    document.querySelectorAll('.acc-panel').forEach(function(p) { p.classList.remove('active'); });
+    panel.classList.add('active');
+  });
+});
+
+// ── ODOMETER ──
+function buildOdometer(wrap, value) {
+  var strVal = String(value);
+  wrap.innerHTML = '';
+  for (var i = 0; i < strVal.length; i++) {
+    var digit = parseInt(strVal[i]);
+    var odoWrap = document.createElement('div');
+    odoWrap.className = 'odo-wrap';
+    var strip = document.createElement('div');
+    strip.className = 'odo-strip';
+    strip.dataset.target = digit;
+    strip.dataset.delay = i;
+    for (var d = 0; d <= 9; d++) {
+      var el = document.createElement('div');
+      el.className = 'odo-digit';
+      el.textContent = d;
+      strip.appendChild(el);
+    }
+    odoWrap.appendChild(strip);
+    wrap.appendChild(odoWrap);
+  }
+}
+
+document.querySelectorAll('.odo-wrap[data-value]').forEach(function(wrap) {
+  var value = wrap.getAttribute('data-value');
+  buildOdometer(wrap, value);
+  ScrollTrigger.create({
+    trigger: wrap,
+    start: 'top 80%',
+    once: true,
+    onEnter: function() {
+      wrap.querySelectorAll('.odo-strip').forEach(function(strip) {
+        var target = parseInt(strip.dataset.target);
+        var delay = parseInt(strip.dataset.delay);
+        var h = 52;
+        setTimeout(function() {
+          strip.style.transform = 'translateY(-' + (target * h) + 'px)';
+          strip.style.transition = 'transform 1.2s cubic-bezier(.16,1,.3,1)';
+        }, delay * 120);
+      });
+    }
+  });
+});
+
+// ── STICKY STACK ──
+var stepCards = document.querySelectorAll('.step-card');
+stepCards.forEach(function(card) {
+  ScrollTrigger.create({
+    trigger: card,
+    start: 'top 60%',
+    end: 'bottom 40%',
+    onEnter: function() { activateStep(card.dataset.step); },
+    onEnterBack: function() { activateStep(card.dataset.step); }
+  });
+});
+function activateStep(idx) {
+  document.querySelectorAll('.step-card').forEach(function(c) { c.classList.remove('active'); });
+  document.querySelectorAll('.mock-step').forEach(function(s) { s.classList.remove('active'); });
+  var card = document.querySelector('[data-step="' + idx + '"]');
+  var mock = document.getElementById('mockStep' + idx);
+  if (card) card.classList.add('active');
+  if (mock) mock.classList.add('active');
+}
+
+// ── SPOTLIGHT CARDS ──
+var cardsGrid = document.getElementById('cardsGrid');
+if (cardsGrid) {
+  cardsGrid.addEventListener('mousemove', function(e) {
+    cardsGrid.querySelectorAll('.spot-card').forEach(function(card) {
+      var r = card.getBoundingClientRect();
+      var mx = e.clientX - r.left;
+      var my = e.clientY - r.top;
+      card.style.setProperty('--mx', mx + 'px');
+      card.style.setProperty('--my', my + 'px');
+      card.style.setProperty('--rx', (mx / r.width));
+      card.style.setProperty('--ry', (my / r.height));
+    });
+  });
+}
+
+// ── MAGNETIC BUTTONS ──
+[document.getElementById('ctaBtn1'), document.getElementById('ctaBtn2')].forEach(function(btn) {
+  if (!btn) return;
+  btn.addEventListener('mousemove', function(e) {
+    var r = btn.getBoundingClientRect();
+    var cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    btn.style.transform = 'translate(' + ((e.clientX - cx) * 0.3) + 'px,' + ((e.clientY - cy) * 0.3) + 'px)';
+  });
+  btn.addEventListener('mouseleave', function() {
+    btn.style.transform = 'translate(0,0)';
+    btn.style.transition = 'transform 0.4s cubic-bezier(.16,1,.3,1)';
+  });
+});
+
+// ── FADE-UP ANIMATIONS ──
+document.querySelectorAll('.fade-up').forEach(function(el) {
+  gsap.fromTo(el,
+    { opacity: 0, y: 40 },
+    { opacity: 1, y: 0, duration: 0.9, ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
+    }
+  );
+});
+
+// ── LUCIDE ICONS ──
+if (typeof lucide !== 'undefined') lucide.createIcons();
+</script>
+</body>
+</html>
