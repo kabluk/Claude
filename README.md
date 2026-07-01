@@ -355,11 +355,20 @@ read-back: `node scripts/demo-fl142.mjs`.
   default по §2110.
 - **Подпись** — имя + дата.
 
-Сценарий по умолчанию (развод по согласию): истец вручил **preliminary** второй
-стороне почтой, **final** взаимно отменён по §2105(d) с FL-144 одновременно.
-Всё переопределяется через `fl141_profile`. FL-141 относится к **Стадии
-завершения** (с FL-180/FL-190) и в стартовый пакет подачи не входит. read-back:
-`node scripts/demo-fl141.mjs`.
+Плоская модель данных (ключи, которые соберёт будущая секция визарда):
+`disclosure_party`, `prelim_disclosure_served` + `prelim_served_date`,
+`final_disclosure_served` + `final_served_date`, `final_disclosure_waived`,
+`petitioner_printed_name`, `signature_date` (плюс `petition_date` для клампа).
+Даты вручения **не могут быть раньше даты подачи петиции** — при необходимости
+подтягиваются к ней. Сценарий по умолчанию (развод по согласию): истец вручил
+**preliminary** второй стороне почтой, **final** взаимно отменён по §2105(d) с
+FL-144 одновременно. `fl141_profile` остаётся необязательным override.
+
+**Связка с FL-144**: `fl141AddsFl144(state)` возвращает `true`, когда финальное
+раскрытие отменено (§2105(d)) — в этом случае в пакет добавляется FL-144
+(Stipulation and Waiver of Final Declaration of Disclosure; форма пока не
+привязана). FL-141 относится к **Стадии завершения** (с FL-180/FL-190) и в
+стартовый пакет подачи не входит. read-back: `node scripts/demo-fl141.mjs`.
 
 ### FL-180 (Judgment) — восьмая форма (Стадия завершения)
 

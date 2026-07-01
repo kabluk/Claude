@@ -20,10 +20,15 @@ const answers = [
   { field_key: 'party_zip', value: '90013' },
   { field_key: 'party_phone', value: '(213) 555-0199' },
   { field_key: 'party_email', value: 'maria@example.com' },
-  { field_key: 'disclosure_served_date', value: '2026-03-15' },
+  // flat data model (the fields a future wizard section would collect)
+  { field_key: 'petition_date', value: '2026-02-20' }, // service dates clamp to ≥ this
+  { field_key: 'disclosure_party', value: 'petitioner' },
+  { field_key: 'prelim_disclosure_served', value: 'true' },
+  { field_key: 'prelim_served_date', value: '2026-03-15' },
+  { field_key: 'final_disclosure_served', value: 'false' },
+  { field_key: 'final_disclosure_waived', value: 'true' }, // FC 2105(d) → FL-144
+  { field_key: 'petitioner_printed_name', value: 'Maria Elena Gonzalez' },
   { field_key: 'signature_date', value: '2026-06-30' },
-  // fl141_profile omitted → defaults: Petitioner / preliminary served by mail /
-  // final waived under FC 2105(d) with FL-144 filed concurrently.
 ]
 const state = { user: { county: 'Los Angeles' }, caseRec: { type: 'uncontested', has_children: true }, answers }
 

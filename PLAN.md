@@ -47,11 +47,15 @@ PDF-пакета. ✅ Достигнуто.
   (активы/долги) считаются в приложении; сверяется с summary FL-150; continuation
   при переполнении категории. ВРУЧАЕТСЯ, не подаётся. read-back:
   `node scripts/demo-fl142.mjs`
-- ✅ FL-141 (Declaration re Service of Disclosure) — привязана: чьё/какое
-  раскрытие, кто и как получил (лично/почтой), даты; item 4 — отказ от финального
-  раскрытия (2105(d) взаимный + FL-144, либо 2110 default). Это единственная из
-  раскрытия форма, которая ПОДАЁТСЯ в суд (Стадия завершения, с FL-180/FL-190).
-  read-back: `node scripts/demo-fl141.mjs`
+- ✅ FL-141 (Declaration re Service of Disclosure) — привязана; плоская модель
+  данных (`disclosure_party`, `prelim_disclosure_served`+`prelim_served_date`,
+  `final_disclosure_served`+`final_served_date`, `final_disclosure_waived`), даты
+  клампятся ≥ даты подачи петиции. Отказ от финального раскрытия → 4a §2105(d) +
+  `fl141AddsFl144()` (в пакет добавляется FL-144). Это единственная из раскрытия
+  форма, которая ПОДАЁТСЯ в суд (отражено в `cabinet.disclosureNote`). Стадия
+  завершения (с FL-180/FL-190). read-back: `node scripts/demo-fl141.mjs`
+- ⏳ FL-144 (Stipulation and Waiver of Final Declaration of Disclosure) —
+  привязать; добавляется в пакет, когда `final_disclosure_waived = true`
 - ✅ FL-180 (Judgment) — привязана: тип/основание решения, дата прекращения
   статуса, восстановление девичьей фамилии, чекбоксы приложений FL-341/342/343/
   345 по фактам дела; шапка/данные из единого источника FL-100. Это форма

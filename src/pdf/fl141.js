@@ -33,6 +33,7 @@ const fmtDateUS = (s) => {
     ? `${String(d.getMonth() + 1).padStart(2, '0')}/${String(d.getDate()).padStart(2, '0')}/${d.getFullYear()}`
     : s || ''
 }
+const isTrue = (v) => v === true || v === 'true' || v === 'yes' || v === 1 || v === '1'
 const json = (s) => {
   try {
     return JSON.parse(s || '{}') || {}
@@ -54,14 +55,29 @@ export function buildFL141Profile({ user = {}, caseRec = {}, answers = [] }) {
     .filter((s) => s && s.trim())
     .join('\n')
 
-  const party = (fl.disclosure_party || 'petitioner').toLowerCase()
+  const party = (a.disclosure_party || fl.disclosure_party || 'petitioner').toLowerCase()
   const isPet = party !== 'respondent'
-  const method = (fl.service_method || 'mail').toLowerCase() // mail | personal
-  // final disclosure handling: waived_2105d (mutual, FL-144) | waived_2110
-  // (true default) | served
-  const finalMode = (fl.final_mode || 'waived_2105d').toLowerCase()
-  const servedDate = fmtDateUS(fl.served_date || a.disclosure_served_date)
-  const finalServed = finalMode === 'served'
+  const method = (a.service_method || fl.service_method || 'mail').toLowerCase() // mail | personal
+
+  // Service dates must be logical — never before the petition was filed.
+  const clampDate = (d) => {
+    const dd = parseDate(d)
+    const pet = parseDate(a.petition_date || a.date_petition_filed)
+    return fmtDateUS(dd && pet && dd < pet ? a.petition_date || a.date_petition_filed : d)
+  }
+
+  // Preliminary disclosure is served in every case (default true).
+  const prelimServed =
+    a.prelim_disclosure_served !== undefined ? isTrue(a.prelim_disclosure_served) : true
+  const prelimDate = clampDate(a.prelim_served_date || fl.served_date || a.disclosure_served_date)
+
+  // Final disclosure: either served, or waived (FC § 2105(d) mutual via FL-144).
+  // Default for the consent scenario is waived.
+  const finalServed = isTrue(a.final_disclosure_served) || fl.final_mode === 'served'
+  const finalWaived =
+    !finalServed &&
+    (a.final_disclosure_waived === undefined ? true : isTrue(a.final_disclosure_waived))
+  const finalDate = clampDate(a.final_served_date)
 
   return {
     // ---- caption (single source) ----
@@ -89,12 +105,12 @@ export function buildFL141Profile({ user = {}, caseRec = {}, answers = [] }) {
     i_am_respondent: !isPet,
 
     // ---- item 2: preliminary disclosure served ----
-    prelim_petitioner: isPet,
-    prelim_respondent: !isPet,
-    prelim_on_other_party: true,
-    prelim_by_personal: method === 'personal',
-    prelim_by_mail: method !== 'personal',
-    prelim_date: servedDate,
+    prelim_petitioner: prelimServed && isPet,
+    prelim_respondent: prelimServed && !isPet,
+    prelim_on_other_party: prelimServed,
+    prelim_by_personal: prelimServed && method === 'personal',
+    prelim_by_mail: prelimServed && method !== 'personal',
+    prelim_date: prelimServed ? prelimDate : '',
 
     // ---- item 3: final disclosure served (only when not waived) ----
     final_petitioner: finalServed && isPet,
@@ -102,23 +118,28 @@ export function buildFL141Profile({ user = {}, caseRec = {}, answers = [] }) {
     final_on_other_party: finalServed,
     final_by_personal: finalServed && method === 'personal',
     final_by_mail: finalServed && method !== 'personal',
-    final_date: finalServed ? servedDate : '',
+    final_date: finalServed ? finalDate : '',
 
-    // ---- item 4: service waived ----
-    waive_service_of: !finalServed,
-    waive_petitioner: !finalServed,
-    waive_respondent: finalMode === 'waived_2105d', // mutual waiver
-    waive_final: !finalServed,
-    // 4a — FC 2105(d) mutual waiver, FL-144 filed concurrently
-    waive_2105d: finalMode === 'waived_2105d',
-    waive_fl144_concurrent: finalMode === 'waived_2105d',
-    // 4c — FC 2110 true default
-    waive_2110: finalMode === 'waived_2110',
+    // ---- item 4: final service waived (FC § 2105(d) mutual, via FL-144) ----
+    waive_service_of: finalWaived,
+    waive_petitioner: finalWaived,
+    waive_respondent: finalWaived, // mutual waiver
+    waive_final: finalWaived,
+    waive_2105d: finalWaived,
+    waive_fl144_concurrent: finalWaived, // FL-144 filed at the same time
+    waive_2110: false,
 
     // ---- signature ----
-    signature_name: a.petitioner_name || '',
+    signature_name: a.petitioner_printed_name || a.petitioner_name || '',
     signature_date: fmtDateUS(a.signature_date),
   }
+}
+
+// True when the final disclosure is waived under FC § 2105(d) — the packet must
+// then also include FL-144 (Stipulation and Waiver of Final Declaration of
+// Disclosure), filed at the same time as this FL-141.
+export function fl141AddsFl144(state) {
+  return buildFL141Profile(state).waive_2105d === true
 }
 
 // ---------------- real PDF field names (inspectFormFields + /TU) ----------------
