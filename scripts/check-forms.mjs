@@ -21,8 +21,9 @@ import { FL110_TEMPLATE } from '../src/pdf/fl110.js'
 import { FL140_TEMPLATE } from '../src/pdf/fl140.js'
 import { FL142_TEMPLATE } from '../src/pdf/fl142.js'
 import { FL150_TEMPLATE } from '../src/pdf/fl150.js'
+import { FL180_TEMPLATE } from '../src/pdf/fl180.js'
 
-const FORMS = [FL100_TEMPLATE, FL105_TEMPLATE, FL110_TEMPLATE, FL140_TEMPLATE, FL142_TEMPLATE, FL150_TEMPLATE]
+const FORMS = [FL100_TEMPLATE, FL105_TEMPLATE, FL110_TEMPLATE, FL140_TEMPLATE, FL142_TEMPLATE, FL150_TEMPLATE, FL180_TEMPLATE]
 
 function fetchSha256(url) {
   // curl follows the environment's proxy/CA config (works behind the agent proxy
