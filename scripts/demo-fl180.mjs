@@ -25,6 +25,11 @@ const answers = [
   { field_key: 'restore_former_name', value: 'true' },
   { field_key: 'former_name', value: 'Maria Elena Ramirez' },
   { field_key: 'assets', value: JSON.stringify([{ description: 'Family residence', value: 450000 }]) },
+  { field_key: 'children', value: JSON.stringify([
+    { name: 'Sofia Gonzalez', dob: '2016-05-01' },
+    { name: 'Diego Gonzalez', dob: '2019-08-12' },
+  ]) },
+  // spousal_support_type omitted → defaults to "reserved" for the uncontested case
   { field_key: 'signature_date', value: '2026-06-30' },
 ]
 const state = { user: { county: 'Los Angeles' }, caseRec: { type: 'uncontested', has_children: true }, answers }
@@ -71,11 +76,20 @@ const checks = {
   'former name': FL180_MAPPING.former_name,
   'support notice': FL180_MAPPING.support_notice,
   'children are': FL180_MAPPING.children_are,
+  'children name cb': FL180_MAPPING.children_name_cb,
+  'children names': FL180_MAPPING.children_names,
+  'children DOBs': FL180_MAPPING.children_dobs,
+  '3a respondent served': FL180_MAPPING.respondent_served,
   'attach FL-341 (ord)': FL180_MAPPING.attach_fl341[0],
   'attach FL-341 (box)': FL180_MAPPING.attach_fl341[1],
   'attach FL-342 (ord)': FL180_MAPPING.attach_fl342[0],
   'attach FL-342 (box)': FL180_MAPPING.attach_fl342[1],
-  'attach FL-343': FL180_MAPPING.attach_fl343[0],
+  '4l spousal parent': FL180_MAPPING.spousal_parent,
+  '4l(1) reserved': FL180_MAPPING.spousal_reserved,
+  '4l(1) reserved pet': FL180_MAPPING.spousal_reserved_pet,
+  '4l(1) reserved resp': FL180_MAPPING.spousal_reserved_resp,
+  '4l(2) terminated': FL180_MAPPING.spousal_terminated,
+  '4l(3) FL-343': FL180_MAPPING.spousal_fl343,
   'attach FL-345 (ord)': FL180_MAPPING.attach_fl345[0],
   'attach FL-345 (box)': FL180_MAPPING.attach_fl345[1],
   'pages attached': FL180_MAPPING.pages_attached,

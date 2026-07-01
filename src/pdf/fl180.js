@@ -62,16 +62,35 @@ export function buildFL180Profile({ user = {}, caseRec = {}, answers = [] }) {
   // Attachments — driven by the case facts.
   const hasChildren = !!caseRec.has_children
   const hasProperty = list(a.assets).length > 0 || isTrue(a.property_division)
-  const hasSpousal = isTrue(a.spousal_support)
+
+  // Spousal/partner support disposition (item 4l). A judgment MUST address it:
+  //   ordered    → 4l(3) "as set forth in the attached FL-343" (FL-343 in packet)
+  //   reserved   → 4l(1) reserved for future determination (both parties)
+  //   terminated → 4l(2) jurisdiction terminated (both parties)
+  // Uncontested default (no support requested): user's choice, defaulting to
+  // "reserved" so the court's power isn't foreclosed by accident.
+  const ssType = (
+    a.spousal_support_type || (isTrue(a.spousal_support) ? 'ordered' : 'reserved')
+  ).toLowerCase()
+  const spousalOrdered = ssType === 'ordered'
+  const spousalReserved = ssType === 'reserved'
+  const spousalTerminated = ssType === 'terminated' || ssType === 'terminate'
 
   const attachFl341 = hasChildren
   const attachFl342 = hasChildren
-  const attachFl343 = hasSpousal
+  const attachFl343 = spousalOrdered
   const attachFl345 = hasProperty
   const pages = [attachFl341, attachFl342, attachFl343, attachFl345].filter(Boolean).length
 
   // Case name (page 2): "Last, First" of each party.
   const caseName = [a.petitioner_name, a.respondent_name].filter(Boolean).join(' / ')
+
+  // Children of the marriage (item 4i) — names + DOBs from the single source
+  // (same list that feeds FL-105/FL-150). The Name/Birthdate cells are multiline,
+  // so children are listed one per line.
+  const children = list(a.children)
+  const childNames = children.map((x) => x.name || '').filter(Boolean).join('\n')
+  const childDobs = children.map((x) => fmtDateUS(x.dob)).filter(Boolean).join('\n')
 
   return {
     // ---- caption (single source, shared with FL-100) ----
@@ -105,6 +124,22 @@ export function buildFL180Profile({ user = {}, caseRec = {}, answers = [] }) {
 
     // ---- children of the marriage (page 2) ----
     children_are: hasChildren,
+    children_name_cb: hasChildren && !!childNames,
+    children_names: childNames,
+    children_dobs: childDobs,
+
+    // ---- item 3: jurisdiction over respondent (3a served, by default) ----
+    respondent_served: true,
+
+    // ---- item 4l: spousal/partner support disposition ----
+    spousal_parent: spousalOrdered || spousalReserved || spousalTerminated,
+    spousal_fl343: spousalOrdered,
+    spousal_reserved: spousalReserved,
+    spousal_reserved_pet: spousalReserved,
+    spousal_reserved_resp: spousalReserved,
+    spousal_terminated: spousalTerminated,
+    spousal_terminated_pet: spousalTerminated,
+    spousal_terminated_resp: spousalTerminated,
 
     // ---- restore former name (item 4, reused from FL-100 source) ----
     restore_former_petitioner: isTrue(a.restore_former_name),
@@ -170,11 +205,17 @@ export const FL180_MAPPING = {
   restore_former_petitioner: P1('List4[0].LI6[0].CheckBoxqd[0]'),
   former_name: P1('List4[0].LI6[0].FillText1[0]'),
 
+  // item 3 — jurisdiction acquired over respondent (3a: served with process)
+  respondent_served: P1('List3[0].LI1[0].CheckBox03[0]'),
+
   // FL-191/192 support notice (page 1)
   support_notice: P1('List4[0].LI8[0].limited[0]'),
 
-  // page 2 — children of the marriage
+  // page 2 — children of the marriage (item 4i): checkbox + name/DOB (multiline)
   children_are: P2('List4[0].LI1[0].RB2Choices[0]'),
+  children_name_cb: P2('List4[0].LI1[0].List1[0].Li1[0].CheckBox03[0]'),
+  children_names: P2('List4[0].LI1[0].List1[0].Li1[0].FillText1[0]'),
+  children_dobs: P2('List4[0].LI1[0].List1[0].Li1[0].FillText2[0]'),
 
   // page 2 — order attachments (each bool checks "ordered as set forth in
   // attached" AND the specific form's sub-box)
@@ -186,10 +227,17 @@ export const FL180_MAPPING = {
     P2('List4[0].LI3[0].limited[0]'),
     P2('List4[0].LI3[0].List2[0].LI1[0].unlimited[0]'),
   ],
-  attach_fl343: [
-    P2('List4[0].LI4[0].limited[0]'),
-    P2('List4[0].LI4[0].LI3[0].limited[0]'),
-  ],
+
+  // item 4l — spousal/partner/family support disposition
+  spousal_parent: P2('List4[0].LI4[0].limited[0]'),
+  spousal_reserved: P2('List4[0].LI4[0].LI1[0].limited[0]'),
+  spousal_reserved_pet: P2('List4[0].LI4[0].LI1[0].RB2Choice1[0]'),
+  spousal_reserved_resp: P2('List4[0].LI4[0].LI1[0].RB2Choice1[1]'),
+  spousal_terminated: P2('List4[0].LI4[0].LI2[0].unlimited[0]'),
+  spousal_terminated_pet: P2('List4[0].LI4[0].LI2[0].RB2Choice22[0]'),
+  spousal_terminated_resp: P2('List4[0].LI4[0].LI2[0].RB2Choice2[0]'),
+  spousal_fl343: P2('List4[0].LI4[0].LI3[0].limited[0]'),
+
   attach_fl345: [
     P2('List4[0].LI5[0].limited[0]'),
     P2('List4[0].LI5[0].List2[0].LI1[0].unlimited[0]'),
