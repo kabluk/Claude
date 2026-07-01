@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dragon Garden — 3 Brand Books 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #0c0c0e;
+  color: #f0ebe3;
+  font-family: 'Outfit', sans-serif;
+  padding: 48px 40px;
+}
+.page-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #666;
+  margin-bottom: 8px;
+}
+.page-heading {
+  font-family: 'Cinzel', serif;
+  font-size: 28px;
+  color: #f0ebe3;
+  margin-bottom: 4px;
+}
+.page-sub {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 56px;
+  letter-spacing: 0.05em;
+}
+
+/* ── BRAND BOOK CARD ── */
+.bb { margin-bottom: 80px; }
+.bb-header {
+  display: flex; align-items: flex-end; gap: 20px;
+  margin-bottom: 24px; padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+}
+.bb-num {
+  font-family: 'Cinzel', serif;
+  font-size: 64px;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0.12;
+}
+.bb-meta { flex: 1; }
+.bb-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.bb-name {
+  font-family: 'Cinzel', serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.1;
+}
+.bb-desc {
+  font-size: 13px;
+  color: #666;
+  margin-top: 6px;
+  line-height: 1.6;
+  max-width: 560px;
+}
+.bb-trend {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid;
+  text-transform: uppercase;
+  white-space: nowrap;
+  align-self: flex-start;
+  margin-top: 6px;
+}
+
+/* ── GRID ── */
+.bb-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+}
+.bb-col { display: flex; flex-direction: column; gap: 12px; }
+
+/* SWATCHES */
+.swatch-block { display: flex; gap: 8px; flex-wrap: wrap; }
+.sw { border-radius: 8px; position: relative; overflow: hidden; }
+.sw-main { width: 72px; height: 72px; }
+.sw-sm { width: 48px; height: 48px; }
+.sw-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(0,0,0,0.55);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; color: rgba(255,255,255,0.7);
+  padding: 3px 5px; text-align: center;
+  letter-spacing: 0.05em;
+}
+
+/* CARDS */
+.bb-card {
+  border-radius: 12px;
+  padding: 20px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.bb-card-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+.font-row { margin-bottom: 10px; }
+.font-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 3px;
+  letter-spacing: 0.1em;
+}
+
+/* PREVIEW CARD */
+.preview {
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  height: 240px;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 28px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.preview::before {
+  content: '';
+  position: absolute; inset: 0;
+  z-index: 0;
+}
+.preview-inner { position: relative; z-index: 1; }
+.preview h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.preview p {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  opacity: 0.65;
+}
+.preview-btn {
+  display: inline-block;
+  padding: 8px 22px;
+  border-radius: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* TAGS */
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.bb-tag {
+  font-size: 10px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+/* SECTION SEPARATOR */
+.sep { height: 1px; background: rgba(255,255,255,0.05); margin: 56px 0; }
+
+/* COMPARISON TABLE */
+.compare {
+  margin-top: 64px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+.compare-head {
+  display: grid;
+  grid-template-columns: 180px repeat(3, 1fr);
+  background: rgba(255,255,255,0.04);
+  padding: 14px 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: #666;
+}
+.compare-row {
+  display: grid;
+  grid-template-columns: 180px repeat(3, 1fr);
+  padding: 14px 20px;
+  border-top: 1px solid rgba(255,255,255,0.04);
+  font-size: 13px;
+  align-items: center;
+}
+.compare-row:nth-child(even) { background: rgba(255,255,255,0.02); }
+.compare-attr {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: #555;
+  letter-spacing: 0.1em;
+}
+.dot-row { display: flex; gap: 6px; align-items: center; }
+.dot { width: 14px; height: 14px; border-radius: 50%; }
+</style>
+</head>
+<body>
+
+<div class="page-title">Dragon Garden — Color Strategy</div>
+<div class="page-heading">3 Brand Books · 2025</div>
+<div class="page-sub">Trending palettes for upscale Asian dining & nightlife · Choose one direction</div>
+
+<!-- ══════════════════════════════════════════════════
+     BRAND BOOK 1 — VIOLET SMOKE
+══════════════════════════════════════════════════ -->
+<div class="bb">
+  <div class="bb-header">
+    <div class="bb-num" style="color:#8B5CF6;">01</div>
+    <div class="bb-meta">
+      <div class="bb-label" style="color:#8B5CF6;">Brand Book №1</div>
+      <div class="bb-name" style="color:#F5EFF8;">Violet Smoke</div>
+      <div class="bb-desc">Глубокий сливовый фон + электрический фиолетовый акцент + розовое золото. Атмосфера ночного клуба премиум-класса. Тренд 2025: «Digital Luxury Purple» — от Valentino до K-pop концертов.</div>
+      <div class="tag-row">
+        <span class="bb-tag" style="background:rgba(139,92,246,0.15);border:1px solid rgba(139,92,246,0.3);color:#A78BFA;">#TrendingNow</span>
+        <span class="bb-tag" style="background:rgba(139,92,246,0.08);border:1px solid rgba(139,92,246,0.2);color:#7C6FA0;">Lounge & Nightlife</span>
+        <span class="bb-tag" style="background:rgba(139,92,246,0.08);border:1px solid rgba(139,92,246,0.2);color:#7C6FA0;">Gen-Z Luxury</span>
+      </div>
+    </div>
+    <div class="bb-trend" style="color:#8B5CF6;border-color:rgba(139,92,246,0.4);">Pantone Trend 2025</div>
+  </div>
+
+  <div class="bb-grid">
+
+    <!-- COL 1: PALETTE -->
+    <div class="bb-col">
+      <div class="bb-card" style="background:#160D2A;">
+        <div class="bb-card-label" style="color:#8B5CF6;">Palette</div>
+        <div class="swatch-block">
+          <div class="sw sw-main" style="background:#0E0820;">
+            <div class="sw-label">#0E0820<br>bg</div>
+          </div>
+          <div class="sw sw-main" style="background:#160D2A;">
+            <div class="sw-label">#160D2A<br>card</div>
+          </div>
+          <div class="sw sw-main" style="background:#8B5CF6;">
+            <div class="sw-label">#8B5CF6<br>accent</div>
+          </div>
+          <div class="sw sw-main" style="background:#C8956C;">
+            <div class="sw-label">#C8956C<br>rose gold</div>
+          </div>
+          <div class="sw sw-sm" style="background:#F5EFF8;">
+            <div class="sw-label">#F5EFF8<br>text</div>
+          </div>
+          <div class="sw sw-sm" style="background:#5E4A7A;">
+            <div class="sw-label">#5E4A7A<br>muted</div>
+          </div>
+          <div class="sw sw-sm" style="background:#C084FC;">
+            <div class="sw-label">#C084FC<br>glow</div>
+          </div>
+          <div class="sw sw-sm" style="background:#FF6B9D;">
+            <div class="sw-label">#FF6B9D<br>hot</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bb-card" style="background:#160D2A;">
+        <div class="bb-card-label" style="color:#8B5CF6;">Typography</div>
+        <div class="font-row">
+          <div class="font-tag">HEADING · CINZEL</div>
+          <div style="font-family:'Cinzel',serif;font-size:22px;color:#F5EFF8;">Dragon Garden</div>
+        </div>
+        <div class="font-row">
+          <div class="font-tag">BODY · OUTFIT 300</div>
+          <div style="font-size:15px;color:#B8A8CC;">Where East Meets Night</div>
+        </div>
+        <div class="font-row">
+          <div class="font-tag">LABEL · JETBRAINS MONO</div>
+          <div style="font-family:'JetBrains Mono';font-size:11px;color:#8B5CF6;letter-spacing:0.2em;">OPEN UNTIL 2AM</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COL 2: TAGS + UI ELEMENTS -->
+    <div class="bb-col">
+      <div class="bb-card" style="background:#160D2A;">
+        <div class="bb-card-label" style="color:#8B5CF6;">UI Elements</div>
+        <div style="margin-bottom:12px;">
+          <span class="bb-tag" style="background:rgba(139,92,246,0.2);border:1px solid rgba(139,92,246,0.5);color:#C084FC;">Hookah Lounge</span>
+          <span class="bb-tag" style="background:rgba(255,107,157,0.15);border:1px solid rgba(255,107,157,0.4);color:#FF6B9D;">Signature Cocktails</span>
+          <span class="bb-tag" style="background:rgba(200,149,108,0.12);border:1px solid rgba(200,149,108,0.35);color:#C8956C;">Premium Spirits</span>
+          <span class="bb-tag" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);color:#5E4A7A;">Glendale CA</span>
+        </div>
+        <div style="height:1px;background:rgba(139,92,246,0.15);margin:14px 0;"></div>
+        <!-- Cocktail card mini -->
+        <div style="background:#1E1240;border-radius:8px;padding:14px;border:1px solid rgba(139,92,246,0.2);">
+          <div style="font-family:'JetBrains Mono';font-size:9px;color:#8B5CF6;letter-spacing:0.15em;margin-bottom:6px;">$ 18</div>
+          <div style="font-family:'Cinzel',serif;font-size:16px;color:#F5EFF8;margin-bottom:6px;">MEILI</div>
+          <div style="width:18px;height:1px;background:rgba(200,149,108,0.4);margin-bottom:8px;"></div>
+          <div style="font-size:10px;color:#5E4A7A;line-height:1.7;">Plum Soju · Elderflower · Butterfly Pea Flower Tea</div>
+        </div>
+      </div>
+
+      <div class="bb-card" style="background:#160D2A;">
+        <div class="bb-card-label" style="color:#8B5CF6;">Marquee Style</div>
+        <div style="overflow:hidden;white-space:nowrap;padding:10px 0;">
+          <span style="font-family:'Cinzel',serif;font-size:14px;color:#F5EFF8;letter-spacing:0.18em;">JASMINA &nbsp;✦&nbsp; MEILI &nbsp;✦&nbsp; ZAKURO &nbsp;✦&nbsp; LOUNGE &nbsp;✦&nbsp; TSUKI &nbsp;✦&nbsp;</span>
+        </div>
+        <div style="height:1px;background:rgba(139,92,246,0.15);margin:12px 0;"></div>
+        <div style="font-size:12px;color:#5E4A7A;">Cursor glow: фиолетовый · Hover: розовое золото</div>
+      </div>
+    </div>
+
+    <!-- COL 3: PREVIEW -->
+    <div class="bb-col">
+      <div class="preview" style="background:linear-gradient(135deg,#0E0820 0%,#1E0E3A 50%,#0E0820 100%);">
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(139,92,246,0.12),transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(255,107,157,0.07),transparent 60%);"></div>
+        <div class="preview-inner">
+          <h3 style="color:#F5EFF8;text-shadow:0 2px 20px rgba(139,92,246,0.6),0 0 40px rgba(139,92,246,0.3);">DRAGON<br>GARDEN</h3>
+          <p style="color:#B8A8CC;">GLENDALE · EST. 2017</p>
+          <span class="preview-btn" style="background:#8B5CF6;color:#fff;">Reserve a Table</span>
+        </div>
+      </div>
+
+      <div class="bb-card" style="background:#160D2A;">
+        <div class="bb-card-label" style="color:#8B5CF6;">Section Header</div>
+        <div style="font-family:'JetBrains Mono';font-size:9px;color:#8B5CF6;letter-spacing:0.22em;margin-bottom:6px;">THE BAR</div>
+        <div style="font-family:'Cinzel',serif;font-size:22px;color:#F5EFF8;line-height:1.1;margin-bottom:8px;">Craft<br>Cocktails</div>
+        <div style="font-size:12px;color:#5E4A7A;line-height:1.7;">10 signature creations · Premium spirits<br>from Armenia to Japan</div>
+        <div style="margin-top:12px;display:inline-block;padding:6px 16px;border:1px solid rgba(200,149,108,0.4);color:#C8956C;font-family:'JetBrains Mono';font-size:9px;letter-spacing:0.18em;">LOUNGE OPENS 6PM</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ══════════════════════════════════════════════════
+     BRAND BOOK 2 — EMBER & CREAM
+══════════════════════════════════════════════════ -->
+<div class="bb">
+  <div class="bb-header">
+    <div class="bb-num" style="color:#E8521A;">02</div>
+    <div class="bb-meta">
+      <div class="bb-label" style="color:#E8521A;">Brand Book №2</div>
+      <div class="bb-name" style="color:#FDF6EE;">Ember & Cream</div>
+      <div class="bb-desc">Тёплый коньячно-шоколадный фон + жгучий янтарный акцент + кремовый текст. Уютный, но премиальный. Тренд 2025: «Warm Luxury» — Hermès, Bottega Veneta, высококлассные рестораны Токио.</div>
+      <div class="tag-row">
+        <span class="bb-tag" style="background:rgba(232,82,26,0.15);border:1px solid rgba(232,82,26,0.3);color:#F87442;">#WarmLuxury</span>
+        <span class="bb-tag" style="background:rgba(232,82,26,0.08);border:1px solid rgba(232,82,26,0.2);color:#A06040;">Restaurant & Family</span>
+        <span class="bb-tag" style="background:rgba(232,82,26,0.08);border:1px solid rgba(232,82,26,0.2);color:#A06040;">Asian Fine Dining</span>
+      </div>
+    </div>
+    <div class="bb-trend" style="color:#E8521A;border-color:rgba(232,82,26,0.4);">Tokyo Fine Dining</div>
+  </div>
+
+  <div class="bb-grid">
+
+    <div class="bb-col">
+      <div class="bb-card" style="background:#1C1108;">
+        <div class="bb-card-label" style="color:#E8521A;">Palette</div>
+        <div class="swatch-block">
+          <div class="sw sw-main" style="background:#120B04;">
+            <div class="sw-label">#120B04<br>bg</div>
+          </div>
+          <div class="sw sw-main" style="background:#1C1108;">
+            <div class="sw-label">#1C1108<br>card</div>
+          </div>
+          <div class="sw sw-main" style="background:#E8521A;">
+            <div class="sw-label">#E8521A<br>ember</div>
+          </div>
+          <div class="sw sw-main" style="background:#F0B840;">
+            <div class="sw-label">#F0B840<br>amber</div>
+          </div>
+          <div class="sw sw-sm" style="background:#FDF6EE;">
+            <div class="sw-label">#FDF6EE<br>cream</div>
+          </div>
+          <div class="sw sw-sm" style="background:#8A6A50;">
+            <div class="sw-label">#8A6A50<br>muted</div>
+          </div>
+          <div class="sw sw-sm" style="background:#FF8C42;">
+            <div class="sw-label">#FF8C42<br>glow</div>
+          </div>
+          <div class="sw sw-sm" style="background:#2A1A0A;">
+            <div class="sw-label">#2A1A0A<br>deep</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bb-card" style="background:#1C1108;">
+        <div class="bb-card-label" style="color:#E8521A;">Typography</div>
+        <div class="font-row">
+          <div class="font-tag">HEADING · CINZEL</div>
+          <div style="font-family:'Cinzel',serif;font-size:22px;color:#FDF6EE;">Dragon Garden</div>
+        </div>
+        <div class="font-row">
+          <div class="font-tag">BODY · OUTFIT 300</div>
+          <div style="font-size:15px;color:#C8A88A;">Where East Meets Night</div>
+        </div>
+        <div class="font-row">
+          <div class="font-tag">LABEL · JETBRAINS MONO</div>
+          <div style="font-family:'JetBrains Mono';font-size:11px;color:#F0B840;letter-spacing:0.2em;">OPEN UNTIL 2AM</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bb-col">
+      <div class="bb-card" style="background:#1C1108;">
+        <div class="bb-card-label" style="color:#E8521A;">UI Elements</div>
+        <div style="margin-bottom:12px;">
+          <span class="bb-tag" style="background:rgba(232,82,26,0.2);border:1px solid rgba(232,82,26,0.5);color:#F87442;">Hookah Lounge</span>
+          <span class="bb-tag" style="background:rgba(240,184,64,0.12);border:1px solid rgba(240,184,64,0.35);color:#F0B840;">Signature Cocktails</span>
+          <span class="bb-tag" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#8A6A50;">Glendale CA</span>
+        </div>
+        <div style="height:1px;background:rgba(232,82,26,0.15);margin:14px 0;"></div>
+        <div style="background:#221508;border-radius:8px;padding:14px;border:1px solid rgba(232,82,26,0.2);">
+          <div style="font-family:'JetBrains Mono';font-size:9px;color:#F0B840;letter-spacing:0.15em;margin-bottom:6px;">$ 17</div>
+          <div style="font-family:'Cinzel',serif;font-size:16px;color:#FDF6EE;margin-bottom:6px;">JASMINA</div>
+          <div style="width:18px;height:1px;background:rgba(240,184,64,0.4);margin-bottom:8px;"></div>
+          <div style="font-size:10px;color:#8A6A50;line-height:1.7;">Date Bourbon · Plum Sake · Jasmine · Cranberry</div>
+        </div>
+      </div>
+
+      <div class="bb-card" style="background:#1C1108;">
+        <div class="bb-card-label" style="color:#E8521A;">Marquee Style</div>
+        <div style="overflow:hidden;white-space:nowrap;padding:10px 0;">
+          <span style="font-family:'Cinzel',serif;font-size:14px;color:#FDF6EE;letter-spacing:0.18em;">JASMINA &nbsp;◆&nbsp; MEILI &nbsp;◆&nbsp; ZAKURO &nbsp;◆&nbsp; LOUNGE &nbsp;◆&nbsp; TSUKI &nbsp;◆&nbsp;</span>
+        </div>
+        <div style="height:1px;background:rgba(232,82,26,0.15);margin:12px 0;"></div>
+        <div style="font-size:12px;color:#8A6A50;">Cursor glow: янтарный · Hover: ember orange</div>
+      </div>
+    </div>
+
+    <div class="bb-col">
+      <div class="preview" style="background:linear-gradient(135deg,#120B04 0%,#221208 50%,#120B04 100%);">
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(232,82,26,0.1),transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(240,184,64,0.07),transparent 60%);"></div>
+        <div class="preview-inner">
+          <h3 style="color:#FDF6EE;text-shadow:0 2px 20px rgba(232,82,26,0.5),0 0 40px rgba(240,184,64,0.2);">DRAGON<br>GARDEN</h3>
+          <p style="color:#C8A88A;">GLENDALE · EST. 2017</p>
+          <span class="preview-btn" style="background:#E8521A;color:#fff;">Reserve a Table</span>
+        </div>
+      </div>
+
+      <div class="bb-card" style="background:#1C1108;">
+        <div class="bb-card-label" style="color:#E8521A;">Section Header</div>
+        <div style="font-family:'JetBrains Mono';font-size:9px;color:#E8521A;letter-spacing:0.22em;margin-bottom:6px;">THE BAR</div>
+        <div style="font-family:'Cinzel',serif;font-size:22px;color:#FDF6EE;line-height:1.1;margin-bottom:8px;">Fire &amp;<br>Broth</div>
+        <div style="font-size:12px;color:#8A6A50;line-height:1.7;">Sichuan spicy · Classic mushroom · Bone broth<br>Prime wagyu · Fresh seafood</div>
+        <div style="margin-top:12px;display:inline-block;padding:6px 16px;border:1px solid rgba(240,184,64,0.4);color:#F0B840;font-family:'JetBrains Mono';font-size:9px;letter-spacing:0.18em;">DAILY 11AM – 11PM</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ══════════════════════════════════════════════════
+     BRAND BOOK 3 — JADE & ONYX
+══════════════════════════════════════════════════ -->
+<div class="bb">
+  <div class="bb-header">
+    <div class="bb-num" style="color:#2D9B6F;">03</div>
+    <div class="bb-meta">
+      <div class="bb-label" style="color:#2D9B6F;">Brand Book №3</div>
+      <div class="bb-name" style="color:#EDF5F0;">Jade & Onyx</div>
+      <div class="bb-desc">Почти-чёрный с зелёным подтоном + глубокий жадеит + кремово-белый + золото. Самый уникальный вариант для ресторанного рынка. Тренд 2025: «Botanical Luxury» — Bottega Veneta, высококлассные wellness-бренды, японские рёкан.</div>
+      <div class="tag-row">
+        <span class="bb-tag" style="background:rgba(45,155,111,0.15);border:1px solid rgba(45,155,111,0.35);color:#4ADE9E;">#BotanicalLuxury</span>
+        <span class="bb-tag" style="background:rgba(45,155,111,0.08);border:1px solid rgba(45,155,111,0.2);color:#3A7A5A;">Unique on Market</span>
+        <span class="bb-tag" style="background:rgba(45,155,111,0.08);border:1px solid rgba(45,155,111,0.2);color:#3A7A5A;">Japanese Aesthetic</span>
+      </div>
+    </div>
+    <div class="bb-trend" style="color:#2D9B6F;border-color:rgba(45,155,111,0.4);">Most Distinctive</div>
+  </div>
+
+  <div class="bb-grid">
+
+    <div class="bb-col">
+      <div class="bb-card" style="background:#080F0A;">
+        <div class="bb-card-label" style="color:#2D9B6F;">Palette</div>
+        <div class="swatch-block">
+          <div class="sw sw-main" style="background:#050C07;">
+            <div class="sw-label">#050C07<br>bg</div>
+          </div>
+          <div class="sw sw-main" style="background:#080F0A;">
+            <div class="sw-label">#080F0A<br>card</div>
+          </div>
+          <div class="sw sw-main" style="background:#2D9B6F;">
+            <div class="sw-label">#2D9B6F<br>jade</div>
+          </div>
+          <div class="sw sw-main" style="background:#C8A84B;">
+            <div class="sw-label">#C8A84B<br>gold</div>
+          </div>
+          <div class="sw sw-sm" style="background:#EDF5F0;">
+            <div class="sw-label">#EDF5F0<br>text</div>
+          </div>
+          <div class="sw sw-sm" style="background:#3D5E48;">
+            <div class="sw-label">#3D5E48<br>muted</div>
+          </div>
+          <div class="sw sw-sm" style="background:#4ADE9E;">
+            <div class="sw-label">#4ADE9E<br>glow</div>
+          </div>
+          <div class="sw sw-sm" style="background:#0E1A12;">
+            <div class="sw-label">#0E1A12<br>deep</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bb-card" style="background:#080F0A;">
+        <div class="bb-card-label" style="color:#2D9B6F;">Typography</div>
+        <div class="font-row">
+          <div class="font-tag">HEADING · CINZEL</div>
+          <div style="font-family:'Cinzel',serif;font-size:22px;color:#EDF5F0;">Dragon Garden</div>
+        </div>
+        <div class="font-row">
+          <div class="font-tag">BODY · OUTFIT 300</div>
+          <div style="font-size:15px;color:#9ABAA5;">Where East Meets Night</div>
+        </div>
+        <div class="font-row">
+          <div class="font-tag">LABEL · JETBRAINS MONO</div>
+          <div style="font-family:'JetBrains Mono';font-size:11px;color:#C8A84B;letter-spacing:0.2em;">OPEN UNTIL 2AM</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bb-col">
+      <div class="bb-card" style="background:#080F0A;">
+        <div class="bb-card-label" style="color:#2D9B6F;">UI Elements</div>
+        <div style="margin-bottom:12px;">
+          <span class="bb-tag" style="background:rgba(45,155,111,0.18);border:1px solid rgba(45,155,111,0.4);color:#4ADE9E;">Hookah Lounge</span>
+          <span class="bb-tag" style="background:rgba(200,168,75,0.12);border:1px solid rgba(200,168,75,0.3);color:#C8A84B;">Signature Cocktails</span>
+          <span class="bb-tag" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);color:#3D5E48;">Glendale CA</span>
+        </div>
+        <div style="height:1px;background:rgba(45,155,111,0.15);margin:14px 0;"></div>
+        <div style="background:#0C1810;border-radius:8px;padding:14px;border:1px solid rgba(45,155,111,0.2);">
+          <div style="font-family:'JetBrains Mono';font-size:9px;color:#C8A84B;letter-spacing:0.15em;margin-bottom:6px;">$ 18</div>
+          <div style="font-family:'Cinzel',serif;font-size:16px;color:#EDF5F0;margin-bottom:6px;">ZAKURO</div>
+          <div style="width:18px;height:1px;background:rgba(45,155,111,0.5);margin-bottom:8px;"></div>
+          <div style="font-size:10px;color:#3D5E48;line-height:1.7;">Wild Cherry Gin · Pomegranate · Hibiscus-Rose Water</div>
+        </div>
+      </div>
+
+      <div class="bb-card" style="background:#080F0A;">
+        <div class="bb-card-label" style="color:#2D9B6F;">Marquee Style</div>
+        <div style="overflow:hidden;white-space:nowrap;padding:10px 0;">
+          <span style="font-family:'Cinzel',serif;font-size:14px;color:#EDF5F0;letter-spacing:0.18em;">JASMINA &nbsp;⬡&nbsp; MEILI &nbsp;⬡&nbsp; ZAKURO &nbsp;⬡&nbsp; LOUNGE &nbsp;⬡&nbsp; TSUKI &nbsp;⬡&nbsp;</span>
+        </div>
+        <div style="height:1px;background:rgba(45,155,111,0.15);margin:12px 0;"></div>
+        <div style="font-size:12px;color:#3D5E48;">Cursor glow: жадеит · Hover: золото</div>
+      </div>
+    </div>
+
+    <div class="bb-col">
+      <div class="preview" style="background:linear-gradient(135deg,#050C07 0%,#0C1810 50%,#050C07 100%);">
+        <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(45,155,111,0.1),transparent 60%),radial-gradient(ellipse at 70% 50%,rgba(200,168,75,0.06),transparent 60%);"></div>
+        <div class="preview-inner">
+          <h3 style="color:#EDF5F0;text-shadow:0 2px 20px rgba(45,155,111,0.5),0 0 40px rgba(45,155,111,0.2);">DRAGON<br>GARDEN</h3>
+          <p style="color:#9ABAA5;">GLENDALE · EST. 2017</p>
+          <span class="preview-btn" style="background:#2D9B6F;color:#fff;">Reserve a Table</span>
+        </div>
+      </div>
+
+      <div class="bb-card" style="background:#080F0A;">
+        <div class="bb-card-label" style="color:#2D9B6F;">Section Header</div>
+        <div style="font-family:'JetBrains Mono';font-size:9px;color:#2D9B6F;letter-spacing:0.22em;margin-bottom:6px;">JAPANESE CRAFT</div>
+        <div style="font-family:'Cinzel',serif;font-size:22px;color:#EDF5F0;line-height:1.1;margin-bottom:8px;">The<br>Sushi Bar</div>
+        <div style="font-size:12px;color:#3D5E48;line-height:1.7;">In-house chefs · Nigiri · Specialty rolls<br>Omakase by reservation</div>
+        <div style="margin-top:12px;display:inline-block;padding:6px 16px;border:1px solid rgba(200,168,75,0.4);color:#C8A84B;font-family:'JetBrains Mono';font-size:9px;letter-spacing:0.18em;">RESERVE · (818) 971-9922</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════
+     COMPARISON TABLE
+══════════════════════════════════════════════════ -->
+<div class="compare">
+  <div class="compare-head">
+    <div>Характеристика</div>
+    <div style="color:#8B5CF6;">01 Violet Smoke</div>
+    <div style="color:#E8521A;">02 Ember & Cream</div>
+    <div style="color:#2D9B6F;">03 Jade & Onyx</div>
+  </div>
+  <div class="compare-row">
+    <div class="compare-attr">Настроение</div>
+    <div>Ночной клуб, DJ</div>
+    <div>Тёплый, семейный</div>
+    <div>Японская элегантность</div>
+  </div>
+  <div class="compare-row">
+    <div class="compare-attr">Акцент</div>
+    <div class="dot-row"><div class="dot" style="background:#8B5CF6;"></div> Электро-фиолет</div>
+    <div class="dot-row"><div class="dot" style="background:#E8521A;"></div> Ember orange</div>
+    <div class="dot-row"><div class="dot" style="background:#2D9B6F;"></div> Deep jade</div>
+  </div>
+  <div class="compare-row">
+    <div class="compare-attr">Золото</div>
+    <div class="dot-row"><div class="dot" style="background:#C8956C;"></div> Розовое золото</div>
+    <div class="dot-row"><div class="dot" style="background:#F0B840;"></div> Янтарное золото</div>
+    <div class="dot-row"><div class="dot" style="background:#C8A84B;"></div> Классическое золото</div>
+  </div>
+  <div class="compare-row">
+    <div class="compare-attr">Текст</div>
+    <div class="dot-row"><div class="dot" style="background:#F5EFF8;"></div> Лиловый белый</div>
+    <div class="dot-row"><div class="dot" style="background:#FDF6EE;"></div> Тёплый крем</div>
+    <div class="dot-row"><div class="dot" style="background:#EDF5F0;"></div> Холодный крем</div>
+  </div>
+  <div class="compare-row">
+    <div class="compare-attr">Тренд 2025</div>
+    <div>Digital Luxury Purple ★★★</div>
+    <div>Warm Luxury ★★★</div>
+    <div>Botanical Luxury ★★★</div>
+  </div>
+  <div class="compare-row">
+    <div class="compare-attr">Уникальность</div>
+    <div>Популярный, конкурентный</div>
+    <div>Узнаваемый, тёплый</div>
+    <div>Редкий, выделяется</div>
+  </div>
+  <div class="compare-row">
+    <div class="compare-attr">Подходит для</div>
+    <div>Lounge / Nightlife акцент</div>
+    <div>Restaurant / Family акцент</div>
+    <div>Сushi / Premium акцент</div>
+  </div>
+</div>
+
+<div style="margin-top:40px;font-family:'JetBrains Mono';font-size:10px;color:#333;letter-spacing:0.15em;text-align:center;">
+  DRAGON GARDEN · BRAND STRATEGY 2025 · CINEMATIC SITES
+</div>
+
+</body>
+</html>
