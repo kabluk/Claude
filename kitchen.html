@@ -180,13 +180,14 @@ html,body{height:100%;background:var(--bg);color:var(--text);font-family:'Helvet
       <code>CREATE TABLE orders (
   id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
   created_at TIMESTAMPTZ DEFAULT NOW(),
-  restaurant_id TEXT DEFAULT 'dragon-garden',
+  restaurant_id TEXT NOT NULL,
   table_num TEXT,
   items JSONB,
   total NUMERIC(10,2),
   status TEXT DEFAULT 'new'
     CHECK (status IN ('new','cooking','done')),
-  status_updated_at TIMESTAMPTZ DEFAULT NOW()
+  status_updated_at TIMESTAMPTZ DEFAULT NOW(),
+  pos_entered BOOLEAN DEFAULT false
 );
 ALTER TABLE orders ENABLE ROW LEVEL SECURITY;
 CREATE POLICY "anon_all" ON orders FOR ALL USING (true) WITH CHECK (true);</code>
@@ -196,6 +197,7 @@ CREATE POLICY "anon_all" ON orders FOR ALL USING (true) WITH CHECK (true);</code
       <h3>Step 3 — Enter your credentials</h3>
       <input class="setup-input" id="inp-url" placeholder="https://xxxx.supabase.co">
       <input class="setup-input" id="inp-key" placeholder="eyJhbGci... (anon key)" style="margin-top:8px">
+      <input class="setup-input" id="inp-rid" placeholder="Restaurant ID (e.g. dragon-garden)" style="margin-top:8px">
     </div>
 
     <button class="setup-btn" onclick="saveConfig()">Connect Kitchen Display →</button>
@@ -209,7 +211,7 @@ CREATE POLICY "anon_all" ON orders FOR ALL USING (true) WITH CHECK (true);</code
       <div class="live-dot" id="live-dot" title="Connected"></div>
       <div>
         <div class="logo">KITCHEN DISPLAY</div>
-        <div class="restaurant">Dragon Garden LA</div>
+        <div class="restaurant" id="rest-name">—</div>
       </div>
     </div>
     <div class="header-clock" id="clock">--:--</div>
@@ -250,10 +252,8 @@ CREATE POLICY "anon_all" ON orders FOR ALL USING (true) WITH CHECK (true);</code
 <script>
 // ── CONFIG ────────────────────────────────────────────────
 const CONFIG_KEY = 'menvio_kitchen_config';
-const POS_KEY = 'menvio_pos_entered';
 let sb = null;
 let knownIds = new Set();
-let posEntered = new Set(JSON.parse(localStorage.getItem(POS_KEY) || '[]'));
 
 function loadConfig() {
   try { return JSON.parse(localStorage.getItem(CONFIG_KEY)); } catch(e) { return null; }
@@ -261,8 +261,9 @@ function loadConfig() {
 function saveConfig() {
   const url = document.getElementById('inp-url').value.trim();
   const key = document.getElementById('inp-key').value.trim();
-  if (!url || !key) { showToast('Enter both URL and anon key'); return; }
-  localStorage.setItem(CONFIG_KEY, JSON.stringify({url, key}));
+  const rid = document.getElementById('inp-rid').value.trim();
+  if (!url || !key || !rid) { showToast('Fill in all three fields'); return; }
+  localStorage.setItem(CONFIG_KEY, JSON.stringify({url, key, rid}));
   location.reload();
 }
 
@@ -277,11 +278,12 @@ if (!cfg) {
 }
 
 async function init() {
+  document.getElementById('rest-name').textContent = cfg.rid;
   startClock();
   await loadOrders();
   subscribeRealtime();
-  setInterval(tickTimers, 30000); // update age timers every 30s
-  setInterval(loadOrders, 15000); // fallback poll every 15s
+  setInterval(tickTimers, 30000);
+  setInterval(loadOrders, 15000);
 }
 
 // ── CLOCK ─────────────────────────────────────────────────
@@ -301,6 +303,7 @@ async function loadOrders() {
   const { data, error } = await sb
     .from('orders')
     .select('*')
+    .eq('restaurant_id', cfg.rid)
     .gte('created_at', cutoff)
     .neq('status', 'archived')
     .order('created_at', { ascending: true });
@@ -346,7 +349,7 @@ function cardHTML(o) {
   if (o.status === 'new')     btn = `<button class="action-btn btn-take" onclick="setStatus('${o.id}','cooking')">▶ Take Order</button>`;
   if (o.status === 'cooking') btn = `<button class="action-btn btn-done"  onclick="setStatus('${o.id}','done')">✓ Done</button>`;
   if (o.status === 'done') {
-    const posBtn = posEntered.has(o.id)
+    const posBtn = o.pos_entered
       ? `<span class="pos-badge">✓ In POS</span>`
       : `<button class="action-btn btn-pos" onclick="markPOS('${o.id}')">POS ✓</button>`;
     btn = `<div style="display:flex;gap:8px;align-items:center">${posBtn}<button class="action-btn btn-archive" onclick="setStatus('${o.id}','archived')">Archive</button></div>`;
@@ -395,8 +398,11 @@ async function setStatus(id, status) {
 
 // ── REALTIME ──────────────────────────────────────────────
 function subscribeRealtime() {
-  sb.channel('orders-channel')
-    .on('postgres_changes', { event: '*', schema: 'public', table: 'orders' }, () => {
+  sb.channel('orders-' + cfg.rid)
+    .on('postgres_changes', {
+      event: '*', schema: 'public', table: 'orders',
+      filter: `restaurant_id=eq.${cfg.rid}`
+    }, () => {
       loadOrders();
     })
     .subscribe(status => {
@@ -440,11 +446,14 @@ function playBeep() {
 }
 
 // ── POS TRACKING ──────────────────────────────────────────
-function markPOS(id) {
-  posEntered.add(id);
-  localStorage.setItem(POS_KEY, JSON.stringify([...posEntered]));
-  loadOrders();
+async function markPOS(id) {
+  const { error } = await sb
+    .from('orders')
+    .update({ pos_entered: true })
+    .eq('id', id);
+  if (error) { showToast('Error updating POS status'); return; }
   showToast('✓ Marked as entered in POS');
+  await loadOrders();
 }
 
 // ── TOAST ─────────────────────────────────────────────────
