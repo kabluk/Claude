@@ -617,6 +617,91 @@ footer {
 .fade-up { opacity: 0; transform: translateY(40px); }
 
 /* ── RESPONSIVE ── */
+/* ── VIDEO SECTIONS ── */
+.vid-section {
+  position: relative; height: 100vh; overflow: hidden;
+  display: flex; align-items: flex-end; padding: 80px 48px;
+}
+.vid-section.top { align-items: flex-start; padding-top: 140px; }
+.vid-bg {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover; z-index: 0;
+}
+.vid-placeholder { position: absolute; inset: 0; z-index: 0; }
+.vid-overlay {
+  position: absolute; inset: 0; z-index: 1;
+  background: linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.35) 50%, rgba(0,0,0,0.18) 100%);
+}
+.vid-overlay.flip {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.25) 50%, rgba(0,0,0,0.45) 100%);
+}
+.vid-text { position: relative; z-index: 2; max-width: 640px; }
+.vid-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.28em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 14px;
+}
+.vid-heading {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(48px, 6.5vw, 96px);
+  font-weight: 700; line-height: 0.92;
+  color: var(--text);
+  text-shadow: 0 4px 30px rgba(0,0,0,.9);
+  margin-bottom: 20px;
+}
+.vid-sub {
+  font-size: 16px; color: rgba(240,235,227,0.72);
+  line-height: 1.75; letter-spacing: 0.03em;
+}
+.vid-tag {
+  display: inline-block; margin-top: 28px;
+  padding: 7px 20px; border: 1px solid rgba(200,168,75,0.45);
+  color: var(--gold); font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase;
+}
+
+/* ── SIGNATURE COCKTAILS ── */
+.cocktails-section { padding: 100px 48px; background: var(--bg); }
+.ck-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px; margin-top: 48px;
+}
+.ck-card {
+  position: relative; border-radius: 10px;
+  padding: 22px 16px 22px; overflow: hidden;
+  cursor: default; border: 1px solid rgba(255,255,255,0.06);
+  transition: transform 0.4s var(--ease), border-color 0.3s;
+  min-height: 180px;
+}
+.ck-card:hover { transform: translateY(-8px); border-color: rgba(200,168,75,0.25); }
+.ck-card-bg { position: absolute; inset: 0; z-index: 0; }
+.ck-price {
+  position: relative; z-index: 1;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--gold);
+  margin-bottom: 8px; letter-spacing: 0.15em;
+}
+.ck-name {
+  position: relative; z-index: 1;
+  font-family: 'Cinzel', serif;
+  font-size: 16px; font-weight: 700;
+  color: var(--text); margin-bottom: 10px; line-height: 1.1;
+  letter-spacing: 0.05em;
+}
+.ck-ingredients {
+  position: relative; z-index: 1;
+  font-size: 10.5px; color: rgba(240,235,227,0.48);
+  line-height: 1.7;
+}
+.ck-divider {
+  position: relative; z-index: 1;
+  width: 20px; height: 1px;
+  background: rgba(200,168,75,0.35);
+  margin: 10px 0;
+}
+
 @media (max-width: 768px) {
   nav { padding: 16px 24px; }
   nav.scrolled { padding: 12px 24px; }
@@ -633,6 +718,13 @@ footer {
   .accordion-wrap { height: 340px; }
   footer { flex-direction: column; gap: 16px; text-align: center; }
   .hero { height: 100vh; }
+  .vid-section { height: 70vh; padding: 40px 24px; }
+  .vid-section.top { padding-top: 100px; }
+  .vid-heading { font-size: clamp(38px, 9vw, 60px); }
+  .vid-sub { font-size: 14px; }
+  .ck-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .cocktails-section { padding: 80px 24px; }
+  .ck-card { min-height: 150px; }
 }
 </style>
 </head>
@@ -683,18 +775,35 @@ footer {
   <div class="marquee-track" id="marqueeTrack">
     <div class="marquee-content" id="marqueeContent">
       <span>
+        JASMINA <span class="marquee-dot"></span>
         HOT POT <span class="marquee-dot"></span>
+        MEILI <span class="marquee-dot"></span>
         SUSHI BAR <span class="marquee-dot"></span>
-        DIM SUM <span class="marquee-dot"></span>
+        ZAKURO <span class="marquee-dot"></span>
         HOOKAH LOUNGE <span class="marquee-dot"></span>
+        TSUKI <span class="marquee-dot"></span>
         LIVE DJ <span class="marquee-dot"></span>
+        NIRVANA <span class="marquee-dot"></span>
         200+ DISHES <span class="marquee-dot"></span>
-        PRIVATE EVENTS <span class="marquee-dot"></span>
-        OPEN DAILY <span class="marquee-dot"></span>
+        ALISA <span class="marquee-dot"></span>
+        OPEN UNTIL 2AM <span class="marquee-dot"></span>
       </span>
     </div>
   </div>
 </div>
+
+<!-- HOT POT VIDEO SECTION -->
+<section class="vid-section">
+  <div class="vid-placeholder" style="background:linear-gradient(135deg,#200808 0%,#3d1010 40%,#0a0302 100%);"></div>
+  <video class="vid-bg" src="assets/hotpot.mp4" muted loop playsinline preload="metadata"></video>
+  <div class="vid-overlay"></div>
+  <div class="vid-text fade-up">
+    <div class="vid-eyebrow">Dragon Signature</div>
+    <h2 class="vid-heading">Fire &amp;<br>Broth</h2>
+    <p class="vid-sub">Sichuan spicy · Classic mushroom · Bone broth<br>Prime wagyu · Fresh seafood · House dipping sauces</p>
+    <div class="vid-tag">Hot Pot · Daily 11AM – 11PM</div>
+  </div>
+</section>
 
 <!-- MENU SECTION -->
 <section id="menu">
@@ -744,6 +853,19 @@ footer {
         <div class="acc-desc">Craft cocktails, premium hookah, small plates. DJ nights, private event packages, bottle service. Open until 2 AM.</div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- SUSHI VIDEO SECTION -->
+<section class="vid-section top">
+  <div class="vid-placeholder" style="background:linear-gradient(135deg,#020a14 0%,#06111f 40%,#010508 100%);"></div>
+  <video class="vid-bg" src="assets/sushi.mp4" muted loop playsinline preload="metadata"></video>
+  <div class="vid-overlay flip"></div>
+  <div class="vid-text fade-up">
+    <div class="vid-eyebrow">Japanese Craft</div>
+    <h2 class="vid-heading">The<br>Sushi Bar</h2>
+    <p class="vid-sub">In-house chefs · Nigiri · Specialty rolls<br>Sashimi platters · Omakase by reservation</p>
+    <div class="vid-tag">Reserve Your Seat · (818) 971-9922</div>
   </div>
 </section>
 
@@ -843,6 +965,100 @@ footer {
     </div>
   </div>
 </div>
+
+<!-- COCKTAIL VIDEO SECTION -->
+<section class="vid-section">
+  <div class="vid-placeholder" style="background:linear-gradient(135deg,#1a0508 0%,#2e0b12 40%,#0a0204 100%);"></div>
+  <video class="vid-bg" src="assets/cocktail.mp4" muted loop playsinline preload="metadata"></video>
+  <div class="vid-overlay"></div>
+  <div class="vid-text fade-up">
+    <div class="vid-eyebrow">The Bar</div>
+    <h2 class="vid-heading">Craft<br>Cocktails</h2>
+    <p class="vid-sub">10 signature creations · 25+ classics<br>Premium spirits from Armenia to Japan · Open until 2AM</p>
+    <div class="vid-tag">Lounge Opens 6PM</div>
+  </div>
+</section>
+
+<!-- SIGNATURE COCKTAILS -->
+<section class="cocktails-section" id="cocktails">
+  <div class="fade-up">
+    <div class="section-label">Signature Bar</div>
+    <h2 class="section-title">10 Original<br>Cocktails</h2>
+    <p class="section-body">Each drink crafted exclusively for Dragon Garden — East meets West in every glass. All $16–18.</p>
+  </div>
+  <div class="ck-grid fade-up">
+    <div class="ck-card">
+      <div class="ck-card-bg" style="background:linear-gradient(145deg,#3d0015,#1a000a);"></div>
+      <div class="ck-price">$ 17</div>
+      <div class="ck-name">JASMINA</div>
+      <div class="ck-divider"></div>
+      <div class="ck-ingredients">Date Bourbon · Plum Sake · Jasmine · Cranberry · Lemon</div>
+    </div>
+    <div class="ck-card">
+      <div class="ck-card-bg" style="background:linear-gradient(145deg,#0d2212,#040d06);"></div>
+      <div class="ck-price">$ 17</div>
+      <div class="ck-name">LIAO</div>
+      <div class="ck-divider"></div>
+      <div class="ck-ingredients">Sake · Melon Liqueur · Honey-Flower · Apple · Wasabi</div>
+    </div>
+    <div class="ck-card">
+      <div class="ck-card-bg" style="background:linear-gradient(145deg,#2d1e00,#181000);"></div>
+      <div class="ck-price">$ 17</div>
+      <div class="ck-name">YOUSHI</div>
+      <div class="ck-divider"></div>
+      <div class="ck-ingredients">Vodka · Melon Liqueur · Yuzu-Honey · Fresh Lemon</div>
+    </div>
+    <div class="ck-card">
+      <div class="ck-card-bg" style="background:linear-gradient(145deg,#0e0828,#05030f);"></div>
+      <div class="ck-price">$ 18</div>
+      <div class="ck-name">MEILI</div>
+      <div class="ck-divider"></div>
+      <div class="ck-ingredients">Plum Soju · Elderflower · Lemongrass · Butterfly Pea Flower Tea</div>
+    </div>
+    <div class="ck-card">
+      <div class="ck-card-bg" style="background:linear-gradient(145deg,#220614,#100308);"></div>
+      <div class="ck-price">$ 16</div>
+      <div class="ck-name">NIRVANA</div>
+      <div class="ck-divider"></div>
+      <div class="ck-ingredients">Sake · Ararat Apricot · Soy Milk · Cherry Juice</div>
+    </div>
+    <div class="ck-card">
+      <div class="ck-card-bg" style="background:linear-gradient(145deg,#2a041a,#110208);"></div>
+      <div class="ck-price">$ 18</div>
+      <div class="ck-name">ALISA</div>
+      <div class="ck-divider"></div>
+      <div class="ck-ingredients">Vogis Gin · Lychee · Aloe Vera · Hibiscus Ice Cube · Sumac</div>
+    </div>
+    <div class="ck-card">
+      <div class="ck-card-bg" style="background:linear-gradient(145deg,#220505,#0f0202);"></div>
+      <div class="ck-price">$ 18</div>
+      <div class="ck-name">ISHPUINI</div>
+      <div class="ck-divider"></div>
+      <div class="ck-ingredients">Ararat VSOP · Italian Bitter · Red Wine · Pomegranate</div>
+    </div>
+    <div class="ck-card">
+      <div class="ck-card-bg" style="background:linear-gradient(145deg,#2a0209,#120104);"></div>
+      <div class="ck-price">$ 18</div>
+      <div class="ck-name">ZAKURO</div>
+      <div class="ck-divider"></div>
+      <div class="ck-ingredients">Wild Cherry Gin · Pomegranate · Hibiscus-Rose Water</div>
+    </div>
+    <div class="ck-card">
+      <div class="ck-card-bg" style="background:linear-gradient(145deg,#2c1208,#120804);"></div>
+      <div class="ck-price">$ 18</div>
+      <div class="ck-name">LUMI</div>
+      <div class="ck-divider"></div>
+      <div class="ck-ingredients">Strawberry Tequila · Bergamot · Cherry · Ginger · Lemon</div>
+    </div>
+    <div class="ck-card">
+      <div class="ck-card-bg" style="background:linear-gradient(145deg,#1c082a,#0a0412);"></div>
+      <div class="ck-price">$ 18</div>
+      <div class="ck-name">TSUKI</div>
+      <div class="ck-divider"></div>
+      <div class="ck-ingredients">Vodka · Elderflower · Vanilla · Pomegranate · Lemon</div>
+    </div>
+  </div>
+</section>
 
 <!-- SERVICES CARDS -->
 <section id="lounge">
@@ -1202,6 +1418,17 @@ document.querySelectorAll('.fade-up').forEach(function(el) {
       scrollTrigger: { trigger: el, start: 'top 85%', toggleActions: 'play none none none' }
     }
   );
+});
+
+// ── VIDEO SECTIONS (play/pause on viewport) ──
+document.querySelectorAll('.vid-section video').forEach(function(vid) {
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) { vid.play().catch(function(){}); }
+      else { vid.pause(); }
+    });
+  }, { threshold: 0.25 });
+  obs.observe(vid);
 });
 
 // ── LUCIDE ICONS ──
