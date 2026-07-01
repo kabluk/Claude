@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brand Card — Dragon Garden Family Restaurant</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #080604;
+    color: #f0ebe3;
+    font-family: 'Outfit', sans-serif;
+    padding: 40px;
+    min-height: 100vh;
+  }
+  h1 { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 0.25em; color: #C8A84B; text-transform: uppercase; margin-bottom: 6px; }
+  .brand-name { font-family: 'Cinzel', serif; font-size: 42px; font-weight: 700; color: #f0ebe3; line-height: 1.1; margin-bottom: 4px; }
+  .brand-sub  { font-family: 'Outfit', sans-serif; font-size: 15px; font-weight: 300; color: #9e8c78; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 32px; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 960px; }
+  .card {
+    background: #131008;
+    border: 1px solid #2a2218;
+    border-radius: 12px;
+    padding: 24px;
+  }
+  .card-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: #C8A84B; font-weight: 600; margin-bottom: 16px; }
+  /* Colors */
+  .swatch-row { display: flex; gap: 10px; flex-wrap: wrap; }
+  .swatch { width: 56px; height: 56px; border-radius: 8px; position: relative; }
+  .swatch-info { font-size: 10px; color: #6b5f52; margin-top: 5px; text-align: center; font-family: 'JetBrains Mono', monospace; }
+  /* Fonts */
+  .font-sample { margin-bottom: 14px; }
+  .font-sample .label { font-size: 10px; color: #6b5f52; font-family: 'JetBrains Mono', monospace; margin-bottom: 4px; }
+  .font-h { font-family: 'Cinzel', serif; font-size: 24px; font-weight: 700; color: #f0ebe3; }
+  .font-b { font-family: 'Outfit', sans-serif; font-size: 16px; color: #c8b99e; }
+  .font-m { font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #C8A84B; }
+  /* Copy */
+  .copy-item { margin-bottom: 10px; }
+  .copy-label { font-size: 10px; color: #6b5f52; font-family: 'JetBrains Mono', monospace; margin-bottom: 2px; }
+  .copy-value { font-size: 14px; color: #d4c4b0; }
+  /* Tags */
+  .tag { display: inline-block; padding: 4px 12px; border-radius: 20px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; margin: 3px; }
+  .tag-red  { background: rgba(196,30,58,0.15); border: 1px solid rgba(196,30,58,0.4); color: #e8617a; }
+  .tag-gold { background: rgba(200,168,75,0.12); border: 1px solid rgba(200,168,75,0.35); color: #C8A84B; }
+  .tag-dark { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #9e8c78; }
+  /* Modules */
+  .module-row { display: flex; flex-direction: column; gap: 8px; }
+  .module-item { display: flex; align-items: flex-start; gap: 10px; }
+  .module-dot { width: 8px; height: 8px; border-radius: 50%; background: #C8A84B; margin-top: 5px; flex-shrink: 0; }
+  .module-name { font-size: 13px; font-weight: 600; color: #f0ebe3; }
+  .module-desc { font-size: 12px; color: #6b5f52; }
+  /* Theme preview */
+  .theme-preview {
+    background: linear-gradient(135deg, #0a0805 0%, #1a1008 50%, #0a0805 100%);
+    border-radius: 8px;
+    padding: 24px;
+    text-align: center;
+    margin-top: 10px;
+    border: 1px solid #2a2218;
+    position: relative;
+    overflow: hidden;
+  }
+  .theme-preview::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(196,30,58,0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 50%, rgba(200,168,75,0.06) 0%, transparent 60%);
+  }
+  .theme-preview h2 { font-family: 'Cinzel', serif; font-size: 28px; color: #f0ebe3; position: relative;
+    text-shadow: 0 2px 20px rgba(196,30,58,0.5), 0 0 40px rgba(200,168,75,0.2); }
+  .theme-preview p { font-size: 13px; color: #9e8c78; margin-top: 6px; position: relative; letter-spacing: 0.1em; }
+  .theme-preview .btn {
+    display: inline-block; margin-top: 14px; padding: 8px 22px; border-radius: 4px; position: relative;
+    background: #C41E3A; color: #fff; font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .full-width { grid-column: 1 / -1; }
+  hr { border: none; border-top: 1px solid #1e1810; margin: 8px 0; }
+  .scene-concept { margin-bottom: 14px; padding: 14px; background: #0e0b07; border-radius: 8px; border-left: 3px solid #C41E3A; }
+  .scene-concept:nth-child(2) { border-left-color: #C8A84B; }
+  .scene-concept:nth-child(3) { border-left-color: #4a6fa5; }
+  .scene-title { font-size: 13px; font-weight: 700; color: #f0ebe3; margin-bottom: 4px; }
+  .scene-detail { font-size: 12px; color: #6b5f52; }
+</style>
+</head>
+<body>
+
+<h1>Brand Analysis</h1>
+<div class="brand-name">Dragon Garden</div>
+<div class="brand-sub">Family Restaurant &amp; Lounge &bull; Glendale, CA</div>
+
+<div class="grid">
+
+  <!-- COLOR PALETTE -->
+  <div class="card">
+    <div class="card-label">Color Palette</div>
+    <div class="swatch-row">
+      <div>
+        <div class="swatch" style="background:#0a0805;border:1px solid #2a2218;"></div>
+        <div class="swatch-info">--bg<br>#0a0805</div>
+      </div>
+      <div>
+        <div class="swatch" style="background:#131008;"></div>
+        <div class="swatch-info">--card<br>#131008</div>
+      </div>
+      <div>
+        <div class="swatch" style="background:#C41E3A;"></div>
+        <div class="swatch-info">--accent<br>#C41E3A</div>
+      </div>
+      <div>
+        <div class="swatch" style="background:#C8A84B;"></div>
+        <div class="swatch-info">--gold<br>#C8A84B</div>
+      </div>
+      <div>
+        <div class="swatch" style="background:#f0ebe3;"></div>
+        <div class="swatch-info">--text<br>#f0ebe3</div>
+      </div>
+      <div>
+        <div class="swatch" style="background:#6b5f52;"></div>
+        <div class="swatch-info">--muted<br>#6b5f52</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TYPOGRAPHY -->
+  <div class="card">
+    <div class="card-label">Typography</div>
+    <div class="font-sample">
+      <div class="label">Heading — Cinzel (ceremonial, Eastern-influenced serifs)</div>
+      <div class="font-h">Dragon Garden</div>
+    </div>
+    <div class="font-sample">
+      <div class="label">Body — Outfit (clean, modern)</div>
+      <div class="font-b">Authentic flavors of China &amp; Japan</div>
+    </div>
+    <div class="font-sample">
+      <div class="label">Accent — JetBrains Mono (stats, prices, labels)</div>
+      <div class="font-m">OPEN DAILY 11AM – 11PM</div>
+    </div>
+  </div>
+
+  <!-- KEY COPY -->
+  <div class="card">
+    <div class="card-label">Key Copy</div>
+    <div class="copy-item">
+      <div class="copy-label">HEADLINE</div>
+      <div class="copy-value" style="font-family:'Cinzel',serif;font-size:16px;">Where East Meets Night</div>
+    </div>
+    <div class="copy-item">
+      <div class="copy-label">TAGLINE</div>
+      <div class="copy-value">200+ Chinese &amp; Japanese classics. Sushi bar. Hot pot. Hookah lounge. DJ nights.</div>
+    </div>
+    <hr>
+    <div class="copy-item">
+      <div class="copy-label">PHONE (RESTAURANT)</div>
+      <div class="copy-value">(818) 971-9922</div>
+    </div>
+    <div class="copy-item">
+      <div class="copy-label">PHONE (LOUNGE)</div>
+      <div class="copy-value">(747) 200-9922</div>
+    </div>
+    <div class="copy-item">
+      <div class="copy-label">ADDRESS</div>
+      <div class="copy-value">216 N Orange St, Glendale, CA 91203</div>
+    </div>
+    <div class="copy-item">
+      <div class="copy-label">RESTAURANT HOURS</div>
+      <div class="copy-value">Daily 11:00 AM – 11:00 PM</div>
+    </div>
+    <div class="copy-item">
+      <div class="copy-label">HOOKAH LOUNGE</div>
+      <div class="copy-value">Daily 6:00 PM – 2:00 AM</div>
+    </div>
+  </div>
+
+  <!-- VIBE & FEATURES -->
+  <div class="card">
+    <div class="card-label">Identity &amp; Vibe</div>
+    <div style="margin-bottom:14px;">
+      <span class="tag tag-red">Chinese Cuisine</span>
+      <span class="tag tag-red">Japanese Sushi Bar</span>
+      <span class="tag tag-red">Hot Pot</span>
+      <span class="tag tag-gold">Hookah Lounge</span>
+      <span class="tag tag-gold">DJ Nights</span>
+      <span class="tag tag-gold">Special Events</span>
+      <span class="tag tag-dark">Family Area</span>
+      <span class="tag tag-dark">Premium Drinks</span>
+      <span class="tag tag-dark">Glendale CA</span>
+    </div>
+    <div class="copy-item">
+      <div class="copy-label">ORIGIN</div>
+      <div class="copy-value">Born in Armenia 2017 → First US location, Glendale 2024</div>
+    </div>
+    <div class="copy-item">
+      <div class="copy-label">UNIQUE POSITION</div>
+      <div class="copy-value">Day = family restaurant. Night = upscale lounge with hookah + DJ. Two experiences, one space.</div>
+    </div>
+    <div class="copy-item">
+      <div class="copy-label">INSTAGRAM</div>
+      <div class="copy-value">@dragongarden.am</div>
+    </div>
+  </div>
+
+  <!-- THEME PREVIEW -->
+  <div class="card full-width">
+    <div class="card-label">Visual Theme Preview</div>
+    <div class="theme-preview">
+      <h2>DRAGON GARDEN</h2>
+      <p>GLENDALE · CHINESE &amp; JAPANESE · EST. 2017</p>
+      <div class="btn">Reserve a Table</div>
+    </div>
+  </div>
+
+  <!-- CINEMATIC MODULE PICKS -->
+  <div class="card">
+    <div class="card-label">Recommended Cinematic Modules</div>
+    <div class="module-row">
+      <div class="module-item">
+        <div class="module-dot"></div>
+        <div>
+          <div class="module-name">Zoom Parallax</div>
+          <div class="module-desc">Cinematic dish reveal — hero object zooms in from darkness as you scroll</div>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-dot" style="background:#C41E3A;"></div>
+        <div>
+          <div class="module-name">Kinetic Marquee</div>
+          <div class="module-desc">Scrolling band: HOT POT · SUSHI · DIM SUM · HOOKAH · LIVE DJ · 200+ DISHES</div>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-dot"></div>
+        <div>
+          <div class="module-name">Accordion Slider</div>
+          <div class="module-desc">Horizontal panels for menu categories — expands on hover to reveal dishes</div>
+        </div>
+      </div>
+      <div class="module-item">
+        <div class="module-dot" style="background:#C41E3A;"></div>
+        <div>
+          <div class="module-name">Cursor-Reactive (glow)</div>
+          <div class="module-desc">Deep red/gold cursor glow drifting across the dark background</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCENE CONCEPTS -->
+  <div class="card">
+    <div class="card-label">Hero Scene Concepts (3 options)</div>
+    <div class="scene-concept">
+      <div class="scene-title">A — Dragon's Breath Hotpot</div>
+      <div class="scene-detail">Extreme close-up of a cast-iron hotpot. Dark kitchen, single overhead light. Steam rises slowly, broth bubbling. Chopsticks lower a Wagyu slice in. Camera drifts forward. Deep reds and golds.</div>
+    </div>
+    <div class="scene-concept">
+      <div class="scene-title">B — Midnight Sushi Ritual</div>
+      <div class="scene-detail">A sushi chef's hands press a roll on black stone. Dramatic side-lighting. Gold sauce drizzles in slow motion. Camera pulls back slowly to reveal the full counter. Black + gold + white marble.</div>
+    </div>
+    <div class="scene-concept">
+      <div class="scene-title">C — Dragon Lounge at Night</div>
+      <div class="scene-detail">Aerial tilt-down into a dark lounge table. Hookah smoke curls. A cocktail glass with ice catches neon red light from above. Camera slowly circles. Cinematic nightlife atmosphere.</div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
