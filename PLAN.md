@@ -54,8 +54,11 @@ PDF-пакета. ✅ Достигнуто.
   `fl141AddsFl144()` (в пакет добавляется FL-144). Это единственная из раскрытия
   форма, которая ПОДАЁТСЯ в суд (отражено в `cabinet.disclosureNote`). Стадия
   завершения (с FL-180/FL-190). read-back: `node scripts/demo-fl141.mjs`
-- ⏳ FL-144 (Stipulation and Waiver of Final Declaration of Disclosure) —
-  привязать; добавляется в пакет, когда `final_disclosure_waived = true`
+- ✅ FL-144 (Stipulation and Waiver of Final Declaration of Disclosure) —
+  привязана: соглашение ОБЕИХ сторон об отказе от финального раскрытия (§2105(d));
+  заполняются оба блока подписи (petitioner + respondent). Тело формы preprinted.
+  Генерится вместе с FL-141 при `final_disclosure_waived = true`
+  (`fl141AddsFl144`). Стадия завершения. read-back: `node scripts/demo-fl144.mjs`
 - ✅ FL-180 (Judgment) — привязана: тип/основание решения, дата прекращения
   статуса, восстановление девичьей фамилии, чекбоксы приложений FL-341/342/343/
   345 по фактам дела; шапка/данные из единого источника FL-100. Это форма
