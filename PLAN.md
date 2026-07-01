@@ -64,8 +64,14 @@ PDF-пакета. ✅ Достигнуто.
   345 по фактам дела; шапка/данные из единого источника FL-100. Это форма
   **Стадии завершения** (не входит в стартовый пакет подачи). read-back:
   `node scripts/demo-fl180.mjs`
-- ⏳ FL-341/FL-342/FL-345 (приложения к FL-180) — привязать (без них судья не
-  подписывает FL-180)
+- ✅ FL-341 (Child Custody and Visitation Order Attachment) — привязана:
+  компактная шапка, таблица детей (имя/ДР/правовая+физическая опека Joint по
+  умолчанию), визитация (reasonable/none/supervised/scheduled/attachment),
+  транспортировка/передача, ограничения на выезд; TO: Judgment (FL-180).
+  Единый источник детей с FL-105/FL-180. Генерится при has_children.
+  read-back: `node scripts/demo-fl341.mjs`
+- ⏳ FL-342 (Child Support Information and Order Attachment) — привязать
+- ⏳ FL-345 (Property Order Attachment to Judgment) — привязать
 - ✅ FL-190 (Notice of Entry of Judgment) — привязана: шапка/тип решения/стороны
   из единого источника FL-180, mailing-адреса обеих сторон; дата внесения, штамп
   клерка и certificate of mailing оставлены пустыми (заполняет суд). Стадия

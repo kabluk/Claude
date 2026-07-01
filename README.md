@@ -370,6 +370,28 @@ FL-144 одновременно. `fl141_profile` остаётся необяза
 привязана). FL-141 относится к **Стадии завершения** (с FL-180/FL-190) и в
 стартовый пакет подачи не входит. read-back: `node scripts/demo-fl141.mjs`.
 
+### FL-341 (Child Custody and Visitation Order Attachment) — приложение к FL-180
+
+`src/pdf/fl341.js` — официальная **FL-341 [Rev. July 1, 2026]** (4 стр., 249 полей),
+зафиксирована в `public/forms/FL-341.pdf`. Приложение к решению (FL-180 п.4j(2)),
+генерится только при наличии несовершеннолетних детей (`fl341Required`). Маппинг:
+
+- **Шапка компактная** — только стороны + case number (суд на родительской
+  форме); повторяется на всех 4 страницах. Отмечается «TO: Judgment (form FL-180)».
+- **Item 7 — таблица детей**: имя, ДР, «Legal custody to» и «Physical custody
+  to» (текстовые ячейки: `Joint` / имя стороны). Дети — единый источник с
+  FL-105/FL-180. `legal_custody_to` / `physical_custody_to` = joint (по умолчанию)
+  / petitioner / respondent.
+- **Item 9 — визитация**: `visitation_type` = reasonable (9a) / none (9c) /
+  supervised (9d, FL-341(A)) / scheduled (9e) / attachment (9b). Свободный текст
+  графика (`visitation_schedule`) не помещается в структурную сетку выходных →
+  уходит на приложенный лист (9b «See the attached … document»).
+- **Item 11 — транспортировка/место передачи** (`transportation_exchange`),
+  **item 12 — ограничения на выезд** (`travel_restrictions`) — по факту, обычно
+  пусто для uncontested.
+
+read-back: `node scripts/demo-fl341.mjs`.
+
 ### FL-144 (Stipulation and Waiver of Final Declaration of Disclosure)
 
 `src/pdf/fl144.js` — официальная **FL-144 [Rev. January 1, 2007]** (1 стр., 21 поле),
