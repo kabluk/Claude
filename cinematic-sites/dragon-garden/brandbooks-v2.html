@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dragon Garden — Brand Books v2</title>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=Cormorant+Garamond:wght@300;400;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=Cormorant+Garamond:wght@300;400;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 body {
@@ -314,6 +314,84 @@ body {
 .bb3 .ck-name { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600; color: var(--text); }
 .bb3 .ck-price { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 2px; }
 
+/* ════════════════════════════════════════
+   BRAND BOOK 04 — WHITE LANTERN (App/Digital)
+════════════════════════════════════════ */
+.bb4 { --bg:#FFFFFF; --card:#FFF8F3; --accent:#E07A3E; --accent2:#F5C518; --text:#1C1C1E; --muted:#8E8E93; --border:rgba(0,0,0,0.08); --surf:#F7F2EC; }
+.bb4 .bb-shell { background:var(--bg); border-radius:16px; overflow:hidden; border:1px solid rgba(0,0,0,0.06); }
+.bb4 .bb-top { display:flex; align-items:flex-start; justify-content:space-between; padding:36px 40px 28px; background:#FFF8F3; border-bottom:1px solid rgba(0,0,0,0.06); }
+.bb4 .bb-name { font-family:'Outfit',sans-serif; font-size:52px; font-weight:800; color:var(--text); line-height:1; letter-spacing:-0.02em; }
+.bb4 .bb-name em { color:var(--accent); font-style:normal; }
+.bb4 .bb-tagline { font-family:'Plus Jakarta Sans',sans-serif; font-size:13px; color:var(--muted); margin-top:10px; line-height:1.6; }
+.bb4 .tag-row { display:flex; gap:8px; margin-top:14px; flex-wrap:wrap; }
+.bb4 .chip { font-size:11px; padding:5px 12px; border-radius:100px; font-family:'Plus Jakarta Sans',sans-serif; }
+.bb4 .chip-a { background:rgba(224,122,62,0.1); border:1px solid rgba(224,122,62,0.25); color:var(--accent); }
+.bb4 .chip-b { background:rgba(0,0,0,0.04); border:1px solid rgba(0,0,0,0.08); color:var(--muted); }
+.bb4 .bb-trend-pill { background:var(--accent); color:#fff; font-family:'Outfit',sans-serif; font-size:10px; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:8px 18px; border-radius:100px; white-space:nowrap; }
+.bb4 .bb-body { display:grid; grid-template-columns:1fr 1fr 1fr; }
+.bb4 .bb-col { padding:32px; border-right:1px solid var(--border); }
+.bb4 .bb-col:last-child { border-right:none; }
+.bb4 .col-label { font-family:'JetBrains Mono',monospace; font-size:9px; letter-spacing:0.22em; text-transform:uppercase; color:var(--muted); margin-bottom:20px; }
+.bb4 .sw-row { display:flex; gap:8px; flex-wrap:wrap; }
+.bb4 .sw { border-radius:10px; overflow:hidden; position:relative; }
+.bb4 .sw-lg { width:64px; height:64px; }
+.bb4 .sw-sm { width:40px; height:40px; }
+.bb4 .sw-label { position:absolute; bottom:0; left:0; right:0; background:rgba(0,0,0,0.38); font-family:'JetBrains Mono',monospace; font-size:7px; color:rgba(255,255,255,0.95); padding:2px 4px; text-align:center; }
+.bb4 .font-block { margin-bottom:18px; }
+.bb4 .font-meta { font-family:'JetBrains Mono',monospace; font-size:8px; color:var(--muted); letter-spacing:0.1em; margin-bottom:4px; }
+.bb4 .f-h { font-family:'Outfit',sans-serif; font-size:32px; font-weight:800; color:var(--text); line-height:1.0; letter-spacing:-0.02em; }
+.bb4 .f-h em { color:var(--accent); font-style:normal; }
+.bb4 .f-b { font-family:'Plus Jakarta Sans',sans-serif; font-size:14px; color:#6A645E; font-weight:400; }
+.bb4 .f-m { font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--accent); letter-spacing:0.15em; }
+/* UI components */
+.bb4 .cats-row { display:flex; gap:8px; flex-wrap:wrap; margin-bottom:20px; }
+.bb4 .cat-pill { font-family:'Plus Jakarta Sans',sans-serif; font-size:12px; font-weight:600; padding:7px 16px; border-radius:100px; white-space:nowrap; }
+.bb4 .cat-pill.active { background:var(--accent); color:#fff; }
+.bb4 .cat-pill.inactive { background:#F0EDE8; color:var(--muted); }
+.bb4 .app-card { background:var(--card); border-radius:16px; overflow:hidden; border:1px solid rgba(224,122,62,0.18); box-shadow:0 4px 20px rgba(0,0,0,0.07); margin-bottom:16px; }
+.bb4 .app-card-img { height:110px; background:linear-gradient(135deg,#3D1200 0%,#7B3010 55%,#200800 100%); display:flex; align-items:center; justify-content:center; }
+.bb4 .app-card-img-label { font-family:'Outfit',sans-serif; font-size:20px; font-weight:800; color:rgba(255,255,255,0.92); text-align:center; line-height:1.15; letter-spacing:-0.01em; }
+.bb4 .app-card-img-label em { color:var(--accent); font-style:normal; }
+.bb4 .app-card-body { padding:14px 16px; }
+.bb4 .app-card-name { font-family:'Outfit',sans-serif; font-size:16px; font-weight:700; color:var(--text); }
+.bb4 .app-card-row { display:flex; align-items:center; justify-content:space-between; margin-top:8px; }
+.bb4 .app-card-stars { font-size:13px; color:var(--accent2); letter-spacing:1px; }
+.bb4 .app-card-price { font-family:'Outfit',sans-serif; font-size:18px; font-weight:800; color:var(--accent); }
+.bb4 .app-card-add { width:32px; height:32px; background:var(--accent); border-radius:10px; display:flex; align-items:center; justify-content:center; color:#fff; font-size:20px; font-weight:300; line-height:1; }
+.bb4 .app-btn { background:var(--accent); color:#fff; font-family:'Outfit',sans-serif; font-size:14px; font-weight:700; padding:15px 24px; border-radius:14px; text-align:center; letter-spacing:0.01em; }
+.bb4 .loyalty-badge { background:linear-gradient(135deg,#3D1200,#7B3010); border-radius:14px; padding:16px 18px; display:flex; align-items:center; gap:14px; margin-top:14px; }
+.bb4 .loy-icon { width:46px; height:46px; background:rgba(245,197,24,0.18); border-radius:50%; border:1.5px solid rgba(245,197,24,0.4); display:flex; align-items:center; justify-content:center; flex-shrink:0; font-family:'Outfit',sans-serif; font-size:18px; font-weight:800; color:var(--accent2); }
+.bb4 .loy-info { flex:1; }
+.bb4 .loy-title { font-family:'Outfit',sans-serif; font-size:14px; font-weight:700; color:#fff; }
+.bb4 .loy-sub { font-family:'Plus Jakarta Sans',sans-serif; font-size:11px; color:rgba(255,255,255,0.55); margin-top:2px; }
+.bb4 .loy-pts { font-family:'Outfit',sans-serif; font-size:22px; font-weight:800; color:var(--accent2); }
+/* Phone frame */
+.bb4 .phone-wrap { display:flex; flex-direction:column; align-items:center; }
+.bb4 .phone { width:190px; height:390px; background:#1C1C1E; border-radius:36px; padding:14px 10px; box-shadow:0 30px 70px rgba(0,0,0,0.22), inset 0 0 0 1px rgba(255,255,255,0.08); }
+.bb4 .phone-screen { background:#FFFFFF; border-radius:26px; height:100%; overflow:hidden; }
+.bb4 .ps-pill { width:36px; height:4px; background:#D9D9D9; border-radius:2px; margin:8px auto 6px; }
+.bb4 .ps-header { padding:4px 12px 8px; border-bottom:1px solid rgba(0,0,0,0.05); display:flex; align-items:center; justify-content:space-between; }
+.bb4 .ps-logo { font-family:'Outfit',sans-serif; font-size:13px; font-weight:800; color:#1C1C1E; letter-spacing:-0.01em; }
+.bb4 .ps-logo em { color:var(--accent); font-style:normal; }
+.bb4 .ps-av { width:24px; height:24px; border-radius:50%; background:var(--accent); }
+.bb4 .ps-greeting { font-family:'Plus Jakarta Sans',sans-serif; font-size:9px; color:#8E8E93; padding:6px 12px 2px; }
+.bb4 .ps-cats { display:flex; gap:5px; padding:6px 10px 8px; overflow:hidden; }
+.bb4 .ps-cat { font-family:'Plus Jakarta Sans',sans-serif; font-size:8px; font-weight:600; padding:4px 9px; border-radius:100px; white-space:nowrap; }
+.bb4 .ps-cat.on { background:var(--accent); color:#fff; }
+.bb4 .ps-cat.off { background:#F0EDE8; color:#8E8E93; }
+.bb4 .ps-banner { margin:0 10px 8px; height:74px; background:linear-gradient(135deg,#3D1200,#7B3010); border-radius:12px; display:flex; align-items:center; justify-content:center; }
+.bb4 .ps-b-txt { font-family:'Outfit',sans-serif; font-size:12px; font-weight:800; color:#fff; text-align:center; line-height:1.25; }
+.bb4 .ps-b-txt em { color:var(--accent); font-style:normal; }
+.bb4 .ps-sec { font-family:'Outfit',sans-serif; font-size:10px; font-weight:700; color:#1C1C1E; padding:4px 10px 4px; }
+.bb4 .ps-items { display:grid; grid-template-columns:1fr 1fr; gap:6px; padding:0 10px; }
+.bb4 .ps-item { background:#FFF8F3; border-radius:9px; overflow:hidden; border:1px solid rgba(224,122,62,0.14); }
+.bb4 .ps-item-img { height:46px; background:linear-gradient(135deg,#5A1800,#9B4010); display:flex; align-items:center; justify-content:center; font-size:10px; font-weight:700; font-family:'Outfit',sans-serif; color:rgba(255,255,255,0.88); text-align:center; line-height:1.1; }
+.bb4 .ps-item-body { padding:5px 7px; }
+.bb4 .ps-item-name { font-family:'Outfit',sans-serif; font-size:8px; font-weight:700; color:#1C1C1E; }
+.bb4 .ps-item-price { font-family:'Outfit',sans-serif; font-size:9px; font-weight:700; color:var(--accent); margin-top:1px; }
+.bb4 .ps-ob { margin:8px 10px 0; background:var(--accent); color:#fff; font-family:'Outfit',sans-serif; font-size:10px; font-weight:700; padding:8px; border-radius:10px; text-align:center; letter-spacing:0.02em; }
+.bb4 .phone-note { margin-top:18px; font-size:11.5px; color:#6A645E; line-height:1.7; font-family:'Plus Jakarta Sans',sans-serif; text-align:center; max-width:190px; }
+
 /* ── SEPARATOR ── */
 .sep { height: 1px; background: rgba(0,0,0,0.08); margin: 56px 0; }
 
@@ -323,13 +401,13 @@ body {
   border: 1px solid rgba(0,0,0,0.08);
 }
 .compare-head {
-  display: grid; grid-template-columns: 160px repeat(3,1fr);
+  display: grid; grid-template-columns: 160px repeat(4,1fr);
   padding: 16px 24px; background: #F5F3EF;
   font-family: 'JetBrains Mono', monospace;
   font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #999;
 }
 .compare-row {
-  display: grid; grid-template-columns: 160px repeat(3,1fr);
+  display: grid; grid-template-columns: 160px repeat(4,1fr);
   padding: 14px 24px; border-top: 1px solid rgba(0,0,0,0.05);
   font-size: 13px; align-items: center;
 }
@@ -734,6 +812,163 @@ body {
   </div>
 </div>
 
+<!-- ══════════════════════════════════════════
+     04 — WHITE LANTERN (NAM Studio Reference)
+══════════════════════════════════════════ -->
+<div class="bb bb4">
+  <div class="bb-index">Brand Book 04 / 04 — По мотивам референса NAM Design Studio</div>
+  <div class="bb-shell">
+    <div class="bb-top">
+      <div>
+        <div class="bb-name">White<br><em>Lantern</em></div>
+        <div class="bb-tagline">Чистый белый · Outfit (rounded sans) · Тёплая терракота · App-first дизайн · Доставка + резерв</div>
+        <div class="tag-row">
+          <span class="chip chip-a">Digital First</span>
+          <span class="chip chip-b">App Ready</span>
+          <span class="chip chip-b">Delivery Platform</span>
+          <span class="chip chip-b">Mobile First</span>
+        </div>
+      </div>
+      <div style="text-align:right;">
+        <div class="bb-trend-pill">NAM Studio Style</div>
+        <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9px;color:#aaa;letter-spacing:0.12em;text-align:right;">→ Чистый белый · App-like</div>
+      </div>
+    </div>
+    <div class="bb-body">
+
+      <!-- COL 1: Palette + Typography -->
+      <div class="bb-col">
+        <div class="col-label">Palette</div>
+        <div class="sw-row">
+          <div class="sw sw-lg" style="background:#FFFFFF;border:1px solid rgba(0,0,0,0.1);">
+            <div class="sw-label">#FFFFFF bg</div>
+          </div>
+          <div class="sw sw-lg" style="background:#E07A3E;">
+            <div class="sw-label">#E07A3E accent</div>
+          </div>
+          <div class="sw sw-lg" style="background:#1C1C1E;">
+            <div class="sw-label">#1C1C1E text</div>
+          </div>
+          <div class="sw sw-sm" style="background:#FFF8F3;border:1px solid rgba(224,122,62,0.2);">
+            <div class="sw-label">#FFF8F3 card</div>
+          </div>
+          <div class="sw sw-sm" style="background:#F5C518;">
+            <div class="sw-label">#F5C518 star</div>
+          </div>
+          <div class="sw sw-sm" style="background:#8E8E93;">
+            <div class="sw-label">#8E8E93 muted</div>
+          </div>
+          <div class="sw sw-sm" style="background:#F0EDE8;border:1px solid rgba(0,0,0,0.08);">
+            <div class="sw-label">#F0EDE8 chip</div>
+          </div>
+        </div>
+
+        <div style="height:1px;background:rgba(0,0,0,0.08);margin:22px 0;"></div>
+        <div class="col-label">Typography</div>
+        <div class="font-block">
+          <div class="font-meta">HEADING — OUTFIT 800</div>
+          <div class="f-h">Dragon<br><em>Garden</em></div>
+        </div>
+        <div class="font-block">
+          <div class="font-meta">BODY — PLUS JAKARTA SANS 400</div>
+          <div class="f-b">200+ блюд · Суши бар · Хот-пот · Лаундж</div>
+        </div>
+        <div class="font-block">
+          <div class="font-meta">LABEL — JETBRAINS MONO 500</div>
+          <div class="f-m">GLENDALE · 216 N ORANGE</div>
+        </div>
+      </div>
+
+      <!-- COL 2: App UI Components -->
+      <div class="bb-col">
+        <div class="col-label">App UI Kit</div>
+
+        <div class="cats-row">
+          <span class="cat-pill active">Все</span>
+          <span class="cat-pill inactive">Хот-пот</span>
+          <span class="cat-pill inactive">Суши</span>
+          <span class="cat-pill inactive">Коктейли</span>
+        </div>
+
+        <div class="app-card">
+          <div class="app-card-img">
+            <div class="app-card-img-label">Fire &amp;<br><em>Broth</em></div>
+          </div>
+          <div class="app-card-body">
+            <div class="app-card-name">Хот-пот Dragon</div>
+            <div class="app-card-row">
+              <div>
+                <div class="app-card-stars">★★★★★</div>
+                <div style="font-family:'Plus Jakarta Sans',sans-serif;font-size:10px;color:#8E8E93;margin-top:2px;">Sichuan · Mushroom · Bone</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:8px;">
+                <div class="app-card-price">$26</div>
+                <div class="app-card-add">+</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="app-btn">Забронировать стол</div>
+
+        <div class="loyalty-badge">
+          <div class="loy-icon">D</div>
+          <div class="loy-info">
+            <div class="loy-title">Dragon Points</div>
+            <div class="loy-sub">Программа лояльности</div>
+          </div>
+          <div class="loy-pts">840</div>
+        </div>
+      </div>
+
+      <!-- COL 3: Phone mockup -->
+      <div class="bb-col" style="background:#F7F4F0;display:flex;flex-direction:column;align-items:center;padding-top:40px;">
+        <div class="phone-wrap">
+          <div class="phone">
+            <div class="phone-screen">
+              <div class="ps-pill"></div>
+              <div class="ps-header">
+                <div class="ps-logo">Dragon <em>Garden</em></div>
+                <div class="ps-av"></div>
+              </div>
+              <div class="ps-greeting">Добро пожаловать, Glendale</div>
+              <div class="ps-cats">
+                <div class="ps-cat on">Все</div>
+                <div class="ps-cat off">Хот-пот</div>
+                <div class="ps-cat off">Суши</div>
+                <div class="ps-cat off">Бар</div>
+              </div>
+              <div class="ps-banner">
+                <div class="ps-b-txt">Fire &amp; Broth<br><em>HOT POT</em></div>
+              </div>
+              <div class="ps-sec">Популярное</div>
+              <div class="ps-items">
+                <div class="ps-item">
+                  <div class="ps-item-img">Dragon<br>Roll</div>
+                  <div class="ps-item-body">
+                    <div class="ps-item-name">Dragon Roll</div>
+                    <div class="ps-item-price">$18</div>
+                  </div>
+                </div>
+                <div class="ps-item">
+                  <div class="ps-item-img">Jasmina<br>Cocktail</div>
+                  <div class="ps-item-body">
+                    <div class="ps-item-name">JASMINA</div>
+                    <div class="ps-item-price">$16</div>
+                  </div>
+                </div>
+              </div>
+              <div class="ps-ob">Забронировать →</div>
+            </div>
+          </div>
+          <div class="phone-note">Белый фон · Outfit Bold · Тёплая терракота · App-like карточки · Loyalty система</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <!-- COMPARISON -->
 <div class="compare">
   <div class="compare-head">
@@ -741,42 +976,49 @@ body {
     <div>01 · Warm Parchment</div>
     <div>02 · Ink & Apricot</div>
     <div>03 · Paper & Ink</div>
+    <div>04 · White Lantern</div>
   </div>
   <div class="compare-row">
     <div class="compare-attr">Фон</div>
     <div><span class="swatch-inline"><span class="si-dot" style="background:#F8F3EC;border-color:rgba(0,0,0,0.15);"></span> Тёплый крем</span></div>
     <div><span class="swatch-inline"><span class="si-dot" style="background:#0F1117;"></span> Тёмно-синий</span></div>
     <div><span class="swatch-inline"><span class="si-dot" style="background:#FAFAF8;border-color:rgba(0,0,0,0.15);"></span> Почти белый</span></div>
+    <div><span class="swatch-inline"><span class="si-dot" style="background:#FFFFFF;border-color:rgba(0,0,0,0.15);"></span> Чистый белый</span></div>
   </div>
   <div class="compare-row">
     <div class="compare-attr">Акцент</div>
     <div><span class="swatch-inline"><span class="si-dot" style="background:#C67C4E;"></span> Терракота</span></div>
     <div><span class="swatch-inline"><span class="si-dot" style="background:#FF9E5E;"></span> Абрикос</span></div>
     <div><span class="swatch-inline"><span class="si-dot" style="background:#C41E3A;"></span> Dragon Red (мало)</span></div>
+    <div><span class="swatch-inline"><span class="si-dot" style="background:#E07A3E;"></span> Тёплая терракота</span></div>
   </div>
   <div class="compare-row">
     <div class="compare-attr">Заголовок</div>
     <div>DM Serif Display (элегантный)</div>
     <div>Space Grotesk (болд, энергия)</div>
     <div>Fraunces (optical, уникальный)</div>
+    <div>Outfit 800 (rounded, app-like)</div>
   </div>
   <div class="compare-row">
     <div class="compare-attr">Характер</div>
     <div>Тёплый, элегантный, уютный</div>
     <div>Современный, энергичный, ночной</div>
     <div>Минималистичный, контрастный</div>
+    <div>Цифровой, чистый, доступный</div>
   </div>
   <div class="compare-row">
     <div class="compare-attr">Акцент сайта</div>
     <div>Ресторан + семья</div>
     <div>Лаунж + коктейли</div>
     <div>Премиум + суши бар</div>
+    <div>Заказ + доставка + app</div>
   </div>
   <div class="compare-row">
     <div class="compare-attr">Уникальность</div>
     <div>Узнаваемо, тепло</div>
     <div>Современно, конкурентно</div>
     <div>★ Максимально уникально</div>
+    <div>★ По референсу NAM Studio</div>
   </div>
 </div>
 
