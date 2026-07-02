@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dragon Garden — Brand Books v2</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&family=Cormorant+Garamond:wght@300;400;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  background: #EDEBE7;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  color: #1A1814;
+  padding: 48px 40px;
+}
+
+/* ── PAGE HEADER ── */
+.page-header {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  margin-bottom: 64px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+.page-header-left {}
+.page-eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: #999; margin-bottom: 6px;
+}
+.page-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 32px; font-weight: 700; color: #1A1814;
+}
+.page-sub { font-size: 14px; color: #888; margin-top: 4px; }
+.ref-note {
+  background: #fff; border-radius: 8px; padding: 12px 18px;
+  font-size: 12px; color: #666; border: 1px solid rgba(0,0,0,0.08);
+  max-width: 300px; line-height: 1.6;
+}
+.ref-note strong { color: #1A1814; }
+
+/* ── BRAND BOOK WRAPPER ── */
+.bb { margin-bottom: 80px; }
+.bb-index {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+  color: #aaa; margin-bottom: 6px;
+}
+
+/* ════════════════════════════════════════
+   BRAND BOOK 01 — WARM PARCHMENT
+════════════════════════════════════════ */
+.bb1 { --bg: #F8F3EC; --card: #FFFFFF; --accent: #C67C4E; --accent2: #E8A87C; --text: #1F1A14; --muted: #9A8A78; --border: rgba(0,0,0,0.07); --gold: #B8860B; }
+
+.bb1 .bb-shell {
+  background: var(--bg);
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.bb1 .bb-top {
+  padding: 40px 40px 0;
+  display: flex; align-items: flex-start; justify-content: space-between;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 32px; margin-bottom: 0;
+}
+.bb1 .bb-name {
+  font-family: 'DM Serif Display', serif;
+  font-size: 48px; color: var(--text);
+  line-height: 1.05; margin-bottom: 8px;
+}
+.bb1 .bb-name em { color: var(--accent); font-style: italic; }
+.bb1 .bb-tagline {
+  font-size: 13px; color: var(--muted);
+  letter-spacing: 0.06em; font-weight: 400;
+}
+.bb1 .bb-trend-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--accent); color: #fff;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 100px;
+}
+
+.bb1 .bb-body {
+  display: grid; grid-template-columns: 1fr 1fr 1.2fr;
+  gap: 0;
+}
+.bb1 .bb-col {
+  padding: 32px 32px;
+  border-right: 1px solid var(--border);
+}
+.bb1 .bb-col:last-child { border-right: none; }
+.bb1 .col-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 20px;
+}
+/* Swatches */
+.bb1 .sw-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.bb1 .sw { border-radius: 10px; overflow: hidden; position: relative; }
+.bb1 .sw-lg { width: 64px; height: 64px; }
+.bb1 .sw-sm { width: 40px; height: 40px; }
+.bb1 .sw-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(0,0,0,0.35);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7px; color: rgba(255,255,255,0.85);
+  padding: 2px 4px; text-align: center;
+}
+/* Fonts */
+.bb1 .font-block { margin-bottom: 18px; }
+.bb1 .font-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; color: var(--muted); letter-spacing: 0.1em;
+  margin-bottom: 4px;
+}
+.bb1 .f-h {
+  font-family: 'DM Serif Display', serif;
+  font-size: 26px; color: var(--text); line-height: 1.1;
+}
+.bb1 .f-b {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 14px; color: #5A4E42; font-weight: 400;
+}
+.bb1 .f-m {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; color: var(--accent); letter-spacing: 0.18em;
+}
+/* Preview card */
+.bb1 .preview-card {
+  background: var(--card); border-radius: 14px;
+  overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+  margin-bottom: 16px;
+}
+.bb1 .preview-img {
+  height: 180px;
+  background: linear-gradient(160deg, #3D1F0A 0%, #6B3A1F 40%, #C67C4E 100%);
+  position: relative; display: flex; align-items: flex-end; padding: 16px;
+}
+.bb1 .preview-img-label {
+  font-family: 'DM Serif Display', serif;
+  font-size: 28px; color: rgba(255,255,255,0.95);
+  text-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  line-height: 1.1;
+}
+.bb1 .preview-body { padding: 16px 18px; }
+.bb1 .preview-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 6px;
+}
+.bb1 .preview-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: 18px; color: var(--text); margin-bottom: 6px;
+}
+.bb1 .preview-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.bb1 .preview-btn {
+  display: inline-block; margin-top: 14px;
+  background: var(--accent); color: #fff;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px; font-weight: 600; padding: 10px 22px; border-radius: 8px;
+}
+/* Tags */
+.tag-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.bb1 .chip {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 11px; font-weight: 500;
+  padding: 5px 12px; border-radius: 100px;
+}
+.bb1 .chip-a { background: rgba(198,124,78,0.12); border: 1px solid rgba(198,124,78,0.3); color: #C67C4E; }
+.bb1 .chip-b { background: rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.1); color: #9A8A78; }
+/* Cocktail mini */
+.bb1 .ck-mini {
+  background: var(--card); border-radius: 10px;
+  padding: 14px; border: 1px solid var(--border);
+  display: flex; align-items: center; gap: 12px; margin-top: 12px;
+}
+.bb1 .ck-dot {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, #8B3A10, #C67C4E);
+  flex-shrink: 0;
+}
+.bb1 .ck-info {}
+.bb1 .ck-name { font-family: 'DM Serif Display', serif; font-size: 15px; color: var(--text); }
+.bb1 .ck-price { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--accent); margin-top: 2px; }
+
+/* ════════════════════════════════════════
+   BRAND BOOK 02 — INK & APRICOT
+════════════════════════════════════════ */
+.bb2 { --bg: #0F1117; --card: #171B24; --accent: #FF9E5E; --accent2: #FFD4A8; --text: #F0ECE6; --muted: #6B7080; --border: rgba(255,255,255,0.07); }
+
+.bb2 .bb-shell {
+  background: var(--bg);
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+.bb2 .bb-top {
+  padding: 40px 40px 32px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start; justify-content: space-between;
+}
+.bb2 .bb-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 52px; font-weight: 700; color: var(--text);
+  line-height: 1; letter-spacing: -0.02em; margin-bottom: 8px;
+}
+.bb2 .bb-name span { color: var(--accent); }
+.bb2 .bb-tagline { font-size: 13px; color: var(--muted); letter-spacing: 0.04em; }
+.bb2 .bb-trend-pill {
+  background: rgba(255,158,94,0.15); border: 1px solid rgba(255,158,94,0.3);
+  color: var(--accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 100px;
+}
+.bb2 .bb-body { display: grid; grid-template-columns: 1fr 1fr 1.2fr; }
+.bb2 .bb-col { padding: 32px; border-right: 1px solid var(--border); }
+.bb2 .bb-col:last-child { border-right: none; }
+.bb2 .col-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 20px;
+}
+.bb2 .sw-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.bb2 .sw { border-radius: 10px; overflow: hidden; position: relative; }
+.bb2 .sw-lg { width: 64px; height: 64px; }
+.bb2 .sw-sm { width: 40px; height: 40px; }
+.bb2 .sw-label {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(0,0,0,0.5);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 7px; color: rgba(255,255,255,0.8);
+  padding: 2px 4px; text-align: center;
+}
+.bb2 .font-block { margin-bottom: 18px; }
+.bb2 .font-meta { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 4px; }
+.bb2 .f-h { font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; line-height: 1.1; }
+.bb2 .f-b { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #8B97A8; }
+.bb2 .f-m { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.15em; }
+.bb2 .preview-card { background: var(--card); border-radius: 14px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 14px; }
+.bb2 .preview-img { height: 170px; background: linear-gradient(160deg, #1A0F05 0%, #3D2008 40%, #FF9E5E22 100%); position: relative; display: flex; align-items: flex-start; padding: 18px; }
+.bb2 .preview-img-label { font-family: 'Space Grotesk', sans-serif; font-size: 30px; font-weight: 700; color: var(--text); letter-spacing: -0.02em; line-height: 1; }
+.bb2 .preview-body { padding: 16px 18px; }
+.bb2 .preview-tag { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+.bb2 .preview-title { font-family: 'Space Grotesk', sans-serif; font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
+.bb2 .preview-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.bb2 .preview-btn { display: inline-block; margin-top: 14px; background: var(--accent); color: #1A1410; font-family: 'Space Grotesk', sans-serif; font-size: 12px; font-weight: 700; padding: 10px 22px; border-radius: 8px; }
+.bb2 .chip { font-size: 11px; padding: 5px 12px; border-radius: 100px; font-family: 'Plus Jakarta Sans', sans-serif; }
+.bb2 .chip-a { background: rgba(255,158,94,0.12); border: 1px solid rgba(255,158,94,0.25); color: var(--accent); }
+.bb2 .chip-b { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); color: var(--muted); }
+.bb2 .ck-mini { background: rgba(255,255,255,0.03); border-radius: 10px; padding: 14px; border: 1px solid var(--border); display: flex; align-items: center; gap: 12px; margin-top: 12px; }
+.bb2 .ck-dot { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #C65C1A, #FF9E5E); flex-shrink: 0; }
+.bb2 .ck-name { font-family: 'Space Grotesk', sans-serif; font-size: 15px; font-weight: 600; color: var(--text); }
+.bb2 .ck-price { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--accent); margin-top: 2px; }
+
+/* ════════════════════════════════════════
+   BRAND BOOK 03 — PAPER & INK
+════════════════════════════════════════ */
+.bb3 { --bg: #FAFAF8; --card: #FFFFFF; --accent: #C41E3A; --text: #161412; --muted: #888480; --border: rgba(0,0,0,0.08); }
+
+.bb3 .bb-shell {
+  background: var(--bg);
+  border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+.bb3 .bb-top {
+  padding: 40px 40px 32px;
+  border-bottom: 1px solid var(--border);
+  display: flex; align-items: flex-start; justify-content: space-between;
+}
+.bb3 .bb-name {
+  font-family: 'Fraunces', serif;
+  font-size: 54px; font-weight: 700; color: var(--text);
+  line-height: 0.95; margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+.bb3 .bb-name .accent-word { color: var(--accent); }
+.bb3 .bb-tagline { font-size: 13px; color: var(--muted); font-family: 'Plus Jakarta Sans', sans-serif; }
+.bb3 .bb-trend-pill {
+  background: #161412; color: #FAFAF8;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.15em; text-transform: uppercase;
+  padding: 6px 14px; border-radius: 100px;
+}
+.bb3 .bb-body { display: grid; grid-template-columns: 1fr 1fr 1.2fr; }
+.bb3 .bb-col { padding: 32px; border-right: 1px solid var(--border); }
+.bb3 .bb-col:last-child { border-right: none; }
+.bb3 .col-label { font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+.bb3 .sw-row { display: flex; gap: 8px; flex-wrap: wrap; }
+.bb3 .sw { border-radius: 10px; overflow: hidden; position: relative; }
+.bb3 .sw-lg { width: 64px; height: 64px; }
+.bb3 .sw-sm { width: 40px; height: 40px; border: 1px solid rgba(0,0,0,0.08); }
+.bb3 .sw-label { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.4); font-family: 'JetBrains Mono', monospace; font-size: 7px; color: rgba(255,255,255,0.9); padding: 2px 4px; text-align: center; }
+.bb3 .font-block { margin-bottom: 18px; }
+.bb3 .font-meta { font-family: 'JetBrains Mono', monospace; font-size: 8px; color: var(--muted); letter-spacing: 0.1em; margin-bottom: 4px; }
+.bb3 .f-h { font-family: 'Fraunces', serif; font-size: 28px; font-weight: 600; color: var(--text); line-height: 1.05; }
+.bb3 .f-b { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; color: #6A645E; font-weight: 400; }
+.bb3 .f-m { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.15em; }
+.bb3 .preview-card { background: var(--card); border-radius: 14px; overflow: hidden; border: 1px solid var(--border); box-shadow: 0 2px 12px rgba(0,0,0,0.05); margin-bottom: 14px; }
+.bb3 .preview-img { height: 170px; background: #161412; position: relative; display: flex; align-items: center; justify-content: center; padding: 24px; }
+.bb3 .preview-img::after { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--accent); }
+.bb3 .preview-img-label { font-family: 'Fraunces', serif; font-size: 34px; font-weight: 700; color: #FAFAF8; text-align: center; line-height: 1; letter-spacing: -0.01em; }
+.bb3 .preview-img-label span { color: var(--accent); }
+.bb3 .preview-body { padding: 16px 18px; }
+.bb3 .preview-tag { font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+.bb3 .preview-title { font-family: 'Fraunces', serif; font-size: 17px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
+.bb3 .preview-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+.bb3 .preview-btn { display: inline-block; margin-top: 14px; background: var(--text); color: var(--bg); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 12px; font-weight: 600; padding: 10px 22px; border-radius: 8px; }
+.bb3 .chip { font-size: 11px; padding: 5px 12px; border-radius: 100px; font-family: 'Plus Jakarta Sans', sans-serif; }
+.bb3 .chip-a { background: rgba(196,30,58,0.08); border: 1px solid rgba(196,30,58,0.2); color: var(--accent); }
+.bb3 .chip-b { background: rgba(0,0,0,0.04); border: 1px solid rgba(0,0,0,0.08); color: var(--muted); }
+.bb3 .ck-mini { background: var(--bg); border-radius: 10px; padding: 14px; border: 1px solid var(--border); display: flex; align-items: center; gap: 12px; margin-top: 12px; }
+.bb3 .ck-dot { width: 36px; height: 36px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+.bb3 .ck-name { font-family: 'Fraunces', serif; font-size: 15px; font-weight: 600; color: var(--text); }
+.bb3 .ck-price { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--muted); margin-top: 2px; }
+
+/* ── SEPARATOR ── */
+.sep { height: 1px; background: rgba(0,0,0,0.08); margin: 56px 0; }
+
+/* ── COMPARISON ── */
+.compare {
+  background: #fff; border-radius: 16px; overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+.compare-head {
+  display: grid; grid-template-columns: 160px repeat(3,1fr);
+  padding: 16px 24px; background: #F5F3EF;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: #999;
+}
+.compare-row {
+  display: grid; grid-template-columns: 160px repeat(3,1fr);
+  padding: 14px 24px; border-top: 1px solid rgba(0,0,0,0.05);
+  font-size: 13px; align-items: center;
+}
+.compare-attr { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #aaa; letter-spacing: 0.08em; }
+.compare-row:nth-child(even) { background: #FAFAF8; }
+.swatch-inline { display: inline-flex; align-items: center; gap: 7px; }
+.si-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; border: 1px solid rgba(0,0,0,0.1); }
+
+.page-footer { margin-top: 40px; text-align: center; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; color: #ccc; text-transform: uppercase; }
+</style>
+</head>
+<body>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="page-header-left">
+    <div class="page-eyebrow">Dragon Garden · Color Strategy v2</div>
+    <div class="page-title">3 Brand Books</div>
+    <div class="page-sub">Reference: NAM Design Studio · Coffee Shop · Warm Editorial Aesthetic</div>
+  </div>
+  <div class="ref-note">
+    <strong>Reference взят:</strong> белый фон, тёплые земляные тона, clean sans-serif, карточки с воздухом. Каждый бренд-бук — другой фон, другой шрифт, другой характер.
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     01 — WARM PARCHMENT
+══════════════════════════════════════ -->
+<div class="bb bb1">
+  <div class="bb-index">Brand Book 01 / 03</div>
+  <div class="bb-shell">
+    <div class="bb-top">
+      <div>
+        <div class="bb-name">Warm<br><em>Parchment</em></div>
+        <div class="bb-tagline">Кремовый фон · DM Serif Display · Терракота · Тёплое золото</div>
+        <div class="tag-row">
+          <span class="chip chip-a">Editorial Light</span>
+          <span class="chip chip-b">High-End Restaurant</span>
+          <span class="chip chip-b">Tokyo Fine Dining</span>
+        </div>
+      </div>
+      <div>
+        <div class="bb-trend-pill">Warm Luxury 2025</div>
+        <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9px;color:#B8860B;letter-spacing:0.15em;text-align:right;">→ Семейный ресторан акцент</div>
+      </div>
+    </div>
+    <div class="bb-body">
+      <!-- COL 1: PALETTE + FONTS -->
+      <div class="bb-col">
+        <div class="col-label">Palette</div>
+        <div class="sw-row">
+          <div class="sw sw-lg" style="background:#F8F3EC;border:1px solid rgba(0,0,0,0.08);">
+            <div class="sw-label">#F8F3EC bg</div>
+          </div>
+          <div class="sw sw-lg" style="background:#C67C4E;">
+            <div class="sw-label">#C67C4E accent</div>
+          </div>
+          <div class="sw sw-lg" style="background:#1F1A14;">
+            <div class="sw-label">#1F1A14 text</div>
+          </div>
+          <div class="sw sw-sm" style="background:#E8A87C;">
+            <div class="sw-label">#E8A87C soft</div>
+          </div>
+          <div class="sw sw-sm" style="background:#B8860B;">
+            <div class="sw-label">#B8860B gold</div>
+          </div>
+          <div class="sw sw-sm" style="background:#9A8A78;">
+            <div class="sw-label">#9A8A78 muted</div>
+          </div>
+          <div class="sw sw-sm" style="background:#FFFFFF;border:1px solid rgba(0,0,0,0.1);">
+            <div class="sw-label">#FFFFFF card</div>
+          </div>
+        </div>
+
+        <div style="height:1px;background:rgba(0,0,0,0.07);margin:22px 0;"></div>
+        <div class="col-label">Typography</div>
+        <div class="font-block">
+          <div class="font-meta">HEADING — DM SERIF DISPLAY</div>
+          <div class="f-h">Dragon Garden</div>
+        </div>
+        <div class="font-block">
+          <div class="font-meta">BODY — PLUS JAKARTA SANS 400</div>
+          <div class="f-b">Where East Meets Night</div>
+        </div>
+        <div class="font-block">
+          <div class="font-meta">LABEL — JETBRAINS MONO</div>
+          <div class="f-m">OPEN UNTIL 2AM</div>
+        </div>
+      </div>
+
+      <!-- COL 2: CHIPS + COCKTAIL -->
+      <div class="bb-col">
+        <div class="col-label">UI Elements</div>
+        <div class="tag-row">
+          <span class="chip chip-a">Hot Pot</span>
+          <span class="chip chip-a">Sushi Bar</span>
+          <span class="chip chip-b">Hookah Lounge</span>
+          <span class="chip chip-b">Glendale CA</span>
+          <span class="chip chip-a">Cocktails</span>
+        </div>
+
+        <div style="height:1px;background:rgba(0,0,0,0.07);margin:20px 0;"></div>
+        <div class="col-label">Cocktail Card</div>
+        <div class="ck-mini">
+          <div class="ck-dot"></div>
+          <div>
+            <div class="ck-name">JASMINA</div>
+            <div class="ck-price">$ 17 · Date Bourbon · Jasmine · Cranberry</div>
+          </div>
+        </div>
+        <div class="ck-mini">
+          <div class="ck-dot" style="background:linear-gradient(135deg,#5A2A8A,#C67C4E);"></div>
+          <div>
+            <div class="ck-name">MEILI</div>
+            <div class="ck-price">$ 18 · Plum Soju · Butterfly Pea Flower Tea</div>
+          </div>
+        </div>
+        <div class="ck-mini">
+          <div class="ck-dot" style="background:linear-gradient(135deg,#8B0020,#E8A87C);"></div>
+          <div>
+            <div class="ck-name">ZAKURO</div>
+            <div class="ck-price">$ 18 · Wild Cherry Gin · Pomegranate</div>
+          </div>
+        </div>
+
+        <div style="height:1px;background:rgba(0,0,0,0.07);margin:20px 0;"></div>
+        <div class="col-label">Marquee</div>
+        <div style="font-family:'DM Serif Display',serif;font-size:15px;color:#1F1A14;letter-spacing:0.05em;line-height:2;overflow:hidden;white-space:nowrap;">
+          JASMINA &nbsp;·&nbsp; MEILI &nbsp;·&nbsp; ZAKURO &nbsp;·&nbsp; HOT POT &nbsp;·&nbsp;
+        </div>
+      </div>
+
+      <!-- COL 3: PREVIEW -->
+      <div class="bb-col" style="background:#F0EBE2;">
+        <div class="col-label">Preview</div>
+        <div class="preview-card">
+          <div class="preview-img">
+            <div class="preview-img-label">DRAGON<br>GARDEN</div>
+          </div>
+          <div class="preview-body">
+            <div class="preview-tag">Glendale · Est. 2017</div>
+            <div class="preview-title">Where East Meets Night</div>
+            <div class="preview-desc">200+ Chinese & Japanese dishes · Sushi bar · Hot pot · Hookah lounge · DJ nights</div>
+            <div class="preview-btn">Reserve a Table</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:#9A8A78;line-height:1.7;">
+          Секции сайта: кремовый фон · белые карточки · терракота-акцент на кнопках и заголовках · много белого пространства
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ══════════════════════════════════════
+     02 — INK & APRICOT
+══════════════════════════════════════ -->
+<div class="bb bb2">
+  <div class="bb-index">Brand Book 02 / 03</div>
+  <div class="bb-shell">
+    <div class="bb-top">
+      <div>
+        <div class="bb-name"><span>Ink</span> &<br>Apricot</div>
+        <div class="bb-tagline">Тёмно-синий фон (не чёрный) · Space Grotesk · Абрикос · Bold</div>
+        <div class="tag-row">
+          <span class="chip chip-a">Dark Editorial</span>
+          <span class="chip chip-b">Lounge & Nightlife</span>
+          <span class="chip chip-b">Modern Bold</span>
+        </div>
+      </div>
+      <div>
+        <div class="bb-trend-pill">NYC Cocktail Bar 2025</div>
+        <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9px;color:#FF9E5E88;letter-spacing:0.15em;text-align:right;">→ Lounge акцент</div>
+      </div>
+    </div>
+    <div class="bb-body">
+      <div class="bb-col">
+        <div class="col-label">Palette</div>
+        <div class="sw-row">
+          <div class="sw sw-lg" style="background:#0F1117;">
+            <div class="sw-label">#0F1117 bg</div>
+          </div>
+          <div class="sw sw-lg" style="background:#FF9E5E;">
+            <div class="sw-label">#FF9E5E accent</div>
+          </div>
+          <div class="sw sw-lg" style="background:#F0ECE6;">
+            <div class="sw-label">#F0ECE6 text</div>
+          </div>
+          <div class="sw sw-sm" style="background:#171B24;">
+            <div class="sw-label">#171B24 card</div>
+          </div>
+          <div class="sw sw-sm" style="background:#FFD4A8;">
+            <div class="sw-label">#FFD4A8 soft</div>
+          </div>
+          <div class="sw sw-sm" style="background:#6B7080;">
+            <div class="sw-label">#6B7080 muted</div>
+          </div>
+          <div class="sw sw-sm" style="background:#232836;">
+            <div class="sw-label">#232836 deep</div>
+          </div>
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,0.07);margin:22px 0;"></div>
+        <div class="col-label">Typography</div>
+        <div class="font-block">
+          <div class="font-meta">HEADING — SPACE GROTESK 700</div>
+          <div class="f-h">Dragon Garden</div>
+        </div>
+        <div class="font-block">
+          <div class="font-meta">BODY — PLUS JAKARTA SANS 400</div>
+          <div class="f-b">Where East Meets Night</div>
+        </div>
+        <div class="font-block">
+          <div class="font-meta">LABEL — JETBRAINS MONO</div>
+          <div class="f-m">OPEN UNTIL 2AM</div>
+        </div>
+      </div>
+
+      <div class="bb-col">
+        <div class="col-label">UI Elements</div>
+        <div class="tag-row">
+          <span class="chip chip-a">Hot Pot</span>
+          <span class="chip chip-a">Sushi Bar</span>
+          <span class="chip chip-b">Hookah Lounge</span>
+          <span class="chip chip-b">Glendale CA</span>
+          <span class="chip chip-a">Cocktails</span>
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,0.07);margin:20px 0;"></div>
+        <div class="col-label">Cocktail Card</div>
+        <div class="ck-mini">
+          <div class="ck-dot"></div>
+          <div>
+            <div class="ck-name">JASMINA</div>
+            <div class="ck-price">$ 17 · Date Bourbon · Jasmine · Cranberry</div>
+          </div>
+        </div>
+        <div class="ck-mini">
+          <div class="ck-dot" style="background:linear-gradient(135deg,#3D1A5A,#FF9E5E);"></div>
+          <div>
+            <div class="ck-name">MEILI</div>
+            <div class="ck-price">$ 18 · Plum Soju · Butterfly Pea Tea</div>
+          </div>
+        </div>
+        <div class="ck-mini">
+          <div class="ck-dot" style="background:linear-gradient(135deg,#8B1A2A,#FFD4A8);"></div>
+          <div>
+            <div class="ck-name">ZAKURO</div>
+            <div class="ck-price">$ 18 · Wild Cherry Gin · Pomegranate</div>
+          </div>
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,0.07);margin:20px 0;"></div>
+        <div class="col-label">Marquee</div>
+        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:15px;color:#F0ECE6;letter-spacing:-0.01em;line-height:2;overflow:hidden;white-space:nowrap;">
+          JASMINA &nbsp;/&nbsp; MEILI &nbsp;/&nbsp; ZAKURO &nbsp;/&nbsp; HOT POT &nbsp;/&nbsp;
+        </div>
+      </div>
+
+      <div class="bb-col" style="background:#0A0D14;">
+        <div class="col-label">Preview</div>
+        <div class="preview-card">
+          <div class="preview-img">
+            <div class="preview-img-label">DRAGON<br>GARDEN</div>
+          </div>
+          <div class="preview-body">
+            <div class="preview-tag">Glendale · Est. 2017</div>
+            <div class="preview-title">Where East Meets Night</div>
+            <div class="preview-desc">200+ dishes · Sushi bar · Hot pot · Hookah lounge · DJ nights</div>
+            <div class="preview-btn">Reserve a Table</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:#6B7080;line-height:1.7;">
+          Тёмно-синий (не чёрный) · абрикос на кнопках · bold sans-serif заголовки · больше энергии
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sep"></div>
+
+<!-- ══════════════════════════════════════
+     03 — PAPER & INK
+══════════════════════════════════════ -->
+<div class="bb bb3">
+  <div class="bb-index">Brand Book 03 / 03</div>
+  <div class="bb-shell">
+    <div class="bb-top">
+      <div>
+        <div class="bb-name"><span class="accent-word">Paper</span><br>& Ink</div>
+        <div class="bb-tagline">Почти белый фон · Fraunces (optical serif) · Dragon Red · Чёрно-белый минимализм</div>
+        <div class="tag-row">
+          <span class="chip chip-a">High Contrast</span>
+          <span class="chip chip-b">Japanese Minimal</span>
+          <span class="chip chip-b">Magazine Editorial</span>
+        </div>
+      </div>
+      <div>
+        <div class="bb-trend-pill">Most Distinctive</div>
+        <div style="margin-top:10px;font-family:'JetBrains Mono',monospace;font-size:9px;color:#99;letter-spacing:0.15em;text-align:right;">→ Уникальный на рынке</div>
+      </div>
+    </div>
+    <div class="bb-body">
+      <div class="bb-col">
+        <div class="col-label">Palette</div>
+        <div class="sw-row">
+          <div class="sw sw-lg" style="background:#FAFAF8;border:1px solid rgba(0,0,0,0.1);">
+            <div class="sw-label">#FAFAF8 bg</div>
+          </div>
+          <div class="sw sw-lg" style="background:#161412;">
+            <div class="sw-label">#161412 text</div>
+          </div>
+          <div class="sw sw-lg" style="background:#C41E3A;">
+            <div class="sw-label">#C41E3A red</div>
+          </div>
+          <div class="sw sw-sm" style="background:#FFFFFF;border:1px solid rgba(0,0,0,0.1);">
+            <div class="sw-label">#FFFFFF card</div>
+          </div>
+          <div class="sw sw-sm" style="background:#888480;">
+            <div class="sw-label">#888480 muted</div>
+          </div>
+          <div class="sw sw-sm" style="background:#E8E4E0;border:1px solid rgba(0,0,0,0.08);">
+            <div class="sw-label">#E8E4E0 border</div>
+          </div>
+          <div class="sw sw-sm" style="background:#F0EDE8;border:1px solid rgba(0,0,0,0.08);">
+            <div class="sw-label">#F0EDE8 alt</div>
+          </div>
+        </div>
+        <div style="height:1px;background:rgba(0,0,0,0.08);margin:22px 0;"></div>
+        <div class="col-label">Typography</div>
+        <div class="font-block">
+          <div class="font-meta">HEADING — FRAUNCES 700 (optical)</div>
+          <div class="f-h">Dragon Garden</div>
+        </div>
+        <div class="font-block">
+          <div class="font-meta">BODY — PLUS JAKARTA SANS 400</div>
+          <div class="f-b">Where East Meets Night</div>
+        </div>
+        <div class="font-block">
+          <div class="font-meta">LABEL — JETBRAINS MONO</div>
+          <div class="f-m">OPEN UNTIL 2AM</div>
+        </div>
+      </div>
+
+      <div class="bb-col">
+        <div class="col-label">UI Elements</div>
+        <div class="tag-row">
+          <span class="chip chip-a">Hot Pot</span>
+          <span class="chip chip-a">Sushi Bar</span>
+          <span class="chip chip-b">Hookah Lounge</span>
+          <span class="chip chip-b">Glendale CA</span>
+          <span class="chip chip-a">Cocktails</span>
+        </div>
+        <div style="height:1px;background:rgba(0,0,0,0.08);margin:20px 0;"></div>
+        <div class="col-label">Cocktail Card</div>
+        <div class="ck-mini">
+          <div class="ck-dot"></div>
+          <div>
+            <div class="ck-name">JASMINA</div>
+            <div class="ck-price">$ 17 · Date Bourbon · Jasmine · Cranberry</div>
+          </div>
+        </div>
+        <div class="ck-mini">
+          <div class="ck-dot" style="background:#161412;"></div>
+          <div>
+            <div class="ck-name">MEILI</div>
+            <div class="ck-price">$ 18 · Plum Soju · Butterfly Pea Tea</div>
+          </div>
+        </div>
+        <div class="ck-mini">
+          <div class="ck-dot" style="background:#7B1020;"></div>
+          <div>
+            <div class="ck-name">ZAKURO</div>
+            <div class="ck-price">$ 18 · Wild Cherry Gin · Pomegranate</div>
+          </div>
+        </div>
+        <div style="height:1px;background:rgba(0,0,0,0.08);margin:20px 0;"></div>
+        <div class="col-label">Marquee</div>
+        <div style="font-family:'Fraunces',serif;font-size:16px;color:#161412;letter-spacing:0.02em;line-height:2;overflow:hidden;white-space:nowrap;">
+          JASMINA &nbsp;—&nbsp; MEILI &nbsp;—&nbsp; ZAKURO &nbsp;—&nbsp; HOT POT &nbsp;—&nbsp;
+        </div>
+      </div>
+
+      <div class="bb-col" style="background:#F5F3EF;">
+        <div class="col-label">Preview</div>
+        <div class="preview-card">
+          <div class="preview-img">
+            <div class="preview-img-label">DRAGON<br><span>GARDEN</span></div>
+          </div>
+          <div class="preview-body">
+            <div class="preview-tag">Glendale · Est. 2017</div>
+            <div class="preview-title">Where East Meets Night</div>
+            <div class="preview-desc">200+ dishes · Sushi bar · Hot pot · Hookah lounge · DJ nights</div>
+            <div class="preview-btn">Reserve a Table</div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:#888480;line-height:1.7;">
+          Почти белый фон · тёмные карточки (header) · красный использован минимально · Fraunces создаёт уникальный характер
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COMPARISON -->
+<div class="compare">
+  <div class="compare-head">
+    <div>Параметр</div>
+    <div>01 · Warm Parchment</div>
+    <div>02 · Ink & Apricot</div>
+    <div>03 · Paper & Ink</div>
+  </div>
+  <div class="compare-row">
+    <div class="compare-attr">Фон</div>
+    <div><span class="swatch-inline"><span class="si-dot" style="background:#F8F3EC;border-color:rgba(0,0,0,0.15);"></span> Тёплый крем</span></div>
+    <div><span class="swatch-inline"><span class="si-dot" style="background:#0F1117;"></span> Тёмно-синий</span></div>
+    <div><span class="swatch-inline"><span class="si-dot" style="background:#FAFAF8;border-color:rgba(0,0,0,0.15);"></span> Почти белый</span></div>
+  </div>
+  <div class="compare-row">
+    <div class="compare-attr">Акцент</div>
+    <div><span class="swatch-inline"><span class="si-dot" style="background:#C67C4E;"></span> Терракота</span></div>
+    <div><span class="swatch-inline"><span class="si-dot" style="background:#FF9E5E;"></span> Абрикос</span></div>
+    <div><span class="swatch-inline"><span class="si-dot" style="background:#C41E3A;"></span> Dragon Red (мало)</span></div>
+  </div>
+  <div class="compare-row">
+    <div class="compare-attr">Заголовок</div>
+    <div>DM Serif Display (элегантный)</div>
+    <div>Space Grotesk (болд, энергия)</div>
+    <div>Fraunces (optical, уникальный)</div>
+  </div>
+  <div class="compare-row">
+    <div class="compare-attr">Характер</div>
+    <div>Тёплый, элегантный, уютный</div>
+    <div>Современный, энергичный, ночной</div>
+    <div>Минималистичный, контрастный</div>
+  </div>
+  <div class="compare-row">
+    <div class="compare-attr">Акцент сайта</div>
+    <div>Ресторан + семья</div>
+    <div>Лаунж + коктейли</div>
+    <div>Премиум + суши бар</div>
+  </div>
+  <div class="compare-row">
+    <div class="compare-attr">Уникальность</div>
+    <div>Узнаваемо, тепло</div>
+    <div>Современно, конкурентно</div>
+    <div>★ Максимально уникально</div>
+  </div>
+</div>
+
+<div class="page-footer">Dragon Garden · Brand Strategy v2 · 2025</div>
+
+</body>
+</html>
