@@ -1163,11 +1163,14 @@ var isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
 function hideLoader() {
   var loader = document.getElementById('loader');
-  if (loader && loader.style.display !== 'none') {
-    loader.style.opacity = '0';
-    setTimeout(function() { loader.style.display = 'none'; }, 600);
-  }
+  if (!loader || loader.style.display === 'none') return;
+  loader.style.transition = 'opacity 0.5s';
+  loader.style.opacity = '0';
+  setTimeout(function() { loader.style.display = 'none'; }, 520);
 }
+
+// Always hide loader within 1.2s — don't wait for video/frames
+setTimeout(hideLoader, 1200);
 
 if (isMobile) {
   // Mobile: autoplay video (no canvas scrub needed)
@@ -1181,8 +1184,8 @@ if (isMobile) {
   heroVid.setAttribute('playsinline', '');
   heroVid.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1;';
   document.querySelector('.hero-sticky').insertBefore(heroVid, document.querySelector('.hero-content'));
+  // Also hide immediately on canplay in case it fires before the timeout
   heroVid.addEventListener('canplay', hideLoader);
-  setTimeout(hideLoader, 4000);
 } else {
   // Desktop: canvas frame scrub on scroll
   var ctx = canvas.getContext('2d');
