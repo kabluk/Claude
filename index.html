@@ -669,37 +669,59 @@ footer {
   gap: 10px; margin-top: 48px;
 }
 .ck-card {
-  position: relative; border-radius: 10px;
-  padding: 22px 16px 22px; overflow: hidden;
+  position: relative; border-radius: 12px;
+  padding: 20px 18px; overflow: hidden;
   cursor: default; border: 1px solid rgba(255,255,255,0.06);
-  transition: transform 0.4s var(--ease), border-color 0.3s;
-  min-height: 180px;
+  transition: transform 0.4s var(--ease), border-color 0.3s, box-shadow 0.4s;
+  min-height: 320px;
+  display: flex; flex-direction: column; justify-content: flex-end;
 }
-.ck-card:hover { transform: translateY(-8px); border-color: rgba(200,168,75,0.25); }
-.ck-card-bg { position: absolute; inset: 0; z-index: 0; }
+.ck-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: rgba(200,168,75,0.35);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+}
+.ck-card-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background-size: cover;
+  background-position: center 25%;
+  transition: transform 0.6s var(--ease);
+}
+.ck-card:hover .ck-card-bg { transform: scale(1.06); }
+.ck-card-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0,0,0,0.05) 0%,
+    rgba(0,0,0,0.15) 35%,
+    rgba(0,0,0,0.70) 65%,
+    rgba(0,0,0,0.92) 100%
+  );
+}
 .ck-price {
   position: relative; z-index: 1;
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px; color: var(--gold);
-  margin-bottom: 8px; letter-spacing: 0.15em;
+  margin-bottom: 6px; letter-spacing: 0.15em;
 }
 .ck-name {
   position: relative; z-index: 1;
   font-family: 'Cinzel', serif;
-  font-size: 16px; font-weight: 700;
-  color: var(--text); margin-bottom: 10px; line-height: 1.1;
+  font-size: 15px; font-weight: 700;
+  color: var(--text); margin-bottom: 8px; line-height: 1.1;
   letter-spacing: 0.05em;
 }
 .ck-ingredients {
   position: relative; z-index: 1;
-  font-size: 10.5px; color: rgba(240,235,227,0.48);
+  font-size: 10px; color: rgba(240,235,227,0.5);
   line-height: 1.7;
 }
 .ck-divider {
   position: relative; z-index: 1;
   width: 20px; height: 1px;
-  background: rgba(200,168,75,0.35);
-  margin: 10px 0;
+  background: rgba(200,168,75,0.4);
+  margin: 8px 0;
 }
 
 @media (max-width: 768px) {
@@ -724,7 +746,7 @@ footer {
   .vid-sub { font-size: 14px; }
   .ck-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
   .cocktails-section { padding: 80px 24px; }
-  .ck-card { min-height: 150px; }
+  .ck-card { min-height: 220px; }
 }
 </style>
 </head>
@@ -949,70 +971,70 @@ footer {
   </div>
   <div class="ck-grid fade-up">
     <div class="ck-card">
-      <div class="ck-card-bg" style="background:linear-gradient(145deg,#3d0015,#1a000a);"></div>
+      <div class="ck-card-bg" style="background-image:url(assets/cocktails/jasmina.jpg);"></div>
       <div class="ck-price">$ 17</div>
       <div class="ck-name">JASMINA</div>
       <div class="ck-divider"></div>
       <div class="ck-ingredients">Date Bourbon · Plum Sake · Jasmine · Cranberry · Lemon</div>
     </div>
     <div class="ck-card">
-      <div class="ck-card-bg" style="background:linear-gradient(145deg,#0d2212,#040d06);"></div>
+      <div class="ck-card-bg" style="background-image:url(assets/cocktails/liao.jpg);"></div>
       <div class="ck-price">$ 17</div>
       <div class="ck-name">LIAO</div>
       <div class="ck-divider"></div>
       <div class="ck-ingredients">Sake · Melon Liqueur · Honey-Flower · Apple · Wasabi</div>
     </div>
     <div class="ck-card">
-      <div class="ck-card-bg" style="background:linear-gradient(145deg,#2d1e00,#181000);"></div>
+      <div class="ck-card-bg" style="background-image:url(assets/cocktails/youshi.jpg);"></div>
       <div class="ck-price">$ 17</div>
       <div class="ck-name">YOUSHI</div>
       <div class="ck-divider"></div>
       <div class="ck-ingredients">Vodka · Melon Liqueur · Yuzu-Honey · Fresh Lemon</div>
     </div>
     <div class="ck-card">
-      <div class="ck-card-bg" style="background:linear-gradient(145deg,#0e0828,#05030f);"></div>
+      <div class="ck-card-bg" style="background-image:url(assets/cocktails/meili.jpg);"></div>
       <div class="ck-price">$ 18</div>
       <div class="ck-name">MEILI</div>
       <div class="ck-divider"></div>
       <div class="ck-ingredients">Plum Soju · Elderflower · Lemongrass · Butterfly Pea Flower Tea</div>
     </div>
     <div class="ck-card">
-      <div class="ck-card-bg" style="background:linear-gradient(145deg,#220614,#100308);"></div>
+      <div class="ck-card-bg" style="background-image:url(assets/cocktails/nirvana.jpg);"></div>
       <div class="ck-price">$ 16</div>
       <div class="ck-name">NIRVANA</div>
       <div class="ck-divider"></div>
       <div class="ck-ingredients">Sake · Ararat Apricot · Soy Milk · Cherry Juice</div>
     </div>
     <div class="ck-card">
-      <div class="ck-card-bg" style="background:linear-gradient(145deg,#2a041a,#110208);"></div>
+      <div class="ck-card-bg" style="background-image:url(assets/cocktails/alisa.jpg);"></div>
       <div class="ck-price">$ 18</div>
       <div class="ck-name">ALISA</div>
       <div class="ck-divider"></div>
       <div class="ck-ingredients">Vogis Gin · Lychee · Aloe Vera · Hibiscus Ice Cube · Sumac</div>
     </div>
     <div class="ck-card">
-      <div class="ck-card-bg" style="background:linear-gradient(145deg,#220505,#0f0202);"></div>
+      <div class="ck-card-bg" style="background-image:url(assets/cocktails/ishpuini.jpg);"></div>
       <div class="ck-price">$ 18</div>
       <div class="ck-name">ISHPUINI</div>
       <div class="ck-divider"></div>
       <div class="ck-ingredients">Ararat VSOP · Italian Bitter · Red Wine · Pomegranate</div>
     </div>
     <div class="ck-card">
-      <div class="ck-card-bg" style="background:linear-gradient(145deg,#2a0209,#120104);"></div>
+      <div class="ck-card-bg" style="background-image:url(assets/cocktails/zakuro.jpg);"></div>
       <div class="ck-price">$ 18</div>
       <div class="ck-name">ZAKURO</div>
       <div class="ck-divider"></div>
       <div class="ck-ingredients">Wild Cherry Gin · Pomegranate · Hibiscus-Rose Water</div>
     </div>
     <div class="ck-card">
-      <div class="ck-card-bg" style="background:linear-gradient(145deg,#2c1208,#120804);"></div>
+      <div class="ck-card-bg" style="background-image:url(assets/cocktails/lumi.jpg);"></div>
       <div class="ck-price">$ 18</div>
       <div class="ck-name">LUMI</div>
       <div class="ck-divider"></div>
       <div class="ck-ingredients">Strawberry Tequila · Bergamot · Cherry · Ginger · Lemon</div>
     </div>
     <div class="ck-card">
-      <div class="ck-card-bg" style="background:linear-gradient(145deg,#1c082a,#0a0412);"></div>
+      <div class="ck-card-bg" style="background-image:url(assets/cocktails/tsuki.jpg);"></div>
       <div class="ck-price">$ 18</div>
       <div class="ck-name">TSUKI</div>
       <div class="ck-divider"></div>
@@ -1141,11 +1163,14 @@ var isMobile = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
 
 function hideLoader() {
   var loader = document.getElementById('loader');
-  if (loader && loader.style.display !== 'none') {
-    loader.style.opacity = '0';
-    setTimeout(function() { loader.style.display = 'none'; }, 600);
-  }
+  if (!loader || loader.style.display === 'none') return;
+  loader.style.transition = 'opacity 0.5s';
+  loader.style.opacity = '0';
+  setTimeout(function() { loader.style.display = 'none'; }, 520);
 }
+
+// Always hide loader within 1.2s — don't wait for video/frames
+setTimeout(hideLoader, 1200);
 
 if (isMobile) {
   // Mobile: autoplay video (no canvas scrub needed)
@@ -1159,8 +1184,8 @@ if (isMobile) {
   heroVid.setAttribute('playsinline', '');
   heroVid.style.cssText = 'position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;z-index:1;';
   document.querySelector('.hero-sticky').insertBefore(heroVid, document.querySelector('.hero-content'));
+  // Also hide immediately on canplay in case it fires before the timeout
   heroVid.addEventListener('canplay', hideLoader);
-  setTimeout(hideLoader, 4000);
 } else {
   // Desktop: canvas frame scrub on scroll
   var ctx = canvas.getContext('2d');
