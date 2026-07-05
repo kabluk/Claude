@@ -70,7 +70,12 @@ PDF-пакета. ✅ Достигнуто.
   транспортировка/передача, ограничения на выезд; TO: Judgment (FL-180).
   Единый источник детей с FL-105/FL-180. Генерится при has_children.
   read-back: `node scripts/demo-fl341.mjs`
-- ⏳ FL-342 (Child Support Information and Order Attachment) — привязать
+- ✅ FL-342 (Child Support Information and Order Attachment) — привязана: ПРЯМОЙ
+  экспорт калькулятора §4055 из `finance_profile.result` (авто-перенос, без
+  повторного ввода). Нетто-доходы, таймшер 65/35 (совпадает с FL-150 §16b),
+  плательщик (высокий доход), суммы на ребёнка + ИТОГО/мес, add-ons childcare/
+  uninsured 50/50, медстраховка (item 7a). TO: Judgment (FL-180). Генерится при
+  has_children. read-back: `node scripts/demo-fl342.mjs`
 - ⏳ FL-345 (Property Order Attachment to Judgment) — привязать
 - ✅ FL-190 (Notice of Entry of Judgment) — привязана: шапка/тип решения/стороны
   из единого источника FL-180, mailing-адреса обеих сторон; дата внесения, штамп
