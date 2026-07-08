@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MENVIO — Coral & Obsidian</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white: #ffffff;
+  --obsidian: #0f0d0b;
+  --card-bg: #f8f8f7;
+  --coral: #e8452a;
+  --emerald: #18664a;
+  --muted: #6a6460;
+  --border: rgba(15,13,11,.08);
+  --font-head: 'Space Grotesk', sans-serif;
+  --font-body: 'Inter', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--white);
+  color: var(--obsidian);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── NAV ─────────────────────────────────────────────────── */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  padding: 0 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+}
+
+.nav-logo {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.25rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--obsidian);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color .15s;
+}
+.nav-links a:hover { color: var(--obsidian); }
+
+.btn-nav {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: var(--coral);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1.25rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity .15s;
+}
+.btn-nav:hover { opacity: .88; }
+
+/* ─── HERO ────────────────────────────────────────────────── */
+.hero {
+  min-height: calc(100vh - 64px);
+  padding: 6rem 5% 5rem;
+  display: flex;
+  align-items: center;
+  gap: 4rem;
+}
+
+.hero-left {
+  flex: 0 0 55%;
+}
+
+.hero-headline {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(4rem, 6.5vw + 1rem, 7.5rem);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  margin-bottom: 2rem;
+}
+
+.hero-headline .line-1 { display: block; color: var(--obsidian); }
+.hero-headline .line-2 { display: block; color: var(--coral); }
+.hero-headline .line-3 { display: block; color: var(--obsidian); }
+
+.hero-sub {
+  font-size: 1.125rem;
+  line-height: 1.65;
+  color: var(--muted);
+  max-width: 42ch;
+  margin-bottom: 2.5rem;
+}
+
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.btn-coral {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  background: var(--coral);
+  color: var(--white);
+  border: 2px solid var(--coral);
+  border-radius: 4px;
+  padding: 0.75rem 1.75rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity .15s;
+}
+.btn-coral:hover { opacity: .88; }
+
+.btn-emerald-outline {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  background: transparent;
+  color: var(--emerald);
+  border: 2px solid var(--emerald);
+  border-radius: 4px;
+  padding: 0.75rem 1.75rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background .15s, color .15s;
+}
+.btn-emerald-outline:hover { background: var(--emerald); color: var(--white); }
+
+/* ─── HERO RIGHT: TYPOGRAPHIC MENU PREVIEW ───────────────── */
+.hero-right {
+  flex: 0 0 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.menu-preview-card {
+  background: var(--obsidian);
+  border-radius: 6px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.mpc-category {
+  display: inline-block;
+  background: var(--emerald);
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.6rem;
+  border-radius: 2px;
+  align-self: flex-start;
+}
+
+.mpc-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.mpc-name {
+  height: 0.75rem;
+  background: rgba(255,255,255,0.9);
+  border-radius: 2px;
+  flex: 1;
+}
+
+.mpc-name.short { flex: 0 0 52%; }
+.mpc-name.medium { flex: 0 0 68%; }
+.mpc-name.long { flex: 0 0 80%; }
+
+.mpc-price {
+  height: 0.75rem;
+  background: var(--coral);
+  border-radius: 2px;
+  flex: 0 0 3rem;
+  opacity: 0.9;
+}
+
+.mpc-desc-row {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.mpc-desc-chunk {
+  height: 0.5rem;
+  background: rgba(255,255,255,0.2);
+  border-radius: 2px;
+}
+
+.mpc-desc-chunk:nth-child(1) { flex: 0 0 40%; }
+.mpc-desc-chunk:nth-child(2) { flex: 0 0 28%; }
+.mpc-desc-chunk:nth-child(3) { flex: 0 0 20%; }
+
+.mpc-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+}
+
+/* Second card — slightly lighter treatment */
+.menu-preview-card.card-mid {
+  background: #1c1a17;
+}
+
+/* Third card */
+.menu-preview-card.card-bottom {
+  background: #141210;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+
+/* ─── STATS BAR ───────────────────────────────────────────── */
+.stats-bar {
+  background: var(--coral);
+  padding: 3.5rem 5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.stat-item {
+  flex: 1;
+  text-align: center;
+  padding: 0 2rem;
+  position: relative;
+}
+
+.stat-item + .stat-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 60%;
+  width: 1px;
+  background: rgba(255,255,255,0.25);
+}
+
+.stat-number {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(3rem, 5vw, 5rem);
+  color: var(--white);
+  line-height: 1;
+  letter-spacing: -0.03em;
+  display: block;
+}
+
+.stat-label {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.65);
+  margin-top: 0.5rem;
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ─── FEATURES ────────────────────────────────────────────── */
+.features {
+  padding: 7rem 5%;
+  background: var(--white);
+}
+
+.features-headline {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(2rem, 3.5vw, 3.25rem);
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  max-width: 22ch;
+  margin-bottom: 3.5rem;
+  color: var(--obsidian);
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.feature-card {
+  background: var(--card-bg);
+  border-radius: 6px;
+  padding: 2.25rem 2rem;
+}
+
+.feature-coral-circle {
+  width: 48px;
+  height: 48px;
+  background: var(--coral);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--white);
+  margin-bottom: 1.25rem;
+}
+
+.feature-tag {
+  display: inline-block;
+  background: rgba(24,102,74,.1);
+  color: var(--emerald);
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.65rem;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
+
+.feature-title {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: var(--obsidian);
+  margin-bottom: 0.75rem;
+}
+
+.feature-desc {
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--muted);
+}
+
+/* ─── PRICING ─────────────────────────────────────────────── */
+.pricing {
+  padding: 7rem 5%;
+  background: var(--card-bg);
+}
+
+.pricing-headline {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(1.75rem, 3vw, 2.75rem);
+  letter-spacing: -0.025em;
+  text-align: center;
+  margin-bottom: 0.75rem;
+  color: var(--obsidian);
+}
+
+.pricing-sub {
+  text-align: center;
+  color: var(--muted);
+  font-size: 1rem;
+  margin-bottom: 3.5rem;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  align-items: start;
+}
+
+/* Card 1: Starter */
+.pricing-card {
+  border-radius: 6px;
+  padding: 2.25rem 2rem;
+}
+
+.pricing-card.starter {
+  background: var(--white);
+  border-left: 4px solid var(--emerald);
+  box-shadow: 0 1px 4px rgba(15,13,11,.06);
+}
+
+.pricing-card.pro {
+  background: var(--coral);
+  color: var(--white);
+  position: relative;
+}
+
+.pricing-card.concierge {
+  background: var(--obsidian);
+  color: var(--white);
+}
+
+.pricing-best-tag {
+  display: inline-block;
+  background: var(--white);
+  color: var(--coral);
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.25rem 0.75rem;
+  border-radius: 2px;
+  margin-bottom: 1.25rem;
+}
+
+.pricing-tier {
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  opacity: 0.7;
+}
+.pricing-card.starter .pricing-tier { color: var(--muted); opacity: 1; }
+
+.pricing-price {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 3rem;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+.pricing-card.starter .pricing-price { color: var(--obsidian); }
+
+.pricing-period {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin-bottom: 1.75rem;
+  opacity: 0.65;
+}
+.pricing-card.starter .pricing-period { color: var(--muted); opacity: 1; }
+
+.pricing-divider {
+  height: 1px;
+  background: var(--border);
+  margin-bottom: 1.5rem;
+}
+.pricing-card.pro .pricing-divider { background: rgba(255,255,255,0.2); }
+.pricing-card.concierge .pricing-divider { background: rgba(255,255,255,0.1); }
+
+.pricing-features {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-bottom: 2rem;
+}
+
+.pricing-features li {
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+}
+.pricing-card.starter .pricing-features li { color: var(--obsidian); }
+.pricing-card.pro .pricing-features li { color: rgba(255,255,255,0.9); }
+.pricing-card.concierge .pricing-features li { color: rgba(255,255,255,0.8); }
+
+.check {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.625rem;
+  font-weight: 700;
+  margin-top: 0.1rem;
+}
+.pricing-card.starter .check { background: rgba(24,102,74,.12); color: var(--emerald); }
+.pricing-card.pro .check { background: rgba(255,255,255,0.2); color: var(--white); }
+.pricing-card.concierge .check { background: rgba(232,69,42,0.25); color: var(--coral); }
+
+.btn-pricing-starter {
+  display: block;
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-align: center;
+  background: var(--emerald);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity .15s;
+}
+.btn-pricing-starter:hover { opacity: .88; }
+
+.btn-pricing-pro {
+  display: block;
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-align: center;
+  background: var(--white);
+  color: var(--coral);
+  border: none;
+  border-radius: 4px;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity .15s;
+}
+.btn-pricing-pro:hover { opacity: .9; }
+
+.btn-pricing-concierge {
+  display: block;
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-align: center;
+  background: var(--coral);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  padding: 0.8rem 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity .15s;
+}
+.btn-pricing-concierge:hover { opacity: .88; }
+
+/* ─── QUOTE ───────────────────────────────────────────────── */
+.quote-section {
+  padding: 8rem 5%;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.quote-mark {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 6rem;
+  line-height: 0.6;
+  color: var(--coral);
+  opacity: 0.25;
+  margin-bottom: 1.5rem;
+  user-select: none;
+}
+
+.quote-text {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(1.75rem, 2.75vw, 2.5rem);
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--obsidian);
+  max-width: 24ch;
+  margin-bottom: 2rem;
+}
+
+.quote-text .highlight { color: var(--coral); }
+
+.quote-attr {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.quote-avatar-placeholder {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--card-bg);
+  border: 2px solid var(--border);
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.quote-avatar-placeholder::after {
+  content: 'DC';
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-head);
+  font-weight: 700;
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+.quote-attr-text {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--obsidian);
+}
+
+.quote-attr-sub {
+  font-size: 0.8125rem;
+  color: var(--muted);
+  margin-top: 0.15rem;
+}
+
+/* ─── CTA SECTION ─────────────────────────────────────────── */
+.cta-section {
+  background: var(--coral);
+  padding: 6rem 5%;
+}
+
+.cta-inner {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.cta-headline {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: clamp(2.25rem, 4vw, 3.5rem);
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  color: var(--white);
+  margin-bottom: 0.75rem;
+}
+
+.cta-sub {
+  font-size: 1.0625rem;
+  color: rgba(255,255,255,0.72);
+  margin-bottom: 2.5rem;
+  line-height: 1.55;
+}
+
+.cta-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+  background: var(--white);
+  border-radius: 6px;
+  padding: 2rem;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.875rem;
+}
+
+.cta-form input,
+.cta-form select {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--obsidian);
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.75rem 1rem;
+  width: 100%;
+  outline: none;
+  transition: border-color .15s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.cta-form input::placeholder { color: var(--muted); }
+
+.cta-form input:focus,
+.cta-form select:focus {
+  border-color: var(--obsidian);
+}
+
+.cta-form select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' fill='none'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236a6460' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+  cursor: pointer;
+}
+
+.btn-form-submit {
+  font-family: var(--font-head);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  background: var(--obsidian);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  padding: 0.9rem 1.5rem;
+  cursor: pointer;
+  transition: opacity .15s;
+  text-align: center;
+}
+.btn-form-submit:hover { opacity: .85; }
+
+/* ─── FOOTER ──────────────────────────────────────────────── */
+footer {
+  background: var(--white);
+  border-top: 1px solid var(--border);
+  padding: 2.5rem 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-logo {
+  font-family: var(--font-head);
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--obsidian);
+  text-decoration: none;
+}
+
+.footer-copy {
+  font-size: 0.8125rem;
+  color: var(--muted);
+}
+
+/* ─── RESPONSIVE ──────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero { flex-direction: column; padding: 4rem 5% 3rem; min-height: auto; }
+  .hero-left { flex: none; }
+  .hero-right { flex: none; width: 100%; }
+  .features-grid { grid-template-columns: 1fr; gap: 1rem; }
+  .pricing-grid { grid-template-columns: 1fr; }
+  .pricing-card.pro { order: -1; }
+  .form-row { grid-template-columns: 1fr; }
+  .stats-bar { flex-direction: column; gap: 2rem; }
+  .stat-item + .stat-item::before { display: none; }
+  footer { flex-direction: column; gap: 1rem; text-align: center; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ───────────────────────────────────────────────── -->
+<nav>
+  <a class="nav-logo" href="#">Menvio</a>
+  <ul class="nav-links">
+    <li><a href="#">Features</a></li>
+    <li><a href="#">Pricing</a></li>
+    <li><a href="#">Examples</a></li>
+    <li><a href="#">About</a></li>
+  </ul>
+  <a class="btn-nav" href="#">Get Started</a>
+</nav>
+
+<!-- ─── HERO ───────────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-left">
+    <h1 class="hero-headline">
+      <span class="line-1">Your restaurant,</span>
+      <span class="line-2">digital.</span>
+      <span class="line-3">Now.</span>
+    </h1>
+    <p class="hero-sub">A professional digital menu — built for you in 48 hours. WhatsApp ordering, EU allergen compliance, zero commission. No tech skills needed.</p>
+    <div class="hero-ctas">
+      <a class="btn-coral" href="#">Launch My Menu</a>
+      <a class="btn-emerald-outline" href="#">See Examples</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <!-- Card 1 -->
+    <div class="menu-preview-card">
+      <span class="mpc-category">Starters</span>
+      <div class="mpc-row">
+        <div class="mpc-name medium"></div>
+        <div class="mpc-price"></div>
+      </div>
+      <div class="mpc-desc-row">
+        <div class="mpc-desc-chunk"></div>
+        <div class="mpc-desc-chunk"></div>
+        <div class="mpc-desc-chunk"></div>
+      </div>
+      <div class="mpc-divider"></div>
+      <div class="mpc-row">
+        <div class="mpc-name long"></div>
+        <div class="mpc-price"></div>
+      </div>
+      <div class="mpc-desc-row">
+        <div class="mpc-desc-chunk"></div>
+        <div class="mpc-desc-chunk"></div>
+      </div>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="menu-preview-card card-mid">
+      <span class="mpc-category">Mains</span>
+      <div class="mpc-row">
+        <div class="mpc-name short"></div>
+        <div class="mpc-price"></div>
+      </div>
+      <div class="mpc-desc-row">
+        <div class="mpc-desc-chunk"></div>
+        <div class="mpc-desc-chunk"></div>
+        <div class="mpc-desc-chunk"></div>
+      </div>
+      <div class="mpc-divider"></div>
+      <div class="mpc-row">
+        <div class="mpc-name medium"></div>
+        <div class="mpc-price"></div>
+      </div>
+      <div class="mpc-desc-row">
+        <div class="mpc-desc-chunk"></div>
+        <div class="mpc-desc-chunk"></div>
+      </div>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="menu-preview-card card-bottom">
+      <span class="mpc-category">Desserts</span>
+      <div class="mpc-row">
+        <div class="mpc-name long"></div>
+        <div class="mpc-price"></div>
+      </div>
+      <div class="mpc-desc-row">
+        <div class="mpc-desc-chunk"></div>
+        <div class="mpc-desc-chunk"></div>
+        <div class="mpc-desc-chunk"></div>
+      </div>
+      <div class="mpc-divider"></div>
+      <div class="mpc-row">
+        <div class="mpc-name medium"></div>
+        <div class="mpc-price"></div>
+      </div>
+      <div class="mpc-desc-row">
+        <div class="mpc-desc-chunk"></div>
+        <div class="mpc-desc-chunk"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STATS BAR ──────────────────────────────────────────── -->
+<section class="stats-bar">
+  <div class="stat-item">
+    <span class="stat-number">48h</span>
+    <span class="stat-label">Average time to go live</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number">$0</span>
+    <span class="stat-label">Commission on orders</span>
+  </div>
+  <div class="stat-item">
+    <span class="stat-number">€20k</span>
+    <span class="stat-label">Max EU allergen fine avoided</span>
+  </div>
+</section>
+
+<!-- ─── FEATURES ──────────────────────────────────────────── -->
+<section class="features">
+  <h2 class="features-headline">Built for restaurants that mean business.</h2>
+  <div class="features-grid">
+
+    <div class="feature-card">
+      <div class="feature-coral-circle">1</div>
+      <span class="feature-tag">Zero fees</span>
+      <h3 class="feature-title">WhatsApp Orders — 0% Commission</h3>
+      <p class="feature-desc">Guests order directly via WhatsApp. You keep 100%. No Deliveroo, no UberEats, no platform tax.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-coral-circle">2</div>
+      <span class="feature-tag">Compliance</span>
+      <h3 class="feature-title">EU Allergen Compliance</h3>
+      <p class="feature-desc">Auto-generated allergen badges on every dish. Stay legally compliant — avoid fines up to €20,000.</p>
+    </div>
+
+    <div class="feature-card">
+      <div class="feature-coral-circle">3</div>
+      <span class="feature-tag">Speed</span>
+      <h3 class="feature-title">Live in 48 Hours</h3>
+      <p class="feature-desc">We build your complete digital menu. You go live in 48 hours. That's a guarantee.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── PRICING ────────────────────────────────────────────── -->
+<section class="pricing">
+  <h2 class="pricing-headline">Simple pricing. No surprises.</h2>
+  <p class="pricing-sub">Everything you need to go digital — at a price that makes sense for restaurants.</p>
+
+  <div class="pricing-grid">
+
+    <!-- Starter -->
+    <div class="pricing-card starter">
+      <p class="pricing-tier">Starter</p>
+      <p class="pricing-price">$49</p>
+      <p class="pricing-period">per month</p>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li><span class="check">✓</span>6 design templates</li>
+        <li><span class="check">✓</span>WhatsApp ordering — zero commission</li>
+        <li><span class="check">✓</span>Unlimited menu updates</li>
+        <li><span class="check">✓</span>QR code + NFC card</li>
+        <li><span class="check">✓</span>Text-only menu</li>
+      </ul>
+      <a class="btn-pricing-starter" href="#">Get Started</a>
+    </div>
+
+    <!-- Pro -->
+    <div class="pricing-card pro">
+      <span class="pricing-best-tag">Best Value</span>
+      <p class="pricing-tier">Pro</p>
+      <p class="pricing-price">$69</p>
+      <p class="pricing-period">per month</p>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li><span class="check">✓</span>We build your menu in 48h</li>
+        <li><span class="check">✓</span>Real food photos</li>
+        <li><span class="check">✓</span>2 languages</li>
+        <li><span class="check">✓</span>Analytics dashboard</li>
+        <li><span class="check">✓</span>EU allergen badges</li>
+        <li><span class="check">✓</span>Priority support</li>
+      </ul>
+      <a class="btn-pricing-pro" href="#">Launch My Menu</a>
+    </div>
+
+    <!-- Concierge -->
+    <div class="pricing-card concierge">
+      <p class="pricing-tier">Concierge</p>
+      <p class="pricing-price">$149</p>
+      <p class="pricing-period">per month</p>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li><span class="check">✓</span>Everything in Pro</li>
+        <li><span class="check">✓</span>AI food photos we create</li>
+        <li><span class="check">✓</span>Monthly updates we handle</li>
+        <li><span class="check">✓</span>5 languages</li>
+        <li><span class="check">✓</span>Dedicated account manager</li>
+      </ul>
+      <a class="btn-pricing-concierge" href="#">Talk to Us</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─── QUOTE ──────────────────────────────────────────────── -->
+<section style="background: var(--white); padding: 8rem 5%;">
+  <div style="max-width: 900px; margin: 0 auto;">
+    <div class="quote-mark">"</div>
+    <blockquote class="quote-text">
+      Hot Pot orders via WhatsApp went up <span class="highlight">40% in the first week.</span> I update prices from my phone — no more $300 reprints.
+    </blockquote>
+    <div class="quote-attr">
+      <div class="quote-avatar-placeholder" style="display:flex;align-items:center;justify-content:center;font-family:var(--font-head);font-weight:700;font-size:.75rem;color:var(--muted);">DC</div>
+      <div>
+        <div class="quote-attr-text">David Chen</div>
+        <div class="quote-attr-sub">Dragon Garden LA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CTA SECTION ────────────────────────────────────────── -->
+<section class="cta-section">
+  <div class="cta-inner">
+    <h2 class="cta-headline">Go digital this week.</h2>
+    <p class="cta-sub">Tell us about your restaurant. We'll take it from here — menu built, live in 48 hours.</p>
+
+    <form class="cta-form" onsubmit="return false;">
+      <div class="form-row">
+        <input type="text" placeholder="Your name">
+        <input type="text" placeholder="Restaurant name">
+      </div>
+      <input type="tel" placeholder="Phone number (WhatsApp)">
+      <select>
+        <option value="" disabled selected>Choose a plan</option>
+        <option value="starter">Starter — $49/mo</option>
+        <option value="pro">Pro — $69/mo</option>
+        <option value="concierge">Concierge — $149/mo</option>
+      </select>
+      <button class="btn-form-submit" type="submit">Launch My Menu →</button>
+    </form>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─────────────────────────────────────────────── -->
+<footer>
+  <a class="footer-logo" href="#">Menvio</a>
+  <span class="footer-copy">© 2026 Menvio. All rights reserved.</span>
+</footer>
+
+</body>
+</html>
