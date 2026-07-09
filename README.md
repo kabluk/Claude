@@ -415,6 +415,26 @@ read-back: `node scripts/demo-fl341.mjs`.
 
 Дети идентичны FL-105/180/341. read-back: `node scripts/demo-fl342.mjs`.
 
+### FL-343 (Spousal, Partner, or Family Support Order Attachment) — приложение к FL-180
+
+`src/pdf/fl343.js` — официальная **FL-343 [Rev. July 1, 2025]** (3 стр., 106 полей),
+зафиксирована в `public/forms/FL-343.pdf`. Приложение к решению (FL-180 п.4l).
+Тип поддержки — **единый источник с FL-180** (`src/pdf/spousal.js#normalizeSpousalType`),
+поэтому FL-343 и FL-180 никогда не противоречат. Ветки (`spousal_support_type`,
+алиасы order/reserve/terminate/waive):
+
+- **order** → item 4 денежный ордер: `spousal_payer` → `spousal_payee`,
+  permanent + spousal, `spousal_amount` $/мес, `spousal_start_date`, выплата 1-го
+  числа, метод (чек/наличные) + item 5 earnings assignment (по запросу получателя)
+  + item 9 Gavron (обязанность получателя стать самодостаточным). На FL-180
+  включается 4l(3) «FL-343 attached».
+- **reserve** → item 3a: юрисдикция зарезервирована (обе стороны). FL-180 4l(1).
+- **terminate / waive** → item 3b: юрисдикция прекращена (обе стороны). FL-180 4l(2).
+
+Дефолт типа берётся из FL-100 (`spousal_support_request`), иначе `reserved`
+(совпадает с дефолтом FL-180). В пакет попадает только при `type ≠ none`
+(`fl343Required`). Два теста (reserve + order $1 500) в `node scripts/demo-fl343.mjs`.
+
 ### FL-144 (Stipulation and Waiver of Final Declaration of Disclosure)
 
 `src/pdf/fl144.js` — официальная **FL-144 [Rev. January 1, 2007]** (1 стр., 21 поле),

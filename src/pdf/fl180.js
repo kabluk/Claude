@@ -14,6 +14,7 @@
 import { registerForm, fillForm, loadWatermarkFont, DRAFT_WATERMARK } from './forms.js'
 import { countyInfo } from '../data/counties.js'
 import { buildPartyContact } from './party.js'
+import { normalizeSpousalType } from './spousal.js'
 
 function parseDate(s) {
   if (!s) return null
@@ -67,14 +68,12 @@ export function buildFL180Profile({ user = {}, caseRec = {}, answers = [] }) {
   //   ordered    → 4l(3) "as set forth in the attached FL-343" (FL-343 in packet)
   //   reserved   → 4l(1) reserved for future determination (both parties)
   //   terminated → 4l(2) jurisdiction terminated (both parties)
-  // Uncontested default (no support requested): user's choice, defaulting to
-  // "reserved" so the court's power isn't foreclosed by accident.
-  const ssType = (
-    a.spousal_support_type || (isTrue(a.spousal_support) ? 'ordered' : 'reserved')
-  ).toLowerCase()
+  // Single source shared with FL-343 (normalizeSpousalType); a "waived" type is
+  // shown here as jurisdiction terminated. Default: "reserved".
+  const ssType = normalizeSpousalType(a)
   const spousalOrdered = ssType === 'ordered'
   const spousalReserved = ssType === 'reserved'
-  const spousalTerminated = ssType === 'terminated' || ssType === 'terminate'
+  const spousalTerminated = ssType === 'terminated' || ssType === 'waived'
 
   const attachFl341 = hasChildren
   const attachFl342 = hasChildren

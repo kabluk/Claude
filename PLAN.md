@@ -76,6 +76,11 @@ PDF-пакета. ✅ Достигнуто.
   плательщик (высокий доход), суммы на ребёнка + ИТОГО/мес, add-ons childcare/
   uninsured 50/50, медстраховка (item 7a). TO: Judgment (FL-180). Генерится при
   has_children. read-back: `node scripts/demo-fl342.mjs`
+- ✅ FL-343 (Spousal/Partner/Family Support Order Attachment) — привязана: все
+  ветки order/reserve/terminate/waive; тип из ЕДИНОГО источника с FL-180 п.4l
+  (`src/pdf/spousal.js#normalizeSpousalType`) — не рассинхронятся. ORDER:
+  плательщик/получатель/сумма/дата/выплаты/метод + earnings assignment + Gavron.
+  В пакет при type ≠ none. read-back (reserve + order): `node scripts/demo-fl343.mjs`
 - ⏳ FL-345 (Property Order Attachment to Judgment) — привязать
 - ✅ FL-190 (Notice of Entry of Judgment) — привязана: шапка/тип решения/стороны
   из единого источника FL-180, mailing-адреса обеих сторон; дата внесения, штамп
