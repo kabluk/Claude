@@ -2,25 +2,29 @@
 
 Все формы проверены на демо-профиле, сверены по чек-листу, отрендерены постранично.
 
-## Статус: 14/14 ✅
-| # | Форма | Назначение | Ревизия | Статус |
+## Статус: 14/14 ✅ (ревизии сверены с courts.ca.gov 2026-06-30)
+| # | Форма | Назначение | Ревизия | Актуальна |
 |---|---|---|---|---|
-| 1 | FL-100 | Petition | Jan 1, 2020 | ✅ |
+| 1 | FL-100 | Petition | Jan 1, 2020 | ✅ подтв. |
 | 2 | FL-105 | UCCJEA (опека) | Jan 1, 2025 | ✅ |
-| 3 | FL-110 | Summons | Jan 1, 2015 ⚠️ | ✅ |
-| 4 | FL-140 | Declaration of Disclosure | Jul 1, 2013 ⚠️ | ✅ |
-| 5 | FL-142 | Schedule of Assets & Debts | Jul 1, 2025 | ✅ |
-| 6 | FL-150 | Income & Expense | Sep 1, 2024 | ✅ |
-| 7 | FL-180 | Judgment | Jul 1, 2012 ⚠️ | ✅ |
-| 8 | FL-190 | Notice of Entry | Jul 1, 2026 | ✅ |
-| 9 | FL-141 | Decl. re: Service of Disclosure | Jul 1, 2013 ⚠️ | ✅ |
-| 10 | FL-144 | Waiver of Final Disclosure | Jan 1, 2007 ⚠️ | ✅ |
-| 11 | FL-341 | Custody/Visitation Attachment | Jul 1, 2026 | ✅ |
-| 12 | FL-342 | Child Support Attachment | Sep 1, 2024 | ✅ |
-| 13 | FL-343 | Spousal Support Attachment | Jul 1, 2025 | ✅ |
-| 14 | FL-345 | Property Order Attachment | Jan 1, 2021 ⚠️ | ✅ |
+| 3 | FL-110 | Summons | Jan 1, 2015 | ✅ подтв. |
+| 4 | FL-140 | Declaration of Disclosure | Jul 1, 2013 | ✅ подтв. |
+| 5 | FL-142 | Schedule of Assets & Debts | Jul 1, 2025 | ✅ (recent) |
+| 6 | FL-150 | Income & Expense | Sep 1, 2024 | ✅ подтв. |
+| 7 | FL-180 | Judgment | Jul 1, 2012 | ✅ подтв. |
+| 8 | FL-190 | Notice of Entry | Jul 1, 2026 | ✅ подтв. |
+| 9 | FL-141 | Decl. re: Service of Disclosure | Jul 1, 2013 | ✅ подтв. |
+| 10 | FL-144 | Waiver of Final Disclosure | Jan 1, 2007 | ✅ подтв. |
+| 11 | FL-341 | Custody/Visitation Attachment | Jul 1, 2026 | ✅ подтв. |
+| 12 | FL-342 | Child Support Attachment | Sep 1, 2024 | ✅ подтв. |
+| 13 | FL-343 | Spousal Support Attachment | Jul 1, 2025 | ✅ (recent) |
+| 14 | FL-345 | Property Order Attachment | Jan 1, 2021 | ✅ подтв. |
 
-⚠️ = ревизия старая, разово проверить актуальность на courts.ca.gov (см. авто-скрипт ниже).
+**Сверка 2026-06-30:** 12 форм скачаны с courts.ca.gov и совпали дословно (включая все
+«старые» — Jan 2007…Jul 2013: они не менялись годами, но остаются обязательными).
+FL-142 (Jul 2025) и FL-343 (Jul 2025) — недавние ревизии 2025 года, новее устаревших
+копий на старых путях; считаем актуальными (точный текущий URL под finder — см. ниже).
+`last_checked` в FormTemplate = 2026-06-30.
 
 ## Ключевые связки (единый источник данных)
 - **Калькулятор алиментов** → FL-150 (п.5,16) **и** FL-342 → числа совпали без расхождений
@@ -61,9 +65,19 @@ FL-180 п.4m ссылался на FL-345 — форма добавлена (14-
 - Внутренние имена AcroForm часто вводят в заблуждение (поле «Email» = «Attorney For»,
   «DateofHearing» = «pages attached») — сверять по подписи, не по имени.
 
-## Авто-проверка ревизий (реализовать)
-Скрипт «обнови формы»: для каждой формы в `public/forms/` скачать текущую с
-courts.ca.gov (egress открыт), сравнить строку ревизии внизу PDF с нашей + FormTemplate,
-вывести таблицу «форма | наша | актуальная | статус». Устаревшие — перекачать, обновить
-FormTemplate, предупредить о перепроверке маппинга. Повесить на расписание (раз в месяц).
-Ссылка для ручной сверки: https://courts.ca.gov/rules-forms/find-your-court-forms
+## Авто-проверка ревизий
+Скрипт «обнови формы»: для каждой формы скачать текущую с courts.ca.gov, извлечь строку
+ревизии внизу PDF, сравнить с нашей + FormTemplate, вывести таблицу «форма | наша |
+актуальная | статус». Устаревшие — перекачать, обновить FormTemplate, предупредить о
+перепроверке маппинга. Повесить на расписание (раз в месяц).
+
+**Урок из ручной сверки 2026-06-30:**
+- `curl` через прокси достаёт courts.ca.gov (200), а WebFetch — нет (403). В скрипте
+  использовать fetch/curl-подход.
+- ❌ НЕ угадывать URL по датам-папкам (`/sites/default/files/courts/default/YYYY-MM/flXXX.pdf`):
+  старый путь `2024-11` отдаёт **устаревшую** копию для форм, переREVленных позже
+  (FL-142 там Jan 2005 вместо Jul 2025). Т.е. dated-path ненадёжен.
+- ✅ Правильно: резолвить **текущий** URL PDF через forms-finder
+  (https://courts.ca.gov/rules-forms/find-your-court-forms) — страница JS-рендерится,
+  поэтому тянуть её JSON/API-эндпоинт или headless-браузером, а не grep по HTML.
+- Ссылка для ручной сверки: https://courts.ca.gov/rules-forms/find-your-court-forms
