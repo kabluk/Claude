@@ -81,7 +81,12 @@ PDF-пакета. ✅ Достигнуто.
   (`src/pdf/spousal.js#normalizeSpousalType`) — не рассинхронятся. ORDER:
   плательщик/получатель/сумма/дата/выплаты/метод + earnings assignment + Gavron.
   В пакет при type ≠ none. read-back (reserve + order): `node scripts/demo-fl343.mjs`
-- ⏳ FL-345 (Property Order Attachment to Judgment) — привязать
+- ✅ FL-345 (Property Order Attachment to Judgment) — привязана: раздел активов
+  (кому что, п.1c/1d) и долгов (п.2c/2d) из ЕДИНОГО источника с FL-142; итоги
+  сверяются (активы 467 400 / долги 11 700); equalization-платёж считается в
+  приложении (демо: petitioner → respondent $213 650). Assignment управляется
+  через `fl345_profile`. В пакет при наличии community property (`fl345Required`).
+  read-back: `node scripts/demo-fl345.mjs`
 - ✅ FL-190 (Notice of Entry of Judgment) — привязана: шапка/тип решения/стороны
   из единого источника FL-180, mailing-адреса обеих сторон; дата внесения, штамп
   клерка и certificate of mailing оставлены пустыми (заполняет суд). Стадия
