@@ -1,0 +1,82 @@
+name: check-forms
+
+# Ежемесячная проверка актуальности официальных судебных форм (courts.ca.gov).
+# Скрипт scripts/check-forms.mjs сверяет ревизию каждой формы; exit 1 = ревизия
+# реально изменилась → нужно перекачать PDF и перепроверить маппинг полей.
+
+on:
+  schedule:
+    - cron: '0 8 1 * *'   # 1-го числа каждого месяца, 08:00 UTC
+  workflow_dispatch: {}   # + ручной запуск из вкладки Actions
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: check-forms
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Run form-currency check
+        id: check
+        shell: bash
+        run: |
+          set +e
+          # stdout (таблица) → файл для тела issue; stderr (шум pdfjs) → лог экшена
+          npm run --silent check-forms | tee check-output.txt
+          echo "exit=${PIPESTATUS[0]}" >> "$GITHUB_OUTPUT"
+
+      - name: Open / update issue on revision change
+        if: steps.check.outputs.exit != '0'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+            const output = fs.readFileSync('check-output.txt', 'utf8')
+            const body = [
+              'Авто-проверка обнаружила, что официальная ревизия одной или нескольких форм',
+              'изменилась на courts.ca.gov. Для каждой изменившейся формы:',
+              '',
+              '1. перекачать PDF в `public/forms/`',
+              '2. обновить `revision` и `sourceSha256` в соответствующем `FormTemplate`',
+              '3. запустить `inspectFormFields` и **перепроверить маппинг полей** (имена могли измениться)',
+              '',
+              '```',
+              output.trim(),
+              '```',
+              '',
+              `_Автоматически: workflow check-forms, run ${context.runId}._`,
+            ].join('\n')
+            const title = 'Форма обновилась — перепроверить маппинг'
+            const { data: open } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'form-currency',
+            })
+            if (open.length) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: open[0].number, body,
+              })
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title, labels: ['form-currency'], body,
+              })
+            }
+
+      - name: Fail run if a revision changed
+        if: steps.check.outputs.exit != '0'
+        run: exit 1
