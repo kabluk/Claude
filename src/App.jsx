@@ -7,6 +7,9 @@ import Calculator from './screens/Calculator.jsx'
 import Preview from './screens/Preview.jsx'
 import Cabinet from './screens/Cabinet.jsx'
 import CountyPage from './screens/CountyPage.jsx'
+import ReviewCheckout from './screens/ReviewCheckout.jsx'
+import AttorneyReview from './screens/AttorneyReview.jsx'
+import { REVIEWED_TIER_ENABLED } from './config/features.js'
 
 export default function App() {
   return (
@@ -20,6 +23,13 @@ export default function App() {
         <Route path="/calculator" element={<Calculator />} />
         <Route path="/preview" element={<Preview />} />
         <Route path="/cabinet" element={<Cabinet />} />
+        {/* Attorney-review tier — mounted only when the flag is on (off in prod) */}
+        {REVIEWED_TIER_ENABLED && (
+          <>
+            <Route path="/review-checkout" element={<ReviewCheckout />} />
+            <Route path="/attorney" element={<AttorneyReview />} />
+          </>
+        )}
         <Route path="*" element={<CaseType />} />
       </Route>
     </Routes>

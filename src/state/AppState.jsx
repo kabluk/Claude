@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 import { store } from '../data/repository.js'
 import { useI18n } from '../i18n/I18nContext.jsx'
+import { REVIEWED_TIER_ENABLED } from '../config/features.js'
 
 const AppStateContext = createContext(null)
 
@@ -50,6 +51,25 @@ export function AppStateProvider({ children }) {
     setCaseRec(fresh)
     setAnswers(store.getAnswers(fresh.id))
     setPayment(store.getOrCreatePayment(fresh.id))
+    setReview(store.getReviewByCase(fresh.id))
+  }
+
+  // --- Attorney-review tier (feature-flagged) -------------------------------
+  const [review, setReview] = useState(() => store.getReviewByCase(caseRec.id))
+  // Transaction 1: platform software fee ($99) → our Stripe (stub here).
+  const payPlatform = () => setPayment(store.markPlatformPaid(caseRec.id))
+  // Transaction 2 accepted: client signed the attorney's engagement letter and
+  // paid the attorney DIRECTLY (never through us). Creates the ReviewTask.
+  const acceptEngagement = () => {
+    const r = store.createReview(caseRec.id)
+    setReview(r)
+    return r
+  }
+  const updateReview = (patch) => {
+    if (!review) return null
+    const r = store.updateReview(review.id, patch)
+    setReview(r)
+    return r
   }
 
   const value = {
@@ -65,6 +85,13 @@ export function AppStateProvider({ children }) {
     financeProfile,
     updateFinanceProfile,
     startNewCase,
+    // attorney-review tier
+    reviewedTierEnabled: REVIEWED_TIER_ENABLED,
+    attorneyFeeRange: store.ATTORNEY_FEE_RANGE,
+    review,
+    payPlatform,
+    acceptEngagement,
+    updateReview,
   }
 
   return (

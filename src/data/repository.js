@@ -6,12 +6,18 @@ import { read, write, uid, now } from './storage.js'
 //   Case    { id, user_id, type, has_children, status, wizard_step }
 //   Answer  { id, case_id, field_key, value }
 //   Payment { id, case_id, amount, status }
+//   Review  { id, case_id, attorney_id, status, sla_deadline, review_notes,
+//             approved_at, engagement_accepted_at } — attorney-review tier only
 // All collections are arrays persisted under their own storage key. A small
 // `session` record tracks the current user + case so progress is restored on
 // return.
 // ---------------------------------------------------------------------------
 
-const PRICE = 129 // fixed package price for the scaffold
+const PRICE = 99 // fixed platform (software) fee — Self-Help tier (DECISIONS.md)
+// Attorney review fee band — a SEPARATE transaction paid directly to the
+// attorney; it never passes through the platform (Rule 5.4, see DECISIONS.md).
+const ATTORNEY_FEE_RANGE = [75, 125]
+const REVIEW_SLA_DAYS = 5 // target turnaround for a review
 
 function collection(name) {
   const all = () => read(name, [])
@@ -42,6 +48,12 @@ const users = collection('users')
 const cases = collection('cases')
 const answers = collection('answers')
 const payments = collection('payments')
+const reviews = collection('reviews')
+
+function addDaysISO(days) {
+  // Deterministic-enough for a prototype SLA (no business-day math).
+  return new Date(Date.now() + days * 24 * 60 * 60 * 1000).toISOString()
+}
 
 function getSession() {
   return read('session', { userId: null, caseId: null })
@@ -54,6 +66,7 @@ function setSession(patch) {
 
 export const store = {
   PRICE,
+  ATTORNEY_FEE_RANGE,
 
   // --- User -----------------------------------------------------------------
   getOrCreateUser() {
@@ -109,5 +122,38 @@ export const store = {
     const found = payments.where((p) => p.case_id === caseId)[0]
     if (found) return found
     return payments.insert({ case_id: caseId, amount: PRICE, status: 'unpaid' })
+  },
+  // Transaction 1 ONLY: the platform software fee ($99) → our Stripe. The
+  // attorney's fee is a SEPARATE transaction and is never recorded as revenue
+  // here (see markEngagementAccepted).
+  markPlatformPaid(caseId) {
+    const p = this.getOrCreatePayment(caseId)
+    return payments.update(p.id, { status: 'paid', paid_at: now() })
+  },
+
+  // --- Review (attorney-review tier) ---------------------------------------
+  getReviewByCase(caseId) {
+    return reviews.where((r) => r.case_id === caseId)[0] || null
+  },
+  listReviews() {
+    return reviews.all()
+  },
+  // Created only after the platform fee is paid and the client has accepted the
+  // attorney's engagement letter (transaction 2, direct to the attorney).
+  createReview(caseId, { attorneyId = null } = {}) {
+    const existing = this.getReviewByCase(caseId)
+    if (existing) return existing
+    return reviews.insert({
+      case_id: caseId,
+      attorney_id: attorneyId,
+      status: 'pending', // pending | in_review | approved | returned_for_correction
+      sla_deadline: addDaysISO(REVIEW_SLA_DAYS),
+      review_notes: '',
+      approved_at: null,
+      engagement_accepted_at: now(),
+    })
+  },
+  updateReview(id, patch) {
+    return reviews.update(id, patch)
   },
 }

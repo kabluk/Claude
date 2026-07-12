@@ -1,13 +1,16 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useI18n } from '../i18n/I18nContext.jsx'
 import { useAppState } from '../state/AppState.jsx'
 import Fl100Generate from '../components/Fl100Generate.jsx'
 
 export default function Cabinet() {
   const navigate = useNavigate()
-  const { t } = useI18n()
-  const { user, caseRec, payment, updateUser, startNewCase } = useAppState()
+  const { t, lang } = useI18n()
+  const { user, caseRec, payment, updateUser, startNewCase, reviewedTierEnabled } = useAppState()
   const c = t.cabinet
+  const reviewCard = lang === 'ru'
+    ? { title: 'Проверка адвокатом', desc: 'Пусть лицензированный адвокат проверит пакет перед подачей (две отдельные оплаты).', btn: 'Открыть проверку адвокатом' }
+    : { title: 'Attorney review', desc: 'Have a licensed attorney review your packet before filing (two separate payments).', btn: 'Open attorney review' }
 
   const typeLabel = caseRec.type ? t.caseType[caseRec.type].title : t.common.notSet
   const statusLabel = t.common.caseStatus[caseRec.status] || caseRec.status
@@ -48,6 +51,18 @@ export default function Cabinet() {
             ))}
           </ul>
         </div>
+
+        {/* Attorney-review tier — only when the flag is on (invisible in prod) */}
+        {reviewedTierEnabled && (
+          <div className="cab-card">
+            <span className="cab-card__icon">⚖️</span>
+            <h3>{reviewCard.title}</h3>
+            <p>{reviewCard.desc}</p>
+            <Link className="btn btn--ghost btn--block" to="/review-checkout">
+              {reviewCard.btn}
+            </Link>
+          </div>
+        )}
       </div>
 
       <div className="panel" style={{ marginTop: 20 }}>
