@@ -4,6 +4,11 @@ import { countyBySlug, ALL_COUNTIES } from '../data/counties.js'
 
 const PRICE = 99 // landing price
 
+// Locales the county landing has CONTENT for → drives the hreflang cluster
+// (see useSeo). Add a code here only when that county content is translated;
+// the hreflang tags are generated from this list, never hardcoded per language.
+const COUNTY_LOCALES = ['en', 'es']
+
 // Bilingual page chrome (county landing has its own EN/ES toggle).
 const UI = {
   en: {
@@ -135,11 +140,26 @@ function useSeo(county, lang) {
     meta('property', 'og:description', desc)
     meta('property', 'og:type', 'website')
 
+    const base = `https://califormis.example/california/${county.slug}`
     const canonical = document.createElement('link')
     canonical.setAttribute('rel', 'canonical')
-    canonical.setAttribute('href', `https://califormis.example/california/${county.slug}`)
+    canonical.setAttribute('href', base)
     document.head.appendChild(canonical)
     tags.push(canonical)
+
+    // hreflang cluster — built from the locale list (COUNTY_LOCALES), never
+    // hardcoded per-language. Extend COUNTY_LOCALES as county content is
+    // translated so the cluster grows without touching this code.
+    const alt = (hreflang, href) => {
+      const el = document.createElement('link')
+      el.setAttribute('rel', 'alternate')
+      el.setAttribute('hreflang', hreflang)
+      el.setAttribute('href', href)
+      document.head.appendChild(el)
+      tags.push(el)
+    }
+    for (const code of COUNTY_LOCALES) alt(code, code === 'en' ? base : `${base}?lang=${code}`)
+    alt('x-default', base)
 
     // FAQPage structured data
     let ld = null

@@ -60,6 +60,17 @@ const FLAGS = {
 }
 
 export default function Flag({ code, className }) {
+  // Unknown code → neutral placeholder showing the locale code, so ADDING a new
+  // locale needs only a translations.js bundle (zero edits here). Drop in a real
+  // SVG above later if desired.
+  const fallback = (
+    <>
+      <rect width="20" height="14" fill="#e6e6e6" />
+      <text x="10" y="10" textAnchor="middle" fontSize="7" fill="#555" fontFamily="sans-serif">
+        {String(code || '').toUpperCase().slice(0, 2)}
+      </text>
+    </>
+  )
   return (
     <svg
       className={className}
@@ -69,7 +80,7 @@ export default function Flag({ code, className }) {
       role="img"
       aria-hidden="true"
     >
-      {FLAGS[code] || null}
+      {FLAGS[code] || fallback}
     </svg>
   )
 }
