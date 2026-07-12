@@ -93,6 +93,14 @@ PDF-пакета. ✅ Достигнуто.
   завершения. read-back: `node scripts/demo-fl190.mjs`
 - ⏳ Визард собирает все данные, нужные этим формам (доходы/расходы → FL-150;
   калькулятор → единый финпрофиль уже есть)
+- ✅ FL-115 (Proof of Service of Summons) — привязана: шапка/стороны/суд,
+  документы (FL-100/110/120 + FL-105 при детях), адрес вручения, способ
+  (personal/mail), сведения о server'е (не registered), декларация + подпись.
+  Единый источник service-of-process. read-back: `node scripts/demo-fl115.mjs`
+- ✅ FL-165 (Request to Enter Default) — привязана: декларация (FL-150 attached,
+  written agreement), подпись запроса, декларация о рассылке респонденту,
+  memorandum of costs (waived), non-military. Клеркские поля пустые. Default-путь
+  теперь без дыр (FL-100 → FL-190). read-back: `node scripts/demo-fl165.mjs`
 - ⏳ FL-105 §4/§6: либо собрать в визарде, либо явно зафиксировать «по
   умолчанию No» (сейчас всегда No, но данные нигде не вводятся)
 - ⏳ Кнопка «Скачать весь пакет одним PDF» в кабинете (merge в движке есть)
