@@ -1560,3 +1560,19 @@ textarea:focus {
   border-radius: 10px; padding: 13px 15px; font-size: 14.5px; line-height: 1.5; margin: 16px 0 0;
 }
 @media (max-width: 620px) { .wz-checks { grid-template-columns: 1fr; } }
+
+/* ---- Case timeline (Cabinet) ---- */
+.timeline-list { list-style: none; margin: 0 0 8px; padding: 0; }
+.tl-row { display: flex; gap: 14px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.tl-row:last-child { border-bottom: 0; }
+.tl-date {
+  flex: 0 0 96px; font-variant-numeric: tabular-nums; font-weight: 600;
+  color: var(--navy-700); font-size: 14px;
+}
+.tl-body { display: flex; flex-direction: column; gap: 2px; font-size: 14.5px; }
+.tl-body strong { color: var(--ink); }
+.tl-body span { color: var(--muted); line-height: 1.5; }
+@media (max-width: 620px) {
+  .tl-row { flex-direction: column; gap: 4px; }
+  .tl-date { flex-basis: auto; }
+}

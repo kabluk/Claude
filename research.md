@@ -38,6 +38,22 @@
   (`FEE_WAIVER_BENEFITS`). Основание: Gov. Code §68632 (a)/(b).
   _При смене ревизии FW-001 обновить таблицу здесь и в feeWaiver.js._
 
+### Таймлайн-вехи (Family Code / CCP)
+Проверено 2026-07-13 (leginfo.legislature.ca.gov). Анкор — дата вручения
+документов ответчику (service_date):
+- **Fam. Code §2339(a)** — развод не может стать окончательным раньше, чем через
+  **6 месяцев** от даты вручения summons+petition ответчику ИЛИ его явки (что
+  раньше). → веха `waiting_period_end` = service + 6 мес + 1 день.
+- **Fam. Code §2104(f)** — предварительная декларация о раскрытии (petitioner)
+  подаётся одновременно с петицией или **в течение 60 дней с подачи петиции**. →
+  веха `disclosures_due` = filing + 60 дней (fallback на service_date).
+- **Code Civ. Proc. §412.20(a)(3)** — у ответчика **30 дней** после вручения на
+  подачу ответа (указано на summons FL-110). → веха `response_deadline`.
+  Зафиксировано в `src/timeline/milestones.js` (юнит-тест
+  `npm run check-milestones`). Тексты вех — фактические, в `t.milestones`
+  (UPL-линт покрывает). Планировщик — Supabase pg_cron + Edge Function
+  `notify-milestone` (НЕ n8n).
+
 ### Право (Business & Professions Code / Rules of Professional Conduct)
 Тексты проверены 2026-07-12 (leginfo.legislature.ca.gov):
 - **B&P §6402.1** — регистрант LDA обязан иметь: paralegal-сертификат

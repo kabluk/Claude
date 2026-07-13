@@ -2,6 +2,7 @@ import { useNavigate, Link } from 'react-router-dom'
 import { useI18n } from '../i18n/I18nContext.jsx'
 import { useAppState } from '../state/AppState.jsx'
 import Fl100Generate from '../components/Fl100Generate.jsx'
+import TimelineCard from '../components/TimelineCard.jsx'
 
 export default function Cabinet() {
   const navigate = useNavigate()
@@ -108,6 +109,8 @@ export default function Cabinet() {
           </div>
         </dl>
       </div>
+
+      <TimelineCard />
 
       <div className="actions">
         <button className="btn btn--ghost" onClick={() => navigate('/preview')}>

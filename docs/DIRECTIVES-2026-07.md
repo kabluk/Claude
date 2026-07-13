@@ -80,7 +80,7 @@ research.md). Результат фактический: «При получен
   источник FW-001 ред. 01.03.2026). `scripts/feewaiver-selftest.mjs`
   (`npm run check-feewaiver`) + `demo-fw001/003.mjs`. UPL чист, build зелёный.
 
-## 8.3 Таймлайн-сопровождение (pg_cron + Edge Functions, БЕЗ n8n)
+## 8.3 Таймлайн-сопровождение (pg_cron + Edge Functions, БЕЗ n8n) — ВЫПОЛНЕНО
 
 Таблица `case_milestones`; генерация вех из service_date (арифметика дат с
 юнит-тестом); daily pg_cron → Edge Function `notify-milestone` → Telegram/Twilio;
@@ -90,6 +90,27 @@ Supabase. FACTUAL: только дедлайны + ссылки, без импе
 **Готово когда:** юнит-тест арифметики вех; ручной вызов доставляет в тестовый
 Telegram на ru/es; pg_cron job миграцией; шаблоны UPL-чисты.
 (Живая доставка — deploy-gated: нужны секреты и проект Supabase.)
+
+**Сделано:**
+- `src/timeline/milestones.js` — чистая арифметика вех от service_date
+  (proof_of_service, response_deadline +30д, disclosures_due +60д от подачи,
+  judgment_prep, waiting_period_end +6мес+1д). UTC-парсинг, clamp конца месяца,
+  високосный год. `scripts/milestone-selftest.mjs` (`npm run check-milestones`) —
+  все проверки зелёные.
+- `supabase/migrations/0001_case_milestones.sql` — таблица + индекс + RLS +
+  `pg_cron` job (15:00 UTC) через `net.http_post`. Секреты/URL — из настроек БД,
+  не в файле.
+- `supabase/functions/notify-milestone/index.ts` (Deno) — выборка due+consent,
+  рендер фактической строки (MESSAGES зеркалит `t.milestones`), доставка
+  Telegram / Twilio WhatsApp, штамп `reminded_at`. Без секретов — безопасный
+  no-op. README с деплоем/секретами.
+- i18n `milestones` во всех 5 языках (EN+RU полностью, es/zh/vi зеркало EN);
+  UPL-линт покрывает. Карта Cabinet (`TimelineCard.jsx`): дата вручения +
+  таймлайн + opt-in канал/handle + consent.
+- `scripts/milestone-dryrun.mjs` (`npm run milestone-dryrun`) — рендерит ru/es
+  строки напоминаний без секретов (живая доставка deploy-gated).
+- Вехи + статьи (Fam. Code §2339(a)/§2104(f), CCP §412.20) — VERIFIED в
+  `research.md`. Build зелёный, UPL чист, n8n нет.
 
 ## 8.4 Фото → форма (paystub → FL-150)
 
