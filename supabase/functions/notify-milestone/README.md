@@ -1,7 +1,7 @@
 # notify-milestone (Edge Function)
 
 Daily case-timeline reminders for California dissolution milestones. Scheduling is
-**Supabase pg_cron + this Edge Function** — never n8n (see `CLAUDE.md`).
+**Supabase pg_cron + this Edge Function** (per the scheduling rule in `CLAUDE.md`).
 
 ## How it runs
 

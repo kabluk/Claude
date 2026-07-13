@@ -1,6 +1,6 @@
 -- Case timeline reminders — schema + daily scheduler.
 --
--- Scheduling is Supabase pg_cron + an Edge Function (NEVER n8n — see CLAUDE.md).
+-- Scheduling is Supabase pg_cron + an Edge Function (per the CLAUDE.md rule).
 -- A daily pg_cron job pings the `notify-milestone` Edge Function, which selects
 -- the milestones due today (opt-in + consent only) and delivers a FACTUAL
 -- reminder via Telegram / Twilio / email, then stamps reminded_at.

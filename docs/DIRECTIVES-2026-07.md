@@ -112,7 +112,7 @@ Telegram на ru/es; pg_cron job миграцией; шаблоны UPL-чист
 - Вехи + статьи (Fam. Code §2339(a)/§2104(f), CCP §412.20) — VERIFIED в
   `research.md`. Build зелёный, UPL чист, n8n нет.
 
-## 8.4 Фото → форма (paystub → FL-150)
+## 8.4 Фото → форма (paystub → FL-150) — ВЫПОЛНЕНО (шаг 1)
 
 Edge Function `extract-paystub` (Claude vision, строгий JSON, null-не-угадывать,
 temp 0, ключ в secrets). Шаг в доходах FL-150: фото → черновик с подсветкой →
@@ -123,3 +123,29 @@ FL-115 + service_date. MECHANICAL. COGS vision в research.md.
 
 **Готово когда:** 5 тестовых изображений → JSON без выдумок; подтверждённые
 значения проходят demo FL-150; RLS-тест; нечитаемое → фактический отказ.
+
+**Сделано (шаг 1 — paystub → FL-150):**
+- `supabase/functions/extract-paystub/index.ts` (Deno) — Claude vision
+  (claude-opus-4-8), **temperature 0**, forced tool/JSON schema, системный промпт
+  «не видно → null, НЕ угадывать; не квитанция → readable=false». Без
+  `ANTHROPIC_API_KEY` — безопасный no-op. Персистентность фото — за
+  `PAYSTUB_PERSIST` (по умолчанию выкл., retention: none).
+- `src/vision/paystub.js` — `validateExtraction` (строгая типизация: нечитаемое
+  поле → null, мусор отбрасывается — фабрикация не доходит до формы),
+  `normalizeMonthly` (недель/2недели/полмесяца/месяц; нет частоты → null, не
+  угадываем), `extractionToDraft`, `applyConfirmed` (пишем ТОЛЬКО подтверждённое).
+- UI `src/components/PaystubImport.jsx` в шаге income визарда: загрузка фото →
+  черновик с чекбоксами подтверждения на каждое значение → запись в
+  `fl150_profile`/`petitioner_income`. Ручной ввод — равноправный путь. Эндпойнт
+  за `VITE_EXTRACT_PAYSTUB_URL` (нет → только ручной ввод). i18n `paystub` во всех
+  5 языках (EN+RU полностью, es/zh/vi зеркало EN).
+- `supabase/migrations/0002_paystub_storage.sql` — приватный бакет `paystubs` +
+  RLS по `case_id` (первый сегмент пути) + заготовка retention-свипа.
+- `scripts/paystub-selftest.mjs` (`npm run check-paystub`): 5 синтетических
+  извлечений (biweekly/weekly/без частоты/нечитаемое/мусор) → без выдумок;
+  нечитаемое → пустой черновик (фактический отказ); подтверждённые значения
+  проходят read-back demo FL-150 (0 missing). COGS vision + retention (BLOCKING)
+  зафиксированы в `research.md`. UPL чист, build зелёный.
+
+**Не сделано (шаг 2, отдельный коммит):** фото врученных документов → FL-115 +
+service_date.

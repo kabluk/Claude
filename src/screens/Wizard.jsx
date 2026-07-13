@@ -4,6 +4,7 @@ import HelpTip from '../components/HelpTip.jsx'
 import { useI18n } from '../i18n/I18nContext.jsx'
 import { useAppState } from '../state/AppState.jsx'
 import { evaluateFeeWaiver, FEE_WAIVER_BENEFITS } from '../data/feeWaiver.js'
+import PaystubImport from '../components/PaystubImport.jsx'
 
 // Section order for the «Uncontested · Children · Los Angeles» scenario.
 const SECTIONS = ['parties', 'children', 'property', 'income', 'fees', 'consent', 'review']
@@ -315,12 +316,15 @@ export default function Wizard() {
   )
 
   const renderIncome = () => (
-    <div className="wz-grid">
-      {F('petitioner_income', 'number')}
-      {F('respondent_income', 'number')}
-      {F('monthly_expenses', 'number')}
-      {F('deductions', 'number')}
-    </div>
+    <>
+      <PaystubImport />
+      <div className="wz-grid">
+        {F('petitioner_income', 'number')}
+        {F('respondent_income', 'number')}
+        {F('monthly_expenses', 'number')}
+        {F('deductions', 'number')}
+      </div>
+    </>
   )
 
   const renderFees = () => {

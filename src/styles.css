@@ -1576,3 +1576,16 @@ textarea:focus {
   .tl-row { flex-direction: column; gap: 4px; }
   .tl-date { flex-basis: auto; }
 }
+
+/* ---- Paystub photo import (FL-150 income) ---- */
+.paystub {
+  border: 1px dashed var(--line); border-radius: 12px;
+  padding: 16px 18px; margin: 0 0 20px; background: #fbfaf6;
+}
+.paystub__choose { display: inline-flex; cursor: pointer; }
+.paystub__note { font-size: 14px; color: var(--muted); margin: 12px 0 0; }
+.paystub__note--ok { color: #1c7a43; }
+.paystub__draft { margin-top: 14px; }
+.paystub__draft h4 { font-family: var(--serif); font-size: 16px; margin: 0 0 8px; color: var(--navy-950); }
+.paystub__list { list-style: none; margin: 0 0 12px; padding: 0; }
+.paystub__item { padding: 6px 0; }
