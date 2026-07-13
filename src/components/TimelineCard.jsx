@@ -2,6 +2,7 @@ import { useI18n } from '../i18n/I18nContext.jsx'
 import { useAppState } from '../state/AppState.jsx'
 import { generateMilestones } from '../timeline/milestones.js'
 import { renderMilestones } from '../timeline/render.js'
+import ServiceImport from './ServiceImport.jsx'
 
 // Cabinet card: case timeline + opt-in reminder settings. FACTUAL only — dates
 // and form names, never advice. Reminder delivery is opt-in (channel + handle +
@@ -22,6 +23,8 @@ export default function TimelineCard() {
     <div className="panel" style={{ marginTop: 20 }}>
       <h2 style={{ fontFamily: 'var(--serif)', marginTop: 0 }}>{m.cardTitle}</h2>
       <p className="field__hint" style={{ marginTop: 0 }}>{m.cardLead}</p>
+
+      <ServiceImport />
 
       <div className="field" style={{ maxWidth: 280 }}>
         <label className="field__label" htmlFor="service_date">{m.serviceDateLabel}</label>

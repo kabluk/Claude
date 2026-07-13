@@ -147,5 +147,19 @@ FL-115 + service_date. MECHANICAL. COGS vision в research.md.
   проходят read-back demo FL-150 (0 missing). COGS vision + retention (BLOCKING)
   зафиксированы в `research.md`. UPL чист, build зелёный.
 
-**Не сделано (шаг 2, отдельный коммит):** фото врученных документов → FL-115 +
-service_date.
+**Сделано (шаг 2 — served-docs → FL-115 + service_date):**
+- `supabase/functions/extract-service/index.ts` (Deno) — Claude vision, temp 0,
+  forced JSON schema, «не видно → null; не proof-of-service → readable=false».
+  Без ключа — no-op. Persistence — тот же retention-гейт (none по умолчанию).
+- `src/vision/service.js` — `validateServiceExtraction` (строгая типизация,
+  мусор → null), `serviceToDraft`, `applyConfirmedService` (пишет только
+  подтверждённые flat-ответы `service_*`, которые читают FL-115 и таймлайн).
+- `src/components/ServiceImport.jsx` в карте таймлайна Cabinet: фото → черновик
+  с чекбоксами → запись `service_date`/`service_method`/`service_server_name` и
+  т.д. → FL-115 заполняется, таймлайн пересчитывается. Эндпойнт за
+  `VITE_EXTRACT_SERVICE_URL`. i18n `service` во всех 5 языках (EN+RU, es/zh/vi
+  зеркало EN).
+- `scripts/service-selftest.mjs` (`npm run check-service`): 4 синтетических
+  извлечения → без выдумок; нечитаемое → пустой черновик; подтверждённые
+  значения проходят read-back FL-115 (0 missing, personal-service отмечен, дата
+  и вручитель заполнены). UPL чист, build зелёный. **§8.4 закрыт полностью.**
