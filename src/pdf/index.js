@@ -39,3 +39,11 @@ export { FL341_TEMPLATE, buildFL341Profile, generateFL341, fl341Required } from 
 export { FL342_TEMPLATE, buildFL342Profile, generateFL342, fl342Required } from './fl342.js'
 export { FL343_TEMPLATE, buildFL343Profile, generateFL343, fl343Required } from './fl343.js'
 export { FL345_TEMPLATE, buildFL345Profile, generateFL345, fl345Required } from './fl345.js'
+export { FW001_TEMPLATE, buildFW001Profile, generateFW001, fw001Required } from './fw001.js'
+export { FW003_TEMPLATE, buildFW003Profile, generateFW003, fw003Required } from './fw003.js'
+export {
+  evaluateFeeWaiver,
+  monthlyIncomeLimit,
+  FEE_WAIVER_INCOME,
+  FEE_WAIVER_BENEFITS,
+} from '../data/feeWaiver.js'

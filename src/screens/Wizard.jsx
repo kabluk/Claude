@@ -3,9 +3,10 @@ import ScreenNav from '../components/ScreenNav.jsx'
 import HelpTip from '../components/HelpTip.jsx'
 import { useI18n } from '../i18n/I18nContext.jsx'
 import { useAppState } from '../state/AppState.jsx'
+import { evaluateFeeWaiver, FEE_WAIVER_BENEFITS } from '../data/feeWaiver.js'
 
 // Section order for the «Uncontested · Children · Los Angeles» scenario.
-const SECTIONS = ['parties', 'children', 'property', 'income', 'consent', 'review']
+const SECTIONS = ['parties', 'children', 'property', 'income', 'fees', 'consent', 'review']
 
 // Top-level field component (stable type ⇒ inputs keep focus across re-renders).
 function Field({
@@ -322,6 +323,88 @@ export default function Wizard() {
     </div>
   )
 
+  const renderFees = () => {
+    const fw = w.fees
+    const benefits = getList('fee_waiver_benefits')
+    const requested = val('fee_waiver_requested') === 'yes'
+    const toggleBenefit = (key) => {
+      const next = benefits.includes(key)
+        ? benefits.filter((b) => b !== key)
+        : [...benefits, key]
+      setList('fee_waiver_benefits', next)
+    }
+    const evalResult = evaluateFeeWaiver({
+      benefits,
+      monthlyIncome: val('fee_waiver_income'),
+      householdSize: val('fee_waiver_household'),
+    })
+    const resultMsg =
+      evalResult.basis === 'benefits'
+        ? fw.resultBenefits
+        : evalResult.basis === 'income'
+          ? fw.resultIncome
+          : requested
+            ? fw.resultRequested
+            : fw.resultNone
+    const showResult = requested || evalResult.eligible
+
+    return (
+      <>
+        <div className="field">
+          <label className="wz-check">
+            <input
+              type="checkbox"
+              checked={requested}
+              onChange={(e) => setVal('fee_waiver_requested', e.target.checked ? 'yes' : '')}
+            />
+            <span>{fw.requestLabel}</span>
+            <HelpTip help={fw.requestHelp} exampleLabel={w.example} ariaLabel={w.help} />
+          </label>
+        </div>
+
+        <div className="wz-grid">
+          {fieldOf(
+            { label: fw.householdLabel, help: fw.householdHelp },
+            val('fee_waiver_household'),
+            (v) => setVal('fee_waiver_household', v),
+            'number',
+          )}
+          {fieldOf(
+            { label: fw.incomeLabel, help: fw.incomeHelp },
+            val('fee_waiver_income'),
+            (v) => setVal('fee_waiver_income', v),
+            'number',
+          )}
+        </div>
+
+        {val('fee_waiver_household') && (
+          <p className="wz-section-intro">
+            {fmt(fw.limitNote, {
+              n: evalResult.householdSize,
+              limit: evalResult.limit.toLocaleString('en-US', { minimumFractionDigits: 2 }),
+            })}
+          </p>
+        )}
+
+        <h3 className="wz-block-title">{fw.benefitsTitle}</h3>
+        <div className="wz-checks">
+          {FEE_WAIVER_BENEFITS.map((b) => (
+            <label className="wz-check" key={b.key}>
+              <input
+                type="checkbox"
+                checked={benefits.includes(b.key)}
+                onChange={() => toggleBenefit(b.key)}
+              />
+              <span>{fw.benefits[b.key]}</span>
+            </label>
+          ))}
+        </div>
+
+        {showResult && <p className="wz-fee-result">{resultMsg}</p>}
+      </>
+    )
+  }
+
   const renderConsent = () => (
     <>
       <div className="field">
@@ -437,6 +520,7 @@ export default function Wizard() {
     children: renderChildren,
     property: renderProperty,
     income: renderIncome,
+    fees: renderFees,
     consent: renderConsent,
     review: renderReview,
   }

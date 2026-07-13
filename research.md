@@ -17,10 +17,26 @@
   `inspectFormFields` из официальных fillable PDF с courts.ca.gov и
   зафиксированы в `src/pdf/flXXX.js` (маппинги) + `public/forms/` (сами PDF).
   Формы: FL-100, FL-105, FL-110, FL-115, FL-140, FL-141, FL-142, FL-144,
-  FL-150, FL-165, FL-180, FL-190, FL-341, FL-342, FL-343, FL-345.
-  Каждая форма покрыта demo + read-back (`scripts/demo-flXXX.mjs`, 0 missing).
+  FL-150, FL-165, FL-180, FL-190, FL-341, FL-342, FL-343, FL-345,
+  **FW-001, FW-003**.
+  Каждая форма покрыта demo + read-back (`scripts/demo-flXXX.mjs` /
+  `demo-fwXXX.mjs`, 0 missing).
   Актуальность ревизий сверяется по SHA-256 (`npm run check-forms`, месячный CI).
   _Источник: официальные PDF courts.ca.gov; базовый коммит привязки — 077ca7f._
+
+### Fee-waiver: пороги дохода (FW-001, item 5b)
+Проверено 2026-07-13 против `courts.ca.gov/documents/fw001.pdf`
+(**FW-001, ред. 1 марта 2026**). Валовой месячный доход домохозяйства, при
+котором суд освобождает от пошлины (125% федерального порога бедности):
+- 1 чел. — **$2 660.00** · 2 — **$3 606.67** · 3 — **$4 553.33**
+- 4 — **$5 500.00** · 5 — **$6 446.67** · 6 — **$7 393.33**
+- каждый сверх 6 — **+$946.67**
+
+  Зафиксировано в `src/data/feeWaiver.js` (`FEE_WAIVER_INCOME`). Пошлина за
+  первую подачу диссолюции — **$435** (см. `src/data/counties.js`).
+  Публичные пособия (item 5a), дающие право на освобождение, перечислены там же
+  (`FEE_WAIVER_BENEFITS`). Основание: Gov. Code §68632 (a)/(b).
+  _При смене ревизии FW-001 обновить таблицу здесь и в feeWaiver.js._
 
 ### Право (Business & Professions Code / Rules of Professional Conduct)
 Тексты проверены 2026-07-12 (leginfo.legislature.ca.gov):

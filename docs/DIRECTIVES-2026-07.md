@@ -49,7 +49,7 @@ has_children⇒FL-105, default⇒FL-165), county-требования из Count
   все ✅; сломанный (пустое поле + разные separation + дети без FL-105) → ровно 3 ❌
   с рабочими якорями. UPL-линт чист, `npm run build` зелёный.
 
-## 8.2 Fee Waiver (FW-001 / FW-003)
+## 8.2 Fee Waiver (FW-001 / FW-003) — ВЫПОЛНЕНО
 
 Привязать FW-001, FW-003 тем же конвейером (+ demo + check-forms). Шаг визарда
 «Судебная пошлина»: benefit-чеклист + доходные пороги (источник+дата в
@@ -58,6 +58,27 @@ research.md). Результат фактический: «При получен
 
 **Готово когда:** оба demo read-back; чеклист добавляет/не добавляет FW; пороги
 имеют источник в research.md; UPL чист.
+
+**Сделано:**
+- FW-001, FW-003 скачаны с courts.ca.gov, нормализованы (pikepdf: XFA-,
+  NeedAppearances+), в `public/forms/`. `src/pdf/fw001.js` (Request to Waive
+  Court Fees: caption + item 1 + item 4 superior + 5a benefits + 5b income + 5c
+  request + подпись + page-2 totals) и `src/pdf/fw003.js` (Order — заполняем
+  только caption/parties/дата подачи, решение суда НЕ трогаем). Demo read-back:
+  FW-001 30 set / 0 missing, FW-003 10 set / 0 missing. В FORMS у check-forms —
+  обе ревизии актуальны.
+- `src/data/feeWaiver.js` — единый источник: `FEE_WAIVER_INCOME` (пороги 125% FPL
+  из FW-001 ред. 01.03.2026), `FEE_WAIVER_BENEFITS`, `evaluateFeeWaiver` (basis
+  benefits|income|null) + `monthlyIncomeLimit`.
+- Шаг визарда `fees` («Судебная пошлина»/«Court fees») между income и consent:
+  запрос-чекбокс + размер домохозяйства + доход + benefit-чеклист + фактическая
+  строка результата. `fw001Required`/`fw003Required` подключены в readiness-пакет
+  (якорь «Fix» → шаг fees).
+- i18n `wizard.sec.fees` + `wizard.fees` во всех 5 языках (EN+RU полностью,
+  es/zh/vi зеркало EN); trust-hook о fee-waiver на county-лендинге (EN+ES).
+- Пороги + пособия зафиксированы в `research.md` (VERIFIED, проверено 2026-07-13,
+  источник FW-001 ред. 01.03.2026). `scripts/feewaiver-selftest.mjs`
+  (`npm run check-feewaiver`) + `demo-fw001/003.mjs`. UPL чист, build зелёный.
 
 ## 8.3 Таймлайн-сопровождение (pg_cron + Edge Functions, БЕЗ n8n)
 

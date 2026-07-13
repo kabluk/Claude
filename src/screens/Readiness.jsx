@@ -5,7 +5,7 @@ import { runReadiness } from '../readiness/checks.js'
 
 // Wizard step order (mirrors Wizard.jsx SECTIONS) — used to resolve a section
 // anchor to a wizard_step index so "Fix" lands on the right step.
-const WIZARD_SECTIONS = ['parties', 'children', 'property', 'income', 'consent', 'review']
+const WIZARD_SECTIONS = ['parties', 'children', 'property', 'income', 'fees', 'consent', 'review']
 
 const ICON = { ok: '✅', warn: '⚠️', error: '❌' }
 const GROUP_ORDER = ['fields', 'consistency', 'forms', 'county', 'signatures']

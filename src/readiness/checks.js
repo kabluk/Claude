@@ -23,6 +23,8 @@ import { buildFL165Profile, fl165Required } from '../pdf/fl165.js'
 import { fl341Required } from '../pdf/fl341.js'
 import { fl342Required } from '../pdf/fl342.js'
 import { fl343Required } from '../pdf/fl343.js'
+import { fw001Required } from '../pdf/fw001.js'
+import { fw003Required } from '../pdf/fw003.js'
 import { countyInfo } from '../data/counties.js'
 
 const isBlank = (v) => v === undefined || v === null || String(v).trim() === ''
@@ -46,6 +48,7 @@ const A = {
   county: { route: '/county' },
   caseType: { route: '/' },
   calculator: { route: '/calculator' },
+  fees: { route: '/wizard', section: 'fees' },
 }
 
 // Always-required petitioner/party fields → their fix anchor.
@@ -79,6 +82,8 @@ export function requiredForms(state) {
   if (fl341Required(state)) forms.push('FL-341')
   if (fl342Required(state)) forms.push('FL-342')
   if (fl343Required(state)) forms.push('FL-343')
+  if (fw001Required(state)) forms.push('FW-001')
+  if (fw003Required(state)) forms.push('FW-003')
   return forms
 }
 
@@ -202,6 +207,7 @@ export function runReadiness(state = {}) {
     if (form === 'FL-105' || form === 'FL-341' || form === 'FL-342') return A.children
     if (form === 'FL-165') return A.caseType
     if (form === 'FL-343') return A.calculator
+    if (form === 'FW-001' || form === 'FW-003') return A.fees
     return null
   }
   const absent = needed.filter((f) => !packet.includes(f))

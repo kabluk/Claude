@@ -1552,3 +1552,11 @@ textarea:focus {
 .rd-row__text { flex: 1 1 auto; font-size: 15px; line-height: 1.5; color: var(--ink); }
 .rd-row--error .rd-row__text { color: #7a2020; }
 .rd-row__fix { flex: 0 0 auto; padding: 6px 12px; font-size: 13px; white-space: nowrap; }
+
+/* ---- Fee-waiver wizard step ---- */
+.wz-checks { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 20px; margin: 4px 0 6px; }
+.wz-fee-result {
+  background: #f0f5fb; border: 1px solid #cfe0f2; color: #1d3a57;
+  border-radius: 10px; padding: 13px 15px; font-size: 14.5px; line-height: 1.5; margin: 16px 0 0;
+}
+@media (max-width: 620px) { .wz-checks { grid-template-columns: 1fr; } }
