@@ -45,11 +45,53 @@ const FORMS = [FL100_TEMPLATE, FL105_TEMPLATE, FL110_TEMPLATE, FL115_TEMPLATE, F
 // нормализует "Rev. July 1, 2025" / "July 1, 2025" → "july 1, 2025" для сравнения
 const normRev = (s) => (s || '').replace(/^Rev\.\s*/i, '').trim().toLowerCase().replace(/\s+/g, ' ')
 
+// courts.ca.gov отвечает 403 на «голый» curl → шлём браузерные заголовки.
+const BROWSER_HEADERS = [
+  '-A',
+  'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+  '-H',
+  'Accept: application/pdf,application/xhtml+xml,text/html;q=0.9,*/*;q=0.8',
+  '-H',
+  'Accept-Language: en-US,en;q=0.9',
+]
+
+function curlPdf(url) {
+  // -f: падаем на HTTP >= 400 (403 бросит исключение); -sSL: тихо, идём по редиректам
+  return execFileSync(
+    'curl',
+    ['-fsSL', '--connect-timeout', '30', '--max-time', '60', ...BROWSER_HEADERS, url],
+    { maxBuffer: 64 * 1024 * 1024 },
+  )
+}
+
+// Помечаем недоступность источника (403/сеть/не-PDF) как ОТДЕЛЬНЫЙ класс —
+// это НЕ «ревизия изменилась». Бросаем ошибку с флагом .unavailable.
+function unavailableError(msg) {
+  const e = new Error(msg)
+  e.unavailable = true
+  return e
+}
+
 async function fetchForm(url) {
   // curl наследует прокси/CA окружения (работает и за agent-proxy, и на обычной машине)
-  const buf = execFileSync('curl', ['-fsSL', '--connect-timeout', '30', url], {
-    maxBuffer: 64 * 1024 * 1024,
-  })
+  let buf
+  try {
+    buf = curlPdf(url)
+  } catch (e1) {
+    // одна повторная попытка (транзиентный сбой / rate-limit), затем — fallback
+    try {
+      buf = curlPdf(url)
+    } catch (e2) {
+      const m = /\b403\b/.test(e2.message)
+        ? 'HTTP 403 — источник заблокировал запрос'
+        : (e2.message || 'сетевая ошибка').split('\n')[0].trim()
+      throw unavailableError(m)
+    }
+  }
+  // 200, но тело — не PDF (антибот/HTML-заглушка) → тоже недоступность, не «изменение»
+  if (!buf || buf.slice(0, 5).toString('latin1') !== '%PDF-') {
+    throw unavailableError('ответ не PDF (вероятно блок-страница/HTML)')
+  }
   const sha = createHash('sha256').update(buf).digest('hex')
   const doc = await getDocument({ data: new Uint8Array(buf), useSystemFonts: true, verbosity: 0 }).promise
   let txt = ''
@@ -64,6 +106,7 @@ async function fetchForm(url) {
 
 const rows = []
 let changed = 0
+let unavailable = 0
 
 for (const f of FORMS) {
   if (!f.upstreamUrl) {
@@ -88,8 +131,13 @@ for (const f of FORMS) {
     }
     rows.push({ id: f.id, revision: f.revision, official: official.revision || '?', status })
   } catch (e) {
-    changed++
-    rows.push({ id: f.id, revision: f.revision, status: `✖ ошибка загрузки: ${e.message}` })
+    if (e.unavailable) {
+      unavailable++
+      rows.push({ id: f.id, revision: f.revision, status: `✖ источник недоступен: ${e.message}` })
+    } else {
+      changed++
+      rows.push({ id: f.id, revision: f.revision, status: `✖ ошибка обработки: ${e.message}` })
+    }
   }
 }
 
@@ -102,11 +150,22 @@ for (const r of rows) {
 }
 console.log('')
 
+if (unavailable) {
+  // ЯВНО отделяем недоступность источника от «ревизия изменилась».
+  console.error(
+    `ИСТОЧНИК НЕДОСТУПЕН: ${unavailable} форм(ы) не удалось скачать с courts.ca.gov ` +
+      '(403/блокировка/сеть/не-PDF).',
+  )
+  console.error('Это НЕ означает, что формы изменились — проверка НЕ ВЫПОЛНЕНА для этих форм.')
+  console.error('Действие: повторить позже / проверить egress; НЕ трогать revision/sourceSha256.')
+}
 if (changed) {
-  console.log(`Итог: реальных изменений/ошибок: ${changed}. Для изменившейся ревизии:`)
+  console.log(`Итог: реальных изменений ревизии/байтов: ${changed}. Для изменившейся ревизии:`)
   console.log('  1) перекачать PDF в public/forms/, 2) обновить revision + sourceSha256')
   console.log('     в FormTemplate, 3) inspectFormFields → перепроверить маппинг полей.')
-  process.exit(1)
-} else {
+}
+if (!changed && !unavailable) {
   console.log('Итог: все ревизии актуальны ✓ (ℹ-строки — benign re-publish, обновите sourceSha256 при желании)')
 }
+// CI падает и на изменениях, и на недоступности — но с разными сообщениями выше.
+process.exit(changed || unavailable ? 1 : 0)

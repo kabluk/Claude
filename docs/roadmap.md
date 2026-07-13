@@ -5,7 +5,7 @@
 |---|---|---|
 | **0 — Фундамент** | 14 statewide форм + движок + калькулятор | ✅ готово |
 | **1 — Ров запуска** | LA local forms · испанский визард · trust · Stripe · SEO | ⬜ следующее |
-| **1.5–2 — Ценность** | **Reviewed-тир (attorney review, две раздельные транзакции)** · MSA · n8n-сопровождение · ещё округа · авто-проверка ревизий | ⬜ |
+| **1.5–2 — Ценность** | **Reviewed-тир (attorney review, две раздельные транзакции)** · MSA · сопровождение (Supabase pg_cron + Edge Functions) · ещё округа · авто-проверка ревизий | ⬜ |
 | **3 — Рост** | русский/др. языки · спорный развод · голос · за пределы CA | ⬜ |
 
 > Модель монетизации зафиксирована в [DECISIONS.md](./DECISIONS.md) (2026-07):
@@ -72,10 +72,14 @@ fee-splitting, Rule 5.4) + **рекрутинг reviewing attorney** (limited sc
   ТОЛЬКО раздельностью). Основание: §6401(b). Код за feature flag
   `REVIEWED_TIER_ENABLED`, включение — после консультации юриста. См. DECISIONS.md.
 - **MSA (Marital Settlement Agreement)** — генерация соглашения сторон (конкуренты делают).
-- **n8n-сопровождение** 6-мес таймлайна: триггер service_date → вехи (FL-115, 60-дн
-  disclosures, judgment prep, waiting-period-end) → cron напоминания email/SMS. Чистая
-  процедурная информация, ноль UPL-риска. Догоняет Hello Divorce. Нужна сущность
-  `CaseMilestone(case_id, type, due_date, status, reminded_at)` + `service_date` в Case.
+- **Сопровождение таймлайна (6 мес)** на **Supabase pg_cron + Edge Functions**:
+  триггер service_date → вехи (FL-115, 60-дн disclosures, judgment prep,
+  waiting-period-end). Ежедневный `pg_cron` job выбирает наступившие вехи → Edge
+  Function шлёт напоминания через **Telegram Bot API / Twilio WhatsApp** (email —
+  почтовый провайдер). Чистая процедурная информация, ноль UPL-риска. Догоняет
+  Hello Divorce. Нужна сущность `CaseMilestone(case_id, type, due_date, status,
+  reminded_at)` + `service_date` в Case. (Планировщик: pg_cron / GitHub Actions —
+  правило в CLAUDE.md.)
 - **Авто-проверка ревизий форм** (см. forms-packet.md) на расписании.
 - Ещё округа: San Diego, Orange, Riverside, San Bernardino.
 
