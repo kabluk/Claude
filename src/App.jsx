@@ -5,6 +5,7 @@ import County from './screens/County.jsx'
 import Wizard from './screens/Wizard.jsx'
 import Calculator from './screens/Calculator.jsx'
 import Preview from './screens/Preview.jsx'
+import Readiness from './screens/Readiness.jsx'
 import Cabinet from './screens/Cabinet.jsx'
 import CountyPage from './screens/CountyPage.jsx'
 import ReviewCheckout from './screens/ReviewCheckout.jsx'
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/wizard" element={<Wizard />} />
         <Route path="/calculator" element={<Calculator />} />
         <Route path="/preview" element={<Preview />} />
+        <Route path="/review" element={<Readiness />} />
         <Route path="/cabinet" element={<Cabinet />} />
         {/* Attorney-review tier — mounted only when the flag is on (off in prod) */}
         {REVIEWED_TIER_ENABLED && (

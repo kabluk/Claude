@@ -1524,3 +1524,31 @@ textarea:focus {
   .cty-cards { grid-template-columns: 1fr; }
   .cty-grid2 { grid-template-columns: 1fr; gap: 28px; }
 }
+
+/* ---- Court-readiness check (/review) ---- */
+.readiness-summary { display: flex; flex-wrap: wrap; gap: 10px; margin: 4px 0 22px; }
+.rd-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  border: 1px solid var(--line); border-radius: 999px;
+  padding: 6px 14px; font-size: 14px; font-weight: 600; background: var(--white);
+}
+.rd-pill--ok { color: #1c7a43; }
+.rd-pill--warn { color: #8a6d1a; }
+.rd-pill--error { color: #a12a2a; }
+
+.readiness-clear {
+  background: #f0f7f1; border: 1px solid #cfe6d5; color: #1c7a43;
+  border-radius: 10px; padding: 14px 16px; font-size: 15px; margin: 0 0 20px;
+}
+
+.readiness-group { padding: 20px 22px; }
+.readiness-list { list-style: none; margin: 0; padding: 0; }
+.rd-row {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 0; border-bottom: 1px solid var(--line);
+}
+.rd-row:last-child { border-bottom: 0; }
+.rd-row__icon { flex: 0 0 auto; font-size: 16px; line-height: 1.5; }
+.rd-row__text { flex: 1 1 auto; font-size: 15px; line-height: 1.5; color: var(--ink); }
+.rd-row--error .rd-row__text { color: #7a2020; }
+.rd-row__fix { flex: 0 0 auto; padding: 6px 12px; font-size: 13px; white-space: nowrap; }

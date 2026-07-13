@@ -23,7 +23,7 @@
 
 ---
 
-## 8.1 Court-Readiness Check («вас не развернут» как экран)
+## 8.1 Court-Readiness Check («вас не развернут» как экран) — ВЫПОЛНЕНО
 
 Модуль `src/readiness/` с MECHANICAL-проверками собранного пакета: полнота
 обязательных полей, кросс-форменная согласованность (даты, имена, case_number,
@@ -34,6 +34,20 @@ has_children⇒FL-105, default⇒FL-165), county-требования из Count
 
 **Готово когда:** кейс с пустым обяз. полем / разными датами separation / детьми
 без FL-105 → три ❌ с якорями; чистый кейс — все ✅; UPL-линт чист.
+
+**Сделано:**
+- `src/readiness/checks.js` — pure-JS `runReadiness({user, caseRec, answers, packet?})`
+  → `{items:[{group,key,severity,params,anchor}], counts}`. Проверки: полнота
+  обязательных полей + county + дети (name/dob) + подпись согласия; согласованность
+  (date_of_separation↔separation_date, marriage, имена и case_number по построенным
+  профилям форм); покрытие форм (`requiredForms` через fl105/165/341/342/343Required);
+  county-требования из `CountyInfo`; список мест подписей. Только наличие/непротиворечивость.
+- `src/screens/Readiness.jsx` на `/review`; кнопка входа с `/preview`; CSS в styles.css.
+- i18n-блок `readiness` во всех 5 языках (EN+RU полностью, es/zh/vi — зеркало EN до
+  переводческого прохода §6). Якоря «Исправить» → шаг визарда через `wizard_step`.
+- `scripts/readiness-selftest.mjs` (`npm run check-readiness`): чистый кейс → 0/0,
+  все ✅; сломанный (пустое поле + разные separation + дети без FL-105) → ровно 3 ❌
+  с рабочими якорями. UPL-линт чист, `npm run build` зелёный.
 
 ## 8.2 Fee Waiver (FW-001 / FW-003)
 

@@ -89,7 +89,9 @@ export default function Preview() {
         <button className="btn btn--ghost" onClick={() => navigate('/calculator')}>
           ← {t.common.back}
         </button>
-        <span />
+        <button className="btn btn--primary" onClick={() => navigate('/review')}>
+          {t.readiness.title} →
+        </button>
       </div>
     </section>
   )
