@@ -1,0 +1,33 @@
+name: upl-lint
+
+# UPL copy-lint — на каждый PR и push проверяет, что переводы (i18n) не содержат
+# советующего языка (unauthorized practice of law, B&P §6400(g)). Скрипт
+# scripts/check-upl-copy.mjs падает (exit 1) с указанием ключа перевода при любом
+# совпадении banned-фразы. Гейт: копирайт должен оставаться нейтральным.
+
+on:
+  pull_request: {}
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  upl-lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: UPL copy-lint (no advice-giving language in i18n)
+        run: npm run check-upl

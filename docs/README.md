@@ -1,0 +1,23 @@
+# Califormis — документация проекта
+
+Сервис самостоятельной подготовки судебных форм по разводу и алиментам в Калифорнии.
+Компания: **Zincroom**. Продукт: **Califormis** (`califormis.com`).
+
+> ⚖️ Позиционирование: self-help software, **не** юридическая фирма, **не** юридические
+> консультации. Мы помогаем аккуратно заполнить официальные формы, которые человек
+> вправе подать сам. Модель UPL-совместима (см. `product.md`).
+
+## Оглавление
+| Документ | О чём |
+|---|---|
+| [`product.md`](product.md) | PRD, пайплайн создания, модели A/B/C, стек |
+| [`forms-packet.md`](forms-packet.md) | Пакет из 14 форм: статус, маппинг, чек-лист проверки |
+| [`competitive-analysis.md`](competitive-analysis.md) | Конкуренты (research с источниками), feature-gap |
+| [`positioning.md`](positioning.md) | Позиционирование, рвы, tagline |
+| [`gtm-unit-economics.md`](gtm-unit-economics.md) | Выход на рынок, юнит-экономика, безубыточность |
+| [`roadmap.md`](roadmap.md) | Tier 0–3, текущий статус, план Tier 1 |
+
+## Статус на 2026-06-30
+- ✅ **Формы: 14/14** смапплены, заполнены, проверены (Tier 0 — фундамент).
+- ⬜ **Tier 1 (ров):** county-local forms LA, испанский визард, trust-блок, Stripe.
+- ⬜ Tier 2: MSA, сопровождение (Supabase pg_cron + Edge Functions), ещё округа.

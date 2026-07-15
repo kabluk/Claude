@@ -1,0 +1,33 @@
+{
+  "name": "califormis",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Califormis — self-service preparation of California divorce court forms",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check-forms": "node scripts/check-forms.mjs",
+    "check-upl": "node scripts/check-upl-copy.mjs",
+    "check-readiness": "node scripts/readiness-selftest.mjs",
+    "check-feewaiver": "node scripts/feewaiver-selftest.mjs",
+    "check-milestones": "node scripts/milestone-selftest.mjs",
+    "milestone-dryrun": "node scripts/milestone-dryrun.mjs",
+    "check-paystub": "node scripts/paystub-selftest.mjs",
+    "check-service": "node scripts/service-selftest.mjs",
+    "check-pricing": "node scripts/pricing-selftest.mjs"
+  },
+  "dependencies": {
+    "@pdf-lib/fontkit": "^1.1.1",
+    "pdf-lib": "^1.17.1",
+    "pdfjs-dist": "^4.2.67",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.3.1",
+    "vite": "^5.4.8"
+  }
+}
