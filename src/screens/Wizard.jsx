@@ -6,8 +6,11 @@ import { useAppState } from '../state/AppState.jsx'
 import { evaluateFeeWaiver, FEE_WAIVER_BENEFITS } from '../data/feeWaiver.js'
 import PaystubImport from '../components/PaystubImport.jsx'
 
-// Section order for the «Uncontested · Children · Los Angeles» scenario.
-const SECTIONS = ['parties', 'children', 'property', 'income', 'fees', 'consent', 'review']
+// Section order. `situation` is an early contested-filter gate (§10.1): the flow
+// only continues on an agreement/default answer.
+const SECTIONS = ['situation', 'parties', 'children', 'property', 'income', 'fees', 'consent', 'review']
+// Answers that let the intake proceed (agree / spouse-not-responding=default).
+const SITUATION_PROCEED = new Set(['1', '2'])
 
 // Top-level field component (stable type ⇒ inputs keep focus across re-renders).
 function Field({
@@ -194,6 +197,49 @@ export default function Wizard() {
   ].filter(Boolean)
 
   // ----------------------------- section renderers -----------------------------
+  // §10.1 contested filter. Answer 1/2 → proceed; 3 → stop-screen; 4 → explain.
+  const renderSituation = () => {
+    const sq = t.situation
+    const value = val('situation')
+    const opts = [
+      { v: '1', label: sq.opt1 },
+      { v: '2', label: sq.opt2 },
+      { v: '3', label: sq.opt3 },
+      { v: '4', label: sq.opt4 },
+    ]
+    return (
+      <>
+        <p className="wz-section-intro">{sq.question}</p>
+        <div className="wz-checks">
+          {opts.map((o) => (
+            <label className="wz-check" key={o.v}>
+              <input
+                type="radio"
+                name="situation"
+                checked={value === o.v}
+                onChange={() => setVal('situation', o.v)}
+              />
+              <span>{o.label}</span>
+            </label>
+          ))}
+        </div>
+
+        {value === '3' && (
+          <div className="gate-stop">
+            <h3>{sq.stopTitle}</h3>
+            <p>{sq.stopBody}</p>
+          </div>
+        )}
+        {value === '4' && (
+          <div className="gate-info">
+            <h3>{sq.unsureTitle}</h3>
+            <p>{sq.unsureBody}</p>
+          </div>
+        )}
+      </>
+    )
+  }
+
   const renderParties = () => (
     <div className="wz-grid">
       {F('petitioner_name')}
@@ -520,6 +566,7 @@ export default function Wizard() {
   )
 
   const SECTION_RENDERERS = {
+    situation: renderSituation,
     parties: renderParties,
     children: renderChildren,
     property: renderProperty,
@@ -528,6 +575,9 @@ export default function Wizard() {
     consent: renderConsent,
     review: renderReview,
   }
+
+  // The contested gate blocks progress until the answer is agreement/default.
+  const gateBlocked = sectionKey === 'situation' && !SITUATION_PROCEED.has(val('situation'))
 
   return (
     <section className="screen">
@@ -567,6 +617,8 @@ export default function Wizard() {
               className={`wizard__chip ${
                 i === active ? 'is-active' : i < active ? 'is-done' : ''
               }`}
+              // While the contested gate is unresolved, only the gate step is reachable.
+              disabled={gateBlocked && i > 0}
               onClick={() => setActive(i)}
             >
               {i + 1}. {w.sec[key].title}
@@ -597,7 +649,7 @@ export default function Wizard() {
           </button>
           <button
             className="btn btn--dark"
-            disabled={active === total - 1}
+            disabled={active === total - 1 || gateBlocked}
             onClick={() => setActive((i) => Math.min(total - 1, i + 1))}
           >
             {w.next} →

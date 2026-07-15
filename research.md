@@ -149,3 +149,11 @@ blocks:                   финализацию gtm-unit-economics.md и при
 
 **gtm-unit-economics.md не финализируется**, пока оба факта выше не получат
 статус, отличный от `no`.
+
+### Contested stop-screen copy — UNVERIFIED (§10.1)
+- Тексты раннего contested-фильтра и стоп-экрана (`t.situation.*`: question,
+  opt1–4, stopTitle/stopBody, unsureTitle/unsureBody) — **новый пользовательский
+  контент на UPL-границе**. Статус: **UNVERIFIED, снимается attorney approval**
+  (утверждается вместе с attorney-approved content vault, как и объяснения полей).
+  До утверждения — формулировки фактические (описывают охват сервиса и различие
+  agreement/default/contested), UPL-линт чист, «что выбрать» не подсказывается.

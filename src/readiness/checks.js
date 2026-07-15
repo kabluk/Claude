@@ -49,6 +49,7 @@ const A = {
   caseType: { route: '/' },
   calculator: { route: '/calculator' },
   fees: { route: '/wizard', section: 'fees' },
+  situation: { route: '/wizard', section: 'situation' },
 }
 
 // Always-required petitioner/party fields → their fix anchor.
@@ -197,8 +198,25 @@ export function runReadiness(state = {}) {
   const caseNoDiv = firstDivergence(profiles, 'case_number')
   if (caseNoDiv) push('consistency', 'caseno_mismatch', 'error', caseNoDiv, A.parties)
 
-  const consistencyErrors = items.filter((i) => i.group === 'consistency').length
-  if (consistencyErrors === 0) push('consistency', 'consistency_ok', 'ok')
+  // 2c. Early contested filter (§10.1) vs the late consent confirmation (Q29).
+  // A contested answer is out of scope; an "agree" filter that disagrees with a
+  // missing consent signature is a mismatch the filer should reconcile.
+  const situation = String(a.situation || '').trim()
+  if (situation === '3') {
+    push('consistency', 'contested_out_of_scope', 'error', {}, A.situation)
+  } else if (
+    situation === '1' &&
+    (caseRec.type === 'uncontested' || caseRec.type === 'default') &&
+    isBlank(a.respondent_consent)
+  ) {
+    push('consistency', 'situation_consent_mismatch', 'warn', {}, A.consent)
+  }
+
+  const consistencyErrors = items.filter(
+    (i) => i.group === 'consistency' && i.severity === 'error',
+  ).length
+  if (consistencyErrors === 0 && !items.some((i) => i.group === 'consistency'))
+    push('consistency', 'consistency_ok', 'ok')
 
   // ---- 3. Required-form coverage --------------------------------------------
   const needed = requiredForms(state)

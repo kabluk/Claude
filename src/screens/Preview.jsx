@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useI18n } from '../i18n/I18nContext.jsx'
 import { useAppState } from '../state/AppState.jsx'
+import { offer } from '../config/pricing.js'
 
 // Form codes + official English names are NEVER translated (filed in English).
 // Only the explanatory sub-line is localized.
@@ -19,6 +20,7 @@ export default function Preview() {
   const { caseRec, updateCase, price, pricing } = useAppState()
   const p = t.preview
   const [feeLo, feeHi] = [pricing.attorneyReview.min, pricing.attorneyReview.max]
+  const o = offer() // phased review model — derived from PHASE, never hardcoded here
 
   // Package assembled — mark the case ready (payment remains unpaid for now).
   useEffect(() => {
@@ -83,12 +85,17 @@ export default function Preview() {
             <p className="money-flow__note">{p.courtFeeNote}</p>
             <div className="money-flow__row">
               <span>
-                {p.rowReview}
+                {o.reviewDefault ? t.offer.reviewIncludedTitle : p.rowReview}
                 <span className="pay-tag pay-tag--attorney">{p.payAttorney}</span>
               </span>
               <span>${feeLo}–{feeHi}</span>
             </div>
-            <p className="money-flow__note">{p.reviewNote}</p>
+            <p className="money-flow__note">
+              {o.reviewDefault ? t.offer.reviewIncludedNote : p.reviewNote}
+            </p>
+            {o.showComingSoonNote && (
+              <p className="money-flow__note money-flow__note--soon">{t.offer.comingSoonNote}</p>
+            )}
           </div>
           <button
             className="btn btn--primary btn--block"

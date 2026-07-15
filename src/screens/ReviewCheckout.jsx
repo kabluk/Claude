@@ -1,7 +1,8 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useI18n } from '../i18n/I18nContext.jsx'
 import { useAppState } from '../state/AppState.jsx'
+import { offer, SOFT_TIER_AVAILABLE } from '../config/pricing.js'
 
 // Reviewed-tier checkout — TWO EXPLICITLY SEPARATE transactions:
 //   (1) our Stripe: the platform (software) fee (Essentials/Family, see pricing.js);
@@ -58,15 +59,20 @@ const STR = {
 }
 
 export default function ReviewCheckout() {
-  const { lang } = useI18n()
+  const { lang, t } = useI18n()
+  const navigate = useNavigate()
   const { payment, review, payPlatform, acceptEngagement, attorneyFeeRange, price } = useAppState()
   const base = STR[lang] || STR.en
   // Interpolate the per-case platform price ({price} token) into the copy.
   const L = { ...base, t1desc: base.t1desc.replace('{price}', price), pay1: base.pay1.replace('{price}', price) }
   const [accepted, setAccepted] = useState(false)
+  const [optOut, setOptOut] = useState(false)
 
   const platformPaid = payment?.status === 'paid'
   const [lo, hi] = attorneyFeeRange || [75, 125]
+  // Phase 2: review is the default path. Bare self-help is only reachable by an
+  // explicit informed opt-out, and only if SOFT_TIER_AVAILABLE. Derived from PHASE.
+  const o = offer()
 
   return (
     <section className="screen">
@@ -129,6 +135,27 @@ export default function ReviewCheckout() {
           </p>
         )}
       </div>
+
+      {/* Phase 2: opting OUT of attorney review is an explicit, informed action. */}
+      {o.reviewDefault && o.softTierAvailable && SOFT_TIER_AVAILABLE && !review && (
+        <div className="panel gate-info">
+          <label style={{ display: 'block', margin: '0.5rem 0' }}>
+            <input
+              type="checkbox"
+              checked={optOut}
+              onChange={(e) => setOptOut(e.target.checked)}
+            />{' '}
+            {t.offer.optOutLabel}
+          </label>
+          <button
+            className="btn btn--ghost"
+            disabled={!optOut}
+            onClick={() => navigate('/cabinet')}
+          >
+            {t.offer.optOutAction}
+          </button>
+        </div>
+      )}
 
       <p className="fl100__hint">ℹ {L.note}</p>
       <p>

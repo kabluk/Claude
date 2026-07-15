@@ -41,3 +41,33 @@ export function priceForCase(state = {}) {
 export function attorneyReviewRange() {
   return [PRICING.attorneyReview.min, PRICING.attorneyReview.max]
 }
+
+// --- Phased review model (DECISIONS.md, 2026-07) ----------------------------
+// PHASE 1 (now, no attorney contracted): single Self-Help tier, no review; the
+//   UI states honestly that review is coming.
+// PHASE 2 (reviewing attorney contracted): attorney review is part of the MAIN
+//   offer by default; bare self-help remains only as an explicit, informed
+//   opt-out (SOFT_TIER_AVAILABLE) or is removed.
+// Tier/checkout composition is DERIVED from PHASE via offer() — components must
+// not hardcode it, so flipping PHASE 1→2 changes the flow with no component edits.
+export const PHASE = 1
+export const SOFT_TIER_AVAILABLE = true // in Phase 2: keep bare self-help as opt-out?
+
+export function offer(phase = PHASE, softAvailable = SOFT_TIER_AVAILABLE) {
+  if (phase >= 2) {
+    return {
+      phase: 2,
+      reviewDefault: true, // review is on the main path, not an add-on
+      reviewOptional: false, // the word "optional" leaves the flow
+      softTierAvailable: !!softAvailable, // bare self-help only via explicit opt-out
+      showComingSoonNote: false,
+    }
+  }
+  return {
+    phase: 1,
+    reviewDefault: false,
+    reviewOptional: true,
+    softTierAvailable: true, // Phase 1 IS the self-help tier
+    showComingSoonNote: true, // honest "review is coming" note in UI
+  }
+}
