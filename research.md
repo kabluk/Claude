@@ -89,8 +89,8 @@
   на вызов Claude vision (opus-класс, temp 0, max_tokens 1024): **≈ $0.01–0.05**
   за извлечение (зависит от разрешения изображения и итоговой модели/цены).
   _Статус: ОЦЕНКА — уточнить по факту на актуальном прайсе перед включением в
-  прод (обновить здесь). При марже ~$94/пакет один разовый vision-вызов
-  пренебрежим._
+  прод (обновить здесь). При вкладе ~$288/кейс (Essentials, см.
+  gtm-unit-economics.md) один разовый vision-вызов пренебрежим._
 - То же относится к `extract-service` (фото доказательства вручения → FL-115 +
   service_date, §8.4 шаг 2): тот же класс vision-вызова, та же оценка COGS и та
   же retention-политика (см. ниже).
@@ -116,3 +116,36 @@
   Блокирует перевод контента на эти локали. Снимается: Google Keyword Planner
   + подтверждённые каналы. Инфраструктура i18n готова (§6), контент — после
   валидации и legal-translator ревью нейтральности.
+
+### CPC и стоимость привлечения — BLOCKING (§9.3), НЕ спрашивать у агента
+⚠️ Ни Claude Code, ни любой агент не имеет доступа к Google Keyword Planner /
+Ahrefs / Semrush. Любая CPC-цифра от агента — галлюцинация. В
+`gtm-unit-economics.md` числа CPC не вставлять; таблицы CAC там — иллюстрация
+формулы, не измерение.
+
+```
+FACT: CPC "divorce California" и стоимость привлечения
+claim:                    [заполнить после Keyword Planner]
+why_it_matters:           Определяет, жизнеспособен ли платный канал вообще.
+                          При CPC $15 и конв. 2% CAC = $750 > чек $299 →
+                          платный трафик убыточен, GTM только SEO + сарафан.
+source:                   Google Keyword Planner (ads.google.com), локация California
+verified_against_primary: no
+verification_method:      [ручная проверка Евгением]
+blocks:                   финализацию gtm-unit-economics.md и любые решения
+                          о платной рекламе
+```
+
+```
+FACT: объёмы поиска по русским и испанским divorce-запросам (языковой wedge)
+claim:                    [заполнить после Keyword Planner]
+why_it_matters:           Проверяет центральную гипотезу языкового wedge
+                          (дешёвый трафик на ES/RU vs дорогой EN Google).
+source:                   Google Keyword Planner (ads.google.com), локация California
+verified_against_primary: no
+verification_method:      [ручная проверка Евгением]
+blocks:                   финализацию gtm-unit-economics.md и приоритет локалей
+```
+
+**gtm-unit-economics.md не финализируется**, пока оба факта выше не получат
+статус, отличный от `no`.

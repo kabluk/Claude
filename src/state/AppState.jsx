@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from 'react'
 import { store } from '../data/repository.js'
 import { useI18n } from '../i18n/I18nContext.jsx'
 import { REVIEWED_TIER_ENABLED } from '../config/features.js'
+import { PRICING, priceForCase, tierForCase } from '../config/pricing.js'
 
 const AppStateContext = createContext(null)
 
@@ -77,7 +78,10 @@ export function AppStateProvider({ children }) {
     caseRec,
     answers,
     payment,
-    price: store.PRICE,
+    // Per-case platform price (Essentials $299 / Family $499) — single source.
+    price: priceForCase({ caseRec }),
+    tier: tierForCase({ caseRec }),
+    pricing: PRICING,
     updateUser,
     updateCase,
     saveAnswer,

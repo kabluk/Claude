@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import { countyBySlug, ALL_COUNTIES } from '../data/counties.js'
+import { PRICING } from '../config/pricing.js'
 
-const PRICE = 99 // landing price
+const PRICE = PRICING.essentials // landing "from" price (Essentials tier)
 
 // Locales the county landing has CONTENT for → drives the hreflang cluster
 // (see useSeo). Add a code here only when that county content is translated;

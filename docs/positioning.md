@@ -6,10 +6,10 @@
 
 ## Заявление
 > «Развод в Калифорнии **на вашем языке**, с формами **именно для вашего округа**,
-> по **точной формуле штата** — честные $99, без апселла на $2000.»
+> по **точной формуле штата** — прозрачные $299/$499 (без скрытого апселла на $2000).»
 
 ## Tagline (лендинг)
-EN: *"California divorce — in your language, for your county, by the state's own formula. Flat $99."*
+EN: *"California divorce — in your language, for your county, by the state's own formula. Flat $299 (with children $499)."*
 
 ## Три опоры (по убыванию защищённости рва)
 | Опора | Ров | У кого ещё есть |
@@ -17,7 +17,7 @@ EN: *"California divorce — in your language, for your county, by the state's o
 | 🟢 На вашем языке (ES/RU процесс) | нет ни у кого | **никто** |
 | 🟢 Для вашего округа (local forms + шаги) | отраслевая дыра | поверхностно у DivorceWriter |
 | 🟡 По формуле штата (§4055) | гигиена, не уникум | DivorceWriter, Hello Divorce |
-| 🟡 Честные $99 + гарантия | контраст с Hello Divorce ($2000) | дешёвые mills |
+| 🟡 Прозрачная цена $299/$499 + fee-waiver окупает пошлину $435 | контраст с Hello Divorce ($2000 Pro) и ретейнером $5k | дешёвые mills |
 
 ## Главная угроза — Hello Divorce
 CA-native, флэт-тарифы, калькулятор, attorney-upsell, глубокое сопровождение.

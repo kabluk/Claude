@@ -4,7 +4,7 @@ import { useI18n } from '../i18n/I18nContext.jsx'
 import { useAppState } from '../state/AppState.jsx'
 
 // Reviewed-tier checkout — TWO EXPLICITLY SEPARATE transactions:
-//   (1) our Stripe: the $99 platform (software) fee;
+//   (1) our Stripe: the platform (software) fee (Essentials/Family, see pricing.js);
 //   (2) the attorney's own engagement letter + his payment link — paid DIRECTLY
 //       to the attorney, never merged with (1) and never routed through us
 //       (fee-splitting bar, Rule 5.4; see docs/DECISIONS.md).
@@ -17,8 +17,8 @@ const STR = {
     title: 'Attorney review (optional)',
     lead: 'Have a licensed California family-law attorney review your packet before you file. This is two separate payments.',
     t1: 'Transaction 1 — Califormis software',
-    t1desc: 'The $99 platform fee for preparing your packet. Paid to Califormis.',
-    pay1: 'Pay $99 to Califormis',
+    t1desc: 'The ${price} platform fee for preparing your packet. Paid to Califormis.',
+    pay1: 'Pay ${price} to Califormis',
     paid1: 'Paid ✓',
     t2: 'Transaction 2 — Attorney review',
     t2desc: 'Paid DIRECTLY to the reviewing attorney under their own engagement letter. Califormis does not receive, hold, or split this fee.',
@@ -38,8 +38,8 @@ const STR = {
     title: 'Проверка адвокатом (по желанию)',
     lead: 'Лицензированный семейный адвокат Калифорнии проверит ваш пакет перед подачей. Это две отдельные оплаты.',
     t1: 'Транзакция 1 — программа Califormis',
-    t1desc: 'Плата $99 за подготовку пакета. Платится Califormis.',
-    pay1: 'Оплатить $99 в Califormis',
+    t1desc: 'Плата ${price} за подготовку пакета. Платится Califormis.',
+    pay1: 'Оплатить ${price} в Califormis',
     paid1: 'Оплачено ✓',
     t2: 'Транзакция 2 — проверка адвокатом',
     t2desc: 'Платится НАПРЯМУЮ адвокату по его engagement letter. Califormis эту оплату не получает, не удерживает и не делит.',
@@ -59,8 +59,10 @@ const STR = {
 
 export default function ReviewCheckout() {
   const { lang } = useI18n()
-  const L = STR[lang] || STR.en
-  const { payment, review, payPlatform, acceptEngagement, attorneyFeeRange } = useAppState()
+  const { payment, review, payPlatform, acceptEngagement, attorneyFeeRange, price } = useAppState()
+  const base = STR[lang] || STR.en
+  // Interpolate the per-case platform price ({price} token) into the copy.
+  const L = { ...base, t1desc: base.t1desc.replace('{price}', price), pay1: base.pay1.replace('{price}', price) }
   const [accepted, setAccepted] = useState(false)
 
   const platformPaid = payment?.status === 'paid'

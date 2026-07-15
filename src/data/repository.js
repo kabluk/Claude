@@ -1,4 +1,5 @@
 import { read, write, uid, now } from './storage.js'
+import { PRICING } from '../config/pricing.js'
 
 // ---------------------------------------------------------------------------
 // Entities
@@ -13,10 +14,12 @@ import { read, write, uid, now } from './storage.js'
 // return.
 // ---------------------------------------------------------------------------
 
-const PRICE = 99 // fixed platform (software) fee — Self-Help tier (DECISIONS.md)
+// Baseline platform fee for a new case's payment record (Essentials tier). The
+// per-case price (Essentials vs Family) is resolved from src/config/pricing.js.
+const PRICE = PRICING.essentials
 // Attorney review fee band — a SEPARATE transaction paid directly to the
 // attorney; it never passes through the platform (Rule 5.4, see DECISIONS.md).
-const ATTORNEY_FEE_RANGE = [75, 125]
+const ATTORNEY_FEE_RANGE = [PRICING.attorneyReview.min, PRICING.attorneyReview.max]
 const REVIEW_SLA_DAYS = 5 // target turnaround for a review
 
 function collection(name) {

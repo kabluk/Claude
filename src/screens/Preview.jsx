@@ -16,8 +16,9 @@ const DOCS = [
 export default function Preview() {
   const navigate = useNavigate()
   const { t } = useI18n()
-  const { caseRec, updateCase, price } = useAppState()
+  const { caseRec, updateCase, price, pricing } = useAppState()
   const p = t.preview
+  const [feeLo, feeHi] = [pricing.attorneyReview.min, pricing.attorneyReview.max]
 
   // Package assembled — mark the case ready (payment remains unpaid for now).
   useEffect(() => {
@@ -51,7 +52,10 @@ export default function Preview() {
 
         <aside className="summary">
           <div className="summary__row">
-            <span>{p.rowPrep}</span>
+            <span>
+              {p.rowPrep}
+              <span className="pay-tag pay-tag--us">{p.payUs}</span>
+            </span>
             <span>${price}</span>
           </div>
           <div className="summary__row">
@@ -65,6 +69,26 @@ export default function Preview() {
           <div className="summary__total">
             <span>{p.total}</span>
             <b>${price}</b>
+          </div>
+
+          {/* Where the rest of your money goes — separate payees, shown plainly. */}
+          <div className="money-flow">
+            <div className="money-flow__row">
+              <span>
+                {p.rowCourtFee}
+                <span className="pay-tag pay-tag--court">{p.payCourt}</span>
+              </span>
+              <span>${pricing.courtFee}</span>
+            </div>
+            <p className="money-flow__note">{p.courtFeeNote}</p>
+            <div className="money-flow__row">
+              <span>
+                {p.rowReview}
+                <span className="pay-tag pay-tag--attorney">{p.payAttorney}</span>
+              </span>
+              <span>${feeLo}–{feeHi}</span>
+            </div>
+            <p className="money-flow__note">{p.reviewNote}</p>
           </div>
           <button
             className="btn btn--primary btn--block"
