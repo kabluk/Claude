@@ -241,11 +241,21 @@ def headers():
     }
 
 
+_ASPECT_MAP = {
+    "4:5": "3:4",
+    "5:4": "4:3",
+    "16:10": "16:9",
+    "3:2": "4:3",
+    "2:3": "3:4",
+}
+
+
 def submit_task(img: dict) -> str | None:
     """Submit a generation request; return taskId or None on error."""
+    aspect = _ASPECT_MAP.get(img["aspect"], img["aspect"])
     payload = {
         "prompt": img["prompt"],
-        "aspectRatio": img["aspect"],
+        "aspectRatio": aspect,
         "outputFormat": "jpeg",
         "model": "flux-kontext-pro",
         "enableTranslation": False,
