@@ -30,16 +30,15 @@ POLL_TIMEOUT = 300  # seconds before giving up on a single task
 
 STYLE_BLOCK = (
     "Deep midnight navy blue and rose gold editorial photography, "
-    "candlelight glow with warm copper reflections against dark blue shadows, "
-    "silk textures, shallow depth of field, shot on 35mm film, "
-    "luxury wellness magazine aesthetic, no text, no logos, "
-    "rich blue-hour atmosphere, metallic rose-gold highlights, no pure black."
+    "candlelit sacred-ceremony atmosphere, an intimate community of adult men and women together, "
+    "warm copper reflections against deep blue shadows, silk fabrics, shallow depth of field, "
+    "shot on 35mm film, mysterious reverent and tender, luxury magazine aesthetic, "
+    "tasteful and non-explicit, no text, no logos, no pure black. All adults."
 )
 
 NEGATIVE_PROMPT = (
-    "text, watermark, logo, harsh flash lighting, plastic skin, distorted hands, "
-    "extra fingers, oversaturated colors, clutter, modern office, fluorescent light, "
-    "green tones, daylight white balance"
+    "text, watermark, logo, explicit nudity, sexual content, pornographic, child, minor, teenager, "
+    "distorted hands, extra fingers, plastic skin, harsh flash, green tones, daylight white balance, clutter"
 )
 
 # ── Image definitions ─────────────────────────────────────────────────────────
@@ -49,10 +48,9 @@ IMAGES = [
         "aspect": "16:9",
         "placeholder_cap": "Photo — hero background",
         "prompt": (
-            "A vast serene evening scene: dozens of lit candles on a dark reflective floor "
-            "leading toward floor-to-ceiling windows with a warm sunset sky, sheer silk curtains "
-            "moving gently, empty meditation cushions arranged in a circle, cinematic wide shot, "
-            "atmosphere of anticipation and calm. " + STYLE_BLOCK
+            "Sacred candlelit ceremony: a circle of adult men and women seated around hundreds of candles "
+            "and a central flame, shot from behind one participant, rose-gold light on calm faces, "
+            "deep navy shadows, intimate secret gathering. " + STYLE_BLOCK
         ),
     },
     {
@@ -60,9 +58,8 @@ IMAGES = [
         "aspect": "4:5",
         "placeholder_cap": "Photo — candlelit practice space",
         "prompt": (
-            "An intimate candlelit practice room: warm wooden floor, a circle of cream floor cushions, "
-            "a single sculptural candle burning in the center, soft golden light pooling on the walls, "
-            "silk throw draped over a low bench, quiet and inviting, nobody present. " + STYLE_BLOCK
+            "A man and a woman facing each other in candlelight, foreheads almost touching, "
+            "hands connected, seen partly from behind, tender sacred intimacy. " + STYLE_BLOCK
         ),
     },
     {
@@ -70,9 +67,8 @@ IMAGES = [
         "aspect": "4:5",
         "placeholder_cap": "Photo — evening classes card",
         "prompt": (
-            "Close-up of hands painting with gold and amber watercolors on textured paper by candlelight, "
-            "brushstrokes glowing, a glass of herbal tea beside, warm bokeh in background, "
-            "sense of gentle creative focus, darker vignette at the bottom of frame. " + STYLE_BLOCK
+            "Small candlelit circle of adult men and women in evening practice, seen from behind a participant, "
+            "belonging to a close secret community, darker bottom vignette. " + STYLE_BLOCK
         ),
     },
     {
@@ -80,9 +76,8 @@ IMAGES = [
         "aspect": "4:5",
         "placeholder_cap": "Photo — retreat card",
         "prompt": (
-            "A luxurious retreat villa terrace at dusk: low daybeds with linen cushions, "
-            "lanterns and candles glowing, view over calm water reflecting the last golden light, "
-            "sheer curtains, no people, deep warm shadows in the lower third of the frame. " + STYLE_BLOCK
+            "Group of adult men and women by candlelight on a terrace at blue hour, "
+            "around a central fire, intimate retreat gathering, darker lower third. " + STYLE_BLOCK
         ),
     },
     {
@@ -90,9 +85,8 @@ IMAGES = [
         "aspect": "3:4",
         "placeholder_cap": "Art therapy",
         "prompt": (
-            "Overhead shot of an art therapy table: warm-toned paints, brushes, torn textured paper "
-            "with abstract golden strokes, a burning candle, dried flowers, hands of a woman "
-            "mid-brushstroke entering frame from the side, soft window light mixed with candle glow. " + STYLE_BLOCK
+            "Adult men and women painting together by candlelight around a low table, "
+            "rose-gold strokes on canvas, communal art therapy, quiet intimacy. " + STYLE_BLOCK
         ),
     },
     {
@@ -100,9 +94,8 @@ IMAGES = [
         "aspect": "3:4",
         "placeholder_cap": "Evening circle",
         "prompt": (
-            "A small circle of people seated on cushions in soft candlelight, faces gently blurred "
-            "and anonymous, warm light on shoulders and hands, one person speaking with open palms, "
-            "atmosphere of trust and deep listening, shot from just outside the circle. " + STYLE_BLOCK
+            "Circle of adult men and women seated close on cushions, seen from just behind, "
+            "one pair's hands touching, atmosphere of trust and closeness. " + STYLE_BLOCK
         ),
     },
     {
@@ -110,9 +103,8 @@ IMAGES = [
         "aspect": "16:10",
         "placeholder_cap": "The space at dusk",
         "prompt": (
-            "Wide shot of an elegant studio at dusk: tall windows with city lights far below, "
-            "silk curtains, candles along the windowsill, empty cushions in a semicircle, "
-            "reflections on a polished dark floor, warm and expectant mood. " + STYLE_BLOCK
+            "Candlelit hall prepared for ceremony: cushions arranged in a circle, hundreds of candles, "
+            "silhouettes of adult men and women entering, expectant sacred mood. " + STYLE_BLOCK
         ),
     },
     {
@@ -120,9 +112,8 @@ IMAGES = [
         "aspect": "4:5",
         "placeholder_cap": "Retreat location",
         "prompt": (
-            "A secluded modern villa in nature at golden hour: warm stone and glass architecture, "
-            "infinity-edge water feature reflecting amber sky, cypress or olive trees, "
-            "lanterns beginning to glow, sense of privacy and sanctuary, no people. " + STYLE_BLOCK
+            "Secluded villa at blue hour, silhouettes of a couple standing close on the terrace "
+            "over dark calm water, atmosphere of sanctuary and deep intimacy. " + STYLE_BLOCK
         ),
     },
     {
@@ -130,9 +121,8 @@ IMAGES = [
         "aspect": "16:10",
         "placeholder_cap": "Life after retreat",
         "prompt": (
-            "A radiant woman in flowing champagne silk standing in golden evening light, "
-            "eyes closed, gentle confident smile, hand resting over her heart, hair moving in a soft breeze, "
-            "warm sun flare, embodiment of peace and self-worth, waist-up portrait. " + STYLE_BLOCK
+            "A man and a woman standing close in candlelight against blue twilight, seen partly from behind, "
+            "her head toward his shoulder, deeply connected and at peace. " + STYLE_BLOCK
         ),
     },
     {
@@ -140,8 +130,8 @@ IMAGES = [
         "aspect": "16:10",
         "placeholder_cap": "Sunset practice",
         "prompt": (
-            "Silhouettes of a small group in gentle movement practice on a terrace against a molten "
-            "golden sunset over water, arms lifted, warm haze, deep amber sky. " + STYLE_BLOCK
+            "Silhouettes of adult men and women in gentle partnered movement against indigo-copper twilight "
+            "over water, connection and trust, arms reaching toward each other. " + STYLE_BLOCK
         ),
     },
     {
@@ -149,8 +139,8 @@ IMAGES = [
         "aspect": "4:5",
         "placeholder_cap": "Candle ritual",
         "prompt": (
-            "A sculptural cream candle in an elegant hourglass form burning softly, wax gently melting, "
-            "dark warm background, single dramatic light source, fine art still life. " + STYLE_BLOCK
+            "Circle of adult men and women around a large arrangement of candles seen slightly from above, "
+            "sacred ceremony, calm faces turned toward the light. " + STYLE_BLOCK
         ),
     },
     {
@@ -158,8 +148,8 @@ IMAGES = [
         "aspect": "1:1",
         "placeholder_cap": "Morning light",
         "prompt": (
-            "First morning light streaming through sheer curtains onto an unmade linen bed "
-            "in warm ivory tones, steam rising from a ceramic cup on the windowsill, peaceful awakening. " + STYLE_BLOCK
+            "A couple resting close under warm light through sheer curtains at dusk, "
+            "tender intimacy, seen from behind, fully clothed in soft fabrics. " + STYLE_BLOCK
         ),
     },
     {
@@ -167,8 +157,8 @@ IMAGES = [
         "aspect": "1:1",
         "placeholder_cap": "Art session",
         "prompt": (
-            "Close crop of a canvas with expressive abstract strokes in bronze, gold and cream, "
-            "a hand holding a brush loaded with gold paint, candle flame blurred in the foreground. " + STYLE_BLOCK
+            "Hands of a man and a woman painting on one shared canvas by candlelight, "
+            "fingers almost touching, shared creative intimacy, rose-gold strokes. " + STYLE_BLOCK
         ),
     },
     {
@@ -176,9 +166,8 @@ IMAGES = [
         "aspect": "1:1",
         "placeholder_cap": "The table",
         "prompt": (
-            "A long candlelit dinner table set for a retreat group: ceramic plates, golden glasses, "
-            "dried botanicals, warm bread and colorful nourishing dishes, hands reaching and passing food, "
-            "joyful intimate atmosphere, shallow focus. " + STYLE_BLOCK
+            "Long candlelit community dinner: adult men and women around a table, "
+            "hands reaching and connecting across dishes, joyful sacred gathering. " + STYLE_BLOCK
         ),
     },
     {
@@ -186,8 +175,8 @@ IMAGES = [
         "aspect": "4:5",
         "placeholder_cap": "Water & gold",
         "prompt": (
-            "Golden sunlight scattering across dark rippling water at dusk, thousands of amber sparkles, "
-            "abstract and meditative, close-up of the water surface only. " + STYLE_BLOCK
+            "Silhouettes of a man and a woman at the edge of dark water at dusk, "
+            "copper light reflected on the water, seen from behind, meditative and close. " + STYLE_BLOCK
         ),
     },
     {
@@ -195,9 +184,8 @@ IMAGES = [
         "aspect": "16:10",
         "placeholder_cap": "Evening circle",
         "prompt": (
-            "Wide shot of a candlelit evening ceremony: people seated in a circle around dozens of small flames, "
-            "warm light on relaxed faces turned toward the center, "
-            "deep bronze shadows around the edges of the room. " + STYLE_BLOCK
+            "Wide candlelit ceremony: adult men and women in a full circle around dozens of flames "
+            "and a central fire, secret community, deep bronze shadows at the edges. " + STYLE_BLOCK
         ),
     },
     {
@@ -205,9 +193,8 @@ IMAGES = [
         "aspect": "4:3",
         "placeholder_cap": "Journal — body memory",
         "prompt": (
-            "A woman's back and shoulders in soft warm light, silk fabric draped over one shoulder, "
-            "her own hand resting gently on her neck, sculptural shadows, intimate and respectful, "
-            "fine art study of the body holding and releasing tension. " + STYLE_BLOCK
+            "A man and a woman seen from behind in candlelight, her hand resting on his shoulder, "
+            "tender study of connection and trust, tasteful and respectful. " + STYLE_BLOCK
         ),
     },
     {
@@ -215,9 +202,8 @@ IMAGES = [
         "aspect": "4:3",
         "placeholder_cap": "Journal — patterns",
         "prompt": (
-            "Two golden candle flames reflected many times in a dark antique mirror, "
-            "creating a repeating pattern of lights fading into warm darkness, "
-            "symbolic and moody still life. " + STYLE_BLOCK
+            "A man and a woman facing each other, their images reflected repeatedly in a dark antique mirror, "
+            "symbolic of relationship patterns, warm candlelight, moody and intimate. " + STYLE_BLOCK
         ),
     },
     {
@@ -225,9 +211,8 @@ IMAGES = [
         "aspect": "4:3",
         "placeholder_cap": "Journal — art therapy",
         "prompt": (
-            "A first hesitant golden brushstroke on a blank cream canvas, brush still touching the surface, "
-            "candle flame and paint jars blurred in warm bokeh behind, "
-            "symbolizing the courage to begin. " + STYLE_BLOCK
+            "Hands of a man and a woman meeting over a shared canvas with a first rose-gold brushstroke, "
+            "candle flame blurred behind, symbolizing the courage to connect. " + STYLE_BLOCK
         ),
     },
 ]
