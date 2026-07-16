@@ -259,6 +259,8 @@ def submit_task(img: dict) -> str | None:
         "outputFormat": "jpeg",
         "model": "flux-kontext-pro",
         "enableTranslation": False,
+        "inputImageUrl": "https://placehold.co/512x512/1a1a2e/1a1a2e.jpg",
+        "promptUpsampling": False,
     }
     try:
         r = requests.post(GENERATE_URL, headers=headers(), json=payload, timeout=30)
@@ -296,15 +298,17 @@ def poll_task(task_id: str) -> str | None:
 
         record = data.get("data", {})
         success = record.get("successFlag")
+        complete = record.get("completeTime")
 
         if success == 1:
             url = (record.get("response") or {}).get("resultImageUrl")
             return url
-        elif success == 0:
+        elif success == 0 and complete:
+            # completeTime set + successFlag=0 → real failure
             err = record.get("errorMessage") or record.get("errorCode", "unknown")
             print(f"  [failed] {err}")
             return None
-        # successFlag is None / missing → still processing
+        # successFlag=0 without completeTime → still processing
         print(f"  … waiting (taskId={task_id})")
 
     print(f"  [timeout] {task_id}")
@@ -313,10 +317,17 @@ def poll_task(task_id: str) -> str | None:
 
 def download(url: str, dest: Path) -> bool:
     """Download image to dest. Return True on success."""
+    import subprocess
     try:
-        r = requests.get(url, timeout=60)
-        r.raise_for_status()
-        dest.write_bytes(r.content)
+        result = subprocess.run(
+            ["curl", "-sS", "--noproxy", "*", "-L", "--max-time", "60", "-o", str(dest), url],
+            capture_output=True, timeout=70,
+        )
+        if result.returncode != 0:
+            raise RuntimeError(result.stderr.decode()[:200])
+        if dest.stat().st_size < 1000:
+            dest.unlink(missing_ok=True)
+            raise RuntimeError("downloaded file too small")
         return True
     except Exception as exc:
         print(f"  [download error] {exc}")
