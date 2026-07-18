@@ -1,0 +1,122 @@
+{
+  "disclaimer": {
+    "text": "Informational tool only. Not a law firm, not a substitute for an attorney. For legal help, contact a licensed immigration attorney.",
+    "aria_label": "Legal disclaimer"
+  },
+  "nav": {
+    "home": "Home",
+    "dashboard": "My Cases",
+    "three_rules": "Three Rules",
+    "settings": "Settings",
+    "sign_in": "Sign In",
+    "sign_out": "Sign Out"
+  },
+  "auth": {
+    "email": "Email",
+    "password": "Password",
+    "sign_in": "Sign In",
+    "sign_up": "Create Account",
+    "forgot_password": "Forgot password?",
+    "reset_password": "Reset password",
+    "no_account": "Don't have an account?",
+    "have_account": "Already have an account?",
+    "or": "or",
+    "continue_with_google": "Continue with Google",
+    "sign_in_error": "Sign in failed. Check your email and password.",
+    "sign_up_success": "Check your email — a confirmation link has been sent."
+  },
+  "onboarding": {
+    "step": "Step {{current}} of {{total}}",
+    "next": "Next",
+    "back": "Back",
+    "finish": "Get Started",
+    "step1_title": "Who are you looking for?",
+    "step1_subtitle": "This information helps organize your records.",
+    "step2_title": "Detained person's information",
+    "step2_subtitle": "Only information you know. Nothing is required.",
+    "step3_title": "Detention facility",
+    "step3_subtitle": "If known, enter the facility.",
+    "first_name": "Detained person's first name",
+    "last_name": "Detained person's last name",
+    "a_number": "A-Number (if known)",
+    "a_number_hint": "Format: A123456789. Will be encrypted.",
+    "country_of_birth": "Country of birth",
+    "entry_year": "Approximate year of entry to the US",
+    "facility": "Facility (if known)",
+    "facility_placeholder": "Start typing the facility name...",
+    "creating_case": "Creating case..."
+  },
+  "dashboard": {
+    "welcome": "Welcome",
+    "no_cases": "No cases yet",
+    "create_first": "Create your first case",
+    "case_card": {
+      "phase": "Phase {{phase}}",
+      "progress": "Progress",
+      "open_navigator": "Open Navigator",
+      "last_updated": "Updated {{date}}"
+    },
+    "alerts": {
+      "title": "Alerts",
+      "no_alerts": "No new alerts",
+      "mark_seen": "Mark as seen"
+    },
+    "phase_labels": {
+      "1": "First Steps",
+      "2": "Documents & Attorney",
+      "3": "Support & Children"
+    }
+  },
+  "checklist": {
+    "phases": {
+      "1": "Phase 1 — First Steps",
+      "2": "Phase 2 — Documents & Attorney",
+      "3": "Phase 3 — Support & Children"
+    },
+    "status": {
+      "todo": "To do",
+      "in_progress": "In progress",
+      "done": "Done"
+    },
+    "mark_done": "Mark as done",
+    "mark_todo": "Return to list",
+    "tips": "Tips",
+    "sources": "Sources",
+    "close": "Close"
+  },
+  "settings": {
+    "title": "Settings",
+    "language": "Language",
+    "language_ru": "Русский",
+    "language_en": "English",
+    "subscription": {
+      "title": "Subscription",
+      "plan_free": "Free plan",
+      "plan_paid": "Full access",
+      "upgrade": "Upgrade to full plan",
+      "manage": "Manage subscription",
+      "expires": "Active until {{date}}"
+    },
+    "data": {
+      "title": "Your data",
+      "export": "Export data",
+      "delete_account": "Delete account",
+      "delete_confirm": "Are you sure? This cannot be undone. All cases and documents will be permanently deleted.",
+      "deleting": "Deleting..."
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Error",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "done": "Done",
+    "yes": "Yes",
+    "no": "No",
+    "optional": "(optional)"
+  }
+}

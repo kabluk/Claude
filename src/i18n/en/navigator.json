@@ -1,0 +1,200 @@
+{
+  "steps": {
+    "locate": {
+      "title": "Locate the Detained Person",
+      "description": "Use the official ICE detainee locator to find out where the person is being held.",
+      "guidance": "The ICE Detainee Locator (locator.ice.gov) is the official government tool for locating detained individuals. Searches can be done by name and date of birth, or by A-Number.\n\nHow to search:\n1. Go to locator.ice.gov\n2. Choose to search by name or by A-Number (if known)\n3. For a name search, enter first and last name in English letters, country of birth, and date of birth\n4. For an A-Number search, enter the nine-digit number without the letter A\n5. Click Search and wait for results\n\nCommon result statuses:\n- \"Call ICE For Details\" — this typically means the person was recently transferred or is in initial processing. Call the ICE detainee hotline: 1-888-351-4024. Have the full name, date of birth, and A-Number (if known) ready.\n- \"Not Found\" — try alternate spellings (especially names transliterated from other scripts). If the arrest was recent (less than 72 hours ago), the person may not yet appear in the database. Transfers between facilities in the first 72 hours are common. Call the hotline.\n- Facility found — write down the exact name, address, and phone number. This information is needed for letters, calls, and mail.\n\nIf searches return no result after multiple attempts, contact a local nonprofit immigration organization — they often have additional search resources.",
+      "tips": [
+        "Try both accented and unaccented versions of names (e.g., José and Jose)",
+        "Transfers in the first 72 hours are routine. If the person is not found today, try again tomorrow",
+        "Take a screenshot of the search result with date and time — useful for tracking transfers",
+        "The ICE detainee hotline is available 24 hours: 1-888-351-4024"
+      ],
+      "sources": [
+        {
+          "label": "ICE Detainee Locator",
+          "url": "https://locator.ice.gov"
+        },
+        {
+          "label": "ICE Detainee Hotline: 1-888-351-4024",
+          "url": "tel:18883514024"
+        },
+        {
+          "label": "ACLU — Immigrant Rights",
+          "url": "https://www.aclu.org/know-your-rights/immigrants-rights"
+        }
+      ]
+    },
+    "three_rules": {
+      "title": "Three Rules for the Detained Person",
+      "description": "General information about what detained individuals commonly do and avoid — not advice about any specific action.",
+      "guidance": "Families often ask what to communicate to a detained family member. The following is publicly available general information published by immigrant rights organizations.\n\nRule 1: Do not sign documents without understanding them\nFamilies commonly report that detained individuals sometimes experience pressure to sign \"Voluntary Departure\" documents. Immigration attorneys emphasize that anyone held in detention should consult with an attorney before signing any legal documents. Voluntary Departure has legal consequences that are important to understand beforehand.\n\nRule 2: Accurately state the period of US residence\nIf asked during any interview about the length of time spent in the US, it is generally important to state the actual years of physical presence accurately. Attorneys note that documented residency history is often a key factor in the evaluation of a case.\n\nRule 3: Share concerns about returning to the home country\nIf a person has fears or concerns about returning to their country of origin, this is information that is important for an attorney to know. Immigrant rights organizations advise communicating these concerns to an attorney as early as possible — before any hearings.\n\nNote: This is general information, not legal advice. Every person's situation is unique, and only a licensed attorney can evaluate the legal dimensions of a specific situation.",
+      "tips": [
+        "Pass this information to the detained person at the first opportunity — by letter or during a phone call",
+        "ILRC and ACLU publish free materials on detained persons' rights in multiple languages",
+        "Keep a written log of every contact with the detained person, including date and topics discussed",
+        "If an attorney is involved, help facilitate contact with the detained person as quickly as possible"
+      ],
+      "sources": [
+        {
+          "label": "ILRC — Know Your Rights",
+          "url": "https://www.ilrc.org/know-your-rights"
+        },
+        {
+          "label": "ACLU — Rights in Detention",
+          "url": "https://www.aclu.org/know-your-rights/immigrants-rights"
+        },
+        {
+          "label": "National Immigration Law Center",
+          "url": "https://www.nilc.org"
+        }
+      ]
+    },
+    "money_calls": {
+      "title": "Money & Phone Calls",
+      "description": "How to set up a calling account and send money to the detained person.",
+      "guidance": "Most ICE facilities use commercial operators for telephone calls and inmate accounts. The most common systems are Telmate and GTL (Global Tel Link).\n\nFor Adelanto and many other California facilities, the system used is Telmate.\n\nHow to set up calls through Telmate:\n1. Go to telmate.com or download the Telmate app on your smartphone\n2. Click \"Create Account\" and register as \"Friends & Family\"\n3. Verify your email address\n4. Add the detained person: enter their name and facility (or PIN if already known)\n5. Fund your account with a debit or credit card, or through PayNearMe (can be paid in cash at CVS, 7-Eleven, and other stores)\n6. Call costs: typically $0.06 to $0.14 per minute for domestic calls. Rates may vary.\n\nSending money to the detainee's commissary account (for purchases at the facility store):\n- Through the same operator's website (Telmate, GTL)\n- Through JPay (used at some facilities)\n- Through Western Union in some cases\n- Confirm the specific system with the facility by phone\n\nPractical notes:\n- Write down the detained person's PIN after first contact — it is needed for adding funds\n- Calls may be recorded. Do not discuss legal strategy on the phone — only through an attorney\n- If the person is transferred to a different facility, funds in the account may not transfer automatically. Check the operator's policy.",
+      "tips": [
+        "Save receipts for all transactions — helpful if there are technical problems",
+        "The Telmate app for iOS and Android lets you see balances in real time",
+        "Calls from the facility are typically outgoing from the detained person to you, not the other way around",
+        "For PayNearMe, you will receive a link by text message — take it to a participating store to pay in cash"
+      ],
+      "sources": [
+        {
+          "label": "Telmate (calls and deposits)",
+          "url": "https://www.telmate.com"
+        },
+        {
+          "label": "GTL / ConnectNetwork",
+          "url": "https://www.connectnetwork.com"
+        },
+        {
+          "label": "PayNearMe",
+          "url": "https://home.paynearme.com"
+        }
+      ]
+    },
+    "mail_format": {
+      "title": "Mailing Format",
+      "description": "How to correctly address mail so that it reaches the detained person.",
+      "guidance": "Correct address format is critical — mail without an A-Number frequently does not reach the recipient.\n\nStandard format for most ICE facilities:\n[Detained person's full name]\n[A-Number]\n[Facility name]\n[Facility address]\n\nExample for Adelanto:\nIvan Petrov\nA123 456 789\nAdelanto ICE Processing Center\n10250 Rancho Road\nAdelanto, CA 92301\n\nWhat typically gets through:\n- Regular letters and postcards\n- Photographs (generally no more than 5 per envelope, no staples)\n- Printed materials (books, magazines) — generally only directly from a publisher or bookstore\n- Religious materials (Bible, Quran, etc.) — generally permitted; confirm with the facility\n\nWhat typically does not get through:\n- Gum, candy, food items\n- Stickers, staples, paper clips, binder clips\n- Colored envelopes or envelopes with metallic elements\n- Envelopes with perfume or other substances\n\nLegal Mail:\n- Letters from an attorney carry a special status and must only be opened in the detainee's presence\n- The attorney should mark the envelope \"LEGAL MAIL — ATTORNEY-CLIENT PRIVILEGED\"\n- If the facility violates this, the attorney can file a complaint\n\nIt is advisable to call or write the facility directly to confirm current mail rules — they can change.",
+      "tips": [
+        "Always write the A-Number on the envelope — it is the most important identifier",
+        "Allow 7–10 business days before considering a letter lost",
+        "If the facility uses electronic messaging (Telmate Messages), this may be faster",
+        "Keep copies of all important letters you send"
+      ],
+      "sources": [
+        {
+          "label": "ICE facility information — ICE.gov",
+          "url": "https://www.ice.gov/detain/detention-facilities"
+        },
+        {
+          "label": "Detainee correspondence rights — ACLU",
+          "url": "https://www.aclu.org/know-your-rights/immigrants-rights"
+        }
+      ]
+    },
+    "attorney": {
+      "title": "Finding an Attorney",
+      "description": "How to vet an attorney and avoid fraud.",
+      "guidance": "Finding a trustworthy immigration attorney is one of the most important steps. The following is general information about how families commonly check attorneys' credentials.\n\nHow to check an attorney in California:\n1. Confirm the person is a licensed attorney (not a notary or \"immigration consultant\")\n2. Check the license at the California State Bar website: calbar.ca.gov — enter the name and verify status\n3. Check the EOIR (Immigration Court) list of disciplinary actions: justice.gov/eoir/discipline-of-practitioners\n4. Look for reviews on Google, Avvo, or in local immigrant community networks\n\nRed flags for fraud:\n- Demand for a large cash payment upfront without a written agreement\n- Guarantees of results (\"100% win\", \"guaranteed no deportation\")\n- Calls themselves a \"notario\" — in the US, a notary public does not have legal authority to practice law\n- Refuses to provide a written contract or answer questions about strategy\n- Does not explain strategy or communicate case updates\n\nQuestions to ask at a consultation:\n- How many immigration cases did you handle last year?\n- Have you had cases similar to this one?\n- What are the general options available — not guarantees, just options?\n- How often will you update us on the case status?\n- What are your fees and how do you bill?\n\nFree or low-cost legal help:\nMany nonprofit organizations provide free or low-cost legal help for detained individuals. Search: immigration-locator.thekennedyforum.org or contact a local Legal Aid office.\n\nNote: An attorney has a professional responsibility to their client. If there are concerns about conduct, a complaint can be filed with the State Bar.",
+      "tips": [
+        "A list of pro bono immigration attorneys in California is available at ilrc.org or ailalawyer.com",
+        "Do not pay without signing a written retainer agreement that specifies fees and scope of services",
+        "Many consultations cost $100 to $300 — this is normal and worthwhile for screening an attorney",
+        "If an attorney promises a guaranteed outcome, treat it as a warning sign"
+      ],
+      "sources": [
+        {
+          "label": "California State Bar — Check a license",
+          "url": "https://www.calbar.ca.gov/Public/Lookup-a-Lawyer"
+        },
+        {
+          "label": "EOIR — Disciplinary proceedings list",
+          "url": "https://www.justice.gov/eoir/discipline-of-practitioners"
+        },
+        {
+          "label": "ILRC — Find legal help",
+          "url": "https://www.ilrc.org/find-legal-help"
+        },
+        {
+          "label": "AILA — Find an immigration attorney",
+          "url": "https://www.ailalawyer.com"
+        }
+      ]
+    },
+    "evidence_kickoff": {
+      "title": "Starting Document Collection",
+      "description": "What documents attorneys commonly request and how to organize them by category.",
+      "guidance": "Document collection is a lengthy process — starting early is one of the most helpful things a family can do. The following is general information about what documents attorneys commonly request when evaluating immigration cases.\n\nNote: The specific document list depends on the facts of the case and is determined by an attorney. This information is general in nature.\n\nCommon document categories:\n\n1. Tax Returns\n- W-2 forms, 1040 returns for every year since entry into the US\n- If returns were not filed, attorneys can explain how to obtain IRS records\n\n2. Housing Documents\n- Lease agreements, rent receipts, property deeds\n- Utility bills with name and address for each year\n- Bank statements, government mail showing address history\n\n3. School Records\n- Enrollment records, report cards, diplomas for children in the US\n- Personal academic records if applicable\n\n4. Medical Records\n- Doctor's notes, bills, insurance cards\n- Medical documents for US citizen children are often particularly relevant\n\n5. Bank Statements\n- Account statements for each year of presence in the US\n\n6. Employment Records\n- Employment contracts, employer letters, pay stubs\n- Business registration documents if self-employed\n\n7. ID and Vital Records\n- Passport, driver's license, foreign identity documents\n- Children's birth certificates\n- Marriage or divorce certificates\n\n8. Photos with Dates\n- Photos with family, at events, in different US locations with dates\n- Printed digital photos with metadata or handwritten captions\n\n9. Other Documents\n- Church or community organization membership records\n- Volunteer letters\n- Other evidence of continuous presence in the US\n\nOrganizing documents:\n- Create a folder for each year (e.g., \"2015\", \"2016\", etc.)\n- Make color copies or photographs of originals\n- Keep digital copies in a secure cloud location\n- Use this application's Evidence Builder module to organize records",
+      "tips": [
+        "Start with tax returns — they are among the easiest to retrieve through IRS.gov (Get Transcript tool)",
+        "Ask friends and family to look for shared photographs with dates",
+        "Utility companies can often provide multi-year billing history — call customer service",
+        "Do not discard documents that seem minor — an attorney will determine what is relevant"
+      ],
+      "sources": [
+        {
+          "label": "IRS Get My Tax Record (transcript copies)",
+          "url": "https://www.irs.gov/individuals/get-transcript"
+        },
+        {
+          "label": "ILRC — Immigration case resources",
+          "url": "https://www.ilrc.org/resources"
+        },
+        {
+          "label": "CLINIC — Immigration case resources",
+          "url": "https://cliniclegal.org/resources"
+        }
+      ]
+    },
+    "support_letters": {
+      "title": "Support Letters",
+      "description": "Who can write a support letter and what such letters commonly include.",
+      "guidance": "Support letters from community members, employers, and others are often an important part of the documentation that attorneys present in immigration proceedings. The following is general information about what these letters commonly contain.\n\nWho can write a letter:\n- Employers and coworkers\n- Neighbors and friends\n- Pastors, priests, imams, and other religious leaders\n- Teachers and school principals (especially from schools the children attend)\n- Community organization leaders\n- Sports team coaches\n- Physicians (if the detained person is the primary caregiver of an ill family member)\n\nWhat these letters commonly include:\n- How long the author has known the detained person (specific years)\n- In what capacity — neighbor, employer, fellow church member, etc.\n- Specific examples of character, community contribution, reliability\n- How the detention has affected the family and community\n- The author's contact information for verification\n\nFormat:\n- On official letterhead is preferable (for employers and organizations)\n- Signed and dated\n- In English, or with a notarized translation\n- No specific legal format is required — a sincere, personal letter is sufficient\n\nAn attorney typically advises how many letters are needed and from whom. Coordinate this process with the attorney if one is already involved.",
+      "tips": [
+        "Ask people from different areas of life — work, church, neighbors, school",
+        "Specific details matter more than general praise: 'Ivan worked for me for 5 years' is more useful than 'he is a good person'",
+        "Organize the collection of letters early — this process typically takes several weeks",
+        "Letters in other languages also need to be translated into English"
+      ],
+      "sources": [
+        {
+          "label": "ILRC — Sample documents",
+          "url": "https://www.ilrc.org/resources"
+        },
+        {
+          "label": "Immigrant Legal Resource Center",
+          "url": "https://www.ilrc.org"
+        }
+      ]
+    },
+    "children_care": {
+      "title": "Documents for Children",
+      "description": "What documents related to US citizen or LPR children attorneys commonly find relevant.",
+      "guidance": "US citizen children or children with lawful permanent resident status are often relevant factors in immigration cases. The following is general information about what documents families commonly gather in these situations. Only an attorney can evaluate how these documents may be significant in a specific case.\n\nChildren's birth certificates:\n- US birth certificates for all minor children\n- If children were born abroad and have citizenship or LPR status — the relevant documents\n\nSchool records:\n- Enrollment and attendance records\n- Report cards, certificates, and awards\n- Letters from teachers or the school principal\n- IEP or special needs documentation (if applicable)\n\nMedical records for children:\n- Medical records and history\n- Documentation of chronic conditions or special medical needs\n- Doctor's note regarding the detained person's role in the child's care\n\nFinancial documents:\n- Evidence that the detained person is the primary financial provider\n- Receipts for school meals, extracurricular activities, medical services\n\nCustody in case of extended absence:\n- If there is risk of a prolonged absence, families sometimes arrange a notarized power of attorney for custody\n- An attorney or local Legal Aid office can assist with this\n- Discuss temporary custody arrangements with an attorney while the case is pending\n\nPsychological impact on children:\n- Some attorneys request letters from a psychologist or school counselor about the impact of detention on a child\n- This is not a standard requirement but may be relevant in some situations",
+      "tips": [
+        "Gather documents for all children in the family, regardless of their immigration status",
+        "Medical records showing that the detained person is the child's primary caregiver are often important",
+        "If children are in school, ask their teacher to write a letter about the parent's role in the child's life",
+        "A notarized power of attorney for custody protects children while the case is pending"
+      ],
+      "sources": [
+        {
+          "label": "ILRC — Children's rights in immigration cases",
+          "url": "https://www.ilrc.org/resources"
+        },
+        {
+          "label": "Child Welfare Information Gateway",
+          "url": "https://www.childwelfare.gov"
+        },
+        {
+          "label": "ILRC — Protecting children",
+          "url": "https://www.ilrc.org/protecting-children"
+        }
+      ]
+    }
+  }
+}

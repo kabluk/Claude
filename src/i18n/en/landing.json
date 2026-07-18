@@ -1,0 +1,87 @@
+{
+  "hero": {
+    "headline": "A Navigator for Families in ICE Detention Situations",
+    "subheadline": "An organized, step-by-step tool to help families navigate the ICE detention process — available in Russian and English.",
+    "cta_primary": "Get Started Free",
+    "cta_secondary": "Learn More",
+    "disclaimer_inline": "Informational tool only. Not a law firm."
+  },
+  "modules": {
+    "heading": "Three modules to help you get organized",
+    "navigator": {
+      "title": "Crisis Navigator",
+      "description": "An 8-step checklist organized into three phases. Helps families manage immediate priorities: locating the detained person, establishing communication, and beginning document collection."
+    },
+    "evidence": {
+      "title": "Evidence Builder",
+      "description": "A secure document storage system to upload and organize records by category and year — the format attorneys commonly request.",
+      "badge": "Phase 2"
+    },
+    "monitor": {
+      "title": "Status Monitor",
+      "description": "Automated tracking of changes in the ICE detainee locator and EOIR system. Alerts when changes are detected.",
+      "badge": "Phase 3"
+    }
+  },
+  "three_rules_promo": {
+    "heading": "Three Rules — Free, Always",
+    "text": "The Three Rules page is available without registration or payment. It contains general information about what detained individuals commonly do and avoid — published by immigrant rights organizations.",
+    "cta": "View the Three Rules"
+  },
+  "pricing": {
+    "heading": "Affordable and Transparent",
+    "free": {
+      "name": "Free",
+      "price": "$0",
+      "features": [
+        "Three Rules page",
+        "1 case",
+        "Navigator (Phase 1)"
+      ],
+      "cta": "Get Started Free"
+    },
+    "paid": {
+      "name": "Full Access",
+      "price": "$12",
+      "period": "per month",
+      "features": [
+        "Unlimited cases",
+        "All three navigator phases",
+        "Document storage (10 GB)",
+        "Status monitoring",
+        "Priority support"
+      ],
+      "cta": "Start 7-day free trial"
+    }
+  },
+  "faq": {
+    "heading": "Frequently Asked Questions",
+    "items": [
+      {
+        "question": "Is this legal advice?",
+        "answer": "No. Detention Navigator is an informational tool only. It helps organize information and documents, but is not a substitute for a licensed immigration attorney. If you need legal help, please contact an attorney."
+      },
+      {
+        "question": "Is my data safe?",
+        "answer": "Yes. All data is stored in encrypted form. The A-Number is encrypted using AES-256-GCM before being written to the database. Only you have access to your data. We do not share or sell data to third parties."
+      },
+      {
+        "question": "Does this work for facilities outside California?",
+        "answer": "Yes. While some facility database information is California-focused (primarily Adelanto), the tool works for any ICE facility. The checklist structure and document logic are universal."
+      },
+      {
+        "question": "How do I find an attorney?",
+        "answer": "The Navigator includes a step on finding an attorney with information on how to verify a license and avoid fraud. For free legal help: ilrc.org or ailalawyer.com."
+      }
+    ]
+  },
+  "footer": {
+    "tagline": "Informational tool only. Not a law firm, not a substitute for an attorney.",
+    "links": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "three_rules": "Three Rules",
+      "contact": "Contact"
+    }
+  }
+}
