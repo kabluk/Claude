@@ -1,0 +1,31 @@
+{
+  "page_title": "Case Timeline",
+  "disclaimer": "This timeline is a personal record-keeping tool. It does not constitute legal documentation. Families commonly maintain organized records to assist their attorney.",
+  "add_entry": "Add Entry",
+  "no_entries": "No timeline entries yet. Families commonly record key dates as they occur.",
+  "export": "Export Timeline",
+  "filter_category": "Filter by category",
+  "all_categories": "All categories",
+  "categories": {
+    "arrest": "Arrest / Detention",
+    "court": "Court Hearing",
+    "bond": "Bond",
+    "document": "Document",
+    "attorney": "Attorney Contact",
+    "facility": "Facility Event",
+    "family": "Family",
+    "government": "Government Notice",
+    "other": "Other"
+  },
+  "form": {
+    "occurred_at": "Date and time",
+    "category": "Category",
+    "title": "Title",
+    "notes": "Notes",
+    "attachment": "Attachment"
+  },
+  "source": {
+    "manual": "Manual entry",
+    "import": "Imported"
+  }
+}

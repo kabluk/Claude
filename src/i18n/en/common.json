@@ -9,7 +9,11 @@
     "three_rules": "Three Rules",
     "settings": "Settings",
     "sign_in": "Sign In",
-    "sign_out": "Sign Out"
+    "sign_out": "Sign Out",
+    "attorney_manager": "Attorney Manager",
+    "care_plan": "Care Plan",
+    "release_readiness": "Release Readiness",
+    "timeline": "Case Timeline"
   },
   "auth": {
     "email": "Email",

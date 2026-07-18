@@ -1,0 +1,71 @@
+{
+  "page_title": "Care Plan",
+  "disclaimer": "This tool helps families organize care arrangements for children. It does not provide legal advice about custody or guardianship. Families with questions about legal arrangements commonly consult a family law attorney.",
+  "sections": {
+    "caregiver": "Current Caregiver",
+    "backups": "Backup Caregivers",
+    "school": "School Information",
+    "documents": "Child Documents",
+    "support_letters": "Support Letters"
+  },
+  "caregiver": {
+    "name": "Caregiver name",
+    "phone": "Caregiver phone",
+    "relationship": "Relationship to child"
+  },
+  "backups": {
+    "add": "Add Backup Caregiver",
+    "name": "Name",
+    "phone": "Phone",
+    "relationship": "Relationship",
+    "priority": "Priority",
+    "no_backups": "No backup caregivers added."
+  },
+  "school": {
+    "name": "School name",
+    "phone": "School phone"
+  },
+  "documents": {
+    "add": "Add Document",
+    "doc_type": "Document type",
+    "filename": "File name",
+    "note": "Note",
+    "no_docs": "No child documents uploaded.",
+    "types": {
+      "birth_certificate": "Birth certificate",
+      "passport": "Passport",
+      "school_records": "School records",
+      "medical": "Medical records",
+      "citizenship": "Citizenship documents",
+      "other": "Other"
+    }
+  },
+  "checklist": {
+    "title": "Care Planning Checklist",
+    "subtitle": "Families commonly find the following helpful to organize.",
+    "items": [
+      "Current caregiver information recorded and up to date",
+      "At least two backup caregivers identified",
+      "School notified of situation (per family's discretion)",
+      "Child's passport and birth certificate located",
+      "Medical records and insurance information gathered",
+      "Emergency contacts updated",
+      "Caregiver has written authorization to make decisions on child's behalf (families commonly consult an attorney about authorization documents)"
+    ]
+  },
+  "support_letters": {
+    "add": "Add Support Letter",
+    "writer_name": "Writer name",
+    "relationship": "Relationship",
+    "status": {
+      "asked": "Asked",
+      "received": "Received",
+      "translated": "Translated",
+      "submitted": "Submitted"
+    },
+    "language": "Language",
+    "needs_translation": "Needs translation",
+    "no_letters": "No support letters added.",
+    "info": "Support letters are personal statements commonly gathered by families. The relevance of any letter to a specific legal proceeding is a matter for the family's attorney to assess."
+  }
+}

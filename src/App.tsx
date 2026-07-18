@@ -9,6 +9,9 @@ import Dashboard from './pages/Dashboard'
 import Navigator from './pages/Navigator'
 import ThreeRules from './pages/ThreeRules'
 import Settings from './pages/Settings'
+import AttorneyManager from './pages/AttorneyManager'
+import CasePlan from './pages/CasePlan'
+import Timeline from './pages/Timeline'
 
 function LoadingFallback() {
   return (
@@ -73,6 +76,30 @@ export default function App() {
                 <div className="p-8 text-center">
                   <h1 className="text-2xl font-semibold">Status Monitor — Coming in Phase 3</h1>
                 </div>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/attorney/:caseId"
+            element={
+              <ProtectedRoute>
+                <AttorneyManager />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/plan/:caseId"
+            element={
+              <ProtectedRoute>
+                <CasePlan />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/timeline/:caseId"
+            element={
+              <ProtectedRoute>
+                <Timeline />
               </ProtectedRoute>
             }
           />

@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Unauthorized Practice of Law compliance rules. These phrase patterns must never appear in i18n content files. They constitute legal advice rather than legal information.",
   "banned_patterns": [
     {
@@ -37,6 +37,110 @@
     {
       "pattern": "submit this application",
       "reason": "Directing specific legal action"
+    },
+    {
+      "pattern": "fair price",
+      "reason": "Fee evaluation constitutes legal/financial advice"
+    },
+    {
+      "pattern": "too expensive",
+      "reason": "Fee evaluation constitutes legal/financial advice"
+    },
+    {
+      "pattern": "overcharging",
+      "reason": "Fee evaluation constitutes legal/financial advice"
+    },
+    {
+      "pattern": "good deal",
+      "reason": "Fee evaluation constitutes legal/financial advice"
+    },
+    {
+      "pattern": "better value",
+      "reason": "Fee evaluation constitutes legal/financial advice"
+    },
+    {
+      "pattern": "fair fee",
+      "reason": "Fee evaluation constitutes legal/financial advice"
+    },
+    {
+      "pattern": "справедливая цена",
+      "reason": "Fee evaluation constitutes legal/financial advice (Russian)"
+    },
+    {
+      "pattern": "переплата",
+      "reason": "Fee evaluation constitutes legal/financial advice (Russian)"
+    },
+    {
+      "pattern": "best attorney",
+      "reason": "Attorney evaluation/recommendation constitutes legal advice"
+    },
+    {
+      "pattern": "recommended attorney",
+      "reason": "Attorney recommendation constitutes legal advice"
+    },
+    {
+      "pattern": "avoid this attorney",
+      "reason": "Attorney evaluation constitutes legal advice"
+    },
+    {
+      "pattern": "лучший адвокат",
+      "reason": "Attorney evaluation/recommendation constitutes legal advice (Russian)"
+    },
+    {
+      "pattern": "рекомендуем адвоката",
+      "reason": "Attorney recommendation constitutes legal advice (Russian)"
+    },
+    {
+      "pattern": "this clause means",
+      "reason": "Contract interpretation constitutes legal advice"
+    },
+    {
+      "pattern": "this term is standard",
+      "reason": "Contract interpretation constitutes legal advice"
+    },
+    {
+      "pattern": "this term is unusual",
+      "reason": "Contract interpretation constitutes legal advice"
+    },
+    {
+      "pattern": "you are protected",
+      "reason": "Legal protection determination constitutes legal advice"
+    },
+    {
+      "pattern": "этот пункт означает",
+      "reason": "Contract interpretation constitutes legal advice (Russian)"
+    },
+    {
+      "pattern": "вы защищены",
+      "reason": "Legal protection determination constitutes legal advice (Russian)"
+    },
+    {
+      "pattern": "has a strong case",
+      "reason": "Case strength assessment constitutes legal advice"
+    },
+    {
+      "pattern": "сильное дело",
+      "reason": "Case strength assessment constitutes legal advice (Russian)"
+    },
+    {
+      "pattern": "имеет право на",
+      "reason": "Eligibility determination constitutes legal advice (Russian)"
+    },
+    {
+      "pattern": "file for guardianship",
+      "reason": "Directing specific family law action constitutes legal advice"
+    },
+    {
+      "pattern": "custody means",
+      "reason": "Legal term interpretation constitutes legal advice"
+    },
+    {
+      "pattern": "оформите опекунство",
+      "reason": "Directing specific family law action constitutes legal advice (Russian)"
+    },
+    {
+      "pattern": "по опеке вам нужно",
+      "reason": "Directing specific family law action constitutes legal advice (Russian)"
     }
   ],
   "safe_alternatives": [

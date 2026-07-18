@@ -1,0 +1,178 @@
+{
+  "page_title": "Attorney Manager",
+  "disclaimer": "This tool helps organize information about attorneys families are considering. It does not evaluate, rank, or recommend any attorney. For legal advice, consult a licensed immigration attorney.",
+  "jurisdiction_note": "Bar license verification is available through each state's bar association website. Families commonly check the relevant state bar's public directory before engaging an attorney.",
+  "add_attorney": "Add Attorney",
+  "no_attorneys": "No attorneys added yet. Families commonly track attorneys they are considering in one place.",
+  "attorney_status": {
+    "considering": "Considering",
+    "engaged": "Engaged",
+    "declined": "Declined",
+    "former": "Former"
+  },
+  "tabs": {
+    "verification": "Verification",
+    "questions": "Questions",
+    "fee_phases": "Fee Phases",
+    "payments": "Payments",
+    "contact_log": "Contact Log",
+    "agreement": "Agreement"
+  },
+  "form": {
+    "full_name": "Attorney full name",
+    "firm_name": "Firm name",
+    "phone": "Phone",
+    "email": "Email",
+    "office_address": "Office address",
+    "bar_state": "Bar state",
+    "bar_number": "Bar number",
+    "admission_year": "Year admitted to bar",
+    "license_status": "License status",
+    "discipline_checked": "Discipline history reviewed",
+    "discipline_notes": "Discipline notes",
+    "aila_member": "AILA member",
+    "status": "Status"
+  },
+  "verification": {
+    "title": "Verification Checklist",
+    "subtitle": "Families commonly verify the following before engaging an attorney.",
+    "items": [
+      "Bar license confirmed active with state bar association",
+      "No active disciplinary proceedings found",
+      "Confirmed practice includes immigration / removal defense",
+      "Office location and contact details verified",
+      "AILA membership status noted (optional)",
+      "Written fee agreement received before payment"
+    ]
+  },
+  "questions": {
+    "title": "Questions Families May Choose to Ask",
+    "subtitle": "The following are questions families commonly find relevant when meeting with an attorney. Recording answers here helps with comparison.",
+    "groups": {
+      "experience": {
+        "label": "Experience",
+        "items": [
+          "How many removal defense cases have you handled in the past two years?",
+          "Are you familiar with the immigration court that has jurisdiction in this matter?",
+          "Have you handled cases involving this country of origin?",
+          "Do you speak the relevant language, or do you work with a certified interpreter?"
+        ]
+      },
+      "scope": {
+        "label": "Scope of Representation",
+        "items": [
+          "What does the engagement cover — bond hearing, individual hearing, or both?",
+          "What is not included in the quoted scope?",
+          "Who at the firm will handle day-to-day work on this matter?",
+          "How will the family be notified of court dates and deadlines?"
+        ]
+      },
+      "fees": {
+        "label": "Fees and Billing",
+        "items": [
+          "What is the total estimated fee for the full scope of representation?",
+          "Is the fee flat-rate or hourly, and what triggers additional billing?",
+          "What is the payment schedule?",
+          "Under what conditions, if any, would the fee be refunded in whole or in part?"
+        ]
+      },
+      "communication": {
+        "label": "Communication",
+        "items": [
+          "How often does the attorney typically communicate updates to families?",
+          "What is the preferred channel for reaching the attorney or staff?",
+          "What is the typical response time for messages?",
+          "Who should the detained person contact directly if they have urgent questions?"
+        ]
+      },
+      "documents": {
+        "label": "Documents and Records",
+        "items": [
+          "What documents will the attorney need from the family?",
+          "How will documents be shared securely?",
+          "Who retains the case file if representation ends?",
+          "How long are records kept after the matter closes?"
+        ]
+      }
+    }
+  },
+  "agreement": {
+    "title": "Written Agreement Checklist",
+    "subtitle": "Families commonly review written retainer agreements for the following items before signing.",
+    "items": [
+      "Attorney's full legal name and bar number are included",
+      "Scope of representation is clearly defined",
+      "Fee amount is stated in writing",
+      "Payment schedule and method are specified",
+      "Refund or termination policy is included",
+      "Confidentiality obligations are stated",
+      "Who handles the matter day-to-day is identified",
+      "Court jurisdiction and venue are specified",
+      "How the attorney will communicate with the family",
+      "What happens if the attorney leaves the firm",
+      "Client's right to a copy of the signed agreement is stated",
+      "Signatures of both parties are present"
+    ]
+  },
+  "fee_phases": {
+    "title": "Fee Phases",
+    "subtitle": "Families commonly ask attorneys to itemize fees by phase of the case. Entering phases here helps track what has been quoted and paid.",
+    "add_phase": "Add Phase",
+    "label": "Phase label",
+    "amount": "Amount",
+    "currency": "Currency",
+    "hours": "Hour allocation",
+    "includes": "Includes",
+    "excludes": "Excludes",
+    "status": {
+      "quoted": "Quoted",
+      "invoiced": "Invoiced",
+      "paid": "Paid"
+    }
+  },
+  "fee_comparison": {
+    "title": "Fee Comparison",
+    "subtitle": "Side-by-side view of quoted fees across attorneys being considered. Figures shown are as recorded — no evaluation is made.",
+    "attorney": "Attorney",
+    "phase": "Phase",
+    "amount": "Quoted Amount",
+    "hours": "Hours",
+    "no_data": "Add fee phases for two or more attorneys to compare."
+  },
+  "budget_planner": {
+    "title": "Budget Tracker",
+    "subtitle": "Track total quoted fees, payments made, and remaining balance.",
+    "total_quoted": "Total quoted",
+    "total_paid": "Total paid",
+    "balance": "Remaining balance",
+    "billing_note": "Attorneys typically describe billing structures in their written agreements. Families commonly review these agreements carefully and keep copies of all receipts."
+  },
+  "payments": {
+    "title": "Payment Log",
+    "add_payment": "Log Payment",
+    "amount": "Amount",
+    "paid_at": "Date paid",
+    "method": "Payment method",
+    "memo": "Memo",
+    "receipt": "Receipt",
+    "no_payments": "No payments logged yet."
+  },
+  "contact_log": {
+    "title": "Contact Log",
+    "subtitle": "Families commonly keep a record of all communications with their attorney.",
+    "add_entry": "Log Contact",
+    "channel": "Channel",
+    "occurred_at": "Date and time",
+    "minutes": "Duration (minutes)",
+    "summary": "Summary",
+    "counts": "Counts against hour allocation",
+    "no_entries": "No contact entries yet.",
+    "channels": {
+      "call": "Phone call",
+      "email": "Email",
+      "in_person": "In person",
+      "video": "Video call",
+      "other": "Other"
+    }
+  }
+}

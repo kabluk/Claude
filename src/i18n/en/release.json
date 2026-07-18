@@ -1,0 +1,45 @@
+{
+  "page_title": "Release Readiness",
+  "disclaimer": "This tool helps families organize information related to release planning. It does not predict or determine whether release will occur. Families commonly work with their attorney on release strategy.",
+  "sections": {
+    "bond": "Bond Information",
+    "release_address": "Release Address",
+    "sponsor": "Sponsor Information",
+    "support_letters": "Support Letters"
+  },
+  "bond": {
+    "amount": "Bond amount",
+    "status": {
+      "planned": "Planned",
+      "set": "Set by court",
+      "paid": "Paid",
+      "denied": "Denied",
+      "not_applicable": "Not applicable"
+    },
+    "receipt": "Bond receipt",
+    "info": "Bond amounts and eligibility are determined by an immigration judge. General information about immigration bond procedures is available through organizations such as the American Immigration Council."
+  },
+  "release_address": {
+    "label": "Intended release address",
+    "lease_doc": "Lease or address documentation",
+    "info": "Families commonly prepare documentation of a stable release address. The relevance of address documentation to a specific case is a matter for the family's attorney to assess."
+  },
+  "sponsor": {
+    "payer_name": "Intended bond payer name",
+    "payer_docs_ready": "Sponsor documents ready",
+    "info": "Families commonly gather identification and financial documents for the intended bond payer. Specific requirements vary and are commonly described by the attorney handling the matter."
+  },
+  "notes": "Additional notes",
+  "checklist": {
+    "title": "Release Readiness Checklist",
+    "subtitle": "Families commonly prepare the following in advance.",
+    "items": [
+      "Bond amount confirmed with attorney or court",
+      "Bond payer identified and documents gathered",
+      "Release address confirmed and documented",
+      "Transportation from facility arranged",
+      "Attorney notified of release plans",
+      "Support letters gathered and organized"
+    ]
+  }
+}

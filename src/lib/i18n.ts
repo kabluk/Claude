@@ -9,6 +9,14 @@ import ruNavigator from '../i18n/ru/navigator.json'
 import enNavigator from '../i18n/en/navigator.json'
 import ruLanding from '../i18n/ru/landing.json'
 import enLanding from '../i18n/en/landing.json'
+import ruAttorney from '../i18n/ru/attorney.json'
+import enAttorney from '../i18n/en/attorney.json'
+import ruTimeline from '../i18n/ru/timeline.json'
+import enTimeline from '../i18n/en/timeline.json'
+import ruCare from '../i18n/ru/care.json'
+import enCare from '../i18n/en/care.json'
+import ruRelease from '../i18n/ru/release.json'
+import enRelease from '../i18n/en/release.json'
 
 i18n
   .use(LanguageDetector)
@@ -19,16 +27,24 @@ i18n
         common: ruCommon,
         navigator: ruNavigator,
         landing: ruLanding,
+        attorney: ruAttorney,
+        timeline: ruTimeline,
+        care: ruCare,
+        release: ruRelease,
       },
       en: {
         common: enCommon,
         navigator: enNavigator,
         landing: enLanding,
+        attorney: enAttorney,
+        timeline: enTimeline,
+        care: enCare,
+        release: enRelease,
       },
     },
     fallbackLng: 'ru',
     defaultNS: 'common',
-    ns: ['common', 'navigator', 'landing'],
+    ns: ['common', 'navigator', 'landing', 'attorney', 'timeline', 'care', 'release'],
     interpolation: {
       escapeValue: false, // React already escapes
     },

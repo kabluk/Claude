@@ -9,7 +9,11 @@
     "three_rules": "Три правила",
     "settings": "Настройки",
     "sign_in": "Войти",
-    "sign_out": "Выйти"
+    "sign_out": "Выйти",
+    "attorney_manager": "Менеджер адвоката",
+    "care_plan": "План опеки",
+    "release_readiness": "Готовность к выходу",
+    "timeline": "Хронология дела"
   },
   "auth": {
     "email": "Email",
