@@ -5,8 +5,11 @@
         "hooks": [
           {
             "type": "command",
-            "command": "echo '{\"systemMessage\": \"ПРОВЕРКА: Перед тем как показывать скриншоты или сообщать что UI работает — запусти verify скил или проверь через Playwright что страница не белая и нет ошибок в консоли.\"}'",
-            "asyncRewake": true
+            "command": "cd /home/user/Claude && bash scripts/verify-output.sh",
+            "timeout": 60,
+            "asyncRewake": true,
+            "rewakeSummary": "UI verification failed",
+            "statusMessage": "Проверяю что всё рендерится..."
           }
         ]
       }
