@@ -1,0 +1,51 @@
+{
+  "version": "1.0.0",
+  "description": "Unauthorized Practice of Law compliance rules. These phrase patterns must never appear in i18n content files. They constitute legal advice rather than legal information.",
+  "banned_patterns": [
+    {
+      "pattern": "you should file",
+      "reason": "Directive legal advice — tells user what legal action to take"
+    },
+    {
+      "pattern": "in your case",
+      "reason": "Applies general information to the user's specific legal situation"
+    },
+    {
+      "pattern": "you qualify for",
+      "reason": "Legal eligibility determination — requires attorney assessment"
+    },
+    {
+      "pattern": "we recommend applying for",
+      "reason": "Recommending a specific legal application is legal advice"
+    },
+    {
+      "pattern": "your case is",
+      "reason": "Characterizing the user's legal case is legal advice"
+    },
+    {
+      "pattern": "you are eligible",
+      "reason": "Eligibility determination requires attorney assessment"
+    },
+    {
+      "pattern": "we recommend you",
+      "reason": "Personal recommendation constitutes advice"
+    },
+    {
+      "pattern": "file this form",
+      "reason": "Directing specific legal action"
+    },
+    {
+      "pattern": "submit this application",
+      "reason": "Directing specific legal action"
+    }
+  ],
+  "safe_alternatives": [
+    "families in this situation commonly...",
+    "attorneys typically evaluate...",
+    "this checklist helps you organize...",
+    "many families find it helpful to...",
+    "one document attorneys often request is...",
+    "commonly relevant to this process...",
+    "general information about..."
+  ]
+}
