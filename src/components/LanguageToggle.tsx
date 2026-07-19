@@ -13,7 +13,6 @@ export default function LanguageToggle() {
   async function switchLanguage(lang: 'ru' | 'en') {
     await i18n.changeLanguage(lang)
 
-    // Persist preference for authenticated users
     const {
       data: { user },
     } = await supabase.auth.getUser()
@@ -27,25 +26,28 @@ export default function LanguageToggle() {
   }
 
   return (
-    <div className="flex items-center gap-1 text-sm font-medium" role="group" aria-label="Language selector">
+    <div
+      className="inline-flex items-center rounded-full border border-[var(--color-border)] bg-[var(--color-muted)] p-0.5"
+      role="group"
+      aria-label="Language selector"
+    >
       <button
         onClick={() => switchLanguage('ru')}
-        className={`px-2 py-1 rounded transition-colors ${
+        className={`min-w-[44px] min-h-[44px] px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-150 cursor-pointer ${
           currentLang === 'ru'
-            ? 'bg-brand-600 text-white'
-            : 'text-gray-600 hover:text-gray-900'
+            ? 'bg-brand-600 text-white shadow-sm'
+            : 'text-[var(--color-foreground)] hover:text-brand-600'
         }`}
         aria-pressed={currentLang === 'ru'}
       >
         RU
       </button>
-      <span className="text-gray-300" aria-hidden>|</span>
       <button
         onClick={() => switchLanguage('en')}
-        className={`px-2 py-1 rounded transition-colors ${
+        className={`min-w-[44px] min-h-[44px] px-3 py-1.5 rounded-full text-sm font-medium transition-colors duration-150 cursor-pointer ${
           currentLang === 'en'
-            ? 'bg-brand-600 text-white'
-            : 'text-gray-600 hover:text-gray-900'
+            ? 'bg-brand-600 text-white shadow-sm'
+            : 'text-[var(--color-foreground)] hover:text-brand-600'
         }`}
         aria-pressed={currentLang === 'en'}
       >

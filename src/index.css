@@ -2,15 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --color-primary: #2563EB;
+  --color-secondary: #059669;
+  --color-accent: #D97706;
+  --color-background: #F8FAFC;
+  --color-foreground: #0F172A;
+  --color-muted: #F1F5FD;
+  --color-border: #E4ECFC;
+  --color-destructive: #DC2626;
+  --font-heading: 'EB Garamond', Georgia, serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
 @layer base {
   html {
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
   body {
-    @apply bg-white text-gray-900;
+    font-family: var(--font-body);
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-heading);
   }
 
   /* Improve Cyrillic rendering */
