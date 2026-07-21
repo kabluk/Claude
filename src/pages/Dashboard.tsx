@@ -105,6 +105,24 @@ export default function Dashboard() {
           </section>
         )}
 
+        {/* Legal Tools */}
+        <section className="mb-6">
+          <h2 className="text-base font-semibold text-gray-700 mb-3">{t('dashboard.legal_tools', 'Legal Tools')}</h2>
+          <Link
+            to="/cancellation-screener"
+            className="flex items-center gap-4 bg-white border border-gray-100 rounded-2xl p-4 shadow-sm hover:border-brand-200 hover:shadow-md transition-all"
+          >
+            <div className="w-10 h-10 rounded-xl bg-brand-100 flex items-center justify-center text-brand-700 flex-shrink-0">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-semibold text-gray-900">10-Year Cancellation Screener</p>
+              <p className="text-xs text-gray-500 mt-0.5">INA § 240A(b) — Check eligibility criteria</p>
+            </div>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#9ca3af" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </Link>
+        </section>
+
         {/* Cases */}
         <section>
           <div className="flex items-center justify-between mb-4">

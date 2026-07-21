@@ -17,6 +17,9 @@ import ruCare from '../i18n/ru/care.json'
 import enCare from '../i18n/en/care.json'
 import ruRelease from '../i18n/ru/release.json'
 import enRelease from '../i18n/en/release.json'
+import ruCancellation from '../i18n/ru/cancellation.json'
+import enCancellation from '../i18n/en/cancellation.json'
+import esCancellation from '../i18n/es/cancellation.json'
 
 i18n
   .use(LanguageDetector)
@@ -31,6 +34,7 @@ i18n
         timeline: ruTimeline,
         care: ruCare,
         release: ruRelease,
+        cancellation: ruCancellation,
       },
       en: {
         common: enCommon,
@@ -40,11 +44,16 @@ i18n
         timeline: enTimeline,
         care: enCare,
         release: enRelease,
+        cancellation: enCancellation,
+      },
+      es: {
+        common: enCommon,
+        cancellation: esCancellation,
       },
     },
     fallbackLng: 'ru',
     defaultNS: 'common',
-    ns: ['common', 'navigator', 'landing', 'attorney', 'timeline', 'care', 'release'],
+    ns: ['common', 'navigator', 'landing', 'attorney', 'timeline', 'care', 'release', 'cancellation'],
     interpolation: {
       escapeValue: false, // React already escapes
     },

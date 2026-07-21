@@ -1,0 +1,89 @@
+{
+  "title": "Evaluación de Protección de 10 Años",
+  "subtitle": "Esta evaluación verifica si una persona detenida puede tener fundamentos para la Cancelación de Remoción — una forma de protección que puede detener la deportación. Esta es información general, no asesoramiento legal.",
+  "disclaimer": "Esta evaluación proporciona información general basada en criterios legales de dominio público. No es asesoramiento legal y no determina la elegibilidad. Solo un abogado de inmigración con licencia puede evaluar un caso específico. Los resultados de esta evaluación deben compartirse con un abogado lo antes posible.",
+  "start": "Iniciar Evaluación",
+  "question_of": "Pregunta {{current}} de {{total}}",
+  "next": "Siguiente",
+  "back": "Atrás",
+  "see_result": "Ver Resultado",
+  "questions": {
+    "years": {
+      "text": "¿Cuánto tiempo lleva {{name}} viviendo de manera continua en los Estados Unidos?",
+      "hint": "Cuente desde la fecha en que llegó y se quedó. Los viajes cortos fuera de EE.UU. (menos de 90 días) generalmente no interrumpen la presencia continua.",
+      "options": {
+        "under_7": "Menos de 7 años",
+        "7_to_10": "De 7 a 9 años",
+        "10_plus": "10 años o más"
+      }
+    },
+    "qualifying_relative": {
+      "text": "¿Tiene {{name}} un cónyuge, padre/madre o hijo/a que sea ciudadano(a) estadounidense o residente permanente legal?",
+      "hint": "Esto se llama 'familiar calificado.' Su bienestar es central en los casos de Cancelación de Remoción. Un hijo/a ciudadano(a) estadounidense suele ser el familiar calificado más importante.",
+      "options": {
+        "yes_usc_child": "Sí — un hijo/a ciudadano(a) estadounidense",
+        "yes_other": "Sí — un cónyuge o padre/madre ciudadano(a) estadounidense o residente permanente",
+        "no": "No"
+      }
+    },
+    "criminal": {
+      "text": "¿Ha sido {{name}} condenado(a) alguna vez por un delito, o hay cargos penales pendientes?",
+      "hint": "Algunas condenas penales — especialmente delitos graves agravados, delitos de torpeza moral o delitos relacionados con drogas — pueden afectar la elegibilidad. Comparta los detalles específicos con un abogado.",
+      "options": {
+        "none": "Sin condenas, sin cargos pendientes",
+        "minor": "Condena menor (tráfico, falta menor)",
+        "serious": "Delito grave u otra condena seria"
+      }
+    },
+    "prior_order": {
+      "text": "¿Ha recibido {{name}} alguna vez una orden formal de remoción o deportación de un tribunal de inmigración de EE.UU.?",
+      "hint": "Una orden de remoción anterior puede afectar la elegibilidad para ciertas formas de protección. Un abogado puede determinar si aplican excepciones.",
+      "options": {
+        "no": "No",
+        "yes": "Sí",
+        "unsure": "No estoy seguro/a"
+      }
+    },
+    "absences": {
+      "text": "En los últimos 10 años, ¿ha pasado {{name}} más de 90 días consecutivos fuera de EE.UU. en un solo viaje, o más de 180 días en total en varios viajes?",
+      "hint": "Las ausencias prolongadas pueden interrumpir la 'presencia física continua', que es necesaria para la cancelación de 10 años. Un abogado puede evaluar el historial específico de viajes.",
+      "options": {
+        "no": "No, todos los viajes fueron cortos",
+        "yes": "Sí, uno o más viajes largos",
+        "unsure": "No estoy seguro/a"
+      }
+    }
+  },
+  "results": {
+    "strong": {
+      "label": "Fundamentos para Discutir con un Abogado",
+      "color": "green",
+      "headline": "Según esta evaluación, {{name}} puede tener fundamentos para que un abogado evalúe la Cancelación de Remoción.",
+      "body": "Las respuestas indican que {{name}} puede cumplir los criterios generales de umbral para la Cancelación de Remoción de 10 Años — una protección legal que puede detener la deportación. Esto no es una determinación de elegibilidad. Solo un abogado de inmigración con licencia puede evaluar el caso completamente.\n\nQué hacer ahora: Dígale al abogado sobre la Cancelación de Remoción en la primera conversación. Comparta este resultado de evaluación. Cada detalle en el historial del caso importa.",
+      "attorney_note": "Mencionar al abogado: posible Cancelación de Remoción de 10 Años (INA § 240A(b)). Presencia continua: {{years}}. Familiar calificado: {{relative}}.",
+      "urgency": "Comparta este resultado con un abogado lo antes posible — idealmente antes de la primera audiencia."
+    },
+    "possible": {
+      "label": "Se Recomienda Evaluación por Abogado",
+      "color": "amber",
+      "headline": "Algunos factores en este caso pueden ser relevantes para una reclamación de Cancelación de Remoción.",
+      "body": "Las respuestas sugieren que algunos factores que apoyan la Cancelación de Remoción pueden estar presentes, pero también hay factores que un abogado necesita evaluar cuidadosamente — como antecedentes penales, órdenes de remoción anteriores o ausencias prolongadas.\n\nEsto no significa que la reclamación fracasará. Muchos casos con factores complicados han tenido éxito. Solo un abogado puede evaluar cómo estos factores interactúan en un caso específico.",
+      "attorney_note": "Mencionar al abogado: posible Cancelación de Remoción de 10 Años. Factores a revisar: {{factors}}.",
+      "urgency": "Solicite una consulta detallada con un abogado de inmigración lo antes posible."
+    },
+    "unlikely": {
+      "label": "Consulta con Abogado Aún Recomendada",
+      "color": "blue",
+      "headline": "Según las respuestas, la Cancelación de Remoción de 10 Años puede no aplicar — pero un abogado debe revisar el caso completo.",
+      "body": "Las respuestas de la evaluación sugieren que ciertos criterios de umbral para la Cancelación de Remoción de 10 Años pueden no cumplirse (como presencia continua o familiares calificados). Sin embargo, pueden existir otras formas de protección migratoria.\n\nNo saque conclusiones solo de esta evaluación. Un abogado de inmigración puede identificar otras opciones disponibles.",
+      "attorney_note": "La Cancelación de Remoción de 10 Años puede no aplicar según la evaluación. El abogado debe evaluar opciones alternativas de protección.",
+      "urgency": "Aún se recomienda una consulta con un abogado para identificar todas las opciones disponibles."
+    }
+  },
+  "add_to_case": "Agregar Este Resultado al Expediente",
+  "added_to_case": "Agregado al Expediente",
+  "print_for_attorney": "Imprimir para el Abogado",
+  "start_over": "Comenzar de Nuevo",
+  "legal_source": "Fuente: Ley de Inmigración y Nacionalidad § 240A(b). Ley de inmigración de EE.UU. Dominio público.",
+  "not_legal_advice": "Esta es información general, no asesoramiento legal."
+}

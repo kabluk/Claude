@@ -1,0 +1,89 @@
+{
+  "title": "10-Year Protection Screener",
+  "subtitle": "This screener checks whether a detained person may have grounds for Cancellation of Removal — a form of protection that can stop deportation. This is general information only, not legal advice.",
+  "disclaimer": "This screener provides general information based on publicly available legal criteria. It is not legal advice and does not determine eligibility. Only a licensed immigration attorney can evaluate a specific case. Results from this screener should be shared with an attorney as soon as possible.",
+  "start": "Start Screener",
+  "question_of": "Question {{current}} of {{total}}",
+  "next": "Next",
+  "back": "Back",
+  "see_result": "See Result",
+  "questions": {
+    "years": {
+      "text": "How long has {{name}} been living continuously in the United States?",
+      "hint": "Count from the date they first arrived and stayed. Short trips outside the US (under 90 days) generally do not break continuous presence.",
+      "options": {
+        "under_7": "Less than 7 years",
+        "7_to_10": "7 to 9 years",
+        "10_plus": "10 years or more"
+      }
+    },
+    "qualifying_relative": {
+      "text": "Does {{name}} have a spouse, parent, or child who is a US citizen or lawful permanent resident?",
+      "hint": "This is called a 'qualifying relative.' Their wellbeing is central to Cancellation of Removal claims. A US citizen child is often the strongest qualifying relative.",
+      "options": {
+        "yes_usc_child": "Yes — a US citizen child",
+        "yes_other": "Yes — a US citizen or permanent resident spouse or parent",
+        "no": "No"
+      }
+    },
+    "criminal": {
+      "text": "Has {{name}} ever been convicted of a crime, or is there a pending criminal charge?",
+      "hint": "Some criminal convictions — especially aggravated felonies, crimes involving moral turpitude, or drug offenses — may affect eligibility. Share the specific details with an attorney.",
+      "options": {
+        "none": "No convictions, no pending charges",
+        "minor": "Minor conviction (traffic, minor misdemeanor)",
+        "serious": "Felony or other serious conviction"
+      }
+    },
+    "prior_order": {
+      "text": "Has {{name}} ever received a formal order of removal or deportation from a US immigration court?",
+      "hint": "A prior removal order can affect eligibility for certain forms of relief. An attorney can determine whether there are exceptions that apply.",
+      "options": {
+        "no": "No",
+        "yes": "Yes",
+        "unsure": "Not sure"
+      }
+    },
+    "absences": {
+      "text": "In the past 10 years, has {{name}} spent more than 90 consecutive days outside the US in a single trip, or more than 180 days total across multiple trips?",
+      "hint": "Long absences can break 'continuous physical presence,' which is required for the 10-year cancellation. An attorney can evaluate the specific travel history.",
+      "options": {
+        "no": "No, all trips were short",
+        "yes": "Yes, one or more longer trips",
+        "unsure": "Not sure"
+      }
+    }
+  },
+  "results": {
+    "strong": {
+      "label": "Grounds to Discuss with an Attorney",
+      "color": "green",
+      "headline": "Based on this screener, {{name}} may have grounds for an attorney to evaluate Cancellation of Removal.",
+      "body": "The responses indicate that {{name}} may meet the general threshold criteria for 10-Year Cancellation of Removal — a legal protection that can stop deportation. This is not a determination of eligibility. Only a licensed immigration attorney can evaluate the case fully.\n\nWhat to do now: Tell the attorney about Cancellation of Removal in the first conversation. Share this screener result. Every detail in the case history matters.",
+      "attorney_note": "Mention to attorney: possible 10-Year Cancellation of Removal (INA § 240A(b)). Continuous presence: {{years}}. Qualifying relative: {{relative}}.",
+      "urgency": "Share this result with an attorney as soon as possible — ideally before the first hearing."
+    },
+    "possible": {
+      "label": "Attorney Evaluation Recommended",
+      "color": "amber",
+      "headline": "Some factors in this case may be relevant to a Cancellation of Removal claim.",
+      "body": "The responses suggest that some factors supporting Cancellation of Removal may be present, but there are also factors that an attorney needs to evaluate carefully — such as criminal history, prior removal orders, or travel absences.\n\nThis does not mean the claim will fail. Many cases with complicating factors have succeeded. Only an attorney can assess how these factors interact in a specific case.",
+      "attorney_note": "Mention to attorney: possible 10-Year Cancellation of Removal. Factors to review: {{factors}}.",
+      "urgency": "Request a detailed consultation with an immigration attorney as soon as possible."
+    },
+    "unlikely": {
+      "label": "Attorney Consultation Still Recommended",
+      "color": "blue",
+      "headline": "Based on the responses, 10-Year Cancellation of Removal may not apply — but an attorney should still review the full case.",
+      "body": "The screening responses suggest that certain threshold criteria for 10-Year Cancellation of Removal may not be met (such as continuous presence or qualifying relatives). However, there may be other forms of immigration relief that apply.\n\nDo not draw conclusions from this screener alone. An immigration attorney can identify other available options.",
+      "attorney_note": "10-Year Cancellation may not apply based on screening. Attorney should evaluate alternative relief options.",
+      "urgency": "An attorney consultation is still recommended to identify all available options."
+    }
+  },
+  "add_to_case": "Add This Result to Case File",
+  "added_to_case": "Added to Case File",
+  "print_for_attorney": "Print for Attorney",
+  "start_over": "Start Over",
+  "legal_source": "Source: Immigration and Nationality Act § 240A(b). U.S. immigration law. Public domain.",
+  "not_legal_advice": "This is general information, not legal advice."
+}

@@ -12,6 +12,7 @@ import Settings from './pages/Settings'
 import AttorneyManager from './pages/AttorneyManager'
 import CasePlan from './pages/CasePlan'
 import Timeline from './pages/Timeline'
+import CancellationScreener from './pages/CancellationScreener'
 
 function LoadingFallback() {
   return (
@@ -100,6 +101,18 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <Timeline />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/cancellation-screener"
+            element={<CancellationScreener />}
+          />
+          <Route
+            path="/cancellation-screener/:caseId"
+            element={
+              <ProtectedRoute>
+                <CancellationScreener />
               </ProtectedRoute>
             }
           />
