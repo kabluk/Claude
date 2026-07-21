@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #FBF7F2;
+  --color-navy: #1F3550;
+  --color-terracotta: #C0564A;
+  --color-sage: #5B7A5E;
+  --color-amber: #B98A2F;
+
+  --font-serif: Georgia, 'Times New Roman', serif;
+  --font-sans: system-ui, -apple-system, sans-serif;
+}
+
+body {
+  background-color: #FBF7F2;
+  color: #1F3550;
+  font-family: var(--font-sans);
+  font-size: 17px;
+  line-height: 1.6;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+#root {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+}
+
+h1, h2, h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+  color: #1F3550;
+}
+
+button, a, [role="button"] {
+  min-height: 44px;
+}

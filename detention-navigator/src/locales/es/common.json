@@ -1,0 +1,39 @@
+{
+  "app_name": "Detention Navigator",
+  "tagline": "Apoyo para su familia en este momento difícil",
+  "lang_select": "Language / Idioma / Язык",
+  "next": "Siguiente",
+  "back": "Atrás",
+  "close": "Cerrar",
+  "save": "Guardar",
+  "loading": "Cargando…",
+  "error_generic": "Algo salió mal. Por favor intente de nuevo.",
+  "not_legal_advice": "Esta aplicación proporciona solo información, no asesoramiento legal. Para ayuda legal, contacte a un abogado de inmigración.",
+  "emergency_call": "Emergencia: Llame al 911",
+  "sos_title": "Alerta de emergencia",
+  "sos_confirm": "¿Enviar alerta de emergencia a sus contactos?",
+  "sos_cancel": "Cancelar ({{seconds}}s)",
+  "sos_sent": "Alerta enviada",
+  "onboarding": {
+    "step_of": "Paso {{current}} de {{total}}",
+    "welcome_title": "No está solo/a",
+    "welcome_body": "Esta aplicación le ayuda a encontrar ayuda legal, rastrear audiencias y mantenerse conectado/a con su familiar detenido/a.",
+    "language_title": "Elija su idioma",
+    "name_title": "Su nombre",
+    "name_placeholder": "Nombre (para poder dirigirnos a usted)",
+    "detained_title": "¿Quién fue detenido/a?",
+    "detained_placeholder": "Nombre completo",
+    "relationship": "Su relación",
+    "done_title": "Está listo/a",
+    "done_body": "Le guiaremos por los próximos pasos. Tómelo de uno en uno."
+  },
+  "urgency": {
+    "info": "Información",
+    "action_needed": "Acción necesaria",
+    "critical": "Crítico"
+  },
+  "docs": {
+    "empty_title": "Aún no hay documentos",
+    "empty_body": "Cuando esté listo/a, puede agregar documentos importantes aquí — como avisos de audiencias o copias de identificación. No hay prisa."
+  }
+}

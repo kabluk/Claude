@@ -1,0 +1,39 @@
+{
+  "app_name": "Detention Navigator",
+  "tagline": "Support for your family during this difficult time",
+  "lang_select": "Language / Idioma / Язык",
+  "next": "Next",
+  "back": "Back",
+  "close": "Close",
+  "save": "Save",
+  "loading": "Loading…",
+  "error_generic": "Something went wrong. Please try again.",
+  "not_legal_advice": "This app provides information only, not legal advice. For legal help, contact an immigration attorney.",
+  "emergency_call": "Emergency: Call 911",
+  "sos_title": "Emergency Alert",
+  "sos_confirm": "Send emergency alert to your contacts?",
+  "sos_cancel": "Cancel ({{seconds}}s)",
+  "sos_sent": "Alert sent",
+  "onboarding": {
+    "step_of": "Step {{current}} of {{total}}",
+    "welcome_title": "You are not alone",
+    "welcome_body": "This app helps you find legal help, track hearings, and stay connected with your detained family member.",
+    "language_title": "Choose your language",
+    "name_title": "Your name",
+    "name_placeholder": "First name (so we can address you)",
+    "detained_title": "Who was detained?",
+    "detained_placeholder": "Their full name",
+    "relationship": "Your relationship",
+    "done_title": "You're ready",
+    "done_body": "We'll guide you through next steps. Take it one at a time."
+  },
+  "urgency": {
+    "info": "Info",
+    "action_needed": "Action needed",
+    "critical": "Critical"
+  },
+  "docs": {
+    "empty_title": "No documents yet",
+    "empty_body": "When you're ready, you can add important documents here — like hearing notices or ID copies. There's no rush."
+  }
+}
