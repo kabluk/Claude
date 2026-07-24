@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<script>document.documentElement.className+=" js";</script>
+<title>Detention Navigator — the route through the first days</title>
+<meta name="description" content="The first days are a route. This is the map — locate, call, documents, attorney, children — one step at a time. A free tool, not a law firm.">
+<link rel="stylesheet" href="fonts.css">
+<style>
+  :root{
+    --ink:#182231; --paper:#F1EEE4; --brass:#A9772A; --brass-600:#8a601f;
+    --teal:#215C63; --teal-700:#184449; --sage:#3F6B4E; --line:#DCD3C2; --line-2:#CBBFA6;
+    --card:#FBF8F0; --gold-on-ink:#E6C67C;
+    --sign:"Commissioner","Segoe UI",system-ui,sans-serif;   /* signage grotesque */
+    --read:"Spectral",Georgia,"Times New Roman",serif;        /* reading serif */
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;      /* data / labels */
+    --maxw:900px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--read);font-size:18px;line-height:1.6;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  @media (max-width:400px){ body{font-size:17.5px} }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  p{margin:0}
+  a{color:inherit}
+  ::selection{background:var(--brass);color:#fff}
+  .eyebrow{font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;color:var(--brass-600)}
+  .sign{font-family:var(--sign);font-weight:700;letter-spacing:-.02em;line-height:1.02;text-wrap:balance;color:var(--ink)}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--brass);outline-offset:3px;border-radius:6px}
+
+  /* header */
+  header{border-bottom:1px solid var(--line)}
+  .hd{max-width:var(--maxw);margin:0 auto;padding:16px 22px;display:flex;justify-content:space-between;align-items:center}
+  .brand{font-family:var(--sign);font-weight:700;font-size:18px;letter-spacing:-.01em}
+  .brand .m{color:var(--brass)}
+  .langs{display:flex;gap:6px}
+  .langs span{font-family:var(--mono);font-size:12.5px;padding:6px 9px;border:1.5px solid var(--line-2);border-radius:8px;color:var(--ink)}
+  .langs span.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+
+  /* hero */
+  .hero{padding:54px 0 26px}
+  .hero .eyebrow{margin-bottom:20px}
+  .hero h1{font-size:clamp(40px,10vw,84px);margin:0 0 8px}
+  .hero .sub{font-family:var(--read);font-size:clamp(19px,2.4vw,23px);color:#43505c;max-width:34ch;margin-top:16px}
+  .doors{display:flex;flex-direction:column;gap:12px;margin-top:30px;max-width:520px}
+  @media(min-width:560px){.doors{flex-direction:row}}
+  .door{flex:1;display:flex;align-items:center;gap:14px;text-decoration:none;border-radius:14px;padding:17px 18px;min-height:70px;border:2px solid var(--ink);transition:transform .12s,background .15s}
+  .door.p{background:var(--ink);color:var(--paper)}
+  .door.s{background:transparent;color:var(--ink)}
+  .door:hover{transform:translateY(-2px)}
+  .door .n{flex:0 0 auto;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--brass);color:var(--ink);font-family:var(--sign);font-weight:700}
+  .door b{font-family:var(--sign);font-weight:600;font-size:18px;letter-spacing:-.01em;display:block;line-height:1.15}
+  .door small{font-family:var(--mono);font-size:12px;letter-spacing:.02em;opacity:.8}
+
+  /* the ROUTE — signature */
+  .route-sec{padding:22px 0 60px}
+  .route-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:26px;flex-wrap:wrap}
+  .route-head h2{font-size:clamp(24px,4vw,34px);margin:0}
+  .route-head .cap{font-family:var(--mono);font-size:12.5px;color:var(--teal);letter-spacing:.06em}
+  .route{position:relative;padding-left:46px}
+  .route .track{position:absolute;left:17px;top:6px;bottom:14px;width:2px;background:var(--line-2);border-radius:2px}
+  .route .prog{position:absolute;left:17px;top:6px;width:2px;background:var(--teal);border-radius:2px;height:0;transition:height 1.4s cubic-bezier(.6,.02,.2,1)}
+  html:not(.js) .route .prog{height:100%}
+  .station{position:relative;padding:0 0 26px}
+  .station:last-child{padding-bottom:0}
+  .station .dot{position:absolute;left:-38px;top:2px;width:18px;height:18px;border-radius:50%;background:var(--paper);border:2px solid var(--line-2);transition:border-color .3s,background .3s}
+  .station.lit .dot{border-color:var(--teal);background:var(--teal);box-shadow:0 0 0 4px rgba(33,92,99,.14)}
+  .station .k{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--brass-600);display:flex;gap:10px;align-items:center}
+  .station .k .no{color:var(--teal)}
+  .station h3{font-family:var(--sign);font-weight:600;font-size:21px;letter-spacing:-.01em;margin:5px 0 3px}
+  .station p{font-family:var(--read);color:#43505c;font-size:16.5px;max-width:52ch}
+
+  /* trust band */
+  .not{background:var(--ink);color:var(--paper);border-radius:18px;padding:34px 26px;margin:8px 0 56px;box-shadow:0 24px 50px -34px rgba(24,34,49,.9)}
+  @media(min-width:720px){.not{padding:44px 40px}}
+  .not .eyebrow{color:var(--gold-on-ink)}
+  .not h2{font-family:var(--sign);font-weight:700;font-size:clamp(24px,4vw,32px);letter-spacing:-.01em;margin:10px 0 18px;color:#fff}
+  .not ul{list-style:none;margin:0;padding:0;display:grid;gap:0}
+  .not li{display:flex;gap:14px;padding:14px 0;border-top:1px solid rgba(255,255,255,.16);font-size:18px}
+  .not li .x{color:var(--gold-on-ink);font-family:var(--mono)}
+  .not .foot{margin-top:20px;font-size:16.5px;color:rgba(241,238,228,.85);max-width:60ch}
+
+  footer{border-top:1px solid var(--line);padding:30px 0 50px}
+  footer .f{max-width:var(--maxw);margin:0 auto;padding:0 22px;color:#5b6470;font-family:var(--mono);font-size:13px;letter-spacing:.02em;line-height:1.7}
+  footer .f b{font-family:var(--sign);color:var(--ink)}
+
+  .reveal{opacity:1}
+  html.js .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s ease,transform .7s ease}
+  html.js .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    .reveal{opacity:1;transform:none}
+    .route .prog{height:100%!important}
+    .station .dot{border-color:var(--teal);background:var(--teal)}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="hd">
+    <span class="brand">Detention <span class="m">Navigator</span></span>
+    <nav class="langs" aria-label="Language"><span class="on">EN</span><span>ES</span><span>RU</span></nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">A free tool for the first days</p>
+      <h1 class="sign">Someone was<br>detained.<br>Here is the route.</h1>
+      <p class="sub">You don’t have to know the way. Start with one step, and the map keeps the whole family on the same path.</p>
+      <div class="doors">
+        <a class="door p" href="#route"><span class="n">→</span><span><b>Find where they are</b><small>Free locator guide</small></span></a>
+        <a class="door s" href="#route"><span class="n">→</span><span><b>Three rules for the first call</b><small>What to tell them · free</small></span></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="route-sec" id="route">
+    <div class="wrap">
+      <div class="route-head reveal">
+        <h2 class="sign">The route through the first days</h2>
+        <span class="cap">8 stops · in the order a family needs them</span>
+      </div>
+      <div class="route" id="routeEl">
+        <div class="track"></div>
+        <div class="prog" id="prog"></div>
+
+        <div class="station"><span class="dot"></span><span class="k"><span class="no">01</span> Locate</span><h3>Find the person</h3><p>Which facility holds them, and how to confirm it before you travel or send anything.</p></div>
+        <div class="station"><span class="dot"></span><span class="k"><span class="no">02</span> Phone &amp; money</span><h3>Set up the calls</h3><p>Put money on the right account so calls connect — facilities use two kinds, and families confuse them.</p></div>
+        <div class="station"><span class="dot"></span><span class="k"><span class="no">03</span> First 24 &amp; 72 hours</span><h3>What to do today</h3><p>A short checklist of what comes first, and what can safely wait until tomorrow.</p></div>
+        <div class="station"><span class="dot"></span><span class="k"><span class="no">04</span> Documents</span><h3>Gather by year</h3><p>Organise papers the way an attorney asks for them, and build a packet to hand over.</p></div>
+        <div class="station"><span class="dot"></span><span class="k"><span class="no">05</span> Attorney</span><h3>Find &amp; verify</h3><p>How to check a licence on your state bar’s free public search before you pay anyone.</p></div>
+        <div class="station"><span class="dot"></span><span class="k"><span class="no">06</span> Children</span><h3>Plan for care</h3><p>Practical steps if children depend on the person who was detained.</p></div>
+        <div class="station"><span class="dot"></span><span class="k"><span class="no">07</span> Timeline</span><h3>One shared record</h3><p>A single timeline the whole family can see, so nothing is repeated, missed, or lost.</p></div>
+        <div class="station"><span class="dot"></span><span class="k"><span class="no">08</span> Monitoring</span><h3>Track changes</h3><p>Keep watch on custody location and case status over time.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section class="not reveal">
+      <p class="eyebrow">Read this before you trust anyone</p>
+      <h2>What this is not</h2>
+      <ul>
+        <li><span class="x">—</span> This is not a law firm.</li>
+        <li><span class="x">—</span> It does not give legal advice.</li>
+        <li><span class="x">—</span> It does not promise any outcome.</li>
+        <li><span class="x">—</span> It does not replace an attorney.</li>
+      </ul>
+      <p class="foot">It is a tool to help you find your way through the first days. The legal decisions stay with you and a licensed attorney — and the map will always tell you when you need one.</p>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="f"><b>Detention Navigator.</b> Encrypted. No ads, no data selling, delete everything anytime. Not a law firm; no legal advice; no promised outcome.</div>
+</footer>
+
+<script>
+(function(){
+  var reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var els=document.querySelectorAll(".reveal");
+  var stations=[].slice.call(document.querySelectorAll(".station"));
+  var prog=document.getElementById("prog");
+  var routeEl=document.getElementById("routeEl");
+  if(reduce||!("IntersectionObserver" in window)){
+    els.forEach(function(e){e.classList.add("in")});
+    stations.forEach(function(s){s.classList.add("lit")});
+    if(prog) prog.style.height="100%";
+    return;
+  }
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}})},{rootMargin:"0px 0px -8% 0px",threshold:.08});
+  els.forEach(function(e){io.observe(e)});
+  // draw the route line to match how far it has scrolled through the viewport, and light stations
+  function draw(){
+    var r=routeEl.getBoundingClientRect();
+    var vh=innerHeight;
+    var passed=Math.min(Math.max((vh*0.72 - r.top)/(r.height),0),1);
+    prog.style.height=(passed*100)+"%";
+    var lit=r.top + r.height*passed;
+    stations.forEach(function(s){
+      var d=s.querySelector(".dot").getBoundingClientRect();
+      if(d.top < vh*0.72) s.classList.add("lit");
+    });
+  }
+  var tick=false;
+  addEventListener("scroll",function(){ if(!tick){requestAnimationFrame(function(){draw();tick=false})} tick=true },{passive:true});
+  addEventListener("resize",draw); draw();
+  // gentle initial draw so the first stops fill on load
+  setTimeout(draw,120);
+})();
+</script>
+</body>
+</html>
