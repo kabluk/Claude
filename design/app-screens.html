@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Detention Navigator — app screens (design reference)</title>
+<link rel="stylesheet" href="../landing/fonts.css">
+<style>
+  :root{
+    --navy:#17264A;--brass:#B0842F;--brass-600:#946C22;--paper:#F3EFE6;--card:#FCFAF4;--slate:#5E5A4E;--line:#DED6C6;
+    --serif:"Spectral",Georgia,serif;--sans:"Commissioner","Segoe UI",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:#E9E2D8;color:var(--navy);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  header{padding:30px 24px 8px;max-width:1200px;margin:0 auto}
+  h1{font-family:var(--serif);font-weight:600;font-size:28px;margin:0}
+  h1 .mark{color:var(--brass)}
+  .lead{color:var(--slate);font-size:16px;margin:8px 0 0;max-width:70ch;line-height:1.55}
+  .note{font-family:var(--mono);font-size:12.5px;color:var(--brass-600);letter-spacing:.04em;margin-top:10px}
+  .rail{display:flex;gap:28px;overflow-x:auto;padding:22px 24px 40px;scroll-snap-type:x proximity}
+  .col{flex:0 0 auto;scroll-snap-align:start;display:flex;flex-direction:column;align-items:center;gap:12px}
+  .cap{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--navy)}
+  .cap small{display:block;color:var(--slate);letter-spacing:.02em;text-transform:none;font-size:12px;margin-top:2px}
+  .phone{width:330px;height:700px;border-radius:40px;overflow:hidden;background:var(--paper);
+    box-shadow:0 24px 60px rgba(31,53,80,.30), 0 0 0 9px #22303F;position:relative}
+  .phone iframe{width:330px;height:700px;border:0;display:block}
+  footer{max-width:1200px;margin:0 auto;padding:0 24px 40px;color:var(--slate);font-size:14px;line-height:1.6}
+  code{font-family:var(--mono);font-size:12.5px;background:#fff;border:1px solid var(--line);border-radius:5px;padding:1px 6px}
+</style>
+</head>
+<body>
+  <header>
+    <h1>Detention <span class="mark">Navigator</span> — app screens</h1>
+    <p class="lead">The five MVP screens in the design system, rendered from the real reference build
+      (<code>../landing/app.html</code>) in read-only demo mode. This is the visual target; match colours,
+      type, spacing, and components to these. Full EN/ES/RU — the "First call" screen below is shown in Russian
+      to confirm Cyrillic.</p>
+    <p class="note">Scroll horizontally →</p>
+  </header>
+
+  <div class="rail">
+    <div class="col">
+      <div class="phone"><iframe title="Onboarding" src="../landing/app.html?demo=onboarding&lang=en" loading="lazy"></iframe></div>
+      <div class="cap">Onboarding<small>3 questions → plan</small></div>
+    </div>
+    <div class="col">
+      <div class="phone"><iframe title="Today" src="../landing/app.html?demo=today&lang=en" loading="lazy"></iframe></div>
+      <div class="cap">Today<small>phased checklist</small></div>
+    </div>
+    <div class="col">
+      <div class="phone"><iframe title="Locate" src="../landing/app.html?demo=case&lang=en" loading="lazy"></iframe></div>
+      <div class="cap">Locate<small>saved case + steps</small></div>
+    </div>
+    <div class="col">
+      <div class="phone"><iframe title="Documents" src="../landing/app.html?demo=docs&lang=en" loading="lazy"></iframe></div>
+      <div class="cap">Documents<small>year grid + coverage</small></div>
+    </div>
+    <div class="col">
+      <div class="phone"><iframe title="First call (Russian)" src="../landing/app.html?demo=guide&lang=ru" loading="lazy"></iframe></div>
+      <div class="cap">First call · RU<small>rules + safety</small></div>
+    </div>
+  </div>
+
+  <footer>
+    Each frame is the live app at <code>?demo=&lt;screen&gt;&amp;lang=&lt;en|es|ru&gt;</code> — open any of them
+    directly to inspect exact CSS. Spec: <code>DESIGN_SYSTEM.md</code>. Tokens: <code>tokens.css</code> /
+    <code>tailwind.theme.cjs</code>.
+  </footer>
+</body>
+</html>

@@ -441,12 +441,24 @@ const DOC_CAT_LABEL = {
 
 /* ================= state ================= */
 const KEY="dn_app_v1";
+// Read-only demo mode for the design gallery: app.html?demo=today|case|docs|guide|onboarding&lang=en|es|ru
+// Uses in-memory sample state, never touches localStorage. No effect on normal use.
+const DEMO=(()=>{const q=new URLSearchParams(location.search); if(!q.has("demo"))return null; return {tab:q.get("demo")||"today", lang:q.get("lang")||"en"};})();
+function demoState(){
+  return {lang:DEMO.lang, onboarded:DEMO.tab!=="onboarding",
+    profile:{situation:"crisis",hasA:"yes",years:"gt10"},
+    case:{aNumber:"012 345 678", facility:"Stewart Detention Center, GA", facilityPhone:"(229) 555-0100"},
+    tasks:{loc:true, anum:true},
+    docs:{taxes_2026:2,taxes_2025:2,taxes_2024:1,housing_2026:2,housing_2025:1,school_2026:2,finance_2024:1,ids_2026:2},
+    start:todayStamp()};
+}
 let S = load();
 function load(){
+  if(DEMO) return demoState();
   try{ const s=JSON.parse(localStorage.getItem(KEY)); if(s&&typeof s==="object") return s; }catch(e){}
   return {lang:"en", onboarded:false, profile:{}, case:{}, tasks:{}, docs:{}, start:null};
 }
-function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+function save(){ if(DEMO) return; try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
 function todayStamp(){ const d=new Date(); return Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()); }
 function dayNumber(){ if(!S.start) return 1; return Math.max(1, Math.floor((todayStamp()-S.start)/86400000)+1); }
 
@@ -588,7 +600,10 @@ document.getElementById("onbNext").addEventListener("click",()=>{
 
 /* ================= boot ================= */
 applyStatic(); bindCaseFields(); renderAll();
-if(!S.onboarded){
+if(DEMO){
+  if(DEMO.tab==="onboarding"){ const o=document.getElementById("onb"); o.classList.add("on"); o.setAttribute("aria-hidden","false"); renderOnb(); }
+  else showTab(DEMO.tab);
+} else if(!S.onboarded){
   const o=document.getElementById("onb"); o.classList.add("on"); o.setAttribute("aria-hidden","false");
   renderOnb();
 }
