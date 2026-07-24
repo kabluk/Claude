@@ -7,9 +7,7 @@
 <script>document.documentElement.className+=" js";</script>
 <title>Detention Navigator — Find a detained relative. Know what to do today.</title>
 <meta name="description" content="A free, mobile-first tool for families whose relative has just been detained by immigration authorities. Locate the person, set up calls, and know what to do first. Not a law firm.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=Commissioner:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="fonts.css">
 <style>
   /* ---------- Palette (from the navy / brass / cream reference) ---------- */
   :root{
@@ -334,14 +332,14 @@
           <h1 class="hero-q" data-i18n="hero_q">Your relative has been detained. Where are they — and what do you do first?</h1>
 
           <div class="doors" id="doors">
-            <a class="door" href="/find-them">
+            <a class="door" href="find-them.html">
               <span class="chev" aria-hidden="true">→</span>
               <span class="door-txt">
                 <span class="door-title" data-i18n="door1_t">Find where they are</span>
                 <span class="door-sub" data-i18n="door1_s">Free locator guide, step by step</span>
               </span>
             </a>
-            <a class="door secondary" href="/three-rules">
+            <a class="door secondary" href="three-rules.html">
               <span class="chev" aria-hidden="true">→</span>
               <span class="door-txt">
                 <span class="door-title" data-i18n="door2_t">Three rules for the first call</span>
@@ -489,14 +487,14 @@
         <div class="tier">
           <div class="row1">
             <h3 data-i18n="t2_t">Full kit</h3>
-            <span class="price" data-i18n="t2_p">One-time payment</span>
+            <span class="price" data-i18n="t2_p">$99 · one-time</span>
           </div>
           <p data-i18n="t2_d">The complete document and planning kit for your case. Pay once — no subscription.</p>
         </div>
         <div class="tier">
           <div class="row1">
             <h3 data-i18n="t3_t">Monitoring</h3>
-            <span class="price" data-i18n="t3_p">Monthly · cancel anytime</span>
+            <span class="price" data-i18n="t3_p">$9/mo · cancel anytime</span>
           </div>
           <p data-i18n="t3_d">Ongoing status monitoring for custody and case changes. Cancel whenever you want.</p>
         </div>
@@ -512,8 +510,8 @@
     <div class="name">Detention <span class="mark">Navigator</span></div>
     <p class="priv" data-i18n="foot_priv">Your information is encrypted. No ads, no data selling, and you can delete everything at any time.</p>
     <div class="links">
-      <a href="/three-rules" data-i18n="foot_l1">Three rules for the first call</a>
-      <a href="/find-them" data-i18n="foot_l2">Find where they are</a>
+      <a href="three-rules.html" data-i18n="foot_l1">Three rules for the first call</a>
+      <a href="find-them.html" data-i18n="foot_l2">Find where they are</a>
       <a href="mailto:help@detentionnavigator.org" data-i18n="foot_l3">Contact</a>
     </div>
     <p class="disc" data-i18n="foot_disc">Detention Navigator is an information and organization tool. It is not a law firm, does not provide legal advice, and does not promise any outcome. For legal decisions, consult a licensed attorney or a DOJ-accredited representative.</p>
@@ -569,9 +567,9 @@ const I18N = {
     price_badge:"Free forever",
     t1_t:"Free", t1_p:"$0 — always",
     t1_d:"The Three Rules, the locator guide, and one case with the basic checklist. No account or card needed to start.",
-    t2_t:"Full kit", t2_p:"One-time payment",
+    t2_t:"Full kit", t2_p:"$99 · one-time",
     t2_d:"The complete document and planning kit for your case. Pay once — no subscription.",
-    t3_t:"Monitoring", t3_p:"Monthly · cancel anytime",
+    t3_t:"Monitoring", t3_p:"$9/mo · cancel anytime",
     t3_d:"Ongoing status monitoring for custody and case changes. Cancel whenever you want.",
     foot_priv:"Your information is encrypted. No ads, no data selling, and you can delete everything at any time.",
     foot_l1:"Three rules for the first call", foot_l2:"Find where they are", foot_l3:"Contact",
@@ -623,9 +621,9 @@ const I18N = {
     price_badge:"Gratis para siempre",
     t1_t:"Gratis", t1_p:"$0 — siempre",
     t1_d:"Las Tres Reglas, la guía para localizar y un caso con la lista básica. No hace falta cuenta ni tarjeta para empezar.",
-    t2_t:"Kit completo", t2_p:"Pago único",
+    t2_t:"Kit completo", t2_p:"$99 · pago único",
     t2_d:"El kit completo de documentos y planificación para su caso. Pague una vez — sin suscripción.",
-    t3_t:"Seguimiento", t3_p:"Mensual · cancele cuando quiera",
+    t3_t:"Seguimiento", t3_p:"$9/mes · cancele cuando quiera",
     t3_d:"Seguimiento continuo de los cambios de detención y del caso. Cancele cuando quiera.",
     foot_priv:"Su información está cifrada. Sin anuncios, sin venta de datos, y puede borrar todo en cualquier momento.",
     foot_l1:"Tres reglas para la primera llamada", foot_l2:"Encuentre dónde está", foot_l3:"Contacto",
@@ -677,9 +675,9 @@ const I18N = {
     price_badge:"Бесплатно навсегда",
     t1_t:"Бесплатно", t1_p:"$0 — всегда",
     t1_d:"Три правила, руководство по поиску и одно дело с базовым чек-листом. Чтобы начать, аккаунт и карта не нужны.",
-    t2_t:"Полный набор", t2_p:"Разовый платёж",
+    t2_t:"Полный набор", t2_p:"$99 · разовый платёж",
     t2_d:"Полный набор документов и планирования для вашего дела. Платите один раз — без подписки.",
-    t3_t:"Мониторинг", t3_p:"Ежемесячно · отмена в любой момент",
+    t3_t:"Мониторинг", t3_p:"$9/мес · отмена в любой момент",
     t3_d:"Постоянное отслеживание изменений места содержания и дела. Отменить можно когда угодно.",
     foot_priv:"Ваши данные зашифрованы. Без рекламы, без продажи данных, и вы можете удалить всё в любой момент.",
     foot_l1:"Три правила для первого звонка", foot_l2:"Найдите, где он находится", foot_l3:"Контакт",

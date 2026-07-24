@@ -1,0 +1,325 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<script>document.documentElement.className+=" js";</script>
+<title>Find where they are — Detention Navigator</title>
+<meta name="description" content="A free, step-by-step guide to finding where a relative is detained, using the official ICE Online Detainee Locator. No account, no payment.">
+<link rel="stylesheet" href="fonts.css">
+<style>
+  :root{
+    --navy:#17264A;--navy-700:#22345f;--brass:#B0842F;--brass-600:#946c22;
+    --paper:#F3EFE6;--card:#FCFAF4;--caution:#8A4B12;--slate:#5E5A4E;
+    --line:#DED6C6;--line-strong:#CABDA6;--ink:#17264A;--focus:#B0842F;--maxw:760px;--r:14px;
+    --serif:"Spectral",Georgia,"Times New Roman",serif;
+    --sans:"Commissioner","Segoe UI",system-ui,-apple-system,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.62;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  @media (max-width:400px){ body{font-size:17.5px} }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  @media (min-width:720px){ .wrap{padding:0 28px} }
+  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.16;letter-spacing:-.01em;color:var(--navy);margin:0}
+  p{margin:0}
+  a{color:var(--brass-600);text-underline-offset:3px;text-decoration-thickness:1.5px}
+  a:hover{color:var(--navy)}
+  a:focus-visible,button:focus-visible,.next:focus-visible,.bigcta:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
+  .skip{position:absolute;left:-9999px;top:0;background:var(--navy);color:#fff;padding:12px 18px;border-radius:0 0 10px 0;z-index:100;font-weight:600}
+  .skip:focus{left:0}
+  .kicker{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--brass-600)}
+
+  header.site{background:var(--paper);border-bottom:1px solid var(--line);padding:14px 0 15px}
+  .head-row{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+  .brand{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .brand .name{font-family:var(--serif);font-weight:600;font-size:21px;color:var(--navy);letter-spacing:-.01em;line-height:1.1;text-decoration:none}
+  .brand .name .mark{color:var(--brass)}
+  .brand .clarify{font-size:14.5px;color:var(--slate);line-height:1.35;max-width:34ch}
+  .lang{display:flex;gap:6px;flex-shrink:0}
+  .lang button{font-family:var(--mono);font-size:14px;font-weight:500;letter-spacing:.02em;min-width:46px;min-height:42px;padding:0 10px;background:transparent;color:var(--navy);border:1.5px solid var(--line-strong);border-radius:9px;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+  .lang button:hover{border-color:var(--brass)}
+  .lang button[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+  .hero{padding:22px 0 8px}
+  .crumb{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--brass-600);text-decoration:none;min-height:40px;align-content:center}
+  .crumb:hover{color:var(--navy)}
+  .folder{position:relative;margin-top:8px}
+  .folder-tab{display:inline-flex;align-items:center;gap:9px;background:var(--navy);color:#fff;font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;padding:8px 15px 9px;border-radius:12px 12px 0 0;position:relative;left:8px;border-bottom:3px solid var(--brass)}
+  .folder-tab .dot{width:7px;height:7px;border-radius:50%;background:var(--brass)}
+  .folder-front{background:var(--card);border:1px solid var(--line);border-top:2px solid var(--navy);border-radius:2px var(--r) var(--r) var(--r);box-shadow:0 1px 0 #fff inset,0 14px 30px -22px rgba(23,38,74,.5);padding:24px 20px 24px}
+  @media (min-width:720px){ .folder-front{padding:32px 34px} }
+  .folder-front h1{font-size:26px;line-height:1.18;max-width:24ch}
+  @media (min-width:560px){ .folder-front h1{font-size:30px} }
+  .folder-front .intro{margin-top:12px;font-size:18px;color:var(--slate);line-height:1.55;max-width:56ch}
+  .bigcta{margin-top:18px;display:inline-flex;align-items:center;gap:12px;background:var(--navy);color:#fff;text-decoration:none;border:2px solid var(--navy);border-radius:12px;padding:15px 20px;min-height:60px;transition:background .15s}
+  .bigcta:hover{background:var(--navy-700);color:#fff}
+  .bigcta .chev{flex:0 0 auto;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--brass);color:var(--navy);font-size:15px;font-weight:700}
+  .bigcta b{font-weight:600;font-size:18px;color:#fff}
+  .bigcta small{display:block;font-size:13.5px;color:rgba(255,255,255,.8);font-family:var(--mono);letter-spacing:.02em;margin-top:2px}
+
+  section{padding:26px 0 44px}
+  .steps{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+  .step{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 18px}
+  .step .num{flex:0 0 auto;font-family:var(--serif);font-weight:600;font-size:32px;line-height:.95;color:var(--brass);min-width:38px}
+  .step h3{font-family:var(--sans);font-weight:600;font-size:19px;color:var(--navy);line-height:1.25}
+  .step p{margin-top:7px;color:var(--slate);font-size:17px;line-height:1.55}
+  .step p + p{margin-top:9px}
+  .step .num-eg{font-family:var(--mono);background:#fff;border:1px solid var(--line);border-radius:6px;padding:1px 7px;color:var(--navy);letter-spacing:.06em;white-space:nowrap}
+  .step a{font-weight:600}
+
+  .remind{margin-top:22px;background:#fff;border:1px solid var(--line);border-left:4px solid var(--caution);border-radius:12px;padding:20px 18px}
+  .remind h3{font-family:var(--sans);font-weight:600;font-size:18px;color:var(--navy)}
+  .remind p{margin-top:8px;font-size:17px;color:var(--slate);line-height:1.55}
+
+  .next{margin-top:24px;display:flex;align-items:center;gap:14px;background:transparent;border:2px solid var(--navy);border-radius:12px;padding:16px 18px;min-height:66px;text-decoration:none;color:var(--navy);transition:background .15s}
+  .next:hover{background:rgba(23,38,74,.055)}
+  .next .chev{flex:0 0 auto;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--brass);color:var(--navy);font-size:16px;font-weight:700}
+  .next .nt{display:flex;flex-direction:column;gap:2px}
+  .next .nt b{font-weight:600;font-size:18px;color:var(--navy)}
+  .next .nt span{font-size:15px;color:var(--slate)}
+
+  footer.site{background:var(--navy);color:#F3EFE6;padding:40px 0 46px;margin-top:8px}
+  footer .name{font-family:var(--serif);font-weight:600;font-size:20px;color:#fff}
+  footer .name .mark{color:#E7C77A}
+  footer .priv{margin-top:14px;font-size:17px;line-height:1.6;color:rgba(243,239,230,.9);max-width:60ch}
+  footer .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:10px 22px;font-size:15.5px}
+  footer .links a{color:#E7C77A;text-decoration:none;font-weight:500}
+  footer .links a:hover{color:#fff;text-decoration:underline}
+  footer .disc{margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,.16);font-size:14.5px;line-height:1.6;color:rgba(243,239,230,.72);max-width:64ch}
+
+  .reveal{opacity:1}
+  html.js .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  html.js .reveal.in{opacity:1;transform:none}
+  html.js .folder-tab{opacity:0;transform:translateY(6px);animation:tabIn .5s .1s ease forwards}
+  html.js .folder-front{opacity:0;transform:translateY(10px);animation:tabIn .6s .22s ease forwards}
+  @keyframes tabIn{to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal,.folder-tab,.folder-front{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#steps" data-i18n="skip">Skip to the steps</a>
+
+<header class="site">
+  <div class="wrap head-row">
+    <div class="brand">
+      <a class="name" href="index.html">Detention <span class="mark">Navigator</span></a>
+      <span class="clarify" data-i18n="clarify">Find a detained relative. Know what to do today.</span>
+    </div>
+    <nav class="lang" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true" lang="en">EN</button>
+      <button type="button" data-lang="es" aria-pressed="false" lang="es">ES</button>
+      <button type="button" data-lang="ru" aria-pressed="false" lang="ru">RU</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="hero">
+    <div class="wrap">
+      <a class="crumb" href="index.html"><span aria-hidden="true">←</span> <span data-i18n="crumb">All the first steps</span></a>
+      <div class="folder">
+        <div class="folder-tab"><span class="dot"></span><span data-i18n="tab">Locator</span></div>
+        <div class="folder-front">
+          <h1 data-i18n="h1">Find where they are being held</h1>
+          <p class="intro" data-i18n="intro">You can look this up yourself using the official ICE locator. It is free and it never asks for payment. Here is how, step by step.</p>
+          <a class="bigcta" href="https://locator.ice.gov/" target="_blank" rel="noopener noreferrer">
+            <span class="chev" aria-hidden="true">→</span>
+            <span><b data-i18n="cta_b">Open the official ICE locator</b><small data-i18n="cta_s">locator.ice.gov · free</small></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap reveal">
+      <ol class="steps" id="steps">
+        <li class="step">
+          <span class="num" translate="no">1</span>
+          <span class="body">
+            <h3 data-i18n="s1_t">Find their A-Number, if you can.</h3>
+            <p data-i18n="s1_d">This is a nine-digit number that looks like <span class="num-eg" translate="no">A## ### ###</span> on any immigration document they have — a notice, an ID card, or court papers. You don’t strictly need it, but it is the most reliable way to search.</p>
+          </span>
+        </li>
+        <li class="step">
+          <span class="num" translate="no">2</span>
+          <span class="body">
+            <h3 data-i18n="s2_t">Open the official locator only.</h3>
+            <p data-i18n="s2_d">Use the ICE Online Detainee Locator at <a href="https://locator.ice.gov/" target="_blank" rel="noopener noreferrer" translate="no">locator.ice.gov</a>. It is free. No legitimate search site asks you to pay to find someone — if one does, close it.</p>
+          </span>
+        </li>
+        <li class="step">
+          <span class="num" translate="no">3</span>
+          <span class="body">
+            <h3 data-i18n="s3_t">Search in one of two ways.</h3>
+            <p data-i18n="s3_d">By A-Number and country of birth — or by first name, last name, country of birth, and date of birth. Spell the name exactly as it appears on their documents, and try a middle name or a second surname if the first search finds nothing.</p>
+          </span>
+        </li>
+        <li class="step">
+          <span class="num" translate="no">4</span>
+          <span class="body">
+            <h3 data-i18n="s4_t">Write down the facility.</h3>
+            <p data-i18n="s4_d">If they are found, note the exact facility name, city, and state. You will need this for phone calls, sending money, mail, and visits.</p>
+          </span>
+        </li>
+        <li class="step">
+          <span class="num" translate="no">5</span>
+          <span class="body">
+            <h3 data-i18n="s5_t">Find the facility’s phone and address.</h3>
+            <p data-i18n="s5_d">Search the facility’s name for its phone number and mailing address. Keep both somewhere the whole family can see them — the next steps (calls and money) use them.</p>
+          </span>
+        </li>
+        <li class="step">
+          <span class="num" translate="no">6</span>
+          <span class="body">
+            <h3 data-i18n="s6_t">If they are not found yet.</h3>
+            <p data-i18n="s6_d">Someone just detained may not appear for 24 to 48 hours. People under 18, or those held by a different agency or in a local jail, may not be listed at all.</p>
+            <p data-i18n="s6_d2">Wait a day and search again, and contact the nearest ICE field office to ask. Do not pay anyone who promises to “find” them faster.</p>
+          </span>
+        </li>
+      </ol>
+
+      <div class="remind">
+        <h3 data-i18n="rem_h">A note on safety</h3>
+        <p data-i18n="rem_d">This walkthrough uses free, public government tools. Detention Navigator is not part of the government and never charges to search for someone. If anyone asks you to pay to locate a person, treat it as a warning sign.</p>
+      </div>
+
+      <a class="next" href="three-rules.html">
+        <span class="chev" aria-hidden="true">→</span>
+        <span class="nt">
+          <b data-i18n="next_b">Found them? Prepare for the first call.</b>
+          <span data-i18n="next_s">Three rules to tell them</span>
+        </span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="name">Detention <span class="mark">Navigator</span></div>
+    <p class="priv" data-i18n="foot_priv">Your information is encrypted. No ads, no data selling, and you can delete everything at any time.</p>
+    <div class="links">
+      <a href="index.html" data-i18n="foot_l0">Home</a>
+      <a href="three-rules.html" data-i18n="foot_l1">Three rules for the first call</a>
+      <a href="mailto:help@detentionnavigator.org" data-i18n="foot_l3">Contact</a>
+    </div>
+    <p class="disc" data-i18n="foot_disc">Detention Navigator is an information and organization tool. It is not a law firm, does not provide legal advice, and does not promise any outcome. For legal decisions, consult a licensed attorney or a DOJ-accredited representative.</p>
+  </div>
+</footer>
+
+<script>
+const I18N = {
+  en:{ _htmllang:"en", _title:"Find where they are — Detention Navigator",
+    skip:"Skip to the steps",
+    clarify:"Find a detained relative. Know what to do today.",
+    crumb:"All the first steps", tab:"Locator",
+    h1:"Find where they are being held",
+    intro:"You can look this up yourself using the official ICE locator. It is free and it never asks for payment. Here is how, step by step.",
+    cta_b:"Open the official ICE locator", cta_s:"locator.ice.gov · free",
+    s1_t:"Find their A-Number, if you can.",
+    s1_d:"This is a nine-digit number that looks like A## ### ### on any immigration document they have — a notice, an ID card, or court papers. You don’t strictly need it, but it is the most reliable way to search.",
+    s2_t:"Open the official locator only.",
+    s2_d:"Use the ICE Online Detainee Locator at locator.ice.gov. It is free. No legitimate search site asks you to pay to find someone — if one does, close it.",
+    s3_t:"Search in one of two ways.",
+    s3_d:"By A-Number and country of birth — or by first name, last name, country of birth, and date of birth. Spell the name exactly as it appears on their documents, and try a middle name or a second surname if the first search finds nothing.",
+    s4_t:"Write down the facility.",
+    s4_d:"If they are found, note the exact facility name, city, and state. You will need this for phone calls, sending money, mail, and visits.",
+    s5_t:"Find the facility’s phone and address.",
+    s5_d:"Search the facility’s name for its phone number and mailing address. Keep both somewhere the whole family can see them — the next steps (calls and money) use them.",
+    s6_t:"If they are not found yet.",
+    s6_d:"Someone just detained may not appear for 24 to 48 hours. People under 18, or those held by a different agency or in a local jail, may not be listed at all.",
+    s6_d2:"Wait a day and search again, and contact the nearest ICE field office to ask. Do not pay anyone who promises to “find” them faster.",
+    rem_h:"A note on safety",
+    rem_d:"This walkthrough uses free, public government tools. Detention Navigator is not part of the government and never charges to search for someone. If anyone asks you to pay to locate a person, treat it as a warning sign.",
+    next_b:"Found them? Prepare for the first call.", next_s:"Three rules to tell them",
+    foot_priv:"Your information is encrypted. No ads, no data selling, and you can delete everything at any time.",
+    foot_l0:"Home", foot_l1:"Three rules for the first call", foot_l3:"Contact",
+    foot_disc:"Detention Navigator is an information and organization tool. It is not a law firm, does not provide legal advice, and does not promise any outcome. For legal decisions, consult a licensed attorney or a DOJ-accredited representative."
+  },
+  es:{ _htmllang:"es", _title:"Encuentre dónde está — Detention Navigator",
+    skip:"Ir a los pasos",
+    clarify:"Localice a un familiar detenido. Sepa qué hacer hoy.",
+    crumb:"Todos los primeros pasos", tab:"Localizador",
+    h1:"Encuentre dónde lo tienen detenido",
+    intro:"Usted mismo puede averiguarlo con el localizador oficial de ICE. Es gratis y nunca pide pago. Así se hace, paso a paso.",
+    cta_b:"Abrir el localizador oficial de ICE", cta_s:"locator.ice.gov · gratis",
+    s1_t:"Busque su número A, si puede.",
+    s1_d:"Es un número de nueve dígitos parecido a A## ### ### en cualquier documento de inmigración que tenga — una notificación, una identificación o papeles de la corte. No es imprescindible, pero es la forma más confiable de buscar.",
+    s2_t:"Use solo el localizador oficial.",
+    s2_d:"Use el Localizador de Detenidos en Línea de ICE en locator.ice.gov. Es gratis. Ningún sitio legítimo le pide pagar para encontrar a alguien — si uno lo hace, ciérrelo.",
+    s3_t:"Busque de una de dos maneras.",
+    s3_d:"Por número A y país de nacimiento — o por nombre, apellido, país de nacimiento y fecha de nacimiento. Escriba el nombre exactamente como aparece en sus documentos, y pruebe un segundo nombre o un segundo apellido si la primera búsqueda no encuentra nada.",
+    s4_t:"Anote el centro de detención.",
+    s4_d:"Si aparece, anote el nombre exacto del centro, la ciudad y el estado. Lo necesitará para las llamadas, para enviar dinero, para el correo y para las visitas.",
+    s5_t:"Busque el teléfono y la dirección del centro.",
+    s5_d:"Busque el nombre del centro para encontrar su número de teléfono y su dirección postal. Guarde ambos donde toda la familia pueda verlos — los siguientes pasos (llamadas y dinero) los usan.",
+    s6_t:"Si todavía no aparece.",
+    s6_d:"Alguien recién detenido puede no aparecer durante 24 a 48 horas. Los menores de 18 años, o quienes están bajo otra agencia o en una cárcel local, pueden no aparecer en absoluto.",
+    s6_d2:"Espere un día y busque de nuevo, y comuníquese con la oficina local de ICE para preguntar. No le pague a nadie que prometa “encontrarlo” más rápido.",
+    rem_h:"Una nota sobre seguridad",
+    rem_d:"Esta guía usa herramientas gubernamentales gratuitas y públicas. Detention Navigator no es parte del gobierno y nunca cobra por buscar a alguien. Si alguien le pide pagar para localizar a una persona, tómelo como una señal de alerta.",
+    next_b:"¿Lo encontró? Prepárese para la primera llamada.", next_s:"Tres reglas para decirle",
+    foot_priv:"Su información está cifrada. Sin anuncios, sin venta de datos, y puede borrar todo en cualquier momento.",
+    foot_l0:"Inicio", foot_l1:"Tres reglas para la primera llamada", foot_l3:"Contacto",
+    foot_disc:"Detention Navigator es una herramienta de información y organización. No es un bufete de abogados, no da asesoría legal y no promete ningún resultado. Para decisiones legales, consulte a un abogado con licencia o a un representante acreditado por el Departamento de Justicia."
+  },
+  ru:{ _htmllang:"ru", _title:"Найдите, где он находится — Detention Navigator",
+    skip:"Перейти к шагам",
+    clarify:"Найдите задержанного родственника. Узнайте, что делать сегодня.",
+    crumb:"Ко всем первым шагам", tab:"Поиск",
+    h1:"Найдите, где его содержат",
+    intro:"Вы можете найти это сами через официальный поисковик ICE. Это бесплатно и никогда не требует оплаты. Вот как, шаг за шагом.",
+    cta_b:"Открыть официальный поисковик ICE", cta_s:"locator.ice.gov · бесплатно",
+    s1_t:"Найдите его номер A, если можете.",
+    s1_d:"Это девятизначный номер вида A## ### ### на любом иммиграционном документе, который у него есть — уведомление, удостоверение или судебные бумаги. Он не обязателен, но это самый надёжный способ поиска.",
+    s2_t:"Используйте только официальный поисковик.",
+    s2_d:"Используйте онлайн-поисковик задержанных ICE по адресу locator.ice.gov. Это бесплатно. Ни один настоящий сайт не просит платить за поиск человека — если просит, закройте его.",
+    s3_t:"Ищите одним из двух способов.",
+    s3_d:"По номеру A и стране рождения — или по имени, фамилии, стране рождения и дате рождения. Пишите имя точно так, как в его документах, и попробуйте второе имя или вторую фамилию, если первый поиск ничего не находит.",
+    s4_t:"Запишите учреждение.",
+    s4_d:"Если он найден, запишите точное название учреждения, город и штат. Это понадобится для звонков, отправки денег, писем и визитов.",
+    s5_t:"Найдите телефон и адрес учреждения.",
+    s5_d:"Поищите по названию учреждения его номер телефона и почтовый адрес. Держите оба там, где их видит вся семья — следующие шаги (звонки и деньги) используют их.",
+    s6_t:"Если он ещё не найден.",
+    s6_d:"Только что задержанный может не появляться в системе 24–48 часов. Людей младше 18 лет или тех, кого держит другое ведомство или местная тюрьма, может не быть в списке вовсе.",
+    s6_d2:"Подождите день и поищите снова, и обратитесь в ближайший офис ICE, чтобы спросить. Не платите тем, кто обещает «найти» его быстрее.",
+    rem_h:"Замечание о безопасности",
+    rem_d:"Это руководство использует бесплатные государственные инструменты. Detention Navigator не является частью государства и никогда не берёт плату за поиск человека. Если кто-то просит заплатить за то, чтобы найти человека, считайте это тревожным признаком.",
+    next_b:"Нашли его? Подготовьтесь к первому звонку.", next_s:"Три правила, которые нужно сказать",
+    foot_priv:"Ваши данные зашифрованы. Без рекламы, без продажи данных, и вы можете удалить всё в любой момент.",
+    foot_l0:"На главную", foot_l1:"Три правила для первого звонка", foot_l3:"Контакт",
+    foot_disc:"Detention Navigator — это инструмент для информации и организации. Это не юридическая фирма, здесь не дают юридических советов и не обещают никакого результата. По юридическим вопросам обращайтесь к лицензированному адвокату или аккредитованному представителю Министерства юстиции."
+  }
+};
+const RICH = new Set(["s1_d","s2_d"]);
+function setLang(code){
+  const d=I18N[code]; if(!d) return;
+  document.documentElement.lang=d._htmllang; document.title=d._title;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const k=el.getAttribute("data-i18n"); if(!(k in d)) return;
+    if(RICH.has(k)){
+      if(k==="s1_d") el.innerHTML=d[k].replace("A## ### ###",'<span class="num-eg" translate="no">A## ### ###</span>');
+      else if(k==="s2_d") el.innerHTML=d[k].replace("locator.ice.gov",'<a href="https://locator.ice.gov/" target="_blank" rel="noopener noreferrer" translate="no">locator.ice.gov</a>');
+      else el.textContent=d[k];
+    } else el.textContent=d[k];
+  });
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===code)));
+  try{ localStorage.setItem("dn_lang",code); }catch(e){}
+}
+document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
+(function(){ let s="en"; try{ s=localStorage.getItem("dn_lang")||"en"; }catch(e){} if(!I18N[s]) s="en"; if(s!=="en") setLang(s); })();
+(function(){
+  const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const els=document.querySelectorAll(".reveal");
+  if(reduce||!("IntersectionObserver" in window)){ els.forEach(e=>e.classList.add("in")); return; }
+  const io=new IntersectionObserver((en)=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}})},{rootMargin:"0px 0px -8% 0px",threshold:0.08});
+  els.forEach(e=>io.observe(e));
+  setTimeout(()=>els.forEach(e=>e.classList.add("in")),1600);
+})();
+</script>
+</body>
+</html>
