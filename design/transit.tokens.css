@@ -1,0 +1,26 @@
+/* Detention Navigator — "Transit" direction tokens.
+   Same font FILES as landing/fonts.css (Commissioner / Spectral / IBM Plex Mono) —
+   reuse that file, don't add new fonts. Only the ROLES flip vs the folder direction:
+   grotesque (Commissioner) is now the DISPLAY face, serif (Spectral) is the READING face. */
+
+:root{
+  /* colour */
+  --ink:#182231;         /* headings, primary buttons, trust band, route text */
+  --paper:#F1EEE4;       /* page background (warm, cooler than cream #F4F1EA) */
+  --card:#FBF8F0;        /* raised surfaces */
+  --brass:#A9772A;       /* accent: chevrons, eyebrows-on-light, station numbers option */
+  --brass-600:#8A601F;   /* accent text on paper */
+  --teal:#215C63;        /* THE route/wayfinding line + progress. Calm, institutional */
+  --teal-700:#184449;
+  --sage:#3F6B4E;        /* "done" only */
+  --line:#DCD3C2;        /* hairlines */
+  --line-2:#CBBFA6;      /* stronger borders, unlit station dots */
+  --gold-on-ink:#E6C67C; /* accent text/links on the ink band */
+
+  /* type — ROLES FLIPPED */
+  --sign:"Commissioner","Segoe UI",system-ui,-apple-system,sans-serif; /* DISPLAY (signage grotesque) */
+  --read:"Spectral",Georgia,"Times New Roman",serif;                   /* BODY / reading */
+  --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,monospace;/* labels, numbers, station kickers */
+
+  --focus:#A9772A;
+}
