@@ -1,0 +1,47 @@
+/* Detention Navigator — design tokens (single source of truth)
+   Drop these CSS custom properties at :root. Every colour, type, radius,
+   shadow and motion value in the design derives from here. If the app uses
+   Tailwind, mirror these in tailwind.theme.cjs instead of hard-coding hexes. */
+
+:root{
+  /* ---------- colour ---------- */
+  --navy:#17264A;        /* primary structure: headings, buttons, doors, footer, folder lines */
+  --navy-700:#22345F;    /* hover on navy surfaces */
+  --brass:#B0842F;       /* the one accent: chevrons, folder tab, focus ring, links-on-light */
+  --brass-600:#946C22;   /* accent text on paper (meets contrast for labels) */
+  --gold-on-navy:#E7C77A;/* brass lightened for text/links on a navy background */
+  --paper:#F3EFE6;       /* page background (warm, NOT cream #F4F1EA, NOT white) */
+  --card:#FCFAF4;        /* raised surfaces: cards, folder front */
+  --caution:#8A4B12;     /* burnt amber for scam flags / warnings — NEVER red */
+  --sage:#3F6B4E;        /* progress + "done" states only (not a general green) */
+  --slate:#5E5A4E;       /* secondary/label text (warm grey). Never for body copy. */
+  --ink:#17264A;         /* body text = navy, high contrast on paper (~11:1) */
+  --line:#DED6C6;        /* hairlines / card borders on paper */
+  --line-strong:#CABDA6; /* stronger borders, input outlines */
+  --focus:#B0842F;       /* 3px focus ring, offset 2–3px */
+
+  /* ---------- type ---------- */
+  --serif:"Spectral", Georgia, "Times New Roman", serif;          /* display / headings */
+  --sans:"Commissioner", "Segoe UI", system-ui, -apple-system, sans-serif; /* body / UI */
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; /* labels, numbers, "paperwork" texture */
+
+  --fs-body:18px;        /* body — never below 17px for reading copy */
+  --lh-body:1.55;
+
+  /* ---------- radius ---------- */
+  --r-card:14px;
+  --r-ctrl:12px;         /* buttons, inputs */
+  --r-pill:999px;
+  /* the folder's signature cut corner: 2px top-left, 14px elsewhere */
+  --r-folder:2px 14px 14px 14px;
+
+  /* ---------- shadow ---------- */
+  --sh-card:0 14px 30px -22px rgba(23,38,74,.5);
+  --sh-navy:0 20px 40px -30px rgba(23,38,74,.9);
+
+  /* ---------- motion ---------- */
+  --t-fast:.15s;         /* hovers, state changes */
+  --ease:ease;
+  /* entrance: opacity 0→1 + translateY(6–14px), .5–.6s. Always gated by a
+     .js class and disabled under prefers-reduced-motion. */
+}
