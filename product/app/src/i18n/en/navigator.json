@@ -1,0 +1,64 @@
+{
+  "_meta": {
+    "status": "DRAFT — pending human content review",
+    "content_version": 1,
+    "review_notes": "One entry per checklist_steps.key. phase: 1=24h, 2=72h, 3=weeks."
+  },
+  "navigator": {
+    "locate": {
+      "title": "Find them",
+      "summary": "How to use the public government detainee locator, step by step.",
+      "body": "The public locator is a government website open to everyone. Enter the A-Number as 9 digits, with no dashes and no letter prefix, and select the country of birth. If the name was written differently on older documents, try that spelling too — names transliterated from another alphabet are often recorded in more than one way. Sometimes the locator returns a message asking you to call the agency for details, or returns nothing at all; this happens and does not by itself confirm where a person is.",
+      "source_url": "TODO: official locator URL"
+    },
+    "three_rules": {
+      "title": "Three rules",
+      "summary": "General information families commonly read aloud during the first phone call.",
+      "body": "DRAFT — general-information content with sources; reviewed copy goes here.",
+      "source_url": "TODO"
+    },
+    "money_calls": {
+      "title": "Money and calls",
+      "summary": "Setting up a phone account at the facility.",
+      "body": "Facilities use outside vendors for phone accounts. There are two account types: one funds the detained person's own calling balance, and another is tied to a specific family phone number. Families commonly confuse the two. Your facility's page in this app lists which vendor it uses and what each account funds.",
+      "source_url": "TODO: vendor page per facility record"
+    },
+    "mail_format": {
+      "title": "Mail format",
+      "summary": "How to address envelopes so mail reaches them.",
+      "body": "Facilities commonly require the full committed name and the A-Number on the envelope. Check your facility's page for its exact format before sending anything.",
+      "source_url": null
+    },
+    "attorney_verification": {
+      "title": "Check an attorney's license",
+      "summary": "How families verify a license using public records.",
+      "body": "Every state bar keeps a free public search where you can look up a lawyer's license status and history. A federal list also names practitioners disciplined in immigration practice. Immigration court generally accepts attorneys licensed in any state; filings in federal district court generally require admission to that district. This is general information, not a judgment about any specific attorney.",
+      "source_url": "TODO: federal disciplined-practitioners list URL"
+    },
+    "start_documents": {
+      "title": "Start gathering documents",
+      "summary": "Documents proving years of residence are among the first things attorneys request.",
+      "body": "Families in this situation commonly gather documents year by year: tax records, leases, school records, medical records, bank statements, pay stubs, IDs, and photos. The Document Builder helps you organize what an attorney may ask for.",
+      "source_url": null
+    },
+    "support_letters": {
+      "title": "Support letters",
+      "summary": "Keep track of letters from people who know your family.",
+      "body": "Attorneys sometimes ask families to collect letters from employers, teachers, neighbors, or faith communities. This app only tracks who you asked and whether the letter arrived — your attorney guides the content.",
+      "source_url": null
+    },
+    "children_care": {
+      "title": "Children's care documentation",
+      "summary": "Organize caregiver contacts, school info, and key documents.",
+      "body": "Record who is caring for the children now, backup caregivers, school contacts, and store documents like birth certificates and insurance cards. For court-related questions, each state court system publishes official self-help resources — we link to them and give no other guidance.",
+      "source_url": "TODO: per-state self-help directory"
+    },
+    "send_securely": {
+      "title": "How to send documents securely",
+      "summary": "Share documents through private links, not email or messengers.",
+      "body": "Attorneys commonly ask clients not to send documents by email, text, or messenger. Use this app's expiring share link, or upload your packet to the portal your attorney gives you.",
+      "source_url": null
+    }
+  },
+  "coverage_meter_label": "Document coverage"
+}

@@ -1,0 +1,60 @@
+version: v2
+title: Detention Navigator — инвесторский питч
+size: [960, 540]
+theme:
+  colors:
+    navy: "#1F3550"
+    blue: "#4A6FA5"
+    lightblue: "#BCD0E8"
+    accent: "#C0564A"
+    text: "#22303F"
+    grey: "#66788C"
+    bg: "#FFFFFF"
+    soft: "#F4F7FB"
+  textStyles:
+    h1:
+      fontSize: 30
+      bold: true
+      color: "$navy"
+    kicker:
+      fontSize: 12
+      color: "$blue"
+      letterSpacing: 3
+    body:
+      fontSize: 16
+      color: "$text"
+      lineHeight: 1.5
+    small:
+      fontSize: 12
+      color: "$grey"
+      lineHeight: 1.4
+    bignum:
+      fontSize: 44
+      bold: true
+      color: "$navy"
+  tableStyles:
+    default:
+      firstRowStyle:
+        fill: {type: solid, color: "$navy"}
+        color: "#ffffff"
+        bold: true
+        fontSize: 14
+      bodyStyles:
+        - fill: {type: solid, color: "#ffffff"}
+        - fill: {type: solid, color: "$soft"}
+      cellStyle:
+        fontSize: 14
+        color: "$text"
+pages:
+  - pages/01_cover.page
+  - pages/02_problem.page
+  - pages/03_whynow.page
+  - pages/04_product.page
+  - pages/05_compliance.page
+  - pages/06_market.page
+  - pages/07_model.page
+  - pages/08_unit.page
+  - pages/09_moat.page
+  - pages/10_competition.page
+  - pages/11_traction.page
+  - pages/12_ask.page

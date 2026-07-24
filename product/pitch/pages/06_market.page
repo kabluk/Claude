@@ -1,0 +1,54 @@
+pageType: content
+background: {type: solid, color: "$bg"}
+elements:
+  - elementId: kick
+    elementType: text
+    bounds: [60, 36, 400, 22]
+    content: {style: "$kicker", text: РЫНОК}
+  - elementId: h
+    elementType: text
+    bounds: [60, 62, 840, 44]
+    content: {style: "$h1", text: "Ниша для старта, континент для роста"}
+  - elementId: m1
+    elementType: text
+    bounds: [60, 130, 270, 120]
+    content:
+      text: |
+        <p><span style="font-size:15px; color:$grey">TAM · кризисные кейсы</span></p>
+        <p><span style="font-size:40px; color:$navy"><strong>3,36 млн</strong></span></p>
+        <p><span style="font-size:13px; color:$grey">дел с задержанием в данных EOIR; ~120 тыс. новых в год</span></p>
+  - elementId: m2
+    elementType: text
+    bounds: [345, 130, 270, 120]
+    content:
+      text: |
+        <p><span style="font-size:15px; color:$grey">SAM · подготовка заранее</span></p>
+        <p><span style="font-size:40px; color:$navy"><strong>миллионы</strong></span></p>
+        <p><span style="font-size:13px; color:$grey">семей «старожилов» в зоне риска: 85% задержанных 2026 г. жили в США 2+ года</span></p>
+  - elementId: m3
+    elementType: text
+    bounds: [630, 130, 270, 120]
+    content:
+      text: |
+        <p><span style="font-size:15px; color:$grey">SOM · старт</span></p>
+        <p><span style="font-size:40px; color:$navy"><strong>RU-ниша</strong></span></p>
+        <p><span style="font-size:13px; color:$grey">6-й язык задержаний 2025 г., ноль конкурентов на языке; далее испанский — 113 тыс. дел/год</span></p>
+  - elementId: bar1
+    elementType: shape
+    bounds: [60, 280, 840, 3]
+    shapeName: rect
+    fill: {type: solid, color: "#E2E9F2"}
+  - elementId: plan
+    elementType: text
+    bounds: [60, 300, 840, 180]
+    content:
+      style: "$body"
+      lineHeight: 1.6
+      text: |
+        <p><strong>География языков по данным EOIR (дела с задержанием, 2025):</strong></p>
+        <p>Испанский — 113 386 · Английский — 11 641 · Мандарин — 2 063 · Португальский — 1 884 · Пенджаби — 1 209 · <strong>Русский — 1 074</strong></p>
+        <p style="margin-top:10px">Архитектура i18n принимает ES/VI/ZH без рефакторинга — расширение языка = контент, не код.</p>
+  - elementId: src
+    elementType: text
+    bounds: [60, 505, 840, 20]
+    content: {style: "$small", text: "Источник: Deportation Data Project, датасеты EOIR и ICE detention facilities (CC0)"}

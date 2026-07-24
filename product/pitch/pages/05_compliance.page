@@ -1,0 +1,46 @@
+pageType: content
+background: {type: solid, color: "$navy"}
+elements:
+  - elementId: kick
+    elementType: text
+    bounds: [60, 36, 400, 22]
+    content: {style: "$kicker", color: "#BCD0E8", text: "РИСК, КОТОРЫЙ СТАЛ РВОМ"}
+  - elementId: h
+    elementType: text
+    bounds: [60, 62, 840, 44]
+    content: {style: "$h1", color: "#FFFFFF", text: "Комплаенс зашит в код, а не в обещания"}
+  - elementId: lead
+    elementType: text
+    bounds: [60, 118, 840, 62]
+    content:
+      fontSize: 16
+      color: "#D7E3F2"
+      lineHeight: 1.5
+      text: |
+        <p>Иммиграционная помощь не-адвокатов жёстко регулируется: «AI-юристы» и «нотарио»-сервисы под ударом. Мы спроектированы так, чтобы этого риска не существовало.</p>
+  - elementId: t
+    elementType: table
+    bounds: [60, 195, 840, 250]
+    columnWidths: [0.5, 0.5]
+    rowHeights: [0.2, 0.2, 0.2, 0.2, 0.2]
+    style: "$default"
+    rows:
+      - - text: "Мы никогда"
+        - text: "Мы только"
+      - - text: "Советы по конкретному делу"
+        - text: "Общая информация с источниками"
+      - - text: "Оценка шансов и исходов"
+        - text: "Организация документов и сроков"
+      - - text: "Рейтинги адвокатов"
+        - text: "Ссылки на открытые реестры лицензий"
+      - - text: "Заполнение госформ"
+        - text: "Упаковка файлов самой семьи"
+  - elementId: bottom
+    elementType: text
+    bounds: [60, 465, 840, 50]
+    content:
+      fontSize: 14
+      color: "#BCD0E8"
+      lineHeight: 1.5
+      text: |
+        <p>Линтер запрещённых формулировок — обязательный гейт в CI на двух языках. Ни одна строка интерфейса не попадёт в релиз без прохождения проверки.</p>

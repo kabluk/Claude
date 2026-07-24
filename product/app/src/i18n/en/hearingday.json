@@ -1,0 +1,67 @@
+{
+  "_meta": {
+    "status": "DRAFT — pending human content review (all three locales)",
+    "content_version": 1
+  },
+  "hearing_day": {
+    "title": "Your hearing day",
+    "when_where": {
+      "title": "When and where",
+      "open_maps": "Open in maps",
+      "copy_address": "Copy address",
+      "tz_note": "Court time zone: {{tz}} (yours: {{local_tz}})"
+    },
+    "leave_by": {
+      "title": "When to leave",
+      "travel_mode": "How are you getting there?",
+      "drive": "Drive",
+      "transit": "Public transit",
+      "dropped_off": "Someone drops me off",
+      "origin": "Your starting point",
+      "travel_minutes": "Travel time (minutes)",
+      "buffer": "Buffer for parking, security, and finding the room: {{minutes}} min",
+      "arithmetic": "Travel ~{{travel}} + {{buffer}} min buffer → leave by {{time}}",
+      "edit_estimate": "Edit this estimate"
+    },
+    "bring": {
+      "title": "What to bring",
+      "id": "ID for each person attending",
+      "notice": "Hearing notice",
+      "attorney": "Attorney's name and phone",
+      "interpreter": "Interpreter language",
+      "docs": "Documents your attorney asked for",
+      "parking": "Money for parking",
+      "kids": "Snacks and quiet activities (if children are coming)"
+    },
+    "practical": {
+      "title": "Confirm with the court in advance",
+      "log_call": "Log this call",
+      "unverified": "Not confirmed for this court — call to check",
+      "q_phones": "Are phones allowed in the building?",
+      "q_parking": "Parking: where and how much?",
+      "q_children": "Are children allowed in the courtroom?",
+      "q_access": "Accessibility needs",
+      "q_late": "What to do if running late?",
+      "q_checkin": "Where to check in?"
+    },
+    "reminders": {
+      "title": "Reminders",
+      "add_calendar": "Add to calendar (.ics)"
+    },
+    "dayof": {
+      "title": "Day-of card",
+      "offline_note": "This screen works without internet."
+    },
+    "disclaimer": "Practical information only. Ask your attorney about anything concerning the hearing itself."
+  },
+  "timing": {
+    "title": "How long does this usually take?",
+    "card": "Across all {{custody}} cases at this court in {{period}}, half were completed within {{median}} days and half took longer.",
+    "iqr": "The middle half of cases took {{p25}}–{{p75}} days.",
+    "national": "No court is linked to this case yet — showing national numbers.",
+    "sample": "Based on {{n}} cases. Data release: {{release}}. Source: {{source}}.",
+    "caveat": "This is historical data about many cases, not a prediction about yours. Individual cases vary widely.",
+    "detained": "detained",
+    "not_detained": "not detained"
+  }
+}

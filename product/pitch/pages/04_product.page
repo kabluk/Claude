@@ -1,0 +1,114 @@
+pageType: content
+background: {type: solid, color: "$bg"}
+elements:
+  - elementId: kick
+    elementType: text
+    bounds: [60, 36, 400, 22]
+    content: {style: "$kicker", text: ПРОДУКТ}
+  - elementId: h
+    elementType: text
+    bounds: [60, 62, 840, 44]
+    content: {style: "$h1", text: "Не замена адвокату — организованный клиент как сервис"}
+  - elementId: lead
+    elementType: text
+    bounds: [60, 112, 840, 54]
+    content:
+      style: "$body"
+      text: |
+        <p>Мобильный PWA на языке семьи (RU/EN, далее ES/VI/ZH). Три задачи на сегодня — за 5 минут, без регистрации.</p>
+  - elementId: c1
+    elementType: shape
+    bounds: [60, 170, 410, 100]
+    shapeName: roundRect
+    adjustments: [8000]
+    fill: {type: solid, color: "$soft"}
+  - elementId: c1t
+    elementType: text
+    bounds: [80, 182, 370, 80]
+    content:
+      fontSize: 14
+      color: "$text"
+      lineHeight: 1.4
+      text: |
+        <p><strong>Найти и связаться</strong></p>
+        <p>Пошаговый поиск в локаторе ICE (с обработкой сбоев и транслитерации), телефонный счёт в учреждении, формат писем</p>
+  - elementId: c2
+    elementType: shape
+    bounds: [490, 170, 410, 100]
+    shapeName: roundRect
+    adjustments: [8000]
+    fill: {type: solid, color: "$soft"}
+  - elementId: c2t
+    elementType: text
+    bounds: [510, 182, 370, 80]
+    content:
+      fontSize: 14
+      color: "$text"
+      lineHeight: 1.4
+      text: |
+        <p><strong>Адвокат без обмана</strong></p>
+        <p>Проверка лицензии по открытым реестрам, банк вопросов, фазы и платежи, батчинг вопросов против 6-минутных тарифов</p>
+  - elementId: c3
+    elementType: shape
+    bounds: [60, 285, 410, 100]
+    shapeName: roundRect
+    adjustments: [8000]
+    fill: {type: solid, color: "$soft"}
+  - elementId: c3t
+    elementType: text
+    bounds: [80, 297, 370, 80]
+    content:
+      fontSize: 14
+      color: "$text"
+      lineHeight: 1.4
+      text: |
+        <p><strong>Документы по годам</strong></p>
+        <p>Сетка «год × категория», PDF-пакет для адвоката одним нажатием, ссылки с истечением срока вместо мессенджеров</p>
+  - elementId: c4
+    elementType: shape
+    bounds: [490, 285, 410, 100]
+    shapeName: roundRect
+    adjustments: [8000]
+    fill: {type: solid, color: "$soft"}
+  - elementId: c4t
+    elementType: text
+    bounds: [510, 297, 370, 80]
+    content:
+      fontSize: 14
+      color: "$text"
+      lineHeight: 1.4
+      text: |
+        <p><strong>Дети и освобождение</strong></p>
+        <p>План ухода за детьми, экстренная карточка офлайн, документы плательщика залога, адрес для выпуска</p>
+  - elementId: c5
+    elementType: shape
+    bounds: [60, 400, 410, 100]
+    shapeName: roundRect
+    adjustments: [8000]
+    fill: {type: solid, color: "$soft"}
+  - elementId: c5t
+    elementType: text
+    bounds: [80, 412, 370, 80]
+    content:
+      fontSize: 14
+      color: "$text"
+      lineHeight: 1.4
+      text: |
+        <p><strong>Мониторинг статуса</strong></p>
+        <p>Отслеживание локатора и судебной системы, уведомления всей семье, деградация в «позвоните сами» при сбое</p>
+  - elementId: c6
+    elementType: shape
+    bounds: [490, 400, 410, 100]
+    shapeName: roundRect
+    adjustments: [8000]
+    fill: {type: solid, color: "$soft"}
+  - elementId: c6t
+    elementType: text
+    bounds: [510, 412, 370, 80]
+    content:
+      fontSize: 14
+      color: "$text"
+      lineHeight: 1.4
+      text: |
+        <p><strong>Семейный таймлайн</strong></p>
+        <p>Единая хронология дела с экспортом в PDF — самый ценный артефакт при смене адвоката</p>

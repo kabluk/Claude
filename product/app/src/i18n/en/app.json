@@ -1,0 +1,55 @@
+{
+  "_meta": { "status": "DRAFT — pending human content review", "content_version": 1 },
+  "app": {
+    "common": {
+      "step": "Step {{n}} of {{total}}",
+      "next": "Continue",
+      "back": "Back"
+    },
+    "login": {
+      "title": "Your phone number",
+      "lead": "We'll text you a code. No passwords — they're easy to forget under stress.",
+      "get_code": "Get code",
+      "have_account": "I already have an account",
+      "code_sent": "We sent a 6-digit code to",
+      "resend": "Resend code",
+      "resend_in": "Resend code (0:{{sec}})",
+      "sign_in": "Sign in",
+      "header": "Sign in"
+    },
+    "today": {
+      "day_chip": "Day 1 of the crisis",
+      "family_footer": "Completed by Marina · visible to all 3 family members"
+    },
+    "alerts": {
+      "title": "Three types — three reactions",
+      "lead": "The family shouldn't flinch at every push notification.",
+      "header": "Notifications"
+    },
+    "panic": {
+      "title": "If they come — one tap",
+      "lead": "Your family gets the alert and your action plan. Card data is stored only on this phone.",
+      "button": "ALERT",
+      "hint_idle": "tap if a detention has started",
+      "hint_cancel": "tap again to cancel",
+      "sent": "SENT",
+      "hint_sent": "your family received the alert and plan",
+      "footer": "Sign-in uses a numeric code, not a fingerprint — a code can't be compelled",
+      "header": "Preparedness mode"
+    },
+    "docs": {
+      "title": "Documents by year",
+      "lead": "Document completeness is the first thing attorneys ask for. Tap a cell.",
+      "header": "Documents",
+      "cat_taxes": "Taxes",
+      "cat_housing": "Housing",
+      "cat_school": "School",
+      "cat_finance": "Finance",
+      "legend_full": "have it",
+      "legend_part": "partial",
+      "legend_none": "missing",
+      "export_pdf": "Build PDF packet for attorney",
+      "note": "\"Completeness\" is not an assessment of the case. Only your attorney can assess it."
+    }
+  }
+}
