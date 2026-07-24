@@ -177,6 +177,10 @@
     color:var(--slate);display:flex;align-items:center;gap:9px;flex-wrap:wrap;
   }
   .reassure .tick{color:var(--brass-600);font-weight:700}
+  .applink{margin-top:15px}
+  .applink a{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:14.5px;font-weight:600;color:var(--brass-600);text-decoration:none}
+  .applink a:hover{color:var(--navy)}
+  .applink a .ar{color:var(--brass)}
 
   .anum{
     margin-top:16px;border-top:1px dashed var(--line-strong);padding-top:15px;
@@ -349,6 +353,7 @@
           </div>
 
           <p class="reassure"><span class="tick" aria-hidden="true">✓</span><span data-i18n="reassure">Both free. No account, no email, no card.</span></p>
+          <p class="applink"><a href="app.html"><span data-i18n="app_cta">Start your plan — free, saved on your phone</span><span class="ar" aria-hidden="true">→</span></a></p>
 
           <p class="anum" data-i18n="anum">To search, you'll need their <b>A-Number</b> — a nine-digit number that looks like <span class="num" translate="no">A## ### ###</span> on their papers. The locator guide shows you where to find it.</p>
         </div>
@@ -510,6 +515,7 @@
     <div class="name">Detention <span class="mark">Navigator</span></div>
     <p class="priv" data-i18n="foot_priv">Your information is encrypted. No ads, no data selling, and you can delete everything at any time.</p>
     <div class="links">
+      <a href="app.html" data-i18n="foot_app">Your plan</a>
       <a href="three-rules.html" data-i18n="foot_l1">Three rules for the first call</a>
       <a href="find-them.html" data-i18n="foot_l2">Find where they are</a>
       <a href="mailto:help@detentionnavigator.org" data-i18n="foot_l3">Contact</a>
@@ -532,6 +538,7 @@ const I18N = {
     door1_t:"Find where they are", door1_s:"Free locator guide, step by step",
     door2_t:"Three rules for the first call", door2_s:"What to tell them. Free",
     reassure:"Both free. No account, no email, no card.",
+    app_cta:"Start your plan — free, saved on your phone", foot_app:"Your plan",
     anum:"To search, you'll need their <b>A-Number</b> — a nine-digit number that looks like <span class=\"num\" translate=\"no\">A## ### ###</span> on their papers. The locator guide shows you where to find it.",
     does_kicker:"What this does",
     does_h:"Eight things, in the order a family actually needs them",
@@ -586,6 +593,7 @@ const I18N = {
     door1_t:"Encuentre dónde está", door1_s:"Guía gratuita para localizarlo, paso a paso",
     door2_t:"Tres reglas para la primera llamada", door2_s:"Qué decirle. Gratis",
     reassure:"Ambas gratis. Sin cuenta, sin correo, sin tarjeta.",
+    app_cta:"Empiece su plan — gratis, guardado en su teléfono", foot_app:"Su plan",
     anum:"Para buscar, necesitará su <b>número A</b> — un número de nueve dígitos parecido a <span class=\"num\" translate=\"no\">A## ### ###</span> en sus documentos. La guía le muestra dónde encontrarlo.",
     does_kicker:"Qué hace esto",
     does_h:"Ocho cosas, en el orden en que una familia realmente las necesita",
@@ -640,6 +648,7 @@ const I18N = {
     door1_t:"Найдите, где он находится", door1_s:"Бесплатное пошаговое руководство по поиску",
     door2_t:"Три правила для первого звонка", door2_s:"Что ему сказать. Бесплатно",
     reassure:"Оба бесплатны. Без аккаунта, без почты, без карты.",
+    app_cta:"Начните свой план — бесплатно, хранится на телефоне", foot_app:"Ваш план",
     anum:"Для поиска понадобится его <b>номер A</b> — девятизначный номер вида <span class=\"num\" translate=\"no\">A## ### ###</span> в его документах. Руководство покажет, где его найти.",
     does_kicker:"Что это делает",
     does_h:"Восемь шагов — в том порядке, в каком они реально нужны семье",
