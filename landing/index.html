@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<script>document.documentElement.className+=" js";</script>
+<title>Detention Navigator — Find a detained relative. Know what to do today.</title>
+<meta name="description" content="A free, mobile-first tool for families whose relative has just been detained by immigration authorities. Locate the person, set up calls, and know what to do first. Not a law firm.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=Commissioner:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ---------- Palette (from the navy / brass / cream reference) ---------- */
+  :root{
+    --navy:#17264A;      /* structure, doors, headings, footer */
+    --navy-700:#22345f;  /* hover on navy */
+    --brass:#B0842F;     /* gold accent, wayfinding */
+    --brass-600:#946c22;
+    --paper:#F3EFE6;     /* page background */
+    --card:#FCFAF4;      /* folder front / surfaces */
+    --caution:#8A4B12;   /* scam flags — burnt amber, never red */
+    --slate:#5E5A4E;     /* secondary labels */
+    --line:#DED6C6;      /* hairlines on paper */
+    --line-strong:#CABDA6;
+    --ink:#17264A;       /* body text = navy, high contrast on paper */
+    --focus:#B0842F;
+    --maxw:760px;
+    --r:14px;
+
+    --serif:"Spectral", Georgia, "Times New Roman", serif;
+    --sans:"Commissioner", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:18px;
+    line-height:1.62;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+  }
+  @media (max-width:400px){ body{font-size:17.5px} }
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  @media (min-width:720px){ .wrap{padding:0 28px} }
+
+  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.16;letter-spacing:-.01em;color:var(--navy);margin:0}
+  p{margin:0}
+  a{color:var(--brass-600);text-underline-offset:3px;text-decoration-thickness:1.5px}
+  a:hover{color:var(--navy)}
+
+  .kicker{
+    font-family:var(--mono);
+    font-size:13px;
+    font-weight:500;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--brass-600);
+  }
+
+  /* Visible keyboard focus everywhere */
+  a:focus-visible, button:focus-visible, .door:focus-visible{
+    outline:3px solid var(--focus);
+    outline-offset:3px;
+    border-radius:6px;
+  }
+
+  .skip{
+    position:absolute;left:-9999px;top:0;background:var(--navy);color:#fff;
+    padding:12px 18px;border-radius:0 0 10px 0;z-index:100;font-weight:600;
+  }
+  .skip:focus{left:0}
+
+  /* ============================ HEADER ============================ */
+  header.site{
+    background:var(--paper);
+    border-bottom:1px solid var(--line);
+    padding:14px 0 15px;
+  }
+  .head-row{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+  .brand{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .brand .name{
+    font-family:var(--serif);font-weight:600;font-size:21px;color:var(--navy);
+    letter-spacing:-.01em;line-height:1.1;
+  }
+  .brand .name .mark{color:var(--brass)}
+  .brand .clarify{font-size:14.5px;color:var(--slate);line-height:1.35;max-width:34ch}
+
+  /* Language switch — top, thumb-reachable, EN & ES equal weight */
+  .lang{display:flex;gap:6px;flex-shrink:0}
+  .lang button{
+    font-family:var(--mono);
+    font-size:14px;font-weight:500;letter-spacing:.02em;
+    min-width:46px;min-height:42px;padding:0 10px;
+    background:transparent;color:var(--navy);
+    border:1.5px solid var(--line-strong);border-radius:9px;
+    cursor:pointer;transition:background .15s,color .15s,border-color .15s;
+  }
+  .lang button:hover{border-color:var(--brass)}
+  .lang button[aria-pressed="true"]{
+    background:var(--navy);color:#fff;border-color:var(--navy);
+  }
+
+  /* ============================= HERO ============================= */
+  .hero{padding:26px 0 30px}
+  @media (min-width:720px){ .hero{padding:40px 0 40px} }
+
+  /* The Folder — the signature element */
+  .folder{position:relative;margin-top:20px}
+  .folder-tab{
+    display:inline-flex;align-items:center;gap:9px;
+    background:var(--navy);color:#fff;
+    font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.13em;
+    text-transform:uppercase;
+    padding:8px 15px 9px;border-radius:12px 12px 0 0;
+    position:relative;left:8px;
+    border-bottom:3px solid var(--brass);
+  }
+  .folder-tab .dot{width:7px;height:7px;border-radius:50%;background:var(--brass)}
+  .folder-front{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-top:2px solid var(--navy);
+    border-radius:2px var(--r) var(--r) var(--r);
+    box-shadow:0 1px 0 #fff inset, 0 14px 30px -22px rgba(23,38,74,.5);
+    padding:24px 20px 22px;
+  }
+  @media (min-width:720px){ .folder-front{padding:34px 34px 30px} }
+  /* faint horizontal "ruling" of a form, drawn not imaged */
+  .folder-front::after{
+    content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
+    background:repeating-linear-gradient(to bottom, transparent 0 37px, rgba(23,38,74,.035) 37px 38px);
+    mask:linear-gradient(to bottom, transparent 0, #000 120px);
+    -webkit-mask:linear-gradient(to bottom, transparent 0, #000 120px);
+    opacity:.5;
+  }
+  .folder-front > *{position:relative}
+
+  .hero-q{
+    font-size:26px;line-height:1.2;color:var(--navy);max-width:22ch;
+  }
+  @media (min-width:560px){ .hero-q{font-size:31px} }
+  @media (min-width:720px){ .hero-q{font-size:34px;max-width:24ch} }
+
+  .doors{display:flex;flex-direction:column;gap:12px;margin-top:22px}
+  @media (min-width:600px){ .doors{flex-direction:row} .door{flex:1 1 0} }
+  .door{
+    flex:0 0 auto;display:flex;align-items:center;gap:14px;
+    background:var(--navy);color:#fff;text-decoration:none;
+    border:2px solid var(--navy);border-radius:12px;
+    padding:17px 18px;min-height:66px;
+    transition:background .15s, transform .05s;
+  }
+  .door:hover{background:var(--navy-700)}
+  .door:active{transform:translateY(1px)}
+  .door.secondary{background:transparent;color:var(--navy)}
+  .door.secondary .door-title{color:var(--navy)}
+  .door.secondary:hover{background:rgba(23,38,74,.055)}
+  .door .chev{
+    flex:0 0 auto;width:30px;height:30px;border-radius:50%;
+    display:grid;place-items:center;background:var(--brass);color:var(--navy);
+    font-size:16px;font-weight:700;
+  }
+  .door.secondary .chev{background:var(--brass);color:var(--navy)}
+  .door-txt{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .door-title{font-family:var(--sans);font-weight:600;font-size:18px;line-height:1.2;color:#fff}
+  .door-sub{font-size:14px;line-height:1.3;color:rgba(255,255,255,.82);font-weight:400}
+  .door.secondary .door-sub{color:var(--slate)}
+
+  .reassure{
+    margin-top:18px;font-family:var(--mono);font-size:13.5px;letter-spacing:.01em;
+    color:var(--slate);display:flex;align-items:center;gap:9px;flex-wrap:wrap;
+  }
+  .reassure .tick{color:var(--brass-600);font-weight:700}
+
+  .anum{
+    margin-top:16px;border-top:1px dashed var(--line-strong);padding-top:15px;
+    font-size:17px;color:var(--slate);line-height:1.5;
+  }
+  .anum b{color:var(--navy);font-weight:600}
+  .anum .num{
+    font-family:var(--mono);background:#fff;border:1px solid var(--line);
+    border-radius:6px;padding:1px 7px;color:var(--navy);letter-spacing:.06em;white-space:nowrap;
+  }
+
+  /* ========================= SECTION SHELL ========================= */
+  section{padding:44px 0}
+  @media (min-width:720px){ section{padding:56px 0} }
+  .sec-head{margin-bottom:22px}
+  .sec-head h2{font-size:25px;margin-top:8px}
+  @media (min-width:720px){ .sec-head h2{font-size:29px} }
+  .sec-head .lead{margin-top:10px;color:var(--slate);font-size:17px;max-width:56ch}
+
+  .divider{height:1px;background:var(--line);border:0;margin:0}
+
+  /* ===================== WHAT THIS DOES (index) ==================== */
+  .index{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+  .index li{
+    display:flex;gap:15px;align-items:flex-start;
+    padding:17px 4px;border-bottom:1px solid var(--line);
+  }
+  .index .n{
+    flex:0 0 auto;font-family:var(--mono);font-size:12.5px;color:var(--brass-600);
+    width:30px;padding-top:3px;letter-spacing:.02em;font-weight:500;
+  }
+  .index .body h3{font-size:18.5px;font-family:var(--sans);font-weight:600;color:var(--navy);line-height:1.25}
+  .index .body p{margin-top:3px;color:var(--slate);font-size:17px;line-height:1.5}
+  .index .tag{
+    display:inline-block;margin-top:7px;font-family:var(--mono);font-size:11.5px;
+    letter-spacing:.1em;text-transform:uppercase;color:var(--navy);
+    background:#fff;border:1px solid var(--line);border-radius:5px;padding:2px 8px;
+  }
+
+  /* ===================== WHAT THIS IS NOT (navy) =================== */
+  .not{
+    background:var(--navy);color:#fff;border-radius:var(--r);
+    padding:30px 24px;
+    box-shadow:0 20px 40px -30px rgba(23,38,74,.9);
+  }
+  @media (min-width:720px){ .not{padding:40px 40px} }
+  .not .kicker{color:#E7C77A}
+  .not h2{color:#fff;font-size:25px;margin-top:8px}
+  @media (min-width:720px){ .not h2{font-size:29px} }
+  .not-list{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:0}
+  .not-list li{
+    display:flex;gap:14px;align-items:baseline;
+    padding:15px 0;border-top:1px solid rgba(255,255,255,.15);
+    font-size:18px;color:#F3EFE6;
+  }
+  .not-list li .x{color:#E7C77A;font-family:var(--mono);font-weight:500;flex:0 0 auto}
+  .not-foot{margin-top:22px;color:rgba(243,239,230,.85);font-size:17px;line-height:1.6;max-width:60ch}
+
+  /* ========================= SPOT A SCAM ========================== */
+  .scam .flags{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+  .flag{
+    display:flex;gap:13px;align-items:flex-start;
+    background:#fff;border:1px solid var(--line);
+    border-left:4px solid var(--caution);border-radius:10px;
+    padding:15px 16px;
+  }
+  .flag .mk{color:var(--caution);flex:0 0 auto;font-size:16px;line-height:1.5}
+  .flag p{font-size:17px;line-height:1.5;color:var(--navy)}
+  .flag p b{font-weight:600}
+  .verify{
+    margin-top:18px;background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:20px 18px;
+  }
+  .verify h3{font-family:var(--sans);font-weight:600;font-size:18px;color:var(--navy)}
+  .verify p{margin-top:8px;font-size:17px;color:var(--slate);line-height:1.55}
+  .verify a{font-weight:600}
+  .verify .ck{font-family:var(--mono);font-size:13px;color:var(--brass-600);letter-spacing:.04em;display:block;margin-top:12px}
+
+  /* ============================ PRICING =========================== */
+  .tiers{display:grid;gap:14px}
+  .tier{
+    background:var(--card);border:1px solid var(--line);border-radius:12px;
+    padding:20px 20px;
+  }
+  .tier.free{border:1.5px solid var(--navy)}
+  .tier .row1{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+  .tier h3{font-family:var(--sans);font-weight:700;font-size:18.5px;color:var(--navy)}
+  .tier .price{font-family:var(--mono);font-size:14px;color:var(--brass-600);letter-spacing:.03em;text-align:right;flex:0 0 auto}
+  .tier p{margin-top:9px;color:var(--slate);font-size:17px;line-height:1.55}
+  .tier .free-badge{
+    display:inline-block;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;
+    text-transform:uppercase;color:#fff;background:var(--navy);border-radius:5px;
+    padding:3px 9px;margin-bottom:2px;
+  }
+
+  /* ============================ FOOTER ============================ */
+  footer.site{background:var(--navy);color:#F3EFE6;padding:40px 0 46px;margin-top:8px}
+  footer .name{font-family:var(--serif);font-weight:600;font-size:20px;color:#fff}
+  footer .name .mark{color:#E7C77A}
+  footer .priv{margin-top:14px;font-size:17px;line-height:1.6;color:rgba(243,239,230,.9);max-width:60ch}
+  footer .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:10px 22px;font-size:15.5px}
+  footer .links a{color:#E7C77A;text-decoration:none;font-weight:500}
+  footer .links a:hover{color:#fff;text-decoration:underline}
+  footer .disc{
+    margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,.16);
+    font-size:14.5px;line-height:1.6;color:rgba(243,239,230,.72);max-width:64ch;
+  }
+
+  /* ===================== motion (entrance) =======================
+     Hiding is gated on html.js AND backed by a JS failsafe, so content
+     is never permanently invisible if scripting fails or is slow. */
+  html.js .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease}
+  html.js .reveal.in{opacity:1;transform:none}
+  html.js .folder-tab{opacity:0;transform:translateY(6px);animation:tabIn .5s .1s ease forwards}
+  html.js .folder-front{opacity:0;transform:translateY(10px);animation:tabIn .6s .22s ease forwards}
+  @keyframes tabIn{to{opacity:1;transform:none}}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important}
+    .reveal{opacity:1;transform:none}
+    .folder-tab,.folder-front{opacity:1;transform:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#doors" data-i18n="skip">Skip to the two free tools</a>
+
+<!-- ============================ HEADER ============================ -->
+<header class="site">
+  <div class="wrap head-row">
+    <div class="brand">
+      <span class="name">Detention <span class="mark">Navigator</span></span>
+      <span class="clarify" data-i18n="clarify">Find a detained relative. Know what to do today.</span>
+    </div>
+    <nav class="lang" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true" lang="en">EN</button>
+      <button type="button" data-lang="es" aria-pressed="false" lang="es">ES</button>
+      <button type="button" data-lang="ru" aria-pressed="false" lang="ru">RU</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============================= HERO ============================= -->
+  <div class="hero">
+    <div class="wrap">
+      <p class="kicker" data-i18n="hero_kicker">A free tool for the first days</p>
+      <div class="folder">
+        <div class="folder-tab"><span class="dot"></span><span data-i18n="folder_tab">Case file</span></div>
+        <div class="folder-front">
+          <h1 class="hero-q" data-i18n="hero_q">Your relative has been detained. Where are they — and what do you do first?</h1>
+
+          <div class="doors" id="doors">
+            <a class="door" href="/find-them">
+              <span class="chev" aria-hidden="true">→</span>
+              <span class="door-txt">
+                <span class="door-title" data-i18n="door1_t">Find where they are</span>
+                <span class="door-sub" data-i18n="door1_s">Free locator guide, step by step</span>
+              </span>
+            </a>
+            <a class="door secondary" href="/three-rules">
+              <span class="chev" aria-hidden="true">→</span>
+              <span class="door-txt">
+                <span class="door-title" data-i18n="door2_t">Three rules for the first call</span>
+                <span class="door-sub" data-i18n="door2_s">What to tell them. Free</span>
+              </span>
+            </a>
+          </div>
+
+          <p class="reassure"><span class="tick" aria-hidden="true">✓</span><span data-i18n="reassure">Both free. No account, no email, no card.</span></p>
+
+          <p class="anum" data-i18n="anum">To search, you'll need their <b>A-Number</b> — a nine-digit number that looks like <span class="num" translate="no">A## ### ###</span> on their papers. The locator guide shows you where to find it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <!-- ======================= WHAT THIS DOES ======================== -->
+  <section class="does">
+    <div class="wrap reveal">
+      <div class="sec-head">
+        <p class="kicker" data-i18n="does_kicker">What this does</p>
+        <h2 data-i18n="does_h">Eight things, in the order a family actually needs them</h2>
+        <p class="lead" data-i18n="does_lead">Not a feature list. This is the path through the first days, one step at a time.</p>
+      </div>
+      <ol class="index">
+        <li>
+          <span class="n" translate="no">01</span>
+          <span class="body">
+            <h3 data-i18n="m1_t">Locate the person</h3>
+            <p data-i18n="m1_d">Find which facility is holding them, and how to confirm it before you travel or send anything.</p>
+          </span>
+        </li>
+        <li>
+          <span class="n" translate="no">02</span>
+          <span class="body">
+            <h3 data-i18n="m2_t">Phone and money</h3>
+            <p data-i18n="m2_d">Set up how they can call you, and put money on the account so the calls actually connect.</p>
+          </span>
+        </li>
+        <li>
+          <span class="n" translate="no">03</span>
+          <span class="body">
+            <h3 data-i18n="m3_t">The first 24 and 72 hours</h3>
+            <p data-i18n="m3_d">A short checklist of what to do first, and what can safely wait until tomorrow.</p>
+            <span class="tag" data-i18n="m3_tag">Step by step</span>
+          </span>
+        </li>
+        <li>
+          <span class="n" translate="no">04</span>
+          <span class="body">
+            <h3 data-i18n="m4_t">Gather documents</h3>
+            <p data-i18n="m4_d">The papers to collect and how to organize them by what each one is for.</p>
+          </span>
+        </li>
+        <li>
+          <span class="n" translate="no">05</span>
+          <span class="body">
+            <h3 data-i18n="m5_t">Find and check an attorney</h3>
+            <p data-i18n="m5_d">How to find a lawyer and verify they are real and licensed before you pay anyone.</p>
+          </span>
+        </li>
+        <li>
+          <span class="n" translate="no">06</span>
+          <span class="body">
+            <h3 data-i18n="m6_t">Plan for children</h3>
+            <p data-i18n="m6_d">Practical steps if children depend on the person who was detained.</p>
+          </span>
+        </li>
+        <li>
+          <span class="n" translate="no">07</span>
+          <span class="body">
+            <h3 data-i18n="m7_t">One shared timeline</h3>
+            <p data-i18n="m7_d">A single timeline the whole family can see, so nothing is repeated, missed, or lost.</p>
+          </span>
+        </li>
+        <li>
+          <span class="n" translate="no">08</span>
+          <span class="body">
+            <h3 data-i18n="m8_t">Status monitoring</h3>
+            <p data-i18n="m8_d">Keep track of changes to their custody location and case status over time.</p>
+          </span>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ====================== WHAT THIS IS NOT ======================= -->
+  <section class="isnot">
+    <div class="wrap reveal">
+      <div class="not">
+        <p class="kicker" data-i18n="not_kicker">Read this before you trust anyone</p>
+        <h2 data-i18n="not_h">What this is not</h2>
+        <ul class="not-list">
+          <li><span class="x" aria-hidden="true">—</span><span data-i18n="not1">This is not a law firm.</span></li>
+          <li><span class="x" aria-hidden="true">—</span><span data-i18n="not2">It does not give legal advice.</span></li>
+          <li><span class="x" aria-hidden="true">—</span><span data-i18n="not3">It does not promise any outcome.</span></li>
+          <li><span class="x" aria-hidden="true">—</span><span data-i18n="not4">It does not replace an attorney.</span></li>
+        </ul>
+        <p class="not-foot" data-i18n="not_foot">It is a tool to help you organize and find your way through the first days. The legal decisions stay with you and a licensed attorney — and this page will always tell you when you need one.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================= SPOT A SCAM ========================= -->
+  <section class="scam">
+    <div class="wrap reveal">
+      <div class="sec-head">
+        <p class="kicker" data-i18n="scam_kicker">How to protect your money</p>
+        <h2 data-i18n="scam_h">How to spot a scam</h2>
+        <p class="lead" data-i18n="scam_lead">Some people take money from families at the worst moment. These are the warning signs — and how to check someone before you pay.</p>
+      </div>
+      <ul class="flags">
+        <li class="flag"><span class="mk" aria-hidden="true">⚑</span><p data-i18n="f1">Anyone who <b>guarantees a result</b> or a release. No one can promise that.</p></li>
+        <li class="flag"><span class="mk" aria-hidden="true">⚑</span><p data-i18n="f2">A promised <b>“same-day release”</b> or a specific date they will be out.</p></li>
+        <li class="flag"><span class="mk" aria-hidden="true">⚑</span><p data-i18n="f3"><b>Prepaid document packages</b> sold before anyone has looked at the case.</p></li>
+        <li class="flag"><span class="mk" aria-hidden="true">⚑</span><p data-i18n="f4">A <b>“notario”</b> or consultant who is not a licensed attorney or an accredited representative.</p></li>
+      </ul>
+      <div class="verify">
+        <h3 data-i18n="verify_h">How to check someone before you pay</h3>
+        <p data-i18n="verify_p">Ask directly: “Are you a licensed attorney or a DOJ-accredited representative?” Then confirm it yourself on the official U.S. Department of Justice list — it is free and public.</p>
+        <p><a href="https://www.justice.gov/eoir/recognition-accreditation-roster-reports" target="_blank" rel="noopener noreferrer" data-i18n="verify_link">Open the official list of accredited representatives →</a></p>
+        <span class="ck" data-i18n="verify_note">Free · public · takes two minutes</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ PRICING =========================== -->
+  <section class="pricing">
+    <div class="wrap reveal">
+      <div class="sec-head">
+        <p class="kicker" data-i18n="price_kicker">What it costs</p>
+        <h2 data-i18n="price_h">Plainly, with nothing hidden</h2>
+      </div>
+      <div class="tiers">
+        <div class="tier free">
+          <span class="free-badge" data-i18n="price_badge">Free forever</span>
+          <div class="row1">
+            <h3 data-i18n="t1_t">Free</h3>
+            <span class="price" data-i18n="t1_p">$0 — always</span>
+          </div>
+          <p data-i18n="t1_d">The Three Rules, the locator guide, and one case with the basic checklist. No account or card needed to start.</p>
+        </div>
+        <div class="tier">
+          <div class="row1">
+            <h3 data-i18n="t2_t">Full kit</h3>
+            <span class="price" data-i18n="t2_p">One-time payment</span>
+          </div>
+          <p data-i18n="t2_d">The complete document and planning kit for your case. Pay once — no subscription.</p>
+        </div>
+        <div class="tier">
+          <div class="row1">
+            <h3 data-i18n="t3_t">Monitoring</h3>
+            <span class="price" data-i18n="t3_p">Monthly · cancel anytime</span>
+          </div>
+          <p data-i18n="t3_d">Ongoing status monitoring for custody and case changes. Cancel whenever you want.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="site">
+  <div class="wrap">
+    <div class="name">Detention <span class="mark">Navigator</span></div>
+    <p class="priv" data-i18n="foot_priv">Your information is encrypted. No ads, no data selling, and you can delete everything at any time.</p>
+    <div class="links">
+      <a href="/three-rules" data-i18n="foot_l1">Three rules for the first call</a>
+      <a href="/find-them" data-i18n="foot_l2">Find where they are</a>
+      <a href="mailto:help@detentionnavigator.org" data-i18n="foot_l3">Contact</a>
+    </div>
+    <p class="disc" data-i18n="foot_disc">Detention Navigator is an information and organization tool. It is not a law firm, does not provide legal advice, and does not promise any outcome. For legal decisions, consult a licensed attorney or a DOJ-accredited representative.</p>
+  </div>
+</footer>
+
+<script>
+/* ---------------- Complete strings: EN · ES · RU (no fallbacks) --------------- */
+const I18N = {
+  en:{
+    _htmllang:"en", _dir:"ltr",
+    _title:"Detention Navigator — Find a detained relative. Know what to do today.",
+    skip:"Skip to the two free tools",
+    clarify:"Find a detained relative. Know what to do today.",
+    hero_kicker:"A free tool for the first days",
+    folder_tab:"Case file",
+    hero_q:"Your relative has been detained. Where are they — and what do you do first?",
+    door1_t:"Find where they are", door1_s:"Free locator guide, step by step",
+    door2_t:"Three rules for the first call", door2_s:"What to tell them. Free",
+    reassure:"Both free. No account, no email, no card.",
+    anum:"To search, you'll need their <b>A-Number</b> — a nine-digit number that looks like <span class=\"num\" translate=\"no\">A## ### ###</span> on their papers. The locator guide shows you where to find it.",
+    does_kicker:"What this does",
+    does_h:"Eight things, in the order a family actually needs them",
+    does_lead:"Not a feature list. This is the path through the first days, one step at a time.",
+    m1_t:"Locate the person", m1_d:"Find which facility is holding them, and how to confirm it before you travel or send anything.",
+    m2_t:"Phone and money", m2_d:"Set up how they can call you, and put money on the account so the calls actually connect.",
+    m3_t:"The first 24 and 72 hours", m3_d:"A short checklist of what to do first, and what can safely wait until tomorrow.", m3_tag:"Step by step",
+    m4_t:"Gather documents", m4_d:"The papers to collect and how to organize them by what each one is for.",
+    m5_t:"Find and check an attorney", m5_d:"How to find a lawyer and verify they are real and licensed before you pay anyone.",
+    m6_t:"Plan for children", m6_d:"Practical steps if children depend on the person who was detained.",
+    m7_t:"One shared timeline", m7_d:"A single timeline the whole family can see, so nothing is repeated, missed, or lost.",
+    m8_t:"Status monitoring", m8_d:"Keep track of changes to their custody location and case status over time.",
+    not_kicker:"Read this before you trust anyone",
+    not_h:"What this is not",
+    not1:"This is not a law firm.",
+    not2:"It does not give legal advice.",
+    not3:"It does not promise any outcome.",
+    not4:"It does not replace an attorney.",
+    not_foot:"It is a tool to help you organize and find your way through the first days. The legal decisions stay with you and a licensed attorney — and this page will always tell you when you need one.",
+    scam_kicker:"How to protect your money",
+    scam_h:"How to spot a scam",
+    scam_lead:"Some people take money from families at the worst moment. These are the warning signs — and how to check someone before you pay.",
+    f1:"Anyone who <b>guarantees a result</b> or a release. No one can promise that.",
+    f2:"A promised <b>“same-day release”</b> or a specific date they will be out.",
+    f3:"<b>Prepaid document packages</b> sold before anyone has looked at the case.",
+    f4:"A <b>“notario”</b> or consultant who is not a licensed attorney or an accredited representative.",
+    verify_h:"How to check someone before you pay",
+    verify_p:"Ask directly: “Are you a licensed attorney or a DOJ-accredited representative?” Then confirm it yourself on the official U.S. Department of Justice list — it is free and public.",
+    verify_link:"Open the official list of accredited representatives →",
+    verify_note:"Free · public · takes two minutes",
+    price_kicker:"What it costs",
+    price_h:"Plainly, with nothing hidden",
+    price_badge:"Free forever",
+    t1_t:"Free", t1_p:"$0 — always",
+    t1_d:"The Three Rules, the locator guide, and one case with the basic checklist. No account or card needed to start.",
+    t2_t:"Full kit", t2_p:"One-time payment",
+    t2_d:"The complete document and planning kit for your case. Pay once — no subscription.",
+    t3_t:"Monitoring", t3_p:"Monthly · cancel anytime",
+    t3_d:"Ongoing status monitoring for custody and case changes. Cancel whenever you want.",
+    foot_priv:"Your information is encrypted. No ads, no data selling, and you can delete everything at any time.",
+    foot_l1:"Three rules for the first call", foot_l2:"Find where they are", foot_l3:"Contact",
+    foot_disc:"Detention Navigator is an information and organization tool. It is not a law firm, does not provide legal advice, and does not promise any outcome. For legal decisions, consult a licensed attorney or a DOJ-accredited representative."
+  },
+  es:{
+    _htmllang:"es", _dir:"ltr",
+    _title:"Detention Navigator — Localice a un familiar detenido. Sepa qué hacer hoy.",
+    skip:"Ir a las dos herramientas gratuitas",
+    clarify:"Localice a un familiar detenido. Sepa qué hacer hoy.",
+    hero_kicker:"Una herramienta gratuita para los primeros días",
+    folder_tab:"Expediente",
+    hero_q:"Su familiar fue detenido. ¿Dónde está y qué hace primero?",
+    door1_t:"Encuentre dónde está", door1_s:"Guía gratuita para localizarlo, paso a paso",
+    door2_t:"Tres reglas para la primera llamada", door2_s:"Qué decirle. Gratis",
+    reassure:"Ambas gratis. Sin cuenta, sin correo, sin tarjeta.",
+    anum:"Para buscar, necesitará su <b>número A</b> — un número de nueve dígitos parecido a <span class=\"num\" translate=\"no\">A## ### ###</span> en sus documentos. La guía le muestra dónde encontrarlo.",
+    does_kicker:"Qué hace esto",
+    does_h:"Ocho cosas, en el orden en que una familia realmente las necesita",
+    does_lead:"No es una lista de funciones. Es el camino a través de los primeros días, un paso a la vez.",
+    m1_t:"Localizar a la persona", m1_d:"Averigüe qué centro la tiene detenida y cómo confirmarlo antes de viajar o enviar algo.",
+    m2_t:"Teléfono y dinero", m2_d:"Configure cómo puede llamarla y ponga dinero en la cuenta para que las llamadas realmente entren.",
+    m3_t:"Las primeras 24 y 72 horas", m3_d:"Una lista breve de qué hacer primero y qué puede esperar hasta mañana sin problema.", m3_tag:"Paso a paso",
+    m4_t:"Reunir documentos", m4_d:"Los papeles que debe reunir y cómo organizarlos según para qué sirve cada uno.",
+    m5_t:"Buscar y verificar a un abogado", m5_d:"Cómo encontrar un abogado y confirmar que es real y con licencia antes de pagarle a nadie.",
+    m6_t:"Plan para los niños", m6_d:"Pasos prácticos si hay niños que dependen de la persona detenida.",
+    m7_t:"Una línea de tiempo compartida", m7_d:"Una sola línea de tiempo que toda la familia puede ver, para que nada se repita, se pierda ni se olvide.",
+    m8_t:"Seguimiento del estado", m8_d:"Lleve el control de los cambios en el lugar de detención y el estado del caso con el tiempo.",
+    not_kicker:"Lea esto antes de confiar en alguien",
+    not_h:"Qué no es esto",
+    not1:"Esto no es un bufete de abogados.",
+    not2:"No da asesoría legal.",
+    not3:"No promete ningún resultado.",
+    not4:"No reemplaza a un abogado.",
+    not_foot:"Es una herramienta para ayudarle a organizarse y orientarse en los primeros días. Las decisiones legales quedan en sus manos y las de un abogado con licencia — y esta página siempre le dirá cuándo necesita uno.",
+    scam_kicker:"Cómo proteger su dinero",
+    scam_h:"Cómo reconocer una estafa",
+    scam_lead:"Algunas personas les quitan dinero a las familias en el peor momento. Estas son las señales de alerta — y cómo verificar a alguien antes de pagar.",
+    f1:"Cualquiera que <b>garantice un resultado</b> o una liberación. Nadie puede prometer eso.",
+    f2:"Una <b>“liberación el mismo día”</b> prometida o una fecha específica de salida.",
+    f3:"<b>Paquetes de documentos prepagados</b> vendidos antes de que alguien revise el caso.",
+    f4:"Un <b>“notario”</b> o consultor que no es abogado con licencia ni representante acreditado.",
+    verify_h:"Cómo verificar a alguien antes de pagar",
+    verify_p:"Pregunte directamente: “¿Es usted abogado con licencia o representante acreditado por el Departamento de Justicia?” Luego confírmelo usted mismo en la lista oficial del Departamento de Justicia de EE. UU. — es gratis y pública.",
+    verify_link:"Abrir la lista oficial de representantes acreditados →",
+    verify_note:"Gratis · pública · toma dos minutos",
+    price_kicker:"Cuánto cuesta",
+    price_h:"Con claridad, sin nada escondido",
+    price_badge:"Gratis para siempre",
+    t1_t:"Gratis", t1_p:"$0 — siempre",
+    t1_d:"Las Tres Reglas, la guía para localizar y un caso con la lista básica. No hace falta cuenta ni tarjeta para empezar.",
+    t2_t:"Kit completo", t2_p:"Pago único",
+    t2_d:"El kit completo de documentos y planificación para su caso. Pague una vez — sin suscripción.",
+    t3_t:"Seguimiento", t3_p:"Mensual · cancele cuando quiera",
+    t3_d:"Seguimiento continuo de los cambios de detención y del caso. Cancele cuando quiera.",
+    foot_priv:"Su información está cifrada. Sin anuncios, sin venta de datos, y puede borrar todo en cualquier momento.",
+    foot_l1:"Tres reglas para la primera llamada", foot_l2:"Encuentre dónde está", foot_l3:"Contacto",
+    foot_disc:"Detention Navigator es una herramienta de información y organización. No es un bufete de abogados, no da asesoría legal y no promete ningún resultado. Para decisiones legales, consulte a un abogado con licencia o a un representante acreditado por el Departamento de Justicia."
+  },
+  ru:{
+    _htmllang:"ru", _dir:"ltr",
+    _title:"Detention Navigator — Найдите задержанного родственника. Узнайте, что делать сегодня.",
+    skip:"Перейти к двум бесплатным инструментам",
+    clarify:"Найдите задержанного родственника. Узнайте, что делать сегодня.",
+    hero_kicker:"Бесплатный инструмент для первых дней",
+    folder_tab:"Дело",
+    hero_q:"Вашего родственника задержали. Где он и что делать в первую очередь?",
+    door1_t:"Найдите, где он находится", door1_s:"Бесплатное пошаговое руководство по поиску",
+    door2_t:"Три правила для первого звонка", door2_s:"Что ему сказать. Бесплатно",
+    reassure:"Оба бесплатны. Без аккаунта, без почты, без карты.",
+    anum:"Для поиска понадобится его <b>номер A</b> — девятизначный номер вида <span class=\"num\" translate=\"no\">A## ### ###</span> в его документах. Руководство покажет, где его найти.",
+    does_kicker:"Что это делает",
+    does_h:"Восемь шагов — в том порядке, в каком они реально нужны семье",
+    does_lead:"Это не список функций. Это путь через первые дни, шаг за шагом.",
+    m1_t:"Найти человека", m1_d:"Узнайте, в каком учреждении он находится, и как это подтвердить, прежде чем ехать или что-то отправлять.",
+    m2_t:"Телефон и деньги", m2_d:"Настройте, как он сможет вам звонить, и положите деньги на счёт, чтобы звонки действительно проходили.",
+    m3_t:"Первые 24 и 72 часа", m3_d:"Короткий список того, что делать сразу, и что спокойно может подождать до завтра.", m3_tag:"Шаг за шагом",
+    m4_t:"Собрать документы", m4_d:"Какие бумаги собрать и как разложить их по тому, для чего каждая нужна.",
+    m5_t:"Найти и проверить адвоката", m5_d:"Как найти адвоката и убедиться, что он настоящий и с лицензией, прежде чем кому-либо платить.",
+    m6_t:"План для детей", m6_d:"Практические шаги, если от задержанного зависят дети.",
+    m7_t:"Общая хроника", m7_d:"Единая хроника, которую видит вся семья, чтобы ничего не повторялось, не терялось и не забывалось.",
+    m8_t:"Отслеживание статуса", m8_d:"Следите за изменениями места содержания и статуса дела со временем.",
+    not_kicker:"Прочитайте это, прежде чем кому-то доверять",
+    not_h:"Чем это не является",
+    not1:"Это не юридическая фирма.",
+    not2:"Здесь не дают юридических советов.",
+    not3:"Здесь не обещают никакого результата.",
+    not4:"Это не заменяет адвоката.",
+    not_foot:"Это инструмент, который помогает вам организоваться и сориентироваться в первые дни. Юридические решения остаются за вами и лицензированным адвокатом — и эта страница всегда подскажет, когда он нужен.",
+    scam_kicker:"Как защитить свои деньги",
+    scam_h:"Как распознать мошенничество",
+    scam_lead:"Некоторые наживаются на семьях в самый тяжёлый момент. Вот тревожные признаки — и как проверить человека, прежде чем платить.",
+    f1:"Любой, кто <b>гарантирует результат</b> или освобождение. Этого никто не может обещать.",
+    f2:"Обещанное <b>«освобождение в тот же день»</b> или конкретная дата выхода.",
+    f3:"<b>Предоплаченные пакеты документов</b>, которые продают до того, как кто-либо изучил дело.",
+    f4:"<b>«Нотариус»</b> или консультант, который не является лицензированным адвокатом или аккредитованным представителем.",
+    verify_h:"Как проверить человека, прежде чем платить",
+    verify_p:"Спросите прямо: «Вы лицензированный адвокат или аккредитованный представитель Министерства юстиции?» Затем проверьте это сами в официальном списке Министерства юстиции США — это бесплатно и общедоступно.",
+    verify_link:"Открыть официальный список аккредитованных представителей →",
+    verify_note:"Бесплатно · общедоступно · две минуты",
+    price_kicker:"Сколько это стоит",
+    price_h:"Прямо, ничего не скрывая",
+    price_badge:"Бесплатно навсегда",
+    t1_t:"Бесплатно", t1_p:"$0 — всегда",
+    t1_d:"Три правила, руководство по поиску и одно дело с базовым чек-листом. Чтобы начать, аккаунт и карта не нужны.",
+    t2_t:"Полный набор", t2_p:"Разовый платёж",
+    t2_d:"Полный набор документов и планирования для вашего дела. Платите один раз — без подписки.",
+    t3_t:"Мониторинг", t3_p:"Ежемесячно · отмена в любой момент",
+    t3_d:"Постоянное отслеживание изменений места содержания и дела. Отменить можно когда угодно.",
+    foot_priv:"Ваши данные зашифрованы. Без рекламы, без продажи данных, и вы можете удалить всё в любой момент.",
+    foot_l1:"Три правила для первого звонка", foot_l2:"Найдите, где он находится", foot_l3:"Контакт",
+    foot_disc:"Detention Navigator — это инструмент для информации и организации. Это не юридическая фирма, здесь не дают юридических советов и не обещают никакого результата. По юридическим вопросам обращайтесь к лицензированному адвокату или аккредитованному представителю Министерства юстиции."
+  }
+};
+
+const RICH = new Set(["anum","f1","f2","f3","f4"]); /* keys that contain HTML */
+
+function setLang(code){
+  const dict = I18N[code]; if(!dict) return;
+  document.documentElement.lang = dict._htmllang;
+  document.title = dict._title;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{
+    const k = el.getAttribute("data-i18n");
+    if(!(k in dict)) return;
+    if(RICH.has(k)) el.innerHTML = dict[k];
+    else el.textContent = dict[k];
+  });
+  document.querySelectorAll(".lang button").forEach(b=>{
+    b.setAttribute("aria-pressed", String(b.dataset.lang===code));
+  });
+  try{ localStorage.setItem("dn_lang", code); }catch(e){}
+}
+
+document.querySelectorAll(".lang button").forEach(b=>{
+  b.addEventListener("click", ()=> setLang(b.dataset.lang));
+});
+
+/* Restore last choice; default English */
+(function(){
+  let saved="en";
+  try{ saved = localStorage.getItem("dn_lang") || "en"; }catch(e){}
+  if(!I18N[saved]) saved="en";
+  if(saved!=="en") setLang(saved);
+})();
+
+/* Gentle scroll reveal (skipped entirely under reduced-motion) */
+(function(){
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const els = document.querySelectorAll(".reveal");
+  if(reduce || !("IntersectionObserver" in window)){ els.forEach(e=>e.classList.add("in")); return; }
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add("in"); io.unobserve(en.target);} });
+  }, {rootMargin:"0px 0px -8% 0px", threshold:0.08});
+  els.forEach(e=>io.observe(e));
+  /* Failsafe: nothing may stay hidden. Reveal all after 1.6s no matter what. */
+  setTimeout(()=>els.forEach(e=>e.classList.add("in")), 1600);
+})();
+</script>
+</body>
+</html>
