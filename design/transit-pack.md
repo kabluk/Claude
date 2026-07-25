@@ -56,23 +56,28 @@ new and belongs to the route + progress only.
 ```css
 .route{position:relative;padding-left:46px}
 .route .track{position:absolute;left:17px;top:6px;bottom:14px;width:2px;background:var(--line-2);border-radius:2px}
-.route .prog{position:absolute;left:17px;top:6px;width:2px;background:var(--teal);border-radius:2px;height:0;transition:height 1.4s cubic-bezier(.6,.02,.2,1)}
-html:not(.js) .route .prog{height:100%}
+.route .prog{position:absolute;left:17px;top:6px;width:2px;background:var(--teal);border-radius:2px;height:100%} /* set height = done/total in-app */
 .station{position:relative;padding:0 0 26px}
 .station:last-child{padding-bottom:0}
-.station .dot{position:absolute;left:-38px;top:2px;width:18px;height:18px;border-radius:50%;background:var(--paper);border:2px solid var(--line-2);transition:.3s}
-.station.lit .dot{border-color:var(--teal);background:var(--teal);box-shadow:0 0 0 4px rgba(33,92,99,.14)}
+.station .dot{position:absolute;left:-38px;top:2px;width:18px;height:18px;border-radius:50%;background:var(--teal);border:2px solid var(--teal);box-shadow:0 0 0 4px rgba(33,92,99,.12)}
+.station.todo .dot{background:var(--paper);border-color:var(--line-2);box-shadow:none}   /* not done yet */
+.station.now  .dot{background:var(--paper);border-color:var(--teal);box-shadow:0 0 0 4px rgba(33,92,99,.18)} /* current step */
 .station .k{font-family:var(--mono);font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--brass-600);display:flex;gap:10px}
 .station .k .no{color:var(--teal)}
 .station h3{font-family:var(--sign);font-weight:600;font-size:21px;letter-spacing:-.01em;margin:5px 0 3px;color:var(--ink)}
 .station p{font-family:var(--read);color:#43505c;font-size:16.5px;max-width:52ch}
-@media (prefers-reduced-motion:reduce){.route .prog{height:100%!important}.station .dot{border-color:var(--teal);background:var(--teal)}}
 ```
 
-**In-app progress:** instead of the scroll-draw, set the line to real progress —
-`prog.style.height = (doneCount/total*100) + "%"` and add `.lit` to each
-completed station's node. (The scroll-draw in the reference is only for the
-marketing page.)
+**Simplified mechanic — no scroll JS.** The route is static CSS; state drives it
+in two lines. Set the fill height once, and give each station one class:
+
+```js
+prog.style.height = (doneCount/total*100) + "%";   // teal line fill
+// per station: class "done" (default filled dot) | "now" (current) | "todo" (empty)
+```
+
+No IntersectionObserver, no scroll math, nothing to animate — lighter and
+identical on every phone. (Earlier draft used a scroll-draw; dropped it.)
 
 ## Buttons & doors (from the reference)
 
@@ -99,7 +104,8 @@ marketing page.)
 > **Spectral (serif) for body**, IBM Plex Mono for labels/numbers. Apply the
 > ink/paper/brass/teal/sage tokens. Build the **route** component
 > (`design/transit-pack.md`) and use it on the Today/journey screen as the real
-> progress: teal line fills with completed tasks, station dots light up. Match
+> progress — static CSS + state classes (done/now/todo), no scroll animation:
+> teal line fills with completed tasks, station dots light up. Match
 > `landing/transit.html` for exact values. Remove the dev screen-switcher row.
 > Keep EN/ES/RU with no fallbacks, body ≥17px, visible focus, reduced-motion,
 > no red, no dark default. Then redeploy to Netlify.
