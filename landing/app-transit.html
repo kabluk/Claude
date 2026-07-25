@@ -1,0 +1,612 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#17264A">
+<script>document.documentElement.className+=" js";</script>
+<title>Detention Navigator — your plan</title>
+<meta name="description" content="A free, private tool for the first days after a relative is detained: what to do today, where they are, the first call, and documents. Saved on your phone. Not a law firm.">
+<link rel="stylesheet" href="fonts.css">
+<style>
+  :root{
+    --navy:#182231;--navy-700:#243244;--brass:#A9772A;--brass-600:#8A601F;
+    --paper:#F1EEE4;--card:#FBF8F0;--caution:#8A4B12;--sage:#3F6B4E;--slate:#5B6470;--teal:#215C63;
+    --line:#DCD3C2;--line-strong:#CBBFA6;--ink:#182231;--focus:#A9772A;--maxw:620px;--r:14px;
+    --serif:"Spectral",Georgia,"Times New Roman",serif;
+    --sans:"Commissioner","Segoe UI",system-ui,-apple-system,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+    --nav-h:66px;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  @media (max-width:400px){ body{font-size:17.5px} }
+  h1,h2,h3{font-family:var(--sans);font-weight:600;line-height:1.18;letter-spacing:-.01em;color:var(--navy);margin:0}
+  p{margin:0}
+  button{font-family:inherit}
+  a{color:var(--brass-600);text-underline-offset:3px}
+  a:hover{color:var(--navy)}
+  a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:8px}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 18px}
+  .kicker{font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;color:var(--brass-600)}
+  .mono{font-family:var(--mono)}
+
+  /* ---------- header ---------- */
+  header.app{background:var(--paper);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+  .head-row{max-width:var(--maxw);margin:0 auto;padding:11px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .brand{font-family:var(--serif);font-weight:600;font-size:18px;color:var(--navy);text-decoration:none;white-space:nowrap}
+  .brand .mark{color:var(--brass)}
+  .lang{display:flex;gap:5px}
+  .lang button{font-family:var(--mono);font-size:13px;font-weight:500;min-width:42px;min-height:38px;padding:0 8px;background:transparent;color:var(--navy);border:1.5px solid var(--line-strong);border-radius:8px;cursor:pointer}
+  .lang button[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+  /* ---------- main / views ---------- */
+  main{padding:18px 0 calc(var(--nav-h) + 26px)}
+  .view{display:none}
+  .view.on{display:block;animation:fade .22s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){.view.on{animation:none}*{transition:none!important}}
+
+  .day-chip{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--navy);border-radius:999px;padding:6px 13px}
+  .day-chip .d{width:7px;height:7px;border-radius:50%;background:var(--brass)}
+  .h-title{font-size:25px;margin:14px 0 4px}
+  .h-sub{color:var(--slate);font-size:16.5px;margin-bottom:18px}
+
+  /* progress */
+  .prog{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:15px 16px;margin-bottom:18px}
+  .prog .row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9px}
+  .prog .lab{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate)}
+  .prog .val{font-family:var(--mono);font-size:15px;color:var(--navy);font-weight:500}
+  .bar{height:9px;background:#EAE2D4;border-radius:999px;overflow:hidden}
+  .bar > i{display:block;height:100%;background:var(--teal);border-radius:999px;transition:width .35s ease}
+
+  /* phase groups + tasks */
+  .phase{margin-bottom:20px}
+  .phase > h2{font-size:14px;font-family:var(--mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--brass-600);margin-bottom:10px}
+  .task{display:flex;gap:13px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px 15px;margin-bottom:10px;width:100%;text-align:left;cursor:pointer;color:inherit;transition:border-color .15s,background .15s}
+  .task:hover{border-color:var(--line-strong)}
+  .task .cb{flex:0 0 auto;width:30px;height:30px;border-radius:9px;border:2px solid var(--line-strong);background:#fff;display:grid;place-items:center;font-size:17px;color:#fff;transition:.15s}
+  .task[aria-pressed="true"] .cb{background:var(--sage);border-color:var(--sage)}
+  .task[aria-pressed="true"] .t-title{color:var(--slate);text-decoration:line-through;text-decoration-color:var(--line-strong)}
+  .t-txt{min-width:0;display:flex;flex-direction:column}
+  .t-title{font-weight:600;font-size:17.5px;color:var(--navy);line-height:1.3}
+  .t-hint{margin-top:3px;font-size:15px;color:var(--slate);line-height:1.4}
+  .t-hint a{font-weight:600}
+
+  /* generic card + list */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 18px;margin-bottom:16px}
+  .card h2{font-size:20px;margin-bottom:6px}
+  .card p{color:var(--slate);font-size:16.5px;line-height:1.55}
+  .card p + p{margin-top:10px}
+  .steps{list-style:none;margin:10px 0 0;padding:0;counter-reset:s}
+  .steps li{position:relative;padding:9px 0 9px 34px;border-top:1px solid var(--line);font-size:16.5px;line-height:1.5;color:var(--navy)}
+  .steps li:first-child{border-top:0}
+  .steps li::before{counter-increment:s;content:counter(s);position:absolute;left:0;top:9px;font-family:var(--serif);font-weight:600;color:var(--brass);font-size:18px}
+  .rulebox{background:#fff;border:1px solid var(--line);border-left:3px solid var(--brass);border-radius:8px;padding:9px 12px;margin-top:9px;font-family:var(--mono);font-size:14.5px;color:var(--navy);line-height:1.45}
+
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;width:100%;border:2px solid var(--navy);border-radius:12px;padding:15px 18px;min-height:56px;font-size:17px;font-weight:600;cursor:pointer;text-decoration:none;transition:background .15s}
+  .btn.primary{background:var(--navy);color:#fff}
+  .btn.primary:hover{background:var(--navy-700)}
+  .btn.ghost{background:transparent;color:var(--navy)}
+  .btn.ghost:hover{background:rgba(23,38,74,.05)}
+  .btn .chev{width:26px;height:26px;border-radius:50%;background:var(--brass);color:var(--navy);display:grid;place-items:center;font-weight:700;font-size:15px}
+  .btn.primary .chev{background:var(--brass)}
+
+  /* case fields */
+  .field{margin-bottom:15px}
+  .field label{display:block;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);margin-bottom:6px}
+  .field input{width:100%;font-family:var(--mono);font-size:17px;color:var(--navy);background:#fff;border:1.5px solid var(--line-strong);border-radius:10px;padding:13px 14px;letter-spacing:.02em}
+  .field input:focus{outline:none;border-color:var(--brass)}
+  .saved-note{font-family:var(--mono);font-size:12.5px;color:var(--sage);margin-top:4px;min-height:16px}
+
+  /* docs grid */
+  .dgrid-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:12px;background:var(--card)}
+  table.dgrid{border-collapse:collapse;width:100%;min-width:440px}
+  table.dgrid th,table.dgrid td{border:1px solid var(--line);padding:0}
+  table.dgrid thead th{font-family:var(--mono);font-size:12.5px;font-weight:500;color:var(--slate);padding:9px 6px;background:#F7F1E6;position:sticky;left:auto}
+  table.dgrid tbody th{font-size:15px;font-weight:600;color:var(--navy);text-align:left;padding:10px 12px;background:#F7F1E6;white-space:nowrap;position:sticky;left:0;z-index:1}
+  .cell{width:100%;height:46px;border:none;background:transparent;cursor:pointer;font-size:19px;color:var(--sage)}
+  .cell[data-v="0"]{color:transparent}
+  .cell[data-v="1"]{color:var(--brass)}
+  .cell[data-v="2"]{background:rgba(63,107,78,.12)}
+  .legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:12px;font-size:14px;color:var(--slate)}
+  .legend b{font-weight:600;color:var(--navy)}
+  .legend .k{font-size:17px;margin-right:5px;vertical-align:-1px}
+
+  .disc{font-size:14.5px;color:var(--slate);line-height:1.55;margin-top:18px;padding-top:16px;border-top:1px solid var(--line)}
+  .privacy{font-family:var(--mono);font-size:12.5px;color:var(--slate);margin-top:14px;display:flex;gap:8px;align-items:center}
+  .privacy .lock{color:var(--sage)}
+
+  /* bottom nav */
+  nav.tabs{position:fixed;left:0;right:0;bottom:0;height:var(--nav-h);background:var(--card);border-top:1px solid var(--line);z-index:30;padding-bottom:env(safe-area-inset-bottom)}
+  .tabs-in{max-width:var(--maxw);margin:0 auto;height:var(--nav-h);display:flex}
+  .tabs button{flex:1;background:none;border:none;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--slate);font-size:12px;font-weight:500;padding:0}
+  .tabs button .ic{font-size:20px;line-height:1}
+  .tabs button[aria-current="true"]{color:var(--navy)}
+  .tabs button[aria-current="true"] .ic{transform:translateY(-1px)}
+
+  /* onboarding overlay */
+  .onb{position:fixed;inset:0;background:var(--paper);z-index:60;display:none;flex-direction:column;overflow:auto}
+  .onb.on{display:flex}
+  .onb-in{max-width:var(--maxw);margin:0 auto;width:100%;padding:26px 20px 40px;flex:1;display:flex;flex-direction:column}
+  .onb .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .onb .step{font-family:var(--mono);font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--slate)}
+  .onb .bar{margin:12px 0 26px}
+  .onb h2{font-size:26px;line-height:1.2;margin-bottom:8px}
+  .onb .lead{color:var(--slate);font-size:16.5px;margin-bottom:22px;line-height:1.5}
+  .opt{display:flex;align-items:center;gap:14px;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:17px 16px;margin-bottom:11px;font-size:17px;color:var(--navy);cursor:pointer;width:100%;text-align:left;transition:.15s}
+  .opt:hover,.opt.sel{border-color:var(--brass);background:#fff}
+  .opt .dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--line-strong);flex:0 0 auto}
+  .opt.sel .dot{border-color:var(--brass);background:var(--brass);box-shadow:inset 0 0 0 4px #fff}
+  .onb .spacer{flex:1}
+  .onb .explain{font-size:15px;color:var(--slate);background:#fff;border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:16px;line-height:1.5}
+  .linkbtn{background:none;border:none;color:var(--brass-600);font-size:15px;font-weight:600;cursor:pointer;padding:4px 0;text-decoration:underline;text-underline-offset:3px}
+</style>
+</head>
+<body>
+
+<!-- ============ ONBOARDING ============ -->
+<div class="onb" id="onb" aria-hidden="true">
+  <div class="onb-in">
+    <div class="top">
+      <span class="brand">Detention <span class="mark">Navigator</span></span>
+      <nav class="lang" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="es" aria-pressed="false">ES</button>
+        <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+      </nav>
+    </div>
+    <div class="bar"><i id="onbBar" style="width:33%"></i></div>
+    <div id="onbStep"><!-- filled by JS --></div>
+    <div class="spacer"></div>
+    <button class="btn primary" id="onbNext"><span data-i18n="ob_next">Continue</span><span class="chev" aria-hidden="true">→</span></button>
+    <p class="privacy"><span class="lock" aria-hidden="true">🔒</span><span data-i18n="privacy">Saved only on this phone. No account needed.</span></p>
+  </div>
+</div>
+
+<!-- ============ APP ============ -->
+<header class="app">
+  <div class="head-row">
+    <a class="brand" href="index.html">Detention <span class="mark">Navigator</span></a>
+    <nav class="lang" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-lang="es" aria-pressed="false">ES</button>
+      <button type="button" data-lang="ru" aria-pressed="false">RU</button>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ---- TODAY ---- -->
+  <section class="view on" id="v-today" role="tabpanel">
+    <div class="wrap">
+      <span class="day-chip"><span class="d"></span><span id="dayChip">Day 1</span></span>
+      <h1 class="h-title" data-i18n="today_h">What to do today</h1>
+      <p class="h-sub" data-i18n="today_sub">One step at a time. Tap a task when it’s done — your family sees the same list.</p>
+      <div class="prog">
+        <div class="row"><span class="lab" data-i18n="prog_lab">Progress</span><span class="val"><span id="progVal">0</span> / <span id="progTot">0</span></span></div>
+        <div class="bar"><i id="progBar" style="width:0%"></i></div>
+      </div>
+      <div id="taskList"></div>
+      <p class="privacy"><span class="lock" aria-hidden="true">🔒</span><span data-i18n="privacy">Saved only on this phone. No account needed.</span></p>
+    </div>
+  </section>
+
+  <!-- ---- CASE ---- -->
+  <section class="view" id="v-case" role="tabpanel">
+    <div class="wrap">
+      <h1 class="h-title" data-i18n="case_h">Where they are</h1>
+      <p class="h-sub" data-i18n="case_sub">Save the number and the facility so the whole family works from the same details.</p>
+
+      <div class="card">
+        <div class="field">
+          <label for="fA" data-i18n="case_anum">A-Number (9 digits)</label>
+          <input id="fA" inputmode="numeric" autocomplete="off" placeholder="A### ### ###" data-k="aNumber">
+        </div>
+        <div class="field">
+          <label for="fF" data-i18n="case_fac">Facility name</label>
+          <input id="fF" autocomplete="off" data-k="facility">
+        </div>
+        <div class="field" style="margin-bottom:6px">
+          <label for="fP" data-i18n="case_phone">Facility phone</label>
+          <input id="fP" inputmode="tel" autocomplete="off" data-k="facilityPhone">
+        </div>
+        <p class="saved-note" id="caseSaved" aria-live="polite"></p>
+      </div>
+
+      <div class="card">
+        <h2 data-i18n="case_find_h">Find where they are</h2>
+        <p data-i18n="case_find_p">Use the official government locator. It is free and never asks for payment.</p>
+        <a class="btn primary" href="https://locator.ice.gov/" target="_blank" rel="noopener noreferrer" style="margin-top:12px"><span data-i18n="case_open">Open the official locator</span><span class="chev" aria-hidden="true">→</span></a>
+        <ol class="steps" id="locSteps"></ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---- DOCS ---- -->
+  <section class="view" id="v-docs" role="tabpanel">
+    <div class="wrap">
+      <h1 class="h-title" data-i18n="docs_h">Documents by year</h1>
+      <p class="h-sub" data-i18n="docs_sub">Attorneys ask for proof of your years here, year by year. Tap a box to mark it.</p>
+      <div class="prog">
+        <div class="row"><span class="lab" data-i18n="docs_cov">Document coverage</span><span class="val"><span id="covVal">0</span>%</span></div>
+        <div class="bar"><i id="covBar" style="width:0%"></i></div>
+      </div>
+      <div class="dgrid-wrap"><table class="dgrid" id="dgrid"></table></div>
+      <div class="legend">
+        <span><span class="k" style="color:var(--sage)">■</span><b data-i18n="docs_have">have it</b></span>
+        <span><span class="k" style="color:var(--brass)">◐</span><b data-i18n="docs_part">partial</b></span>
+        <span><span class="k" style="color:var(--line-strong)">□</span><b data-i18n="docs_none">missing</b></span>
+      </div>
+      <p class="card" style="margin-top:16px;background:#fff" data-i18n="docs_note">“Coverage” is not an assessment of the case. Only an attorney can assess that. This just helps you see what is still missing.</p>
+    </div>
+  </section>
+
+  <!-- ---- GUIDE ---- -->
+  <section class="view" id="v-guide" role="tabpanel">
+    <div class="wrap">
+      <h1 class="h-title" data-i18n="guide_h">First call &amp; safety</h1>
+      <p class="h-sub" data-i18n="guide_sub">The three rules to tell them, and how to protect your money.</p>
+
+      <div class="card">
+        <h2 data-i18n="g_rules_h">Three rules for the first call</h2>
+        <p data-i18n="g_rules_p">Keep the call short and calm. Tell them these three things.</p>
+        <div class="rulebox" data-i18n="g_r1">1 · Do not sign anything until a lawyer you trust has read it.</div>
+        <div class="rulebox" data-i18n="g_r2">2 · Say little on the phone — the call may be recorded.</div>
+        <div class="rulebox" data-i18n="g_r3">3 · Give them one phone number to memorize.</div>
+      </div>
+
+      <div class="card">
+        <h2 data-i18n="g_atty_h">Check an attorney before you pay</h2>
+        <p data-i18n="g_atty_p">Ask directly whether they are a licensed attorney or a DOJ-accredited representative — then confirm it yourself on the official free list.</p>
+        <a class="btn ghost" href="https://www.justice.gov/eoir/recognition-accreditation-roster-reports" target="_blank" rel="noopener noreferrer" style="margin-top:12px"><span data-i18n="g_atty_link">Open the official list</span><span class="chev" aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="card">
+        <h2 data-i18n="g_scam_h">Warning signs</h2>
+        <p data-i18n="g_scam_p">Treat any of these as a reason to stop: a guaranteed result or release, a promised “same-day release”, prepaid document packages sold before anyone reviews the case, or a “notario” who is not a licensed attorney.</p>
+      </div>
+
+      <p class="disc" data-i18n="disc">Detention Navigator is an information and organization tool. It is not a law firm, does not give legal advice, and does not promise any outcome. For legal decisions, consult a licensed attorney or a DOJ-accredited representative.</p>
+      <button class="linkbtn" id="resetBtn" style="margin-top:14px" data-i18n="reset">Reset everything on this phone</button>
+    </div>
+  </section>
+</main>
+
+<!-- ============ BOTTOM NAV ============ -->
+<nav class="tabs" role="tablist" aria-label="Sections">
+  <div class="tabs-in">
+    <button data-tab="today" aria-current="true"><span class="ic" aria-hidden="true">◎</span><span data-i18n="tab_today">Today</span></button>
+    <button data-tab="case"><span class="ic" aria-hidden="true">▤</span><span data-i18n="tab_case">Locate</span></button>
+    <button data-tab="docs"><span class="ic" aria-hidden="true">▦</span><span data-i18n="tab_docs">Documents</span></button>
+    <button data-tab="guide"><span class="ic" aria-hidden="true">☎</span><span data-i18n="tab_guide">First call</span></button>
+  </div>
+</nav>
+
+<script>
+/* ================= i18n ================= */
+const T = {
+  en:{ _l:"en", _t:"Detention Navigator — your plan",
+    ob_next:"Continue", privacy:"Saved only on this phone. No account needed.",
+    today_h:"What to do today", today_sub:"One step at a time. Tap a task when it’s done — your family sees the same list.",
+    prog_lab:"Progress",
+    case_h:"Where they are", case_sub:"Save the number and the facility so the whole family works from the same details.",
+    case_anum:"A-Number (9 digits)", case_fac:"Facility name", case_phone:"Facility phone",
+    case_find_h:"Find where they are", case_find_p:"Use the official government locator. It is free and never asks for payment.",
+    case_open:"Open the official locator", case_saved:"Saved on this phone",
+    docs_h:"Documents by year", docs_sub:"Attorneys ask for proof of your years here, year by year. Tap a box to mark it.",
+    docs_cov:"Document coverage", docs_have:"have it", docs_part:"partial", docs_none:"missing",
+    docs_note:"“Coverage” is not an assessment of the case. Only an attorney can assess that. This just helps you see what is still missing.",
+    guide_h:"First call & safety", guide_sub:"The three rules to tell them, and how to protect your money.",
+    g_rules_h:"Three rules for the first call", g_rules_p:"Keep the call short and calm. Tell them these three things.",
+    g_r1:"1 · Do not sign anything until a lawyer you trust has read it.",
+    g_r2:"2 · Say little on the phone — the call may be recorded.",
+    g_r3:"3 · Give them one phone number to memorize.",
+    g_atty_h:"Check an attorney before you pay", g_atty_p:"Ask directly whether they are a licensed attorney or a DOJ-accredited representative — then confirm it yourself on the official free list.",
+    g_atty_link:"Open the official list",
+    g_scam_h:"Warning signs", g_scam_p:"Treat any of these as a reason to stop: a guaranteed result or release, a promised “same-day release”, prepaid document packages sold before anyone reviews the case, or a “notario” who is not a licensed attorney.",
+    disc:"Detention Navigator is an information and organization tool. It is not a law firm, does not give legal advice, and does not promise any outcome. For legal decisions, consult a licensed attorney or a DOJ-accredited representative.",
+    reset:"Reset everything on this phone",
+    tab_today:"Today", tab_case:"Locate", tab_docs:"Documents", tab_guide:"First call",
+    ph_24:"First 24 hours", ph_72:"Next 72 hours", ph_wk:"First weeks",
+    day:"Day", done_all:"All of today’s steps are done. Rest if you can.",
+    ob1_h:"What happened?", ob1_a:"A loved one was detained", ob1_b:"I want to be prepared in advance", ob1_c:"We have an attorney — I need to organize documents",
+    ob2_h:"Do you have their A-Number?", ob2_yes:"Yes", ob2_no:"Not yet", ob2_what:"What is that?",
+    ob2_ex:"An A-Number is a 7–9 digit number the government assigns. It appears on immigration documents as “A” followed by digits. You don’t need it to start.",
+    ob3_h:"How long have they lived in the U.S.?", ob3_a:"Under 2 years", ob3_b:"2–10 years", ob3_c:"More than 10 years",
+    ob_start:"Start my plan",
+    steps:["Enter the A-Number as 9 digits, with no dashes or letter.","Select the country of birth.","If the name was written differently on older papers, try that spelling too.","If nothing is found, wait a day and try again — someone just detained may not appear for 24–48 hours."],
+    tasks:{
+      loc:["Find where they are held","Use the Locate tab and the official locator."],
+      anum:["Write down their A-Number","Save it in the Locate tab so everyone has it."],
+      phone:["Set up the phone account","So they can call you. Facilities use two account types — check which."],
+      rules:["On the first call, tell them the three rules","See the First call tab."],
+      addr:["Find the facility’s mailing address","You’ll need it for letters and documents."],
+      atty:["Start a list of attorneys and check licenses","Check each license before you pay anyone."],
+      kids:["Note who is caring for the children now","Backup caregiver, school contacts, key documents."],
+      tellfam:["Tell close family and share this plan","Agree who does what, so nothing is doubled."],
+      docs:["Start gathering documents year by year","Use the Documents tab: taxes, housing, school, finance."],
+      attydocs:["Collect the papers your attorney asks for","Keep them in one place, ready to hand over."],
+      timeline:["Keep one shared timeline of dates and calls","So nothing is repeated, missed, or lost."],
+      hearing:["Ask about the next hearing date","Confirm it with the attorney or the court."]
+    }
+  },
+  es:{ _l:"es", _t:"Detention Navigator — su plan",
+    ob_next:"Continuar", privacy:"Guardado solo en este teléfono. Sin cuenta.",
+    today_h:"Qué hacer hoy", today_sub:"Un paso a la vez. Toque una tarea al terminarla — su familia ve la misma lista.",
+    prog_lab:"Progreso",
+    case_h:"Dónde está", case_sub:"Guarde el número y el centro para que toda la familia use los mismos datos.",
+    case_anum:"Número A (9 dígitos)", case_fac:"Nombre del centro", case_phone:"Teléfono del centro",
+    case_find_h:"Encuentre dónde está", case_find_p:"Use el localizador oficial del gobierno. Es gratis y nunca pide pago.",
+    case_open:"Abrir el localizador oficial", case_saved:"Guardado en este teléfono",
+    docs_h:"Documentos por año", docs_sub:"Los abogados piden pruebas de sus años aquí, año por año. Toque una casilla para marcarla.",
+    docs_cov:"Cobertura de documentos", docs_have:"lo tengo", docs_part:"parcial", docs_none:"falta",
+    docs_note:"La “cobertura” no evalúa el caso. Solo un abogado puede evaluarlo. Esto solo ayuda a ver qué falta.",
+    guide_h:"Primera llamada y seguridad", guide_sub:"Las tres reglas para decirle y cómo proteger su dinero.",
+    g_rules_h:"Tres reglas para la primera llamada", g_rules_p:"Haga la llamada corta y con calma. Dígale estas tres cosas.",
+    g_r1:"1 · No firme nada hasta que un abogado de confianza lo lea.",
+    g_r2:"2 · Hable poco por teléfono — la llamada puede estar grabada.",
+    g_r3:"3 · Dele un número de teléfono para memorizar.",
+    g_atty_h:"Verifique a un abogado antes de pagar", g_atty_p:"Pregunte directamente si es abogado con licencia o representante acreditado por el Departamento de Justicia — luego confírmelo usted mismo en la lista oficial gratuita.",
+    g_atty_link:"Abrir la lista oficial",
+    g_scam_h:"Señales de alerta", g_scam_p:"Considere cualquiera de estas una razón para detenerse: un resultado o liberación garantizados, una “liberación el mismo día” prometida, paquetes de documentos prepagados vendidos antes de revisar el caso, o un “notario” que no es abogado con licencia.",
+    disc:"Detention Navigator es una herramienta de información y organización. No es un bufete de abogados, no da asesoría legal y no promete ningún resultado. Para decisiones legales, consulte a un abogado con licencia o a un representante acreditado por el Departamento de Justicia.",
+    reset:"Borrar todo en este teléfono",
+    tab_today:"Hoy", tab_case:"Localizar", tab_docs:"Documentos", tab_guide:"Llamada",
+    ph_24:"Primeras 24 horas", ph_72:"Próximas 72 horas", ph_wk:"Primeras semanas",
+    day:"Día", done_all:"Todos los pasos de hoy están hechos. Descanse si puede.",
+    ob1_h:"¿Qué pasó?", ob1_a:"Detuvieron a un ser querido", ob1_b:"Quiero estar preparado con anticipación", ob1_c:"Tenemos abogado — necesito organizar documentos",
+    ob2_h:"¿Tiene su número A?", ob2_yes:"Sí", ob2_no:"Todavía no", ob2_what:"¿Qué es eso?",
+    ob2_ex:"El número A es un número de 7 a 9 dígitos que asigna el gobierno. Aparece en los documentos de inmigración como “A” seguida de dígitos. No lo necesita para empezar.",
+    ob3_h:"¿Cuánto tiempo ha vivido en EE. UU.?", ob3_a:"Menos de 2 años", ob3_b:"2–10 años", ob3_c:"Más de 10 años",
+    ob_start:"Empezar mi plan",
+    steps:["Escriba el número A con 9 dígitos, sin guiones ni letra.","Seleccione el país de nacimiento.","Si el nombre se escribió distinto en papeles antiguos, pruebe esa forma también.","Si no aparece nada, espere un día y pruebe de nuevo — alguien recién detenido puede no aparecer por 24–48 horas."],
+    tasks:{
+      loc:["Encuentre dónde lo tienen","Use la pestaña Localizar y el localizador oficial."],
+      anum:["Anote su número A","Guárdelo en la pestaña Localizar para que todos lo tengan."],
+      phone:["Configure la cuenta telefónica","Para que pueda llamarle. Los centros usan dos tipos de cuenta — verifique cuál."],
+      rules:["En la primera llamada, dígale las tres reglas","Vea la pestaña Llamada."],
+      addr:["Busque la dirección postal del centro","La necesitará para cartas y documentos."],
+      atty:["Empiece una lista de abogados y verifique licencias","Verifique cada licencia antes de pagar a nadie."],
+      kids:["Anote quién cuida a los niños ahora","Cuidador de respaldo, contactos escolares, documentos clave."],
+      tellfam:["Avise a la familia cercana y comparta este plan","Acuerden quién hace qué, para no duplicar."],
+      docs:["Empiece a reunir documentos año por año","Use la pestaña Documentos: impuestos, vivienda, escuela, finanzas."],
+      attydocs:["Reúna los papeles que pide su abogado","Guárdelos en un solo lugar, listos para entregar."],
+      timeline:["Mantenga una línea de tiempo compartida","Para que nada se repita, se pierda ni se olvide."],
+      hearing:["Pregunte por la fecha de la próxima audiencia","Confírmela con el abogado o la corte."]
+    }
+  },
+  ru:{ _l:"ru", _t:"Detention Navigator — ваш план",
+    ob_next:"Далее", privacy:"Хранится только на этом телефоне. Без аккаунта.",
+    today_h:"Что делать сегодня", today_sub:"По одному шагу. Отметьте задачу, когда сделаете — семья видит тот же список.",
+    prog_lab:"Прогресс",
+    case_h:"Где он находится", case_sub:"Сохраните номер и учреждение, чтобы вся семья работала с одними данными.",
+    case_anum:"Номер A (9 цифр)", case_fac:"Название учреждения", case_phone:"Телефон учреждения",
+    case_find_h:"Найдите, где он", case_find_p:"Используйте официальный государственный поисковик. Это бесплатно и никогда не требует оплаты.",
+    case_open:"Открыть официальный поисковик", case_saved:"Сохранено на этом телефоне",
+    docs_h:"Документы по годам", docs_sub:"Адвокаты просят подтверждения ваших лет здесь, год за годом. Нажмите клетку, чтобы отметить.",
+    docs_cov:"Покрытие документами", docs_have:"есть", docs_part:"частично", docs_none:"нет",
+    docs_note:"«Покрытие» не оценивает дело. Оценить его может только адвокат. Это просто помогает видеть, чего ещё не хватает.",
+    guide_h:"Первый звонок и безопасность", guide_sub:"Три правила, которые нужно сказать, и как защитить деньги.",
+    g_rules_h:"Три правила для первого звонка", g_rules_p:"Говорите коротко и спокойно. Скажите ему эти три вещи.",
+    g_r1:"1 · Ничего не подписывай, пока не прочитает адвокат, которому вы доверяете.",
+    g_r2:"2 · Говори по телефону мало — звонок могут записывать.",
+    g_r3:"3 · Дайте один номер телефона, чтобы запомнить.",
+    g_atty_h:"Проверьте адвоката перед оплатой", g_atty_p:"Спросите прямо, лицензированный ли это адвокат или аккредитованный представитель Министерства юстиции — затем проверьте это сами в официальном бесплатном списке.",
+    g_atty_link:"Открыть официальный список",
+    g_scam_h:"Тревожные признаки", g_scam_p:"Считайте любое из этого поводом остановиться: гарантированный результат или освобождение, обещанное «освобождение в тот же день», предоплаченные пакеты документов до изучения дела, или «нотариус», который не является лицензированным адвокатом.",
+    disc:"Detention Navigator — это инструмент для информации и организации. Это не юридическая фирма, здесь не дают юридических советов и не обещают результата. По юридическим вопросам обращайтесь к лицензированному адвокату или аккредитованному представителю Министерства юстиции.",
+    reset:"Стереть всё на этом телефоне",
+    tab_today:"Сегодня", tab_case:"Поиск", tab_docs:"Документы", tab_guide:"Звонок",
+    ph_24:"Первые 24 часа", ph_72:"Следующие 72 часа", ph_wk:"Первые недели",
+    day:"День", done_all:"Все сегодняшние шаги сделаны. Отдохните, если можете.",
+    ob1_h:"Что случилось?", ob1_a:"Задержали близкого человека", ob1_b:"Хочу подготовиться заранее", ob1_c:"У нас есть адвокат — нужно собрать документы",
+    ob2_h:"У вас есть его номер A?", ob2_yes:"Да", ob2_no:"Пока нет", ob2_what:"Что это?",
+    ob2_ex:"Номер A — это номер из 7–9 цифр, который присваивает правительство. В документах он указан как «A» и цифры. Чтобы начать, он не нужен.",
+    ob3_h:"Сколько лет он прожил в США?", ob3_a:"Меньше 2 лет", ob3_b:"2–10 лет", ob3_c:"Больше 10 лет",
+    ob_start:"Начать мой план",
+    steps:["Введите номер A из 9 цифр, без дефисов и буквы.","Выберите страну рождения.","Если в старых бумагах имя писали иначе, попробуйте и тот вариант.","Если ничего не найдено, подождите день и попробуйте снова — только что задержанный может не появляться 24–48 часов."],
+    tasks:{
+      loc:["Найдите, где его содержат","Откройте вкладку Поиск и официальный поисковик."],
+      anum:["Запишите его номер A","Сохраните во вкладке Поиск, чтобы он был у всех."],
+      phone:["Настройте телефонный счёт","Чтобы он мог вам звонить. В учреждениях два вида счетов — уточните какой."],
+      rules:["При первом звонке скажите три правила","См. вкладку Звонок."],
+      addr:["Найдите почтовый адрес учреждения","Он нужен для писем и документов."],
+      atty:["Составьте список адвокатов и проверьте лицензии","Проверяйте каждую лицензию, прежде чем платить."],
+      kids:["Запишите, кто сейчас заботится о детях","Запасной опекун, контакты школы, ключевые документы."],
+      tellfam:["Сообщите близким и поделитесь планом","Договоритесь, кто что делает, чтобы не дублировать."],
+      docs:["Начните собирать документы по годам","Вкладка Документы: налоги, жильё, школа, финансы."],
+      attydocs:["Соберите бумаги, которые просит адвокат","Держите их в одном месте, готовыми передать."],
+      timeline:["Ведите общую хронику дат и звонков","Чтобы ничего не повторялось, не терялось и не забывалось."],
+      hearing:["Узнайте дату следующего слушания","Подтвердите её у адвоката или в суде."]
+    }
+  }
+};
+
+const TASK_ORDER = [
+  ["h24",["loc","anum","phone","rules"]],
+  ["h72",["addr","atty","kids","tellfam"]],
+  ["wk",["docs","attydocs","timeline","hearing"]]
+];
+const PHASE_LABEL = {h24:"ph_24", h72:"ph_72", wk:"ph_wk"};
+const DOC_CATS = ["taxes","housing","school","finance","ids","medical"];
+const DOC_CAT_LABEL = {
+  en:{taxes:"Taxes",housing:"Housing",school:"School",finance:"Finance",ids:"IDs",medical:"Medical"},
+  es:{taxes:"Impuestos",housing:"Vivienda",school:"Escuela",finance:"Finanzas",ids:"Identif.",medical:"Médico"},
+  ru:{taxes:"Налоги",housing:"Жильё",school:"Школа",finance:"Финансы",ids:"Документы",medical:"Медицина"}
+};
+
+/* ================= state ================= */
+const KEY="dn_app_v1";
+// Read-only demo mode for the design gallery: app.html?demo=today|case|docs|guide|onboarding&lang=en|es|ru
+// Uses in-memory sample state, never touches localStorage. No effect on normal use.
+const DEMO=(()=>{const q=new URLSearchParams(location.search); if(!q.has("demo"))return null; return {tab:q.get("demo")||"today", lang:q.get("lang")||"en"};})();
+function demoState(){
+  return {lang:DEMO.lang, onboarded:DEMO.tab!=="onboarding",
+    profile:{situation:"crisis",hasA:"yes",years:"gt10"},
+    case:{aNumber:"012 345 678", facility:"Stewart Detention Center, GA", facilityPhone:"(229) 555-0100"},
+    tasks:{loc:true, anum:true},
+    docs:{taxes_2026:2,taxes_2025:2,taxes_2024:1,housing_2026:2,housing_2025:1,school_2026:2,finance_2024:1,ids_2026:2},
+    start:todayStamp()};
+}
+let S = load();
+function load(){
+  if(DEMO) return demoState();
+  try{ const s=JSON.parse(localStorage.getItem(KEY)); if(s&&typeof s==="object") return s; }catch(e){}
+  return {lang:"en", onboarded:false, profile:{}, case:{}, tasks:{}, docs:{}, start:null};
+}
+function save(){ if(DEMO) return; try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+function todayStamp(){ const d=new Date(); return Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()); }
+function dayNumber(){ if(!S.start) return 1; return Math.max(1, Math.floor((todayStamp()-S.start)/86400000)+1); }
+
+/* ================= i18n apply ================= */
+function dict(){ return T[S.lang]||T.en; }
+function applyStatic(){
+  const d=dict();
+  document.documentElement.lang=d._l; document.title=d._t;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{ const k=el.getAttribute("data-i18n"); if(k in d) el.textContent=d[k]; });
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.lang===S.lang)));
+}
+function setLang(l){ if(!T[l]) return; S.lang=l; save(); applyStatic(); renderAll(); if(document.getElementById("onb").classList.contains("on")) renderOnb(); }
+document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
+
+/* ================= TODAY ================= */
+function renderTasks(){
+  const d=dict(); const host=document.getElementById("taskList"); host.innerHTML="";
+  let done=0, tot=0;
+  TASK_ORDER.forEach(([phase,ids])=>{
+    const grp=document.createElement("div"); grp.className="phase";
+    const h=document.createElement("h2"); h.textContent=d[PHASE_LABEL[phase]]; grp.appendChild(h);
+    ids.forEach(id=>{
+      tot++; const on=!!S.tasks[id]; if(on) done++;
+      const [title,hint]=d.tasks[id];
+      const btn=document.createElement("button");
+      btn.className="task"; btn.type="button"; btn.setAttribute("aria-pressed",String(on));
+      btn.innerHTML='<span class="cb" aria-hidden="true">'+(on?"✓":"")+'</span><span class="t-txt"><span class="t-title"></span><span class="t-hint"></span></span>';
+      btn.querySelector(".t-title").textContent=title;
+      btn.querySelector(".t-hint").textContent=hint;
+      btn.addEventListener("click",()=>{ S.tasks[id]=!S.tasks[id]; save(); renderTasks(); });
+      grp.appendChild(btn);
+    });
+    host.appendChild(grp);
+  });
+  document.getElementById("progVal").textContent=done;
+  document.getElementById("progTot").textContent=tot;
+  document.getElementById("progBar").style.width=(tot?Math.round(done/tot*100):0)+"%";
+  document.getElementById("dayChip").textContent=d.day+" "+dayNumber();
+}
+
+/* ================= CASE ================= */
+function bindCaseFields(){
+  document.querySelectorAll("#v-case input[data-k]").forEach(inp=>{
+    inp.addEventListener("input",()=>{
+      S.case[inp.dataset.k]=inp.value; save();
+      const n=document.getElementById("caseSaved"); n.textContent=dict().case_saved;
+      clearTimeout(n._t); n._t=setTimeout(()=>n.textContent="",1400);
+    });
+  });
+}
+function renderCase(){
+  const d=dict();
+  document.querySelectorAll("#v-case input[data-k]").forEach(inp=>{ inp.value=S.case[inp.dataset.k]||""; });
+  const ol=document.getElementById("locSteps"); ol.innerHTML="";
+  d.steps.forEach(s=>{ const li=document.createElement("li"); li.textContent=s; ol.appendChild(li); });
+}
+
+/* ================= DOCS ================= */
+function docYears(){ const y=new Date().getFullYear(); return [y,y-1,y-2,y-3,y-4,y-5]; }
+function renderDocs(){
+  const d=dict(); const years=docYears(); const table=document.getElementById("dgrid");
+  const labels=DOC_CAT_LABEL[S.lang]||DOC_CAT_LABEL.en;
+  let html="<thead><tr><th></th>";
+  years.forEach(y=>html+="<th>"+y+"</th>"); html+="</tr></thead><tbody>";
+  DOC_CATS.forEach(cat=>{
+    html+="<tr><th>"+labels[cat]+"</th>";
+    years.forEach(y=>{ const k=cat+"_"+y; const v=S.docs[k]||0;
+      const g=v===2?"■":v===1?"◐":"□";
+      html+='<td><button class="cell" data-k="'+k+'" data-v="'+v+'" aria-label="'+labels[cat]+' '+y+'">'+g+'</button></td>'; });
+    html+="</tr>";
+  });
+  html+="</tbody>"; table.innerHTML=html;
+  table.querySelectorAll(".cell").forEach(c=>{
+    c.addEventListener("click",()=>{ const k=c.dataset.k; S.docs[k]=((S.docs[k]||0)+1)%3; save(); renderDocs(); });
+  });
+  // coverage: have=1, partial=0.5
+  const total=DOC_CATS.length*years.length; let sum=0;
+  DOC_CATS.forEach(cat=>years.forEach(y=>{ const v=S.docs[cat+"_"+y]||0; sum+= v===2?1: v===1?0.5:0; }));
+  const pct=Math.round(sum/total*100);
+  document.getElementById("covVal").textContent=pct;
+  document.getElementById("covBar").style.width=pct+"%";
+}
+
+function renderAll(){ renderTasks(); renderCase(); renderDocs(); }
+
+/* ================= tabs ================= */
+function showTab(name){
+  document.querySelectorAll(".view").forEach(v=>v.classList.toggle("on", v.id==="v-"+name));
+  document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-current", String(b.dataset.tab===name)));
+  window.scrollTo({top:0,behavior:"instant" in window?"instant":"auto"});
+}
+document.querySelectorAll(".tabs button").forEach(b=>b.addEventListener("click",()=>showTab(b.dataset.tab)));
+
+/* ================= reset ================= */
+document.getElementById("resetBtn").addEventListener("click",()=>{
+  const msg={en:"Erase everything saved on this phone?",es:"¿Borrar todo lo guardado en este teléfono?",ru:"Стереть всё, сохранённое на этом телефоне?"}[S.lang];
+  if(confirm(msg)){ const lang=S.lang; localStorage.removeItem(KEY); S=load(); S.lang=lang; save(); location.reload(); }
+});
+
+/* ================= onboarding ================= */
+let obIndex=0, obDraft={};
+const OB_STEPS=[
+  {key:"situation", h:"ob1_h", opts:[["crisis","ob1_a"],["prepare","ob1_b"],["attorney","ob1_c"]]},
+  {key:"hasA", h:"ob2_h", opts:[["yes","ob2_yes"],["no","ob2_no"]], explainKey:"ob2_ex", whatKey:"ob2_what"},
+  {key:"years", h:"ob3_h", opts:[["lt2","ob3_a"],["y2_10","ob3_b"],["gt10","ob3_c"]]}
+];
+function renderOnb(){
+  const d=dict(); const st=OB_STEPS[obIndex];
+  document.getElementById("onbBar").style.width=Math.round((obIndex+1)/OB_STEPS.length*100)+"%";
+  const wrap=document.getElementById("onbStep");
+  let html='<div class="step">'+d.day+' 1 · '+(obIndex+1)+'/'+OB_STEPS.length+'</div><h2>'+d[st.h]+'</h2>';
+  html+='<div id="obOpts">';
+  st.opts.forEach(([val,lk])=>{
+    const sel=obDraft[st.key]===val?" sel":"";
+    html+='<button class="opt'+sel+'" data-val="'+val+'"><span class="dot"></span><span>'+d[lk]+'</span></button>';
+  });
+  html+='</div>';
+  if(st.explainKey){ html+='<button class="linkbtn" id="obWhat">'+d[st.whatKey]+'</button><div class="explain" id="obEx" hidden>'+d[st.explainKey]+'</div>'; }
+  wrap.innerHTML=html;
+  wrap.querySelectorAll(".opt").forEach(o=>o.addEventListener("click",()=>{
+    obDraft[st.key]=o.dataset.val;
+    wrap.querySelectorAll(".opt").forEach(x=>x.classList.remove("sel")); o.classList.add("sel");
+  }));
+  const w=document.getElementById("obWhat");
+  if(w) w.addEventListener("click",()=>{ const ex=document.getElementById("obEx"); ex.hidden=!ex.hidden; });
+  const nb=document.getElementById("onbNext").querySelector("span[data-i18n]");
+  nb.textContent = obIndex===OB_STEPS.length-1 ? d.ob_start : d.ob_next;
+  nb.setAttribute("data-i18n", obIndex===OB_STEPS.length-1 ? "ob_start":"ob_next");
+}
+document.getElementById("onbNext").addEventListener("click",()=>{
+  if(obIndex<OB_STEPS.length-1){ obIndex++; renderOnb(); }
+  else{
+    S.profile=Object.assign({},obDraft); S.onboarded=true; S.start=todayStamp(); save();
+    document.getElementById("onb").classList.remove("on");
+    document.getElementById("onb").setAttribute("aria-hidden","true");
+    renderAll();
+  }
+});
+
+/* ================= boot ================= */
+applyStatic(); bindCaseFields(); renderAll();
+if(DEMO){
+  if(DEMO.tab==="onboarding"){ const o=document.getElementById("onb"); o.classList.add("on"); o.setAttribute("aria-hidden","false"); renderOnb(); }
+  else showTab(DEMO.tab);
+} else if(!S.onboarded){
+  const o=document.getElementById("onb"); o.classList.add("on"); o.setAttribute("aria-hidden","false");
+  renderOnb();
+}
+</script>
+</body>
+</html>
