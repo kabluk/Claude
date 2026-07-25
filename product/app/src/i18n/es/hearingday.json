@@ -1,0 +1,67 @@
+{
+  "_meta": {
+    "status": "BORRADOR — pendiente de revisión humana (los tres idiomas)",
+    "content_version": 1
+  },
+  "hearing_day": {
+    "title": "El día de su audiencia",
+    "when_where": {
+      "title": "Cuándo y dónde",
+      "open_maps": "Abrir en mapas",
+      "copy_address": "Copiar dirección",
+      "tz_note": "Zona horaria de la corte: {{tz}} (la suya: {{local_tz}})"
+    },
+    "leave_by": {
+      "title": "A qué hora salir",
+      "travel_mode": "¿Cómo va a llegar?",
+      "drive": "En auto",
+      "transit": "Transporte público",
+      "dropped_off": "Alguien me lleva",
+      "origin": "Su punto de partida",
+      "travel_minutes": "Tiempo de viaje (minutos)",
+      "buffer": "Margen para estacionar, seguridad y encontrar la sala: {{minutes}} min",
+      "arithmetic": "Viaje ~{{travel}} + {{buffer}} min de margen → salir a las {{time}}",
+      "edit_estimate": "Editar esta estimación"
+    },
+    "bring": {
+      "title": "Qué llevar",
+      "id": "Identificación de cada persona que asiste",
+      "notice": "Aviso de audiencia",
+      "attorney": "Nombre y teléfono del abogado",
+      "interpreter": "Idioma del intérprete",
+      "docs": "Documentos que pidió su abogado",
+      "parking": "Dinero para estacionamiento",
+      "kids": "Botanas y actividades tranquilas (si vienen niños)"
+    },
+    "practical": {
+      "title": "Confirme con la corte con anticipación",
+      "log_call": "Registrar esta llamada",
+      "unverified": "No confirmado para esta corte — llame para verificar",
+      "q_phones": "¿Se permiten teléfonos en el edificio?",
+      "q_parking": "Estacionamiento: ¿dónde y cuánto cuesta?",
+      "q_children": "¿Se permiten niños en la sala?",
+      "q_access": "Necesidades de accesibilidad",
+      "q_late": "¿Qué hacer si llega tarde?",
+      "q_checkin": "¿Dónde registrarse?"
+    },
+    "reminders": {
+      "title": "Recordatorios",
+      "add_calendar": "Añadir al calendario (.ics)"
+    },
+    "dayof": {
+      "title": "Tarjeta del día",
+      "offline_note": "Esta pantalla funciona sin internet."
+    },
+    "disclaimer": "Solo información práctica. Pregunte a su abogado todo lo relacionado con la audiencia en sí."
+  },
+  "timing": {
+    "title": "¿Cuánto suele durar esto?",
+    "card": "De todos los casos {{custody}} en esta corte en {{period}}, la mitad terminó en {{median}} días o menos, y la otra mitad tardó más.",
+    "iqr": "La mitad central de los casos tardó {{p25}}–{{p75}} días.",
+    "national": "Este caso aún no tiene corte vinculada — se muestran cifras nacionales.",
+    "sample": "Basado en {{n}} casos. Publicación de datos: {{release}}. Fuente: {{source}}.",
+    "caveat": "Son datos históricos de muchos casos, no una predicción sobre el suyo. Los casos individuales varían mucho.",
+    "detained": "con detención",
+    "not_detained": "sin detención"
+  }
+}

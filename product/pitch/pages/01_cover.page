@@ -1,0 +1,51 @@
+pageType: cover
+background:
+  type: gradient
+  gradientType: linear
+  angle: 150
+  stops:
+    - {position: 0, color: "#16283E"}
+    - {position: 1, color: "#33506E"}
+elements:
+  - elementId: kick
+    elementType: text
+    bounds: [80, 120, 800, 24]
+    content:
+      fontSize: 13
+      color: "#BCD0E8"
+      letterSpacing: 4
+      text: ИНВЕСТИЦИОННЫЙ ПИТЧ · 2026
+  - elementId: title
+    elementType: text
+    bounds: [80, 160, 800, 120]
+    content:
+      fontSize: 48
+      bold: true
+      color: "#FFFFFF"
+      lineHeight: 1.15
+      text: |
+        <p>Detention Navigator</p>
+  - elementId: sub
+    elementType: text
+    bounds: [80, 250, 760, 90]
+    content:
+      fontSize: 20
+      color: "#D7E3F2"
+      lineHeight: 1.5
+      text: |
+        <p>Первые 72 часа после задержания близкого — под контролем.</p>
+        <p>Многоязычный навигатор кризиса для семей: найти человека, проверить адвоката, собрать документы, подготовить освобождение.</p>
+  - elementId: ask
+    elementType: text
+    bounds: [80, 420, 800, 30]
+    content:
+      fontSize: 15
+      color: "#9FB4CD"
+      text: "Ищем посевные инвестиции на 18 месяцев: запуск RU/EN, далее испанский рынок"
+  - elementId: disc
+    elementType: text
+    bounds: [80, 495, 800, 20]
+    content:
+      fontSize: 11
+      color: "#7E93AC"
+      text: Информационный продукт. Не юридическая фирма и не замена адвоката.

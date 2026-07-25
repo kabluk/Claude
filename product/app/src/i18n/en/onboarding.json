@@ -1,0 +1,49 @@
+{
+  "_meta": {
+    "status": "DRAFT — pending human content review (spec 12.4)",
+    "content_version": 1,
+    "review_notes": "All guidance copy must be reviewed by an immigration attorney before release. Source links to be filled per section."
+  },
+  "onboarding": {
+    "what_happened": {
+      "title": "What happened?",
+      "option_crisis": "A loved one was detained",
+      "option_prepared": "I want to be prepared in advance",
+      "option_have_attorney": "We already have an attorney — I need to organize documents"
+    },
+    "q1_know_location": {
+      "title": "Do you know where they are?",
+      "yes": "Yes",
+      "no": "No"
+    },
+    "q2_a_number": {
+      "title": "Do you have their A-Number?",
+      "yes": "Yes",
+      "no": "No",
+      "what_is_that": "What is that?",
+      "explainer": "An A-Number (Alien Registration Number) is a 7–9 digit number the government assigns. It appears on immigration documents as \"A\" followed by digits.",
+      "image_alt": "Example of where the A-Number appears on a document"
+    },
+    "q3_years_in_us": {
+      "title": "How many years have they lived in the U.S.?",
+      "lt2": "Under 2 years",
+      "y2_10": "2–10 years",
+      "gt10": "More than 10 years"
+    },
+    "today_tasks": {
+      "title": "Your 3 tasks for today",
+      "progress_label": "Today's progress",
+      "collapse_72h": "Next: 72 hours",
+      "collapse_weeks": "First weeks"
+    },
+    "save_prompt": {
+      "title": "Save your plan?",
+      "body": "Create a free account so your progress is kept and family can join.",
+      "continue_email": "Continue with email",
+      "continue_apple": "Continue with Apple",
+      "continue_google": "Continue with Google",
+      "later": "Not now"
+    }
+  },
+  "disclaimer": "Informational tool only. Not a law firm and not a substitute for an attorney."
+}

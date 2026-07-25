@@ -1,0 +1,44 @@
+pageType: final
+background:
+  type: gradient
+  gradientType: linear
+  angle: 150
+  stops:
+    - {position: 0, color: "#16283E"}
+    - {position: 1, color: "#33506E"}
+elements:
+  - elementId: kick
+    elementType: text
+    bounds: [80, 70, 400, 22]
+    content: {fontSize: 12, color: "#BCD0E8", letterSpacing: 4, text: ПРЕДЛОЖЕНИЕ}
+  - elementId: h
+    elementType: text
+    bounds: [80, 100, 800, 50]
+    content: {style: "$h1", color: "#FFFFFF", text: "Посевной раунд на 18 месяцев"}
+  - elementId: use
+    elementType: text
+    bounds: [80, 170, 800, 170]
+    content:
+      fontSize: 17
+      color: "#D7E3F2"
+      lineHeight: 1.7
+      text: |
+        <p><strong>Запуск:</strong> RU/EN продукт, контент-ревью иммиграционным адвокатом, платные пилоты в общинах</p>
+        <p><strong>Рост:</strong> испанская локализация — рынок в 100 раз больше стартового</p>
+        <p><strong>Продукт:</strong> мониторинг статуса (подписка), preparedness-режим, партнёрская программа с адвокатами</p>
+  - elementId: metrics
+    elementType: text
+    bounds: [80, 345, 800, 130]
+    content:
+      fontSize: 15
+      color: "#9FB4CD"
+      lineHeight: 1.6
+      text: |
+        <p>Цели на горизонт: конверсия в Kit ≥ 2,5% · доля Monitor ≥ 40% · LTV/CAC ≥ 3,6x · первая 1 000 платных семей</p>
+  - elementId: contact
+    elementType: text
+    bounds: [80, 460, 800, 40]
+    content:
+      fontSize: 14
+      color: "#BCD0E8"
+      text: "Detention Navigator · связь: [email] · Данные: Deportation Data Project (CC0), EOIR CASE"

@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<script>document.documentElement.className+=" js";</script>
+<title>Three rules for the first call — Detention Navigator</title>
+<meta name="description" content="Three plain things to tell a detained relative on the first call, to keep them safe in the first hours. General information, not legal advice.">
+<link rel="stylesheet" href="fonts.css">
+<style>
+  :root{
+    --navy:#17264A;--navy-700:#22345f;--brass:#B0842F;--brass-600:#946c22;
+    --paper:#F3EFE6;--card:#FCFAF4;--caution:#8A4B12;--slate:#5E5A4E;
+    --line:#DED6C6;--line-strong:#CABDA6;--ink:#17264A;--focus:#B0842F;--maxw:760px;--r:14px;
+    --serif:"Spectral",Georgia,"Times New Roman",serif;
+    --sans:"Commissioner","Segoe UI",system-ui,-apple-system,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,"SFMono-Regular",Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.62;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  @media (max-width:400px){ body{font-size:17.5px} }
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  @media (min-width:720px){ .wrap{padding:0 28px} }
+  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.16;letter-spacing:-.01em;color:var(--navy);margin:0}
+  p{margin:0}
+  a{color:var(--brass-600);text-underline-offset:3px;text-decoration-thickness:1.5px}
+  a:hover{color:var(--navy)}
+  a:focus-visible,button:focus-visible,.next:focus-visible{outline:3px solid var(--focus);outline-offset:3px;border-radius:6px}
+  .skip{position:absolute;left:-9999px;top:0;background:var(--navy);color:#fff;padding:12px 18px;border-radius:0 0 10px 0;z-index:100;font-weight:600}
+  .skip:focus{left:0}
+  .kicker{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--brass-600)}
+
+  header.site{background:var(--paper);border-bottom:1px solid var(--line);padding:14px 0 15px}
+  .head-row{display:flex;align-items:flex-start;justify-content:space-between;gap:14px}
+  .brand{display:flex;flex-direction:column;gap:2px;min-width:0}
+  .brand .name{font-family:var(--serif);font-weight:600;font-size:21px;color:var(--navy);letter-spacing:-.01em;line-height:1.1;text-decoration:none}
+  .brand .name .mark{color:var(--brass)}
+  .brand .clarify{font-size:14.5px;color:var(--slate);line-height:1.35;max-width:34ch}
+  .lang{display:flex;gap:6px;flex-shrink:0}
+  .lang button{font-family:var(--mono);font-size:14px;font-weight:500;letter-spacing:.02em;min-width:46px;min-height:42px;padding:0 10px;background:transparent;color:var(--navy);border:1.5px solid var(--line-strong);border-radius:9px;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+  .lang button:hover{border-color:var(--brass)}
+  .lang button[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+
+  .hero{padding:22px 0 8px}
+  .crumb{display:inline-flex;align-items:center;gap:8px;font-family:var(--mono);font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--brass-600);text-decoration:none;min-height:40px;align-content:center}
+  .crumb:hover{color:var(--navy)}
+  .folder{position:relative;margin-top:8px}
+  .folder-tab{display:inline-flex;align-items:center;gap:9px;background:var(--navy);color:#fff;font-family:var(--mono);font-size:12.5px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;padding:8px 15px 9px;border-radius:12px 12px 0 0;position:relative;left:8px;border-bottom:3px solid var(--brass)}
+  .folder-tab .dot{width:7px;height:7px;border-radius:50%;background:var(--brass)}
+  .folder-front{background:var(--card);border:1px solid var(--line);border-top:2px solid var(--navy);border-radius:2px var(--r) var(--r) var(--r);box-shadow:0 1px 0 #fff inset,0 14px 30px -22px rgba(23,38,74,.5);padding:24px 20px 24px}
+  @media (min-width:720px){ .folder-front{padding:32px 34px} }
+  .folder-front h1{font-size:26px;line-height:1.18;max-width:24ch}
+  @media (min-width:560px){ .folder-front h1{font-size:30px} }
+  .folder-front .intro{margin-top:12px;font-size:18px;color:var(--slate);line-height:1.55;max-width:56ch}
+
+  section{padding:26px 0 44px}
+  .steps{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+  .step{display:flex;gap:16px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px 18px}
+  .step .num{flex:0 0 auto;font-family:var(--serif);font-weight:600;font-size:32px;line-height:.95;color:var(--brass);min-width:38px}
+  .step h3{font-family:var(--sans);font-weight:600;font-size:19px;color:var(--navy);line-height:1.25}
+  .step p{margin-top:7px;color:var(--slate);font-size:17px;line-height:1.55}
+  .step .say{display:inline-block;margin-top:10px;font-family:var(--mono);font-size:15px;color:var(--navy);background:#fff;border:1px solid var(--line);border-left:3px solid var(--brass);border-radius:6px;padding:8px 11px;line-height:1.45}
+
+  .remind{margin-top:22px;background:var(--navy);color:#F3EFE6;border-radius:var(--r);padding:24px 20px;box-shadow:0 20px 40px -30px rgba(23,38,74,.9)}
+  @media (min-width:720px){ .remind{padding:30px 32px} }
+  .remind .kicker{color:#E7C77A}
+  .remind h3{color:#fff;font-family:var(--serif);font-weight:600;font-size:22px;margin-top:8px}
+  .remind p{margin-top:10px;color:rgba(243,239,230,.86);font-size:17px;line-height:1.6}
+
+  .next{margin-top:24px;display:flex;align-items:center;gap:14px;background:transparent;border:2px solid var(--navy);border-radius:12px;padding:16px 18px;min-height:66px;text-decoration:none;color:var(--navy);transition:background .15s}
+  .next:hover{background:rgba(23,38,74,.055)}
+  .next .chev{flex:0 0 auto;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--brass);color:var(--navy);font-size:16px;font-weight:700}
+  .next .nt{display:flex;flex-direction:column;gap:2px}
+  .next .nt b{font-weight:600;font-size:18px;color:var(--navy)}
+  .next .nt span{font-size:15px;color:var(--slate)}
+
+  footer.site{background:var(--navy);color:#F3EFE6;padding:40px 0 46px;margin-top:8px}
+  footer .name{font-family:var(--serif);font-weight:600;font-size:20px;color:#fff}
+  footer .name .mark{color:#E7C77A}
+  footer .priv{margin-top:14px;font-size:17px;line-height:1.6;color:rgba(243,239,230,.9);max-width:60ch}
+  footer .links{margin-top:20px;display:flex;flex-wrap:wrap;gap:10px 22px;font-size:15.5px}
+  footer .links a{color:#E7C77A;text-decoration:none;font-weight:500}
+  footer .links a:hover{color:#fff;text-decoration:underline}
+  footer .disc{margin-top:22px;padding-top:20px;border-top:1px solid rgba(255,255,255,.16);font-size:14.5px;line-height:1.6;color:rgba(243,239,230,.72);max-width:64ch}
+
+  .reveal{opacity:1}
+  html.js .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+  html.js .reveal.in{opacity:1;transform:none}
+  html.js .folder-tab{opacity:0;transform:translateY(6px);animation:tabIn .5s .1s ease forwards}
+  html.js .folder-front{opacity:0;transform:translateY(10px);animation:tabIn .6s .22s ease forwards}
+  @keyframes tabIn{to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.reveal,.folder-tab,.folder-front{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#steps" data-i18n="skip">Skip to the three rules</a>
+
+<header class="site">
+  <div class="wrap head-row">
+    <div class="brand">
+      <a class="name" href="index.html">Detention <span class="mark">Navigator</span></a>
+      <span class="clarify" data-i18n="clarify">Find a detained relative. Know what to do today.</span>
+    </div>
+    <nav class="lang" aria-label="Language">
+      <button type="button" data-lang="en" aria-pressed="true" lang="en">EN</button>
+      <button type="button" data-lang="es" aria-pressed="false" lang="es">ES</button>
+      <button type="button" data-lang="ru" aria-pressed="false" lang="ru">RU</button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="hero">
+    <div class="wrap">
+      <a class="crumb" href="index.html"><span aria-hidden="true">←</span> <span data-i18n="crumb">All the first steps</span></a>
+      <div class="folder">
+        <div class="folder-tab"><span class="dot"></span><span data-i18n="tab">First call</span></div>
+        <div class="folder-front">
+          <h1 data-i18n="h1">Three rules to tell them on the first call</h1>
+          <p class="intro" data-i18n="intro">They will be frightened too. Keep the call short, stay calm, and tell them these three things — they matter most in the first hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section>
+    <div class="wrap reveal">
+      <ol class="steps" id="steps">
+        <li class="step">
+          <span class="num" translate="no">1</span>
+          <span class="body">
+            <h3 data-i18n="r1_t">Do not sign anything.</h3>
+            <p data-i18n="r1_d">Tell them not to sign any document they are handed until a lawyer they trust has read it — even if they are told it will help them or get them out faster. Signing can give up important rights.</p>
+            <span class="say" data-i18n="r1_s">Tell them: “Do not sign. Wait for the lawyer.”</span>
+          </span>
+        </li>
+        <li class="step">
+          <span class="num" translate="no">2</span>
+          <span class="body">
+            <h3 data-i18n="r2_t">Say little on the phone.</h3>
+            <p data-i18n="r2_d">The call may be recorded. Tell them not to talk about their case, how they entered, or the details of their situation on the phone. A calm “I’m okay, we are working on it” is enough for now.</p>
+            <span class="say" data-i18n="r2_s">Keep it to: “I’m okay. We are working on it.”</span>
+          </span>
+        </li>
+        <li class="step">
+          <span class="num" translate="no">3</span>
+          <span class="body">
+            <h3 data-i18n="r3_t">Give them one phone number to memorize.</h3>
+            <p data-i18n="r3_d">They may lose their phone and all their contacts. Give them one number — yours, or a lawyer’s — and have them repeat it out loud until they know it by heart.</p>
+            <span class="say" data-i18n="r3_s">Have them repeat the number until they know it.</span>
+          </span>
+        </li>
+      </ol>
+
+      <div class="remind">
+        <p class="kicker" data-i18n="rem_k">Please read this</p>
+        <h3 data-i18n="rem_h">This keeps them safe — it is not legal advice</h3>
+        <p data-i18n="rem_d">These are general safety points for the first hours, not legal advice about your specific case, and they do not replace an attorney. Once you have a lawyer you trust, follow their guidance instead.</p>
+      </div>
+
+      <a class="next" href="find-them.html">
+        <span class="chev" aria-hidden="true">→</span>
+        <span class="nt">
+          <b data-i18n="next_b">Haven’t found where they are yet?</b>
+          <span data-i18n="next_s">Open the free locator guide</span>
+        </span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="name">Detention <span class="mark">Navigator</span></div>
+    <p class="priv" data-i18n="foot_priv">Your information is encrypted. No ads, no data selling, and you can delete everything at any time.</p>
+    <div class="links">
+      <a href="index.html" data-i18n="foot_l0">Home</a>
+      <a href="find-them.html" data-i18n="foot_l2">Find where they are</a>
+      <a href="mailto:help@detentionnavigator.org" data-i18n="foot_l3">Contact</a>
+    </div>
+    <p class="disc" data-i18n="foot_disc">Detention Navigator is an information and organization tool. It is not a law firm, does not provide legal advice, and does not promise any outcome. For legal decisions, consult a licensed attorney or a DOJ-accredited representative.</p>
+  </div>
+</footer>
+
+<script>
+const I18N = {
+  en:{ _htmllang:"en", _title:"Three rules for the first call — Detention Navigator",
+    skip:"Skip to the three rules",
+    clarify:"Find a detained relative. Know what to do today.",
+    crumb:"All the first steps", tab:"First call",
+    h1:"Three rules to tell them on the first call",
+    intro:"They will be frightened too. Keep the call short, stay calm, and tell them these three things — they matter most in the first hours.",
+    r1_t:"Do not sign anything.",
+    r1_d:"Tell them not to sign any document they are handed until a lawyer they trust has read it — even if they are told it will help them or get them out faster. Signing can give up important rights.",
+    r1_s:"Tell them: “Do not sign. Wait for the lawyer.”",
+    r2_t:"Say little on the phone.",
+    r2_d:"The call may be recorded. Tell them not to talk about their case, how they entered, or the details of their situation on the phone. A calm “I’m okay, we are working on it” is enough for now.",
+    r2_s:"Keep it to: “I’m okay. We are working on it.”",
+    r3_t:"Give them one phone number to memorize.",
+    r3_d:"They may lose their phone and all their contacts. Give them one number — yours, or a lawyer’s — and have them repeat it out loud until they know it by heart.",
+    r3_s:"Have them repeat the number until they know it.",
+    rem_k:"Please read this",
+    rem_h:"This keeps them safe — it is not legal advice",
+    rem_d:"These are general safety points for the first hours, not legal advice about your specific case, and they do not replace an attorney. Once you have a lawyer you trust, follow their guidance instead.",
+    next_b:"Haven’t found where they are yet?", next_s:"Open the free locator guide",
+    foot_priv:"Your information is encrypted. No ads, no data selling, and you can delete everything at any time.",
+    foot_l0:"Home", foot_l2:"Find where they are", foot_l3:"Contact",
+    foot_disc:"Detention Navigator is an information and organization tool. It is not a law firm, does not provide legal advice, and does not promise any outcome. For legal decisions, consult a licensed attorney or a DOJ-accredited representative."
+  },
+  es:{ _htmllang:"es", _title:"Tres reglas para la primera llamada — Detention Navigator",
+    skip:"Ir a las tres reglas",
+    clarify:"Localice a un familiar detenido. Sepa qué hacer hoy.",
+    crumb:"Todos los primeros pasos", tab:"Primera llamada",
+    h1:"Tres reglas para decirle en la primera llamada",
+    intro:"Él también estará asustado. Haga la llamada corta, mantenga la calma y dígale estas tres cosas — son las que más importan en las primeras horas.",
+    r1_t:"No firme nada.",
+    r1_d:"Dígale que no firme ningún documento que le entreguen hasta que un abogado de confianza lo haya leído — aunque le digan que le ayudará o que saldrá más rápido. Firmar puede hacerle renunciar a derechos importantes.",
+    r1_s:"Dígale: “No firmes. Espera al abogado.”",
+    r2_t:"Hable poco por teléfono.",
+    r2_d:"La llamada puede estar grabada. Dígale que no hable de su caso, de cómo entró, ni de los detalles de su situación por teléfono. Por ahora basta con un tranquilo “Estoy bien, lo estamos resolviendo”.",
+    r2_s:"Que solo diga: “Estoy bien. Lo estamos resolviendo.”",
+    r3_t:"Dele un número de teléfono para memorizar.",
+    r3_d:"Puede perder su teléfono y todos sus contactos. Dele un número — el suyo o el de un abogado — y que lo repita en voz alta hasta que se lo sepa de memoria.",
+    r3_s:"Que repita el número hasta aprendérselo.",
+    rem_k:"Por favor lea esto",
+    rem_h:"Esto lo mantiene seguro — no es asesoría legal",
+    rem_d:"Estos son puntos generales de seguridad para las primeras horas, no asesoría legal sobre su caso específico, y no reemplazan a un abogado. Cuando tenga un abogado de confianza, siga sus indicaciones.",
+    next_b:"¿Todavía no sabe dónde está?", next_s:"Abra la guía gratuita para localizarlo",
+    foot_priv:"Su información está cifrada. Sin anuncios, sin venta de datos, y puede borrar todo en cualquier momento.",
+    foot_l0:"Inicio", foot_l2:"Encuentre dónde está", foot_l3:"Contacto",
+    foot_disc:"Detention Navigator es una herramienta de información y organización. No es un bufete de abogados, no da asesoría legal y no promete ningún resultado. Para decisiones legales, consulte a un abogado con licencia o a un representante acreditado por el Departamento de Justicia."
+  },
+  ru:{ _htmllang:"ru", _title:"Три правила для первого звонка — Detention Navigator",
+    skip:"Перейти к трём правилам",
+    clarify:"Найдите задержанного родственника. Узнайте, что делать сегодня.",
+    crumb:"Ко всем первым шагам", tab:"Первый звонок",
+    h1:"Три правила, которые нужно сказать при первом звонке",
+    intro:"Ему тоже страшно. Говорите коротко, спокойно и скажите ему эти три вещи — в первые часы они важнее всего.",
+    r1_t:"Ничего не подписывайте.",
+    r1_d:"Скажите ему не подписывать ни один документ, который ему дают, пока его не прочитает адвокат, которому вы доверяете — даже если говорят, что это поможет или ускорит выход. Подпись может лишить его важных прав.",
+    r1_s:"Скажите ему: «Не подписывай. Жди адвоката.»",
+    r2_t:"Говорите по телефону мало.",
+    r2_d:"Звонок могут записывать. Скажите ему не обсуждать по телефону своё дело, то, как он въехал, и подробности своей ситуации. Пока достаточно спокойного «Я в порядке, мы этим занимаемся».",
+    r2_s:"Пусть скажет только: «Я в порядке. Мы этим занимаемся.»",
+    r3_t:"Дайте один номер телефона, чтобы он его запомнил.",
+    r3_d:"Он может потерять телефон и все контакты. Дайте ему один номер — ваш или адвоката — и пусть повторяет его вслух, пока не запомнит наизусть.",
+    r3_s:"Пусть повторяет номер, пока не выучит.",
+    rem_k:"Пожалуйста, прочитайте",
+    rem_h:"Это для его безопасности — это не юридический совет",
+    rem_d:"Это общие правила безопасности для первых часов, а не юридический совет по вашему конкретному делу, и они не заменяют адвоката. Как только у вас появится адвокат, которому вы доверяете, следуйте его указаниям.",
+    next_b:"Ещё не нашли, где он?", next_s:"Откройте бесплатное руководство по поиску",
+    foot_priv:"Ваши данные зашифрованы. Без рекламы, без продажи данных, и вы можете удалить всё в любой момент.",
+    foot_l0:"На главную", foot_l2:"Найдите, где он находится", foot_l3:"Контакт",
+    foot_disc:"Detention Navigator — это инструмент для информации и организации. Это не юридическая фирма, здесь не дают юридических советов и не обещают никакого результата. По юридическим вопросам обращайтесь к лицензированному адвокату или аккредитованному представителю Министерства юстиции."
+  }
+};
+function setLang(code){
+  const d=I18N[code]; if(!d) return;
+  document.documentElement.lang=d._htmllang; document.title=d._title;
+  document.querySelectorAll("[data-i18n]").forEach(el=>{ const k=el.getAttribute("data-i18n"); if(k in d) el.textContent=d[k]; });
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.lang===code)));
+  try{ localStorage.setItem("dn_lang",code); }catch(e){}
+}
+document.querySelectorAll(".lang button").forEach(b=>b.addEventListener("click",()=>setLang(b.dataset.lang)));
+(function(){ let s="en"; try{ s=localStorage.getItem("dn_lang")||"en"; }catch(e){} if(!I18N[s]) s="en"; if(s!=="en") setLang(s); })();
+(function(){
+  const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const els=document.querySelectorAll(".reveal");
+  if(reduce||!("IntersectionObserver" in window)){ els.forEach(e=>e.classList.add("in")); return; }
+  const io=new IntersectionObserver((en)=>{en.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}})},{rootMargin:"0px 0px -8% 0px",threshold:0.08});
+  els.forEach(e=>io.observe(e));
+  setTimeout(()=>els.forEach(e=>e.classList.add("in")),1600);
+})();
+</script>
+</body>
+</html>

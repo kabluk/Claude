@@ -1,0 +1,55 @@
+{
+  "_meta": { "status": "BORRADOR — pendiente de revisión humana", "content_version": 1 },
+  "app": {
+    "common": {
+      "step": "Paso {{n}} de {{total}}",
+      "next": "Continuar",
+      "back": "Atrás"
+    },
+    "login": {
+      "title": "Su número de teléfono",
+      "lead": "Le enviaremos un código por SMS. Sin contraseñas — son fáciles de olvidar bajo estrés.",
+      "get_code": "Recibir código",
+      "have_account": "Ya tengo una cuenta",
+      "code_sent": "Enviamos un código de 6 dígitos a",
+      "resend": "Reenviar código",
+      "resend_in": "Reenviar código (0:{{sec}})",
+      "sign_in": "Entrar",
+      "header": "Entrar"
+    },
+    "today": {
+      "day_chip": "Día 1 de la crisis",
+      "family_footer": "Completado por Marina · visible para los 3 miembros de la familia"
+    },
+    "alerts": {
+      "title": "Tres tipos — tres reacciones",
+      "lead": "La familia no debe sobresaltarse con cada notificación.",
+      "header": "Notificaciones"
+    },
+    "panic": {
+      "title": "Si llegan — un toque",
+      "lead": "Su familia recibirá la señal y su plan de acción. Los datos se guardan solo en este teléfono.",
+      "button": "ALERTA",
+      "hint_idle": "toque si comenzó una detención",
+      "hint_cancel": "toque de nuevo para cancelar",
+      "sent": "ENVIADO",
+      "hint_sent": "su familia recibió la señal y el plan",
+      "footer": "El acceso es con código numérico, no con huella — un código no se puede exigir por la fuerza",
+      "header": "Modo de preparación"
+    },
+    "docs": {
+      "title": "Documentos por año",
+      "lead": "La completitud de documentos es lo primero que piden los abogados. Toque una celda.",
+      "header": "Documentos",
+      "cat_taxes": "Impuestos",
+      "cat_housing": "Vivienda",
+      "cat_school": "Escuela",
+      "cat_finance": "Finanzas",
+      "legend_full": "sí",
+      "legend_part": "parcial",
+      "legend_none": "no",
+      "export_pdf": "Armar paquete PDF para el abogado",
+      "note": "La «completitud» no es una evaluación del caso. Solo su abogado puede evaluarlo."
+    }
+  }
+}

@@ -1,0 +1,27 @@
+pageType: content
+background: {type: solid, color: "$bg"}
+elements:
+  - elementId: kick
+    elementType: text
+    bounds: [60, 36, 400, 22]
+    content: {style: "$kicker", text: ПОЧЕМУ СЕЙЧАС}
+  - elementId: h
+    elementType: text
+    bounds: [60, 62, 840, 44]
+    content: {style: "$h1", text: "Задержания сместились с границы внутрь страны"}
+  - elementId: lead
+    elementType: text
+    bounds: [60, 115, 840, 60]
+    content:
+      style: "$body"
+      text: |
+        <p>Раньше задерживали в основном свежих пересечений границы. Теперь — людей с многолетней историей, детьми, жильём и налогами. У этих семей есть что терять — и чем платить.</p>
+  - elementId: img
+    elementType: image
+    bounds: [110, 185, 740, 290]
+    src: media/fig5_residence.png
+    fit: {mode: contain}
+  - elementId: src
+    elementType: text
+    bounds: [60, 495, 840, 30]
+    content: {style: "$small", text: "Доля задержанных по стажу проживания в США к моменту выдачи обвинения (NTA), EOIR 2015–2026. 2026: 85% — 2+ года, 27% — 10+ лет"}

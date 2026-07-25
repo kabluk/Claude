@@ -1,0 +1,61 @@
+pageType: content
+background: {type: solid, color: "$bg"}
+elements:
+  - elementId: kick
+    elementType: text
+    bounds: [60, 36, 400, 22]
+    content: {style: "$kicker", text: МОДЕЛЬ}
+  - elementId: h
+    elementType: text
+    bounds: [60, 62, 840, 44]
+    content: {style: "$h1", text: "Разовый набор + подписка на мониторинг"}
+  - elementId: p1
+    elementType: shape
+    bounds: [60, 130, 410, 150]
+    shapeName: roundRect
+    adjustments: [8000]
+    fill: {type: solid, color: "$soft"}
+  - elementId: p1t
+    elementType: text
+    bounds: [85, 145, 360, 125]
+    content:
+      fontSize: 15
+      color: "$text"
+      lineHeight: 1.5
+      text: |
+        <p><span style="font-size:30px; color:$navy"><strong>$99</strong></span> <span style="color:$grey">разово</span></p>
+        <p><strong>Navigator Kit</strong></p>
+        <p>Полный навигатор кризиса: чек-листы, справочник учреждений, модуль адвоката, документы, таймлайн, до 5 членов семьи</p>
+  - elementId: p2
+    elementType: shape
+    bounds: [490, 130, 410, 150]
+    shapeName: roundRect
+    adjustments: [8000]
+    fill: {type: solid, color: "$navy"}
+  - elementId: p2t
+    elementType: text
+    bounds: [515, 145, 360, 125]
+    content:
+      fontSize: 15
+      color: "#E8EFF7"
+      lineHeight: 1.5
+      text: |
+        <p><span style="font-size:30px; color:#FFFFFF"><strong>$7,99</strong></span> <span style="color:#BCD0E8">/ месяц</span></p>
+        <p><strong>Status Monitor</strong></p>
+        <p>Автоматическое отслеживание локатора и суда, уведомления всей семье, история слушаний</p>
+  - elementId: why
+    elementType: text
+    bounds: [60, 305, 840, 120]
+    content:
+      style: "$body"
+      lineHeight: 1.6
+      text: |
+        <p><strong>Почему это конвертирует:</strong> альтернатива — консультация адвоката за $250+/час или мошенник за $500. Мы стоим дешевле одного часа юриста и не претендуем на его роль.</p>
+        <p><strong>Верх воронки — бесплатно:</strong> публичная страница «Три правила» на языках общин. SEO, общины, церкви и сами адвокаты как канал раздачи.</p>
+  - elementId: ebit
+    elementType: text
+    bounds: [60, 435, 840, 60]
+    content:
+      style: "$small"
+      text: |
+        <p>Себестоимость — код и контент, не юристы. Маржинальность цифрового продукта. Рекламы и продажи данных не будет никогда — это условие доверия общин.</p>
