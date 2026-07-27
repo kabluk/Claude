@@ -66,6 +66,12 @@ function TaskCard({
             </div>
           </>
         )}
+        {d.info && (
+          <>
+            <h4>{s.info}</h4>
+            <div className="formbox">{d.info}</div>
+          </>
+        )}
         {d.say && (
           <>
             <h4>{s.say}</h4>

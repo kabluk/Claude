@@ -134,6 +134,7 @@ export interface IntakeTask {
   why?: string
   how?: string[]
   src?: [string, string][]
+  info?: string
   say?: string
   form?: string
   warn?: string
@@ -149,7 +150,7 @@ export interface IntakeContent {
     resultHint: string
     groups: { now: string; soon: string; later: string }
     whyPrefix: string
-    sections: { why: string; how: string; src: string; say: string; sayTag: string; form: string; warn: string }
+    sections: { why: string; how: string; src: string; info: string; say: string; sayTag: string; form: string; warn: string }
     evBadge: string
     evNote: { h: string; p: string }
     zoneBNote: { h: string; p: string }
