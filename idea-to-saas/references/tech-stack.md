@@ -15,8 +15,10 @@
 | Email | Resend + react-email | Транзакционные письма за час работы |
 | Хостинг | Vercel | Превью на каждый PR, zero-config |
 | Ошибки | Sentry | Free tier хватает MVP надолго |
-| Аналитика | PostHog | События + funnels + session replay в одном, free tier |
+| Аналитика | PostHog | События + funnels + session replay в одном, free tier (Umami — если нужен только лёгкий privacy-friendly трафик) |
 | ORM | Drizzle или Prisma | Drizzle легче и ближе к SQL; Prisma — если уже знаком |
+| UI | Tailwind CSS + shadcn/ui | Готовые компоненты, не трать недели на дизайн-систему |
+| File storage | Cloudflare R2 или Supabase Storage | S3-совместимо, дешевле S3, нужно почти каждому SaaS (аватары, экспорты, загрузки) |
 
 Стоимость до первых клиентов: $0–20/мес (почти всё — free tier). Единственный обязательный расход — домен.
 
@@ -25,6 +27,7 @@
 - **Пользователь силён в Rails / Laravel / Django** — бери его инструмент + Postgres + Stripe + хостинг Render/Fly/Railway. Rails с Hotwire или Django с HTMX закрывают 95% SaaS-UI без SPA. Это не "устаревший" выбор — это самый быстрый выбор для этого человека.
 - **Тяжёлая фоновая обработка / AI-пайплайны** — Next.js для фронта + отдельный маленький Python-сервис (FastAPI) на Railway/Fly только для этой задачи. Это ещё не микросервисы — это один вспомогательный процесс.
 - **Десктопоподобный интерактив (редакторы, канвасы)** — Vite + React SPA + отдельный API (Hono/Fastify) или Supabase напрямую.
+- **Пользователь силён в Go** — Go (chi/Fiber) + Postgres + Next.js или HTMX-фронт, хостинг Fly.io или Hetzner + Coolify (последнее — самый дешёвый вариант на рост, но +день на настройку).
 - **B2B enterprise с первого дня (SSO/SAML)** — Clerk или WorkOS; не пиши SAML сам никогда.
 
 ### Чего не делать на MVP
