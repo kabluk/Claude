@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DETNAV — сообщение по таймеру</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#14171A;--panel:#1C2126;--bezel:#2A3138;--line:#333B42;
+--red:#E4382B;--yellow:#F2C230;--green:#37A05A;--ink:#EDEFF1;--dim:#868F98}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:#0A0C0E;font-family:Archivo,sans-serif;color:var(--ink);line-height:1.5;
+display:flex;justify-content:center}
+.mono{font-family:'JetBrains Mono',monospace}
+.app{width:100%;max-width:440px;background:var(--bg);min-height:100vh}
+@media(min-width:520px){body{padding:24px 0}.app{border:1px solid var(--line)}}
+header{border-bottom:1px solid var(--line);padding:14px 18px}
+.top{display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:9px;font-size:11px;font-weight:700;letter-spacing:.2em}
+.brand i{width:3px;height:14px;background:var(--red)}
+.tabs{display:flex;border:1px solid var(--line)}
+.tabs button{background:none;border:none;color:var(--dim);padding:6px 11px;font-size:10.5px;
+font-weight:700;letter-spacing:.06em;cursor:pointer;font-family:'JetBrains Mono',monospace;
+border-right:1px solid var(--line)}
+.tabs button:last-child{border-right:none}
+.tabs button.on{background:var(--bezel);color:var(--ink)}
+main{padding:24px 18px 50px}
+.eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--dim);
+font-weight:700;margin-bottom:10px}
+h1{font-size:22px;font-weight:600;line-height:1.25;margin-bottom:8px}
+.lede{font-size:13.5px;color:var(--dim);margin-bottom:22px}
+label{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+color:var(--dim);font-weight:700;margin:20px 0 7px;font-family:'JetBrains Mono',monospace}
+.f{background:var(--panel);border:none;border-left:3px solid var(--bezel);padding:13px 14px;
+font-size:14.5px;color:var(--ink);width:100%;font-family:inherit}
+.f.filled{border-left-color:var(--green)}
+textarea.f{min-height:150px;resize:vertical;line-height:1.55}
+.note{font-size:12px;color:var(--dim);margin-top:7px;border-left:2px solid var(--yellow);
+padding-left:10px;line-height:1.45}
+.rowline{display:flex;gap:9px}.rowline .f{flex:1}
+
+/* email */
+.mail{border:1px solid var(--line);margin-top:6px}
+.mhead{background:var(--panel);padding:13px 15px;border-bottom:1px solid var(--line)}
+.mhead .from{font-size:11px;color:var(--dim);font-family:'JetBrains Mono',monospace}
+.mhead .subj{font-size:15.5px;font-weight:600;margin-top:5px}
+.mbody{padding:17px 15px}
+.status{border-left:3px solid var(--red);background:var(--panel);padding:13px 14px;margin-bottom:16px}
+.status b{display:block;font-size:15px;margin-bottom:5px}
+.status p{font-size:13.5px;color:var(--dim)}
+.first{border-left:3px solid var(--yellow);background:var(--panel);padding:13px 14px;margin-bottom:18px}
+.first b{display:block;font-size:14px;color:var(--yellow);margin-bottom:5px}
+.first p{font-size:13.5px}
+.quote{border:1px solid var(--line);padding:15px;font-size:14.5px;line-height:1.6;margin-bottom:18px}
+.quote em{display:block;font-style:normal;font-size:10px;letter-spacing:.14em;color:var(--dim);
+margin-bottom:9px;font-family:'JetBrains Mono',monospace}
+h2{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--dim);
+font-weight:700;margin:20px 0 10px;font-family:'JetBrains Mono',monospace}
+ol{padding-left:19px}ol li{font-size:13.5px;margin-bottom:9px}
+.btns{display:flex;gap:9px;margin-top:20px;flex-wrap:wrap}
+.b1{background:var(--red);color:#fff;padding:13px 17px;font-size:13.5px;font-weight:600;
+text-decoration:none;flex:1;text-align:center}
+.b2{border:1px solid var(--line);color:var(--ink);padding:13px 17px;font-size:13.5px;
+font-weight:600;text-decoration:none;flex:1;text-align:center}
+.mfoot{border-top:1px solid var(--line);margin-top:20px;padding-top:14px;font-size:11.5px;
+color:var(--dim);line-height:1.6}
+.stored{margin-top:26px;border:1px dashed var(--line);padding:15px}
+.stored h3{font-size:13.5px;font-weight:600;margin-bottom:8px}
+.stored p{font-size:12.5px;color:var(--dim);margin-bottom:7px}
+.stored code{font-family:'JetBrains Mono',monospace;font-size:11.5px;background:var(--bezel);
+padding:1px 5px;display:inline-block;margin:2px 3px 2px 0}
+</style>
+</head>
+<body>
+<div class="app">
+ <header><div class="top"><div class="brand"><i></i>DETNAV</div>
+ <div class="tabs">
+  <button id="t1" class="on" onclick="go(1)">СОСТАВЛЯЮ</button>
+  <button id="t2" onclick="go(2)">ПРИШЛО</button>
+ </div></div></header>
+ <main id="m"></main>
+</div>
+<script>
+const A=`<div class="eyebrow">Таймер отметки</div>
+<h1>Что уйдёт, если вы не отметитесь</h1>
+<p class="lede">Ставится под конкретное событие: явка в ICE, перелёт, суд, дорога через посты. Не постоянное дежурство.</p>
+
+<label>Событие и до какого времени ждём</label>
+<div class="rowline">
+ <input class="f filled" value="Явка в ICE, четверг">
+ <input class="f filled mono" value="14:00" style="max-width:110px">
+</div>
+<p class="note">Если отметитесь раньше — не уйдёт ничего. Отменить можно одной кнопкой.</p>
+
+<label>Кому уйдёт · до трёх адресов</label>
+<input class="f filled" value="hermana@ejemplo.com">
+<input class="f" style="margin-top:8px" placeholder="ещё один адрес — необязательно">
+<p class="note">Выберите тех, с кем вы уже обсудили, что делать. Письмо только напомнит — само оно ничего не объясняет.</p>
+
+<label>Как вас назвать в письме</label>
+<input class="f filled" value="Хосе">
+<p class="note">Достаточно имени или прозвища. Фамилию писать не нужно.</p>
+
+<label>Ваше сообщение</label>
+<textarea class="f filled">Если ты читаешь это — меня, скорее всего, задержали. Не паникуй.
+
+Папка с документами там, где я показывал. Мой номер A ты знаешь наизусть — найди меня по нему.
+
+Позвони Марии и скажи ей. Ключи от комнаты у соседа. С машиной — как договаривались.
+
+Я в порядке. Просто иди по списку.</textarea>
+<p class="note">Пишите то, что человек и так знает — не подробности, а напоминание. Адреса, номера документов и пароли сюда не вписывайте: письмо хранится у нас в открытом виде до отправки.</p>
+
+<div class="stored"><h3>Что при этом лежит на сервере</h3>
+<p>Только три поля, пока таймер не сработал или не отменён:</p>
+<p><code>адрес получателя</code><code>дата и время</code><code>ваш текст</code></p>
+<p>Ни имени, ни A-Number, ни документов, ни списка задач. Сработало или срок вышел — запись удаляется.</p></div>`;
+
+const B=`<div class="eyebrow">Со стороны получателя</div>
+<h1>Что приходит сестре</h1>
+<p class="lede">Она может видеть это письмо впервые в жизни, ночью, ничего не зная о сервисе.</p>
+
+<div class="mail">
+ <div class="mhead">
+  <div class="from">detnav.com · автоматическое письмо</div>
+  <div class="subj">Хосе просил передать вам это</div>
+ </div>
+ <div class="mbody">
+
+  <div class="status"><b>Хосе не отметился к 14:00 в четверг</b>
+  <p>Он ставил отметку на время явки в ICE. Отметки не было.</p></div>
+
+  <div class="first"><b>Сначала просто позвоните ему</b>
+  <p>Возможно, он забыл или не было связи. Так бывает чаще, чем задержание. Если ответит — ничего делать не нужно.</p></div>
+
+  <div class="quote"><em>ЕГО СООБЩЕНИЕ</em>
+  Если ты читаешь это — меня, скорее всего, задержали. Не паникуй.<br><br>
+  Папка с документами там, где я показывал. Мой номер A ты знаешь наизусть — найди меня по нему.<br><br>
+  Позвони Марии и скажи ей. Ключи от комнаты у соседа. С машиной — как договаривались.<br><br>
+  Я в порядке. Просто иди по списку.</div>
+
+  <h2>Если он не отвечает</h2>
+  <ol>
+   <li>Найдите его в системе ICE — нужен номер A либо имя, страна рождения и дата рождения</li>
+   <li>Пусто — это не ответ «его там нет». Записи вносят с задержкой, иногда больше суток</li>
+   <li>При первом же разговоре скажите: ничего не подписывать без адвоката</li>
+   <li>В первые сутки никому не платите. Проверить исполнителя можно за три минуты</li>
+  </ol>
+
+  <div class="btns">
+   <a class="b1" href="#">Что делать в первые часы</a>
+   <a class="b2" href="#">Это ошибка, отменить</a>
+  </div>
+
+  <div class="mfoot">Это письмо отправлено автоматически, потому что Хосе не подтвердил, что он на связи. Текст написал он сам.<br><br>
+  Мы не храним имён, документов и данных о вас — только адрес, время и этот текст. После отправки запись удаляется.</div>
+ </div>
+</div>
+
+<div class="stored"><h3>Почему письмо устроено так</h3>
+<p><b style="color:var(--ink)">Сначала «позвоните ему».</b> Ложные срабатывания неизбежны. Если первое, что человек читает — «его задержали», после первой же ошибки функцию выключат навсегда.</p>
+<p><b style="color:var(--ink)">В письме нет содержимого, только указатель.</b> Где документы и что делать, получатель узнал заранее, при личном разговоре. Письмо спускает курок, а не заменяет договорённость.</p>
+<p><b style="color:var(--ink)">Четыре шага — наши, одинаковые для всех.</b> Это не персональные данные и не совет по его делу: то же самое написано на открытых страницах.</p></div>`;
+
+function go(n){document.getElementById('m').innerHTML=n===1?A:B;
+ document.getElementById('t1').className=n===1?'on':'';
+ document.getElementById('t2').className=n===2?'on':'';window.scrollTo(0,0)}
+go(1);
+</script>
+</body>
+</html>

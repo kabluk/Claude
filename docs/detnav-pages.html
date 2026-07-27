@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DETNAV — рендер страниц</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#14171A; --panel:#1C2126; --bezel:#2A3138; --line:#333B42;
+    --red:#E4382B; --yellow:#F2C230; --green:#37A05A;
+    --ink:#EDEFF1; --dim:#868F98;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  body{background:#0A0C0E;font-family:Archivo,'Helvetica Neue',Arial,sans-serif;
+       color:var(--ink);line-height:1.5;display:flex;justify-content:center}
+  .mono{font-family:'JetBrains Mono',ui-monospace,monospace}
+  .phone{width:100%;max-width:430px;background:var(--bg);min-height:100vh;position:relative}
+  @media(min-width:520px){
+    body{padding:24px 0}
+    .phone{border:1px solid var(--line);min-height:calc(100vh - 48px)}
+  }
+
+  /* header */
+  header{position:sticky;top:0;z-index:10;background:var(--bg);
+         border-bottom:1px solid var(--line)}
+  .hrow{display:flex;align-items:center;justify-content:space-between;padding:14px 18px 12px}
+  .brand{display:flex;align-items:center;gap:9px;font-size:11.5px;font-weight:700;
+         letter-spacing:.2em;cursor:pointer;background:none;border:none;color:var(--ink);
+         font-family:inherit}
+  .brand i{width:3px;height:14px;background:var(--red);display:block}
+  .langs{display:flex;gap:1px}
+  .langs button{background:none;border:none;color:var(--dim);padding:5px 9px;
+    font-size:10.5px;font-weight:700;letter-spacing:.08em;cursor:pointer;
+    font-family:'JetBrains Mono',monospace}
+  .langs button.on{background:var(--bezel);color:var(--ink)}
+  .back{background:none;border:none;color:var(--dim);font-family:inherit;
+        font-size:12.5px;cursor:pointer;padding:0 18px 11px;display:block}
+
+  main{padding:24px 18px 60px}
+  h1{font-size:27px;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:14px}
+  .lede{font-size:15px;color:var(--dim);margin-bottom:26px}
+  h2{font-size:11px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+     color:var(--dim);margin:30px 0 12px}
+  p{font-size:14.5px;margin-bottom:13px}
+  .dim{color:var(--dim)}
+  ul{list-style:none}
+  li{font-size:14.5px;padding-left:16px;position:relative;margin-bottom:11px}
+  li::before{content:"";position:absolute;left:0;top:10px;width:6px;height:1px;background:var(--line)}
+  code{font-family:'JetBrains Mono',monospace;font-size:13px;background:var(--bezel);padding:1px 6px}
+
+  /* callouts — ISO semantics */
+  .box{background:var(--panel);border-left:3px solid var(--bezel);padding:15px 16px;margin:18px 0}
+  .box.r{border-left-color:var(--red)}
+  .box.y{border-left-color:var(--yellow)}
+  .box.g{border-left-color:var(--green)}
+  .box h3{font-size:14.5px;font-weight:700;margin-bottom:7px}
+  .box p,.box li{font-size:13.5px;color:var(--dim);margin-bottom:8px}
+  .box li:last-child,.box p:last-child{margin-bottom:0}
+  .box.r h3{color:var(--red)} .box.y h3{color:var(--yellow)} .box.g h3{color:var(--green)}
+
+  /* doors */
+  .door{display:block;width:100%;text-align:left;background:var(--panel);border:none;
+    border-left:3px solid var(--red);padding:20px 18px;margin-bottom:11px;cursor:pointer;
+    font-family:inherit;color:var(--ink);transition:background .15s}
+  .door:hover{background:var(--bezel)}
+  .door.y{border-left-color:var(--yellow)} .door.g{border-left-color:var(--green)}
+  .door b{display:block;font-size:18px;font-weight:600;margin-bottom:5px}
+  .door span{font-size:13px;color:var(--dim)}
+
+  .cta{display:inline-block;background:var(--red);color:#fff;text-decoration:none;
+    padding:14px 22px;font-size:14px;font-weight:700;letter-spacing:.04em;margin:6px 0 4px}
+  .ghost{display:inline-block;border:1px solid var(--line);color:var(--ink);
+    text-decoration:none;padding:12px 18px;font-size:13px;font-weight:600;margin:4px 6px 4px 0}
+
+  /* offline card */
+  .card{border:2px solid var(--red);padding:18px;margin:20px 0}
+  .card .t{font-size:10px;letter-spacing:.2em;color:var(--red);font-weight:700;margin-bottom:12px}
+  .card .q{font-size:17px;font-weight:600;line-height:1.35;margin-bottom:10px}
+
+  /* facility rows */
+  .kv{display:flex;justify-content:space-between;gap:14px;padding:12px 0;
+      border-bottom:1px solid var(--line);font-size:14px}
+  .kv span:first-child{color:var(--dim);flex:none}
+  .kv span:last-child{text-align:right}
+
+  .foot{margin-top:36px;padding-top:18px;border-top:1px solid var(--line);
+        font-size:11.5px;color:var(--dim)}
+  .idx{margin-top:26px;padding-top:18px;border-top:1px solid var(--line)}
+  .idx button{background:none;border:none;color:var(--dim);font-family:inherit;
+    font-size:12.5px;padding:7px 0;display:block;cursor:pointer;text-align:left}
+  .idx button:hover{color:var(--ink)}
+</style>
+</head>
+<body>
+<div class="phone">
+  <header>
+    <div class="hrow">
+      <button class="brand" onclick="go('home')"><i></i>DETNAV</button>
+      <div class="langs" id="langs"></div>
+    </div>
+    <button class="back" id="back" onclick="go('home')"></button>
+  </header>
+  <main id="app"></main>
+</div>
+
+<script>
+const L = {
+  ru:{
+    back:"← Назад",
+    nav:{home:"Дверь",where:"Как его найти",anum:"Где найти A-Number",docs:"Что означают эти бумаги",call:"Первый звонок",check:"Проверить, кому вы платите",fac:"Аделанто"},
+    disc:"Мы не адвокаты и не даём юридических консультаций. Здесь только факты и ссылки на официальные источники.",
+    idx:"Все страницы"
+  },
+  es:{
+    back:"← Atrás",
+    nav:{home:"Puerta",where:"Cómo encontrarlo",anum:"Dónde está el número A",docs:"Qué significan estos papeles",call:"La primera llamada",check:"Verificar a quién le paga",fac:"Adelanto"},
+    disc:"No somos abogados y no damos asesoría legal. Aquí solo hay hechos y enlaces a fuentes oficiales.",
+    idx:"Todas las páginas"
+  },
+  en:{
+    back:"← Back",
+    nav:{home:"Door",where:"How to find him",anum:"Where to find the A-Number",docs:"What these papers mean",call:"The first call",check:"Check who you are paying",fac:"Adelanto"},
+    disc:"We are not attorneys and we do not give legal advice. This page has facts and links to official sources only.",
+    idx:"All pages"
+  }
+};
+
+const P = {
+/* ---------------- HOME ---------------- */
+home:{
+ ru:`<h1>Что случилось?</h1>
+ <p class="lede">Выберите одно. Регистрация не нужна.</p>
+ <button class="door" onclick="go('where')"><b>Человека забрали</b><span>Первые часы: как найти, что не подписывать, кому не платить</span></button>
+ <button class="door y" onclick="go('anum')"><b>Хочу подготовиться</b><span>Пока ничего не случилось: документы, дети, деньги, отметка</span></button>
+ <button class="door g" onclick="go('fac')"><b>Просто разобраться</b><span>Как всё устроено: учреждения, суды, залог</span></button>`,
+ es:`<h1>¿Qué pasó?</h1>
+ <p class="lede">Elija una. No hace falta registrarse.</p>
+ <button class="door" onclick="go('where')"><b>Se llevaron a alguien</b><span>Primeras horas: cómo encontrarlo, qué no firmar, a quién no pagar</span></button>
+ <button class="door y" onclick="go('anum')"><b>Quiero prepararme</b><span>Antes de que pase: documentos, hijos, dinero, registro</span></button>
+ <button class="door g" onclick="go('fac')"><b>Solo quiero entender</b><span>Cómo funciona: centros, cortes, fianza</span></button>`,
+ en:`<h1>What happened?</h1>
+ <p class="lede">Pick one. No sign-up needed.</p>
+ <button class="door" onclick="go('where')"><b>Someone was taken</b><span>First hours: how to find them, what not to sign, who not to pay</span></button>
+ <button class="door y" onclick="go('anum')"><b>I want to prepare</b><span>Before anything happens: documents, children, money, check-ins</span></button>
+ <button class="door g" onclick="go('fac')"><b>Just want to understand</b><span>How it works: facilities, courts, bond</span></button>`
+},
+
+/* ---------------- WHERE ---------------- */
+where:{
+ ru:`<h1>Как его найти</h1>
+ <p class="lede">Поиск ведёт официальная система. Мы объясняем, как ей пользоваться, и что означает результат.</p>
+ <h2>Что понадобится</h2>
+ <ul><li>A-Number — буква A и девять цифр</li>
+ <li>либо: имя и фамилия, страна рождения, дата рождения</li></ul>
+ <a class="ghost" href="https://locator.ice.gov" target="_blank" rel="noopener">Открыть официальный локатор ↗</a>
+ <div class="box y"><h3>Пусто — это не ответ «его там нет»</h3>
+ <p>Записи вносят с задержкой. Иногда проходит больше суток, прежде чем человек появляется в системе.</p>
+ <p>Пустой результат в первые часы — обычное дело.</p></div>
+ <h2>Когда система не покажет</h2>
+ <ul><li>Задержали у границы — это другое ведомство и другая система</li>
+ <li>Несовершеннолетние в этом локаторе не отображаются</li>
+ <li>Идёт перевозка между учреждениями — данные могут пропасть на несколько дней</li></ul>
+ <div class="box r"><h3>Людей перевозят между штатами</h3>
+ <p>Семью об этом не уведомляют. Человека могут увезти за тысячи километров без предупреждения, и учреждение в локаторе изменится само.</p>
+ <p>Проверяйте повторно, даже если вчера нашли.</p></div>`,
+ es:`<h1>Cómo encontrarlo</h1>
+ <p class="lede">La búsqueda la hace el sistema oficial. Aquí explicamos cómo usarlo y qué significa el resultado.</p>
+ <h2>Qué necesita</h2>
+ <ul><li>El número A — la letra A y nueve dígitos</li>
+ <li>O bien: nombre y apellido, país de nacimiento, fecha de nacimiento</li></ul>
+ <a class="ghost" href="https://locator.ice.gov" target="_blank" rel="noopener">Abrir el localizador oficial ↗</a>
+ <div class="box y"><h3>Vacío no quiere decir que no esté</h3>
+ <p>Los registros se cargan con retraso. A veces pasa más de un día antes de que la persona aparezca.</p>
+ <p>Un resultado vacío en las primeras horas es común.</p></div>
+ <h2>Cuando el sistema no lo mostrará</h2>
+ <ul><li>Detención cerca de la frontera: es otra agencia y otro sistema</li>
+ <li>Los menores de edad no aparecen en este localizador</li>
+ <li>Durante un traslado los datos pueden desaparecer por varios días</li></ul>
+ <div class="box r"><h3>Trasladan personas entre estados</h3>
+ <p>No avisan a la familia. Pueden llevarlo a miles de kilómetros sin aviso y el centro cambiará solo en el sistema.</p>
+ <p>Vuelva a revisar, aunque ayer lo haya encontrado.</p></div>`,
+ en:`<h1>How to find him</h1>
+ <p class="lede">The official system does the search. We explain how to use it and what the result means.</p>
+ <h2>What you need</h2>
+ <ul><li>The A-Number — the letter A and nine digits</li>
+ <li>Or: first and last name, country of birth, date of birth</li></ul>
+ <a class="ghost" href="https://locator.ice.gov" target="_blank" rel="noopener">Open the official locator ↗</a>
+ <div class="box y"><h3>Empty does not mean he is not there</h3>
+ <p>Records are entered with a delay. Sometimes more than a day passes before a person appears.</p>
+ <p>An empty result in the first hours is common.</p></div>
+ <h2>When the system will not show him</h2>
+ <ul><li>Detained near the border — different agency, different system</li>
+ <li>Minors do not appear in this locator</li>
+ <li>During a transfer the record can disappear for several days</li></ul>
+ <div class="box r"><h3>People are moved between states</h3>
+ <p>Families are not notified. Someone can be flown across the country without warning, and the facility changes on its own.</p>
+ <p>Check again even if you found him yesterday.</p></div>`
+},
+
+/* ---------------- A-NUMBER ---------------- */
+anum:{
+ ru:`<h1>Где найти A-Number</h1>
+ <p class="lede">Это ключ ко всему: поиск, адвокат, залог, суд. Скорее всего, он уже есть у вас дома.</p>
+ <div class="box g"><h3>Формат</h3><p>Буква <code>A</code> и девять цифр. Иногда пишут через дефис или с пробелами.</p></div>
+ <h2>Где искать дома</h2>
+ <ul><li>Любое письмо из иммиграционного суда или из USCIS</li>
+ <li>Разрешение на работу — даже просроченное</li>
+ <li>Квитанции об оплате пошлин, копии старых заявлений</li>
+ <li>Документы по прошлому делу, если оно было</li>
+ <li>Папка с документами, которую держат «на всякий случай»</li></ul>
+ <div class="box y"><h3>Нашли письмо — сфотографируйте сразу</h3>
+ <p>Целиком, все страницы. Номер там почти наверняка есть, а бумага может потеряться.</p></div>
+ <h2>Если дома ничего нет</h2>
+ <p class="dim">Номер можно спросить при первом звонке. Как построить этот разговор — на отдельной странице.</p>
+ <a class="ghost" onclick="go('call')">Первый звонок →</a>`,
+ es:`<h1>Dónde encontrar el número A</h1>
+ <p class="lede">Es la llave para todo: la búsqueda, el abogado, la fianza, la corte. Probablemente ya está en su casa.</p>
+ <div class="box g"><h3>Formato</h3><p>La letra <code>A</code> y nueve dígitos. A veces con guiones o espacios.</p></div>
+ <h2>Dónde buscar en casa</h2>
+ <ul><li>Cualquier carta de la corte de inmigración o de USCIS</li>
+ <li>El permiso de trabajo, aunque esté vencido</li>
+ <li>Recibos de pago de cuotas, copias de solicitudes viejas</li>
+ <li>Documentos de un caso anterior, si lo hubo</li>
+ <li>La carpeta de documentos que se guarda «por si acaso»</li></ul>
+ <div class="box y"><h3>Si encuentra una carta, fotografíela ya</h3>
+ <p>Completa, todas las páginas. El número casi seguro está ahí, y el papel se puede perder.</p></div>
+ <h2>Si no hay nada en casa</h2>
+ <p class="dim">El número se puede preguntar en la primera llamada. Cómo hacer esa llamada está en otra página.</p>
+ <a class="ghost" onclick="go('call')">La primera llamada →</a>`,
+ en:`<h1>Where to find the A-Number</h1>
+ <p class="lede">It is the key to everything: the search, the attorney, bond, court. It is probably already in your home.</p>
+ <div class="box g"><h3>Format</h3><p>The letter <code>A</code> and nine digits. Sometimes written with dashes or spaces.</p></div>
+ <h2>Where to look at home</h2>
+ <ul><li>Any letter from the immigration court or from USCIS</li>
+ <li>A work permit, even an expired one</li>
+ <li>Fee receipts, copies of old applications</li>
+ <li>Papers from an earlier case, if there was one</li>
+ <li>The folder of documents kept "just in case"</li></ul>
+ <div class="box y"><h3>Found a letter? Photograph it now</h3>
+ <p>All pages. The number is almost certainly there, and paper gets lost.</p></div>
+ <h2>If there is nothing at home</h2>
+ <p class="dim">The number can be asked for on the first call. How to make that call is on a separate page.</p>
+ <a class="ghost" onclick="go('call')">The first call →</a>`
+},
+
+/* ---------------- DOCS ---------------- */
+docs:{
+ ru:`<h1>Что означают эти бумаги</h1>
+ <p class="lede">Эта страница работает без интернета. Сохраните её.</p>
+ <div class="card"><div class="t">СОХРАНИТЬ И ПЕРЕСЛАТЬ</div>
+ <div class="q">Я пользуюсь правом хранить молчание. Я не буду подписывать документы без адвоката.</div>
+ <p class="dim" style="font-size:13px">Estoy ejerciendo mi derecho a guardar silencio. No firmaré documentos sin un abogado.</p>
+ <p class="dim" style="font-size:13px">I am exercising my right to remain silent. I will not sign documents without an attorney.</p></div>
+ <a class="cta" onclick="return false">Сохранить картинкой</a>
+ <h2>Механика документов</h2>
+ <div class="box r"><h3>Voluntary departure</h3>
+ <p>Означает согласие уехать самостоятельно и отказ от слушания в суде. После подписания дело в суд не идёт.</p></div>
+ <div class="box r"><h3>Stipulated removal</h3>
+ <p>Согласие на приказ о выдворении без слушания. Судья дело не рассматривает.</p></div>
+ <div class="box y"><h3>«Подпишешь — быстрее выйдешь»</h3>
+ <p>Эта фраза регулярно встречается в описаниях задержаний. Подпись под этими документами прекращает дело, а не ускоряет освобождение.</p></div>
+ <h2>Что публикуют правозащитные организации</h2>
+ <p class="dim">ACLU, FIRRP и ILRC публикуют рекомендацию не подписывать никакие документы до разговора с адвокатом, а также называть только своё имя.</p>
+ <a class="ghost" onclick="return false">Источники ↗</a>`,
+ es:`<h1>Qué significan estos papeles</h1>
+ <p class="lede">Esta página funciona sin internet. Guárdela.</p>
+ <div class="card"><div class="t">GUARDAR Y COMPARTIR</div>
+ <div class="q">Estoy ejerciendo mi derecho a guardar silencio. No firmaré documentos sin un abogado.</div>
+ <p class="dim" style="font-size:13px">I am exercising my right to remain silent. I will not sign documents without an attorney.</p>
+ <p class="dim" style="font-size:13px">Я пользуюсь правом хранить молчание. Я не буду подписывать документы без адвоката.</p></div>
+ <a class="cta" onclick="return false">Guardar como imagen</a>
+ <h2>Qué hace cada documento</h2>
+ <div class="box r"><h3>Salida voluntaria</h3>
+ <p>Significa aceptar irse por cuenta propia y renunciar a la audiencia en la corte. Después de firmar, el caso no llega al juez.</p></div>
+ <div class="box r"><h3>Orden de deportación estipulada</h3>
+ <p>Aceptar una orden de expulsión sin audiencia. El juez no revisa el caso.</p></div>
+ <div class="box y"><h3>«Firma y sales más rápido»</h3>
+ <p>Esta frase aparece con frecuencia en los relatos de detenciones. Firmar estos documentos termina el caso; no acelera la salida.</p></div>
+ <h2>Lo que publican las organizaciones</h2>
+ <p class="dim">ACLU, FIRRP e ILRC publican la recomendación de no firmar ningún documento antes de hablar con un abogado, y de dar solo el nombre propio.</p>
+ <a class="ghost" onclick="return false">Fuentes ↗</a>`,
+ en:`<h1>What these papers mean</h1>
+ <p class="lede">This page works without internet. Save it.</p>
+ <div class="card"><div class="t">SAVE AND SHARE</div>
+ <div class="q">I am exercising my right to remain silent. I will not sign documents without an attorney.</div>
+ <p class="dim" style="font-size:13px">Estoy ejerciendo mi derecho a guardar silencio. No firmaré documentos sin un abogado.</p>
+ <p class="dim" style="font-size:13px">Я пользуюсь правом хранить молчание. Я не буду подписывать документы без адвоката.</p></div>
+ <a class="cta" onclick="return false">Save as image</a>
+ <h2>What each document does</h2>
+ <div class="box r"><h3>Voluntary departure</h3>
+ <p>Means agreeing to leave on your own and giving up the court hearing. After signing, the case does not go before a judge.</p></div>
+ <div class="box r"><h3>Stipulated removal</h3>
+ <p>Agreeing to a removal order without a hearing. A judge never reviews the case.</p></div>
+ <div class="box y"><h3>"Sign and you will get out faster"</h3>
+ <p>This phrase appears regularly in accounts of detentions. Signing these documents ends the case; it does not speed up release.</p></div>
+ <h2>What advocacy organizations publish</h2>
+ <p class="dim">ACLU, FIRRP and ILRC publish the recommendation not to sign any document before speaking with an attorney, and to give only your name.</p>
+ <a class="ghost" onclick="return false">Sources ↗</a>`
+},
+
+/* ---------------- CALL ---------------- */
+call:{
+ ru:`<h1>Первый звонок</h1>
+ <div class="box r"><h3>Разговор записывается</h3>
+ <p>Звонки из учреждения записываются и прослушиваются. Исключение — зарегистрированные адвокатские линии.</p></div>
+ <h2>Что спросить — можно читать вслух</h2>
+ <ul><li>Назови полный A-Number, по одной цифре</li>
+ <li>Как точно называется учреждение и в каком оно городе</li>
+ <li>Ты что-нибудь подписывал? Что именно?</li>
+ <li>Нужны ли лекарства</li>
+ <li>Как пополнить счёт для звонков</li></ul>
+ <div class="box y"><h3>Чего эта линия касаться не должна</h3>
+ <p>Прошлые депортации и приказы. Аресты и судимости. Детали дела и планы защиты.</p>
+ <p>Запись разговора может быть использована. Это обсуждают с адвокатом.</p></div>
+ <h2>Перед звонком</h2>
+ <p class="dim">Положите рядом бумагу и ручку. Времени будет мало, и повторить вопрос может не получиться.</p>`,
+ es:`<h1>La primera llamada</h1>
+ <div class="box r"><h3>La llamada se graba</h3>
+ <p>Las llamadas desde el centro se graban y se escuchan. La excepción son las líneas registradas de abogados.</p></div>
+ <h2>Qué preguntar — se puede leer en voz alta</h2>
+ <ul><li>Dime el número A completo, dígito por dígito</li>
+ <li>Cómo se llama exactamente el centro y en qué ciudad está</li>
+ <li>¿Firmaste algo? ¿Qué exactamente?</li>
+ <li>¿Necesitas medicamentos?</li>
+ <li>Cómo se pone dinero para las llamadas</li></ul>
+ <div class="box y"><h3>Lo que no debe tocarse en esta línea</h3>
+ <p>Deportaciones y órdenes anteriores. Arrestos y antecedentes. Detalles del caso y planes de defensa.</p>
+ <p>La grabación puede ser usada. Eso se habla con un abogado.</p></div>
+ <h2>Antes de llamar</h2>
+ <p class="dim">Tenga papel y lápiz al lado. Habrá poco tiempo y quizá no pueda repetir la pregunta.</p>`,
+ en:`<h1>The first call</h1>
+ <div class="box r"><h3>The call is recorded</h3>
+ <p>Calls from the facility are recorded and monitored. Registered attorney lines are the exception.</p></div>
+ <h2>What to ask — you can read this aloud</h2>
+ <ul><li>Tell me the full A-Number, one digit at a time</li>
+ <li>What exactly is the facility called and what city is it in</li>
+ <li>Did you sign anything? What exactly?</li>
+ <li>Do you need medication?</li>
+ <li>How do I put money on the phone account</li></ul>
+ <div class="box y"><h3>What this line should not touch</h3>
+ <p>Past removals and orders. Arrests and convictions. Case details and defense plans.</p>
+ <p>The recording can be used. Those things are discussed with an attorney.</p></div>
+ <h2>Before you call</h2>
+ <p class="dim">Keep paper and a pen next to you. There will be little time and you may not get to repeat a question.</p>`
+},
+
+/* ---------------- CHECK ---------------- */
+check:{
+ ru:`<h1>Проверить, кому вы платите</h1>
+ <p class="lede">Три государственных реестра. Проверка занимает три минуты и ничего не стоит.</p>
+ <div class="box"><h3>1 · Коллегия адвокатов штата</h3><p>Действующая лицензия и отсутствие взысканий.</p></div>
+ <div class="box"><h3>2 · Аккредитованные представители Минюста</h3><p>Не адвокаты, но имеют право представлять в иммиграционном суде. Часто бесплатно или недорого — это законная помощь.</p></div>
+ <div class="box"><h3>3 · Дисциплинарный список EOIR</h3><p>Кому запрещено практиковать в иммиграционных судах.</p></div>
+ <a class="cta" onclick="return false">Открыть реестры</a>
+ <h2>Notario</h2>
+ <div class="box r"><h3>Notario público ≠ юрист</h3>
+ <p>В странах Латинской Америки notario público — юрист с полномочиями. В США это человек, заверяющий подписи. Права представлять в иммиграционном суде у него нет.</p>
+ <p>Разница в значении слова между странами — основа самой распространённой схемы обмана.</p></div>
+ <h2>Красные флаги</h2>
+ <ul><li>Обещание выхода в конкретный день</li>
+ <li>Гарантия исхода дела</li>
+ <li>Предоплата наличными без письменного договора</li>
+ <li>Отказ назвать номер лицензии</li></ul>
+ <div class="box y"><h3>«Выход сегодня по готовой петиции»</h3>
+ <p>Петиция habeas требует, чтобы человек уже находился под стражей, с указанием конкретного учреждения. Заранее подготовленной петиции на мгновенный выход не существует.</p></div>`,
+ es:`<h1>Verificar a quién le paga</h1>
+ <p class="lede">Tres registros oficiales. La verificación toma tres minutos y no cuesta nada.</p>
+ <div class="box"><h3>1 · Colegio de abogados del estado</h3><p>Licencia vigente y sin sanciones.</p></div>
+ <div class="box"><h3>2 · Representantes acreditados del Departamento de Justicia</h3><p>No son abogados, pero pueden representar en la corte de inmigración. Muchas veces gratis o barato: es ayuda legítima.</p></div>
+ <div class="box"><h3>3 · Lista disciplinaria de EOIR</h3><p>Quiénes tienen prohibido ejercer ante las cortes de inmigración.</p></div>
+ <a class="cta" onclick="return false">Abrir los registros</a>
+ <h2>Notario</h2>
+ <div class="box r"><h3>Notario público ≠ abogado</h3>
+ <p>En América Latina un notario público es un profesional del derecho. En Estados Unidos es alguien que certifica firmas. No puede representar a nadie en la corte de inmigración.</p>
+ <p>Esa diferencia entre países es la base del fraude más común.</p></div>
+ <h2>Señales de alarma</h2>
+ <ul><li>Promesa de salida en una fecha concreta</li>
+ <li>Garantía del resultado del caso</li>
+ <li>Pago por adelantado en efectivo sin contrato escrito</li>
+ <li>Negarse a dar el número de licencia</li></ul>
+ <div class="box y"><h3>«Sale hoy con una petición ya lista»</h3>
+ <p>Una petición de habeas exige que la persona ya esté bajo custodia, señalando el centro concreto. No existe una petición preparada de antemano para una salida inmediata.</p></div>`,
+ en:`<h1>Check who you are paying</h1>
+ <p class="lede">Three government registries. The check takes three minutes and costs nothing.</p>
+ <div class="box"><h3>1 · State bar association</h3><p>Active license and no discipline on record.</p></div>
+ <div class="box"><h3>2 · DOJ accredited representatives</h3><p>Not attorneys, but authorized to represent people in immigration court. Often free or low cost — this is legitimate help.</p></div>
+ <div class="box"><h3>3 · EOIR disciplinary list</h3><p>Who is barred from practicing before the immigration courts.</p></div>
+ <a class="cta" onclick="return false">Open the registries</a>
+ <h2>Notario</h2>
+ <div class="box r"><h3>Notario público ≠ lawyer</h3>
+ <p>In Latin American countries a notario público is a trained legal professional. In the United States it is someone who witnesses signatures. They cannot represent anyone in immigration court.</p>
+ <p>That difference in meaning between countries is the basis of the most common fraud.</p></div>
+ <h2>Red flags</h2>
+ <ul><li>A promise of release on a specific day</li>
+ <li>A guarantee of the case outcome</li>
+ <li>Cash up front with no written agreement</li>
+ <li>Refusing to give a license number</li></ul>
+ <div class="box y"><h3>"Out today with a petition already prepared"</h3>
+ <p>A habeas petition requires the person to already be in custody, naming the specific facility. A pre-prepared petition for instant release does not exist.</p></div>`
+},
+
+/* ---------------- FACILITY ---------------- */
+fac:{
+ ru:`<h1>Adelanto</h1>
+ <p class="lede">Adelanto ICE Processing Center · Калифорния</p>
+ <div class="kv"><span>Адрес</span><span>10250 Rancho Road<br>Adelanto, CA 92301</span></div>
+ <div class="kv"><span>Телефон</span><span class="mono">760-561-6100</span></div>
+ <div class="kv"><span>Планшеты</span><span>Talton</span></div>
+ <div class="kv"><span>Штат</span><span>Калифорния</span></div>
+ <div class="kv"><span>Апелляционный округ</span><span>Девятый</span></div>
+ <div class="box y"><h3>Адрес путают</h3>
+ <p>На сторонних сайтах встречается другой номер дома. Официальный адрес для почты — тот, что указан выше.</p></div>
+ <h2>Письма и открытки</h2>
+ <ul><li>Обычная открытка почтой доходит надёжнее любого сервиса</li>
+ <li>Книги — только новые и напрямую от продавца</li>
+ <li>Мягкая обложка: твёрдую проверяют дольше и часто не пропускают</li>
+ <li>На конверте обязателен A-Number</li></ul>
+ <h2>Калифорния</h2>
+ <a class="ghost" onclick="return false">Суды штата →</a>
+ <a class="ghost" onclick="return false">Бесплатная помощь →</a>
+ <a class="ghost" onclick="return false">Фонды залога →</a>`,
+ es:`<h1>Adelanto</h1>
+ <p class="lede">Adelanto ICE Processing Center · California</p>
+ <div class="kv"><span>Dirección</span><span>10250 Rancho Road<br>Adelanto, CA 92301</span></div>
+ <div class="kv"><span>Teléfono</span><span class="mono">760-561-6100</span></div>
+ <div class="kv"><span>Tabletas</span><span>Talton</span></div>
+ <div class="kv"><span>Estado</span><span>California</span></div>
+ <div class="kv"><span>Circuito</span><span>Noveno</span></div>
+ <div class="box y"><h3>La dirección se confunde</h3>
+ <p>En otros sitios aparece un número distinto. La dirección oficial para correo es la de arriba.</p></div>
+ <h2>Cartas y postales</h2>
+ <ul><li>Una postal por correo normal llega mejor que cualquier servicio</li>
+ <li>Libros: solo nuevos y enviados directamente por el vendedor</li>
+ <li>Pasta blanda: la pasta dura tarda más en revisarse y muchas veces no entra</li>
+ <li>El número A es obligatorio en el sobre</li></ul>
+ <h2>California</h2>
+ <a class="ghost" onclick="return false">Cortes del estado →</a>
+ <a class="ghost" onclick="return false">Ayuda gratuita →</a>
+ <a class="ghost" onclick="return false">Fondos de fianza →</a>`,
+ en:`<h1>Adelanto</h1>
+ <p class="lede">Adelanto ICE Processing Center · California</p>
+ <div class="kv"><span>Address</span><span>10250 Rancho Road<br>Adelanto, CA 92301</span></div>
+ <div class="kv"><span>Phone</span><span class="mono">760-561-6100</span></div>
+ <div class="kv"><span>Tablets</span><span>Talton</span></div>
+ <div class="kv"><span>State</span><span>California</span></div>
+ <div class="kv"><span>Circuit</span><span>Ninth</span></div>
+ <div class="box y"><h3>The address gets confused</h3>
+ <p>Other sites list a different street number. The official mailing address is the one above.</p></div>
+ <h2>Letters and postcards</h2>
+ <ul><li>A plain postcard by regular mail arrives more reliably than any service</li>
+ <li>Books: new only, shipped directly by the seller</li>
+ <li>Softcover: hardcovers take longer to screen and are often refused</li>
+ <li>The A-Number is required on the envelope</li></ul>
+ <h2>California</h2>
+ <a class="ghost" onclick="return false">State courts →</a>
+ <a class="ghost" onclick="return false">Free help →</a>
+ <a class="ghost" onclick="return false">Bond funds →</a>`
+}
+};
+
+let lang='ru', page='home';
+
+function renderLangs(){
+  document.getElementById('langs').innerHTML=['en','es','ru']
+    .map(k=>`<button class="${k===lang?'on':''}" onclick="setLang('${k}')">${k.toUpperCase()}</button>`).join('');
+}
+function setLang(k){lang=k;render()}
+function go(p){page=p;window.scrollTo(0,0);render()}
+
+function render(){
+  renderLangs();
+  const t=L[lang];
+  const back=document.getElementById('back');
+  back.style.display = page==='home' ? 'none' : 'block';
+  back.textContent = t.back;
+
+  let html = P[page][lang];
+  html += `<p class="foot">${t.disc}</p>`;
+  if(page==='home'){
+    html += `<div class="idx"><h2 style="margin-top:0">${t.idx}</h2>` +
+      Object.keys(t.nav).filter(k=>k!=='home')
+        .map(k=>`<button onclick="go('${k}')">${t.nav[k]} →</button>`).join('') + `</div>`;
+  }
+  document.getElementById('app').innerHTML = html;
+  document.documentElement.lang = lang;
+}
+render();
+</script>
+</body>
+</html>

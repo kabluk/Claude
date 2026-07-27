@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DETNAV</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#14171A;--panel:#1C2126;--bezel:#2A3138;--line:#333B42;
+--red:#E4382B;--yellow:#F2C230;--green:#37A05A;--ink:#EDEFF1;--dim:#868F98}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{background:#0A0C0E;font-family:Archivo,sans-serif;color:var(--ink);line-height:1.5;
+display:flex;justify-content:center}
+.mono{font-family:'JetBrains Mono',monospace}
+.app{width:100%;max-width:440px;background:var(--bg)}
+@media(min-width:520px){body{padding:24px 0}.app{border:1px solid var(--line)}}
+header{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;
+border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:9px;font-size:11.5px;font-weight:700;letter-spacing:.2em}
+.brand i{width:3px;height:14px;background:var(--red)}
+.langs{display:flex;border:1px solid var(--line)}
+.langs button{background:none;border:none;color:var(--dim);padding:5px 9px;font-size:10.5px;
+font-weight:700;cursor:pointer;font-family:'JetBrains Mono',monospace;border-right:1px solid var(--line)}
+.langs button:last-child{border-right:none}.langs button.on{background:var(--bezel);color:var(--ink)}
+.listen{display:flex;align-items:center;gap:10px;width:100%;background:var(--panel);border:none;
+border-bottom:1px solid var(--line);padding:14px 18px;cursor:pointer;font-family:inherit;
+color:var(--ink);font-size:14.5px;font-weight:600}
+.listen svg{flex:none}
+.hero{padding:30px 18px 24px}
+h1{font-size:30px;font-weight:700;letter-spacing:-.025em;line-height:1.12;margin-bottom:12px}
+.sub{font-size:16px;color:var(--dim);margin-bottom:24px}
+.demo{border:1px solid var(--line);background:var(--panel);margin-bottom:24px}
+.dtop{display:flex;align-items:center;justify-content:space-between;padding:9px 12px;
+border-bottom:1px solid var(--line)}
+.dots{display:flex;gap:4px}.dots i{width:6px;height:6px;border-radius:50%;background:var(--bezel);display:block}
+.lbl{font-size:9px;letter-spacing:.16em;color:var(--dim);font-family:'JetBrains Mono',monospace}
+.dstage{padding:15px 14px;min-height:200px}
+.dq{font-size:10px;letter-spacing:.18em;color:var(--dim);font-weight:700;
+font-family:'JetBrains Mono',monospace;margin-bottom:8px}
+.dh{font-size:17px;font-weight:600;margin-bottom:13px;line-height:1.3}
+.da{background:var(--bg);border-left:3px solid var(--bezel);padding:11px 13px;margin-bottom:7px;
+font-size:14px;opacity:.45;transition:.35s}
+.da.pick{opacity:1;border-left-color:var(--green);background:var(--bezel)}
+.dtask{border-left:3px solid var(--red);background:var(--bg);padding:12px 13px;opacity:0;
+transform:translateY(8px);transition:.45s}
+.dtask.in{opacity:1;transform:none}
+.dtask b{display:block;font-size:14.5px;font-weight:600;margin-bottom:4px}
+.dtask p{font-size:12.5px;color:var(--dim);margin-bottom:8px}
+.dtask .why{font-size:10px;color:var(--dim);font-family:'JetBrains Mono',monospace;
+border-top:1px solid var(--line);padding-top:7px}
+@media(prefers-reduced-motion:reduce){.da,.dtask{transition:none}}
+.cta{display:block;background:var(--red);color:#fff;text-align:center;text-decoration:none;
+padding:17px;font-size:16px;font-weight:700;margin-bottom:9px}
+.cta2{display:block;border:1px solid var(--line);color:var(--ink);text-align:center;
+text-decoration:none;padding:15px;font-size:14.5px;font-weight:600}
+.trust{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.tg{font-size:10.5px;font-family:'JetBrains Mono',monospace;color:var(--dim);
+border:1px solid var(--line);padding:5px 9px}
+section{padding:30px 18px;border-top:1px solid var(--line)}
+h2{font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim);
+font-weight:700;margin-bottom:16px;font-family:'JetBrains Mono',monospace}
+.step{display:flex;gap:14px;margin-bottom:20px}
+.step .n{font-family:'JetBrains Mono',monospace;font-size:22px;font-weight:700;
+color:var(--bezel);line-height:1;padding-top:2px}
+.step b{display:block;font-size:17px;font-weight:600;margin-bottom:4px}
+.step p{font-size:14px;color:var(--dim)}
+.big{border:2px solid var(--green);padding:18px}
+.big b{display:block;font-size:19px;font-weight:700;color:var(--green);margin-bottom:8px}
+.big p{font-size:14.5px;margin-bottom:9px}
+.big p:last-child{margin-bottom:0;color:var(--dim);font-size:13.5px}
+.price{border:1px solid var(--line);margin-bottom:11px}
+.ph{display:flex;justify-content:space-between;align-items:baseline;padding:14px 15px;
+border-bottom:1px solid var(--line);gap:12px}
+.ph b{font-size:16px;font-weight:600}
+.ph .amt{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--green);white-space:nowrap}
+.ph .amt.pend{color:var(--dim)}
+.pl{padding:12px 15px}
+.pl li{list-style:none;font-size:13.5px;color:var(--dim);padding-left:17px;position:relative;margin-bottom:6px}
+.pl li::before{content:"";position:absolute;left:0;top:8px;width:7px;height:1px;background:var(--green)}
+.pl li.no::before{background:var(--bezel)}
+.pnote{font-size:12.5px;color:var(--dim);border-left:2px solid var(--yellow);padding-left:11px;
+margin-top:12px;line-height:1.5}
+.limit{background:var(--panel);border-left:3px solid var(--bezel);padding:13px 15px;margin-bottom:9px}
+.limit b{display:block;font-size:14.5px;font-weight:600;margin-bottom:3px}
+.limit p{font-size:13px;color:var(--dim)}
+footer{padding:26px 18px 44px;border-top:1px solid var(--line);font-size:11.5px;
+color:var(--dim);line-height:1.7}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="brand"><i></i>DETNAV</div>
+  <div class="langs"><button onclick="setL('en')">EN</button>
+  <button onclick="setL('es')">ES</button><button class="on" onclick="setL('ru')">RU</button></div>
+</header>
+
+<button class="listen" onclick="say()">
+  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#EDEFF1" stroke-width="2">
+   <path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>
+  <span id="lsn">Прослушать эту страницу</span>
+</button>
+
+<div class="hero">
+  <h1 id="h1">Забрали близкого?<br>Вот что делать.</h1>
+  <p class="sub" id="sub">Ответьте на вопросы — получите свой список дел. Понятным языком, шаг за шагом.</p>
+
+  <div class="demo">
+    <div class="dtop"><div class="dots"><i></i><i></i><i></i></div>
+     <div class="lbl">ТАК ЭТО РАБОТАЕТ</div></div>
+    <div class="dstage" id="stage"></div>
+  </div>
+
+  <a class="cta" href="#">Начать · 2 минуты</a>
+  <a class="cta2" href="#">Сначала посмотреть, как всё устроено</a>
+
+  <div class="trust"><span class="tg">БЕСПЛАТНО</span><span class="tg">БЕЗ РЕГИСТРАЦИИ</span>
+  <span class="tg">EN · ES · RU</span></div>
+</div>
+
+<section>
+  <h2>Три шага</h2>
+  <div class="step"><div class="n">1</div><div><b>Отвечаете на вопросы</b>
+   <p>Простые, с пояснением, зачем каждый. Не знаете ответ — так и говорите, это нормально.</p></div></div>
+  <div class="step"><div class="n">2</div><div><b>Получаете свой список</b>
+   <p>Не общий совет, а дела под ваши обстоятельства. У каждого написано, зачем оно и что делать по шагам.</p></div></div>
+  <div class="step" style="margin-bottom:0"><div class="n">3</div><div><b>Идёте по карте</b>
+   <p>Видно, где вы сейчас и что дальше. Пятнадцать шагов от «нашли человека» до суда.</p></div></div>
+</section>
+
+<section>
+  <h2>Ваши данные</h2>
+  <div class="big"><b>Мы ничего о вас не храним</b>
+   <p>Ответы, фотографии документов и ваш список остаются в вашем телефоне.
+   На наш сервер они не отправляются — ни одного слова, ни одного файла.</p>
+   <p>Поэтому нам нечего потерять, нечего продать и нечего выдать по запросу.</p></div>
+</section>
+
+<section>
+  <h2>Сколько стоит</h2>
+  <div class="price"><div class="ph"><b>Всё, что нужно сейчас</b><span class="amt">БЕСПЛАТНО</span></div>
+    <ul class="pl">
+      <li>Как найти человека и что означает пустой результат</li>
+      <li>Что означают документы, которые дают подписать</li>
+      <li>Первый звонок: что спросить и о чём молчать</li>
+      <li>Проверка адвоката по государственным реестрам</li>
+      <li>Связь, деньги на счёт, письма</li>
+      <li>Залог: как устроено и что не пропустить</li>
+      <li>Опрос и ваш личный список дел</li>
+      <li>Сборка пакета документов для адвоката</li>
+    </ul></div>
+  <div class="price"><div class="ph"><b>Подготовиться заранее</b><span class="amt pend">ГОТОВИМ</span></div>
+    <ul class="pl">
+      <li class="no">Досье семьи и архив доказательств</li>
+      <li class="no">Отметка: не вышли на связь — уходит ваше сообщение</li>
+      <li class="no">Уведомление, если человека перевезли</li>
+      <li class="no">Общий доступ для родственников</li>
+    </ul></div>
+  <p class="pnote">Сейчас платного нет. Когда появится — цена будет здесь,
+  а всё из первого списка останется бесплатным навсегда. Приходы и организации
+  смогут покупать доступ сразу для своих людей.</p>
+</section>
+
+<section>
+  <h2>Чего мы не делаем</h2>
+  <div class="limit"><b>Не даём юридических советов</b>
+   <p>Не оцениваем ваше положение и не говорим, чем всё кончится.</p></div>
+  <div class="limit"><b>Не советуем конкретных адвокатов</b>
+   <p>Показываем государственные реестры — проверяете сами.</p></div>
+  <div class="limit"><b>Не составляем документы</b>
+   <p>Объясняем, что документ даёт, и отправляем к официальному бланку.</p></div>
+</section>
+
+<footer>Информация обновлена 27 июля 2026. Правила меняются — смотрите на дату.<br><br>
+Мы не адвокаты и не даём юридических консультаций.</footer>
+</div>
+
+<script>
+const S=[
+ {q:"КТО НА ЧЁМ ОФОРМЛЕН",h:"На кого оформлена аренда?",a:["На меня","На него","На обоих"],pick:1,
+  t:["Поговорите с арендодателем до просрочки","Договор не на вас. Разговор до пропущенного платежа проходит иначе, чем после.","аренда оформлена на него"]},
+ {q:"ДЕТИ",h:"Кто в школе может забирать ребёнка?",a:["Мы оба","Только он","Не знаю"],pick:1,
+  t:["Добавьте себя в школе прямо сейчас","Сейчас забирать ребёнка имеет право только он. Решается заявлением в офисе школы.","в школе указан только он"]},
+ {q:"ЗАЛОГ",h:"Есть ли рядом гражданин США или обладатель грин-карты?",a:["Да, есть","Надо подумать","Таких нет"],pick:2,
+  t:["Посмотрите фонды залога","Некоммерческие организации могут вносить залог за людей без поручителя.","подходящих людей нет"]}
+];
+let i=0,tm=[];
+const st=document.getElementById('stage');
+function play(){
+ tm.forEach(clearTimeout);tm=[];
+ const s=S[i];
+ st.innerHTML='<div class="dq">'+s.q+'</div><div class="dh">'+s.h+'</div>'+
+  s.a.map(function(x,k){return '<div class="da" id="a'+k+'">'+x+'</div>'}).join('');
+ tm.push(setTimeout(function(){var e=document.getElementById('a'+s.pick);if(e)e.classList.add('pick')},1100));
+ tm.push(setTimeout(function(){
+   st.innerHTML='<div class="dq">ВАША ЗАДАЧА</div><div class="dtask" id="tk"><b>'+s.t[0]+
+    '</b><p>'+s.t[1]+'</p><div class="why">почему в списке: '+s.t[2]+'</div></div>';
+   requestAnimationFrame(function(){document.getElementById('tk').classList.add('in')});
+ },2100));
+ tm.push(setTimeout(function(){i=(i+1)%S.length;play()},5200));
+}
+play();
+
+var VOICE={ru:'ru-RU',es:'es-ES',en:'en-US'},lang='ru',speaking=false;
+function say(){
+ if(!('speechSynthesis' in window)){alert('Браузер не умеет читать вслух');return}
+ var el=document.getElementById('lsn');
+ if(speaking){speechSynthesis.cancel();speaking=false;el.textContent='Прослушать эту страницу';return}
+ var t=[document.getElementById('h1').innerText,document.getElementById('sub').innerText,
+  'Три шага. Отвечаете на вопросы. Получаете свой список дел. Идёте по карте.',
+  'Мы ничего о вас не храним. Ответы, фотографии документов и ваш список остаются в вашем телефоне. На наш сервер они не отправляются.',
+  'Всё, что нужно сейчас, бесплатно. Мы не адвокаты и не даём юридических консультаций.'].join('. ');
+ var u=new SpeechSynthesisUtterance(t);u.lang=VOICE[lang];u.rate=.92;
+ u.onend=function(){speaking=false;el.textContent='Прослушать эту страницу'};
+ speechSynthesis.speak(u);speaking=true;el.textContent='Остановить';
+}
+function setL(l){lang=l;
+ var b=document.querySelectorAll('.langs button');
+ for(var k=0;k<b.length;k++)b[k].classList.toggle('on',b[k].textContent.toLowerCase()===l);
+ if(speaking){speechSynthesis.cancel();speaking=false;
+  document.getElementById('lsn').textContent='Прослушать эту страницу'}}
+</script>
+</body>
+</html>

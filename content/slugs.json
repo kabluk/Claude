@@ -1,0 +1,20 @@
+{
+  "home": { "en": "", "es": "", "ru": "" },
+  "where": { "en": "where-is-he", "es": "donde-esta", "ru": "gde-on" },
+  "anum": { "en": "a-number", "es": "numero-a", "ru": "a-number" },
+  "documents": { "en": "what-papers-mean", "es": "que-significan-los-papeles", "ru": "chto-znachat-bumagi" },
+  "firstcall": { "en": "first-call", "es": "primera-llamada", "ru": "pervyy-zvonok" },
+  "verify": { "en": "check-who-you-pay", "es": "verificar-a-quien-paga", "ru": "proverit-komu-platite" },
+  "connect": { "en": "staying-in-touch", "es": "mantener-contacto", "ru": "svyaz" },
+  "journey": { "en": "the-road", "es": "el-camino", "ru": "marshrut" },
+  "attorney": { "en": "attorney", "es": "abogado", "ru": "advokat" },
+  "sponsor": { "en": "bond-sponsor", "es": "obligado-de-fianza", "ru": "sponsor-zaloga" },
+  "bondpay": { "en": "paying-bond", "es": "pagar-la-fianza", "ru": "oplata-zaloga" },
+  "deadlines": { "en": "do-not-miss", "es": "no-faltar", "ru": "ne-propustit" },
+  "intake": { "en": "your-list", "es": "su-lista", "ru": "vash-spisok" },
+  "about": { "en": "about", "es": "acerca-de", "ru": "o-servise" },
+  "data": { "en": "your-data", "es": "sus-datos", "ru": "dannye" },
+  "disclaimer": { "en": "disclaimer", "es": "aviso-legal", "ru": "otkaz" },
+  "state-ca": { "en": "state/california", "es": "estado/california", "ru": "shtat/california" },
+  "facility-adelanto": { "en": "facility/adelanto", "es": "centro/adelanto", "ru": "uchrezhdenie/adelanto" }
+}

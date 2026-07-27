@@ -1,0 +1,9 @@
+[
+  {
+    "code": "CA",
+    "name": { "en": "California", "es": "California", "ru": "Калифорния" },
+    "circuit": 9,
+    "funded_representation": true,
+    "bond_funds": []
+  }
+]

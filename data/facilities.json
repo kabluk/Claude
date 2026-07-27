@@ -1,0 +1,17 @@
+[
+  {
+    "slug": "adelanto",
+    "name": "Adelanto ICE Processing Center",
+    "address": "10250 Rancho Road, Adelanto, CA 92301",
+    "phone": "760-561-6100",
+    "hours": "",
+    "phone_provider": "Talton",
+    "state_code": "CA",
+    "court_slug": "adelanto",
+    "notes": {
+      "en": "Other sites list a different street number. The official mailing address is the one above.",
+      "es": "En otros sitios aparece un número distinto. La dirección oficial para correo es la de arriba.",
+      "ru": "На сторонних сайтах встречается другой номер дома. Официальный адрес для почты — тот, что указан выше."
+    }
+  }
+]
