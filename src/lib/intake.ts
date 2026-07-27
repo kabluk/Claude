@@ -88,6 +88,8 @@ export function rules(a: Ans): TaskRef[] {
   if (a.home === 'none') add('soon', 'ev_home', 'home_none')
   if (a.years && a.years !== 'dunno') add('soon', 'ev_years', 'years')
   if (a.usfam === 'close' || a.usfam === 'other') add('soon', 'ev_family', 'family')
+  add('soon', 'community', 'community')
+  add('soon', 'support_letters', 'support_letters')
   if (a.work === 'official') add('soon', 'ev_work_off', 'work_off')
   if (a.work === 'cash') add('soon', 'ev_work_cash', 'work_cash')
   if (a.work === 'own') add('soon', 'ev_work_own', 'work_own')
