@@ -96,7 +96,11 @@ export function rules(a: Ans): TaskRef[] {
   if (a.courts === 'came' || a.courts === 'missed') add('soon', 'ev_courts', 'courts')
   if (a.crim === 'docs' || a.crim === 'nodocs') add('now', 'ev_crim', 'crim')
 
-  add('now', 'bond_first', 'bond_first')
+  // Задача про залог осмысленна, только когда человек уже задержан:
+  // в режиме подготовки нет ни адвоката, ни учреждения — вместо неё
+  // задача выбрать адвоката заранее (фидбек первого пользователя).
+  if (urgent) add('now', 'bond_first', 'bond_first')
+  else add('now', 'lawyer_ready', 'lawyer_ready')
   if (a.sponsor === 'yes') add('soon', 'sponsor_ready', 'sponsor_yes')
   if (a.sponsor === 'maybe' || a.sponsor === 'dunno') add('now', 'sponsor_talk', 'sponsor_maybe')
   if (a.sponsor === 'no') add('now', 'bondfund', 'sponsor_no')

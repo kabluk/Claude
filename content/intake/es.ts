@@ -232,7 +232,7 @@ const c: IntakeContent = {
         self: '¿Puede alguien cercano hablar con sus médicos?',
         other: '¿Puede alguien cercano hablar con sus médicos?',
       },
-      hint: 'Para eso hace falta un formulario firmado de acceso a la información médica.',
+      hint: 'Si detienen a la persona, sus médicos no pueden hablar con los suyos sin un formulario firmado — ni decir los medicamentos ni entregar los registros. Arreglarlo con tiempo toma unos minutos.',
       o: {
         yes: { t: 'Sí, está arreglado' },
         no: { t: 'No' },
@@ -506,6 +506,22 @@ const c: IntakeContent = {
         'Esto toma tiempo, empiece ya',
       ],
       warn: 'No hable de los detalles por la línea telefónica grabada del centro. Ese es un tema para el abogado.',
+    },
+    lawyer_ready: {
+      h: 'Decida con tiempo a qué abogado llamar',
+      p: 'En el momento de la detención ya es tarde para buscar — el número ya debe existir.',
+      why: 'El abogado de oficio no existe en el proceso de inmigración. Cuando el contacto está elegido de antemano, el primer día se va en el caso y no en la búsqueda — y la elección en pánico no lleva a un estafador.',
+      how: [
+        'Reúna 2–3 candidatos: la práctica es federal, se puede buscar por idioma y no por ciudad',
+        'Verifique a cada uno en los tres registros — toma tres minutos',
+        'Una consulta con tiempo es la forma de conocerse y entender la situación antes del problema',
+        'El número del abogado elegido — a la tarjeta que se aprende de memoria y a la persona de confianza',
+      ],
+      src: [
+        ['Búsqueda de abogado con filtro por idioma', 'ailalawyer.com'],
+        ['El catálogo de ayuda gratuita y de bajo costo', 'immigrationlawhelp.org'],
+        ['La lista disciplinaria de EOIR', 'justice.gov/eoir/list-of-currently-disciplined-practitioners'],
+      ],
     },
     community: {
       ev: true,
@@ -851,6 +867,7 @@ const c: IntakeContent = {
     courts: 'hubo citas en la corte',
     crim: 'hubo arrestos',
     bond_first: 'el derecho a la fianza está en disputa',
+    lawyer_ready: 'el abogado se busca antes de la detención, no después',
     sponsor_yes: 'hay obligado',
     sponsor_maybe: 'el obligado está en duda',
     sponsor_no: 'no hay personas adecuadas',

@@ -228,7 +228,7 @@ const c: IntakeContent = {
         self: 'Can someone close to you speak with your doctors?',
         other: 'Can someone close to him speak with his doctors?',
       },
-      hint: 'That requires a signed medical information release form.',
+      hint: 'If a person is detained, their doctors cannot talk to the family without a signed release form — not even to name the medications or hand over records. Setting it up in advance takes minutes.',
       o: {
         yes: { t: 'Yes, it is in place' },
         no: { t: 'No' },
@@ -502,6 +502,22 @@ const c: IntakeContent = {
         'This takes time, start immediately',
       ],
       warn: 'Do not discuss details on the recorded phone line from the facility. That is a topic for the attorney.',
+    },
+    lawyer_ready: {
+      h: 'Decide in advance which attorney to call',
+      p: 'At the moment of detention it is too late to search — the number must already be there.',
+      why: 'There is no court-appointed attorney in immigration proceedings. When the contact is chosen in advance, the first day goes into the case, not into searching — and a panicked choice does not lead to a fraudster.',
+      how: [
+        'Collect 2–3 candidates: the practice is federal, you can search by language rather than by city',
+        'Check each one against the three registries — it takes three minutes',
+        'A consultation in advance is a way to get acquainted and understand the situation before trouble',
+        'The chosen attorney’s number goes on the memorized card and to the trusted person',
+      ],
+      src: [
+        ['Attorney search with a language filter', 'ailalawyer.com'],
+        ['The directory of free and low-cost help', 'immigrationlawhelp.org'],
+        ['The EOIR disciplinary list', 'justice.gov/eoir/list-of-currently-disciplined-practitioners'],
+      ],
     },
     community: {
       ev: true,
@@ -848,6 +864,7 @@ const c: IntakeContent = {
     courts: 'there were court dates',
     crim: 'there were arrests',
     bond_first: 'the right to bond is currently disputed',
+    lawyer_ready: 'an attorney is found before detention, not after',
     sponsor_yes: 'there is an obligor',
     sponsor_maybe: 'the obligor is uncertain',
     sponsor_no: 'there is no suitable person',
