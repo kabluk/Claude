@@ -70,6 +70,43 @@ for (const lang of LANGS) {
 }
 console.log(`gen-sitemap: атрибут lang исправлен в ${patched} файлах`)
 
+// _headers и _redirects внутри dist/ — их Netlify читает при любом типе
+// деплоя, включая ручной drag-and-drop. CSP без 'unsafe-inline' для скриптов:
+// два инлайн-скрипта vite-react-ssg (hydration data + hash) разрешаются
+// по sha256, хэши пересчитываются на каждой сборке.
+const { createHash } = await import('node:crypto')
+const inlineHashes = new Set()
+for (const lang of ['', ...LANGS]) {
+  const dir = lang ? join(DIST, lang) : DIST
+  if (!existsSync(dir)) continue
+  const files = lang ? [...htmlFiles(dir)] : [join(DIST, 'index.html')].filter(existsSync)
+  for (const file of files) {
+    const html = readFileSync(file, 'utf8')
+    for (const m of html.matchAll(/<script>([\s\S]*?)<\/script>/g)) {
+      inlineHashes.add(`'sha256-${createHash('sha256').update(m[1]).digest('base64')}'`)
+    }
+  }
+}
+const scriptSrc = ['\'self\'', ...inlineHashes].join(' ')
+writeFileSync(
+  join(DIST, '_headers'),
+  `/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: no-referrer
+  Permissions-Policy: geolocation=(), camera=(), microphone=()
+  Content-Security-Policy: default-src 'self'; script-src ${scriptSrc}; font-src 'self' fonts.gstatic.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; img-src 'self' data:
+`,
+)
+writeFileSync(
+  join(DIST, '_redirects'),
+  `/  /ru/  302!  Language=ru
+/  /es/  302!  Language=es
+/  /en/  302!
+`,
+)
+console.log(`gen-sitemap: _headers (${inlineHashes.size} script-хэшей) и _redirects записаны`)
+
 writeFileSync(join(DIST, 'sitemap.xml'), xml)
 writeFileSync(
   join(DIST, 'robots.txt'),
