@@ -36,7 +36,7 @@ const c: HomeContent = {
       pick: 2,
       t: [
         'Mire los fondos de fianza',
-        'Las organizaciones sin fines de lucro pueden pagar la fianza por personas sin obligado.',
+        'Las organizaciones sin fines de lucro pueden pagar la fianza por quien no tiene a nadie que la pague.',
         'no hay personas adecuadas',
       ],
     },

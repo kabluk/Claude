@@ -11,7 +11,7 @@ const c: JourneyContent = {
     { t: 'Dos caminos: fianza o no', p: 'Qué categorías existen y quién lo determina. Una pregunta para el abogado.' },
     { t: 'Abogado', p: 'Gratis, representante acreditado, de pago. Se puede buscar por idioma.', page: 'attorney' },
     { t: 'Cómo se cuenta el dinero del abogado', p: 'Tarifas, fases, el anticipo, qué debe estar en el contrato.' },
-    { t: 'Obligado', p: 'Quién puede pagar la fianza, cómo pedirlo, qué hacer si no hay nadie.', page: 'sponsor' },
+    { t: 'Quién paga la fianza', p: 'Quién puede pagarla, cómo pedirlo, qué hacer si no hay nadie.', page: 'sponsor' },
     { t: 'Documentos', p: 'Una fila de tareas, de una en una. Fotos del teléfono — un PDF limpio para el abogado.' },
     { t: 'La audiencia de fianza', p: 'Quién asiste, qué mira el juez, qué pasa después de la decisión.' },
     { t: 'Dieron fianza · cómo pagar', p: 'CeBONDS, formulario I-352, recibo I-305, fiadores.', page: 'bondpay' },
@@ -25,7 +25,7 @@ const c: JourneyContent = {
   tracks: [
     { t: 'Hijos', p: 'La escuela, el consentimiento médico, qué decirle al niño. En preparación.' },
     { t: 'El dinero de la familia', p: 'La renta, el salario perdido, la conversación con el empleador. En preparación.' },
-    { t: 'Lo trasladaron', p: 'Un traslado reinicia al abogado, el dinero de la cuenta y al obligado. Qué rehacer. En preparación.' },
+    { t: 'Lo trasladaron', p: 'Un traslado reinicia al abogado, el dinero de la cuenta y a quien iba a pagar la fianza. Qué rehacer. En preparación.' },
     { t: 'Salud', p: 'Medicamentos, enfermedades crónicas, acceso a la información médica. En preparación.' },
   ],
   note: 'Los pasos sin terminar están marcados honestamente «en preparación». Ver la escala del camino completo es útil en sí: el caso no termina con la salida.',

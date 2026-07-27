@@ -21,9 +21,29 @@ const c: PageContent = {
         'A US citizen or green card holder, 18 or older',
         'Law firms',
         'Nonprofit organizations and bond funds',
+        'Commercial bond companies — for a non-refundable percentage',
       ],
     },
-    { kind: 'h2', text: 'What the sponsor will need' },
+    { kind: 'h2', text: 'Two ways to post the money' },
+    {
+      kind: 'callout',
+      tone: 'n',
+      title: 'Path 1 · The full amount personally',
+      body: [
+        'A citizen or green card holder posts the full amount through `CeBONDS`. The money is returned at the end of the case to whoever paid — that can take years.',
+      ],
+    },
+    {
+      kind: 'callout',
+      tone: 'n',
+      title: 'Path 2 · Through a bondsman',
+      body: [
+        'A commercial company posts the bond for the client. A percentage of the amount is paid — usually 15–20% — and that money is not refunded. An ankle monitor with a monthly fee is usually added.',
+        'Example: a `$75,000` bond — the bondsman is paid around `$11,000–15,000` permanently, or someone close posts the full `$75,000` themselves and gets it back at the end of the case.',
+        'We do not say which path is better — we show how both work. Requirements differ between companies; compare terms in writing.',
+      ],
+    },
+    { kind: 'h2', text: 'What the person posting it will need' },
     {
       kind: 'list',
       items: [
@@ -51,16 +71,17 @@ const c: PageContent = {
       tone: 'n',
       title: 'Sample · adjust to your own words',
       body: [
-        'I need to ask something serious. For a person to be released, the bond must be posted by a citizen or green card holder — I cannot do it myself. The money is returned after the case ends, but that can take a long time. I will understand any answer. May I explain how it works?',
+        'I need to ask something serious. For a person to be released, the bond must be posted by a citizen or green card holder — I cannot do it myself. The money is returned after the case ends, but that can take a long time. If the full amount is too much, there is a path through a bond company: then only a percentage is paid, but it is not refunded. I will understand any answer. May I explain how it works?',
       ],
     },
     { kind: 'h2', text: 'If there is no suitable person' },
     {
       kind: 'list',
       items: [
-        'A nonprofit organization can act as the sponsor — for many people this is the only path',
+        'A nonprofit organization can post the bond — for many people this is the only path',
         'Look for funds working in the facility’s state, and ask whether they take this facility',
         'Ask about the waiting list and the conditions',
+        'The second path is a bondsman for a non-refundable percentage; every company has its own requirements',
         'Check the organization against the same registries as an attorney',
       ],
     },

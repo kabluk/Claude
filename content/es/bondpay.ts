@@ -37,6 +37,7 @@ const c: PageContent = {
       title: 'El 15–20% no se devuelve',
       body: [
         'Un fiador comercial se queda con el 15–20% del monto de la fianza de forma permanente, normalmente más un grillete con cuota mensual.',
+        'Ejemplo: con una fianza de `$75,000` al fiador se le pagan alrededor de `$11,000–15,000`, y no se devuelven. Quien paga la suma completa por su cuenta la recibe de vuelta al final del caso.',
         'Esa es la estructura de su servicio, no una valoración. Compare condiciones por escrito.',
       ],
     },
@@ -45,10 +46,10 @@ const c: PageContent = {
       tone: 'y',
       title: 'El derecho a la audiencia de fianza está en disputa',
       body: [
-        'La respuesta depende del circuito donde está la persona, y cambia con un traslado. Esta es la primera pregunta para el abogado — antes de buscar dinero u obligado.',
+        'La respuesta depende del circuito donde está la persona, y cambia con un traslado. Esta es la primera pregunta para el abogado — antes de buscar el dinero o a quien lo pague.',
       ],
     },
-    { kind: 'ilink', page: 'sponsor', label: 'Obligado de fianza' },
+    { kind: 'ilink', page: 'sponsor', label: 'Quién paga la fianza' },
   ],
 }
 

@@ -18,7 +18,7 @@ const ui: UIStrings = {
     connect: 'Llamadas, dinero, cartas',
     journey: 'El camino',
     attorney: 'Abogado',
-    sponsor: 'Obligado de fianza',
+    sponsor: 'Quién paga la fianza',
     bondpay: 'Pagar la fianza',
     deadlines: 'No faltar a la audiencia',
     intake: 'Su lista de tareas',

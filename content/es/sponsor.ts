@@ -1,7 +1,7 @@
 import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
-  title: 'Obligado de fianza',
+  title: 'Quién paga la fianza',
   lede: 'El detenido no paga su propia fianza. Hace falta una persona con estatus — o una organización.',
   blocks: [
     {
@@ -21,9 +21,29 @@ const c: PageContent = {
         'Un ciudadano de EE. UU. o titular de green card, mayor de 18 años',
         'Bufetes de abogados',
         'Organizaciones sin fines de lucro y fondos de fianza',
+        'Compañías de fianzas comerciales — por un porcentaje que no se devuelve',
       ],
     },
-    { kind: 'h2', text: 'Qué necesitará el obligado' },
+    { kind: 'h2', text: 'Dos formas de pagar el dinero' },
+    {
+      kind: 'callout',
+      tone: 'n',
+      title: 'Camino 1 · La suma completa por cuenta propia',
+      body: [
+        'Un ciudadano o titular de green card paga la suma completa por `CeBONDS`. El dinero se devuelve al final del caso a quien pagó — eso puede tardar años.',
+      ],
+    },
+    {
+      kind: 'callout',
+      tone: 'n',
+      title: 'Camino 2 · A través de una compañía de fianzas',
+      body: [
+        'Una empresa comercial paga la fianza por el cliente. Se paga un porcentaje de la suma — normalmente 15–20% — y ese dinero no se devuelve. Normalmente se agrega un grillete con cuota mensual.',
+        'Ejemplo: una fianza de `$75,000` — a la compañía se le pagan alrededor de `$11,000–15,000` de forma permanente, o alguien cercano paga los `$75,000` completos y los recibe de vuelta al final del caso.',
+        'No decimos qué camino es mejor — mostramos cómo funcionan los dos. Los requisitos varían entre empresas; compare condiciones por escrito.',
+      ],
+    },
+    { kind: 'h2', text: 'Qué necesitará quien la pague' },
     {
       kind: 'list',
       items: [
@@ -51,16 +71,17 @@ const c: PageContent = {
       tone: 'n',
       title: 'Ejemplo · ajústelo a sus palabras',
       body: [
-        'Necesito pedirte algo serio. Para que suelten a una persona, la fianza la debe pagar un ciudadano o alguien con green card — yo no puedo hacerlo. El dinero se devuelve cuando termina el caso, pero puede tardar mucho tiempo. Entenderé cualquier respuesta. ¿Puedo explicarte cómo funciona?',
+        'Necesito pedirte algo serio. Para que suelten a una persona, la fianza la debe pagar un ciudadano o alguien con green card — yo no puedo hacerlo. El dinero se devuelve cuando termina el caso, pero puede tardar mucho tiempo. Si la suma completa es demasiado, hay un camino con una compañía de fianzas: se paga solo un porcentaje, pero no se devuelve. Entenderé cualquier respuesta. ¿Puedo explicarte cómo funciona?',
       ],
     },
     { kind: 'h2', text: 'Si no hay una persona adecuada' },
     {
       kind: 'list',
       items: [
-        'Una organización sin fines de lucro puede actuar como obligado — para muchos es el único camino',
+        'Una organización sin fines de lucro puede pagar la fianza — para muchos es el único camino',
         'Busque fondos que trabajen en el estado del centro, y pregunte si toman este centro',
         'Pregunte por la fila de espera y las condiciones',
+        'El segundo camino es una compañía de fianzas por un porcentaje que no se devuelve; cada empresa tiene sus requisitos',
         'Verifique la organización en los mismos registros que a un abogado',
       ],
     },
