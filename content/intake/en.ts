@@ -670,7 +670,7 @@ const c: IntakeContent = {
       h: 'Sort out the power of attorney',
       p: 'One document covers the car, the account and the contracts.',
       why: 'Property in one person’s name becomes inaccessible to everyone else. The car cannot be sold, the account cannot be managed, the contract cannot be reassigned.',
-      form: 'A power of attorney is a legal document. We do not draft it and we do not provide samples. It is executed at a notary or on the state’s official form. If the person is already detained — the signing procedure is different; that is a question for the attorney.',
+      form: 'A power of attorney is a legal document. We do not draft it and we do not provide samples. The usual procedure: take the state’s official form or the bank’s own form, fill it in, and have the signature certified — in California before a notary or with two witnesses. A US notary certifies the signature; they do not draft the document. If the person is already detained — the signing procedure is different; that is a question for the attorney.',
       how: [
         'Define what exactly needs to be covered',
         'Check whether the bank or agency requires its own form',

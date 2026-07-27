@@ -674,7 +674,7 @@ const c: IntakeContent = {
       h: 'Resuelva el poder notarial',
       p: 'Un documento cubre el carro, la cuenta y los contratos.',
       why: 'Los bienes a nombre de una sola persona quedan inaccesibles para los demás. El carro no se puede vender, la cuenta no se puede manejar, el contrato no se puede pasar.',
-      form: 'El poder es un documento legal. No lo redactamos y no damos modelos. Se hace ante notario o con el formulario oficial del estado. Si la persona ya está detenida — el procedimiento de firma es otro; esa es una pregunta para el abogado.',
+      form: 'El poder es un documento legal. No lo redactamos y no damos modelos. El orden habitual: se toma el formulario oficial del estado o el formulario del propio banco, se llena, y la firma se certifica — en California ante un notary public o con dos testigos. Ojo: en EE. UU. el notary public solo certifica firmas — no es abogado y no redacta documentos. Si la persona ya está detenida — el procedimiento de firma es otro; esa es una pregunta para el abogado.',
       how: [
         'Defina qué es exactamente lo que hay que cubrir',
         'Confirme si el banco o la agencia exige su propio formulario',
