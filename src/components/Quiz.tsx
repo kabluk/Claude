@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { IntakeContent, IntakeTask, Lang, UIStrings } from '@/lib/types'
 import { pathFor } from '@/lib/slugs'
 import { rules, visibleQuestions, type Ans, type Priority } from '@/lib/intake'
+import { clearIntakeSnapshot, getIntakeSnapshot, saveIntakeSnapshot } from '@/lib/intakeSession'
 
 // Опрос целиком в браузере: ответы никуда не отправляются, состояние живёт
 // в памяти вкладки. Закрыли вкладку — ничего не осталось.
@@ -118,10 +119,15 @@ function TaskCard({
 }
 
 export function Quiz({ c, lang, nav }: { c: IntakeContent; lang: Lang; nav: UIStrings['nav'] }) {
-  const [ans, setAns] = useState<Ans>({})
-  const [i, setI] = useState(0)
-  const [fin, setFin] = useState(false)
+  const saved = getIntakeSnapshot()
+  const [ans, setAns] = useState<Ans>(() => saved?.ans ?? {})
+  const [i, setI] = useState(() => saved?.i ?? 0)
+  const [fin, setFin] = useState(() => saved?.fin ?? false)
   const [open, setOpen] = useState<Record<string, boolean>>({})
+
+  useEffect(() => {
+    saveIntakeSnapshot({ ans, i, fin })
+  }, [ans, i, fin])
 
   const vis = visibleQuestions(ans)
 
@@ -145,6 +151,7 @@ export function Quiz({ c, lang, nav }: { c: IntakeContent; lang: Lang; nav: UISt
     window.scrollTo(0, 0)
   }
   function again() {
+    clearIntakeSnapshot()
     setAns({})
     setI(0)
     setFin(false)
