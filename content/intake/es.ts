@@ -29,7 +29,7 @@ const c: IntakeContent = {
     evBadge: 'PRUEBA',
     evNote: {
       h: 'Sobre la etiqueta «prueba»',
-      p: 'Así se marcan las tareas de la lista de factores que, según una decisión publicada de la BIA — la Junta de Apelaciones de Inmigración, que fija las reglas para los jueces de inmigración — se consideran al decidir sobre la fianza: dirección, tiempo de residencia, lazos familiares, trabajo, asistencia a la corte, antecedentes. No evaluamos su situación y no predecimos el resultado — solo enumeramos lo que normalmente se respalda con documentos.',
+      p: 'Así se marcan las tareas de la lista de factores que se consideran al decidir sobre la fianza: dirección, tiempo de residencia, lazos familiares, trabajo, asistencia a la corte, antecedentes. La lista viene de una decisión publicada de la BIA — la corte de inmigración más alta para apelaciones, cuyas decisiones siguen todos los jueces de inmigración. No evaluamos su situación y no predecimos el resultado — solo enumeramos lo que normalmente se respalda con documentos.',
     },
     zoneBNote: {
       h: 'Qué hacer con esta lista ahora',
@@ -66,7 +66,7 @@ const c: IntakeContent = {
     anum: {
       bn: 'Identificación',
       q: { self: '¿Sabe su número A?', other: '¿Se conoce su número A?' },
-      hint: 'La letra A y nueve dígitos. Está en el permiso de trabajo, la green card, las cartas de USCIS (el servicio de inmigración) y de la corte.',
+      hint: 'La letra A y nueve dígitos. Está en el permiso de trabajo, la green card, las cartas de la corte y de USCIS — la agencia que da los permisos de trabajo y las green cards.',
       o: {
         yes: { t: 'Sí, lo sé' },
         find: { t: 'No, pero hay documentos en casa' },
@@ -350,7 +350,7 @@ const c: IntakeContent = {
       how: [
         'El permiso de trabajo, aunque esté vencido',
         'La green card, si hay',
-        'Cualquier carta de USCIS, el servicio de inmigración, o de la corte de inmigración',
+        'Cualquier carta de la corte de inmigración o de USCIS — la agencia que da los permisos de trabajo y las green cards',
         'Recibos de pago de cuotas',
         'Fotografíe todas las páginas, incluidos los sobres',
       ],
@@ -467,7 +467,7 @@ const c: IntakeContent = {
         ['El historial de envíos', 'la aplicación Remitly, Wise, Western Union'],
         ['Estados de cuenta por mes', 'la cuenta del banco'],
         ['Transcripciones de impuestos, si se presentaron', 'irs.gov/individuals/get-transcript'],
-        ['La carta de asignación del ITIN — el número de impuestos que se da en lugar del SSN', 'de su propio archivo de documentos'],
+        ['La carta de asignación del ITIN — el número para pagar impuestos cuando no hay SSN', 'de su propio archivo de documentos'],
       ],
     },
     ev_work_own: {
@@ -667,7 +667,7 @@ const c: IntakeContent = {
     hipaa: {
       h: 'Arregle el acceso a la información médica',
       p: 'Sin él, un familiar no podrá hablar con los médicos.',
-      why: 'Un formulario HIPAA firmado — el consentimiento estándar según la ley de privacidad médica — da a la persona de confianza acceso a los registros médicos y a los médicos. Hace falta para la salud y como prueba para el caso.',
+      why: 'El formulario HIPAA es un papel con el que la persona permite a los médicos hablar de su salud con quien está nombrado ahí. Con la forma firmada, la persona de confianza puede recibir los registros médicos y hablar con los médicos. Hace falta para la salud y como prueba para el caso.',
       form: 'El formato lo da el centro médico; el formulario es estándar. No lo redactamos. El formulario para el hospital y el consentimiento para que la agencia comparta información son papeles distintos.',
     },
     poa: {

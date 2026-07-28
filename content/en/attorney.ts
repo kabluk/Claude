@@ -16,7 +16,7 @@ const c: PageContent = {
     {
       kind: 'list',
       items: [
-        'The pro bono list of EOIR (the office that runs the immigration courts) — by the court’s location',
+        'The free-help list from EOIR — the service that runs the immigration courts',
         'The legal orientation program inside the facility itself',
         'Local nonprofit organizations — call several at once, there are queues everywhere',
         'Ask whether they take detained cases and whether they work with this facility',

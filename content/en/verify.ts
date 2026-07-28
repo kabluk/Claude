@@ -25,7 +25,7 @@ const c: PageContent = {
       tone: 'n',
       title: '3 · EOIR disciplinary list',
       body: [
-        'Who is barred from practicing before the immigration courts. EOIR is the office at the US Department of Justice that runs the immigration courts.',
+        'Who is barred from practicing before the immigration courts. EOIR is the government service that runs all the immigration courts in the country; its lists are official.',
       ],
     },
     {

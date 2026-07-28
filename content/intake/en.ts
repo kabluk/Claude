@@ -28,7 +28,7 @@ const c: IntakeContent = {
     evBadge: 'EVIDENCE',
     evNote: {
       h: 'About the "evidence" tag',
-      p: 'It marks tasks from the list of factors that, according to a published decision of the BIA — the Board of Immigration Appeals, which sets the rules immigration judges follow — are considered in bond decisions: address, length of residence, family ties, work, court appearances, criminal history. We do not assess your situation and do not predict the outcome — we only list what is usually supported with documents.',
+      p: 'It marks tasks from the list of factors considered in bond decisions: address, length of residence, family ties, work, court appearances, criminal history. The list comes from a published decision of the BIA — the top immigration appeals court, whose decisions all immigration judges follow. We do not assess your situation and do not predict the outcome — we only list what is usually supported with documents.',
     },
     zoneBNote: {
       h: 'What to do with this list next',
@@ -65,7 +65,7 @@ const c: IntakeContent = {
     anum: {
       bn: 'Identification',
       q: { self: 'Do you know your A-Number?', other: 'Is his A-Number known?' },
-      hint: 'The letter A and nine digits. It is on the work permit, the green card, letters from USCIS (the immigration service) and the court.',
+      hint: 'The letter A and nine digits. It is on the work permit, the green card, letters from the court and from USCIS — the agency that issues work permits and green cards.',
       o: {
         yes: { t: 'Yes, I know it' },
         find: { t: 'No, but there are documents at home' },
@@ -346,7 +346,7 @@ const c: IntakeContent = {
       how: [
         'The work permit, even an expired one',
         'The green card, if there is one',
-        'Any letter from USCIS, the immigration service, or from the immigration court',
+        'Any letter from the immigration court or from USCIS — the agency that issues work permits and green cards',
         'Fee receipts',
         'Photograph every page, including envelopes',
       ],
@@ -463,7 +463,7 @@ const c: IntakeContent = {
         ['Transfer history', 'the Remitly, Wise, Western Union app'],
         ['Monthly bank statements', 'the bank’s online account'],
         ['Tax transcripts, if filed', 'irs.gov/individuals/get-transcript'],
-        ['The ITIN assignment letter — the tax number issued instead of an SSN', 'from your own document archive'],
+        ['The ITIN assignment letter — the number used to pay taxes when there is no SSN', 'from your own document archive'],
       ],
     },
     ev_work_own: {
@@ -663,7 +663,7 @@ const c: IntakeContent = {
     hipaa: {
       h: 'Set up access to medical information',
       p: 'Without it a relative cannot speak with the doctors.',
-      why: 'A signed HIPAA form — the standard consent under the medical privacy law — gives a trusted person access to medical records and to the doctors. It is needed both for health and as evidence for the case.',
+      why: 'A HIPAA form is a paper by which a person allows doctors to discuss their health with whoever is named in it. With it signed, a trusted person can get medical records and talk to the doctors. It is needed both for health and as evidence for the case.',
       form: 'The blank comes from the medical facility; the form is standard. We do not draft it. The form for the hospital and the consent for the agency to share information are different papers.',
     },
     poa: {
