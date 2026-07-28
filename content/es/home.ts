@@ -1,8 +1,17 @@
 import type { HomeContent } from '@/lib/types'
 
 const c: HomeContent = {
-  title: '¿Se llevaron a alguien?\nEsto es lo que hay que hacer.',
+  title: '¿Se llevaron a alguien?\n¿Quiere estar preparado?',
   sub: 'Responda las preguntas y reciba su propia lista de tareas. En lenguaje claro, paso a paso.',
+  heroLead: 'Le ayudamos a:',
+  heroPoints: [
+    'encontrar a la persona en el sistema',
+    'recibir su lista de tareas en 2 minutos',
+    'arreglar el contacto: teléfonos, la cuenta, cartas',
+    'ver dónde consiguen dinero las familias — colectas y fondos',
+    'armar el paquete para el abogado',
+    'con seguridad: no guardamos nada sobre usted',
+  ],
   demoLabel: 'ASÍ FUNCIONA',
   demoTaskLabel: 'SU TAREA',
   demoWhy: 'por qué está en la lista',

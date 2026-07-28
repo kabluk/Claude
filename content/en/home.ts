@@ -1,8 +1,17 @@
 import type { HomeContent } from '@/lib/types'
 
 const c: HomeContent = {
-  title: 'Someone was taken?\nHere is what to do.',
+  title: 'Someone was taken?\nWant to be prepared?',
   sub: 'Answer the questions — get your own task list. In plain language, step by step.',
+  heroLead: 'We help you:',
+  heroPoints: [
+    'find the person in the system',
+    'get your own task list in 2 minutes',
+    'set up contact: phones, the account, letters',
+    'see where families find money — fundraisers and funds',
+    'put together the package for the attorney',
+    'safely: we store nothing about you',
+  ],
   demoLabel: 'HOW IT WORKS',
   demoTaskLabel: 'YOUR TASK',
   demoWhy: 'why it is on the list',

@@ -1,8 +1,30 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { HomeContent, Lang, UIStrings } from '@/lib/types'
 import { Layout, Footer, PageIndex } from '@/components/Layout'
 import { Demo } from '@/components/Demo'
 import { pathFor } from '@/lib/slugs'
+
+// Плюсы появляются строчка за строчкой; при prefers-reduced-motion
+// CSS показывает все сразу без анимации.
+function HeroPoints({ lead, points }: { lead: string; points: string[] }) {
+  const [shown, setShown] = useState(0)
+  useEffect(() => {
+    if (shown >= points.length) return
+    const t = setTimeout(() => setShown((s) => s + 1), shown === 0 ? 350 : 750)
+    return () => clearTimeout(t)
+  }, [shown, points.length])
+  return (
+    <div className="hero-points">
+      <p className="hero-lead">{lead}</p>
+      {points.map((p, i) => (
+        <div key={i} className={`hp ${i < shown ? 'in' : ''}`}>
+          {p}
+        </div>
+      ))}
+    </div>
+  )
+}
 
 export function HomePage({ lang, c, ui }: { lang: Lang; c: HomeContent; ui: UIStrings }) {
   return (
@@ -16,7 +38,7 @@ export function HomePage({ lang, c, ui }: { lang: Lang; c: HomeContent; ui: UISt
             </span>
           ))}
         </h1>
-        <p className="sub">{c.sub}</p>
+        <HeroPoints lead={c.heroLead} points={c.heroPoints} />
         <Demo c={c} />
         <h2 className="landing-h2" style={{ marginTop: 4 }}>
           {c.benefitsTitle}

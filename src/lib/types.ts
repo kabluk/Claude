@@ -25,6 +25,8 @@ export interface PageContent {
 export interface HomeContent {
   title: string
   sub: string
+  heroLead: string
+  heroPoints: string[]
   demoLabel: string
   demoTaskLabel: string
   demoWhy: string
