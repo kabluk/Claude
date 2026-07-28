@@ -570,7 +570,7 @@ const c: IntakeContent = {
         'Only then decide whether to look for someone to post the bond',
         'Prepare two plans in parallel: for release, and for detention that lasts months',
       ],
-      info: 'Bond is not the only release mechanism. There are also parole (discretionary release by ICE decision), motions for reconsideration, and the federal habeas corpus petition — the fastest-growing path in 2026: AILA lawyers call it, for many, the only one that works in practice. Which mechanisms apply to a specific case is determined only by the attorney.',
+      info: 'Bond is not the only release mechanism, but the backup paths have narrowed too. Parole — discretionary release by ICE decision — is now granted very rarely: according to the legal advocacy organization NILC (July 2026), even among asylum seekers who passed the initial screening, two out of three requests were approved in fiscal year 2024, versus one out of fourteen this fiscal year. That leaves motions for reconsideration and the federal habeas corpus petition — the fastest-growing path in 2026: AILA lawyers call it, for many, the only one that works in practice. Which mechanisms apply to a specific case is determined only by the attorney.',
       src: [
         ['If there is no attorney yet · free help by state', 'justice.gov/eoir/list-pro-bono-legal-service-providers'],
         ['The directory of free and low-cost help', 'immigrationlawhelp.org'],

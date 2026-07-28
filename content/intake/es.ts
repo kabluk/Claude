@@ -574,7 +574,7 @@ const c: IntakeContent = {
         'Solo después decida si buscar a quien pague la fianza',
         'Prepare dos planes en paralelo: para la salida y para una detención que dure meses',
       ],
-      info: 'La fianza no es el único mecanismo de salida. Existen también el parole (liberación discrecional por decisión de ICE), las mociones de revisión y la petición federal de habeas corpus — el camino que más crece en 2026: los abogados de AILA lo llaman, para muchos, el único que funciona en la práctica. Qué mecanismos aplican a un caso concreto lo determina solo el abogado.',
+      info: 'La fianza no es el único mecanismo de salida, pero los caminos de reserva también se han estrechado. El parole — la liberación discrecional por decisión de ICE — hoy se concede muy rara vez: según la organización de defensa legal NILC (julio de 2026), incluso entre solicitantes de asilo que pasaron la evaluación inicial, en el año fiscal 2024 se aprobaban dos solicitudes de cada tres, y en el actual — una de catorce. Quedan las mociones de revisión y la petición federal de habeas corpus — el camino que más crece en 2026: los abogados de AILA lo llaman, para muchos, el único que funciona en la práctica. Qué mecanismos aplican a un caso concreto lo determina solo el abogado.',
       src: [
         ['Si aún no hay abogado · ayuda gratuita por estados', 'justice.gov/eoir/list-pro-bono-legal-service-providers'],
         ['El catálogo de ayuda gratuita y de bajo costo', 'immigrationlawhelp.org'],
