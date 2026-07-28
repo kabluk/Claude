@@ -33,7 +33,7 @@ const ui: UIStrings = {
   },
   navGroups: [
     { label: 'The first night', keys: ['intake', 'where', 'anum', 'documents', 'firstcall', 'verify'] },
-    { label: 'The road and bond', keys: ['journey', 'connect', 'attorney', 'sponsor', 'bondpay', 'deadlines'] },
+    { label: 'The road', keys: ['journey', 'connect', 'attorney', 'sponsor', 'bondpay', 'deadlines'] },
     { label: 'Directory', keys: ['state-ca', 'state-tx', 'state-la', 'facility-adelanto'] },
     { label: 'About', keys: ['orgs', 'about', 'data', 'disclaimer'] },
   ],

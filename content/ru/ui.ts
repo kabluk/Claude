@@ -33,7 +33,7 @@ const ui: UIStrings = {
   },
   navGroups: [
     { label: 'Первая ночь', keys: ['intake', 'where', 'anum', 'documents', 'firstcall', 'verify'] },
-    { label: 'Маршрут и залог', keys: ['journey', 'connect', 'attorney', 'sponsor', 'bondpay', 'deadlines'] },
+    { label: 'Маршрут', keys: ['journey', 'connect', 'attorney', 'sponsor', 'bondpay', 'deadlines'] },
     { label: 'Справочник', keys: ['state-ca', 'state-tx', 'state-la', 'facility-adelanto'] },
     { label: 'О сервисе', keys: ['orgs', 'about', 'data', 'disclaimer'] },
   ],

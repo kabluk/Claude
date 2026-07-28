@@ -2,7 +2,7 @@ import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
   title: 'Quién paga la fianza',
-  lede: 'El detenido no paga su propia fianza. Hace falta una persona con estatus — o una organización.',
+  lede: 'El detenido no paga su propia fianza. Hace falta una persona con estatus — o una organización. Ahora salen bajo fianza pocas personas — prepárela como uno de los caminos, no el único.',
   blocks: [
     {
       kind: 'callout',

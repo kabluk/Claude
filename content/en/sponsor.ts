@@ -2,7 +2,7 @@ import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
   title: 'Bond sponsor',
-  lede: 'The detained person does not post their own bond. It takes a person with status — or an organization.',
+  lede: 'The detained person does not post their own bond. It takes a person with status — or an organization. Release on bond is rare right now — prepare it as one path, not the only one.',
   blocks: [
     {
       kind: 'callout',

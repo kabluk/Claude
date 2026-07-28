@@ -33,7 +33,7 @@ const ui: UIStrings = {
   },
   navGroups: [
     { label: 'La primera noche', keys: ['intake', 'where', 'anum', 'documents', 'firstcall', 'verify'] },
-    { label: 'El camino y la fianza', keys: ['journey', 'connect', 'attorney', 'sponsor', 'bondpay', 'deadlines'] },
+    { label: 'El camino', keys: ['journey', 'connect', 'attorney', 'sponsor', 'bondpay', 'deadlines'] },
     { label: 'Directorio', keys: ['state-ca', 'state-tx', 'state-la', 'facility-adelanto'] },
     { label: 'Acerca de', keys: ['orgs', 'about', 'data', 'disclaimer'] },
   ],

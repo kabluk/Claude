@@ -102,9 +102,11 @@ export function rules(a: Ans): TaskRef[] {
   // задача выбрать адвоката заранее (фидбек первого пользователя).
   if (urgent) add('now', 'bond_first', 'bond_first')
   else add('now', 'lawyer_ready', 'lawyer_ready')
+  // Залог понижен в приоритете: освобождения по нему сейчас редки,
+  // спонсорские задачи не должны вытеснять документы и адвоката из «Сейчас»
   if (a.sponsor === 'yes') add('soon', 'sponsor_ready', 'sponsor_yes')
-  if (a.sponsor === 'maybe' || a.sponsor === 'dunno') add('now', 'sponsor_talk', 'sponsor_maybe')
-  if (a.sponsor === 'no') add('now', 'bondfund', 'sponsor_no')
+  if (a.sponsor === 'maybe' || a.sponsor === 'dunno') add('soon', 'sponsor_talk', 'sponsor_maybe')
+  if (a.sponsor === 'no') add('soon', 'bondfund', 'sponsor_no')
 
   if (a.school === 'only' || a.school === 'dunno') add('now', 'school_add', 'school_only')
   if (a.guard === 'status') add('soon', 'caregiver', 'guard_status')
