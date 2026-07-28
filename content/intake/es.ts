@@ -14,6 +14,9 @@ const c: IntakeContent = {
     resultTitle: 'tareas',
     resultHint:
       'Armada con sus respuestas. Nada se fue a nuestro servidor — la lista vive solo en este navegador. Toque una tarea para abrirla.',
+    resultIntro:
+      'No se preocupe: con todo esto se puede, y no en un solo día. Vaya paso a paso desde arriba — dentro de cada tarea dice para qué es, cómo hacerla y dónde conseguir las cosas. Muchas tareas tienen enlace a una página con la instrucción completa. Guarde o imprima la lista para que no se pierda.',
+    moreLabel: 'Instrucción completa',
     groups: { now: 'Ahora', soon: 'Esta semana', later: 'Cuando haya tiempo' },
     whyPrefix: 'por qué está en la lista',
     sections: {
@@ -344,6 +347,7 @@ const c: IntakeContent = {
       ],
     },
     anum_find: {
+      pages: ['anum'],
       h: 'Busque el número A en los documentos de casa',
       p: 'Casi seguro está en papeles que ya tiene.',
       why: 'Un documento viejo cierra varias preguntas a la vez: el número, el número del caso, qué corte, qué pasó antes.',
@@ -361,6 +365,7 @@ const c: IntakeContent = {
       warn: 'Si el sitio de ICE da Access Denied — apague el VPN o pruebe otra red. El sitio bloquea algunas direcciones; la búsqueda no está rota.',
     },
     anum_ask: {
+      pages: ['firstcall', 'connect'],
       h: 'Consiga el número A en la primera conversación',
       p: 'Pida que lo dicten dígito por dígito.',
       why: 'Sin el número no funciona ni la búsqueda, ni el contacto con el abogado, ni la fianza.',
@@ -372,6 +377,7 @@ const c: IntakeContent = {
       warn: 'La llamada desde el centro se graba. Decir el número A es seguro — la agencia ya lo tiene. Los casos y arrestos anteriores no se hablan por esta línea.',
     },
     idb: {
+      pages: ['where'],
       h: 'Reúna los datos básicos para la búsqueda',
       p: 'El nombre completo como en los documentos, fecha de nacimiento, país de nacimiento.',
       why: 'Sin número A la búsqueda en el localizador usa estos tres campos, y la escritura del nombre debe coincidir con el documento.',
@@ -509,6 +515,7 @@ const c: IntakeContent = {
       warn: 'No hable de los detalles por la línea telefónica grabada del centro. Ese es un tema para el abogado.',
     },
     lawyer_ready: {
+      pages: ['attorney'],
       h: 'Decida con tiempo a qué abogado llamar',
       p: 'En el momento de la detención ya es tarde para buscar — el número ya debe existir.',
       why: 'El abogado de oficio no existe en el proceso de inmigración. Cuando el contacto está elegido de antemano, el primer día se va en el caso y no en la búsqueda — y la elección en pánico no lleva a un estafador.',
@@ -556,6 +563,7 @@ const c: IntakeContent = {
       warn: 'No redactamos cartas para la corte. Qué debe ir exactamente en la carta lo determina el abogado según el caso concreto.',
     },
     bond_first: {
+      pages: ['bondpay', 'sponsor'],
       h: 'Primero averigüe si habrá audiencia de fianza',
       p: 'El derecho a tenerla se está disputando en las cortes.',
       why: 'Desde julio de 2025 la posición del gobierno es que una persona que entró al país sin inspección está sujeta a detención obligatoria y no tiene fianza. Las cortes federales de apelación se dividieron: el Segundo, Tercer, Sexto y Undécimo Circuito no estuvieron de acuerdo; el Quinto y el Octavo apoyaron al gobierno. El Quinto Circuito es Texas, Luisiana y Misisipi — adonde más trasladan a la gente. Se espera la revisión de la Corte Suprema. Conclusión: la respuesta depende de dónde está detenida la persona, y cambia con un traslado a otro estado.',
@@ -573,6 +581,7 @@ const c: IntakeContent = {
       warn: 'Solo un abogado puede determinar si esto aplica a una persona concreta. Aquí se describe el estado de la disputa a julio de 2026 — cambia rápido, mire la fecha.',
     },
     sponsor_ready: {
+      pages: ['sponsor'],
       h: 'Prepare los documentos de quien pagará la fianza',
       p: 'Va a necesitar la prueba de su estatus.',
       why: 'La fianza la puede pagar un ciudadano de EE. UU. o titular de green card mayor de 18, y también bufetes y organizaciones sin fines de lucro.',
@@ -584,6 +593,7 @@ const c: IntakeContent = {
       ],
     },
     sponsor_talk: {
+      pages: ['sponsor'],
       h: 'Hable con tiempo con quien podría pagar la fianza',
       p: 'Es una conversación dura; mejor no empezarla el día de la audiencia.',
       why: 'Personas con el estatus adecuado suele haber muy pocas, y la petición es seria — por eso se pospone hasta el final. La conversación es más fácil mostrando los dos caminos: la suma completa pagada por uno mismo — que se devuelve al final del caso, o a través de una compañía de fianzas — se paga solo un porcentaje, pero no se devuelve.',
@@ -598,6 +608,7 @@ const c: IntakeContent = {
       warn: 'No prometa plazos de devolución — no dependen ni de usted ni de él.',
     },
     bondfund: {
+      pages: ['sponsor'],
       h: 'Mire los fondos de fianza y las compañías de fianzas',
       p: 'La fianza la puede pagar una organización, no solo alguien cercano.',
       why: 'Si no hay personas adecuadas, quedan dos caminos sin ellas: un fondo de fianza sin fines de lucro — o una compañía comercial, que paga la fianza por un porcentaje que no se devuelve. Para muchos son las únicas opciones.',
@@ -693,6 +704,7 @@ const c: IntakeContent = {
       ],
     },
     phones: {
+      pages: ['firstcall'],
       h: 'Apréndase de memoria dos números de teléfono',
       p: 'El teléfono es lo primero que quitan.',
       why: 'Las organizaciones de ayuda lo ponen entre los primeros pasos: sin un número aprendido, la persona en el centro no puede llamar a nadie, aun teniendo la posibilidad de llamar.',
@@ -751,6 +763,7 @@ const c: IntakeContent = {
       ],
     },
     court_dates: {
+      pages: ['deadlines'],
       h: 'Tenga las fechas de audiencia bajo control',
       p: 'Faltar a una audiencia es la pérdida irreversible más común.',
       why: 'Si la persona no llega a una audiencia programada, el caso puede decidirse sin ella y en ausencia. La mayoría de las veces no es por fuga sino por un cambio de dirección: la notificación llega a la vieja.',
@@ -778,6 +791,7 @@ const c: IntakeContent = {
       warn: 'No hable de casos anteriores por la línea telefónica grabada del centro. Ese es un tema para el abogado.',
     },
     connect: {
+      pages: ['connect'],
       h: 'Arregle el contacto y el dinero para llamadas',
       p: 'Dos formas de pagar, y la diferencia de costo es considerable.',
       why: 'No se puede llamar hacia adentro — solo él llama. Mientras no haya dinero en la cuenta, no hay contacto. El contacto cálido y regular es lo que más protege a una persona adentro.',
@@ -811,6 +825,7 @@ const c: IntakeContent = {
       warn: 'Esto es información general de referencia, no ayuda médica ni psicológica.',
     },
     nosign: {
+      pages: ['documents'],
       h: 'No firmar nada sin abogado',
       p: 'Algunos documentos significan renunciar a la corte.',
       why: 'La salida voluntaria y la orden estipulada significan aceptar irse y renunciar a la audiencia. Después de firmar, el caso no llega al juez.',
@@ -822,6 +837,7 @@ const c: IntakeContent = {
       warn: 'ACLU, FIRRP e ILRC publican la recomendación de no firmar documentos antes de hablar con un abogado y dar solo el nombre propio.',
     },
     verify: {
+      pages: ['verify'],
       h: 'Verifique a quién le paga, antes de pagar',
       p: 'Tres registros oficiales, tres minutos.',
       why: 'En EE. UU. el notario no es abogado y no puede representar en la corte de inmigración. En América Latina el notario público sí es abogado. Sobre esa diferencia está construido el fraude más común.',
@@ -837,6 +853,7 @@ const c: IntakeContent = {
       warn: 'Señales de alarma: promesa de salida en una fecha concreta, garantía del resultado, pago adelantado en efectivo sin contrato, negarse a dar el número de licencia.',
     },
     freehelp: {
+      pages: ['attorney'],
       h: 'Busque una consulta legal gratuita',
       p: 'Las organizaciones sin fines de lucro hacen evaluaciones gratuitas.',
       why: 'Las organizaciones mantienen catálogos nacionales de ayuda migratoria gratuita y de bajo costo. La evaluación ayuda a entender qué opciones existen en general.',

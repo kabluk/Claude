@@ -13,6 +13,9 @@ const c: IntakeContent = {
     resultTitle: 'tasks',
     resultHint:
       'Built from your answers. Nothing went to our server — the list lives only in this browser. Tap a task to expand it.',
+    resultIntro:
+      'Do not worry: all of this can be handled, and not in one day. Go step by step from the top — inside each task it says why it matters, how to do it, and where exactly to get things. Many tasks link to a detailed instruction page. Save or print the list so it does not get lost.',
+    moreLabel: 'Detailed instructions',
     groups: { now: 'Now', soon: 'This week', later: 'When there is time' },
     whyPrefix: 'why it is on the list',
     sections: {
@@ -340,6 +343,7 @@ const c: IntakeContent = {
       ],
     },
     anum_find: {
+      pages: ['anum'],
       h: 'Find the A-Number in documents at home',
       p: 'It is almost certainly in papers you already have.',
       why: 'One old document closes several questions at once: the number, the case number, which court, what happened before.',
@@ -357,6 +361,7 @@ const c: IntakeContent = {
       warn: 'If the ICE site returns Access Denied — turn off the VPN or try another network. The site blocks some addresses; the search is not broken.',
     },
     anum_ask: {
+      pages: ['firstcall', 'connect'],
       h: 'Get the A-Number during the first conversation',
       p: 'Ask for it to be dictated one digit at a time.',
       why: 'Without the number, neither the search, nor contacting an attorney, nor bond works.',
@@ -368,6 +373,7 @@ const c: IntakeContent = {
       warn: 'The call from the facility is recorded. Saying the A-Number is safe — the agency already has it. Past cases and arrests are not discussed on this line.',
     },
     idb: {
+      pages: ['where'],
       h: 'Gather the basic search details',
       p: 'The full name as in the documents, date of birth, country of birth.',
       why: 'Without an A-Number the locator search uses these three fields, and the spelling of the name must match the document.',
@@ -505,6 +511,7 @@ const c: IntakeContent = {
       warn: 'Do not discuss details on the recorded phone line from the facility. That is a topic for the attorney.',
     },
     lawyer_ready: {
+      pages: ['attorney'],
       h: 'Decide in advance which attorney to call',
       p: 'At the moment of detention it is too late to search — the number must already be there.',
       why: 'There is no court-appointed attorney in immigration proceedings. When the contact is chosen in advance, the first day goes into the case, not into searching — and a panicked choice does not lead to a fraudster.',
@@ -552,6 +559,7 @@ const c: IntakeContent = {
       warn: 'We do not draft letters to the court. What exactly belongs in a letter is determined by the attorney for the specific case.',
     },
     bond_first: {
+      pages: ['bondpay', 'sponsor'],
       h: 'First find out whether there will be a bond hearing at all',
       p: 'The right to one is currently being disputed in the courts.',
       why: 'Since July 2025 the government’s position is that a person who entered the country without inspection is subject to mandatory detention and has no bond. The federal appellate courts split: the Second, Third, Sixth and Eleventh Circuits disagreed; the Fifth and Eighth sided with the government. The Fifth Circuit is Texas, Louisiana and Mississippi — where people are most often transferred. Supreme Court review is expected. Bottom line: the answer depends on where the person is held, and changes with a transfer to another state.',
@@ -569,6 +577,7 @@ const c: IntakeContent = {
       warn: 'Only an attorney can determine whether this applies to a specific person. This describes the state of the dispute as of July 2026 — it moves fast, check the date.',
     },
     sponsor_ready: {
+      pages: ['sponsor'],
       h: 'Prepare the documents of the person who will post the bond',
       p: 'They will need proof of status.',
       why: 'Bond can be posted by a US citizen or green card holder 18 or older, and also by law firms and nonprofit organizations.',
@@ -580,6 +589,7 @@ const c: IntakeContent = {
       ],
     },
     sponsor_talk: {
+      pages: ['sponsor'],
       h: 'Talk in advance to the person who could post the bond',
       p: 'It is a hard conversation; better not to start it on the day of the hearing.',
       why: 'There are usually only a few people with the right status around, and the request is serious — so it gets postponed until the last moment. The conversation is easier when you show both paths: the full amount posted personally — returned at the end of the case, or through a bondsman — only a percentage is paid, but it is not refunded.',
@@ -594,6 +604,7 @@ const c: IntakeContent = {
       warn: 'Do not promise refund timing — it depends on neither of you.',
     },
     bondfund: {
+      pages: ['sponsor'],
       h: 'Look at bond funds and bondsmen',
       p: 'An organization can post the bond, not only someone close.',
       why: 'If there is no suitable person, there are two paths without one: a nonprofit bond fund — or a commercial bondsman, who posts the bond for a non-refundable percentage of the amount. For many people these are the only options.',
@@ -689,6 +700,7 @@ const c: IntakeContent = {
       ],
     },
     phones: {
+      pages: ['firstcall'],
       h: 'Memorize two phone numbers',
       p: 'The phone is taken first.',
       why: 'Help organizations put this among the first steps: without a memorized number a person in the facility cannot call anyone, even when a call is allowed.',
@@ -747,6 +759,7 @@ const c: IntakeContent = {
       ],
     },
     court_dates: {
+      pages: ['deadlines'],
       h: 'Keep the hearing dates under control',
       p: 'A missed hearing is the most common irreversible loss.',
       why: 'If a person does not come to a scheduled hearing, the case can be decided without him, in absentia. Most often this happens not because of flight but because of a move: the notice goes to the old address.',
@@ -774,6 +787,7 @@ const c: IntakeContent = {
       warn: 'Do not discuss past cases on the recorded phone line from the facility. That is a topic for the attorney.',
     },
     connect: {
+      pages: ['connect'],
       h: 'Set up contact and money for calls',
       p: 'Two ways to pay, and the difference in cost is significant.',
       why: 'You cannot call in — only he calls out. While there is no money on the account, there is no contact at all. Regular warm contact is what protects a person inside more than anything else.',
@@ -807,6 +821,7 @@ const c: IntakeContent = {
       warn: 'This is general reference information, not medical or psychological help.',
     },
     nosign: {
+      pages: ['documents'],
       h: 'Sign nothing without an attorney',
       p: 'Some documents mean giving up the court case.',
       why: 'Voluntary departure and stipulated removal mean agreeing to leave and giving up the hearing. After signing, the case never reaches a judge.',
@@ -818,6 +833,7 @@ const c: IntakeContent = {
       warn: 'ACLU, FIRRP and ILRC publish the recommendation not to sign documents before speaking with an attorney and to give only your name.',
     },
     verify: {
+      pages: ['verify'],
       h: 'Check who you are paying before you pay',
       p: 'Three government registries, three minutes.',
       why: 'In the US a notary is not a lawyer and cannot represent anyone in immigration court. In Latin America a notario público is a lawyer. The most common fraud is built on that difference.',
@@ -834,6 +850,7 @@ const c: IntakeContent = {
       warn: 'Red flags: a promise of release on a specific day, a guarantee of the outcome, cash up front with no agreement, refusing to give a license number.',
     },
     freehelp: {
+      pages: ['attorney'],
       h: 'Look for a free legal consultation',
       p: 'Nonprofit organizations run free screenings.',
       why: 'Organizations maintain national directories of free and low-cost immigration help. A screening helps understand which options exist at all.',

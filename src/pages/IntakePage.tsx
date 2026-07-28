@@ -15,7 +15,7 @@ export function IntakePage({
 }) {
   return (
     <Layout lang={lang} pageKey="intake" ui={ui} title={`${title} · DETNAV`} listen={false}>
-      <Quiz c={c} />
+      <Quiz c={c} lang={lang} nav={ui.nav} />
     </Layout>
   )
 }

@@ -139,6 +139,7 @@ export interface IntakeTask {
   say?: string
   form?: string
   warn?: string
+  pages?: string[]
 }
 export interface IntakeContent {
   ui: {
@@ -149,6 +150,8 @@ export interface IntakeContent {
     resultEyebrow: string
     resultTitle: string
     resultHint: string
+    resultIntro: string
+    moreLabel: string
     groups: { now: string; soon: string; later: string }
     whyPrefix: string
     sections: { why: string; how: string; src: string; info: string; say: string; sayTag: string; form: string; warn: string }

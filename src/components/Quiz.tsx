@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import type { IntakeContent, IntakeTask } from '@/lib/types'
+import { Link } from 'react-router-dom'
+import type { IntakeContent, IntakeTask, Lang, UIStrings } from '@/lib/types'
+import { pathFor } from '@/lib/slugs'
 import { rules, visibleQuestions, type Ans, type Priority } from '@/lib/intake'
 
 // Опрос целиком в браузере: ответы никуда не отправляются, состояние живёт
@@ -12,6 +14,8 @@ function TaskCard({
   open,
   onToggle,
   c,
+  lang,
+  nav,
 }: {
   d: IntakeTask
   prio: Priority
@@ -19,6 +23,8 @@ function TaskCard({
   open: boolean
   onToggle: () => void
   c: IntakeContent
+  lang: Lang
+  nav: UIStrings['nav']
 }) {
   const s = c.ui.sections
   return (
@@ -93,6 +99,16 @@ function TaskCard({
             <div className="warnbox">{d.warn}</div>
           </>
         )}
+        {d.pages && d.pages.length > 0 && (
+          <>
+            <h4>{c.ui.moreLabel}</h4>
+            {d.pages.map((p) => (
+              <Link key={p} className="ghost" to={pathFor(lang, p)}>
+                {nav[p]} →
+              </Link>
+            ))}
+          </>
+        )}
         <div className="whyline">
           {c.ui.whyPrefix}: {reason}
         </div>
@@ -101,7 +117,7 @@ function TaskCard({
   )
 }
 
-export function Quiz({ c }: { c: IntakeContent }) {
+export function Quiz({ c, lang, nav }: { c: IntakeContent; lang: Lang; nav: UIStrings['nav'] }) {
   const [ans, setAns] = useState<Ans>({})
   const [i, setI] = useState(0)
   const [fin, setFin] = useState(false)
@@ -160,6 +176,9 @@ export function Quiz({ c }: { c: IntakeContent }) {
           {T.length} {c.ui.resultTitle}
         </h1>
         <p className="hint">{c.ui.resultHint}</p>
+        <div className="box g">
+          <p>{c.ui.resultIntro}</p>
+        </div>
         {groups.map((p) => {
           const list = T.filter((t) => t.p === p)
           if (!list.length) return null
@@ -175,6 +194,8 @@ export function Quiz({ c }: { c: IntakeContent }) {
                   open={!!open[t.k]}
                   onToggle={() => setOpen((o) => ({ ...o, [t.k]: !o[t.k] }))}
                   c={c}
+                  lang={lang}
+                  nav={nav}
                 />
               ))}
             </div>
