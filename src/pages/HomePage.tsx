@@ -5,23 +5,53 @@ import { Layout, Footer, PageIndex } from '@/components/Layout'
 import { Demo } from '@/components/Demo'
 import { pathFor } from '@/lib/slugs'
 
-// Плюсы появляются строчка за строчкой; при prefers-reduced-motion
-// CSS показывает все сразу без анимации.
+// Плюсы сменяют друг друга, как сценарии в демонстрации: мягкий выезд
+// снизу с расфокусом, градиентный текст. При prefers-reduced-motion —
+// статичный список целиком, без смены кадров.
 function HeroPoints({ lead, points }: { lead: string; points: string[] }) {
-  const [shown, setShown] = useState(0)
+  const [idx, setIdx] = useState(0)
+  const [reduced, setReduced] = useState(false)
+
   useEffect(() => {
-    if (shown >= points.length) return
-    const t = setTimeout(() => setShown((s) => s + 1), shown === 0 ? 350 : 750)
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    setReduced(mq.matches)
+    const onChange = (e: MediaQueryListEvent) => setReduced(e.matches)
+    mq.addEventListener('change', onChange)
+    return () => mq.removeEventListener('change', onChange)
+  }, [])
+
+  useEffect(() => {
+    if (reduced) return
+    const t = setTimeout(() => setIdx((i) => (i + 1) % points.length), 2400)
     return () => clearTimeout(t)
-  }, [shown, points.length])
+  }, [idx, reduced, points.length])
+
+  if (reduced) {
+    return (
+      <div className="hero-points">
+        <p className="hero-lead">{lead}</p>
+        {points.map((p, i) => (
+          <div key={i} className="hp in">
+            {p}
+          </div>
+        ))}
+      </div>
+    )
+  }
+
   return (
-    <div className="hero-points">
+    <div>
       <p className="hero-lead">{lead}</p>
-      {points.map((p, i) => (
-        <div key={i} className={`hp ${i < shown ? 'in' : ''}`}>
-          {p}
-        </div>
-      ))}
+      <div className="rotator" aria-live="polite">
+        <span className="pt" key={idx}>
+          {points[idx]}
+        </span>
+      </div>
+      <div className="rot-dots" aria-hidden="true">
+        {points.map((_, i) => (
+          <i key={i} className={i === idx ? 'on' : ''} />
+        ))}
+      </div>
     </div>
   )
 }

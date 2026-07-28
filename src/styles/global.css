@@ -454,11 +454,58 @@ code {
 .hero-points {
   margin-bottom: 22px;
 }
+.rotator {
+  min-height: 56px;
+  margin-bottom: 22px;
+  display: flex;
+  align-items: flex-start;
+}
+.rotator .pt {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  background: linear-gradient(92deg, var(--color-green), var(--color-blue));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: ptIn 0.55s cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+@keyframes ptIn {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+.rot-dots {
+  display: flex;
+  gap: 5px;
+  margin: 0 0 22px;
+}
+.rot-dots i {
+  width: 14px;
+  height: 3px;
+  background: var(--color-bezel);
+  display: block;
+  transition: background 0.3s;
+}
+.rot-dots i.on {
+  background: var(--color-green);
+}
 @media (prefers-reduced-motion: reduce) {
   .hp {
     transition: none;
     opacity: 1;
     transform: none;
+  }
+  .rotator .pt {
+    animation: none;
   }
 }
 
