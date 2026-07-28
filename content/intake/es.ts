@@ -55,10 +55,10 @@ const c: IntakeContent = {
     },
     state: {
       bn: 'Marco',
-      q: { self: '¿Cómo están las cosas para usted?', other: '¿Qué pasó?' },
+      q: { self: '¿Cuál es su situación?', other: '¿Qué pasó?' },
       hint: 'De esto depende qué va primero en la lista: pasos urgentes o preparación con calma.',
       o: {
-        nothing: { t: { self: 'Por ahora nada', other: 'Por ahora no ha pasado nada' } },
+        nothing: { t: { self: 'Todo tranquilo — me preparo con tiempo', other: 'Por ahora no ha pasado nada' } },
         case: { t: 'Hay un caso abierto en la corte' },
         before: { t: 'Lo detuvieron antes, ahora está libre' },
         just: { t: 'Lo detuvieron hoy o ayer' },

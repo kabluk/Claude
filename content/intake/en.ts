@@ -54,10 +54,10 @@ const c: IntakeContent = {
     },
     state: {
       bn: 'Framing',
-      q: { self: 'Where do things stand for you?', other: 'What happened?' },
+      q: { self: 'What is your situation?', other: 'What happened?' },
       hint: 'This decides what comes first on the list: urgent steps or calm preparation.',
       o: {
-        nothing: { t: { self: 'Nothing so far', other: 'Nothing has happened yet' } },
+        nothing: { t: { self: 'All calm — preparing in advance', other: 'Nothing has happened yet' } },
         case: { t: 'There is an open case in court' },
         before: { t: 'Detained before, free now' },
         just: { t: 'Detained today or yesterday' },
