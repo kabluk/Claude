@@ -10,6 +10,7 @@ const c: PageContent = {
       title: 'There is no court-appointed attorney',
       body: [
         'In immigration proceedings the government does not provide an attorney. Free help exists, but with waiting lists, and not everyone is taken.',
+        'According to TRAC data for 2026, bond is granted three times more often with an attorney: 42% of hearings versus 14% without one.',
       ],
     },
     { kind: 'h2', text: 'Path 1 · Free' },

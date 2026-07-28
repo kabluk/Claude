@@ -49,6 +49,15 @@ const c: PageContent = {
         'The answer depends on the circuit where the person is held, and changes with a transfer. This is the first question for the attorney — before looking for money or a sponsor.',
       ],
     },
+    {
+      kind: 'callout',
+      tone: 'y',
+      title: 'Far fewer people are released on bond',
+      body: [
+        'According to independent TRAC statistics, 2025 had the lowest share of granted bonds on record, and early 2026 is lower still: in April 2026, 755 people nationwide were released on bond.',
+        'This is general statistics, not a prediction for a specific case. That is why other paths are prepared in parallel with bond — the attorney lists them.',
+      ],
+    },
     { kind: 'ilink', page: 'sponsor', label: 'Bond sponsor' },
   ],
 }

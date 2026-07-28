@@ -9,9 +9,9 @@ const c: PageContent = {
       tone: 'y',
       title: 'First — find out whether there will be a bond hearing',
       body: [
-        'Since July 2025 the government’s position is that a person who entered the country without inspection is subject to mandatory detention and gets no bond. The appellate circuits split; the Fifth Circuit — Texas, Louisiana, Mississippi — sided with the government. Supreme Court review is expected.',
+        'Since July 2025 the government’s position is that a person who entered the country without inspection is subject to mandatory detention and gets no bond. The appellate circuits split: the Second, Third and Sixth are for hearings; the Fifth (Texas, Louisiana, Mississippi) and the Eighth are for mandatory detention. The Supreme Court will take up the question in October 2026.',
         'The answer depends on where the person is held, and it changes with a transfer. Only an attorney can determine whether this applies to a specific person — ask that question first.',
-        'This describes the state of the dispute as of July 27, 2026 — it moves fast, check the date.',
+        'This describes the state of the dispute as of July 28, 2026 — it moves fast, check the date.',
       ],
     },
     { kind: 'h2', text: 'Who can post bond' },

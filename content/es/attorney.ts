@@ -10,6 +10,7 @@ const c: PageContent = {
       title: 'No existe el abogado de oficio',
       body: [
         'En el proceso de inmigración el gobierno no proporciona abogado. La ayuda gratuita existe, pero con listas de espera, y no toman a todos.',
+        'Según los datos de TRAC de 2026, la fianza se concede tres veces más a menudo con abogado: 42% de las audiencias frente a 14% sin representante.',
       ],
     },
     { kind: 'h2', text: 'Camino 1 · Gratis' },

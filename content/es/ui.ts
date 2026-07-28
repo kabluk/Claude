@@ -8,7 +8,7 @@ const ui: UIStrings = {
   allPages: 'Todas las páginas',
   disclaimer:
     'No somos abogados y no damos asesoría legal. Aquí solo hay hechos y enlaces a fuentes oficiales.',
-  updated: 'Información actualizada el 27 de julio de 2026. Las reglas cambian — mire la fecha.',
+  updated: 'Información actualizada el 28 de julio de 2026. Las reglas cambian — mire la fecha.',
   nav: {
     where: 'Cómo encontrarlo',
     anum: 'Dónde está el número A',

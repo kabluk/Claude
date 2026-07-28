@@ -9,9 +9,9 @@ const c: PageContent = {
       tone: 'y',
       title: 'Primero — averiguar si habrá audiencia de fianza',
       body: [
-        'Desde julio de 2025 la posición del gobierno es que una persona que entró al país sin inspección está sujeta a detención obligatoria y no tiene fianza. Los circuitos de apelación se dividieron; el Quinto Circuito — Texas, Luisiana, Misisipi — apoyó al gobierno. Se espera la revisión de la Corte Suprema.',
+        'Desde julio de 2025 la posición del gobierno es que una persona que entró al país sin inspección está sujeta a detención obligatoria y no tiene fianza. Los circuitos de apelación se dividieron: el Segundo, Tercer y Sexto — a favor de las audiencias; el Quinto (Texas, Luisiana, Misisipi) y el Octavo — por la detención obligatoria. La Corte Suprema tratará la cuestión en octubre de 2026.',
         'La respuesta depende de dónde está detenida la persona, y cambia con un traslado. Solo un abogado puede determinar si esto aplica a una persona concreta — haga esa pregunta primero.',
-        'Aquí se describe el estado de la disputa al 27 de julio de 2026 — cambia rápido, mire la fecha.',
+        'Aquí se describe el estado de la disputa al 28 de julio de 2026 — cambia rápido, mire la fecha.',
       ],
     },
     { kind: 'h2', text: 'Quién puede pagar la fianza' },

@@ -518,7 +518,7 @@ const c: IntakeContent = {
       pages: ['attorney'],
       h: 'Decida con tiempo a qué abogado llamar',
       p: 'En el momento de la detención ya es tarde para buscar — el número ya debe existir.',
-      why: 'El abogado de oficio no existe en el proceso de inmigración. Cuando el contacto está elegido de antemano, el primer día se va en el caso y no en la búsqueda — y la elección en pánico no lleva a un estafador.',
+      why: 'El abogado de oficio no existe en el proceso de inmigración. Cuando el contacto está elegido de antemano, el primer día se va en el caso y no en la búsqueda — y la elección en pánico no lleva a un estafador. Según los datos de TRAC de 2026, la fianza se concede tres veces más a menudo con abogado: 42% de las audiencias frente a 14% sin representante.',
       how: [
         'Mire los dos caminos: organizaciones gratuitas y abogados de pago — las direcciones exactas están abajo',
         'Reúna 2–3 candidatos: la práctica es federal, se puede buscar por idioma y no por ciudad',
@@ -566,13 +566,15 @@ const c: IntakeContent = {
       pages: ['bondpay', 'sponsor'],
       h: 'Primero averigüe si habrá audiencia de fianza',
       p: 'El derecho a tenerla se está disputando en las cortes.',
-      why: 'Desde julio de 2025 la posición del gobierno es que una persona que entró al país sin inspección está sujeta a detención obligatoria y no tiene fianza. Las cortes federales de apelación se dividieron: el Segundo, Tercer, Sexto y Undécimo Circuito no estuvieron de acuerdo; el Quinto y el Octavo apoyaron al gobierno. El Quinto Circuito es Texas, Luisiana y Misisipi — adonde más trasladan a la gente. Se espera la revisión de la Corte Suprema. Conclusión: la respuesta depende de dónde está detenida la persona, y cambia con un traslado a otro estado.',
+      why: 'Desde julio de 2025 la posición del gobierno es que una persona que entró al país sin inspección está sujeta a detención obligatoria y no tiene fianza. Las cortes federales de apelación se dividieron: el Segundo, Tercer y Sexto Circuito no estuvieron de acuerdo; el Quinto y el Octavo apoyaron al gobierno (la decisión de un panel del Quinto Circuito a favor de las audiencias, del 2 de julio de 2026, fue anulada por el pleno; nueva revisión en septiembre). El Quinto Circuito es Texas, Luisiana y Misisipi — adonde más trasladan a la gente. La Corte Suprema tratará la cuestión en octubre de 2026. Conclusión: la respuesta depende de dónde está detenida la persona, y cambia con un traslado a otro estado.',
       how: [
         'Haga esta pregunta al abogado primero, antes que todo lo demás',
         'Averigüe en qué circuito está el centro',
         'Pregunte qué cambia si trasladan a la persona a otro estado',
         'Solo después decida si buscar a quien pague la fianza',
+        'Prepare dos planes en paralelo: para la salida y para una detención que dure meses',
       ],
+      info: 'La fianza no es el único mecanismo de salida. Existen también el parole (liberación discrecional por decisión de ICE), las mociones de revisión y la petición federal de habeas corpus — el camino que más crece en 2026: los abogados de AILA lo llaman, para muchos, el único que funciona en la práctica. Qué mecanismos aplican a un caso concreto lo determina solo el abogado.',
       src: [
         ['Si aún no hay abogado · ayuda gratuita por estados', 'justice.gov/eoir/list-pro-bono-legal-service-providers'],
         ['El catálogo de ayuda gratuita y de bajo costo', 'immigrationlawhelp.org'],

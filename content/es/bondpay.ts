@@ -49,6 +49,15 @@ const c: PageContent = {
         'La respuesta depende del circuito donde está la persona, y cambia con un traslado. Esta es la primera pregunta para el abogado — antes de buscar el dinero o a quien lo pague.',
       ],
     },
+    {
+      kind: 'callout',
+      tone: 'y',
+      title: 'Muchas menos personas salen bajo fianza',
+      body: [
+        'Según las estadísticas independientes de TRAC, 2025 tuvo la proporción más baja de fianzas concedidas desde que hay registros, y el inicio de 2026 es aún más bajo: en abril de 2026 salieron bajo fianza 755 personas en todo el país.',
+        'Es estadística general, no un pronóstico para un caso concreto. Por eso, junto con la fianza se preparan otros caminos — el abogado los enumera.',
+      ],
+    },
     { kind: 'ilink', page: 'sponsor', label: 'Quién paga la fianza' },
   ],
 }

@@ -514,7 +514,7 @@ const c: IntakeContent = {
       pages: ['attorney'],
       h: 'Decide in advance which attorney to call',
       p: 'At the moment of detention it is too late to search — the number must already be there.',
-      why: 'There is no court-appointed attorney in immigration proceedings. When the contact is chosen in advance, the first day goes into the case, not into searching — and a panicked choice does not lead to a fraudster.',
+      why: 'There is no court-appointed attorney in immigration proceedings. When the contact is chosen in advance, the first day goes into the case, not into searching — and a panicked choice does not lead to a fraudster. According to TRAC data for 2026, bond is granted three times more often with an attorney: 42% of hearings versus 14% without one.',
       how: [
         'Look at both paths: free organizations and paid attorneys — exact addresses below',
         'Collect 2–3 candidates: the practice is federal, you can search by language rather than by city',
@@ -562,13 +562,15 @@ const c: IntakeContent = {
       pages: ['bondpay', 'sponsor'],
       h: 'First find out whether there will be a bond hearing at all',
       p: 'The right to one is currently being disputed in the courts.',
-      why: 'Since July 2025 the government’s position is that a person who entered the country without inspection is subject to mandatory detention and has no bond. The federal appellate courts split: the Second, Third, Sixth and Eleventh Circuits disagreed; the Fifth and Eighth sided with the government. The Fifth Circuit is Texas, Louisiana and Mississippi — where people are most often transferred. Supreme Court review is expected. Bottom line: the answer depends on where the person is held, and changes with a transfer to another state.',
+      why: 'Since July 2025 the government’s position is that a person who entered the country without inspection is subject to mandatory detention and has no bond. The federal appellate courts split: the Second, Third and Sixth Circuits disagreed; the Fifth and Eighth sided with the government (a Fifth Circuit panel ruling in favor of hearings from July 2, 2026 was vacated by the full court; rehearing in September). The Fifth Circuit is Texas, Louisiana and Mississippi — where people are most often transferred. The Supreme Court will take up the question in October 2026. Bottom line: the answer depends on where the person is held, and changes with a transfer to another state.',
       how: [
         'Ask the attorney this question first, before anything else',
         'Find out which circuit the facility is in',
         'Ask what changes if the person is transferred to another state',
         'Only then decide whether to look for someone to post the bond',
+        'Prepare two plans in parallel: for release, and for detention that lasts months',
       ],
+      info: 'Bond is not the only release mechanism. There are also parole (discretionary release by ICE decision), motions for reconsideration, and the federal habeas corpus petition — the fastest-growing path in 2026: AILA lawyers call it, for many, the only one that works in practice. Which mechanisms apply to a specific case is determined only by the attorney.',
       src: [
         ['If there is no attorney yet · free help by state', 'justice.gov/eoir/list-pro-bono-legal-service-providers'],
         ['The directory of free and low-cost help', 'immigrationlawhelp.org'],
