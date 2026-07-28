@@ -31,6 +31,12 @@ const ui: UIStrings = {
     data: 'Your data',
     disclaimer: 'We are not lawyers',
   },
+  navGroups: [
+    { label: 'The first night', keys: ['intake', 'where', 'anum', 'documents', 'firstcall', 'verify'] },
+    { label: 'The road and bond', keys: ['journey', 'connect', 'attorney', 'sponsor', 'bondpay', 'deadlines'] },
+    { label: 'Directory', keys: ['state-ca', 'state-tx', 'state-la', 'facility-adelanto'] },
+    { label: 'About', keys: ['orgs', 'about', 'data', 'disclaimer'] },
+  ],
   iceGate: {
     title: 'You are about to open the ICE website',
     body: [

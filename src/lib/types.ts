@@ -71,6 +71,7 @@ export interface UIStrings {
   disclaimer: string
   updated: string
   nav: Record<string, string>
+  navGroups: { label: string; keys: string[] }[]
   iceGate: {
     title: string
     body: string[]

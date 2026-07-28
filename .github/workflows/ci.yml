@@ -19,3 +19,5 @@ jobs:
       - run: npm run lint:minimize
       - run: npm run typecheck
       - run: npm run build
+      # Все внутренние ссылки должны разрешаться в существующие страницы
+      - run: node scripts/check-links.mjs

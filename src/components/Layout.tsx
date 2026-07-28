@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useEffect, type ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { Head } from 'vite-react-ssg'
 import { LANGS, type Lang, type UIStrings } from '@/lib/types'
@@ -25,6 +25,28 @@ export function Layout({
   children: ReactNode
 }) {
   const isHome = pageKey === 'home'
+
+  // Плавное появление блоков при скролле. Включается только когда есть
+  // JavaScript (класс на <html>): без него страница полностью видима.
+  useEffect(() => {
+    document.documentElement.classList.add('reveal-ready')
+    const main = document.querySelector('main')
+    if (!main || !('IntersectionObserver' in window)) return
+    const io = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            e.target.classList.add('rev-in')
+            io.unobserve(e.target)
+          }
+        }
+      },
+      { rootMargin: '0px 0px -8% 0px' },
+    )
+    for (const el of main.children) io.observe(el)
+    return () => io.disconnect()
+  }, [pageKey, lang])
+
   return (
     <div className="phone">
       <Head>
@@ -79,10 +101,15 @@ export function PageIndex({ lang, ui }: { lang: Lang; ui: UIStrings }) {
       <h2 className="page-h2" style={{ marginTop: 0 }}>
         {ui.allPages}
       </h2>
-      {Object.entries(ui.nav).map(([key, label]) => (
-        <Link key={key} to={pathFor(lang, key)}>
-          {label} →
-        </Link>
+      {ui.navGroups.map((g) => (
+        <div key={g.label} className="idx-group">
+          <div className="idx-label">{g.label}</div>
+          {g.keys.map((key) => (
+            <Link key={key} to={pathFor(lang, key)}>
+              {ui.nav[key]} →
+            </Link>
+          ))}
+        </div>
       ))}
     </nav>
   )

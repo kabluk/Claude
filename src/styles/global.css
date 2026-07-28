@@ -411,6 +411,38 @@ code {
 .idx a:hover {
   color: var(--color-ink);
 }
+.idx-group {
+  margin-bottom: 18px;
+}
+.idx-label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-dim);
+  font-family: var(--font-mono);
+  margin: 14px 0 4px;
+  opacity: 0.75;
+}
+
+/* плавное появление блоков при скролле — только с JavaScript */
+html.reveal-ready main > * {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
+}
+html.reveal-ready main > .rev-in {
+  opacity: 1;
+  transform: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  html.reveal-ready main > * {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
 
 /* ГЛАВНАЯ · демонстрация */
 .hero {
