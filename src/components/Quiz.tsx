@@ -4,6 +4,30 @@ import type { IntakeContent, IntakeTask, Lang, UIStrings } from '@/lib/types'
 import { pathFor } from '@/lib/slugs'
 import { rules, visibleQuestions, type Ans, type Priority } from '@/lib/intake'
 import { clearIntakeSnapshot, getIntakeSnapshot, saveIntakeSnapshot } from '@/lib/intakeSession'
+import { IceGate } from './IceGate'
+
+// Адреса в «Где именно взять» бывают трёх видов: веб-адрес, телефон
+// и обычное описание («офис школы»). Первые два делаем нажимаемыми;
+// ссылки на ice.gov — только через предупреждающий экран.
+const URL_RE = /^[a-z0-9-]+(\.[a-z0-9-]+)+(\/\S*)?$/i
+const PHONE_RE = /^[\d][\d\s()-]{6,}#?$/
+
+function SrcAddr({ addr, ui }: { addr: string; ui: UIStrings }) {
+  if (/(^|\.)ice\.gov(\/|$)/i.test(addr.split('/')[0])) {
+    return <IceGate href={`https://${addr}`} label={addr} ui={ui} />
+  }
+  if (URL_RE.test(addr)) {
+    return (
+      <a href={`https://${addr}`} target="_blank" rel="noopener noreferrer">
+        {addr} ↗
+      </a>
+    )
+  }
+  if (PHONE_RE.test(addr)) {
+    return <a href={`tel:${addr.replace(/[^\d#+]/g, '')}`}>{addr}</a>
+  }
+  return <span>{addr}</span>
+}
 
 // Опрос целиком в браузере: ответы никуда не отправляются, состояние живёт
 // в памяти вкладки. Закрыли вкладку — ничего не осталось.
@@ -16,7 +40,7 @@ function TaskCard({
   onToggle,
   c,
   lang,
-  nav,
+  ui,
 }: {
   d: IntakeTask
   prio: Priority
@@ -25,7 +49,7 @@ function TaskCard({
   onToggle: () => void
   c: IntakeContent
   lang: Lang
-  nav: UIStrings['nav']
+  ui: UIStrings
 }) {
   const s = c.ui.sections
   return (
@@ -67,7 +91,7 @@ function TaskCard({
               {d.src.map(([label, addr], i) => (
                 <div key={i}>
                   <b>{label}</b>
-                  <span>{addr}</span>
+                  <SrcAddr addr={addr} ui={ui} />
                 </div>
               ))}
             </div>
@@ -105,7 +129,7 @@ function TaskCard({
             <h4>{c.ui.moreLabel}</h4>
             {d.pages.map((p) => (
               <Link key={p} className="ghost" to={pathFor(lang, p)}>
-                {nav[p]} →
+                {ui.nav[p]} →
               </Link>
             ))}
           </>
@@ -118,7 +142,7 @@ function TaskCard({
   )
 }
 
-export function Quiz({ c, lang, nav }: { c: IntakeContent; lang: Lang; nav: UIStrings['nav'] }) {
+export function Quiz({ c, lang, ui }: { c: IntakeContent; lang: Lang; ui: UIStrings }) {
   const saved = getIntakeSnapshot()
   const [ans, setAns] = useState<Ans>(() => saved?.ans ?? {})
   const [i, setI] = useState(() => saved?.i ?? 0)
@@ -202,7 +226,7 @@ export function Quiz({ c, lang, nav }: { c: IntakeContent; lang: Lang; nav: UISt
                   onToggle={() => setOpen((o) => ({ ...o, [t.k]: !o[t.k] }))}
                   c={c}
                   lang={lang}
-                  nav={nav}
+                  ui={ui}
                 />
               ))}
             </div>

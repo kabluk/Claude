@@ -371,6 +371,11 @@ code {
   font-size: 15px;
   font-weight: 700;
 }
+.phoneline .num a {
+  color: var(--color-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
 .phoneline .who {
   font-size: 13.5px;
   font-weight: 600;
@@ -1018,11 +1023,25 @@ code {
   font-weight: 600;
   margin-bottom: 1px;
 }
-.srcbox span {
+.srcbox span,
+.srcbox a {
   font-family: var(--font-mono);
   font-size: 12px;
   color: var(--color-blue);
   word-break: break-all;
+}
+.srcbox a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  display: inline-block;
+  padding: 4px 0;
+}
+.srcbox .ghost {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--color-blue);
+  padding: 8px 12px;
+  margin: 4px 0;
 }
 .whyline {
   font-size: 11px;

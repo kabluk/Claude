@@ -81,7 +81,9 @@ export function Blocks({ blocks, lang, ui }: { blocks: Block[]; lang: Lang; ui: 
               <div key={i}>
                 {b.entries.map((e, j) => (
                   <div key={j} className="phoneline">
-                    <div className="num">{e.num}</div>
+                    <div className="num">
+                      <a href={`tel:${e.num.replace(/[^\d+]/g, '')}`}>{e.num}</a>
+                    </div>
                     <div className="who">{e.who}</div>
                     <div className="note">{e.note}</div>
                   </div>
