@@ -38,7 +38,7 @@ const c: IntakeContent = {
       h: 'Qué hacer con esta lista ahora',
       p: 'Descárguela o imprímala — es el borrador del paquete para el abogado. Los abogados cobran por minutos: una familia que llega con la lista ordenada y los documentos paga por el trabajo en el caso, no por ordenar papeles. Prepare también las respuestas a las preguntas que el abogado hará primero: año y forma de entrada, casos y órdenes anteriores, detenciones anteriores. Aquí no se preguntan y no se muestran en pantalla — esa conversación es solo con el abogado.',
     },
-    printBtn: 'Descargar la lista',
+    printBtn: 'Guardar o imprimir',
     againBtn: 'Empezar de nuevo',
     foot: 'No somos abogados y no damos asesoría legal. Esto es una lista de tareas, no una posición legal. Los ejemplos son correspondencia cotidiana; no redactamos documentos legales.',
   },

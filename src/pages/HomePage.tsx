@@ -42,7 +42,13 @@ function HeroPoints({ lead, points }: { lead: string; points: string[] }) {
   return (
     <div>
       <p className="hero-lead">{lead}</p>
-      <div className="rotator" aria-live="polite">
+      {/* скринридеру — весь список сразу, без «болтовни» о смене кадров */}
+      <ul className="sr-only">
+        {points.map((p, i) => (
+          <li key={i}>{p}</li>
+        ))}
+      </ul>
+      <div className="rotator" aria-hidden="true">
         <span className="pt" key={idx}>
           {points[idx]}
         </span>
@@ -70,16 +76,6 @@ export function HomePage({ lang, c, ui }: { lang: Lang; c: HomeContent; ui: UISt
         </h1>
         <HeroPoints lead={c.heroLead} points={c.heroPoints} />
         <Demo c={c} />
-        <h2 className="landing-h2" style={{ marginTop: 4 }}>
-          {c.benefitsTitle}
-        </h2>
-        {c.benefits.map((x, i) => (
-          <div key={i} className="limit">
-            <b>{x.b}</b>
-            <p>{x.p}</p>
-          </div>
-        ))}
-        <div style={{ height: 10 }} />
         <Link className="cta-block" to={pathFor(lang, 'intake')}>
           {c.cta}
         </Link>
@@ -94,6 +90,16 @@ export function HomePage({ lang, c, ui }: { lang: Lang; c: HomeContent; ui: UISt
           ))}
         </div>
       </div>
+
+      <section className="landing-section">
+        <h2 className="landing-h2">{c.benefitsTitle}</h2>
+        {c.benefits.map((x, i) => (
+          <div key={i} className="limit">
+            <b>{x.b}</b>
+            <p>{x.p}</p>
+          </div>
+        ))}
+      </section>
 
       <section className="landing-section">
         <h2 className="landing-h2">{c.stepsTitle}</h2>

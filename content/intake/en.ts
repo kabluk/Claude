@@ -37,7 +37,7 @@ const c: IntakeContent = {
       h: 'What to do with this list next',
       p: 'Download or print it — this is the draft of the package for the attorney. Attorneys bill by the minute: a family that arrives with an ordered list and documents pays for work on the case, not for sorting papers. Also prepare answers to the questions the attorney will ask first: year and manner of entry, past cases and orders, past detentions. They are not asked here and are not shown on screen — that conversation is for the attorney only.',
     },
-    printBtn: 'Download the list',
+    printBtn: 'Save or print',
     againBtn: 'Start over',
     foot: 'We are not attorneys and we do not give legal advice. This is a task list, not a legal position. The samples are everyday correspondence; we do not draft legal documents.',
   },

@@ -87,6 +87,10 @@ for (const lang of ['', ...LANGS]) {
     }
   }
 }
+// До открытия detnav.com превью не должно попадать в поисковики
+// (правило №7: не публиковать до проверки юристом и носителем испанского).
+// Перед настоящим запуском собрать с PUBLIC_LAUNCH=1.
+const isLaunch = process.env.PUBLIC_LAUNCH === '1'
 const scriptSrc = ['\'self\'', ...inlineHashes].join(' ')
 writeFileSync(
   join(DIST, '_headers'),
@@ -95,7 +99,7 @@ writeFileSync(
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer
   Permissions-Policy: geolocation=(), camera=(), microphone=()
-  Content-Security-Policy: default-src 'self'; script-src ${scriptSrc}; font-src 'self' fonts.gstatic.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; img-src 'self' data:
+${isLaunch ? '' : '  X-Robots-Tag: noindex\n'}  Content-Security-Policy: default-src 'self'; script-src ${scriptSrc}; font-src 'self' fonts.gstatic.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; img-src 'self' data:
 `,
 )
 writeFileSync(
@@ -110,6 +114,10 @@ console.log(`gen-sitemap: _headers (${inlineHashes.size} script-хэшей) и _
 writeFileSync(join(DIST, 'sitemap.xml'), xml)
 writeFileSync(
   join(DIST, 'robots.txt'),
-  `User-agent: *\nAllow: /\nSitemap: ${ORIGIN}/sitemap.xml\n`,
+  isLaunch
+    ? `User-agent: *\nAllow: /\nSitemap: ${ORIGIN}/sitemap.xml\n`
+    : `User-agent: *\nDisallow: /\n`,
 )
-console.log(`gen-sitemap: ${urls.length} URL записано в dist/sitemap.xml`)
+console.log(
+  `gen-sitemap: ${urls.length} URL записано в dist/sitemap.xml (${isLaunch ? 'запуск' : 'превью, noindex'})`,
+)
