@@ -105,6 +105,12 @@ export function Blocks({ blocks, lang, ui }: { blocks: Block[]; lang: Lang; ui: 
           case 'tool':
             if (b.tool === 'namevariants') return <NameVariants key={i} ui={ui} />
             if (b.tool === 'anumber') return <ANumberField key={i} ui={ui} />
+            if (b.tool === 'print')
+              return (
+                <button key={i} className="cta" type="button" onClick={() => window.print()}>
+                  {ui.printPage}
+                </button>
+              )
             return null
           default:
             return null

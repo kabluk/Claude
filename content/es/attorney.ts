@@ -16,7 +16,7 @@ const c: PageContent = {
     {
       kind: 'list',
       items: [
-        'La lista pro bono de EOIR — según la corte',
+        'La lista pro bono de EOIR (la oficina que administra las cortes de inmigración) — según la corte',
         'El programa de orientación legal dentro del propio centro',
         'Organizaciones locales sin fines de lucro — llame a varias a la vez, en todas hay filas',
         'Pregunte si toman casos de detenidos y si trabajan con este centro',

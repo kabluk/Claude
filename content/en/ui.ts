@@ -51,6 +51,7 @@ const ui: UIStrings = {
     copied: 'Copied',
     hint: 'Eight digits is fine too: a zero is added at the front. The number is printed on the wristband — you can ask for it to be read aloud.',
   },
+  printPage: 'Print this page',
   dirEmpty: 'No data yet. We do not publish phone numbers or addresses we have not verified.',
 }
 

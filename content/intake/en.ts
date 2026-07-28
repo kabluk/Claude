@@ -28,11 +28,11 @@ const c: IntakeContent = {
     evBadge: 'EVIDENCE',
     evNote: {
       h: 'About the "evidence" tag',
-      p: 'It marks tasks from the list of factors that, according to a published BIA decision, are considered in bond decisions: address, length of residence, family ties, work, court appearances, criminal history. We do not assess your situation and do not predict the outcome — we only list what is usually supported with documents.',
+      p: 'It marks tasks from the list of factors that, according to a published decision of the BIA — the Board of Immigration Appeals, which sets the rules immigration judges follow — are considered in bond decisions: address, length of residence, family ties, work, court appearances, criminal history. We do not assess your situation and do not predict the outcome — we only list what is usually supported with documents.',
     },
     zoneBNote: {
-      h: 'Next — questions for the attorney',
-      p: 'Year and manner of entry, past cases and orders, past detentions. These answers are not shown on screen and produce no conclusions — they go only into the PDF you hand to the attorney.',
+      h: 'What to do with this list next',
+      p: 'Download or print it — this is the draft of the package for the attorney. Attorneys bill by the minute: a family that arrives with an ordered list and documents pays for work on the case, not for sorting papers. Also prepare answers to the questions the attorney will ask first: year and manner of entry, past cases and orders, past detentions. They are not asked here and are not shown on screen — that conversation is for the attorney only.',
     },
     printBtn: 'Download the list',
     againBtn: 'Start over',
@@ -65,7 +65,7 @@ const c: IntakeContent = {
     anum: {
       bn: 'Identification',
       q: { self: 'Do you know your A-Number?', other: 'Is his A-Number known?' },
-      hint: 'The letter A and nine digits. It is on the work permit, the green card, letters from USCIS and the court.',
+      hint: 'The letter A and nine digits. It is on the work permit, the green card, letters from USCIS (the immigration service) and the court.',
       o: {
         yes: { t: 'Yes, I know it' },
         find: { t: 'No, but there are documents at home' },
@@ -346,7 +346,7 @@ const c: IntakeContent = {
       how: [
         'The work permit, even an expired one',
         'The green card, if there is one',
-        'Any letter from USCIS or the immigration court',
+        'Any letter from USCIS, the immigration service, or from the immigration court',
         'Fee receipts',
         'Photograph every page, including envelopes',
       ],
@@ -463,7 +463,7 @@ const c: IntakeContent = {
         ['Transfer history', 'the Remitly, Wise, Western Union app'],
         ['Monthly bank statements', 'the bank’s online account'],
         ['Tax transcripts, if filed', 'irs.gov/individuals/get-transcript'],
-        ['The ITIN assignment letter, if there is no SSN', 'from your own document archive'],
+        ['The ITIN assignment letter — the tax number issued instead of an SSN', 'from your own document archive'],
       ],
     },
     ev_work_own: {
@@ -663,7 +663,7 @@ const c: IntakeContent = {
     hipaa: {
       h: 'Set up access to medical information',
       p: 'Without it a relative cannot speak with the doctors.',
-      why: 'A signed HIPAA form gives a trusted person access to medical records and to the doctors. It is needed both for health and as evidence for the case.',
+      why: 'A signed HIPAA form — the standard consent under the medical privacy law — gives a trusted person access to medical records and to the doctors. It is needed both for health and as evidence for the case.',
       form: 'The blank comes from the medical facility; the form is standard. We do not draft it. The form for the hospital and the consent for the agency to share information are different papers.',
     },
     poa: {

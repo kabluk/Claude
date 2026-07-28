@@ -17,7 +17,7 @@ const c: PageContent = {
     {
       kind: 'list',
       items: [
-        'Any letter from the immigration court or from USCIS',
+        'Any letter from the immigration court or from USCIS, the immigration service',
         'A work permit, even an expired one',
         'Fee receipts, copies of old applications',
         'Papers from an earlier case, if there was one',

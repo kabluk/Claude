@@ -24,7 +24,9 @@ const c: PageContent = {
       kind: 'callout',
       tone: 'n',
       title: '3 · Lista disciplinaria de EOIR',
-      body: ['Quiénes tienen prohibido ejercer ante las cortes de inmigración.'],
+      body: [
+        'Quiénes tienen prohibido ejercer ante las cortes de inmigración. EOIR es la oficina del Departamento de Justicia que administra las cortes de inmigración.',
+      ],
     },
     {
       kind: 'ext',

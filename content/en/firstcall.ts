@@ -43,17 +43,27 @@ const c: PageContent = {
         'The recording can be used. Those things are discussed with an attorney.',
       ],
     },
-    { kind: 'h2', text: 'The card to learn by heart' },
+    { kind: 'h2', text: 'The card to learn by heart and carry on paper' },
     {
       kind: 'memcard',
-      title: 'LEARN BY HEART',
+      title: 'LEARN AND COPY ONTO PAPER',
       lines: ['9233#'],
       alts: [
-        'Dialing 9233# is free from inside the facility — it works when the account is at zero.',
-        'Then, in order: the number of a trusted person · the number of an attorney or organization · 1-888-351-4024.',
-        'The phone is taken first. Without a memorized number there is no one to call.',
+        'Dialing 9233# is free from inside the facility — it connects to the nonprofit help line. It works when the account is at zero.',
+        'Then, in order: the number of a trusted person · the number of an attorney or organization · 1-888-351-4024 (DRIL, the official ICE line).',
+        'The phone is taken first. A slip of paper in a wallet or pocket is the only thing that stays with the person.',
       ],
     },
+    {
+      kind: 'list',
+      items: [
+        'Copy the numbers onto paper by hand — the phone does not go inside',
+        'Add the number of the trusted person and of the attorney once chosen',
+        'Keep one copy in the wallet and one at home; give copies to those close to you',
+        'If there is no attorney yet — 9233# reaches the nonprofit line, where you can ask where to look for free help',
+      ],
+    },
+    { kind: 'tool', tool: 'print' },
     { kind: 'h2', text: 'Before you call' },
     {
       kind: 'p',

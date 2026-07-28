@@ -14,7 +14,7 @@ export type Block =
   | { kind: 'memcard'; title: string; lines: string[]; alts?: string[] }
   | { kind: 'phones'; entries: { num: string; who: string; note: string }[]; footer?: string }
   | { kind: 'kv'; rows: [string, string][] }
-  | { kind: 'tool'; tool: 'namevariants' | 'anumber' }
+  | { kind: 'tool'; tool: 'namevariants' | 'anumber' | 'print' }
 
 export interface PageContent {
   title: string
@@ -86,6 +86,7 @@ export interface UIStrings {
     copied: string
     hint: string
   }
+  printPage: string
   dirEmpty: string
 }
 
