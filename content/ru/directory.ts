@@ -39,6 +39,7 @@ const c: DirectoryContent = {
         href: 'https://www.justice.gov/eoir/list-pro-bono-legal-service-providers',
         label: 'Список pro bono организаций EOIR',
       },
+      { href: 'https://www.freedomforimmigrants.org', label: 'Карта учреждений и ресурсов Freedom for Immigrants' },
       { href: 'https://www.immigrationlawhelp.org', label: 'Каталог бесплатной и недорогой помощи' },
     ],
     fundsH2: 'Фонды залога',

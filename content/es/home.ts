@@ -41,6 +41,21 @@ const c: HomeContent = {
       ],
     },
   ],
+  benefitsTitle: 'En qué ayuda',
+  benefits: [
+    {
+      b: 'Su propia lista de tareas en 2 minutos',
+      p: 'No son consejos generales — son tareas para sus circunstancias. Cada una dice para qué es, cómo hacerla y dónde conseguir las cosas.',
+    },
+    {
+      b: 'La primera noche sin pánico',
+      p: 'Cómo encontrar a la persona, qué no firmar, a quién no pagar. En lenguaje claro, con lectura en voz alta.',
+    },
+    {
+      b: 'Un paquete listo para el abogado',
+      p: 'Llegue con los documentos reunidos — pague por el trabajo en el caso, no por ordenar papeles.',
+    },
+  ],
   cta: 'Empezar · 2 minutos',
   cta2: 'Primero ver cómo funciona todo',
   trust: ['GRATIS', 'SIN REGISTRO', 'EN · ES · RU'],

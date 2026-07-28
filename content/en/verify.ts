@@ -57,6 +57,8 @@ const c: PageContent = {
         'A guarantee of the case outcome',
         'Cash up front with no written agreement',
         'Refusing to give a license number',
+        'A contract in a language you do not understand',
+        'A monthly "ankle monitor lease" on top of a percentage of the bond — the company Libre by Nexus received an $811 million judgment for that scheme (2024)',
       ],
     },
     {

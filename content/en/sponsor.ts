@@ -38,8 +38,8 @@ const c: PageContent = {
       tone: 'n',
       title: 'Path 2 · Through a bondsman',
       body: [
-        'A commercial company posts the bond for the client. A percentage of the amount is paid — usually 15–20% — and that money is not refunded. An ankle monitor with a monthly fee is usually added.',
-        'Example: a `$75,000` bond — the bondsman is paid around `$11,000–15,000` permanently, or someone close posts the full `$75,000` themselves and gets it back at the end of the case.',
+        'A commercial company posts the bond for the client. A percentage of the amount is paid — usually 10–20% — and that money is not refunded. An ankle monitor with a monthly fee is usually added.',
+        'Example: a `$75,000` bond — the bondsman is paid around `$7,500–15,000` permanently, or someone close posts the full `$75,000` themselves and gets it back at the end of the case.',
         'We do not say which path is better — we show how both work. Requirements differ between companies; compare terms in writing.',
       ],
     },

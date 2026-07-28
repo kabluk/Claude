@@ -34,10 +34,10 @@ const c: PageContent = {
     {
       kind: 'callout',
       tone: 'y',
-      title: '15–20% is non-refundable',
+      title: '10–20% is non-refundable',
       body: [
-        'A commercial bondsman keeps 15–20% of the bond amount permanently, usually plus an ankle monitor with a monthly fee.',
-        'Example: on a `$75,000` bond the bondsman is paid around `$11,000–15,000`, and it is not refunded. Whoever posts the full amount themselves gets it back at the end of the case.',
+        'A commercial bondsman usually keeps 10–20% of the bond amount permanently, usually plus an ankle monitor with a monthly fee.',
+        'Example: on a `$75,000` bond the bondsman is paid around `$7,500–15,000`, and it is not refunded. Whoever posts the full amount themselves gets it back at the end of the case.',
         'That is the structure of their service, not a judgment. Compare terms in writing.',
       ],
     },

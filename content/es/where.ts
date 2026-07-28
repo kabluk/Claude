@@ -29,7 +29,7 @@ const c: PageContent = {
       tone: 'y',
       title: 'Vacío no quiere decir que no esté',
       body: [
-        'Los registros se cargan con retraso. A veces pasa más de un día antes de que la persona aparezca.',
+        'Los registros se cargan con retraso: el propio sistema advierte que la persona puede aparecer hasta 72 horas después del arresto.',
         'Un resultado vacío en las primeras horas es común.',
       ],
     },

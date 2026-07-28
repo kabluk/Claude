@@ -41,6 +41,21 @@ const c: HomeContent = {
       ],
     },
   ],
+  benefitsTitle: 'How this helps',
+  benefits: [
+    {
+      b: 'Your own task list in 2 minutes',
+      p: 'Not generic advice — tasks for your circumstances. Each one says why it matters, how to do it, and where to get things.',
+    },
+    {
+      b: 'The first night without panic',
+      p: 'How to find the person, what not to sign, who not to pay. In plain language, with read-aloud.',
+    },
+    {
+      b: 'A ready package for the attorney',
+      p: 'Arrive with the documents gathered — pay for work on the case, not for sorting papers.',
+    },
+  ],
   cta: 'Start · 2 minutes',
   cta2: 'See how it all works first',
   trust: ['FREE', 'NO SIGN-UP', 'EN · ES · RU'],

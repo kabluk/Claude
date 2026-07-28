@@ -34,10 +34,10 @@ const c: PageContent = {
     {
       kind: 'callout',
       tone: 'y',
-      title: 'El 15–20% no se devuelve',
+      title: 'El 10–20% no se devuelve',
       body: [
-        'Un fiador comercial se queda con el 15–20% del monto de la fianza de forma permanente, normalmente más un grillete con cuota mensual.',
-        'Ejemplo: con una fianza de `$75,000` al fiador se le pagan alrededor de `$11,000–15,000`, y no se devuelven. Quien paga la suma completa por su cuenta la recibe de vuelta al final del caso.',
+        'Un fiador comercial se queda normalmente con el 10–20% del monto de la fianza de forma permanente, normalmente más un grillete con cuota mensual.',
+        'Ejemplo: con una fianza de `$75,000` al fiador se le pagan alrededor de `$7,500–15,000`, y no se devuelven. Quien paga la suma completa por su cuenta la recibe de vuelta al final del caso.',
         'Esa es la estructura de su servicio, no una valoración. Compare condiciones por escrito.',
       ],
     },

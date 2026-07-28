@@ -18,6 +18,16 @@ export function HomePage({ lang, c, ui }: { lang: Lang; c: HomeContent; ui: UISt
         </h1>
         <p className="sub">{c.sub}</p>
         <Demo c={c} />
+        <h2 className="landing-h2" style={{ marginTop: 4 }}>
+          {c.benefitsTitle}
+        </h2>
+        {c.benefits.map((x, i) => (
+          <div key={i} className="limit">
+            <b>{x.b}</b>
+            <p>{x.p}</p>
+          </div>
+        ))}
+        <div style={{ height: 10 }} />
         <Link className="cta-block" to={pathFor(lang, 'intake')}>
           {c.cta}
         </Link>

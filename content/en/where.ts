@@ -29,7 +29,7 @@ const c: PageContent = {
       tone: 'y',
       title: 'Empty does not mean he is not there',
       body: [
-        'Records are entered with a delay. Sometimes more than a day passes before a person appears.',
+        'Records are entered with a delay: the system itself warns that a person may appear up to 72 hours after the arrest.',
         'An empty result in the first hours is common.',
       ],
     },

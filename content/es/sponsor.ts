@@ -38,8 +38,8 @@ const c: PageContent = {
       tone: 'n',
       title: 'Camino 2 · A través de una compañía de fianzas',
       body: [
-        'Una empresa comercial paga la fianza por el cliente. Se paga un porcentaje de la suma — normalmente 15–20% — y ese dinero no se devuelve. Normalmente se agrega un grillete con cuota mensual.',
-        'Ejemplo: una fianza de `$75,000` — a la compañía se le pagan alrededor de `$11,000–15,000` de forma permanente, o alguien cercano paga los `$75,000` completos y los recibe de vuelta al final del caso.',
+        'Una empresa comercial paga la fianza por el cliente. Se paga un porcentaje de la suma — normalmente 10–20% — y ese dinero no se devuelve. Normalmente se agrega un grillete con cuota mensual.',
+        'Ejemplo: una fianza de `$75,000` — a la compañía se le pagan alrededor de `$7,500–15,000` de forma permanente, o alguien cercano paga los `$75,000` completos y los recibe de vuelta al final del caso.',
         'No decimos qué camino es mejor — mostramos cómo funcionan los dos. Los requisitos varían entre empresas; compare condiciones por escrito.',
       ],
     },

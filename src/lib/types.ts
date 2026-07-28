@@ -29,6 +29,8 @@ export interface HomeContent {
   demoTaskLabel: string
   demoWhy: string
   scenarios: { q: string; h: string; a: string[]; pick: number; t: [string, string, string] }[]
+  benefitsTitle: string
+  benefits: { b: string; p: string }[]
   cta: string
   cta2: string
   trust: string[]

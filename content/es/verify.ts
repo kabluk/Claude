@@ -56,6 +56,8 @@ const c: PageContent = {
         'Garantía del resultado del caso',
         'Pago por adelantado en efectivo sin contrato escrito',
         'Negarse a dar el número de licencia',
+        'Un contrato en un idioma que usted no entiende',
+        'Una «renta de grillete» mensual encima de un porcentaje de la fianza — la compañía Libre by Nexus recibió una sentencia de $811 millones por ese esquema (2024)',
       ],
     },
     {
