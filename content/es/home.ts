@@ -7,7 +7,7 @@ const c: HomeContent = {
   heroPoints: [
     'encontrar a la persona en el sistema',
     'recibir su lista de tareas en 2 minutos',
-    'arreglar el contacto: teléfonos, la cuenta, cartas',
+    'arreglar el contacto con el detenido — llamadas, cartas',
     'ver dónde consiguen dinero las familias — colectas y fondos',
     'armar el paquete para el abogado',
     'con seguridad: no guardamos nada sobre usted',

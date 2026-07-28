@@ -7,7 +7,7 @@ const c: HomeContent = {
   heroPoints: [
     'find the person in the system',
     'get your own task list in 2 minutes',
-    'set up contact: phones, the account, letters',
+    'set up contact with the detained person — calls, letters',
     'see where families find money — fundraisers and funds',
     'put together the package for the attorney',
     'safely: we store nothing about you',
