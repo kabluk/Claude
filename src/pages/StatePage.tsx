@@ -33,6 +33,11 @@ export function StatePage({
         <span>{d.circuitLine}</span>
         <span>{dir.circuitNames[String(st.circuit)]}</span>
       </div>
+      {st.notes[lang] && (
+        <div className="box y">
+          <p>{st.notes[lang]}</p>
+        </div>
+      )}
 
       <h2 className="page-h2">{d.courtsH2}</h2>
       {stCourts.length ? (

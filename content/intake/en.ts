@@ -804,6 +804,20 @@ const c: IntakeContent = {
       form: 'Important about topping up: you cannot add money in the GettingOut app — the app shows the balance and messages, but payment does not work in it. Top up through the carrier’s website in a browser, from a computer or a phone. Other carriers can be the same — if the app has no payment button, look for the website, do not reinstall the app.',
       warn: 'Books — new only and directly from a store or publisher, not from a private person. Softcover clears faster: hardcovers take longer to screen and are often refused. Every facility has its own rules — confirm by phone before sending.',
     },
+    money: {
+      pages: ['state-ca'],
+      h: 'See where families find the money',
+      p: 'Bond, attorney, rent — the costs arrive together. Mechanisms exist.',
+      why: 'Fundraisers through GoFundMe and mutual-aid networks are a recognized mechanism: families raise tens of thousands of dollars for bond and attorneys. Asking for help publicly is normal here — hundreds of families do it.',
+      how: [
+        'A fundraiser (GoFundMe and similar): describe the situation honestly, with the goal and the amount — bond, attorney, rent',
+        'Ask the parish, an organization, coworkers to share it — fundraisers work through trust, not through strangers',
+        'Mutual-aid networks at communities and churches — ask in yours',
+        'Bond funds — on the state page',
+        'Keep a record of what was raised and spent: donors’ trust is the fundraiser’s main resource',
+      ],
+      warn: 'We do not give financial advice and we do not collect money. Check who you send money to: the fundraiser should be run by a person you know personally.',
+    },
     support: {
       h: 'Share the load and stay close to people',
       p: 'Fear and sleeplessness here are a normal reaction.',
@@ -874,6 +888,7 @@ const c: IntakeContent = {
     anum_none: 'there is no number',
     idb: 'not enough details for the search',
     urgent: 'the person has already been detained',
+    money: 'the costs arrive together — bond, attorney, rent',
     freehelp: 'a legal assessment is needed',
     support: 'the case runs long',
     trusted_yes: 'there is a trusted person',

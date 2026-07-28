@@ -73,6 +73,7 @@ export function rules(a: Ans): TaskRef[] {
     add('now', 'nosign', 'urgent')
     add('now', 'verify', 'urgent')
     add('now', 'connect', 'urgent')
+    add('soon', 'money', 'money')
   }
   add(urgent ? 'now' : 'soon', 'freehelp', 'freehelp')
   if (urgent && a.role === 'other') add('later', 'support', 'support')

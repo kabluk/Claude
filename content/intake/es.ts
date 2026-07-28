@@ -808,6 +808,20 @@ const c: IntakeContent = {
       form: 'Importante sobre la recarga: en la aplicación GettingOut no se puede poner dinero — la aplicación muestra el saldo y los mensajes, pero el pago no funciona en ella. Hay que recargar por el sitio web del operador en el navegador, desde una computadora o el teléfono. Con otros operadores pasa igual — si la aplicación no tiene botón de pago, busque el sitio, no reinstale la aplicación.',
       warn: 'Libros — solo nuevos y directamente de una tienda o editorial, no de un particular. La pasta blanda pasa más rápido: la dura tarda más en revisarse y muchas veces no entra. Cada centro tiene sus reglas — confirme por teléfono antes de enviar.',
     },
+    money: {
+      pages: ['state-ca'],
+      h: 'Mire dónde consiguen el dinero las familias',
+      p: 'La fianza, el abogado, la renta — los gastos llegan juntos. Los mecanismos existen.',
+      why: 'Las colectas por GoFundMe y las redes de apoyo mutuo son un mecanismo reconocido: las familias reúnen decenas de miles de dólares para la fianza y el abogado. Pedir ayuda públicamente aquí es normal — lo hacen cientos de familias.',
+      how: [
+        'Una colecta (GoFundMe y similares): describa la situación con honestidad, con la meta y el monto — fianza, abogado, renta',
+        'Pida a la parroquia, a una organización, a los compañeros que la compartan — la colecta funciona por confianza, no con desconocidos',
+        'Redes de apoyo mutuo en comunidades e iglesias — pregunte en la suya',
+        'Fondos de fianza — en la página del estado',
+        'Anote lo reunido y lo gastado: la confianza de los donantes es el recurso principal de la colecta',
+      ],
+      warn: 'No damos consejos financieros y no recolectamos dinero. Verifique a quién le envía: la colecta debe llevarla una persona que usted conoce en persona.',
+    },
     support: {
       h: 'Reparta la carga y manténgase cerca de la gente',
       p: 'El miedo y el insomnio aquí son una reacción normal.',
@@ -877,6 +891,7 @@ const c: IntakeContent = {
     anum_none: 'no hay número',
     idb: 'faltan datos para la búsqueda',
     urgent: 'la persona ya está detenida',
+    money: 'los gastos llegan juntos — fianza, abogado, renta',
     freehelp: 'hace falta una evaluación legal',
     support: 'el caso va para largo',
     trusted_yes: 'hay una persona de confianza',

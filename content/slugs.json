@@ -12,9 +12,12 @@
   "bondpay": { "en": "paying-bond", "es": "pagar-la-fianza", "ru": "oplata-zaloga" },
   "deadlines": { "en": "do-not-miss", "es": "no-faltar", "ru": "ne-propustit" },
   "intake": { "en": "your-list", "es": "su-lista", "ru": "vash-spisok" },
+  "orgs": { "en": "for-organizations", "es": "para-organizaciones", "ru": "dlya-organizaciy" },
   "about": { "en": "about", "es": "acerca-de", "ru": "o-servise" },
   "data": { "en": "your-data", "es": "sus-datos", "ru": "dannye" },
   "disclaimer": { "en": "disclaimer", "es": "aviso-legal", "ru": "otkaz" },
   "state-ca": { "en": "state/california", "es": "estado/california", "ru": "shtat/california" },
+  "state-tx": { "en": "state/texas", "es": "estado/texas", "ru": "shtat/texas" },
+  "state-la": { "en": "state/louisiana", "es": "estado/luisiana", "ru": "shtat/louisiana" },
   "facility-adelanto": { "en": "facility/adelanto", "es": "centro/adelanto", "ru": "uchrezhdenie/adelanto" }
 }

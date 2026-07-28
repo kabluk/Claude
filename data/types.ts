@@ -8,6 +8,7 @@ export interface StateRec {
   circuit: number
   funded_representation: boolean
   bond_funds: { label: string; url: string }[]
+  notes: Record<Lang, string>
 }
 
 export interface CourtRec {

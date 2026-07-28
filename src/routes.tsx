@@ -44,6 +44,7 @@ const CONTENT_PAGES = [
   'sponsor',
   'bondpay',
   'deadlines',
+  'orgs',
 ] as const
 
 const LEGAL_PAGES = ['about', 'data', 'disclaimer'] as const
@@ -88,12 +89,20 @@ export const routes: RouteRecord[] = [
           }
         },
       },
-      {
-        path: routePath(lang, 'state-ca'),
-        lazy: lazyFor(lang, 'directory', (m) => (
-          <StatePage lang={lang} code="CA" pageKey="state-ca" dir={m.default} ui={ui} />
-        )),
-      },
+      ...(
+        [
+          ['state-ca', 'CA'],
+          ['state-tx', 'TX'],
+          ['state-la', 'LA'],
+        ] as const
+      ).map(
+        ([key, code]): RouteRecord => ({
+          path: routePath(lang, key),
+          lazy: lazyFor(lang, 'directory', (m) => (
+            <StatePage lang={lang} code={code} pageKey={key} dir={m.default} ui={ui} />
+          )),
+        }),
+      ),
       {
         path: routePath(lang, 'facility-adelanto'),
         lazy: lazyFor(lang, 'directory', (m) => (

@@ -62,7 +62,7 @@ export function FacilityPage({
         ))}
       </ul>
       <h2 className="page-h2">{st ? st.name[lang] : dir.facility.stateH2}</h2>
-      <Link className="ghost" to={pathFor(lang, 'state-ca')}>
+      <Link className="ghost" to={pathFor(lang, `state-${f.state_code.toLowerCase()}`)}>
         {dir.facility.stateH2} →
       </Link>
       <Footer ui={ui} />
