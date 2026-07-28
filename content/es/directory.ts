@@ -27,7 +27,7 @@ const c: DirectoryContent = {
     stateH2: 'Página del estado',
   },
   statePage: {
-    lede: 'Cortes, centros, ayuda gratuita y fondos de fianza — por estado.',
+    lede: 'Cortes, centros y ayuda gratuita — por estado.',
     circuitLine: 'Circuito de apelación',
     courtsH2: 'Cortes de inmigración',
     facilitiesH2: 'Centros',
@@ -40,9 +40,6 @@ const c: DirectoryContent = {
       { href: 'https://www.freedomforimmigrants.org', label: 'Mapa de centros y recursos de Freedom for Immigrants' },
       { href: 'https://www.immigrationlawhelp.org', label: 'Catálogo de ayuda gratuita y de bajo costo' },
     ],
-    fundsH2: 'Fondos de fianza',
-    fundsEmpty:
-      'Aún no hay una lista verificada de fondos. No publicamos enlaces sin verificar: un enlace muerto es peor que no tener la sección.',
     fundedLine: 'En este estado existen programas de representación financiada — vea las listas abajo.',
     verifyNote: 'Las listas y los teléfonos cambian. Última revisión: 27 de julio de 2026.',
   },

@@ -70,16 +70,6 @@ export function StatePage({
         </a>
       ))}
 
-      <h2 className="page-h2">{d.fundsH2}</h2>
-      {st.bond_funds.length ? (
-        st.bond_funds.map((b, i) => (
-          <a key={i} className="ghost" href={b.url} target="_blank" rel="noopener noreferrer">
-            {b.label} ↗
-          </a>
-        ))
-      ) : (
-        <p className="body-p dim">{d.fundsEmpty}</p>
-      )}
       <p className="body-p dim">{d.verifyNote}</p>
       <Footer ui={ui} />
     </Layout>

@@ -2,7 +2,7 @@ import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
   title: 'Where to find the A-Number',
-  lede: 'It is the key to everything: the search, the attorney, bond, court. It is probably already in your home.',
+  lede: 'It is the key to everything: the search, the attorney, court. It is probably already in your home.',
   blocks: [
     {
       kind: 'callout',

@@ -31,7 +31,6 @@ export const QUESTIONS: QDef[] = [
   { id: 'usfam', block: 2, opts: () => ['close', 'other', 'no', 'dunno'] },
   { id: 'work', block: 2, opts: () => ['official', 'cash', 'own', 'none', 'dunno'] },
   { id: 'courts', block: 2, opts: () => ['came', 'missed', 'never', 'dunno'] },
-  { id: 'sponsor', block: 3, opts: () => ['yes', 'maybe', 'no', 'dunno'] },
   { id: 'kids', block: 4, opts: () => ['yes', 'no', 'dunno'] },
   { id: 'school', block: 4, when: (a) => a.kids === 'yes', opts: () => ['yes', 'only', 'dunno'] },
   {
@@ -97,16 +96,12 @@ export function rules(a: Ans): TaskRef[] {
   if (a.courts === 'came' || a.courts === 'missed') add('soon', 'ev_courts', 'courts')
   if (a.crim === 'docs' || a.crim === 'nodocs') add('now', 'ev_crim', 'crim')
 
-  // Задача про залог осмысленна, только когда человек уже задержан:
-  // в режиме подготовки нет ни адвоката, ни учреждения — вместо неё
-  // задача выбрать адвоката заранее (фидбек первого пользователя).
-  if (urgent) add('now', 'bond_first', 'bond_first')
+  // Залог и parole убраны из продукта: их сейчас почти не одобряют,
+  // задачи про них давали бы ложную надежду. Пути освобождения —
+  // разговор с адвокатом (release_paths при задержании,
+  // lawyer_ready в режиме подготовки).
+  if (urgent) add('now', 'release_paths', 'release_paths')
   else add('now', 'lawyer_ready', 'lawyer_ready')
-  // Залог понижен в приоритете: освобождения по нему сейчас редки,
-  // спонсорские задачи не должны вытеснять документы и адвоката из «Сейчас»
-  if (a.sponsor === 'yes') add('soon', 'sponsor_ready', 'sponsor_yes')
-  if (a.sponsor === 'maybe' || a.sponsor === 'dunno') add('soon', 'sponsor_talk', 'sponsor_maybe')
-  if (a.sponsor === 'no') add('soon', 'bondfund', 'sponsor_no')
 
   if (a.school === 'only' || a.school === 'dunno') add('now', 'school_add', 'school_only')
   if (a.guard === 'status') add('soon', 'caregiver', 'guard_status')

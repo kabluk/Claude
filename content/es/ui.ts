@@ -18,8 +18,6 @@ const ui: UIStrings = {
     connect: 'Llamadas, dinero, cartas',
     journey: 'El camino',
     attorney: 'Abogado',
-    sponsor: 'Quién paga la fianza',
-    bondpay: 'Pagar la fianza',
     deadlines: 'No faltar a la audiencia',
     intake: 'Su lista de tareas',
     'facility-adelanto': 'Adelanto',
@@ -33,7 +31,7 @@ const ui: UIStrings = {
   },
   navGroups: [
     { label: 'La primera noche', keys: ['intake', 'where', 'anum', 'documents', 'firstcall', 'verify'] },
-    { label: 'El camino', keys: ['journey', 'connect', 'attorney', 'sponsor', 'bondpay', 'deadlines'] },
+    { label: 'El camino', keys: ['journey', 'connect', 'attorney', 'deadlines'] },
     { label: 'Directorio', keys: ['state-ca', 'state-tx', 'state-la', 'facility-adelanto'] },
     { label: 'Acerca de', keys: ['orgs', 'about', 'data', 'disclaimer'] },
   ],

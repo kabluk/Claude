@@ -7,7 +7,6 @@ export interface StateRec {
   name: Record<Lang, string>
   circuit: number
   funded_representation: boolean
-  bond_funds: { label: string; url: string }[]
   notes: Record<Lang, string>
 }
 

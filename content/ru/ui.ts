@@ -18,8 +18,6 @@ const ui: UIStrings = {
     connect: 'Связь и деньги на звонки',
     journey: 'Маршрут',
     attorney: 'Адвокат',
-    sponsor: 'Спонсор залога',
-    bondpay: 'Оплата залога',
     deadlines: 'Не пропустить слушание',
     intake: 'Ваш список дел',
     'facility-adelanto': 'Аделанто',
@@ -33,7 +31,7 @@ const ui: UIStrings = {
   },
   navGroups: [
     { label: 'Первая ночь', keys: ['intake', 'where', 'anum', 'documents', 'firstcall', 'verify'] },
-    { label: 'Маршрут', keys: ['journey', 'connect', 'attorney', 'sponsor', 'bondpay', 'deadlines'] },
+    { label: 'Маршрут', keys: ['journey', 'connect', 'attorney', 'deadlines'] },
     { label: 'Справочник', keys: ['state-ca', 'state-tx', 'state-la', 'facility-adelanto'] },
     { label: 'О сервисе', keys: ['orgs', 'about', 'data', 'disclaimer'] },
   ],

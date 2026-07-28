@@ -32,7 +32,7 @@ const c: IntakeContent = {
     evBadge: 'PRUEBA',
     evNote: {
       h: 'Sobre la etiqueta «prueba»',
-      p: 'Así se marcan las tareas de la lista de factores que se consideran al decidir sobre la fianza: dirección, tiempo de residencia, lazos familiares, trabajo, asistencia a la corte, antecedentes. La lista viene de una decisión publicada de la BIA — la corte de inmigración más alta para apelaciones, cuyas decisiones siguen todos los jueces de inmigración. No evaluamos su situación y no predecimos el resultado — solo enumeramos lo que normalmente se respalda con documentos.',
+      p: 'Así se marcan las tareas que reúnen pruebas documentadas de los lazos con EE. UU.: dirección, tiempo de residencia, lazos familiares, trabajo, asistencia a la corte, antecedentes. Los abogados usan este expediente en el caso. No evaluamos su situación y no predecimos el resultado — solo enumeramos lo que normalmente se respalda con documentos.',
     },
     zoneBNote: {
       h: 'Qué hacer con esta lista ahora',
@@ -90,7 +90,7 @@ const c: IntakeContent = {
     years: {
       bn: 'Lazos',
       q: { self: '¿Cuántos años lleva en EE. UU.?', other: '¿Cuántos años lleva él en EE. UU.?' },
-      hint: 'El tiempo de residencia es uno de los factores que el juez considera al decidir sobre la fianza.',
+      hint: 'El tiempo de residencia es una de las cosas que el abogado respalda con documentos en el caso.',
       o: {
         lt1: { t: 'Menos de un año' },
         '1_5': { t: 'De uno a cinco' },
@@ -105,7 +105,7 @@ const c: IntakeContent = {
         self: '¿El contrato de renta o la propiedad están a su nombre?',
         other: '¿A nombre de quién está la vivienda?',
       },
-      hint: 'El contrato de renta y los recibos muestran que la persona tiene vivienda permanente. Es una de las cosas que mira el juez al decidir sobre la fianza.',
+      hint: 'El contrato de renta y los recibos muestran que la persona tiene vivienda permanente. Los abogados usan documentos así en el caso.',
       o: {
         me: { t: { self: 'Sí, a mi nombre', other: 'Al mío' } },
         him: { t: 'Al suyo' },
@@ -147,25 +147,11 @@ const c: IntakeContent = {
         self: '¿Ha tenido citas en la corte de inmigración?',
         other: '¿Ha tenido él citas en la corte de inmigración?',
       },
-      hint: 'La historia de asistencia a la corte es un factor aparte al decidir sobre la fianza.',
+      hint: 'La historia de asistencia muestra que la persona no se escondió de la corte. Se documenta aparte.',
       o: {
         came: { t: 'Sí, y fue a todas' },
         missed: { t: 'Sí, con algunas faltas' },
         never: { t: 'No hubo' },
-        dunno: { t: 'No sé', d: true },
-      },
-    },
-    sponsor: {
-      bn: 'Fianza',
-      q: {
-        self: '¿Hay cerca una persona con ciudadanía de EE. UU. o green card que pudiera pagar la fianza por usted?',
-        other: '¿Hay cerca una persona con ciudadanía de EE. UU. o green card dispuesta a pagar la fianza?',
-      },
-      hint: 'El detenido no puede pagar su propia fianza. También pueden pagarla un bufete, una organización sin fines de lucro o una compañía de fianzas — por un porcentaje que no se devuelve. El propio derecho a la audiencia de fianza está en disputa — esa es una pregunta aparte para el abogado.',
-      o: {
-        yes: { t: 'Sí, tengo a quién nombrar' },
-        maybe: { t: 'Puede ser, hay que hablar' },
-        no: { t: 'No hay personas así' },
         dunno: { t: 'No sé', d: true },
       },
     },
@@ -338,7 +324,7 @@ const c: IntakeContent = {
   tasks: {
     anum_have: {
       h: 'Anote el número A aparte y fotografíelo',
-      p: 'Lo van a necesitar todos: el localizador, el abogado, la fianza, la corte.',
+      p: 'Lo van a necesitar todos: el localizador, el abogado, la corte.',
       why: 'El número A es el único identificador confiable en el sistema. La búsqueda por nombre es imprecisa: transliteración, orden de los nombres, errores de tipeo.',
       how: [
         'Escríbalo en papel y fotografíe la nota',
@@ -368,7 +354,7 @@ const c: IntakeContent = {
       pages: ['firstcall', 'connect'],
       h: 'Consiga el número A en la primera conversación',
       p: 'Pida que lo dicten dígito por dígito.',
-      why: 'Sin el número no funciona ni la búsqueda, ni el contacto con el abogado, ni la fianza.',
+      why: 'Sin el número no funciona ni la búsqueda, ni el contacto con el abogado, ni el seguimiento del caso en la corte.',
       how: [
         'Pida que lo dicten despacio y repítalo en voz alta',
         'Anótelo en papel de inmediato',
@@ -392,7 +378,7 @@ const c: IntakeContent = {
       ev: true,
       h: 'Reúna la prueba de dirección permanente',
       p: 'El contrato de renta, los recibos, los documentos de la vivienda.',
-      why: 'Tener una dirección permanente en EE. UU. está en la lista de factores que el juez considera al decidir sobre la fianza.',
+      why: 'La prueba de una dirección permanente en EE. UU. es parte del expediente que el abogado usa en el caso.',
       how: [
         'El contrato de renta o los documentos de propiedad',
         'Recibos de servicios de varios meses',
@@ -446,7 +432,7 @@ const c: IntakeContent = {
       ev: true,
       h: 'Pida la constancia de trabajo',
       p: 'Una carta, talones de pago, impuestos.',
-      why: 'La historia laboral está en la lista de factores al decidir sobre la fianza.',
+      why: 'La historia laboral es parte del expediente sobre los lazos con EE. UU. que se junta para el abogado.',
       how: [
         'Una carta con el puesto, la antigüedad y la nota de que el lugar se conserva',
         'Talones de pago de varios meses',
@@ -518,7 +504,7 @@ const c: IntakeContent = {
       pages: ['attorney'],
       h: 'Decida con tiempo a qué abogado llamar',
       p: 'En el momento de la detención ya es tarde para buscar — el número ya debe existir.',
-      why: 'El abogado de oficio no existe en el proceso de inmigración. Cuando el contacto está elegido de antemano, el primer día se va en el caso y no en la búsqueda — y la elección en pánico no lleva a un estafador. Según los datos de TRAC de 2026, la fianza se concede tres veces más a menudo con abogado: 42% de las audiencias frente a 14% sin representante.',
+      why: 'El abogado de oficio no existe en el proceso de inmigración. Cuando el contacto está elegido de antemano, el primer día se va en el caso y no en la búsqueda — y la elección en pánico no lleva a un estafador.',
       how: [
         'Mire los dos caminos: organizaciones gratuitas y abogados de pago — las direcciones exactas están abajo',
         'Reúna 2–3 candidatos: la práctica es federal, se puede buscar por idioma y no por ciudad',
@@ -539,7 +525,7 @@ const c: IntakeContent = {
       ev: true,
       h: 'Reúna las pruebas de participación en la comunidad',
       p: 'La parroquia, organizaciones, voluntariado, las actividades de los hijos.',
-      why: 'Los lazos con la comunidad están en la lista de factores al decidir sobre la fianza. Este expediente crece con el tiempo: cuanto antes se empieza, más completo queda.',
+      why: 'Los lazos con la comunidad son parte del expediente que el abogado usa en el caso. Crece con el tiempo: cuanto antes se empieza, más completo queda.',
       how: [
         'Una carta o constancia de participación de la parroquia',
         'Membresía en organizaciones, ligas, clubes',
@@ -562,66 +548,24 @@ const c: IntakeContent = {
       say: 'Buenos días. Nuestra familia va a necesitar cartas de apoyo para un caso. El abogado explicará la forma — de usted solo hace falta el consentimiento y un poco de tiempo. ¿Puedo pasar su contacto al abogado?',
       warn: 'No redactamos cartas para la corte. Qué debe ir exactamente en la carta lo determina el abogado según el caso concreto.',
     },
-    bond_first: {
-      pages: ['bondpay', 'sponsor'],
-      h: 'Primero averigüe si habrá audiencia de fianza',
-      p: 'El derecho a tenerla se está disputando en las cortes.',
-      why: 'Desde julio de 2025 la posición del gobierno es que una persona que entró al país sin inspección está sujeta a detención obligatoria y no tiene fianza. Las cortes federales de apelación se dividieron: el Segundo, Tercer y Sexto Circuito no estuvieron de acuerdo; el Quinto y el Octavo apoyaron al gobierno (la decisión de un panel del Quinto Circuito a favor de las audiencias, del 2 de julio de 2026, fue anulada por el pleno; nueva revisión en septiembre). El Quinto Circuito es Texas, Luisiana y Misisipi — adonde más trasladan a la gente. La Corte Suprema tratará la cuestión en octubre de 2026. Conclusión: la respuesta depende de dónde está detenida la persona, y cambia con un traslado a otro estado.',
+    release_paths: {
+      pages: ['attorney'],
+      h: 'Pregunte al abogado qué caminos de salida son reales en este caso',
+      p: 'Esta pregunta va primero. Determina todo lo demás.',
+      why: 'Desde julio de 2025 el gobierno trata la detención como obligatoria para la mayoría, y los caminos viejos casi se cerraron: según los datos de TRAC, en abril de 2026 salieron bajo fianza 755 personas en todo el país, y el parole, según NILC (julio de 2026), se concedió en este año fiscal a una persona de las catorce que lo pidieron. Lo que funciona ahora es más a menudo otra cosa — la petición federal de habeas corpus: los abogados de AILA la llaman, para muchos, el único camino que funciona en la práctica. La prepara y la presenta un abogado.',
       how: [
         'Haga esta pregunta al abogado primero, antes que todo lo demás',
-        'Averigüe en qué circuito está el centro',
-        'Pregunte qué cambia si trasladan a la persona a otro estado',
-        'Solo después decida si buscar a quien pague la fianza',
+        'Pregunte directamente por el habeas corpus y qué hace falta para él',
+        'Averigüe en qué circuito federal está el centro y qué cambia con un traslado a otro estado',
         'Prepare dos planes en paralelo: para la salida y para una detención que dure meses',
+        'Los documentos de esta lista hacen falta en cualquier camino — siga juntándolos',
       ],
-      info: 'La fianza no es el único mecanismo de salida, pero los caminos de reserva también se han estrechado. El parole — la liberación discrecional por decisión de ICE — hoy se concede muy rara vez: según la organización de defensa legal NILC (julio de 2026), incluso entre solicitantes de asilo que pasaron la evaluación inicial, en el año fiscal 2024 se aprobaban dos solicitudes de cada tres, y en el actual — una de catorce. Quedan las mociones de revisión y la petición federal de habeas corpus — el camino que más crece en 2026: los abogados de AILA lo llaman, para muchos, el único que funciona en la práctica. Qué mecanismos aplican a un caso concreto lo determina solo el abogado.',
       src: [
         ['Si aún no hay abogado · ayuda gratuita por estados', 'justice.gov/eoir/list-pro-bono-legal-service-providers'],
         ['El catálogo de ayuda gratuita y de bajo costo', 'immigrationlawhelp.org'],
         ['Búsqueda de pago con filtro por idioma', 'ailalawyer.com'],
       ],
-      warn: 'Solo un abogado puede determinar si esto aplica a una persona concreta. Aquí se describe el estado de la disputa a julio de 2026 — cambia rápido, mire la fecha.',
-    },
-    sponsor_ready: {
-      pages: ['sponsor'],
-      h: 'Prepare los documentos de quien pagará la fianza',
-      p: 'Va a necesitar la prueba de su estatus.',
-      why: 'La fianza la puede pagar un ciudadano de EE. UU. o titular de green card mayor de 18, y también bufetes y organizaciones sin fines de lucro.',
-      how: [
-        'Pasaporte de EE. UU., acta de nacimiento o green card',
-        'La misma escritura de sus datos en el documento, la cuenta bancaria y el perfil',
-        'Disposición a pagar por transferencia',
-        'Avísele: el abogado puede pedirle también una carta de apoyo',
-      ],
-    },
-    sponsor_talk: {
-      pages: ['sponsor'],
-      h: 'Hable con tiempo con quien podría pagar la fianza',
-      p: 'Es una conversación dura; mejor no empezarla el día de la audiencia.',
-      why: 'Personas con el estatus adecuado suele haber muy pocas, y la petición es seria — por eso se pospone hasta el final. La conversación es más fácil mostrando los dos caminos: la suma completa pagada por uno mismo — que se devuelve al final del caso, o a través de una compañía de fianzas — se paga solo un porcentaje, pero no se devuelve.',
-      how: [
-        'Explique que el dinero se devuelve al final del caso',
-        'Diga con honestidad: puede tardar años',
-        'Si la suma completa es demasiado, cuente el segundo camino: la compañía de fianzas la paga por un porcentaje que no se devuelve',
-        'Avise que harán falta sus documentos',
-        'Dele tiempo para pensar',
-      ],
-      say: 'Necesito pedirte algo serio. Para que suelten a una persona, la fianza la debe pagar un ciudadano o alguien con green card — yo no puedo hacerlo. El dinero se devuelve cuando termina el caso, pero puede tardar mucho. Si la suma completa es demasiado, hay un camino con una compañía de fianzas: se paga solo un porcentaje, pero no se devuelve. Entenderé cualquier respuesta. ¿Puedo explicarte cómo funciona?',
-      warn: 'No prometa plazos de devolución — no dependen ni de usted ni de él.',
-    },
-    bondfund: {
-      pages: ['sponsor'],
-      h: 'Mire los fondos de fianza y las compañías de fianzas',
-      p: 'La fianza la puede pagar una organización, no solo alguien cercano.',
-      why: 'Si no hay personas adecuadas, quedan dos caminos sin ellas: un fondo de fianza sin fines de lucro — o una compañía comercial, que paga la fianza por un porcentaje que no se devuelve. Para muchos son las únicas opciones.',
-      how: [
-        'Busque fondos que trabajen en este estado',
-        'Confirme si toman este centro',
-        'Pregunte por la fila de espera y las condiciones',
-        'La compañía de fianzas es el segundo camino: se paga un porcentaje y no se devuelve; cada empresa tiene sus requisitos — compare condiciones por escrito',
-        'Verifique la organización en los mismos registros que a un abogado',
-      ],
-      warn: 'Los fondos cambian, algunos cierran. Asegúrese de que la organización funciona ahora.',
+      warn: 'Si alguien promete una salida rápida por dinero, es una señal de fraude: verifíquelo en la página «Verificar a quién le paga». Qué caminos aplican a un caso concreto lo determina solo el abogado. Estado a julio de 2026 — mire la fecha.',
     },
     school_add: {
       h: 'Agregue a una segunda persona en la escuela',
@@ -813,13 +757,12 @@ const c: IntakeContent = {
     money: {
       pages: ['state-ca'],
       h: 'Mire dónde consiguen el dinero las familias',
-      p: 'La fianza, el abogado, la renta — los gastos llegan juntos. Los mecanismos existen.',
-      why: 'Las colectas por GoFundMe y las redes de apoyo mutuo son un mecanismo reconocido: las familias reúnen decenas de miles de dólares para la fianza y el abogado. Pedir ayuda públicamente aquí es normal — lo hacen cientos de familias.',
+      p: 'El abogado, la renta, las llamadas — los gastos llegan juntos. Los mecanismos existen.',
+      why: 'Las colectas por GoFundMe y las redes de apoyo mutuo son un mecanismo reconocido: las familias reúnen decenas de miles de dólares para el abogado y la vida durante el caso. Pedir ayuda públicamente aquí es normal — lo hacen cientos de familias.',
       how: [
-        'Una colecta (GoFundMe y similares): describa la situación con honestidad, con la meta y el monto — fianza, abogado, renta',
+        'Una colecta (GoFundMe y similares): describa la situación con honestidad, con la meta y el monto — abogado, renta, llamadas',
         'Pida a la parroquia, a una organización, a los compañeros que la compartan — la colecta funciona por confianza, no con desconocidos',
         'Redes de apoyo mutuo en comunidades e iglesias — pregunte en la suya',
-        'Fondos de fianza — en la página del estado',
         'Anote lo reunido y lo gastado: la confianza de los donantes es el recurso principal de la colecta',
       ],
       warn: 'No damos consejos financieros y no recolectamos dinero. Verifique a quién le envía: la colecta debe llevarla una persona que usted conoce en persona.',
@@ -893,7 +836,7 @@ const c: IntakeContent = {
     anum_none: 'no hay número',
     idb: 'faltan datos para la búsqueda',
     urgent: 'la persona ya está detenida',
-    money: 'los gastos llegan juntos — fianza, abogado, renta',
+    money: 'los gastos llegan juntos — abogado, renta, llamadas',
     freehelp: 'hace falta una evaluación legal',
     support: 'el caso va para largo',
     trusted_yes: 'hay una persona de confianza',
@@ -912,11 +855,8 @@ const c: IntakeContent = {
     work_own: 'negocio propio',
     courts: 'hubo citas en la corte',
     crim: 'hubo arrestos',
-    bond_first: 'el derecho a la fianza está en disputa',
+    release_paths: 'los caminos de salida — la primera pregunta al abogado',
     lawyer_ready: 'el abogado se busca antes de la detención, no después',
-    sponsor_yes: 'hay quien pague la fianza',
-    sponsor_maybe: 'quién paga la fianza — todavía en duda',
-    sponsor_no: 'no hay personas adecuadas',
     school_only: 'en la escuela figura un solo adulto',
     guard_status: 'hay un adulto con estatus',
     guard_risk: 'el cuidador está en riesgo o no existe',

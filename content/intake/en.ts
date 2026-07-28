@@ -31,7 +31,7 @@ const c: IntakeContent = {
     evBadge: 'EVIDENCE',
     evNote: {
       h: 'About the "evidence" tag',
-      p: 'It marks tasks from the list of factors considered in bond decisions: address, length of residence, family ties, work, court appearances, criminal history. The list comes from a published decision of the BIA — the top immigration appeals court, whose decisions all immigration judges follow. We do not assess your situation and do not predict the outcome — we only list what is usually supported with documents.',
+      p: 'It marks tasks that collect documented proof of ties to the US: address, length of residence, family ties, work, court appearances, criminal history. Attorneys use this dossier in the case. We do not assess your situation and do not predict the outcome — we only list what is usually supported with documents.',
     },
     zoneBNote: {
       h: 'What to do with this list next',
@@ -89,7 +89,7 @@ const c: IntakeContent = {
     years: {
       bn: 'Ties',
       q: { self: 'How many years have you been in the US?', other: 'How many years has he been in the US?' },
-      hint: 'Length of residence is one of the factors a judge considers in a bond decision.',
+      hint: 'Length of residence is one of the things an attorney supports with documents in the case.',
       o: {
         lt1: { t: 'Less than a year' },
         '1_5': { t: 'One to five' },
@@ -104,7 +104,7 @@ const c: IntakeContent = {
         self: 'Is the lease or the property in your name?',
         other: 'Whose name is the housing in?',
       },
-      hint: 'A lease and bills show the person has a permanent home. It is one of the things a judge looks at in a bond decision.',
+      hint: 'A lease and bills show the person has a permanent home. Attorneys use documents like these in the case.',
       o: {
         me: { t: { self: 'Yes, mine', other: 'Mine' } },
         him: { t: 'His' },
@@ -146,25 +146,11 @@ const c: IntakeContent = {
         self: 'Have you had immigration court dates?',
         other: 'Has he had immigration court dates?',
       },
-      hint: 'The history of court appearances is a separate factor in a bond decision.',
+      hint: 'The history of appearances shows the person did not hide from the court. It is documented separately.',
       o: {
         came: { t: 'Yes, and came to all of them' },
         missed: { t: 'Yes, with some missed' },
         never: { t: 'There were none' },
-        dunno: { t: 'I do not know', d: true },
-      },
-    },
-    sponsor: {
-      bn: 'Bond',
-      q: {
-        self: 'Is there someone nearby with US citizenship or a green card who could post bond for you?',
-        other: 'Is there someone nearby with US citizenship or a green card willing to post bond?',
-      },
-      hint: 'A detained person cannot post their own bond. It can also be posted by a law firm, a nonprofit, or a commercial bondsman — for a non-refundable percentage. The very right to a bond hearing is currently disputed — that is a separate question for the attorney.',
-      o: {
-        yes: { t: 'Yes, I can name someone' },
-        maybe: { t: 'Possibly, I need to talk to them' },
-        no: { t: 'There is no such person' },
         dunno: { t: 'I do not know', d: true },
       },
     },
@@ -334,7 +320,7 @@ const c: IntakeContent = {
   tasks: {
     anum_have: {
       h: 'Write the A-Number down separately and photograph it',
-      p: 'Everyone will need it: the locator, the attorney, the bond, the court.',
+      p: 'Everyone will need it: the locator, the attorney, the court.',
       why: 'The A-Number is the only reliable identifier in the system. Name searches are imprecise: transliteration, name order, typos.',
       how: [
         'Write it on paper and photograph the note',
@@ -364,7 +350,7 @@ const c: IntakeContent = {
       pages: ['firstcall', 'connect'],
       h: 'Get the A-Number during the first conversation',
       p: 'Ask for it to be dictated one digit at a time.',
-      why: 'Without the number, neither the search, nor contacting an attorney, nor bond works.',
+      why: 'Without the number, neither the search, nor contacting an attorney, nor tracking the case in court works.',
       how: [
         'Ask for it slowly and repeat it back aloud',
         'Write it on paper immediately',
@@ -388,7 +374,7 @@ const c: IntakeContent = {
       ev: true,
       h: 'Gather proof of a permanent address',
       p: 'The lease, bills, housing documents.',
-      why: 'Having a permanent address in the US is on the list of factors a judge considers in a bond decision.',
+      why: 'Proof of a permanent address in the US is part of the dossier the attorney uses in the case.',
       how: [
         'The lease or ownership documents',
         'Utility bills for several months',
@@ -442,7 +428,7 @@ const c: IntakeContent = {
       ev: true,
       h: 'Request proof of employment',
       p: 'A letter, pay stubs, taxes.',
-      why: 'Work history is on the list of factors in a bond decision.',
+      why: 'Work history is part of the dossier on ties to the US collected for the attorney.',
       how: [
         'A letter with the position, tenure, and a note that the job is being held',
         'Pay stubs for several months',
@@ -514,7 +500,7 @@ const c: IntakeContent = {
       pages: ['attorney'],
       h: 'Decide in advance which attorney to call',
       p: 'At the moment of detention it is too late to search — the number must already be there.',
-      why: 'There is no court-appointed attorney in immigration proceedings. When the contact is chosen in advance, the first day goes into the case, not into searching — and a panicked choice does not lead to a fraudster. According to TRAC data for 2026, bond is granted three times more often with an attorney: 42% of hearings versus 14% without one.',
+      why: 'There is no court-appointed attorney in immigration proceedings. When the contact is chosen in advance, the first day goes into the case, not into searching — and a panicked choice does not lead to a fraudster.',
       how: [
         'Look at both paths: free organizations and paid attorneys — exact addresses below',
         'Collect 2–3 candidates: the practice is federal, you can search by language rather than by city',
@@ -535,7 +521,7 @@ const c: IntakeContent = {
       ev: true,
       h: 'Gather proof of involvement in community life',
       p: 'The parish, organizations, volunteering, the children’s activities.',
-      why: 'Community ties are on the list of factors in a bond decision. This dossier grows with time: the earlier it is started, the fuller it is.',
+      why: 'Community ties are part of the dossier the attorney uses in the case. It grows with time: the earlier it is started, the fuller it is.',
       how: [
         'A letter or confirmation of participation from the parish',
         'Membership in organizations, leagues, clubs',
@@ -558,66 +544,24 @@ const c: IntakeContent = {
       say: 'Hello. Our family will need letters of support for a case. The attorney will explain the form — from you we only need consent and a little time. May I pass your contact to the attorney?',
       warn: 'We do not draft letters to the court. What exactly belongs in a letter is determined by the attorney for the specific case.',
     },
-    bond_first: {
-      pages: ['bondpay', 'sponsor'],
-      h: 'First find out whether there will be a bond hearing at all',
-      p: 'The right to one is currently being disputed in the courts.',
-      why: 'Since July 2025 the government’s position is that a person who entered the country without inspection is subject to mandatory detention and has no bond. The federal appellate courts split: the Second, Third and Sixth Circuits disagreed; the Fifth and Eighth sided with the government (a Fifth Circuit panel ruling in favor of hearings from July 2, 2026 was vacated by the full court; rehearing in September). The Fifth Circuit is Texas, Louisiana and Mississippi — where people are most often transferred. The Supreme Court will take up the question in October 2026. Bottom line: the answer depends on where the person is held, and changes with a transfer to another state.',
+    release_paths: {
+      pages: ['attorney'],
+      h: 'Ask the attorney which release paths are real in this case',
+      p: 'This question comes first. It determines everything else.',
+      why: 'Since July 2025 the government treats detention as mandatory for most people, and the old paths have nearly closed: per TRAC data, in April 2026 just 755 people nationwide were released on bond, and parole, per NILC (July 2026), was granted this fiscal year to one person out of fourteen who requested it. What works now is more often something else — the federal habeas corpus petition: AILA lawyers call it, for many, the only path that works in practice. An attorney prepares and files it.',
       how: [
         'Ask the attorney this question first, before anything else',
-        'Find out which circuit the facility is in',
-        'Ask what changes if the person is transferred to another state',
-        'Only then decide whether to look for someone to post the bond',
+        'Ask directly about habeas corpus and what it requires',
+        'Find out which federal circuit the facility is in and what changes with a transfer to another state',
         'Prepare two plans in parallel: for release, and for detention that lasts months',
+        'The documents on this list are needed on every path — keep collecting them',
       ],
-      info: 'Bond is not the only release mechanism, but the backup paths have narrowed too. Parole — discretionary release by ICE decision — is now granted very rarely: according to the legal advocacy organization NILC (July 2026), even among asylum seekers who passed the initial screening, two out of three requests were approved in fiscal year 2024, versus one out of fourteen this fiscal year. That leaves motions for reconsideration and the federal habeas corpus petition — the fastest-growing path in 2026: AILA lawyers call it, for many, the only one that works in practice. Which mechanisms apply to a specific case is determined only by the attorney.',
       src: [
         ['If there is no attorney yet · free help by state', 'justice.gov/eoir/list-pro-bono-legal-service-providers'],
         ['The directory of free and low-cost help', 'immigrationlawhelp.org'],
         ['Paid search with a language filter', 'ailalawyer.com'],
       ],
-      warn: 'Only an attorney can determine whether this applies to a specific person. This describes the state of the dispute as of July 2026 — it moves fast, check the date.',
-    },
-    sponsor_ready: {
-      pages: ['sponsor'],
-      h: 'Prepare the documents of the person who will post the bond',
-      p: 'They will need proof of status.',
-      why: 'Bond can be posted by a US citizen or green card holder 18 or older, and also by law firms and nonprofit organizations.',
-      how: [
-        'A US passport, birth certificate, or green card',
-        'The same spelling of their details on the document, the bank account, and the profile',
-        'Readiness to pay by wire transfer',
-        'Warn them: the attorney may also ask them for a letter of support',
-      ],
-    },
-    sponsor_talk: {
-      pages: ['sponsor'],
-      h: 'Talk in advance to the person who could post the bond',
-      p: 'It is a hard conversation; better not to start it on the day of the hearing.',
-      why: 'There are usually only a few people with the right status around, and the request is serious — so it gets postponed until the last moment. The conversation is easier when you show both paths: the full amount posted personally — returned at the end of the case, or through a bondsman — only a percentage is paid, but it is not refunded.',
-      how: [
-        'Explain that the money comes back at the end of the case',
-        'Say honestly: it can take years',
-        'If the full amount is too much, tell them about the second path: a bondsman posts the bond for a non-refundable percentage',
-        'Warn that their documents will be needed',
-        'Give them time to think',
-      ],
-      say: 'I need to ask something serious. For a person to be released, the bond must be posted by a citizen or green card holder — I cannot do it myself. The money is returned after the case ends, but that can take a long time. If the full amount is too much, there is a path through a bond company: then only a percentage is paid, but it is not refunded. I will understand any answer. May I explain how it works?',
-      warn: 'Do not promise refund timing — it depends on neither of you.',
-    },
-    bondfund: {
-      pages: ['sponsor'],
-      h: 'Look at bond funds and bondsmen',
-      p: 'An organization can post the bond, not only someone close.',
-      why: 'If there is no suitable person, there are two paths without one: a nonprofit bond fund — or a commercial bondsman, who posts the bond for a non-refundable percentage of the amount. For many people these are the only options.',
-      how: [
-        'Look for funds working in this state',
-        'Ask whether they take this facility',
-        'Ask about the waiting list and the conditions',
-        'A bondsman is the second path: a percentage is paid and not refunded; every company has its own requirements — compare terms in writing',
-        'Check the organization against the same registries as an attorney',
-      ],
-      warn: 'The set of funds changes; some close. Make sure the organization is operating now.',
+      warn: 'If someone promises a quick release for money, that is a sign of fraud: check them on the “Check who you are paying” page. Which paths apply to a specific case is determined only by the attorney. As of July 2026 — check the date.',
     },
     school_add: {
       h: 'Add a second person at the school',
@@ -809,13 +753,12 @@ const c: IntakeContent = {
     money: {
       pages: ['state-ca'],
       h: 'See where families find the money',
-      p: 'Bond, attorney, rent — the costs arrive together. Mechanisms exist.',
-      why: 'Fundraisers through GoFundMe and mutual-aid networks are a recognized mechanism: families raise tens of thousands of dollars for bond and attorneys. Asking for help publicly is normal here — hundreds of families do it.',
+      p: 'Attorney, rent, calls — the costs arrive together. Mechanisms exist.',
+      why: 'Fundraisers through GoFundMe and mutual-aid networks are a recognized mechanism: families raise tens of thousands of dollars for attorneys and for life during the case. Asking for help publicly is normal here — hundreds of families do it.',
       how: [
-        'A fundraiser (GoFundMe and similar): describe the situation honestly, with the goal and the amount — bond, attorney, rent',
+        'A fundraiser (GoFundMe and similar): describe the situation honestly, with the goal and the amount — attorney, rent, calls',
         'Ask the parish, an organization, coworkers to share it — fundraisers work through trust, not through strangers',
         'Mutual-aid networks at communities and churches — ask in yours',
-        'Bond funds — on the state page',
         'Keep a record of what was raised and spent: donors’ trust is the fundraiser’s main resource',
       ],
       warn: 'We do not give financial advice and we do not collect money. Check who you send money to: the fundraiser should be run by a person you know personally.',
@@ -890,7 +833,7 @@ const c: IntakeContent = {
     anum_none: 'there is no number',
     idb: 'not enough details for the search',
     urgent: 'the person has already been detained',
-    money: 'the costs arrive together — bond, attorney, rent',
+    money: 'the costs arrive together — attorney, rent, calls',
     freehelp: 'a legal assessment is needed',
     support: 'the case runs long',
     trusted_yes: 'there is a trusted person',
@@ -909,11 +852,8 @@ const c: IntakeContent = {
     work_own: 'own business',
     courts: 'there were court dates',
     crim: 'there were arrests',
-    bond_first: 'the right to bond is currently disputed',
+    release_paths: 'release paths — the first question for the attorney',
     lawyer_ready: 'an attorney is found before detention, not after',
-    sponsor_yes: 'there is someone to post the bond',
-    sponsor_maybe: 'who posts the bond is still open',
-    sponsor_no: 'there is no suitable person',
     school_only: 'only one adult is listed at the school',
     guard_status: 'there is an adult with status',
     guard_risk: 'the caregiver is at risk or absent',

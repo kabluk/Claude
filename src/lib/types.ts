@@ -113,8 +113,6 @@ export interface DirectoryContent {
     facilitiesH2: string
     helpH2: string
     helpLinks: { href: string; label: string }[]
-    fundsH2: string
-    fundsEmpty: string
     fundedLine: string
     verifyNote: string
   }

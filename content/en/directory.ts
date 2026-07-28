@@ -27,7 +27,7 @@ const c: DirectoryContent = {
     stateH2: 'State page',
   },
   statePage: {
-    lede: 'Courts, facilities, free help and bond funds — by state.',
+    lede: 'Courts, facilities and free help — by state.',
     circuitLine: 'Appellate circuit',
     courtsH2: 'Immigration courts',
     facilitiesH2: 'Facilities',
@@ -40,9 +40,6 @@ const c: DirectoryContent = {
       { href: 'https://www.freedomforimmigrants.org', label: 'Freedom for Immigrants map of facilities and resources' },
       { href: 'https://www.immigrationlawhelp.org', label: 'Directory of free and low-cost help' },
     ],
-    fundsH2: 'Bond funds',
-    fundsEmpty:
-      'There is no verified list of funds yet. We do not publish links we have not checked: a dead link is worse than no section.',
     fundedLine: 'This state has funded representation programs — see the lists below.',
     verifyNote: 'Lists and phone numbers change. Last checked July 27, 2026.',
   },

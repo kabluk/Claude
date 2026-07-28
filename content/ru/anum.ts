@@ -2,7 +2,7 @@ import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
   title: 'Где найти A-Number',
-  lede: 'Это ключ ко всему: поиск, адвокат, залог, суд. Скорее всего, он уже есть у вас дома.',
+  lede: 'Это ключ ко всему: поиск, адвокат, суд. Скорее всего, он уже есть у вас дома.',
   blocks: [
     {
       kind: 'callout',

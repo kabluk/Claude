@@ -2,7 +2,7 @@ import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
   title: 'Dónde encontrar el número A',
-  lede: 'Es la llave para todo: la búsqueda, el abogado, la fianza, la corte. Probablemente ya está en su casa.',
+  lede: 'Es la llave para todo: la búsqueda, el abogado, la corte. Probablemente ya está en su casa.',
   blocks: [
     {
       kind: 'callout',

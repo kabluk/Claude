@@ -4,7 +4,6 @@
     "name": { "en": "California", "es": "California", "ru": "Калифорния" },
     "circuit": 9,
     "funded_representation": true,
-    "bond_funds": [],
     "notes": { "en": "", "es": "", "ru": "" }
   },
   {
@@ -12,11 +11,10 @@
     "name": { "en": "Texas", "es": "Texas", "ru": "Техас" },
     "circuit": 5,
     "funded_representation": false,
-    "bond_funds": [],
     "notes": {
-      "en": "The Fifth Circuit sided with the government on mandatory detention: the right to a bond hearing is most contested here. People are often transferred to Texas from other states. As of July 2026.",
-      "es": "El Quinto Circuito apoyó al gobierno en la detención obligatoria: el derecho a la audiencia de fianza está aquí más en disputa. A Texas trasladan a menudo a personas desde otros estados. A julio de 2026.",
-      "ru": "Пятый апелляционный округ поддержал позицию властей об обязательном задержании: право на слушание о залоге здесь под наибольшим вопросом. В Техас часто перевозят из других штатов. Состояние на июль 2026."
+      "en": "The Fifth Circuit sided with the government on mandatory detention. People are often transferred to Texas from other states. As of July 2026.",
+      "es": "El Quinto Circuito apoyó al gobierno en la detención obligatoria. A Texas trasladan a menudo a personas desde otros estados. A julio de 2026.",
+      "ru": "Пятый апелляционный округ поддержал позицию властей об обязательном задержании. В Техас часто перевозят из других штатов. Состояние на июль 2026."
     }
   },
   {
@@ -24,11 +22,10 @@
     "name": { "en": "Louisiana", "es": "Luisiana", "ru": "Луизиана" },
     "circuit": 5,
     "funded_representation": false,
-    "bond_funds": [],
     "notes": {
-      "en": "The Fifth Circuit sided with the government on mandatory detention: the right to a bond hearing is most contested here. People are often transferred to Louisiana from other states. As of July 2026.",
-      "es": "El Quinto Circuito apoyó al gobierno en la detención obligatoria: el derecho a la audiencia de fianza está aquí más en disputa. A Luisiana trasladan a menudo a personas desde otros estados. A julio de 2026.",
-      "ru": "Пятый апелляционный округ поддержал позицию властей об обязательном задержании: право на слушание о залоге здесь под наибольшим вопросом. В Луизиану часто перевозят из других штатов. Состояние на июль 2026."
+      "en": "The Fifth Circuit sided with the government on mandatory detention. People are often transferred to Louisiana from other states. As of July 2026.",
+      "es": "El Quinto Circuito apoyó al gobierno en la detención obligatoria. A Luisiana trasladan a menudo a personas desde otros estados. A julio de 2026.",
+      "ru": "Пятый апелляционный округ поддержал позицию властей об обязательном задержании. В Луизиану часто перевозят из других штатов. Состояние на июль 2026."
     }
   }
 ]

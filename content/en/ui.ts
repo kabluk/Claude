@@ -18,8 +18,6 @@ const ui: UIStrings = {
     connect: 'Calls, money, letters',
     journey: 'The road',
     attorney: 'Attorney',
-    sponsor: 'Bond sponsor',
-    bondpay: 'Paying the bond',
     deadlines: 'Do not miss a hearing',
     intake: 'Your task list',
     'facility-adelanto': 'Adelanto',
@@ -33,7 +31,7 @@ const ui: UIStrings = {
   },
   navGroups: [
     { label: 'The first night', keys: ['intake', 'where', 'anum', 'documents', 'firstcall', 'verify'] },
-    { label: 'The road', keys: ['journey', 'connect', 'attorney', 'sponsor', 'bondpay', 'deadlines'] },
+    { label: 'The road', keys: ['journey', 'connect', 'attorney', 'deadlines'] },
     { label: 'Directory', keys: ['state-ca', 'state-tx', 'state-la', 'facility-adelanto'] },
     { label: 'About', keys: ['orgs', 'about', 'data', 'disclaimer'] },
   ],

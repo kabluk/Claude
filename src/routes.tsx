@@ -41,8 +41,6 @@ const CONTENT_PAGES = [
   'verify',
   'connect',
   'attorney',
-  'sponsor',
-  'bondpay',
   'deadlines',
   'orgs',
 ] as const
