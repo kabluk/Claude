@@ -549,7 +549,7 @@ const c: IntakeContent = {
       warn: 'No redactamos cartas para la corte. Qué debe ir exactamente en la carta lo determina el abogado según el caso concreto.',
     },
     release_paths: {
-      pages: ['attorney'],
+      pages: ['habeas', 'attorney'],
       h: 'Pregunte al abogado qué caminos de salida son reales en este caso',
       p: 'Esta pregunta va primero. Determina todo lo demás.',
       why: 'Desde julio de 2025 el gobierno trata la detención como obligatoria para la mayoría, y los caminos viejos casi se cerraron: según los datos de TRAC, en abril de 2026 salieron bajo fianza 755 personas en todo el país, y el parole, según NILC (julio de 2026), se concedió en este año fiscal a una persona de las catorce que lo pidieron. Lo que funciona ahora es más a menudo otra cosa — la petición federal de habeas corpus: los abogados de AILA la llaman, para muchos, el único camino que funciona en la práctica. La prepara y la presenta un abogado.',
@@ -662,6 +662,7 @@ const c: IntakeContent = {
       ],
     },
     docs_gather: {
+      pages: ['docpack'],
       h: 'Reúna los documentos en una carpeta',
       p: 'Y haga copias.',
       why: 'Los originales se pierden: quedan en el carro, en la vivienda, se van con la persona.',

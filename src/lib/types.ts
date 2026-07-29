@@ -14,7 +14,7 @@ export type Block =
   | { kind: 'memcard'; title: string; lines: string[]; alts?: string[] }
   | { kind: 'phones'; entries: { num: string; who: string; note: string }[]; footer?: string }
   | { kind: 'kv'; rows: [string, string][] }
-  | { kind: 'tool'; tool: 'namevariants' | 'anumber' | 'print' }
+  | { kind: 'tool'; tool: 'namevariants' | 'anumber' | 'print' | 'docpack' }
 
 export interface PageContent {
   title: string
@@ -93,6 +93,42 @@ export interface UIStrings {
   }
   printPage: string
   dirEmpty: string
+  docPack: {
+    sections: Record<string, string>
+    addPhoto: string
+    processing: string
+    labelPlaceholder: string
+    remove: string
+    pages: [string, string, string]
+    anumLabel: string
+    anumHint: string
+    makePdf: string
+    making: string
+    empty: string
+    share: string
+    download: string
+    print: string
+    shareUnavailable: string
+    deleteAll: string
+    deleteAllConfirm: string
+    storageNote: string
+    readyTitle: string
+    readyHint: string
+    partLabel: string
+    cover: {
+      title: string
+      date: string
+      packet: string
+      supplements: string
+      noAnum: string
+      toc: string
+      missing: string
+      missingNote: string
+      pagesWord: string
+      part: string
+      footer: string
+    }
+  }
 }
 
 // Справочник: подписи и тексты страниц штата и учреждения.

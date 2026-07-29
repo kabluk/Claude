@@ -5,6 +5,7 @@ import { Inline } from '@/lib/inline'
 import { IceGate } from './IceGate'
 import { NameVariants } from './NameVariants'
 import { ANumberField } from './ANumberField'
+import { DocPack } from './DocPack'
 
 const TONE: Record<string, string> = { r: 'r', y: 'y', g: 'g', n: '' }
 
@@ -107,6 +108,7 @@ export function Blocks({ blocks, lang, ui }: { blocks: Block[]; lang: Lang; ui: 
           case 'tool':
             if (b.tool === 'namevariants') return <NameVariants key={i} ui={ui} />
             if (b.tool === 'anumber') return <ANumberField key={i} ui={ui} />
+            if (b.tool === 'docpack') return <DocPack key={i} ui={ui} />
             if (b.tool === 'print')
               return (
                 <button key={i} className="cta" type="button" onClick={() => window.print()}>

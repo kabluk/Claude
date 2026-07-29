@@ -545,7 +545,7 @@ const c: IntakeContent = {
       warn: 'We do not draft letters to the court. What exactly belongs in a letter is determined by the attorney for the specific case.',
     },
     release_paths: {
-      pages: ['attorney'],
+      pages: ['habeas', 'attorney'],
       h: 'Ask the attorney which release paths are real in this case',
       p: 'This question comes first. It determines everything else.',
       why: 'Since July 2025 the government treats detention as mandatory for most people, and the old paths have nearly closed: per TRAC data, in April 2026 just 755 people nationwide were released on bond, and parole, per NILC (July 2026), was granted this fiscal year to one person out of fourteen who requested it. What works now is more often something else — the federal habeas corpus petition: AILA lawyers call it, for many, the only path that works in practice. An attorney prepares and files it.',
@@ -658,6 +658,7 @@ const c: IntakeContent = {
       ],
     },
     docs_gather: {
+      pages: ['docpack'],
       h: 'Gather the documents into one folder',
       p: 'And make copies.',
       why: 'Originals get lost: they stay in the car, in the housing, they leave with the person.',
