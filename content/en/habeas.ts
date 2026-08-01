@@ -69,8 +69,15 @@ const c: PageContent = {
         'If anyone other than an attorney with a verified license promises to "file habeas" and win a quick release for money — check them against the registries.',
       ],
     },
-    { kind: 'ilink', page: 'attorney', label: 'Attorney: three paths' },
-    { kind: 'ilink', page: 'verify', label: 'Check the attorney' },
+    {
+      kind: 'onward',
+      next: {
+        page: 'attorney',
+        label: 'Attorney: three paths',
+        desc: 'A lawyer prepares and files the habeas petition — that is where the path begins.',
+      },
+      related: [{ page: 'verify', label: 'Check the attorney' }],
+    },
   ],
 }
 

@@ -62,6 +62,56 @@ export function Blocks({ blocks, lang, ui }: { blocks: Block[]; lang: Lang; ui: 
                 {b.label} →
               </Link>
             )
+          case 'onward':
+            return (
+              <div key={i} className="onward">
+                {b.next && (
+                  <Link className="next-step" to={pathFor(lang, b.next.page)}>
+                    <span className="ns-eyebrow">{ui.onward.next}</span>
+                    <span className="ns-title">{b.next.label} →</span>
+                    {b.next.desc && <span className="ns-desc">{b.next.desc}</span>}
+                  </Link>
+                )}
+                {b.related && b.related.length > 0 && (
+                  <details className="rel-acc">
+                    <summary>
+                      <span className="rel-label">{ui.onward.related}</span>
+                      <span className="rel-count">{b.related.length}</span>
+                      <span className="rel-chev" aria-hidden="true">
+                        ›
+                      </span>
+                    </summary>
+                    <div className="rel-links">
+                      {b.related.map((r, j) => (
+                        <Link key={j} to={pathFor(lang, r.page)}>
+                          {r.label} →
+                        </Link>
+                      ))}
+                    </div>
+                  </details>
+                )}
+                {b.sources && b.sources.length > 0 && (
+                  <div className="onward-sources">
+                    <div className="src-label">{ui.onward.sources}</div>
+                    {b.sources.map((s, j) =>
+                      s.gate ? (
+                        <IceGate key={j} href={s.href} label={s.label} ui={ui} />
+                      ) : (
+                        <a
+                          key={j}
+                          className="src-ext"
+                          href={s.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {s.label} ↗
+                        </a>
+                      ),
+                    )}
+                  </div>
+                )}
+              </div>
+            )
           case 'memcard':
             return (
               <div key={i} className="memcard">

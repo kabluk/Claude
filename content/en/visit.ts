@@ -51,8 +51,15 @@ const c: PageContent = {
       dim: true,
       text: 'Every facility has its own rules, and they change without notice. As of July 2026 — confirm by phone on the day of the visit.',
     },
-    { kind: 'ilink', page: 'where', label: 'First, find him: where he is' },
-    { kind: 'ilink', page: 'journey', label: 'The whole road' },
+    {
+      kind: 'onward',
+      next: {
+        page: 'journey',
+        label: 'The whole road',
+        desc: 'Where you are now and what comes next — twelve steps from "found" to court.',
+      },
+      related: [{ page: 'where', label: 'First, find him: where he is' }],
+    },
   ],
 }
 

@@ -11,6 +11,12 @@ export type Block =
   | { kind: 'callout'; tone: Tone; title: string; body: string[] }
   | { kind: 'ext'; href: string; label: string; gate?: boolean }
   | { kind: 'ilink'; page: string; label: string }
+  | {
+      kind: 'onward'
+      next?: { page: string; label: string; desc?: string }
+      related?: { page: string; label: string }[]
+      sources?: { href: string; label: string; gate?: boolean }[]
+    }
   | { kind: 'memcard'; title: string; lines: string[]; alts?: string[] }
   | { kind: 'phones'; entries: { num: string; who: string; note: string }[]; footer?: string }
   | { kind: 'kv'; rows: [string, string][] }
@@ -93,6 +99,11 @@ export interface UIStrings {
   }
   printPage: string
   dirEmpty: string
+  onward: {
+    next: string
+    related: string
+    sources: string
+  }
   visitFinder: {
     label: string
     placeholder: string

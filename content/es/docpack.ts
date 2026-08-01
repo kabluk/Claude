@@ -42,8 +42,15 @@ const c: PageContent = {
         'No enviamos los archivos nosotros y no los guardamos: el botón «Compartir» abre el menú de su propio teléfono, y el paquete viaja por su correo o mensajería. Qué necesita un caso concreto lo determina el abogado.',
       ],
     },
-    { kind: 'ilink', page: 'intake', label: 'La lista de tareas: qué documentos juntar' },
-    { kind: 'ilink', page: 'attorney', label: 'Abogado: tres caminos' },
+    {
+      kind: 'onward',
+      next: {
+        page: 'intake',
+        label: 'La lista de tareas: qué documentos juntar',
+        desc: 'El cuestionario arma la lista de papeles según sus respuestas.',
+      },
+      related: [{ page: 'attorney', label: 'Abogado: tres caminos' }],
+    },
   ],
 }
 

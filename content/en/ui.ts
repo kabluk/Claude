@@ -63,6 +63,11 @@ const ui: UIStrings = {
   },
   printPage: 'Print this page',
   dirEmpty: 'No data yet. We do not publish phone numbers or addresses we have not verified.',
+  onward: {
+    next: 'Next step',
+    related: 'Related pages',
+    sources: 'External sources',
+  },
   visitFinder: {
     label: 'The facility where the person is held',
     placeholder: 'Name, city, or state',

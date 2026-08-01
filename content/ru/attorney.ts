@@ -64,11 +64,15 @@ const c: PageContent = {
         'Поэтому искать можно по языку, а не по близости офиса. В каталоге AILA есть фильтр по языку.',
       ],
     },
-    { kind: 'ext', href: 'https://www.ailalawyer.com', label: 'Поиск адвоката AILA · фильтр по языку' },
     {
-      kind: 'ext',
-      href: 'https://www.americanbar.org/groups/legal_services/flh-home/',
-      label: 'ABA Free Legal Answers',
+      kind: 'onward',
+      sources: [
+        { href: 'https://www.ailalawyer.com', label: 'Поиск адвоката AILA · фильтр по языку' },
+        {
+          href: 'https://www.americanbar.org/groups/legal_services/flh-home/',
+          label: 'ABA Free Legal Answers',
+        },
+      ],
     },
   ],
 }

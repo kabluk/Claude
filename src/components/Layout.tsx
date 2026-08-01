@@ -96,20 +96,30 @@ export function Footer({ ui }: { ui: UIStrings }) {
 }
 
 export function PageIndex({ lang, ui }: { lang: Lang; ui: UIStrings }) {
+  // Свёрнутый индекс на нативном <details>: без JavaScript список просто
+  // открыт, так что навигация доступна всегда. Первая группа открыта.
   return (
     <nav className="idx">
       <h2 className="page-h2" style={{ marginTop: 0 }}>
         {ui.allPages}
       </h2>
-      {ui.navGroups.map((g) => (
-        <div key={g.label} className="idx-group">
-          <div className="idx-label">{g.label}</div>
-          {g.keys.map((key) => (
-            <Link key={key} to={pathFor(lang, key)}>
-              {ui.nav[key]} →
-            </Link>
-          ))}
-        </div>
+      {ui.navGroups.map((g, gi) => (
+        <details key={g.label} className="idx-acc" open={gi === 0}>
+          <summary>
+            <span className="idx-label">{g.label}</span>
+            <span className="idx-count">{g.keys.length}</span>
+            <span className="idx-chev" aria-hidden="true">
+              ›
+            </span>
+          </summary>
+          <div className="idx-links">
+            {g.keys.map((key) => (
+              <Link key={key} to={pathFor(lang, key)}>
+                {ui.nav[key]} →
+              </Link>
+            ))}
+          </div>
+        </details>
       ))}
     </nav>
   )

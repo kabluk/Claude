@@ -69,8 +69,15 @@ const c: PageContent = {
         'Si alguien que no es un abogado con licencia verificada promete «presentar el habeas» y una salida rápida por dinero — verifíquelo en los registros.',
       ],
     },
-    { kind: 'ilink', page: 'attorney', label: 'Abogado: tres caminos' },
-    { kind: 'ilink', page: 'verify', label: 'Verificar al abogado' },
+    {
+      kind: 'onward',
+      next: {
+        page: 'attorney',
+        label: 'Abogado: tres caminos',
+        desc: 'La petición de habeas la prepara y la presenta un abogado — ahí empieza el camino.',
+      },
+      related: [{ page: 'verify', label: 'Verificar al abogado' }],
+    },
   ],
 }
 

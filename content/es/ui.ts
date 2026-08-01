@@ -63,6 +63,11 @@ const ui: UIStrings = {
   },
   printPage: 'Imprimir esta página',
   dirEmpty: 'Aún no hay datos. No publicamos teléfonos ni direcciones sin verificar.',
+  onward: {
+    next: 'Siguiente paso',
+    related: 'Páginas relacionadas',
+    sources: 'Fuentes externas',
+  },
   visitFinder: {
     label: 'El centro donde tienen a la persona',
     placeholder: 'Nombre, ciudad o estado',

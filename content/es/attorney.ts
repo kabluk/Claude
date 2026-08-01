@@ -64,11 +64,15 @@ const c: PageContent = {
         'Por eso se puede buscar por idioma y no por la cercanía de la oficina. El directorio de AILA tiene filtro por idioma.',
       ],
     },
-    { kind: 'ext', href: 'https://www.ailalawyer.com', label: 'Buscador de AILA · filtro por idioma' },
     {
-      kind: 'ext',
-      href: 'https://www.americanbar.org/groups/legal_services/flh-home/',
-      label: 'ABA Free Legal Answers',
+      kind: 'onward',
+      sources: [
+        { href: 'https://www.ailalawyer.com', label: 'Buscador de AILA · filtro por idioma' },
+        {
+          href: 'https://www.americanbar.org/groups/legal_services/flh-home/',
+          label: 'ABA Free Legal Answers',
+        },
+      ],
     },
   ],
 }

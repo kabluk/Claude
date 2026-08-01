@@ -51,8 +51,15 @@ const c: PageContent = {
       dim: true,
       text: 'Cada centro tiene sus propias reglas y cambian sin aviso. Estado a julio de 2026 — confirme por teléfono el día de la visita.',
     },
-    { kind: 'ilink', page: 'where', label: 'Primero encontrarlo: dónde está' },
-    { kind: 'ilink', page: 'journey', label: 'El camino completo' },
+    {
+      kind: 'onward',
+      next: {
+        page: 'journey',
+        label: 'El camino completo',
+        desc: 'Dónde está ahora y qué sigue — doce pasos desde «lo encontramos» hasta la corte.',
+      },
+      related: [{ page: 'where', label: 'Primero encontrarlo: dónde está' }],
+    },
   ],
 }
 

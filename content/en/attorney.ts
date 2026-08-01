@@ -64,11 +64,15 @@ const c: PageContent = {
         'So you can search by language rather than by office location. The AILA directory has a language filter.',
       ],
     },
-    { kind: 'ext', href: 'https://www.ailalawyer.com', label: 'AILA lawyer search · language filter' },
     {
-      kind: 'ext',
-      href: 'https://www.americanbar.org/groups/legal_services/flh-home/',
-      label: 'ABA Free Legal Answers',
+      kind: 'onward',
+      sources: [
+        { href: 'https://www.ailalawyer.com', label: 'AILA lawyer search · language filter' },
+        {
+          href: 'https://www.americanbar.org/groups/legal_services/flh-home/',
+          label: 'ABA Free Legal Answers',
+        },
+      ],
     },
   ],
 }

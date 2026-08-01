@@ -42,8 +42,15 @@ const c: PageContent = {
         'We do not send the files ourselves and we do not store them: the "Share" button opens your phone’s own menu, and the package travels by your email or messenger. What a specific case needs is determined by the attorney.',
       ],
     },
-    { kind: 'ilink', page: 'intake', label: 'The task list: which documents to collect' },
-    { kind: 'ilink', page: 'attorney', label: 'Attorney: three paths' },
+    {
+      kind: 'onward',
+      next: {
+        page: 'intake',
+        label: 'The task list: which documents to collect',
+        desc: 'The questionnaire builds the list of papers from your answers.',
+      },
+      related: [{ page: 'attorney', label: 'Attorney: three paths' }],
+    },
   ],
 }
 
