@@ -27,4 +27,5 @@ export interface FacilityRec {
   state_code: string
   court_slug: string
   notes: Record<Lang, string>
+  visit?: Record<Lang, string[]>
 }

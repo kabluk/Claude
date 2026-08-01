@@ -6,6 +6,7 @@
   "firstcall": { "en": "first-call", "es": "primera-llamada", "ru": "pervyy-zvonok" },
   "verify": { "en": "check-who-you-pay", "es": "verificar-a-quien-paga", "ru": "proverit-komu-platite" },
   "connect": { "en": "staying-in-touch", "es": "mantener-contacto", "ru": "svyaz" },
+  "visit": { "en": "visiting", "es": "la-visita", "ru": "svidanie" },
   "journey": { "en": "the-road", "es": "el-camino", "ru": "marshrut" },
   "attorney": { "en": "attorney", "es": "abogado", "ru": "advokat" },
   "habeas": { "en": "habeas-corpus", "es": "habeas-corpus", "ru": "habeas-corpus" },

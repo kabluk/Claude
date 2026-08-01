@@ -40,6 +40,7 @@ const CONTENT_PAGES = [
   'firstcall',
   'verify',
   'connect',
+  'visit',
   'attorney',
   'habeas',
   'docpack',

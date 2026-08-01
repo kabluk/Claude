@@ -14,7 +14,7 @@ export type Block =
   | { kind: 'memcard'; title: string; lines: string[]; alts?: string[] }
   | { kind: 'phones'; entries: { num: string; who: string; note: string }[]; footer?: string }
   | { kind: 'kv'; rows: [string, string][] }
-  | { kind: 'tool'; tool: 'namevariants' | 'anumber' | 'print' | 'docpack' }
+  | { kind: 'tool'; tool: 'namevariants' | 'anumber' | 'print' | 'docpack' | 'visitfinder' }
 
 export interface PageContent {
   title: string
@@ -93,6 +93,18 @@ export interface UIStrings {
   }
   printPage: string
   dirEmpty: string
+  visitFinder: {
+    label: string
+    placeholder: string
+    inBase: string
+    facilityPage: string
+    notFoundTitle: string
+    notFoundBody: string
+    askTitle: string
+    ask: string[]
+    iceLabel: string
+    drilNote: string
+  }
   docPack: {
     sections: Record<string, string>
     addPhoto: string

@@ -1202,6 +1202,38 @@ html.reveal-ready main > .rev-in {
   color: var(--color-dim);
   text-decoration: line-through;
 }
+/* поиск учреждения для свидания */
+.visitfinder .vf-chip {
+  background: none;
+  border: 1px solid var(--color-line);
+  color: var(--color-ink);
+  font-size: 12.5px;
+  padding: 5px 10px;
+  margin: 2px 4px 2px 0;
+  cursor: pointer;
+}
+.visitfinder .vf-card,
+.visitfinder .vf-fallback {
+  border: 1px solid var(--color-line);
+  padding: 14px;
+  margin-top: 14px;
+}
+.visitfinder h3 {
+  font-size: 15.5px;
+  margin-bottom: 6px;
+}
+.visitfinder .vf-addr {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--color-dim);
+  margin: 2px 0;
+}
+.visitfinder .vf-ask-t {
+  font-weight: 700;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
 /* сборщик пакета документов */
 .docpack .dp-sec {
   border-bottom: 1px solid var(--color-line);

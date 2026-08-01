@@ -12,6 +12,29 @@
       "en": "Other sites list a different street number. The official mailing address is the one above.",
       "es": "En otros sitios aparece un número distinto. La dirección oficial para correo es la de arriba.",
       "ru": "На сторонних сайтах встречается другой номер дома. Официальный адрес для почты — тот, что указан выше."
+    },
+    "visit": {
+      "en": [
+        "Nine housing units, each with its own visiting schedule — first find out the unit, then its hours: 760-561-6100",
+        "Arrive at least 15 minutes early; being late means the visit is denied",
+        "Photo ID for every adult visitor; at check-in give the person's name and A-Number",
+        "Up to three visitors at a time, children included",
+        "As of July 2026 — confirm by phone on the day of the visit"
+      ],
+      "es": [
+        "Nueve unidades de vivienda, cada una con su propio horario de visita — primero averigüe la unidad, luego sus horas: 760-561-6100",
+        "Llegue al menos 15 minutos antes; llegar tarde significa que niegan la visita",
+        "Identificación con foto para cada visitante adulto; al registrarse dé el nombre y el número A de la persona",
+        "Hasta tres visitantes a la vez, niños incluidos",
+        "A julio de 2026 — confirme por teléfono el día de la visita"
+      ],
+      "ru": [
+        "Девять жилых блоков, у каждого своя сетка свиданий — сначала узнайте блок, потом его часы: 760-561-6100",
+        "Приходить минимум за 15 минут; опоздавших не пускают",
+        "Документ с фото у каждого взрослого посетителя; на входе называют имя и A-Number задержанного",
+        "До трёх посетителей за раз, включая детей",
+        "Состояние на июль 2026 — подтвердите по телефону в день визита"
+      ]
     }
   }
 ]

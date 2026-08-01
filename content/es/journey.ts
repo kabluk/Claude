@@ -2,12 +2,12 @@ import type { JourneyContent } from '@/lib/types'
 
 const c: JourneyContent = {
   title: 'El camino',
-  lede: 'Doce pasos después de encontrar a la persona. No es su plan — es un mapa del proceso: mostramos todos los pasos que existen. Seis están abiertos, el resto en preparación.',
+  lede: 'Doce pasos después de encontrar a la persona. No es su plan — es un mapa del proceso: mostramos todos los pasos que existen. Siete están abiertos, el resto en preparación.',
   soonLabel: 'EN PREPARACIÓN',
   steps: [
     { t: 'Encontrado · dónde está', p: 'El centro, el estado, el circuito. Desde aquí todo se vuelve concreto.', page: 'where' },
     { t: 'Mantener el contacto', p: 'La cuenta de llamadas, cartas y postales, libros. Por qué no se puede llamar hacia adentro.', page: 'connect' },
-    { t: 'La visita', p: 'Horarios, cómo apuntarse, documentos, qué no se puede llevar.' },
+    { t: 'La visita', p: 'Horarios, cómo apuntarse, documentos, qué no se puede llevar.', page: 'visit' },
     { t: 'Abogado', p: 'Gratis, representante acreditado, de pago. Se puede buscar por idioma.', page: 'attorney' },
     { t: 'Cómo se cuenta el dinero del abogado', p: 'Tarifas, fases, el anticipo, qué debe estar en el contrato.' },
     { t: 'Documentos', p: 'Una fila de tareas, de una en una. Fotos del teléfono — un PDF limpio para el abogado.', page: 'docpack' },

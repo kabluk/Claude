@@ -16,6 +16,7 @@ const ui: UIStrings = {
     firstcall: 'The first call',
     verify: 'Check the attorney',
     connect: 'Calls, money, letters',
+    visit: 'Visiting',
     journey: 'The road',
     attorney: 'Attorney',
     habeas: 'Habeas corpus',
@@ -33,7 +34,7 @@ const ui: UIStrings = {
   },
   navGroups: [
     { label: 'The first night', keys: ['intake', 'where', 'anum', 'documents', 'firstcall', 'verify'] },
-    { label: 'The road', keys: ['journey', 'connect', 'attorney', 'habeas', 'docpack', 'deadlines'] },
+    { label: 'The road', keys: ['journey', 'connect', 'visit', 'attorney', 'habeas', 'docpack', 'deadlines'] },
     { label: 'Directory', keys: ['state-ca', 'state-tx', 'state-la', 'facility-adelanto'] },
     { label: 'About', keys: ['orgs', 'about', 'data', 'disclaimer'] },
   ],
@@ -62,6 +63,25 @@ const ui: UIStrings = {
   },
   printPage: 'Print this page',
   dirEmpty: 'No data yet. We do not publish phone numbers or addresses we have not verified.',
+  visitFinder: {
+    label: 'The facility where the person is held',
+    placeholder: 'Name, city, or state',
+    inBase: 'Verified by us:',
+    facilityPage: 'Facility page: mail, letters, state',
+    notFoundTitle: 'This facility is not in our base yet',
+    notFoundBody: 'We do not copy hour tables from other sites: they change by housing unit and without notice. The reliable path is one call to the facility. The phone number is on the official ICE page below.',
+    askTitle: 'One call — the whole answer. Ask:',
+    ask: [
+      'Which housing unit the person is in and that unit’s visiting hours',
+      'Whether you need to sign up in advance, and how',
+      'What documents visitors need',
+      'Whether children can come, and what the dress code is',
+      'How many people can come per visit',
+      'Whether visits are cancelled this week',
+    ],
+    iceLabel: 'The ICE facility list with visiting hours',
+    drilNote: 'If you cannot get through to the facility: 1-888-351-4024 — the official ICE line (DRIL), Mon–Fri 8 a.m.–8 p.m. Eastern, Spanish available.',
+  },
   docPack: {
     // min-ok: подписи разделов инструмента, файлы не покидают браузер
     sections: {

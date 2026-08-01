@@ -2,12 +2,12 @@ import type { JourneyContent } from '@/lib/types'
 
 const c: JourneyContent = {
   title: 'The road',
-  lede: 'Twelve steps after the person is found. This is not your plan — it is a map of the process: we show every step that exists. Six are open, the rest are in the works.',
+  lede: 'Twelve steps after the person is found. This is not your plan — it is a map of the process: we show every step that exists. Seven are open, the rest are in the works.',
   soonLabel: 'IN THE WORKS',
   steps: [
     { t: 'Found · where he is', p: 'The facility, the state, the circuit. From here everything becomes concrete.', page: 'where' },
     { t: 'Staying in touch', p: 'The phone account, letters and postcards, books. Why you cannot call in.', page: 'connect' },
-    { t: 'Visiting', p: 'Hours, how to sign up, documents, what cannot be brought in.' },
+    { t: 'Visiting', p: 'Hours, how to sign up, documents, what cannot be brought in.', page: 'visit' },
     { t: 'Attorney', p: 'Free, accredited representative, paid. You can search by language.', page: 'attorney' },
     { t: 'How attorney money is counted', p: 'Rates, phases, the retainer, what belongs in the agreement.' },
     { t: 'Documents', p: 'A queue of tasks, one at a time. Phone photos — a clean PDF for the attorney.', page: 'docpack' },

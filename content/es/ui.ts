@@ -16,6 +16,7 @@ const ui: UIStrings = {
     firstcall: 'La primera llamada',
     verify: 'Verificar al abogado',
     connect: 'Llamadas, dinero, cartas',
+    visit: 'La visita',
     journey: 'El camino',
     attorney: 'Abogado',
     habeas: 'Habeas corpus',
@@ -33,7 +34,7 @@ const ui: UIStrings = {
   },
   navGroups: [
     { label: 'La primera noche', keys: ['intake', 'where', 'anum', 'documents', 'firstcall', 'verify'] },
-    { label: 'El camino', keys: ['journey', 'connect', 'attorney', 'habeas', 'docpack', 'deadlines'] },
+    { label: 'El camino', keys: ['journey', 'connect', 'visit', 'attorney', 'habeas', 'docpack', 'deadlines'] },
     { label: 'Directorio', keys: ['state-ca', 'state-tx', 'state-la', 'facility-adelanto'] },
     { label: 'Acerca de', keys: ['orgs', 'about', 'data', 'disclaimer'] },
   ],
@@ -62,6 +63,25 @@ const ui: UIStrings = {
   },
   printPage: 'Imprimir esta página',
   dirEmpty: 'Aún no hay datos. No publicamos teléfonos ni direcciones sin verificar.',
+  visitFinder: {
+    label: 'El centro donde tienen a la persona',
+    placeholder: 'Nombre, ciudad o estado',
+    inBase: 'Verificado por nosotros:',
+    facilityPage: 'Página del centro: correo, cartas, estado',
+    notFoundTitle: 'Este centro todavía no está en nuestra base',
+    notFoundBody: 'No copiamos tablas de horarios de otros sitios: cambian por unidad de vivienda y sin aviso. El camino confiable es una llamada al centro. El teléfono está en la página oficial de ICE abajo.',
+    askTitle: 'Una llamada — toda la respuesta. Pregunte:',
+    ask: [
+      'En qué unidad de vivienda está la persona y qué horario de visitas tiene esa unidad',
+      'Si hay que apuntarse antes, y cómo',
+      'Qué documentos necesitan los visitantes',
+      'Si pueden venir niños, y cuál es el código de vestimenta',
+      'Cuántas personas pueden venir por visita',
+      'Si las visitas están canceladas esta semana',
+    ],
+    iceLabel: 'La lista de centros de ICE con horarios de visita',
+    drilNote: 'Si no logra comunicarse con el centro: 1-888-351-4024 — la línea oficial de ICE (DRIL), lun–vie 8 a.m.–8 p.m. hora del Este, hay español.',
+  },
   docPack: {
     // min-ok: подписи разделов инструмента, файлы не покидают браузер
     sections: {
