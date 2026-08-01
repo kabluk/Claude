@@ -14,7 +14,7 @@ const ui: UIStrings = {
     anum: 'Where to find the A-Number',
     documents: 'What these papers mean',
     firstcall: 'The first call',
-    verify: 'Check who you are paying',
+    verify: 'Check the attorney',
     connect: 'Calls, money, letters',
     journey: 'The road',
     attorney: 'Attorney',

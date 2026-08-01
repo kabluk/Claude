@@ -80,6 +80,6 @@ export const disclaimer: PageContent = {
       dim: true,
       text: 'Questions about your case belong to an attorney or a DOJ accredited representative. How to check them is on the verification page.',
     },
-    { kind: 'ilink', page: 'verify', label: 'Check who you are paying' },
+    { kind: 'ilink', page: 'verify', label: 'Check the attorney' },
   ],
 }

@@ -1,7 +1,7 @@
 import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
-  title: 'Check who you are paying',
+  title: 'Check the attorney',
   lede: 'Three government registries. The check takes three minutes and costs nothing.',
   blocks: [
     {

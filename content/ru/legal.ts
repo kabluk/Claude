@@ -80,6 +80,6 @@ export const disclaimer: PageContent = {
       dim: true,
       text: 'Вопросы о вашем деле задавайте адвокату или аккредитованному представителю Минюста. Как их проверить — на странице проверки.',
     },
-    { kind: 'ilink', page: 'verify', label: 'Проверить, кому вы платите' },
+    { kind: 'ilink', page: 'verify', label: 'Проверить адвоката' },
   ],
 }

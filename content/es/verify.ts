@@ -1,7 +1,7 @@
 import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
-  title: 'Verificar a quién le paga',
+  title: 'Verificar al abogado',
   lede: 'Tres registros oficiales. La verificación toma tres minutos y no cuesta nada.',
   blocks: [
     {

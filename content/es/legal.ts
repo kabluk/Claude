@@ -81,6 +81,6 @@ export const disclaimer: PageContent = {
       dim: true,
       text: 'Las preguntas sobre su caso son para un abogado o un representante acreditado del Departamento de Justicia. Cómo verificarlos está en la página de verificación.',
     },
-    { kind: 'ilink', page: 'verify', label: 'Verificar a quién le paga' },
+    { kind: 'ilink', page: 'verify', label: 'Verificar al abogado' },
   ],
 }

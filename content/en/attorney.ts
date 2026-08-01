@@ -53,7 +53,7 @@ const c: PageContent = {
         'Ask about the retainer and the minimum billing unit — conversations with the family are billed too',
       ],
     },
-    { kind: 'ilink', page: 'verify', label: 'Check who you are paying' },
+    { kind: 'ilink', page: 'verify', label: 'Check the attorney' },
     { kind: 'h2', text: 'You can search by language' },
     {
       kind: 'callout',

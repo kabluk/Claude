@@ -14,7 +14,7 @@ const ui: UIStrings = {
     anum: 'Где найти A-Number',
     documents: 'Что означают эти бумаги',
     firstcall: 'Первый звонок',
-    verify: 'Проверить, кому вы платите',
+    verify: 'Проверить адвоката',
     connect: 'Связь и деньги на звонки',
     journey: 'Маршрут',
     attorney: 'Адвокат',

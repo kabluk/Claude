@@ -70,7 +70,7 @@ const c: PageContent = {
       ],
     },
     { kind: 'ilink', page: 'attorney', label: 'Адвокат: три пути' },
-    { kind: 'ilink', page: 'verify', label: 'Проверить, кому вы платите' },
+    { kind: 'ilink', page: 'verify', label: 'Проверить адвоката' },
   ],
 }
 

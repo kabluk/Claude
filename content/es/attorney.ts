@@ -53,7 +53,7 @@ const c: PageContent = {
         'Pregunte por el anticipo y la unidad mínima de facturación — las conversaciones con la familia también se cobran',
       ],
     },
-    { kind: 'ilink', page: 'verify', label: 'Verificar a quién le paga' },
+    { kind: 'ilink', page: 'verify', label: 'Verificar al abogado' },
     { kind: 'h2', text: 'Se puede buscar por idioma' },
     {
       kind: 'callout',

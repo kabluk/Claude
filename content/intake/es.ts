@@ -565,7 +565,7 @@ const c: IntakeContent = {
         ['El catálogo de ayuda gratuita y de bajo costo', 'immigrationlawhelp.org'],
         ['Búsqueda de pago con filtro por idioma', 'ailalawyer.com'],
       ],
-      warn: 'Si alguien promete una salida rápida por dinero, es una señal de fraude: verifíquelo en la página «Verificar a quién le paga». Qué caminos aplican a un caso concreto lo determina solo el abogado. Estado a julio de 2026 — mire la fecha.',
+      warn: 'Si alguien promete una salida rápida por dinero, es una señal de fraude: verifíquelo en la página «Verificar al abogado». Qué caminos aplican a un caso concreto lo determina solo el abogado. Estado a julio de 2026 — mire la fecha.',
     },
     school_add: {
       h: 'Agregue a una segunda persona en la escuela',
@@ -798,7 +798,7 @@ const c: IntakeContent = {
     },
     verify: {
       pages: ['verify'],
-      h: 'Verifique a quién le paga, antes de pagar',
+      h: 'Verifique al abogado, antes de pagar',
       p: 'Tres registros oficiales, tres minutos.',
       why: 'En EE. UU. el notario no es abogado y no puede representar en la corte de inmigración. En América Latina el notario público sí es abogado. Sobre esa diferencia está construido el fraude más común.',
       how: [

@@ -14,7 +14,7 @@ const ui: UIStrings = {
     anum: 'Dónde está el número A',
     documents: 'Qué significan estos papeles',
     firstcall: 'La primera llamada',
-    verify: 'Verificar a quién le paga',
+    verify: 'Verificar al abogado',
     connect: 'Llamadas, dinero, cartas',
     journey: 'El camino',
     attorney: 'Abogado',

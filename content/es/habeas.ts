@@ -70,7 +70,7 @@ const c: PageContent = {
       ],
     },
     { kind: 'ilink', page: 'attorney', label: 'Abogado: tres caminos' },
-    { kind: 'ilink', page: 'verify', label: 'Verificar a quién le paga' },
+    { kind: 'ilink', page: 'verify', label: 'Verificar al abogado' },
   ],
 }
 

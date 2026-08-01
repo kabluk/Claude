@@ -561,7 +561,7 @@ const c: IntakeContent = {
         ['The directory of free and low-cost help', 'immigrationlawhelp.org'],
         ['Paid search with a language filter', 'ailalawyer.com'],
       ],
-      warn: 'If someone promises a quick release for money, that is a sign of fraud: check them on the “Check who you are paying” page. Which paths apply to a specific case is determined only by the attorney. As of July 2026 — check the date.',
+      warn: 'If someone promises a quick release for money, that is a sign of fraud: check them on the “Check the attorney” page. Which paths apply to a specific case is determined only by the attorney. As of July 2026 — check the date.',
     },
     school_add: {
       h: 'Add a second person at the school',
@@ -794,7 +794,7 @@ const c: IntakeContent = {
     },
     verify: {
       pages: ['verify'],
-      h: 'Check who you are paying before you pay',
+      h: 'Check the attorney before you pay',
       p: 'Three government registries, three minutes.',
       why: 'In the US a notary is not a lawyer and cannot represent anyone in immigration court. In Latin America a notario público is a lawyer. The most common fraud is built on that difference.',
       how: [
