@@ -1,0 +1,15 @@
+{
+  // Cloudflare Workers со статикой (Static Assets). Сайт отдаётся из dist/,
+  // а воркер делает серверный редирект с "/" по языку браузера.
+  // run_worker_first: ["/"] — воркер вызывается первым ТОЛЬКО для корня;
+  // все прочие пути отдаются статикой напрямую, с применением _headers (CSP).
+  "name": "detnav",
+  "main": "worker.js",
+  "compatibility_date": "2026-07-01",
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    "run_worker_first": ["/"]
+  }
+}
