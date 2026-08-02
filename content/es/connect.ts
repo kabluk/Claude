@@ -1,65 +1,133 @@
 import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
-  title: 'Llamadas, dinero, cartas',
-  lede: 'Él la llama a usted — usted a él casi nunca. Las llamadas se pagan según las tarifas del operador y tienen tiempo limitado.',
+  title: 'Cómo comunicarse con la persona',
+  lede: 'La regla clave: él puede llamarla a usted. Usted no puede llamarlo a él. Abajo, paso a paso — llamadas, mensajes, video, dinero y cartas.',
   blocks: [
+    { kind: 'h2', text: 'Por dónde empezar' },
+    {
+      kind: 'steps',
+      items: [
+        'Averigüe qué operador telefónico usa su centro.',
+        'En su propio teléfono, desactive el bloqueo de números desconocidos — si no, él no podrá comunicarse.',
+        'Abra una cuenta y ponga un poco de dinero.',
+      ],
+    },
+
+    { kind: 'h2', text: '1 · Llamadas' },
+    {
+      kind: 'p',
+      text: 'Él llama desde los teléfonos de la unidad de vivienda. Usted no puede llamarlo — solo él puede llamarla. Si la cuenta está en cero, no hay llamadas.',
+    },
+    {
+      kind: 'steps',
+      title: 'Cómo activar las llamadas',
+      items: [
+        'Averigüe el operador del centro — casi siempre es `GettingOut` (la empresa ViaPath); algunos usan `Securus` o `ICSolutions`.',
+        'Abra el sitio del operador en el navegador (o su aplicación) y cree una cuenta.',
+        'Vincule la cuenta por el `A-Number` y el centro.',
+        'Elija cómo: fondear su cuenta personal — él llama a cualquiera; o vincularla a su número (AdvancePay) — él la llama solo a usted, y normalmente cuesta menos.',
+        'Ponga poco — el mínimo suele ser `$10`. Si lo trasladan a otro centro, el dinero no se mueve con él.',
+      ],
+    },
+    {
+      kind: 'ext',
+      href: 'https://www.gettingout.com',
+      label: 'Sitio de GettingOut — cuenta para llamadas y mensajes',
+    },
     {
       kind: 'callout',
       tone: 'g',
-      title: '9233# — gratis desde adentro',
+      title: '9233# — gratis y sin monitoreo',
       body: [
-        'Marcar `9233#` conecta con la Línea Nacional de Detención y es gratis desde el centro. Funciona cuando la cuenta está en cero — es decir, en el momento más difícil.',
-      ],
-    },
-    { kind: 'h2', text: 'Cómo funciona la cuenta de llamadas' },
-    {
-      kind: 'list',
-      items: [
-        'Mientras no haya dinero en la cuenta, no hay contacto — no se puede llamar hacia adentro, solo él llama',
-        'Opción 1: recargar el saldo personal del detenido — él llama a quien quiera',
-        'Opción 2: vincular una cuenta a su número — llamadas solo a usted, normalmente cuesta menos según las tarifas del propio operador',
-        'El operador depende del centro: GettingOut, Securus, ConnectNetwork. En Adelanto hay tabletas Talton',
-      ],
-    },
-    {
-      kind: 'callout',
-      tone: 'y',
-      title: 'En la aplicación GettingOut el pago no funciona',
-      body: [
-        'La aplicación muestra el saldo y los mensajes, pero no permite poner dinero. Hay que recargar por el sitio web del operador en el navegador.',
-        'Con otros operadores pasa igual: si la aplicación no tiene botón de pago — busque el sitio web, no reinstale la aplicación.',
-      ],
-    },
-    {
-      kind: 'callout',
-      tone: 'y',
-      title: 'Un traslado a otro centro cambia el operador',
-      body: [
-        'El dinero en la cuenta del operador anterior no viaja con la persona. No deposite mucho de una vez.',
-      ],
-    },
-    { kind: 'h2', text: 'Antes de la primera llamada' },
-    {
-      kind: 'p',
-      text: 'Quite el bloqueo de números desconocidos — la llamada llegará de un número desconocido. Las instrucciones para iOS y Android están en la página de la primera llamada.',
-    },
-    { kind: 'ilink', page: 'firstcall', label: 'La primera llamada' },
-    { kind: 'h2', text: 'Cartas y postales' },
-    {
-      kind: 'list',
-      items: [
-        'Una postal por correo normal llega mejor que cualquier servicio',
-        'Libros: solo nuevos y enviados directamente por una tienda o editorial, no por un particular',
-        'Pasta blanda: la pasta dura tarda más en revisarse y muchas veces no entra',
-        'El número A es obligatorio en el sobre y en todo lo que envíe',
-        'Cada centro tiene sus propias reglas — confirme por teléfono antes de enviar',
+        'Marcar `9233#` desde un teléfono del centro llega a la línea gratuita de Freedom for Immigrants. Las llamadas normales se graban; ICE no monitorea esta.',
+        'Los voluntarios hablan muchos idiomas, ayudan y pueden avisar a su familia dónde está la persona. Horario: lun–vie, 8 a.m.–8 p.m. hora del Pacífico.',
       ],
     },
     {
       kind: 'p',
       dim: true,
-      text: 'El contacto cálido y regular es lo que más protege a una persona adentro.',
+      text: 'Una llamada normal se graba y tiene tiempo limitado (unos 15–20 minutos). El precio ronda 7 centavos por minuto a nivel nacional, y las internacionales cuestan más; varía según el centro. Decir el A-Number por teléfono es seguro; los detalles del caso no. El programa de llamadas gratuitas que tenían algunos centros lo eliminó ICE en 2026 — cuente con que la comunicación se paga.',
+    },
+    { kind: 'ilink', page: 'firstcall', label: 'La primera llamada: cómo desbloquear números' },
+
+    { kind: 'h2', text: '2 · Mensajes (texto)' },
+    {
+      kind: 'p',
+      text: 'No son mensajes de texto normales a un teléfono. Son mensajes dentro del sistema del operador — él los lee en una tableta.',
+    },
+    {
+      kind: 'steps',
+      title: 'Cómo enviar',
+      items: [
+        'El mismo operador y la misma cuenta que para las llamadas.',
+        'Abra la sección «Messages» en el sitio del operador.',
+        'Pague «estampillas» (créditos) — en el sitio, por teléfono o en la aplicación, mínimo suele ser `$10`.',
+        'Con ese mismo dinero puede enviar una foto y un videomensaje de 30 segundos.',
+      ],
+    },
+    {
+      kind: 'p',
+      dim: true,
+      text: 'No todos los centros tienen tabletas. La entrega se demora y todo se revisa.',
+    },
+
+    { kind: 'h2', text: '3 · Videollamadas' },
+    {
+      kind: 'p',
+      text: 'Algunos centros tienen videollamadas — con cita previa, por el sitio del operador o un quiosco en el vestíbulo. De pago, y la cuenta hace falta con anticipación.',
+    },
+    {
+      kind: 'p',
+      dim: true,
+      text: 'Esto no es una visita en persona — tiene sus propias reglas y horarios.',
+    },
+    { kind: 'ilink', page: 'visit', label: 'La visita' },
+
+    { kind: 'h2', text: '4 · Dinero para lo diario (adentro)' },
+    {
+      kind: 'p',
+      text: 'Esta es una cuenta aparte — no la de las llamadas. De ella la persona compra comida, higiene y a veces tiempo de teléfono adentro. A menudo es otro proveedor.',
+    },
+    {
+      kind: 'steps',
+      title: 'Cómo depositar',
+      items: [
+        'Busque las instrucciones de dinero en la página de este centro en ICE (la sección commissary / trust account) — los datos cambian por centro.',
+        'Los métodos, los que haya — depende del lugar: en línea con tarjeta con el proveedor (`Access Corrections`, `TouchPay`, `ViaPath/ConnectNetwork`, `Western Union`); por teléfono con el proveedor; por correo con un money order a la dirección del centro; en persona en un quiosco del vestíbulo.',
+        'Todos piden el nombre completo y el `A-Number` (a menudo también la fecha de nacimiento).',
+        'Deposite solo con el proveedor indicado para este centro. Tras un traslado el dinero se queda atascado y es difícil recuperarlo.',
+      ],
+    },
+    {
+      kind: 'callout',
+      tone: 'n',
+      title: 'Si no hay quién ayude',
+      body: [
+        'El Freedom for Immigrants Commissary Fund pone dinero en la cuenta de quienes no tienen a nadie.',
+      ],
+    },
+    {
+      kind: 'p',
+      dim: true,
+      text: 'El dinero para lo diario no se puede retirar en efectivo — solo se gasta adentro.',
+    },
+
+    { kind: 'h2', text: '5 · Cartas y postales' },
+    {
+      kind: 'list',
+      items: [
+        'Una postal común por correo llega más seguro que cualquier servicio',
+        'El A-Number va en el sobre y en cada envío, siempre',
+        'Libros — solo nuevos y directamente de una tienda o editorial, no de un particular',
+        'La pasta blanda pasa más rápido: la dura se revisa más y muchas veces no entra',
+        'Cada centro tiene sus reglas — confirme por teléfono antes de enviar',
+      ],
+    },
+    {
+      kind: 'p',
+      dim: true,
+      text: 'El contacto cálido y regular es lo que más protege a la persona adentro.',
     },
   ],
 }

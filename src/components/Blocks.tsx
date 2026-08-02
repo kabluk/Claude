@@ -37,6 +37,19 @@ export function Blocks({ blocks, lang, ui }: { blocks: Block[]; lang: Lang; ui: 
                 ))}
               </ul>
             )
+          case 'steps':
+            return (
+              <div key={i} className="steps-block">
+                {b.title && <div className="steps-title">{b.title}</div>}
+                <ol className="steps">
+                  {b.items.map((it, j) => (
+                    <li key={j}>
+                      <Inline text={it} />
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            )
           case 'callout':
             return (
               <div key={i} className={`box ${TONE[b.tone]}`}>
