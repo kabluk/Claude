@@ -24,6 +24,7 @@ const ui: UIStrings = {
     deadlines: 'No faltar a la audiencia',
     intake: 'Su lista de tareas',
     'facility-adelanto': 'Adelanto',
+    complaints: 'Si algo anda mal',
     'state-ca': 'California',
     'state-tx': 'Texas',
     'state-la': 'Luisiana',
@@ -35,7 +36,7 @@ const ui: UIStrings = {
   navGroups: [
     { label: 'La primera noche', keys: ['intake', 'where', 'anum', 'documents', 'firstcall', 'verify'] },
     { label: 'El camino', keys: ['journey', 'connect', 'visit', 'attorney', 'habeas', 'docpack', 'deadlines'] },
-    { label: 'Directorio', keys: ['state-ca', 'state-tx', 'state-la', 'facility-adelanto'] },
+    { label: 'Directorio', keys: ['state-ca', 'state-tx', 'state-la', 'facility-adelanto', 'complaints'] },
     { label: 'Acerca de', keys: ['orgs', 'about', 'data', 'disclaimer'] },
   ],
   iceGate: {

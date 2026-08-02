@@ -10,9 +10,9 @@ const c: PageContent = {
       kind: 'list',
       items: [
         'Llegue al menos 15 minutos antes — a los que llegan tarde no los dejan pasar',
-        'Identificación con foto para cada adulto; al entrar se llena un formulario con el nombre y el número A de la persona',
+        'Identificación con foto oficial para cada adulto (licencia, pasaporte o ID del estado); algunos centros piden un segundo documento. Al entrar se llena un formulario con el nombre y el número A de la persona',
         'Límite de visitantes por visita — normalmente hasta tres, los niños cuentan',
-        'Niños solo bajo supervisión constante de un adulto; el comportamiento ruidoso es motivo para terminar la visita',
+        'Los niños suelen necesitar un acta de nacimiento; el niño está bajo la supervisión de un adulto todo el tiempo, y el comportamiento ruidoso es motivo para terminar la visita',
         'No se entra con nada: teléfonos y bolsos se quedan en el carro o en un casillero en la entrada',
         'En la visita no se entregan cosas — los libros y las cartas tienen sus propios canales',
         'El día de la visita llame y confirme que las visitas no están canceladas: un cierre las cancela sin aviso',

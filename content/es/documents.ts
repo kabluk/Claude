@@ -41,6 +41,15 @@ const c: PageContent = {
         'Esta frase aparece con frecuencia en los relatos de detenciones. Firmar estos documentos termina el caso; no acelera la salida.',
       ],
     },
+    {
+      kind: 'callout',
+      tone: 'n',
+      title: 'Un detainer (ICE hold) — si la persona sigue en una cárcel local',
+      body: [
+        'Un detainer es una solicitud de ICE a una cárcel local para retener a la persona hasta 48 horas después de cuando debía ser liberada, para que ICE pueda recogerla. Es una solicitud, no una orden judicial.',
+        'La cárcel no está obligada a cumplirla, y si ICE no llega dentro de las 48 horas (los fines de semana y feriados cuentan), la persona debe ser liberada. Esto es una pregunta para el abogado de defensa penal.',
+      ],
+    },
     { kind: 'h2', text: 'Lo que publican las organizaciones' },
     {
       kind: 'p',

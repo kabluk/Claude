@@ -10,9 +10,9 @@ const c: PageContent = {
       kind: 'list',
       items: [
         'Arrive at least 15 minutes early — latecomers are turned away',
-        'Photo ID for every adult; at check-in you fill out a form with the person’s name and A-Number',
+        'A government-issued photo ID for every adult (driver’s license, passport, or state ID); some facilities ask for a second document. At check-in you fill out a form with the person’s name and A-Number',
         'A limit on visitors per visit — usually up to three, children count',
-        'Children only under constant adult supervision; noisy behavior is grounds to end the visit',
+        'Children usually need a birth certificate; a child stays under adult supervision the whole time, and noisy behavior is grounds to end the visit',
         'Bring nothing in: phones and bags stay in the car or in a locker at the entrance',
         'No hand-offs during visits — books and letters have their own channels',
         'On the day of the visit, call and confirm visits are not cancelled: a lockdown cancels them without notice',

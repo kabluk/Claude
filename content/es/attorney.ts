@@ -54,6 +54,15 @@ const c: PageContent = {
       ],
     },
     { kind: 'ilink', page: 'verify', label: 'Verificar al abogado' },
+    {
+      kind: 'callout',
+      tone: 'n',
+      title: 'Si la persona detenida tiene hijos',
+      body: [
+        'Una directiva de ICE (11064.4, julio de 2025) obliga a tener en cuenta los derechos parentales: participación en la corte de familia, contacto con los hijos, organizar el cuidado antes de cualquier traslado o expulsión.',
+        'Es más débil que la anterior, pero sigue vigente — pida al abogado que la invoque si la persona tiene hijos menores.',
+      ],
+    },
     { kind: 'h2', text: 'Se puede buscar por idioma' },
     {
       kind: 'callout',

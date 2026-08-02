@@ -54,6 +54,15 @@ const c: PageContent = {
       ],
     },
     { kind: 'ilink', page: 'verify', label: 'Check the attorney' },
+    {
+      kind: 'callout',
+      tone: 'n',
+      title: 'If the detained person has children',
+      body: [
+        'An ICE directive (11064.4, July 2025) requires parental rights to be considered: participation in family court, contact with the children, arranging care before any transfer or removal.',
+        'It is weaker than the previous one but still in force — ask the attorney to invoke it if the person has minor children.',
+      ],
+    },
     { kind: 'h2', text: 'You can search by language' },
     {
       kind: 'callout',

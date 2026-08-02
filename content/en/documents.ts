@@ -41,6 +41,15 @@ const c: PageContent = {
         'This phrase appears regularly in accounts of detentions. Signing these documents ends the case; it does not speed up release.',
       ],
     },
+    {
+      kind: 'callout',
+      tone: 'n',
+      title: 'A detainer (ICE hold) — if the person is still in a local jail',
+      body: [
+        'A detainer is a request from ICE to a local jail to hold the person for up to 48 hours after they should have been released, so ICE can pick them up. It is a request, not a warrant.',
+        'The jail is not required to honor it, and if ICE does not come within 48 hours (weekends and holidays count), the person must be released. This is a question for the criminal defense attorney.',
+      ],
+    },
     { kind: 'h2', text: 'What advocacy organizations publish' },
     {
       kind: 'p',
