@@ -70,11 +70,11 @@ const ui: UIStrings = {
   },
   visitFinder: {
     label: 'El centro donde tienen a la persona',
-    placeholder: 'Nombre, ciudad o estado',
-    inBase: 'Verificado por nosotros:',
+    placeholder: 'Ciudad, nombre o estado',
+    inBase: 'Escriba una ciudad, el nombre del centro o el estado — en inglés o como aparece en los documentos. La base tiene 196 centros.',
     facilityPage: 'Página del centro: correo, cartas, estado',
     notFoundTitle: 'Este centro todavía no está en nuestra base',
-    notFoundBody: 'No copiamos tablas de horarios de otros sitios: cambian por unidad de vivienda y sin aviso. El camino confiable es una llamada al centro. El teléfono está en la página oficial de ICE abajo.',
+    notFoundBody: 'Puede ser un punto de detención temporal o un centro nuevo. El camino confiable es una llamada a donde tienen a la persona. El teléfono está en la página oficial de ICE abajo.',
     askTitle: 'Una llamada — toda la respuesta. Pregunte:',
     ask: [
       'En qué unidad de vivienda está la persona y qué horario de visitas tiene esa unidad',
@@ -86,6 +86,17 @@ const ui: UIStrings = {
     ],
     iceLabel: 'La lista de centros de ICE con horarios de visita',
     drilNote: 'Si no logra comunicarse con el centro: 1-888-351-4024 — la línea oficial de ICE (DRIL), lun–vie 8 a.m.–8 p.m. hora del Este, hay español.',
+    fieldOfficeLabel: 'Lo maneja la oficina de ICE',
+    circuitLabel: 'Circuito federal',
+    circuits: {
+      '1': 'Primero', '2': 'Segundo', '3': 'Tercero', '4': 'Cuarto',
+      '5': 'Quinto', '6': 'Sexto', '7': 'Séptimo', '8': 'Octavo',
+      '9': 'Noveno', '10': 'Décimo', '11': 'Undécimo', DC: 'D.C.',
+    },
+    mandatoryWarn: 'En este circuito federal el gobierno insiste en la detención obligatoria — aquí es más difícil lograr la salida. Qué caminos son reales lo determina un abogado (vea «Los caminos de salida»). Estado a julio de 2026.',
+    iceHours: 'Los horarios, el registro y el teléfono de visitas cambian — vea la página actual del centro en ICE o confirme por teléfono.',
+    provenance: 'Direcciones y circuitos: datos de ICE recopilados por el Deportation Data Project (junio de 2026). Los horarios y teléfonos no se publican ahí — confirme en la página de ICE o por teléfono.',
+    moreResults: 'Se muestran los primeros 12 — precise la búsqueda: ciudad o nombre exacto.',
   },
   docPack: {
     // min-ok: подписи разделов инструмента, файлы не покидают браузер

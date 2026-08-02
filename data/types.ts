@@ -17,8 +17,25 @@ export interface CourtRec {
   state_code: string
 }
 
+// Полная директория из данных ICE (собраны Deportation Data Project).
+// Только официальные факты: имя, адрес, округ, штат, федеральный округ.
+// Часы и телефоны свиданий сюда НЕ входят — они волатильны, их берут
+// со страницы ICE или звонком.
+export interface DirectoryFacility {
+  code: string
+  name: string
+  address: string
+  city: string
+  county: string
+  state: string
+  zip: string
+  circuit: string
+  field_office: string
+}
+
 export interface FacilityRec {
   slug: string
+  code?: string
   name: string
   address: string
   phone: string

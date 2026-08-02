@@ -115,6 +115,13 @@ export interface UIStrings {
     ask: string[]
     iceLabel: string
     drilNote: string
+    fieldOfficeLabel: string
+    circuitLabel: string
+    circuits: Record<string, string>
+    mandatoryWarn: string
+    iceHours: string
+    provenance: string
+    moreResults: string
   }
   docPack: {
     sections: Record<string, string>

@@ -3,14 +3,40 @@ import { Link } from 'react-router-dom'
 import type { Lang, UIStrings } from '@/lib/types'
 import { pathFor } from '@/lib/slugs'
 import { IceGate } from './IceGate'
+import directory from '@data/directory.json'
 import facilities from '@data/facilities.json'
-import states from '@data/states.json'
-import type { FacilityRec, StateRec } from '@data/types'
+import type { DirectoryFacility, FacilityRec } from '@data/types'
 
-// «Вводят учреждение — получают полный ответ»: карточка из проверенной
-// базы, а для любого другого учреждения — скрипт одного звонка
-// и официальная страница ICE. Таблицы часов не копируем: они меняются
-// по блокам и без предупреждения (RESEARCH-visits §1).
+// «Вводят город или название — получают учреждение». Поиск по официальной
+// директории ICE (данные собраны Deportation Data Project, июнь 2026):
+// имя, адрес, округ, штат, федеральный округ. Часы и телефоны свиданий
+// НЕ храним — они меняются; ведём на страницу ICE и на скрипт звонка.
+// Для проверенных вручную учреждений (Аделанто) показываем правила + свою
+// страницу.
+
+const DIR = directory as DirectoryFacility[]
+const ENHANCED = new Map(
+  (facilities as FacilityRec[]).filter((f) => f.code).map((f) => [f.code as string, f]),
+)
+const MAX = 12
+
+// Английские названия штатов — для поиска (город/штат/название) и подписи.
+const STATE_NAMES: Record<string, string> = {
+  AL: 'Alabama', AK: 'Alaska', AZ: 'Arizona', AR: 'Arkansas', CA: 'California',
+  CO: 'Colorado', CT: 'Connecticut', DE: 'Delaware', DC: 'District of Columbia',
+  FL: 'Florida', GA: 'Georgia', HI: 'Hawaii', ID: 'Idaho', IL: 'Illinois',
+  IN: 'Indiana', IA: 'Iowa', KS: 'Kansas', KY: 'Kentucky', LA: 'Louisiana',
+  ME: 'Maine', MD: 'Maryland', MA: 'Massachusetts', MI: 'Michigan', MN: 'Minnesota',
+  MS: 'Mississippi', MO: 'Missouri', MT: 'Montana', NE: 'Nebraska', NV: 'Nevada',
+  NH: 'New Hampshire', NJ: 'New Jersey', NM: 'New Mexico', NY: 'New York',
+  NC: 'North Carolina', ND: 'North Dakota', OH: 'Ohio', OK: 'Oklahoma', OR: 'Oregon',
+  PA: 'Pennsylvania', RI: 'Rhode Island', SC: 'South Carolina', SD: 'South Dakota',
+  TN: 'Tennessee', TX: 'Texas', UT: 'Utah', VT: 'Vermont', VA: 'Virginia',
+  WA: 'Washington', WV: 'West Virginia', WI: 'Wisconsin', WY: 'Wyoming',
+  PR: 'Puerto Rico', GU: 'Guam',
+}
+
+const MANDATORY_CIRCUITS = new Set(['5', '8'])
 
 function norm(s: string): string {
   return s.toLowerCase().replace(/ё/g, 'е')
@@ -20,19 +46,20 @@ export function VisitFinder({ lang, ui }: { lang: Lang; ui: UIStrings }) {
   const v = ui.visitFinder
   const [q, setQ] = useState('')
 
-  const matches = useMemo(() => {
+  const all = useMemo(() => {
     const nq = norm(q.trim())
     if (nq.length < 2) return []
-    return (facilities as FacilityRec[]).filter((f) => {
-      const st = (states as StateRec[]).find((s) => s.code === f.state_code)
+    const terms = nq.split(/\s+/)
+    return DIR.filter((f) => {
       const hay = norm(
-        [f.name, f.address, f.state_code, st?.name.en ?? '', st ? st.name[lang] : ''].join(' '),
+        [f.name, f.city, f.county, f.state, STATE_NAMES[f.state] ?? ''].join(' '),
       )
-      return nq.split(/\s+/).every((w) => hay.includes(w))
+      return terms.every((t) => hay.includes(t))
     })
-  }, [q, lang])
+  }, [q])
 
   const searched = norm(q.trim()).length >= 2
+  const shown = all.slice(0, MAX)
 
   return (
     <div className="toolbox visitfinder">
@@ -45,38 +72,59 @@ export function VisitFinder({ lang, ui }: { lang: Lang; ui: UIStrings }) {
         onChange={(e) => setQ(e.target.value)}
         autoComplete="off"
       />
-      {!searched && (
-        <p className="hint" style={{ marginTop: 10 }}>
-          {v.inBase}{' '}
-          {(facilities as FacilityRec[]).map((f) => (
-            <button key={f.slug} type="button" className="vf-chip" onClick={() => setQ(f.name)}>
-              {f.name}
-            </button>
-          ))}
-        </p>
+      {!searched && <p className="hint" style={{ marginTop: 10 }}>{v.inBase}</p>}
+
+      {shown.map((f) => {
+        const enh = ENHANCED.get(f.code)
+        const warn = MANDATORY_CIRCUITS.has(f.circuit)
+        return (
+          <div key={f.code} className="vf-card">
+            <h3>{f.name}</h3>
+            <p className="vf-addr">
+              {f.address}, {f.city}, {f.state} {f.zip}
+            </p>
+            <p className="vf-meta">
+              {f.county ? `${f.county} · ` : ''}
+              {v.fieldOfficeLabel}: {f.field_office}
+            </p>
+            <p className="vf-meta">
+              {v.circuitLabel}: {v.circuits[f.circuit] ?? f.circuit}
+            </p>
+            {warn && <div className="vf-warn">{v.mandatoryWarn}</div>}
+
+            {enh?.visit && (
+              <ul className="blist">
+                {enh.visit[lang].map((line, i) => (
+                  <li key={i}>{line}</li>
+                ))}
+              </ul>
+            )}
+            {enh?.phone && (
+              <p className="vf-addr">
+                <a href={`tel:${enh.phone.replace(/[^\d+]/g, '')}`}>{enh.phone}</a>
+              </p>
+            )}
+            {enh && (
+              <Link className="ghost" to={pathFor(lang, `facility-${enh.slug}`)}>
+                {v.facilityPage} →
+              </Link>
+            )}
+
+            <p className="vf-icehours">{v.iceHours}</p>
+          </div>
+        )
+      })}
+
+      {searched && all.length > MAX && <p className="hint">{v.moreResults}</p>}
+
+      {searched && all.length > 0 && (
+        <>
+          <IceGate href="https://www.ice.gov/detain/detention-facilities/" label={v.iceLabel} ui={ui} />
+          <p className="hint">{v.provenance}</p>
+        </>
       )}
 
-      {matches.map((f) => (
-        <div key={f.slug} className="vf-card">
-          <h3>{f.name}</h3>
-          <p className="vf-addr">{f.address}</p>
-          <p className="vf-addr">
-            <a href={`tel:${f.phone.replace(/[^\d+]/g, '')}`}>{f.phone}</a>
-          </p>
-          {f.visit && (
-            <ul className="blist">
-              {f.visit[lang].map((line, i) => (
-                <li key={i}>{line}</li>
-              ))}
-            </ul>
-          )}
-          <Link className="ghost" to={pathFor(lang, `facility-${f.slug}`)}>
-            {v.facilityPage} →
-          </Link>
-        </div>
-      ))}
-
-      {searched && matches.length === 0 && (
+      {searched && all.length === 0 && (
         <div className="vf-fallback">
           <h3>{v.notFoundTitle}</h3>
           <p className="body-p">{v.notFoundBody}</p>
@@ -86,7 +134,7 @@ export function VisitFinder({ lang, ui }: { lang: Lang; ui: UIStrings }) {
               <li key={i}>{a}</li>
             ))}
           </ul>
-          <IceGate href="https://www.ice.gov/detention-facilities" label={v.iceLabel} ui={ui} />
+          <IceGate href="https://www.ice.gov/detain/detention-facilities/" label={v.iceLabel} ui={ui} />
           <p className="hint">{v.drilNote}</p>
         </div>
       )}

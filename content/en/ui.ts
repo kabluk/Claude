@@ -70,11 +70,11 @@ const ui: UIStrings = {
   },
   visitFinder: {
     label: 'The facility where the person is held',
-    placeholder: 'Name, city, or state',
-    inBase: 'Verified by us:',
+    placeholder: 'City, name, or state',
+    inBase: 'Type a city, facility name, or state — in English or as written on documents. The base has 196 centers.',
     facilityPage: 'Facility page: mail, letters, state',
     notFoundTitle: 'This facility is not in our base yet',
-    notFoundBody: 'We do not copy hour tables from other sites: they change by housing unit and without notice. The reliable path is one call to the facility. The phone number is on the official ICE page below.',
+    notFoundBody: 'It may be a temporary holding site or a new facility. The reliable path is one call to where the person is held. The phone number is on the official ICE page below.',
     askTitle: 'One call — the whole answer. Ask:',
     ask: [
       'Which housing unit the person is in and that unit’s visiting hours',
@@ -86,6 +86,17 @@ const ui: UIStrings = {
     ],
     iceLabel: 'The ICE facility list with visiting hours',
     drilNote: 'If you cannot get through to the facility: 1-888-351-4024 — the official ICE line (DRIL), Mon–Fri 8 a.m.–8 p.m. Eastern, Spanish available.',
+    fieldOfficeLabel: 'Handled by ICE office',
+    circuitLabel: 'Federal circuit',
+    circuits: {
+      '1': 'First', '2': 'Second', '3': 'Third', '4': 'Fourth',
+      '5': 'Fifth', '6': 'Sixth', '7': 'Seventh', '8': 'Eighth',
+      '9': 'Ninth', '10': 'Tenth', '11': 'Eleventh', DC: 'D.C.',
+    },
+    mandatoryWarn: 'In this federal circuit the government insists on mandatory detention — release is harder to win here. Which paths are real is determined by an attorney (see “Release paths”). As of July 2026.',
+    iceHours: 'Visiting hours, sign-up, and the phone number change — see the facility’s current ICE page or confirm by phone.',
+    provenance: 'Addresses and circuits: ICE data collected by the Deportation Data Project (June 2026). Hours and phone numbers are not published there — confirm on the ICE page or by phone.',
+    moreResults: 'Showing the first 12 — narrow the search: city or exact name.',
   },
   docPack: {
     // min-ok: подписи разделов инструмента, файлы не покидают браузер
