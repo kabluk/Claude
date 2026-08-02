@@ -6,6 +6,9 @@
   "name": "detnav",
   "main": "worker.js",
   "compatibility_date": "2026-07-01",
+  // Включаем публичный адрес *.workers.dev для превью-тестирования.
+  // Сайт остаётся noindex, пока сборка без PUBLIC_LAUNCH=1.
+  "workers_dev": true,
   "assets": {
     "directory": "./dist",
     "binding": "ASSETS",
