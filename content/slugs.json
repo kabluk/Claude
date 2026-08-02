@@ -14,6 +14,7 @@
   "deadlines": { "en": "do-not-miss", "es": "no-faltar", "ru": "ne-propustit" },
   "complaints": { "en": "if-something-is-wrong", "es": "si-algo-anda-mal", "ru": "esli-chto-to-ne-tak" },
   "forms": { "en": "immigration-forms", "es": "formularios", "ru": "formy-i-uvedomleniya" },
+  "prepare": { "en": "family-plan", "es": "plan-familiar", "ru": "plan-na-sluchay" },
   "intake": { "en": "your-list", "es": "su-lista", "ru": "vash-spisok" },
   "orgs": { "en": "for-organizations", "es": "para-organizaciones", "ru": "dlya-organizaciy" },
   "about": { "en": "about", "es": "acerca-de", "ru": "o-servise" },

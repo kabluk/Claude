@@ -26,6 +26,7 @@ const ui: UIStrings = {
     'facility-adelanto': 'Аделанто',
     complaints: 'Если что-то не так',
     forms: 'Словарь форм',
+    prepare: 'План на случай задержания',
     'state-ca': 'Калифорния',
     'state-tx': 'Техас',
     'state-la': 'Луизиана',
@@ -37,7 +38,7 @@ const ui: UIStrings = {
   navGroups: [
     { label: 'Первая ночь', keys: ['intake', 'where', 'anum', 'documents', 'firstcall', 'verify'] },
     { label: 'Маршрут', keys: ['journey', 'connect', 'visit', 'attorney', 'habeas', 'docpack', 'deadlines'] },
-    { label: 'Справочник', keys: ['state-ca', 'state-tx', 'state-la', 'facility-adelanto', 'complaints', 'forms'] },
+    { label: 'Справочник', keys: ['state-ca', 'state-tx', 'state-la', 'facility-adelanto', 'complaints', 'forms', 'prepare'] },
     { label: 'О сервисе', keys: ['orgs', 'about', 'data', 'disclaimer'] },
   ],
   iceGate: {

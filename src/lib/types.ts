@@ -9,6 +9,7 @@ export type Block =
   | { kind: 'p'; text: string; dim?: boolean }
   | { kind: 'list'; items: string[] }
   | { kind: 'steps'; title?: string; items: string[] }
+  | { kind: 'fields'; title?: string; items: string[] }
   | { kind: 'callout'; tone: Tone; title: string; body: string[] }
   | { kind: 'ext'; href: string; label: string; gate?: boolean }
   | { kind: 'ilink'; page: string; label: string }

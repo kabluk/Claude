@@ -47,6 +47,7 @@ const CONTENT_PAGES = [
   'deadlines',
   'complaints',
   'forms',
+  'prepare',
   'orgs',
 ] as const
 
