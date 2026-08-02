@@ -70,10 +70,14 @@ for (const lang of LANGS) {
 }
 console.log(`gen-sitemap: атрибут lang исправлен в ${patched} файлах`)
 
-// _headers и _redirects внутри dist/ — их Netlify читает при любом типе
-// деплоя, включая ручной drag-and-drop. CSP без 'unsafe-inline' для скриптов:
-// два инлайн-скрипта vite-react-ssg (hydration data + hash) разрешаются
-// по sha256, хэши пересчитываются на каждой сборке.
+// _headers внутри dist/ читают и Cloudflare Pages, и Netlify (один формат).
+// CSP без 'unsafe-inline' для скриптов: два инлайн-скрипта vite-react-ssg
+// (hydration data + hash) разрешаются по sha256, хэши пересчитываются
+// на каждой сборке.
+// Языковой редирект с корня НЕ пишем в _redirects (формат Netlify с
+// условием Language= несовместим с Cloudflare). Его обслуживают:
+// Cloudflare — functions/index.js; Netlify — netlify.toml; универсальный
+// запасной путь без сервера — dist/index.html (RootRedirect, выбор языка).
 const { createHash } = await import('node:crypto')
 const inlineHashes = new Set()
 for (const lang of ['', ...LANGS]) {
@@ -102,14 +106,7 @@ writeFileSync(
 ${isLaunch ? '' : '  X-Robots-Tag: noindex\n'}  Content-Security-Policy: default-src 'self'; script-src ${scriptSrc}; font-src 'self' fonts.gstatic.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; img-src 'self' data:
 `,
 )
-writeFileSync(
-  join(DIST, '_redirects'),
-  `/  /ru/  302!  Language=ru
-/  /es/  302!  Language=es
-/  /en/  302!
-`,
-)
-console.log(`gen-sitemap: _headers (${inlineHashes.size} script-хэшей) и _redirects записаны`)
+console.log(`gen-sitemap: _headers записан (${inlineHashes.size} script-хэшей)`)
 
 writeFileSync(join(DIST, 'sitemap.xml'), xml)
 writeFileSync(
