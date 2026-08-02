@@ -111,6 +111,14 @@ export function VisitFinder({ lang, ui }: { lang: Lang; ui: UIStrings }) {
             )}
 
             <p className="vf-icehours">{v.iceHours}</p>
+            <a
+              className="ghost vf-sched"
+              href={`https://duckduckgo.com/?q=${encodeURIComponent(`${f.name} ${f.city} ${f.state} ICE visiting hours`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {v.scheduleLink} ↗
+            </a>
           </div>
         )
       })}

@@ -120,6 +120,7 @@ export interface UIStrings {
     circuits: Record<string, string>
     mandatoryWarn: string
     iceHours: string
+    scheduleLink: string
     provenance: string
     moreResults: string
   }
