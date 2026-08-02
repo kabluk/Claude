@@ -59,6 +59,7 @@ const c: PageContent = {
     { kind: 'ext', href: 'https://www.aclu.org', label: 'ACLU' },
     { kind: 'ext', href: 'https://firrp.org', label: 'FIRRP' },
     { kind: 'ext', href: 'https://www.ilrc.org', label: 'ILRC' },
+    { kind: 'ilink', page: 'forms', label: 'Словарь форм и уведомлений' },
   ],
 }
 

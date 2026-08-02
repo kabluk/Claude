@@ -25,6 +25,7 @@ const ui: UIStrings = {
     intake: 'Su lista de tareas',
     'facility-adelanto': 'Adelanto',
     complaints: 'Si algo anda mal',
+    forms: 'Diccionario de formularios',
     'state-ca': 'California',
     'state-tx': 'Texas',
     'state-la': 'Luisiana',
@@ -36,7 +37,7 @@ const ui: UIStrings = {
   navGroups: [
     { label: 'La primera noche', keys: ['intake', 'where', 'anum', 'documents', 'firstcall', 'verify'] },
     { label: 'El camino', keys: ['journey', 'connect', 'visit', 'attorney', 'habeas', 'docpack', 'deadlines'] },
-    { label: 'Directorio', keys: ['state-ca', 'state-tx', 'state-la', 'facility-adelanto', 'complaints'] },
+    { label: 'Directorio', keys: ['state-ca', 'state-tx', 'state-la', 'facility-adelanto', 'complaints', 'forms'] },
     { label: 'Acerca de', keys: ['orgs', 'about', 'data', 'disclaimer'] },
   ],
   iceGate: {
@@ -64,6 +65,16 @@ const ui: UIStrings = {
   },
   printPage: 'Imprimir esta página',
   dirEmpty: 'Aún no hay datos. No publicamos teléfonos ni direcciones sin verificar.',
+  docMap: {
+    title: 'Cómo se ve un aviso (un mapa)',
+    formLabel: 'Notice to Appear · I-862',
+    anum: 'Número A: la letra A y 9 dígitos',
+    hearing: 'Fecha y hora de la audiencia (puede faltar)',
+    court: 'Nombre y dirección de la corte',
+    charges: 'Alegaciones y cargos',
+    signature: 'Firmado por un oficial de ICE — no un juez',
+    note: 'Esto es un mapa, no su documento. Las secciones y los números cambian para cada persona — compárelo con su propio papel.',
+  },
   onward: {
     next: 'Siguiente paso',
     related: 'Páginas relacionadas',

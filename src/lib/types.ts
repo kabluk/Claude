@@ -21,7 +21,7 @@ export type Block =
   | { kind: 'memcard'; title: string; lines: string[]; alts?: string[] }
   | { kind: 'phones'; entries: { num: string; who: string; note: string }[]; footer?: string }
   | { kind: 'kv'; rows: [string, string][] }
-  | { kind: 'tool'; tool: 'namevariants' | 'anumber' | 'print' | 'docpack' | 'visitfinder' }
+  | { kind: 'tool'; tool: 'namevariants' | 'anumber' | 'print' | 'docpack' | 'visitfinder' | 'docmap' }
 
 export interface PageContent {
   title: string
@@ -100,6 +100,16 @@ export interface UIStrings {
   }
   printPage: string
   dirEmpty: string
+  docMap: {
+    title: string
+    formLabel: string
+    anum: string
+    hearing: string
+    court: string
+    charges: string
+    signature: string
+    note: string
+  }
   onward: {
     next: string
     related: string

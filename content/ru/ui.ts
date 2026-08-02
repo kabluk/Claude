@@ -25,6 +25,7 @@ const ui: UIStrings = {
     intake: 'Ваш список дел',
     'facility-adelanto': 'Аделанто',
     complaints: 'Если что-то не так',
+    forms: 'Словарь форм',
     'state-ca': 'Калифорния',
     'state-tx': 'Техас',
     'state-la': 'Луизиана',
@@ -36,7 +37,7 @@ const ui: UIStrings = {
   navGroups: [
     { label: 'Первая ночь', keys: ['intake', 'where', 'anum', 'documents', 'firstcall', 'verify'] },
     { label: 'Маршрут', keys: ['journey', 'connect', 'visit', 'attorney', 'habeas', 'docpack', 'deadlines'] },
-    { label: 'Справочник', keys: ['state-ca', 'state-tx', 'state-la', 'facility-adelanto', 'complaints'] },
+    { label: 'Справочник', keys: ['state-ca', 'state-tx', 'state-la', 'facility-adelanto', 'complaints', 'forms'] },
     { label: 'О сервисе', keys: ['orgs', 'about', 'data', 'disclaimer'] },
   ],
   iceGate: {
@@ -64,6 +65,16 @@ const ui: UIStrings = {
   },
   printPage: 'Распечатать эту страницу',
   dirEmpty: 'Данных пока нет. Мы не публикуем телефоны и адреса, которые не проверили.',
+  docMap: {
+    title: 'Как выглядит уведомление (схема)',
+    formLabel: 'Notice to Appear · I-862',
+    anum: 'A-Number: буква A и 9 цифр',
+    hearing: 'Дата и время слушания (может отсутствовать)',
+    court: 'Название и адрес суда',
+    charges: 'Утверждения и причины (charges)',
+    signature: 'Подпись офицера ICE — не судьи',
+    note: 'Это схема, а не ваш документ. Разделы и цифры у всех разные — сверяйтесь со своей бумагой.',
+  },
   onward: {
     next: 'Следующий шаг',
     related: 'Ещё по теме',

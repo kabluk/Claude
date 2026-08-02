@@ -1398,6 +1398,113 @@ html.reveal-ready main > .rev-in {
   min-height: 30px;
 }
 
+/* визуальная карта документа */
+.docmap {
+  margin: 18px 0;
+}
+.docmap .dm-cap {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-dim);
+  margin-bottom: 10px;
+}
+.docmap .dm-sheet {
+  border: 1px solid var(--color-line);
+  background: var(--color-panel);
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.docmap .dm-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.docmap .dm-form {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--color-dim);
+}
+.docmap .dm-anum {
+  border: 1px solid var(--color-red);
+  padding: 6px 9px;
+  text-align: right;
+  min-width: 46%;
+}
+.docmap .dm-anum b {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  color: var(--color-ink);
+}
+.docmap .dm-anum em {
+  display: block;
+  font-style: normal;
+  font-size: 10.5px;
+  color: var(--color-red);
+  margin-top: 3px;
+}
+.docmap .dm-zone {
+  border-left: 2px solid var(--color-line);
+  padding: 2px 0 2px 12px;
+}
+.docmap .dm-zone.dm-hl {
+  border-left-color: var(--color-yellow);
+}
+.docmap .dm-tag {
+  display: block;
+  font-size: 11px;
+  color: var(--color-dim);
+  margin-bottom: 6px;
+}
+.docmap .dm-zone.dm-hl .dm-tag {
+  color: var(--color-yellow);
+}
+.docmap .dm-kv b {
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--color-ink);
+}
+.docmap .dm-lines {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.docmap .dm-lines i {
+  display: block;
+  height: 1px;
+  background: var(--color-line);
+}
+.docmap .dm-lines i:nth-child(1) {
+  width: 90%;
+}
+.docmap .dm-lines i:nth-child(2) {
+  width: 75%;
+}
+.docmap .dm-lines i:nth-child(3) {
+  width: 82%;
+}
+.docmap .dm-sign {
+  border-top: 1px solid var(--color-line);
+  padding-top: 10px;
+  align-items: center;
+}
+.docmap .dm-scribble {
+  font-size: 20px;
+  color: var(--color-dim);
+}
+.docmap .dm-note {
+  font-size: 11.5px;
+  color: var(--color-dim);
+  line-height: 1.5;
+  margin: 8px 0 0;
+}
+
 /* поиск учреждения для свидания */
 .visitfinder .vf-chip {
   background: none;

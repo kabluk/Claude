@@ -46,6 +46,7 @@ const CONTENT_PAGES = [
   'docpack',
   'deadlines',
   'complaints',
+  'forms',
   'orgs',
 ] as const
 

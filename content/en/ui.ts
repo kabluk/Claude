@@ -25,6 +25,7 @@ const ui: UIStrings = {
     intake: 'Your task list',
     'facility-adelanto': 'Adelanto',
     complaints: 'If something is wrong',
+    forms: 'Form dictionary',
     'state-ca': 'California',
     'state-tx': 'Texas',
     'state-la': 'Louisiana',
@@ -36,7 +37,7 @@ const ui: UIStrings = {
   navGroups: [
     { label: 'The first night', keys: ['intake', 'where', 'anum', 'documents', 'firstcall', 'verify'] },
     { label: 'The road', keys: ['journey', 'connect', 'visit', 'attorney', 'habeas', 'docpack', 'deadlines'] },
-    { label: 'Directory', keys: ['state-ca', 'state-tx', 'state-la', 'facility-adelanto', 'complaints'] },
+    { label: 'Directory', keys: ['state-ca', 'state-tx', 'state-la', 'facility-adelanto', 'complaints', 'forms'] },
     { label: 'About', keys: ['orgs', 'about', 'data', 'disclaimer'] },
   ],
   iceGate: {
@@ -64,6 +65,16 @@ const ui: UIStrings = {
   },
   printPage: 'Print this page',
   dirEmpty: 'No data yet. We do not publish phone numbers or addresses we have not verified.',
+  docMap: {
+    title: 'What a notice looks like (a map)',
+    formLabel: 'Notice to Appear · I-862',
+    anum: 'A-Number: the letter A and 9 digits',
+    hearing: 'Hearing date and time (may be missing)',
+    court: 'Court name and address',
+    charges: 'Allegations and charges',
+    signature: 'Signed by an ICE officer — not a judge',
+    note: 'This is a map, not your document. The sections and numbers differ for everyone — check against your own paper.',
+  },
   onward: {
     next: 'Next step',
     related: 'Related pages',
