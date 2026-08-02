@@ -61,6 +61,25 @@ const c: PageContent = {
         'The code for a free call to the DHS OIG complaint line from detention: 9233#',
       ],
     },
+    { kind: 'h2', text: 'Give the plan to a trusted person — today' },
+    {
+      kind: 'p',
+      text: 'Hand the filled-in plan and the assembled document packet to someone you trust, ahead of time. Then they start acting the moment you are detained, instead of losing a day figuring out what happened.',
+    },
+    {
+      kind: 'p',
+      text: 'Agree on a simple signal: every evening you send them one word that all is well. Two evenings missed in a row — they start with the steps below.',
+    },
+    {
+      kind: 'steps',
+      title: 'What the trusted person does if you go silent',
+      items: [
+        'Finds you through the ICE locator — by name and country of birth, or by the A-Number from the plan.',
+        'Calls the attorney or organization whose numbers are written in the plan above.',
+        'Signs nothing for you and pays no one without checking first.',
+        'Gives the attorney the document packet you handed over in advance.',
+      ],
+    },
     { kind: 'h2', text: 'What to carry with you' },
     {
       kind: 'p',
@@ -85,6 +104,7 @@ const c: PageContent = {
         'If it is found during a detention, it holds the names and addresses of your loved ones. The plan stays home; only the rights card goes in your pocket.',
       ],
     },
+    { kind: 'ilink', page: 'docpack', label: 'Assemble the document packet for the attorney' },
     { kind: 'ilink', page: 'documents', label: 'What the papers mean and what not to sign' },
     { kind: 'ilink', page: 'intake', label: 'If someone is already detained — where to start' },
   ],

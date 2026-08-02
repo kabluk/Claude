@@ -61,6 +61,25 @@ const c: PageContent = {
         'El código para llamar gratis a la línea de quejas del DHS OIG desde la detención: 9233#',
       ],
     },
+    { kind: 'h2', text: 'Entregue el plan a una persona de confianza — hoy' },
+    {
+      kind: 'p',
+      text: 'Entregue con tiempo el plan lleno y el paquete de documentos ya armado a alguien de su confianza. Así empieza a actuar en el momento en que lo detienen, en vez de perder un día en averiguar qué pasó.',
+    },
+    {
+      kind: 'p',
+      text: 'Acuerden una señal simple: cada noche usted le envía una palabra de que todo está bien. Si faltan dos noches seguidas, empieza con los pasos de abajo.',
+    },
+    {
+      kind: 'steps',
+      title: 'Qué hace la persona de confianza si usted se queda en silencio',
+      items: [
+        'Lo busca en el localizador de ICE — por nombre y país de nacimiento, o por el número A del plan.',
+        'Llama al abogado o a la organización cuyos teléfonos están anotados arriba en el plan.',
+        'No firma nada por usted ni le paga a nadie sin verificar antes.',
+        'Le entrega al abogado el paquete de documentos que usted le dio con anticipación.',
+      ],
+    },
     { kind: 'h2', text: 'Qué llevar consigo' },
     {
       kind: 'p',
