@@ -11,6 +11,55 @@ import { DocMap } from './DocMap'
 
 const TONE: Record<string, string> = { r: 'r', y: 'y', g: 'g', n: '' }
 
+// Иконки callout'ов (как в макетах Stitch): красный — стоп/необратимо,
+// жёлтый — осторожно, зелёный — безопасно, нейтральный — справка.
+const CALLOUT_ICON: Record<string, JSX.Element> = {
+  r: (
+    <>
+      <path d="M7.9 3h8.2L21 7.9v8.2L16.1 21H7.9L3 16.1V7.9z" />
+      <line x1="12" y1="8" x2="12" y2="12.5" />
+      <line x1="12" y1="16" x2="12" y2="16" />
+    </>
+  ),
+  y: (
+    <>
+      <path d="M12 3 22 20H2z" />
+      <line x1="12" y1="9" x2="12" y2="14" />
+      <line x1="12" y1="17" x2="12" y2="17" />
+    </>
+  ),
+  g: (
+    <>
+      <path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" />
+      <path d="M9 12l2 2 4-4" />
+    </>
+  ),
+  n: (
+    <>
+      <circle cx="12" cy="12" r="9" />
+      <line x1="12" y1="11" x2="12" y2="16" />
+      <line x1="12" y1="8" x2="12" y2="8" />
+    </>
+  ),
+}
+
+function CalloutIcon({ tone }: { tone: string }) {
+  return (
+    <svg
+      className="box-ico"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {CALLOUT_ICON[tone] ?? CALLOUT_ICON.n}
+    </svg>
+  )
+}
+
 export function Blocks({ blocks, lang, ui }: { blocks: Block[]; lang: Lang; ui: UIStrings }) {
   return (
     <>
@@ -67,12 +116,15 @@ export function Blocks({ blocks, lang, ui }: { blocks: Block[]; lang: Lang; ui: 
           case 'callout':
             return (
               <div key={i} className={`box ${TONE[b.tone]}`}>
-                <h3>{b.title}</h3>
-                {b.body.map((p, j) => (
-                  <p key={j}>
-                    <Inline text={p} />
-                  </p>
-                ))}
+                <CalloutIcon tone={b.tone} />
+                <div className="box-main">
+                  <h3>{b.title}</h3>
+                  {b.body.map((p, j) => (
+                    <p key={j}>
+                      <Inline text={p} />
+                    </p>
+                  ))}
+                </div>
               </div>
             )
           case 'ext':

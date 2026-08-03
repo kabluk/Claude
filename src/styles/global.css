@@ -169,12 +169,13 @@ main {
   margin: 0 0 26px;
 }
 .page-h2 {
-  font-size: 11px;
+  font-size: 20px;
   font-weight: 700;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--color-dim);
-  margin: 30px 0 12px;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  color: var(--color-ink);
+  line-height: 1.2;
+  margin: 34px 0 12px;
 }
 .body-p {
   font-size: 14.5px;
@@ -292,23 +293,45 @@ code {
 
 /* callouts · красный — необратимое, жёлтый — ловушка, зелёный — безопасный ресурс */
 .box {
+  display: flex;
+  gap: 13px;
   background: var(--color-panel);
   border-left: 3px solid var(--color-bezel);
   border-radius: 0 12px 12px 0;
   padding: 16px 18px;
   margin: 18px 0;
 }
+.box-ico {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  margin-top: 1px;
+  color: var(--color-dim);
+}
+.box-main {
+  flex: 1;
+  min-width: 0;
+}
 .box.r {
   border-left-color: var(--color-red);
   background: rgba(228, 56, 43, 0.06);
+}
+.box.r .box-ico {
+  color: var(--color-red);
 }
 .box.y {
   border-left-color: var(--color-yellow);
   background: rgba(242, 194, 48, 0.06);
 }
+.box.y .box-ico {
+  color: var(--color-yellow);
+}
 .box.g {
   border-left-color: var(--color-green);
   background: rgba(55, 160, 90, 0.06);
+}
+.box.g .box-ico {
+  color: var(--color-green);
 }
 .box h3 {
   font-size: 15px;
@@ -403,32 +426,37 @@ code {
   min-height: 44px;
 }
 
-/* офлайн-карточка */
+/* карта прав — сплошной красный блок (референс Stitch): «показать/сказать» */
 .memcard {
-  border: 2px solid var(--color-red);
+  border: none;
   border-radius: 16px;
-  background: rgba(228, 56, 43, 0.05);
-  padding: 20px;
+  background: #8e130b;
+  color: #fff;
+  padding: 22px;
   margin: 20px 0;
 }
 .memcard .t {
   font-size: 10px;
   letter-spacing: 0.2em;
-  color: var(--color-red);
+  color: rgba(255, 255, 255, 0.75);
   font-weight: 700;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   font-family: var(--font-mono);
 }
 .memcard .q {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 600;
   line-height: 1.35;
   margin-bottom: 10px;
+  color: #fff;
 }
 .memcard .alt {
-  font-size: 13px;
-  color: var(--color-dim);
-  margin: 0 0 6px;
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.88);
+  line-height: 1.45;
+  margin: 10px 0 0;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.22);
 }
 
 /* строки справочника */
@@ -2122,9 +2150,6 @@ ol.steps > li,
 .page-h1 {
   font-size: 28px;
   line-height: 1.2;
-}
-.page-h2 {
-  font-size: 11.5px;
 }
 .blist li {
   margin-bottom: 12px;
