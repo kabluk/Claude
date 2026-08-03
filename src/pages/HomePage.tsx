@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import type { HomeContent, Lang, UIStrings } from '@/lib/types'
-import { Layout, Footer, PageIndex } from '@/components/Layout'
+import { Layout, Footer } from '@/components/Layout'
 import { Demo } from '@/components/Demo'
 import { pathFor } from '@/lib/slugs'
 
@@ -201,7 +201,6 @@ export function HomePage({ lang, c, ui }: { lang: Lang; c: HomeContent; ui: UISt
         ))}
       </section>
 
-      <PageIndex lang={lang} ui={ui} />
       <Footer ui={ui} />
     </Layout>
   )
