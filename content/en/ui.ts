@@ -66,6 +66,12 @@ const ui: UIStrings = {
   },
   printPage: 'Print this page',
   browserOnly: 'Your answer stays in this browser only',
+  national: {
+    title: 'What the national data shows',
+    median: 'The median length of a detention is {days} days (completed cases, 2024–2026).',
+    removal: 'About {pct}% of these detentions ended in removal. The rest were released in various ways or transferred to another facility.',
+    note: 'This is an aggregate from past data (Deportation Data Project), not a prediction for a specific person.',
+  },
   tabs: { home: 'Home', tasks: 'Tasks', docs: 'Docs', find: 'Find' },
   dirEmpty: 'No data yet. We do not publish phone numbers or addresses we have not verified.',
   docMap: {

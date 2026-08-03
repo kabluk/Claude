@@ -112,6 +112,7 @@ export interface UIStrings {
   printPage: string
   dirEmpty: string
   browserOnly: string
+  national: { title: string; median: string; removal: string; note: string }
   tabs: { home: string; tasks: string; docs: string; find: string }
   docMap: {
     title: string

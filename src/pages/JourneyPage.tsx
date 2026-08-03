@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import type { JourneyContent, Lang, UIStrings } from '@/lib/types'
 import { Layout, Footer } from '@/components/Layout'
+import { NationalStats } from '@/components/NationalStats'
 import { pathFor } from '@/lib/slugs'
 
 // Маршрут из 15 шагов. Открыты шесть, остальные честно помечены «готовим».
@@ -39,6 +40,7 @@ export function JourneyPage({ lang, c, ui }: { lang: Lang; c: JourneyContent; ui
           <p>{t.p}</p>
         </div>
       ))}
+      <NationalStats ui={ui} />
       <p className="body-p dim">{c.note}</p>
       <Footer ui={ui} />
     </Layout>

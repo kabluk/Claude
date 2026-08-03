@@ -66,6 +66,12 @@ const ui: UIStrings = {
   },
   printPage: 'Imprimir esta página',
   browserOnly: 'Su respuesta se queda solo en este navegador',
+  national: {
+    title: 'Lo que muestran los datos del país',
+    median: 'La mediana de duración de una detención es de {days} días (casos concluidos, 2024–2026).',
+    removal: 'Alrededor del {pct}% de estas detenciones terminaron en expulsión. Al resto lo liberaron de distintas formas o lo trasladaron a otro centro.',
+    note: 'Es un agregado de datos pasados (Deportation Data Project), no un pronóstico para una persona concreta.',
+  },
   tabs: { home: 'Inicio', tasks: 'Tareas', docs: 'Documentos', find: 'Buscar' },
   dirEmpty: 'Aún no hay datos. No publicamos teléfonos ni direcciones sin verificar.',
   docMap: {

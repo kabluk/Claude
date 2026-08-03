@@ -2298,3 +2298,36 @@ ol.steps > li,
   flex: none;
   opacity: 0.85;
 }
+
+/* Национальная статистика (страница «Маршрут») */
+.natstat {
+  border: 1px solid var(--color-line);
+  border-radius: 16px;
+  background: var(--color-panel);
+  padding: 20px;
+  margin: 24px 0;
+}
+.natstat-t {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-dim);
+  margin-bottom: 12px;
+}
+.natstat-big {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0 0 10px;
+  color: var(--color-ink);
+}
+.natstat-p {
+  font-size: 15px;
+  line-height: 1.55;
+  color: var(--color-dim);
+  margin: 0 0 12px;
+}
+.natstat .hint {
+  margin: 0;
+}
