@@ -33,6 +33,26 @@ export interface DirectoryFacility {
   field_office: string
 }
 
+// Статистика длительности содержания по учреждению (агрегат из detention
+// stays, Deportation Data Project). Только числа, никаких персональных данных.
+export interface StayStat {
+  med: number
+  p25: number
+  p75: number
+  n: number
+}
+export interface StaysData {
+  meta: {
+    source: string
+    period: string
+    nationalMedian: number
+    n: number
+    minN: number
+    leave: [string, number][]
+  }
+  byCode: Record<string, StayStat>
+}
+
 export interface FacilityRec {
   slug: string
   code?: string

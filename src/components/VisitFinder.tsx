@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import type { Lang, UIStrings } from '@/lib/types'
 import { pathFor } from '@/lib/slugs'
 import { IceGate } from './IceGate'
+import { FacilityStay } from './FacilityStay'
 import directory from '@data/directory.json'
 import facilities from '@data/facilities.json'
 import type { DirectoryFacility, FacilityRec } from '@data/types'
@@ -91,6 +92,8 @@ export function VisitFinder({ lang, ui }: { lang: Lang; ui: UIStrings }) {
               {v.circuitLabel}: {v.circuits[f.circuit] ?? f.circuit}
             </p>
             {warn && <div className="vf-warn">{v.mandatoryWarn}</div>}
+
+            <FacilityStay code={f.code} ui={ui} />
 
             {enh?.visit && (
               <ul className="blist">

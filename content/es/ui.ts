@@ -111,6 +111,9 @@ const ui: UIStrings = {
     scheduleLink: 'Buscar el horario de este centro',
     provenance: 'Direcciones y circuitos: datos de ICE recopilados por el Deportation Data Project (junio de 2026). Los horarios y teléfonos no se publican ahí — confirme en la página de ICE o por teléfono.',
     moreResults: 'Se muestran los primeros 12 — precise la búsqueda: ciudad o nombre exacto.',
+    stayTitle: 'Cuánto suelen estar detenidas las personas en este centro',
+    stayLine: 'Mediana {med} días; para la mitad de las personas, de {p25} a {p75}. Según {n} casos concluidos en 2024–2026.',
+    stayNote: 'Es un dato de datos pasados, no un pronóstico para una persona concreta. Fuente: Deportation Data Project.',
   },
   docPack: {
     // min-ok: подписи разделов инструмента, файлы не покидают браузер

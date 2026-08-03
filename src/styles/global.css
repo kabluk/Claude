@@ -1675,6 +1675,31 @@ html.reveal-ready main > .rev-in {
   background: rgba(242, 194, 48, 0.08);
   color: #fef08a;
 }
+/* статистика длительности — общий блок (карточка поиска и страница учреждения) */
+.vf-stay {
+  border: 1px solid var(--color-line);
+  border-radius: 10px;
+  padding: 13px 15px;
+  margin: 14px 0;
+  background: var(--color-panel);
+}
+.vf-stay-t {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-dim);
+  margin-bottom: 8px;
+}
+.vf-stay-line {
+  font-size: 14.5px;
+  line-height: 1.5;
+  margin: 0 0 6px;
+  color: var(--color-ink);
+}
+.vf-stay .hint {
+  margin: 0;
+}
 .visitfinder .vf-icehours {
   font-size: 13px;
   color: var(--color-dim);

@@ -135,6 +135,9 @@ export interface UIStrings {
     scheduleLink: string
     provenance: string
     moreResults: string
+    stayTitle: string
+    stayLine: string
+    stayNote: string
   }
   docPack: {
     sections: Record<string, string>

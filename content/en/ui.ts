@@ -111,6 +111,9 @@ const ui: UIStrings = {
     scheduleLink: 'Find this facility’s schedule',
     provenance: 'Addresses and circuits: ICE data collected by the Deportation Data Project (June 2026). Hours and phone numbers are not published there — confirm on the ICE page or by phone.',
     moreResults: 'Showing the first 12 — narrow the search: city or exact name.',
+    stayTitle: 'How long people are usually held at this facility',
+    stayLine: 'Median {med} days; for half of people, {p25} to {p75}. Based on {n} completed cases in 2024–2026.',
+    stayNote: 'This is a fact from past data, not a prediction for a specific person. Source: Deportation Data Project.',
   },
   docPack: {
     // min-ok: подписи разделов инструмента, файлы не покидают браузер

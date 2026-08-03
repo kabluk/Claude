@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import type { DirectoryContent, Lang, UIStrings } from '@/lib/types'
 import { Layout, Footer } from '@/components/Layout'
+import { FacilityStay } from '@/components/FacilityStay'
 import { pathFor } from '@/lib/slugs'
 import facilities from '@data/facilities.json'
 import states from '@data/states.json'
@@ -55,6 +56,7 @@ export function FacilityPage({
           ))}
         </div>
       )}
+      {f.code && <FacilityStay code={f.code} ui={ui} />}
       <h2 className="page-h2">{dir.facility.lettersH2}</h2>
       <ul className="blist">
         {dir.facility.letters.map((l, i) => (
