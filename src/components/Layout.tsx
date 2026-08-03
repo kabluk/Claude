@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom'
 import { Head } from 'vite-react-ssg'
 import { LANGS, type Lang, type UIStrings } from '@/lib/types'
 import { pathFor } from '@/lib/slugs'
-import { Listen } from './Listen'
 import { TabBar } from './TabBar'
 
 const ORIGIN = 'https://detnav.com'
@@ -14,7 +13,6 @@ export function Layout({
   ui,
   title,
   description,
-  listen = true,
   children,
 }: {
   lang: Lang
@@ -22,7 +20,6 @@ export function Layout({
   ui: UIStrings
   title: string
   description?: string
-  listen?: boolean
   children: ReactNode
 }) {
   const isHome = pageKey === 'home'
@@ -79,7 +76,6 @@ export function Layout({
           </Link>
         )}
       </header>
-      {listen && <Listen lang={lang} ui={ui} />}
       <main>{children}</main>
       <TabBar lang={lang} pageKey={pageKey} ui={ui} />
     </div>
