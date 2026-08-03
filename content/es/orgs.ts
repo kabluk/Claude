@@ -21,7 +21,7 @@ const c: PageContent = {
       items: [
         'Tarjetas impresas de la primera noche con su contacto — para repartir con tiempo',
         'Una reunión o webinar «la primera noche» para sus familias — en su idioma',
-        'Acceso anticipado a las funciones de preparación para su gente cuando salgan: el expediente familiar, el registro con temporizador, avisos de traslado',
+        'Funciones de preparación para dar a su gente con anticipación: el plan familiar y el paquete de documentos para el abogado',
         'Una línea directa con nosotros: sus preguntas y casos llegan primero al producto',
       ],
     },

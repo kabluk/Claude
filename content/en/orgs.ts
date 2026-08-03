@@ -21,7 +21,7 @@ const c: PageContent = {
       items: [
         'Printed first-night cards with your contact on them — to hand out in advance',
         'A meeting or webinar "the first night" for your families — in their language',
-        'Early access to preparation features for your people as they ship: the family dossier, the check-in timer, transfer notifications',
+        'Preparation features to give your people ahead of time: the family preparedness plan and the attorney document packet',
         'A direct line to us: your questions and cases reach the product first',
       ],
     },
