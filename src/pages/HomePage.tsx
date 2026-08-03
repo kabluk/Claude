@@ -80,7 +80,29 @@ export function HomePage({ lang, c, ui }: { lang: Lang; c: HomeContent; ui: UISt
           <div className="hub-eyebrow">{c.hub.eyebrow}</div>
           {c.hub.cards.map((card, i) => (
             <div key={i} className={`hubcard ${card.tone}`}>
-              {card.label && <span className="hub-chip">{card.label}</span>}
+              {(card.tone === 'r' || card.label) && (
+                <div className="hub-top">
+                  {card.tone === 'r' ? (
+                    <svg
+                      className="hub-icon"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.8"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M12 2 22 12 12 22 2 12Z" />
+                      <line x1="12" y1="8" x2="12" y2="13" />
+                      <line x1="12" y1="16.5" x2="12" y2="16.5" />
+                    </svg>
+                  ) : (
+                    <span />
+                  )}
+                  {card.label && <span className="hub-chip">{card.label}</span>}
+                </div>
+              )}
               <h2 className="hub-title">{card.title}</h2>
               <p className="hub-desc">{card.desc}</p>
               <div className="hub-actions">
