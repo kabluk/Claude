@@ -3,6 +3,33 @@ import type { HomeContent } from '@/lib/types'
 const c: HomeContent = {
   title: 'Забрали близкого?\nХотите подготовиться?',
   sub: 'Ответьте на вопросы — получите свой список дел. Понятным языком, шаг за шагом.',
+  hub: {
+    eyebrow: 'С чего начать',
+    cards: [
+      {
+        tone: 'r',
+        label: 'Срочно',
+        title: 'Человека забрали',
+        desc: 'Что делать в первые часы после внезапного задержания.',
+        actions: [
+          { label: 'Найти человека', page: 'where', primary: true },
+          { label: 'Первый звонок', page: 'firstcall' },
+        ],
+      },
+      {
+        tone: 'n',
+        title: 'Пакет для адвоката',
+        desc: 'Соберите один аккуратный PDF из документов — прямо в телефоне.',
+        actions: [{ label: 'Собрать пакет', page: 'docpack' }],
+      },
+      {
+        tone: 'n',
+        title: 'План на всякий случай',
+        desc: 'Пошаговый список дел под вашу ситуацию — за 2 минуты.',
+        actions: [{ label: 'Пройти опрос', page: 'intake', primary: true }],
+      },
+    ],
+  },
   heroLead: 'Мы поможем:',
   heroPoints: [
     'найти человека в системе',

@@ -33,6 +33,16 @@ export interface PageContent {
 export interface HomeContent {
   title: string
   sub: string
+  hub: {
+    eyebrow: string
+    cards: {
+      tone: 'r' | 'n'
+      label?: string
+      title: string
+      desc: string
+      actions: { label: string; page: string; primary?: boolean }[]
+    }[]
+  }
   heroLead: string
   heroPoints: string[]
   demoLabel: string

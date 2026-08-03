@@ -3,6 +3,33 @@ import type { HomeContent } from '@/lib/types'
 const c: HomeContent = {
   title: 'Someone was taken?\nWant to be prepared?',
   sub: 'Answer the questions — get your own task list. In plain language, step by step.',
+  hub: {
+    eyebrow: 'Where to start',
+    cards: [
+      {
+        tone: 'r',
+        label: 'Urgent',
+        title: 'Someone was taken',
+        desc: 'What to do in the first hours after a sudden detention.',
+        actions: [
+          { label: 'Locate person', page: 'where', primary: true },
+          { label: 'First call', page: 'firstcall' },
+        ],
+      },
+      {
+        tone: 'n',
+        title: 'Package for the attorney',
+        desc: 'Assemble one clean PDF from the documents — right on your phone.',
+        actions: [{ label: 'Assemble packet', page: 'docpack' }],
+      },
+      {
+        tone: 'n',
+        title: 'A plan, just in case',
+        desc: 'A step-by-step task list for your situation — in 2 minutes.',
+        actions: [{ label: 'Take the questions', page: 'intake', primary: true }],
+      },
+    ],
+  },
   heroLead: 'We help you:',
   heroPoints: [
     'find the person in the system',

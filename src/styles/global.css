@@ -2105,3 +2105,94 @@ ol.steps > li,
 .blist li {
   margin-bottom: 12px;
 }
+
+/* Intent-hub на главной (референс Stitch): карточки-приоритеты */
+.hub {
+  margin: 22px 0 10px;
+}
+.hub-eyebrow {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-dim);
+  margin-bottom: 12px;
+}
+.hubcard {
+  border-radius: 16px;
+  padding: 22px;
+  margin-bottom: 12px;
+}
+.hubcard.r {
+  background: #7d120b;
+  color: #fff;
+}
+.hubcard.n {
+  background: var(--color-panel);
+  border: 1px solid var(--color-line);
+}
+.hub-chip {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--color-red);
+  padding: 3px 9px;
+  border-radius: 6px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.hub-title {
+  font-size: 24px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  margin: 0 0 6px;
+}
+.hub-desc {
+  font-size: 14.5px;
+  line-height: 1.5;
+  margin: 0 0 16px;
+  color: var(--color-dim);
+}
+.hubcard.r .hub-desc {
+  color: rgba(255, 255, 255, 0.82);
+}
+.hub-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.hub-btn {
+  flex: 1 1 auto;
+  min-width: 120px;
+  text-align: center;
+  padding: 13px 14px;
+  border-radius: 10px;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  border: 1px solid var(--color-line);
+  color: var(--color-ink);
+  min-height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hub-btn.primary {
+  background: var(--color-ink);
+  color: var(--color-bg);
+  border-color: var(--color-ink);
+}
+.hubcard.r .hub-btn {
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #fff;
+}
+.hubcard.r .hub-btn.primary {
+  background: #fff;
+  color: var(--color-red);
+  border-color: #fff;
+}

@@ -75,13 +75,30 @@ export function HomePage({ lang, c, ui }: { lang: Lang; c: HomeContent; ui: UISt
           ))}
         </h1>
         <HeroPoints lead={c.heroLead} points={c.heroPoints} />
+
+        <div className="hub">
+          <div className="hub-eyebrow">{c.hub.eyebrow}</div>
+          {c.hub.cards.map((card, i) => (
+            <div key={i} className={`hubcard ${card.tone}`}>
+              {card.label && <span className="hub-chip">{card.label}</span>}
+              <h2 className="hub-title">{card.title}</h2>
+              <p className="hub-desc">{card.desc}</p>
+              <div className="hub-actions">
+                {card.actions.map((a, j) => (
+                  <Link
+                    key={j}
+                    className={a.primary ? 'hub-btn primary' : 'hub-btn'}
+                    to={pathFor(lang, a.page)}
+                  >
+                    {a.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
         <Demo c={c} />
-        <Link className="cta-block" to={pathFor(lang, 'intake')}>
-          {c.cta}
-        </Link>
-        <Link className="cta2" to={pathFor(lang, 'journey')}>
-          {c.cta2}
-        </Link>
         <div className="trust">
           {c.trust.map((t) => (
             <span key={t} className="tg">

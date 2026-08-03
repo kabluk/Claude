@@ -3,6 +3,33 @@ import type { HomeContent } from '@/lib/types'
 const c: HomeContent = {
   title: '¿Se llevaron a alguien?\n¿Quiere estar preparado?',
   sub: 'Responda las preguntas y reciba su propia lista de tareas. En lenguaje claro, paso a paso.',
+  hub: {
+    eyebrow: 'Por dónde empezar',
+    cards: [
+      {
+        tone: 'r',
+        label: 'Urgente',
+        title: 'Se llevaron a alguien',
+        desc: 'Qué hacer en las primeras horas tras una detención repentina.',
+        actions: [
+          { label: 'Localizar a la persona', page: 'where', primary: true },
+          { label: 'Primera llamada', page: 'firstcall' },
+        ],
+      },
+      {
+        tone: 'n',
+        title: 'Paquete para el abogado',
+        desc: 'Arme un PDF ordenado con los documentos — en su propio teléfono.',
+        actions: [{ label: 'Armar el paquete', page: 'docpack' }],
+      },
+      {
+        tone: 'n',
+        title: 'Un plan por si acaso',
+        desc: 'Una lista de tareas para su situación — en 2 minutos.',
+        actions: [{ label: 'Responder preguntas', page: 'intake', primary: true }],
+      },
+    ],
+  },
   heroLead: 'Le ayudamos a:',
   heroPoints: [
     'encontrar a la persona en el sistema',
