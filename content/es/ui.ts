@@ -72,6 +72,16 @@ const ui: UIStrings = {
     removal: 'Alrededor del {pct}% de estas detenciones terminaron en expulsión. Al resto lo liberaron de distintas formas o lo trasladaron a otro centro.',
     note: 'Es un agregado de datos pasados (Deportation Data Project), no un pronóstico para una persona concreta.',
   },
+  officeFinder: {
+    label: 'Oficina de ICE — a dónde acudir y dónde reportarse',
+    placeholder: 'Ciudad o estado',
+    hint: 'Escriba una ciudad o estado, en inglés. La base tiene 270 oficinas de ICE (Deportation Data Project).',
+    typeField: 'Oficina de campo',
+    typeSub: 'Suboficina',
+    aorLabel: 'Pertenece a',
+    empty: 'No se encontró una oficina para esa búsqueda. Pruebe el nombre del estado o la ciudad grande más cercana.',
+    note: 'Aquí no se publican horarios ni teléfonos — confírmelos en la página oficial de ICE o llamando a la oficina.',
+  },
   tabs: { home: 'Inicio', tasks: 'Tareas', docs: 'Documentos', find: 'Buscar' },
   dirEmpty: 'Aún no hay datos. No publicamos teléfonos ni direcciones sin verificar.',
   docMap: {

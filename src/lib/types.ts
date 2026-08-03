@@ -22,7 +22,10 @@ export type Block =
   | { kind: 'memcard'; title: string; lines: string[]; alts?: string[] }
   | { kind: 'phones'; entries: { num: string; who: string; note: string }[]; footer?: string }
   | { kind: 'kv'; rows: [string, string][] }
-  | { kind: 'tool'; tool: 'namevariants' | 'anumber' | 'print' | 'docpack' | 'visitfinder' | 'docmap' }
+  | {
+      kind: 'tool'
+      tool: 'namevariants' | 'anumber' | 'print' | 'docpack' | 'visitfinder' | 'docmap' | 'officefinder'
+    }
 
 export interface PageContent {
   title: string
@@ -113,6 +116,16 @@ export interface UIStrings {
   dirEmpty: string
   browserOnly: string
   national: { title: string; median: string; removal: string; note: string }
+  officeFinder: {
+    label: string
+    placeholder: string
+    hint: string
+    typeField: string
+    typeSub: string
+    aorLabel: string
+    empty: string
+    note: string
+  }
   tabs: { home: string; tasks: string; docs: string; find: string }
   docMap: {
     title: string

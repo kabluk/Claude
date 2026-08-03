@@ -77,6 +77,12 @@ const c: PageContent = {
       ],
       footer: 'La primera línea la maneja ICE. La segunda, una organización sin fines de lucro. La elección es suya.',
     },
+    { kind: 'h2', text: 'Oficina de ICE: a dónde acudir y dónde reportarse' },
+    {
+      kind: 'p',
+      text: 'Si a la persona le ordenaron reportarse (grillete, ISAP) o necesita saber qué oficina cubre la zona, busque la oficina más cercana por ciudad o estado.',
+    },
+    { kind: 'tool', tool: 'officefinder' },
   ],
 }
 

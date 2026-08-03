@@ -72,6 +72,16 @@ const ui: UIStrings = {
     removal: 'About {pct}% of these detentions ended in removal. The rest were released in various ways or transferred to another facility.',
     note: 'This is an aggregate from past data (Deportation Data Project), not a prediction for a specific person.',
   },
+  officeFinder: {
+    label: 'ICE office — where to go and where to check in',
+    placeholder: 'City or state',
+    hint: 'Enter a city or state. The base has 270 ICE offices (Deportation Data Project).',
+    typeField: 'Field office',
+    typeSub: 'Sub-office',
+    aorLabel: 'Part of',
+    empty: 'No office matched that search. Try the state name or the nearest large city.',
+    note: 'Hours and phones are not published here — confirm on the official ICE page or by calling the office.',
+  },
   tabs: { home: 'Home', tasks: 'Tasks', docs: 'Docs', find: 'Find' },
   dirEmpty: 'No data yet. We do not publish phone numbers or addresses we have not verified.',
   docMap: {

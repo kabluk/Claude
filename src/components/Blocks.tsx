@@ -7,6 +7,7 @@ import { NameVariants } from './NameVariants'
 import { ANumberField } from './ANumberField'
 import { DocPack } from './DocPack'
 import { VisitFinder } from './VisitFinder'
+import { OfficeFinder } from './OfficeFinder'
 import { DocMap } from './DocMap'
 
 const TONE: Record<string, string> = { r: 'r', y: 'y', g: 'g', n: '' }
@@ -240,6 +241,7 @@ export function Blocks({ blocks, lang, ui }: { blocks: Block[]; lang: Lang; ui: 
             if (b.tool === 'anumber') return <ANumberField key={i} ui={ui} />
             if (b.tool === 'docpack') return <DocPack key={i} ui={ui} />
             if (b.tool === 'visitfinder') return <VisitFinder key={i} lang={lang} ui={ui} />
+            if (b.tool === 'officefinder') return <OfficeFinder key={i} ui={ui} />
             if (b.tool === 'docmap') return <DocMap key={i} ui={ui} />
             if (b.tool === 'print')
               return (

@@ -77,6 +77,12 @@ const c: PageContent = {
       ],
       footer: 'The first line is run by ICE. The second by a nonprofit organization. The choice is yours.',
     },
+    { kind: 'h2', text: 'ICE office: where to go and where to check in' },
+    {
+      kind: 'p',
+      text: 'If the person has been ordered to check in (ankle monitor, ISAP) or you need to know which office covers the area, find the nearest office by city or state.',
+    },
+    { kind: 'tool', tool: 'officefinder' },
   ],
 }
 

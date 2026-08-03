@@ -53,6 +53,16 @@ export interface StaysData {
   byCode: Record<string, StayStat>
 }
 
+// Офисы ICE (поля/суб-офисы) — куда обращаться и где отмечаться.
+export interface OfficeRec {
+  name: string
+  type: string
+  aor: string
+  address: string
+  city: string
+  state: string
+}
+
 export interface FacilityRec {
   slug: string
   code?: string

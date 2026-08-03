@@ -1,0 +1,2162 @@
+[
+ {
+  "name": "Anchorage, AK",
+  "type": "Sub-office",
+  "aor": "Seattle Field Office",
+  "address": "620 East 10th Avenue, Anchorage, AK 99501",
+  "city": "Anchorage",
+  "state": "AK"
+ },
+ {
+  "name": "Birmingham, AL",
+  "type": "Sub-office",
+  "aor": "New Orleans Field Office",
+  "address": "107 Frankfurt Circle, Birmingham, AL 35211",
+  "city": "Birmingham",
+  "state": "AL"
+ },
+ {
+  "name": "Gadsden, AL",
+  "type": "Sub-office",
+  "aor": "New Orleans Field Office",
+  "address": "800 Forrest Avenue 3rd Floor, Gadsden, AL 35901",
+  "city": "Gadsden",
+  "state": "AL"
+ },
+ {
+  "name": "Montgomery, AL",
+  "type": "Sub-office",
+  "aor": "New Orleans Field Office",
+  "address": "500 Interstate Park Drive Suite 529, Montgomery, AL 36109",
+  "city": "Montgomery",
+  "state": "AL"
+ },
+ {
+  "name": "Fayetteville, AR",
+  "type": "Sub-office",
+  "aor": "New Orleans Field Office",
+  "address": "2887 N. Point Circle, Fayetteville, AR 72701",
+  "city": "Fayetteville",
+  "state": "AR"
+ },
+ {
+  "name": "Fort Smith, AR",
+  "type": "Sub-office",
+  "aor": "New Orleans Field Office",
+  "address": "4991 Old Greenwood Road, Fort Smith, AR 72903",
+  "city": "Fort Smith",
+  "state": "AR"
+ },
+ {
+  "name": "Little Rock, AR",
+  "type": "Sub-office",
+  "aor": "New Orleans Field Office",
+  "address": "4501 E Roosevelt Road, Little Rock, AR 72206",
+  "city": "Little Rock",
+  "state": "AR"
+ },
+ {
+  "name": "Texarkana, AR",
+  "type": "Sub-office",
+  "aor": "New Orleans Field Office",
+  "address": "3822 Airport Plaza, Texarkana, AR 71854",
+  "city": "Texarkana",
+  "state": "AR"
+ },
+ {
+  "name": "Eloy - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "1705 East Hanna Road, Eloy, AZ 85131",
+  "city": "Eloy",
+  "state": "AZ"
+ },
+ {
+  "name": "Florence - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "3250 N. Pinal Parkway Avenue, Florence, AZ 85132",
+  "city": "Florence",
+  "state": "AZ"
+ },
+ {
+  "name": "Phoenix - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "2035 N. Central Avenue, Phoenix, AZ 85004",
+  "city": "Phoenix",
+  "state": "AZ"
+ },
+ {
+  "name": "Phoenix - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "4041 North Central Ave, Ste 1650, Phoenix, AZ 85012",
+  "city": "Phoenix",
+  "state": "AZ"
+ },
+ {
+  "name": "Phoenix - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "2035 N. Central Avenue, Phoenix, AZ 85004",
+  "city": "Phoenix",
+  "state": "AZ"
+ },
+ {
+  "name": "Phoenix, AZ",
+  "type": "Sub-office",
+  "aor": "Phoenix Field Office",
+  "address": "2035 N. Central Avenue, Phoenix, AZ 85004",
+  "city": "Phoenix",
+  "state": "AZ"
+ },
+ {
+  "name": "Scottsdale - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "14641 North 74th Street, Scottsdale, AZ 85260",
+  "city": "Scottsdale",
+  "state": "AZ"
+ },
+ {
+  "name": "Tucson - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "6431 S. Country Club Road, Tucson, AZ 85706",
+  "city": "Tucson",
+  "state": "AZ"
+ },
+ {
+  "name": "Tucson, AZ",
+  "type": "Sub-office",
+  "aor": "Phoenix Field Office",
+  "address": "6431 South Country Club Road, Tucson, AZ 85706",
+  "city": "Tucson",
+  "state": "AZ"
+ },
+ {
+  "name": "Adelanto - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "10250 Rancho Road, Adelanto, CA 92301",
+  "city": "Adelanto",
+  "state": "CA"
+ },
+ {
+  "name": "Bakersfield, CA",
+  "type": "Sub-office",
+  "aor": "San Francisco Field Office",
+  "address": "800 Truxtun Avenue, Bakersfield, CA 93301",
+  "city": "Bakersfield",
+  "state": "CA"
+ },
+ {
+  "name": "Ventura, CA",
+  "type": "Sub-office",
+  "aor": "Los Angeles Field Office",
+  "address": "321 Cortez Circle, Camarillo, CA 93012",
+  "city": "Camarillo",
+  "state": "CA"
+ },
+ {
+  "name": "Imperial, CA",
+  "type": "Sub-office",
+  "aor": "San Diego Field Office",
+  "address": "2051 North Waterman Avenue Suite 101, El Centro, CA 92243",
+  "city": "El Centro",
+  "state": "CA"
+ },
+ {
+  "name": "Fresno, CA",
+  "type": "Sub-office",
+  "aor": "San Francisco Field Office",
+  "address": "733 L Street, Fresno, CA 93721",
+  "city": "Fresno",
+  "state": "CA"
+ },
+ {
+  "name": "Imperial - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "2409 La Brucherie Road Suite 3, Imperial, CA 92251",
+  "city": "Imperial",
+  "state": "CA"
+ },
+ {
+  "name": "Long Beach - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "501 West Ocean Boulevard, Ste 7200, Long Beach, CA 90802",
+  "city": "Long Beach",
+  "state": "CA"
+ },
+ {
+  "name": "Los Angeles - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "300 North Los Angeles St. Room 7631, Los Angeles, CA 90012",
+  "city": "Los Angeles",
+  "state": "CA"
+ },
+ {
+  "name": "Los Angeles - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "300 N. Los Angeles Street Room 6075, Los Angeles, CA 90012",
+  "city": "Los Angeles",
+  "state": "CA"
+ },
+ {
+  "name": "Los Angeles - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "606 South Olive Street, 8th Floor, Los Angeles, CA 90014",
+  "city": "Los Angeles",
+  "state": "CA"
+ },
+ {
+  "name": "Los Angeles - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "300 N. Los Angeles Street Suite 1240, Los Angeles, CA 90012",
+  "city": "Los Angeles",
+  "state": "CA"
+ },
+ {
+  "name": "Los Angeles, CA",
+  "type": "Sub-office",
+  "aor": "Los Angeles Field Office",
+  "address": "300 N. Los Angeles Street Room B17, Los Angeles, CA 90012",
+  "city": "Los Angeles",
+  "state": "CA"
+ },
+ {
+  "name": "San Jose, CA",
+  "type": "Sub-office",
+  "aor": "San Francisco Field Office",
+  "address": "220 Vineyard Court, Morgan Hill, CA 95037",
+  "city": "Morgan Hill",
+  "state": "CA"
+ },
+ {
+  "name": "Sacramento, CA",
+  "type": "Sub-office",
+  "aor": "San Francisco Field Office",
+  "address": "650 Capitol Mall Room I-120, Sacramento, CA 95814",
+  "city": "Sacramento",
+  "state": "CA"
+ },
+ {
+  "name": "San Bernardino, CA",
+  "type": "Sub-office",
+  "aor": "Los Angeles Field Office",
+  "address": "655 West Rialto Avenue, San Bernardino, CA 92410",
+  "city": "San Bernardino",
+  "state": "CA"
+ },
+ {
+  "name": "San Diego - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "880 Front Street #2242, San Diego, CA 92101",
+  "city": "San Diego",
+  "state": "CA"
+ },
+ {
+  "name": "San Diego - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "880 Front Street Suite 3200, San Diego, CA 92101",
+  "city": "San Diego",
+  "state": "CA"
+ },
+ {
+  "name": "San Diego - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "880 Front Street Suite 3200, San Diego, CA 92101",
+  "city": "San Diego",
+  "state": "CA"
+ },
+ {
+  "name": "San Diego - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "880 Front Street, Suite 2246, San Diego, CA 92101",
+  "city": "San Diego",
+  "state": "CA"
+ },
+ {
+  "name": "San Diego - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "7488 Calzada de la Fuente, San Diego, CA 92154",
+  "city": "San Diego",
+  "state": "CA"
+ },
+ {
+  "name": "San Diego, CA",
+  "type": "Sub-office",
+  "aor": "San Diego Field Office",
+  "address": "880 Front Street Suite 2242, San Diego, CA 92101",
+  "city": "San Diego",
+  "state": "CA"
+ },
+ {
+  "name": "San Francisco - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "630 Sansome Street Rm 590, San Francisco, CA 94111",
+  "city": "San Francisco",
+  "state": "CA"
+ },
+ {
+  "name": "San Francisco - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "630 Sansome Street Suite 890, San Francisco, CA 94111",
+  "city": "San Francisco",
+  "state": "CA"
+ },
+ {
+  "name": "San Francisco - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "630 Sansome Street, Ste 590, San Francisco, CA 94111",
+  "city": "San Francisco",
+  "state": "CA"
+ },
+ {
+  "name": "San Francisco - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "100 Montgomery Street, Suite 200, San Francisco, CA 94104",
+  "city": "San Francisco",
+  "state": "CA"
+ },
+ {
+  "name": "San Francisco - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "630 Sansome Street, 11th Floor, San Francisco, CA 94111",
+  "city": "San Francisco",
+  "state": "CA"
+ },
+ {
+  "name": "San Francisco, CA",
+  "type": "Sub-office",
+  "aor": "San Francisco Field Office",
+  "address": "630 Sansome Street 5th Floor, San Francisco, CA 94111",
+  "city": "San Francisco",
+  "state": "CA"
+ },
+ {
+  "name": "Santa Ana - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "1251 E. Dyer Road Suite 200, Santa Ana, CA 92705",
+  "city": "Santa Ana",
+  "state": "CA"
+ },
+ {
+  "name": "Santa Ana, CA",
+  "type": "Sub-office",
+  "aor": "Los Angeles Field Office",
+  "address": "34 Civic Center Plaza Room 1027, Santa Ana, CA 92701",
+  "city": "Santa Ana",
+  "state": "CA"
+ },
+ {
+  "name": "Santa Maria, CA",
+  "type": "Sub-office",
+  "aor": "Los Angeles Field Office",
+  "address": "740 West Century Street Suite A, Santa Maria, CA 93455",
+  "city": "Santa Maria",
+  "state": "CA"
+ },
+ {
+  "name": "Stockton, CA",
+  "type": "Sub-office",
+  "aor": "San Francisco Field Office",
+  "address": "603 San Juan Avenue First Floor, Stockton, CA 95203",
+  "city": "Stockton",
+  "state": "CA"
+ },
+ {
+  "name": "Van Nuys - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "6230 Van Nuys Boulevard Suite 1011, Van Nuys, CA 91401",
+  "city": "Van Nuys",
+  "state": "CA"
+ },
+ {
+  "name": "Alamosa, CO",
+  "type": "Sub-office",
+  "aor": "Denver Field Office",
+  "address": "1921 State Street, Alamosa, CO 81101",
+  "city": "Alamosa",
+  "state": "CO"
+ },
+ {
+  "name": "Centennial - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "12445 E. Caley Avenue, Centennial, CO 80111",
+  "city": "Centennial",
+  "state": "CO"
+ },
+ {
+  "name": "Centennial - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "12445 E. Caley Ave, Centennial, CO 80111",
+  "city": "Centennial",
+  "state": "CO"
+ },
+ {
+  "name": "Centennial - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "12445 East Caley Avenue, Centennial, CO 80111-6432",
+  "city": "Centennial",
+  "state": "CO"
+ },
+ {
+  "name": "Denver, CO",
+  "type": "Sub-office",
+  "aor": "Denver Field Office",
+  "address": "12445 East Caley Avenue, Centennial, CO 80111",
+  "city": "Centennial",
+  "state": "CO"
+ },
+ {
+  "name": "Craig, CO",
+  "type": "Sub-office",
+  "aor": "Denver Field Office",
+  "address": "466 Tucker Street, Craig, CO 81626",
+  "city": "Craig",
+  "state": "CO"
+ },
+ {
+  "name": "Durango, CO",
+  "type": "Sub-office",
+  "aor": "Denver Field Office",
+  "address": "32 Sheppard Drive, Durango, CO 81303",
+  "city": "Durango",
+  "state": "CO"
+ },
+ {
+  "name": "Pueblo/Florence, CO",
+  "type": "Sub-office",
+  "aor": "Denver Field Office",
+  "address": "935 Highway 67, Florence, CO 81226",
+  "city": "Florence",
+  "state": "CO"
+ },
+ {
+  "name": "Frederick, CO",
+  "type": "Sub-office",
+  "aor": "Denver Field Office",
+  "address": "3770 Puritan Way Unit J, Frederick, CO 80516",
+  "city": "Frederick",
+  "state": "CO"
+ },
+ {
+  "name": "Glenwood Springs, CO",
+  "type": "Sub-office",
+  "aor": "Denver Field Office",
+  "address": "100 Midland Avenue Suite 210, Glenwood Springs, CO 81601",
+  "city": "Glenwood Springs",
+  "state": "CO"
+ },
+ {
+  "name": "Grand Junction, CO",
+  "type": "Sub-office",
+  "aor": "Denver Field Office",
+  "address": "569 S. Commercial Drive, Grand Junction, CO 81505",
+  "city": "Grand Junction",
+  "state": "CO"
+ },
+ {
+  "name": "Greenwood Village - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "5445 DTC Pkwy Suite 600, Greenwood Village, CO 80111",
+  "city": "Greenwood Village",
+  "state": "CO"
+ },
+ {
+  "name": "Hartford - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "450 Main Street, Room 483, Hartford, CT 06103-3060",
+  "city": "Hartford",
+  "state": "CT"
+ },
+ {
+  "name": "Hartford, CT",
+  "type": "Sub-office",
+  "aor": "Boston Field Office",
+  "address": "450 Main Street, Hartford, CT 06103",
+  "city": "Hartford",
+  "state": "CT"
+ },
+ {
+  "name": "Washington - OPR",
+  "type": "Field office",
+  "aor": "",
+  "address": "500 12th Street SW, Suite 1049 Mailstop 5099, Washington, DC 20536-5005",
+  "city": "Washington",
+  "state": "DC"
+ },
+ {
+  "name": "Dover, DE",
+  "type": "Sub-office",
+  "aor": "Philadelphia Field Office",
+  "address": "210 Beiser Boulevard, Dover, DE 19904",
+  "city": "Dover",
+  "state": "DE"
+ },
+ {
+  "name": "Jacksonville, FL",
+  "type": "Sub-office",
+  "aor": "Miami Field Office",
+  "address": "13077 Veveras Drive, Jacksonville, FL 32258",
+  "city": "Jacksonville",
+  "state": "FL"
+ },
+ {
+  "name": "Key West - JIATF",
+  "type": "Field office",
+  "aor": "",
+  "address": "9051 Truman Annex NAS Key West, Key West, FL 33040",
+  "city": "Key West",
+  "state": "FL"
+ },
+ {
+  "name": "Miami - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "11226 NW 20th Street, Miami, FL 33172",
+  "city": "Miami",
+  "state": "FL"
+ },
+ {
+  "name": "Miami - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "11226 Northwest 20th Street, Miami, FL 33172",
+  "city": "Miami",
+  "state": "FL"
+ },
+ {
+  "name": "Miami - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "11226 NW 20th Street, Miami, FL 33172",
+  "city": "Miami",
+  "state": "FL"
+ },
+ {
+  "name": "Miami - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "333 S. Miami Avenue, Suite 200, Miami, FL 33130",
+  "city": "Miami",
+  "state": "FL"
+ },
+ {
+  "name": "Miami - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "18201 SW 12th Street, Miami, FL 33194-2700",
+  "city": "Miami",
+  "state": "FL"
+ },
+ {
+  "name": "Miami, FL",
+  "type": "Sub-office",
+  "aor": "Miami Field Office",
+  "address": "2805 SW 145th Avenue, Miramar, FL 33027",
+  "city": "Miramar",
+  "state": "FL"
+ },
+ {
+  "name": "Miramar - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "2805 SW 145th Ave, Miramar, FL 33027",
+  "city": "Miramar",
+  "state": "FL"
+ },
+ {
+  "name": "Orlando - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "500 North Orange Avenue Suite 5000, Orlando, FL 32801",
+  "city": "Orlando",
+  "state": "FL"
+ },
+ {
+  "name": "Orlando, FL",
+  "type": "Sub-office",
+  "aor": "Miami Field Office",
+  "address": "9495 Delegates Drive, Orlando, FL 32837",
+  "city": "Orlando",
+  "state": "FL"
+ },
+ {
+  "name": "Pompano Beach - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "3900 North Powerline Road, Pompano Beach, FL 33073",
+  "city": "Pompano Beach",
+  "state": "FL"
+ },
+ {
+  "name": "Tallahassee, FL",
+  "type": "Sub-office",
+  "aor": "Miami Field Office",
+  "address": "1530 Commonwealth Business Drive, Tallahassee, FL 32303",
+  "city": "Tallahassee",
+  "state": "FL"
+ },
+ {
+  "name": "Tampa - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "2203 North Lois Avenue Suite 300, Tampa, FL 33607",
+  "city": "Tampa",
+  "state": "FL"
+ },
+ {
+  "name": "Tampa - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "2203 North Lois Avenue, Ste 300, Tampa, FL 33607",
+  "city": "Tampa",
+  "state": "FL"
+ },
+ {
+  "name": "Tampa, FL",
+  "type": "Sub-office",
+  "aor": "Miami Field Office",
+  "address": "5524 West Cypress Street, Tampa, FL 33607",
+  "city": "Tampa",
+  "state": "FL"
+ },
+ {
+  "name": "Atlanta - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "180 Ted Turner Dr. SW Suite 522, Atlanta, GA 30303",
+  "city": "Atlanta",
+  "state": "GA"
+ },
+ {
+  "name": "Atlanta - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "1100 Centre Parkway, Atlanta, GA 30344",
+  "city": "Atlanta",
+  "state": "GA"
+ },
+ {
+  "name": "Atlanta - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "180 Ted Turner Drive, SW, Suite 332, Atlanta, GA 30303",
+  "city": "Atlanta",
+  "state": "GA"
+ },
+ {
+  "name": "Atlanta - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "401 W. Peachtree Street, NW, Suite 2850, Atlanta, GA 30308",
+  "city": "Atlanta",
+  "state": "GA"
+ },
+ {
+  "name": "Atlanta, GA",
+  "type": "Sub-office",
+  "aor": "Atlanta Field Office",
+  "address": "180 Ted Turner Drive, SW, Atlanta, GA 30303",
+  "city": "Atlanta",
+  "state": "GA"
+ },
+ {
+  "name": "Lumpkin - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "146 CCA Road, Lumpkin, GA 31815",
+  "city": "Lumpkin",
+  "state": "GA"
+ },
+ {
+  "name": "Agana, GU",
+  "type": "Sub-office",
+  "aor": "San Francisco Field Office",
+  "address": "291 Chalan Pasaheru Suite 100, Tamuning, GU 96913",
+  "city": "Tamuning",
+  "state": "GU"
+ },
+ {
+  "name": "Honolulu - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "595 Ala Moana Boulevard, Honolulu, HI 96813",
+  "city": "Honolulu",
+  "state": "HI"
+ },
+ {
+  "name": "Honolulu - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "300 Ala Moana Boulevard Suite 7-220, Honolulu, HI 96850",
+  "city": "Honolulu",
+  "state": "HI"
+ },
+ {
+  "name": "Honolulu, HI",
+  "type": "Sub-office",
+  "aor": "San Francisco Field Office",
+  "address": "595 Ala Moana Boulevard, Honolulu, HI 96813",
+  "city": "Honolulu",
+  "state": "HI"
+ },
+ {
+  "name": "Cedar Rapids, IA",
+  "type": "Sub-office",
+  "aor": "St. Paul Field Office",
+  "address": "3351 Square D Drive SW, Cedar Rapids, IA 52404",
+  "city": "Cedar Rapids",
+  "state": "IA"
+ },
+ {
+  "name": "Des Moines, IA",
+  "type": "Sub-office",
+  "aor": "St. Paul Field Office",
+  "address": "210 Walnut St. Suite 359, Des Moines, IA 50309",
+  "city": "Des Moines",
+  "state": "IA"
+ },
+ {
+  "name": "Sioux City, IA",
+  "type": "Sub-office",
+  "aor": "St. Paul Field Office",
+  "address": "3301 Singing Hills Boulevard Suite B, Sioux City, IA 51106",
+  "city": "Sioux City",
+  "state": "IA"
+ },
+ {
+  "name": "Boise, ID",
+  "type": "Sub-office",
+  "aor": "Salt Lake City Field Office",
+  "address": "1185 S. Vinnell Way, Boise, ID 83709",
+  "city": "Boise",
+  "state": "ID"
+ },
+ {
+  "name": "Idaho Falls, ID",
+  "type": "Sub-office",
+  "aor": "Salt Lake City Field Office",
+  "address": "2075 N Boulevard, Idaho Falls, ID 83402",
+  "city": "Idaho Falls",
+  "state": "ID"
+ },
+ {
+  "name": "Twin Falls, ID",
+  "type": "Sub-office",
+  "aor": "Salt Lake City Field Office",
+  "address": "212 Deere Street, Twin Falls, ID 83301",
+  "city": "Twin Falls",
+  "state": "ID"
+ },
+ {
+  "name": "Chicago - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "101 W Ida B Wells Drive Suite 4000, Chicago, IL 60605",
+  "city": "Chicago",
+  "state": "IL"
+ },
+ {
+  "name": "Chicago - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "101 W Ida B. Wells Parkway, Chicago, IL 60605",
+  "city": "Chicago",
+  "state": "IL"
+ },
+ {
+  "name": "Chicago - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "55 E. Monroe Street Suite 1400, Chicago, IL 60603",
+  "city": "Chicago",
+  "state": "IL"
+ },
+ {
+  "name": "Chicago, IL",
+  "type": "Sub-office",
+  "aor": "Chicago Field Office",
+  "address": "101 Ida B. Wells Drive 4th Floor, Chicago, IL 60605",
+  "city": "Chicago",
+  "state": "IL"
+ },
+ {
+  "name": "Lombard - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "747 E. 22nd Street Suite 300, Lombard, IL 60148",
+  "city": "Lombard",
+  "state": "IL"
+ },
+ {
+  "name": "Indianapolis - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "575 N. Pennsylvania Street Suite 646, Indianapolis, IN 46204",
+  "city": "Indianapolis",
+  "state": "IN"
+ },
+ {
+  "name": "Indianapolis, IN",
+  "type": "Sub-office",
+  "aor": "Chicago Field Office",
+  "address": "7355 Woodland Drive, Indianapolis, IN 46278",
+  "city": "Indianapolis",
+  "state": "IN"
+ },
+ {
+  "name": "Wichita, KS",
+  "type": "Sub-office",
+  "aor": "Chicago Field Office",
+  "address": "555 North Woodlawn Street Building 4, Suite 160, Wichita, KS 67208",
+  "city": "Wichita",
+  "state": "KS"
+ },
+ {
+  "name": "Louisville, KY",
+  "type": "Sub-office",
+  "aor": "Chicago Field Office",
+  "address": "654 South 7th Street, Louisville, KY 40203",
+  "city": "Louisville",
+  "state": "KY"
+ },
+ {
+  "name": "Jena - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "830 Pinehill Road, Jena, LA 71342",
+  "city": "Jena",
+  "state": "LA"
+ },
+ {
+  "name": "New Orleans - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "1250 Poydras Street Suite 2200, New Orleans, LA 70113",
+  "city": "New Orleans",
+  "state": "LA"
+ },
+ {
+  "name": "New Orleans - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "1250 Poydras Street, Ste 2200, New Orleans, LA 70113",
+  "city": "New Orleans",
+  "state": "LA"
+ },
+ {
+  "name": "New Orleans - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "423 Canal Street Suite 450, New Orleans, LA 70130",
+  "city": "New Orleans",
+  "state": "LA"
+ },
+ {
+  "name": "Oakdale - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "1010 E. Whatley Road, Oakdale, LA 71463-1128",
+  "city": "Oakdale",
+  "state": "LA"
+ },
+ {
+  "name": "New Orleans, LA",
+  "type": "Sub-office",
+  "aor": "New Orleans Field Office",
+  "address": "181 James Drive W, Saint Rose, LA 70087",
+  "city": "Saint Rose",
+  "state": "LA"
+ },
+ {
+  "name": "St. Rose - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "181 James Drive W, St. Rose, LA 70087",
+  "city": "St. Rose",
+  "state": "LA"
+ },
+ {
+  "name": "Boston - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "10 Causeway Street Room 722, Boston, MA 02222",
+  "city": "Boston",
+  "state": "MA"
+ },
+ {
+  "name": "Boston - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "15 New Sudbury Street, Room 425, Boston, MA 02203",
+  "city": "Boston",
+  "state": "MA"
+ },
+ {
+  "name": "Boston, MA",
+  "type": "Sub-office",
+  "aor": "Boston Field Office",
+  "address": "1000 District Avenue, Burlington, MA 01803",
+  "city": "Burlington",
+  "state": "MA"
+ },
+ {
+  "name": "Burlington - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "1000 District Avenue, Burlington, MA 01803",
+  "city": "Burlington",
+  "state": "MA"
+ },
+ {
+  "name": "Baltimore - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "31 Hopkins Plaza 6th Floor, Baltimore, MD 21201",
+  "city": "Baltimore",
+  "state": "MD"
+ },
+ {
+  "name": "Baltimore - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "40 South Gay Street 3rd Floor, Baltimore, MD 21202",
+  "city": "Baltimore",
+  "state": "MD"
+ },
+ {
+  "name": "Baltimore - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "40 South Gay Street, 3rd Floor, Baltimore, MD 21202",
+  "city": "Baltimore",
+  "state": "MD"
+ },
+ {
+  "name": "Baltimore - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "31 Hopkins Plaza, Room 1600, Baltimore, MD 21201",
+  "city": "Baltimore",
+  "state": "MD"
+ },
+ {
+  "name": "Baltimore, MD",
+  "type": "Sub-office",
+  "aor": "Baltimore Field Office",
+  "address": "31 Hopkins Plaza 6th Floor, Baltimore, MD 21201",
+  "city": "Baltimore",
+  "state": "MD"
+ },
+ {
+  "name": "Hyattsville - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "6505 Belcrest Road Suite 450, Hyattsville, MD 20782",
+  "city": "Hyattsville",
+  "state": "MD"
+ },
+ {
+  "name": "Salisbury, MD",
+  "type": "Sub-office",
+  "aor": "Baltimore Field Office",
+  "address": "119 W. Naylor Mill Road Suite 11, Salisbury, MD 21801",
+  "city": "Salisbury",
+  "state": "MD"
+ },
+ {
+  "name": "Portland, ME",
+  "type": "Sub-office",
+  "aor": "Boston Field Office",
+  "address": "40 Manson Libby Road Suite 101, Scarborough, ME 04074",
+  "city": "Scarborough",
+  "state": "ME"
+ },
+ {
+  "name": "Detroit - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "985 Michigan Avenue Suite 207, Detroit, MI 48226",
+  "city": "Detroit",
+  "state": "MI"
+ },
+ {
+  "name": "Detroit - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "477 Michigan Avenue Suite 1850, Detroit, MI 48226",
+  "city": "Detroit",
+  "state": "MI"
+ },
+ {
+  "name": "Detroit - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "477 Michigan Avenue, Ste 1850, Detroit, MI 48226",
+  "city": "Detroit",
+  "state": "MI"
+ },
+ {
+  "name": "Detroit - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "985 Michigan Avenue, Suite 1010, Detroit, MI 48226",
+  "city": "Detroit",
+  "state": "MI"
+ },
+ {
+  "name": "Detroit, MI",
+  "type": "Sub-office",
+  "aor": "Detroit Field Office",
+  "address": "260 Mt. Elliott, Detroit, MI 48207",
+  "city": "Detroit",
+  "state": "MI"
+ },
+ {
+  "name": "Fort Snelling - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "1 Federal Drive Suite 1601, Fort Snelling, MN 55111",
+  "city": "Fort Snelling",
+  "state": "MN"
+ },
+ {
+  "name": "Fort Snelling - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "1 Federal Drive Suite 1340, Fort Snelling, MN 55111",
+  "city": "Fort Snelling",
+  "state": "MN"
+ },
+ {
+  "name": "Fort Snelling - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "1 Federal Drive, Ste 1340, Fort Snelling, MN 55111",
+  "city": "Fort Snelling",
+  "state": "MN"
+ },
+ {
+  "name": "Fort Snelling - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "1 Federal Drive, Suite 1800, Fort Snelling, MN 55111",
+  "city": "Fort Snelling",
+  "state": "MN"
+ },
+ {
+  "name": "St. Paul, MN",
+  "type": "Sub-office",
+  "aor": "St. Paul Field Office",
+  "address": "1 Federal Drive Suite 1601, Fort Snelling, MN 55111",
+  "city": "Fort Snelling",
+  "state": "MN"
+ },
+ {
+  "name": "Kansas City - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "4100 N Mulberry Drive Suite 225, Kansas City, MO 64116",
+  "city": "Kansas City",
+  "state": "MO"
+ },
+ {
+  "name": "Kansas City - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "2345 Grand Boulevard, Suite 500, Kansas City, MO 64108",
+  "city": "Kansas City",
+  "state": "MO"
+ },
+ {
+  "name": "Kansas City, MO",
+  "type": "Sub-office",
+  "aor": "Chicago Field Office",
+  "address": "11125 N. Ambassador Drive Suite 100, Kansas City, MO 64153",
+  "city": "Kansas City",
+  "state": "MO"
+ },
+ {
+  "name": "Springfield, MO",
+  "type": "Sub-office",
+  "aor": "Chicago Field Office",
+  "address": "4715 West Junction Street, Springfield, MO 65802",
+  "city": "Springfield",
+  "state": "MO"
+ },
+ {
+  "name": "St. Louis, MO",
+  "type": "Sub-office",
+  "aor": "Chicago Field Office",
+  "address": "1222 Spruce Street Room 100, St. Louis, MO 63103",
+  "city": "St. Louis",
+  "state": "MO"
+ },
+ {
+  "name": "Saipan, CNMI",
+  "type": "Sub-office",
+  "aor": "San Francisco Field Office",
+  "address": "2 Joeten Center, Gualo Rai, Saipan, MP 96950",
+  "city": "Saipan",
+  "state": "MP"
+ },
+ {
+  "name": "Jackson, MS",
+  "type": "Sub-office",
+  "aor": "New Orleans Field Office",
+  "address": "202 Metroplex Drive, Pearl, MS 39208",
+  "city": "Pearl",
+  "state": "MS"
+ },
+ {
+  "name": "Billings, MT",
+  "type": "Sub-office",
+  "aor": "Salt Lake City Field Office",
+  "address": "2900 4th Avenue Suite 205, Billings, MT 59101",
+  "city": "Billings",
+  "state": "MT"
+ },
+ {
+  "name": "Helena, MT",
+  "type": "Sub-office",
+  "aor": "Salt Lake City Field Office",
+  "address": "2800 Skyway Drive, Helena, MT 59602",
+  "city": "Helena",
+  "state": "MT"
+ },
+ {
+  "name": "Charlotte - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "3700 Arco Corporate Drive Suite 300, Charlotte, NC 28273",
+  "city": "Charlotte",
+  "state": "NC"
+ },
+ {
+  "name": "Charlotte - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "5701 Executive Center Drive, Suite 300, Charlotte, NC 28212",
+  "city": "Charlotte",
+  "state": "NC"
+ },
+ {
+  "name": "Charlotte, NC",
+  "type": "Sub-office",
+  "aor": "Atlanta Field Office",
+  "address": "6130 Tyvola Centre Drive, Charlotte, NC 28217",
+  "city": "Charlotte",
+  "state": "NC"
+ },
+ {
+  "name": "Grand Forks, ND",
+  "type": "Sub-office",
+  "aor": "St. Paul Field Office",
+  "address": "124 N. 6th Street, Grand Forks, ND 58203",
+  "city": "Grand Forks",
+  "state": "ND"
+ },
+ {
+  "name": "Grand Island, NE",
+  "type": "Sub-office",
+  "aor": "St. Paul Field Office",
+  "address": "703 South Webb Road Suite D, Grand Island, NE 68803",
+  "city": "Grand Island",
+  "state": "NE"
+ },
+ {
+  "name": "North Platte, NE",
+  "type": "Sub-office",
+  "aor": "St. Paul Field Office",
+  "address": "300 E. 3rd Street Suite 110, North Platte, NE 69101",
+  "city": "North Platte",
+  "state": "NE"
+ },
+ {
+  "name": "Omaha - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "1717 Avenue H, Room 174, Omaha, NE 68110",
+  "city": "Omaha",
+  "state": "NE"
+ },
+ {
+  "name": "Omaha, NE",
+  "type": "Sub-office",
+  "aor": "St. Paul Field Office",
+  "address": "1717 Ave H, Omaha, NE 68110",
+  "city": "Omaha",
+  "state": "NE"
+ },
+ {
+  "name": "Manchester, NH",
+  "type": "Sub-office",
+  "aor": "Boston Field Office",
+  "address": "275 Chestnut Street, Manchester, NH 03101",
+  "city": "Manchester",
+  "state": "NH"
+ },
+ {
+  "name": "Elizabeth - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "625 Evans Street, Room 135, Elizabeth, NJ 07201",
+  "city": "Elizabeth",
+  "state": "NJ"
+ },
+ {
+  "name": "Mount Laurel, NJ",
+  "type": "Sub-office",
+  "aor": "Newark Field Office",
+  "address": "532 Fellowship Road Suite A, Mount Laurel, NJ 08054",
+  "city": "Mount Laurel",
+  "state": "NJ"
+ },
+ {
+  "name": "Newark - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "970 Broad St. 11th Floor, Newark, NJ 07102",
+  "city": "Newark",
+  "state": "NJ"
+ },
+ {
+  "name": "Newark - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "620 Frelinghuysen Avenue, Newark, NJ 07114",
+  "city": "Newark",
+  "state": "NJ"
+ },
+ {
+  "name": "Newark - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "970 Broad Street, Newark, NJ 07102",
+  "city": "Newark",
+  "state": "NJ"
+ },
+ {
+  "name": "Newark - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "970 Broad Street, Room 1300, Newark, NJ 07102",
+  "city": "Newark",
+  "state": "NJ"
+ },
+ {
+  "name": "Newark, NJ",
+  "type": "Sub-office",
+  "aor": "Newark Field Office",
+  "address": "970 Broad Street 11th Floor, Newark, NJ 07102",
+  "city": "Newark",
+  "state": "NJ"
+ },
+ {
+  "name": "Albuquerque, NM",
+  "type": "Sub-office",
+  "aor": "El Paso Field Office",
+  "address": "5441 Watson Drive South East, Albuquerque, NM 87106",
+  "city": "Albuquerque",
+  "state": "NM"
+ },
+ {
+  "name": "Chaparral - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "26 McGregor Range Road, Chaparral, NM 88081",
+  "city": "Chaparral",
+  "state": "NM"
+ },
+ {
+  "name": "Las Vegas - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "501 Las Vegas Boulevard South Suite 536, Las Vegas, NV 89101",
+  "city": "Las Vegas",
+  "state": "NV"
+ },
+ {
+  "name": "Las Vegas - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "501 S. Las Vegas Blvd, Suite 200, Las Vegas, NV 89101",
+  "city": "Las Vegas",
+  "state": "NV"
+ },
+ {
+  "name": "Las Vegas, NV",
+  "type": "Sub-office",
+  "aor": "Salt Lake City Field Office",
+  "address": "501 S. Las Vegas Boulevard Suite 100, Las Vegas, NV 89101",
+  "city": "Las Vegas",
+  "state": "NV"
+ },
+ {
+  "name": "Reno, NV",
+  "type": "Sub-office",
+  "aor": "Salt Lake City Field Office",
+  "address": "6999 Sierra Center Parkway, Reno, NV 89511",
+  "city": "Reno",
+  "state": "NV"
+ },
+ {
+  "name": "Albany, NY",
+  "type": "Sub-office",
+  "aor": "Buffalo Field Office",
+  "address": "11 Old Stonebreak Road, Ballston Spa, NY 12020",
+  "city": "Ballston Spa",
+  "state": "NY"
+ },
+ {
+  "name": "Batavia - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "4250 Federal Drive, Batavia, NY 14020",
+  "city": "Batavia",
+  "state": "NY"
+ },
+ {
+  "name": "Buffalo - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "250 Delaware Avenue, Floor 7, Buffalo, NY 14202",
+  "city": "Buffalo",
+  "state": "NY"
+ },
+ {
+  "name": "Buffalo - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "250 Delaware Ave Suite 814, Buffalo, NY 14202",
+  "city": "Buffalo",
+  "state": "NY"
+ },
+ {
+  "name": "Buffalo - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "130 Delaware Avenue, Ste 300, Buffalo, NY 14202",
+  "city": "Buffalo",
+  "state": "NY"
+ },
+ {
+  "name": "Buffalo - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "250 Delaware Avenue, Suite 773, Buffalo, NY 14202",
+  "city": "Buffalo",
+  "state": "NY"
+ },
+ {
+  "name": "Buffalo, NY",
+  "type": "Sub-office",
+  "aor": "Buffalo Field Office",
+  "address": "250 Delaware Avenue 7th Floor, Buffalo, NY 14202",
+  "city": "Buffalo",
+  "state": "NY"
+ },
+ {
+  "name": "Champlain, NY",
+  "type": "Sub-office",
+  "aor": "Buffalo Field Office",
+  "address": "237 West Service Road Room CB 107, Unit 8, Champlain, NY 12919",
+  "city": "Champlain",
+  "state": "NY"
+ },
+ {
+  "name": "New York - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "26 Federal Plaza 9th Floor, Suite 9-110, New York, NY 10278",
+  "city": "New York",
+  "state": "NY"
+ },
+ {
+  "name": "New York - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "601 W. 26th Street Room 726, New York, NY 10001",
+  "city": "New York",
+  "state": "NY"
+ },
+ {
+  "name": "New York - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "601 W. 26th Street 7th Floor, New York, NY 10001",
+  "city": "New York",
+  "state": "NY"
+ },
+ {
+  "name": "New York - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "26 Federal Plaza, Room 1130, New York, NY 10278",
+  "city": "New York",
+  "state": "NY"
+ },
+ {
+  "name": "New York - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "201 Varick Street, Room 738, New York, NY 10014",
+  "city": "New York",
+  "state": "NY"
+ },
+ {
+  "name": "New York City, NY",
+  "type": "Sub-office",
+  "aor": "New York Field Office",
+  "address": "26 Federal Plaza 9th Floor, Suite 9-110, New York, NY 10278",
+  "city": "New York",
+  "state": "NY"
+ },
+ {
+  "name": "Newburgh - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "15 Governor Drive, Newburgh, NY 12550",
+  "city": "Newburgh",
+  "state": "NY"
+ },
+ {
+  "name": "Cincinnati, OH",
+  "type": "Sub-office",
+  "aor": "Detroit Field Office",
+  "address": "9875 Redhill Drive, Blue Ash, OH 45242",
+  "city": "Blue Ash",
+  "state": "OH"
+ },
+ {
+  "name": "Brooklyn Heights - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "925 Keynote Circle, Room 201, Brooklyn Heights, OH 44131",
+  "city": "Brooklyn Heights",
+  "state": "OH"
+ },
+ {
+  "name": "Cleveland, OH",
+  "type": "Sub-office",
+  "aor": "Detroit Field Office",
+  "address": "925 Keynote Circle, Brooklyn Heights, OH 44131",
+  "city": "Brooklyn Heights",
+  "state": "OH"
+ },
+ {
+  "name": "Columbus, OH",
+  "type": "Sub-office",
+  "aor": "Detroit Field Office",
+  "address": "675 Brooksedge Boulevard, Westerville, OH 43081",
+  "city": "Westerville",
+  "state": "OH"
+ },
+ {
+  "name": "Oklahoma City, OK",
+  "type": "Sub-office",
+  "aor": "Dallas Field Office",
+  "address": "1220 Sovereign Row, Oklahoma City, OK 73108",
+  "city": "Oklahoma City",
+  "state": "OK"
+ },
+ {
+  "name": "Eugene, OR",
+  "type": "Sub-office",
+  "aor": "Seattle Field Office",
+  "address": "211 East 7th Avenue Suite 120, Eugene, OR 97401",
+  "city": "Eugene",
+  "state": "OR"
+ },
+ {
+  "name": "Medford, OR",
+  "type": "Sub-office",
+  "aor": "Seattle Field Office",
+  "address": "3715 International Way, Medford, OR 97504",
+  "city": "Medford",
+  "state": "OR"
+ },
+ {
+  "name": "Portland - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "1220 SW 3rd Avenue, Suite 300, Portland, OR 97204",
+  "city": "Portland",
+  "state": "OR"
+ },
+ {
+  "name": "Portland, OR",
+  "type": "Sub-office",
+  "aor": "Seattle Field Office",
+  "address": "4310 S Macadam Avenue Suite 300, Portland, OR 97239",
+  "city": "Portland",
+  "state": "OR"
+ },
+ {
+  "name": "Philadelphia - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "114 North 8th Street, Philadelphia, PA 19107",
+  "city": "Philadelphia",
+  "state": "PA"
+ },
+ {
+  "name": "Philadelphia - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "220 Chestnut Street Room 200, Philadelphia, PA 19106",
+  "city": "Philadelphia",
+  "state": "PA"
+ },
+ {
+  "name": "Philadelphia - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "220 Chestnut Street, Ste 200, Philadelphia, PA 19106",
+  "city": "Philadelphia",
+  "state": "PA"
+ },
+ {
+  "name": "Philadelphia - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "900 Market Street, Suite 346, Philadelphia, PA 19107",
+  "city": "Philadelphia",
+  "state": "PA"
+ },
+ {
+  "name": "Philadelphia, PA",
+  "type": "Sub-office",
+  "aor": "Philadelphia Field Office",
+  "address": "114 North 8th Street 3rd Floor, Philadelphia, PA 19107",
+  "city": "Philadelphia",
+  "state": "PA"
+ },
+ {
+  "name": "Pittsburgh, PA",
+  "type": "Sub-office",
+  "aor": "Philadelphia Field Office",
+  "address": "3000 Sidney Street Suite 100, Pittsburgh, PA 15203",
+  "city": "Pittsburgh",
+  "state": "PA"
+ },
+ {
+  "name": "York - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "2350 Freedom Way Suite 254, York, PA 17402",
+  "city": "York",
+  "state": "PA"
+ },
+ {
+  "name": "York, PA",
+  "type": "Sub-office",
+  "aor": "Philadelphia Field Office",
+  "address": "1605 Clugston Road, York, PA 17404",
+  "city": "York",
+  "state": "PA"
+ },
+ {
+  "name": "Guaynabo - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "7 Tabonuco Street Room 300 (Suite 313), Guaynabo, PR 00968",
+  "city": "Guaynabo",
+  "state": "PR"
+ },
+ {
+  "name": "San Juan - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "800 Juan Ponce de Leon Avenue, 12th Floor, San Juan, PR 00908",
+  "city": "San Juan",
+  "state": "PR"
+ },
+ {
+  "name": "San Juan - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "800 Juan Ponce de Leon Avenue Capitol Building, 12th Floor, San Juan, PR 00908",
+  "city": "San Juan",
+  "state": "PR"
+ },
+ {
+  "name": "Providence, RI",
+  "type": "Sub-office",
+  "aor": "Boston Field Office",
+  "address": "443 Jefferson Blvd North Suite, Warwick, RI 02886",
+  "city": "Warwick",
+  "state": "RI"
+ },
+ {
+  "name": "Charleston, SC",
+  "type": "Sub-office",
+  "aor": "Atlanta Field Office",
+  "address": "3950 Faber Place Drive, North Charleston, SC 29405",
+  "city": "North Charleston",
+  "state": "SC"
+ },
+ {
+  "name": "Rapid City, SD",
+  "type": "Sub-office",
+  "aor": "St. Paul Field Office",
+  "address": "1516 Fountain Plaza Drive, Rapid City, SD 57702",
+  "city": "Rapid City",
+  "state": "SD"
+ },
+ {
+  "name": "Sioux Falls, SD",
+  "type": "Sub-office",
+  "aor": "St. Paul Field Office",
+  "address": "2708 N. 1st Avenue, Sioux Falls, SD 57104",
+  "city": "Sioux Falls",
+  "state": "SD"
+ },
+ {
+  "name": "Chattanooga, TN",
+  "type": "Sub-office",
+  "aor": "New Orleans Field Office",
+  "address": "2150 Stein Drive, Chattanooga, TN 37421",
+  "city": "Chattanooga",
+  "state": "TN"
+ },
+ {
+  "name": "Knoxville, TN",
+  "type": "Sub-office",
+  "aor": "New Orleans Field Office",
+  "address": "324 Prosperity Drive, Knoxville, TN 37923",
+  "city": "Knoxville",
+  "state": "TN"
+ },
+ {
+  "name": "Memphis - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "80 Monroe Avenue, Suite 200, Memphis, TN 38103",
+  "city": "Memphis",
+  "state": "TN"
+ },
+ {
+  "name": "Memphis, TN",
+  "type": "Sub-office",
+  "aor": "New Orleans Field Office",
+  "address": "2833 Business Park Drive Building 1, Memphis, TN 38118",
+  "city": "Memphis",
+  "state": "TN"
+ },
+ {
+  "name": "Nashville - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "501 Brick Church Park Drive, Nashville, TN 37207",
+  "city": "Nashville",
+  "state": "TN"
+ },
+ {
+  "name": "Nashville, TN",
+  "type": "Sub-office",
+  "aor": "New Orleans Field Office",
+  "address": "501 Brick Church Park Drive, Nashville, TN 37207",
+  "city": "Nashville",
+  "state": "TN"
+ },
+ {
+  "name": "Conroe - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "806 Hilbig Road Suite 2-201, Conroe, TX 77301",
+  "city": "Conroe",
+  "state": "TX"
+ },
+ {
+  "name": "Dallas - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "8101 N. Stemmons Frwy, Dallas, TX 75247",
+  "city": "Dallas",
+  "state": "TX"
+ },
+ {
+  "name": "Dallas - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "8101 N. Stemmons Freeway, Dallas, TX 75247",
+  "city": "Dallas",
+  "state": "TX"
+ },
+ {
+  "name": "Dallas, TX",
+  "type": "Sub-office",
+  "aor": "Dallas Field Office",
+  "address": "8101 N. Stemmons Freeway, Dallas, TX 75247",
+  "city": "Dallas",
+  "state": "TX"
+ },
+ {
+  "name": "Dilley - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "300 El Rancho Way, Dilley, TX 78017",
+  "city": "Dilley",
+  "state": "TX"
+ },
+ {
+  "name": "El Paso - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "11541 Montana Ave Suite E, El Paso, TX 79936",
+  "city": "El Paso",
+  "state": "TX"
+ },
+ {
+  "name": "El Paso - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "11541 Montana Avenue Suite H, El Paso, TX 79936",
+  "city": "El Paso",
+  "state": "TX"
+ },
+ {
+  "name": "El Paso - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "11541 Montana Avenue, El Paso, TX 79925",
+  "city": "El Paso",
+  "state": "TX"
+ },
+ {
+  "name": "El Paso - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "11541 Montana Avenue, Suite O, El Paso, TX 79936",
+  "city": "El Paso",
+  "state": "TX"
+ },
+ {
+  "name": "El Paso, TX",
+  "type": "Sub-office",
+  "aor": "El Paso Field Office",
+  "address": "11541 Montana Avenue Suite E, El Paso, TX 79936",
+  "city": "El Paso",
+  "state": "TX"
+ },
+ {
+  "name": "Harlingen - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "1717 Zoy Street, Harlingen, TX 78552",
+  "city": "Harlingen",
+  "state": "TX"
+ },
+ {
+  "name": "Harlingen - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "1717 Zoy Street, Harlingen, TX 78552",
+  "city": "Harlingen",
+  "state": "TX"
+ },
+ {
+  "name": "Harlingen - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "1717 Zoy Street, Annex, Harlingen, TX 78552",
+  "city": "Harlingen",
+  "state": "TX"
+ },
+ {
+  "name": "Harlingen, TX",
+  "type": "Sub-office",
+  "aor": "Harlingen Field Office",
+  "address": "1717 Zoy Street, Harlingen, TX 78552",
+  "city": "Harlingen",
+  "state": "TX"
+ },
+ {
+  "name": "Houston - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "126 Northpoint Drive, Houston, TX 77060",
+  "city": "Houston",
+  "state": "TX"
+ },
+ {
+  "name": "Houston - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "4141 N. Sam Houston Parkway East #300, Houston, TX 77032",
+  "city": "Houston",
+  "state": "TX"
+ },
+ {
+  "name": "Houston - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "126 Northpoint Drive, Room 2020, Houston, TX 77060",
+  "city": "Houston",
+  "state": "TX"
+ },
+ {
+  "name": "Houston, TX",
+  "type": "Sub-office",
+  "aor": "Houston Field Office",
+  "address": "126 Northpoint Drive, Houston, TX 77060",
+  "city": "Houston",
+  "state": "TX"
+ },
+ {
+  "name": "Irving - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "125 E. John Carpenter Freeway Suite 800, Irving, TX 75062",
+  "city": "Irving",
+  "state": "TX"
+ },
+ {
+  "name": "Irving - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "125 E. John Carpenter Fwy., Suite 500, Irving, TX 75062",
+  "city": "Irving",
+  "state": "TX"
+ },
+ {
+  "name": "Los Fresnos - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "27991 Buena Vista Blvd, Los Fresnos, TX 78566",
+  "city": "Los Fresnos",
+  "state": "TX"
+ },
+ {
+  "name": "Midland, TX",
+  "type": "Sub-office",
+  "aor": "El Paso Field Office",
+  "address": "1515 Idlewild Drive, Midland, TX 79703",
+  "city": "Midland",
+  "state": "TX"
+ },
+ {
+  "name": "Pearsall - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "566 Veterans Drive, Pearsall, TX 78061",
+  "city": "Pearsall",
+  "state": "TX"
+ },
+ {
+  "name": "Pecos, TX",
+  "type": "Sub-office",
+  "aor": "El Paso Field Office",
+  "address": "67 S. Frontage IH-20W, Pecos, TX 79772",
+  "city": "Pecos",
+  "state": "TX"
+ },
+ {
+  "name": "San Antonio - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "1777 NE Loop 410 Floor 15, San Antonio, TX 78217",
+  "city": "San Antonio",
+  "state": "TX"
+ },
+ {
+  "name": "San Antonio - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "1015 Jackson Keller Road Suite 200, San Antonio, TX 78213",
+  "city": "San Antonio",
+  "state": "TX"
+ },
+ {
+  "name": "San Antonio - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "1777 NE Loop 410, Floor 15, San Antonio, TX 78217",
+  "city": "San Antonio",
+  "state": "TX"
+ },
+ {
+  "name": "San Antonio - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "1015 Jackson-Keller Road, Suite 100, San Antonio, TX 78213",
+  "city": "San Antonio",
+  "state": "TX"
+ },
+ {
+  "name": "San Antonio, TX",
+  "type": "Sub-office",
+  "aor": "San Antonio Field Office",
+  "address": "3523 Crosspoint Drive, San Antonio, TX 78217",
+  "city": "San Antonio",
+  "state": "TX"
+ },
+ {
+  "name": "Spring - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "25700 Interstate 45 North, Suite 200 Havenwood Office Park, Spring, TX 77386",
+  "city": "Spring",
+  "state": "TX"
+ },
+ {
+  "name": "Ogden, UT",
+  "type": "Sub-office",
+  "aor": "Salt Lake City Field Office",
+  "address": "2487 S. 1620 W Unit E, Ogden, UT 84401",
+  "city": "Ogden",
+  "state": "UT"
+ },
+ {
+  "name": "Provo, UT",
+  "type": "Sub-office",
+  "aor": "Salt Lake City Field Office",
+  "address": "1793 W. Business Parkway Drive, Orem, UT 84058",
+  "city": "Orem",
+  "state": "UT"
+ },
+ {
+  "name": "St. George, UT",
+  "type": "Sub-office",
+  "aor": "Salt Lake City Field Office",
+  "address": "389 N. Industrial Road Suite 4, St. George, UT 84770",
+  "city": "St. George",
+  "state": "UT"
+ },
+ {
+  "name": "Salt Lake City, UT",
+  "type": "Sub-office",
+  "aor": "Salt Lake City Field Office",
+  "address": "2975 Decker Lake Drive Suite 100, West Valley City, UT 84119",
+  "city": "West Valley City",
+  "state": "UT"
+ },
+ {
+  "name": "West Valley City - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "2975 Decker Lake Drive Suite 100, West Valley City, UT 84119-6096",
+  "city": "West Valley City",
+  "state": "UT"
+ },
+ {
+  "name": "West Valley City - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "2975 Decker Lake Drive, Stop C, West Valley City, UT 84119-6098",
+  "city": "West Valley City",
+  "state": "UT"
+ },
+ {
+  "name": "Annandale - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "7619 Little River Turnpike Suite 900, Annandale, VA 22003",
+  "city": "Annandale",
+  "state": "VA"
+ },
+ {
+  "name": "Chantilly - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "14797 Murdock Street Mail Stop 5216, Chantilly, VA 20598-5216",
+  "city": "Chantilly",
+  "state": "VA"
+ },
+ {
+  "name": "Chantilly - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "14797 Murdock Street Mail Stop 5216, Chantilly, VA 20598-5216",
+  "city": "Chantilly",
+  "state": "VA"
+ },
+ {
+  "name": "Washington, DC",
+  "type": "Sub-office",
+  "aor": "Washington Field Office",
+  "address": "14797 Murdock Street, Chantilly, VA 20151",
+  "city": "Chantilly",
+  "state": "VA"
+ },
+ {
+  "name": "Norfolk, VA",
+  "type": "Sub-office",
+  "aor": "Washington Field Office",
+  "address": "200 Granby Street Suite 821, Norfolk, VA 23510",
+  "city": "Norfolk",
+  "state": "VA"
+ },
+ {
+  "name": "Richmond, VA",
+  "type": "Sub-office",
+  "aor": "Washington Field Office",
+  "address": "9200 Arboretum Parkway Suite 140, North Chesterfield, VA 23236",
+  "city": "North Chesterfield",
+  "state": "VA"
+ },
+ {
+  "name": "Reston - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "12200 Sunrise Valley Drive, Reston, VA 20191",
+  "city": "Reston",
+  "state": "VA"
+ },
+ {
+  "name": "Sterling - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "21400 Ridgetop Circle Suite 100, Sterling, VA 20166",
+  "city": "Sterling",
+  "state": "VA"
+ },
+ {
+  "name": "St. Albans, VT",
+  "type": "Sub-office",
+  "aor": "Boston Field Office",
+  "address": "64 Gricebrook Road, St. Albans, VT 05478",
+  "city": "St. Albans",
+  "state": "VT"
+ },
+ {
+  "name": "Williston - LESC",
+  "type": "Field office",
+  "aor": "",
+  "address": "188 Harvest Lane, Williston, VT 05495",
+  "city": "Williston",
+  "state": "VT"
+ },
+ {
+  "name": "Richland, WA",
+  "type": "Sub-office",
+  "aor": "Seattle Field Office",
+  "address": "825 Jadwin Avenue Room G165, Richland, WA 99352",
+  "city": "Richland",
+  "state": "WA"
+ },
+ {
+  "name": "Seattle - ERO",
+  "type": "Field office",
+  "aor": "",
+  "address": "12500 Tukwila International Boulevard, Seattle, WA 98168",
+  "city": "Seattle",
+  "state": "WA"
+ },
+ {
+  "name": "Seattle - HSI",
+  "type": "Field office",
+  "aor": "",
+  "address": "1000 Second Avenue Suite 2300, Seattle, WA 98104",
+  "city": "Seattle",
+  "state": "WA"
+ },
+ {
+  "name": "Seattle - OPE",
+  "type": "Field office",
+  "aor": "",
+  "address": "12500 Tukwila International Blvd, Seattle, WA 98168",
+  "city": "Seattle",
+  "state": "WA"
+ },
+ {
+  "name": "Seattle - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "915 Second Avenue Suite 708, Seattle, WA 98174",
+  "city": "Seattle",
+  "state": "WA"
+ },
+ {
+  "name": "Seattle, WA",
+  "type": "Sub-office",
+  "aor": "Seattle Field Office",
+  "address": "12500 Tukwila International Boulevard 4th Floor, Seattle, WA 98168",
+  "city": "Seattle",
+  "state": "WA"
+ },
+ {
+  "name": "Spokane, WA",
+  "type": "Sub-office",
+  "aor": "Seattle Field Office",
+  "address": "411 W Cataldo Avenue, Spokane, WA 99201",
+  "city": "Spokane",
+  "state": "WA"
+ },
+ {
+  "name": "Tacoma - OPLA",
+  "type": "Field office",
+  "aor": "",
+  "address": "1623 East J Street, Suite 2, Tacoma, WA 98421",
+  "city": "Tacoma",
+  "state": "WA"
+ },
+ {
+  "name": "Wenatchee, WA",
+  "type": "Sub-office",
+  "aor": "Seattle Field Office",
+  "address": "3701 River Road, Yakima, WA 98902",
+  "city": "Yakima",
+  "state": "WA"
+ },
+ {
+  "name": "Yakima, WA",
+  "type": "Sub-office",
+  "aor": "Seattle Field Office",
+  "address": "3701 River Road, Yakima, WA 98902",
+  "city": "Yakima",
+  "state": "WA"
+ },
+ {
+  "name": "Milwaukee, WI",
+  "type": "Sub-office",
+  "aor": "Chicago Field Office",
+  "address": "310 East Knapp Street, Milwaukee, WI 53202",
+  "city": "Milwaukee",
+  "state": "WI"
+ },
+ {
+  "name": "Casper, WY",
+  "type": "Sub-office",
+  "aor": "Denver Field Office",
+  "address": "150 E. B Street Room 1014, Casper, WY 82601",
+  "city": "Casper",
+  "state": "WY"
+ },
+ {
+  "name": "Cheyenne, WY",
+  "type": "Sub-office",
+  "aor": "Denver Field Office",
+  "address": "7052 Commerce Circle Suite 130, Cheyenne, WY 82007",
+  "city": "Cheyenne",
+  "state": "WY"
+ }
+]
