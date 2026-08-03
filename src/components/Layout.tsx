@@ -7,6 +7,14 @@ import { TabBar } from './TabBar'
 
 const ORIGIN = 'https://detnav.com'
 
+// Запасное описание для соцпревью, если страница своего не задала.
+const DEFAULT_DESC: Record<Lang, string> = {
+  en: 'A map for families of people detained by U.S. immigration. Information and official links — not legal advice. Nothing about you is stored.',
+  es: 'Un mapa para las familias de personas detenidas por inmigración en EE. UU. Información y enlaces oficiales — no consejo legal. No se guarda nada sobre usted.',
+  ru: 'Карта для семей задержанных иммиграционной службой США. Информация и официальные ссылки — не юридический совет. Мы ничего о вас не храним.',
+}
+const OG_LOCALE: Record<Lang, string> = { en: 'en_US', es: 'es_ES', ru: 'ru_RU' }
+
 export function Layout({
   lang,
   pageKey,
@@ -49,12 +57,24 @@ export function Layout({
     <div className="phone">
       <Head>
         <title>{title}</title>
-        {description ? <meta name="description" content={description} /> : null}
+        <meta name="description" content={description ?? DEFAULT_DESC[lang]} />
         {LANGS.map((l) => (
           <link key={l} rel="alternate" hrefLang={l} href={`${ORIGIN}${pathFor(l, pageKey)}`} />
         ))}
         <link rel="alternate" hrefLang="x-default" href={`${ORIGIN}${pathFor('en', pageKey)}`} />
         <link rel="canonical" href={`${ORIGIN}${pathFor(lang, pageKey)}`} />
+        {/* Соцпревью (WhatsApp/SMS/соцсети) */}
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="DETNAV" />
+        <meta property="og:locale" content={OG_LOCALE[lang]} />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description ?? DEFAULT_DESC[lang]} />
+        <meta property="og:url" content={`${ORIGIN}${pathFor(lang, pageKey)}`} />
+        <meta property="og:image" content={`${ORIGIN}/og.png`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={title} />
+        <meta name="twitter:description" content={description ?? DEFAULT_DESC[lang]} />
+        <meta name="twitter:image" content={`${ORIGIN}/og.png`} />
       </Head>
       <header className="site-header">
         <div className="hrow">
