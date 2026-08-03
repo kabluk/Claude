@@ -12,7 +12,7 @@
   --color-blue: #5b8fb0;
   --color-ink: #edeff1;
   --color-dim: #868f98;
-  --font-sans: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  --font-sans: 'Archivo', 'Inter', 'Helvetica Neue', Arial, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 }
 
@@ -2074,4 +2074,34 @@ input[type='search'] {
 }
 .tab svg {
   opacity: 0.9;
+}
+
+/* Stitch-рестайл · типографика: крупнее (масштаб Stitch — body 16, h1 28) */
+.body-p,
+.blist li,
+ol.steps > li,
+.kv,
+.vf-stay-line {
+  font-size: 16px;
+}
+.lede {
+  font-size: 17px;
+  line-height: 1.5;
+}
+.box p,
+.box li {
+  font-size: 15px;
+}
+.box h3 {
+  font-size: 16px;
+}
+.page-h1 {
+  font-size: 28px;
+  line-height: 1.2;
+}
+.page-h2 {
+  font-size: 11.5px;
+}
+.blist li {
+  margin-bottom: 12px;
 }

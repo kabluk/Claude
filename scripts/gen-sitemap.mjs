@@ -103,7 +103,7 @@ writeFileSync(
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer
   Permissions-Policy: geolocation=(), camera=(), microphone=()
-${isLaunch ? '' : '  X-Robots-Tag: noindex\n'}  Content-Security-Policy: default-src 'self'; script-src ${scriptSrc}; font-src 'self' fonts.gstatic.com; style-src 'self' 'unsafe-inline' fonts.googleapis.com; img-src 'self' data:
+${isLaunch ? '' : '  X-Robots-Tag: noindex\n'}  Content-Security-Policy: default-src 'self'; script-src ${scriptSrc}; font-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:
 `,
 )
 console.log(`gen-sitemap: _headers записан (${inlineHashes.size} script-хэшей)`)
