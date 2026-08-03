@@ -101,6 +101,7 @@ export interface UIStrings {
   }
   printPage: string
   dirEmpty: string
+  tabs: { home: string; tasks: string; docs: string; find: string }
   docMap: {
     title: string
     formLabel: string

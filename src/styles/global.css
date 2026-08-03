@@ -294,20 +294,24 @@ code {
 .box {
   background: var(--color-panel);
   border-left: 3px solid var(--color-bezel);
-  padding: 15px 16px;
+  border-radius: 0 12px 12px 0;
+  padding: 16px 18px;
   margin: 18px 0;
 }
 .box.r {
   border-left-color: var(--color-red);
+  background: rgba(228, 56, 43, 0.06);
 }
 .box.y {
   border-left-color: var(--color-yellow);
+  background: rgba(242, 194, 48, 0.06);
 }
 .box.g {
   border-left-color: var(--color-green);
+  background: rgba(55, 160, 90, 0.06);
 }
 .box h3 {
-  font-size: 14.5px;
+  font-size: 15px;
   font-weight: 700;
   margin: 0 0 7px;
 }
@@ -378,6 +382,7 @@ code {
   letter-spacing: 0.04em;
   margin: 6px 0 4px;
   border: none;
+  border-radius: 12px;
   cursor: pointer;
   font-family: inherit;
   min-height: 44px;
@@ -392,6 +397,7 @@ code {
   font-weight: 600;
   margin: 4px 6px 4px 0;
   background: none;
+  border-radius: 10px;
   cursor: pointer;
   font-family: inherit;
   min-height: 44px;
@@ -400,7 +406,9 @@ code {
 /* офлайн-карточка */
 .memcard {
   border: 2px solid var(--color-red);
-  padding: 18px;
+  border-radius: 16px;
+  background: rgba(228, 56, 43, 0.05);
+  padding: 20px;
   margin: 20px 0;
 }
 .memcard .t {
@@ -1993,4 +2001,77 @@ details:focus-visible {
     border: none;
     background: #ffffff;
   }
+}
+
+/* ─────────────────────────────────────────────────────────────────────────
+   Stitch-рестайл (глобальный визуальный слой): скругления карточек, панелей
+   и полей, чуть крупнее заголовки. Контент и разметку не трогает — только вид.
+   Откат: удалить этот блок целиком.
+   ───────────────────────────────────────────────────────────────────────── */
+:root {
+  --radius: 14px;
+  --radius-sm: 10px;
+}
+.page-h1 {
+  font-size: 30px;
+  letter-spacing: -0.025em;
+}
+/* карточки и панели — скругление + ровная рамка */
+.vf-card,
+.limit,
+.step,
+.big,
+.price,
+.task,
+.door,
+.toolbox {
+  border-radius: var(--radius);
+}
+.door {
+  border-left-width: 3px;
+}
+/* поля ввода и кнопки-ссылки */
+.toolbox input[type='text'],
+input[type='text'],
+input[type='search'] {
+  border-radius: var(--radius-sm);
+}
+.cta-block,
+.cta2 {
+  border-radius: var(--radius);
+}
+/* «Прослушать» — пилюля, как в макете */
+.listen {
+  border-radius: 0;
+}
+
+/* Нижний таб-бар (Stitch): постоянная навигация, прилипает к низу колонки. */
+.tabbar {
+  position: sticky;
+  bottom: 0;
+  z-index: 9;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background: color-mix(in srgb, var(--color-bg) 92%, transparent);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--color-line);
+}
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 9px 0 10px;
+  text-decoration: none;
+  color: var(--color-dim);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  min-height: 52px;
+}
+.tab.on {
+  color: var(--color-ink);
+}
+.tab svg {
+  opacity: 0.9;
 }

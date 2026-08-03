@@ -65,6 +65,7 @@ const ui: UIStrings = {
     hint: 'Ocho dígitos también está bien: se agrega un cero al inicio. El número está en la pulsera — se puede pedir que lo lean en voz alta.',
   },
   printPage: 'Imprimir esta página',
+  tabs: { home: 'Inicio', tasks: 'Tareas', docs: 'Documentos', find: 'Buscar' },
   dirEmpty: 'Aún no hay datos. No publicamos teléfonos ni direcciones sin verificar.',
   docMap: {
     title: 'Cómo se ve un aviso (un mapa)',

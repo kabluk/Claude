@@ -65,6 +65,7 @@ const ui: UIStrings = {
     hint: 'Eight digits is fine too: a zero is added at the front. The number is printed on the wristband — you can ask for it to be read aloud.',
   },
   printPage: 'Print this page',
+  tabs: { home: 'Home', tasks: 'Tasks', docs: 'Docs', find: 'Find' },
   dirEmpty: 'No data yet. We do not publish phone numbers or addresses we have not verified.',
   docMap: {
     title: 'What a notice looks like (a map)',
