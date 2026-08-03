@@ -23,5 +23,7 @@
   "state-ca": { "en": "state/california", "es": "estado/california", "ru": "shtat/california" },
   "state-tx": { "en": "state/texas", "es": "estado/texas", "ru": "shtat/texas" },
   "state-la": { "en": "state/louisiana", "es": "estado/luisiana", "ru": "shtat/louisiana" },
+  "state-ny": { "en": "state/new-york", "es": "estado/nueva-york", "ru": "shtat/new-york" },
+  "state-fl": { "en": "state/florida", "es": "estado/florida", "ru": "shtat/florida" },
   "facility-adelanto": { "en": "facility/adelanto", "es": "centro/adelanto", "ru": "uchrezhdenie/adelanto" }
 }

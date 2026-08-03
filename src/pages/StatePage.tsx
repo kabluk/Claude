@@ -5,7 +5,13 @@ import { pathFor } from '@/lib/slugs'
 import states from '@data/states.json'
 import courts from '@data/courts.json'
 import facilities from '@data/facilities.json'
-import type { CourtRec, FacilityRec, StateRec } from '@data/types'
+import directory from '@data/directory.json'
+import type { CourtRec, DirectoryFacility, FacilityRec, StateRec } from '@data/types'
+
+// Расширенные учреждения (свои страницы) — по коду к slug.
+const ENH_SLUG = new Map(
+  (facilities as FacilityRec[]).filter((f) => f.code).map((f) => [f.code as string, f.slug]),
+)
 
 export function StatePage({
   lang,
@@ -22,7 +28,9 @@ export function StatePage({
 }) {
   const st = (states as StateRec[]).find((x) => x.code === code)!
   const stCourts = (courts as CourtRec[]).filter((c) => c.state_code === code)
-  const stFacilities = (facilities as FacilityRec[]).filter((f) => f.state_code === code)
+  const stFacilities = (directory as DirectoryFacility[])
+    .filter((f) => f.state === code)
+    .sort((a, b) => a.name.localeCompare(b.name))
   const d = dir.statePage
 
   return (
@@ -53,11 +61,19 @@ export function StatePage({
 
       <h2 className="page-h2">{d.facilitiesH2}</h2>
       {stFacilities.length ? (
-        stFacilities.map((f) => (
-          <Link key={f.slug} className="ghost" to={pathFor(lang, `facility-${f.slug}`)}>
-            {f.name} →
-          </Link>
-        ))
+        stFacilities.map((f) => {
+          const slug = ENH_SLUG.get(f.code)
+          return slug ? (
+            <Link key={f.code} className="ghost" to={pathFor(lang, `facility-${slug}`)}>
+              {f.name} →
+            </Link>
+          ) : (
+            <div key={f.code} className="kv">
+              <span>{f.name}</span>
+              <span>{f.city}</span>
+            </div>
+          )
+        })
       ) : (
         <p className="body-p dim">{ui.dirEmpty}</p>
       )}

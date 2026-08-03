@@ -27,5 +27,27 @@
       "es": "El Quinto Circuito apoyó al gobierno en la detención obligatoria. A Luisiana trasladan a menudo a personas desde otros estados. A julio de 2026.",
       "ru": "Пятый апелляционный округ поддержал позицию властей об обязательном задержании. В Луизиану часто перевозят из других штатов. Состояние на июль 2026."
     }
+  },
+  {
+    "code": "NY",
+    "name": { "en": "New York", "es": "Nueva York", "ru": "Нью-Йорк" },
+    "circuit": 2,
+    "funded_representation": true,
+    "notes": {
+      "en": "New York has a program of publicly funded representation for detained immigrants (NYIFUP). Confirm current coverage with the organizations below. As of August 2026.",
+      "es": "Nueva York tiene un programa de representación con fondos públicos para inmigrantes detenidos (NYIFUP). Confirme la cobertura actual con las organizaciones de abajo. A agosto de 2026.",
+      "ru": "В Нью-Йорке есть программа бесплатного представительства для задержанных иммигрантов (NYIFUP). Актуальный охват уточняйте у организаций ниже. Состояние на август 2026."
+    }
+  },
+  {
+    "code": "FL",
+    "name": { "en": "Florida", "es": "Florida", "ru": "Флорида" },
+    "circuit": 11,
+    "funded_representation": false,
+    "notes": {
+      "en": "Florida is in the Eleventh Circuit and has many detention facilities, including Krome and the South Florida site. People are often transferred within the state. As of August 2026.",
+      "es": "Florida está en el Undécimo Circuito y tiene muchos centros de detención, incluidos Krome y el sitio del sur de Florida. A las personas se las traslada a menudo dentro del estado. A agosto de 2026.",
+      "ru": "Флорида — Одиннадцатый округ, здесь много центров содержания, включая Krome и объект на юге штата. Людей часто перевозят внутри штата. Состояние на август 2026."
+    }
   }
 ]

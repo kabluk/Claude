@@ -98,6 +98,8 @@ export const routes: RouteRecord[] = [
           ['state-ca', 'CA'],
           ['state-tx', 'TX'],
           ['state-la', 'LA'],
+          ['state-ny', 'NY'],
+          ['state-fl', 'FL'],
         ] as const
       ).map(
         ([key, code]): RouteRecord => ({
