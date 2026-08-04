@@ -1,0 +1,54 @@
+{
+  "query": "customs bonded warehouse",
+  "location": "US",
+  "items": [
+    {
+      "pos": 2,
+      "domain": "www.help.cbp.gov",
+      "title": "What is a Customs Bonded Warehouse? - help.CBP.gov",
+      "url": "https://www.help.cbp.gov/s/article/Article1853?language=en_US"
+    },
+    {
+      "pos": 4,
+      "domain": "www.prologis.com",
+      "title": "Customs Bonded Warehouse vs. Free Trade Zone ...",
+      "url": "https://www.prologis.com/what-we-do/resources/bonded-warehouse-vs-free-trade-zone-warehouse"
+    },
+    {
+      "pos": 5,
+      "domain": "en.wikipedia.org",
+      "title": "Bonded warehouse",
+      "url": "https://en.wikipedia.org/wiki/Bonded_warehouse"
+    },
+    {
+      "pos": 6,
+      "domain": "www.cbp.gov",
+      "title": "U.S. CUSTOMS AND BORDER PROTECTION BONDED ...",
+      "url": "https://www.cbp.gov/sites/default/files/documents/bonded_20wh2_2.pdf"
+    },
+    {
+      "pos": 8,
+      "domain": "www.maersk.com",
+      "title": "Bonded Warehouses Explained",
+      "url": "https://www.maersk.com/logistics-explained/storage-and-warehousing/2024/09/06/bonded-warehouses-explained"
+    },
+    {
+      "pos": 9,
+      "domain": "geodis.com",
+      "title": "Bonded Warehouses: Manage U.S. Tariffs & Import Costs",
+      "url": "https://geodis.com/us-en/blog/bonded-warehouses-manage-us-tariffs-import-costs"
+    },
+    {
+      "pos": 10,
+      "domain": "www.cevalogistics.com",
+      "title": "Customs/Bonded warehouse",
+      "url": "https://www.cevalogistics.com/en/glossary/customsbonded-warehouse"
+    },
+    {
+      "pos": 11,
+      "domain": "www.covenantlogistics.com",
+      "title": "Comprehensive Guide to Bonded Warehouses",
+      "url": "https://www.covenantlogistics.com/insights/comprehensive-guide-to-bonded-warehouses"
+    }
+  ]
+}

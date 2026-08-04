@@ -1,0 +1,54 @@
+{
+  "query": "clay consultant",
+  "location": "US",
+  "items": [
+    {
+      "pos": 1,
+      "domain": "clayconsultingllc.com",
+      "title": "Clay Consulting",
+      "url": "https://clayconsultingllc.com/"
+    },
+    {
+      "pos": 5,
+      "domain": "www.linkedin.com",
+      "title": "Clay Consulting, LLC",
+      "url": "https://www.linkedin.com/company/scthc-clay-consulting-llc"
+    },
+    {
+      "pos": 6,
+      "domain": "www.reddit.com",
+      "title": "Clay consulting : r/VeteransBenefits",
+      "url": "https://www.reddit.com/r/VeteransBenefits/comments/1eobpjg/clay_consulting/"
+    },
+    {
+      "pos": 7,
+      "domain": "blog.revpartners.io",
+      "title": "What Is Clay Consulting and Why Your Team Needs It",
+      "url": "https://blog.revpartners.io/en/revops-articles/clay-consulting-gtm-teams"
+    },
+    {
+      "pos": 10,
+      "domain": "www.indeed.com",
+      "title": "Working at Clay Consulting: 114 Reviews",
+      "url": "https://www.indeed.com/cmp/Clay-Consulting/reviews"
+    },
+    {
+      "pos": 11,
+      "domain": "www.fullfunnel.co",
+      "title": "Clay Consulting Services | FullFunnel",
+      "url": "https://www.fullfunnel.co/clay-consulting"
+    },
+    {
+      "pos": 12,
+      "domain": "www.facebook.com",
+      "title": "Clay Consulting LLC | Houston TX",
+      "url": "https://www.facebook.com/ClayConsultingLLCUS/"
+    },
+    {
+      "pos": 13,
+      "domain": "frontbrick.io",
+      "title": "Expert Clay Consulting Agency for Outbound Success",
+      "url": "https://frontbrick.io/clay-consulting-agency"
+    }
+  ]
+}

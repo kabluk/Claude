@@ -1,0 +1,66 @@
+{
+  "query": "seediensttauglichkeit arzt",
+  "location": "DE",
+  "items": [
+    {
+      "pos": 1,
+      "domain": "www.deutsche-flagge.de",
+      "title": "Zugelassene Ärzte für Seediensttauglichkeit",
+      "url": "https://www.deutsche-flagge.de/de/maritime-medizin/seediensttauglichkeit/zugelassene-aerzte"
+    },
+    {
+      "pos": 2,
+      "domain": "www.deutsche-flagge.de",
+      "title": "Seediensttauglichkeit — Startseite - Deutsche Flagge",
+      "url": "https://www.deutsche-flagge.de/de/maritime-medizin/seediensttauglichkeit"
+    },
+    {
+      "pos": 4,
+      "domain": "seediensttauglichkeit.com",
+      "title": "Kontakt & Informationen - Seediensttauglichkeit",
+      "url": "https://seediensttauglichkeit.com/kontakt/"
+    },
+    {
+      "pos": 5,
+      "domain": "www.seachefs.com",
+      "title": "Seediensttauglichkeit (Medical Certificate)",
+      "url": "https://www.seachefs.com/fileadmin/user_upload/Dokumente/Informationen-zur-seediensttauglichkeit-sea-chefs.pdf"
+    },
+    {
+      "pos": 6,
+      "domain": "www.praxis-dr-hellinger.de",
+      "title": "Seediensttauglichkeit",
+      "url": "http://www.praxis-dr-hellinger.de/seediensttauglichkeit.html"
+    },
+    {
+      "pos": 7,
+      "domain": "www.muensterlandpraxis.de",
+      "title": "Untersuchung zur Seediensttauglichkeit - Freckenhorst",
+      "url": "https://www.muensterlandpraxis.de/seediensttauglichkeit.html"
+    },
+    {
+      "pos": 8,
+      "domain": "www.aerzteblatt.de",
+      "title": "Seediensttauglichkeitsuntersuch...",
+      "url": "https://www.aerzteblatt.de/archiv/seediensttauglichkeitsuntersuchungen-relevanter-gesundheitscheck-71dd37f2-fc64-48b2-8919-d5438b382260"
+    },
+    {
+      "pos": 9,
+      "domain": "www.bg-kliniken.de",
+      "title": "Maritime Medizin | BG Klinikum Unfallkrankenhaus Berlin",
+      "url": "https://www.bg-kliniken.de/unfallkrankenhaus-berlin/fachbereiche/detail/maritime-medizin/"
+    },
+    {
+      "pos": 10,
+      "domain": "mvz-am-ponzelar.de",
+      "title": "Seediensttauglichkeit in Krefeld",
+      "url": "https://mvz-am-ponzelar.de/seediensttauglichkeit/"
+    },
+    {
+      "pos": 11,
+      "domain": "orthosphaere-bochum.de",
+      "title": "Deutsche Seediensttauglichkeit",
+      "url": "https://orthosphaere-bochum.de/seediensttauglichkeit/"
+    }
+  ]
+}

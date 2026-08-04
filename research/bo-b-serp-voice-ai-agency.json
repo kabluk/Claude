@@ -1,0 +1,54 @@
+{
+  "query": "voice ai agency",
+  "location": "US",
+  "items": [
+    {
+      "pos": 1,
+      "domain": "agentvoice.com",
+      "title": "AgentVoice: AI voice agents for phone calls",
+      "url": "https://agentvoice.com/"
+    },
+    {
+      "pos": 2,
+      "domain": "www.reddit.com",
+      "title": "Thoughts on AI voice agents : r/AI_Agents",
+      "url": "https://www.reddit.com/r/AI_Agents/comments/1i90n8k/thoughts_on_ai_voice_agents/"
+    },
+    {
+      "pos": 4,
+      "domain": "x.ai",
+      "title": "Create Your Own Voice Agent in Under 2 Minutes",
+      "url": "https://x.ai/voice"
+    },
+    {
+      "pos": 5,
+      "domain": "getvoip.com",
+      "title": "Best AI Voice Agents for 2026 (Tested and Reviewed)",
+      "url": "https://getvoip.com/blog/ai-voice-agents/"
+    },
+    {
+      "pos": 7,
+      "domain": "www.retellai.com",
+      "title": "AI Voice Agent Platform for Phone Call Centers",
+      "url": "https://www.retellai.com/"
+    },
+    {
+      "pos": 8,
+      "domain": "www.youtube.com",
+      "title": "The Ultimate AI Voice Agent Agency Guide (From Zero to $15k ...",
+      "url": "https://www.youtube.com/watch?v=ViWwqod4mxI"
+    },
+    {
+      "pos": 9,
+      "domain": "elevenlabs.io",
+      "title": "AI Voice Agents | Deliver 24/7 Human-Like Customer ...",
+      "url": "https://elevenlabs.io/voice-agents"
+    },
+    {
+      "pos": 11,
+      "domain": "verticalresponse.com",
+      "title": "Top AI Voice Agents for Enhancing Customer Engagement ...",
+      "url": "https://verticalresponse.com/blog/ai-voice-agents-how-voice-ai-transforms-marketing-sales-and-customer-support/"
+    }
+  ]
+}

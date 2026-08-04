@@ -1,0 +1,60 @@
+{
+  "query": "adr training",
+  "location": "UK",
+  "items": [
+    {
+      "pos": 6,
+      "domain": "www.voyagertransporttraining.co.uk",
+      "title": "Online ADR Training Courses From £375",
+      "url": "https://www.voyagertransporttraining.co.uk/adr-training/"
+    },
+    {
+      "pos": 7,
+      "domain": "www.gov.uk",
+      "title": "Find a training course to become a dangerous goods (ADR ...",
+      "url": "https://www.gov.uk/find-adr-training"
+    },
+    {
+      "pos": 8,
+      "domain": "www.crhtraining.co.uk",
+      "title": "ADR Training Course - Birmingham",
+      "url": "https://www.crhtraining.co.uk/courses/adr-training"
+    },
+    {
+      "pos": 9,
+      "domain": "driverhiretraining.co.uk",
+      "title": "ADR Training",
+      "url": "https://driverhiretraining.co.uk/get-your-licence/courses/adr-training/"
+    },
+    {
+      "pos": 11,
+      "domain": "www.rha.uk.net",
+      "title": "ADR Courses - Training - RHA - UK.NET",
+      "url": "https://www.rha.uk.net/Training/Training-Courses/ADR-Courses"
+    },
+    {
+      "pos": 12,
+      "domain": "adrtrainingnewcastle.co.uk",
+      "title": "ADR Training Newcastle",
+      "url": "http://adrtrainingnewcastle.co.uk/"
+    },
+    {
+      "pos": 13,
+      "domain": "teamvalleytraining.co.uk",
+      "title": "ADR Dangerous Goods Course",
+      "url": "http://teamvalleytraining.co.uk/driver-skills-training/adr-dangerous-goods-course/"
+    },
+    {
+      "pos": 14,
+      "domain": "www.wallaceschool.co.uk",
+      "title": "ADR Driver Training in the UK",
+      "url": "https://www.wallaceschool.co.uk/driver-training/adr-driver-training"
+    },
+    {
+      "pos": 15,
+      "domain": "www.driverlinktraining.co.uk",
+      "title": "What is ADR Training?",
+      "url": "https://www.driverlinktraining.co.uk/what-is-adr-training-2/"
+    }
+  ]
+}

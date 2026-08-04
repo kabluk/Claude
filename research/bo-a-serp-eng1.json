@@ -1,0 +1,60 @@
+{
+  "query": "eng1 medical",
+  "location": "UK",
+  "items": [
+    {
+      "pos": 2,
+      "domain": "www.gov.uk",
+      "title": "Seafarer medical certificates: Overview",
+      "url": "https://www.gov.uk/seafarer-medical-certificates"
+    },
+    {
+      "pos": 3,
+      "domain": "www.flyingfishonline.com",
+      "title": "The ENG1 medical - Flying Fish",
+      "url": "https://www.flyingfishonline.com/medical-and-stcw-certification/eng-1-medical/"
+    },
+    {
+      "pos": 4,
+      "domain": "ukshipregister.co.uk",
+      "title": "Medical Certificate (ENG 1)",
+      "url": "https://ukshipregister.co.uk/seafarers/medical-fitness/medical-certificate-eng-1"
+    },
+    {
+      "pos": 5,
+      "domain": "uksa.org",
+      "title": "What is an ENG1 medical certificate & Requirements",
+      "url": "https://uksa.org/news-and-guides/what-is-an-eng1-medical-certificate/"
+    },
+    {
+      "pos": 7,
+      "domain": "www.gov.uk",
+      "title": "Seafarer medical certificates: How to apply",
+      "url": "https://www.gov.uk/seafarer-medical-certificates/how-to-apply"
+    },
+    {
+      "pos": 8,
+      "domain": "www.yacrew.com",
+      "title": "ENG1 Medical Examinations",
+      "url": "https://www.yacrew.com/career-advice/eng1/"
+    },
+    {
+      "pos": 9,
+      "domain": "www.unidocs.co.uk",
+      "title": "Seafarer medical examinations",
+      "url": "https://www.unidocs.co.uk/seafarer-medicals.php"
+    },
+    {
+      "pos": 10,
+      "domain": "anchorhealthsolutions.co.uk",
+      "title": "What does an ENG1 medical include?",
+      "url": "https://anchorhealthsolutions.co.uk/what-does-an-eng1-medical-include/"
+    },
+    {
+      "pos": 11,
+      "domain": "www.yachting-pages.com",
+      "title": "ENG1 Seafarer Medical Certificate Guide for Yacht Crew | YP",
+      "url": "https://www.yachting-pages.com/articles/how-and-where-to-get-your-eng1-medical-certificate.html"
+    }
+  ]
+}

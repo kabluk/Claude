@@ -1,0 +1,54 @@
+{
+  "query": "wcag audit",
+  "location": "US",
+  "items": [
+    {
+      "pos": 1,
+      "domain": "www.w3.org",
+      "title": "Overview | WCAG-EM Report Tool",
+      "url": "https://www.w3.org/WAI/eval/report-tool/"
+    },
+    {
+      "pos": 2,
+      "domain": "www.accessibilitychecker.org",
+      "title": "AccessibilityChecker.org - ADA & WCAG Compliance (Free ...",
+      "url": "https://www.accessibilitychecker.org/"
+    },
+    {
+      "pos": 3,
+      "domain": "www.audioeye.com",
+      "title": "WCAG Audit: How to Test Your Website for Accessibility ...",
+      "url": "https://www.audioeye.com/post/wcag-audit/"
+    },
+    {
+      "pos": 5,
+      "domain": "www.w3.org",
+      "title": "Web Accessibility Evaluation Tools List",
+      "url": "https://www.w3.org/WAI/test-evaluate/tools/list/"
+    },
+    {
+      "pos": 6,
+      "domain": "accessible.org",
+      "title": "WCAG Accessibility Audits",
+      "url": "https://accessible.org/services/audits/"
+    },
+    {
+      "pos": 8,
+      "domain": "www.boia.org",
+      "title": "WCAG Audits, ADA Accessibility Audits & Section 508 Audits",
+      "url": "https://www.boia.org/"
+    },
+    {
+      "pos": 9,
+      "domain": "adabook.medium.com",
+      "title": "WCAG Audits: 10 Questions Clients Ask About Accessibility ...",
+      "url": "https://adabook.medium.com/wcag-audits-10-questions-clients-ask-about-accessibility-services-ec92d4e1c31e"
+    },
+    {
+      "pos": 11,
+      "domain": "accessibility.works",
+      "title": "Choosing The Best WCAG Web Accessibility Auditing ...",
+      "url": "https://accessibility.works/blog/best-ada-testing-wcag-website-auditing-consultants/"
+    }
+  ]
+}

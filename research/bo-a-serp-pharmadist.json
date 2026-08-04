@@ -1,0 +1,60 @@
+{
+  "query": "pharmaceutical distributors",
+  "location": "US",
+  "items": [
+    {
+      "pos": 4,
+      "domain": "www.mckesson.com",
+      "title": "McKesson Pharmaceutical Distribution",
+      "url": "https://www.mckesson.com/pharmaceutical-distribution/"
+    },
+    {
+      "pos": 5,
+      "domain": "www.amerisourcebergen.com",
+      "title": "Pharmaceutical Distribution Solutions",
+      "url": "https://www.amerisourcebergen.com/pharmaceutical-distribution"
+    },
+    {
+      "pos": 7,
+      "domain": "www.drugzone.com",
+      "title": "Top 7 Pharmaceutical Distributors in the USA",
+      "url": "https://www.drugzone.com/blog/top-7-pharmaceutical-distributors-in-the-usa"
+    },
+    {
+      "pos": 8,
+      "domain": "www.morrisdickson.com",
+      "title": "Morris & Dickson | Pharmaceuticals, Healthcare, Specialty ...",
+      "url": "https://www.morrisdickson.com/"
+    },
+    {
+      "pos": 9,
+      "domain": "www.cardinalhealth.com",
+      "title": "Pharmaceutical Distribution Solutions",
+      "url": "https://www.cardinalhealth.com/en/solutions/pharmaceutical-distribution.html"
+    },
+    {
+      "pos": 10,
+      "domain": "nabp.pharmacy",
+      "title": "Accredited Drug Distributors | National Association of ...",
+      "url": "https://nabp.pharmacy/programs/accreditations/drug-distributor/accredited-drug-distributors/"
+    },
+    {
+      "pos": 11,
+      "domain": "www.smithdrug.com",
+      "title": "Pharmaceutical Distributor | Smith Drug Company",
+      "url": "https://www.smithdrug.com/"
+    },
+    {
+      "pos": 12,
+      "domain": "bonitapharma.com",
+      "title": "Pharmaceutical Distributors | Wholesale Drug Distributor ...",
+      "url": "https://bonitapharma.com/"
+    },
+    {
+      "pos": 13,
+      "domain": "finance.yahoo.com",
+      "title": "Top 50 Pharmaceutical Wholesale & Distribution ...",
+      "url": "https://finance.yahoo.com/news/top-50-pharmaceutical-wholesale-distribution-123300259.html"
+    }
+  ]
+}

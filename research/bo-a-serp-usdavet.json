@@ -1,0 +1,60 @@
+{
+  "query": "usda accredited vet",
+  "location": "US",
+  "items": [
+    {
+      "pos": 1,
+      "domain": "vsapps.aphis.usda.gov",
+      "title": "Find Accredited Veterinarians",
+      "url": "https://vsapps.aphis.usda.gov/vsps/public/VetSearch.do"
+    },
+    {
+      "pos": 2,
+      "domain": "www.aphis.usda.gov",
+      "title": "How Do I Find a USDA-Accredited Vet for Health Certificate?",
+      "url": "https://www.aphis.usda.gov/pet-travel/how-do-i-find-usda-accredited-veterinarian-complete-my-animals-health-certificate"
+    },
+    {
+      "pos": 3,
+      "domain": "www.aphis.usda.gov",
+      "title": "USDA-Accredited Veterinarians: Certifying Pets To Travel",
+      "url": "https://www.aphis.usda.gov/pet-travel/accredited-veterinarians"
+    },
+    {
+      "pos": 4,
+      "domain": "ctvet.org",
+      "title": "USDA Accredited Veterinarians",
+      "url": "https://ctvet.org/search/custom.asp?id=7165"
+    },
+    {
+      "pos": 9,
+      "domain": "www.aphis.usda.gov",
+      "title": "National Veterinary Accreditation Program",
+      "url": "https://www.aphis.usda.gov/nvap"
+    },
+    {
+      "pos": 11,
+      "domain": "beverlyrobertsonvet.com",
+      "title": "Travel and Health Certificate | Veterinarians in Los Angeles",
+      "url": "https://beverlyrobertsonvet.com/travel-and-health-certificate-for-dogs-and-cats/"
+    },
+    {
+      "pos": 12,
+      "domain": "www.vet-sentry.com",
+      "title": "USDA Veterinarian License Lookup",
+      "url": "https://www.vet-sentry.com/resources/usda-veterinarian-license-lookup/"
+    },
+    {
+      "pos": 13,
+      "domain": "www.kofpvet.com",
+      "title": "United States Department of Agriculture (USDA)",
+      "url": "https://www.kofpvet.com/services/united-states-department-of-agriculture-usda"
+    },
+    {
+      "pos": 14,
+      "domain": "tailwindglobalpet.com",
+      "title": "What a USDA-Accredited Vet Is and Why You Need One",
+      "url": "https://tailwindglobalpet.com/blog/usda-accredited-vet-explained/"
+    }
+  ]
+}

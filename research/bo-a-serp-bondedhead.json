@@ -1,0 +1,54 @@
+{
+  "query": "bonded warehouse",
+  "location": "US",
+  "items": [
+    {
+      "pos": 4,
+      "domain": "www.help.cbp.gov",
+      "title": "What is a Customs Bonded Warehouse? - help.CBP.gov",
+      "url": "https://www.help.cbp.gov/s/article/Article1853?language=en_US"
+    },
+    {
+      "pos": 5,
+      "domain": "www.maersk.com",
+      "title": "Bonded Warehouses Explained",
+      "url": "https://www.maersk.com/logistics-explained/storage-and-warehousing/2024/09/06/bonded-warehouses-explained"
+    },
+    {
+      "pos": 6,
+      "domain": "en.wikipedia.org",
+      "title": "Bonded warehouse",
+      "url": "https://en.wikipedia.org/wiki/Bonded_warehouse"
+    },
+    {
+      "pos": 7,
+      "domain": "www.reddit.com",
+      "title": "Need information on Bonded Warehouses? : r/logistics",
+      "url": "https://www.reddit.com/r/logistics/comments/1mk594c/need_information_on_bonded_warehouses/"
+    },
+    {
+      "pos": 8,
+      "domain": "www.prologis.com",
+      "title": "Customs Bonded Warehouse vs. Free Trade Zone ...",
+      "url": "https://www.prologis.com/what-we-do/resources/bonded-warehouse-vs-free-trade-zone-warehouse"
+    },
+    {
+      "pos": 9,
+      "domain": "qoblex.com",
+      "title": "Bonded Warehouse Meaning: Definition, Benefits & Uses",
+      "url": "https://qoblex.com/blog/bonded-warehouse-meaning-definition-types-and-benefits-for-your-business/"
+    },
+    {
+      "pos": 10,
+      "domain": "www.extensiv.com",
+      "title": "What Is A Bonded Warehouse? Complete 2025 Guide",
+      "url": "https://www.extensiv.com/blog/what-is-a-bonded-warehouse"
+    },
+    {
+      "pos": 11,
+      "domain": "www.craneww.com",
+      "title": "What is a Bonded warehouse?",
+      "url": "https://www.craneww.com/knowledge-center/latest-news-and-info/customs-bonded-warehouse/"
+    }
+  ]
+}
