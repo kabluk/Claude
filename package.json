@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "lint:upl": "node scripts/lint-upl.mjs",
     "lint:minimize": "node scripts/lint-minimize.mjs",
-    "lint": "npm run lint:upl && npm run lint:minimize"
+    "lint": "npm run lint:upl && npm run lint:minimize",
+    "build:a11y": "node scripts/build-a11y.mjs"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",

@@ -1,0 +1,46 @@
+{
+  "services": {
+    "audit": { "en": "Accessibility audit", "de": "Barrierefreiheits-Audit", "fr": "Audit d'accessibilité", "pl": "Audyt dostępności", "es": "Auditoría de accesibilidad" },
+    "remediation": { "en": "Remediation", "de": "Fehlerbehebung", "fr": "Remédiation", "pl": "Naprawa", "es": "Remediación" },
+    "vpat": { "en": "VPAT / ACR", "de": "VPAT / ACR", "fr": "VPAT / ACR", "pl": "VPAT / ACR", "es": "VPAT / ACR" },
+    "training": { "en": "Training", "de": "Schulungen", "fr": "Formation", "pl": "Szkolenia", "es": "Formación" },
+    "monitoring": { "en": "Monitoring", "de": "Monitoring", "fr": "Surveillance", "pl": "Monitorowanie", "es": "Monitorización" },
+    "consulting": { "en": "Consulting", "de": "Beratung", "fr": "Conseil", "pl": "Doradztwo", "es": "Consultoría" }
+  },
+  "standards": {
+    "wcag-2-2": { "label": { "en": "WCAG 2.2", "de": "WCAG 2.2", "fr": "WCAG 2.2", "pl": "WCAG 2.2", "es": "WCAG 2.2" }, "scope": "global", "about": "https://www.w3.org/TR/WCAG22/" },
+    "en-301-549": { "label": { "en": "EN 301 549", "de": "EN 301 549", "fr": "EN 301 549", "pl": "EN 301 549", "es": "EN 301 549" }, "scope": "eu", "about": "https://www.etsi.org/standards" },
+    "section-508": { "label": { "en": "Section 508", "de": "Section 508", "fr": "Section 508", "pl": "Section 508", "es": "Section 508" }, "scope": "us", "about": "https://www.section508.gov/" },
+    "eaa": { "label": { "en": "European Accessibility Act", "de": "European Accessibility Act", "fr": "European Accessibility Act", "pl": "European Accessibility Act", "es": "European Accessibility Act" }, "scope": "eu", "about": "https://ec.europa.eu/social/main.jsp?catId=1202" },
+    "bitv": { "label": { "en": "BITV 2.0", "de": "BITV 2.0", "fr": "BITV 2.0", "pl": "BITV 2.0", "es": "BITV 2.0" }, "scope": "de", "about": "https://www.gesetze-im-internet.de/bitv_2_0/" },
+    "rgaa": { "label": { "en": "RGAA", "de": "RGAA", "fr": "RGAA", "pl": "RGAA", "es": "RGAA" }, "scope": "fr", "about": "https://accessibilite.numerique.gouv.fr/" },
+    "ada": { "label": { "en": "ADA", "de": "ADA", "fr": "ADA", "pl": "ADA", "es": "ADA" }, "scope": "us", "about": "https://www.ada.gov/" }
+  },
+  "priceBands": {
+    "budget": { "en": "Under €3k", "de": "Unter 3.000 €", "fr": "Moins de 3 000 €", "pl": "Poniżej 3 000 €", "es": "Menos de 3.000 €" },
+    "mid": { "en": "€3k–10k", "de": "3.000–10.000 €", "fr": "3 000–10 000 €", "pl": "3 000–10 000 €", "es": "3.000–10.000 €" },
+    "premium": { "en": "€10k–30k", "de": "10.000–30.000 €", "fr": "10 000–30 000 €", "pl": "10 000–30 000 €", "es": "10.000–30.000 €" },
+    "enterprise": { "en": "Over €30k", "de": "Über 30.000 €", "fr": "Plus de 30 000 €", "pl": "Powyżej 30 000 €", "es": "Más de 30.000 €" }
+  },
+  "industries": {
+    "public-sector": { "en": "Public sector", "de": "Öffentlicher Sektor", "fr": "Secteur public", "pl": "Sektor publiczny", "es": "Sector público" },
+    "ecommerce": { "en": "E-commerce", "de": "E-Commerce", "fr": "E-commerce", "pl": "E-commerce", "es": "Comercio electrónico" },
+    "banking": { "en": "Banking & finance", "de": "Banken & Finanzen", "fr": "Banque & finance", "pl": "Bankowość i finanse", "es": "Banca y finanzas" },
+    "saas": { "en": "SaaS & software", "de": "SaaS & Software", "fr": "SaaS & logiciels", "pl": "SaaS i oprogramowanie", "es": "SaaS y software" },
+    "healthcare": { "en": "Healthcare", "de": "Gesundheitswesen", "fr": "Santé", "pl": "Ochrona zdrowia", "es": "Salud" },
+    "education": { "en": "Education", "de": "Bildung", "fr": "Éducation", "pl": "Edukacja", "es": "Educación" }
+  },
+  "countries": {
+    "DE": { "name": { "en": "Germany", "de": "Deutschland", "fr": "Allemagne", "pl": "Niemcy", "es": "Alemania" }, "region": "eu", "law": { "name": "Barrierefreiheitsstärkungsgesetz (BFSG)", "slug": "bitv", "inForce": "2025-06-28" }, "topCities": ["Berlin", "München", "Hamburg", "Köln", "Frankfurt"] },
+    "FR": { "name": { "en": "France", "de": "Frankreich", "fr": "France", "pl": "Francja", "es": "Francia" }, "region": "eu", "law": { "name": "RGAA", "slug": "rgaa" }, "topCities": ["Paris", "Lyon", "Marseille", "Toulouse", "Nantes"] },
+    "PL": { "name": { "en": "Poland", "de": "Polen", "fr": "Pologne", "pl": "Polska", "es": "Polonia" }, "region": "eu", "law": { "name": "Ustawa o dostępności cyfrowej", "slug": "en-301-549" }, "topCities": ["Warszawa", "Kraków", "Wrocław", "Poznań", "Gdańsk"] },
+    "NL": { "name": { "en": "Netherlands", "de": "Niederlande", "fr": "Pays-Bas", "pl": "Holandia", "es": "Países Bajos" }, "region": "eu", "law": { "name": "Tijdelijk besluit digitale toegankelijkheid", "slug": "en-301-549" }, "topCities": ["Amsterdam", "Rotterdam", "Den Haag", "Utrecht"] },
+    "IT": { "name": { "en": "Italy", "de": "Italien", "fr": "Italie", "pl": "Włochy", "es": "Italia" }, "region": "eu", "law": { "name": "Legge Stanca", "slug": "en-301-549" }, "topCities": ["Roma", "Milano", "Torino", "Napoli"] },
+    "ES": { "name": { "en": "Spain", "de": "Spanien", "fr": "Espagne", "pl": "Hiszpania", "es": "España" }, "region": "eu", "law": { "name": "RD 1112/2018", "slug": "en-301-549" }, "topCities": ["Madrid", "Barcelona", "Valencia", "Sevilla"] },
+    "GB": { "name": { "en": "United Kingdom", "de": "Vereinigtes Königreich", "fr": "Royaume-Uni", "pl": "Wielka Brytania", "es": "Reino Unido" }, "region": "uk", "law": { "name": "Public Sector Bodies Accessibility Regulations", "slug": "wcag-2-2" }, "topCities": ["London", "Manchester", "Birmingham", "Edinburgh"] },
+    "US": { "name": { "en": "United States", "de": "USA", "fr": "États-Unis", "pl": "Stany Zjednoczone", "es": "Estados Unidos" }, "region": "us", "law": { "name": "ADA / Section 508", "slug": "section-508" }, "topCities": ["New York", "San Francisco", "Chicago", "Austin", "Washington"] },
+    "IE": { "name": { "en": "Ireland", "de": "Irland", "fr": "Irlande", "pl": "Irlandia", "es": "Irlanda" }, "region": "eu", "law": { "name": "EAA transposition", "slug": "eaa" }, "topCities": ["Dublin", "Cork"] },
+    "AT": { "name": { "en": "Austria", "de": "Österreich", "fr": "Autriche", "pl": "Austria", "es": "Austria" }, "region": "eu", "law": { "name": "Barrierefreiheitsgesetz", "slug": "en-301-549" }, "topCities": ["Wien", "Graz", "Linz"] },
+    "CH": { "name": { "en": "Switzerland", "de": "Schweiz", "fr": "Suisse", "pl": "Szwajcaria", "es": "Suiza" }, "region": "other", "topCities": ["Zürich", "Genève", "Bern"] }
+  }
+}
