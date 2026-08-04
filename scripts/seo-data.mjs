@@ -13,6 +13,7 @@
 
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
+import { execFileSync } from 'node:child_process';
 
 const API = 'https://api.dataforseo.com/v3';
 
@@ -36,13 +37,18 @@ function auth() {
   return 'Basic ' + Buffer.from(`${login}:${password}`).toString('base64');
 }
 
+// Uses curl so requests respect HTTPS_PROXY (Node's fetch ignores proxy env vars).
 async function call(path, body) {
-  const res = await fetch(`${API}${path}`, {
-    method: body ? 'POST' : 'GET',
-    headers: { Authorization: auth(), 'Content-Type': 'application/json' },
-    body: body ? JSON.stringify(body) : undefined,
-  });
-  const json = await res.json();
+  const cliArgs = ['-sS', '-H', `Authorization: ${auth()}`, '-H', 'Content-Type: application/json'];
+  if (body) cliArgs.push('-X', 'POST', '--data-binary', JSON.stringify(body));
+  cliArgs.push(`${API}${path}`);
+  const out = execFileSync('curl', cliArgs, { encoding: 'utf8', maxBuffer: 64 * 1024 * 1024 });
+  let json;
+  try {
+    json = JSON.parse(out);
+  } catch {
+    throw new Error(`Non-JSON response: ${out.slice(0, 300)}`);
+  }
   if (json.status_code !== 20000) {
     throw new Error(`API error ${json.status_code}: ${json.status_message}`);
   }
