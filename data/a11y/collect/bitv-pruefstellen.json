@@ -1,0 +1,312 @@
+[
+  {
+    "slug": "dias",
+    "name": "DIAS GmbH",
+    "website": "dias.de",
+    "hq": { "city": "", "countryCode": "DE" },
+    "offices": [],
+    "countriesServed": ["DE"],
+    "languages": ["de"],
+    "services": ["audit"],
+    "standards": ["bitv", "wcag-2-2"],
+    "industries": [],
+    "certs": [{ "kind": "bitv-pruefstelle" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://dias.de/aktuelles-detail/zwei-neue-bitv-test-pruefstellen-qualifiziert.html", "label": "DIAS operates the BIK BITV-Test Pruefverbund and qualifies Pruefstellen; via search, 2026-08-04" },
+      { "url": "https://bitvtest.de/bik-bitv-test-pruefverbund", "label": "BIK BITV-Test Pruefverbund page via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "deutsche-telekom-mms",
+    "name": "Deutsche Telekom MMS (T-Systems Multimedia Solutions)",
+    "website": "telekom-mms.com",
+    "hq": { "city": "", "countryCode": "DE" },
+    "offices": [],
+    "countriesServed": ["DE"],
+    "languages": ["de"],
+    "services": ["audit"],
+    "standards": ["bitv", "wcag-2-2"],
+    "industries": [],
+    "certs": [{ "kind": "bitv-pruefstelle" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.bitvtest.de/sites_und_agenturen/empfehlenswerte_agenturen/t_systems_multimedia_solutions.html", "label": "bitvtest.de page for T-Systems Multimedia Solutions via search, 2026-08-04" },
+      { "url": "https://test-and-integration.telekom-mms.com/digital-accessibility/barrierefreie-it.html", "label": "Telekom MMS conducts BIK BITV-Test procedure; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "materna",
+    "name": "Materna Information & Communications SE",
+    "website": "materna.de",
+    "hq": { "city": "", "countryCode": "DE" },
+    "offices": [],
+    "countriesServed": ["DE"],
+    "languages": ["de"],
+    "services": ["audit"],
+    "standards": ["bitv", "wcag-2-2"],
+    "industries": [],
+    "certs": [{ "kind": "bitv-pruefstelle" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://bitvtest.de/sites-und-agenturen/empfehlenswerte-agenturen/materna-information-communications-se", "label": "bitvtest.de: Materna is BITV-Test Pruefstelle and Pruefverbund member; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "anatom5",
+    "name": "anatom5 perception marketing GmbH",
+    "website": "anatom5.de",
+    "hq": { "city": "", "countryCode": "DE" },
+    "offices": [],
+    "countriesServed": ["DE"],
+    "languages": ["de"],
+    "services": ["audit"],
+    "standards": ["bitv", "wcag-2-2"],
+    "industries": [],
+    "certs": [{ "kind": "bitv-pruefstelle" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://anatom5.de/zertifizierung-bitv-test-pruefung-barrierefreiheit-1", "label": "anatom5: official Pruefstelle in BITV-Test Pruefverbund for several years; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "tollwerk",
+    "name": "tollwerk GmbH",
+    "website": "tollwerk.de",
+    "hq": { "city": "", "countryCode": "DE" },
+    "offices": [],
+    "countriesServed": ["DE"],
+    "languages": ["de"],
+    "services": ["audit"],
+    "standards": ["bitv", "wcag-2-2"],
+    "industries": [],
+    "certs": [{ "kind": "bitv-pruefstelle" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://tollwerk.de/barrierefreie-kommunikation/pruefung-beratung/bik-bitv-wcag-test-accessibility-audit", "label": "tollwerk offers BIK BITV/WCAG tests as Pruefstelle in BIK BITV-Test Pruefverbund; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "sozialhelden",
+    "name": "Sozialhelden e.V.",
+    "website": "sozialhelden.de",
+    "hq": { "city": "Berlin", "countryCode": "DE" },
+    "offices": [],
+    "countriesServed": ["DE"],
+    "languages": ["de"],
+    "services": ["audit"],
+    "standards": ["bitv", "wcag-2-2"],
+    "industries": [],
+    "certs": [{ "kind": "bitv-pruefstelle" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://bitvtest.de/blog/detail/neue-bitv-test-pruefstelle-sozialhelden-ev", "label": "bitvtest.de blog: new BITV-Test Pruefstelle Sozialhelden e.V., Berlin; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "barrierefreiheit-umsetzen",
+    "name": "Die Barrierefreiheit Umsetzen GbR",
+    "website": "barrierefreiheit-umsetzen.de",
+    "hq": { "city": "", "countryCode": "DE" },
+    "offices": [],
+    "countriesServed": ["DE"],
+    "languages": ["de"],
+    "services": ["audit"],
+    "standards": ["bitv", "wcag-2-2"],
+    "industries": [],
+    "certs": [{ "kind": "bitv-pruefstelle" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://bitvtest.de/blog/detail/neue-bitv-test-pruefstelle-die-barrierefreiheit-umsetzen-gbr", "label": "bitvtest.de blog: new BITV-Test Pruefstelle from Schleswig-Holstein; via search, 2026-08-04" },
+      { "url": "https://barrierefreiheit-umsetzen.de/wir-sind-bik-bitv-test-pruefstelle/", "label": "own announcement: Wir sind BIK BITV-Test Pruefstelle; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "insert-effect",
+    "name": "insert effect GmbH",
+    "website": "inserteffect.com",
+    "hq": { "city": "Nürnberg", "countryCode": "DE" },
+    "offices": [],
+    "countriesServed": ["DE"],
+    "languages": ["de"],
+    "services": ["audit"],
+    "standards": ["bitv", "wcag-2-2"],
+    "industries": [],
+    "certs": [{ "kind": "bitv-pruefstelle" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://bitvtest.de/blog/detail/neue-pruefstelle-fuer-bik-app-tests-insert-effect", "label": "bitvtest.de blog: new Pruefstelle for BIK app tests, Nuremberg; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "piksl-labor-bielefeld",
+    "name": "PIKSL Labor Bielefeld (v. Bodelschwinghsche Stiftungen Bethel)",
+    "website": "piksl.net",
+    "hq": { "city": "Bielefeld", "countryCode": "DE" },
+    "offices": [],
+    "countriesServed": ["DE"],
+    "languages": ["de"],
+    "services": ["audit"],
+    "standards": ["bitv", "wcag-2-2"],
+    "industries": [],
+    "certs": [{ "kind": "bitv-pruefstelle" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://dias.de/aktuelles-detail/unser-bitv-test-pruefverbund-waechst-weiter-das-piksl-labor-bielefeld.html", "label": "dias.de: PIKSL Labor Bielefeld joins BITV-Test Pruefverbund; via search, 2026-08-04" },
+      { "url": "https://www.bitvtest.de/bitv_test/das_testverfahren_im_detail/vertiefend/infothek/artikel0/lesen/bfweb_bsvh00100633000010000.html", "label": "bitvtest.de: Neue BITV-Test Pruefstelle das PIKSL Labor Bielefeld; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "adesso-mobile",
+    "name": "adesso mobile solutions GmbH",
+    "website": "adesso-mobile.de",
+    "hq": { "city": "", "countryCode": "DE" },
+    "offices": [],
+    "countriesServed": ["DE"],
+    "languages": ["de"],
+    "services": ["audit"],
+    "standards": ["bitv", "wcag-2-2"],
+    "industries": [],
+    "certs": [{ "kind": "bitv-pruefstelle" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.adesso-mobile.de/bitv/adesso-mobile-bitv-pruefstelle/", "label": "own announcement: adesso Mobile Solutions ist jetzt offizielle BITV-Pruefstelle (BIK); via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "hdm-stuttgart-kompetenzzentrum",
+    "name": "Kompetenzzentrum Digitale Barrierefreiheit (Hochschule der Medien Stuttgart)",
+    "website": "barrierefreiheit.hdm-stuttgart.de",
+    "hq": { "city": "Stuttgart", "countryCode": "DE" },
+    "offices": [],
+    "countriesServed": ["DE"],
+    "languages": ["de"],
+    "services": ["audit"],
+    "standards": ["bitv", "wcag-2-2"],
+    "industries": [],
+    "certs": [{ "kind": "bitv-pruefstelle" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://barrierefreiheit.hdm-stuttgart.de/bik-bitv-test-fuer-websites/", "label": "Kompetenzzentrum offers BIK BITV-Test as Pruefstelle in the BIK BITV-Test Pruefverbund; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "bsvh",
+    "name": "Blinden- und Sehbehindertenverein Hamburg (BSVH)",
+    "website": "bsvh.org",
+    "hq": { "city": "Hamburg", "countryCode": "DE" },
+    "offices": [],
+    "countriesServed": ["DE"],
+    "languages": ["de"],
+    "services": ["audit"],
+    "standards": ["bitv", "wcag-2-2"],
+    "industries": [],
+    "certs": [{ "kind": "bitv-pruefstelle" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.bsvh.org/angebot/bik.html", "label": "BSVH BIK-Beratungsstelle: Pruefstelle in the BITV-Test Pruefverbund; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "barrierekompass",
+    "name": "Barrierekompass (dd+m Agentur für digitale Barrierefreiheit)",
+    "website": "barrierekompass.de",
+    "hq": { "city": "", "countryCode": "DE" },
+    "offices": [],
+    "countriesServed": ["DE"],
+    "languages": ["de"],
+    "services": ["audit"],
+    "standards": ["bitv", "wcag-2-2"],
+    "industries": [],
+    "certs": [{ "kind": "bitv-pruefstelle" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://barrierekompass.de/aktuelles/detail/barrierefreiheit-testverfahren.html", "label": "Barrierekompass: official Pruefstelle in the BITV-Test Pruefverbund, offers BIK BITV-Tests; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "mindscreen",
+    "name": "mindscreen GmbH",
+    "website": "mindscreen.de",
+    "hq": { "city": "", "countryCode": "DE" },
+    "offices": [],
+    "countriesServed": ["DE"],
+    "languages": ["de"],
+    "services": ["audit"],
+    "standards": ["bitv", "wcag-2-2", "en-301-549"],
+    "industries": [],
+    "certs": [{ "kind": "bitv-pruefstelle" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.mindscreen.de/digitale-barrierefreiheit/digitale-barrierefreiheit-beratung-testing", "label": "mindscreen: recognized BIK BITV-Test Pruefstelle, tests per BIK BITV, WCAG and EN 301 549; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "twin-cubes",
+    "name": "TWIN CUBES GmbH",
+    "website": "twin-cubes.com",
+    "hq": { "city": "", "countryCode": "DE" },
+    "offices": [],
+    "countriesServed": ["DE"],
+    "languages": ["de"],
+    "services": ["audit"],
+    "standards": ["bitv", "wcag-2-2", "en-301-549"],
+    "industries": [],
+    "certs": [{ "kind": "bitv-pruefstelle" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.twin-cubes.com/bitv-test/", "label": "TWIN CUBES: certified Pruefstelle in the BIK BITV-Test Pruefverbund; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "bitv-consult",
+    "name": "BITV-Consult",
+    "website": "bitvconsult.de",
+    "hq": { "city": "", "countryCode": "DE" },
+    "offices": [],
+    "countriesServed": ["DE"],
+    "languages": ["de"],
+    "services": ["audit"],
+    "standards": ["bitv", "wcag-2-2"],
+    "industries": [],
+    "certs": [{ "kind": "bitv-pruefstelle" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://bitvconsult.de/", "label": "BITV-Consult: official Pruefstelle in the BITV-Test Pruefverbund; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "marcus-herrmann",
+    "name": "Marcus Herrmann",
+    "website": "marcus-herrmann.com",
+    "hq": { "city": "", "countryCode": "DE" },
+    "offices": [],
+    "countriesServed": ["DE"],
+    "languages": ["de"],
+    "services": ["audit"],
+    "standards": ["bitv", "wcag-2-2"],
+    "industries": [],
+    "certs": [{ "kind": "bitv-pruefstelle" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://marcus-herrmann.com/bitv", "label": "certified Pruefstelle for the BIK BITV web test; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  }
+]

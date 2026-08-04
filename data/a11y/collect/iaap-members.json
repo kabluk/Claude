@@ -1,0 +1,277 @@
+[
+  {
+    "slug": "funka",
+    "name": "Funka",
+    "website": "funka.com",
+    "hq": { "city": "Stockholm", "countryCode": "SE" },
+    "offices": [],
+    "countriesServed": ["SE", "NO", "ES", "remote-eu"],
+    "languages": ["sv", "en"],
+    "services": ["audit", "consulting", "training"],
+    "standards": ["wcag-2-2", "en-301-549"],
+    "industries": [],
+    "certs": [{ "kind": "iaap-org-member" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.accessibilityassociation.org/content.asp?admin=Y&contentid=195", "label": "IAAP Founding Member Funka Nu (accessibilityassociation.org) via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "vision-australia",
+    "name": "Vision Australia (Digital Access)",
+    "website": "visionaustralia.org",
+    "hq": { "city": "", "countryCode": "AU" },
+    "offices": [],
+    "countriesServed": ["AU"],
+    "languages": ["en"],
+    "services": ["audit", "consulting", "training"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [{ "kind": "iaap-org-member" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://visionaustralia.org/services/digital-access/about-us", "label": "Vision Australia: IAAP Founding Member 2014, Digital Access consulting arm; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "open-doors-organization",
+    "name": "Open Doors Organization",
+    "website": "opendoorsnfp.org",
+    "hq": { "city": "Chicago", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["consulting", "training"],
+    "standards": ["ada"],
+    "industries": ["travel"],
+    "certs": [{ "kind": "iaap-org-member" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.accessibilityassociation.org/content.asp?contentid=201", "label": "IAAP Founding Member Open Doors Org (accessibilityassociation.org) via search, 2026-08-04" },
+      { "url": "https://opendoorsnfp.org/consulting/", "label": "accessibility consulting services for travel/tourism; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "allyant",
+    "name": "Allyant",
+    "website": "allyant.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US", "CA"],
+    "languages": ["en"],
+    "services": ["audit", "remediation"],
+    "standards": ["wcag-2-2", "ada", "section-508"],
+    "industries": [],
+    "certs": [{ "kind": "iaap-org-member" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.businesswire.com/news/home/20221101005031/en/Allyant-announces-platinum-level-membership-to-the-International-Association-of-Accessibility-Professionals-IAAP-to-support-commitment-to-global-accessibility-inclusion", "label": "press release: Allyant platinum-level IAAP membership; via search, 2026-08-04" },
+      { "url": "https://allyant.com/allyants-platinum-level-membership-to-iaap/", "label": "own announcement of platinum IAAP membership; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "abledocs",
+    "name": "AbleDocs",
+    "website": "abledocs.com",
+    "hq": { "city": "", "countryCode": "CA" },
+    "offices": [],
+    "countriesServed": ["CA", "US", "remote-global"],
+    "languages": ["en"],
+    "services": ["remediation", "audit"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [{ "kind": "iaap-org-member" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://abledocs.com/en/about-abledocs/iaap-global/", "label": "AbleDocs: platinum organizational member of IAAP; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "skynet-technologies",
+    "name": "Skynet Technologies",
+    "website": "skynettechnologies.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US", "remote-global"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "consulting"],
+    "standards": ["wcag-2-2", "ada", "section-508"],
+    "industries": [],
+    "certs": [{ "kind": "iaap-org-member" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.skynettechnologies.com/web-accessibility-consultant", "label": "states organizational member of W3C and IAAP; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "sierra7",
+    "name": "Sierra7, Inc.",
+    "website": "sierra7.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["consulting"],
+    "standards": ["section-508"],
+    "industries": ["public-sector"],
+    "certs": [{ "kind": "iaap-org-member" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://sierra7.com/sierra7-inc-announces-iaap-membership-enhancing-capabilities-in-government-contracting/", "label": "own announcement of IAAP organizational membership, 2024-07-30; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "barrierbreak",
+    "name": "BarrierBreak",
+    "website": "barrierbreak.com",
+    "hq": { "city": "", "countryCode": "IN" },
+    "offices": [],
+    "countriesServed": ["IN", "remote-global"],
+    "languages": ["en"],
+    "services": ["audit", "consulting", "training"],
+    "standards": ["wcag-2-2", "section-508"],
+    "industries": [],
+    "certs": [{ "kind": "iaap-org-member" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://iaapchapters.org/india/about-us/", "label": "BarrierBreak manages the IAAP India Chapter (org-level IAAP affiliation); via search, 2026-08-04" },
+      { "url": "https://www.barrierbreak.com/network-learn-an-exclusive-event-for-iaap-members/", "label": "co-organizes IAAP Network & Learn events; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "abilitynet",
+    "name": "AbilityNet",
+    "website": "abilitynet.org.uk",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB", "remote-global"],
+    "languages": ["en"],
+    "services": ["audit", "consulting", "training"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [{ "kind": "iaap-org-member" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://abilitynet.org.uk/about-abilitynet/iaap", "label": "AbilityNet hosts the UK Chapter of IAAP and holds IAAP membership; via search, 2026-08-04" },
+      { "url": "https://abilitynet.org.uk/accessibility-services/products-and-services/accessibility-consultancy", "label": "accessibility consultancy services with IAAP-certified consultants; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "accessible-minds",
+    "name": "Accessible Minds",
+    "website": "accessiblemindstech.com",
+    "hq": { "city": "", "countryCode": "IN" },
+    "offices": [],
+    "countriesServed": ["IN", "remote-global"],
+    "languages": ["en"],
+    "services": ["consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [{ "kind": "iaap-org-member" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://accessiblemindstech.com/we-are-now-proudly-associated-with-international-association-of-accessibility-professionals-iaap-as-associate-corporate-partner/", "label": "own announcement: IAAP Associate Corporate Partner; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "axes4",
+    "name": "axes4 GmbH",
+    "website": "axes4.com",
+    "hq": { "city": "Zürich", "countryCode": "CH" },
+    "offices": [],
+    "countriesServed": ["CH", "DE", "AT"],
+    "languages": ["de", "en"],
+    "services": ["consulting", "remediation"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [{ "kind": "iaap-org-member" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://iaap-dach.org/iaap-dach-2/gruendungsmitglieder.html", "label": "founding member of IAAP D-A-CH chapter (Swiss document-accessibility company, Zurich); via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "deutsche-telekom-mms-iaap",
+    "name": "Deutsche Telekom MMS GmbH",
+    "website": "telekom-mms.com",
+    "hq": { "city": "", "countryCode": "DE" },
+    "offices": [],
+    "countriesServed": ["DE"],
+    "languages": ["de"],
+    "services": ["audit", "consulting"],
+    "standards": ["bitv", "wcag-2-2", "en-301-549"],
+    "industries": [],
+    "certs": [{ "kind": "iaap-org-member" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://iaap-dach.org/iaap-dach-2/gruendungsmitglieder.html", "label": "founding member and first elected representative of IAAP D-A-CH; via search, 2026-08-04" },
+      { "url": "https://www.telekom-mms.com/ueber-uns/aktuelles/news/artikel/detail/die-iaap-d-a-ch-startet-durch-barrierefreiheit-ist-die-zukunft", "label": "own announcement on IAAP D-A-CH founding; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "hilfsgemeinschaft",
+    "name": "Hilfsgemeinschaft der Blinden und Sehschwachen Österreichs",
+    "website": "hilfsgemeinschaft.at",
+    "hq": { "city": "", "countryCode": "AT" },
+    "offices": [],
+    "countriesServed": ["AT"],
+    "languages": ["de"],
+    "services": ["consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [{ "kind": "iaap-org-member" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://iaap-dach.org/iaap-dach-2/gruendungsmitglieder.html", "label": "founding member of IAAP D-A-CH; advises companies and authorities on accessibility; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "zoonou",
+    "name": "Zoonou",
+    "website": "zoonou.com",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [{ "kind": "iaap-org-member" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://zoonou.com/our-services/digital-accessibility-services/", "label": "states membership of the International Association of Accessibility Professionals; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "the-pixel",
+    "name": "The Pixel",
+    "website": "thepixel.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [{ "kind": "iaap-org-member" }],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.thepixel.com/insight-news/the-pixel-has-joined-the-international-association-of-accessibility-professionals-iaap-as-associate-members", "label": "own announcement: joined IAAP as associate members, offers accessibility auditing service; via search, 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  }
+]
