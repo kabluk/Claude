@@ -1,0 +1,61 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  --color-accent: oklch(0.51 0.19 264); /* indigo-700-ish, контраст ≥4.5:1 на белом */
+  --color-accent-soft: oklch(0.95 0.03 264);
+  --color-ink: oklch(0.24 0.02 260);
+}
+
+/* Каталог доступности обязан сам быть доступным: видимый фокус везде. */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+body {
+  @apply bg-white text-[color:var(--color-ink)] font-sans antialiased;
+}
+
+@layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-5xl px-4 sm:px-6;
+  }
+  .h1 {
+    @apply text-3xl sm:text-4xl font-bold tracking-tight;
+  }
+  .h2 {
+    @apply mt-10 mb-3 text-xl font-semibold tracking-tight;
+  }
+  .lede {
+    @apply mt-3 max-w-2xl text-base text-slate-600;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-0.5 text-xs font-medium text-slate-700;
+  }
+  .chip-accent {
+    @apply border-indigo-200 bg-[color:var(--color-accent-soft)] text-[color:var(--color-accent)];
+  }
+  /* использовать как class="chip chip-btn" — Tailwind v4 не даёт @apply
+     собственных классов, поэтому композиция в разметке */
+  .chip-btn {
+    @apply cursor-pointer select-none transition hover:border-slate-400;
+  }
+  .chip-btn[aria-pressed='true'] {
+    @apply border-indigo-600 bg-indigo-600 text-white;
+  }
+  .card {
+    @apply block rounded-xl border border-slate-200 bg-white p-4 transition hover:border-slate-400 hover:shadow-sm;
+  }
+  /* использовать как class="card tile" */
+  .tile {
+    @apply flex items-baseline justify-between gap-2;
+  }
+  .btn {
+    @apply inline-flex items-center gap-2 rounded-lg bg-[color:var(--color-accent)] px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90;
+  }
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-500;
+  }
+}

@@ -41,6 +41,14 @@
     "US": { "name": { "en": "United States", "de": "USA", "fr": "États-Unis", "pl": "Stany Zjednoczone", "es": "Estados Unidos" }, "region": "us", "law": { "name": "ADA / Section 508", "slug": "section-508" }, "topCities": ["New York", "San Francisco", "Chicago", "Austin", "Washington"] },
     "IE": { "name": { "en": "Ireland", "de": "Irland", "fr": "Irlande", "pl": "Irlandia", "es": "Irlanda" }, "region": "eu", "law": { "name": "EAA transposition", "slug": "eaa" }, "topCities": ["Dublin", "Cork"] },
     "AT": { "name": { "en": "Austria", "de": "Österreich", "fr": "Autriche", "pl": "Austria", "es": "Austria" }, "region": "eu", "law": { "name": "Barrierefreiheitsgesetz", "slug": "en-301-549" }, "topCities": ["Wien", "Graz", "Linz"] },
-    "CH": { "name": { "en": "Switzerland", "de": "Schweiz", "fr": "Suisse", "pl": "Szwajcaria", "es": "Suiza" }, "region": "other", "topCities": ["Zürich", "Genève", "Bern"] }
+    "CH": { "name": { "en": "Switzerland", "de": "Schweiz", "fr": "Suisse", "pl": "Szwajcaria", "es": "Suiza" }, "region": "other", "topCities": ["Zürich", "Genève", "Bern"] },
+    "BE": { "name": { "en": "Belgium", "de": "Belgien", "fr": "Belgique", "pl": "Belgia", "es": "Bélgica" }, "region": "eu", "law": { "name": "EAA transposition", "slug": "eaa" }, "topCities": ["Brussel", "Antwerpen", "Gent"] },
+    "DK": { "name": { "en": "Denmark", "de": "Dänemark", "fr": "Danemark", "pl": "Dania", "es": "Dinamarca" }, "region": "eu", "law": { "name": "Lov om tilgængelighed", "slug": "en-301-549" }, "topCities": ["København", "Aarhus"] },
+    "SE": { "name": { "en": "Sweden", "de": "Schweden", "fr": "Suède", "pl": "Szwecja", "es": "Suecia" }, "region": "eu", "law": { "name": "DOS-lagen", "slug": "en-301-549" }, "topCities": ["Stockholm", "Göteborg", "Malmö"] },
+    "NO": { "name": { "en": "Norway", "de": "Norwegen", "fr": "Norvège", "pl": "Norwegia", "es": "Noruega" }, "region": "other", "law": { "name": "Forskrift om universell utforming av IKT", "slug": "wcag-2-2" }, "topCities": ["Oslo", "Bergen"] },
+    "FI": { "name": { "en": "Finland", "de": "Finnland", "fr": "Finlande", "pl": "Finlandia", "es": "Finlandia" }, "region": "eu", "law": { "name": "Laki digitaalisten palvelujen tarjoamisesta", "slug": "en-301-549" }, "topCities": ["Helsinki", "Tampere"] },
+    "CA": { "name": { "en": "Canada", "de": "Kanada", "fr": "Canada", "pl": "Kanada", "es": "Canadá" }, "region": "other", "law": { "name": "Accessible Canada Act / AODA", "slug": "wcag-2-2" }, "topCities": ["Toronto", "Ottawa", "Vancouver", "Montréal"] },
+    "AU": { "name": { "en": "Australia", "de": "Australien", "fr": "Australie", "pl": "Australia", "es": "Australia" }, "region": "other", "law": { "name": "Disability Discrimination Act", "slug": "wcag-2-2" }, "topCities": ["Sydney", "Melbourne", "Brisbane"] },
+    "IN": { "name": { "en": "India", "de": "Indien", "fr": "Inde", "pl": "Indie", "es": "India" }, "region": "other", "law": { "name": "Rights of Persons with Disabilities Act / GIGW", "slug": "wcag-2-2" }, "topCities": ["Bengaluru", "Mumbai", "Delhi"] }
   }
 }
