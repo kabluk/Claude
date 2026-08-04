@@ -1,0 +1,470 @@
+[
+  {
+    "slug": "abilitynet",
+    "name": "AbilityNet",
+    "website": "abilitynet.org.uk",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://abilitynet.org.uk/accessibility-services/products-and-services/accessibility-audit", "label": "own accessibility-audit service page (WCAG 2.2 audits, 1729 audits/yr), live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "nomensa",
+    "name": "Nomensa",
+    "website": "nomensa.com",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.nomensa.com/services/web-accessibility/", "label": "web accessibility services page: WCAG 2.2 manual audits, maturity assessments, remediation support; NHS.uk audits, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "zoonou",
+    "name": "Zoonou",
+    "website": "zoonou.com",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "training"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://zoonou.com/our-services/digital-accessibility-services/accessibility-audits", "label": "own WCAG audit service page; UK B Corp QA firm, WCAG audits + disabled user testing + document remediation, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "user-vision",
+    "name": "User Vision",
+    "website": "uservision.co.uk",
+    "hq": { "city": "Edinburgh", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "monitoring", "training", "consulting"],
+    "standards": ["wcag-2-2", "eaa", "section-508"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://uservision.co.uk/services/accessibility", "label": "accessibility services page: WCAG 2.2 AA audits, EAA and Section 508; Edinburgh HQ (55 North Castle Street), Access360 managed monitoring, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "hassell-inclusion",
+    "name": "Hassell Inclusion",
+    "website": "hassellinclusion.com",
+    "hq": { "city": "London", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["training", "consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://hassellinclusion.com/", "label": "UK accessibility consultancy (Prof Jonathan Hassell, ISO 30071-1 lead author); training + strategic consultancy, London per company profiles, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "system-concepts",
+    "name": "System Concepts",
+    "website": "system-concepts.com",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.system-concepts.com/user-experience-and-usability/accessibility/digital-accessibility-audits/", "label": "digital accessibility audits page: manual expert audits of websites/apps/documents against WCAG, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "test-partners",
+    "name": "Test Partners",
+    "website": "testpartners.co.uk",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.testpartners.co.uk/accessibility_testing.htm", "label": "accessibility testing/training/consultancy page: manual WCAG testing, 400+ a11y projects since 2002, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "hex-productions",
+    "name": "HeX Productions",
+    "website": "horlix.com",
+    "hq": { "city": "Nottingham", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.horlix.com/services/accessibility-audit/", "label": "accessibility audit booking page; Nottingham agency, audits with Shaw Trust pan-disabled testing partnership, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "nexer-digital",
+    "name": "Nexer Digital",
+    "website": "nexerdigital.com",
+    "hq": { "city": "Macclesfield", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.nexerdigital.com/what-we-do/accessibility/", "label": "accessibility services page: manual WCAG audits, training, strategy; Macclesfield & Cambridge offices; G-Cloud 14 accessibility services supplier, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "shaw-trust-accessibility-services",
+    "name": "Shaw Trust Accessibility Services",
+    "website": "accessibility-services.co.uk",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.accessibility-services.co.uk/services/digital-accessibility/digital-accessibility-assessment/", "label": "digital accessibility assessment page: WCAG 2.2 A/AA audits by disabled testers + technical auditors (service arm of Shaw Trust), live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "jim-byrne-associates",
+    "name": "Jim Byrne Associates",
+    "website": "jimbyrne.co.uk",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://jimbyrne.co.uk/accessibility-testing-auditing/", "label": "WCAG 2.2 auditing/testing services page (audits from GBP 2500, ISO 30071:2019), live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "damteq",
+    "name": "Damteq",
+    "website": "damteq.co.uk",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "remediation"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.damteq.co.uk/wcag-audits/", "label": "WCAG audits & compliance testing page (manual + automated testing, WCAG/EAA checks & fixes), live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "mixd",
+    "name": "Mixd",
+    "website": "mixd.co.uk",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.mixd.co.uk/services/web-accessibility/", "label": "web accessibility service page: WCAG 2.2 audits, 50+ public-sector audits (NHS focus), training & consultancy, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "all-able",
+    "name": "All Able",
+    "website": "allable.co.uk",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.allable.co.uk/services/accessibility-audits", "label": "accessibility audits service page (web systems, mobile apps, 3rd-party software); PSBAR accessibility statements specialists, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "web-usability",
+    "name": "Web Usability",
+    "website": "webusability.co.uk",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "monitoring", "training", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.webusability.co.uk/what-we-do/test/accessibility-audits/", "label": "accessibility audit service page: manual WCAG 2.2 evaluation with assistive tech; monitoring and support packages, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "dig-inclusion",
+    "name": "Dig Inclusion",
+    "website": "diginclusion.com",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "training", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://diginclusion.com/training/web-accessibility/advanced-web-accessibility-testing/", "label": "own training/services site; audits to WCAG 2.2 A/AA/AAA, mobile + PDF audits, disabled user testing; part of Nile group since 2023, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "tetralogical",
+    "name": "TetraLogical",
+    "website": "tetralogical.com",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://tetralogical.com/about/people/", "label": "UK inclusive-design and accessibility consultancy founded 2019 by Leonie Watson (W3C board); traditional accessibility consultancy per company description, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "bunnyfoot",
+    "name": "Bunnyfoot",
+    "website": "bunnyfoot.com",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.bunnyfoot.com/accessibility-auditing-and-evaluation/", "label": "accessibility auditing & evaluation page: manual + automated audits, a11y user testing, strategy, training; 22+ years, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "cyber-duck",
+    "name": "Cyber-Duck",
+    "website": "cyber-duck.co.uk",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "training"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.cyber-duck.co.uk/accessibility", "label": "accessibility page: WCAG audits (automated + manual sample checks), PDF accessibility guidance and training, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "torchbox",
+    "name": "Torchbox",
+    "website": "torchbox.com",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://torchbox.com/services/digital-products-services/accessibility/accessibility-audits/", "label": "accessibility audits service page: WCAG 2.2 compliance audits, automated + manual assistive-tech testing, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "access-by-design",
+    "name": "Access by Design",
+    "website": "accessbydesign.uk",
+    "hq": { "city": "Chichester", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://accessbydesign.uk/accessibility-audit/", "label": "website accessibility audit page: expert manual analysis + disabled user testing against WCAG 2.2; Chichester-based, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ten10",
+    "name": "Ten10",
+    "website": "ten10.com",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://ten10.com/consultancy/software-testing-quality-assurance-services/accessibility-testing/", "label": "accessibility testing services page: automated + manual WCAG testing and guidance through WCAG self-certification; UK testing consultancy, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "snook",
+    "name": "Snook",
+    "website": "wearesnook.com",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.digitalmarketplace.service.gov.uk/g-cloud/services/565524748641661", "label": "G-Cloud 'Accessibility support' listing by Snook (accessibility testing/QA validation, nbd.snook@wearesnook.com), live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ascentiq-solutions",
+    "name": "Ascentiq Solutions",
+    "website": "ascentiqsolutions.co.uk",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://ascentiqsolutions.co.uk/accessibility-testing-services-in-uk/", "label": "UK accessibility testing services page (managed testing & QA services company), live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "silktide",
+    "name": "Silktide",
+    "website": "silktide.com",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "monitoring", "training", "consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://silktide.com/solutions/accessibility/", "label": "accessibility solution page: automated testing platform plus in-house experts for manual accessibility audits, training and consultancy, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "capita",
+    "name": "Capita",
+    "website": "capita.com",
+    "hq": { "city": "", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud/services/171344779614910", "label": "G-Cloud listing 'Accessibility Auditing (Capita)' on UK Digital Marketplace, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  }
+]

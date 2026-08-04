@@ -3,272 +3,5368 @@
     "slug": "deque-systems",
     "name": "Deque Systems",
     "website": "deque.com",
-    "hq": { "city": "", "countryCode": "US" },
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
     "offices": [],
-    "countriesServed": ["US", "remote-global"],
-    "languages": ["en"],
-    "services": ["audit", "remediation", "vpat", "training", "monitoring", "consulting"],
-    "standards": ["wcag-2-2", "section-508", "ada", "en-301-549"],
+    "countriesServed": [
+      "US",
+      "remote-global"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat",
+      "training",
+      "monitoring",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada",
+      "en-301-549"
+    ],
     "industries": [],
     "certs": [],
     "description": {},
-    "sourceRefs": [{ "url": "https://www.deque.com/", "label": "deepdive competitor analysis §3, major US/global a11y firm" }],
+    "sourceRefs": [
+      {
+        "url": "https://www.deque.com/",
+        "label": "deepdive competitor analysis §3, major US/global a11y firm"
+      }
+    ],
     "lastVerified": "2026-08-04"
   },
   {
     "slug": "tpgi",
     "name": "TPGi",
     "website": "tpgi.com",
-    "hq": { "city": "", "countryCode": "US" },
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
     "offices": [],
-    "countriesServed": ["US", "GB", "remote-global"],
-    "languages": ["en"],
-    "services": ["audit", "vpat", "training", "monitoring", "consulting"],
-    "standards": ["wcag-2-2", "section-508", "ada", "en-301-549"],
+    "countriesServed": [
+      "US",
+      "GB",
+      "remote-global"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "vpat",
+      "training",
+      "monitoring",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada",
+      "en-301-549"
+    ],
     "industries": [],
     "certs": [],
     "description": {},
-    "sourceRefs": [{ "url": "https://www.tpgi.com/", "label": "deepdive competitor analysis §3, major a11y firm (Vispero)" }],
+    "sourceRefs": [
+      {
+        "url": "https://www.tpgi.com/",
+        "label": "deepdive competitor analysis §3, major a11y firm (Vispero)"
+      }
+    ],
     "lastVerified": "2026-08-04"
   },
   {
     "slug": "level-access",
     "name": "Level Access",
     "website": "levelaccess.com",
-    "hq": { "city": "", "countryCode": "US" },
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
     "offices": [],
-    "countriesServed": ["US", "remote-global"],
-    "languages": ["en"],
-    "services": ["audit", "remediation", "vpat", "training", "monitoring", "consulting"],
-    "standards": ["wcag-2-2", "section-508", "ada"],
+    "countriesServed": [
+      "US",
+      "remote-global"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat",
+      "training",
+      "monitoring",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada"
+    ],
     "industries": [],
     "certs": [],
     "description": {},
-    "sourceRefs": [{ "url": "https://www.levelaccess.com/", "label": "deepdive competitor analysis §3, major US a11y firm" }],
+    "sourceRefs": [
+      {
+        "url": "https://www.levelaccess.com/",
+        "label": "deepdive competitor analysis §3, major US a11y firm"
+      }
+    ],
     "lastVerified": "2026-08-04"
   },
   {
     "slug": "digital-accessibility-centre",
     "name": "Digital Accessibility Centre",
     "website": "digitalaccessibilitycentre.org",
-    "hq": { "city": "", "countryCode": "GB" },
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
     "offices": [],
-    "countriesServed": ["GB", "remote-eu"],
-    "languages": ["en"],
-    "services": ["audit", "consulting"],
-    "standards": ["wcag-2-2", "en-301-549"],
+    "countriesServed": [
+      "GB",
+      "remote-eu"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
     "industries": [],
     "certs": [],
     "description": {},
-    "sourceRefs": [{ "url": "https://digitalaccessibilitycentre.org/", "label": "live SERP UK 'accessibility audit' 2026-08-04 (research/bo-b-serp-a11y-uk.json)" }],
+    "sourceRefs": [
+      {
+        "url": "https://digitalaccessibilitycentre.org/",
+        "label": "live SERP UK 'accessibility audit' 2026-08-04 (research/bo-b-serp-a11y-uk.json)"
+      }
+    ],
     "lastVerified": "2026-08-04"
   },
   {
     "slug": "be-accessible",
     "name": "Be Accessible",
     "website": "beaccessible.com",
-    "hq": { "city": "", "countryCode": "GB" },
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
     "offices": [],
-    "countriesServed": ["GB"],
-    "languages": ["en"],
-    "services": ["audit", "consulting"],
-    "standards": ["wcag-2-2"],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
     "industries": [],
     "certs": [],
     "description": {},
-    "sourceRefs": [{ "url": "https://beaccessible.com/", "label": "live SERP UK 'accessibility audit' 2026-08-04 (research/bo-b-serp-a11y-uk.json)" }],
+    "sourceRefs": [
+      {
+        "url": "https://beaccessible.com/",
+        "label": "live SERP UK 'accessibility audit' 2026-08-04 (research/bo-b-serp-a11y-uk.json)"
+      }
+    ],
     "lastVerified": "2026-08-04"
   },
   {
     "slug": "accessibility-innovations",
     "name": "Accessibility Innovations",
     "website": "accessibilityinnovations.com",
-    "hq": { "city": "", "countryCode": "US" },
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
     "offices": [],
-    "countriesServed": ["US"],
-    "languages": ["en"],
-    "services": ["audit", "consulting"],
-    "standards": ["wcag-2-2", "section-508", "ada"],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada"
+    ],
     "industries": [],
     "certs": [],
     "description": {},
-    "sourceRefs": [{ "url": "https://accessibilityinnovations.com/", "label": "live SERP US 'accessibility consultant' 2026-08-04 (research/bo-b-serp-accessibility-consultant.json)" }],
+    "sourceRefs": [
+      {
+        "url": "https://accessibilityinnovations.com/",
+        "label": "live SERP US 'accessibility consultant' 2026-08-04 (research/bo-b-serp-accessibility-consultant.json)"
+      }
+    ],
     "lastVerified": "2026-08-04"
   },
   {
     "slug": "mile-high-accessibility",
     "name": "Mile High Accessibility",
     "website": "milehighaccessibility.com",
-    "hq": { "city": "", "countryCode": "US" },
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
     "offices": [],
-    "countriesServed": ["US"],
-    "languages": ["en"],
-    "services": ["audit", "consulting"],
-    "standards": ["wcag-2-2", "ada"],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada"
+    ],
     "industries": [],
     "certs": [],
     "description": {},
-    "sourceRefs": [{ "url": "https://www.milehighaccessibility.com/", "label": "live SERP US 'accessibility consultant' 2026-08-04 (research/bo-b-serp-accessibility-consultant.json)" }],
+    "sourceRefs": [
+      {
+        "url": "https://www.milehighaccessibility.com/",
+        "label": "live SERP US 'accessibility consultant' 2026-08-04 (research/bo-b-serp-accessibility-consultant.json)"
+      }
+    ],
     "lastVerified": "2026-08-04"
   },
   {
     "slug": "access42",
     "name": "Access42",
     "website": "access42.net",
-    "hq": { "city": "", "countryCode": "FR" },
+    "hq": {
+      "city": "",
+      "countryCode": "FR"
+    },
     "offices": [],
-    "countriesServed": ["FR", "remote-eu"],
-    "languages": ["fr", "en"],
-    "services": ["audit", "training", "consulting"],
-    "standards": ["rgaa", "wcag-2-2", "en-301-549"],
+    "countriesServed": [
+      "FR",
+      "remote-eu"
+    ],
+    "languages": [
+      "fr",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2",
+      "en-301-549"
+    ],
     "industries": [],
     "certs": [],
     "description": {},
-    "sourceRefs": [{ "url": "https://access42.net/", "label": "live SERP FR 'audit rgaa' 2026-08-04 (research/dd-serp-fr-rgaa.json)" }],
+    "sourceRefs": [
+      {
+        "url": "https://access42.net/",
+        "label": "live SERP FR 'audit rgaa' 2026-08-04 (research/dd-serp-fr-rgaa.json)"
+      }
+    ],
     "lastVerified": "2026-08-04"
   },
   {
     "slug": "urbilog",
     "name": "Urbilog",
     "website": "urbilog.com",
-    "hq": { "city": "", "countryCode": "FR" },
+    "hq": {
+      "city": "",
+      "countryCode": "FR"
+    },
     "offices": [],
-    "countriesServed": ["FR"],
-    "languages": ["fr", "en"],
-    "services": ["audit", "consulting", "training"],
-    "standards": ["rgaa", "wcag-2-2"],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
     "industries": [],
     "certs": [],
     "description": {},
-    "sourceRefs": [{ "url": "https://www.urbilog.com/", "label": "live SERP FR 'audit rgaa' 2026-08-04 (research/dd-serp-fr-rgaa.json)" }],
+    "sourceRefs": [
+      {
+        "url": "https://www.urbilog.com/",
+        "label": "live SERP FR 'audit rgaa' 2026-08-04 (research/dd-serp-fr-rgaa.json)"
+      }
+    ],
     "lastVerified": "2026-08-04"
   },
   {
     "slug": "boscop",
     "name": "Boscop",
     "website": "boscop.fr",
-    "hq": { "city": "", "countryCode": "FR" },
+    "hq": {
+      "city": "",
+      "countryCode": "FR"
+    },
     "offices": [],
-    "countriesServed": ["FR"],
-    "languages": ["fr"],
-    "services": ["audit", "consulting"],
-    "standards": ["rgaa", "wcag-2-2"],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
     "industries": [],
     "certs": [],
     "description": {},
-    "sourceRefs": [{ "url": "https://boscop.fr/", "label": "live SERP FR 'audit rgaa' 2026-08-04 (research/dd-serp-fr-rgaa.json)" }],
+    "sourceRefs": [
+      {
+        "url": "https://boscop.fr/",
+        "label": "live SERP FR 'audit rgaa' 2026-08-04 (research/dd-serp-fr-rgaa.json)"
+      }
+    ],
     "lastVerified": "2026-08-04"
   },
   {
     "slug": "agentur-barrierefreie-website",
     "name": "Agentur für barrierefreie Websites",
     "website": "agentur-barrierefreie-website.de",
-    "hq": { "city": "", "countryCode": "DE" },
+    "hq": {
+      "city": "",
+      "countryCode": "DE"
+    },
     "offices": [],
-    "countriesServed": ["DE", "AT", "CH"],
-    "languages": ["de"],
-    "services": ["audit", "remediation", "consulting"],
-    "standards": ["bitv", "wcag-2-2", "en-301-549"],
+    "countriesServed": [
+      "DE",
+      "AT",
+      "CH"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2",
+      "en-301-549"
+    ],
     "industries": [],
     "certs": [],
     "description": {},
-    "sourceRefs": [{ "url": "https://agentur-barrierefreie-website.de/", "label": "live SERP DE 'barrierefreie website agentur' 2026-08-04 (research/dd-serp-de-agentur.json)" }],
+    "sourceRefs": [
+      {
+        "url": "https://agentur-barrierefreie-website.de/",
+        "label": "live SERP DE 'barrierefreie website agentur' 2026-08-04 (research/dd-serp-de-agentur.json)"
+      }
+    ],
     "lastVerified": "2026-08-04"
   },
   {
     "slug": "visuellverstehen",
     "name": "visuellverstehen",
     "website": "visuellverstehen.de",
-    "hq": { "city": "", "countryCode": "DE" },
+    "hq": {
+      "city": "",
+      "countryCode": "DE"
+    },
     "offices": [],
-    "countriesServed": ["DE"],
-    "languages": ["de"],
-    "services": ["audit", "consulting"],
-    "standards": ["bitv", "wcag-2-2"],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
     "industries": [],
     "certs": [],
     "description": {},
-    "sourceRefs": [{ "url": "https://www.visuellverstehen.de/", "label": "live SERP DE 'barrierefreie website agentur' 2026-08-04 (research/dd-serp-de-agentur.json)" }],
+    "sourceRefs": [
+      {
+        "url": "https://www.visuellverstehen.de/",
+        "label": "live SERP DE 'barrierefreie website agentur' 2026-08-04 (research/dd-serp-de-agentur.json)"
+      }
+    ],
     "lastVerified": "2026-08-04"
   },
   {
     "slug": "gehirngerecht-digital",
     "name": "gehirngerecht.digital",
     "website": "gehirngerecht.digital",
-    "hq": { "city": "", "countryCode": "DE" },
+    "hq": {
+      "city": "",
+      "countryCode": "DE"
+    },
     "offices": [],
-    "countriesServed": ["DE"],
-    "languages": ["de"],
-    "services": ["audit", "consulting", "training"],
-    "standards": ["bitv", "wcag-2-2"],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
     "industries": [],
     "certs": [],
     "description": {},
-    "sourceRefs": [{ "url": "https://gehirngerecht.digital/", "label": "live SERP DE 'barrierefreie website agentur' 2026-08-04 (research/dd-serp-de-agentur.json)" }],
+    "sourceRefs": [
+      {
+        "url": "https://gehirngerecht.digital/",
+        "label": "live SERP DE 'barrierefreie website agentur' 2026-08-04 (research/dd-serp-de-agentur.json)"
+      }
+    ],
     "lastVerified": "2026-08-04"
   },
   {
     "slug": "dmk-ebusiness",
     "name": "DMK E-BUSINESS",
     "website": "dmk-ebusiness.de",
-    "hq": { "city": "", "countryCode": "DE" },
+    "hq": {
+      "city": "",
+      "countryCode": "DE"
+    },
     "offices": [],
-    "countriesServed": ["DE"],
-    "languages": ["de"],
-    "services": ["audit", "remediation", "consulting"],
-    "standards": ["bitv", "wcag-2-2"],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
     "industries": [],
     "certs": [],
     "description": {},
-    "sourceRefs": [{ "url": "https://www.dmk-ebusiness.de/", "label": "live SERP DE 'barrierefreie website agentur' 2026-08-04 (research/dd-serp-de-agentur.json)" }],
+    "sourceRefs": [
+      {
+        "url": "https://www.dmk-ebusiness.de/",
+        "label": "live SERP DE 'barrierefreie website agentur' 2026-08-04 (research/dd-serp-de-agentur.json)"
+      }
+    ],
     "lastVerified": "2026-08-04"
   },
   {
     "slug": "wcag-audyt-pl",
     "name": "WCAG-audyt.pl",
     "website": "wcag-audyt.pl",
-    "hq": { "city": "", "countryCode": "PL" },
+    "hq": {
+      "city": "",
+      "countryCode": "PL"
+    },
     "offices": [],
-    "countriesServed": ["PL"],
-    "languages": ["pl"],
-    "services": ["audit"],
-    "standards": ["wcag-2-2", "en-301-549"],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
     "industries": [],
     "certs": [],
     "description": {},
-    "sourceRefs": [{ "url": "https://wcag-audyt.pl/", "label": "live SERP PL 'audyt wcag' 2026-08-04 (research/dd-serp-pl-wcag.json)" }],
+    "sourceRefs": [
+      {
+        "url": "https://wcag-audyt.pl/",
+        "label": "live SERP PL 'audyt wcag' 2026-08-04 (research/dd-serp-pl-wcag.json)"
+      }
+    ],
     "lastVerified": "2026-08-04"
   },
   {
     "slug": "lepszyweb",
     "name": "Lepszy Web",
     "website": "lepszyweb.pl",
-    "hq": { "city": "", "countryCode": "PL" },
+    "hq": {
+      "city": "",
+      "countryCode": "PL"
+    },
     "offices": [],
-    "countriesServed": ["PL"],
-    "languages": ["pl"],
-    "services": ["audit", "consulting"],
-    "standards": ["wcag-2-2", "en-301-549"],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
     "industries": [],
     "certs": [],
     "description": {},
-    "sourceRefs": [{ "url": "https://lepszyweb.pl/", "label": "live SERP PL 'audyt wcag' 2026-08-04 (research/dd-serp-pl-wcag.json)" }],
+    "sourceRefs": [
+      {
+        "url": "https://lepszyweb.pl/",
+        "label": "live SERP PL 'audyt wcag' 2026-08-04 (research/dd-serp-pl-wcag.json)"
+      }
+    ],
     "lastVerified": "2026-08-04"
   },
   {
     "slug": "audyt-dostepnosci-pl",
     "name": "Audyt Dostępności",
     "website": "audyt-dostepnosci.pl",
-    "hq": { "city": "", "countryCode": "PL" },
+    "hq": {
+      "city": "",
+      "countryCode": "PL"
+    },
     "offices": [],
-    "countriesServed": ["PL"],
-    "languages": ["pl"],
-    "services": ["audit"],
-    "standards": ["wcag-2-2", "en-301-549"],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
     "industries": [],
     "certs": [],
     "description": {},
-    "sourceRefs": [{ "url": "https://audyt-dostepnosci.pl/", "label": "live SERP PL 'audyt wcag' 2026-08-04 (research/dd-serp-pl-wcag.json)" }],
+    "sourceRefs": [
+      {
+        "url": "https://audyt-dostepnosci.pl/",
+        "label": "live SERP PL 'audyt wcag' 2026-08-04 (research/dd-serp-pl-wcag.json)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "dias",
+    "name": "DIAS GmbH",
+    "website": "dias.de",
+    "hq": {
+      "city": "",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "bitv-pruefstelle"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://dias.de/aktuelles-detail/zwei-neue-bitv-test-pruefstellen-qualifiziert.html",
+        "label": "DIAS operates the BIK BITV-Test Pruefverbund and qualifies Pruefstellen; via search, 2026-08-04"
+      },
+      {
+        "url": "https://bitvtest.de/bik-bitv-test-pruefverbund",
+        "label": "BIK BITV-Test Pruefverbund page via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "deutsche-telekom-mms",
+    "name": "Deutsche Telekom MMS (T-Systems Multimedia Solutions)",
+    "website": "telekom-mms.com",
+    "hq": {
+      "city": "",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "bitv-pruefstelle"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.bitvtest.de/sites_und_agenturen/empfehlenswerte_agenturen/t_systems_multimedia_solutions.html",
+        "label": "bitvtest.de page for T-Systems Multimedia Solutions via search, 2026-08-04"
+      },
+      {
+        "url": "https://test-and-integration.telekom-mms.com/digital-accessibility/barrierefreie-it.html",
+        "label": "Telekom MMS conducts BIK BITV-Test procedure; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "materna",
+    "name": "Materna Information & Communications SE",
+    "website": "materna.de",
+    "hq": {
+      "city": "",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "bitv-pruefstelle"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://bitvtest.de/sites-und-agenturen/empfehlenswerte-agenturen/materna-information-communications-se",
+        "label": "bitvtest.de: Materna is BITV-Test Pruefstelle and Pruefverbund member; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "anatom5",
+    "name": "anatom5 perception marketing GmbH",
+    "website": "anatom5.de",
+    "hq": {
+      "city": "",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "bitv-pruefstelle"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://anatom5.de/zertifizierung-bitv-test-pruefung-barrierefreiheit-1",
+        "label": "anatom5: official Pruefstelle in BITV-Test Pruefverbund for several years; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "tollwerk",
+    "name": "tollwerk GmbH",
+    "website": "tollwerk.de",
+    "hq": {
+      "city": "",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "bitv-pruefstelle"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://tollwerk.de/barrierefreie-kommunikation/pruefung-beratung/bik-bitv-wcag-test-accessibility-audit",
+        "label": "tollwerk offers BIK BITV/WCAG tests as Pruefstelle in BIK BITV-Test Pruefverbund; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "sozialhelden",
+    "name": "Sozialhelden e.V.",
+    "website": "sozialhelden.de",
+    "hq": {
+      "city": "Berlin",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "bitv-pruefstelle"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://bitvtest.de/blog/detail/neue-bitv-test-pruefstelle-sozialhelden-ev",
+        "label": "bitvtest.de blog: new BITV-Test Pruefstelle Sozialhelden e.V., Berlin; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "barrierefreiheit-umsetzen",
+    "name": "Die Barrierefreiheit Umsetzen GbR",
+    "website": "barrierefreiheit-umsetzen.de",
+    "hq": {
+      "city": "",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "bitv-pruefstelle"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://bitvtest.de/blog/detail/neue-bitv-test-pruefstelle-die-barrierefreiheit-umsetzen-gbr",
+        "label": "bitvtest.de blog: new BITV-Test Pruefstelle from Schleswig-Holstein; via search, 2026-08-04"
+      },
+      {
+        "url": "https://barrierefreiheit-umsetzen.de/wir-sind-bik-bitv-test-pruefstelle/",
+        "label": "own announcement: Wir sind BIK BITV-Test Pruefstelle; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "insert-effect",
+    "name": "insert effect GmbH",
+    "website": "inserteffect.com",
+    "hq": {
+      "city": "Nürnberg",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "bitv-pruefstelle"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://bitvtest.de/blog/detail/neue-pruefstelle-fuer-bik-app-tests-insert-effect",
+        "label": "bitvtest.de blog: new Pruefstelle for BIK app tests, Nuremberg; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "piksl-labor-bielefeld",
+    "name": "PIKSL Labor Bielefeld (v. Bodelschwinghsche Stiftungen Bethel)",
+    "website": "piksl.net",
+    "hq": {
+      "city": "Bielefeld",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "bitv-pruefstelle"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://dias.de/aktuelles-detail/unser-bitv-test-pruefverbund-waechst-weiter-das-piksl-labor-bielefeld.html",
+        "label": "dias.de: PIKSL Labor Bielefeld joins BITV-Test Pruefverbund; via search, 2026-08-04"
+      },
+      {
+        "url": "https://www.bitvtest.de/bitv_test/das_testverfahren_im_detail/vertiefend/infothek/artikel0/lesen/bfweb_bsvh00100633000010000.html",
+        "label": "bitvtest.de: Neue BITV-Test Pruefstelle das PIKSL Labor Bielefeld; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "adesso-mobile",
+    "name": "adesso mobile solutions GmbH",
+    "website": "adesso-mobile.de",
+    "hq": {
+      "city": "",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "bitv-pruefstelle"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.adesso-mobile.de/bitv/adesso-mobile-bitv-pruefstelle/",
+        "label": "own announcement: adesso Mobile Solutions ist jetzt offizielle BITV-Pruefstelle (BIK); via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "hdm-stuttgart-kompetenzzentrum",
+    "name": "Kompetenzzentrum Digitale Barrierefreiheit (Hochschule der Medien Stuttgart)",
+    "website": "barrierefreiheit.hdm-stuttgart.de",
+    "hq": {
+      "city": "Stuttgart",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "bitv-pruefstelle"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://barrierefreiheit.hdm-stuttgart.de/bik-bitv-test-fuer-websites/",
+        "label": "Kompetenzzentrum offers BIK BITV-Test as Pruefstelle in the BIK BITV-Test Pruefverbund; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "bsvh",
+    "name": "Blinden- und Sehbehindertenverein Hamburg (BSVH)",
+    "website": "bsvh.org",
+    "hq": {
+      "city": "Hamburg",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "bitv-pruefstelle"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.bsvh.org/angebot/bik.html",
+        "label": "BSVH BIK-Beratungsstelle: Pruefstelle in the BITV-Test Pruefverbund; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "barrierekompass",
+    "name": "Barrierekompass (dd+m Agentur für digitale Barrierefreiheit)",
+    "website": "barrierekompass.de",
+    "hq": {
+      "city": "",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "bitv-pruefstelle"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://barrierekompass.de/aktuelles/detail/barrierefreiheit-testverfahren.html",
+        "label": "Barrierekompass: official Pruefstelle in the BITV-Test Pruefverbund, offers BIK BITV-Tests; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "mindscreen",
+    "name": "mindscreen GmbH",
+    "website": "mindscreen.de",
+    "hq": {
+      "city": "",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "bitv-pruefstelle"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.mindscreen.de/digitale-barrierefreiheit/digitale-barrierefreiheit-beratung-testing",
+        "label": "mindscreen: recognized BIK BITV-Test Pruefstelle, tests per BIK BITV, WCAG and EN 301 549; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "twin-cubes",
+    "name": "TWIN CUBES GmbH",
+    "website": "twin-cubes.com",
+    "hq": {
+      "city": "",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "bitv-pruefstelle"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.twin-cubes.com/bitv-test/",
+        "label": "TWIN CUBES: certified Pruefstelle in the BIK BITV-Test Pruefverbund; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "bitv-consult",
+    "name": "BITV-Consult",
+    "website": "bitvconsult.de",
+    "hq": {
+      "city": "",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "bitv-pruefstelle"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://bitvconsult.de/",
+        "label": "BITV-Consult: official Pruefstelle in the BITV-Test Pruefverbund; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "marcus-herrmann",
+    "name": "Marcus Herrmann",
+    "website": "marcus-herrmann.com",
+    "hq": {
+      "city": "",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "bitv-pruefstelle"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://marcus-herrmann.com/bitv",
+        "label": "certified Pruefstelle for the BIK BITV web test; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "hcltech",
+    "name": "HCLTech",
+    "website": "hcltech.com",
+    "hq": {
+      "city": "",
+      "countryCode": "IN"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IN",
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.hcltech.com/events/csun",
+        "label": "CSUN 2026 exhibitor (Booth #1213); end-to-end accessibility services incl. design audits and remediation; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "barrierbreak",
+    "name": "BarrierBreak",
+    "website": "barrierbreak.com",
+    "hq": {
+      "city": "",
+      "countryCode": "IN"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IN",
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "vpat"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.barrierbreak.com/barrierbreak-at-csun25-driving-accessibility-forward-with-innovation/",
+        "label": "Own recap of exhibiting a booth at CSUN 2025; accessibility testing, audit and VPAT services; checked 2026-08-04"
+      },
+      {
+        "url": "https://www.csun.edu/cod/conference/ebb/rbk/2024/index.php/public/exhibitors/view/349",
+        "label": "CSUN Conference 2024 official exhibitor listing (BarrierBreak & 247 Accessible Documents); checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "allyant",
+    "name": "Allyant",
+    "website": "allyant.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://allyant.com/event/csun-2025/",
+        "label": "Own CSUN 2025 event page (booth presence); digital accessibility auditing and document remediation services; checked 2026-08-04"
+      },
+      {
+        "url": "https://www.csun.edu/cod/conference/ebb/rbk/2024/index.php/public/exhibitors/view/348",
+        "label": "CSUN Conference 2024 official exhibitor listing; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "crawford-technologies",
+    "name": "Crawford Technologies",
+    "website": "crawfordtech.com",
+    "hq": {
+      "city": "",
+      "countryCode": "CA"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CA",
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "remediation"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://crawfordtech.com/event/41st-annual-csun-assistive-technology-conference/",
+        "label": "Own event page: exhibiting at CSUN 2026 (Anaheim, Mar 10-13) with accessible document / alternate-format services; also lists M-Enabling Summit; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "grackledocs",
+    "name": "GrackleDocs",
+    "website": "grackledocs.com",
+    "hq": {
+      "city": "",
+      "countryCode": "CA"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CA",
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "remediation"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.grackledocs.com/en/events/csun-assistive-technology-conference-2026/",
+        "label": "Own event page: attending CSUN 2026; document accessibility solutions and services (Booth #1015 at CSUN 2025); checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "microassist",
+    "name": "Microassist",
+    "website": "microassist.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.microassist.com/digital-accessibility/csun/",
+        "label": "Own page: Microassist team attends CSUN Assistive Technology Conference; digital accessibility audit and training services; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "qualitylogic",
+    "name": "QualityLogic",
+    "website": "qualitylogic.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.qualitylogic.com/knowledge-center/takeaways-from-the-40th-annual-csun-conference/",
+        "label": "Own recap of attending the 40th CSUN conference (2025); QA firm with accessibility testing services; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "intopia",
+    "name": "Intopia",
+    "website": "intopia.digital",
+    "hq": {
+      "city": "",
+      "countryCode": "AU"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AU",
+      "NZ",
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://intopia.digital/articles/8-things-we-learnt-at-csun/",
+        "label": "Own recap: first-time booth exhibitor and session presenters at CSUN 2025; accessibility and inclusive design consultancy; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "accessibil-it",
+    "name": "Accessibil-IT",
+    "website": "accessibilit.com",
+    "hq": {
+      "city": "",
+      "countryCode": "CA"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CA",
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.accessibilit.com/blog/visit-accessibil-csun-2018/",
+        "label": "Own post: attended CSUN for 6th year, spoke on document accessibility strategies; PDF accessibility services firm; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "tamman",
+    "name": "Tamman",
+    "website": "tammaninc.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://tammaninc.com/learn/tamman-and-chax-merger/",
+        "label": "Tamman and Chax invited attendees to meet them at CSUN 2024 (Anaheim Marriott); accessibility assessments and consulting; checked 2026-08-04"
+      },
+      {
+        "url": "https://tammaninc.com/assessments",
+        "label": "Accessibility assessment services page; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "usablenet",
+    "name": "UsableNet",
+    "website": "usablenet.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "monitoring"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.csun.edu/cod/conference/ebb/rbk/2024/index.php/public/exhibitors/view/630",
+        "label": "CSUN Conference 2024 official exhibitor listing surfaced for UsableNet; managed accessibility service with expert testing; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "eye-square",
+    "name": "eye square",
+    "website": "eye-square.com",
+    "hq": {
+      "city": "",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de",
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.eye-square.com/en/axe-con-conference-2024/",
+        "label": "Own page: community sponsor of axe-con 2024; checked 2026-08-04"
+      },
+      {
+        "url": "https://www.eye-square.com/en/accessibility-audit/",
+        "label": "Manual accessibility audit service by accessibility specialists; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "vision-australia-digital-access",
+    "name": "Vision Australia Digital Access",
+    "website": "digitalaccesstraining.com",
+    "hq": {
+      "city": "",
+      "countryCode": "AU"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AU"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.digitalaccesstraining.com/pages/articles?p=csun-2025-insights-vision-australia-staff-share-their-experience",
+        "label": "Vision Australia Digital Access staff attended CSUN 2025 (own recap article); consulting/training service arm of Vision Australia; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "abledocs",
+    "name": "AbleDocs",
+    "website": "abledocs.com",
+    "hq": {
+      "city": "",
+      "countryCode": "CA"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CA",
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "remediation"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://martechseries.com/mobile/apps-for-business/abledocs-launches-adreader-at-the-37th-annual-csun-assistive-technology-conference/",
+        "label": "Launched ADReader at the 37th Annual CSUN Assistive Technology Conference (2022); document accessibility services company; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "continual-engine",
+    "name": "Continual Engine",
+    "website": "continualengine.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "remediation"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.continualengine.com/events/",
+        "label": "Own events page: presenting and exhibiting at CSUN (incl. CSUN 2025 session on PREP); PDF/document remediation services; checked 2026-08-04"
+      },
+      {
+        "url": "https://remediation-services.continualengine.com/",
+        "label": "PDF & document remediation and accessibility consulting services; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "apex-covantage",
+    "name": "Apex CoVantage",
+    "website": "apexcovantage.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "remediation"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.apexcovantage.com/about/news-events/2026-csun-assistive-technology-conference",
+        "label": "Own page: participating in the 41st CSUN AT Conference (2026), showcasing accessibility solutions/services; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "braille-institute-access-solutions",
+    "name": "Braille Institute Access Solutions",
+    "website": "brailleinstitute.org",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.brailleinstitute.org/access-solutions-consulting/",
+        "label": "Access Solutions consulting arm (workplace audits, user testing, accommodation plans) attending CSUN 2026 (Mar 9-13, Anaheim); checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "wcag-nl",
+    "name": "WCAG.nl",
+    "website": "wcag.nl",
+    "hq": {
+      "city": "",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://audit.wcag.nl/",
+        "label": "Professional WCAG audits and advice on digital accessibility (Dutch); checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "eclusief",
+    "name": "Eclusief",
+    "website": "eclusief.nl",
+    "hq": {
+      "city": "",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://eclusief.nl/digitale-toegankelijkheid/",
+        "label": "Digitale toegankelijkheid audit / WCAG-toetsing service page; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "stichting-accessibility",
+    "name": "Stichting Accessibility",
+    "website": "accessibility.nl",
+    "hq": {
+      "city": "",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.accessibility.nl/hoe-wij-helpen/audits",
+        "label": "WCAG-audit & quickscan services for websites and apps (foundation with paid audit arm); checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "audit-house",
+    "name": "Audit House",
+    "website": "audithouse.nl",
+    "hq": {
+      "city": "The Hague",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.audithouse.nl/",
+        "label": "WCAG 2.2 audits, trainings and advice on digital accessibility, based in The Hague; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "bureau-toegankelijkheid",
+    "name": "Bureau Toegankelijkheid",
+    "website": "bureautoegankelijkheid.nl",
+    "hq": {
+      "city": "",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.bureautoegankelijkheid.nl/wcag/wcag-audit",
+        "label": "WCAG audit service page (website accessibility testing); checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "accessible-minds",
+    "name": "Accessible Minds",
+    "website": "accessibleminds.nl",
+    "hq": {
+      "city": "",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://accessibleminds.nl/diensten/toegankelijkheidsonderzoeken-wcag",
+        "label": "Accessibility audits based on official WCAG-EM method, WCAG 2.2 compliant; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "proper-access",
+    "name": "Proper Access",
+    "website": "properaccess.nl",
+    "hq": {
+      "city": "",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.properaccess.nl/toegankelijkheidsaudit/",
+        "label": "Independent WCAG toegankelijkheidsaudit service for government and business; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "digitaal-toegankelijk",
+    "name": "Digitaal Toegankelijk",
+    "website": "digitaaltoegankelijk.nl",
+    "hq": {
+      "city": "",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://digitaaltoegankelijk.nl/diensten/toegankelijkheidsonderzoeken-audits/",
+        "label": "Toegankelijkheidsonderzoek (WCAG-EM audit) for websites and apps; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "cardan",
+    "name": "Cardan",
+    "website": "cardan.com",
+    "hq": {
+      "city": "",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.cardan.com/diensten/wcag-2-2-onderzoeken",
+        "label": "WCAG 2.2 onderzoeken (full WCAG-EM audits, quickscans, app testing); DDAI-accredited per homepage; Cardan Academy training; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "level-level",
+    "name": "Level Level",
+    "website": "level-level.com",
+    "hq": {
+      "city": "Rotterdam",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://level-level.com/accessibility/audits/",
+        "label": "Full WCAG 2.2 AA audits per WCAG-EM by IAAP-certified specialists; Rotterdam WordPress agency; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "inforges",
+    "name": "Inforges",
+    "website": "inforges.es",
+    "hq": {
+      "city": "",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://inforges.es/comercio-unificado/accesibilidad-web-para-empresas/auditoria-de-accesibilidad-web/",
+        "label": "Auditoría de accesibilidad web para empresas (WCAG / EN 301 549 context); checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "tu-web-accesible",
+    "name": "Tu Web Accesible",
+    "website": "tuwebaccesible.es",
+    "hq": {
+      "city": "",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es",
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.tuwebaccesible.es/servicios/auditoria-accesibilidad-digital/",
+        "label": "Auditoría de accesibilidad digital WCAG 2.2 service page (also in English); checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "accesit-inclusivo",
+    "name": "Accesit Inclusivo",
+    "website": "acctua.eu",
+    "hq": {
+      "city": "",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.acctua.eu/auditoria-web/",
+        "label": "Auditoría de accesibilidad de páginas web service page; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "metadrop",
+    "name": "Metadrop",
+    "website": "metadrop.net",
+    "hq": {
+      "city": "",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://metadrop.net/es/servicios/auditorias-drupal/auditoria-de-accesibilidad-y-consultoria-experta",
+        "label": "Auditoría de accesibilidad y consultoría experta (WCAG y EAA); checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "auditores-accesibilidad",
+    "name": "Auditores Accesibilidad",
+    "website": "auditoresaccesibilidad.com",
+    "hq": {
+      "city": "",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://auditoresaccesibilidad.com/",
+        "label": "Auditoría accesibilidad WCAG 2.2 specialist firm; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "usable-y-accesible",
+    "name": "Usable y Accesible",
+    "website": "usableyaccesible.com",
+    "hq": {
+      "city": "",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "http://www.usableyaccesible.com/servicios.php",
+        "label": "Services: auditoría de accesibilidad, accessible PDFs, formación en accesibilidad digital; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ilunion-accesibilidad",
+    "name": "ILUNION Accesibilidad",
+    "website": "ilunionconsultoria.com",
+    "hq": {
+      "city": "",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.ilunionconsultoria.com/es/accesibilidad/auditoria-certificaciones",
+        "label": "Auditoría de accesibilidad y certificaciones (ILUNION, Grupo Social ONCE; 200+ sites certified since 2003); checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "sito-web-accessibile",
+    "name": "Sito Web Accessibile",
+    "website": "sito-web-accessibile.it",
+    "hq": {
+      "city": "",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://sito-web-accessibile.it/",
+        "label": "Accessibility analysis/consulting vs WCAG AA for companies and PA; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "siti-accessibili",
+    "name": "Siti Accessibili",
+    "website": "sitiaccessibili.it",
+    "hq": {
+      "city": "",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://sitiaccessibili.it/",
+        "label": "Accessibilità digitale: consulenza, formazione e valutazione for websites, web apps, mobile; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "sernicola-labs",
+    "name": "Sernicola Labs",
+    "website": "sernicola-labs.com",
+    "hq": {
+      "city": "",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.sernicola-labs.com/servizi/verifica-accessibilita-siti-web-app-mobile/",
+        "label": "Verifica accessibilità siti web e app mobile (in-depth audits); checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "gmg-net",
+    "name": "Gmg net",
+    "website": "gmgnet.com",
+    "hq": {
+      "city": "",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.gmgnet.com/audit-accessibilita-web/",
+        "label": "Audit e adeguamento accessibilità web - conformità EAA e WCAG; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "egg-design",
+    "name": "Egg Design",
+    "website": "eggdesign.ie",
+    "hq": {
+      "city": "",
+      "countryCode": "IE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IE"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://eggdesign.ie/website-services-ireland/web-accessibility-audit-wcag-compliance-ireland/",
+        "label": "Web accessibility audits and remediation toward WCAG 2.2 AA for Irish businesses; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "usability-ie",
+    "name": "Usability.ie",
+    "website": "usability.ie",
+    "hq": {
+      "city": "Dublin",
+      "countryCode": "IE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IE"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://usability.ie/",
+        "label": "UX research arm of Dublin studio digitaldesign.ie offering WCAG 2.1 AA accessibility audits; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "path-ie",
+    "name": "Path",
+    "website": "path.ie",
+    "hq": {
+      "city": "",
+      "countryCode": "IE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IE"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.path.ie/services/wcag-accessibility-audits",
+        "label": "Independent WCAG accessibility audits for websites and apps by certified specialists; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "digital-strategy-ie",
+    "name": "Digital Strategy Consultants",
+    "website": "digitalstrategy.ie",
+    "hq": {
+      "city": "",
+      "countryCode": "IE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IE"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://digitalstrategy.ie/services/web-development/web-accessibility-audit/",
+        "label": "Web accessibility audit agency service page, Ireland; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "accessible-ie",
+    "name": "Accessible.ie",
+    "website": "accessible.ie",
+    "hq": {
+      "city": "",
+      "countryCode": "IE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IE"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://accessible.ie/",
+        "label": "EAA compliance: design reviews, audits (WCAG 2.1 AA, e.g. Studyclix audit), code updates; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ia-labs",
+    "name": "IA Labs",
+    "website": "ialabs.ie",
+    "hq": {
+      "city": "",
+      "countryCode": "IE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IE"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://ialabs.ie/services/",
+        "label": "Digital accessibility services (Inclusion and Accessibility Labs); checked 2026-08-04"
+      },
+      {
+        "url": "https://www.siliconrepublic.com/enterprise/ireland-accessible-websites-ia-labs-ncbi",
+        "label": "IA Labs/NCBI report auditing 40+ Irish websites and apps for WCAG compliance; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ilikecake",
+    "name": "Ilikecake",
+    "website": "ilikecake.ie",
+    "hq": {
+      "city": "",
+      "countryCode": "IE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IE"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://dyslexia.ie/ensuring-compliance-with-the-european-accessibility-act/",
+        "label": "Listed among Irish companies specialising in accessibility audits/consultancy (WCAG-EM testing); checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "content-design-ireland",
+    "name": "Content Design Ireland",
+    "website": "contentdesignireland.ie",
+    "hq": {
+      "city": "",
+      "countryCode": "IE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IE"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.contentdesignireland.ie/audits",
+        "label": "Content accessibility audits service page; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "waca",
+    "name": "WACA - Web Accessibility Certificate Austria",
+    "website": "waca.at",
+    "hq": {
+      "city": "Vienna",
+      "countryCode": "AT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AT",
+      "DE"
+    ],
+    "languages": [
+      "de",
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://waca.at/en/waca",
+        "label": "Independent Austrian testing/certification body: WCAG 2.2 AA audits and certificates based on EN 301 549; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "myability",
+    "name": "myAbility",
+    "website": "myability.org",
+    "hq": {
+      "city": "",
+      "countryCode": "AT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AT"
+    ],
+    "languages": [
+      "de",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.myability.org/en/services/accessibility/digital-accessibility",
+        "label": "Digital accessibility checks, consulting and workshops aligned with WCAG 2.2 AA and EN 301 549 (Austrian BaFG context); checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "rockit",
+    "name": "rockit",
+    "website": "rockit.at",
+    "hq": {
+      "city": "Vienna",
+      "countryCode": "AT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AT"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.rockit.at/leistungen/barrierefreiheit",
+        "label": "TYPO3 agency Vienna: WCAG 2.1 AA audit & Umsetzung (BFSG/accessibility law context); checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "purin",
+    "name": "Purin",
+    "website": "purin.at",
+    "hq": {
+      "city": "",
+      "countryCode": "AT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AT"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.purin.at/barrierefreiheitsaudit/",
+        "label": "Barrierefreiheits-Audit (WCAG) service page, Austria; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "eleven-ways",
+    "name": "Eleven Ways",
+    "website": "elevenways.be",
+    "hq": {
+      "city": "",
+      "countryCode": "BE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "BE"
+    ],
+    "languages": [
+      "nl",
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://elevenways.be/nl/zo-helpen-we/audits",
+        "label": "Accessibility audits service page (Belgian accessibility agency); checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "anysurfer",
+    "name": "AnySurfer",
+    "website": "anysurfer.be",
+    "hq": {
+      "city": "",
+      "countryCode": "BE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "BE"
+    ],
+    "languages": [
+      "nl",
+      "fr",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.anysurfer.be/en/services/audits",
+        "label": "Audits assessing compliance with WCAG 2.2 A/AA criteria; Belgian accessibility label organisation; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "funka",
+    "name": "Funka",
+    "website": "funka.com",
+    "hq": {
+      "city": "",
+      "countryCode": "SE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "SE"
+    ],
+    "languages": [
+      "sv",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.funka.com/contentassets/412c1718052a47e09c5a13146f17e944/lagesanalys-hur-ligger-sverige-till-i-forhallande-till-wcag-2-niva-aa-funka-nu.pdf",
+        "label": "Funka WCAG analysis report; firm analyzes, user-tests and educates on accessibility; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "axess-lab",
+    "name": "Axess Lab",
+    "website": "axesslab.com",
+    "hq": {
+      "city": "",
+      "countryCode": "SE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "SE"
+    ],
+    "languages": [
+      "sv",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://axesslab.com/sv/tjanster/tillganglighetsgranskning-av-expert/",
+        "label": "Expert tillgänglighetsgranskning (WCAG audit) service with prioritized issues and code examples; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "etu",
+    "name": "ETU",
+    "website": "etu.se",
+    "hq": {
+      "city": "",
+      "countryCode": "SE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "SE"
+    ],
+    "languages": [
+      "sv"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://etu.se/digital-tillganglighet/tillganglighetsgranskningar/",
+        "label": "Tillgänglighetsgranskningar per WCAG, DOS-lagen, LPTT/EAA and EN 301 549, two experts per assignment; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "sensus",
+    "name": "Sensus",
+    "website": "sensus.dk",
+    "hq": {
+      "city": "",
+      "countryCode": "DK"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DK"
+    ],
+    "languages": [
+      "da",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://sensus.dk/digital-tilgaengelighed/",
+        "label": "Formal accessibility testing vs WCAG 2.1 (automated + manual), consulting, courses and workshops; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "inklusio",
+    "name": "Inklusio",
+    "website": "inklusio.dk",
+    "hq": {
+      "city": "",
+      "countryCode": "DK"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DK"
+    ],
+    "languages": [
+      "da"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://inklusio.dk/products/test/",
+        "label": "Accessibility testing of digital solutions against WCAG standards; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "peytz-co",
+    "name": "Peytz & Co",
+    "website": "peytz.dk",
+    "hq": {
+      "city": "",
+      "countryCode": "DK"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DK"
+    ],
+    "languages": [
+      "da"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.peytz.dk/creative-digital-tilg%C3%A6ngelighed",
+        "label": "Webtilgængelighed og WCAG: audit, uddannelse og rådgivning; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "siteimprove",
+    "name": "Siteimprove",
+    "website": "siteimprove.com",
+    "hq": {
+      "city": "",
+      "countryCode": "DK"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DK",
+      "US"
+    ],
+    "languages": [
+      "en",
+      "da"
+    ],
+    "services": [
+      "audit",
+      "monitoring",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.siteimprove.com/testing-services/",
+        "label": "Certified team of manual accessibility testers; expert manual audits confirmed (beyond platform product); checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "digitelle",
+    "name": "Digitelle",
+    "website": "digitelle.no",
+    "hq": {
+      "city": "",
+      "countryCode": "NO"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NO"
+    ],
+    "languages": [
+      "no"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://digitelle.no/tjenester/universell-utforming/",
+        "label": "Universell utforming / WCAG-revisjon: combined automated+manual methodology per uutilsynet framework, test reports and improvement plans; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "nettkonsult",
+    "name": "Nettkonsult",
+    "website": "nettkonsult.no",
+    "hq": {
+      "city": "",
+      "countryCode": "NO"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NO"
+    ],
+    "languages": [
+      "no"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://nettkonsult.no/tjeneste/universell-utforming/",
+        "label": "WCAG 2.1 analysis, improvements, testing and documentation for websites/apps; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "avaava",
+    "name": "Avaava",
+    "website": "avaava.fi",
+    "hq": {
+      "city": "",
+      "countryCode": "FI"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FI"
+    ],
+    "languages": [
+      "fi"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://avaava.fi/palvelut/saavutettavuus/",
+        "label": "Saavutettavuuspalvelut: experts ensure services meet WCAG 2.1/2.2 criteria; performed public-sector audits (e.g. puoluerekisteri.fi 2018); checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "annanpura",
+    "name": "Annanpura",
+    "website": "annanpura.fi",
+    "hq": {
+      "city": "",
+      "countryCode": "FI"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FI"
+    ],
+    "languages": [
+      "fi"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://annanpura.fi/palvelut/saavutettavuuspalvelut/saavutettavuustutkimukset-ja-testaukset/",
+        "label": "Saavutettavuustutkimukset ja -testaukset service page; social enterprise owned by the Finnish Federation of the Visually Impaired; checked 2026-08-04"
+      },
+      {
+        "url": "https://www.hel.fi/hel2/tietokeskus/data/dokumentit/HRI_saavutettavuustestausraportti.pdf",
+        "label": "Published accessibility test report for www.hri.fi by Annanpura Oy (2020); checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "eficode",
+    "name": "Eficode",
+    "website": "eficode.com",
+    "hq": {
+      "city": "",
+      "countryCode": "FI"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FI"
+    ],
+    "languages": [
+      "fi",
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.eficode.com/fi/blog/kayttajakokemus-ja-saavutettavuusasiantuntijan-ensimmainen-vuosi",
+        "label": "Eficode accessibility specialists conduct third-party accessibility assessments against WCAG criteria; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "vision-australia",
+    "name": "Vision Australia (Digital Access)",
+    "website": "visionaustralia.org",
+    "hq": {
+      "city": "",
+      "countryCode": "AU"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AU"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "iaap-org-member"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://visionaustralia.org/services/digital-access/about-us",
+        "label": "Vision Australia: IAAP Founding Member 2014, Digital Access consulting arm; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "open-doors-organization",
+    "name": "Open Doors Organization",
+    "website": "opendoorsnfp.org",
+    "hq": {
+      "city": "Chicago",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "ada"
+    ],
+    "industries": [
+      "travel"
+    ],
+    "certs": [
+      {
+        "kind": "iaap-org-member"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.accessibilityassociation.org/content.asp?contentid=201",
+        "label": "IAAP Founding Member Open Doors Org (accessibilityassociation.org) via search, 2026-08-04"
+      },
+      {
+        "url": "https://opendoorsnfp.org/consulting/",
+        "label": "accessibility consulting services for travel/tourism; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "skynet-technologies",
+    "name": "Skynet Technologies",
+    "website": "skynettechnologies.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US",
+      "remote-global"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada",
+      "section-508"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "iaap-org-member"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.skynettechnologies.com/web-accessibility-consultant",
+        "label": "states organizational member of W3C and IAAP; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "sierra7",
+    "name": "Sierra7, Inc.",
+    "website": "sierra7.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "consulting"
+    ],
+    "standards": [
+      "section-508"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "iaap-org-member"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://sierra7.com/sierra7-inc-announces-iaap-membership-enhancing-capabilities-in-government-contracting/",
+        "label": "own announcement of IAAP organizational membership, 2024-07-30; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "abilitynet",
+    "name": "AbilityNet",
+    "website": "abilitynet.org.uk",
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB",
+      "remote-global"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "iaap-org-member"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://abilitynet.org.uk/about-abilitynet/iaap",
+        "label": "AbilityNet hosts the UK Chapter of IAAP and holds IAAP membership; via search, 2026-08-04"
+      },
+      {
+        "url": "https://abilitynet.org.uk/accessibility-services/products-and-services/accessibility-consultancy",
+        "label": "accessibility consultancy services with IAAP-certified consultants; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "axes4",
+    "name": "axes4 GmbH",
+    "website": "axes4.com",
+    "hq": {
+      "city": "Zürich",
+      "countryCode": "CH"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CH",
+      "DE",
+      "AT"
+    ],
+    "languages": [
+      "de",
+      "en"
+    ],
+    "services": [
+      "consulting",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "iaap-org-member"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://iaap-dach.org/iaap-dach-2/gruendungsmitglieder.html",
+        "label": "founding member of IAAP D-A-CH chapter (Swiss document-accessibility company, Zurich); via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "hilfsgemeinschaft",
+    "name": "Hilfsgemeinschaft der Blinden und Sehschwachen Österreichs",
+    "website": "hilfsgemeinschaft.at",
+    "hq": {
+      "city": "",
+      "countryCode": "AT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AT"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "iaap-org-member"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://iaap-dach.org/iaap-dach-2/gruendungsmitglieder.html",
+        "label": "founding member of IAAP D-A-CH; advises companies and authorities on accessibility; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "zoonou",
+    "name": "Zoonou",
+    "website": "zoonou.com",
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "iaap-org-member"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://zoonou.com/our-services/digital-accessibility-services/",
+        "label": "states membership of the International Association of Accessibility Professionals; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "the-pixel",
+    "name": "The Pixel",
+    "website": "thepixel.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "iaap-org-member"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.thepixel.com/insight-news/the-pixel-has-joined-the-international-association-of-accessibility-professionals-iaap-as-associate-members",
+        "label": "own announcement: joined IAAP as associate members, offers accessibility auditing service; via search, 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "nomensa",
+    "name": "Nomensa",
+    "website": "nomensa.com",
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.nomensa.com/services/web-accessibility/",
+        "label": "web accessibility services page: WCAG 2.2 manual audits, maturity assessments, remediation support; NHS.uk audits, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "user-vision",
+    "name": "User Vision",
+    "website": "uservision.co.uk",
+    "hq": {
+      "city": "Edinburgh",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "monitoring",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa",
+      "section-508"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://uservision.co.uk/services/accessibility",
+        "label": "accessibility services page: WCAG 2.2 AA audits, EAA and Section 508; Edinburgh HQ (55 North Castle Street), Access360 managed monitoring, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "hassell-inclusion",
+    "name": "Hassell Inclusion",
+    "website": "hassellinclusion.com",
+    "hq": {
+      "city": "London",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "training",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://hassellinclusion.com/",
+        "label": "UK accessibility consultancy (Prof Jonathan Hassell, ISO 30071-1 lead author); training + strategic consultancy, London per company profiles, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "system-concepts",
+    "name": "System Concepts",
+    "website": "system-concepts.com",
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.system-concepts.com/user-experience-and-usability/accessibility/digital-accessibility-audits/",
+        "label": "digital accessibility audits page: manual expert audits of websites/apps/documents against WCAG, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "test-partners",
+    "name": "Test Partners",
+    "website": "testpartners.co.uk",
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.testpartners.co.uk/accessibility_testing.htm",
+        "label": "accessibility testing/training/consultancy page: manual WCAG testing, 400+ a11y projects since 2002, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "hex-productions",
+    "name": "HeX Productions",
+    "website": "horlix.com",
+    "hq": {
+      "city": "Nottingham",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.horlix.com/services/accessibility-audit/",
+        "label": "accessibility audit booking page; Nottingham agency, audits with Shaw Trust pan-disabled testing partnership, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "nexer-digital",
+    "name": "Nexer Digital",
+    "website": "nexerdigital.com",
+    "hq": {
+      "city": "Macclesfield",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.nexerdigital.com/what-we-do/accessibility/",
+        "label": "accessibility services page: manual WCAG audits, training, strategy; Macclesfield & Cambridge offices; G-Cloud 14 accessibility services supplier, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "shaw-trust-accessibility-services",
+    "name": "Shaw Trust Accessibility Services",
+    "website": "accessibility-services.co.uk",
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.accessibility-services.co.uk/services/digital-accessibility/digital-accessibility-assessment/",
+        "label": "digital accessibility assessment page: WCAG 2.2 A/AA audits by disabled testers + technical auditors (service arm of Shaw Trust), live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "jim-byrne-associates",
+    "name": "Jim Byrne Associates",
+    "website": "jimbyrne.co.uk",
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://jimbyrne.co.uk/accessibility-testing-auditing/",
+        "label": "WCAG 2.2 auditing/testing services page (audits from GBP 2500, ISO 30071:2019), live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "damteq",
+    "name": "Damteq",
+    "website": "damteq.co.uk",
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.damteq.co.uk/wcag-audits/",
+        "label": "WCAG audits & compliance testing page (manual + automated testing, WCAG/EAA checks & fixes), live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "mixd",
+    "name": "Mixd",
+    "website": "mixd.co.uk",
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.mixd.co.uk/services/web-accessibility/",
+        "label": "web accessibility service page: WCAG 2.2 audits, 50+ public-sector audits (NHS focus), training & consultancy, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "all-able",
+    "name": "All Able",
+    "website": "allable.co.uk",
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.allable.co.uk/services/accessibility-audits",
+        "label": "accessibility audits service page (web systems, mobile apps, 3rd-party software); PSBAR accessibility statements specialists, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "web-usability",
+    "name": "Web Usability",
+    "website": "webusability.co.uk",
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "monitoring",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.webusability.co.uk/what-we-do/test/accessibility-audits/",
+        "label": "accessibility audit service page: manual WCAG 2.2 evaluation with assistive tech; monitoring and support packages, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "dig-inclusion",
+    "name": "Dig Inclusion",
+    "website": "diginclusion.com",
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://diginclusion.com/training/web-accessibility/advanced-web-accessibility-testing/",
+        "label": "own training/services site; audits to WCAG 2.2 A/AA/AAA, mobile + PDF audits, disabled user testing; part of Nile group since 2023, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "tetralogical",
+    "name": "TetraLogical",
+    "website": "tetralogical.com",
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://tetralogical.com/about/people/",
+        "label": "UK inclusive-design and accessibility consultancy founded 2019 by Leonie Watson (W3C board); traditional accessibility consultancy per company description, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "bunnyfoot",
+    "name": "Bunnyfoot",
+    "website": "bunnyfoot.com",
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.bunnyfoot.com/accessibility-auditing-and-evaluation/",
+        "label": "accessibility auditing & evaluation page: manual + automated audits, a11y user testing, strategy, training; 22+ years, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "cyber-duck",
+    "name": "Cyber-Duck",
+    "website": "cyber-duck.co.uk",
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.cyber-duck.co.uk/accessibility",
+        "label": "accessibility page: WCAG audits (automated + manual sample checks), PDF accessibility guidance and training, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "torchbox",
+    "name": "Torchbox",
+    "website": "torchbox.com",
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://torchbox.com/services/digital-products-services/accessibility/accessibility-audits/",
+        "label": "accessibility audits service page: WCAG 2.2 compliance audits, automated + manual assistive-tech testing, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "access-by-design",
+    "name": "Access by Design",
+    "website": "accessbydesign.uk",
+    "hq": {
+      "city": "Chichester",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://accessbydesign.uk/accessibility-audit/",
+        "label": "website accessibility audit page: expert manual analysis + disabled user testing against WCAG 2.2; Chichester-based, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ten10",
+    "name": "Ten10",
+    "website": "ten10.com",
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://ten10.com/consultancy/software-testing-quality-assurance-services/accessibility-testing/",
+        "label": "accessibility testing services page: automated + manual WCAG testing and guidance through WCAG self-certification; UK testing consultancy, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "snook",
+    "name": "Snook",
+    "website": "wearesnook.com",
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.digitalmarketplace.service.gov.uk/g-cloud/services/565524748641661",
+        "label": "G-Cloud 'Accessibility support' listing by Snook (accessibility testing/QA validation, nbd.snook@wearesnook.com), live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ascentiq-solutions",
+    "name": "Ascentiq Solutions",
+    "website": "ascentiqsolutions.co.uk",
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://ascentiqsolutions.co.uk/accessibility-testing-services-in-uk/",
+        "label": "UK accessibility testing services page (managed testing & QA services company), live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "silktide",
+    "name": "Silktide",
+    "website": "silktide.com",
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "monitoring",
+      "training",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://silktide.com/solutions/accessibility/",
+        "label": "accessibility solution page: automated testing platform plus in-house experts for manual accessibility audits, training and consultancy, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "capita",
+    "name": "Capita",
+    "website": "capita.com",
+    "hq": {
+      "city": "",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud/services/171344779614910",
+        "label": "G-Cloud listing 'Accessibility Auditing (Capita)' on UK Digital Marketplace, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "weco-digital-accessibility",
+    "name": "Digital Accessibility by WeCo",
+    "website": "theweco.com",
+    "hq": {
+      "city": "Stillwater",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "section-508",
+      "ada",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://theweco.com/accessibility-audit/",
+        "label": "manual accessibility audits page; Section 508/ADA/WCAG testing by professionals living with disabilities; Stillwater MN, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "equal-entry",
+    "name": "Equal Entry",
+    "website": "equalentry.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://equalentry.com/services/accessibility-auditing/",
+        "label": "accessibility auditing & testing service page; IT accessibility consulting firm founded 2012, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "knowbility",
+    "name": "Knowbility",
+    "website": "knowbility.org",
+    "hq": {
+      "city": "Austin",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://knowbility.org/services/audits",
+        "label": "accessibility testing & auditing services page (nonprofit with paid services arm, Austin TX); also listed on AskJAN vendor list, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "perkins-access",
+    "name": "Perkins Access",
+    "website": "perkinsaccess.org",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://askjan.org/solutions/Website-Accessibility-Vendors.cfm",
+        "label": "AskJAN website accessibility vendors list; digital accessibility consulting arm of Perkins School for the Blind offering audit services, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "testpros",
+    "name": "TestPros",
+    "website": "testpros.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat",
+      "consulting"
+    ],
+    "standards": [
+      "section-508",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://testpros.com/services/accessibility/",
+        "label": "accessibility audit services page; Section 508 audits/remediation/consulting for US federal, state, local government since 1988; VPAT services page confirmed, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "new-editions-consulting",
+    "name": "New Editions Consulting",
+    "website": "neweditions.net",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "section-508",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.neweditions.net/services/accessibility-services",
+        "label": "accessibility services page: Section 508 compliance testing, WCAG conformance, Trusted Tester process; TSA 508 compliance project; also on AskJAN vendor list, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "webaim",
+    "name": "WebAIM",
+    "website": "webaim.org",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://webaim.org/services/evaluation/",
+        "label": "paid website evaluation/audit services page (WCAG compliance reports, site scanning, certification, training); also on AskJAN vendor list, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "bureau-of-internet-accessibility",
+    "name": "Bureau of Internet Accessibility",
+    "website": "boia.org",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada",
+      "section-508"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.boia.org/accessibility-services-for-digital-compliance/accessibility-audits/",
+        "label": "WCAG 2.1 A/AA audit service page; WCAG, ADA and Section 508 audits since 2001, four-point testing with assistive-tech users, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "afixt",
+    "name": "AFixt",
+    "website": "afixt.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat",
+      "consulting"
+    ],
+    "standards": [
+      "ada",
+      "wcag-2-2",
+      "section-508",
+      "eaa",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://afixt.com/about-us/",
+        "label": "founded by Karl Groves; full array of auditing, consulting, remediation, VPAT/ACR development for ADA, WCAG, Section 508, EAA, EN 301 549, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "accessible-web",
+    "name": "Accessible Web",
+    "website": "accessibleweb.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://accessibleweb.com/services/wcag-accessibility-audits/",
+        "label": "WCAG accessibility audit service page; VPAT/ACR and certification services confirmed on services pages, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "prime-access-consulting",
+    "name": "Prime Access Consulting",
+    "website": "pac.bz",
+    "hq": {
+      "city": "Research Triangle Park",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://pac.bz/accessibility/",
+        "label": "accessibility firm led by Sina Bahram, Research Triangle Park NC; digital and physical accessibility solutions for museums, labs, corporations, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "chax-training-and-consulting",
+    "name": "Chax Training and Consulting",
+    "website": "chaxtc.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "training",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://chaxtc.com/accessibility-services/",
+        "label": "accessibility services page: document (PDF) accessibility training, testing and remediation; Chad Chelius principal, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "216digital",
+    "name": "216digital",
+    "website": "216digital.com",
+    "hq": {
+      "city": "Cleveland",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "remediation"
+    ],
+    "standards": [
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://vendors.accessibility.com/vendor/216digital/",
+        "label": "accessibility.com vendor directory listing; Cleveland-area agency, national ADA remediation and website compliance, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "accessibility-shield",
+    "name": "Accessibility Shield",
+    "website": "accessibilityshield.com",
+    "hq": {
+      "city": "Norristown",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "monitoring"
+    ],
+    "standards": [
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://vendors.accessibility.com/vendor/accessibility-shield/",
+        "label": "accessibility.com vendor directory listing; Norristown PA; continuous scanning, manual testing and full remediation for ADA compliance, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "converge-accessibility",
+    "name": "Converge Accessibility",
+    "website": "convergeaccessibility.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "consulting",
+      "vpat",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://convergeaccessibility.com/",
+        "label": "WCAG compliance and litigation services; legal + technical consulting, VPAT/ACR assistance; advisors to US and Canadian governments, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "accessibility-works",
+    "name": "Accessibility.Works",
+    "website": "accessibility.works",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.accessibility.works/services/website-ada-accessibility-compliance-audit/",
+        "label": "ADA website compliance auditing service page (WCAG/ADA audits & consulting), live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "accessible-org",
+    "name": "Accessible.org",
+    "website": "accessible.org",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "vpat",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://accessible.org/services/audits/",
+        "label": "WCAG accessibility audits service page, live SERP 2026-08-04"
+      },
+      {
+        "url": "https://accessible.org/services/vpat/",
+        "label": "VPAT/ACR services page (audits producing Accessibility Conformance Reports), live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "applause",
+    "name": "Applause",
+    "website": "applause.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.applause.com/accessibility-testing/",
+        "label": "managed accessibility testing services with PWD testers and accessibility experts; remediation planning support, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "braille-works",
+    "name": "Braille Works",
+    "website": "brailleworks.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "section-508",
+      "ada",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://brailleworks.com/solutions/508-document-compliance/",
+        "label": "508 document compliance services (accessible PDF/braille/large print/audio since 1994; third-party document compliance checks), live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "integrity-xd",
+    "name": "Integrity",
+    "website": "integrityxd.com",
+    "hq": {
+      "city": "St. Louis",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.integrityxd.com/blog/what-is-an-accessibility-audit-and-why-inclusion-matters",
+        "label": "St Louis US digital agency; own article presenting its accessibility audit offering, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "accessability-officer",
+    "name": "AccessAbility Officer",
+    "website": "accessabilityofficer.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "ada",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://accessabilityofficer.com/digital-accessibility-audits",
+        "label": "Title II ADA digital accessibility audits, WCAG 2.1 AA testing by certified experts; runs Certified AccessAbility Testing program (per Equal Entry), live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "equalize-digital",
+    "name": "Equalize Digital",
+    "website": "equalizedigital.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://equalizedigital.com/",
+        "label": "site title 'Website Accessibility Audits, Remediation, & Consulting'; WordPress accessibility specialists (Accessibility Checker plugin), live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ablr",
+    "name": "Ablr",
+    "website": "ablr360.com",
+    "hq": {
+      "city": "Raleigh",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://ablr360.com/accessibility/",
+        "label": "digital accessibility services page: manual accessibility audits, usability testing, consulting, training; Raleigh NC disability-inclusion firm, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "access-armada",
+    "name": "Access Armada",
+    "website": "accessarmada.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "ada",
+      "wcag-2-2",
+      "section-508"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.accessarmada.com/services/",
+        "label": "web accessibility services page: ADA/WCAG/Section 508 audits (web, mobile apps), PDF and email remediation; listed on InclusionHub, live SERP 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "online-ada",
+    "name": "Online ADA",
+    "website": "onlineada.com",
+    "hq": {
+      "city": "",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://whoisaccessible.com/reviews/online-ada/",
+        "label": "review confirming manual WCAG/Section 508 auditing by expert team plus document remediation and compliance management; onlineada.com, live SERP 2026-08-04"
+      }
+    ],
     "lastVerified": "2026-08-04"
   }
 ]
