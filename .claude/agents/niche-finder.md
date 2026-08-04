@@ -242,6 +242,16 @@ Generate 20–50 derivative micro-niches.
 
 Create a detailed build plan with milestones, KPIs and monetization timeline.
 
+## Live Data (DataForSEO)
+
+If the environment variables `DATAFORSEO_LOGIN` and `DATAFORSEO_PASSWORD` are set, you MUST use live data instead of qualitative estimates:
+
+- `node scripts/seo-data.mjs balance` — check API access and remaining balance first.
+- `node scripts/seo-data.mjs volume --keywords <file.json> --location <US|UK|DE|ES|FR|IT|NL|PL>` — real search volumes, CPC, and competition for a JSON array of keywords. Prepared keyword sets live in `research/keywords-*.json`.
+- `node scripts/seo-data.mjs serp --query "<q>" --location <...>` — live top-10 Google SERP for a query.
+
+Report volumes/CPC as measured values with the location and date. If the env vars are missing or the API is unreachable (e.g. network policy denial), fall back to qualitative bands and state that explicitly.
+
 ## Output Rules
 
 - Be concise.
