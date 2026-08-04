@@ -3,42 +3,94 @@
     "slug": "agentur-barrierefreie-website",
     "hqCity": "Leipzig",
     "headcountBand": "1",
-    "languages": ["de"],
-    "services": ["audit", "consulting", "training"],
-    "standards": ["wcag-2-2", "en-301-549", "eaa"],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "eaa"
+    ],
     "descriptionEn": "Agentur barrierefreie Website is the digital accessibility consultancy of Katja Schulz (kommundis alpha), based in Leipzig. She audits websites and online shops for barriers, builds remediation roadmaps, advises design, editorial and development teams, and runs customised workshops and talks. Her guidance references WCAG 2.2, EN 301 549 and the German BFSG. She is CPACC-certified, an IAAP professional member, and studied web accessibility at the Stuttgart Media University competence center.",
     "descriptionDe": "Agentur barrierefreie Website ist das Beratungsangebot von Katja Schulz (kommundis alpha) aus Leipzig für digitale Barrierefreiheit. Sie prüft Websites und Online-Shops in Barrierefreiheits-Audits, entwickelt Roadmaps, berät Design-, Redaktions- und Entwicklungsteams und führt individuelle Schulungen, Workshops und Vorträge durch. Fachliche Grundlage sind WCAG 2.2, EN 301 549 und das BFSG. Sie ist CPACC-zertifiziert, Professional Member der IAAP und absolvierte Weiterbildungen am Kompetenzzentrum Barrierefreiheit der Hochschule der Medien Stuttgart.",
     "evidence": [
-      {"url": "https://agentur-barrierefreie-website.de", "label": "Homepage (services, certifications, standards)"},
-      {"url": "https://agentur-barrierefreie-website.de/impressum", "label": "Impressum (HQ, sole proprietor)"}
+      {
+        "url": "https://agentur-barrierefreie-website.de",
+        "label": "Homepage (services, certifications, standards)"
+      },
+      {
+        "url": "https://agentur-barrierefreie-website.de/impressum",
+        "label": "Impressum (HQ, sole proprietor)"
+      }
     ]
   },
   {
     "slug": "visuellverstehen",
     "hqCity": "Flensburg",
-    "languages": ["de", "en", "da"],
-    "services": ["audit"],
+    "languages": [
+      "de",
+      "en",
+      "da"
+    ],
+    "services": [
+      "audit"
+    ],
     "descriptionEn": "visuellverstehen GmbH is a common-good-balanced digital agency headquartered in Flensburg with a second office in Dortmund. The team creates websites, web apps, mobile apps and brand designs, mainly with TYPO3, Statamic, Laravel and React, and lists digital accessibility with audits among its services, including a website accessibility audit workshop. The agency describes itself as value-oriented and climate-compensated; the site is offered in German, English, Danish and Easy Language.",
     "descriptionDe": "Die visuellverstehen GmbH ist eine gemeinwohlbilanzierte Digitalagentur mit Hauptsitz in Flensburg und einem Büro in Dortmund. Das Team entwickelt Websites, Webapps, Apps und Markenauftritte, vor allem mit TYPO3, Statamic, Laravel und React, und führt digitale Barrierefreiheit mit Audits als Leistung auf, darunter ein Website-Audit zur Barrierefreiheit. Die Agentur beschreibt sich als werteorientiert und klimakompensiert; die Website gibt es auf Deutsch, Englisch, Dänisch und in Leichter Sprache.",
     "evidence": [
-      {"url": "https://visuellverstehen.de", "label": "Homepage (services incl. accessibility audits, languages)"},
-      {"url": "https://www.visuellverstehen.de/impressum", "label": "Impressum (HQ Flensburg, Dortmund office)"},
-      {"url": "https://www.visuellverstehen.de/work/services", "label": "Services page (accessibility audit workshop)"}
+      {
+        "url": "https://visuellverstehen.de",
+        "label": "Homepage (services incl. accessibility audits, languages)"
+      },
+      {
+        "url": "https://www.visuellverstehen.de/impressum",
+        "label": "Impressum (HQ Flensburg, Dortmund office)"
+      },
+      {
+        "url": "https://www.visuellverstehen.de/work/services",
+        "label": "Services page (accessibility audit workshop)"
+      }
     ]
   },
   {
     "slug": "gehirngerecht-digital",
     "hqCity": "Stadtbergen",
     "headcountBand": "2-10",
-    "languages": ["de", "en"],
-    "services": ["audit", "training", "monitoring"],
-    "standards": ["wcag-2-2", "en-301-549", "bitv", "eaa"],
+    "languages": [
+      "de",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "bitv",
+      "eaa"
+    ],
     "descriptionEn": "Gehirngerecht Digital GmbH, based in Stadtbergen near Augsburg, is a learning platform and service provider for digital accessibility. It runs live online workshops and e-learnings for design, development, editorial and testing roles, offers BFSG accessibility audits, quick checks and testing with affected users, and provides a tool for automated and manual accessibility testing and monitoring. Materials cover WCAG 2.2, BITV test steps and EN 301 549. The about page lists a five-person team around founders Tobias Roppelt and Nina Jameson.",
     "descriptionDe": "Die Gehirngerecht Digital GmbH aus Stadtbergen bei Augsburg ist Lernplattform und Dienstleister für digitale Barrierefreiheit. Sie bietet Live-Online-Workshops und E-Learnings für Design, Entwicklung, Redaktion und Testen, dazu BFSG-Audits, Quick-Checks und Tests mit Betroffenen sowie ein Tool zum automatisierten und manuellen Testen und Monitoren von Websites. Inhalte behandeln WCAG 2.2, BITV-Prüfschritte und EN 301 549. Die Über-uns-Seite nennt ein fünfköpfiges Team um die Gründer Tobias Roppelt und Nina Jameson.",
     "evidence": [
-      {"url": "https://gehirngerecht.digital", "label": "Homepage (workshops, audits, tools, standards)"},
-      {"url": "https://gehirngerecht.digital/impressum/", "label": "Impressum (HQ Stadtbergen)"},
-      {"url": "https://gehirngerecht.digital/ueber-uns/", "label": "About page (team)"}
+      {
+        "url": "https://gehirngerecht.digital",
+        "label": "Homepage (workshops, audits, tools, standards)"
+      },
+      {
+        "url": "https://gehirngerecht.digital/impressum/",
+        "label": "Impressum (HQ Stadtbergen)"
+      },
+      {
+        "url": "https://gehirngerecht.digital/ueber-uns/",
+        "label": "About page (team)"
+      }
     ]
   },
   {
@@ -46,14 +98,27 @@
     "hqCity": "Chemnitz",
     "founded": 2008,
     "headcountBand": "11-50",
-    "languages": ["de"],
-    "services": ["consulting"],
-    "industries": ["public-sector", "education"],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "consulting"
+    ],
+    "industries": [
+      "public-sector",
+      "education"
+    ],
     "descriptionEn": "DMK E-BUSINESS GmbH is a digital agency for the public sector and B2B, founded in 2008, headquartered in Chemnitz with a second office in Potsdam and 34 employees. It builds complex web portals, corporate websites and web applications with TYPO3, Symfony and WordPress, and offers accessibility consulting and accessible web design, for example for the City of Leipzig and Leipzig University. The company is ISO 9001 and ISO 27001 certified and a TYPO3 Gold Member.",
     "descriptionDe": "Die DMK E-BUSINESS GmbH ist eine 2008 gegruendete Digitalagentur fuer den oeffentlichen Sektor und B2B mit Hauptsitz in Chemnitz, einem Buero in Potsdam und 34 Mitarbeitenden. Sie realisiert komplexe Webportale, Corporate Websites und Web-Applikationen mit TYPO3, Symfony und WordPress und bietet Consulting Barrierefreiheit sowie barrierefreies Webdesign an, etwa fuer die Stadt Leipzig und die Universitaet Leipzig. Das Unternehmen ist nach ISO 9001 und ISO 27001 zertifiziert und TYPO3 Gold Member.",
     "evidence": [
-      {"url": "https://dmk-ebusiness.de", "label": "Homepage (founding year, 34 employees, services, clients)"},
-      {"url": "https://dmk-ebusiness.de/impressum", "label": "Impressum (HQ Chemnitz)"}
+      {
+        "url": "https://dmk-ebusiness.de",
+        "label": "Homepage (founding year, 34 employees, services, clients)"
+      },
+      {
+        "url": "https://dmk-ebusiness.de/impressum",
+        "label": "Impressum (HQ Chemnitz)"
+      }
     ]
   },
   {
@@ -61,213 +126,459 @@
     "hqCity": "Hamburg",
     "founded": 1994,
     "headcountBand": "2-10",
-    "languages": ["de", "en"],
-    "services": ["audit", "training", "consulting"],
-    "standards": ["bitv"],
-    "industries": ["public-sector"],
+    "languages": [
+      "de",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [
+      "public-sector"
+    ],
     "descriptionEn": "DIAS GmbH (Daten, Informationssysteme und Analysen im Sozialen) was founded in 1994 by rehabilitation researchers of the University of Hamburg and is based in Hamburg. Focused on digital accessibility and inclusion, it conducts BIK BITV and WCAG tests together with a Germany-wide testing network, usability tests with people with disabilities, workshops and consulting. Clients include federal ministries and the European Union. Managing director Detlev Fischer is a W3C invited expert; the three-person team holds IAAP certifications.",
     "descriptionDe": "Die DIAS GmbH (Daten, Informationssysteme und Analysen im Sozialen) wurde 1994 von Rehabilitationsforschern der Universitaet Hamburg gegruendet und sitzt in Hamburg. Schwerpunkte sind digitale Barrierefreiheit und Inklusion: Gemeinsam mit einem deutschlandweiten Pruefverbund fuehrt DIAS BIK BITV- und WCAG-Tests durch, dazu Usability-Tests mit Menschen mit Behinderungen, Workshops und Beratung. Auftraggeber sind u. a. Bundesministerien und die Europaeische Union. Geschaeftsfuehrer Detlev Fischer ist W3C Invited Expert; das dreikoepfige Team traegt IAAP-Zertifizierungen.",
     "evidence": [
-      {"url": "https://dias.de/ueber-dias.html", "label": "About page (founded 1994, clients, services)"},
-      {"url": "https://dias.de/das-team.html", "label": "Team page (team size, certifications)"},
-      {"url": "https://dias.de/barrierefreies-internet.html", "label": "Services page (BIK BITV/WCAG tests, workshops, consulting)"}
+      {
+        "url": "https://dias.de/ueber-dias.html",
+        "label": "About page (founded 1994, clients, services)"
+      },
+      {
+        "url": "https://dias.de/das-team.html",
+        "label": "Team page (team size, certifications)"
+      },
+      {
+        "url": "https://dias.de/barrierefreies-internet.html",
+        "label": "Services page (BIK BITV/WCAG tests, workshops, consulting)"
+      }
     ]
   },
   {
     "slug": "deutsche-telekom-mms",
     "hqCity": "Dresden",
     "headcountBand": "200+",
-    "languages": ["de", "en"],
-    "services": ["audit", "remediation", "training", "consulting"],
-    "standards": ["bitv", "en-301-549", "wcag-2-2", "eaa"],
-    "industries": ["public-sector", "healthcare"],
+    "languages": [
+      "de",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "bitv",
+      "en-301-549",
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [
+      "public-sector",
+      "healthcare"
+    ],
     "descriptionEn": "Deutsche Telekom MMS GmbH, headquartered in Dresden, is part of Deutsche Telekom's business customer division with more than 2,250 experts. Within Testing & Application Services it offers digital accessibility: audits and conformity assessments according to BITV 2.0, BFSGV, EN 301 549 and WCAG 2.1/2.2, an automated accessibility test (A3/W) with management dashboard, creation and conversion of accessible documents per EN 301 549 and PDF/UA, a modular seminar catalogue, and UX, process and project consulting. Industry pages include the public sector and healthcare.",
     "descriptionDe": "Die Deutsche Telekom MMS GmbH mit Sitz in Dresden gehoert zum Geschaeftskundenbereich der Deutschen Telekom und beschaeftigt ueber 2.250 Expertinnen und Experten. Im Bereich Testing & Application Services bietet sie digitale Barrierefreiheit an: Audits und Konformitaetsbewertungen nach BITV 2.0, BFSGV, EN 301 549 sowie WCAG 2.1/2.2, den automatisierten Test A3/W mit Management-Dashboard, Erstellung und Umwandlung barrierefreier Dokumente nach EN 301 549 und PDF/UA, einen modularen Schulungskatalog sowie UX-, Prozess- und Projektberatung. Branchenseiten umfassen u. a. den oeffentlichen Sektor und das Gesundheitswesen.",
     "evidence": [
-      {"url": "https://telekom-mms.com", "label": "Homepage (2,250+ experts, services, industries)"},
-      {"url": "https://telekom-mms.com/impressum", "label": "Impressum (HQ Dresden)"},
-      {"url": "https://www.telekom-mms.com/barrierefreiheit", "label": "Accessibility services page (audits, standards, trainings)"}
+      {
+        "url": "https://telekom-mms.com",
+        "label": "Homepage (2,250+ experts, services, industries)"
+      },
+      {
+        "url": "https://telekom-mms.com/impressum",
+        "label": "Impressum (HQ Dresden)"
+      },
+      {
+        "url": "https://www.telekom-mms.com/barrierefreiheit",
+        "label": "Accessibility services page (audits, standards, trainings)"
+      }
     ]
   },
   {
     "slug": "materna",
     "hqCity": "Dortmund",
     "founded": 1980,
-    "languages": ["de", "en"],
-    "services": ["audit", "remediation", "training", "consulting"],
-    "standards": ["bitv", "en-301-549", "wcag-2-2", "eaa"],
-    "industries": ["public-sector", "banking", "healthcare"],
+    "languages": [
+      "de",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "bitv",
+      "en-301-549",
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [
+      "public-sector",
+      "banking",
+      "healthcare"
+    ],
     "descriptionEn": "Materna Information & Communications SE is an international IT services group headquartered in Dortmund, active since 1980. Its Digital Experience unit offers digital accessibility services: website, app and document audits via its own Materna BITV test and as an official BIK BITV testing body, covering BITV 2.0, EN 301 549, WCAG (incl. a WCAG 2.2 test extension) and the BFSG, plus document remediation, Easy Language and sign language content, consulting, and training. Industry portfolio includes the public sector, banking and healthcare.",
     "descriptionDe": "Die Materna Information & Communications SE ist ein internationaler IT-Dienstleister mit Hauptsitz in Dortmund, taetig seit 1980. Der Bereich Digital Experience bietet digitale Barrierefreiheit an: Pruefungen von Websites, Apps und Dokumenten mit dem eigenen Materna-BITV-Test und als offizielle BIK-Pruefstelle im Pruefverbund, nach BITV 2.0, EN 301 549, WCAG (inkl. WCAG-2.2-Erweiterung) und BFSG, dazu Optimierung von Dokumenten, Leichte Sprache und Gebaerdensprache, Beratung und Schulungen. Zum Branchenportfolio gehoeren u. a. Public Sector, Banken und Healthcare.",
     "evidence": [
-      {"url": "https://materna.de", "label": "Homepage (since 1980, HQ Dortmund, industries)"},
-      {"url": "https://www.materna.de/services/digital-experience/digitale-barrierefreiheit/", "label": "Digital accessibility service page (tests, standards, BIK testing body)"}
+      {
+        "url": "https://materna.de",
+        "label": "Homepage (since 1980, HQ Dortmund, industries)"
+      },
+      {
+        "url": "https://www.materna.de/services/digital-experience/digitale-barrierefreiheit/",
+        "label": "Digital accessibility service page (tests, standards, BIK testing body)"
+      }
     ]
   },
   {
     "slug": "anatom5",
     "hqCity": "Düsseldorf",
     "founded": 2003,
-    "languages": ["de"],
-    "services": ["audit", "remediation", "training", "consulting"],
-    "standards": ["bitv", "eaa"],
-    "industries": ["public-sector"],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "bitv",
+      "eaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
     "descriptionEn": "anatom5 perception marketing GmbH is a Düsseldorf agency specialised in digital accessibility since 2003. Services include BFSG accessibility audits, BITV/WCAG testing, BITV and BFSG consulting including legal advice, a BFSG implementation starter kit, accessible PDF production, Easy and Plain Language, accessible web design and workshops. The team holds IAAP certificates. Its references focus strongly on municipalities and public administration, such as Krefeld, Kleve, Moers and several counties; anatom5 also runs the Barrierekompass portal.",
     "descriptionDe": "Die anatom5 perception marketing GmbH aus Duesseldorf ist seit 2003 auf digitale Barrierefreiheit spezialisiert. Zu den Leistungen zaehlen BFSG-Accessibility-Audits, Tests nach BITV und WCAG, BITV- und BFSG-Beratung inklusive juristischer Beratung, ein BFSG-Umsetzungs-Starter-Kit, barrierefreie PDF, Leichte und Einfache Sprache, barrierefreies Webdesign sowie Schulungen und Workshops. Das Team verfuegt ueber IAAP-Zertifikate. Die Referenzen liegen stark bei Kommunen und oeffentlicher Verwaltung, etwa Krefeld, Kleve und Moers; anatom5 betreibt zudem das Portal Barrierekompass.",
     "evidence": [
-      {"url": "https://anatom5.de", "label": "Homepage (since 2003, services, municipal references)"},
-      {"url": "https://anatom5.de/impressum", "label": "Impressum (HQ Duesseldorf)"}
+      {
+        "url": "https://anatom5.de",
+        "label": "Homepage (since 2003, services, municipal references)"
+      },
+      {
+        "url": "https://anatom5.de/impressum",
+        "label": "Impressum (HQ Duesseldorf)"
+      }
     ]
   },
   {
     "slug": "tollwerk",
     "hqCity": "Nürnberg",
-    "languages": ["de"],
-    "services": ["audit", "training", "consulting"],
-    "standards": ["bitv"],
-    "industries": ["public-sector"],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [
+      "public-sector"
+    ],
     "descriptionEn": "tollwerk GmbH is a Nuremberg agency for accessible communication, web and design, active in the web and design field for over 25 years. It designs and develops accessible websites (preferably with TYPO3), creates inclusive design, and offers BITV/WCAG testing, consulting and workshops for public authorities, responsible companies and social organisations. The collegially self-organised company has been a common-good-balanced member of the Economy for the Common Good since 2024 and organises community events such as the Accessibility Club.",
     "descriptionDe": "Die tollwerk GmbH aus Nuernberg ist eine Agentur fuer barrierefreie Kommunikation, Web und Design und seit ueber 25 Jahren im Web- und Design-Umfeld aktiv. Sie gestaltet und entwickelt barrierefreie Websites (am liebsten mit TYPO3), bietet inklusives Design sowie BITV-/WCAG-Tests, Beratung und Workshops fuer die oeffentliche Hand, Unternehmen und soziale Organisationen. Das kollegial-selbstorganisierte Unternehmen ist seit 2024 gemeinwohlbilanziert (Gemeinwohl-Oekonomie) und engagiert sich mit Community-Formaten wie dem Accessibility Club.",
     "evidence": [
-      {"url": "https://tollwerk.de", "label": "Homepage (services, BITV/WCAG-Test, target clients)"},
-      {"url": "https://tollwerk.de/impressum", "label": "Impressum (HQ Nuernberg)"}
+      {
+        "url": "https://tollwerk.de",
+        "label": "Homepage (services, BITV/WCAG-Test, target clients)"
+      },
+      {
+        "url": "https://tollwerk.de/impressum",
+        "label": "Impressum (HQ Nuernberg)"
+      }
     ]
   },
   {
     "slug": "sozialhelden",
     "hqCity": "Berlin",
     "founded": 2004,
-    "languages": ["de"],
-    "services": ["training", "consulting"],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "training",
+      "consulting"
+    ],
     "descriptionEn": "Sozialhelden e.V. is a Berlin-based nonprofit association founded in 2004 by Raúl Krauthausen and fellow campaigners, working under the motto 'Nothing without us' for inclusion and accessibility. It runs political campaigns, develops apps and technologies such as Wheelmap and accessibility.cloud, advises companies, and trains media professionals. Its academy offers workshops, trainings and consulting on accessibility and participation; other projects include Leidmedien.de, JOBinklusive and the Landesfachstelle für Barrierefreiheit.",
     "descriptionDe": "Sozialhelden e.V. ist ein 2004 von Raúl Krauthausen und Mitstreiter*innen gegruendeter gemeinnuetziger Verein mit Sitz in Berlin, der unter dem Motto 'Nichts ohne uns' fuer Inklusion und Barrierefreiheit arbeitet. Der Verein startet politische Kampagnen, entwickelt Apps und Technologien wie Wheelmap und accessibility.cloud, beraet Unternehmen und schult Medienschaffende. Die Sozialheld*innen-Akademie bietet Workshops, Trainings und Beratung zu Barrierefreiheit und Teilhabe; weitere Projekte sind u. a. Leidmedien.de, JOBinklusive und die Landesfachstelle fuer Barrierefreiheit.",
     "evidence": [
-      {"url": "https://sozialhelden.de", "label": "Homepage (founded 2004, projects, academy)"},
-      {"url": "https://sozialhelden.de/impressum", "label": "Impressum (e.V., Berlin)"}
+      {
+        "url": "https://sozialhelden.de",
+        "label": "Homepage (founded 2004, projects, academy)"
+      },
+      {
+        "url": "https://sozialhelden.de/impressum",
+        "label": "Impressum (e.V., Berlin)"
+      }
     ]
   },
   {
     "slug": "barrierefreiheit-umsetzen",
     "hqCity": "Greven",
     "headcountBand": "2-10",
-    "languages": ["de"],
-    "services": ["audit"],
-    "standards": ["bitv", "wcag-2-2", "en-301-549", "eaa"],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2",
+      "en-301-549",
+      "eaa"
+    ],
     "descriptionEn": "Barrierefreiheit Umsetzen Malekzadeh & Franzke GbR is a consultancy of two partners, registered in Greven, that is 100 percent specialised in digital accessibility. As a certified testing body in the BIK BITV-Test network it conducts BITV and WCAG tests using a 104-step procedure based on BITV 2.0 that also covers WCAG 2.2, referencing EN 301 549 and the German BFSG. The team includes people with disabilities who use assistive technologies daily, and gives developers targeted remediation guidance.",
     "descriptionDe": "Die Barrierefreiheit Umsetzen Malekzadeh & Franzke GbR mit Anschrift in Greven ist zu 100 Prozent auf digitale Barrierefreiheit spezialisiert. Als zertifizierte Pruefstelle im BIK BITV-Test-Pruefverbund fuehrt sie BITV- und WCAG-Tests nach einem Verfahren mit 104 Pruefschritten durch, das auf der BITV 2.0 basiert und die WCAG 2.2 beruecksichtigt, mit Bezug zu EN 301 549 und BFSG. Im Team arbeiten Menschen mit Behinderung, die taeglich assistive Technologien nutzen; Entwickelnde erhalten zielgerichtete Behebungshinweise.",
     "evidence": [
-      {"url": "https://barrierefreiheit-umsetzen.de", "label": "About/homepage (BIK testing body, standards, team)"},
-      {"url": "https://barrierefreiheit-umsetzen.de/impressum/", "label": "Impressum (GbR, two partners, Greven)"}
+      {
+        "url": "https://barrierefreiheit-umsetzen.de",
+        "label": "About/homepage (BIK testing body, standards, team)"
+      },
+      {
+        "url": "https://barrierefreiheit-umsetzen.de/impressum/",
+        "label": "Impressum (GbR, two partners, Greven)"
+      }
     ]
   },
   {
     "slug": "insert-effect",
     "hqCity": "Nürnberg",
     "founded": 2002,
-    "languages": ["de"],
-    "services": ["audit"],
-    "standards": ["wcag-2-2"],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
     "descriptionEn": "insert effect GmbH is a Nuremberg software company that has been developing web and mobile applications since 2002, with a focus on sustainability topics, AI and automation. Alongside software development, UX design and prototyping, its services include compact accessibility quick tests according to WCAG 2.2 with actionable recommendations, UX reviews and user testing. References include the NürnbergMOBIL mobility app, where accessibility was part of the UX design work.",
     "descriptionDe": "Die insert effect GmbH ist ein Nuernberger Softwareunternehmen, das seit 2002 Web- und Mobile-Anwendungen entwickelt, mit Fokus auf Nachhaltigkeitsthemen, KI und Automatisierung. Neben Softwareentwicklung, UX-Design und Prototyping gehoeren kompakte Barrierefreiheits-Kurztests nach WCAG 2.2 mit umsetzbaren Empfehlungen, UX-Reviews und Nutzertests zu den Leistungen. Zu den Referenzen zaehlt die Mobilitaets-App NuernbergMOBIL, bei der Barrierefreiheit Teil der UX-Arbeit war.",
     "evidence": [
-      {"url": "https://inserteffect.com", "label": "Homepage (since 2002, references)"},
-      {"url": "https://inserteffect.com/leistungen", "label": "Services page (WCAG 2.2 quick tests)"},
-      {"url": "https://inserteffect.com/impressum", "label": "Impressum (HQ Nuernberg)"}
+      {
+        "url": "https://inserteffect.com",
+        "label": "Homepage (since 2002, references)"
+      },
+      {
+        "url": "https://inserteffect.com/leistungen",
+        "label": "Services page (WCAG 2.2 quick tests)"
+      },
+      {
+        "url": "https://inserteffect.com/impressum",
+        "label": "Impressum (HQ Nuernberg)"
+      }
     ]
   },
   {
     "slug": "piksl-labor-bielefeld",
     "hqCity": "Bielefeld",
     "headcountBand": "2-10",
-    "languages": ["de"],
-    "services": ["training"],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "training"
+    ],
     "descriptionEn": "PIKSL Labor Bielefeld is an open digital inclusion lab of the v. Bodelschwinghsche Stiftungen Bethel in Bielefeld, part of the PIKSL network ('Personenzentrierte Interaktion und Kommunikation für mehr Selbstbestimmung im Leben') coordinated by the nonprofit In der Gemeinde leben gGmbH in Düsseldorf. Three days a week, people with and without disabilities can use computers, tablets and the internet free of charge, get support from an inclusive team, and attend courses and workshops on using digital devices and the internet safely.",
     "descriptionDe": "Das PIKSL Labor Bielefeld ist ein offenes Labor fuer digitale Teilhabe der v. Bodelschwinghschen Stiftungen Bethel an der Gadderbaumer Strasse in Bielefeld. Es gehoert zum PIKSL-Netzwerk ('Personenzentrierte Interaktion und Kommunikation fuer mehr Selbstbestimmung im Leben') der gemeinnuetzigen In der Gemeinde leben gGmbH aus Duesseldorf. An drei Tagen pro Woche koennen Menschen mit und ohne Behinderung kostenlos an Computern und Tablets ins Internet, erhalten Unterstuetzung vom inklusiven Team und besuchen Kurse und Workshops zu Computer, Smartphone und sicherem Umgang mit dem Internet.",
     "evidence": [
-      {"url": "https://piksl.net/standorte/bielefeld/", "label": "Bielefeld lab page (address, offering, team)"},
-      {"url": "https://piksl.net/impressum/", "label": "Impressum (operator In der Gemeinde leben gGmbH)"}
+      {
+        "url": "https://piksl.net/standorte/bielefeld/",
+        "label": "Bielefeld lab page (address, offering, team)"
+      },
+      {
+        "url": "https://piksl.net/impressum/",
+        "label": "Impressum (operator In der Gemeinde leben gGmbH)"
+      }
     ]
   },
   {
     "slug": "adesso-mobile",
     "hqCity": "Dortmund",
     "headcountBand": "200+",
-    "languages": ["de"],
-    "services": ["audit", "training"],
-    "standards": ["en-301-549", "bitv", "eaa"],
-    "industries": ["public-sector", "healthcare", "banking"],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "en-301-549",
+      "bitv",
+      "eaa"
+    ],
+    "industries": [
+      "public-sector",
+      "healthcare",
+      "banking"
+    ],
     "descriptionEn": "adesso mobile solutions is the mobile business line of adesso SE, headquartered in Dortmund, with over 350 experts and locations across Germany. Besides app strategy, UX design, development and testing, it offers digital accessibility services: its accessibility testing body ('Prüfstelle für Barrierefreiheit') audits websites, apps, software, hardware and documents based on the WCAG and EN 301 549, with reference to BITV 2.0 and the BFSG, plus accessibility trainings. It is an IAAP member; industries served include public sector, health and finance.",
     "descriptionDe": "adesso mobile solutions ist die Mobile-Business-Line der adesso SE mit Hauptsitz in Dortmund und einem Team von ueber 350 Expert:innen an Standorten in ganz Deutschland. Neben App-Strategie, UX-Design, Entwicklung und Testmanagement bietet sie digitale Barrierefreiheit an: eine Pruefstelle fuer Barrierefreiheit, die Websites, Apps, Software, Hardware und Dokumente auf Basis der WCAG und der EN 301 549 prueft, mit Bezug zu BITV 2.0 und BFSG, dazu Accessibility-Schulungen. Das Unternehmen ist IAAP-Mitglied; zu den Branchen gehoeren Public, Health und Finance.",
     "evidence": [
-      {"url": "https://adesso-mobile.de", "label": "Homepage (350+ experts, industries, accessibility offerings)"},
-      {"url": "https://adesso-mobile.de/mobile-loesungen/digitale-barrierefreiheit/pruefstelle-fuer-barrierefreiheit/", "label": "Accessibility testing body page (WCAG, EN 301 549, BITV 2.0, BFSG)"},
-      {"url": "https://adesso-mobile.de/impressum", "label": "Impressum (adesso SE, Dortmund)"}
+      {
+        "url": "https://adesso-mobile.de",
+        "label": "Homepage (350+ experts, industries, accessibility offerings)"
+      },
+      {
+        "url": "https://adesso-mobile.de/mobile-loesungen/digitale-barrierefreiheit/pruefstelle-fuer-barrierefreiheit/",
+        "label": "Accessibility testing body page (WCAG, EN 301 549, BITV 2.0, BFSG)"
+      },
+      {
+        "url": "https://adesso-mobile.de/impressum",
+        "label": "Impressum (adesso SE, Dortmund)"
+      }
     ]
   },
   {
     "slug": "hdm-stuttgart-kompetenzzentrum",
     "hqCity": "Stuttgart",
-    "languages": ["de"],
-    "services": ["audit", "training", "consulting"],
-    "standards": ["en-301-549"],
-    "industries": ["public-sector"],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
     "descriptionEn": "The Kompetenzzentrum Digitale Barrierefreiheit is a competence center for digital accessibility at Stuttgart Media University (Hochschule der Medien). It offers quality-assured services for state institutions and other organisations: accessibility audits of websites, mobile apps and documents with detailed reports, the workshop programme '1x1 der Digitalen Barrierefreiheit', continuing education and subscription courses, tool-supported coaching, and free EN 301 549-based checklists for Word, PowerPoint, Excel and Moodle. Its legal entity is the HdM Transfer- und Weiterbildungsgesellschaft mbH in Stuttgart.",
     "descriptionDe": "Das Kompetenzzentrum Digitale Barrierefreiheit an der Hochschule der Medien in Stuttgart bietet qualitaetsgesicherte Dienstleistungen fuer staatliche Einrichtungen und andere Organisationen: Pruefungen von Websites, mobilen Apps und Dokumenten mit ausfuehrlichem Pruefbericht, das Workshop-Programm '1x1 der Digitalen Barrierefreiheit', Weiterbildungs- und Abo-Kurse, werkzeugunterstuetztes Coaching sowie kostenlose Checklisten nach EN 301 549 fuer Word, PowerPoint, Excel und Moodle. Traeger der Website ist die HdM Transfer- und Weiterbildungsgesellschaft mbH in Stuttgart.",
     "evidence": [
-      {"url": "https://barrierefreiheit.hdm-stuttgart.de", "label": "Homepage (services, checklists, target clients)"},
-      {"url": "https://barrierefreiheit.hdm-stuttgart.de/impressum/", "label": "Impressum (HdM Transfer- und Weiterbildungsgesellschaft mbH, Stuttgart)"}
+      {
+        "url": "https://barrierefreiheit.hdm-stuttgart.de",
+        "label": "Homepage (services, checklists, target clients)"
+      },
+      {
+        "url": "https://barrierefreiheit.hdm-stuttgart.de/impressum/",
+        "label": "Impressum (HdM Transfer- und Weiterbildungsgesellschaft mbH, Stuttgart)"
+      }
     ]
   },
   {
     "slug": "bsvh",
     "hqCity": "Hamburg",
     "founded": 1909,
-    "languages": ["de"],
-    "services": ["consulting"],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "consulting"
+    ],
     "descriptionEn": "The Blinden- und Sehbehindertenverein Hamburg e.V. (BSVH), founded in 1909, is a self-help association representing blind, visually impaired, deafblind and hearing-and-visually impaired people in Hamburg. Its offerings include the BIK advisory centre ('barrierefrei informieren und kommunizieren'), neutral assistive-device advice, educational events about blindness and low vision, and cultural, sports and social programmes. The association is a member of the DBSV and one of the supporting organisations of the Kompetenzzentrum für ein barrierefreies Hamburg.",
     "descriptionDe": "Der Blinden- und Sehbehindertenverein Hamburg e.V. (BSVH), gegruendet 1909, vertritt als Selbsthilfeorganisation die Interessen blinder, sehbehinderter, hoersehbehinderter und taubblinder Menschen in Hamburg. Zu den Angeboten gehoeren die BIK-Beratungsstelle ('barrierefrei informieren und kommunizieren'), neutrale Hilfsmittel-Beratung, Fortbildungsveranstaltungen zu Blindheit und Sehbehinderung sowie Kultur-, Sport- und Freizeitangebote. Der Verein ist Mitglied im DBSV und eine der Traegerorganisationen des Kompetenzzentrums fuer ein barrierefreies Hamburg.",
     "evidence": [
-      {"url": "https://bsvh.org/ueber-den-bsvh.html", "label": "About page (founded 1909, association, memberships)"},
-      {"url": "https://bsvh.org/angebote.html", "label": "Offerings page (BIK advisory centre, trainings)"},
-      {"url": "https://bsvh.org", "label": "Homepage (HQ address Hamburg)"}
+      {
+        "url": "https://bsvh.org/ueber-den-bsvh.html",
+        "label": "About page (founded 1909, association, memberships)"
+      },
+      {
+        "url": "https://bsvh.org/angebote.html",
+        "label": "Offerings page (BIK advisory centre, trainings)"
+      },
+      {
+        "url": "https://bsvh.org",
+        "label": "Homepage (HQ address Hamburg)"
+      }
     ]
   },
   {
     "slug": "barrierekompass",
     "hqCity": "Düsseldorf",
-    "languages": ["de"],
-    "services": ["audit"],
-    "standards": ["bitv", "en-301-549", "eaa"],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv",
+      "en-301-549",
+      "eaa"
+    ],
     "descriptionEn": "Barrierekompass is a portal for digital accessibility operated by the Düsseldorf agency anatom5 perception marketing GmbH. It offers BITV testing, quick checks, audits and certifications as well as accessible PDF services, and publishes news and background articles on digital accessibility topics such as BITV, EN 301 549, WCAG, the European Accessibility Act and the German BFSG. Its news archive reaches back to 2003.",
     "descriptionDe": "Barrierekompass ist ein Portal fuer digitale Barrierefreiheit, betrieben von der Duesseldorfer Agentur anatom5 perception marketing GmbH. Es bietet BITV-Tests, Quick-Checks, Audits und Zertifizierungen sowie Leistungen rund um barrierefreie PDF an und veroeffentlicht Nachrichten und Hintergrundartikel zu digitaler Barrierefreiheit, etwa zu BITV, EN 301 549, WCAG, European Accessibility Act und BFSG. Das Nachrichtenarchiv reicht bis 2003 zurueck.",
     "evidence": [
-      {"url": "https://barrierekompass.de", "label": "Homepage (operator anatom5, BITV tests, standards, archive)"}
+      {
+        "url": "https://barrierekompass.de",
+        "label": "Homepage (operator anatom5, BITV tests, standards, archive)"
+      }
     ]
   },
   {
     "slug": "mindscreen",
     "hqCity": "München",
-    "languages": ["de"],
-    "services": ["audit", "consulting", "training", "vpat"],
-    "standards": ["bitv", "en-301-549", "eaa"],
-    "descriptionEn": "mindscreen GmbH is a Munich-based specialist for digital accessibility with an additional office in Berlin, led by Annett and Stefan Farnetani. It provides accessibility consulting, manual audits of websites, web applications and apps according to BFSG, BITV, EN 301 549 or WCAG, trainings and workshops, and builds accessible websites with TYPO3 and Neos. As a BIK BITV-Test testing body it can award the BIK conformity seal, supports VPAT-based Accessibility Conformance Reports, and develops the CAAT accessibility testing software, which won a CDR Award in 2024.",
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training",
+      "vpat"
+    ],
+    "standards": [
+      "bitv",
+      "en-301-549",
+      "eaa"
+    ],
+    "descriptionEn": "mindscreen GmbH is a Munich-based specialist for digital accessibility with a second office in Berlin, led by Annett and Stefan Farnetani. It provides accessibility consulting, manual audits of websites, web applications and apps according to BFSG, BITV, EN 301 549 or WCAG, trainings and workshops, and builds accessible websites with TYPO3 and Neos. As a BIK BITV-Test testing body it can award the BIK conformity seal, supports VPAT-based Accessibility Conformance Reports, and develops the CAAT testing software.",
     "descriptionDe": "Die mindscreen GmbH ist ein Muenchner Spezialist fuer digitale Barrierefreiheit mit weiterem Buero in Berlin, gefuehrt von Annett und Stefan Farnetani. Sie bietet Beratung, manuelle Audits von Websites, Webanwendungen und Apps nach BFSG, BITV, EN 301 549 oder WCAG, Schulungen und Workshops sowie die Umsetzung barrierefreier Websites mit TYPO3 und Neos. Als BIK BITV-Test-Pruefstelle kann sie das BIK-Pruefsiegel vergeben, unterstuetzt Accessibility Conformance Reports auf VPAT-Basis und entwickelt die Testsoftware CAAT, die 2024 einen CDR Award erhielt.",
     "evidence": [
-      {"url": "https://mindscreen.de", "label": "Homepage (services, BIK testing body, CAAT, clients)"},
-      {"url": "https://mindscreen.de/impressum", "label": "Impressum (HQ Muenchen, Berlin office)"},
-      {"url": "https://www.mindscreen.de/digitale-barrierefreiheit/barrierefreiheit-audit-test", "label": "Audit/test page (BFSG, BITV, EN 301 549, WCAG, VPAT/ACR)"}
+      {
+        "url": "https://mindscreen.de",
+        "label": "Homepage (services, BIK testing body, CAAT, clients)"
+      },
+      {
+        "url": "https://mindscreen.de/impressum",
+        "label": "Impressum (HQ Muenchen, Berlin office)"
+      },
+      {
+        "url": "https://www.mindscreen.de/digitale-barrierefreiheit/barrierefreiheit-audit-test",
+        "label": "Audit/test page (BFSG, BITV, EN 301 549, WCAG, VPAT/ACR)"
+      }
     ]
   },
   {
     "slug": "twin-cubes",
     "hqCity": "Illingen",
-    "languages": ["de"],
-    "services": ["audit", "training", "consulting"],
-    "standards": ["bitv"],
-    "descriptionEn": "TWIN CUBES GmbH is a consultancy based in Illingen (Baden-Württemberg) focused on digital accessibility and software test consulting. As a certified testing body in the BIK BITV-Test network and the BIT-inklusiv network, it has performed more than 450 BITV and WCAG tests of websites, web applications and apps and delivered over 7,500 hours of seminars and developer trainings on digital accessibility, alongside services for accessible PDFs, Easy Language and sign language. It reports more than 200 customers from the public sector and private industry.",
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "descriptionEn": "TWIN CUBES GmbH is a consultancy based in Illingen (Baden-Württemberg) focused on digital accessibility and software test consulting. As a certified testing body in the BIK BITV-Test network and the BIT-inklusiv network, it has performed more than 450 BITV and WCAG tests of websites, web applications and apps and delivered over 7,500 hours of accessibility seminars and developer trainings, alongside services for accessible PDFs, Easy Language and sign language. It reports over 200 customers from the public sector and private industry.",
     "descriptionDe": "Die TWIN CUBES GmbH aus Illingen (Baden-Wuerttemberg) ist ein Beratungsunternehmen fuer digitale Barrierefreiheit und Test Consulting. Als zertifizierte Pruefstelle im BIK BITV-Test-Pruefverbund und im BIT-inklusiv-Netzwerk hat sie mehr als 450 BITV- und WCAG-Tests von Webseiten, Webanwendungen und Apps durchgefuehrt und ueber 7.500 Stunden Seminare und Entwicklerschulungen zur digitalen Barrierefreiheit gehalten, dazu Leistungen zu barrierefreien PDFs, Leichter Sprache und Gebaerdensprache. Genannt werden ueber 200 Kunden aus oeffentlichem Sektor und privater Wirtschaft.",
     "evidence": [
-      {"url": "https://twin-cubes.com", "label": "Homepage (HQ, BIK testing body, test and training figures)"}
+      {
+        "url": "https://twin-cubes.com",
+        "label": "Homepage (HQ, BIK testing body, test and training figures)"
+      }
     ]
   },
   {
@@ -275,41 +586,87 @@
     "hqCity": "Höchberg",
     "founded": 2008,
     "headcountBand": "1",
-    "languages": ["de"],
-    "services": ["audit", "training", "consulting"],
-    "standards": ["bitv", "en-301-549"],
-    "industries": ["public-sector"],
-    "descriptionEn": "BITV-Consult is the accessibility consultancy of Detlef Girke, based in Höchberg near Würzburg. An independent consultant since 2008 with over 20 years of experience, he advises ministries, public authorities, agencies and companies, and performs tests of websites, web applications, software, mobile apps and PDF documents (BITV-Test, BITV software and app tests, BIT inklusiv PDF test) as an official testing body in the BITV-Test network, based on BITV 2.0 and EN 301 549. He also leads the BIT inklusiv network and offers tailored workshops.",
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "bitv",
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "descriptionEn": "BITV-Consult is the accessibility consultancy of Detlef Girke, based in Höchberg near Würzburg. An independent consultant since 2008 with over 20 years of experience, he advises ministries, public authorities, agencies and companies, and tests websites, web applications, software, mobile apps and PDF documents (BITV-Test, BITV software and app tests, BIT inklusiv PDF test) as an official testing body in the BITV-Test network, based on BITV 2.0 and EN 301 549. He also leads the BIT inklusiv network and offers tailored workshops.",
     "descriptionDe": "BITV-Consult ist das Beratungsangebot von Detlef Girke aus Hoechberg bei Wuerzburg fuer barrierefreie IT. Seit 2008 selbststaendiger Berater mit ueber 20 Jahren Erfahrung, beraet er Ministerien, Behoerden, Agenturen und Unternehmen und prueft Internetseiten, Webanwendungen, Anwendungssoftware, mobile Apps und PDF-Dokumente (BITV-Test, BITV-Softwaretest, BITV-APP-Test, PDF-Test von BIT inklusiv) als offizielle Pruefstelle im BITV-Test-Pruefverbund auf Basis von BITV 2.0 und EN 301 549. Er leitet zudem das BIT-inklusiv-Netzwerk und bietet massgeschneiderte Workshops an.",
     "evidence": [
-      {"url": "https://bitvconsult.de", "label": "Homepage (consultant since 2008, tests, workshops, standards)"},
-      {"url": "https://bitvconsult.de/impressum.php", "label": "Impressum (Detlef Girke, Hoechberg)"}
+      {
+        "url": "https://bitvconsult.de",
+        "label": "Homepage (consultant since 2008, tests, workshops, standards)"
+      },
+      {
+        "url": "https://bitvconsult.de/impressum.php",
+        "label": "Impressum (Detlef Girke, Hoechberg)"
+      }
     ]
   },
   {
     "slug": "marcus-herrmann",
     "hqCity": "Berlin",
     "headcountBand": "1",
-    "languages": ["de", "en"],
-    "services": ["audit", "training", "consulting"],
-    "standards": ["bitv", "en-301-549", "eaa"],
+    "languages": [
+      "de",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "bitv",
+      "en-301-549",
+      "eaa"
+    ],
     "descriptionEn": "Marcus Herrmann is a Berlin-based specialist for digital accessibility, web developer and certified BIK BITV-Test testing body. He offers consulting and practice-oriented team trainings for development, design, editorial and management roles, development-accompanying code testing, BIK BITV and BIK WCAG tests with recognised conformity seals, and BIK Core User Flow tests for key processes such as checkouts. His work addresses conformity with the WCAG, BITV 2.0, the German BFSG and EN 301 549. The site is available in German and English.",
     "descriptionDe": "Marcus Herrmann ist Spezialist fuer digitale Barrierefreiheit aus Berlin, Web-Entwickler und zertifizierte BIK BITV-Test-Pruefstelle. Er bietet Beratung und praxisnahe Schulungen fuer Entwicklung, Grafik, Redaktion und Management, entwicklungsbegleitende Tests, BIK BITV- und BIK WCAG-Tests mit anerkanntem Pruefsiegel sowie den BIK Core User Flow Test fuer zentrale Prozesse wie einen Checkout. Inhaltliche Grundlage sind WCAG, BITV 2.0, BFSG und EN 301 549. Die Website ist auf Deutsch und Englisch verfuegbar.",
     "evidence": [
-      {"url": "https://marcus-herrmann.com", "label": "Homepage (services, BIK testing body, standards, Berlin address)"}
+      {
+        "url": "https://marcus-herrmann.com",
+        "label": "Homepage (services, BIK testing body, standards, Berlin address)"
+      }
     ]
   },
   {
     "slug": "eye-square",
     "hqCity": "Berlin",
-    "languages": ["en", "de"],
-    "services": ["audit", "training"],
-    "standards": ["wcag-2-2", "en-301-549"],
+    "languages": [
+      "en",
+      "de"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
     "descriptionEn": "eye square GmbH is a Berlin-based market research company for implicit, user and consumer research, using methods such as eye tracking, UX testing and neuro methods for clients including Porsche, Vattenfall and Tencent. Together with A11YPLAN it offers accessibility services: expert-led manual audits of websites and native apps against WCAG 2.2 AA and EN 301 549, user testing and research with people with disabilities, accessibility statement templates and included trainings. The site is offered in English and German.",
     "descriptionDe": "Die eye square GmbH ist ein Berliner Marktforschungsunternehmen fuer implizite, User- und Consumer-Research mit Methoden wie Eye Tracking, UX-Tests und Neuro-Verfahren, u. a. fuer Porsche, Vattenfall und Tencent. Gemeinsam mit A11YPLAN bietet es Accessibility-Leistungen an: expertengefuehrte manuelle Audits von Websites und nativen Apps nach WCAG 2.2 AA und EN 301 549, User Testing und Research mit Menschen mit Behinderungen, Vorlagen fuer Barrierefreiheitserklaerungen sowie enthaltene Trainings. Die Website gibt es auf Englisch und Deutsch.",
     "evidence": [
-      {"url": "https://eye-square.com", "label": "Homepage (research services, clients, Berlin address)"},
-      {"url": "https://www.eye-square.com/en/accessibility-audit/", "label": "Accessibility audit page (WCAG 2.2 AA, EN 301 549, user testing, training)"}
+      {
+        "url": "https://eye-square.com",
+        "label": "Homepage (research services, clients, Berlin address)"
+      },
+      {
+        "url": "https://www.eye-square.com/en/accessibility-audit/",
+        "label": "Accessibility audit page (WCAG 2.2 AA, EN 301 549, user testing, training)"
+      }
     ]
   }
 ]
