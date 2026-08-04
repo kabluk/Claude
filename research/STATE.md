@@ -25,11 +25,13 @@ Blue ocean подтверждён живыми SERP-проверками (US, UK
 
 - ✅ **Дни 8–12 (MVP-сайт):** `a11y-site/` — отдельный Vite-SSG сайт (второй продукт в репо, свой vite-конфиг, делит node_modules с detnav). **258 статических страниц**: профили агентств (ProfessionalService + BreadcrumbList JSON-LD, источники, похожие), страны-хабы (закон + дата вступления), комбо страна×услуга (keyword-URL вида /germany/accessibility-audit/), услуги, стандарты, ярусы. Клиентские фильтры (услуга/стандарт/сертификация/цена + поиск) поверх SSG-списка. noindex,follow ниже порога ≥3, sitemap 223 URL без noindex-страниц. Сборка: `npm run build:a11y-site`, дев: `npm run dev:a11y-site`. **Домен — заглушка `a11y-directory.example`** (TODO в `a11y-site/src/lib/seo.tsx` и `scripts/gen-a11y-sitemap.mjs`).
 
+- ✅ **Дни 13–20 (гайды):** инфраструктура (markdown + JSON-frontmatter → GuidePage с Article/FAQPage JSON-LD, `<html lang>` по языку статьи, CTA в каталог, блок агентств) + **все 12 статей** написаны 4 параллельными агентами с фактчекингом по первоисточникам (EUR-Lex, gesetze-im-internet.de, ada.gov, access-board.gov, itic.org, legifrance, Dziennik Ustaw, ETSI, W3C; ссылки в тексте). Состав: BFSG (de), BITV-Kosten (de), Section 508, VPAT/ACR, ADA (en/US), EAA country-by-country, EN 301 549, WCAG-аудит (en/EU), RGAA (fr), audyt WCAG (pl), overlay-vs-audit, audit cost (en). Сайт: **271 страница, sitemap 236 URL**.
+- 🟡 **Дни 4–7 (обогащение, идёт):** 4 агента обогащают 84 записи (DE 22, US 20, UK 18, EU-mixed 24) — города HQ, услуги/стандарты с сервис-страниц, языки, описания 40–80 слов по фактам с сайтов. Патчи в `data/a11y/enrich/*.json`, слияние `scripts/enrich-a11y.mjs` (заполняет только пустое, ничего не перезаписывает, доказательства — в sourceRefs).
+
 **Следующий шаг (по 30-дневному плану):**
-1. **Дни 4–7 (пропущенный блок, можно параллельно):** обогащение данных — города, priceBand, сертификации, описания (только по фактам из sourceRefs).
-2. **Дни 13–20:** 12 редакционных гайдов (BFSG DE 5.4k/мес, VPAT US 5.4k, Section 508 US 8.1k, EAA по странам, RGAA FR, audyt WCAG PL, «audit vs overlay»...) + шаблон GuidePage.
-3. **Дни 21–23:** купить домен → заменить заглушку origin, деплой на Cloudflare Pages, лид-форма (Worker + D1), Stripe Payment Links для featured, claim-outreach по базе.
-4. **Дни 24–27:** декларации доступности гос-сайтов EU через Firecrawl (уникальный датасет gov-declared-auditor, +30–80 агентств).
+1. Дождаться патчей обогащения → `node scripts/enrich-a11y.mjs` → пересборка → коммит.
+2. **Дни 21–23:** купить домен → заменить заглушку origin (`a11y-site/src/lib/seo.tsx` + `scripts/gen-a11y-sitemap.mjs`), деплой на Cloudflare Pages, лид-форма (Worker + D1), Stripe Payment Links для featured, claim-outreach по базе.
+3. **Дни 24–27:** декларации доступности гос-сайтов EU через Firecrawl (уникальный датасет gov-declared-auditor, +30–80 агентств).
 
 Проверка билда каталога: `node scripts/build-a11y.mjs` (флаг `--strict` — все замечания о полноте).
 
