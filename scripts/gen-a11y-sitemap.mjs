@@ -41,6 +41,15 @@ const inCountry = (code) =>
 const urls = ['/', '/agencies/', '/countries/', '/services/', '/standards/']
 for (const a of agencies) urls.push(`/agencies/${a.slug}/`)
 
+// Гайды: data/a11y/guides/*.md (slug — имя файла), всегда индексируемые.
+const GUIDES_DIR = join(ROOT, 'data/a11y/guides')
+if (existsSync(GUIDES_DIR)) {
+  const { readdirSync } = await import('node:fs')
+  const gs = readdirSync(GUIDES_DIR).filter((f) => f.endsWith('.md'))
+  if (gs.length) urls.push('/guides/')
+  for (const f of gs) urls.push(`/guides/${f.replace(/\.md$/, '')}/`)
+}
+
 const services = Object.keys(tax.services)
 const standards = Object.keys(tax.standards)
 

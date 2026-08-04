@@ -1,8 +1,9 @@
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import type { StandardSlug } from '@data/a11y/types'
 import { Layout } from '@dir/components/Layout'
 import { FilterableList } from '@dir/components/FilterableList'
 import { JsonLd, itemListLd } from '@dir/lib/seo'
+import { guidesFor } from '@dir/lib/guides'
 import {
   INDEX_THRESHOLD,
   STANDARDS,
@@ -58,6 +59,16 @@ export default function StandardPage() {
           </a>
         )}
       </p>
+
+      {guidesFor({ standard: s }).length > 0 && (
+        <div className="mt-4 flex flex-wrap gap-2">
+          {guidesFor({ standard: s }).map((g) => (
+            <Link key={g.slug} to={`/guides/${g.slug}/`} className="chip hover:border-slate-400" lang={g.locale}>
+              📖 {g.title}
+            </Link>
+          ))}
+        </div>
+      )}
 
       <FilterableList items={list} hideStandardFacet />
     </Layout>

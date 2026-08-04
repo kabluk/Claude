@@ -8,6 +8,7 @@ import {
   paths,
   withService,
 } from './lib/data'
+import { guides } from './lib/guides'
 
 // Ленивые импорты — свой чанк на шаблон страницы.
 const page = (load: () => Promise<{ default: () => JSX.Element | null }>) => async () => ({
@@ -52,6 +53,15 @@ export const routes: RouteRecord[] = [
     path: '/standards/:standard',
     lazy: page(() => import('./pages/StandardPage')),
     getStaticPaths: () => STANDARDS.map((s) => paths.standard(s)),
+  },
+  {
+    path: '/guides',
+    lazy: page(() => import('./pages/GuidesIndexPage')),
+  },
+  {
+    path: '/guides/:slug',
+    lazy: page(() => import('./pages/GuidePage')),
+    getStaticPaths: () => guides.map((g) => `/guides/${g.slug}/`),
   },
   {
     path: '/:country',

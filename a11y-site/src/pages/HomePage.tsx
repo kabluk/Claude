@@ -12,6 +12,7 @@ import {
   withService,
   withStandard,
 } from '@dir/lib/data'
+import { guides } from '@dir/lib/guides'
 
 export default function HomePage() {
   const certified = agencies.filter((a) => a.certs.length > 0).length
@@ -89,6 +90,24 @@ export default function HomePage() {
           ))}
         </div>
       </section>
+
+      {guides.length > 0 && (
+        <section>
+          <h2 className="h2">Compliance guides</h2>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {guides.slice(0, 6).map((g) => (
+              <Link key={g.slug} to={`/guides/${g.slug}/`} className="card" lang={g.locale}>
+                <span className="font-semibold">{g.title}</span>
+              </Link>
+            ))}
+          </div>
+          <p className="mt-3 text-sm">
+            <Link className="underline underline-offset-2" to="/guides/">
+              All guides →
+            </Link>
+          </p>
+        </section>
+      )}
 
       <section className="mt-12 max-w-2xl rounded-xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-600">
         <h2 className="text-base font-semibold text-slate-800">How listings are verified</h2>

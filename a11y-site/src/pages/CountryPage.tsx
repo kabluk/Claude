@@ -11,6 +11,7 @@ import {
   serviceLabel,
   withService,
 } from '@dir/lib/data'
+import { guidesFor } from '@dir/lib/guides'
 
 export default function CountryPage() {
   const { country: slug } = useParams()
@@ -67,6 +68,16 @@ export default function CountryPage() {
           ) : null
         })}
       </div>
+
+      {guidesFor({ countryCode: c.code }).length > 0 && (
+        <div className="mt-4 flex flex-wrap gap-2">
+          {guidesFor({ countryCode: c.code }).map((g) => (
+            <Link key={g.slug} to={`/guides/${g.slug}/`} className="chip hover:border-slate-400" lang={g.locale}>
+              📖 {g.title}
+            </Link>
+          ))}
+        </div>
+      )}
 
       <FilterableList items={list} />
     </Layout>

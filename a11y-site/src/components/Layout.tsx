@@ -46,6 +46,9 @@ export function Layout({
             <Link className="hover:text-slate-900" to={paths.standards()}>
               Standards
             </Link>
+            <Link className="hover:text-slate-900" to="/guides/">
+              Guides
+            </Link>
             <Link className="hover:text-slate-900" to={paths.agencies()}>
               All agencies
             </Link>
