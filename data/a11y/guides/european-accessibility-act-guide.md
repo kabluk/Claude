@@ -3,7 +3,7 @@
   "slug": "european-accessibility-act-guide",
   "locale": "en",
   "title": "European Accessibility Act: country-by-country guide for businesses",
-  "description": "What the European Accessibility Act means for businesses now it is in force: scope, exemptions, EN 301 549, and how Germany, France, Ireland and others enforce it.",
+  "description": "What the European Accessibility Act means for businesses now in force: scope, exemptions, EN 301 549, and how Germany, France and Ireland enforce it.",
   "standard": "eaa",
   "updated": "2026-08-04",
   "faq": [
