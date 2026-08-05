@@ -38,7 +38,9 @@ const slugify = (s) =>
 const inCountry = (code) =>
   agencies.filter((a) => a.hq.countryCode === code || (a.countriesServed || []).includes(code))
 
-const urls = ['/', '/agencies/', '/countries/', '/services/', '/standards/']
+// Служебные страницы: about/contact индексируются; privacy/impressum/404 —
+// noindex, в sitemap не входят.
+const urls = ['/', '/agencies/', '/countries/', '/services/', '/standards/', '/about/', '/contact/']
 for (const a of agencies) urls.push(`/agencies/${a.slug}/`)
 
 // Гайды: data/a11y/guides/*.md (slug — имя файла), всегда индексируемые.
@@ -81,3 +83,13 @@ ${urls.map((u) => `  <url><loc>${ORIGIN}${u}</loc><lastmod>${today}</lastmod></u
 writeFileSync(join(DIST, 'sitemap.xml'), xml)
 writeFileSync(join(DIST, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}/sitemap.xml\n`)
 console.log(`✓ sitemap: ${urls.length} URL → a11y-site/dist/sitemap.xml (+robots.txt)`)
+
+// Cloudflare Pages отдаёт dist/404.html на несуществующие URL — копируем
+// сгенерированную SSG страницу /404/ на это имя.
+const notFound = join(DIST, '404', 'index.html')
+if (existsSync(notFound)) {
+  writeFileSync(join(DIST, '404.html'), readFileSync(notFound))
+  console.log('✓ 404.html скопирован из /404/')
+} else {
+  console.warn('⚠ нет dist/404/index.html — 404.html не создан')
+}

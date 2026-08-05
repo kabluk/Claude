@@ -125,7 +125,7 @@ export function FilterableList({
       </p>
       <div className="mt-3 grid gap-3 sm:grid-cols-2">
         {shown.map((a) => (
-          <AgencyCard key={a.slug} a={a} />
+          <AgencyCard key={a.slug} a={a} headingLevel="h2" />
         ))}
       </div>
       {shown.length === 0 && (

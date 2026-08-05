@@ -85,6 +85,20 @@ export function Layout({
             We list audit and remediation specialists only — no automated «overlay» widgets.
             Listings are free; agencies can claim their profile to keep it current.
           </p>
+          <nav aria-label="Legal" className="flex flex-wrap gap-x-4 gap-y-1">
+            <Link className="hover:text-slate-900" to={paths.about()}>
+              About
+            </Link>
+            <Link className="hover:text-slate-900" to={paths.contact()}>
+              Contact
+            </Link>
+            <Link className="hover:text-slate-900" to={paths.privacy()}>
+              Privacy
+            </Link>
+            <Link className="hover:text-slate-900" to={paths.impressum()}>
+              Impressum
+            </Link>
+          </nav>
         </div>
       </footer>
     </>

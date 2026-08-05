@@ -64,6 +64,28 @@ export const routes: RouteRecord[] = [
     getStaticPaths: () => guides.map((g) => `/guides/${g.slug}/`),
   },
   {
+    path: '/about',
+    lazy: async () => ({ Component: (await import('./pages/StaticPages')).AboutPage }),
+  },
+  {
+    path: '/contact',
+    lazy: async () => ({ Component: (await import('./pages/StaticPages')).ContactPage }),
+  },
+  {
+    path: '/privacy',
+    lazy: async () => ({ Component: (await import('./pages/StaticPages')).PrivacyPage }),
+  },
+  {
+    path: '/impressum',
+    lazy: async () => ({ Component: (await import('./pages/StaticPages')).ImpressumPage }),
+  },
+  // Статическая страница /404/ → пост-обработка копирует её в dist/404.html
+  // (Cloudflare Pages отдаёт этот файл на любой несуществующий URL).
+  {
+    path: '/404',
+    lazy: async () => ({ Component: (await import('./pages/StaticPages')).NotFoundPage }),
+  },
+  {
     path: '/:country',
     lazy: page(() => import('./pages/CountryPage')),
     getStaticPaths: () => countries.map((c) => paths.country(c)),
@@ -72,5 +94,12 @@ export const routes: RouteRecord[] = [
     path: '/:country/:service',
     lazy: page(() => import('./pages/ComboPage')),
     getStaticPaths: () => combos.map(({ c, s }) => paths.combo(c, s)),
+  },
+  // Клиентский catch-all для дев-сервера и SPA-переходов; в SSG не попадает
+  // (пустой getStaticPaths), на проде несуществующие URL закрывает 404.html.
+  {
+    path: '*',
+    lazy: async () => ({ Component: (await import('./pages/StaticPages')).NotFoundPage }),
+    getStaticPaths: () => [],
   },
 ]
