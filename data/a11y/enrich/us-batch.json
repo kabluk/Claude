@@ -179,17 +179,6 @@
     ]
   },
   {
-    "slug": "the-pixel",
-    "hqCity": "Bristol",
-    "languages": ["en"],
-    "industries": ["ecommerce", "healthcare"],
-    "descriptionEn": "The Pixel (TVG Media Ltd) is a UK digital commerce growth and transformation agency with offices in Bristol and Malta. An Adobe Gold Partner with over 20 years of experience, it designs, builds, and optimizes e-commerce and digital experience platforms on Adobe Experience Cloud for 40+ enterprise and mid-market brands across retail, health, and B2B sectors. The site does not list accessibility-specific services such as audits, VPATs, or remediation.",
-    "evidence": [
-      {"url": "https://thepixel.com/contact", "label": "contact page (Bristol and Malta offices, TVG Media Ltd)"},
-      {"url": "https://thepixel.com/", "label": "homepage (Adobe Gold Partner, 20+ years, sectors)"}
-    ]
-  },
-  {
     "slug": "accessibility-innovations",
     "languages": ["en"],
     "services": ["audit", "vpat", "remediation", "training", "consulting", "monitoring"],
