@@ -5,3 +5,4 @@ dev-dist/
 .DS_Store
 detnav-*.zip
 data/a11y/_generated/
+data/a11y/collect/_existing-domains.txt

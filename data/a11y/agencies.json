@@ -4630,8 +4630,8 @@
   },
   {
     "slug": "nomensa",
-    "name": "Nomensa",
-    "website": "nomensa.com",
+    "name": "GAIN (formerly Nomensa)",
+    "website": "thisisgain.com",
     "hq": {
       "city": "",
       "countryCode": "GB"
@@ -4653,11 +4653,17 @@
     ],
     "industries": [],
     "certs": [],
-    "description": {},
+    "description": {
+      "en": "Nomensa, the Bristol-founded accessibility and user-experience consultancy, now operates as part of GAIN: nomensa.com redirects to thisisgain.com. GAIN lists accessibility among its capabilities alongside UX research, service design and public-sector delivery, and states that accessibility standards are built into its design process. The former standalone Nomensa accessibility service pages are no longer published."
+    },
     "sourceRefs": [
       {
         "url": "https://www.nomensa.com/services/web-accessibility/",
         "label": "web accessibility services page: WCAG 2.2 manual audits, maturity assessments, remediation support; NHS.uk audits, live SERP 2026-08-04"
+      },
+      {
+        "url": "https://www.thisisgain.com/experience",
+        "label": "GAIN capabilities page — accessibility listed; nomensa.com 301-redirects here (checked 2026-08-04)"
       }
     ],
     "lastVerified": "2026-08-04"
