@@ -1,0 +1,130 @@
+version: 1
+updated_at: 2026-08-05
+limits:
+  max_parallel: 3
+  max_nodes_per_iteration: 8
+  default_max_attempts: 4
+nodes:
+  - id: A0-ENRICH
+    title: Применить enrich-патчи описаний (119 записей), починить slug the-pixel, валидация + сборка
+    owner: data-engineer
+    status: ready
+    depends_on: []
+    inputs: [data/a11y/enrich/, scripts/enrich-a11y.mjs, data/a11y/agencies.json]
+    scope: [data/a11y/agencies.json, data/a11y/enrich/us-batch.json]
+    outputs: [data/a11y/agencies.json]
+    verify:
+      - node scripts/enrich-a11y.mjs --dry   # 0 неизвестных slug
+      - node scripts/enrich-a11y.mjs
+      - node scripts/build-a11y.mjs          # 253 агентства, без ошибок
+      - npm run typecheck
+    max_attempts: 4
+    attempts: 0
+    risk: low
+    approval_required: false
+    notes: "После применения описаний должно стать ~200/253"
+
+  - id: A0-DESC-REST
+    title: Описания оставшимся профилям без description (~53) — только проверяемые факты
+    owner: data-engineer
+    status: blocked
+    depends_on: [A0-ENRICH]
+    inputs: [data/a11y/agencies.json, data/a11y/README.md]
+    scope: [data/a11y/enrich/, data/a11y/agencies.json]
+    outputs: [data/a11y/enrich/desc-final.json]
+    verify:
+      - node scripts/build-a11y.mjs
+      - "покрытие description >= 90%"
+    max_attempts: 4
+    attempts: 0
+    risk: low
+    approval_required: false
+    notes: "Паттерн батчей задан в data/a11y/enrich/desc-*.json; недоступные сайты помечать, не выдумывать"
+
+  - id: A0-OWNER-LEGAL
+    title: Реквизиты Imprint + покупка домена
+    owner: product-lead
+    status: blocked
+    depends_on: []
+    inputs: []
+    scope: []
+    outputs: [src/pages/ImprintPage.tsx]
+    verify: []
+    max_attempts: 1
+    attempts: 0
+    risk: high
+    approval_required: true
+    notes: "БЛОКЕР НА СТОРОНЕ ВЛАДЕЛЬЦА: юрлицо/ФИО, адрес, HR/VAT (DE), выбранный домен. Без этого нет A0-ORIGIN и A0-DEPLOY"
+
+  - id: A0-ORIGIN
+    title: Заменить accessatlas.example на реальный домен, снять noindex с Imprint
+    owner: frontend-engineer
+    status: blocked
+    depends_on: [A0-OWNER-LEGAL]
+    inputs: [src/lib/seo.tsx, scripts/gen-a11y-sitemap.mjs]
+    scope: [src/lib/seo.tsx, scripts/gen-a11y-sitemap.mjs, src/pages/ImprintPage.tsx]
+    outputs: []
+    verify: [npm run build, "grep -r accessatlas.example → пусто"]
+    max_attempts: 2
+    attempts: 0
+    risk: low
+    approval_required: false
+
+  - id: A0-DEPLOY
+    title: Cloudflare Pages деплой + автодеплой из CI
+    owner: devops-engineer
+    status: blocked
+    depends_on: [A0-OWNER-LEGAL, A0-ENRICH]
+    inputs: [.github/workflows/ci.yml, docs/deepdive-accessibility-directory.md]
+    scope: [.github/workflows/, wrangler/pages config]
+    outputs: []
+    verify: ["прод-URL отдаёт 200", "dist/404.html работает", "sitemap.xml доступен"]
+    max_attempts: 4
+    attempts: 0
+    risk: medium
+    approval_required: true
+    notes: "approval: создание внешнего ресурса (Pages-проект) и привязка домена"
+
+  - id: A1-SCAN
+    title: "Сканер MVP: POST /api/scan (Browser Rendering + axe-core) -> D1, GET /api/scan/:id"
+    owner: backend-engineer
+    status: ready
+    depends_on: []
+    inputs: [docs/project/domains/architecture.md, docs/project/INTERFACES.md]
+    scope: [worker/, wrangler.jsonc]
+    outputs: [worker/, docs/project/domains/backend.md]
+    verify: ["wrangler dev: скан example.com возвращает findings", npm run typecheck]
+    max_attempts: 4
+    attempts: 0
+    risk: medium
+    approval_required: true
+    notes: "approval: включение платных фич CF (Browser Rendering, D1). Технически независим от Фазы 0 — можно строить параллельно"
+
+  - id: A1-REPORT
+    title: "UI отчёта /report/:id — находки по WCAG, severity, score"
+    owner: frontend-engineer
+    status: blocked
+    depends_on: [A1-SCAN]
+    inputs: [docs/project/INTERFACES.md]
+    scope: [src/pages/, src/components/, src/routes.tsx]
+    outputs: []
+    verify: [npm run build, npm run typecheck]
+    max_attempts: 4
+    attempts: 0
+    risk: low
+    approval_required: false
+
+  - id: A1-EXPLAIN
+    title: AI-пояснения находок (Claude Haiku + KV-кэш ruleId×locale)
+    owner: backend-engineer
+    status: blocked
+    depends_on: [A1-SCAN]
+    inputs: [docs/project/DECISIONS.md]
+    scope: [worker/]
+    outputs: []
+    verify: ["повторный запрос того же ruleId отдаётся из кэша", "лимит бюджета настроен"]
+    max_attempts: 4
+    attempts: 0
+    risk: medium
+    approval_required: true
+    notes: "approval: платный API-ключ Anthropic в секретах Worker"
