@@ -6481,5 +6481,4537 @@
       }
     ],
     "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "swink",
+    "name": "Swink",
+    "website": "swink.nl",
+    "hq": {
+      "city": "",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "NL",
+        "evidenceUrl": "https://toegankelijkheidsrapport.swink.nl/kadaster-catalogus-hercontrole/audit/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.toegankelijkheidsverklaring.nl/register/24755",
+        "label": "accessibility statement of Kadaster Catalogus — audit by Swink"
+      },
+      {
+        "url": "https://www.swink.nl/onze-dienstverlening/audits",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "accessy",
+    "name": "Accessy",
+    "website": "accessy.club",
+    "hq": {
+      "city": "",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "NL",
+        "evidenceUrl": "https://www.accessy.club/wp-content/uploads/2025/10/Toegankelijkheidsonderzoek-amstelveen.vergunning.blitts.nl_.pdf"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.toegankelijkheidsverklaring.nl/register/23293",
+        "label": "accessibility statement of Amstelveen vergunning Blitts — audit by Accessy"
+      },
+      {
+        "url": "https://www.accessy.club/toegankelijkheidsonderzoeken",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "abra",
+    "name": "Abra B.V.",
+    "website": "abra.nl",
+    "hq": {
+      "city": "",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "NL",
+        "evidenceUrl": "https://www.digitoegankelijk.nl/sites/default/files/2024-04/Toegankelijkheidsonderzoek%20Fixi%20App%20Android%20v8.pdf"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.toegankelijkheidsverklaring.nl/register/26292",
+        "label": "accessibility statement of Fixi-app — audit by Abra B.V."
+      },
+      {
+        "url": "https://abra.nl/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "cipix-internetbureau",
+    "name": "Cipix Internetbureau BV",
+    "website": "cipix.nl",
+    "hq": {
+      "city": "Rotterdam",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "NL",
+        "evidenceUrl": "https://www.werkenbijdrechtsteden.nl/wp-content/uploads/2024/11/Rapport-onderzoek-digitale-toegankelijkheid-website-werkenbijdrechtsteden-nov2024.pdf"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.toegankelijkheidsverklaring.nl/register/25487",
+        "label": "accessibility statement of Werken bij Drechtsteden — audit by Cipix Internetbureau BV"
+      },
+      {
+        "url": "https://www.cipix.nl/oplossingen",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ron-zuidema",
+    "name": "Ron Zuidema - Audits en Advies in Digitale Toegankelijkheid",
+    "website": "ronzuidema.com",
+    "hq": {
+      "city": "",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "NL",
+        "evidenceUrl": "https://documenten.groningen.nl/Rapporten%20WCAG%20audit/Rapport%20WCAG-audit%20scheideningroningen.nl.pdf"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.toegankelijkheidsverklaring.nl/register/26726",
+        "label": "accessibility statement of Scheiden in Groningen — audit by Ron Zuidema"
+      },
+      {
+        "url": "https://ronzuidema.com/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "zekers-online-communicatie",
+    "name": "Zekers! Online communicatie",
+    "website": "zekersonline.nl",
+    "hq": {
+      "city": "Nijmegen",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "NL",
+        "evidenceUrl": "https://www.vechtstromen.nl/publish/pages/35920/audit_vechtpark_hardenberg_hertest.pdf"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.toegankelijkheidsverklaring.nl/register/23218",
+        "label": "accessibility statement of Vechtpark Hardenberg (Waterschap Vechtstromen) — audit by Zekers! Online communicatie"
+      },
+      {
+        "url": "https://zekersonline.nl/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "200-ok",
+    "name": "200 OK",
+    "website": "200ok.nl",
+    "hq": {
+      "city": "",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "NL",
+        "evidenceUrl": "https://toegankelijkheidsonderzoek.nl/veiligthuiszuidhollandzuid.nl/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.toegankelijkheidsverklaring.nl/register/24678",
+        "label": "accessibility statement of Veilig Thuis ZHZ — audit by 200 OK (Jules Ernst)"
+      },
+      {
+        "url": "https://200ok.nl/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "toegankelijk-online",
+    "name": "Toegankelijk Online",
+    "website": "toegankelijkonline.nl",
+    "hq": {
+      "city": "",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "NL",
+        "evidenceUrl": "https://toegankelijkonline.nl/audits/4fab3dbe-72e5-4c9e-86e8-9f53084d7ea3"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.toegankelijkheidsverklaring.nl/register/26041",
+        "label": "accessibility statement of DAMO Logische Datamodellen — audit by Toegankelijk Online"
+      },
+      {
+        "url": "https://toegankelijkonline.nl/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "zigt-create",
+    "name": "ZIGT Create B.V.",
+    "website": "zigt.nl",
+    "hq": {
+      "city": "",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "NL",
+        "evidenceUrl": "https://www.aenowaterschappen.nl/uploads/images/Onderzoeksrapport_aenowaterschappen_20241125.pdf"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.toegankelijkheidsverklaring.nl/register/22000",
+        "label": "accessibility statement of A&O fonds Waterschappen — audit by ZIGT Create B.V."
+      },
+      {
+        "url": "https://zigt.nl/actueel/jouw-website-toegankelijk-voor-iedereen",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "x-com",
+    "name": "X-com",
+    "website": "x-com.nl",
+    "hq": {
+      "city": "",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "NL",
+        "evidenceUrl": "https://www.gulpen-wittem.nl/data/downloadables/2/3/1/5/digitaal-nachtregister_wcag-rapport.pdf"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.toegankelijkheidsverklaring.nl/register/24392",
+        "label": "accessibility statement of Digitaal Nachtregister Gulpen-Wittem — audit by X-com"
+      },
+      {
+        "url": "https://www.x-com.nl/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "chent",
+    "name": "Chent",
+    "website": "chent.nl",
+    "hq": {
+      "city": "Den Haag",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "NL",
+        "evidenceUrl": "https://www.wcagregister.nl/organisaties/gemeente-hoorn/doorstroompuntwestfriesland-nl-hertest-31102025.html"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.toegankelijkheidsverklaring.nl/register/22541",
+        "label": "accessibility statement of Doorstroompunt Westfriesland (Gemeente Hoorn) — audit by Chent"
+      },
+      {
+        "url": "https://chent.nl/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "accessibility-desk",
+    "name": "Accessibility Desk",
+    "website": "accessibilitydesk.com",
+    "hq": {
+      "city": "",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "NL",
+        "evidenceUrl": "https://auditing.accessibilitydesk.com/public/reports/202/202512161056/604"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.toegankelijkheidsverklaring.nl/register/26755",
+        "label": "accessibility statement of open.brabant.nl (Provincie Noord-Brabant) — audit by Accessibility Desk"
+      },
+      {
+        "url": "https://accessibilitydesk.com/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "janita-top",
+    "name": "Janita Top - Digitale toegankelijkheid",
+    "website": "janitatop.nl",
+    "hq": {
+      "city": "",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "NL",
+        "evidenceUrl": "https://janitatop.nl/rapporten/2024/ikw"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.toegankelijkheidsverklaring.nl/register/24057",
+        "label": "accessibility statement of Investeringskader Waddengebied — audit by Janita Top"
+      },
+      {
+        "url": "https://janitatop.nl/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "frameless",
+    "name": "Frameless",
+    "website": "frameless.io",
+    "hq": {
+      "city": "",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "NL",
+        "evidenceUrl": "https://toegankelijkheidsrapport.frameless.io/rapport/aanpakdrugscriminaliteit.utrecht.nl-2024-12"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.toegankelijkheidsverklaring.nl/register/25945",
+        "label": "accessibility statement of Utrechtse aanpak drugscriminaliteit — audit by Frameless"
+      },
+      {
+        "url": "https://frameless.io/",
+        "label": "official website — WCAG audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "media-duo",
+    "name": "Media Duo",
+    "website": "mediaduo.nl",
+    "hq": {
+      "city": "",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "NL",
+        "evidenceUrl": "https://toegankelijkheid.mediaduo.nl/gemeente-emmen/2025-04-11-emmen-geeft-energie"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.toegankelijkheidsverklaring.nl/register/26742",
+        "label": "accessibility statement of Emmengeeftenergie.nl (Gemeente Emmen) — audit by Media Duo"
+      },
+      {
+        "url": "https://mediaduo.nl/",
+        "label": "official website — accessibility research and reporting"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "digital-natives",
+    "name": "Digital Natives",
+    "website": "digitalnatives.nl",
+    "hq": {
+      "city": "Amsterdam",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "NL",
+        "evidenceUrl": "https://toegankelijkheid.digitalnatives.nl/filmfonds/2024"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.toegankelijkheidsverklaring.nl/register/21012",
+        "label": "accessibility statement of Nederlands Filmfonds — audit by Digital Natives"
+      },
+      {
+        "url": "https://wcagwijzer.nl/",
+        "label": "official website (WCAG wijzer by Digital Natives) — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "eagerly",
+    "name": "Eagerly",
+    "website": "eagerly.nl",
+    "hq": {
+      "city": "",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "NL",
+        "evidenceUrl": "https://www.uwv.nl/assets-kai/files/4e81d972-5885-487b-bbea-2a2873ec38d5/202512-wcag-2-1-aa-audit-uwv-panels-ww-wia-en-wajong.pdf"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.toegankelijkheidsverklaring.nl/register/25370",
+        "label": "accessibility statement of UWV Panel — audit by Eagerly"
+      },
+      {
+        "url": "https://eagerly.nl/toegankelijkheid/",
+        "label": "official website — WCAG audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "uxmen",
+    "name": "UXMen",
+    "website": "uxmen.be",
+    "hq": {
+      "city": "",
+      "countryCode": "BE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "BE"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "BE",
+        "evidenceUrl": "https://www.toekomstparochiekerken.be/toegankelijkheidsverklaring"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.toekomstparochiekerken.be/toegankelijkheidsverklaring",
+        "label": "accessibility statement of VVSG / Platform Toekomst Parochiekerken — external audit by UXMen"
+      },
+      {
+        "url": "https://uxmen.be/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "humix",
+    "name": "Humix BV",
+    "website": "humix.be",
+    "hq": {
+      "city": "",
+      "countryCode": "BE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "BE"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "BE",
+        "evidenceUrl": "https://www.visitbruges.be/nl/toegankelijkheidsverklaring"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.visitbruges.be/nl/toegankelijkheidsverklaring",
+        "label": "accessibility statement of Visit Bruges (Stad Brugge) — audit by Humix BV"
+      },
+      {
+        "url": "https://humix.be/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "inter-vlaanderen",
+    "name": "Inter - Vlaams expertisecentrum toegankelijkheid",
+    "website": "inter.vlaanderen",
+    "hq": {
+      "city": "",
+      "countryCode": "BE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "BE"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "BE",
+        "evidenceUrl": "https://www.scoutsengidsenvlaanderen.be/toegankelijkheidsverklaring"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.scoutsengidsenvlaanderen.be/toegankelijkheidsverklaring",
+        "label": "accessibility statement of Scouts en Gidsen Vlaanderen — official audit by Inter"
+      },
+      {
+        "url": "https://www.inter.vlaanderen/",
+        "label": "official website — accessibility expertise centre and audits"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "lcp",
+    "name": "LCP nv",
+    "website": "lcp.be",
+    "hq": {
+      "city": "",
+      "countryCode": "BE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "BE"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "BE",
+        "evidenceUrl": "https://www.toerismedadizele.be/toegankelijkheidsverklaring"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.toerismedadizele.be/toegankelijkheidsverklaring",
+        "label": "accessibility statement of Toerisme Dadizele (Gemeente Moorslede) — onderzoek uitgevoerd door LCP"
+      },
+      {
+        "url": "https://www.lcp.be/toegankelijkheid",
+        "label": "official website — digital accessibility advice for public organisations"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "craftzing",
+    "name": "Craftzing",
+    "website": "craftzing.com",
+    "hq": {
+      "city": "",
+      "countryCode": "BE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "BE"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "BE",
+        "evidenceUrl": "https://www.proximus.be/fr/id_cr_accessibility_statement/particuliers/r-orphans/declaration-daccessibilite.html"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.scarlet.be/fr/homepage/accessibility.html",
+        "label": "accessibility statement of Scarlet/Proximus (Belgian law of 5 Nov 2023) — external audit by Craftzing"
+      },
+      {
+        "url": "https://craftzing.com/",
+        "label": "official website — accessibility practice and audits"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "tothomweb",
+    "name": "Tothomweb SL",
+    "website": "tothomweb.com",
+    "hq": {
+      "city": "",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es",
+      "ca"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "ES",
+        "evidenceUrl": "https://atc.gencat.cat/es/ajuda/accessibilitat/index.html"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://atc.gencat.cat/es/ajuda/accessibilitat/index.html",
+        "label": "accessibility statement of Agència Tributària de Catalunya — auditoría realizada por Tothomweb SL"
+      },
+      {
+        "url": "https://tothomweb.com/es/servicios/auditoria-accesibilidad",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "databot-technologies",
+    "name": "Databot Technologies S.L.",
+    "website": "webaccesible.io",
+    "hq": {
+      "city": "",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es",
+      "ca"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "ES",
+        "evidenceUrl": "https://visitles3viles.cat/es/accessibilidad/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://visitles3viles.cat/es/accessibilidad/",
+        "label": "accessibility statement of Les 3 Viles tourism consortium — auditoría de accesibilidad realizada por Databot Technologies S.L."
+      },
+      {
+        "url": "https://webaccesible.io/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "fondazione-lia",
+    "name": "Fondazione LIA ETS",
+    "website": "fondazionelia.org",
+    "hq": {
+      "city": "",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "IT",
+        "evidenceUrl": "https://www.hubscuola.it/app/docs/RE/20250728_Dic_acc_Rizzoli_Education_e-commerce.pdf"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.gruppolascuola.it/chi-siamo/dichiarazione-di-accessibilita",
+        "label": "dichiarazione di accessibilità of Gruppo Editoriale La Scuola S.p.A. — audit di accessibilità svolto da Fondazione LIA ETS"
+      },
+      {
+        "url": "https://www.fondazionelia.org/",
+        "label": "official website — audit di piattaforme e siti"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "visionbites",
+    "name": "visionbites GmbH",
+    "website": "visionbites.de",
+    "hq": {
+      "city": "München",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "DE",
+        "evidenceUrl": "https://pflege-und-zuhause.de/erklaerung-zur-barrierefreiheit"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://pflege-und-zuhause.de/erklaerung-zur-barrierefreiheit",
+        "label": "Erklärung zur Barrierefreiheit von Ategris — Externe Prüfung durch visionbites GmbH"
+      },
+      {
+        "url": "https://www.literaturfest-muenchen.de/erklaerung-zur-barrierefreiheit",
+        "label": "Erklärung zur Barrierefreiheit des Literaturfest München — Externe Prüfung durch visionbites GmbH"
+      },
+      {
+        "url": "https://visionbites.de/typo3-agentur-muenchen/barrierefreie-typo3-websites",
+        "label": "official website — accessibility testing services (BITV, WCAG, BFSG)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "pluspol-interactive",
+    "name": "PLUSPOL interactive GbR",
+    "website": "pluspol-interactive.de",
+    "hq": {
+      "city": "Leipzig",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "DE",
+        "evidenceUrl": "https://stiftung.adac.de/barrierefreiheit/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://stiftung.adac.de/barrierefreiheit/",
+        "label": "Erklärung zur Barrierefreiheit der ADAC Stiftung — Ergebnis einer Prüfung durch die Firma PLUSPOL interactive GbR"
+      },
+      {
+        "url": "https://www.pluspol-interactive.de/kompetenzen/weitere-leistungen/barrierefreie-websites/",
+        "label": "official website — accessibility testing services (WCAG 2.1, BITV 2.0)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "sxo-beratung-martin-mutter",
+    "name": "Martin Mutter | SXO Beratung",
+    "website": "martin-mutter.com",
+    "hq": {
+      "city": "Waldshut-Tiengen",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "DE",
+        "evidenceUrl": "https://www.museumsstiftung.de/barrierefreiheit/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.museumsstiftung.de/barrierefreiheit/",
+        "label": "Erklärung zur Barrierefreiheit der Museumsstiftung Post und Telekommunikation — externe Prüfung durch Martin Mutter | SXO Beratung"
+      },
+      {
+        "url": "https://martin-mutter.com/leistungen/",
+        "label": "official website — accessibility testing services (Barrierefreiheit-Audit)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "brain-appeal",
+    "name": "Brain Appeal GmbH",
+    "website": "brain-appeal.com",
+    "hq": {
+      "city": "Mannheim",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "DE",
+        "evidenceUrl": "https://www.pflegedigital20.de/barrierefreiheitErklaerung.html"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.pflegedigital20.de/barrierefreiheitErklaerung.html",
+        "label": "Erklärung zur Barrierefreiheit der HAW Hamburg — unabhängig durch die Firma Brain Appeal nach BITV 2.0 geprüft"
+      },
+      {
+        "url": "https://www.uni-mannheim.de/media/Universitaet/Dokumente/Pruefbericht_Barrierefreiheit/Test_auf_Barrierefreiheit_Uni-Mannheim.pdf",
+        "label": "BITV/WCAG-Prüfbericht der Universität Mannheim — erstellt von Brain Appeal GmbH"
+      },
+      {
+        "url": "https://dhpol.de/service/20220317_DHPol_BITV-Test.pdf",
+        "label": "BITV-Test-Prüfbericht der Deutschen Hochschule der Polizei — erstellt von Brain Appeal GmbH"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "medienkonzepte",
+    "name": "Medienkonzepte Detlef Beyer und Lothar Meiers GbR",
+    "website": "medienkonzepte.de",
+    "hq": {
+      "city": "Köln",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "DE",
+        "evidenceUrl": "https://www.mazda.de/accessibility-statement/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.mazda.de/accessibility-statement/",
+        "label": "Erklärung zur Barrierefreiheit der Mazda Motors (Deutschland) GmbH — Externer Audit durch: Medienkonzepte, Detlef Beyer"
+      },
+      {
+        "url": "https://medienkonzepte.de/checkliste-barrierefreiheit/",
+        "label": "official website — accessibility testing services (digitale Barrierefreiheit, Usability)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "die-medialen",
+    "name": "Die Medialen GmbH",
+    "website": "diemedialen.de",
+    "hq": {
+      "city": "Bonn",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "DE",
+        "evidenceUrl": "https://suchtkooperation.nrw/fileadmin/user_upload/Barrierefreiheitserklaerung_fuer_Internetauftritte_Suchtkooperation_NRW.pdf"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://suchtkooperation.nrw/fileadmin/user_upload/Barrierefreiheitserklaerung_fuer_Internetauftritte_Suchtkooperation_NRW.pdf",
+        "label": "Erklärung zur Barrierefreiheit der Suchtkooperation NRW — Bewertung durch Die Medialen, Colmantstraße 39, Bonn"
+      },
+      {
+        "url": "https://www.diemedialen.de/webdesign/barrierefreies-webdesign",
+        "label": "official website — accessibility testing services (barrierefreies Webdesign, BFSG)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "stiftung-pfennigparade",
+    "name": "Stiftung Pfennigparade",
+    "website": "pfennigparade.de",
+    "hq": {
+      "city": "München",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "DE",
+        "evidenceUrl": "https://digitalservice.bund.de/erklaerung-zur-barrierefreiheit"
+      },
+      {
+        "kind": "bitv-pruefstelle",
+        "country": "DE",
+        "evidenceUrl": "https://bitvtest.de/bik-bitv-test-pruefverbund"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://digitalservice.bund.de/erklaerung-zur-barrierefreiheit",
+        "label": "Erklärung zur Barrierefreiheit des DigitalService des Bundes — geprüft von der Stiftung Pfennigparade nach der Methode des BITV-Tests"
+      },
+      {
+        "url": "https://www.bayernportal.de/barrierefreiheit",
+        "label": "Erklärung zur Barrierefreiheit des BayernPortals — geprüft von der Stiftung Pfennigparade"
+      },
+      {
+        "url": "https://bitvtest.de/bik-bitv-test-pruefverbund",
+        "label": "BIK BITV-Test Prüfverbund — Stiftung Pfennigparade als BIK Prüfstelle gelistet"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "marc-haunschild-accessibility-consulting",
+    "name": "Marc Haunschild Accessibility Consulting",
+    "website": "accessibility.consulting",
+    "hq": {
+      "city": "Bonn",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "DE",
+        "evidenceUrl": "https://www.denkort-bunker-valentin.de/barrierefreiheitserklaerung"
+      },
+      {
+        "kind": "bitv-pruefstelle",
+        "country": "DE",
+        "evidenceUrl": "https://bitvtest.de/bik-bitv-test-pruefverbund"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.denkort-bunker-valentin.de/barrierefreiheitserklaerung",
+        "label": "Erklärung zur Barrierefreiheit des Denkort Bunker Valentin (Bremen) — Überprüfung durch Marc Haunschild, Accessibility Consulting"
+      },
+      {
+        "url": "https://www.lra-ebe.de/service/barrierefreiheitserklaerung/",
+        "label": "Barrierefreiheitserklärung des Landratsamts Ebersberg — durch Marc Haunschild gemäß BIK BITV-Test (Web) / EN 301 549 geprüft"
+      },
+      {
+        "url": "https://bitvtest.de/bik-bitv-test-pruefverbund",
+        "label": "BIK BITV-Test Prüfverbund — Accessibility Consulting Marc Haunschild als BIK Prüfstelle gelistet"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "hellbusch-accessibility-consulting",
+    "name": "Hellbusch Accessibility Consulting",
+    "website": "barrierefreies-webdesign.de",
+    "hq": {
+      "city": "Dortmund",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "DE",
+        "evidenceUrl": "https://www.wbv-kommunikation.de/erklaerung-zur-barrierefreiheit/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.wbv-kommunikation.de/erklaerung-zur-barrierefreiheit/",
+        "label": "Erklärung zur Barrierefreiheit von wbv Media — WCAG-2.1-Konformitätsprüfung durchgeführt von Hellbusch Accessibility Consulting"
+      },
+      {
+        "url": "https://www.barrierefreies-webdesign.de/services/",
+        "label": "official website — accessibility testing services (Barrierefreiheit testen, Gutachten nach WCAG/BITV)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "team23",
+    "name": "TEAM23 GmbH",
+    "website": "team23.de",
+    "hq": {
+      "city": "Augsburg",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "DE",
+        "evidenceUrl": "https://www.augsburg.de/barrierefreiheitserklaerung"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.augsburg.de/barrierefreiheitserklaerung",
+        "label": "Barrierefreiheitserklärung der Stadt Augsburg — manuelles Barrierefreiheits-Audit nach BITV 2.0, durchgeführt von der TEAM23 GmbH"
+      },
+      {
+        "url": "https://www.team23.de/leistungen/usability-barrierefreiheit/digitale-barrierefreiheit-agentur",
+        "label": "official website — accessibility testing services (digitale Barrierefreiheit nach BITV)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "liquid-impressions",
+    "name": "Liquid Impressions KG",
+    "website": "liquid-impressions.com",
+    "hq": {
+      "city": "Kraftsdorf",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "DE",
+        "evidenceUrl": "https://www.uni-bremen.de/barrierefreiheit"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.uni-bremen.de/barrierefreiheit",
+        "label": "Erklärung zur Barrierefreiheit der Universität Bremen — technische Überprüfung nach BITV 2.0 durchgeführt von Liquid Impressions KG"
+      },
+      {
+        "url": "https://liquid-impressions.com/",
+        "label": "official website — accessibility testing services (Prüfung nach EN 301 549)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "bikosax",
+    "name": "BIKOSAX (Deutsches Zentrum für barrierefreies Lesen)",
+    "website": "bikosax.de",
+    "hq": {
+      "city": "Leipzig",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "DE",
+        "evidenceUrl": "https://www.leipzig.de/barrierefreiheit"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.leipzig.de/barrierefreiheit",
+        "label": "Erklärung zur Barrierefreiheit der Stadt Leipzig — Prüfung durch die BIKOSAX"
+      },
+      {
+        "url": "https://leibniz-ifl.de/funktionen/barrierefreiheit",
+        "label": "Erklärung zur Barrierefreiheit des Leibniz-Instituts für Länderkunde — Prüfung vom Deutschen Zentrum für barrierefreies Lesen durchgeführt"
+      },
+      {
+        "url": "https://bikosax.de/barrierefreiheit",
+        "label": "official website — accessibility testing services (Prüfung von Internetauftritten nach BITV 2.0)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "clickstorm",
+    "name": "clickstorm GmbH",
+    "website": "clickstorm.de",
+    "hq": {
+      "city": "Leipzig",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "DE",
+        "evidenceUrl": "https://www.vmt-thueringen.de/barrierefreiheit"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.vmt-thueringen.de/barrierefreiheit",
+        "label": "Erklärung zur Barrierefreiheit des Verkehrsverbunds Mittelthüringen — Bewertung durch die Fa. clickstorm GmbH auf Basis eines BITV-Tests"
+      },
+      {
+        "url": "https://clickstorm.de/leistungen/",
+        "label": "official website — accessibility services listed under Leistungen (Barrierefreiheit)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "kolibri-online",
+    "name": "Kolibri Online GmbH",
+    "website": "kolibri-online.com",
+    "hq": {
+      "city": "Hamburg",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "DE",
+        "evidenceUrl": "https://www.ikk-classic.de/barrierefreiheit"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.ikk-classic.de/barrierefreiheit",
+        "label": "Erklärung zur Barrierefreiheit der IKK classic — Bewertung durch die Agentur Kolibri Online"
+      },
+      {
+        "url": "https://kolibri-online.com/leistungen/analysen/barrierefreiheits-check/",
+        "label": "official website — accessibility testing services (Barrierefreiheits-Check)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "schalk-and-friends",
+    "name": "schalk&friends gmbh",
+    "website": "schalk-and-friends.de",
+    "hq": {
+      "city": "München",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "DE",
+        "evidenceUrl": "https://www.landkreis-freising.de/erklaerung-zur-barrierefreiheit.html"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.landkreis-freising.de/erklaerung-zur-barrierefreiheit.html",
+        "label": "Erklärung zur Barrierefreiheit des Landkreises Freising — Bewertung basiert auf einer Prüfung durch die Digitalagentur schalk&friends"
+      },
+      {
+        "url": "https://www.schalk-and-friends.de/leistungen/barrierefreie-website/",
+        "label": "official website — accessibility testing services (Quick-Check und umfassender Barrierefreiheits-Audit)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "kbv-kompetenzzentrum-barrierefreiheit-volmarstein",
+    "name": "KBV Kompetenzzentrum Barrierefreiheit Volmarstein gGmbH",
+    "website": "kb-volmarstein.de",
+    "hq": {
+      "city": "Wetter (Ruhr)",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "DE",
+        "evidenceUrl": "https://www.hochschule-rhein-waal.de/de/barrierefreiheit"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.hochschule-rhein-waal.de/de/barrierefreiheit",
+        "label": "Erklärung zur Barrierefreiheit der Hochschule Rhein-Waal — BITV-Test durchgeführt vom Kompetenzzentrum Barrierefreiheit Volmarstein"
+      },
+      {
+        "url": "https://www.rsh-duesseldorf.de/fileadmin/user_upload/2023/Pruefbericht_rsh_bf.pdf",
+        "label": "BITV-Prüfbericht der Robert Schumann Hochschule Düsseldorf — Prüfstelle: Kompetenzzentrum Barrierefreiheit Volmarstein (KBV)"
+      },
+      {
+        "url": "https://kb-volmarstein.de/",
+        "label": "official website — accessibility testing services (berät, schult, testet zu Barrierefreiheit)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "joconcept-webservice",
+    "name": "Joconcept Webservice, Inh. Mathias Jobs",
+    "website": "joconcept.de",
+    "hq": {
+      "city": "Dersau",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "DE",
+        "evidenceUrl": "https://dersau.de/erklaerung-zur-barrierefreiheit/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://dersau.de/erklaerung-zur-barrierefreiheit/",
+        "label": "Erklärung zur Barrierefreiheit der Gemeinde Dersau — Bewertung durch die Agentur Joconcept Webservice, Inh. Mathias Jobs"
+      },
+      {
+        "url": "https://joconcept.de/",
+        "label": "official website — barrierefreies Webdesign / accessibility services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ifdb",
+    "name": "IFDB GmbH",
+    "website": "ifdb.io",
+    "hq": {
+      "city": "München",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "DE",
+        "evidenceUrl": "https://www.nanu-nana.at/erklaerung-zur-barrierefreiheit/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.nanu-nana.at/erklaerung-zur-barrierefreiheit/",
+        "label": "Erklärung zur Barrierefreiheit von NANU-NANA — Audit durch die IFDB GmbH"
+      },
+      {
+        "url": "https://ifdb.io/barrierefreiheit-zertifizierung/",
+        "label": "official website — accessibility testing services (Audit & Zertifizierung, BITV/WCAG)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "wienfluss",
+    "name": "WIENFLUSS information.design.solutions KG",
+    "website": "wienfluss.net",
+    "hq": {
+      "city": "Wien",
+      "countryCode": "AT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AT"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "AT",
+        "evidenceUrl": "https://www.univie.ac.at/ueber-uns/informationen-zur-barrierefreiheit"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.univie.ac.at/ueber-uns/informationen-zur-barrierefreiheit",
+        "label": "Erklärung zur Barrierefreiheit der Universität Wien — Überprüfung durch eine externe Fachstelle (WIENFLUSS digital.accessibility.solutions)"
+      },
+      {
+        "url": "https://www.wienfluss.net/barrierefreiheit/",
+        "label": "official website — accessibility testing services (Testen & Evaluierung, WACA-Begleitung)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "interface-consult",
+    "name": "Interface Consult GmbH",
+    "website": "usability.at",
+    "hq": {
+      "city": "Wien",
+      "countryCode": "AT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AT"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "AT",
+        "evidenceUrl": "https://www.gespag.at/service/impressum/barrierefreiheitserklaerung"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.gespag.at/service/impressum/barrierefreiheitserklaerung",
+        "label": "Barrierefreiheitserklärung der OÖ Gesundheitsholding (gespag) — externe Prüfung durch die Agentur Interface Consult GmbH"
+      },
+      {
+        "url": "https://www.lpbz-ooeg.at/service/impressum/barrierefreiheitserklaerung",
+        "label": "Barrierefreiheitserklärung der OÖ Landes-Pflege- und Betreuungszentren — externe Prüfung durch die Agentur Interface"
+      },
+      {
+        "url": "https://www.usability.at/leistungen/barrierefreiheit-evaluation-check.html",
+        "label": "official website — accessibility testing services (Barrierefreiheit Check und Prüfung)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "k25-werbeagentur",
+    "name": "k25 Werbeagentur GmbH",
+    "website": "k25.at",
+    "hq": {
+      "city": "Wien",
+      "countryCode": "AT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AT"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "AT",
+        "evidenceUrl": "https://www.factoring-verband.at/barrierefreiheit/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.factoring-verband.at/barrierefreiheit/",
+        "label": "Erklärung zur Barrierefreiheit des Österreichischen Factoring-Verbands — externe Prüfung durch k25 Werbeagentur GmbH"
+      },
+      {
+        "url": "https://www.apogersthof.at/barrierefreiheit/",
+        "label": "Erklärung zur Barrierefreiheit — externe Prüfung durch k25 Werbeagentur GmbH"
+      },
+      {
+        "url": "https://k25.at/schwerpunkt/barrierefreiheit-bei-k25/",
+        "label": "official website — accessibility testing services (Audit von Websites nach WCAG 2.2)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "mstage",
+    "name": "MSTAGE GmbH",
+    "website": "mstage.at",
+    "hq": {
+      "city": "St. Pölten",
+      "countryCode": "AT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AT"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "AT",
+        "evidenceUrl": "https://shop.kelly.at/de/barrierefreiheit/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://shop.kelly.at/de/barrierefreiheit/",
+        "label": "Erklärung zur Barrierefreiheit von Kelly — externer Audit durch Expert:innen der MSTAGE GmbH"
+      },
+      {
+        "url": "https://www.tee.at/barrierefreiheit/",
+        "label": "Erklärung zur Barrierefreiheit — Audit durch Expert:innen der MSTAGE GmbH nach WCAG 2.1 AA"
+      },
+      {
+        "url": "https://mstage.at/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "accessprod",
+    "name": "AccessProd",
+    "website": "accessprod.com",
+    "hq": {
+      "city": "Besançon",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.ined.fr/fr/etat-conformite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.ined.fr/fr/etat-conformite",
+        "label": "Déclaration d'accessibilité de l'INED (Institut national d'études démographiques) — audit réalisé par AccessProd"
+      },
+      {
+        "url": "https://www.accessprod.com/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "akse",
+    "name": "Aksé",
+    "website": "akse.co",
+    "hq": {
+      "city": "Solliès-Pont",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://naolib.fr/fr/accessibilite-naolib-mon-espace"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://naolib.fr/fr/accessibilite-naolib-mon-espace",
+        "label": "Déclaration d'accessibilité de Naolib (réseau de transports de Nantes Métropole) — audit réalisé par Aksé"
+      },
+      {
+        "url": "https://akse.co/accessibilite-rgaa/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "access-first",
+    "name": "Access First",
+    "website": "access-first.fr",
+    "hq": {
+      "city": "",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://esante.gouv.fr/accessibilite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://esante.gouv.fr/accessibilite",
+        "label": "Déclaration d'accessibilité de l'Agence du Numérique en Santé (esante.gouv.fr) — audit réalisé par Access First"
+      },
+      {
+        "url": "https://www.access-first.fr/audits-accessibilite-numerique",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "alsacreations",
+    "name": "Alsacréations",
+    "website": "alsacreations.fr",
+    "hq": {
+      "city": "Strasbourg",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://ville-illzach.fr/wp-content/uploads/2026/02/Illzach-Declaration-daccessibilite.pdf"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://ville-illzach.fr/wp-content/uploads/2026/02/Illzach-Declaration-daccessibilite.pdf",
+        "label": "Déclaration d'accessibilité de la Ville d'Illzach — audit réalisé par Alsacréations"
+      },
+      {
+        "url": "https://www.alsacreations.fr/prestations/audit-accessibilite/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "atalan",
+    "name": "Atalan",
+    "website": "atalan.fr",
+    "hq": {
+      "city": "",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://accesmed.sante.gouv.fr/CEPS.Administration/workflow_url?&ECITIZ_ACTIVITY_PATH=CNIL&ECITIZ_PROCESS_ID=TgDonneeAccessibilite&ORG=CEPS"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://accesmed.sante.gouv.fr/CEPS.Administration/workflow_url?&ECITIZ_ACTIVITY_PATH=CNIL&ECITIZ_PROCESS_ID=TgDonneeAccessibilite&ORG=CEPS",
+        "label": "Déclaration d'accessibilité de AccesMed (ministère de la Santé — CEPS) — audit réalisé par Atalan"
+      },
+      {
+        "url": "https://atalan.fr/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "axenum",
+    "name": "Axénum",
+    "website": "axenum.fr",
+    "hq": {
+      "city": "Cannes",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.cdg11.fr/declaration-accessibilite/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.cdg11.fr/declaration-accessibilite/",
+        "label": "Déclaration d'accessibilité de le Centre de gestion de la fonction publique territoriale de l'Aude (CDG11) — audit réalisé par Axénum"
+      },
+      {
+        "url": "https://axenum.fr/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ceciaa",
+    "name": "CECIAA",
+    "website": "ceciaa.com",
+    "hq": {
+      "city": "Maisons-Alfort",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.mairie-arcambal.fr/accessibilite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.mairie-arcambal.fr/accessibilite",
+        "label": "Déclaration d'accessibilité de la Mairie d'Arcambal — audit réalisé par CECIAA"
+      },
+      {
+        "url": "https://www.ceciaa.com/certification-rgaa-audit-accompagnement-conformite.html",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "cimeos",
+    "name": "Ciméos",
+    "website": "cimeos.com",
+    "hq": {
+      "city": "Les Auxons",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.cherbourg.fr/accessibilite/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.cherbourg.fr/accessibilite/",
+        "label": "Déclaration d'accessibilité de la Ville de Cherbourg-en-Cotentin — audit réalisé par Ciméos"
+      },
+      {
+        "url": "https://www.cimeos.com/expertises-13.html",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "com-access",
+    "name": "Com'access",
+    "website": "com-access.fr",
+    "hq": {
+      "city": "Le Mesnil-le-Roi",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://sytral-mobilites.fr/fr/declaration-d-accessibilite-partiellement-conforme.html"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://sytral-mobilites.fr/fr/declaration-d-accessibilite-partiellement-conforme.html",
+        "label": "Déclaration d'accessibilité de SYTRAL Mobilités — audit réalisé par Com'access"
+      },
+      {
+        "url": "https://com-access.fr/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "copsae",
+    "name": "Copsaé",
+    "website": "copsae.fr",
+    "hq": {
+      "city": "Nantes",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.blois.fr/accessibilite-du-site"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.blois.fr/accessibilite-du-site",
+        "label": "Déclaration d'accessibilité de la Ville de Blois — audit réalisé par Copsaé"
+      },
+      {
+        "url": "https://www.copsae.fr/accessibilite-numerique/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "creasit",
+    "name": "Créasit",
+    "website": "creasit.fr",
+    "hq": {
+      "city": "Nantes",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.hopital-loire-sante-nantes.fr/systeme/declaration-accessibilite/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.hopital-loire-sante-nantes.fr/systeme/declaration-accessibilite/",
+        "label": "Déclaration d'accessibilité de l'Hôpital Loire Santé (Nantes) — audit réalisé par Créasit"
+      },
+      {
+        "url": "https://www.creasit.fr/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ebizproduction",
+    "name": "Ebizproduction",
+    "website": "bluedrop.fr",
+    "hq": {
+      "city": "Marseille",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.anact.fr/accessibilite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.anact.fr/accessibilite",
+        "label": "Déclaration d'accessibilité de l'ANACT (Agence nationale pour l'amélioration des conditions de travail) — audit réalisé par Ebizproduction"
+      },
+      {
+        "url": "https://www.bluedrop.fr/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "eclydre",
+    "name": "Eclydre",
+    "website": "eclydre.fr",
+    "hq": {
+      "city": "Paris",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.mahj.org/fr/annexe/declaration-daccessibilite-rgaa-32063"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.mahj.org/fr/annexe/declaration-daccessibilite-rgaa-32063",
+        "label": "Déclaration d'accessibilité de le Musée d'art et d'histoire du Judaïsme — audit réalisé par Eclydre"
+      },
+      {
+        "url": "https://www.eclydre.fr/blog/nos-engagements-rse",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ethic-first",
+    "name": "Ethic First",
+    "website": "ethicfirst.fr",
+    "hq": {
+      "city": "Paris",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.academie-renseignement.gouv.fr/accessibilite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.academie-renseignement.gouv.fr/accessibilite",
+        "label": "Déclaration d'accessibilité de l'Académie du renseignement (academie-renseignement.gouv.fr) — audit réalisé par Ethic First"
+      },
+      {
+        "url": "https://www.ethicfirst.fr/audits-accessibilite-numerique-rgaa-raam-wcag/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ideance",
+    "name": "Ideance",
+    "website": "ideance.net",
+    "hq": {
+      "city": "Saint-Léger-du-Bourg-Denis",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.transformation.gouv.fr/accessibilite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.transformation.gouv.fr/accessibilite",
+        "label": "Déclaration d'accessibilité de la Direction interministérielle de la transformation publique (transformation.gouv.fr) — audit réalisé par Ideance"
+      },
+      {
+        "url": "https://ideance.net/fr/audits-accessibilite/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "inovagora",
+    "name": "Inovagora",
+    "website": "inovagora.net",
+    "hq": {
+      "city": "Compiègne",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.ch-pyrenees.fr/accessibilite/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.ch-pyrenees.fr/accessibilite/",
+        "label": "Déclaration d'accessibilité de le Centre hospitalier des Pyrénées — audit réalisé par Inovagora"
+      },
+      {
+        "url": "https://www.inovagora.net/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ipedis",
+    "name": "Ipedis",
+    "website": "ipedis.com",
+    "hq": {
+      "city": "Paris",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.soorts-hossegor.fr/accessibilite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.soorts-hossegor.fr/accessibilite",
+        "label": "Déclaration d'accessibilité de la Commune de Soorts-Hossegor — audit réalisé par Ipedis"
+      },
+      {
+        "url": "https://www.ipedis.com/audit-rgaa-wcag/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "licorn-publishing",
+    "name": "Licorn Publishing",
+    "website": "licornpublishing.com",
+    "hq": {
+      "city": "Rennes",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.capstreshautdebit.fr/declaration-daccessibilite/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.capstreshautdebit.fr/declaration-daccessibilite/",
+        "label": "Déclaration d'accessibilité de Cap's Très Haut Débit (réseau public d'initiative publique) — audit réalisé par Licorn Publishing"
+      },
+      {
+        "url": "https://licornpublishing.com/accessibilite",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "lorweb",
+    "name": "Lorweb",
+    "website": "lorweb.group",
+    "hq": {
+      "city": "Saint-Julien-lès-Metz",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://grandreims-mobilites.fr/fr/oJn-Accessibilite-3A-partiellement-conforme.html"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://grandreims-mobilites.fr/fr/oJn-Accessibilite-3A-partiellement-conforme.html",
+        "label": "Déclaration d'accessibilité de Grand Reims Mobilités — audit réalisé par Lorweb"
+      },
+      {
+        "url": "https://lorweb.group/lorweb",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "net-15",
+    "name": "Net 15",
+    "website": "net15.fr",
+    "hq": {
+      "city": "Aurillac",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.sumene-artense.com/declaration-daccessibilite/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.sumene-artense.com/declaration-daccessibilite/",
+        "label": "Déclaration d'accessibilité de la Communauté de communes Sumène Artense — audit réalisé par Net 15"
+      },
+      {
+        "url": "https://www.net15.fr/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "numerik-ea",
+    "name": "Numerik-ea",
+    "website": "numerik-ea.fr",
+    "hq": {
+      "city": "Paris",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.notre-environnement.gouv.fr/accessibilite/accessibilite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.notre-environnement.gouv.fr/accessibilite/accessibilite",
+        "label": "Déclaration d'accessibilité de notre-environnement.gouv.fr (ministère de la Transition écologique) — audit réalisé par Numerik-ea"
+      },
+      {
+        "url": "https://www.numerik-ea.fr/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "silaos",
+    "name": "Silaos",
+    "website": "silaos.fr",
+    "hq": {
+      "city": "La Rochelle",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.cariforefoccitanie.fr/accessibilite/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.cariforefoccitanie.fr/accessibilite/",
+        "label": "Déclaration d'accessibilité de le Carif-Oref Occitanie — audit réalisé par Silaos"
+      },
+      {
+        "url": "https://www.silaos.fr/audit-daccessibilite/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "specinov",
+    "name": "Spécinov",
+    "website": "specinov.fr",
+    "hq": {
+      "city": "Écouflant",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.cholet.fr/dossiers/dossier_21_politique+accessibilite+notre+site+internet.html"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.cholet.fr/dossiers/dossier_21_politique+accessibilite+notre+site+internet.html",
+        "label": "Déclaration d'accessibilité de la Ville de Cholet — audit réalisé par Spécinov"
+      },
+      {
+        "url": "https://www.specinov.fr/audit-accessibilite",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "stratis",
+    "name": "Stratis",
+    "website": "stratis.fr",
+    "hq": {
+      "city": "La Farlède",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.gard.fr/pages-pratiques/page-de-declaration-daccessibilite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.gard.fr/pages-pratiques/page-de-declaration-daccessibilite",
+        "label": "Déclaration d'accessibilité de le Département du Gard — audit réalisé par Stratis"
+      },
+      {
+        "url": "https://www.stratis.fr/solutions/accessibilite-numerique/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "tanaguru",
+    "name": "Tanaguru",
+    "website": "tanaguru.com",
+    "hq": {
+      "city": "Paris",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://nouvelles.univ-rennes2.fr/accessibilite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://nouvelles.univ-rennes2.fr/accessibilite",
+        "label": "Déclaration d'accessibilité de l'Université Rennes 2 — audit réalisé par Tanaguru"
+      },
+      {
+        "url": "https://www.tanaguru.com/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "temesis",
+    "name": "Temesis",
+    "website": "temesis.com",
+    "hq": {
+      "city": "Paris",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://philharmoniedeparis.fr/fr/accessibilite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://philharmoniedeparis.fr/fr/accessibilite",
+        "label": "Déclaration d'accessibilité de la Philharmonie de Paris — audit réalisé par Temesis"
+      },
+      {
+        "url": "https://www.temesis.com/accessibilite/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "reddog-systems",
+    "name": "Reddog Systems Przemysław Bąchorek",
+    "website": "red-dog.pl",
+    "hq": {
+      "city": "Łódź",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://warszawapraga-pln.sr.gov.pl/attachments/379/download"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://warszawapraga-pln.sr.gov.pl/attachments/379/download",
+        "label": "Raport z audytu dostępności cyfrowej — Sąd Rejonowy dla Warszawy Pragi-Północ — audyt przeprowadziła firma Reddog Systems Przemysław Bąchorek"
+      },
+      {
+        "url": "https://bip.bm.bytom.pl/pliki/raport-bip-20250409,963.pdf",
+        "label": "Raport z audytu dostępności cyfrowej BIP Bytom — audyt przeprowadziła firma Reddog Systems"
+      },
+      {
+        "url": "https://red-dog.pl",
+        "label": "official website — accessibility audit services (audyt dostępności cyfrowej, WCAG)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "centrum-bezpieczenstwa-informatycznego",
+    "name": "Centrum Bezpieczeństwa Informatycznego (CBI24) Sp. z o.o.",
+    "website": "cbi24.pl",
+    "hq": {
+      "city": "Lublin",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://bip-uggrodzisk.podlaskie.eu/dostpno_urzdu/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://bip-uggrodzisk.podlaskie.eu/dostpno_urzdu/",
+        "label": "Deklaracja dostępności Urzędu Gminy Grodzisk — badanie przeprowadzone przez podmiot zewnętrzny: Centrum Bezpieczeństwa Informatycznego"
+      },
+      {
+        "url": "https://zslubostron.pl/deklaracja-dostepnosci",
+        "label": "Deklaracja dostępności Zespołu Szkół w Lubostroniu — podmiot zewnętrzny: CBI24 Sp. z o.o."
+      },
+      {
+        "url": "https://cbi24.pl/oferta/",
+        "label": "official website — accessibility audit services (audyty dostępności, deklaracja dostępności)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "perfekcyjnestrony",
+    "name": "perfekcyjneStrony",
+    "website": "perfekcyjnestrony.pl",
+    "hq": {
+      "city": "Leszno",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://energa-operator.pl/deklaracja-dostepnosci"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://energa-operator.pl/deklaracja-dostepnosci",
+        "label": "Deklaracja dostępności Energa-Operator S.A. — badanie przeprowadzone przez podmiot zewnętrzny: perfekcyjneStrony"
+      },
+      {
+        "url": "https://perfekcyjnestrony.pl/oferta/audyt-dostepnosci-wcag-2-1",
+        "label": "official website — accessibility audit services (audyt dostępności WCAG 2.1/2.2)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "extranet-joanna-pazdzierska",
+    "name": "extranet Joanna Paździerska",
+    "website": "extranet.pl",
+    "hq": {
+      "city": "Toruń",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://ozkodolanow.pl/19,deklaracja-dostepnosci"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://ozkodolanow.pl/19,deklaracja-dostepnosci",
+        "label": "Deklaracja dostępności — badanie przeprowadzone przez podmiot zewnętrzny: extranet Joanna Paździerska"
+      },
+      {
+        "url": "https://bip.pcz.pl/3,deklaracja-dostepnosci",
+        "label": "Deklaracja dostępności BIP — podmiot zewnętrzny: extranet Joanna Paździerska"
+      },
+      {
+        "url": "https://www.extranet.pl/134,audyty-z-dostepnosci-cyfrowej-stron-www-i-bip",
+        "label": "official website — accessibility audit services (audyty z dostępności cyfrowej stron WWW i BIP)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "idcom-group",
+    "name": "IDcom Group Sp. z o.o.",
+    "website": "idcom.pl",
+    "hq": {
+      "city": "Poznań",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://gops-lesznowola.pl/cms/7229/deklaracja_dostepnosci"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://gops-lesznowola.pl/cms/7229/deklaracja_dostepnosci",
+        "label": "Deklaracja dostępności GOPS Lesznowola — badanie przeprowadzone przez podmiot zewnętrzny: IDcom Group Sp. z o.o."
+      },
+      {
+        "url": "https://powiat.elk.pl/cms/11077/deklaracja_dostepnosci",
+        "label": "Deklaracja dostępności Powiatu Ełckiego — podmiot zewnętrzny: IDcom Group Sp. z o.o."
+      },
+      {
+        "url": "https://idcom.pl/wcag",
+        "label": "official website — WCAG / digital accessibility services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "alpanet",
+    "name": "ALPANET - Polskie Systemy Internetowe",
+    "website": "alpanet.pl",
+    "hq": {
+      "city": "Zawiercie",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://www.szpitalzawiercie.pl/kategorie/deklaracja-dostepnosci"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.szpitalzawiercie.pl/kategorie/deklaracja-dostepnosci",
+        "label": "Deklaracja dostępności Szpitala Powiatowego w Zawierciu — podmiot zewnętrzny: ALPANET - Polskie Systemy Internetowe"
+      },
+      {
+        "url": "https://www.pcprmyszkow.pl/deklaracja-dostepnosci",
+        "label": "Deklaracja dostępności PCPR Myszków — podmiot zewnętrzny: ALPANET - Polskie Systemy Internetowe"
+      },
+      {
+        "url": "https://www.alpanet.pl/blog/standard-wcag-2-1",
+        "label": "official website — WCAG 2.1/2.2 digital accessibility services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "vobacom",
+    "name": "Vobacom Sp. z o.o.",
+    "website": "vobacom.pl",
+    "hq": {
+      "city": "Toruń",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://www.konstancinjeziorna.pl/deklaracja-dostepnosci"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.konstancinjeziorna.pl/deklaracja-dostepnosci",
+        "label": "Deklaracja dostępności Gminy Konstancin-Jeziorna — badanie przeprowadzone przez firmę Vobacom Sp. z o.o."
+      },
+      {
+        "url": "https://www.gminakruszwica.pl/page/deklaracja-dostepnosci",
+        "label": "Deklaracja dostępności Gminy Kruszwica — firma Vobacom Sp. z o.o."
+      },
+      {
+        "url": "https://vobacom.pl/index.php/wdrozenie-wcag",
+        "label": "official website — accessibility audit services (audyt WCAG 2.1/2.2)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "virtualmedia",
+    "name": "Virtualmedia Agencja Interaktywna",
+    "website": "virtualmedia.pl",
+    "hq": {
+      "city": "Olsztyn",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://mpec.olsztyn.pl/deklaracja-dostepnosci/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://mpec.olsztyn.pl/deklaracja-dostepnosci/",
+        "label": "Deklaracja dostępności MPEC Olsztyn — badanie przeprowadzone przez podmiot zewnętrzny: VIRTUALMEDIA AGENCJA INTERAKTYWNA"
+      },
+      {
+        "url": "https://climatecake.ios.edu.pl/deklaracja-dostepnosci/",
+        "label": "Deklaracja dostępności Instytutu Ochrony Środowiska — podmiot zewnętrzny: VIRTUALMEDIA AGENCJA INTERAKTYWNA"
+      },
+      {
+        "url": "https://www.virtualmedia.pl/wcag-2-1/",
+        "label": "official website — accessibility audit services (audyt WCAG, dostępność cyfrowa)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "venti",
+    "name": "Venti Sp. z o.o.",
+    "website": "venti.pl",
+    "hq": {
+      "city": "Łódź",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://www.nil.gov.pl/deklaracja-dostepnosci/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.nil.gov.pl/deklaracja-dostepnosci/",
+        "label": "Deklaracja dostępności Naczelnej Izby Lekarskiej — badanie przeprowadzone przez podmiot zewnętrzny: VENTI sp. z o.o."
+      },
+      {
+        "url": "https://www.venti.pl/wdrozenia_dostepnosci_cyfrowej_wcag_21.php",
+        "label": "official website — digital accessibility (WCAG 2.1) audit and implementation services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "zeto-rzeszow",
+    "name": "ZETO-RZESZÓW Sp. z o.o.",
+    "website": "zetorzeszow.pl",
+    "hq": {
+      "city": "Rzeszów",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://bip.szpitalmsw.rzeszow.pl/media/deklaracja-dostepnosci.html"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://bip.szpitalmsw.rzeszow.pl/media/deklaracja-dostepnosci.html",
+        "label": "Deklaracja dostępności SP ZOZ MSWiA w Rzeszowie — podmiot zewnętrzny: ZETO-RZESZÓW Sp. z o.o."
+      },
+      {
+        "url": "https://bip.mgops.sieniawa.pl/media/deklaracja-dostepnosci.html",
+        "label": "Deklaracja dostępności MGOPS Sieniawa — podmiot zewnętrzny: ZETO-RZESZÓW Sp. z o.o."
+      },
+      {
+        "url": "https://przemysl.zetorzeszow.pl/2020/07/20/audyt-funkcjonalny-obciazeniowy-oraz-wcag-referencja/",
+        "label": "official website — WCAG audit services (referencja: audyt funkcjonalny, obciążeniowy oraz WCAG)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "fundacja-widzialni",
+    "name": "Fundacja Widzialni",
+    "website": "widzialni.org",
+    "hq": {
+      "city": "Częstochowa",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://ipn.gov.pl/pl/page/24141,Deklaracja-dostepnosci.html"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://ipn.gov.pl/pl/page/24141,Deklaracja-dostepnosci.html",
+        "label": "Deklaracja dostępności Instytutu Pamięci Narodowej — badanie przeprowadzone przez Fundację Widzialni"
+      },
+      {
+        "url": "https://ptbs.pl/deklaracja-dostepnosci/",
+        "label": "Deklaracja dostępności — audytor: Fundacja Widzialni"
+      },
+      {
+        "url": "https://www.widzialni.org/audyty-dostepnosci",
+        "label": "official website — accessibility audit services (audyty dostępności, badania dostępności WCAG 2.1)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "altix",
+    "name": "Altix Sp. z o.o.",
+    "website": "altix.pl",
+    "hq": {
+      "city": "Warszawa",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://gopsstoczek.pl/deklaracja-dostepnosci.html"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://gopsstoczek.pl/deklaracja-dostepnosci.html",
+        "label": "Deklaracja dostępności GOPS Stoczek — badanie przeprowadzone przez firmę Altix Sp. z o.o."
+      },
+      {
+        "url": "https://www.marki.pl/zalaczniki/2013-raport_z_audytu_dostepnosci_cyfrowej__um_marki_2026.pdf",
+        "label": "Raport z audytu dostępności cyfrowej UM Marki 2026 — wykonawcą jest Altix sp. z o.o."
+      },
+      {
+        "url": "https://altix.pl/pl/audyty/audyt-dostepnosci-stron-internetowych/",
+        "label": "official website — accessibility audit services (audyt dostępności stron internetowych)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "agileo-it",
+    "name": "Agileo.IT Sp. z o.o.",
+    "website": "agileo.it",
+    "hq": {
+      "city": "Katowice",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://www.gzk.pawlowice.pl/fileadmin/repozytorium/GZK/2025/DEKLARACJA_DOSTEPNOSCI.pdf"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.gzk.pawlowice.pl/fileadmin/repozytorium/GZK/2025/DEKLARACJA_DOSTEPNOSCI.pdf",
+        "label": "Deklaracja dostępności GZK Pawłowice — badanie przeprowadzone przez podmiot zewnętrzny: AGILEO"
+      },
+      {
+        "url": "https://czaswlas.pl/deklaracja-dostepnosci-27",
+        "label": "Deklaracja dostępności — podmiot zewnętrzny: Agileo"
+      },
+      {
+        "url": "https://agileo.it/uslugi/audyt-dostepnosci/",
+        "label": "official website — accessibility audit services (audyt dostępności, audyt WCAG)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "intracom-pl",
+    "name": "IntraCOM.pl Agencja Interaktywna",
+    "website": "intracom.pl",
+    "hq": {
+      "city": "Katowice",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://sp5.czeladz.pl/main/deklaracja-dostepnosci"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://sp5.czeladz.pl/main/deklaracja-dostepnosci",
+        "label": "Deklaracja dostępności SP5 Czeladź — badanie przeprowadzone przez podmiot zewnętrzny: Agencja Interaktywna IntraCOM"
+      },
+      {
+        "url": "https://gdansk.praca.gov.pl/documents/d/powiatowy-urzad-pracy-w-gdansku/raport-z-audytu-dostepnosci-cyfrowej-aplikacji-mobilnej-ergon",
+        "label": "Raport z audytu dostępności cyfrowej aplikacji mobilnej ERGON (PUP Gdańsk) — firma: IntraCOM"
+      },
+      {
+        "url": "https://www.intracom.pl/nasze-uslugi/audyt-strony-internetowej",
+        "label": "official website — accessibility audit services (ekspercki audyt dostępności)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "akcess-net",
+    "name": "Akcess-Net FH-U Cezary Małota",
+    "website": "akcessnet.eu",
+    "hq": {
+      "city": "Radom",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://www.bip.gops.michalowice.pl/deklaracja-dostepnosci"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.bip.gops.michalowice.pl/deklaracja-dostepnosci",
+        "label": "Deklaracja dostępności GOPS Michałowice — badanie przeprowadzone przez podmiot zewnętrzny: Akcess-Net FH-U Cezary Małota"
+      },
+      {
+        "url": "https://gops-nieporet.pl/deklaracja-dostepnosci",
+        "label": "Deklaracja dostępności GOPS Nieporęt — podmiot zewnętrzny: Akcess-Net FH-U Cezary Małota"
+      },
+      {
+        "url": "https://www.akcessnet.eu/oferta/strony-www/tworzenie-stron-dostepnych-dla-niepelnosprawnych/metody-sprawdzania-dostepnosci-stron-internetowych",
+        "label": "official website — accessibility audit services (audyt WCAG 2.1/2.2, metody sprawdzania dostępności)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "spoldzielnia-socjalna-fado",
+    "name": "Spółdzielnia Socjalna FADO",
+    "website": "spoldzielniafado.pl",
+    "hq": {
+      "city": "Łódź",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://archiwumemigranta.pl/deklaracja-dostepnosci/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://archiwumemigranta.pl/deklaracja-dostepnosci/",
+        "label": "Deklaracja dostępności — badanie przeprowadzone przez podmiot zewnętrzny: Spółdzielnia Socjalna FADO"
+      },
+      {
+        "url": "https://starostwo.gliwice.pl/deklaracja-dostepnosci-starostwa-powiatowego-w-gliwicach",
+        "label": "Deklaracja dostępności Starostwa Powiatowego w Gliwicach — Spółdzielnia Socjalna FADO"
+      },
+      {
+        "url": "https://www.spoldzielniafado.pl/oferta/audyt-dostepnosci-cyfrowej",
+        "label": "official website — accessibility audit services (audyt dostępności cyfrowej WCAG 2.1)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "utilitia",
+    "name": "Utilitia Sp. z o.o.",
+    "website": "utilitia.pl",
+    "hq": {
+      "city": "Kraków",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://bip.zus.pl/deklaracja-dostepnosci"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://bip.zus.pl/deklaracja-dostepnosci",
+        "label": "Deklaracja dostępności BIP ZUS — badania przeprowadzone przez konsorcjum Fundacja Instytut Rozwoju Regionalnego i Utilitia sp. z o.o."
+      },
+      {
+        "url": "https://www.instytutksiazki.pl/deklaracja-dostepnosci/",
+        "label": "Deklaracja dostępności Instytutu Książki — badanie przeprowadzone przez Utilitia Sp. z o.o."
+      },
+      {
+        "url": "https://utilitia.pl/uslugi/audyt-dostepnosci-cyfrowej-serwisu-internetowego/",
+        "label": "official website — accessibility audit services (audyt dostępności cyfrowej serwisu internetowego)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "fundacja-instytut-rozwoju-regionalnego",
+    "name": "Fundacja Instytut Rozwoju Regionalnego (FIRR)",
+    "website": "firr.org.pl",
+    "hq": {
+      "city": "Kraków",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://bip.zus.pl/deklaracja-dostepnosci"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://bip.zus.pl/deklaracja-dostepnosci",
+        "label": "Deklaracja dostępności BIP ZUS — badania przeprowadzone przez konsorcjum Fundację Instytut Rozwoju Regionalnego i Utilitia sp. z o.o."
+      },
+      {
+        "url": "https://jablonna.pl/dla-mieszkancow/zawartosc/862/",
+        "label": "Deklaracja dostępności Urzędu Gminy Jabłonna — podmiot zewnętrzny: Fundacja Instytut Rozwoju Regionalnego"
+      },
+      {
+        "url": "https://firr.org.pl/wp-content/uploads/2018/04/Raport_FIRR_Dostepnosc_witryn_internetowych.pdf",
+        "label": "official website — accessibility research/audit work (badanie dostępności witryn internetowych instytucji publicznych)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "dranas-project",
+    "name": "Dranas Project Sp. z o.o.",
+    "website": "dranasproject.pl",
+    "hq": {
+      "city": "Niepołomice",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://szafarnia.art.pl/deklaracja-dostepnosci/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://szafarnia.art.pl/deklaracja-dostepnosci/",
+        "label": "Deklaracja dostępności Ośrodka Chopinowskiego w Szafarni — podmiot zewnętrzny: Dranas Project sp. z o.o."
+      },
+      {
+        "url": "https://przychodnia.stargard.pl/deklaracja-dostepnosci",
+        "label": "Deklaracja dostępności Przychodni w Stargardzie — podmiot zewnętrzny: Dranas Project sp. z o.o."
+      },
+      {
+        "url": "https://dranasproject.pl/strony-internetowe-wcag/",
+        "label": "official website — accessibility audit services (audyt dostępności, WCAG 2.1)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "kinaole",
+    "name": "Kinaole Sp. z o.o.",
+    "website": "kinaole.co",
+    "hq": {
+      "city": "Wrocław",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://teatranimacji.pl/pl/deklaracja-dostepnosci"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://teatranimacji.pl/pl/deklaracja-dostepnosci",
+        "label": "Deklaracja dostępności Teatru Animacji w Poznaniu — podmiot zewnętrzny: Kinaole Sp. z o.o."
+      },
+      {
+        "url": "https://integralia.pl/deklaracja-dostepnosci/",
+        "label": "Deklaracja dostępności Fundacji Integralia — audyt przeprowadzony przez Kinaole Sp. z o.o."
+      },
+      {
+        "url": "https://kinaole.co/",
+        "label": "official website — accessibility audit services (audyt WCAG 2.1/2.2, badania dostępności)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "fundacja-integracja",
+    "name": "Fundacja Integracja",
+    "website": "integracja.org",
+    "hq": {
+      "city": "Warszawa",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://www.bip.bialystok.pl/deklaracja-dostepnosci.html"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.bip.bialystok.pl/deklaracja-dostepnosci.html",
+        "label": "Deklaracja dostępności BIP Urzędu Miejskiego w Białymstoku — audyt Fundacji Integracja w Warszawie"
+      },
+      {
+        "url": "https://niepelnosprawni.pl/deklaracja-dostepnosci",
+        "label": "Deklaracja dostępności — badanie przeprowadzone przez podmiot zewnętrzny: Fundację Integracja"
+      },
+      {
+        "url": "https://integracja.org/dzialania/audyty/",
+        "label": "official website — accessibility audit services (audyty dostępności, audyt cyfrowy)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "akademia-slonca",
+    "name": "Akademia Słońca Krzysztof Frąszczak",
+    "website": "akademia-slonca.pl",
+    "hq": {
+      "city": "Poznań",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://res.cloudinary.com/teatr-wybrzeze/image/upload/v1707230874/Raport_Audyt_Cyfrowy_Teatr_Wybrzeze_2_MB_pdf_a44c7e5a20.pdf"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://res.cloudinary.com/teatr-wybrzeze/image/upload/v1707230874/Raport_Audyt_Cyfrowy_Teatr_Wybrzeze_2_MB_pdf_a44c7e5a20.pdf",
+        "label": "Raport z audytu dostępności cyfrowej Teatru Wybrzeże — wykonawca: Akademia Słońca Krzysztof Frąszczak"
+      },
+      {
+        "url": "https://akademia-slonca.pl/projekt/audyty-dostepnosci/",
+        "label": "official website — accessibility audit services (audyty dostępności, WCAG 2.1)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "nautil",
+    "name": "Nautil Sp. z o.o.",
+    "website": "nautil.pl",
+    "hq": {
+      "city": "Kosakowo",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://kosakowosport.pl/deklaracja-dostepnosci/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://kosakowosport.pl/deklaracja-dostepnosci/",
+        "label": "Deklaracja dostępności Kosakowo Sport sp. z o.o. — badanie przeprowadzone przez podmiot zewnętrzny: nautil.pl"
+      },
+      {
+        "url": "https://laczanasgory.pl/deklaracja-dostepnosci/",
+        "label": "Deklaracja dostępności Fundacji Ładne Historie — podmiot zewnętrzny: Nautil.pl"
+      },
+      {
+        "url": "https://www.nautil.pl/audyt-wcag/",
+        "label": "official website — accessibility audit services (audyt dostępności cyfrowej WCAG 2.1)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "optimal-it",
+    "name": "Optimal IT Sp. z o.o.",
+    "website": "optimalit.pl",
+    "hq": {
+      "city": "Skoczów",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://fundacja.cieszyn.pl/deklaracja-dostepnosci"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://fundacja.cieszyn.pl/deklaracja-dostepnosci",
+        "label": "Deklaracja dostępności Fundacji Zamek Cieszyn — badanie przeprowadzone przez podmiot zewnętrzny: Optimal IT Sp. z o.o."
+      },
+      {
+        "url": "https://optimalit.pl/blog/deklaracja-dostepnosci-potrzebna-od-zaraz",
+        "label": "official website — accessibility audit services (audyt WCAG, badanie dostępności, deklaracja dostępności)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "intermedia-spolka-jawna",
+    "name": "INTERmedi@ Spółka Jawna",
+    "website": "i.media.pl",
+    "hq": {
+      "city": "Śrem",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://bip.zerkow.pl/?bip=1&cid=1336&bsc=N"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://bip.zerkow.pl/?bip=1&cid=1336&bsc=N",
+        "label": "Deklaracja dostępności BIP Gminy Żerków — badanie przeprowadzone przez podmiot zewnętrzny: INTERmedi@ Spółka Jawna"
+      },
+      {
+        "url": "https://www.biecz.pl/asp/deklaracja-dostepnosci,534,,1",
+        "label": "Deklaracja dostępności Gminy Biecz — podmiot zewnętrzny: INTERmedi@ Spółka Jawna"
+      },
+      {
+        "url": "https://i.media.pl/asp/start,0",
+        "label": "official website — WCAG 2.1 audit and accessibility declaration services (audyt i deklaracja dostępności)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "grupa-af",
+    "name": "Grupa AF Sp. z o.o.",
+    "website": "grupaaf.pl",
+    "hq": {
+      "city": "Świdnica",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "PL",
+        "evidenceUrl": "https://szpital-strusia.poznan.pl/cms/6056"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://szpital-strusia.poznan.pl/cms/6056",
+        "label": "Deklaracja dostępności Szpitala Miejskiego im. Strusia w Poznaniu — badanie przeprowadzone przez podmiot zewnętrzny [Grupa AF]"
+      },
+      {
+        "url": "https://grupaaf.pl/pliki/GrupaAF_Dost%C4%99pno%C5%9B%C4%87_Plus_dla_Szpitali_v2.pdf",
+        "label": "official website — accessibility audit services (audyt dostępności, WCAG 2.1, Dostępność Plus)"
+      }
+    ],
+    "lastVerified": "2026-08-04"
   }
 ]

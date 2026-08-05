@@ -22,6 +22,14 @@ const main = JSON.parse(readFileSync(MAIN, 'utf8'))
 const haveDomain = new Set(main.map((a) => domainOf(a.website)))
 const haveSlug = new Set(main.map((a) => a.slug))
 
+// Надгробия: записи, осознанно исключённые из каталога (data/a11y/excluded.json).
+// Без этого списка удалённое агентство воскресало бы при каждом слиянии —
+// партии сборщиков остаются в репо как сырьё и всё ещё содержат его.
+const EXCLUDED = join(A11Y, 'excluded.json')
+const excluded = existsSync(EXCLUDED) ? JSON.parse(readFileSync(EXCLUDED, 'utf8')) : []
+const denyDomain = new Set(excluded.map((e) => domainOf(e.domain)))
+const denySlug = new Set(excluded.map((e) => e.slug).filter(Boolean))
+
 if (!existsSync(COLLECT)) {
   console.error('Нет каталога data/a11y/collect/ — нечего сливать.')
   process.exit(1)
@@ -43,10 +51,11 @@ for (const f of files) {
     report.push(`  ✗ ${f}: не массив — пропущен`)
     continue
   }
-  let ok = 0, dupes = 0, bad = 0
+  let ok = 0, dupes = 0, bad = 0, denied = 0
   for (const rec of batch) {
     if (!rec || !rec.slug || !rec.name || !rec.website || !rec.sourceRefs?.length) { bad++; continue }
     const d = domainOf(rec.website)
+    if (denyDomain.has(d) || denySlug.has(rec.slug)) { denied++; continue }
     if (haveDomain.has(d) || haveSlug.has(rec.slug)) { dupes++; continue }
     // минимальная нормализация: website — голый домен
     rec.website = d
@@ -64,7 +73,10 @@ for (const f of files) {
     ok++
   }
   added += ok
-  report.push(`  ${f}: +${ok} (дубликатов ${dupes}, отброшено без обязательных полей ${bad})`)
+  report.push(
+    `  ${f}: +${ok} (дубликатов ${dupes}, отброшено без обязательных полей ${bad}` +
+      (denied ? `, исключено денилистом ${denied}` : '') + ')',
+  )
 }
 
 console.log(`merge-a11y${dry ? ' [dry-run]' : ''}: +${added} → всего ${main.length}`)
