@@ -2358,37 +2358,6 @@
     "lastVerified": "2026-08-04"
   },
   {
-    "slug": "abledocs",
-    "name": "AbleDocs",
-    "website": "abledocs.com",
-    "hq": {
-      "city": "",
-      "countryCode": "CA"
-    },
-    "offices": [],
-    "countriesServed": [
-      "CA",
-      "US"
-    ],
-    "languages": [
-      "en"
-    ],
-    "services": [
-      "remediation"
-    ],
-    "standards": [],
-    "industries": [],
-    "certs": [],
-    "description": {},
-    "sourceRefs": [
-      {
-        "url": "https://martechseries.com/mobile/apps-for-business/abledocs-launches-adreader-at-the-37th-annual-csun-assistive-technology-conference/",
-        "label": "Launched ADReader at the 37th Annual CSUN Assistive Technology Conference (2022); document accessibility services company; checked 2026-08-04"
-      }
-    ],
-    "lastVerified": "2026-08-04"
-  },
-  {
     "slug": "continual-engine",
     "name": "Continual Engine",
     "website": "continualengine.com",
@@ -2784,11 +2753,17 @@
     ],
     "industries": [],
     "certs": [],
-    "description": {},
+    "description": {
+      "en": "Accessible Minds is a digital accessibility agency based in Rotterdam, Netherlands, offering independent WCAG audits and compliance assessments for websites, apps, and digital platforms, alongside WCAG 2.1/2.2 AA-compliant web development on Craft CMS and WordPress, UX/UI design, training, and in-house team support. It references the European Accessibility Act (EAA) 2025 and ISO/IEC 40500:2025, and lists IAAP CPACC certification among its credentials. Clients include Dutch municipalities, universities, and healthcare organizations."
+    },
     "sourceRefs": [
       {
         "url": "https://accessibleminds.nl/diensten/toegankelijkheidsonderzoeken-wcag",
         "label": "Accessibility audits based on official WCAG-EM method, WCAG 2.2 compliant; checked 2026-08-04"
+      },
+      {
+        "url": "https://accessibleminds.nl/",
+        "label": "Homepage — WCAG audit services, EAA 2025/ISO 40500:2025 references, Rotterdam address, IAAP CPACC certification"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -2817,11 +2792,17 @@
     ],
     "industries": [],
     "certs": [],
-    "description": {},
+    "description": {
+      "en": "Proper Access is an independent digital accessibility audit bureau based in Amsterdam, Netherlands. It conducts manual WCAG 2.2 (A/AA) and EAA audits of websites and PDFs, offers continuous monthly monitoring of sites and up to 100 PDF documents, remediation review, developer and editorial team training, and preparation of EAA accessibility statements and VPATs. Staff hold IAAP CPACC and Web Accessibility Specialist (WAS) certifications. Clients include the Rijksmuseum, Bijenkorf, NRC, and Dutch provincial governments."
+    },
     "sourceRefs": [
       {
         "url": "https://www.properaccess.nl/toegankelijkheidsaudit/",
         "label": "Independent WCAG toegankelijkheidsaudit service for government and business; checked 2026-08-04"
+      },
+      {
+        "url": "https://properaccess.nl/",
+        "label": "Homepage — WCAG/EAA audit & monitoring services, Amsterdam address, IAAP CPACC/WAS certifications, client list"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -2944,11 +2925,21 @@
     ],
     "industries": [],
     "certs": [],
-    "description": {},
+    "description": {
+      "en": "Level Level is a full-service WordPress agency based in Rotterdam, Netherlands, with 20 years of experience building WordPress platforms. Through its Level Level Accessibility division, it provides digital accessibility consultancy, WCAG 2.2 AA audits (standard and extended), and training, supporting both brands and other design/development agencies in implementing WCAG. The company employs 25-49 people and is listed in the AAA11Y accessible-website gallery."
+    },
     "sourceRefs": [
       {
         "url": "https://level-level.com/accessibility/audits/",
         "label": "Full WCAG 2.2 AA audits per WCAG-EM by IAAP-certified specialists; Rotterdam WordPress agency; checked 2026-08-04"
+      },
+      {
+        "url": "https://dutchdigitalagencies.com/leden/level-level/",
+        "label": "Agency directory listing — Rotterdam address, staff count, 'Level Level Accessibility' division description"
+      },
+      {
+        "url": "https://www.aaa11y.com/en/65670b63863a0f814c152e83",
+        "label": "AAA11Y accessible-website gallery entry describing Level Level as a Dutch WordPress agency"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -5140,11 +5131,17 @@
     ],
     "industries": [],
     "certs": [],
-    "description": {},
+    "description": {
+      "en": "HeX Productions is a digital agency based in Nottingham, UK, specializing in building bespoke, accessible websites and providing digital accessibility services including WCAG audits, accessibility statement support, consultancy, and training/workshops. It partners with Shaw Trust Accessibility Services for testing by disabled users, hosts a monthly 'Accessibility Nottingham' meetup, and reports around 180 contracts across education, healthcare, charity, public sector, arts, and e-commerce clients over more than a decade."
+    },
     "sourceRefs": [
       {
         "url": "https://www.horlix.com/services/accessibility-audit/",
         "label": "accessibility audit booking page; Nottingham agency, audits with Shaw Trust pan-disabled testing partnership, live SERP 2026-08-04"
+      },
+      {
+        "url": "https://www.horlix.com/",
+        "label": "Homepage title 'Website Accessibility & Digital Agency: HeX Productions'; Nottingham office and Shaw Trust partnership"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -5589,38 +5586,6 @@
     "lastVerified": "2026-08-04"
   },
   {
-    "slug": "bunnyfoot",
-    "name": "Bunnyfoot",
-    "website": "bunnyfoot.com",
-    "hq": {
-      "city": "",
-      "countryCode": "GB"
-    },
-    "offices": [],
-    "countriesServed": [
-      "GB"
-    ],
-    "languages": [
-      "en"
-    ],
-    "services": [
-      "audit",
-      "training",
-      "consulting"
-    ],
-    "standards": [],
-    "industries": [],
-    "certs": [],
-    "description": {},
-    "sourceRefs": [
-      {
-        "url": "https://www.bunnyfoot.com/accessibility-auditing-and-evaluation/",
-        "label": "accessibility auditing & evaluation page: manual + automated audits, a11y user testing, strategy, training; 22+ years, live SERP 2026-08-04"
-      }
-    ],
-    "lastVerified": "2026-08-04"
-  },
-  {
     "slug": "cyber-duck",
     "name": "Cyber-Duck",
     "website": "cyber-duck.co.uk",
@@ -5782,37 +5747,6 @@
     "lastVerified": "2026-08-04"
   },
   {
-    "slug": "snook",
-    "name": "Snook",
-    "website": "wearesnook.com",
-    "hq": {
-      "city": "",
-      "countryCode": "GB"
-    },
-    "offices": [],
-    "countriesServed": [
-      "GB"
-    ],
-    "languages": [
-      "en"
-    ],
-    "services": [
-      "audit",
-      "consulting"
-    ],
-    "standards": [],
-    "industries": [],
-    "certs": [],
-    "description": {},
-    "sourceRefs": [
-      {
-        "url": "https://www.digitalmarketplace.service.gov.uk/g-cloud/services/565524748641661",
-        "label": "G-Cloud 'Accessibility support' listing by Snook (accessibility testing/QA validation, nbd.snook@wearesnook.com), live SERP 2026-08-04"
-      }
-    ],
-    "lastVerified": "2026-08-04"
-  },
-  {
     "slug": "ascentiq-solutions",
     "name": "Ascentiq Solutions",
     "website": "ascentiqsolutions.co.uk",
@@ -5887,36 +5821,6 @@
       {
         "url": "https://silktide.com/",
         "label": "homepage — product modules, WCAG 2.2/ADA/EAA mentions, locations in footer"
-      }
-    ],
-    "lastVerified": "2026-08-04"
-  },
-  {
-    "slug": "capita",
-    "name": "Capita",
-    "website": "capita.com",
-    "hq": {
-      "city": "",
-      "countryCode": "GB"
-    },
-    "offices": [],
-    "countriesServed": [
-      "GB"
-    ],
-    "languages": [
-      "en"
-    ],
-    "services": [
-      "audit"
-    ],
-    "standards": [],
-    "industries": [],
-    "certs": [],
-    "description": {},
-    "sourceRefs": [
-      {
-        "url": "https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud/services/171344779614910",
-        "label": "G-Cloud listing 'Accessibility Auditing (Capita)' on UK Digital Marketplace, live SERP 2026-08-04"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -6072,11 +5976,21 @@
     "standards": [],
     "industries": [],
     "certs": [],
-    "description": {},
+    "description": {
+      "en": "Perkins Access is the digital accessibility consulting service of Perkins School for the Blind, a nonprofit based in Watertown, Massachusetts, operating under Perkins Solutions. Following an 'assess, remediate and sustain' approach, it reviews websites, mobile apps, Microsoft Office files, PDFs, and hardware; provides remediation of code, documents, and media (captions, audio descriptions); and offers combined monitoring-and-training programs for ongoing ADA and Section 508 compliance, plus Section 504 support and assistive technology assessments."
+    },
     "sourceRefs": [
       {
         "url": "https://askjan.org/solutions/Website-Accessibility-Vendors.cfm",
         "label": "AskJAN website accessibility vendors list; digital accessibility consulting arm of Perkins School for the Blind offering audit services, live SERP 2026-08-04"
+      },
+      {
+        "url": "https://www.corada.com/products/perkins-access-digital-accessibility-services",
+        "label": "Product listing reproducing Perkins Access's 'assess, remediate, sustain' service description and nonprofit status"
+      },
+      {
+        "url": "https://www.perkins.org/access/roi-guide-accessibility",
+        "label": "Perkins Access page under perkins.org/access confirming the digital-accessibility service line"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -6918,42 +6832,6 @@
     "lastVerified": "2026-08-04"
   },
   {
-    "slug": "online-ada",
-    "name": "Online ADA",
-    "website": "onlineada.com",
-    "hq": {
-      "city": "",
-      "countryCode": "US"
-    },
-    "offices": [],
-    "countriesServed": [
-      "US"
-    ],
-    "languages": [
-      "en"
-    ],
-    "services": [
-      "audit",
-      "remediation",
-      "monitoring"
-    ],
-    "standards": [
-      "wcag-2-2",
-      "section-508",
-      "ada"
-    ],
-    "industries": [],
-    "certs": [],
-    "description": {},
-    "sourceRefs": [
-      {
-        "url": "https://whoisaccessible.com/reviews/online-ada/",
-        "label": "review confirming manual WCAG/Section 508 auditing by expert team plus document remediation and compliance management; onlineada.com, live SERP 2026-08-04"
-      }
-    ],
-    "lastVerified": "2026-08-04"
-  },
-  {
     "slug": "swink",
     "name": "Swink",
     "website": "swink.nl",
@@ -6984,7 +6862,9 @@
         "evidenceUrl": "https://toegankelijkheidsrapport.swink.nl/kadaster-catalogus-hercontrole/audit/"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Swink is a digital accessibility firm based in Amsterdam, Netherlands, staffed by professionals with autism, positioned around the tagline 'Digitally accessible through specialists with autism.' Services include accessibility consulting, website audits, accessible PDF creation, training, and accessibility management support, alongside content migration and helpdesk services, with a focus on European Accessibility Act compliance. It holds PSO 30+ social-enterprise certification; clients include ANWB and Erasmus MC."
+    },
     "sourceRefs": [
       {
         "url": "https://www.toegankelijkheidsverklaring.nl/register/24755",
@@ -6993,6 +6873,10 @@
       {
         "url": "https://www.swink.nl/onze-dienstverlening/audits",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://swink.nl/",
+        "label": "Homepage — accessibility specialists with autism, Amsterdam address, EAA focus, PSO 30+ certification, ANWB/Erasmus MC clients"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -7028,7 +6912,9 @@
         "evidenceUrl": "https://www.accessy.club/wp-content/uploads/2025/10/Toegankelijkheidsonderzoek-amstelveen.vergunning.blitts.nl_.pdf"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Accessy is a Dutch digital accessibility platform and professional community with more than 365 members, focused on giving practical, collaborative support for accessible websites, apps, and portals. Services include training on accessible web content, expert consultation, continuous monitoring of accessibility statements, and reusable project templates. Clients are mainly Dutch municipalities and public-sector web teams, including Gemeente Enschede and Gemeente Kampen."
+    },
     "sourceRefs": [
       {
         "url": "https://www.toegankelijkheidsverklaring.nl/register/23293",
@@ -7037,6 +6923,10 @@
       {
         "url": "https://www.accessy.club/toegankelijkheidsonderzoeken",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://accessy.club/",
+        "label": "Homepage describing the accessibility community, training, consultation and monitoring services"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -7072,7 +6962,9 @@
         "evidenceUrl": "https://www.digitoegankelijk.nl/sites/default/files/2024-04/Toegankelijkheidsonderzoek%20Fixi%20App%20Android%20v8.pdf"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Abra B.V. is a Dutch accessibility company focused on mobile and web app accessibility. It builds a testing suite (Abra Desktop, Abra SDK, Abra Dashboard) alongside an e-learning platform, Abra Academy, and offers consulting, accessibility audits, training, and assistive-technology user testing. Abra is a W3C member and an IAAP organizational member, and lists clients including ABN AMRO, De Volkskrant, and Videoland."
+    },
     "sourceRefs": [
       {
         "url": "https://www.toegankelijkheidsverklaring.nl/register/26292",
@@ -7116,7 +7008,9 @@
         "evidenceUrl": "https://www.werkenbijdrechtsteden.nl/wp-content/uploads/2024/11/Rapport-onderzoek-digitale-toegankelijkheid-website-werkenbijdrechtsteden-nov2024.pdf"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Cipix Internetbureau is a Rotterdam, Netherlands-based digital agency that builds websites and web applications on Drupal CMS for government and enterprise clients. Alongside development, hosting, and intranet work, it offers Digitoegankelijk (digitally accessible) websites and is accredited by Stichting drempelvrij.nl and registered with Stichting Digitall Inclusive. The company holds ISO 27001 and ISO 9001 certification and serves municipalities, water boards, and ministries."
+    },
     "sourceRefs": [
       {
         "url": "https://www.toegankelijkheidsverklaring.nl/register/25487",
@@ -7125,50 +7019,10 @@
       {
         "url": "https://www.cipix.nl/oplossingen",
         "label": "official website — accessibility audit services"
-      }
-    ],
-    "lastVerified": "2026-08-04"
-  },
-  {
-    "slug": "ron-zuidema",
-    "name": "Ron Zuidema - Audits en Advies in Digitale Toegankelijkheid",
-    "website": "ronzuidema.com",
-    "hq": {
-      "city": "",
-      "countryCode": "NL"
-    },
-    "offices": [],
-    "countriesServed": [
-      "NL"
-    ],
-    "languages": [
-      "nl"
-    ],
-    "services": [
-      "audit"
-    ],
-    "standards": [
-      "en-301-549"
-    ],
-    "industries": [
-      "public-sector"
-    ],
-    "certs": [
-      {
-        "kind": "gov-declared-auditor",
-        "country": "NL",
-        "evidenceUrl": "https://documenten.groningen.nl/Rapporten%20WCAG%20audit/Rapport%20WCAG-audit%20scheideningroningen.nl.pdf"
-      }
-    ],
-    "description": {},
-    "sourceRefs": [
-      {
-        "url": "https://www.toegankelijkheidsverklaring.nl/register/26726",
-        "label": "accessibility statement of Scheiden in Groningen — audit by Ron Zuidema"
       },
       {
-        "url": "https://ronzuidema.com/",
-        "label": "official website — accessibility audit services"
+        "url": "https://cipix.nl/",
+        "label": "Homepage describing Digitoegankelijk services, drempelvrij.nl accreditation, ISO certifications and client sectors"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -7204,7 +7058,9 @@
         "evidenceUrl": "https://www.vechtstromen.nl/publish/pages/35920/audit_vechtpark_hardenberg_hertest.pdf"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Zekers! Online Communicatie is a digital accessibility consultancy based in Nijmegen, Netherlands. It performs website inspections against WCAG guidelines and provides advisory, training, and accessible content-editing services to help organizations build compliant websites and apps. Clients include government bodies, universities and vocational schools, healthcare organizations, and cultural institutions. The company highlights that roughly one-fifth of Dutch residents face accessibility barriers online."
+    },
     "sourceRefs": [
       {
         "url": "https://www.toegankelijkheidsverklaring.nl/register/23218",
@@ -7248,7 +7104,9 @@
         "evidenceUrl": "https://toegankelijkheidsonderzoek.nl/veiligthuiszuidhollandzuid.nl/"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "200 OK is a one-person Dutch digital accessibility practice run by Jules Ernst, offering website and app accessibility research, advice and training, and support with accessibility statements. Ernst also develops Digimonitor, a tool tracking the accessibility status of Dutch municipal websites, and speaks at accessibility conferences. Clients include ICTU, Erasmus University Rotterdam, and the Dutch Court of Audit (Algemene Rekenkamer)."
+    },
     "sourceRefs": [
       {
         "url": "https://www.toegankelijkheidsverklaring.nl/register/24678",
@@ -7292,7 +7150,9 @@
         "evidenceUrl": "https://toegankelijkonline.nl/audits/4fab3dbe-72e5-4c9e-86e8-9f53084d7ea3"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Toegankelijk Online is a Dutch digital accessibility consultancy offering WCAG 2.2 audits, implementation consulting, team training and coaching, content and document reviews, and design feedback. It also guides clients on accessibility statements and remediation plans, referencing EN 301 549, the European Accessibility Act, and WAI-ARIA. Clients range from government agencies and SMEs to e-commerce webshops and larger organizations."
+    },
     "sourceRefs": [
       {
         "url": "https://www.toegankelijkheidsverklaring.nl/register/26041",
@@ -7300,50 +7160,6 @@
       },
       {
         "url": "https://toegankelijkonline.nl/",
-        "label": "official website — accessibility audit services"
-      }
-    ],
-    "lastVerified": "2026-08-04"
-  },
-  {
-    "slug": "zigt-create",
-    "name": "ZIGT Create B.V.",
-    "website": "zigt.nl",
-    "hq": {
-      "city": "",
-      "countryCode": "NL"
-    },
-    "offices": [],
-    "countriesServed": [
-      "NL"
-    ],
-    "languages": [
-      "nl"
-    ],
-    "services": [
-      "audit"
-    ],
-    "standards": [
-      "en-301-549"
-    ],
-    "industries": [
-      "public-sector"
-    ],
-    "certs": [
-      {
-        "kind": "gov-declared-auditor",
-        "country": "NL",
-        "evidenceUrl": "https://www.aenowaterschappen.nl/uploads/images/Onderzoeksrapport_aenowaterschappen_20241125.pdf"
-      }
-    ],
-    "description": {},
-    "sourceRefs": [
-      {
-        "url": "https://www.toegankelijkheidsverklaring.nl/register/22000",
-        "label": "accessibility statement of A&O fonds Waterschappen — audit by ZIGT Create B.V."
-      },
-      {
-        "url": "https://zigt.nl/actueel/jouw-website-toegankelijk-voor-iedereen",
         "label": "official website — accessibility audit services"
       }
     ],
@@ -7380,7 +7196,9 @@
         "evidenceUrl": "https://www.gulpen-wittem.nl/data/downloadables/2/3/1/5/digitaal-nachtregister_wcag-rapport.pdf"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "X-com is a digital commerce agency based in Maasbree, Netherlands, offering strategy, performance marketing, and development services (Magento, Shopify, Craft CMS). It runs a dedicated Accessibility service under its Strategy and Advice practice, conducting audits to identify barriers in design, content, and technology, followed by implementation support and staff training, framed around 2025 WCAG and European Accessibility Act requirements. It is ISO 27001:2022 certified and a member of Dutch Digital Agencies."
+    },
     "sourceRefs": [
       {
         "url": "https://www.toegankelijkheidsverklaring.nl/register/24392",
@@ -7389,6 +7207,14 @@
       {
         "url": "https://www.x-com.nl/",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://www.x-com.nl/diensten/strategie-en-advies/accessibility/",
+        "label": "Dedicated Accessibility service page describing audits, implementation support and training"
+      },
+      {
+        "url": "https://x-com.nl/",
+        "label": "Homepage confirming location (Maasbree), ISO 27001:2022 certification and DDA membership"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -7424,7 +7250,9 @@
         "evidenceUrl": "https://www.wcagregister.nl/organisaties/gemeente-hoorn/doorstroompuntwestfriesland-nl-hertest-31102025.html"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Chent Creative is a web agency based in The Hague, Netherlands, that combines WordPress development with digital accessibility services. It conducts accessibility audits using the WCAG-EM evaluation methodology, offers guidance on accessibility within development processes, and provides temporary project management alongside SEO and online marketing. Clients include Gemeente Den Haag, Gemeente Hoorn, Gemeente Schiedam, Radboud University, and ROC Amsterdam."
+    },
     "sourceRefs": [
       {
         "url": "https://www.toegankelijkheidsverklaring.nl/register/22541",
@@ -7468,7 +7296,9 @@
         "evidenceUrl": "https://auditing.accessibilitydesk.com/public/reports/202/202512161056/604"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Accessibility Desk is a research and training agency based in Utrecht, Netherlands, specializing in digital accessibility and WCAG compliance. It performs accessibility audits using the WCAG-EM methodology, builds accessible websites and apps, runs accessibility user-test groups, and offers self-assessment tools and awareness training. The company is accredited by the Dutch Digital Accessibility Index (DDAI) and serves (semi-)government, banking and insurance, healthcare, and arts and culture clients such as Gemeente Amsterdam and Menzis."
+    },
     "sourceRefs": [
       {
         "url": "https://www.toegankelijkheidsverklaring.nl/register/26755",
@@ -7512,7 +7342,9 @@
         "evidenceUrl": "https://janitatop.nl/rapporten/2024/ikw"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Janita Top is a Netherlands-based independent digital accessibility consultant offering WCAG 2 audits and research plus advisory support during website and app design and development. Services address needs of users with visual, hearing, motor, and cognitive impairments, aiming to reduce implementation costs by involving accessibility review early. Reference clients cited include government agencies, banks, and insurers moving services online."
+    },
     "sourceRefs": [
       {
         "url": "https://www.toegankelijkheidsverklaring.nl/register/24057",
@@ -7556,7 +7388,9 @@
         "evidenceUrl": "https://toegankelijkheidsrapport.frameless.io/rapport/aanpakdrugscriminaliteit.utrecht.nl-2024-12"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Frameless is a technical agency headquartered in Amersfoort, Netherlands, building accessible, maintainable web applications for public-sector and financial clients. Services include WCAG-EM accessibility audits and remediation guidance, headless CMS development (Strapi), and NL Design System-based component work, with the 2025 European Accessibility Act deadline cited as a compliance driver. Clients include Dutch municipalities (Utrecht, Den Haag, Rotterdam) and Backbase in financial services."
+    },
     "sourceRefs": [
       {
         "url": "https://www.toegankelijkheidsverklaring.nl/register/25945",
@@ -7600,7 +7434,9 @@
         "evidenceUrl": "https://toegankelijkheid.mediaduo.nl/gemeente-emmen/2025-04-11-emmen-geeft-energie"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Media Duo is a Dutch web design and development agency that lists accessibility testing (\"toegankelijkheid\") as one of four core service lines alongside web application development, design, and website builds. A dedicated page titled \"WCAG Toegankelijkheidsonderzoeken\" indicates WCAG-based accessibility research is offered to clients, though specific compliance levels or certifications are not detailed on the site."
+    },
     "sourceRefs": [
       {
         "url": "https://www.toegankelijkheidsverklaring.nl/register/26742",
@@ -7609,6 +7445,10 @@
       {
         "url": "https://mediaduo.nl/",
         "label": "official website — accessibility research and reporting"
+      },
+      {
+        "url": "https://mediaduo.nl/toegankelijkheid",
+        "label": "Page titled 'WCAG Toegankelijkheidsonderzoeken' (WCAG accessibility research)"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -7644,7 +7484,9 @@
         "evidenceUrl": "https://toegankelijkheid.digitalnatives.nl/filmfonds/2024"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Digital Natives is an Amsterdam-based, ISO 27001-certified digital agency whose services include a dedicated \"Digitale toegankelijkheid\" (digital accessibility) line under its strategic-growth offerings: a WCAG-EM accessibility scan, WCAG certification guidance, and step-by-step remediation of technology and design. Clients span cultural organizations (NPO, ArtEZ), the City of Amsterdam, and WWF. The firm is a Dutch Digital Agencies (DDA) member."
+    },
     "sourceRefs": [
       {
         "url": "https://www.toegankelijkheidsverklaring.nl/register/21012",
@@ -7653,6 +7495,14 @@
       {
         "url": "https://wcagwijzer.nl/",
         "label": "official website (WCAG wijzer by Digital Natives) — accessibility audit services"
+      },
+      {
+        "url": "https://digitalnatives.nl/diensten",
+        "label": "Services page listing 'Digitale toegankelijkheid' under Strategic Digital Growth"
+      },
+      {
+        "url": "https://www.digitalnatives.nl/diensten/digitale-toegankelijkheid-en-wcag",
+        "label": "Dedicated digital accessibility and WCAG service page"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -7688,7 +7538,9 @@
         "evidenceUrl": "https://www.uwv.nl/assets-kai/files/4e81d972-5885-487b-bbea-2a2873ec38d5/202512-wcag-2-1-aa-audit-uwv-panels-ww-wia-en-wajong.pdf"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Eagerly is a digital agency based in Utrecht, Netherlands, serving arts and culture, education, and socially engaged organizations. Alongside strategy, design, and web development, it runs a dedicated digital accessibility service: a WCAG 2.1 AA website scan and action plan, a hands-on \"Mini Masterclass Digitale Toegankelijkheid,\" and an introductory webinar, framed around European Accessibility Act compliance requirements."
+    },
     "sourceRefs": [
       {
         "url": "https://www.toegankelijkheidsverklaring.nl/register/25370",
@@ -7697,6 +7549,14 @@
       {
         "url": "https://eagerly.nl/toegankelijkheid/",
         "label": "official website — WCAG audit services"
+      },
+      {
+        "url": "https://eagerly.nl/en/digital-accessibility/",
+        "label": "Dedicated digital accessibility service page (WCAG scan, masterclass, webinar)"
+      },
+      {
+        "url": "https://eagerly.nl/",
+        "label": "Homepage confirming Utrecht location and arts/culture/education focus"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -9389,7 +9249,9 @@
         "evidenceUrl": "https://www.ined.fr/fr/etat-conformite"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "AccessProd is a digital accessibility consultancy based in Besançon, France, focused on RGAA compliance. Services include manual RGAA accessibility audits (106-criteria framework) with detailed reports, custom training for content, design and development teams, web-agency accompaniment during site builds, accessibility declarations, and multi-year accessibility roadmaps. Clients include RATP, Santé Publique France, Université Paris-Saclay, and several government ministries."
+    },
     "sourceRefs": [
       {
         "url": "https://www.ined.fr/fr/etat-conformite",
@@ -9398,6 +9260,10 @@
       {
         "url": "https://www.accessprod.com/",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://accessprod.com/",
+        "label": "Homepage describing RGAA audits, training, and public-sector client list"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -9436,7 +9302,9 @@
         "evidenceUrl": "https://naolib.fr/fr/accessibilite-naolib-mon-espace"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Aksé is a France-based studio dedicated to digital accessibility, offering RGAA 4.1.2 and WCAG 2.2 audits (including mobile apps and PDFs), technical support during design and development, e-learning and custom training with Qualiopi certification, accessibility declarations, and a proprietary ticketing platform for remediation. Auditors reference the EN 301549 standard and IAAP membership. Clients include BNP Paribas, MAIF, Air Liquide, and Galeries Lafayette."
+    },
     "sourceRefs": [
       {
         "url": "https://naolib.fr/fr/accessibilite-naolib-mon-espace",
@@ -9445,6 +9313,10 @@
       {
         "url": "https://akse.co/accessibilite-rgaa/",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://akse.co/",
+        "label": "Homepage listing RGAA/WCAG audit services, Qualiopi certification, and client roster"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -9481,7 +9353,9 @@
         "evidenceUrl": "https://esante.gouv.fr/accessibilite"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Access First is a France-based digital accessibility firm offering audits and conformity assessments against RGAA 4, WCAG 2.1, and RAAM 1 (mobile app accessibility), plus consulting support through project stages and accessibility training; it has been a Qualiopi-certified training organization since June 2022. The site states it has supported more than 100 public- and private-sector clients and has published annual studies on accessibility of job-search and e-commerce websites. Direct site access returned an HTTP 403 error; description is based on indexed page content."
+    },
     "sourceRefs": [
       {
         "url": "https://esante.gouv.fr/accessibilite",
@@ -9490,6 +9364,10 @@
       {
         "url": "https://www.access-first.fr/audits-accessibilite-numerique",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://www.access-first.fr/",
+        "label": "Indexed homepage snippet describing accessibility audit, advisory and training services"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -9527,7 +9405,9 @@
         "evidenceUrl": "https://ville-illzach.fr/wp-content/uploads/2026/02/Illzach-Declaration-daccessibilite.pdf"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Alsacreations is a web design and development agency in Strasbourg, France, building websites and applications it describes as RGAA-compliant, with dedicated digital accessibility audits and ARIA-based accessible markup as part of its front-end integration work. Additional services include UI/UX design, custom WordPress development, and Vue/Nuxt front-end builds, alongside accredited training in CSS, accessibility, and UX/Figma. Clients include Air Liquide, Microsoft, EDF, SNCF, UNESCO, CNRS, and the French Senate."
+    },
     "sourceRefs": [
       {
         "url": "https://ville-illzach.fr/wp-content/uploads/2026/02/Illzach-Declaration-daccessibilite.pdf",
@@ -9536,6 +9416,10 @@
       {
         "url": "https://www.alsacreations.fr/prestations/audit-accessibilite/",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://alsacreations.fr/",
+        "label": "Homepage describing RGAA-compliant sites, accessibility audits, and client list"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -9574,7 +9458,9 @@
         "evidenceUrl": "https://accesmed.sante.gouv.fr/CEPS.Administration/workflow_url?&ECITIZ_ACTIVITY_PATH=CNIL&ECITIZ_PROCESS_ID=TgDonneeAccessibilite&ORG=CEPS"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Atalan is an independent digital accessibility consultancy operating since 2002, with offices in Paris, France and Toronto, Canada. Services cover digital accessibility consulting, project support, training, and accessibility audits, alongside separate workplace disability-awareness workshops and webinars addressing prejudice toward disabled employees. The firm maintains the AcceDe Web and AcceDe PDF accessibility resource platforms."
+    },
     "sourceRefs": [
       {
         "url": "https://accesmed.sante.gouv.fr/CEPS.Administration/workflow_url?&ECITIZ_ACTIVITY_PATH=CNIL&ECITIZ_PROCESS_ID=TgDonneeAccessibilite&ORG=CEPS",
@@ -9620,7 +9506,9 @@
         "evidenceUrl": "https://www.cdg11.fr/declaration-accessibilite/"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Axénum is a France-based digital accessibility consultancy performing RGAA conformity audits against its 106 control criteria, alongside staff training, strategic accompaniment, a front-end technical studio, an accessible-interface design studio, and user testing with people with disabilities. It targets public entities and enterprises with over €250 million in annual revenue, addressing legal obligations tied to the French Défenseur des droits."
+    },
     "sourceRefs": [
       {
         "url": "https://www.cdg11.fr/declaration-accessibilite/",
@@ -9665,7 +9553,9 @@
         "evidenceUrl": "https://www.mairie-arcambal.fr/accessibilite"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "CECIAA is a French assistive-technology company serving people with visual impairments, offering low-vision magnifiers (ZoomText, SuperNova), Braille devices, screen readers, and mobility aids. Its SoftAccess department provides RGAA-based digital accessibility audits, accessibility declarations, and multi-year action plans for websites and applications, with clients including Samsung, Matmut, Banque de France, and EDF. Holds Qualiopi training certification and \"entreprise à mission\" status."
+    },
     "sourceRefs": [
       {
         "url": "https://www.mairie-arcambal.fr/accessibilite",
@@ -9674,50 +9564,10 @@
       {
         "url": "https://www.ceciaa.com/certification-rgaa-audit-accompagnement-conformite.html",
         "label": "official website — accessibility audit services"
-      }
-    ],
-    "lastVerified": "2026-08-04"
-  },
-  {
-    "slug": "cimeos",
-    "name": "Ciméos",
-    "website": "cimeos.com",
-    "hq": {
-      "city": "Les Auxons",
-      "countryCode": "FR"
-    },
-    "offices": [],
-    "countriesServed": [
-      "FR"
-    ],
-    "languages": [
-      "fr"
-    ],
-    "services": [
-      "audit"
-    ],
-    "standards": [
-      "rgaa"
-    ],
-    "industries": [
-      "public-sector"
-    ],
-    "certs": [
-      {
-        "kind": "gov-declared-auditor",
-        "country": "FR",
-        "evidenceUrl": "https://www.cherbourg.fr/accessibilite/"
-      }
-    ],
-    "description": {},
-    "sourceRefs": [
-      {
-        "url": "https://www.cherbourg.fr/accessibilite/",
-        "label": "Déclaration d'accessibilité de la Ville de Cherbourg-en-Cotentin — audit réalisé par Ciméos"
       },
       {
-        "url": "https://www.cimeos.com/expertises-13.html",
-        "label": "official website — accessibility audit services"
+        "url": "https://ceciaa.com/softaccess",
+        "label": "SoftAccess page describing RGAA audit, declaration and action-plan services"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -9755,7 +9605,9 @@
         "evidenceUrl": "https://sytral-mobilites.fr/fr/declaration-d-accessibilite-partiellement-conforme.html"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Com'access is a French company registered in Versailles specializing in accessible communication: FALC (Facile à Lire et à Comprendre) methodology, plain/clear language aligned with ISO 24495, and digital accessibility audits and remediation (RGAA, WCAG) for websites and PDFs. It provides Qualiopi-certified training, holds France Compétences' only certified FALC program (RS7331), and publishes the free Falc'able dictionary; partner in the EU Erasmus+ CCUV project."
+    },
     "sourceRefs": [
       {
         "url": "https://sytral-mobilites.fr/fr/declaration-d-accessibilite-partiellement-conforme.html",
@@ -9801,7 +9653,9 @@
         "evidenceUrl": "https://www.blois.fr/accessibilite-du-site"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Copsaé is a digital accessibility cooperative based in Nantes, France, operated as the professional activity of Julie Moynat within the CAE l'Ouvre-Boîtes (co-founded with Loriane Buffet in 2021, who left in 2024). Its name stands for \"Coopération pour des projets web avec du sens, de l'accessibilité et de l'éthique.\" The practice builds and audits accessible WordPress websites against RGAA and WCAG, accepting only projects with accessibility requirements."
+    },
     "sourceRefs": [
       {
         "url": "https://www.blois.fr/accessibilite-du-site",
@@ -9810,6 +9664,14 @@
       {
         "url": "https://www.copsae.fr/accessibilite-numerique/",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://www.copsae.fr/",
+        "label": "Homepage tagline: cooperation for web projects built on meaning, accessibility and ethics (RGAA/WCAG)"
+      },
+      {
+        "url": "https://www.copsae.fr/a-propos/qui-est-copsae/",
+        "label": "About page identifying founders and Nantes-based cooperative activity"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -9845,7 +9707,9 @@
         "evidenceUrl": "https://www.hopital-loire-sante-nantes.fr/systeme/declaration-accessibilite/"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Créasit is a French web agency based in Nantes, active since 2000, specializing in custom websites for municipalities and local authorities. It builds sites against the RGAA's 106 accessibility criteria, performs compliance audits, and publishes conformity statements — for example, its audit of the Bonsecours town website found 77.9% of RGAA version 4 criteria met. The agency also promotes \"numérique responsable\" (responsible digital) practices."
+    },
     "sourceRefs": [
       {
         "url": "https://www.hopital-loire-sante-nantes.fr/systeme/declaration-accessibilite/",
@@ -9854,6 +9718,10 @@
       {
         "url": "https://www.creasit.fr/",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://www.mairie-bonsecours.fr/systeme/declaration-accessibilite/",
+        "label": "Client accessibility declaration stating the audit realized by Creasit found 77.9% of RGAA v4 criteria met"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -9890,7 +9758,9 @@
         "evidenceUrl": "https://www.anact.fr/accessibilite"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "BlueDrop is a Drupal-focused digital agency headquartered in Marseille, France, with a secondary office in Beirut, Lebanon, and 25 years of Drupal experience. It operates as an accredited accessibility training center and provides RGAA-based accessibility audits, remediation, and UX/UI guidance targeting 80% RGAA compliance, alongside RGESN eco-design practices. An Acquia-certified partner, it serves local-government, transport, and logistics clients, and commits to open source, GDPR, and CSR principles."
+    },
     "sourceRefs": [
       {
         "url": "https://www.anact.fr/accessibilite",
@@ -9899,6 +9769,10 @@
       {
         "url": "https://www.bluedrop.fr/",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://bluedrop.fr/",
+        "label": "Homepage describing RGAA accessibility training center, audit/remediation services, and Marseille/Beirut locations"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -9935,7 +9809,9 @@
         "evidenceUrl": "https://www.mahj.org/fr/annexe/declaration-daccessibilite-rgaa-32063"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Eclydre is an independent Drupal/CMS web agency founded in 1993, based in Paris (10th arrondissement) with about ten employees. Alongside development, UX/UI design, and web marketing, it states it is an accessibility expert and performs RGAA audits, drawing on an Opquast partnership held since 2017 covering accessibility, GDPR, security, and eco-design good practices. Clients include French cultural and public institutions such as TV5 Monde, Inrap, and the French Parliament."
+    },
     "sourceRefs": [
       {
         "url": "https://www.mahj.org/fr/annexe/declaration-daccessibilite-rgaa-32063",
@@ -9944,6 +9820,10 @@
       {
         "url": "https://www.eclydre.fr/blog/nos-engagements-rse",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://www.eclydre.fr/agence",
+        "label": "Agency page with founding year 1993, Paris address, staff size, and service list including web accessibility"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -9983,7 +9863,9 @@
         "evidenceUrl": "https://www.academie-renseignement.gouv.fr/accessibilite"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Ethic First is a French consulting firm specializing in digital accessibility, offering RGAA, WCAG, RAAM, and EN 301 549 audits, code review and design assistance, user testing, multi-year accessibility schemes, and staff training workshops. It references the European Accessibility Act (effective June 2025) and is registered as a \"France Num Activator\" for digital-transformation support. Clients span media, banking, e-commerce, transport, and government, including TV5 Monde, Crédit Agricole, and France's Ministry of Justice."
+    },
     "sourceRefs": [
       {
         "url": "https://www.academie-renseignement.gouv.fr/accessibilite",
@@ -9992,6 +9874,10 @@
       {
         "url": "https://www.ethicfirst.fr/audits-accessibilite-numerique-rgaa-raam-wcag/",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://www.ethicfirst.fr/",
+        "label": "Homepage describing accessibility consulting services, standards, and client list"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -10031,7 +9917,9 @@
         "evidenceUrl": "https://www.transformation.gouv.fr/accessibilite"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Ideance is a French digital accessibility consultancy based in Rouen (Normandy), a SAS with €4,000 capital and a registered training organization. It provides RGAA, WCAG, and RAWeb audits with accessibility declarations, staff training for developers, designers, and content teams, and workplace disability-accommodation support. A signatory of the Institut du Numérique Responsable's charter, it serves government agencies, municipalities, healthcare, and education clients such as ONISEP across France and Europe."
+    },
     "sourceRefs": [
       {
         "url": "https://www.transformation.gouv.fr/accessibilite",
@@ -10040,6 +9928,10 @@
       {
         "url": "https://ideance.net/fr/audits-accessibilite/",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://ideance.net/",
+        "label": "Homepage/services describing RGAA/WCAG/RAWeb audits, training offerings, and legal registration details"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -10075,7 +9967,9 @@
         "evidenceUrl": "https://www.ch-pyrenees.fr/accessibilite/"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Inovagora is a French digital agency based in Compiègne serving public-sector clients — municipalities and regional institutions — with WordPress website development (20 years' experience), design, hosting, and SEO. It lists expertise in RGAA, RGSEN, and RGPD audits and recommendations, and holds OpQuast web-quality certification. The agency specializes in tourism-sector integrations (APIDAE, Tourinsoft) and counts over 40 French local-government clients."
+    },
     "sourceRefs": [
       {
         "url": "https://www.ch-pyrenees.fr/accessibilite/",
@@ -10084,6 +9978,10 @@
       {
         "url": "https://www.inovagora.net/",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://inovagora.net/",
+        "label": "Homepage listing RGAA/RGSEN/RGPD audit expertise and OpQuast certification alongside Compiègne address"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -10123,7 +10021,9 @@
         "evidenceUrl": "https://www.soorts-hossegor.fr/accessibilite"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Ipedis (Internet pour les Personnes en situation de handicap) is a French digital accessibility firm founded in 2006 and headquartered in Paris, recognized as an Entreprise Solidaire d'Utilité Sociale (ESUS). It offers RGAA/WCAG audits, multi-year accessibility plans, MOE/MOA integration support, e-learning and in-person training, and content remediation for PDFs, video and documents, using tools including axe DevTools and axe Monitor. References EN 301 549, RAAM, ISO 14289-1 and the EAA; clients include Saint-Gobain, BNP Paribas, La Poste, and L'Oréal."
+    },
     "sourceRefs": [
       {
         "url": "https://www.soorts-hossegor.fr/accessibilite",
@@ -10132,6 +10032,10 @@
       {
         "url": "https://www.ipedis.com/audit-rgaa-wcag/",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://ipedis.com/",
+        "label": "Homepage with founding year, ESUS status, standards referenced, and client list"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -10168,7 +10072,9 @@
         "evidenceUrl": "https://www.capstreshautdebit.fr/declaration-daccessibilite/"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Agence Licorn is a digital and marketing agency based in Rennes and Paris, France, operating since 2006. Alongside brand strategy, design, development, and digital marketing, it runs a dedicated accessibility service: RGAA/WCAG audits for sites, web apps, and design; code and design corrections (contrast, keyboard navigation, ARIA, forms); accessible design systems; and user testing with screen readers. Clients include Laboratoires Servier, Abbott, and Groupe G7."
+    },
     "sourceRefs": [
       {
         "url": "https://www.capstreshautdebit.fr/declaration-daccessibilite/",
@@ -10177,6 +10083,10 @@
       {
         "url": "https://licornpublishing.com/accessibilite",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://licornpublishing.com/",
+        "label": "Homepage confirming Rennes/Paris agency founded 2006 and client list"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -10212,7 +10122,9 @@
         "evidenceUrl": "https://grandreims-mobilites.fr/fr/oJn-Accessibilite-3A-partiellement-conforme.html"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Lorweb Group is a communication, marketing, and AI agency based in Metz, France, and Luxembourg, operating for over 28 years. Among its broad service range — web and e-commerce development, SEO, social media, video, and AI integration — it offers a website accessibility audit providing a full diagnostic and RGAA compliance assessment. The site does not detail WCAG, EAA, Section 508, or remediation/training offerings."
+    },
     "sourceRefs": [
       {
         "url": "https://grandreims-mobilites.fr/fr/oJn-Accessibilite-3A-partiellement-conforme.html",
@@ -10221,6 +10133,10 @@
       {
         "url": "https://lorweb.group/lorweb",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://lorweb.group/",
+        "label": "Homepage listing the accessibility audit service with RGAA compliance mention and Metz/Luxembourg location"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -10256,7 +10172,9 @@
         "evidenceUrl": "https://www.sumene-artense.com/declaration-daccessibilite/"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Net15 is a web agency based in Aurillac, France, operating since 1997. Alongside website creation, hosting, SEO, and Microsoft 365 services for SMEs, artisans, local authorities, and associations, it offers an \"Audit RGAA & déclaration d'accessibilité\" service that assesses a site's accessibility level as a percentage and produces the accessibility declaration required of French local-authority websites."
+    },
     "sourceRefs": [
       {
         "url": "https://www.sumene-artense.com/declaration-daccessibilite/",
@@ -10265,6 +10183,10 @@
       {
         "url": "https://www.net15.fr/",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://net15.fr/",
+        "label": "Homepage describing the RGAA audit and accessibility declaration service, with Aurillac address"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -10301,7 +10223,9 @@
         "evidenceUrl": "https://www.notre-environnement.gouv.fr/accessibilite/accessibilite"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "numerik-ea is a French web agency founded in 2016 and describes itself as the country's first web agency specializing in digital accessibility. It is an \"entreprise adaptée,\" with about 90% of its roughly 22 staff being people with disabilities. Services include accessibility compliance audits and improvement guidance alongside website creation and content management. Clients include Airbus, Microsoft, L'Oréal, LVMH, ENGIE, BNP Paribas, and CNIL."
+    },
     "sourceRefs": [
       {
         "url": "https://www.notre-environnement.gouv.fr/accessibilite/accessibilite",
@@ -10310,6 +10234,10 @@
       {
         "url": "https://www.numerik-ea.fr/",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://numerik-ea.fr/",
+        "label": "Homepage describing entreprise-adaptée status, accessibility compliance audits, and client list"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -10347,7 +10275,9 @@
         "evidenceUrl": "https://www.cariforefoccitanie.fr/accessibilite/"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Silaos is a digital strategy and project-oversight (AMO) consultancy based in La Rochelle, France, with over 10 years in the field. Services include RGAA accessibility audits assessing technical and ergonomic compliance, alongside SEO, UX, and eco-design (RGESN) audits. Consultants hold Opquast and Access42 certifications. Clients are mainly municipalities and tourism destinations, including Val d'Isère, Angoulême, and Calvados."
+    },
     "sourceRefs": [
       {
         "url": "https://www.cariforefoccitanie.fr/accessibilite/",
@@ -10356,6 +10286,10 @@
       {
         "url": "https://www.silaos.fr/audit-daccessibilite/",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://silaos.fr/",
+        "label": "Homepage describing the RGAA audit service, La Rochelle address, and Opquast/Access42 certifications"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -10393,7 +10327,9 @@
         "evidenceUrl": "https://www.cholet.fr/dossiers/dossier_21_politique+accessibilite+notre+site+internet.html"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Spécinov is a French digital services company based in Écouflant, founded in 1989, offering custom software development, third-party application maintenance (TMA), and responsible-digital consulting. It provides digital accessibility audits and training workshops alongside eco-design audits, and holds the \"Label Numérique Responsable Niveau 2\" certification since 2022. It serves 900+ organizations, including Crédit Agricole, MSD, Le Parisien, and RATP DEV."
+    },
     "sourceRefs": [
       {
         "url": "https://www.cholet.fr/dossiers/dossier_21_politique+accessibilite+notre+site+internet.html",
@@ -10402,6 +10338,10 @@
       {
         "url": "https://www.specinov.fr/audit-accessibilite",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://specinov.fr/",
+        "label": "Homepage describing accessibility audits/training and the Label Numérique Responsable certification"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -10439,7 +10379,9 @@
         "evidenceUrl": "https://www.gard.fr/pages-pratiques/page-de-declaration-daccessibilite"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Stratis is a French digital agency focused on the public sector, offering strategy, UX design, and web/mobile development alongside accessibility, eco-design, and cybersecurity services. It performs RGAA accessibility audits and compliance certifications, including for INSEE, and was named to the national expert committee tasked with revising the RGAA standard for 2026. Clients include the French Ministry of Education, Lyon, Paris, and Toulouse."
+    },
     "sourceRefs": [
       {
         "url": "https://www.gard.fr/pages-pratiques/page-de-declaration-daccessibilite",
@@ -10448,6 +10390,10 @@
       {
         "url": "https://www.stratis.fr/solutions/accessibilite-numerique/",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://stratis.fr/",
+        "label": "Homepage describing RGAA audits for INSEE and the national RGAA expert committee role"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -10485,7 +10431,9 @@
         "evidenceUrl": "https://nouvelles.univ-rennes2.fr/accessibilite"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Tanaguru is a digital accessibility specialist founded in 2009, offering RGAA and WCAG audits and testing, accessibility training for web professionals, expert consulting, and accessible web development. It maintains open-source tools, including the Tanaguru Engine testing platform, on GitHub. Clients include Société Générale, CNED, Kering, and Fondation Valentin Haüy. The site does not state a specific headquarters location."
+    },
     "sourceRefs": [
       {
         "url": "https://nouvelles.univ-rennes2.fr/accessibilite",
@@ -10494,6 +10442,10 @@
       {
         "url": "https://www.tanaguru.com/",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://tanaguru.com/",
+        "label": "Homepage describing accessibility audit/training/consulting services and the Tanaguru Engine tool"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -10532,7 +10484,9 @@
         "evidenceUrl": "https://philharmoniedeparis.fr/fr/accessibilite"
       }
     ],
-    "description": {},
+    "description": {
+      "en": "Temesis is a Paris-based digital agency, part of the Ctrl-a group, specializing in accessibility, eco-design, and RGPD compliance. It offers accessibility audits — a quick \"état des lieux\" assessment and detailed reviews — evaluated against RGAA 4.1.2, RAAM, RAWeb, EN 301 549, and, for US clients, the ADA. It also runs Qualiopi-certified accessibility training via a dedicated platform, formation.temesis.com."
+    },
     "sourceRefs": [
       {
         "url": "https://philharmoniedeparis.fr/fr/accessibilite",
@@ -10541,6 +10495,14 @@
       {
         "url": "https://www.temesis.com/accessibilite/",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://www.temesis.com/expertises/accessibilite/audit/",
+        "label": "Accessibility audit service page listing RGAA/WCAG/EN 301 549/ADA scope"
+      },
+      {
+        "url": "https://temesis.com/",
+        "label": "Homepage confirming Paris address and Ctrl-a group affiliation"
       }
     ],
     "lastVerified": "2026-08-04"

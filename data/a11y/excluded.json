@@ -10,5 +10,53 @@
     "slug": "annanpura",
     "reason": "Ceased operations. Homepage carries a board notice dated 2025-09-15: Annanpura Oy (a social enterprise subsidiary of the Finnish Federation of the Visually Impaired) voted to wind down its business after losing its main transcription-services client's public tender, with operations shut down by end of 2025. The listing was originally well-sourced (a published accessibility test report for hel.fi) — removed for being defunct, not for weak evidence.",
     "checked": "2026-08-05"
+  },
+  {
+    "domain": "abledocs.com",
+    "slug": "abledocs",
+    "reason": "Site is reduced to a bare 'under construction' placeholder page (only a contact notice); all former service/about/product pages now return 404. No verifiable current service, standards, or location details remain on the company's own site.",
+    "checked": "2026-08-05"
+  },
+  {
+    "domain": "bunnyfoot.com",
+    "slug": "bunnyfoot",
+    "reason": "Permanently redirects (301) to thisisgain.com, a broad CX/marketing/creative group (GAIN) spanning many unrelated verticals. Site code maps 'bunnyfoot' as one of several absorbed sub-brands; no independent Bunnyfoot accessibility-audit company remains, and accessibility is only one of many generic marketing services offered.",
+    "checked": "2026-08-05"
+  },
+  {
+    "domain": "wearesnook.com",
+    "slug": "snook",
+    "reason": "Serves a generic, unconfigured hosting 'Default Web Site Page' (/cgi-sys/defaultwebpage.cgi) — domain/hosting expired or never set up. No live company content available to verify current accessibility services.",
+    "checked": "2026-08-05"
+  },
+  {
+    "domain": "capita.com",
+    "slug": "capita",
+    "reason": "Large UK-based business-process/IT outsourcing company. No digital accessibility audit/remediation/consulting service found on the site; the footer 'Accessibility' link concerns the website's own accessibility, not a service offering.",
+    "checked": "2026-08-05"
+  },
+  {
+    "domain": "onlineada.com",
+    "slug": "online-ada",
+    "reason": "Redirects to audioeye.com/ability, an acquisition/transition notice: 'Ability' (formerly OnlineADA) was acquired by AudioEye, Inc. Only a login portal remains during migration; no independent OnlineADA company site or service description exists anymore.",
+    "checked": "2026-08-05"
+  },
+  {
+    "domain": "ronzuidema.com",
+    "slug": "ron-zuidema",
+    "reason": "Site returns a WordPress/Elementor 'Maintenance Mode' page with no substantive content. Cannot verify any facts about services, standards, or location directly from the company's own site, despite third-party evidence (LinkedIn, municipal WCAG-audit PDFs) that a Ron Zuidema does WCAG audit work.",
+    "checked": "2026-08-05"
+  },
+  {
+    "domain": "zigt.nl",
+    "slug": "zigt-create",
+    "reason": "Full-service media/performance-marketing agency (paid media, strategy & insights, design & technology) for Benelux clients; no dedicated accessibility service line. Only accessibility-related content is a legally required accessibility statement for its own site and one editorial article — same pattern as the-pixel.",
+    "checked": "2026-08-05"
+  },
+  {
+    "domain": "cimeos.com",
+    "slug": "cimeos",
+    "reason": "General digital-communication agency building websites/digital ecosystems for municipalities (Narbonne, Annecy, Nanterre); no mention anywhere of accessibility audits, RGAA, WCAG, remediation, or training.",
+    "checked": "2026-08-05"
   }
 ]
