@@ -8,7 +8,7 @@
 | ID | Задача | Владелец | Зависит от | Статус |
 |---|---|---|---|---|
 | A0-ENRICH | Применить enrich-патчи (119 записей, +170 описаний), починить slug `the-pixel`, валидация+сборка | data-engineer | — | **done** |
-| A0-DESC-REST | Дописать описания оставшимся ~53 профилям (обход сайтов, только факты) | data-engineer | A0-ENRICH | ready |
+| A0-DESC-REST | Дописать описания оставшимся ~53 профилям (обход сайтов, только факты) | data-engineer | A0-ENRICH | **done** |
 | A0-CI-FIX | Починить CI: недостающие `lint:upl`/`lint:minimize`/`check-links.mjs` (package-lock.json уже добавлен) | devops-engineer | — | **done** |
 | A0-OWNER-LEGAL | Реквизиты Imprint (юрлицо/ФИО, адрес, HR/VAT для DE) + покупка домена | **владелец** | — | blocked (ввод владельца) |
 | A0-ORIGIN | Заменить `accessatlas.example` в `src/lib/seo.tsx` + `scripts/gen-a11y-sitemap.mjs`, снять noindex с Imprint | frontend-engineer | A0-OWNER-LEGAL | blocked |

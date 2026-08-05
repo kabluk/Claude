@@ -27,7 +27,7 @@ nodes:
   - id: A0-DESC-REST
     title: Описания оставшимся профилям без description (~53) — только проверяемые факты
     owner: data-engineer
-    status: ready
+    status: done
     depends_on: [A0-ENRICH]
     inputs: [data/a11y/agencies.json, data/a11y/README.md]
     scope: [data/a11y/enrich/, data/a11y/agencies.json]
@@ -36,10 +36,10 @@ nodes:
       - node scripts/build-a11y.mjs
       - "покрытие description >= 90%"
     max_attempts: 4
-    attempts: 0
+    attempts: 1
     risk: low
     approval_required: false
-    notes: "Паттерн батчей задан в data/a11y/enrich/desc-*.json; недоступные сайты помечать, не выдумывать"
+    notes: "Готово 2026-08-05 (commit 1985a15): 5 параллельных субагентов исследовали сайты, 45 записей получили описание, 8 исключены (мёртвые/заброшенные сайты, поглощения, нет услуг доступности — та же логика, что the-pixel) и удалены из agencies.json + добавлены в excluded.json. Итог: 253→245 агентств, описания 245/245 (100%, было 79.1%). Порог 90% для снятия noindex закрыт."
 
   - id: A0-CI-FIX
     title: "Починить CI: package-lock.json (добавлен), lint:upl/lint:minimize/check-links.mjs отсутствуют, хотя ci.yml их вызывает"
@@ -89,7 +89,7 @@ nodes:
     title: Cloudflare Pages деплой + автодеплой из CI
     owner: devops-engineer
     status: blocked
-    depends_on: [A0-OWNER-LEGAL, A0-ENRICH, A0-CI-FIX]
+    depends_on: [A0-OWNER-LEGAL]
     inputs: [.github/workflows/ci.yml, docs/deepdive-accessibility-directory.md]
     scope: [.github/workflows/, wrangler/pages config]
     outputs: []
@@ -98,7 +98,7 @@ nodes:
     attempts: 0
     risk: medium
     approval_required: true
-    notes: "approval: создание внешнего ресурса (Pages-проект) и привязка домена"
+    notes: "approval: создание внешнего ресурса (Pages-проект) и привязка домена. A0-ENRICH/A0-DESC-REST/A0-CI-FIX все done — единственный оставшийся блокер Фазы 0 это A0-OWNER-LEGAL (ввод владельца)"
 
   - id: A1-SCAN
     title: "Сканер MVP: POST /api/scan (Browser Rendering + axe-core) -> D1, GET /api/scan/:id"
