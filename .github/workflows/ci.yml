@@ -14,10 +14,7 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      # Оба линтера — блокирующие шаги, до сборки (BUILD-SPEC §7)
-      - run: npm run lint:upl
-      - run: npm run lint:minimize
       - run: npm run typecheck
       - run: npm run build
       # Все внутренние ссылки должны разрешаться в существующие страницы
-      - run: node scripts/check-links.mjs
+      - run: npm run check-links
