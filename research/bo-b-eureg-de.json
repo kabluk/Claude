@@ -1,0 +1,2509 @@
+{
+  "location": "DE",
+  "language": "en",
+  "fetched_for": 45,
+  "rows": [
+    {
+      "keyword": "digital product passport",
+      "volume": 880,
+      "cpc": 6.13,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 1000
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 1000
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 1000
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 1000
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 1000
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 1000
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 880
+        }
+      ]
+    },
+    {
+      "keyword": "dpp software",
+      "volume": 480,
+      "cpc": 10.96,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 590
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 480
+        }
+      ]
+    },
+    {
+      "keyword": "dora compliance",
+      "volume": 320,
+      "cpc": 8.85,
+      "competition": "HIGH",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 320
+        }
+      ]
+    },
+    {
+      "keyword": "eudr software",
+      "volume": 110,
+      "cpc": 14.25,
+      "competition": "HIGH",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 140
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 140
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 170
+        }
+      ]
+    },
+    {
+      "keyword": "eudr compliance",
+      "volume": 90,
+      "cpc": 12.31,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 140
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 140
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 170
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 110
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 140
+        }
+      ]
+    },
+    {
+      "keyword": "nis2 audit",
+      "volume": 70,
+      "cpc": 51,
+      "competition": "HIGH",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 30
+        }
+      ]
+    },
+    {
+      "keyword": "accessibility audit",
+      "volume": 70,
+      "cpc": 17.32,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 140
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 110
+        }
+      ]
+    },
+    {
+      "keyword": "eu ai act compliance",
+      "volume": 50,
+      "cpc": 45.06,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 50
+        }
+      ]
+    },
+    {
+      "keyword": "eu ai act training",
+      "volume": 50,
+      "cpc": 13.57,
+      "competition": "HIGH",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 30
+        }
+      ]
+    },
+    {
+      "keyword": "cbam software",
+      "volume": 40,
+      "cpc": 5.37,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 110
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 30
+        }
+      ]
+    },
+    {
+      "keyword": "accessibility consultant",
+      "volume": 40,
+      "cpc": null,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 20
+        }
+      ]
+    },
+    {
+      "keyword": "wcag audit",
+      "volume": 30,
+      "cpc": 18.19,
+      "competition": "HIGH",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 110
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 40
+        }
+      ]
+    },
+    {
+      "keyword": "eaa compliance",
+      "volume": 30,
+      "cpc": 8.09,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 70
+        }
+      ]
+    },
+    {
+      "keyword": "accessibility agency",
+      "volume": 30,
+      "cpc": 8.69,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 210
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 20
+        }
+      ]
+    },
+    {
+      "keyword": "nis2 consultant",
+      "volume": 20,
+      "cpc": 73.23,
+      "competition": "HIGH",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "ai governance consultant",
+      "volume": 20,
+      "cpc": 7.07,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "digital product passport software",
+      "volume": 20,
+      "cpc": null,
+      "competition": "HIGH",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "website accessibility audit",
+      "volume": 20,
+      "cpc": null,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "nis2 gap assessment",
+      "volume": 10,
+      "cpc": null,
+      "competition": "HIGH",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 0
+        }
+      ]
+    },
+    {
+      "keyword": "nis2 compliance software",
+      "volume": 10,
+      "cpc": null,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "dora compliance software",
+      "volume": 10,
+      "cpc": null,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "dora gap analysis",
+      "volume": 10,
+      "cpc": 4.12,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 20
+        }
+      ]
+    },
+    {
+      "keyword": "digital product passport solutions",
+      "volume": 10,
+      "cpc": null,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 0
+        }
+      ]
+    },
+    {
+      "keyword": "eudr compliance software",
+      "volume": 10,
+      "cpc": null,
+      "competition": null,
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "eudr consultant",
+      "volume": 10,
+      "cpc": 58.17,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "eudr due diligence",
+      "volume": 10,
+      "cpc": 4.83,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "eudr solutions",
+      "volume": 10,
+      "cpc": null,
+      "competition": "HIGH",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "cbam consultant",
+      "volume": 10,
+      "cpc": null,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 20
+        }
+      ]
+    },
+    {
+      "keyword": "cbam declarant",
+      "volume": 10,
+      "cpc": null,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 20
+        }
+      ]
+    },
+    {
+      "keyword": "cbam reporting software",
+      "volume": 10,
+      "cpc": null,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "accessibility testing services",
+      "volume": 10,
+      "cpc": null,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 0
+        }
+      ]
+    },
+    {
+      "keyword": "european accessibility act compliance",
+      "volume": 10,
+      "cpc": null,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "wcag compliance services",
+      "volume": 10,
+      "cpc": null,
+      "competition": null,
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 0
+        }
+      ]
+    },
+    {
+      "keyword": "ada compliance services",
+      "volume": 10,
+      "cpc": null,
+      "competition": null,
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "accessibility remediation services",
+      "volume": 10,
+      "cpc": null,
+      "competition": null,
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 0
+        }
+      ]
+    },
+    {
+      "keyword": "accessibility audit services",
+      "volume": 10,
+      "cpc": null,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "nis2 compliance services",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    },
+    {
+      "keyword": "nis2 compliance consultant",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    },
+    {
+      "keyword": "dora compliance consultant",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    },
+    {
+      "keyword": "dora compliance services",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    },
+    {
+      "keyword": "eu ai act consultant",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    },
+    {
+      "keyword": "eu ai act compliance software",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    },
+    {
+      "keyword": "ai act readiness assessment",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    },
+    {
+      "keyword": "cbam compliance services",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    },
+    {
+      "keyword": "vpat consultant",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "query": "tachograph calibration near me",
+  "location": "UK",
+  "items": [
+    {
+      "pos": 1,
+      "domain": "www.gov.uk",
+      "title": "Find your local Approved Tachograph Centre (ATC)",
+      "url": "https://www.gov.uk/find-approved-tachograph-centre-atc"
+    },
+    {
+      "pos": 6,
+      "domain": "www.digitaltachocentre.co.uk",
+      "title": "Digital Tachograph Centre",
+      "url": "https://www.digitaltachocentre.co.uk/"
+    },
+    {
+      "pos": 7,
+      "domain": "www.nidirect.gov.uk",
+      "title": "Approved tachograph centres",
+      "url": "https://www.nidirect.gov.uk/articles/approved-tachograph-centres"
+    },
+    {
+      "pos": 8,
+      "domain": "www.williamgilder.group",
+      "title": "Tachograph Calibration Centre - Workshop",
+      "url": "https://www.williamgilder.group/tachograph-calibration-and-repair-centre/"
+    },
+    {
+      "pos": 9,
+      "domain": "www.tmcgroup.co.uk",
+      "title": "Tachograph Centre",
+      "url": "https://www.tmcgroup.co.uk/tachograph-centre/"
+    },
+    {
+      "pos": 10,
+      "domain": "leedsfleetservices.co.uk",
+      "title": "Tachograph Centre at Leeds Fleet Services",
+      "url": "https://leedsfleetservices.co.uk/tachograph-centre.html"
+    },
+    {
+      "pos": 11,
+      "domain": "www.transportcompliance.uk",
+      "title": "Find your local Approved Tachograph Centre (ATC)",
+      "url": "http://www.transportcompliance.uk/news/article/find-your-local-approved-tachograph-centre-atc.html"
+    },
+    {
+      "pos": 12,
+      "domain": "tacho-fit.co.uk",
+      "title": "Tacho-Fit Express Limited | The UK's leading provider of ...",
+      "url": "https://tacho-fit.co.uk/"
+    },
+    {
+      "pos": 13,
+      "domain": "www.calmactyres.co.uk",
+      "title": "Approved Tachograph Centre - Northampton",
+      "url": "https://www.calmactyres.co.uk/tachograph"
+    },
+    {
+      "pos": 14,
+      "domain": "www.facebook.com",
+      "title": "Tachograph calibration around Manchester ? Any good ...",
+      "url": "https://www.facebook.com/jack.fielding94/posts/tachograph-calibration-around-manchester-any-good-ones-/10234780171859904/"
+    }
+  ]
+}

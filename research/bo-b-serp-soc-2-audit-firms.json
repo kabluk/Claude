@@ -1,0 +1,60 @@
+{
+  "query": "soc 2 audit firms",
+  "location": "US",
+  "items": [
+    {
+      "pos": 2,
+      "domain": "soc2auditors.org",
+      "title": "SOC 2 Auditors: Compare 171+ Verified Audit Firms (2026)",
+      "url": "https://soc2auditors.org/"
+    },
+    {
+      "pos": 3,
+      "domain": "www.reddit.com",
+      "title": "Looking for SOC 2 and ISO auditor recommendations",
+      "url": "https://www.reddit.com/r/cybersecurity/comments/14r27cp/looking_for_soc_2_and_iso_auditor_recommendations/"
+    },
+    {
+      "pos": 4,
+      "domain": "linfordco.com",
+      "title": "SOC 2 Audits (AT-C 105)",
+      "url": "https://linfordco.com/services/soc-2-audits/"
+    },
+    {
+      "pos": 5,
+      "domain": "www.vanta.com",
+      "title": "Who can perform a SOC 2 audit?",
+      "url": "https://www.vanta.com/collection/soc-2/who-can-perform-soc-2-audit"
+    },
+    {
+      "pos": 6,
+      "domain": "www.a-lign.com",
+      "title": "What Is SOC 2? The Complete Guide",
+      "url": "https://www.a-lign.com/articles/what-is-soc-2-complete-guide"
+    },
+    {
+      "pos": 7,
+      "domain": "www.mightyid.com",
+      "title": "Best SOC Audit Firms for Trusted Compliance Support",
+      "url": "https://www.mightyid.com/best-soc-audit-firms/"
+    },
+    {
+      "pos": 8,
+      "domain": "kirkpatrickprice.com",
+      "title": "SOC 2 Compliance Audit Services",
+      "url": "https://kirkpatrickprice.com/audit/soc-2/"
+    },
+    {
+      "pos": 10,
+      "domain": "www.brightdefense.com",
+      "title": "14 Best SOC 2 Audit Firms in 2026",
+      "url": "https://www.brightdefense.com/resources/soc-2-audit-firms/"
+    },
+    {
+      "pos": 11,
+      "domain": "sprinto.com",
+      "title": "SOC 2 Auditors and Service Providers [How to Choose One]",
+      "url": "https://sprinto.com/blog/soc-2-auditors/"
+    }
+  ]
+}

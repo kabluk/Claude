@@ -1,0 +1,60 @@
+{
+  "query": "audit rgaa",
+  "location": "FR",
+  "items": [
+    {
+      "pos": 1,
+      "domain": "accessibilite.numerique.gouv.fr",
+      "title": "Kit d'audit - RGAA - Numérique.gouv",
+      "url": "https://accessibilite.numerique.gouv.fr/ressources/kit-audit/"
+    },
+    {
+      "pos": 3,
+      "domain": "www.info.gouv.fr",
+      "title": "Audit d'accessibilité : méthodologies pour tester votre site",
+      "url": "https://www.info.gouv.fr/accessibilite/tests-et-audits"
+    },
+    {
+      "pos": 5,
+      "domain": "rgaa-checker.com",
+      "title": "Audit RGAA gratuit en 30 s : score et plan de correction",
+      "url": "https://rgaa-checker.com/audit-accessibilite"
+    },
+    {
+      "pos": 6,
+      "domain": "institut-tourisme.bzh",
+      "title": "Audits RGAA | Institut du Tourisme",
+      "url": "https://institut-tourisme.bzh/audits-rgaa/"
+    },
+    {
+      "pos": 7,
+      "domain": "spote.developpement-durable.gouv.fr",
+      "title": "Accompagnement en conformité RGAA - SPOTE",
+      "url": "https://spote.developpement-durable.gouv.fr/offre/accompagnement-en-conformite-rgaa"
+    },
+    {
+      "pos": 8,
+      "domain": "www.urbilog.com",
+      "title": "Audit RGAA (Référentiel Général d'Amélioration de l' ...",
+      "url": "https://www.urbilog.com/lexique/audit-rgaa"
+    },
+    {
+      "pos": 9,
+      "domain": "formations.access42.net",
+      "title": "RGAA : auditer l'accessibilité numérique des sites web",
+      "url": "https://formations.access42.net/formations/formation-audit-accessibilite/"
+    },
+    {
+      "pos": 10,
+      "domain": "boscop.fr",
+      "title": "Audit RGAA et WCAG en accessibilité numérique",
+      "url": "https://boscop.fr/audit-rgaa-wcag/"
+    },
+    {
+      "pos": 11,
+      "domain": "accessibilite.numerique.gouv.fr",
+      "title": "RGAA: Référentiel général d'amélioration de l'accessibilité",
+      "url": "https://accessibilite.numerique.gouv.fr/"
+    }
+  ]
+}

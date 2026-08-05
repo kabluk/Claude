@@ -1,0 +1,54 @@
+{
+  "query": "accessibility agency",
+  "location": "US",
+  "items": [
+    {
+      "pos": 6,
+      "domain": "www.levelaccess.com",
+      "title": "Level Access: End-to-End Digital Accessibility",
+      "url": "https://www.levelaccess.com/"
+    },
+    {
+      "pos": 7,
+      "domain": "www.accessiblu.com",
+      "title": "Accessibility Services for Digital Web & Creative Agencies",
+      "url": "https://www.accessiblu.com/accessibility-digital-agencies/"
+    },
+    {
+      "pos": 8,
+      "domain": "allyant.com",
+      "title": "How to Choose the Right Web Accessibility Vendor?",
+      "url": "https://allyant.com/blog/choosing-the-right-digital-accessibility-partner-how-digital-agencies-can-boost-client-performance-and-compliance/"
+    },
+    {
+      "pos": 9,
+      "domain": "www.accessibilityassociation.org",
+      "title": "IAAP - Home",
+      "url": "https://www.accessibilityassociation.org/"
+    },
+    {
+      "pos": 10,
+      "domain": "accessibe.com",
+      "title": "Web Accessibility Solutions for ADA Compliance & WCAG",
+      "url": "https://accessibe.com/"
+    },
+    {
+      "pos": 11,
+      "domain": "www.mass.gov",
+      "title": "Accessibility consulting for Commonwealth agencies",
+      "url": "https://www.mass.gov/info-details/accessibility-consulting-for-commonwealth-agencies"
+    },
+    {
+      "pos": 12,
+      "domain": "www.accessibilitychecker.org",
+      "title": "Accessible Web Agencies",
+      "url": "https://www.accessibilitychecker.org/accessible-web-agencies/"
+    },
+    {
+      "pos": 13,
+      "domain": "beaccessible.com",
+      "title": "Website Accessibility Audit & ADA Compliance Services",
+      "url": "https://beaccessible.com/"
+    }
+  ]
+}

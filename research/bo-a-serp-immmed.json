@@ -1,0 +1,54 @@
+{
+  "query": "immigration medical exam",
+  "location": "US",
+  "items": [
+    {
+      "pos": 2,
+      "domain": "www.uscis.gov",
+      "title": "Finding a Medical Doctor",
+      "url": "https://www.uscis.gov/green-card/green-card-processes-and-procedures/finding-a-medical-doctor"
+    },
+    {
+      "pos": 3,
+      "domain": "www.uscis.gov",
+      "title": "I-693 | Report of Immigration Medical Examination and ...",
+      "url": "https://www.uscis.gov/i-693"
+    },
+    {
+      "pos": 5,
+      "domain": "www.uscis.gov",
+      "title": "Find a Civil Surgeon",
+      "url": "https://www.uscis.gov/tools/find-a-civil-surgeon"
+    },
+    {
+      "pos": 6,
+      "domain": "health.ucsd.edu",
+      "title": "Immigration Medical Exam",
+      "url": "https://health.ucsd.edu/care/occupational-medicine/immigration-medical-exam/"
+    },
+    {
+      "pos": 7,
+      "domain": "travel.state.gov",
+      "title": "Medical Examinations FAQs",
+      "url": "https://travel.state.gov/content/travel/en/us-visas/immigrate/the-immigrant-visa-process/step-10-prepare-for-the-interview/medical-examination-faqs.html"
+    },
+    {
+      "pos": 8,
+      "domain": "revivecommunityhealth.org",
+      "title": "How to Prepare for an Immigration Medical Exam and What ...",
+      "url": "https://revivecommunityhealth.org/blog/how-to-prepare-for-an-immigration-medical-exam-and-what-to-expect/"
+    },
+    {
+      "pos": 9,
+      "domain": "www.concentra.com",
+      "title": "Getting Your Immigration Physical",
+      "url": "https://www.concentra.com/patients/physicals/immigration-physical"
+    },
+    {
+      "pos": 11,
+      "domain": "www.wakefamilymedicine.com",
+      "title": "Immigration Medical Exams: What to Expect and How ...",
+      "url": "https://www.wakefamilymedicine.com/blog/immigration-medical-exams-what-to-expect-and-how-to-prepare"
+    }
+  ]
+}

@@ -1,0 +1,353 @@
+{
+  "location": "PL",
+  "language": "pl",
+  "fetched_for": 6,
+  "rows": [
+    {
+      "keyword": "deklaracja dostępności",
+      "volume": 590,
+      "cpc": 1.56,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 390
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 590
+        }
+      ]
+    },
+    {
+      "keyword": "dostępność cyfrowa",
+      "volume": 480,
+      "cpc": 0.9,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 390
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 390
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 390
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 590
+        }
+      ]
+    },
+    {
+      "keyword": "audyt wcag",
+      "volume": 260,
+      "cpc": 5.42,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 140
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 170
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 170
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 210
+        }
+      ]
+    },
+    {
+      "keyword": "audyt dostępności",
+      "volume": 140,
+      "cpc": 4.71,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 170
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 110
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 140
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 140
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 110
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 170
+        }
+      ]
+    },
+    {
+      "keyword": "audyt dostępności strony internetowej",
+      "volume": 30,
+      "cpc": 7.81,
+      "competition": "HIGH",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 20
+        }
+      ]
+    },
+    {
+      "keyword": "dostępność cyfrowa audyt",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    }
+  ]
+}

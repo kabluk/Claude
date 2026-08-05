@@ -10,7 +10,10 @@
     "typecheck": "tsc --noEmit",
     "lint:upl": "node scripts/lint-upl.mjs",
     "lint:minimize": "node scripts/lint-minimize.mjs",
-    "lint": "npm run lint:upl && npm run lint:minimize"
+    "lint": "npm run lint:upl && npm run lint:minimize",
+    "build:a11y": "node scripts/build-a11y.mjs",
+    "dev:a11y-site": "vite --config a11y-site/vite.config.ts",
+    "build:a11y-site": "node scripts/build-a11y.mjs && vite-react-ssg build --config a11y-site/vite.config.ts && node scripts/gen-a11y-sitemap.mjs"
   },
   "dependencies": {
     "@fontsource-variable/archivo": "^5.3.0",
@@ -19,6 +22,7 @@
     "@fontsource/archivo-narrow": "^5.3.0",
     "@fontsource/jetbrains-mono": "^5.3.0",
     "jspdf": "^4.2.1",
+    "marked": "^18.0.9",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.30.4",

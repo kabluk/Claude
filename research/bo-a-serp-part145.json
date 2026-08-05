@@ -1,0 +1,60 @@
+{
+  "query": "part 145 repair station",
+  "location": "US",
+  "items": [
+    {
+      "pos": 2,
+      "domain": "www.faa.gov",
+      "title": "Repair Station Operators (Part 145)",
+      "url": "https://www.faa.gov/hazmat/air_carriers/operations/part_145"
+    },
+    {
+      "pos": 3,
+      "domain": "www.ecfr.gov",
+      "title": "14 CFR Part 145 -- Repair Stations",
+      "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-H/part-145"
+    },
+    {
+      "pos": 4,
+      "domain": "www.reddit.com",
+      "title": "FAA Part 145 Repair Station : r/AircraftMechanics",
+      "url": "https://www.reddit.com/r/AircraftMechanics/comments/1cjnini/faa_part_145_repair_station/"
+    },
+    {
+      "pos": 5,
+      "domain": "www.faa.gov",
+      "title": "Repair Stations | Federal Aviation Administration",
+      "url": "https://www.faa.gov/aircraft/repair"
+    },
+    {
+      "pos": 7,
+      "domain": "www.launchtws.com",
+      "title": "LAUNCH FAA Part 145 Repair Station",
+      "url": "https://www.launchtws.com/aviation-services/part-145-repair-station/"
+    },
+    {
+      "pos": 8,
+      "domain": "nata.aero",
+      "title": "What is a Repair Station and how do I select the right one ...",
+      "url": "https://nata.aero/wp-content/uploads/2024/10/part145_4x9.pdf"
+    },
+    {
+      "pos": 9,
+      "domain": "www.ecfr.gov",
+      "title": "14 CFR Part 145",
+      "url": "https://www.ecfr.gov/current/title-14/chapter-I/subchapter-H/part-145?toc=1"
+    },
+    {
+      "pos": 10,
+      "domain": "www.nmgaerospace.com",
+      "title": "NMG's Guide to FAA Repair Station Certifications",
+      "url": "https://www.nmgaerospace.com/nmg-aerospace-a-comprehensive-guide-to-faa-repair-station-certifications/"
+    },
+    {
+      "pos": 11,
+      "domain": "www.linkedin.com",
+      "title": "FAA Part 145: Here's Everything You Need to Know About ...",
+      "url": "https://www.linkedin.com/pulse/faa-part-145-heres-everything-you-need-know-repair-station-alexi-oejie"
+    }
+  ]
+}

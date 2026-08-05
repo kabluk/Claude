@@ -19,8 +19,9 @@
     "paths": {
       "@/*": ["src/*"],
       "@content/*": ["content/*"],
-      "@data/*": ["data/*"]
+      "@data/*": ["data/*"],
+      "@dir/*": ["a11y-site/src/*"]
     }
   },
-  "include": ["src", "content", "data"]
+  "include": ["src", "content", "data", "a11y-site/src"]
 }

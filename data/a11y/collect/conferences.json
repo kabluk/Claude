@@ -1,0 +1,379 @@
+[
+  {
+    "slug": "hcltech",
+    "name": "HCLTech",
+    "website": "hcltech.com",
+    "hq": { "city": "", "countryCode": "IN" },
+    "offices": [],
+    "countriesServed": ["IN", "US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.hcltech.com/events/csun",
+        "label": "CSUN 2026 exhibitor (Booth #1213); end-to-end accessibility services incl. design audits and remediation; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "barrierbreak",
+    "name": "BarrierBreak",
+    "website": "barrierbreak.com",
+    "hq": { "city": "", "countryCode": "IN" },
+    "offices": [],
+    "countriesServed": ["IN", "US"],
+    "languages": ["en"],
+    "services": ["audit", "vpat"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.barrierbreak.com/barrierbreak-at-csun25-driving-accessibility-forward-with-innovation/",
+        "label": "Own recap of exhibiting a booth at CSUN 2025; accessibility testing, audit and VPAT services; checked 2026-08-04"
+      },
+      {
+        "url": "https://www.csun.edu/cod/conference/ebb/rbk/2024/index.php/public/exhibitors/view/349",
+        "label": "CSUN Conference 2024 official exhibitor listing (BarrierBreak & 247 Accessible Documents); checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "allyant",
+    "name": "Allyant",
+    "website": "allyant.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://allyant.com/event/csun-2025/",
+        "label": "Own CSUN 2025 event page (booth presence); digital accessibility auditing and document remediation services; checked 2026-08-04"
+      },
+      {
+        "url": "https://www.csun.edu/cod/conference/ebb/rbk/2024/index.php/public/exhibitors/view/348",
+        "label": "CSUN Conference 2024 official exhibitor listing; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "crawford-technologies",
+    "name": "Crawford Technologies",
+    "website": "crawfordtech.com",
+    "hq": { "city": "", "countryCode": "CA" },
+    "offices": [],
+    "countriesServed": ["CA", "US"],
+    "languages": ["en"],
+    "services": ["remediation"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://crawfordtech.com/event/41st-annual-csun-assistive-technology-conference/",
+        "label": "Own event page: exhibiting at CSUN 2026 (Anaheim, Mar 10-13) with accessible document / alternate-format services; also lists M-Enabling Summit; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "grackledocs",
+    "name": "GrackleDocs",
+    "website": "grackledocs.com",
+    "hq": { "city": "", "countryCode": "CA" },
+    "offices": [],
+    "countriesServed": ["CA", "US"],
+    "languages": ["en"],
+    "services": ["remediation"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.grackledocs.com/en/events/csun-assistive-technology-conference-2026/",
+        "label": "Own event page: attending CSUN 2026; document accessibility solutions and services (Booth #1015 at CSUN 2025); checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "microassist",
+    "name": "Microassist",
+    "website": "microassist.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "training"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.microassist.com/digital-accessibility/csun/",
+        "label": "Own page: Microassist team attends CSUN Assistive Technology Conference; digital accessibility audit and training services; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "qualitylogic",
+    "name": "QualityLogic",
+    "website": "qualitylogic.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.qualitylogic.com/knowledge-center/takeaways-from-the-40th-annual-csun-conference/",
+        "label": "Own recap of attending the 40th CSUN conference (2025); QA firm with accessibility testing services; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "intopia",
+    "name": "Intopia",
+    "website": "intopia.digital",
+    "hq": { "city": "", "countryCode": "AU" },
+    "offices": [],
+    "countriesServed": ["AU", "NZ", "US"],
+    "languages": ["en"],
+    "services": ["audit", "consulting", "training"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://intopia.digital/articles/8-things-we-learnt-at-csun/",
+        "label": "Own recap: first-time booth exhibitor and session presenters at CSUN 2025; accessibility and inclusive design consultancy; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "accessibil-it",
+    "name": "Accessibil-IT",
+    "website": "accessibilit.com",
+    "hq": { "city": "", "countryCode": "CA" },
+    "offices": [],
+    "countriesServed": ["CA", "US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.accessibilit.com/blog/visit-accessibil-csun-2018/",
+        "label": "Own post: attended CSUN for 6th year, spoke on document accessibility strategies; PDF accessibility services firm; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "tamman",
+    "name": "Tamman",
+    "website": "tammaninc.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://tammaninc.com/learn/tamman-and-chax-merger/",
+        "label": "Tamman and Chax invited attendees to meet them at CSUN 2024 (Anaheim Marriott); accessibility assessments and consulting; checked 2026-08-04"
+      },
+      {
+        "url": "https://tammaninc.com/assessments",
+        "label": "Accessibility assessment services page; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "usablenet",
+    "name": "UsableNet",
+    "website": "usablenet.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "monitoring"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.csun.edu/cod/conference/ebb/rbk/2024/index.php/public/exhibitors/view/630",
+        "label": "CSUN Conference 2024 official exhibitor listing surfaced for UsableNet; managed accessibility service with expert testing; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "eye-square",
+    "name": "eye square",
+    "website": "eye-square.com",
+    "hq": { "city": "", "countryCode": "DE" },
+    "offices": [],
+    "countriesServed": ["DE"],
+    "languages": ["de", "en"],
+    "services": ["audit"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.eye-square.com/en/axe-con-conference-2024/",
+        "label": "Own page: community sponsor of axe-con 2024; checked 2026-08-04"
+      },
+      {
+        "url": "https://www.eye-square.com/en/accessibility-audit/",
+        "label": "Manual accessibility audit service by accessibility specialists; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "vision-australia-digital-access",
+    "name": "Vision Australia Digital Access",
+    "website": "digitalaccesstraining.com",
+    "hq": { "city": "", "countryCode": "AU" },
+    "offices": [],
+    "countriesServed": ["AU"],
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.digitalaccesstraining.com/pages/articles?p=csun-2025-insights-vision-australia-staff-share-their-experience",
+        "label": "Vision Australia Digital Access staff attended CSUN 2025 (own recap article); consulting/training service arm of Vision Australia; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "abledocs",
+    "name": "AbleDocs",
+    "website": "abledocs.com",
+    "hq": { "city": "", "countryCode": "CA" },
+    "offices": [],
+    "countriesServed": ["CA", "US"],
+    "languages": ["en"],
+    "services": ["remediation"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://martechseries.com/mobile/apps-for-business/abledocs-launches-adreader-at-the-37th-annual-csun-assistive-technology-conference/",
+        "label": "Launched ADReader at the 37th Annual CSUN Assistive Technology Conference (2022); document accessibility services company; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "continual-engine",
+    "name": "Continual Engine",
+    "website": "continualengine.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["remediation"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.continualengine.com/events/",
+        "label": "Own events page: presenting and exhibiting at CSUN (incl. CSUN 2025 session on PREP); PDF/document remediation services; checked 2026-08-04"
+      },
+      {
+        "url": "https://remediation-services.continualengine.com/",
+        "label": "PDF & document remediation and accessibility consulting services; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "apex-covantage",
+    "name": "Apex CoVantage",
+    "website": "apexcovantage.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["remediation"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.apexcovantage.com/about/news-events/2026-csun-assistive-technology-conference",
+        "label": "Own page: participating in the 41st CSUN AT Conference (2026), showcasing accessibility solutions/services; checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "braille-institute-access-solutions",
+    "name": "Braille Institute Access Solutions",
+    "website": "brailleinstitute.org",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.brailleinstitute.org/access-solutions-consulting/",
+        "label": "Access Solutions consulting arm (workplace audits, user testing, accommodation plans) attending CSUN 2026 (Mar 9-13, Anaheim); checked 2026-08-04"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  }
+]

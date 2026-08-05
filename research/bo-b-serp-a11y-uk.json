@@ -1,0 +1,60 @@
+{
+  "query": "accessibility audit",
+  "location": "UK",
+  "items": [
+    {
+      "pos": 2,
+      "domain": "www.gov.uk",
+      "title": "Getting an accessibility audit - Service Manual",
+      "url": "https://www.gov.uk/service-manual/helping-people-to-use-your-service/getting-an-accessibility-audit"
+    },
+    {
+      "pos": 3,
+      "domain": "www.diversitytrust.org.uk",
+      "title": "Accessibility Audit",
+      "url": "https://www.diversitytrust.org.uk/accessibility-audit/"
+    },
+    {
+      "pos": 4,
+      "domain": "www.siteimprove.com",
+      "title": "How to run an accessibility audit",
+      "url": "https://www.siteimprove.com/glossary/accessibility-audit/"
+    },
+    {
+      "pos": 5,
+      "domain": "beaccessible.com",
+      "title": "UK Web Accessibility Audit and Testing",
+      "url": "https://beaccessible.com/uk-web-accessibility/"
+    },
+    {
+      "pos": 8,
+      "domain": "www.applytosupply.digitalmarketplace.service.gov.uk",
+      "title": "Website Accessibility Audit",
+      "url": "https://www.applytosupply.digitalmarketplace.service.gov.uk/g-cloud/services/189165290736457"
+    },
+    {
+      "pos": 9,
+      "domain": "digitalaccessibilitycentre.org",
+      "title": "Audit and Accreditation",
+      "url": "https://digitalaccessibilitycentre.org/auditandaccreditation.html"
+    },
+    {
+      "pos": 10,
+      "domain": "userway.org",
+      "title": "Web Accessibility Audit For WCAG and ADA Conformance",
+      "url": "https://userway.org/audit/"
+    },
+    {
+      "pos": 11,
+      "domain": "www.unwomen.org",
+      "title": "ACCESSIBILITY AUDIT",
+      "url": "https://www.unwomen.org/sites/default/files/Headquarters/Attachments/Sections/Library/Publications/2021/Brief-Accessiblity-audit-en.pdf"
+    },
+    {
+      "pos": 12,
+      "domain": "aiscertificacion.com",
+      "title": "Accessibility audit: what is it and what does it involve?",
+      "url": "https://aiscertificacion.com/en/accessibility-audit-what-is-it-and-what-does-it-involve/"
+    }
+  ]
+}

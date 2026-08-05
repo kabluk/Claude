@@ -1,0 +1,544 @@
+[
+  {
+    "slug": "weco-digital-accessibility",
+    "name": "Digital Accessibility by WeCo",
+    "website": "theweco.com",
+    "hq": { "city": "Stillwater", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["section-508", "ada", "wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://theweco.com/accessibility-audit/", "label": "manual accessibility audits page; Section 508/ADA/WCAG testing by professionals living with disabilities; Stillwater MN, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "equal-entry",
+    "name": "Equal Entry",
+    "website": "equalentry.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://equalentry.com/services/accessibility-auditing/", "label": "accessibility auditing & testing service page; IT accessibility consulting firm founded 2012, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "knowbility",
+    "name": "Knowbility",
+    "website": "knowbility.org",
+    "hq": { "city": "Austin", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://knowbility.org/services/audits", "label": "accessibility testing & auditing services page (nonprofit with paid services arm, Austin TX); also listed on AskJAN vendor list, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "perkins-access",
+    "name": "Perkins Access",
+    "website": "perkinsaccess.org",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://askjan.org/solutions/Website-Accessibility-Vendors.cfm", "label": "AskJAN website accessibility vendors list; digital accessibility consulting arm of Perkins School for the Blind offering audit services, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "allyant",
+    "name": "Allyant",
+    "website": "allyant.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "vpat", "monitoring", "consulting"],
+    "standards": ["wcag-2-2", "section-508"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://allyant.com/vpat-accessibility-compliance-services/", "label": "VPAT/ACR services page (Section 508 + WCAG); WCAG 2.2 AA audits and CommonLook document remediation suite, live SERP 2026-08-04" },
+      { "url": "https://allyant.com/web-accessibility-audit-services/", "label": "web accessibility audit services page, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "testpros",
+    "name": "TestPros",
+    "website": "testpros.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "vpat", "consulting"],
+    "standards": ["section-508", "wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://testpros.com/services/accessibility/", "label": "accessibility audit services page; Section 508 audits/remediation/consulting for US federal, state, local government since 1988; VPAT services page confirmed, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "new-editions-consulting",
+    "name": "New Editions Consulting",
+    "website": "neweditions.net",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["section-508", "wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.neweditions.net/services/accessibility-services", "label": "accessibility services page: Section 508 compliance testing, WCAG conformance, Trusted Tester process; TSA 508 compliance project; also on AskJAN vendor list, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "microassist",
+    "name": "Microassist",
+    "website": "microassist.com",
+    "hq": { "city": "Austin", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "vpat", "training"],
+    "standards": ["section-508", "wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.microassist.com/accessibility/accessibility-audit-services/", "label": "accessibility audit services page: manual testing against WCAG/Section 508/TAC 206; Austin TX HQ since 1988; VPAT evaluation services page confirmed, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "webaim",
+    "name": "WebAIM",
+    "website": "webaim.org",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting", "monitoring"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://webaim.org/services/evaluation/", "label": "paid website evaluation/audit services page (WCAG compliance reports, site scanning, certification, training); also on AskJAN vendor list, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "bureau-of-internet-accessibility",
+    "name": "Bureau of Internet Accessibility",
+    "website": "boia.org",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit"],
+    "standards": ["wcag-2-2", "ada", "section-508"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.boia.org/accessibility-services-for-digital-compliance/accessibility-audits/", "label": "WCAG 2.1 A/AA audit service page; WCAG, ADA and Section 508 audits since 2001, four-point testing with assistive-tech users, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "afixt",
+    "name": "AFixt",
+    "website": "afixt.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "vpat", "consulting"],
+    "standards": ["ada", "wcag-2-2", "section-508", "eaa", "en-301-549"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://afixt.com/about-us/", "label": "founded by Karl Groves; full array of auditing, consulting, remediation, VPAT/ACR development for ADA, WCAG, Section 508, EAA, EN 301 549, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "accessible-web",
+    "name": "Accessible Web",
+    "website": "accessibleweb.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "vpat", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://accessibleweb.com/services/wcag-accessibility-audits/", "label": "WCAG accessibility audit service page; VPAT/ACR and certification services confirmed on services pages, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "prime-access-consulting",
+    "name": "Prime Access Consulting",
+    "website": "pac.bz",
+    "hq": { "city": "Research Triangle Park", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://pac.bz/accessibility/", "label": "accessibility firm led by Sina Bahram, Research Triangle Park NC; digital and physical accessibility solutions for museums, labs, corporations, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "chax-training-and-consulting",
+    "name": "Chax Training and Consulting",
+    "website": "chaxtc.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["training", "remediation", "consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://chaxtc.com/accessibility-services/", "label": "accessibility services page: document (PDF) accessibility training, testing and remediation; Chad Chelius principal, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "216digital",
+    "name": "216digital",
+    "website": "216digital.com",
+    "hq": { "city": "Cleveland", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["remediation"],
+    "standards": ["ada"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://vendors.accessibility.com/vendor/216digital/", "label": "accessibility.com vendor directory listing; Cleveland-area agency, national ADA remediation and website compliance, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "accessibility-shield",
+    "name": "Accessibility Shield",
+    "website": "accessibilityshield.com",
+    "hq": { "city": "Norristown", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "monitoring"],
+    "standards": ["ada"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://vendors.accessibility.com/vendor/accessibility-shield/", "label": "accessibility.com vendor directory listing; Norristown PA; continuous scanning, manual testing and full remediation for ADA compliance, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "qualitylogic",
+    "name": "QualityLogic",
+    "website": "qualitylogic.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "vpat", "training", "consulting"],
+    "standards": ["wcag-2-2", "ada", "section-508"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.qualitylogic.com/digital-accessibility/accessibility-auditing-testing-services/", "label": "accessibility auditing & testing services page: WCAG 2.2 AA/ADA/Section 508, VPAT reports, Idaho HQ; also in accessibility.com vendor directory, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "converge-accessibility",
+    "name": "Converge Accessibility",
+    "website": "convergeaccessibility.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["consulting", "vpat", "training"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://convergeaccessibility.com/", "label": "WCAG compliance and litigation services; legal + technical consulting, VPAT/ACR assistance; advisors to US and Canadian governments, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "accessibility-works",
+    "name": "Accessibility.Works",
+    "website": "accessibility.works",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "consulting"],
+    "standards": ["wcag-2-2", "ada"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.accessibility.works/services/website-ada-accessibility-compliance-audit/", "label": "ADA website compliance auditing service page (WCAG/ADA audits & consulting), live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "accessible-org",
+    "name": "Accessible.org",
+    "website": "accessible.org",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "vpat", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://accessible.org/services/audits/", "label": "WCAG accessibility audits service page, live SERP 2026-08-04" },
+      { "url": "https://accessible.org/services/vpat/", "label": "VPAT/ACR services page (audits producing Accessibility Conformance Reports), live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "usablenet",
+    "name": "UsableNet",
+    "website": "usablenet.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "training", "consulting", "monitoring"],
+    "standards": ["wcag-2-2", "eaa"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://info.usablenet.com/digital-accessibility-support-services/mobile-application-accessibility-audit", "label": "expert-led accessibility audit services: full WCAG audits, mobile app audits with disability-community testers, remediation plans, training, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "applause",
+    "name": "Applause",
+    "website": "applause.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.applause.com/accessibility-testing/", "label": "managed accessibility testing services with PWD testers and accessibility experts; remediation planning support, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "braille-works",
+    "name": "Braille Works",
+    "website": "brailleworks.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation"],
+    "standards": ["section-508", "ada", "wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://brailleworks.com/solutions/508-document-compliance/", "label": "508 document compliance services (accessible PDF/braille/large print/audio since 1994; third-party document compliance checks), live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "integrity-xd",
+    "name": "Integrity",
+    "website": "integrityxd.com",
+    "hq": { "city": "St. Louis", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.integrityxd.com/blog/what-is-an-accessibility-audit-and-why-inclusion-matters", "label": "St Louis US digital agency; own article presenting its accessibility audit offering, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "accessability-officer",
+    "name": "AccessAbility Officer",
+    "website": "accessabilityofficer.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "training"],
+    "standards": ["ada", "wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://accessabilityofficer.com/digital-accessibility-audits", "label": "Title II ADA digital accessibility audits, WCAG 2.1 AA testing by certified experts; runs Certified AccessAbility Testing program (per Equal Entry), live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "equalize-digital",
+    "name": "Equalize Digital",
+    "website": "equalizedigital.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://equalizedigital.com/", "label": "site title 'Website Accessibility Audits, Remediation, & Consulting'; WordPress accessibility specialists (Accessibility Checker plugin), live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ablr",
+    "name": "Ablr",
+    "website": "ablr360.com",
+    "hq": { "city": "Raleigh", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://ablr360.com/accessibility/", "label": "digital accessibility services page: manual accessibility audits, usability testing, consulting, training; Raleigh NC disability-inclusion firm, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "access-armada",
+    "name": "Access Armada",
+    "website": "accessarmada.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "consulting"],
+    "standards": ["ada", "wcag-2-2", "section-508"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.accessarmada.com/services/", "label": "web accessibility services page: ADA/WCAG/Section 508 audits (web, mobile apps), PDF and email remediation; listed on InclusionHub, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "tamman",
+    "name": "Tamman",
+    "website": "tammaninc.com",
+    "hq": { "city": "Philadelphia", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://tammaninc.com/", "label": "Philadelphia accessibility firm (founded 2007): accessibility assessments, tech solutions and consulting; accessibility-certified engineers, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "online-ada",
+    "name": "Online ADA",
+    "website": "onlineada.com",
+    "hq": { "city": "", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "monitoring"],
+    "standards": ["wcag-2-2", "section-508", "ada"],
+    "industries": [],
+    "certs": [],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://whoisaccessible.com/reviews/online-ada/", "label": "review confirming manual WCAG/Section 508 auditing by expert team plus document remediation and compliance management; onlineada.com, live SERP 2026-08-04" }
+    ],
+    "lastVerified": "2026-08-04"
+  }
+]

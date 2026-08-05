@@ -1,0 +1,66 @@
+{
+  "query": "audyt wcag",
+  "location": "PL",
+  "items": [
+    {
+      "pos": 1,
+      "domain": "wcag-audyt.pl",
+      "title": "Audyt WCAG - WCAG 2.1 - Audyty dostępności aplikacji i stron",
+      "url": "https://wcag-audyt.pl/"
+    },
+    {
+      "pos": 2,
+      "domain": "www.gov.pl",
+      "title": "Czym jest audyt ekspercki dostępności cyfrowej i jak go ...",
+      "url": "https://www.gov.pl/web/dostepnosc-cyfrowa/czym-jest-audyt-ekspercki-dostepnosci-cyfrowej-i-jak-go-zorganizowac"
+    },
+    {
+      "pos": 4,
+      "domain": "audytwcag.pl",
+      "title": "Audyty stron i szkolenia WCAG 2.1 Logonet",
+      "url": "https://audytwcag.pl/"
+    },
+    {
+      "pos": 5,
+      "domain": "cyberforces.com",
+      "title": "Audyt dostępności: WCAG w praktyce - Cyberforces",
+      "url": "https://cyberforces.com/wcag-audyt-dostepnosci"
+    },
+    {
+      "pos": 6,
+      "domain": "sdc.certes.pl",
+      "title": "Audytowanie dostępności stron internetowych zgodnie ze ...",
+      "url": "https://sdc.certes.pl/audytowanie-dostepnosci-stron-internetowych-zgodnie-ze-standardem-wcag-web-content-accessibility-guidelines/"
+    },
+    {
+      "pos": 7,
+      "domain": "lepszyweb.pl",
+      "title": "Audyt dostępności stron internetowych - WCAG",
+      "url": "https://lepszyweb.pl/audyt"
+    },
+    {
+      "pos": 8,
+      "domain": "www.escsa.pl",
+      "title": "Profesjonalny audyt dostępności strony WCAG 2.1",
+      "url": "https://www.escsa.pl/audyt-wcag"
+    },
+    {
+      "pos": 9,
+      "domain": "www.drupalninja.pl",
+      "title": "Audyt WCAG (dostępności strony)",
+      "url": "https://www.drupalninja.pl/audyty-dostepnosci-wcag"
+    },
+    {
+      "pos": 10,
+      "domain": "audyt-dostepnosci.pl",
+      "title": "Audyt dostępności cyfrowej WCAG — raport w 5 dni",
+      "url": "https://audyt-dostepnosci.pl/"
+    },
+    {
+      "pos": 11,
+      "domain": "e-pad.pl",
+      "title": "Jak przeprowadzić audyt WCAG dostępności cyfrowej i jak ...",
+      "url": "https://e-pad.pl/jak-przeprowadzic-audyt-wcag-dostepnosci-cyfrowej-i-jak-dostosowac-strone-aby-spelnic-wymogi-eaa/"
+    }
+  ]
+}

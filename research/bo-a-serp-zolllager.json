@@ -1,0 +1,60 @@
+{
+  "query": "zolllager",
+  "location": "DE",
+  "items": [
+    {
+      "pos": 2,
+      "domain": "www.zoll.de",
+      "title": "Zolllager",
+      "url": "https://www.zoll.de/DE/Unternehmen/Warenverkehr/Einfuhr-aus-einem-Nicht-EU-Staat/Verfahren/Zolllager/zolllager_node.html"
+    },
+    {
+      "pos": 3,
+      "domain": "de.wikipedia.org",
+      "title": "Zolllager",
+      "url": "https://de.wikipedia.org/wiki/Zolllager"
+    },
+    {
+      "pos": 4,
+      "domain": "www.bmf.gv.at",
+      "title": "Zolllager",
+      "url": "https://www.bmf.gv.at/themen/zoll/ueberfuehrung-in-ein-zollverfahren/besondere-verfahren-zoll/zolllager.html"
+    },
+    {
+      "pos": 6,
+      "domain": "www.zoll.de",
+      "title": "Zolllagerverfahren",
+      "url": "https://www.zoll.de/DE/Fachthemen/Zoelle/Zollverfahren/Zolllagerverfahren/zolllagerverfahren_node.html"
+    },
+    {
+      "pos": 7,
+      "domain": "www.mic-cust.com",
+      "title": "Zolllager & Zolllagerverfahren: Was müssen Unternehmen ...",
+      "url": "https://www.mic-cust.com/de/zollsoftware-trade-compliance-loesungen/globales-zollmanagement/besondere-zollverfahren/zolllager-verstehen-was-muessen-unternehmen-dazu-wissen/"
+    },
+    {
+      "pos": 8,
+      "domain": "www.zoll-lager.de",
+      "title": "Zoll Lager: Shop",
+      "url": "https://www.zoll-lager.de/"
+    },
+    {
+      "pos": 9,
+      "domain": "www.wko.at",
+      "title": "Das Zolllager; wird an den Unionszollkodex angepasst",
+      "url": "https://www.wko.at/aussenwirtschaft/zolllager"
+    },
+    {
+      "pos": 10,
+      "domain": "wirtschaftslexikon.gabler.de",
+      "title": "Zolllager • Definition - Gabler Wirtschaftslexikon",
+      "url": "https://wirtschaftslexikon.gabler.de/definition/zolllager-51176"
+    },
+    {
+      "pos": 11,
+      "domain": "dhl-freight-connections.com",
+      "title": "Was ist ein Zolllager?",
+      "url": "https://dhl-freight-connections.com/de/logistik-lexikon/zolllager/"
+    }
+  ]
+}

@@ -1,0 +1,2077 @@
+{
+  "location": "UK",
+  "language": "en",
+  "fetched_for": 35,
+  "rows": [
+    {
+      "keyword": "adr training",
+      "volume": 1600,
+      "cpc": 2.55,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 1300
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 1900
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 1900
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 1900
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 1600
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 2400
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 1600
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 1600
+        }
+      ]
+    },
+    {
+      "keyword": "eng1 medical",
+      "volume": 1300,
+      "cpc": 1.96,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 1300
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 1300
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 1300
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 1300
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 1600
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 1000
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 1600
+        }
+      ]
+    },
+    {
+      "keyword": "adr courses",
+      "volume": 1000,
+      "cpc": 2.72,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 1000
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 1000
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 1000
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 1000
+        }
+      ]
+    },
+    {
+      "keyword": "dgsa",
+      "volume": 880,
+      "cpc": 5.84,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 1600
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 880
+        }
+      ]
+    },
+    {
+      "keyword": "dangerous goods safety adviser",
+      "volume": 880,
+      "cpc": 5.84,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 1600
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 880
+        }
+      ]
+    },
+    {
+      "keyword": "eng1 medical near me",
+      "volume": 880,
+      "cpc": 2.69,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 1000
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 1000
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 1000
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 1000
+        }
+      ]
+    },
+    {
+      "keyword": "adr training near me",
+      "volume": 480,
+      "cpc": 2.68,
+      "competition": "HIGH",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 590
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 390
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 480
+        }
+      ]
+    },
+    {
+      "keyword": "heat treated pallets",
+      "volume": 480,
+      "cpc": 3.71,
+      "competition": "HIGH",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 390
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 390
+        }
+      ]
+    },
+    {
+      "keyword": "tachograph calibration near me",
+      "volume": 390,
+      "cpc": 6.26,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 390
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 390
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 590
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 480
+        }
+      ]
+    },
+    {
+      "keyword": "tachograph calibration",
+      "volume": 320,
+      "cpc": 3.48,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 210
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 390
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 320
+        }
+      ]
+    },
+    {
+      "keyword": "dangerous goods training",
+      "volume": 320,
+      "cpc": 5.81,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 210
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 170
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 320
+        }
+      ]
+    },
+    {
+      "keyword": "notified body",
+      "volume": 170,
+      "cpc": null,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 140
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 140
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 140
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 170
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 140
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 170
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 170
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 170
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 210
+        }
+      ]
+    },
+    {
+      "keyword": "wine importers uk",
+      "volume": 170,
+      "cpc": 3.05,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 140
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 140
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 170
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 390
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 170
+        }
+      ]
+    },
+    {
+      "keyword": "seafarer medical certificate",
+      "volume": 90,
+      "cpc": 2.96,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 110
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 110
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 140
+        }
+      ]
+    },
+    {
+      "keyword": "bonded warehouse uk",
+      "volume": 90,
+      "cpc": 10.41,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 50
+        }
+      ]
+    },
+    {
+      "keyword": "bonded warehouse near me",
+      "volume": 90,
+      "cpc": 12.32,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 110
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 140
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 70
+        }
+      ]
+    },
+    {
+      "keyword": "pharmaceutical distributors uk",
+      "volume": 90,
+      "cpc": 10.73,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 590
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 40
+        }
+      ]
+    },
+    {
+      "keyword": "eng1 doctors",
+      "volume": 70,
+      "cpc": 2.82,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 90
+        }
+      ]
+    },
+    {
+      "keyword": "tachograph centre near me",
+      "volume": 40,
+      "cpc": 7.3,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 50
+        }
+      ]
+    },
+    {
+      "keyword": "digital tachograph calibration",
+      "volume": 40,
+      "cpc": null,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 50
+        }
+      ]
+    },
+    {
+      "keyword": "notified body uk",
+      "volume": 40,
+      "cpc": 8.69,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 70
+        }
+      ]
+    },
+    {
+      "keyword": "tachograph calibration centres",
+      "volume": 30,
+      "cpc": null,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "dgsa services",
+      "volume": 30,
+      "cpc": 2.37,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 110
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 20
+        }
+      ]
+    },
+    {
+      "keyword": "visa medical uk",
+      "volume": 20,
+      "cpc": 4.51,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 20
+        }
+      ]
+    },
+    {
+      "keyword": "customs warehouse uk",
+      "volume": 10,
+      "cpc": null,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 20
+        }
+      ]
+    },
+    {
+      "keyword": "ukca approved bodies",
+      "volume": 10,
+      "cpc": null,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "ukca certification body",
+      "volume": 10,
+      "cpc": null,
+      "competition": "HIGH",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "panel physician uk",
+      "volume": 10,
+      "cpc": null,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 20
+        }
+      ]
+    },
+    {
+      "keyword": "alcohol importers uk",
+      "volume": 10,
+      "cpc": null,
+      "competition": null,
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "ispm 15 pallets uk",
+      "volume": 10,
+      "cpc": 15.35,
+      "competition": "HIGH",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "wholesale dealer licence holders",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    },
+    {
+      "keyword": "gmp certified manufacturers uk",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    },
+    {
+      "keyword": "pet travel certificate vet",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    },
+    {
+      "keyword": "official veterinarian pet travel",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    },
+    {
+      "keyword": "export health certificate vet",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    }
+  ]
+}

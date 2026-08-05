@@ -1,0 +1,439 @@
+{
+  "location": "ES",
+  "language": "es",
+  "fetched_for": 10,
+  "rows": [
+    {
+      "keyword": "en 301 549",
+      "volume": 170,
+      "cpc": 6.43,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 140
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 170
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 140
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 140
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 170
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 110
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 110
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 210
+        }
+      ]
+    },
+    {
+      "keyword": "test accesibilidad web",
+      "volume": 50,
+      "cpc": 2.86,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 170
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 70
+        }
+      ]
+    },
+    {
+      "keyword": "ley accesibilidad web",
+      "volume": 30,
+      "cpc": 2.33,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 50
+        }
+      ]
+    },
+    {
+      "keyword": "auditoria de accesibilidad",
+      "volume": 20,
+      "cpc": 1.67,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 110
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "consultoría accesibilidad web",
+      "volume": 10,
+      "cpc": null,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "accesibilidad web empresas",
+      "volume": 10,
+      "cpc": null,
+      "competition": null,
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 0
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 0
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "auditoría accesibilidad web",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    },
+    {
+      "keyword": "auditoria wcag",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    },
+    {
+      "keyword": "certificado accesibilidad web",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    },
+    {
+      "keyword": "agencia accesibilidad web",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    }
+  ]
+}

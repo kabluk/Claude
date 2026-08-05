@@ -1,0 +1,48 @@
+{
+  "query": "accessibility audit",
+  "location": "US",
+  "items": [
+    {
+      "pos": 2,
+      "domain": "www.accessibilitychecker.org",
+      "title": "Accessibility Checker",
+      "url": "https://www.accessibilitychecker.org/"
+    },
+    {
+      "pos": 3,
+      "domain": "www.siteimprove.com",
+      "title": "How to run an accessibility audit",
+      "url": "https://www.siteimprove.com/glossary/accessibility-audit/"
+    },
+    {
+      "pos": 4,
+      "domain": "www.deque.com",
+      "title": "Accessibility Audits and Compliance Testing Services",
+      "url": "https://www.deque.com/accessibility-services/audits-compliance-testing/"
+    },
+    {
+      "pos": 7,
+      "domain": "userway.org",
+      "title": "Web Accessibility Audit For WCAG and ADA Conformance",
+      "url": "https://userway.org/audit/"
+    },
+    {
+      "pos": 8,
+      "domain": "www.unwomen.org",
+      "title": "ACCESSIBILITY AUDIT",
+      "url": "https://www.unwomen.org/sites/default/files/Headquarters/Attachments/Sections/Library/Publications/2021/Brief-Accessiblity-audit-en.pdf"
+    },
+    {
+      "pos": 10,
+      "domain": "equalentry.com",
+      "title": "Digital Accessibility Auditing Services | Expert Compliance ...",
+      "url": "https://equalentry.com/services/accessibility-auditing/"
+    },
+    {
+      "pos": 11,
+      "domain": "www.youtube.com",
+      "title": "How to Run an Accessibility WCAG Audit: Step-by-Step for ...",
+      "url": "https://www.youtube.com/watch?v=L3qq69X0-6Y"
+    }
+  ]
+}
