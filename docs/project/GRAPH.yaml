@@ -120,14 +120,20 @@ nodes:
     owner: frontend-engineer
     status: blocked
     depends_on: [A1-SCAN]
-    inputs: [docs/project/INTERFACES.md]
+    inputs: [docs/project/INTERFACES.md, docs/project/VISION.md]
     scope: [src/pages/, src/components/, src/routes.tsx]
     outputs: []
-    verify: [npm run build, npm run typecheck]
+    verify:
+      - npm run build
+      - npm run typecheck
+      - npm run audit-a11y
+      - "async-прогресс скана виден пользователю (VISION.md UX-требование 2)"
+      - "своё понятное сообщение на каждое error-состояние, не общее (UX-требование 4)"
     max_attempts: 4
     attempts: 0
     risk: low
     approval_required: false
+    notes: "UX-приёмка обязательна, не факультативна — см. D-011, VISION.md раздел UX"
 
   - id: A1-EXPLAIN
     title: AI-пояснения находок (Claude Haiku + KV-кэш ruleId×locale)

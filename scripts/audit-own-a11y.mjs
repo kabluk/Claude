@@ -1,0 +1,87 @@
+#!/usr/bin/env node
+// Дожинаем UX-пробел: сам сайт обязан проходить свои же стандарты (domains/qa.md,
+// критерий выхода Фазы 1). Гоняет axe-core через Playwright по dist/ — по 2
+// представителя каждого из 14 шаблонов (шаблонный баг повторяется на всех
+// инстансах, сканировать все 384 страницы избыточно). Запускать после `npm run build`.
+
+import { readFileSync, existsSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
+import { dirname, join, resolve } from 'node:path'
+import { chromium } from 'playwright'
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
+const DIST = join(ROOT, 'dist')
+
+if (!existsSync(DIST)) {
+  console.error('Нет dist/ — сперва сборка (npm run build).')
+  process.exit(1)
+}
+
+const AXE_SOURCE = readFileSync(join(ROOT, 'node_modules/axe-core/axe.min.js'), 'utf8')
+
+// 2 представителя на шаблон — покрывает 14 шаблонов из README.
+const SAMPLE_ROUTES = [
+  '/', '/agencies/', '/agencies/deque-systems/', '/agencies/tpgi/',
+  '/countries/', '/germany/', '/united-states/',
+  '/germany/accessibility-audit/', '/united-states/vpat/',
+  '/services/', '/services/accessibility-audit/',
+  '/standards/', '/standards/wcag-2-2/',
+  '/guides/', '/guides/wcag-audit-guide/', '/guides/vpat-acr-guide/',
+  '/about/', '/contact/', '/privacy/', '/imprint/', '/404/',
+]
+
+function toFileUrl(route) {
+  const path = route === '/' ? join(DIST, 'index.html') : join(DIST, route, 'index.html')
+  return 'file://' + resolve(path)
+}
+
+const results = []
+
+// В управляемых dev-средах (Claude Code on the web) Chromium предустановлен по
+// фиксированному пути; в обычном CI/локально playwright сам знает, где его
+// поставил `npx playwright install` — используем явный путь только если он есть.
+const PREINSTALLED_CHROMIUM = '/opt/pw-browsers/chromium'
+const launchOptions = existsSync(PREINSTALLED_CHROMIUM) ? { executablePath: PREINSTALLED_CHROMIUM } : {}
+const browser = await chromium.launch(launchOptions)
+try {
+  const page = await browser.newPage()
+  for (const route of SAMPLE_ROUTES) {
+    const fileUrl = toFileUrl(route)
+    if (!existsSync(new URL(fileUrl).pathname)) {
+      results.push({ route, error: 'файл не найден' })
+      continue
+    }
+    await page.goto(fileUrl, { waitUntil: 'load' })
+    await page.addScriptTag({ content: AXE_SOURCE })
+    const axeResults = await page.evaluate(async () => await window.axe.run())
+    results.push({ route, violations: axeResults.violations })
+  }
+} finally {
+  await browser.close()
+}
+
+let totalViolations = 0
+let seriousOrWorse = 0
+for (const r of results) {
+  if (r.error) {
+    console.log(`⚠ ${r.route} — ${r.error}`)
+    continue
+  }
+  if (!r.violations.length) {
+    console.log(`✓ ${r.route} — чисто`)
+    continue
+  }
+  totalViolations += r.violations.length
+  for (const v of r.violations) {
+    const nodeCount = v.nodes.length
+    if (v.impact === 'serious' || v.impact === 'critical') seriousOrWorse++
+    console.log(`✗ ${r.route} — [${v.impact}] ${v.id}: ${v.help} (${nodeCount} узл${nodeCount === 1 ? '' : 'ов'})`)
+    console.log(`  ${v.helpUrl}`)
+  }
+}
+
+console.log(
+  `\n${totalViolations === 0 ? '✓' : '⚠'} audit-own-a11y: ${SAMPLE_ROUTES.length} страниц, ${totalViolations} нарушени${totalViolations === 1 ? 'е' : 'й'} (${seriousOrWorse} serious/critical)`
+)
+
+if (seriousOrWorse > 0) process.exit(1)

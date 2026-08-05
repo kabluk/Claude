@@ -20,10 +20,10 @@
 | ID | Задача | Владелец | Зависит от | Статус |
 |---|---|---|---|---|
 | A1-SCAN | Worker: `POST /api/scan` + Browser Rendering + axe-core → D1; rate-limit, Turnstile | backend-engineer | — (техн. независим) | **review** (код готов, живой прогон на реальном CF-аккаунте ждёт) |
-| A1-REPORT | UI `/report/:id`: находки по WCAG, severity, score, шаринг | frontend-engineer | A1-SCAN | todo |
-| A1-EXPLAIN | `POST /api/explain`: Claude Haiku + KV-кэш ruleId×locale | backend-engineer | A1-SCAN | todo |
+| A1-REPORT | UI `/report/:id`: находки по WCAG, severity, score, шаринг + async-прогресс + error-состояния (VISION.md UX 2,4) | frontend-engineer | A1-SCAN | todo |
+| A1-EXPLAIN | `POST /api/explain`: Claude Haiku + KV-кэш ruleId×locale, язык бизнеса, не сырой ruleId (VISION.md UX 3) | backend-engineer | A1-SCAN | todo |
 | A1-COST | Оценка стоимости (эвристика × price bands) + дисклеймер | frontend-engineer | A1-REPORT | todo |
-| A1-MATCH | Блок «подходящие агентства» под отчётом + CTA в каталог | frontend-engineer | A1-REPORT | todo |
+| A1-MATCH | Блок «подходящие агентства» под отчётом + CTA в каталог + бейджи верификации на карточке (VISION.md UX 5) | frontend-engineer | A1-REPORT | todo |
 | A1-LANDING | Лендинг сканера, ссылка из шапки, объяснение приватности | frontend-engineer | A1-REPORT | todo |
 | A1-PRIVACY | Обновить Privacy (сканы, email, D1) | product-lead | A1-SCAN | todo |
 

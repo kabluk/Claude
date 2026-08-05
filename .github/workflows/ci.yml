@@ -18,3 +18,8 @@ jobs:
       - run: npm run build
       # Все внутренние ссылки должны разрешаться в существующие страницы
       - run: npm run check-links
+      # Дожинаем UX-пробел: сайт, продающий аудиты доступности, обязан проходить
+      # свои же стандарты (domains/qa.md, ROADMAP.md Фаза 1). CI-раннер без
+      # /opt/pw-browsers — ставим Chromium явно, без хардкода пути (только тут).
+      - run: npx playwright install --with-deps chromium
+      - run: npm run audit-a11y
