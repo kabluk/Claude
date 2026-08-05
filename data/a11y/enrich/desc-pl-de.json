@@ -1,0 +1,406 @@
+[
+  {
+    "slug": "visionbites",
+    "hqCity": "München",
+    "languages": ["de"],
+    "services": ["consulting"],
+    "standards": ["bitv"],
+    "descriptionEn": "visionbites GmbH is a Munich digital agency with 20+ years in web development, building websites for clinics, associations, nonprofits and SMEs primarily on TYPO3 and Kirby CMS. Its listed expertise includes SEO/GEO, digital marketing and design alongside barrierefreies Webdesign (accessible web design), with a dedicated page on making TYPO3 sites compliant with BITV, WCAG and BFSG.",
+    "descriptionDe": "Die visionbites GmbH ist eine Digitalagentur aus München mit über 20 Jahren Erfahrung in der Webentwicklung, die Websites für Kliniken, Verbände, Stiftungen und mittelständische Unternehmen vor allem auf Basis von TYPO3 und Kirby CMS realisiert. Zum Leistungsspektrum zählen SEO/GEO, digitales Marketing und Design sowie barrierefreies Webdesign nach BITV, WCAG und BFSG für TYPO3-Websites.",
+    "evidence": [{"url": "https://visionbites.de", "label": "Homepage — agency profile, services"}, {"url": "https://visionbites.de/expertise/", "label": "Expertise page — BITV/WCAG/BFSG for TYPO3"}]
+  },
+  {
+    "slug": "pluspol-interactive",
+    "hqCity": "Leipzig",
+    "languages": ["de"],
+    "services": ["consulting"],
+    "descriptionEn": "PLUSPOL interactive GbR describes itself as a full-service digital agency based in Leipzig, building corporate websites, WordPress/TYPO3 sites and e-commerce solutions. Its build process names accessibility (BFSG) as a focus area alongside performance and SEO, and it lists 'Barrierefreiheit' as a dedicated website-service check offered to clients such as nextbike and Ritter Sport.",
+    "descriptionDe": "Die PLUSPOL interactive GbR bezeichnet sich als Full-Service-Agentur aus Leipzig für Corporate-Websites, WordPress- und TYPO3-Lösungen sowie E-Commerce. Im Entwicklungsprozess nennt die Agentur Barrierefreiheit (BFSG) neben Performance und SEO als Schwerpunkt und bietet „Barrierefreiheit“ als eigenen Website-Service-Check an, u. a. für Kunden wie nextbike und Ritter Sport.",
+    "evidence": [{"url": "https://pluspol-interactive.de", "label": "Homepage — agency description, process, accessibility service"}]
+  },
+  {
+    "slug": "sxo-beratung-martin-mutter",
+    "hqCity": "Waldshut-Tiengen",
+    "languages": ["de"],
+    "descriptionEn": "Martin Mutter is a solo SEO freelancer operating under the SXO Beratung brand, based in Waldshut-Tiengen. He offers onpage/offpage SEO and GEO, framed together with UX design and digital accessibility (Barrierefreiheit) under a combined approach he calls SXO (Search Experience Optimization), positioning himself as an SEO/UX product or project manager for client websites.",
+    "descriptionDe": "Martin Mutter ist ein SEO-Freelancer unter der Marke SXO Beratung mit Sitz in Waldshut-Tiengen. Er bietet Onpage- und Offpage-SEO sowie GEO an, kombiniert mit UX-Design und digitaler Barrierefreiheit unter dem von ihm so genannten Ansatz SXO (Search Experience Optimization) und positioniert sich als SEO-/UX-Produkt- bzw. Projektmanager für Kunden-Websites.",
+    "evidence": [{"url": "https://martin-mutter.com", "label": "Homepage — SXO approach, SEO/UX/accessibility"}, {"url": "https://martin-mutter.com/impressum", "label": "Impressum — HQ address"}]
+  },
+  {
+    "slug": "brain-appeal",
+    "hqCity": "Mannheim",
+    "languages": ["de"],
+    "standards": ["bitv"],
+    "descriptionEn": "Brain Appeal GmbH is a TYPO3 web agency in Mannheim, active since 1998, with developers certified as TYPO3 CMS Certified Developer/Integrator. It builds websites and web applications with TYPO3 and Symfony mainly for universities, hospitals and associations, and lists 'Barrierefreiheit nach BITV' (BITV-compliant accessibility) as part of its concept phase alongside UX, SEO training for editors, and its own time-tracking and event-management products.",
+    "descriptionDe": "Die Brain Appeal GmbH ist eine seit 1998 tätige TYPO3-Agentur in Mannheim mit als TYPO3 CMS Certified Developer/Integrator zertifizierten Entwicklern. Sie realisiert Websites und Webanwendungen mit TYPO3 und Symfony vor allem für Hochschulen, Kliniken und Verbände und führt „Barrierefreiheit nach BITV“ als Bestandteil der Konzeptionsphase auf, neben UX, SEO-Schulungen für Redakteure sowie eigenen Produkten für Zeiterfassung und Eventmanagement.",
+    "evidence": [{"url": "https://brain-appeal.com", "label": "Homepage — agency profile, HQ"}, {"url": "https://brain-appeal.com/leistungen", "label": "Leistungen — Barrierefreiheit nach BITV in Konzeption"}]
+  },
+  {
+    "slug": "medienkonzepte",
+    "hqCity": "Köln",
+    "languages": ["de"],
+    "services": ["consulting", "training", "remediation"],
+    "standards": ["eaa"],
+    "descriptionEn": "Medienkonzepte, run by Detlef Beyer in Köln, describes itself as an 'Agentur für Digitale Barrierefreiheit' (digital accessibility agency) with over 20 years focused on building accessible digital solutions. It offers consulting, workshops and implementation support for websites, apps, PDFs and newsletters, helps organizations meet BFSG/EAA requirements, and provides a free tool to generate accessibility statements.",
+    "descriptionDe": "Medienkonzepte, geführt von Detlef Beyer in Köln, bezeichnet sich als „Agentur für Digitale Barrierefreiheit“ mit über 20 Jahren Erfahrung im Aufbau barrierefreier digitaler Lösungen. Die Agentur bietet Beratung, Workshops und Umsetzungsunterstützung für Websites, Apps, PDFs und Newsletter, unterstützt Unternehmen bei der Erfüllung von BFSG/EAA-Anforderungen und stellt einen kostenlosen Generator für Barrierefreiheitserklärungen bereit.",
+    "evidence": [{"url": "https://medienkonzepte.de", "label": "Homepage — agency description, services, BFSG/EAA"}]
+  },
+  {
+    "slug": "die-medialen",
+    "hqCity": "Bonn",
+    "languages": ["de"],
+    "descriptionEn": "Die Medialen GmbH is an internet agency headquartered in Bonn (also serving clients from Köln) offering a full range of digital services: strategy, branding, web design, TYPO3/WordPress/Shopware development and online marketing. Its listed offerings include 'Barrierefreies Webdesign' as a web-design service and a dedicated page on the Barrierefreiheitsstärkungsgesetz (BFSG/German accessibility act).",
+    "descriptionDe": "Die Medialen GmbH ist eine Internetagentur mit Sitz in Bonn (und Kundenbetreuung auch aus Köln), die ein umfassendes digitales Leistungsspektrum anbietet: Strategie, Markenentwicklung, Webdesign, TYPO3-/WordPress-/Shopware-Entwicklung und Online-Marketing. Zum Angebot zählt „Barrierefreies Webdesign“ als Webdesign-Leistung sowie eine eigene Seite zum Barrierefreiheitsstärkungsgesetz (BFSG).",
+    "evidence": [{"url": "https://diemedialen.de", "label": "Homepage — agency profile, services"}, {"url": "https://diemedialen.de/impressum", "label": "Impressum — HQ Bonn"}]
+  },
+  {
+    "slug": "stiftung-pfennigparade",
+    "hqCity": "München",
+    "languages": ["de"],
+    "descriptionEn": "Stiftung Pfennigparade is a Munich-based foundation, one of the largest rehabilitation centres in Bavaria with over 2,500 employees, working for the inclusion of people with disabilities across education, work, housing, health and leisure. For companies it offers corporate partnerships, outsourced services delivered by staff with and without disabilities, CSR 'Social Days', internships, and workshops on disability awareness for teams and leadership.",
+    "descriptionDe": "Die Stiftung Pfennigparade ist eine gemeinnützige Stiftung mit Sitz in München und eines der größten Rehabilitationszentren Bayerns mit über 2.500 Mitarbeitenden, die sich für die Teilhabe von Menschen mit Behinderung in den Bereichen Bildung, Arbeit, Wohnen, Gesundheit und Freizeit einsetzt. Für Unternehmen bietet sie soziale Partnerschaften, ausgelagerte Dienstleistungen durch Mitarbeitende mit und ohne Körperbehinderung, CSR-„Social Days“, Praktikumsplätze sowie Workshops zur Sensibilisierung für Teams und Führungskräfte an.",
+    "evidence": [{"url": "https://pfennigparade.de", "label": "Homepage — foundation profile, mission"}, {"url": "https://pfennigparade.de/fuer-unternehmen", "label": "Für Unternehmen — corporate services"}]
+  },
+  {
+    "slug": "marc-haunschild-accessibility-consulting",
+    "hqCity": "Bonn",
+    "languages": ["de", "en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["bitv"],
+    "descriptionEn": "Marc Haunschild Accessibility Consulting is a solo consultancy in Bonn offering digital accessibility consulting, coaching, training and testing ('Beratung, Coaching, Schulung, Prüfung'). Drawing on 20 years of frontend development experience, he audits products, helps fix issues found, runs team trainings, and certifies sites through the BIK-Prüfverbund as BIK-BITV-conformant or BIK-WCAG geprüft.",
+    "descriptionDe": "Marc Haunschild Accessibility Consulting ist eine Einzelberatung in Bonn für digitale Barrierefreiheit mit dem Angebot „Beratung, Coaching, Schulung, Prüfung“. Mit 20 Jahren Erfahrung in der Frontend-Entwicklung führt Marc Haunschild Audits durch, unterstützt bei der Fehlerbehebung, bietet Schulungen für Teams an und zertifiziert digitale Produkte als qualifizierte Prüfstelle im BIK-Prüfverbund mit den Prüfzeichen BIK-BITV-konform bzw. BIK-WCAG geprüft.",
+    "evidence": [{"url": "https://accessibility.consulting", "label": "Homepage — services, BIK certification"}]
+  },
+  {
+    "slug": "hellbusch-accessibility-consulting",
+    "hqCity": "Dortmund",
+    "languages": ["de"],
+    "services": ["audit", "training", "remediation", "consulting"],
+    "standards": ["bitv"],
+    "descriptionEn": "Hellbusch Accessibility Consulting is the solo practice of Jan Hellbusch, a longstanding accessibility consultant. He offers accessibility testing against WCAG 2.1 and BITV 2.0, produces formal conformance reports/expert opinions, reviews accessibility concepts, and remediates PDF documents to WCAG and PDF/UA. He also trains staff, gives talks, and has published a book on accessible web design.",
+    "descriptionDe": "Hellbusch Accessibility Consulting ist die Einzelpraxis von Jan Hellbusch, einem langjährigen Berater für digitale Barrierefreiheit. Er bietet Barrierefreiheitstests nach WCAG 2.1 und BITV 2.0, erstellt verbindliche Konformitätsgutachten, prüft Barrierefreiheitskonzepte und bereitet PDF-Dokumente nach WCAG und PDF/UA barrierefrei auf. Zudem schult er Mitarbeitende, hält Vorträge und hat ein Fachbuch zum barrierefreien Webdesign veröffentlicht.",
+    "evidence": [{"url": "https://barrierefreies-webdesign.de", "label": "Homepage — services, WCAG/BITV testing"}]
+  },
+  {
+    "slug": "team23",
+    "hqCity": "Augsburg",
+    "languages": ["de"],
+    "services": ["training", "consulting"],
+    "descriptionEn": "TEAM23 GmbH is a digital agency headquartered in Augsburg with 85+ specialists, delivering TYPO3 websites, digital products, e-commerce and AI solutions. Its 'Usability & Barrierefreiheit' practice area covers UX research, usability testing, digital accessibility work and dedicated accessibility training, and the company runs an 'Accessibility Hotline' for prospective clients.",
+    "descriptionDe": "Die TEAM23 GmbH ist eine Digitalagentur mit Sitz in Augsburg mit über 85 Spezialist:innen, die TYPO3-Websites, digitale Produkte, E-Commerce und KI-Lösungen realisiert. Der Leistungsbereich „Usability & Barrierefreiheit“ umfasst UX-Research, Usability-Tests, digitale Barrierefreiheit sowie eigene Barrierefreiheit-Schulungen; zudem bietet das Unternehmen eine „Barrierefreiheit Hotline“ für Interessierte an.",
+    "evidence": [{"url": "https://team23.de", "label": "Homepage — services, Usability & Barrierefreiheit, Augsburg HQ"}]
+  },
+  {
+    "slug": "liquid-impressions",
+    "hqCity": "Kraftsdorf",
+    "languages": ["de"],
+    "services": ["audit", "remediation", "training"],
+    "standards": ["en-301-549", "bitv", "wcag-2-2"],
+    "descriptionEn": "Liquid Impressions KG describes itself as an accessibility agency in Thuringia ('Agentur für Barrierefreiheit'), based in Kraftsdorf. It tests websites and internal web applications against EN 301 549/BITV 2.0/WCAG 2.2 with a formal test report, creates accessible PDFs to PDF/UA, translates texts into Leichte Sprache, produces sign-language videos, and builds accessible TYPO3 websites, plus offers PDF-accessibility training.",
+    "descriptionDe": "Die Liquid Impressions KG bezeichnet sich als „Agentur für Barrierefreiheit in Thüringen“ mit Sitz in Kraftsdorf. Sie prüft Websites und interne Web-Applikationen nach EN 301 549/BITV 2.0/WCAG 2.2 mit Prüfprotokoll, erstellt barrierefreie PDFs nach PDF/UA, übersetzt Texte in Leichte Sprache, produziert Gebärdensprachvideos und realisiert barrierefreie TYPO3-Websites; zudem bietet sie Schulungen zur Erstellung barrierefreier PDFs an.",
+    "evidence": [{"url": "https://liquid-impressions.com", "label": "Homepage — services, standards, HQ"}]
+  },
+  {
+    "slug": "bikosax",
+    "hqCity": "Leipzig",
+    "languages": ["de"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["bitv", "en-301-549"],
+    "descriptionEn": "BIKOSAX is a competence-centre service of the dzb lesen (Deutsches Zentrum für barrierefreies Lesen) in Leipzig, offering digital accessibility support to Saxon public authorities, cultural institutions, associations and businesses. It tests websites, documents (PDF/Office/InDesign) and apps against WCAG 2.1, BITV 2.0 and EN 301 549, produces accessible document templates, and provides consulting, training and Leichte Sprache/sign-language translation.",
+    "descriptionDe": "BIKOSAX ist ein Kompetenzzentrum-Angebot des dzb lesen (Deutsches Zentrum für barrierefreies Lesen) in Leipzig, das sächsischen Verwaltungen, Kultureinrichtungen, Verbänden und Unternehmen digitale Barrierefreiheit anbietet. Es prüft Websites, Dokumente (PDF, Office, InDesign) und Apps nach WCAG 2.1, BITV 2.0 und EN 301 549, erstellt barrierefreie Dokumentvorlagen und bietet Beratung, Schulungen sowie Übersetzungen in Leichte Sprache und Gebärdensprache an.",
+    "evidence": [{"url": "https://bikosax.de", "label": "Homepage — services, standards, HQ"}]
+  },
+  {
+    "slug": "clickstorm",
+    "hqCity": "Leipzig",
+    "languages": ["de"],
+    "standards": ["bitv"],
+    "descriptionEn": "clickstorm GmbH is a full-service digital agency in Leipzig offering strategy, design and web development on TYPO3, WordPress, Symfony and Shopware; it is a Certified TYPO3 Integrator. Among its listed design services (alongside UX, user testing and A/B tests) it names 'Barrierefreiheit' (accessibility) as a service line, and its own site carries a BITV 2.0 self-assessment accessibility statement.",
+    "descriptionDe": "Die clickstorm GmbH ist eine Full-Service-Digitalagentur in Leipzig für Strategie, Design und Webentwicklung mit TYPO3, WordPress, Symfony und Shopware und ist Certified TYPO3 Integrator. Unter den Design-Leistungen (neben UX, User Testing und A/B-Tests) führt sie „Barrierefreiheit“ als eigenen Leistungspunkt auf; die eigene Website verfügt zudem über eine Barrierefreiheitserklärung mit Selbstbewertung nach BITV 2.0.",
+    "evidence": [{"url": "https://clickstorm.de", "label": "Homepage — agency profile, Leipzig HQ"}, {"url": "https://clickstorm.de/leistungen", "label": "Leistungen — Barrierefreiheit as design service"}, {"url": "https://clickstorm.de/barrierefreiheit", "label": "Barrierefreiheitserklärung — BITV 2.0 self-assessment"}]
+  },
+  {
+    "slug": "kolibri-online",
+    "hqCity": "Hamburg",
+    "languages": ["de", "en"],
+    "services": ["audit", "training"],
+    "descriptionEn": "Kolibri Online GmbH is a Hamburg-based agency for international content marketing, SEO/GEO, localization and content creation. Among its analysis services it offers a 'Barrierefreiheits-Check' (accessibility check) to help make websites inclusive and accessible, and it runs a webinar on the BFSG (German accessibility act) as part of its workshop offering.",
+    "descriptionDe": "Die Kolibri Online GmbH ist eine Agentur mit Sitz in Hamburg für internationales Content Marketing, SEO/GEO, Lokalisierung und Content-Erstellung. Zu ihren Analyseleistungen zählt ein „Barrierefreiheits-Check“, der Websites inklusiv und zugänglich gestalten soll, sowie ein Webinar zum BFSG im Rahmen des Schulungsangebots.",
+    "evidence": [{"url": "https://kolibri-online.com", "label": "Homepage — services incl. Barrierefreiheits-Check, BFSG webinar"}, {"url": "https://kolibri-online.com/impressum", "label": "Impressum — Hamburg HQ"}]
+  },
+  {
+    "slug": "schalk-and-friends",
+    "hqCity": "München",
+    "languages": ["de", "en"],
+    "descriptionEn": "schalk&friends gmbh is a full-service digital agency in Munich covering brand websites, brand strategy, content management systems, customer experience and online marketing (organized as Consult, Code, Create and Care). Among its listed services it offers a 'Barrierefreie Website' (accessible website) line alongside its other web-development offerings.",
+    "descriptionDe": "Die schalk&friends gmbh ist eine Full-Service-Digitalagentur mit Sitz in München für Corporate Websites, Markenstrategie, Content-Management-Systeme, Customer Experience und Online-Marketing (gegliedert in Consult, Code, Create und Care). Im Leistungskatalog führt sie „Barrierefreie Website“ neben ihren übrigen Webentwicklungsleistungen auf.",
+    "evidence": [{"url": "https://schalk-and-friends.de", "label": "Homepage — services incl. Barrierefreie Website, München HQ"}]
+  },
+  {
+    "slug": "kbv-kompetenzzentrum-barrierefreiheit-volmarstein",
+    "hqCity": "Wetter (Ruhr)",
+    "languages": ["de"],
+    "services": ["audit", "training", "consulting"],
+    "descriptionEn": "KBV Kompetenzzentrum Barrierefreiheit Volmarstein gGmbH is a nonprofit competence centre in Wetter, part of the Evangelische Stiftung Volmarstein. Its interdisciplinary team advises, trains, tests, develops and raises awareness on inclusion, accessibility, universal design and assistive technology across digitalization, construction, mobility, housing, work, health and communication, and it runs the state-level 'Agentur Barrierefrei NRW' information and advisory service plus a Büro für Leichte Sprache.",
+    "descriptionDe": "Die KBV Kompetenzzentrum Barrierefreiheit Volmarstein gGmbH ist ein gemeinnütziges Kompetenzzentrum in Wetter, angesiedelt bei der Evangelischen Stiftung Volmarstein. Das interdisziplinäre Team berät, schult, testet, entwickelt und sensibilisiert zu Inklusion, Barrierefreiheit, Universellem Design und technischen Hilfen in den Bereichen Digitalisierung, Bauen, Mobilität, Wohnen, Arbeit, Gesundheit und Kommunikation und betreibt die landesweite „Agentur Barrierefrei NRW“ sowie ein Büro für Leichte Sprache.",
+    "evidence": [{"url": "https://kb-volmarstein.de", "label": "Homepage — org profile, competence areas"}]
+  },
+  {
+    "slug": "joconcept-webservice",
+    "hqCity": "Dersau",
+    "languages": ["de"],
+    "descriptionEn": "Joconcept Webservice, run by sole trader Mathias Jobs in Dersau, is a small web design business specializing in individual WordPress websites and WooCommerce online shops, plus ongoing site maintenance and support. Its listed offering includes 'Barrierefreies Webdesign mit WordPress' (accessible web design with WordPress) alongside concept, redesign and optimization services.",
+    "descriptionDe": "Joconcept Webservice, geführt vom Einzelunternehmer Mathias Jobs in Dersau, ist ein kleines Webdesign-Unternehmen, das sich auf individuelles WordPress-Webdesign und WooCommerce-Onlineshops sowie laufende Wartung und Support spezialisiert hat. Zum Angebot zählt „Barrierefreies Webdesign mit WordPress“ neben Konzeption, Redesign und Optimierung.",
+    "evidence": [{"url": "https://joconcept.de", "label": "Homepage — services incl. Barrierefreies Webdesign, HQ address"}]
+  },
+  {
+    "slug": "ifdb",
+    "hqCity": "München",
+    "languages": ["de", "en"],
+    "services": ["audit", "remediation", "training", "monitoring", "consulting"],
+    "standards": ["wcag-2-2", "eaa", "bitv"],
+    "descriptionEn": "IFDB GmbH, based in Munich, is a digital-accessibility compliance company built around its 'Access Suite' of products: an automated WCAG 2.2 website scan (Access Score), PDF/UA remediation and checking (Access Doc, Access Read), an in-depth certified audit for BFSG evidence (Access Ready), an accessibility-statement generator (Access Declare), continuous compliance monitoring (Access Guard), staff training and certification (Access Academy), and a contrast-checking tool, serving sectors like education, healthcare, e-commerce and the public sector.",
+    "descriptionDe": "Die IFDB GmbH mit Sitz in München ist ein Unternehmen für digitale Barrierefreiheit rund um seine „Access Suite“: ein automatisierter WCAG-2.2-Website-Scan (Access Score), PDF/UA-Aufbereitung und -Prüfung (Access Doc, Access Read), ein Tiefen-Audit mit Zertifikat als BFSG-Nachweis (Access Ready), ein Generator für Barrierefreiheitserklärungen (Access Declare), laufendes Compliance-Monitoring (Access Guard), Schulung und Zertifizierung (Access Academy) sowie ein Kontrast-Prüftool, für Branchen wie Bildung, Gesundheit, E-Commerce und öffentlichen Sektor.",
+    "evidence": [{"url": "https://ifdb.io", "label": "Homepage — Access Suite product line"}, {"url": "https://ifdb.io/impressum", "label": "Impressum — München HQ"}]
+  },
+  {
+    "slug": "reddog-systems",
+    "hqCity": "Łódź",
+    "languages": ["pl"],
+    "services": ["audit", "training"],
+    "descriptionEn": "Reddog Systems, run by sole trader Przemysław Bąchorek in Łódź, is a freelance web developer building WordPress websites and BIP (public information bulletin) sites for institutions, along with ongoing technical maintenance. Its listed offering includes detailed digital accessibility audits against WCAG guidelines with an improvement report, preparation of accessibility declarations, and training on using BIP systems.",
+    "descriptionPl": "Reddog Systems, prowadzona przez Przemysława Bąchorka w Łodzi, to jednoosobowa działalność tworząca strony WordPress oraz strony BIP dla instytucji wraz z opieką techniczną. W ofercie znajdują się szczegółowe audyty dostępności cyfrowej zgodne z wytycznymi WCAG wraz z raportem wskazówek do poprawy, przygotowanie deklaracji dostępności oraz szkolenia z obsługi systemu.",
+    "evidence": [{"url": "https://red-dog.pl", "label": "Homepage — services, HQ address"}]
+  },
+  {
+    "slug": "centrum-bezpieczenstwa-informatycznego",
+    "hqCity": "Lublin",
+    "languages": ["pl"],
+    "services": ["audit", "training", "consulting"],
+    "descriptionEn": "Centrum Bezpieczeństwa Informatycznego (CBI24) Sp. z o.o., based in Lublin, is primarily a cybersecurity and information-security compliance firm, offering NFZ/KSC/KRI security audits, data-protection-officer (IOD/RODO) services, whistleblower solutions and IT security training. Its offering also lists 'Dostępność Cyfrowa' (digital accessibility) as a training topic and 'Deklaracje Dostępności' (accessibility declarations) among its services.",
+    "descriptionPl": "Centrum Bezpieczeństwa Informatycznego (CBI24) Sp. z o.o. z siedzibą w Lublinie to przede wszystkim firma zajmująca się cyberbezpieczeństwem i zgodnością informatyczną, oferująca audyty bezpieczeństwa NFZ/KSC/KRI, usługi Inspektora Ochrony Danych (RODO), rozwiązania dla sygnalistów oraz szkolenia z cyberbezpieczeństwa. W ofercie znajdują się również „Dostępność Cyfrowa“ jako temat szkoleń oraz „Deklaracje Dostępności“ jako osobna usługa.",
+    "evidence": [{"url": "https://cbi24.pl", "label": "Homepage — service menu incl. Dostępność Cyfrowa, Deklaracje Dostępności"}]
+  },
+  {
+    "slug": "perfekcyjnestrony",
+    "hqCity": "Leszno",
+    "languages": ["pl"],
+    "services": ["audit", "remediation", "training", "consulting"],
+    "standards": ["wcag-2-2", "eaa"],
+    "descriptionEn": "perfekcyjneStrony.pl, based in Leszno, is a dedicated digital accessibility firm specializing in WCAG 2.1/2.2-compliant websites and BIP systems for public institutions (local government, ministries, courts, schools, hospitals). It performs accessibility audits combining automated, expert and experiential testing by people with disabilities, builds accessible documents, produces Polish Sign Language (PJM) videos, prepares accessibility declarations with ETR files, and delivers WCAG training.",
+    "descriptionPl": "perfekcyjneStrony.pl z siedzibą w Lesznie to firma wyspecjalizowana w dostępności cyfrowej, tworząca strony internetowe i systemy BIP zgodne z WCAG 2.1/2.2 dla podmiotów publicznych (samorządów, ministerstw, sądów, szkół, szpitali). Wykonuje audyty dostępności łączące analizę automatyczną, ekspercką i doświadczalną z udziałem osób z niepełnosprawnościami, tworzy dostępne dokumenty, filmy w Polskim Języku Migowym, przygotowuje deklaracje dostępności wraz z plikami ETR oraz prowadzi szkolenia z WCAG.",
+    "evidence": [{"url": "https://perfekcyjnestrony.pl", "label": "Homepage — services, standards, HQ"}]
+  },
+  {
+    "slug": "extranet-joanna-pazdzierska",
+    "hqCity": "Toruń",
+    "languages": ["pl"],
+    "services": ["audit"],
+    "descriptionEn": "extranet Joanna Paździerska is a sole-trader web development business ('internet creator') in Toruń, specializing in CMS-based websites hosted on its own server infrastructure, plus email hosting and dedicated web solutions. Its listed offering includes digital accessibility audits ('Audyty z dostępności cyfrowej') for websites and BIP sites.",
+    "descriptionPl": "extranet Joanna Paździerska to jednoosobowa działalność gospodarcza ('internet creator') z siedzibą w Toruniu, specjalizująca się w tworzeniu stron opartych o systemy CMS na własnej infrastrukturze serwerowej, a także w obsłudze poczty elektronicznej i rozwiązaniach dedykowanych. W ofercie znajdują się audyty z dostępności cyfrowej stron WWW i BIP.",
+    "evidence": [{"url": "https://extranet.pl", "label": "Homepage — services incl. audyty dostępności cyfrowej, HQ"}]
+  },
+  {
+    "slug": "idcom-group",
+    "hqCity": "Poznań",
+    "languages": ["pl"],
+    "services": ["consulting", "monitoring"],
+    "descriptionEn": "IDcom Group Sp. z o.o., based in Poznań, builds websites, BIP sites and client panels, organizing its offering around security, visibility and accessibility. It states it designs all its sites, CMS and editing/communication tools to meet WCAG 2.1 from the ground up, advises clients on their legal accessibility obligations, and provides an automated 'Asystent WCAG 2.1' tool to help maintain ongoing compliance.",
+    "descriptionPl": "IDcom Group Sp. z o.o. z siedzibą w Poznaniu tworzy strony internetowe, strony BIP i panele klienta, opierając swoją ofertę na bezpieczeństwie, widoczności i dostępności. Firma deklaruje, że projektuje wszystkie serwisy, systemy CMS i narzędzia edycyjno-komunikacyjne od podstaw zgodnie z WCAG 2.1, wspiera klientów w zrozumieniu obowiązków prawnych dotyczących dostępności cyfrowej oraz udostępnia narzędzie „Asystent WCAG 2.1“ do bieżącego utrzymania zgodności.",
+    "evidence": [{"url": "https://idcom.pl", "label": "Homepage — HQ, service pillars"}, {"url": "https://idcom.pl/wcag", "label": "WCAG page — approach, Asystent WCAG 2.1"}]
+  },
+  {
+    "slug": "alpanet",
+    "hqCity": "Zawiercie",
+    "languages": ["pl"],
+    "descriptionEn": "ALPANET - Polskie Systemy Internetowe is a web agency based in Zawiercie building websites, e-commerce shops, native apps and AI chatbots. Among its portfolio categories it lists 'Strony Samorządowe z UX/UI i WCAG 2.1' (local-government websites with WCAG 2.1) and 'BIP z WCAG 2.1' (BIP with WCAG 2.1), indicating accessibility-compliant sites for public-sector clients as part of its offering.",
+    "descriptionPl": "ALPANET - Polskie Systemy Internetowe to agencja interaktywna z siedzibą w Zawierciu, tworząca strony internetowe, sklepy e-commerce, aplikacje natywne oraz chatboty AI. Wśród kategorii oferty wymienia „Strony Samorządowe z UX/UI i WCAG 2.1“ oraz „BIP z WCAG 2.1“, co wskazuje na realizacje zgodne z dostępnością cyfrową dla klientów sektora publicznego.",
+    "evidence": [{"url": "https://alpanet.pl", "label": "Homepage — portfolio categories incl. WCAG 2.1 for local government and BIP"}]
+  },
+  {
+    "slug": "vobacom",
+    "hqCity": "Toruń",
+    "languages": ["pl"],
+    "services": ["remediation"],
+    "descriptionEn": "Vobacom Sp. z o.o., headquartered in Toruń, is a software house building web and mobile solutions, notably portals for local government, developer platforms, e-commerce, mobile apps, chatbots and AR/MR products. Under 'Usługi dodatkowe' (additional services) it lists 'Wdrożenie WCAG' (WCAG implementation) alongside pre-implementation analysis, UX/graphic design, technical support and hosting.",
+    "descriptionPl": "Vobacom Sp. z o.o. z siedzibą w Toruniu to software house tworzący rozwiązania webowe i mobilne, w tym portale dla samorządów, platformy dla deweloperów, e-commerce, aplikacje mobilne, chatboty oraz rozwiązania AR/MR. W ramach „Usług dodatkowych“ wymienia „Wdrożenie WCAG“ obok analizy przedwdrożeniowej, projektowania graficznego/UX, pomocy technicznej i hostingu.",
+    "evidence": [{"url": "https://vobacom.pl", "label": "Homepage — service menu incl. Wdrożenie WCAG"}]
+  },
+  {
+    "slug": "virtualmedia",
+    "hqCity": "Olsztyn",
+    "languages": ["pl"],
+    "descriptionEn": "Virtualmedia is an in-house interactive agency in Olsztyn offering websites, e-commerce (WooCommerce/PrestaShop), SEO, AI automation, mobile apps and Google/Facebook Ads. It is a general web agency rather than an accessibility specialist, though a client testimonial on its site describes a hospital website it built that met WCAG 2.1 digital-accessibility requirements and medical-sector security standards.",
+    "descriptionPl": "Virtualmedia to agencja interaktywna z siedzibą w Olsztynie działająca w modelu in-house, oferująca strony internetowe, e-commerce (WooCommerce/PrestaShop), SEO, automatyzację AI, aplikacje mobilne oraz reklamy Google/Facebook Ads. Jest ogólną agencją interaktywną, a nie wyspecjalizowaną firmą dostępnościową, choć na stronie znajduje się referencja klienta opisująca zrealizowaną stronę szpitala spełniającą wymogi dostępności cyfrowej WCAG 2.1.",
+    "evidence": [{"url": "https://virtualmedia.pl", "label": "Homepage — services, HQ, client testimonial mentioning WCAG 2.1"}]
+  },
+  {
+    "slug": "venti",
+    "hqCity": "Łódź",
+    "languages": ["pl"],
+    "services": ["remediation"],
+    "descriptionEn": "VENTI Sp. z o.o. describes itself as a software house and interactive agency in Łódź, building corporate sites, product pages, e-commerce, mobile/dedicated apps and public-administration sites. Its offer explicitly lists 'Wdrożenia dostępności cyfrowej' (digital accessibility implementations) as a service line, has a WCAG-focused portfolio category, and includes case studies on preparing an accessibility declaration for a client.",
+    "descriptionPl": "VENTI Sp. z o.o. określa się jako software house i agencja interaktywna z siedzibą w Łodzi, tworząca serwisy korporacyjne, strony produktowe, e-commerce, aplikacje mobilne/dedykowane oraz strony dla administracji publicznej. W ofercie wprost wymienia „Wdrożenia dostępności cyfrowej“ jako osobną usługę, posiada kategorię portfolio WCAG oraz case study dotyczące przygotowania deklaracji dostępności dla klienta.",
+    "evidence": [{"url": "https://venti.pl", "label": "Homepage — offer incl. Wdrożenia dostępności cyfrowej, WCAG portfolio, HQ"}]
+  },
+  {
+    "slug": "zeto-rzeszow",
+    "hqCity": "Rzeszów",
+    "languages": ["pl"],
+    "descriptionEn": "ZETO-RZESZÓW Sp. z o.o. is a broad IT company headquartered in Rzeszów with additional offices in Krosno, Przemyśl and Lublin, supporting businesses, government and healthcare with ERP implementations (Comarch, enova365), custom web/mobile/desktop applications, IT infrastructure and hardware. Its public homepage content does not describe a dedicated digital-accessibility service.",
+    "descriptionPl": "ZETO-RZESZÓW Sp. z o.o. to firma informatyczna z siedzibą w Rzeszowie oraz oddziałami w Krośnie, Przemyślu i Lublinie, wspierająca firmy, administrację i podmioty medyczne we wdrożeniach ERP (Comarch, enova365), tworzeniu dedykowanych aplikacji webowych, mobilnych i desktopowych oraz w zakresie infrastruktury i sprzętu IT. Na stronie głównej nie znaleziono opisu dedykowanej usługi dostępności cyfrowej.",
+    "evidence": [{"url": "https://zetorzeszow.pl", "label": "Homepage — company profile, service lines, office locations"}]
+  },
+  {
+    "slug": "fundacja-widzialni",
+    "hqCity": "Częstochowa",
+    "languages": ["pl"],
+    "services": ["audit", "training", "remediation", "consulting"],
+    "standards": ["wcag-2-2"],
+    "descriptionEn": "Fundacja Widzialni is a nonprofit foundation based in Częstochowa dedicated to digital accessibility under the WCAG 2.1 standard. It offers accessibility audits, WCAG training, accessible PDF documents and accessible event support, organizes the 'Lider Cyfrowej Dostępności' award and the 'Widzialni Watchdog' monitoring initiative, and publishes commentary on EAA/Polish accessibility law.",
+    "descriptionPl": "Fundacja Widzialni to organizacja non-profit z siedzibą w Częstochowie zajmująca się dostępnością cyfrową według standardu WCAG 2.1. Oferuje audyty dostępności, szkolenia z WCAG, dostępne dokumenty PDF oraz obsługę dostępnych wydarzeń, organizuje konkurs „Lider Cyfrowej Dostępności“ oraz inicjatywę monitorującą „Widzialni Watchdog“, a także publikuje komentarze dotyczące EAA i polskiego prawa o dostępności.",
+    "evidence": [{"url": "https://widzialni.org", "label": "Homepage — foundation profile, offer, initiatives"}]
+  },
+  {
+    "slug": "altix",
+    "hqCity": "Warszawa",
+    "languages": ["pl"],
+    "services": ["audit", "training", "consulting"],
+    "descriptionEn": "Altix, based in Warsaw, sells assistive-technology products and computer equipment for blind, low-vision and mobility-impaired users, alongside a broader accessibility-consulting practice. It runs accessibility audits, WCAG-related training under a 'Kultura Dostępności' programme, tactile-graphics (tyflografika) production, and helps clients access disability-related funding (Dostępność Plus, Aktywny Samorząd).",
+    "descriptionPl": "Altix z siedzibą w Warszawie sprzedaje sprzęt i technologie asystujące dla osób niewidomych, słabowidzących oraz z niepełnosprawnością ruchową, prowadząc jednocześnie szerszą działalność doradczą w zakresie dostępności. Firma realizuje audyty dostępności, szkolenia w ramach programu „Kultura Dostępności“, tworzy tyflografikę oraz pomaga klientom uzyskać dofinansowania związane z niepełnosprawnością (Dostępność Plus, Aktywny Samorząd).",
+    "evidence": [{"url": "https://altix.pl", "label": "Homepage — offer, initiatives, HQ address"}]
+  },
+  {
+    "slug": "agileo-it",
+    "hqCity": "Katowice",
+    "languages": ["pl"],
+    "services": ["audit"],
+    "descriptionEn": "Agileo.IT Sp. z o.o. is a Polish cybersecurity and IT-compliance company (content entirely in Polish, despite the .it domain), based in Katowice. It provides products like the flexiSOC security operations centre, whistleblowing and data-protection tools, and IT outsourcing, and lists 'Audyt dostępności' (accessibility audit) among its audit services alongside KRI, NFZ and UKSC security audits.",
+    "descriptionPl": "Agileo.IT Sp. z o.o. to polska firma z siedzibą w Katowicach działająca w obszarze cyberbezpieczeństwa i zgodności IT, oferująca m.in. Security Operations Center flexiSOC, narzędzia dla sygnalistów i ochrony danych osobowych oraz outsourcing IT. Wśród usług audytowych wymienia „Audyt dostępności“ obok audytów KRI, NFZ i UKSC.",
+    "evidence": [{"url": "https://agileo.it", "label": "Homepage — service menu incl. Audyt dostępności"}]
+  },
+  {
+    "slug": "intracom-pl",
+    "hqCity": "Katowice",
+    "languages": ["pl"],
+    "services": ["audit", "training", "consulting"],
+    "descriptionEn": "IntraCOM.pl Agencja Interaktywna, based in Katowice, is a 20-year-old interactive agency offering websites, its own InCMS and InCRM systems, BIP, HR systems and marketing campaigns. Its listed services explicitly include 'Audyty stron internetowych' (website audits), 'Szkolenia WCAG' (WCAG training) and consulting services, plus WCAG-compliant websites as a product line.",
+    "descriptionPl": "IntraCOM.pl Agencja Interaktywna z siedzibą w Katowicach to działająca od 20 lat agencja interaktywna oferująca strony internetowe, autorskie systemy InCMS i InCRM, BIP, systemy HR oraz kampanie marketingowe. Wśród usług wymienia wprost „Audyty stron internetowych“, „Szkolenia WCAG“ oraz usługi konsultingowe, a strony zgodne z WCAG jako produkt.",
+    "evidence": [{"url": "https://intracom.pl", "label": "Homepage — services incl. Audyty stron internetowych, Szkolenia WCAG, HQ"}]
+  },
+  {
+    "slug": "akcess-net",
+    "hqCity": "Radom",
+    "languages": ["pl"],
+    "services": ["audit", "remediation"],
+    "standards": ["wcag-2-2"],
+    "descriptionEn": "AkcessNet, an advertising/interactive agency based in Radom, builds responsive websites and BIP systems, with a strong focus on accessibility for public bodies. It offers WCAG 2.1/2.2-compliant website design, adaptation of existing sites for users with disabilities, methods for checking accessibility, and dedicated digital accessibility audits, alongside graphic design and print services.",
+    "descriptionPl": "AkcessNet, agencja reklamowo-interaktywna z siedzibą w Radomiu, tworzy responsywne strony internetowe i systemy BIP, kładąc duży nacisk na dostępność dla podmiotów publicznych. Oferuje projektowanie stron zgodnych z WCAG 2.1/2.2, dostosowywanie istniejących stron do potrzeb osób niepełnosprawnych, metody sprawdzania dostępności oraz dedykowane audyty dostępności cyfrowej, a także usługi grafiki i druku.",
+    "evidence": [{"url": "https://akcessnet.eu", "label": "Homepage — services, WCAG 2.1/2.2, HQ"}]
+  },
+  {
+    "slug": "spoldzielnia-socjalna-fado",
+    "hqCity": "Łódź",
+    "languages": ["pl"],
+    "services": ["audit", "remediation", "training", "consulting"],
+    "descriptionEn": "Spółdzielnia Socjalna FADO is a social cooperative in Łódź offering both architectural and digital accessibility audits, WCAG document adaptation, Polish Sign Language (PJM) translation, training, website and mobile-app development, induction-loop rental/sale, video-interpreting services and consulting.",
+    "descriptionPl": "Spółdzielnia Socjalna FADO z siedzibą w Łodzi oferuje audyty dostępności architektonicznej i cyfrowej, dostosowywanie dokumentów pod kątem WCAG, tłumaczenia na Polski Język Migowy (PJM), szkolenia, tworzenie stron www i aplikacji mobilnych, wypożyczenie i sprzedaż pętli indukcyjnej, usługi wideotłumacza oraz doradztwo.",
+    "evidence": [{"url": "https://spoldzielniafado.pl", "label": "Homepage — service list"}]
+  },
+  {
+    "slug": "utilitia",
+    "hqCity": "Kraków",
+    "languages": ["pl"],
+    "services": ["audit", "remediation", "training", "consulting"],
+    "standards": ["wcag-2-2"],
+    "descriptionEn": "Utilitia Sp. z o.o., based in Kraków with over 15 years in the field, offers a comprehensive digital-accessibility practice: audits of websites, mobile apps, documents and multimedia; UX testing; PDF remediation; captioning/transcription; and consulting/training. It also audits architectural and information-communication accessibility (including healthcare AOS facilities for the Ministry of Health) and is authorized under Polish law to issue formal accessibility certification.",
+    "descriptionPl": "Utilitia Sp. z o.o. z siedzibą w Krakowie, działająca od ponad 15 lat, prowadzi kompleksową działalność w zakresie dostępności cyfrowej: audyty serwisów internetowych, aplikacji mobilnych, dokumentów i multimediów, testy UX, adaptację dokumentów PDF, tworzenie napisów i transkrypcji oraz konsultacje i szkolenia. Prowadzi też audyty dostępności architektonicznej i informacyjno-komunikacyjnej (w tym placówek AOS na zlecenie Ministerstwa Zdrowia) i posiada uprawnienia do wystawiania formalnego certyfikatu dostępności.",
+    "evidence": [{"url": "https://utilitia.pl", "label": "Homepage — full service list, certification authority"}]
+  },
+  {
+    "slug": "fundacja-instytut-rozwoju-regionalnego",
+    "hqCity": "Kraków",
+    "languages": ["pl"],
+    "services": ["training", "consulting"],
+    "standards": ["wcag-2-2"],
+    "descriptionEn": "Fundacja Instytut Rozwoju Regionalnego (FIRR) is a nonprofit foundation headquartered in Kraków, with branches in Warsaw and Łódź, working to support people with disabilities through projects, training and monitoring. It led the official Polish translation of the W3C's WCAG 2.1 guidelines and runs several affiliated informational and support services for parents, students and citizens with disabilities.",
+    "descriptionPl": "Fundacja Instytut Rozwoju Regionalnego (FIRR) to organizacja non-profit z siedzibą w Krakowie oraz oddziałami w Warszawie i Łodzi, działająca na rzecz osób z niepełnosprawnościami poprzez projekty, szkolenia i monitoring. Fundacja była organizacją wiodącą w procesie tłumaczenia oficjalnych, autoryzowanych przez W3C wytycznych WCAG 2.1 na język polski i prowadzi kilka powiązanych serwisów informacyjno-wsparciowych.",
+    "evidence": [{"url": "https://firr.org.pl", "label": "Homepage — foundation profile, WCAG 2.1 Polish translation, branch offices"}]
+  },
+  {
+    "slug": "dranas-project",
+    "hqCity": "Niepołomice",
+    "languages": ["pl"],
+    "services": ["audit", "remediation", "consulting"],
+    "standards": ["wcag-2-2"],
+    "descriptionEn": "Dranas Project Sp. z o.o., based in Niepołomice, is a marketing agency (web, SEO, SEM) that builds WCAG 2.1-compliant websites and e-commerce shops alongside a dedicated accessibility service line covering digital accessibility audits, WCAG 2.1/2.2 implementation, ongoing WCAG-standard maintenance with certification, and architectural and information-communication accessibility audits.",
+    "descriptionPl": "Dranas Project Sp. z o.o. z siedzibą w Niepołomicach to agencja marketingowa (web, SEO, SEM), która tworzy strony internetowe i sklepy zgodne z WCAG 2.1, a jednocześnie prowadzi dedykowaną linię usług dostępności obejmującą audyty dostępności cyfrowej, wdrożenia WCAG 2.1/2.2, utrzymanie standardu WCAG wraz z certyfikatem oraz audyty dostępności architektonicznej i informacyjno-komunikacyjnej.",
+    "evidence": [{"url": "https://dranasproject.pl", "label": "Homepage — service menu incl. dedicated Dostępność line"}]
+  },
+  {
+    "slug": "kinaole",
+    "hqCity": "Wrocław",
+    "languages": ["pl", "en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["wcag-2-2", "en-301-549"],
+    "descriptionEn": "Kinaole Sp. z o.o., based in Wrocław, is a specialist digital accessibility company covering WCAG 2.1/2.2 audits (including under the EN 301 549 standard), accessibility training, inclusive UX/UI design, and desktop/mobile testing. It has audited services such as Poland's e-Doręczenia system and accessible documents for the Supreme Audit Office (NIK), and publishes its own accessibility research reports on sectors like banking, e-commerce and universities.",
+    "descriptionPl": "Kinaole Sp. z o.o. z siedzibą we Wrocławiu to wyspecjalizowana firma zajmująca się dostępnością cyfrową, oferująca audyty WCAG 2.1/2.2 (w tym w oparciu o normę EN 301 549), szkolenia z dostępności, projektowanie inkluzywne UX/UI oraz testy desktop/mobile. Przeprowadziła m.in. audyt serwisu e-Doręczenia oraz przygotowanie dostępnych dokumentów dla Najwyższej Izby Kontroli, a także publikuje własne raporty dostępności cyfrowej dla sektorów takich jak bankowość, e-commerce i uczelnie.",
+    "evidence": [{"url": "https://kinaole.co", "label": "Homepage — specialisations, case studies, EN 301 549"}]
+  },
+  {
+    "slug": "fundacja-integracja",
+    "hqCity": "Warszawa",
+    "languages": ["pl"],
+    "services": ["audit"],
+    "descriptionEn": "Fundacja Integracja is a nonprofit foundation headquartered in Warsaw, active for over 32 years supporting people with disabilities in Poland, running career-support centres in Warsaw, Gdynia and Zielona Góra plus the Sprawniwpracy.com recruitment portal and the Integracja magazine/Niepelnosprawni.pl news portal. It also awards accessibility certifications ('Obiekt Bez Barier' and 'Serwis Bez Barier') based on architectural and digital accessibility audits.",
+    "descriptionPl": "Fundacja Integracja to organizacja non-profit z siedzibą w Warszawie, działająca od ponad 32 lat na rzecz osób z niepełnosprawnością w Polsce, prowadząca centra wsparcia zawodowego w Warszawie, Gdyni i Zielonej Górze, serwis rekrutacyjny Sprawniwpracy.com oraz magazyn „Integracja“ i portal Niepelnosprawni.pl. Przyznaje też certyfikaty dostępności „Obiekt Bez Barier“ i „Serwis Bez Barier“ na podstawie audytów dostępności architektonicznej i cyfrowej.",
+    "evidence": [{"url": "https://integracja.org", "label": "Homepage — foundation profile, certification programmes"}]
+  },
+  {
+    "slug": "akademia-slonca",
+    "hqCity": "Poznań",
+    "languages": ["pl"],
+    "services": ["audit", "training", "consulting"],
+    "descriptionEn": "Akademia Słońca, the sole-trader business of Krzysztof Frąszczak in Poznań, is primarily focused on renewable energy (OZE) and EU-funded project management, with a separate 'Dostępność i Projektowanie Uniwersalne' (accessibility and universal design) line. Under its 'Dostępna Pływalnia' offer it performs ex-ante and ex-post accessibility audits (architectural, information-communication and digital per WCAG 2.1 AA), delivers accessibility training on serving clients with special needs, and provides consulting on implementing accessibility procedures for public swimming pools funded under EU cohesion policy.",
+    "descriptionPl": "Akademia Słońca, jednoosobowa działalność Krzysztofa Frąszczaka z siedzibą w Poznaniu, koncentruje się głównie na odnawialnych źródłach energii (OZE) i zarządzaniu projektami unijnymi, prowadząc odrębną linię usług „Dostępność i Projektowanie Uniwersalne“. W ramach oferty „Dostępna Pływalnia“ wykonuje audyty dostępności ex-ante i ex-post (architektonicznej, informacyjno-komunikacyjnej i cyfrowej wg WCAG 2.1 AA), prowadzi szkolenia z obsługi klienta ze szczególnymi potrzebami oraz doradztwo we wdrażaniu procedur dostępności dla pływalni finansowanych z polityki spójności UE.",
+    "evidence": [{"url": "https://akademia-slonca.pl", "label": "Homepage — company profile, Dostępność offer"}, {"url": "https://akademia-slonca.pl/dostepnosc/", "label": "Dostępność page — Dostępna Pływalnia audits/training/consulting"}]
+  },
+  {
+    "slug": "nautil",
+    "hqCity": "Kosakowo",
+    "languages": ["pl", "en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["wcag-2-2"],
+    "descriptionEn": "Nautil Sp. z o.o. is a dedicated digital and architectural accessibility company with an 18-person team and over 10 years of experience, focused on promoting accessibility under WCAG standards and the Polish Accessibility Act. It performs accessibility audits of websites, mobile apps and IT systems, architectural accessibility audits, audio/video transcription and easy-to-read text services, provides an accessibility-declaration generator, and trains developers, designers and companies on applying WCAG.",
+    "descriptionPl": "Nautil Sp. z o.o. to wyspecjalizowana firma zajmująca się dostępnością cyfrową i architektoniczną, z 18-osobowym zespołem i ponad 10-letnim doświadczeniem, skupiona na promowaniu dostępności zgodnej ze standardami WCAG oraz Polskim Aktem o Dostępności. Wykonuje audyty dostępności stron internetowych, aplikacji mobilnych i systemów informatycznych, audyty dostępności architektonicznej, transkrypcje audio i wideo oraz teksty łatwe do czytania, udostępnia generator deklaracji dostępności i prowadzi szkolenia dla deweloperów, projektantów i firm z zakresu WCAG.",
+    "evidence": [{"url": "https://nautil.pl", "label": "Homepage — team, service list, WCAG focus"}]
+  },
+  {
+    "slug": "optimal-it",
+    "hqCity": "Skoczów",
+    "languages": ["pl"],
+    "services": ["training"],
+    "descriptionEn": "Optimal IT Sp. z o.o. is a marketing agency in the Cieszyn Silesia region (Skoczów, Cieszyn, Ustroń, Wisła) offering websites, e-commerce, SEO, Google Ads, product photography, virtual tours, dedicated apps and BIP websites. Its listed offering includes 'Szkolenia WCAG 2.1' (WCAG 2.1 AA training) for institutions and companies obligated to implement the standard, and it cites experience building WCAG-2.1-accessible public-sector sites.",
+    "descriptionPl": "Optimal IT Sp. z o.o. to agencja marketingowa z regionu Śląska Cieszyńskiego (Skoczów, Cieszyn, Ustroń, Wisła), oferująca strony internetowe, sklepy internetowe, pozycjonowanie SEO, kampanie Google Ads, fotografię reklamową, wirtualne spacery, serwisy dedykowane oraz strony BIP. W ofercie znajdują się „Szkolenia WCAG 2.1“ dla instytucji i firm zobowiązanych do wdrożenia standardu na poziomie AA, a agencja wskazuje na doświadczenie w realizacji dostępnych serwisów zgodnych z WCAG 2.1 dla podmiotów publicznych.",
+    "evidence": [{"url": "https://optimalit.pl", "label": "Homepage — services incl. Szkolenia WCAG 2.1, portfolio references"}]
+  },
+  {
+    "slug": "intermedia-spolka-jawna",
+    "hqCity": "Śrem",
+    "languages": ["pl"],
+    "services": ["audit", "training"],
+    "descriptionEn": "INTERmedi@ Sp. Jawna, based in Śrem, has for over 20 years built web applications for business and public administration using its own CMS compliant with WCAG 2.1, and describes itself as a leading provider of web solutions for local government units nationwide. Its standard project workflow includes a post-launch accessibility audit and accessibility declaration, plus client training, and its municipal sites include a built-in accessibility (WCAG) module.",
+    "descriptionPl": "INTERmedi@ Spółka Jawna z siedzibą w Śremie od ponad 20 lat tworzy aplikacje internetowe dla biznesu i administracji publicznej w oparciu o autorski system CMS zgodny z WCAG 2.1, określając się jako wiodący dostawca rozwiązań internetowych dla samorządów w całym kraju. Standardowy proces realizacji obejmuje szkolenie oraz audyt i deklarację dostępności po wdrożeniu, a strony dla jednostek samorządowych zawierają moduł Dostępność (WCAG).",
+    "evidence": [{"url": "https://i.media.pl", "label": "Homepage — company profile, workflow incl. audit/declaration, WCAG module"}]
+  },
+  {
+    "slug": "grupa-af",
+    "hqCity": "Świdnica",
+    "languages": ["pl"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["wcag-2-2"],
+    "descriptionEn": "Grupa AF Sp. z o.o., founded in 2011 and based in Świdnica, describes itself as Poland's first consulting company employing mainly people with disabilities. It offers business consulting (ISO, RODO audits/implementation/training, PPK), software development including WCAG 2.1 websites and e-learning platforms, UX/UI design, and a dedicated 'Dostępność' (accessibility) line targeting primary healthcare facilities, hospitals and local government units (JST), alongside EU project funding support.",
+    "descriptionPl": "Grupa AF Sp. z o.o., założona w 2011 roku i mająca siedzibę w Świdnicy, określa się jako pierwsza w Polsce firma consultingowa zatrudniająca głównie osoby z niepełnosprawnością. Oferuje doradztwo biznesowe (ISO, audyty/wdrożenia/szkolenia RODO, PPK), software development w tym strony WCAG 2.1 i platformy e-learningowe, projektowanie UX/UI oraz dedykowaną linię „Dostępność“ skierowaną do placówek POZ, szpitali i jednostek samorządu terytorialnego (JST), a także wsparcie w pozyskiwaniu funduszy unijnych.",
+    "evidence": [{"url": "https://grupaaf.pl", "label": "Homepage — company profile, service menu incl. Dostępność"}]
+  }
+]
