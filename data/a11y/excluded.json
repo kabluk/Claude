@@ -4,5 +4,11 @@
     "slug": "the-pixel",
     "reason": "Adobe-commerce agency (TVG Media Ltd, Bristol/Malta); site lists no accessibility audit/VPAT/remediation services. Was collected from an IAAP associate-membership announcement, but membership alone is not a service offering.",
     "checked": "2026-08-04"
+  },
+  {
+    "domain": "annanpura.fi",
+    "slug": "annanpura",
+    "reason": "Ceased operations. Homepage carries a board notice dated 2025-09-15: Annanpura Oy (a social enterprise subsidiary of the Finnish Federation of the Visually Impaired) voted to wind down its business after losing its main transcription-services client's public tender, with operations shut down by end of 2025. The listing was originally well-sourced (a published accessibility test report for hel.fi) — removed for being defunct, not for weak evidence.",
+    "checked": "2026-08-05"
   }
 ]

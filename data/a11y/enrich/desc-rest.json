@@ -1,0 +1,769 @@
+[
+  {
+    "slug": "hcltech",
+    "services": [
+      "audit",
+      "remediation",
+      "vpat",
+      "training"
+    ],
+    "descriptionEn": "HCLTech runs a dedicated Accessibility Services practice within its Product Engineering business (part of Engineering R&D Services). Listed offerings include accessibility-in-design, assessment against international, national and corporate standards, VPAT-as-a-service, remediation, PWD usability studies, coaching/empathy sessions and an accessibility support desk across the SDLC. HCLTech itself is a large Indian multinational IT services company, not a boutique accessibility specialist.",
+    "evidence": [
+      {
+        "url": "https://www.hcltech.com/engineering-rd-services/product-engineering/accessibility-services",
+        "label": "Accessibility Services page (title/description indexed) — service list, VPAT-as-a-service, PWD studies"
+      }
+    ]
+  },
+  {
+    "slug": "barrierbreak",
+    "hqCity": "Mumbai",
+    "services": [
+      "audit",
+      "remediation",
+      "vpat",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "section-508",
+      "ada",
+      "eaa",
+      "bitv",
+      "rgaa"
+    ],
+    "descriptionEn": "BarrierBreak is a digital accessibility company headquartered in Goregaon East, Mumbai, India, with over 20 years in the field. It provides accessibility auditing, remediation and VPAT/ACR reporting against WCAG, ADA, Section 508, EN 301 549, EAA, BITV and RGAA, using proprietary tools including A11yInspect and A11yNow. Around 40% of its testing team are persons with disabilities; it serves clients across the US, Europe, UK, Australia and India.",
+    "evidence": [
+      {
+        "url": "https://www.barrierbreak.com/",
+        "label": "homepage/services (indexed) — audit, remediation, VPAT/ACR, standards covered"
+      },
+      {
+        "url": "https://www.barrierbreak.com/contact-us/",
+        "label": "contact page — Mumbai HQ address"
+      }
+    ]
+  },
+  {
+    "slug": "inforges",
+    "services": [
+      "audit",
+      "training"
+    ],
+    "descriptionEn": "Inforges is a Spanish IT and business consultancy offering ERP/SAP, cybersecurity, data analytics, AI and marketing services from offices across Spain (including Albacete, Alicante, Madrid, Murcia and Valencia). Within its digital-commerce/marketing division it runs a \"Web Accessibility\" line covering accessibility audits, accessibility testing, a training course and an accessibility widget — one small part of a much broader IT consulting portfolio.",
+    "descriptionEs": "Inforges es una consultora tecnológica española que ofrece servicios de ERP/SAP, ciberseguridad, analítica de datos, IA y marketing desde varias oficinas en España (entre ellas Albacete, Alicante, Madrid, Murcia y Valencia). Dentro de su área de comercio digital y marketing incluye una línea de \"Accesibilidad Web\" con auditoría, test de accesibilidad, un curso de formación y un widget de accesibilidad, junto a su cartera mucho más amplia de consultoría tecnológica.",
+    "evidence": [
+      {
+        "url": "https://www.inforges.es/",
+        "label": "homepage — Accesibilidad Web service under Comercio unificado/Marketing"
+      }
+    ]
+  },
+  {
+    "slug": "tu-web-accesible",
+    "services": [
+      "audit",
+      "consulting",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa",
+      "section-508",
+      "ada"
+    ],
+    "descriptionEn": "Tu Web Accesible (TWA, trading as \"Taller Agencia\") is a Spanish digital accessibility consultancy and auditing firm. It offers accessibility audits, strategic consulting, AI/chatbot accessibility audits, end-to-end remediation, accessible-document remediation (PDF/Word) and an externalized Accessibility Responsible Unit (URA) service, evaluated against WCAG 2.2, RD 1112/2018, the EAA, ADA/Section 508 and PDF/UA. Staff hold IAAP certification and the firm is ISO 9001 certified.",
+    "descriptionEs": "Tu Web Accesible (TWA) es una consultora y auditora española de accesibilidad digital (\"Taller Agencia\"). Ofrece auditorías de accesibilidad, consultoría estratégica, auditorías de accesibilidad de IA/chatbots, remediación integral, remediación de documentos (PDF/Word) y un servicio externalizado de Unidad Responsable de Accesibilidad (URA), evaluando conforme a WCAG 2.2, RD 1112/2018, la EAA, ADA/Section 508 y PDF/UA. Su equipo cuenta con certificación IAAP y la empresa está certificada ISO 9001.",
+    "evidence": [
+      {
+        "url": "https://www.tuwebaccesible.es/",
+        "label": "homepage — services, standards, IAAP/ISO 9001 certifications"
+      }
+    ]
+  },
+  {
+    "slug": "accesit-inclusivo",
+    "standards": [
+      "en-301-549"
+    ],
+    "descriptionEn": "Acctua is a Spanish accessibility-overlay software service that installs on existing websites without modifying source code, aiming to make sites usable by people with diverse abilities and to support compliance with RD 1112/2018 and the EN 301 549 v2.1.2 (WCAG 2.1) standard. It works across CMS platforms and browsers at no added cost to the visitor, and the company states it has served over 100 client organizations.",
+    "descriptionEs": "Acctua es un servicio español de software de accesibilidad tipo overlay que se instala en webs existentes sin modificar el código fuente, con el objetivo de hacerlas utilizables por personas con capacidades diversas y ayudar a cumplir el RD 1112/2018 y la norma EN 301 549 v2.1.2 (WCAG 2.1). Funciona en cualquier CMS y navegador sin coste adicional para el usuario, y la empresa afirma haber dado servicio a más de 100 organizaciones clientes.",
+    "evidence": [
+      {
+        "url": "https://www.acctua.eu/",
+        "label": "homepage — product description, RD 1112/2018 and EN 301 549 compliance claim"
+      }
+    ]
+  },
+  {
+    "slug": "metadrop",
+    "hqCity": "Madrid",
+    "languages": [
+      "en",
+      "es"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "descriptionEn": "Metadrop is a Madrid-based Drupal development and consultancy agency active since 2011, holding Drupal Silver Partner status and ENS (Spanish National Security Scheme) certification. Alongside Drupal migration, hosting and enterprise CMS work for government, corporate, NGO and university clients, its Drupal Audit Services include an \"Accessibility audit consultancy\" offering, one of several audit types (SEO, UX/UI, technical SEO) it provides.",
+    "descriptionEs": "Metadrop es una agencia madrileña de desarrollo y consultoría Drupal activa desde 2011, con estatus de Drupal Silver Partner y certificación ENS (Esquema Nacional de Seguridad). Además de migraciones, hosting y desarrollo de CMS empresarial para clientes de administración pública, empresa, ONG y universidades, sus Servicios de Auditoría Drupal incluyen una \"consultoría de auditoría de accesibilidad\", una entre varias auditorías (SEO, UX/UI, SEO técnico) que ofrece.",
+    "evidence": [
+      {
+        "url": "https://www.metadrop.net/",
+        "label": "homepage/footer — Madrid address, Drupal Audit Services incl. accessibility audit consultancy, ENS certification"
+      }
+    ]
+  },
+  {
+    "slug": "auditores-accesibilidad",
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "descriptionEn": "Auditores Accesibilidad is a small Spanish consultancy run by Paula Toro and Beltrán Peironcely, specializing in digital accessibility audits against WCAG 2.1/2.2 and UNE-EN 301549. Services include tiered audits (Quick Scan to Full Audit), prioritized remediation action plans, validation testing, accessibility statements and training, aimed at banking, consulting, telecom and e-commerce clients. Over 200 projects delivered in more than 10 years.",
+    "descriptionEs": "Auditores Accesibilidad es una pequeña consultora española, dirigida por Paula Toro y Beltrán Peironcely, especializada en auditorías de accesibilidad digital conforme a WCAG 2.1/2.2 y UNE-EN 301549. Sus servicios incluyen auditorías por niveles (desde Quick Scan hasta Full Audit), planes de acción priorizados, pruebas de validación, declaraciones de accesibilidad y formación, dirigidos a sectores como banca, consultoría, telecomunicaciones y ecommerce. Más de 200 proyectos en más de 10 años.",
+    "evidence": [
+      {
+        "url": "https://www.auditoresaccesibilidad.com/",
+        "label": "homepage — services, standards (WCAG 2.1/2.2, UNE-EN 301549), team, project count"
+      }
+    ]
+  },
+  {
+    "slug": "sito-web-accessibile",
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "descriptionEn": "Sito-web-accessibile.it is a small Italian consultancy project (run by Luca and Federico, under SyncLab Studio) offering WCAG 2.1 AA compliance consulting for businesses and public bodies. Services include technical code/structure audits, remediation guidance on HTML/ARIA/contrast/keyboard navigation, and drafting and publishing of accessibility statements to Italy's AgID. The firm is registered on Italy's MEPA public-procurement marketplace and advises against relying on accessibility overlay plugins.",
+    "evidence": [
+      {
+        "url": "https://www.sito-web-accessibile.it/",
+        "label": "homepage — services, WCAG 2.1 AA scope, MEPA registration, team"
+      }
+    ]
+  },
+  {
+    "slug": "siti-accessibili",
+    "hqCity": "Monza",
+    "services": [
+      "audit",
+      "training",
+      "consulting",
+      "monitoring"
+    ],
+    "standards": [
+      "eaa"
+    ],
+    "descriptionEn": "Siti Accessibili is a digital accessibility consultancy brand of Coopera S.r.l. (Rilevant group), based in Monza, Italy. It offers accessibility declarations, WCAG 2.1 AA audits (following the BIK-BITV-Test protocol), consulting, user testing, training, accessible design/development and an \"Accessibility Monitor\" service, serving public administrations, businesses, and communication/software agencies. The firm states it does not rely on overlay or plugin-based shortcuts.",
+    "evidence": [
+      {
+        "url": "https://www.sitiaccessibili.it/",
+        "label": "homepage — services, Monza address, WCAG 2.1 AA / EAA content"
+      }
+    ]
+  },
+  {
+    "slug": "sernicola-labs",
+    "hqCity": "Milan",
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "descriptionEn": "Sernicola Labs is a Milan-based web development agency (Sernicola Labs S.r.l.) founded around 2012–2015 by two Politecnico di Milano alumni. Alongside website, e-commerce, app, CRM and AI development, its \"A11Y\" service line performs accessibility audits and hands-on remediation to bring sites and apps up to current standards. It also works as a technical \"ghost developer\" partner for communication agencies and design studios.",
+    "evidence": [
+      {
+        "url": "https://www.sernicola-labs.com/",
+        "label": "homepage — A11Y accessibility audit/remediation service, Milan office address, founding story"
+      }
+    ]
+  },
+  {
+    "slug": "gmg-net",
+    "hqCity": "Genoa",
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "eaa"
+    ],
+    "descriptionEn": "Gmg Net (Gmg Net Srl) is a digital agency based in Genoa, Italy, offering web design and development, UX/UI, WordPress/Drupal builds, strategy, AI tools and social media/marketing for businesses and non-profits such as Fondazione Paideia. It offers a \"European Accessibility Act\" audit service to help clients bring websites into conformance with EAA accessibility requirements, alongside its broader digital-agency portfolio.",
+    "evidence": [
+      {
+        "url": "https://www.gmgnet.com/",
+        "label": "homepage — EAA accessibility audit service, Genoa office address, case studies"
+      }
+    ]
+  },
+  {
+    "slug": "usability-ie",
+    "services": [
+      "audit"
+    ],
+    "descriptionEn": "Usability.ie is the UX research and testing practice from the team behind digitaldesign.ie, based in Ireland. It offers website UX audits, heuristic/expert reviews, moderated usability testing, user research, conversion-rate optimization, and WCAG 2.1 AA accessibility evaluations of an agreed scope combining manual and automated review. Where remediation is needed, work is handed to sister studio digitaldesign.ie for implementation under one engagement.",
+    "evidence": [
+      {
+        "url": "https://www.usability.ie/",
+        "label": "homepage — accessibility evaluation service, WCAG 2.1 AA scope, sister-studio handoff"
+      }
+    ]
+  },
+  {
+    "slug": "path-ie",
+    "hqCity": "Dublin",
+    "services": [
+      "audit",
+      "training"
+    ],
+    "descriptionEn": "Path (Path Strategic Design Ltd) is a Dublin-based strategic design consultancy, registered in Ireland since 2006, working largely with public-sector and not-for-profit clients such as the Office of Public Works and Dublin City Council Arts Office. Services span strategy and research, website design/UX, content design and service design, alongside a dedicated Digital Accessibility practice offering website accessibility audits and accessibility training.",
+    "evidence": [
+      {
+        "url": "https://www.path.ie/",
+        "label": "homepage — Digital Accessibility service (audits, training), Dublin registered address, client list"
+      }
+    ]
+  },
+  {
+    "slug": "digital-strategy-ie",
+    "hqCity": "Dublin",
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "eaa",
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "descriptionEn": "Digital Strategy Consultants Ltd is a Dublin-based digital marketing agency (Camden Street Lower) offering SEO, digital advertising, analytics, digital strategy, GEO/AI-search optimization and web development. Within its web-development services it runs a Web Accessibility Audit evaluating sites against the EAA, WCAG 2.2 and EN 301 549 and delivering a compliance recommendations report — one specialism among its broader digital-marketing portfolio.",
+    "evidence": [
+      {
+        "url": "https://digitalstrategy.ie/services/web-development/web-accessibility-audit/",
+        "label": "Web Accessibility Audit service page (indexed) — EAA/WCAG 2.2/EN 301 549 scope"
+      },
+      {
+        "url": "https://www.digitalstrategy.ie/",
+        "label": "homepage — Dublin address, broader digital-marketing service list"
+      }
+    ]
+  },
+  {
+    "slug": "accessible-ie",
+    "hqCity": "Dublin",
+    "services": [
+      "audit",
+      "remediation",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "descriptionEn": "Accessible.ie is a Dublin-based accessibility service from xwerx.com, a UX design agency operating for almost 25 years. It runs accessibility audits against WCAG 2.2 in line with the European Accessibility Act, implements the resulting code updates directly, and prepares accessibility statements. Its A11y Hub offers scheduled automated scans with AI-assisted suggestions and compliance-history tracking. Clients include Studyclix, The Doyle Collection and IIEA.",
+    "evidence": [
+      {
+        "url": "https://accessible.ie/",
+        "label": "homepage — audits, code updates, A11y Hub monitoring, Dublin address, client case studies"
+      }
+    ]
+  },
+  {
+    "slug": "content-design-ireland",
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "eaa"
+    ],
+    "descriptionEn": "Content Design Ireland is run by Kevin Mc Laughlin and Marian Avery, content-design trainers, consultants and digital accessibility specialists with over 35 years' combined experience; both are registered blind. Services include accessibility and content-design training courses, content accessibility audits reviewing text, structure, images, audio, video and data visualizations, and consultancy to build a content-accessibility strategy aligned with WCAG and the European Accessibility Act.",
+    "evidence": [
+      {
+        "url": "https://www.contentdesignireland.ie/about",
+        "label": "About page (indexed) — founders' background, registered-blind status"
+      },
+      {
+        "url": "https://www.contentdesignireland.ie/audits",
+        "label": "Audits page (indexed) — content accessibility audit scope"
+      }
+    ]
+  },
+  {
+    "slug": "rockit",
+    "hqCity": "Vienna",
+    "services": [
+      "audit"
+    ],
+    "descriptionEn": "rockit GmbH is a Vienna-based TYPO3 web agency (c/o Impact Hub Vienna) offering TYPO3 CMS development, Laravel applications, SEO and AI/automation consulting. Its \"Barrierefreiheits-Check\" service audits websites against Austria's accessibility act (BaGF, effective 28 July 2025) via keyboard and screen-reader testing, delivering a remediation catalogue for developers. Reference projects built to WCAG 2.1 AA include sites for the Arbeiter-Samariterbund and the Österreichischer Integrationsfonds.",
+    "evidence": [
+      {
+        "url": "https://www.rockit.at/",
+        "label": "homepage — Barrierefreiheits-Check service, Vienna address, reference projects"
+      }
+    ]
+  },
+  {
+    "slug": "purin",
+    "hqCity": "Bartholomäberg",
+    "services": [
+      "audit",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "descriptionEn": "Christoph Purin is an Austrian sole-trader web developer (Purin e.U.) based in Bartholomäberg, Vorarlberg, working across Austria, Germany and South Tyrol. He is a certified Web Accessibility Expert (incite) and offers a fixed-price accessibility audit against WCAG 2.2 AA and EN 301 549, a prioritized action plan, implementation, and an accessibility statement, alongside WordPress/Laravel development, maintenance and AI-automation services delivered personally rather than by an agency team.",
+    "evidence": [
+      {
+        "url": "https://www.purin.at/",
+        "label": "homepage — accessibility audit service, WCAG 2.2 AA/EN 301 549 scope, incite certification, location"
+      }
+    ]
+  },
+  {
+    "slug": "funka",
+    "services": [
+      "audit",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "en-301-549",
+      "wcag-2-2"
+    ],
+    "descriptionEn": "Funka is a Swedish digital accessibility consultancy with over 25 years of experience and a founding member of IAAP (International Association of Accessibility Professionals). It offers accessibility audits, a \"Document Fixer\" service testing and remediating documents to EN 301 549, WCAG and PDF/UA, and Funka Academy for on-demand and live accessibility training, while also contributing to accessibility research and international standards work.",
+    "evidence": [
+      {
+        "url": "https://www.funka.com/en/",
+        "label": "homepage — audits, Document Fixer remediation, Funka Academy, IAAP founding-member claim"
+      }
+    ]
+  },
+  {
+    "slug": "axess-lab",
+    "hqCity": "Stockholm",
+    "languages": [
+      "en",
+      "sv",
+      "de",
+      "el",
+      "es",
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "descriptionEn": "Axess Lab is a Stockholm-based digital accessibility consultancy (Vasagatan 28) offering WCAG auditing, accessibility statements and accessibility training workshops, alongside usability testing with people with a range of disabilities (including remote sessions), UX design/research, and front- and back-end development. The site is published in English, Swedish, German, Greek, Spanish and French, and the firm publishes articles on topics such as AI-built site accessibility and EAA banking compliance.",
+    "evidence": [
+      {
+        "url": "https://www.axesslab.com/",
+        "label": "homepage — services, Stockholm address, languages, article topics"
+      }
+    ]
+  },
+  {
+    "slug": "etu",
+    "hqCity": "Sundbyberg",
+    "services": [
+      "audit",
+      "training"
+    ],
+    "descriptionEn": "ETU AB is a Swedish company founded in 1995, headquartered in Sundbyberg near Stockholm with offices across Sweden from Piteå to Malmö. Alongside entrepreneurship training and employment-support services (including Rusta och Matcha), it has worked in digital accessibility for over 20 years, offering accessibility training, accessible-document production, accessibility reviews/audits, user testing and ongoing accessibility support.",
+    "evidence": [
+      {
+        "url": "https://www.etu.se/",
+        "label": "homepage — accessibility service list, Sundbyberg HQ, founding year, office network"
+      }
+    ]
+  },
+  {
+    "slug": "sensus",
+    "hqCity": "Hillerød",
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "descriptionEn": "Sensus ApS is a Danish digital-accessibility specialist based in Hillerød. It advises public and private organizations on app and web accessibility, accessible document production, inclusion technology and braille solutions, combining knowledge of Denmark's Web Accessibility Act and the EAA with the EN standard and WCAG. Services include workshops, courses, a free accessibility test and Sensus Academy e-learning modules for individuals and teams.",
+    "evidence": [
+      {
+        "url": "https://www.sensus.dk/",
+        "label": "homepage — service list, Hillerød address, EN standard/WCAG/EAA references, Sensus Academy"
+      }
+    ]
+  },
+  {
+    "slug": "inklusio",
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "en-301-549",
+      "eaa"
+    ],
+    "descriptionEn": "Inklusio is a Danish accessibility consultancy of educators, consultants and advisors specializing in usability and accessibility testing under WCAG, the EAA and EN 301 549. It performs manual accessibility testing, consulting, and development of automated accessibility tools, has long experience with tools such as Siteimprove and QualWeb, and can evaluate, monitor and train client teams to test accessibility themselves.",
+    "evidence": [
+      {
+        "url": "https://inklusio.dk/products/test/",
+        "label": "Test service page (search-indexed; direct fetch blocked by DNS in this environment) — accessibility testing offering"
+      },
+      {
+        "url": "https://inklusio.dk/posts/standarden-en-301-549-%E2%80%93-hvad-er-det-og-hvordan-f%C3%B8lger-man-den/",
+        "label": "EN 301 549 explainer article (search-indexed)"
+      }
+    ]
+  },
+  {
+    "slug": "peytz-co",
+    "hqCity": "Copenhagen",
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "descriptionEn": "Peytz (Peytz & Co, part of the pan-European agency iO since 2022) is a Copenhagen-headquartered full-service digital agency with over 20 years in business, offering creative, marketing, technology and platform services. Its dedicated accessibility offering covers WCAG audits, workshops/training on accessibility laws and standards, and consulting to help clients move from a pure compliance mindset toward genuinely accessible user experiences.",
+    "evidence": [
+      {
+        "url": "https://www.peytz.dk/",
+        "label": "homepage — Copenhagen HQ, iO group membership, agency profile"
+      },
+      {
+        "url": "https://peytz.dk/tilgaengelighed/",
+        "label": "tilgængelighed (accessibility) service page (search-indexed) — audit, training, consulting"
+      }
+    ]
+  },
+  {
+    "slug": "siteimprove",
+    "hqCity": "Copenhagen",
+    "services": [
+      "audit",
+      "monitoring"
+    ],
+    "standards": [
+      "eaa",
+      "ada"
+    ],
+    "descriptionEn": "Siteimprove is a Danish software company founded by Morten Ebbesen in 2003, with an office in Copenhagen among others worldwide. Its Siteimprove.ai platform unifies web and mobile accessibility monitoring, analytics, SEO/AEO and content-strategy tools, and it publishes EAA and ADA Title II compliance resources. Its services team includes IAAP-certified CPWA and CPACC professionals, and staff take part in W3C work and the European Commission's AccessibleEU initiative.",
+    "evidence": [
+      {
+        "url": "https://siteimprove.com/en/about/",
+        "label": "About page — founding year/founder, Copenhagen office address, leadership"
+      },
+      {
+        "url": "https://www.siteimprove.com/",
+        "label": "homepage — platform overview, EAA/ADA resource centers, certifications"
+      }
+    ]
+  },
+  {
+    "slug": "digitelle",
+    "hqCity": "Lørenskog",
+    "standards": [
+      "wcag-2-2"
+    ],
+    "descriptionEn": "Digitelle AS is a Norwegian WordPress agency (registered in Lørenskog, marketed as an Oslo digital agency) established in 2016 with over 20 years of collective WordPress experience. Alongside WordPress sites, WooCommerce stores, hosting/maintenance, SEO and design, it builds all new sites to WCAG 2.2 AA as standard, describing \"universell utforming\" (universal design/WCAG compliance) as core to its process given Norway's private-sector accessibility oversight.",
+    "evidence": [
+      {
+        "url": "https://www.digitelle.no/",
+        "label": "homepage — WCAG 2.2 AA-by-default claim, Lørenskog address, founding year"
+      }
+    ]
+  },
+  {
+    "slug": "nettkonsult",
+    "hqCity": "Oslo",
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "eaa"
+    ],
+    "descriptionEn": "Nettkonsult is an Oslo-based Norwegian IT development and outsourcing partner with 20+ years of experience, offering web and custom software development, extended-team/nearshoring, cloud/DevOps, security and mobile development. Among its listed services is \"WCAG\" — WCAG 2.1 AA auditing, remediation and documentation for Norwegian websites and apps, positioned to help clients meet the EAA and Norway's anti-discrimination law.",
+    "evidence": [
+      {
+        "url": "https://www.nettkonsult.no/",
+        "label": "homepage — WCAG service description, Oslo positioning, service list"
+      }
+    ]
+  },
+  {
+    "slug": "avaava",
+    "hqCity": "Helsinki",
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "eaa"
+    ],
+    "descriptionEn": "Avaava Oy is a Helsinki-based consulting, training and design agency dedicated to accessibility, covering both digital accessibility (saavutettavuus) and physical accessibility (esteettömyys), plus wayfinding/signage design with over 10 years and 50+ projects of experience. Digital services include accessibility audits and consulting for websites, e-services, mobile apps and documents, accessible PDF/form creation, cognitively accessible interface design, and training through Avaava Academy.",
+    "evidence": [
+      {
+        "url": "https://www.avaava.fi/",
+        "label": "homepage — service list, Helsinki address, wayfinding-design track record, Avaava Academy"
+      }
+    ]
+  },
+  {
+    "slug": "eficode",
+    "services": [
+      "audit",
+      "training",
+      "consulting",
+      "monitoring"
+    ],
+    "descriptionEn": "Eficode is a Finnish-founded software-delivery and DevOps consultancy (600+ professionals, offices in 10 countries including Helsinki) that also runs a dedicated accessibility-services team of 20+ researchers, evaluators and trainers. Services include WCAG 2.1 AA accessibility evaluation and statements, testing with users who have visual, hearing, cognitive or motor disabilities, training, consultation, procurement/tender support, and a continuous-accessibility subscription plus the Accessibility Keeper monitoring tool. Staff hold IAAP certification.",
+    "evidence": [
+      {
+        "url": "https://www.eficode.com/services/accessibility",
+        "label": "Accessibility services page — full service list, IAAP certification, Accessibility Keeper"
+      },
+      {
+        "url": "https://www.eficode.com/contact",
+        "label": "contact/offices page — Helsinki and Tampere offices among global network"
+      }
+    ]
+  },
+  {
+    "slug": "axes4",
+    "hqCity": "Zurich",
+    "services": [
+      "remediation",
+      "audit"
+    ],
+    "descriptionEn": "axes4 GmbH is a Zurich, Switzerland-based, ISO-certified company specializing in document accessibility. Its axesWord and axesSlide tools convert Word and PowerPoint files into accessible, PDF/UA- and WCAG-conformant PDFs; axesPDF and the free axesCheck identify and fix PDF accessibility issues; axesFlip and the axesPAC API support high-volume and integrated PDF remediation; and axesService offers managed remediation plus axesTraining courses. The company reports over one million users.",
+    "evidence": [
+      {
+        "url": "https://www.axes4.com/",
+        "label": "homepage — product suite (axesWord, axesPDF, axesFlip, axesPAC, axesService), user count"
+      },
+      {
+        "url": "https://www.axes4.com/en/imprint",
+        "label": "imprint — Zurich address"
+      }
+    ]
+  },
+  {
+    "slug": "uxmen",
+    "hqCity": "Kontich",
+    "services": [
+      "audit"
+    ],
+    "descriptionEn": "UXMen is a Belgian UX and CRO agency with offices in Kontich and Ghent, part of \"The Digitals\" group, with over 10 years' experience across 80+ digital projects for 150+ clients including vdk bank. Alongside strategy, research, design and conversion-rate optimization, its Toegankelijkheid (Accessibility) service audits websites and apps against WCAG guidelines ahead of EU accessibility legislation, offered as a standalone scan or within larger UX engagements.",
+    "evidence": [
+      {
+        "url": "https://uxmen.be/",
+        "label": "homepage — Toegankelijkheid audit service, Kontich/Ghent offices, client references"
+      }
+    ]
+  },
+  {
+    "slug": "humix",
+    "hqCity": "Kontich",
+    "services": [
+      "audit"
+    ],
+    "descriptionEn": "Humix is a Kontich, Belgium-based \"User Experience, Accessibility & CRO Agency,\" part of Xplore Group and Cronos Group. It offers a free 3-minute digital scan benchmarking UX, UI, CRO and accessibility against industry averages, alongside services in research and analytics, UX/UI design, optimization, and accessibility — one of its four core, cross-disciplinary service pillars.",
+    "evidence": [
+      {
+        "url": "https://www.humix.be/",
+        "label": "homepage — accessibility scan/service pillar, Kontich address, group ownership"
+      }
+    ]
+  },
+  {
+    "slug": "inter-vlaanderen",
+    "services": [
+      "training",
+      "consulting"
+    ],
+    "descriptionEn": "Inter is the Flemish government's expertise centre for accessibility (\"Vlaams expertisecentrum toegankelijkheid\"), part of the Vlaanderen.be public-sector network rather than a commercial agency. It supports governments, professionals and businesses on physical and digital accessibility and universal design, and provides resources for people with disabilities, students and educators, including the \"Toegankelijkheid van A tot Z\" training course and the IedereenOveral accessibility-information platform.",
+    "evidence": [
+      {
+        "url": "https://www.inter.vlaanderen/",
+        "label": "homepage — public expertise-centre positioning, training course, target audiences"
+      }
+    ]
+  },
+  {
+    "slug": "lcp",
+    "hqCity": "Oostkamp",
+    "descriptionEn": "LCP is a Belgian web agency (based in Oostkamp, ISO-certified) with 20+ years of experience building modular, custom-CMS websites, predominantly for Flemish municipalities and public-sector clients such as Genk and Oostende. It reports around 75 product upgrades per year and states it tracks developments in \"toegankelijkheid\" (accessibility), search and security to keep client sites current — accessibility is maintained as an ongoing product feature rather than sold as a standalone audit service.",
+    "evidence": [
+      {
+        "url": "https://www.lcp.be/",
+        "label": "homepage — accessibility/security/search upgrade claim, client list of municipalities"
+      },
+      {
+        "url": "https://www.lcp.be/over-ons",
+        "label": "over ons (about) page — Oostkamp office, ISO certification"
+      }
+    ]
+  },
+  {
+    "slug": "craftzing",
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "descriptionEn": "Craftzing is a Belgian digital-transformation and enterprise-consulting firm (around 300 people, offices in Antwerp, Ghent, Brussels and Leuven) spanning strategy, enterprise architecture, transformation delivery, experience & design, technology integration, and data/AI. Its Accessibility Audit service assesses platforms against EN 301 549, including WCAG 2.1 A/AA, delivered as an actionable report with issue descriptions, screenshots and code examples; the accessibility team includes staff certified as Web Accessibility Specialists (WAS) and CPACC professionals.",
+    "evidence": [
+      {
+        "url": "https://www.craftzing.com/what-we-do/accessibility-audit",
+        "label": "Accessibility Audit service page — scope, standard, report format"
+      },
+      {
+        "url": "https://www.craftzing.com/",
+        "label": "homepage — company size, office locations, service lines"
+      }
+    ]
+  },
+  {
+    "slug": "tothomweb",
+    "hqCity": "Girona",
+    "services": [
+      "audit",
+      "consulting",
+      "training",
+      "remediation"
+    ],
+    "descriptionEn": "TOTHOM is a Catalan digital accessibility consultancy with offices in Girona, Barcelona and Munich. It is an ENAC-accredited inspection body for digital accessibility (No. 578/EI883) and offers audits, consulting, training, accessible-document production, development and inclusive UX/UI design across the discovery-to-maintenance lifecycle. Part of its team holds IAAP certifications (CPACC, WAS, CPWA), and the firm is ISO 9001:2015 and ISO 14001:2015 certified, working under RD 1112/2018.",
+    "descriptionEs": "TOTHOM es una consultora catalana de accesibilidad digital con oficinas en Girona, Barcelona y Múnich. Es entidad de inspección acreditada por ENAC en accesibilidad digital (nº 578/EI883) y ofrece auditorías, consultoría, formación, producción de documentos accesibles, desarrollo y diseño UX/UI inclusivo a lo largo de todo el ciclo del proyecto. Parte de su equipo cuenta con certificaciones IAAP (CPACC, WAS, CPWA), y la empresa está certificada ISO 9001:2015 e ISO 14001:2015; trabaja conforme al RD 1112/2018.",
+    "evidence": [
+      {
+        "url": "https://www.tothomweb.com/",
+        "label": "homepage — services, ENAC accreditation number, IAAP/ISO certifications, offices"
+      }
+    ]
+  },
+  {
+    "slug": "databot-technologies",
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "eaa"
+    ],
+    "descriptionEn": "Databot Technologies (trading as webaccesible.io, part of Grupo BA) is a Spanish accessibility consultancy offering a free 48–72 hour WCAG 2.2/EN 301 549 diagnostic combining automated tools (axe DevTools, Lighthouse, WAVE, Pa11y) with manual review and screen-reader testing (NVDA, JAWS, VoiceOver). Paid services include full WCAG audits, adaptation of existing sites, correction/optimization and ongoing support, helping clients meet Spain's EAA transposition (RD-ley 6/2023). Case work includes the Ajuntament de Barcelona.",
+    "descriptionEs": "Databot Technologies (marca webaccesible.io, del Grupo BA) es una consultora española de accesibilidad que ofrece un diagnóstico gratuito en 48-72 horas conforme a WCAG 2.2/EN 301 549, combinando herramientas automáticas (axe DevTools, Lighthouse, WAVE, Pa11y) con revisión manual y pruebas con lectores de pantalla (NVDA, JAWS, VoiceOver). Sus servicios de pago incluyen auditoría WCAG completa, adaptación de webs existentes, corrección/optimización y soporte continuado, ayudando a cumplir la transposición española de la EAA (RD-ley 6/2023). Entre sus casos: el Ajuntament de Barcelona.",
+    "evidence": [
+      {
+        "url": "https://www.webaccesible.io/",
+        "label": "homepage — diagnostic process, tools used, paid services, case studies, Grupo BA ownership"
+      }
+    ]
+  },
+  {
+    "slug": "fondazione-lia",
+    "hqCity": "Milan",
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "eaa"
+    ],
+    "descriptionEn": "Fondazione LIA ETS is a nonprofit foundation based in Milan, created by AIE (the Italian Publishers Association) together with UICI (the Italian Union of the Blind and Visually Impaired). It focuses on accessible digital publishing, offering strategic consulting, e-book accessibility certification, audits of platforms and websites, training and conversion of corporate documents into accessible formats, and maintains a catalogue of more than 40,000 accessible e-books for readers with visual impairments.",
+    "evidence": [
+      {
+        "url": "https://www.fondazionelia.org/",
+        "label": "homepage — services, Milan address, founding organizations (AIE/UICI), e-book catalogue size"
+      }
+    ]
+  },
+  {
+    "slug": "wienfluss",
+    "hqCity": "Vienna",
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "descriptionEn": "WIENFLUSS information.design.solutions KG is a commercial digital agency based in Vienna (Nibelungengasse 8), founded in 2005. It describes itself as one of Austria's leading agencies for digital accessibility, offering training, coaching, consulting and evaluation alongside custom web and application development, with dedicated accessibility staff and clients including Austrian federal ministries, ÖBB and Wien Tourismus — the university appears only as one of many listed clients, not as the site operator.",
+    "evidence": [
+      {
+        "url": "https://www.wienfluss.net/",
+        "label": "homepage — self-description as accessibility agency, founding year, client list including Universität Wien"
+      },
+      {
+        "url": "https://www.wienfluss.net/kontakt",
+        "label": "Kontakt page — Vienna office address, team roles incl. dedicated accessibility experts"
+      }
+    ]
+  },
+  {
+    "slug": "interface-consult",
+    "hqCity": "Vienna",
+    "services": [
+      "audit",
+      "training"
+    ],
+    "descriptionEn": "Interface Consult GmbH, trading as usability.at, is a Vienna-based usability agency (Flachsweg 32) and Austria's first usability agency, active since 1994 with 300+ projects. It offers UX/UI design, prototyping, eye-tracking and usability testing, plus a dedicated Barrierefreiheit (accessibility) practice: accessibility evaluation against WCAG, accessibility testing with disabled users, accessible PDF documents, guidance on Austrian and German public-sector accessibility requirements, and accessibility training seminars.",
+    "evidence": [
+      {
+        "url": "https://www.usability.at/",
+        "label": "homepage — service list, founding year, project count"
+      },
+      {
+        "url": "https://www.usability.at/kontakt/",
+        "label": "Kontakt page — Vienna office address"
+      }
+    ]
+  },
+  {
+    "slug": "k25-werbeagentur",
+    "hqCity": "Vienna",
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "descriptionEn": "k25 Werbeagentur GmbH is a Vienna-based advertising agency (Kutschkergasse 25) covering web, print, photo/film, social media, branding and AI. Its digital-accessibility service audits websites, apps and documents to WCAG 2.2 using the BIK-BITV-Test methodology, with checklists plus screen-reader and keyboard testing, and covers accessible PDFs and plain-language content — billed hourly alongside its other advertising services.",
+    "evidence": [
+      {
+        "url": "https://www.k25.at/leistungen/digitale-barrierefreiheit/",
+        "label": "Digitale Barrierefreiheit page — audit methodology (BIK-BITV-Test), WCAG 2.2, PDF/plain-language scope"
+      },
+      {
+        "url": "https://www.k25.at/impressum/",
+        "label": "Impressum — Vienna address"
+      }
+    ]
+  },
+  {
+    "slug": "mstage",
+    "hqCity": "St. Pölten",
+    "descriptionEn": "MSTAGE is an Austrian e-commerce agency (offices in St. Pölten and Wels, part of the E-CONOMIX Group) with 10+ years' experience and 100+ Magento, Shopware and Shopify webshops delivered for B2B and B2C clients such as Miele Center Österreich and KTM Bikes. Within its Onlineshop Optimierung (shop optimization) services — alongside CRO, UX research/testing and performance work — it lists Web Accessibility as one specialism, complementing its core shop-development and e-commerce consulting business.",
+    "evidence": [
+      {
+        "url": "https://www.mstage.at/",
+        "label": "homepage — service list incl. Web Accessibility under shop optimization, St. Pölten/Wels addresses, E-CONOMIX Group"
+      }
+    ]
+  }
+]

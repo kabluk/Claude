@@ -4157,43 +4157,6 @@
     "lastVerified": "2026-08-04"
   },
   {
-    "slug": "annanpura",
-    "name": "Annanpura",
-    "website": "annanpura.fi",
-    "hq": {
-      "city": "",
-      "countryCode": "FI"
-    },
-    "offices": [],
-    "countriesServed": [
-      "FI"
-    ],
-    "languages": [
-      "fi"
-    ],
-    "services": [
-      "audit",
-      "consulting"
-    ],
-    "standards": [
-      "wcag-2-2"
-    ],
-    "industries": [],
-    "certs": [],
-    "description": {},
-    "sourceRefs": [
-      {
-        "url": "https://annanpura.fi/palvelut/saavutettavuuspalvelut/saavutettavuustutkimukset-ja-testaukset/",
-        "label": "Saavutettavuustutkimukset ja -testaukset service page; social enterprise owned by the Finnish Federation of the Visually Impaired; checked 2026-08-04"
-      },
-      {
-        "url": "https://www.hel.fi/hel2/tietokeskus/data/dokumentit/HRI_saavutettavuustestausraportti.pdf",
-        "label": "Published accessibility test report for www.hri.fi by Annanpura Oy (2020); checked 2026-08-04"
-      }
-    ],
-    "lastVerified": "2026-08-04"
-  },
-  {
     "slug": "eficode",
     "name": "Eficode",
     "website": "eficode.com",
