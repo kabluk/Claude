@@ -44,17 +44,17 @@ nodes:
   - id: A0-CI-FIX
     title: "Починить CI: package-lock.json (добавлен), lint:upl/lint:minimize/check-links.mjs отсутствуют, хотя ci.yml их вызывает"
     owner: devops-engineer
-    status: ready
+    status: done
     depends_on: []
     inputs: [.github/workflows/ci.yml, package.json, scripts/]
     scope: [package.json, scripts/, .github/workflows/ci.yml]
-    outputs: []
-    verify: ["npm ci проходит", "npm run lint:upl существует и проходит", "npm run lint:minimize существует и проходит", "node scripts/check-links.mjs существует и проходит"]
+    outputs: [scripts/check-links.mjs]
+    verify: ["npm ci проходит", "npm run typecheck", "npm run build", "npm run check-links — 0 битых ссылок"]
     max_attempts: 4
-    attempts: 0
+    attempts: 1
     risk: low
     approval_required: false
-    notes: "Обнаружено 2026-08-05 при A0-ENRICH: package-lock.json отсутствовал в репо (добавлен в e0c9a85), а ci.yml ссылается на 3 несуществующих скрипта — CI сейчас гарантированно красный. Блокер для A0-DEPLOY (нельзя автодеплоить с красным CI). Решить: написать недостающие линтеры или убрать шаги из ci.yml — записать выбор в DECISIONS.md"
+    notes: "Готово 2026-08-05 (commit 969bdf5): ci.yml на этой ветке был скопирован целиком с main (detnav) при заведении ветки. lint:upl/lint:minimize — линтеры юридического контента detnav (content/** на формулировки вида UPL), у AccessAtlas нет такого контента — шаги удалены, не переписаны заглушками (D-009). check-links.mjs — генерик-полезная идея, реализована заново под dist/ этого сайта: 413 внутренних ссылок, 0 битых. npm ci→typecheck→build→check-links проходят локально."
 
   - id: A0-OWNER-LEGAL
     title: Реквизиты Imprint + покупка домена
