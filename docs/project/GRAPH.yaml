@@ -103,17 +103,17 @@ nodes:
   - id: A1-SCAN
     title: "Сканер MVP: POST /api/scan (Browser Rendering + axe-core) -> D1, GET /api/scan/:id"
     owner: backend-engineer
-    status: ready
+    status: review
     depends_on: []
     inputs: [docs/project/domains/architecture.md, docs/project/INTERFACES.md]
-    scope: [worker/, wrangler.jsonc]
-    outputs: [worker/, docs/project/domains/backend.md]
-    verify: ["wrangler dev: скан example.com возвращает findings", npm run typecheck]
+    scope: [worker/, wrangler.jsonc, migrations/]
+    outputs: [worker/, wrangler.jsonc, migrations/0001_init.sql, docs/project/domains/backend.md]
+    verify: ["wrangler dev: скан example.com возвращает findings", npm run typecheck, npm run worker:test]
     max_attempts: 4
-    attempts: 0
+    attempts: 1
     risk: medium
     approval_required: true
-    notes: "approval: включение платных фич CF (Browser Rendering, D1). Технически независим от Фазы 0 — можно строить параллельно"
+    notes: "Владелец одобрил платные ресурсы CF 2026-08-05. Код написан и залит (D-010): routing/валидация/D1/KV/ctx.waitUntil error-handling проверены live через wrangler dev; 9/9 юнит-тестов (score.js, links.js) зелёные; wrangler deploy --dry-run бандлится чисто. НЕ подтверждено: реальная axe-core инъекция против живого сайта — упёрлась в MITM-прокси песочницы (локальный Chromium не доверяет CA), не в код. status=review, не done — нужен один прогон `wrangler dev --remote` или прод-деплой на реальном аккаунте владельца, дальше — А1-REPORT/A1-EXPLAIN разблокируются"
 
   - id: A1-REPORT
     title: "UI отчёта /report/:id — находки по WCAG, severity, score"

@@ -3,6 +3,34 @@
 Формат: ID | дата | решение | причина | последствия. Новые решения добавлять сверху.
 Статусы: `accepted` (принято), `proposed` (ждёт подтверждения владельца).
 
+## D-010 · 2026-08-05 · accepted
+A1-SCAN реализован (`worker/`, `wrangler.jsonc`, `migrations/0001_init.sql`) с
+уточнениями относительно черновика в INTERFACES.md:
+- `ScanReport` дополнен полями `status`/`error`/`completedAt` — `POST /api/scan`
+  асинхронный (202 сразу, работа идёт в `ctx.waitUntil`), клиенту нужно различать
+  running/done/error при поллинге `GET /api/scan/:id`.
+- axe-core инжектится как **content-script** (`page.addScriptTag({content: ...})`),
+  а не через `src=CDN` на самой целевой странице — иначе строгий CSP на чужом сайте
+  (`script-src`) заблокирует загрузку. Источник axe-core кэшируется в edge Cache API
+  на 7 дней, версия зафиксирована (4.10.2), не берётся «latest».
+- Score — эвристика с дедупом по `ruleId` (худшая severity среди инстансов страницы),
+  не по количеству найденных нод. Иначе одна системная проблема (alt-текст на 40
+  картинках) обнуляла бы счёт так же сильно, как 40 разных проблем. Чистая функция
+  `worker/lib/score.js`, юнит-тесты в `score.test.mjs`.
+- `worker/` — plain ESM JS, не TypeScript: проект уже написан без TS-тулчейна для
+  `scripts/*.mjs`, отдельный `tsconfig.worker.json` + `@cloudflare/workers-types`
+  добавили бы toolchain-сложность без пропорциональной пользы для MVP.
+- Верификация в этой сессии: routing/валидация/D1 read-write/KV rate-limit/`ctx.waitUntil`
+  error-handling — проверены live через `wrangler dev` (реальные HTTP-запросы, реальная
+  локальная D1/KV). Локальный Browser Rendering реально скачал и запустил Chromium
+  (после `CI=true`, снимающего `--no-sandbox`-ограничение контейнера), дошёл до
+  `page.goto()` — но упёрся в MITM-прокси песочницы (`/root/.ccr/README.md`),
+  которому локальный Chromium не доверяет, поэтому сама инъекция `axe.run()` против
+  реального сайта не подтверждена в этой сессии. Ограничение среды разработки, не
+  кода: у настоящего Cloudflare Browser Rendering в проде прямой выход в интернет.
+  Требуется один прогон `wrangler dev --remote` или прод-деплой на реальном аккаунте
+  владельца перед тем, как считать узел полностью verified.
+
 ## D-009 · 2026-08-05 · accepted
 `ci.yml` на ветке `accessatlas` был скопирован из `main` (detnav) целиком, включая
 `lint:upl`/`lint:minimize` — линтеры юридического контента (сканируют `content/**`

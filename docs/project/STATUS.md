@@ -37,6 +37,15 @@
 | Домен (замена `accessatlas.example` в `src/lib/seo.tsx`, `scripts/gen-a11y-sitemap.mjs`) | ⏳ **ждёт владельца проекта** |
 | Деплой-конфиг Cloudflare Pages | ⏳ ждёт домена/реквизитов, затем — агенты |
 
+## Фаза 1 (Decision Engine)
+
+`A1-SCAN` — владелец одобрил платные ресурсы CF 2026-08-05. Worker написан
+(`worker/`, `wrangler.jsonc`, `migrations/`), status **review**: routing/D1/KV/
+error-handling проверены живьём, 9/9 юнит-тестов зелёные. Реальная axe-core
+инъекция не подтверждена — упёрлась в MITM-прокси песочницы (детали: D-010,
+`docs/project/domains/backend.md`). Нужен один прогон на реальном аккаунте
+владельца перед деплоем/тем, чтобы считать узел done.
+
 ## Монетизация
 
 Не начата: нет лид-формы, claim, Stripe. По плану — Фаза 2 (ROADMAP.md).

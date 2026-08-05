@@ -1,0 +1,28 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "accessatlas-worker",
+  "main": "worker/index.js",
+  "compatibility_date": "2024-09-23",
+  "compatibility_flags": ["nodejs_compat"],
+  // TODO(devops, перед первым деплоем): создать реальные ресурсы и заменить id:
+  //   npx wrangler d1 create accessatlas-scans
+  //   npx wrangler kv namespace create RATE_LIMIT_KV
+  // Секрет TURNSTILE_SECRET_KEY НЕ сюда — `npx wrangler secret put TURNSTILE_SECRET_KEY`.
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "accessatlas-scans",
+      "database_id": "REPLACE_ME_AFTER_D1_CREATE",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "kv_namespaces": [
+    { "binding": "RATE_LIMIT_KV", "id": "REPLACE_ME_AFTER_KV_CREATE" }
+  ],
+  "browser": { "binding": "BROWSER" },
+  "vars": {
+    // Дублирует ORIGIN из src/lib/seo.tsx / scripts/gen-a11y-sitemap.mjs — обновить
+    // вместе при покупке домена (A0-ORIGIN), иначе CORS у /api/scan будет закрыт.
+    "ALLOWED_ORIGIN": "https://accessatlas.example"
+  }
+}

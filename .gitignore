@@ -4,3 +4,4 @@ dist/
 .DS_Store
 data/a11y/_generated/
 data/a11y/collect/_existing-domains.txt
+.wrangler/

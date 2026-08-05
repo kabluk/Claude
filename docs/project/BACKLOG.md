@@ -19,7 +19,7 @@
 
 | ID | Задача | Владелец | Зависит от | Статус |
 |---|---|---|---|---|
-| A1-SCAN | Worker: `POST /api/scan` + Browser Rendering + axe-core → D1; rate-limit, Turnstile | backend-engineer | — (техн. независим) | ready |
+| A1-SCAN | Worker: `POST /api/scan` + Browser Rendering + axe-core → D1; rate-limit, Turnstile | backend-engineer | — (техн. независим) | **review** (код готов, живой прогон на реальном CF-аккаунте ждёт) |
 | A1-REPORT | UI `/report/:id`: находки по WCAG, severity, score, шаринг | frontend-engineer | A1-SCAN | todo |
 | A1-EXPLAIN | `POST /api/explain`: Claude Haiku + KV-кэш ruleId×locale | backend-engineer | A1-SCAN | todo |
 | A1-COST | Оценка стоимости (эвристика × price bands) + дисклеймер | frontend-engineer | A1-REPORT | todo |
