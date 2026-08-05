@@ -4,7 +4,7 @@
 // прошедшие порог ≥3 листингов (страницы ниже порога существуют, но с
 // noindex — их в sitemap не включаем). Логика слагов зеркалит src/lib/data.ts.
 
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { readFileSync, writeFileSync, copyFileSync, existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 
@@ -36,7 +36,12 @@ const slugify = (s) =>
 const inCountry = (code) =>
   agencies.filter((a) => a.hq.countryCode === code || (a.countriesServed || []).includes(code))
 
-const urls = ['/', '/agencies/', '/countries/', '/services/', '/standards/']
+// Imprint и 404 сюда не идут — index=false в самих страницах (Imprint ждёт
+// реквизитов владельца, 404 в принципе не индексируется).
+const urls = [
+  '/', '/agencies/', '/countries/', '/services/', '/standards/',
+  '/about/', '/contact/', '/privacy/',
+]
 for (const a of agencies) urls.push(`/agencies/${a.slug}/`)
 
 // Гайды: data/a11y/guides/*.md (slug — имя файла), всегда индексируемые.
@@ -78,4 +83,15 @@ ${urls.map((u) => `  <url><loc>${ORIGIN}${u}</loc><lastmod>${today}</lastmod></u
 `
 writeFileSync(join(DIST, 'sitemap.xml'), xml)
 writeFileSync(join(DIST, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}/sitemap.xml\n`)
+
+// Cloudflare Pages/Netlify ищут ровно dist/404.html в корне вывода,
+// а не dist/404/index.html (dirStyle: 'nested' пишет именно так). Копируем.
+const notFoundNested = join(DIST, '404', 'index.html')
+if (existsSync(notFoundNested)) {
+  copyFileSync(notFoundNested, join(DIST, '404.html'))
+  console.log('✓ 404.html скопирован в корень dist/ (конвенция хостингов)')
+} else {
+  console.warn('⚠ dist/404/index.html не найден — маршрут /404 не собрался?')
+}
+
 console.log(`✓ sitemap: ${urls.length} URL → dist/sitemap.xml (+robots.txt)`)

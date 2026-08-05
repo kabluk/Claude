@@ -126,6 +126,10 @@ export const paths = {
   service: (s: ServiceSlug) => `/services/${SERVICE_SEG[s]}/`,
   standards: () => '/standards/',
   standard: (s: StandardSlug) => `/standards/${s}/`,
+  about: () => '/about/',
+  contact: () => '/contact/',
+  privacy: () => '/privacy/',
+  imprint: () => '/imprint/',
 }
 
 export const serviceLabel = (s: ServiceSlug) => tax.services[s].en ?? s

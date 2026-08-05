@@ -63,6 +63,13 @@ export const routes: RouteRecord[] = [
     lazy: page(() => import('./pages/GuidePage')),
     getStaticPaths: () => guides.map((g) => `/guides/${g.slug}/`),
   },
+  { path: '/about', lazy: page(() => import('./pages/AboutPage')) },
+  { path: '/contact', lazy: page(() => import('./pages/ContactPage')) },
+  { path: '/privacy', lazy: page(() => import('./pages/PrivacyPage')) },
+  { path: '/imprint', lazy: page(() => import('./pages/ImprintPage')) },
+  // Статический /404/ — прямые ссылки и копия в dist/404.html (см.
+  // gen-a11y-sitemap.mjs) для конвенции хостингов (Cloudflare Pages/Netlify).
+  { path: '/404', lazy: page(() => import('./pages/NotFoundPage')) },
   {
     path: '/:country',
     lazy: page(() => import('./pages/CountryPage')),
@@ -73,4 +80,8 @@ export const routes: RouteRecord[] = [
     lazy: page(() => import('./pages/ComboPage')),
     getStaticPaths: () => combos.map(({ c, s }) => paths.combo(c, s)),
   },
+  // Клиентский catch-all: не пререндерится (vite-react-ssg отфильтровывает
+  // пути с ':'/'*' из статической сборки), но подхватывает SPA-навигацию
+  // на несуществующий путь в браузере после гидратации.
+  { path: '*', lazy: page(() => import('./pages/NotFoundPage')) },
 ]
