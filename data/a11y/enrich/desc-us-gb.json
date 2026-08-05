@@ -1,0 +1,664 @@
+[
+  {
+    "slug": "crawford-technologies",
+    "languages": [
+      "en"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508"
+    ],
+    "descriptionEn": "Crawford Technologies is an award-winning provider of document processing software and services, serving 2000+ enterprise clients across financial services, insurance, healthcare, government, education, and print sectors. Its AccessibilityNow platform converts documents into accessible formats including PDF/UA, WCAG-conformant HTML, braille, large print, and audio, alongside automated tagging, validation, and website scanning/remediation. The company also offers omnichannel customer-communications and document-workflow solutions built on 30+ years of enterprise document processing expertise.",
+    "evidence": [
+      {
+        "url": "https://crawfordtech.com/",
+        "label": "homepage — services, industries, AccessibilityNow platform, WCAG/Section 508 mentions"
+      }
+    ]
+  },
+  {
+    "slug": "grackledocs",
+    "hqCity": "Barrie",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat",
+      "training",
+      "consulting"
+    ],
+    "descriptionEn": "GrackleDocs, headquartered in Barrie, Ontario (with an Australian office in Malaga, WA), is a document and web accessibility provider used by more than 1,300 organizations worldwide. It offers software (Grackle PDF, Grackle Office, Grackle Workspace, Grackle Check) for testing documents against WCAG and PDF/UA, plus services including PDF remediation, web accessibility auditing, digital accessibility consulting, VPAT preparation, and training, serving both business and education clients.",
+    "evidence": [
+      {
+        "url": "https://www.grackledocs.com/en/",
+        "label": "homepage — services, software suite, HQ/Australia addresses in footer"
+      }
+    ]
+  },
+  {
+    "slug": "intopia",
+    "hqCity": "Melbourne",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training",
+      "vpat"
+    ],
+    "descriptionEn": "Intopia is a disability-led and female-led social enterprise based in Melbourne, with a further presence in Sydney, describing itself as the largest digital accessibility and equitable design team in the southern hemisphere. Its services include accessibility assessments, strategy and policy consulting, education and training, equitable research and design, and Accessibility Conformance Reports, plus an ongoing \"AccessibilityOps\" support offering, working with organisations across Australia and internationally.",
+    "evidence": [
+      {
+        "url": "https://intopia.digital/",
+        "label": "homepage — services, team description"
+      },
+      {
+        "url": "https://intopia.digital/contact-us/",
+        "label": "contact page — Melbourne/Sydney phone/description"
+      }
+    ]
+  },
+  {
+    "slug": "accessibil-it",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "remediation"
+    ],
+    "descriptionEn": "Accessibil-IT converts PDF documents into accessible versions for people with visual or cognitive disabilities, operating from Ontario, Canada. The company focuses on document remediation to PDF/UA and WCAG 2.0 standards, preserving branding and reading order, and states it participates in relevant industry standards committees. It offers a streamlined quote-to-delivery workflow aimed at handling both single documents and large-volume PDF accessibility remediation projects.",
+    "evidence": [
+      {
+        "url": "https://www.accessibilit.com/",
+        "label": "homepage — services, PDF/UA and WCAG 2.0 compliance claims"
+      }
+    ]
+  },
+  {
+    "slug": "vision-australia-digital-access",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "training"
+    ],
+    "descriptionEn": "Vision Australia Digital Access Training is the training arm of Vision Australia's Digital Access consultancy, itself part of Vision Australia, a nonprofit serving people who are blind or have low vision. It sells self-paced and live online courses on web and document accessibility, covering topics such as accessibility fundamentals, alt-text writing, and creating accessible Word and PDF documents. Course fees support Vision Australia's broader services for Australians who are blind or have low vision.",
+    "evidence": [
+      {
+        "url": "https://www.digitalaccesstraining.com/",
+        "label": "homepage — courses, pricing, relationship to Vision Australia"
+      }
+    ]
+  },
+  {
+    "slug": "vision-australia",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "descriptionEn": "Vision Australia is a nonprofit organisation providing services, technology, and support for people who are blind or have low vision, including therapy, mobility training, and a technology helpdesk. Through its Digital Access business unit, it also provides digital accessibility consultancy, training, and testing services to help businesses, governments, and other organisations make their websites and digital content accessible, alongside separate Print Accessibility and Audio Description services for corporate clients.",
+    "evidence": [
+      {
+        "url": "https://www.visionaustralia.org/",
+        "label": "homepage — org description, Digital Access business/corporate section"
+      }
+    ]
+  },
+  {
+    "slug": "tetralogical",
+    "hqCity": "London",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "descriptionEn": "TetraLogical is a London-based boutique accessibility consultancy that helps organisations make websites, apps, and other technologies usable by people with disabilities. Its services span experience-focused testing and assessment for people using technology, knowledge-building for design and engineering teams, and strategic support for teams managing accessibility programmes. The company also publishes an \"Accessibility Unlocked\" newsletter and a blog covering topics such as WCAG, native app accessibility, and reading disabilities.",
+    "evidence": [
+      {
+        "url": "https://tetralogical.com/",
+        "label": "homepage — services, team, address in footer (60 Windsor Avenue, London)"
+      }
+    ]
+  },
+  {
+    "slug": "cyber-duck",
+    "hqCity": "London",
+    "languages": [
+      "en"
+    ],
+    "descriptionEn": "Cyber-Duck, now operating as CACI Digital Experience (part of CACI, headquartered at CACI House, London) after being acquired by CACI, is a UK digital transformation agency offering strategy, UX/product design, web application development, CMS platforms, DevOps, and data analytics. It works across healthcare, government, technology, education, and finance sectors with an inclusive, user-centred design approach, is an associate member of the International Association of Accessibility Professionals (IAAP), and holds Disability Confident and ISO 9001/27001/14001 accreditations.",
+    "evidence": [
+      {
+        "url": "https://www.cyber-duck.co.uk/",
+        "label": "redirects to caci.co.uk/what-we-do — company rebrand, HQ, IAAP/Disability Confident/ISO badges"
+      }
+    ]
+  },
+  {
+    "slug": "torchbox",
+    "hqCity": "Bristol",
+    "languages": [
+      "en"
+    ],
+    "descriptionEn": "Torchbox is a 100% employee-owned digital agency based in Bristol, UK, that builds websites and digital services for charities, nonprofits, and public sector organisations, and is the creator of the open-source Wagtail CMS. Its Wagtail service line offers training and development support for building accessible websites, and the company publishes an accessibility statement and an annual impact report, though it is primarily a digital strategy and design agency rather than a dedicated accessibility specialist.",
+    "evidence": [
+      {
+        "url": "https://torchbox.com/",
+        "label": "homepage — sectors, Wagtail CMS, Bristol address in footer"
+      }
+    ]
+  },
+  {
+    "slug": "access-by-design",
+    "hqCity": "Chichester",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "descriptionEn": "Access by Design is a Chichester, UK agency that has worked in website accessibility since 2006, including building one of the world's first fully accessible mobile-friendly websites in 2011. Services include accessible web design and development, accessibility audits and testing (including mobile and app testing by disabled testers using WCAG 2.2), accessibility statements, accessible WordPress builds, accessibility training, and inclusive copywriting. The company also advises on UK Equality Act 2010 obligations and the European Accessibility Act.",
+    "evidence": [
+      {
+        "url": "https://accessbydesign.uk/",
+        "label": "homepage — history, services, WCAG 2.2/EAA mentions, Chichester address"
+      }
+    ]
+  },
+  {
+    "slug": "ten10",
+    "languages": [
+      "en"
+    ],
+    "descriptionEn": "Ten10, a UK software quality and engineering consultancy, has rebranded as Scale Factory and now positions itself around AI, cloud, and automation engineering for enterprise and public-sector clients. Within its Quality Engineering service line it lists \"digital accessibility assurance\" alongside test automation, performance testing, and AI testing/validation, and its public-sector messaging references building accessibility in from the start. The company's own website separately publishes a standard web accessibility statement about its site's own conformance.",
+    "evidence": [
+      {
+        "url": "https://scalefactory.com/",
+        "label": "ten10.com redirects here — rebrand, service list including digital accessibility assurance"
+      },
+      {
+        "url": "https://scalefactory.com/accessibility/",
+        "label": "site's own accessibility statement"
+      }
+    ]
+  },
+  {
+    "slug": "ascentiq-solutions",
+    "hqCity": "Ilford",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "descriptionEn": "AscentiQ Solutions is an independent UK software testing company, founded in 2012 and based in Ilford, London, that provides QA services including web and mobile application testing, test automation, API testing, and risk-based testing for public sector, telecom, banking, and financial services clients. Accessibility testing is offered as one of its testing service lines, described on its site as ensuring digital products support the needs of all users, alongside its broader software quality assurance work.",
+    "evidence": [
+      {
+        "url": "https://ascentiqsolutions.co.uk/",
+        "label": "homepage — services list incl. Accessibility Testing Services, Ilford address in footer"
+      }
+    ]
+  },
+  {
+    "slug": "silktide",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada",
+      "eaa"
+    ],
+    "descriptionEn": "Silktide is a website governance software company, with locations including Austin, Berlin, Birmingham, Copenhagen, and Sydney, that sells a platform combining accessibility, SEO, user experience, content, analytics, and data-privacy monitoring tools. Its Accessibility module is positioned to help organisations meet WCAG 2.2 and ADA obligations, and the company publishes free tools such as an accessibility checker and colour-contrast checker plus guides to the European Accessibility Act and ADA compliance. G2 has listed Silktide as a top-rated accessibility platform.",
+    "evidence": [
+      {
+        "url": "https://silktide.com/",
+        "label": "homepage — product modules, WCAG 2.2/ADA/EAA mentions, locations in footer"
+      }
+    ]
+  },
+  {
+    "slug": "testpros",
+    "hqCity": "Sterling",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "vpat",
+      "remediation"
+    ],
+    "standards": [
+      "section-508",
+      "ada",
+      "en-301-549"
+    ],
+    "descriptionEn": "TestPros is an independent IT testing and compliance firm founded in 1988 and headquartered in Sterling, Virginia, serving U.S. federal government and enterprise clients. Its accessibility practice provides WCAG audits, VPATs, and remediation and testing for websites, applications, and documents against standards including ADA Title II/III, Section 508, Section 504, EN 301-549, and AODA, alongside separate cybersecurity and privacy compliance services such as FedRAMP, NIST, and HIPAA assessments.",
+    "evidence": [
+      {
+        "url": "https://testpros.com/",
+        "label": "homepage — founded 1988, Sterling VA address, accessibility compliance domains"
+      }
+    ]
+  },
+  {
+    "slug": "new-editions-consulting",
+    "hqCity": "Falls Church",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "section-508"
+    ],
+    "descriptionEn": "New Editions Consulting is a woman-owned small business headquartered in Falls Church, Virginia, working on federal contracts spanning children and youth, aging, disability, health, workforce development, education, housing, transportation, and international development programs. Among its service lines is Accessibility Services, covering Section 508 and accessible information and communication technology (ICT), alongside technical assistance and training, software and web-based solutions, program management, and research and evaluation work for government and public-sector clients.",
+    "evidence": [
+      {
+        "url": "https://neweditions.net/",
+        "label": "homepage — company description, service list, Falls Church address in footer"
+      }
+    ]
+  },
+  {
+    "slug": "webaim",
+    "hqCity": "Logan",
+    "descriptionEn": "WebAIM (Web Accessibility In Mind) is a program of Utah State University, based in Logan, Utah, that has worked to expand web accessibility for decades. It provides accessibility training (web, document, Zoom-based, and strategic), technical assistance, procurement guidance, and evaluation/reporting services, and produces widely used free resources including the WAVE evaluation tool, a WCAG 2 checklist, the annual WebAIM Million report, a screen reader user survey, and the WebAIM conference.",
+    "evidence": [
+      {
+        "url": "https://webaim.org/",
+        "label": "homepage — services, Logan UT / Utah State University address in footer"
+      }
+    ]
+  },
+  {
+    "slug": "bureau-of-internet-accessibility",
+    "hqCity": "East Greenwich",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "remediation",
+      "monitoring"
+    ],
+    "standards": [
+      "ada",
+      "section-508"
+    ],
+    "descriptionEn": "Bureau of Internet Accessibility (BoIA), headquartered in East Greenwich, Rhode Island, has provided digital accessibility services since 2001. It offers WCAG 2.1 A/AA audits combining automated and manual testing, accessibility training, remediation support, and testing across web, mobile, PDF, application, and kiosk formats, plus an in-house A11Y accessibility testing/monitoring platform. BoIA works with clients on compliance with WCAG, ADA, Section 508, ACAA, OCR, and AODA requirements across education, finance, healthcare, retail, and government sectors.",
+    "evidence": [
+      {
+        "url": "https://www.boia.org/",
+        "label": "homepage — services, standards covered, East Greenwich RI address in footer"
+      }
+    ]
+  },
+  {
+    "slug": "afixt",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "vpat",
+      "consulting"
+    ],
+    "standards": [
+      "ada",
+      "section-508",
+      "eaa",
+      "en-301-549"
+    ],
+    "descriptionEn": "AFixt provides accessibility consulting, auditing, and compliance documentation services, specializing in ADA, Section 508, WCAG, and European Accessibility Act (EAA) conformance. Services include standards-based accessibility audits, VPAT and ACR (Accessibility Conformance Report) preparation, and strategic consulting on accessibility programs, positioned around manual, standards-based assessment rather than automated scans or accessibility overlays. The company also references work with AODA and EN 301 549 requirements for international clients.",
+    "evidence": [
+      {
+        "url": "https://afixt.com/",
+        "label": "homepage — services, standards covered (ADA, Section 508, WCAG, EAA, AODA, EN 301 549)"
+      }
+    ]
+  },
+  {
+    "slug": "accessible-web",
+    "hqCity": "Burlington",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "monitoring"
+    ],
+    "standards": [
+      "ada",
+      "section-508",
+      "eaa"
+    ],
+    "descriptionEn": "Accessible Web, based in Burlington, Vermont, offers the RAMP software platform for automated and manual WCAG scanning, remediation management, and site-level reporting, alongside professional services including manual accessibility audits, remediation support, and assistive-technology testing conducted by people with disabilities. It also runs Accessible Web Academy training courses and publishes regulation playbooks covering the ADA, Section 508, the European Accessibility Act, AODA, and the Accessible Canada Act. The company is a member of the IAAP.",
+    "evidence": [
+      {
+        "url": "https://accessibleweb.com/",
+        "label": "homepage — RAMP platform, services, Burlington VT address in footer"
+      }
+    ]
+  },
+  {
+    "slug": "prime-access-consulting",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "consulting"
+    ],
+    "descriptionEn": "Prime Access Consulting (PAC) is an inclusive design consultancy that works across digital and physical spaces, including websites, mobile apps, and capital museum and cultural projects. It has worked with cultural institutions such as the San Francisco Museum of Modern Art, the Smithsonian Institution, the National Federation of the Blind, and the Canadian Museum for Human Rights on tactile wayfinding, audio description, ASL video content, and accessible exhibition design, alongside digital accessibility work for technology and education clients.",
+    "evidence": [
+      {
+        "url": "https://pac.bz/",
+        "label": "homepage — practice description, client/project list"
+      }
+    ]
+  },
+  {
+    "slug": "chax-training-and-consulting",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "training",
+      "consulting"
+    ],
+    "descriptionEn": "Chax Training and Consulting provides accessibility training and consulting focused on document remediation, including bespoke training classes tailored to a client's own materials and a self-reported track record of over 15,000 students trained. It partners with Little Forest on AI-powered PDF remediation tooling, works with clients in financial services, insurance, and healthcare, and produces the Chax Chat podcast and other educational resources on accessible document creation and content remediation.",
+    "evidence": [
+      {
+        "url": "https://chaxtc.com/",
+        "label": "homepage — services, training stats, Little Forest partnership, industries served"
+      }
+    ]
+  },
+  {
+    "slug": "216digital",
+    "hqCity": "Twinsburg",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "monitoring",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada",
+      "section-508"
+    ],
+    "descriptionEn": "216digital, based in Twinsburg, Ohio, is a web accessibility and digital agency offering ADA risk mitigation, WCAG 2.1/2.2 AA conformance work, and ongoing accessibility monitoring through its a11y.Radar service, alongside eCommerce design and development and digital marketing (PPC and SEO) services. Its accessibility offering targets businesses seeking to prevent or respond to ADA web-accessibility lawsuits and maintain compliance with WCAG and Section 508 requirements over time.",
+    "evidence": [
+      {
+        "url": "https://216digital.com/",
+        "label": "homepage — services, WCAG/ADA/Section 508 mentions, Twinsburg OH address in footer"
+      }
+    ]
+  },
+  {
+    "slug": "accessibility-shield",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "vpat",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "ada"
+    ],
+    "descriptionEn": "Accessibility Shield offers the ARMOR platform, a white-label digital accessibility management tool aimed at accessibility agencies, web design and development firms, and organizations of all sizes, combining browser-extension auditing, issue tracking, project management, and remediation tracking. Its expert services include auditing and VPAT/ACR preparation using a mix of automated scanning and certified manual testers, along with remediation support, developer training and guidance, and ongoing ADA accessibility collaboration programs.",
+    "evidence": [
+      {
+        "url": "https://accessibilityshield.com/",
+        "label": "homepage — ARMOR platform, services, ADA nav items"
+      }
+    ]
+  },
+  {
+    "slug": "converge-accessibility",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "ada"
+    ],
+    "descriptionEn": "Converge Accessibility is a digital accessibility consultancy combining legal, policy, and technical expertise, offering accessibility evaluations, WCAG-focused planning and website remediation guidance, VPAT/ACR preparation, accessibility training, and its WebAlign role-based compliance tool. Its principals include a former U.S. Department of Justice Disability Rights Section trial attorney and Microsoft's former worldwide Director of Accessibility Policy and Standards. Clients include Microsoft, Cotton On, and government agencies in the U.S. and Canada.",
+    "evidence": [
+      {
+        "url": "https://convergeaccessibility.com/",
+        "label": "homepage — services, principals' bios, client list"
+      }
+    ]
+  },
+  {
+    "slug": "accessibility-works",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "vpat",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "ada",
+      "section-508",
+      "eaa"
+    ],
+    "descriptionEn": "Accessibility.Works is a U.S.-based digital accessibility consultancy staffed by senior practitioners, offering website, SaaS/web app, and mobile app accessibility auditing, VPAT and ACR preparation, accessibility consulting, and accessibility training. It advises clients across SaaS, ecommerce, and higher education on compliance with ADA Title II and Title III, Section 508, the European Accessibility Act, and numerous U.S. state accessibility laws, and is a member of the International Association of Accessibility Professionals (IAAP).",
+    "evidence": [
+      {
+        "url": "https://www.accessibility.works/",
+        "label": "homepage — services, laws covered, IAAP membership"
+      }
+    ]
+  },
+  {
+    "slug": "accessible-org",
+    "hqCity": "San Antonio",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "vpat",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "ada",
+      "eaa"
+    ],
+    "descriptionEn": "Accessible.org, based in San Antonio, Texas, and founded by licensed attorney Kris Rivenburgh, provides WCAG accessibility audits, VPAT/ACR preparation, accessibility user testing, and PDF remediation, along with an Accessibility Tracker platform for managing remediation and validation. The company publishes standard pricing online, offers two-week (or expedited one-week) audit turnarounds without required sales calls, and contracts credentialed experts holding DHS Trusted Tester, CPACC, WAS, and CPWA certifications, plus guidance on ADA and EAA compliance.",
+    "evidence": [
+      {
+        "url": "https://accessible.org/",
+        "label": "homepage — services, pricing/turnaround claims, San Antonio address in footer"
+      }
+    ]
+  },
+  {
+    "slug": "applause",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "descriptionEn": "Applause (Applause App Quality, Inc.) is a managed software testing company built around a global crowdtesting community of more than 1.5 million testers across 200+ countries and 150+ languages. Among its testing services, Accessibility & Inclusive Design testing uses real users, including people with disabilities, to evaluate products against accessibility standards alongside functional, localization, security, and AI testing. The company publishes an annual \"State of Digital Quality in Accessibility\" report on digital inclusion trends.",
+    "evidence": [
+      {
+        "url": "https://www.applause.com/",
+        "label": "homepage — services list, Accessibility & Inclusive Design testing description"
+      }
+    ]
+  },
+  {
+    "slug": "braille-works",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "remediation"
+    ],
+    "standards": [
+      "ada",
+      "section-508"
+    ],
+    "descriptionEn": "Braille Works converts documents into accessible formats — braille, large print, audio, and accessible PDFs — for organizations in healthcare, banking, government, and other regulated industries, with more than 30 years of experience. The company states it employs in-house ADA and Section 508 compliance experts and UX specialists, and holds SOC 2 Type 2 certification with the HITRUST Common Security Framework as well as FISMA audit status, reflecting a focus on secure handling of client documents.",
+    "evidence": [
+      {
+        "url": "https://brailleworks.com/",
+        "label": "homepage — services, certifications, in-house compliance expert claims"
+      }
+    ]
+  },
+  {
+    "slug": "integrity-xd",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "ada"
+    ],
+    "descriptionEn": "Integrity (Integrity XD) is a web design and digital consulting agency offering services spanning UX/UI design, web development, digital marketing, and AI solutions. Among its offerings is an Accessibility Audits service that evaluates color contrast, text sizing, and other design elements against WCAG standards to help clients meet Americans with Disabilities Act (ADA) requirements, though accessibility is one part of a broader web design and marketing practice rather than the company's core focus.",
+    "evidence": [
+      {
+        "url": "https://www.integrityxd.com/",
+        "label": "homepage — general agency positioning"
+      },
+      {
+        "url": "https://www.integrityxd.com/service/audits/accessibility-audits",
+        "label": "Accessibility Audits service page — WCAG/ADA description"
+      }
+    ]
+  },
+  {
+    "slug": "accessability-officer",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "monitoring",
+      "consulting"
+    ],
+    "standards": [
+      "ada"
+    ],
+    "descriptionEn": "AccessAbility Officer is a digital accessibility compliance provider focused on U.S. government agencies, offering ADA Title II and WCAG compliance support for websites, mobile apps, and PDF documents. Its services include Digital Accessibility Audits conducted by disabled testers, Digital Accessibility Training, ongoing Accessibility Management, and DARTSuite, an AI-and-automation-augmented platform combining on-demand certified accessibility experts with monitoring and reporting tools. The company states its government clients' digital properties reach more than 35 million U.S. residents.",
+    "evidence": [
+      {
+        "url": "https://accessabilityofficer.com/",
+        "label": "homepage — services, DARTSuite platform, ADA Title II focus, government client reach"
+      }
+    ]
+  },
+  {
+    "slug": "equalize-digital",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat",
+      "monitoring",
+      "training"
+    ],
+    "standards": [
+      "ada",
+      "eaa",
+      "section-508"
+    ],
+    "descriptionEn": "Equalize Digital specializes in WordPress accessibility, offering the Accessibility Checker plugin for automated WCAG scanning inside the WordPress editor as well as an ArchiveWP tool, alongside professional services including accessibility audits, user testing, remediation, VPAT/ACR preparation, ongoing accessibility monitoring, and web accessibility training. The company works with WordPress agencies, product developers, and website owners to meet WCAG requirements under laws including the ADA, AODA, the European Accessibility Act, and Section 508.",
+    "evidence": [
+      {
+        "url": "https://equalizedigital.com/",
+        "label": "homepage — software and services list, laws covered"
+      }
+    ]
+  },
+  {
+    "slug": "ablr",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "ada"
+    ],
+    "descriptionEn": "Ablr is a mission-driven nonprofit focused on disability inclusion, working to eliminate the digital divide through three program areas: Digital Accessibility services, Disability Inclusion Training for organizations, and Workforce Development programs (Ablr Futures, Ablr Works, and Ablr Accelerated) that prepare people who are blind or have low vision for careers in tech, including an AI-focused course. The organization's CEO and co-founder, John Samuel, is blind and speaks publicly on accessibility and disability inclusion.",
+    "evidence": [
+      {
+        "url": "https://ablr360.com/",
+        "label": "homepage — nonprofit status, program areas, CEO bio"
+      }
+    ]
+  },
+  {
+    "slug": "access-armada",
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "ada"
+    ],
+    "descriptionEn": "Access Armada is a digital accessibility agency, staffed by veteran web professionals, that helps businesses, governments, nonprofits, and digital agencies work toward ADA compliance for websites, mobile apps, and other digital products. Its services include web and mobile app accessibility audits and testing, accessibility support during new builds, remediation and care plans, UX and design accessibility reviews, PDF and document accessibility remediation, and content accessibility training and coaching, plus free manual accessibility reviews.",
+    "evidence": [
+      {
+        "url": "https://www.accessarmada.com/",
+        "label": "homepage — services list, ADA compliance positioning"
+      }
+    ]
+  }
+]
