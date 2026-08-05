@@ -373,7 +373,7 @@
     "standards": ["wcag-2-2"],
     "descriptionEn": "Nautil Sp. z o.o. is a dedicated digital and architectural accessibility company with an 18-person team and over 10 years of experience, focused on promoting accessibility under WCAG standards and the Polish Accessibility Act. It performs accessibility audits of websites, mobile apps and IT systems, architectural accessibility audits, audio/video transcription and easy-to-read text services, provides an accessibility-declaration generator, and trains developers, designers and companies on applying WCAG.",
     "descriptionPl": "Nautil Sp. z o.o. to wyspecjalizowana firma zajmująca się dostępnością cyfrową i architektoniczną, z 18-osobowym zespołem i ponad 10-letnim doświadczeniem, skupiona na promowaniu dostępności zgodnej ze standardami WCAG oraz Polskim Aktem o Dostępności. Wykonuje audyty dostępności stron internetowych, aplikacji mobilnych i systemów informatycznych, audyty dostępności architektonicznej, transkrypcje audio i wideo oraz teksty łatwe do czytania, udostępnia generator deklaracji dostępności i prowadzi szkolenia dla deweloperów, projektantów i firm z zakresu WCAG.",
-    "evidence": [{"url": "https://nautil.pl", "label": "Homepage — team, service list, WCAG focus"}]
+    "evidence": [{"url": "https://nautil.pl", "label": "Homepage — team, service list, WCAG focus, HQ address"}]
   },
   {
     "slug": "optimal-it",
