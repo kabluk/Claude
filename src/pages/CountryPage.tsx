@@ -79,7 +79,7 @@ export default function CountryPage() {
         </div>
       )}
 
-      <FilterableList items={list} />
+      <FilterableList items={list} heading={`Agencies in ${c.name}`} />
     </Layout>
   )
 }

@@ -64,7 +64,7 @@ export default function ComboPage() {
         </Link>
       </p>
 
-      <FilterableList items={list} hideServiceFacet />
+      <FilterableList items={list} heading={`${label} providers`} hideServiceFacet />
     </Layout>
   )
 }

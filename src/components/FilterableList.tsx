@@ -30,10 +30,12 @@ function toggle<T>(set: Set<T>, v: T): Set<T> {
 
 export function FilterableList({
   items,
+  heading = 'Agencies',
   hideServiceFacet = false,
   hideStandardFacet = false,
 }: {
   items: Agency[]
+  heading?: string // подпись раздела: h1 страницы → этот h2 → h3 карточек (иначе разрыв уровней)
   hideServiceFacet?: boolean // на комбо-страницах услуга уже зафиксирована URL-ом
   hideStandardFacet?: boolean
 }) {
@@ -61,7 +63,8 @@ export function FilterableList({
 
   return (
     <div>
-      <div className="mt-6 space-y-3">
+      <h2 className="h2">{heading}</h2>
+      <div className="space-y-3">
         <input
           type="search"
           value={q}

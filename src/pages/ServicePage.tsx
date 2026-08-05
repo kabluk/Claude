@@ -52,7 +52,7 @@ export default function ServicePage() {
         })}
       </div>
 
-      <FilterableList items={list} hideServiceFacet />
+      <FilterableList items={list} heading={`${label} providers worldwide`} hideServiceFacet />
     </Layout>
   )
 }

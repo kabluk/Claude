@@ -70,7 +70,7 @@ export default function StandardPage() {
         </div>
       )}
 
-      <FilterableList items={list} hideStandardFacet />
+      <FilterableList items={list} heading={`${label} auditors`} hideStandardFacet />
     </Layout>
   )
 }
