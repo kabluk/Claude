@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "UserPromptSubmit": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "python3 .claude/scripts/task_profiler.py",
+            "timeout": 5
+          }
+        ]
+      }
+    ]
+  }
+}

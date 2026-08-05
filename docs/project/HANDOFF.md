@@ -9,6 +9,13 @@
 > затем `/project-orchestrator Продолжи проект: выбери следующий незаблокированный узел
 > из docs/project/GRAPH.yaml, выполни через /task-loop, обнови handoff.
 
+`/project-orchestrator`, `/workflow-graph`, `/task-loop`, `/task-profiler`,
+`/next-step-coach` теперь реально установлены в этом репозитории
+(`.claude/commands/`, `.claude/agents/`, D-012) — не нужен внешний плагин/флаг.
+Хук Model Advisor подключён в `.claude/settings.json`, если новая сессия не видит
+подсказку в начале ответа — откройте `/hooks` один раз (перезагружает конфиг) или
+перезапустите Claude Code (см. каверзу с file watcher в `update-config` skill).
+
 Проверка среды: `npm install && node scripts/build-a11y.mjs` (ожидать: **245** агентств).
 
 ## Что это
@@ -62,3 +69,15 @@
    разблокирует A1-REPORT/A1-EXPLAIN.
 2. Спросить владельца: реквизиты Imprint + домен — единственное, что блокирует деплой
    каталога (снимает A0-OWNER-LEGAL → A0-ORIGIN → A0-DEPLOY → A0-GSC разом).
+
+## Живой skill (D-012)
+
+Оркестратор (`.claude/commands/`, `.claude/agents/`) — не статичный шаблон. Владелец
+явно попросил улучшать его по ходу проекта. Когда находишь общий, переносимый на
+другие проекты урок (не деталь AccessAtlas — той место в `DECISIONS.md`/`domains/*.md`) —
+дополни соответствующий файл в `.claude/commands/` или `.claude/agents/` и отметь
+изменение здесь же пунктом с датой:
+
+- 2026-08-05: первая установка + уроки D-009/D-010/D-011 вплетены в
+  `project-orchestrator.md`, `data-engineer.md`, `frontend-engineer.md`,
+  `devops-engineer.md`, `qa-engineer.md`, `product-lead.md`.
