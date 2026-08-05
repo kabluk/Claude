@@ -1,0 +1,42 @@
+{
+  "query": "international health certificate for dogs",
+  "location": "US",
+  "items": [
+    {
+      "pos": 2,
+      "domain": "www.aphis.usda.gov",
+      "title": "Domestic and International Travel With a Pet",
+      "url": "https://www.aphis.usda.gov/pet-travel"
+    },
+    {
+      "pos": 3,
+      "domain": "www.state.gov",
+      "title": "Pets and International Travel",
+      "url": "https://www.state.gov/transition-center/pets-and-international-travel"
+    },
+    {
+      "pos": 6,
+      "domain": "www.3vvh.com",
+      "title": "International Health Certificates | Veterinarian in Stony ...",
+      "url": "https://www.3vvh.com/international-health-certificates"
+    },
+    {
+      "pos": 8,
+      "domain": "www.globalvetlink.com",
+      "title": "International Health Certificates",
+      "url": "https://www.globalvetlink.com/international-health-certificates"
+    },
+    {
+      "pos": 9,
+      "domain": "pcacvet.com",
+      "title": "Pet Health Certificates | USDA Vets in Dallas",
+      "url": "https://pcacvet.com/services/pet-health-certificates"
+    },
+    {
+      "pos": 10,
+      "domain": "www.backbayvet.com",
+      "title": "International Health Certificate for Pet Travel",
+      "url": "https://www.backbayvet.com/services/international-health-certificate"
+    }
+  ]
+}

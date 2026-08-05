@@ -1,0 +1,959 @@
+{
+  "location": "DE",
+  "language": "de",
+  "fetched_for": 14,
+  "rows": [
+    {
+      "keyword": "barrierefreiheitsstärkungsgesetz",
+      "volume": 5400,
+      "cpc": 3.68,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 1900
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 1900
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 2400
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 2900
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 3600
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 3600
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 3600
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 5400
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 6600
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 9900
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 9900
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 18100
+        }
+      ]
+    },
+    {
+      "keyword": "bfsg",
+      "volume": 3600,
+      "cpc": 4.22,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 1900
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 1900
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 1900
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 2400
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 2900
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 2900
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 2400
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 3600
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 3600
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 5400
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 5400
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 9900
+        }
+      ]
+    },
+    {
+      "keyword": "wcag",
+      "volume": 2900,
+      "cpc": 4.46,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 2900
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 2900
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 2900
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 2900
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 2900
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 3600
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 2400
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 3600
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 3600
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 3600
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 3600
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 4400
+        }
+      ]
+    },
+    {
+      "keyword": "barrierefreiheit internet",
+      "volume": 2400,
+      "cpc": 8.6,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 1000
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 1000
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 1300
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 1600
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 1600
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 2400
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 2400
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 5400
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 2900
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 5400
+        }
+      ]
+    },
+    {
+      "keyword": "barrierefreie website",
+      "volume": 1600,
+      "cpc": 7.53,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 1000
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 1000
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 1000
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 1600
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 2900
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 1900
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 3600
+        }
+      ]
+    },
+    {
+      "keyword": "bitv",
+      "volume": 1300,
+      "cpc": 5.68,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 1000
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 1000
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 1300
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 1300
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 1000
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 1900
+        }
+      ]
+    },
+    {
+      "keyword": "bitv 2.0",
+      "volume": 1000,
+      "cpc": 5.64,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 1000
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 1000
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 1000
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 1000
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 1000
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 1600
+        }
+      ]
+    },
+    {
+      "keyword": "barrierefreiheitsgesetz",
+      "volume": 880,
+      "cpc": 4.5,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 590
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 1000
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 2400
+        }
+      ]
+    },
+    {
+      "keyword": "digitale barrierefreiheit",
+      "volume": 720,
+      "cpc": 5.68,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 590
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 1000
+        }
+      ]
+    },
+    {
+      "keyword": "european accessibility act",
+      "volume": 720,
+      "cpc": 6.15,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 590
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 1300
+        }
+      ]
+    },
+    {
+      "keyword": "wcag 2.1",
+      "volume": 720,
+      "cpc": 5.71,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 1000
+        }
+      ]
+    },
+    {
+      "keyword": "barrierefreiheit testen",
+      "volume": 390,
+      "cpc": 7.82,
+      "competition": "HIGH",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 210
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 210
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 720
+        }
+      ]
+    },
+    {
+      "keyword": "barrierefreies webdesign",
+      "volume": 320,
+      "cpc": 6.05,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 170
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 140
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 170
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 390
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 390
+        }
+      ]
+    },
+    {
+      "keyword": "accessibility audit",
+      "volume": 70,
+      "cpc": 17.32,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 140
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 110
+        }
+      ]
+    }
+  ]
+}

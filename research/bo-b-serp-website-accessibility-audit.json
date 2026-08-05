@@ -1,0 +1,48 @@
+{
+  "query": "website accessibility audit",
+  "location": "US",
+  "items": [
+    {
+      "pos": 2,
+      "domain": "www.accessibilitychecker.org",
+      "title": "Accessibility Checker",
+      "url": "https://www.accessibilitychecker.org/"
+    },
+    {
+      "pos": 3,
+      "domain": "www.reddit.com",
+      "title": "I need to do an accessibility audit of a site. Is there ...",
+      "url": "https://www.reddit.com/r/web_design/comments/wp7e93/i_need_to_do_an_accessibility_audit_of_a_site_is/"
+    },
+    {
+      "pos": 4,
+      "domain": "wave.webaim.org",
+      "title": "WAVE Web Accessibility Evaluation Tools",
+      "url": "https://wave.webaim.org/"
+    },
+    {
+      "pos": 5,
+      "domain": "accessibility.huit.harvard.edu",
+      "title": "Accessibility Testing Tools and Practices",
+      "url": "https://accessibility.huit.harvard.edu/testing"
+    },
+    {
+      "pos": 6,
+      "domain": "www.siteimprove.com",
+      "title": "How to run an accessibility audit",
+      "url": "https://www.siteimprove.com/glossary/accessibility-audit/"
+    },
+    {
+      "pos": 7,
+      "domain": "www.skynettechnologies.com",
+      "title": "Free Website Accessibility Checker for WCAG 2.0, 2.1, 2.2, ...",
+      "url": "https://www.skynettechnologies.com/accessibility-checker"
+    },
+    {
+      "pos": 8,
+      "domain": "www.audioeye.com",
+      "title": "Website Accessibility Checker: Free ADA Compliance Scan",
+      "url": "https://www.audioeye.com/website-accessibility-checker/"
+    }
+  ]
+}

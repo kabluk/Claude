@@ -1,0 +1,292 @@
+[
+  {
+    "slug": "access42",
+    "hqCity": "Paris",
+    "founded": 2014,
+    "languages": ["fr"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["rgaa", "en-301-549"],
+    "industries": ["public-sector"],
+    "descriptionEn": "Access42 is a French worker cooperative (SCOP) specialised in digital accessibility, with its registered office in Paris and ESUS social-utility accreditation. Active in the field since 2014, it audits websites, mobile and business applications against RGAA, EN 301 549, WCAG, RAWeb and RAAM, and offers accessibility support, multi-year accessibility strategy (AMOA), user research with participants with disabilities, and Qualiopi-certified training. Clients span the public sector, large private companies and SMEs, with over 1,300 projects delivered.",
+    "descriptionFr": "Access42 est une coopérative (SCOP) experte en accessibilité numérique, au siège social à Paris, agréée ESUS et engagée depuis 2014. Elle audite sites web, applications mobiles et métier selon le RGAA, la norme EN 301 549, les WCAG, le RAWeb et le RAAM, et propose accompagnement, schéma pluriannuel (AMOA), recherche utilisateur avec des personnes handicapées et formations certifiantes Qualiopi. Clients : secteur public, grands comptes privés et PME, plus de 1 300 projets réalisés.",
+    "evidence": [
+      {"url": "https://access42.net/", "label": "homepage (services, cooperative since 2014, client sectors)"},
+      {"url": "https://access42.net/credits-mentions-legales/", "label": "mentions légales (SCOP-ARL, 21 bis rue du Simplon, 75018 Paris)"},
+      {"url": "https://access42.net/contact/", "label": "contact page (siège social Paris)"}
+    ]
+  },
+  {
+    "slug": "urbilog",
+    "hqCity": "Villeneuve-d'Ascq",
+    "languages": ["fr"],
+    "services": ["audit", "remediation", "training", "consulting"],
+    "standards": ["rgaa"],
+    "industries": ["public-sector"],
+    "descriptionEn": "Urbilog is a French digital accessibility company based in Villeneuve-d'Ascq, near Lille, operating for more than 25 years. An accredited Entreprise Adaptée (adapted enterprise, EA status obtained in 2017), it employs people with disabilities and combines accessibility work with inclusive recruitment. Services include RGAA and RAAM conformance audits, accessible development and remediation, QA testing, e-learning and training, and consulting, for public-sector and private clients, auditing more than 200 sites per year.",
+    "descriptionFr": "Urbilog est une entreprise française d'accessibilité numérique installée à Villeneuve-d'Ascq, active depuis plus de 25 ans. Entreprise Adaptée (agrément EA obtenu en 2017), elle agit « pour et par le handicap » en combinant accessibilité et recrutement inclusif. Elle propose audits RGAA et RAAM, développement accessible et remédiation, recette accessibilité, formations et conseil, pour des clients des secteurs public et privé, et audite plus de 200 sites par an conformément au RGAA.",
+    "evidence": [
+      {"url": "https://urbilog.com/", "label": "homepage (HQ address in footer, EA status, services, RGAA)"}
+    ]
+  },
+  {
+    "slug": "boscop",
+    "hqCity": "Angers",
+    "headcountBand": "51-200",
+    "languages": ["fr"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["rgaa"],
+    "descriptionEn": "Boscop is a French worker cooperative (SCOP) based in Angers with a team of 60 employees, focused on responsible digital services. Its digital accessibility practice, active for more than 15 years, covers RGAA/WCAG audits, accessibility support and training; the team contributed to RGAA 3 and publishes the Indically accessibility dashboard. Boscop also offers eco-design audits, GDPR compliance, custom software and open-source hosting. All staff are trained in digital accessibility and the capital is fully employee-owned.",
+    "descriptionFr": "Boscop est une coopérative (SCOP) angevine de 60 collaborateurs, créatrice de solutions numériques responsables. Engagée depuis plus de 15 ans pour un web inclusif, elle réalise des audits RGAA/WCAG, propose accompagnement et formations en accessibilité numérique, a contribué au RGAA 3 et édite le tableau de bord Indically. Elle intervient aussi en écoconception, conformité RGPD, logiciels sur mesure et hébergement responsable. Tous les salariés sont formés à l'accessibilité et le capital est détenu à 100 % par les salariés.",
+    "evidence": [
+      {"url": "https://boscop.fr/", "label": "homepage (SCOP, 60 employees, Angers address, RGAA/WCAG audit, training)"}
+    ]
+  },
+  {
+    "slug": "wcag-nl",
+    "hqCity": "Zutphen",
+    "founded": 2016,
+    "languages": ["nl"],
+    "services": ["audit", "consulting", "training"],
+    "standards": ["wcag-2-2"],
+    "descriptionEn": "WCAG.nl, operated by VoorMeerWaarde BV in Zutphen, started sharing digital accessibility knowledge in 2016 and grew strongly from late 2019 with Dutch accessibility legislation. It performs accessibility research from quickscans to full WCAG-EM conformance evaluations, including audits at WCAG 2.2 AA level, with results usable for the Dutch accessibility statement register. It also offers practical WCAG consulting, training, a free automated webscan, and a knowledge base with guidelines and legislation information.",
+    "evidence": [
+      {"url": "https://wcag.nl/", "label": "homepage (founded 2016, WCAG-EM and WCAG 2.2 AA audits, VoorMeerWaarde BV Zutphen address)"}
+    ]
+  },
+  {
+    "slug": "eclusief",
+    "hqCity": "Rhenen",
+    "headcountBand": "1",
+    "languages": ["nl"],
+    "services": ["audit", "consulting", "remediation"],
+    "standards": ["wcag-2-2", "eaa"],
+    "industries": ["education", "ecommerce", "healthcare"],
+    "priceBand": "budget",
+    "descriptionEn": "Normeris (the current brand at this site) is a Dutch one-person accessibility research practice in Rhenen, where researcher Giljam Nijsse carries out every WCAG evaluation himself. It tests websites and webshops against WCAG 2.2 level A and AA following the WCAG-EM methodology, offers quickscans, advisory sessions and accessible PDF services, and publishes transparent fixed prices (quickscan EUR 595, full WCAG evaluation EUR 1,950, advisory session EUR 295). Stated client groups include healthcare, education, cultural organisations and webshops facing EAA requirements.",
+    "evidence": [
+      {"url": "https://eclusief.nl/", "label": "homepage, now branded Normeris (Rhenen address, one researcher, WCAG 2.2/WCAG-EM, public pricing, sectors, EAA)"}
+    ]
+  },
+  {
+    "slug": "stichting-accessibility",
+    "hqCity": "Utrecht",
+    "founded": 1999,
+    "languages": ["nl"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["eaa"],
+    "industries": ["public-sector", "ecommerce", "banking"],
+    "descriptionEn": "Stichting Accessibility is a Dutch foundation based in Utrecht, founded in 1999, that works on digital, physical and social accessibility; it celebrated its 25th anniversary and holds ANBI status and W3C membership. It performs WCAG research on websites and apps, accessibility scans of physical locations, user research and co-creation with experts by experience, training, webinars and e-learning, and expert guidance including tailored action plans. Stated sectors include government, recreation and culture, businesses and webshops, telecom and finance, with EAA-focused services.",
+    "evidence": [
+      {"url": "https://accessibility.nl/", "label": "homepage (stichting, founded 1999, Utrecht address, services, sectors, EAA, ANBI/W3C)"}
+    ]
+  },
+  {
+    "slug": "audit-house",
+    "hqCity": "Den Haag",
+    "languages": ["nl"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["wcag-2-2", "eaa"],
+    "industries": ["public-sector", "ecommerce"],
+    "descriptionEn": "Audit House BV is a digital accessibility research bureau in The Hague, accredited by the Stichting Digitall Inclusive. It performs WCAG 2.2 evaluations following WCAG-EM, including full, content, technical and app audits (iOS and Android), plus quickscans and a free PDF accessibility analyzer. It also provides awareness programmes, training, advice and an external accessibility officer service. Stated client groups include municipalities and government, businesses subject to the European Accessibility Act, suppliers, webshops and the cultural sector.",
+    "evidence": [
+      {"url": "https://audithouse.nl/", "label": "homepage (Westeinde 81 Den Haag, WCAG 2.2/WCAG-EM audits, accreditation, sectors, EAA)"}
+    ]
+  },
+  {
+    "slug": "bureau-toegankelijkheid",
+    "hqCity": "Rotterdam",
+    "languages": ["nl"],
+    "services": ["audit", "training", "consulting", "remediation"],
+    "standards": ["wcag-2-2", "eaa"],
+    "industries": ["public-sector", "healthcare", "ecommerce", "saas"],
+    "descriptionEn": "Bureau Toegankelijkheid is a Dutch digital accessibility bureau based in Rotterdam. It runs WCAG 2.2 research on websites, apps and SaaS products, WCAG-EM based evaluations, quickscans, content and technical research, accessible PDF services and an all-in improvement track from audit and improvement plan through implementation support to an accessibility statement. It also delivers WCAG and accessible-PDF training. The site names government institutions, semi-government and non-profits, healthcare institutions, and companies and e-commerce as key audiences, referencing the EAA.",
+    "evidence": [
+      {"url": "https://bureautoegankelijkheid.nl/", "label": "homepage (Rotterdam address, WCAG 2.2 research, EAA, sectors, trainings, implementation support)"}
+    ]
+  },
+  {
+    "slug": "digitaal-toegankelijk",
+    "hqCity": "Utrecht",
+    "languages": ["nl"],
+    "services": ["audit", "training", "consulting", "remediation"],
+    "standards": ["wcag-2-2", "eaa"],
+    "industries": ["public-sector", "banking", "healthcare"],
+    "descriptionEn": "Digitaal Toegankelijk is a Dutch accessibility research and training bureau based in Utrecht, accredited by the DDAI (Dutch Digital Accessibility Index). It conducts WCAG-EM based accessibility evaluations of websites and apps, provides training, accessibility advice and project coordination, converts inaccessible PDFs into accessible documents, and offers plain-language services plus its Grip software for sustaining compliance. Stated sectors include (semi-)government, banks and insurers, healthcare, and culture; resources cover WCAG 2.2 and the European Accessibility Act.",
+    "evidence": [
+      {"url": "https://digitaaltoegankelijk.nl/", "label": "homepage (Utrecht address, DDAI accreditation, audits/training/advice/PDF remediation, sectors, WCAG 2.2 and EAA resources)"}
+    ]
+  },
+  {
+    "slug": "cardan",
+    "hqCity": "Tilburg",
+    "languages": ["nl", "en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["wcag-2-2", "eaa"],
+    "industries": ["public-sector"],
+    "descriptionEn": "Cardan is a Dutch full-service digital accessibility bureau based in Tilburg, accredited under the Digitall Inclusive quality mark. It performs WCAG 2.2 evaluations following WCAG-EM, ranging from full audits to content, technical, quickscan, app, PDF and legally-focused WCAG 2.2 AA research, and offers training via the Cardan Academy, tailored advice, awareness programmes and accessibility project and change management. Its site addresses government (Wet Digitale Overheid), businesses covered by the European Accessibility Act, and software suppliers, in Dutch and English.",
+    "evidence": [
+      {"url": "https://cardan.com/", "label": "homepage (WCAG 2.2 research portfolio, services, sectors, EAA, NL/EN language switcher)"},
+      {"url": "https://www.cardan.com/contact", "label": "contact page (Burgemeester Brokxlaan 32, Tilburg)"}
+    ]
+  },
+  {
+    "slug": "ia-labs",
+    "hqCity": "Dublin",
+    "languages": ["en"],
+    "services": ["audit", "remediation"],
+    "descriptionEn": "IA Labs DAC is an Irish digital inclusion company registered in Dublin (Whitworth Road, Drumcondra, Dublin 9), whose website states it is now Vially. It offers detailed accessibility audits of websites and mobile applications to help organisations meet WCAG 2.1 obligations under EU and Irish law, including the 2020 regulations on accessibility of public sector websites and mobile applications. It can present audit reports to technology teams, implement fixes on the client's behalf, and write accessibility statements.",
+    "evidence": [
+      {"url": "https://ialabs.ie/", "label": "homepage (Dublin registered office, audits, fix implementation, WCAG 2.1, rebrand notice 'IA Labs is now Vially')"}
+    ]
+  },
+  {
+    "slug": "egg-design",
+    "hqCity": "Killarney",
+    "languages": ["en"],
+    "services": ["audit"],
+    "industries": ["ecommerce"],
+    "descriptionEn": "Egg Design is a web design and development studio based in Killarney, County Kerry, Ireland, with over 17 years in the industry. It builds accessible custom WordPress websites and WooCommerce online shops, provides support and maintenance packages, content and photography, and offers a website accessibility and GDPR compliance service including a web accessibility audit / WCAG compliance offering. It is an approved vendor for Fáilte Ireland's Digital That Delivers programme, creating websites for museums, tour companies and other visitor experiences.",
+    "evidence": [
+      {"url": "https://eggdesign.ie/", "label": "homepage (Killarney, Co. Kerry base, 17+ years, accessible WordPress/WooCommerce, accessibility service)"},
+      {"url": "https://eggdesign.ie/website-services-ireland/web-accessibility-audit-wcag-compliance-ireland/", "label": "accessibility audit service page (linked from homepage)"}
+    ]
+  },
+  {
+    "slug": "ilikecake",
+    "hqCity": "Dublin",
+    "founded": 2006,
+    "languages": ["en"],
+    "services": ["audit", "training", "remediation", "consulting"],
+    "industries": ["public-sector", "education"],
+    "descriptionEn": "Ilikecake is a Dublin, Ireland web agency for accessible website design, development and auditing, with a stated track record in accessible websites since 2006. It undertakes accessibility audits (cited clients include the Food Safety Authority of Ireland, Irish Water and ComReg), accessibility training, usability testing, accessibility upgrades of existing sites to WCAG 2.0, and remediation of legacy PDFs. It also builds bespoke systems such as research databases for colleges and disability organisations; its CakePress CMS outputs WCAG 2.0 compliant code.",
+    "evidence": [
+      {"url": "https://ilikecake.ie/", "label": "homepage (Dublin in title, services, WCAG 2.0 work since 2006, public-sector and college clients)"}
+    ]
+  },
+  {
+    "slug": "waca",
+    "hqCity": "Vienna",
+    "languages": ["de", "en"],
+    "services": ["audit"],
+    "standards": ["wcag-2-2", "en-301-549"],
+    "descriptionEn": "WACA (Web Accessibility Certificate) is an Austrian certification initiative based in Vienna, described as the first and only quality seal in Austria for web accessibility. Certification is issued with the independent certification body TÜV Trust IT, strictly against WCAG 2.2 AA and aligned with EN 301 549, in three levels (Gold, Silver, Bronze). Certificates are valid for three years with annual surveillance audits and are intended for German- and English-language websites across Europe, documented through published audit reports.",
+    "evidence": [
+      {"url": "https://waca.at/", "label": "homepage (Vienna address, TÜV Trust IT, WCAG 2.2 AA and EN 301 549, certificate levels and validity)"}
+    ]
+  },
+  {
+    "slug": "myability",
+    "hqCity": "Vienna",
+    "languages": ["de", "en"],
+    "services": ["consulting", "training", "audit"],
+    "descriptionEn": "myAbility Social Enterprise GmbH is a Vienna-based social enterprise (with a German subsidiary in Munich) working on disability inclusion in business across the DACH region; more than 500 companies are stated as clients. Its team of experts with and without disabilities provides inclusion consulting and strategies, trainings and e-learning, inclusive recruiting and employer branding via a job platform, and built and digital accessibility services including accessibility testing with customers with disabilities. It also runs the myAbility Wirtschaftsforum business network.",
+    "evidence": [
+      {"url": "https://www.myability.org/", "label": "homepage (services, 500+ companies, DACH networks, accessibility testing)"},
+      {"url": "https://www.myability.org/impressum", "label": "Impressum (myAbility Social Enterprise GmbH, Kärntner Ring 12/2b, 1010 Wien; Munich subsidiary)"}
+    ]
+  },
+  {
+    "slug": "hilfsgemeinschaft",
+    "hqCity": "Vienna",
+    "headcountBand": "51-200",
+    "languages": ["de", "en"],
+    "services": ["audit", "consulting", "training"],
+    "descriptionEn": "The Hilfsgemeinschaft der Blinden und Sehschwachen Österreichs is Austria's oldest and largest self-help association for blind and visually impaired people, active for over 90 years, with around 6,500 members, 55 salaried staff and about 400 volunteers, headquartered in Vienna with locations in Linz and Graz. Through its Access Austria brand it tests websites and apps for digital accessibility, offers a free website quick-check, accessibility consulting and awareness training, supports the WACA website certification, and participates in international accessibility projects.",
+    "evidence": [
+      {"url": "https://www.hilfsgemeinschaft.at/", "label": "homepage (association profile, member and staff numbers, Vienna HQ Jägerstraße 36)"},
+      {"url": "https://www.hilfsgemeinschaft.at/barrierefrei-werden", "label": "Barrierefrei werden page (Access Austria: website/app testing, consulting, training, WACA certification)"}
+    ]
+  },
+  {
+    "slug": "eleven-ways",
+    "hqCity": "Ghent",
+    "languages": ["nl", "en", "fr"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["wcag-2-2", "eaa"],
+    "industries": ["public-sector", "banking"],
+    "descriptionEn": "Eleven Ways BV is a Belgian digital accessibility company established in Ghent and internationally active, with a website in Dutch, English and French. It audits websites and apps against WCAG and the European Accessibility Act, runs user research with people with disabilities, operates a Digital Accessibility Empathy Lab, trains developers, designers, content writers and managers, and offers a service desk. The site states IAAP certification, 150+ websites and apps tested, 500+ professionals trained, and clients in government, start-ups and fintech.",
+    "evidence": [
+      {"url": "https://www.elevenways.be/", "label": "homepage (Ghent base, NL/EN/FR, audits vs WCAG and EAA, user research, training, client sectors, IAAP certification)"}
+    ]
+  },
+  {
+    "slug": "anysurfer",
+    "hqCity": "Brussels",
+    "founded": 2001,
+    "languages": ["nl", "en", "fr"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["wcag-2-2"],
+    "descriptionEn": "AnySurfer is a Belgian non-profit initiative for a more accessible internet, run as a project of the association Blindenzorg Licht en Liefde VZW and based in Brussels. Helping organisations improve digital accessibility since 2001, it provides audit reports, tailored advice, training, workshops and presentations, and awards accessibility labels to tested websites and apps with public status pages citing WCAG 2.1 and 2.2 conformance levels. Its trilingual site (Dutch, English, French) offers documentation for developers, designers and editors.",
+    "evidence": [
+      {"url": "https://www.anysurfer.be/", "label": "homepage (project of Blindenzorg Licht en Liefde VZW, Brussels address, since 2001, services, WCAG 2.1/2.2 labels, NL/EN/FR)"}
+    ]
+  },
+  {
+    "slug": "wcag-audyt-pl",
+    "hqCity": "Kraków",
+    "languages": ["pl"],
+    "services": ["audit", "training", "remediation", "monitoring", "consulting"],
+    "standards": ["wcag-2-2", "eaa"],
+    "industries": ["public-sector"],
+    "priceBand": "budget",
+    "descriptionEn": "WCAG-Audyt.pl is a Polish digital accessibility service based in Kraków. It performs WCAG 2.1 and 2.2 audits (levels A and AA) of websites and mobile apps using automated and manual tests, including testing with users with disabilities, helping clients meet Poland's 2019 digital accessibility act for public bodies and EAA requirements. Published prices range from 499 PLN to a 7,399-8,499 PLN full audit; it also offers monthly support, remediation, accessibility statements, an accessibility coordinator service with monitoring, and training.",
+    "descriptionPl": "WCAG-Audyt.pl to polska firma z Krakowa zajmująca się dostępnością cyfrową. Przeprowadza audyty WCAG 2.1 i 2.2 (poziomy A i AA) stron internetowych i aplikacji mobilnych, łącząc testy automatyczne i manualne oraz badania z udziałem osób z niepełnosprawnościami. Pomaga spełnić ustawę z 2019 r. o dostępności cyfrowej podmiotów publicznych i kryteria EAA. Cennik: pakiety od 499 PLN do 7399-8499 PLN za pełny audyt oraz miesięczne wsparcie; oferta obejmuje też dostosowanie stron, deklaracje dostępności, koordynatora z monitoringiem i szkolenia.",
+    "evidence": [
+      {"url": "https://wcag-audyt.pl/", "label": "homepage (Kraków address, WCAG 2.1/2.2 audits, EAA, public pricing, coordinator/monitoring, trainings)"}
+    ]
+  },
+  {
+    "slug": "lepszyweb",
+    "hqCity": "Jastrzębie-Zdrój",
+    "languages": ["pl"],
+    "services": ["audit", "training", "consulting", "remediation"],
+    "standards": ["rgaa"],
+    "descriptionEn": "LepszyWeb.pl, the 'Digital Accessibility Workshop', is a Polish practice based in Jastrzębie-Zdrój that implements digital accessibility end to end. It offers audits and assisted audits built on its own ALLY WCAG validator, which uses the RGAA evaluation method; it repairs, improves and builds accessible websites, trains staff and accessibility managers (including accessible PDF and office documents), and its consultants help with preliminary reviews, accessibility statements, policies and IT procurement requirements. Free tools include a contrast finder and declaration generator.",
+    "descriptionPl": "LepszyWeb.pl - Pracownia Dostępności Cyfrowej z Jastrzębia-Zdroju - kompleksowo wdraża dostępność cyfrową. Oferuje audyty dostępności oraz audyty wspomagane oparte na własnym walidatorze ALLY, wykorzystującym metodę oceny RGAA; naprawia, ulepsza i wykonuje dostępne strony internetowe, prowadzi szkolenia (m.in. z tworzenia dostępnych dokumentów PDF i biurowych oraz zarządzania dostępnością), a konsultanci pomagają w przeglądach wstępnych, deklaracjach dostępności, polityce dostępności i wymaganiach dla zamawianych produktów IT. Udostępnia bezpłatne narzędzia: wyszukiwarkę kontrastów, generator deklaracji i demo 'Przed i Po'.",
+    "evidence": [
+      {"url": "https://lepszyweb.pl/", "label": "homepage (Jastrzębie-Zdrój address, ALLY validator, RGAA method, audits, trainings, consulting, accessible website builds)"}
+    ]
+  },
+  {
+    "slug": "audyt-dostepnosci-pl",
+    "languages": ["pl"],
+    "services": ["audit", "training", "remediation", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": ["ecommerce", "saas", "public-sector"],
+    "priceBand": "budget",
+    "descriptionEn": "Audyt Dostępności is a Polish digital accessibility auditing service led by Katarzyna Basiewicz, an IAAP CPACC-certified accessibility auditor. It audits websites and web applications against WCAG 2.1 and 2.2 for private and public sector clients, combining automated and manual tests, screen-reader testing and testing by users with disabilities, with a re-audit after fixes. Published packages cost 2,500 PLN (basic) and 5,000 PLN (extended) net, with dedicated offers for online shops, SaaS applications and public institutions, plus training.",
+    "descriptionPl": "Audyt Dostępności to polski serwis audytowy prowadzony przez Katarzynę Basiewicz, certyfikowaną audytorkę dostępności cyfrowej CPACC (IAAP). Realizuje audyty stron i aplikacji internetowych zgodnie z WCAG 2.1 i 2.2 dla sektora prywatnego i publicznego, łącząc testy automatyczne i manualne, testy z czytnikami ekranu oraz badania z udziałem osób z ograniczeniami, wraz z re-audytem po poprawkach. Cennik: audyt podstawowy 2500 zł netto, rozszerzony 5000 zł netto; dedykowane audyty dla sklepów internetowych, aplikacji SaaS i instytucji publicznych oraz szkolenia i pomoc przy wdrożeniu.",
+    "evidence": [
+      {"url": "https://audyt-dostepnosci.pl/", "label": "homepage (WCAG 2.1/2.2 audits, pricing, target groups: e-commerce, SaaS, public institutions, re-audit, training)"},
+      {"url": "https://audyt-dostepnosci.pl/kontakt-audyt-dostepnosci/", "label": "contact page (Katarzyna Basiewicz, CPACC/IAAP certification)"}
+    ]
+  },
+  {
+    "slug": "ilunion-accesibilidad",
+    "hqCity": "Madrid",
+    "languages": ["es"],
+    "services": ["audit", "consulting", "training"],
+    "standards": ["en-301-549"],
+    "descriptionEn": "ILUNION Consultoría, part of the ILUNION group (ILUNION S.L., registered in Madrid), provides accessibility as one of its business lines alongside training, IT services, communication and insurance, stating over 35 years of experience and a model built on the labour inclusion of people with disabilities. Its 'Accesibilidad 360' services include ICT accessibility audits against UNE-EN 301 549:2022, physical-environment audits against UNE 170001, certification support, consulting, UX research with panels of users with disabilities and older people, training, and technical manuals.",
+    "descriptionEs": "ILUNION Consultoría, del grupo ILUNION (ILUNION S.L., inscrita en Madrid), ofrece la accesibilidad como línea de negocio junto a formación, servicios IT, comunicación y seguros, con más de 35 años de experiencia y un modelo basado en la inclusión laboral de personas con discapacidad. Su 'Accesibilidad 360' incluye auditorías TIC según UNE-EN 301 549:2022 y de entornos físicos según UNE 170001, certificaciones, consultoría, UX research con paneles de usuarios con discapacidad y personas mayores, formación y manuales técnicos.",
+    "evidence": [
+      {"url": "https://ilunionconsultoria.com/", "label": "homepage (business lines, 35+ years experience, social model)"},
+      {"url": "https://ilunionconsultoria.com/es/accesibilidad/auditoria-certificaciones", "label": "accessibility audits page (UNE-EN 301 549:2022, UNE 170001, consulting, UX research, training, manuals)"},
+      {"url": "https://www.ilunion.com/es/aviso-legal", "label": "legal notice (ILUNION S.L., Calle Albacete 3, Madrid)"}
+    ]
+  },
+  {
+    "slug": "usable-y-accesible",
+    "founded": 2009,
+    "headcountBand": "1",
+    "languages": ["es"],
+    "services": ["audit", "training", "consulting", "remediation"],
+    "standards": ["wcag-2-2", "en-301-549", "section-508", "eaa"],
+    "industries": ["public-sector"],
+    "descriptionEn": "Usable y Accesible is the practice of Olga Carreras Montoto, an independent Spanish digital accessibility consultant, auditor and trainer with over 20 years of experience, freelance since 2009. She audits websites, mobile apps and VR environments for public and private sector clients against WCAG 2.1/2.2, EN 301 549, WAI-ARIA, Section 508 and Spain's EAA transposition (Ley 11/2023), converts PDF and Office documents to accessible formats (PDF/UA), teaches at universities, and holds IAAP WAS and DHS Trusted Tester certifications.",
+    "descriptionEs": "Usable y Accesible es la web de Olga Carreras Montoto, consultora, auditora y formadora independiente de accesibilidad digital con más de 20 años de experiencia, freelance desde 2009. Audita webs, apps y entornos de realidad virtual para el sector público y privado conforme a WCAG 2.1/2.2, EN 301 549, WAI-ARIA, Section 508 y la Ley 11/2023 (transposición de la EAA); convierte documentos PDF y ofimáticos en accesibles (PDF/UA), imparte formación y está certificada IAAP WAS y DHS Trusted Tester.",
+    "evidence": [
+      {"url": "https://usableyaccesible.com/", "label": "homepage/CV (independent professional, freelance since 2009, standards covered, services, certifications, public/private clients)"}
+    ]
+  }
+]

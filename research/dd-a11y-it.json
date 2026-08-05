@@ -1,0 +1,235 @@
+{
+  "location": "IT",
+  "language": "it",
+  "fetched_for": 7,
+  "rows": [
+    {
+      "keyword": "accessibilità siti web",
+      "volume": 720,
+      "cpc": 7.39,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 1000
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 590
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 590
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 590
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 1000
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 880
+        }
+      ]
+    },
+    {
+      "keyword": "dichiarazione di accessibilità",
+      "volume": 590,
+      "cpc": 4.66,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 390
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 390
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 2900
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 390
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 720
+        }
+      ]
+    },
+    {
+      "keyword": "agid accessibilità",
+      "volume": 260,
+      "cpc": 4.18,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 170
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 210
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 140
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 140
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 140
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 110
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 110
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 260
+        }
+      ]
+    },
+    {
+      "keyword": "audit accessibilità",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    },
+    {
+      "keyword": "consulenza accessibilità web",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    },
+    {
+      "keyword": "audit accessibilità web",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    },
+    {
+      "keyword": "accessibilità digitale consulenza",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    }
+  ]
+}

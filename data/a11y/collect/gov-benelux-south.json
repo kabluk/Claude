@@ -1,0 +1,477 @@
+[
+  {
+    "slug": "swink",
+    "name": "Swink",
+    "website": "swink.nl",
+    "hq": { "city": "", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "NL", "evidenceUrl": "https://toegankelijkheidsrapport.swink.nl/kadaster-catalogus-hercontrole/audit/" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.toegankelijkheidsverklaring.nl/register/24755", "label": "accessibility statement of Kadaster Catalogus — audit by Swink" },
+      { "url": "https://www.swink.nl/onze-dienstverlening/audits", "label": "official website — accessibility audit services" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "accessy",
+    "name": "Accessy",
+    "website": "accessy.club",
+    "hq": { "city": "", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "NL", "evidenceUrl": "https://www.accessy.club/wp-content/uploads/2025/10/Toegankelijkheidsonderzoek-amstelveen.vergunning.blitts.nl_.pdf" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.toegankelijkheidsverklaring.nl/register/23293", "label": "accessibility statement of Amstelveen vergunning Blitts — audit by Accessy" },
+      { "url": "https://www.accessy.club/toegankelijkheidsonderzoeken", "label": "official website — accessibility audit services" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "abra",
+    "name": "Abra B.V.",
+    "website": "abra.nl",
+    "hq": { "city": "", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "NL", "evidenceUrl": "https://www.digitoegankelijk.nl/sites/default/files/2024-04/Toegankelijkheidsonderzoek%20Fixi%20App%20Android%20v8.pdf" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.toegankelijkheidsverklaring.nl/register/26292", "label": "accessibility statement of Fixi-app — audit by Abra B.V." },
+      { "url": "https://abra.nl/", "label": "official website — accessibility audit services" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "cipix-internetbureau",
+    "name": "Cipix Internetbureau BV",
+    "website": "cipix.nl",
+    "hq": { "city": "Rotterdam", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "NL", "evidenceUrl": "https://www.werkenbijdrechtsteden.nl/wp-content/uploads/2024/11/Rapport-onderzoek-digitale-toegankelijkheid-website-werkenbijdrechtsteden-nov2024.pdf" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.toegankelijkheidsverklaring.nl/register/25487", "label": "accessibility statement of Werken bij Drechtsteden — audit by Cipix Internetbureau BV" },
+      { "url": "https://www.cipix.nl/oplossingen", "label": "official website — accessibility audit services" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ron-zuidema",
+    "name": "Ron Zuidema - Audits en Advies in Digitale Toegankelijkheid",
+    "website": "ronzuidema.com",
+    "hq": { "city": "", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "NL", "evidenceUrl": "https://documenten.groningen.nl/Rapporten%20WCAG%20audit/Rapport%20WCAG-audit%20scheideningroningen.nl.pdf" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.toegankelijkheidsverklaring.nl/register/26726", "label": "accessibility statement of Scheiden in Groningen — audit by Ron Zuidema" },
+      { "url": "https://ronzuidema.com/", "label": "official website — accessibility audit services" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "zekers-online-communicatie",
+    "name": "Zekers! Online communicatie",
+    "website": "zekersonline.nl",
+    "hq": { "city": "Nijmegen", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "NL", "evidenceUrl": "https://www.vechtstromen.nl/publish/pages/35920/audit_vechtpark_hardenberg_hertest.pdf" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.toegankelijkheidsverklaring.nl/register/23218", "label": "accessibility statement of Vechtpark Hardenberg (Waterschap Vechtstromen) — audit by Zekers! Online communicatie" },
+      { "url": "https://zekersonline.nl/", "label": "official website — accessibility audit services" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "200-ok",
+    "name": "200 OK",
+    "website": "200ok.nl",
+    "hq": { "city": "", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "NL", "evidenceUrl": "https://toegankelijkheidsonderzoek.nl/veiligthuiszuidhollandzuid.nl/" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.toegankelijkheidsverklaring.nl/register/24678", "label": "accessibility statement of Veilig Thuis ZHZ — audit by 200 OK (Jules Ernst)" },
+      { "url": "https://200ok.nl/", "label": "official website — accessibility audit services" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "toegankelijk-online",
+    "name": "Toegankelijk Online",
+    "website": "toegankelijkonline.nl",
+    "hq": { "city": "", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "NL", "evidenceUrl": "https://toegankelijkonline.nl/audits/4fab3dbe-72e5-4c9e-86e8-9f53084d7ea3" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.toegankelijkheidsverklaring.nl/register/26041", "label": "accessibility statement of DAMO Logische Datamodellen — audit by Toegankelijk Online" },
+      { "url": "https://toegankelijkonline.nl/", "label": "official website — accessibility audit services" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "zigt-create",
+    "name": "ZIGT Create B.V.",
+    "website": "zigt.nl",
+    "hq": { "city": "", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "NL", "evidenceUrl": "https://www.aenowaterschappen.nl/uploads/images/Onderzoeksrapport_aenowaterschappen_20241125.pdf" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.toegankelijkheidsverklaring.nl/register/22000", "label": "accessibility statement of A&O fonds Waterschappen — audit by ZIGT Create B.V." },
+      { "url": "https://zigt.nl/actueel/jouw-website-toegankelijk-voor-iedereen", "label": "official website — accessibility audit services" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "x-com",
+    "name": "X-com",
+    "website": "x-com.nl",
+    "hq": { "city": "", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "NL", "evidenceUrl": "https://www.gulpen-wittem.nl/data/downloadables/2/3/1/5/digitaal-nachtregister_wcag-rapport.pdf" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.toegankelijkheidsverklaring.nl/register/24392", "label": "accessibility statement of Digitaal Nachtregister Gulpen-Wittem — audit by X-com" },
+      { "url": "https://www.x-com.nl/", "label": "official website — accessibility audit services" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "chent",
+    "name": "Chent",
+    "website": "chent.nl",
+    "hq": { "city": "Den Haag", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "NL", "evidenceUrl": "https://www.wcagregister.nl/organisaties/gemeente-hoorn/doorstroompuntwestfriesland-nl-hertest-31102025.html" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.toegankelijkheidsverklaring.nl/register/22541", "label": "accessibility statement of Doorstroompunt Westfriesland (Gemeente Hoorn) — audit by Chent" },
+      { "url": "https://chent.nl/", "label": "official website — accessibility audit services" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "accessibility-desk",
+    "name": "Accessibility Desk",
+    "website": "accessibilitydesk.com",
+    "hq": { "city": "", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "NL", "evidenceUrl": "https://auditing.accessibilitydesk.com/public/reports/202/202512161056/604" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.toegankelijkheidsverklaring.nl/register/26755", "label": "accessibility statement of open.brabant.nl (Provincie Noord-Brabant) — audit by Accessibility Desk" },
+      { "url": "https://accessibilitydesk.com/", "label": "official website — accessibility audit services" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "janita-top",
+    "name": "Janita Top - Digitale toegankelijkheid",
+    "website": "janitatop.nl",
+    "hq": { "city": "", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "NL", "evidenceUrl": "https://janitatop.nl/rapporten/2024/ikw" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.toegankelijkheidsverklaring.nl/register/24057", "label": "accessibility statement of Investeringskader Waddengebied — audit by Janita Top" },
+      { "url": "https://janitatop.nl/", "label": "official website — accessibility audit services" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "frameless",
+    "name": "Frameless",
+    "website": "frameless.io",
+    "hq": { "city": "", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "NL", "evidenceUrl": "https://toegankelijkheidsrapport.frameless.io/rapport/aanpakdrugscriminaliteit.utrecht.nl-2024-12" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.toegankelijkheidsverklaring.nl/register/25945", "label": "accessibility statement of Utrechtse aanpak drugscriminaliteit — audit by Frameless" },
+      { "url": "https://frameless.io/", "label": "official website — WCAG audit services" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "media-duo",
+    "name": "Media Duo",
+    "website": "mediaduo.nl",
+    "hq": { "city": "", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "NL", "evidenceUrl": "https://toegankelijkheid.mediaduo.nl/gemeente-emmen/2025-04-11-emmen-geeft-energie" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.toegankelijkheidsverklaring.nl/register/26742", "label": "accessibility statement of Emmengeeftenergie.nl (Gemeente Emmen) — audit by Media Duo" },
+      { "url": "https://mediaduo.nl/", "label": "official website — accessibility research and reporting" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "digital-natives",
+    "name": "Digital Natives",
+    "website": "digitalnatives.nl",
+    "hq": { "city": "Amsterdam", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "NL", "evidenceUrl": "https://toegankelijkheid.digitalnatives.nl/filmfonds/2024" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.toegankelijkheidsverklaring.nl/register/21012", "label": "accessibility statement of Nederlands Filmfonds — audit by Digital Natives" },
+      { "url": "https://wcagwijzer.nl/", "label": "official website (WCAG wijzer by Digital Natives) — accessibility audit services" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "eagerly",
+    "name": "Eagerly",
+    "website": "eagerly.nl",
+    "hq": { "city": "", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "NL", "evidenceUrl": "https://www.uwv.nl/assets-kai/files/4e81d972-5885-487b-bbea-2a2873ec38d5/202512-wcag-2-1-aa-audit-uwv-panels-ww-wia-en-wajong.pdf" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.toegankelijkheidsverklaring.nl/register/25370", "label": "accessibility statement of UWV Panel — audit by Eagerly" },
+      { "url": "https://eagerly.nl/toegankelijkheid/", "label": "official website — WCAG audit services" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "uxmen",
+    "name": "UXMen",
+    "website": "uxmen.be",
+    "hq": { "city": "", "countryCode": "BE" },
+    "offices": [],
+    "countriesServed": ["BE"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "BE", "evidenceUrl": "https://www.toekomstparochiekerken.be/toegankelijkheidsverklaring" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.toekomstparochiekerken.be/toegankelijkheidsverklaring", "label": "accessibility statement of VVSG / Platform Toekomst Parochiekerken — external audit by UXMen" },
+      { "url": "https://uxmen.be/", "label": "official website — accessibility audit services" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "humix",
+    "name": "Humix BV",
+    "website": "humix.be",
+    "hq": { "city": "", "countryCode": "BE" },
+    "offices": [],
+    "countriesServed": ["BE"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "BE", "evidenceUrl": "https://www.visitbruges.be/nl/toegankelijkheidsverklaring" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.visitbruges.be/nl/toegankelijkheidsverklaring", "label": "accessibility statement of Visit Bruges (Stad Brugge) — audit by Humix BV" },
+      { "url": "https://humix.be/", "label": "official website — accessibility audit services" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "inter-vlaanderen",
+    "name": "Inter - Vlaams expertisecentrum toegankelijkheid",
+    "website": "inter.vlaanderen",
+    "hq": { "city": "", "countryCode": "BE" },
+    "offices": [],
+    "countriesServed": ["BE"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "BE", "evidenceUrl": "https://www.scoutsengidsenvlaanderen.be/toegankelijkheidsverklaring" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.scoutsengidsenvlaanderen.be/toegankelijkheidsverklaring", "label": "accessibility statement of Scouts en Gidsen Vlaanderen — official audit by Inter" },
+      { "url": "https://www.inter.vlaanderen/", "label": "official website — accessibility expertise centre and audits" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "lcp",
+    "name": "LCP nv",
+    "website": "lcp.be",
+    "hq": { "city": "", "countryCode": "BE" },
+    "offices": [],
+    "countriesServed": ["BE"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "BE", "evidenceUrl": "https://www.toerismedadizele.be/toegankelijkheidsverklaring" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.toerismedadizele.be/toegankelijkheidsverklaring", "label": "accessibility statement of Toerisme Dadizele (Gemeente Moorslede) — onderzoek uitgevoerd door LCP" },
+      { "url": "https://www.lcp.be/toegankelijkheid", "label": "official website — digital accessibility advice for public organisations" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "craftzing",
+    "name": "Craftzing",
+    "website": "craftzing.com",
+    "hq": { "city": "", "countryCode": "BE" },
+    "offices": [],
+    "countriesServed": ["BE"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "BE", "evidenceUrl": "https://www.proximus.be/fr/id_cr_accessibility_statement/particuliers/r-orphans/declaration-daccessibilite.html" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.scarlet.be/fr/homepage/accessibility.html", "label": "accessibility statement of Scarlet/Proximus (Belgian law of 5 Nov 2023) — external audit by Craftzing" },
+      { "url": "https://craftzing.com/", "label": "official website — accessibility practice and audits" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "tothomweb",
+    "name": "Tothomweb SL",
+    "website": "tothomweb.com",
+    "hq": { "city": "", "countryCode": "ES" },
+    "offices": [],
+    "countriesServed": ["ES"],
+    "languages": ["es", "ca"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "ES", "evidenceUrl": "https://atc.gencat.cat/es/ajuda/accessibilitat/index.html" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://atc.gencat.cat/es/ajuda/accessibilitat/index.html", "label": "accessibility statement of Agència Tributària de Catalunya — auditoría realizada por Tothomweb SL" },
+      { "url": "https://tothomweb.com/es/servicios/auditoria-accesibilidad", "label": "official website — accessibility audit services" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "databot-technologies",
+    "name": "Databot Technologies S.L.",
+    "website": "webaccesible.io",
+    "hq": { "city": "", "countryCode": "ES" },
+    "offices": [],
+    "countriesServed": ["ES"],
+    "languages": ["es", "ca"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "ES", "evidenceUrl": "https://visitles3viles.cat/es/accessibilidad/" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://visitles3viles.cat/es/accessibilidad/", "label": "accessibility statement of Les 3 Viles tourism consortium — auditoría de accesibilidad realizada por Databot Technologies S.L." },
+      { "url": "https://webaccesible.io/", "label": "official website — accessibility audit services" }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "fondazione-lia",
+    "name": "Fondazione LIA ETS",
+    "website": "fondazionelia.org",
+    "hq": { "city": "", "countryCode": "IT" },
+    "offices": [],
+    "countriesServed": ["IT"],
+    "languages": ["it"],
+    "services": ["audit"],
+    "standards": ["en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [ { "kind": "gov-declared-auditor", "country": "IT", "evidenceUrl": "https://www.hubscuola.it/app/docs/RE/20250728_Dic_acc_Rizzoli_Education_e-commerce.pdf" } ],
+    "description": {},
+    "sourceRefs": [
+      { "url": "https://www.gruppolascuola.it/chi-siamo/dichiarazione-di-accessibilita", "label": "dichiarazione di accessibilità of Gruppo Editoriale La Scuola S.p.A. — audit di accessibilità svolto da Fondazione LIA ETS" },
+      { "url": "https://www.fondazionelia.org/", "label": "official website — audit di piattaforme e siti" }
+    ],
+    "lastVerified": "2026-08-04"
+  }
+]

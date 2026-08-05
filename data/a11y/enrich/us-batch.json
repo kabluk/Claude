@@ -1,0 +1,249 @@
+[
+  {
+    "slug": "deque-systems",
+    "hqCity": "Herndon",
+    "founded": 1999,
+    "languages": ["en", "de", "fr"],
+    "services": ["audit", "vpat", "consulting", "training", "monitoring"],
+    "standards": ["en-301-549", "eaa", "ada"],
+    "descriptionEn": "Deque Systems is a digital accessibility software and services company headquartered in Herndon, Virginia, founded in 1999 by CEO Preety Kumar. It develops the axe product line, including the open-source axe-core engine, axe DevTools, axe Monitor, and axe Auditor, and runs Deque University training and the axe-con conference. Services include expert accessibility audits with VPAT support, consulting, and compliance monitoring. The site is offered in English, German, and French.",
+    "evidence": [
+      {"url": "https://www.deque.com/", "label": "homepage footer (HQ address, services, standards)"},
+      {"url": "https://www.deque.com/company/", "label": "company page (founded 1999)"}
+    ]
+  },
+  {
+    "slug": "tpgi",
+    "hqCity": "Clearwater",
+    "languages": ["en"],
+    "services": ["audit", "vpat", "remediation", "training", "consulting"],
+    "standards": ["section-508"],
+    "industries": ["healthcare", "education", "public-sector", "ecommerce"],
+    "descriptionEn": "tpgi.com now redirects to vispero.com, the site of Vispero, the assistive technology company based in Clearwater, Florida that created the JAWS screen reader, Fusion, and ZoomText. Its digital accessibility services include audits and VPATs, PDF remediation, user experience and design, training, consulting, and expert staffing, plus Section 508 and WCAG compliance programs for enterprises, retailers, healthcare, education, and government clients.",
+    "evidence": [
+      {"url": "https://vispero.com/", "label": "vispero.com homepage (tpgi.com redirect target; footer HQ, services)"}
+    ]
+  },
+  {
+    "slug": "level-access",
+    "hqCity": "Stafford",
+    "founded": 1999,
+    "languages": ["en"],
+    "services": ["audit", "remediation", "vpat", "training", "monitoring"],
+    "standards": ["wcag-2-2", "section-508", "ada", "eaa", "en-301-549"],
+    "industries": ["banking", "saas", "education", "ecommerce", "public-sector"],
+    "descriptionEn": "Level Access is a digital accessibility platform and services provider, active since 1999, with its USA location in Stafford, Virginia and offices in Toronto and Bristol, UK. Its platform combines automated scanning and expert manual audits, AI-powered remediation tools, governance and monitoring, VPAT/ACR documentation, and Level Access Academy training. Industry solutions cover financial services, software vendors, higher education, retail and e-commerce, and the public sector.",
+    "evidence": [
+      {"url": "https://www.levelaccess.com/", "label": "homepage (footer locations, since 1999, products, standards)"}
+    ]
+  },
+  {
+    "slug": "allyant",
+    "headcountBand": "200+",
+    "languages": ["en"],
+    "services": ["audit", "vpat", "remediation", "training", "monitoring"],
+    "standards": ["ada"],
+    "industries": ["banking", "public-sector", "healthcare", "education", "ecommerce"],
+    "descriptionEn": "Allyant is an accessibility company spanning digital, document, and print accessibility, with a team of over 300 accessibility experts across six offices, including Ottawa, Washington DC, Ogdensburg NY, Canberra, and Cairo. Services include website and mobile app auditing, scanning and monitoring, VPAT services, PDF remediation software and services, training, and braille and alternative-format print production, reporting 7M embossed braille pages and 2M PDF pages remediated per year.",
+    "evidence": [
+      {"url": "https://allyant.com/about-allyant/", "label": "about page (300+ experts, offices, client sectors)"},
+      {"url": "https://allyant.com/", "label": "homepage (services, offices, volume figures)"}
+    ]
+  },
+  {
+    "slug": "microassist",
+    "hqCity": "Austin",
+    "founded": 1988,
+    "languages": ["en"],
+    "services": ["audit", "vpat", "remediation", "training", "consulting"],
+    "standards": ["ada"],
+    "industries": ["public-sector"],
+    "descriptionEn": "Microassist is an accessibility consulting and e-learning development company based in Austin, Texas, founded in 1988. It is minority-owned and holds GSA and Texas DIR contracts. Services include accessibility audits, independent VPAT audit and testing for ICT vendors, document and PDF remediation, accessible website and application development, accessibility training, and custom e-learning development. It also publishes the weekly Accessibility in the News newsletter.",
+    "evidence": [
+      {"url": "https://www.microassist.com/", "label": "homepage footer (Austin address, since 1988, services)"}
+    ]
+  },
+  {
+    "slug": "qualitylogic",
+    "hqCity": "Boise",
+    "founded": 1986,
+    "headcountBand": "200+",
+    "languages": ["en"],
+    "services": ["audit", "remediation", "vpat", "training", "consulting"],
+    "standards": ["section-508", "en-301-549", "ada"],
+    "industries": ["ecommerce", "education", "public-sector", "healthcare"],
+    "descriptionEn": "QualityLogic is a software testing and QA company founded in 1986, headquartered in Boise, Idaho, with offices in Simi Valley, California and Oklahoma City, and 200+ QA engineers and test technicians. Its digital accessibility services include auditing and testing, document and PDF remediation, conformance reports, VPATs and WCAG certification, training, and consulting. The company also runs smart energy and interoperability test labs and serves clients from e-commerce to U.S. federal agencies.",
+    "evidence": [
+      {"url": "https://www.qualitylogic.com/our-company/who-we-are/", "label": "who we are page (Boise HQ, founded 1986)"},
+      {"url": "https://www.qualitylogic.com/digital-accessibility/", "label": "digital accessibility page (services, standards)"},
+      {"url": "https://www.qualitylogic.com/", "label": "homepage (200+ QA engineers, industries)"}
+    ]
+  },
+  {
+    "slug": "tamman",
+    "founded": 2007,
+    "languages": ["en"],
+    "services": ["consulting"],
+    "descriptionEn": "Tamman Inc is an accessibility consulting and inclusive design and development firm founded in 2007, built around the belief that access to information is a human right. It offers a consulting practice blending inclusive design with business strategy, staffing with accessibility-certified software engineers, and accessible software development for clients ranging from funded startups and small businesses to nonprofits and enterprise clients. The site announces a merger with Chax.",
+    "evidence": [
+      {"url": "https://tammaninc.com/about/", "label": "about page (founded 2007, services)"},
+      {"url": "https://tammaninc.com/", "label": "homepage (consulting, staffing, Chax merger)"}
+    ]
+  },
+  {
+    "slug": "usablenet",
+    "founded": 2000,
+    "languages": ["en"],
+    "services": ["audit", "remediation", "monitoring"],
+    "standards": ["wcag-2-2", "en-301-549", "ada", "eaa", "section-508"],
+    "industries": ["ecommerce", "banking", "healthcare", "saas", "public-sector", "education"],
+    "descriptionEn": "UsableNet Inc is an enterprise digital accessibility company working in the field since 2000. Its UsableNet Assistive managed service combines expert developer-led remediation with automation and AI, and its AQA platform provides automated testing, issue tracking, and monitoring. Work is validated by people with disabilities and aligned with WCAG 2.2 and EN 301 549, addressing ADA, Section 508, and EAA risk for e-commerce, hospitality, financial services, healthcare, SaaS, public sector, and education clients.",
+    "evidence": [
+      {"url": "https://usablenet.com/about-us", "label": "about page (since 2000, services, standards, industries)"},
+      {"url": "https://usablenet.com/pricing", "label": "pricing page (plans without published prices)"}
+    ]
+  },
+  {
+    "slug": "continual-engine",
+    "founded": 2017,
+    "languages": ["en"],
+    "services": ["remediation"],
+    "standards": ["wcag-2-2", "section-508", "ada", "rgaa", "bitv", "eaa"],
+    "industries": ["education", "public-sector", "banking", "healthcare"],
+    "descriptionEn": "Continual Engine is an AI-driven accessibility company founded in 2017 by CEO Mousumi Kapoor. Its products include the PREP PDF and document remediation platform, the Invicta alt-text engine, and the ContinuA11Y website accessibility platform, alongside services for document, video, courseware, PowerPoint, and website accessibility. Clients include educational institutions, publishers, municipalities and government, financial institutions, and healthcare organizations. The company states it is ISO certified and SOC 2 compliant.",
+    "evidence": [
+      {"url": "https://continualengine.com/about-us/", "label": "about page (founded 2017, founder, clients)"},
+      {"url": "https://continualengine.com/contact-us/", "label": "contact page (Section 508, WCAG 2.2, ADA)"},
+      {"url": "https://continualengine.com/", "label": "homepage (products, compliance resources incl. RGAA, BITV, EAA)"}
+    ]
+  },
+  {
+    "slug": "apex-covantage",
+    "founded": 1988,
+    "headcountBand": "200+",
+    "languages": ["en"],
+    "services": ["audit", "remediation"],
+    "industries": ["education", "public-sector", "banking", "healthcare", "ecommerce"],
+    "descriptionEn": "Apex CoVantage is a content and data transformation company established in 1988 as Apex Data Services, with 10 global offices including Herndon, Virginia, Miami, New York City, London, Hyderabad, and Chennai, and over 2,000 subject matter experts. Its digital accessibility practice, with 100+ accessibility experts, covers document accessibility, accessible ePubs, media accessibility, and accessibility audit and UX testing, serving publishing, education, government, finance, healthcare, and e-commerce clients.",
+    "evidence": [
+      {"url": "https://apexcovantage.com/about", "label": "about page (1988 origin, staff counts, offices)"},
+      {"url": "https://apexcovantage.com/", "label": "homepage footer (locations, accessibility services, industries)"}
+    ]
+  },
+  {
+    "slug": "braille-institute-access-solutions",
+    "hqCity": "Los Angeles",
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "descriptionEn": "Access Solutions is the fee-based consulting program of Braille Institute of America, a 501(c)(3) nonprofit headquartered at 741 N. Vermont Avenue, Los Angeles, serving people with low or no vision. The program offers workplace audits covering physical and digital environments, user testing by native assistive technology users, accommodation planning, and training on assistive technology, document accessibility, and workplace empathy. Consultants include blind and low-vision professionals; document remediation is explicitly not offered.",
+    "evidence": [
+      {"url": "https://www.brailleinstitute.org/access-solutions-consulting/", "label": "Access Solutions page (services, lived-experience consultants)"},
+      {"url": "https://brailleinstitute.org/", "label": "homepage footer (Los Angeles address, 501(c)(3))"}
+    ]
+  },
+  {
+    "slug": "open-doors-organization",
+    "hqCity": "Chicago",
+    "founded": 2000,
+    "languages": ["en"],
+    "services": ["training", "consulting"],
+    "standards": ["ada"],
+    "descriptionEn": "Open Doors Organization is a 501(c)(3) nonprofit founded in 2000 and based in Chicago, Illinois, with its office in Des Plaines. Its mission is to make goods and services accessible to people with disabilities in travel, tourism, and transportation. It conducts nationwide disability travel market studies with The Harris Poll, provides disability-related customer service training for aviation, cruise, rail, and hospitality, and offers guidance on ACAA and ADA compliance.",
+    "evidence": [
+      {"url": "https://opendoorsnfp.org/about-us/our-mission-history/", "label": "mission & history page (founded 2000, Chicago, Des Plaines address)"}
+    ]
+  },
+  {
+    "slug": "skynet-technologies",
+    "hqCity": "Lapeer",
+    "languages": ["en"],
+    "services": ["audit", "remediation", "vpat", "consulting", "monitoring"],
+    "standards": ["wcag-2-2", "eaa", "ada"],
+    "industries": ["education", "public-sector", "banking", "healthcare", "ecommerce"],
+    "descriptionEn": "Skynet Technologies USA LLC is a digital agency based in Lapeer, Michigan offering web accessibility services alongside web development and digital transformation. Accessibility offerings include the All in One Accessibility widget, manual accessibility audits, ADA remediation, VPAT/ACR reports, PDF and document remediation, video accessibility, consulting, and continuous monitoring via its SkynetAccessibility Scanner, plus free checkers and tools. Industry pages cover education, government, financial services, healthcare, and retail/e-commerce.",
+    "evidence": [
+      {"url": "https://www.skynettechnologies.com/contact-us", "label": "contact page footer (Lapeer, Michigan address)"},
+      {"url": "https://skynettechnologies.com/", "label": "homepage (WCAG 2.1/2.2 and EAA in title, services, industries)"}
+    ]
+  },
+  {
+    "slug": "sierra7",
+    "hqCity": "McLean",
+    "languages": ["en"],
+    "standards": ["section-508"],
+    "industries": ["public-sector"],
+    "descriptionEn": "Sierra7, Inc. is a Service-Disabled Veteran-Owned Small Business in McLean, Virginia delivering healthcare and technology solutions to federal clients. The site reports a Section 508 enablement contract awarded by the U.S. Department of Veterans Affairs. The company is CMMI level 3 appraised, certified to ISO 9001, ISO/IEC 27001, and ISO/IEC 20000-1, and holds contract vehicles including CIO-SP3, GSA OASIS+, GSA MAS, VETS2, and SEWP V.",
+    "evidence": [
+      {"url": "https://sierra7.com/", "label": "homepage (McLean VA in title, SDVOSB, certifications, contract vehicles)"},
+      {"url": "https://sierra7.com/?s=508", "label": "site search (VA Section 508 enablement contract news)"}
+    ]
+  },
+  {
+    "slug": "the-pixel",
+    "hqCity": "Bristol",
+    "languages": ["en"],
+    "industries": ["ecommerce", "healthcare"],
+    "descriptionEn": "The Pixel (TVG Media Ltd) is a UK digital commerce growth and transformation agency with offices in Bristol and Malta. An Adobe Gold Partner with over 20 years of experience, it designs, builds, and optimizes e-commerce and digital experience platforms on Adobe Experience Cloud for 40+ enterprise and mid-market brands across retail, health, and B2B sectors. The site does not list accessibility-specific services such as audits, VPATs, or remediation.",
+    "evidence": [
+      {"url": "https://thepixel.com/contact", "label": "contact page (Bristol and Malta offices, TVG Media Ltd)"},
+      {"url": "https://thepixel.com/", "label": "homepage (Adobe Gold Partner, 20+ years, sectors)"}
+    ]
+  },
+  {
+    "slug": "accessibility-innovations",
+    "languages": ["en"],
+    "services": ["audit", "vpat", "remediation", "training", "consulting", "monitoring"],
+    "standards": ["wcag-2-2"],
+    "industries": ["public-sector"],
+    "descriptionEn": "Accessibility Innovations is a US accessibility consultancy with offices in Elk Grove, California, New York City, Cambridge, Ohio, and Florida. Services include full WCAG 2.2 website audits, VPAT reports, document accessibility remediation for PDF/UA, Word, and Office files, accessibility and governance training, compliance management with ongoing tracking and reporting, policy development, and built environment accessibility reviews, with specialized support for public sector organizations.",
+    "evidence": [
+      {"url": "https://accessibilityinnovations.com/contact-us/", "label": "contact page (four US offices)"},
+      {"url": "https://accessibilityinnovations.com/", "label": "homepage (WCAG 2.2 audits, services, government focus)"}
+    ]
+  },
+  {
+    "slug": "mile-high-accessibility",
+    "founded": 2019,
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["ada", "section-508"],
+    "industries": ["public-sector"],
+    "descriptionEn": "Mile High Accessibility Consultants (MHAC) is an ADA compliance consultancy founded in 2019 by key personnel from an established ADA consulting firm. Staff have completed ADA self-evaluations and transition plans for state and local governments, audits of over 1,000 facilities and 1,000+ park and recreation sites, public right-of-way audits, and website accessibility audits, and provide disability-law training and ADA lawsuit consulting. Cited expertise spans the ADA, PROWAG, ABAAS, WCAG 2.1, and Sections 504 and 508.",
+    "evidence": [
+      {"url": "https://www.milehighaccessibility.com/about-1", "label": "about page (founded 2019, services, standards)"}
+    ]
+  },
+  {
+    "slug": "weco-digital-accessibility",
+    "hqCity": "Stillwater",
+    "languages": ["en"],
+    "services": ["audit", "remediation", "training"],
+    "descriptionEn": "WeCo is a digital accessibility company based in Stillwater, Minnesota. Its services include accessibility audits, usability testing, accessible document remediation, accessibility statements, ongoing accessibility support, live training, and the WeCoLearning subscription platform. Client testimonials on the site describe manual audits and coaching performed by certified Accessibility Specialists who bring lived experience of disability, for clients including grocery retail, arts, government, and educational software organizations.",
+    "evidence": [
+      {"url": "https://theweco.com/", "label": "homepage (Stillwater MN address, services, lived-experience specialists)"}
+    ]
+  },
+  {
+    "slug": "equal-entry",
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["ada"],
+    "descriptionEn": "Equal Entry LLC is an IT accessibility consulting company founded by CEO Thomas Logan, who is based in New York City, with a distributed team of consultants. It has helped over 100 companies through accessibility audits of websites, apps, wireframes, and virtual reality covering ADA and WCAG compliance, customized training delivered online, in person, or by video, XR and VR accessibility services, and legal expertise. It also hosts the monthly Accessibility New York City (A11yNYC) meetup.",
+    "evidence": [
+      {"url": "https://equalentry.com/", "label": "homepage (services, 100+ companies, A11yNYC)"},
+      {"url": "https://equalentry.com/about/", "label": "about page (founder Thomas Logan located in New York, NY)"}
+    ]
+  },
+  {
+    "slug": "knowbility",
+    "hqCity": "Austin",
+    "founded": 1998,
+    "languages": ["en"],
+    "services": ["audit", "consulting", "training"],
+    "industries": ["education", "public-sector"],
+    "descriptionEn": "Knowbility is a 501(c)(3) nonprofit organization based in Austin, Texas, working in accessible information technology since 1998, with the mission of equal access to technology for people with disabilities. Services include accessibility testing and auditing, leadership and strategic consulting, training, an accessibility helpdesk, and AccessWorks usability testing with participants with disabilities. Community programs include the Accessibility Internet Rally (AIR), John Slatin AccessU, and K12 digital accessibility initiatives for business, education, government, and nonprofit clients.",
+    "evidence": [
+      {"url": "https://knowbility.org/", "label": "homepage (Austin address, since 1998, 501(c)(3), services and programs)"}
+    ]
+  }
+]

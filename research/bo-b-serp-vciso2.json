@@ -1,0 +1,60 @@
+{
+  "query": "virtual ciso services",
+  "location": "US",
+  "items": [
+    {
+      "pos": 2,
+      "domain": "purplesec.us",
+      "title": "Virtual CISO Services For Small Businesses & Startups",
+      "url": "https://purplesec.us/services/virtual-ciso/"
+    },
+    {
+      "pos": 3,
+      "domain": "www.esentire.com",
+      "title": "Virtual CISO (vCISO) Services Explained",
+      "url": "https://www.esentire.com/cybersecurity-fundamentals-defined/glossary/what-are-virtual-ciso-vciso-services"
+    },
+    {
+      "pos": 4,
+      "domain": "frsecure.com",
+      "title": "Virtual CISO (vCISO) Consulting Solutions",
+      "url": "https://frsecure.com/virtual-ciso/"
+    },
+    {
+      "pos": 5,
+      "domain": "cynomi.com",
+      "title": "Virtual CISO Services: Top 15 Companies in 2026",
+      "url": "https://cynomi.com/learn/top-virtual-ciso-services/"
+    },
+    {
+      "pos": 7,
+      "domain": "linfordco.com",
+      "title": "Virtual CISO (vCISO): Expert Security on a Flexible Budget",
+      "url": "https://linfordco.com/blog/virtual-ciso/"
+    },
+    {
+      "pos": 8,
+      "domain": "www.alphaapexgroup.com",
+      "title": "Top 10 Virtual CISO Consulting Services",
+      "url": "https://www.alphaapexgroup.com/blog/virtual-ciso-consulting-services"
+    },
+    {
+      "pos": 9,
+      "domain": "www.paloaltonetworks.com",
+      "title": "Virtual CISO Services",
+      "url": "https://www.paloaltonetworks.com/unit42/transform/vciso"
+    },
+    {
+      "pos": 10,
+      "domain": "www.pkfod.com",
+      "title": "Virtual Chief Information Security Officer Services (vCISO)",
+      "url": "https://www.pkfod.com/services/technology-and-cybersecurity-services/cybersecurity-privacy-advisory-services/vciso/"
+    },
+    {
+      "pos": 11,
+      "domain": "www.kroll.com",
+      "title": "Virtual CISO (vCISO) Advisory Services - Cyber",
+      "url": "https://www.kroll.com/en/services/cyber/cyber-risk-assessments/virtual-ciso"
+    }
+  ]
+}

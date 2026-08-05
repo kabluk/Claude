@@ -1,0 +1,60 @@
+{
+  "query": "soc 2 auditors",
+  "location": "US",
+  "items": [
+    {
+      "pos": 2,
+      "domain": "soc2auditors.org",
+      "title": "SOC 2 Auditors: Compare 171+ Verified Audit Firms (2026)",
+      "url": "https://soc2auditors.org/"
+    },
+    {
+      "pos": 3,
+      "domain": "www.a-lign.com",
+      "title": "What Is SOC 2? The Complete Guide",
+      "url": "https://www.a-lign.com/articles/what-is-soc-2-complete-guide"
+    },
+    {
+      "pos": 4,
+      "domain": "kirkpatrickprice.com",
+      "title": "SOC 2 Compliance Audit Services",
+      "url": "https://kirkpatrickprice.com/audit/soc-2/"
+    },
+    {
+      "pos": 5,
+      "domain": "www.reddit.com",
+      "title": "SOC 2 Type 2 auditor recommendations + what did you ...",
+      "url": "https://www.reddit.com/r/msp/comments/1q0msaf/soc_2_type_2_auditor_recommendations_what_did_you/"
+    },
+    {
+      "pos": 6,
+      "domain": "www.vanta.com",
+      "title": "Who can perform a SOC 2 audit?",
+      "url": "https://www.vanta.com/collection/soc-2/who-can-perform-soc-2-audit"
+    },
+    {
+      "pos": 7,
+      "domain": "optro.ai",
+      "title": "SOC 2 Compliance: The Complete Introduction",
+      "url": "https://optro.ai/blog/soc-2-framework-guide-the-complete-introduction"
+    },
+    {
+      "pos": 8,
+      "domain": "www.paloaltonetworks.com",
+      "title": "What Is SOC 2 Compliance?",
+      "url": "https://www.paloaltonetworks.com/cyberpedia/soc-2"
+    },
+    {
+      "pos": 9,
+      "domain": "linfordco.com",
+      "title": "What to Look for When Hiring a SOC 2 Audit Firm",
+      "url": "https://linfordco.com/blog/choosing-soc-2-audit-firm/"
+    },
+    {
+      "pos": 11,
+      "domain": "sprinto.com",
+      "title": "SOC 2 Auditors and Service Providers [How to Choose One]",
+      "url": "https://sprinto.com/blog/soc-2-auditors/"
+    }
+  ]
+}

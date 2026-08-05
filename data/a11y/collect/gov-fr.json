@@ -1,0 +1,1190 @@
+[
+  {
+    "slug": "accessprod",
+    "name": "AccessProd",
+    "website": "accessprod.com",
+    "hq": {
+      "city": "Besançon",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.ined.fr/fr/etat-conformite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.ined.fr/fr/etat-conformite",
+        "label": "Déclaration d'accessibilité de l'INED (Institut national d'études démographiques) — audit réalisé par AccessProd"
+      },
+      {
+        "url": "https://www.accessprod.com/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "akse",
+    "name": "Aksé",
+    "website": "akse.co",
+    "hq": {
+      "city": "Solliès-Pont",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://naolib.fr/fr/accessibilite-naolib-mon-espace"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://naolib.fr/fr/accessibilite-naolib-mon-espace",
+        "label": "Déclaration d'accessibilité de Naolib (réseau de transports de Nantes Métropole) — audit réalisé par Aksé"
+      },
+      {
+        "url": "https://akse.co/accessibilite-rgaa/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "access-first",
+    "name": "Access First",
+    "website": "access-first.fr",
+    "hq": {
+      "city": "",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://esante.gouv.fr/accessibilite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://esante.gouv.fr/accessibilite",
+        "label": "Déclaration d'accessibilité de l'Agence du Numérique en Santé (esante.gouv.fr) — audit réalisé par Access First"
+      },
+      {
+        "url": "https://www.access-first.fr/audits-accessibilite-numerique",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "alsacreations",
+    "name": "Alsacréations",
+    "website": "alsacreations.fr",
+    "hq": {
+      "city": "Strasbourg",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://ville-illzach.fr/wp-content/uploads/2026/02/Illzach-Declaration-daccessibilite.pdf"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://ville-illzach.fr/wp-content/uploads/2026/02/Illzach-Declaration-daccessibilite.pdf",
+        "label": "Déclaration d'accessibilité de la Ville d'Illzach — audit réalisé par Alsacréations"
+      },
+      {
+        "url": "https://www.alsacreations.fr/prestations/audit-accessibilite/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "atalan",
+    "name": "Atalan",
+    "website": "atalan.fr",
+    "hq": {
+      "city": "",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://accesmed.sante.gouv.fr/CEPS.Administration/workflow_url?&ECITIZ_ACTIVITY_PATH=CNIL&ECITIZ_PROCESS_ID=TgDonneeAccessibilite&ORG=CEPS"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://accesmed.sante.gouv.fr/CEPS.Administration/workflow_url?&ECITIZ_ACTIVITY_PATH=CNIL&ECITIZ_PROCESS_ID=TgDonneeAccessibilite&ORG=CEPS",
+        "label": "Déclaration d'accessibilité de AccesMed (ministère de la Santé — CEPS) — audit réalisé par Atalan"
+      },
+      {
+        "url": "https://atalan.fr/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "axenum",
+    "name": "Axénum",
+    "website": "axenum.fr",
+    "hq": {
+      "city": "Cannes",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.cdg11.fr/declaration-accessibilite/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.cdg11.fr/declaration-accessibilite/",
+        "label": "Déclaration d'accessibilité de le Centre de gestion de la fonction publique territoriale de l'Aude (CDG11) — audit réalisé par Axénum"
+      },
+      {
+        "url": "https://axenum.fr/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ceciaa",
+    "name": "CECIAA",
+    "website": "ceciaa.com",
+    "hq": {
+      "city": "Maisons-Alfort",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.mairie-arcambal.fr/accessibilite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.mairie-arcambal.fr/accessibilite",
+        "label": "Déclaration d'accessibilité de la Mairie d'Arcambal — audit réalisé par CECIAA"
+      },
+      {
+        "url": "https://www.ceciaa.com/certification-rgaa-audit-accompagnement-conformite.html",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "cimeos",
+    "name": "Ciméos",
+    "website": "cimeos.com",
+    "hq": {
+      "city": "Les Auxons",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.cherbourg.fr/accessibilite/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.cherbourg.fr/accessibilite/",
+        "label": "Déclaration d'accessibilité de la Ville de Cherbourg-en-Cotentin — audit réalisé par Ciméos"
+      },
+      {
+        "url": "https://www.cimeos.com/expertises-13.html",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "com-access",
+    "name": "Com'access",
+    "website": "com-access.fr",
+    "hq": {
+      "city": "Le Mesnil-le-Roi",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://sytral-mobilites.fr/fr/declaration-d-accessibilite-partiellement-conforme.html"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://sytral-mobilites.fr/fr/declaration-d-accessibilite-partiellement-conforme.html",
+        "label": "Déclaration d'accessibilité de SYTRAL Mobilités — audit réalisé par Com'access"
+      },
+      {
+        "url": "https://com-access.fr/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "copsae",
+    "name": "Copsaé",
+    "website": "copsae.fr",
+    "hq": {
+      "city": "Nantes",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.blois.fr/accessibilite-du-site"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.blois.fr/accessibilite-du-site",
+        "label": "Déclaration d'accessibilité de la Ville de Blois — audit réalisé par Copsaé"
+      },
+      {
+        "url": "https://www.copsae.fr/accessibilite-numerique/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "creasit",
+    "name": "Créasit",
+    "website": "creasit.fr",
+    "hq": {
+      "city": "Nantes",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.hopital-loire-sante-nantes.fr/systeme/declaration-accessibilite/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.hopital-loire-sante-nantes.fr/systeme/declaration-accessibilite/",
+        "label": "Déclaration d'accessibilité de l'Hôpital Loire Santé (Nantes) — audit réalisé par Créasit"
+      },
+      {
+        "url": "https://www.creasit.fr/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ebizproduction",
+    "name": "Ebizproduction",
+    "website": "bluedrop.fr",
+    "hq": {
+      "city": "Marseille",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.anact.fr/accessibilite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.anact.fr/accessibilite",
+        "label": "Déclaration d'accessibilité de l'ANACT (Agence nationale pour l'amélioration des conditions de travail) — audit réalisé par Ebizproduction"
+      },
+      {
+        "url": "https://www.bluedrop.fr/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "eclydre",
+    "name": "Eclydre",
+    "website": "eclydre.fr",
+    "hq": {
+      "city": "Paris",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.mahj.org/fr/annexe/declaration-daccessibilite-rgaa-32063"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.mahj.org/fr/annexe/declaration-daccessibilite-rgaa-32063",
+        "label": "Déclaration d'accessibilité de le Musée d'art et d'histoire du Judaïsme — audit réalisé par Eclydre"
+      },
+      {
+        "url": "https://www.eclydre.fr/blog/nos-engagements-rse",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ethic-first",
+    "name": "Ethic First",
+    "website": "ethicfirst.fr",
+    "hq": {
+      "city": "Paris",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.academie-renseignement.gouv.fr/accessibilite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.academie-renseignement.gouv.fr/accessibilite",
+        "label": "Déclaration d'accessibilité de l'Académie du renseignement (academie-renseignement.gouv.fr) — audit réalisé par Ethic First"
+      },
+      {
+        "url": "https://www.ethicfirst.fr/audits-accessibilite-numerique-rgaa-raam-wcag/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ideance",
+    "name": "Ideance",
+    "website": "ideance.net",
+    "hq": {
+      "city": "Saint-Léger-du-Bourg-Denis",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.transformation.gouv.fr/accessibilite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.transformation.gouv.fr/accessibilite",
+        "label": "Déclaration d'accessibilité de la Direction interministérielle de la transformation publique (transformation.gouv.fr) — audit réalisé par Ideance"
+      },
+      {
+        "url": "https://ideance.net/fr/audits-accessibilite/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "inovagora",
+    "name": "Inovagora",
+    "website": "inovagora.net",
+    "hq": {
+      "city": "Compiègne",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.ch-pyrenees.fr/accessibilite/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.ch-pyrenees.fr/accessibilite/",
+        "label": "Déclaration d'accessibilité de le Centre hospitalier des Pyrénées — audit réalisé par Inovagora"
+      },
+      {
+        "url": "https://www.inovagora.net/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "ipedis",
+    "name": "Ipedis",
+    "website": "ipedis.com",
+    "hq": {
+      "city": "Paris",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.soorts-hossegor.fr/accessibilite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.soorts-hossegor.fr/accessibilite",
+        "label": "Déclaration d'accessibilité de la Commune de Soorts-Hossegor — audit réalisé par Ipedis"
+      },
+      {
+        "url": "https://www.ipedis.com/audit-rgaa-wcag/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "licorn-publishing",
+    "name": "Licorn Publishing",
+    "website": "licornpublishing.com",
+    "hq": {
+      "city": "Rennes",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.capstreshautdebit.fr/declaration-daccessibilite/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.capstreshautdebit.fr/declaration-daccessibilite/",
+        "label": "Déclaration d'accessibilité de Cap's Très Haut Débit (réseau public d'initiative publique) — audit réalisé par Licorn Publishing"
+      },
+      {
+        "url": "https://licornpublishing.com/accessibilite",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "lorweb",
+    "name": "Lorweb",
+    "website": "lorweb.group",
+    "hq": {
+      "city": "Saint-Julien-lès-Metz",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://grandreims-mobilites.fr/fr/oJn-Accessibilite-3A-partiellement-conforme.html"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://grandreims-mobilites.fr/fr/oJn-Accessibilite-3A-partiellement-conforme.html",
+        "label": "Déclaration d'accessibilité de Grand Reims Mobilités — audit réalisé par Lorweb"
+      },
+      {
+        "url": "https://lorweb.group/lorweb",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "net-15",
+    "name": "Net 15",
+    "website": "net15.fr",
+    "hq": {
+      "city": "Aurillac",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.sumene-artense.com/declaration-daccessibilite/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.sumene-artense.com/declaration-daccessibilite/",
+        "label": "Déclaration d'accessibilité de la Communauté de communes Sumène Artense — audit réalisé par Net 15"
+      },
+      {
+        "url": "https://www.net15.fr/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "numerik-ea",
+    "name": "Numerik-ea",
+    "website": "numerik-ea.fr",
+    "hq": {
+      "city": "Paris",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.notre-environnement.gouv.fr/accessibilite/accessibilite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.notre-environnement.gouv.fr/accessibilite/accessibilite",
+        "label": "Déclaration d'accessibilité de notre-environnement.gouv.fr (ministère de la Transition écologique) — audit réalisé par Numerik-ea"
+      },
+      {
+        "url": "https://www.numerik-ea.fr/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "silaos",
+    "name": "Silaos",
+    "website": "silaos.fr",
+    "hq": {
+      "city": "La Rochelle",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.cariforefoccitanie.fr/accessibilite/"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.cariforefoccitanie.fr/accessibilite/",
+        "label": "Déclaration d'accessibilité de le Carif-Oref Occitanie — audit réalisé par Silaos"
+      },
+      {
+        "url": "https://www.silaos.fr/audit-daccessibilite/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "specinov",
+    "name": "Spécinov",
+    "website": "specinov.fr",
+    "hq": {
+      "city": "Écouflant",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.cholet.fr/dossiers/dossier_21_politique+accessibilite+notre+site+internet.html"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.cholet.fr/dossiers/dossier_21_politique+accessibilite+notre+site+internet.html",
+        "label": "Déclaration d'accessibilité de la Ville de Cholet — audit réalisé par Spécinov"
+      },
+      {
+        "url": "https://www.specinov.fr/audit-accessibilite",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "stratis",
+    "name": "Stratis",
+    "website": "stratis.fr",
+    "hq": {
+      "city": "La Farlède",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://www.gard.fr/pages-pratiques/page-de-declaration-daccessibilite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://www.gard.fr/pages-pratiques/page-de-declaration-daccessibilite",
+        "label": "Déclaration d'accessibilité de le Département du Gard — audit réalisé par Stratis"
+      },
+      {
+        "url": "https://www.stratis.fr/solutions/accessibilite-numerique/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "tanaguru",
+    "name": "Tanaguru",
+    "website": "tanaguru.com",
+    "hq": {
+      "city": "Paris",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://nouvelles.univ-rennes2.fr/accessibilite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://nouvelles.univ-rennes2.fr/accessibilite",
+        "label": "Déclaration d'accessibilité de l'Université Rennes 2 — audit réalisé par Tanaguru"
+      },
+      {
+        "url": "https://www.tanaguru.com/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  },
+  {
+    "slug": "temesis",
+    "name": "Temesis",
+    "website": "temesis.com",
+    "hq": {
+      "city": "Paris",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [
+      {
+        "kind": "gov-declared-auditor",
+        "country": "FR",
+        "evidenceUrl": "https://philharmoniedeparis.fr/fr/accessibilite"
+      }
+    ],
+    "description": {},
+    "sourceRefs": [
+      {
+        "url": "https://philharmoniedeparis.fr/fr/accessibilite",
+        "label": "Déclaration d'accessibilité de la Philharmonie de Paris — audit réalisé par Temesis"
+      },
+      {
+        "url": "https://www.temesis.com/accessibilite/",
+        "label": "official website — accessibility audit services"
+      }
+    ],
+    "lastVerified": "2026-08-04"
+  }
+]

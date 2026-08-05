@@ -1,0 +1,212 @@
+[
+  {
+    "slug": "abilitynet",
+    "hqCity": "Leamington Spa",
+    "founded": 1998,
+    "languages": ["en"],
+    "services": ["audit", "vpat", "training", "consulting"],
+    "standards": ["wcag-2-2", "en-301-549", "eaa", "ada"],
+    "priceBand": "mid",
+    "descriptionEn": "AbilityNet is a UK charity established in 1998, with its registered office in Leamington Spa. It provides digital accessibility services including accessibility audits against WCAG 2.2, VPAT/ACR preparation, user testing, training and eLearning, user research and strategic advice, alongside free technology support for older and disabled people. It publishes audit pricing on its site, with a component-based audit at £4,950 +VAT for up to 10 key pages.",
+    "evidence": [
+      {"url": "https://abilitynet.org.uk/contact-us", "label": "contact page (registered office, EAA support)"},
+      {"url": "https://abilitynet.org.uk/accessibility-services/products-and-services/accessibility-audit", "label": "audit page (WCAG 2.2, VPAT/ACR, public pricing)"},
+      {"url": "https://abilitynet.org.uk", "label": "homepage (charity, established 1998)"}
+    ]
+  },
+  {
+    "slug": "zoonou",
+    "hqCity": "Eastbourne",
+    "languages": ["en"],
+    "services": ["audit", "remediation", "training", "consulting"],
+    "standards": ["eaa"],
+    "industries": ["public-sector", "saas", "healthcare", "education", "ecommerce"],
+    "descriptionEn": "Zoonou is an employee-owned, B Corp certified software testing and QA company based in Eastbourne, with a team of more than 50 people. Its digital accessibility services include WCAG compliance audits, disabled user testing, accessibility training, document remediation and accessibility strategy, and it supports compliance with UK regulations and the European Accessibility Act. Clients span public sector, healthcare, technology and SaaS, higher education, retail and ecommerce.",
+    "evidence": [
+      {"url": "https://zoonou.com/contact/", "label": "contact page (Eastbourne HQ)"},
+      {"url": "https://zoonou.com/our-services/digital-accessibility-services/", "label": "accessibility services page (services, EAA, industries)"},
+      {"url": "https://zoonou.com", "label": "homepage (employee-owned B Corp, 50+ team)"}
+    ]
+  },
+  {
+    "slug": "digital-accessibility-centre",
+    "hqCity": "Swansea",
+    "founded": 2010,
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["eaa"],
+    "descriptionEn": "The Digital Accessibility Centre (DAC) is a not-for-profit social enterprise founded in 2010, based in Wales with its office at Bay Studios Business Park, Swansea. A team of around 50 people provides accessibility testing, audits, accreditation, training and consultancy. Most of its user-testing team have a disability and bring first-hand experience of assistive technologies. Visitors can meet the testing teams on site, and the centre offers EAA-related advice and eLearning.",
+    "evidence": [
+      {"url": "https://digitalaccessibilitycentre.org/contact.html", "label": "contact page (Swansea address)"},
+      {"url": "https://digitalaccessibilitycentre.org/about.html", "label": "about page (founded 2010, ~50 staff, disabled testers)"},
+      {"url": "https://digitalaccessibilitycentre.org", "label": "homepage (services, EAA)"}
+    ]
+  },
+  {
+    "slug": "be-accessible",
+    "languages": ["en"],
+    "services": ["audit", "remediation", "training"],
+    "standards": ["wcag-2-2", "section-508", "ada"],
+    "industries": ["ecommerce", "education", "healthcare", "public-sector"],
+    "descriptionEn": "Be Accessible provides manual website accessibility audits and repairs aimed at ADA compliance, covering WCAG 2.2, Section 508 and the ADA. Audits include disabled user testing, and its repair service implements fixes on platforms such as WordPress and Shopify. It also offers PDF remediation and accessibility training via webinars and workshops. The site lists industries served including e-commerce, education, healthcare and government, and offers a free website evaluation.",
+    "evidence": [
+      {"url": "https://beaccessible.com", "label": "homepage (services, WCAG 2.2, Section 508, ADA, industries)"},
+      {"url": "https://beaccessible.com/contact/", "label": "contact page"}
+    ]
+  },
+  {
+    "slug": "user-vision",
+    "hqCity": "Edinburgh",
+    "languages": ["en"],
+    "services": ["audit", "monitoring", "training", "consulting"],
+    "standards": ["wcag-2-2", "eaa", "section-508"],
+    "industries": ["public-sector"],
+    "descriptionEn": "User Vision is a user experience and accessibility consultancy headquartered at 55 North Castle Street, Edinburgh, with an additional office in Dubai. Its accessibility services include audits against WCAG 2.2 AA, the European Accessibility Act and Section 508, accessibility accreditation, usability testing with disabled users via a research panel, empathy workshops and training, accessibility consultancy, and Access360, a managed service combining continuous automated monitoring with periodic expert audits. Clients include blue-chip companies and public sector organisations.",
+    "evidence": [
+      {"url": "https://uservision.co.uk/contact", "label": "contact page (Edinburgh HQ, Dubai office)"},
+      {"url": "https://uservision.co.uk/services/accessibility", "label": "accessibility services page (standards, Access360 monitoring)"}
+    ]
+  },
+  {
+    "slug": "hassell-inclusion",
+    "hqCity": "Gravesend",
+    "languages": ["en"],
+    "services": ["audit", "training"],
+    "standards": ["wcag-2-2"],
+    "descriptionEn": "Hassell Inclusion Limited is a digital accessibility company with its registered office in Gravesend, Kent. It offers accessibility audits that report against WCAG 2.1/2.2 AA guidelines with prioritised action plans, including a live audit format, and goes beyond WCAG to examine key user journeys. It runs trainer-led accessibility training for developers, designers, marketing creatives, auditors and other roles, and has trained digital teams internationally for over 10 years.",
+    "evidence": [
+      {"url": "https://hassellinclusion.com/", "label": "homepage footer (registered office, Gravesend)"},
+      {"url": "https://hassellinclusion.com/audits/", "label": "audits page (WCAG 2.1/2.2 AA)"},
+      {"url": "https://hassellinclusion.com/training/", "label": "training page"}
+    ]
+  },
+  {
+    "slug": "system-concepts",
+    "hqCity": "London",
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["eaa", "section-508"],
+    "descriptionEn": "System Concepts Ltd is a London-based consultancy (registered office at Headland House, 72 Acton Street, Kings Cross) working across user experience, accessibility, ergonomics and health and safety. Its accessibility services include WCAG audits, user feedback sessions recruited from an in-house database of users with accessibility needs, physical accessibility audits of buildings, tailored strategy and support, and workshops. The site states its experts are versed in regulations including the Equality Act 2010, the European Accessibility Act and Section 508.",
+    "evidence": [
+      {"url": "https://www.system-concepts.com", "label": "homepage footer (registered office, London)"},
+      {"url": "https://www.system-concepts.com/accessibility", "label": "accessibility page (services, EAA, Section 508)"}
+    ]
+  },
+  {
+    "slug": "test-partners",
+    "hqCity": "London",
+    "languages": ["en"],
+    "services": ["audit", "remediation", "training", "consulting"],
+    "industries": ["public-sector", "ecommerce", "education"],
+    "descriptionEn": "Test Partners Ltd is a software testing company with a test centre at 68-72 Queen Victoria Street, London, and registered address in Richmond. It has undertaken more than 400 accessibility testing and consultancy projects since 2002, offering manual and automated accessibility testing, accessibility consultancy, accessible PDF services, accessibility training and DDA building audits. Its services are available to UK government and public sector bodies via G-Cloud, and its sector pages include e-commerce and education.",
+    "evidence": [
+      {"url": "https://testpartners.co.uk/contact.htm", "label": "contact page (London test centre, Richmond registered address)"},
+      {"url": "https://testpartners.co.uk/accessibility_testing.htm", "label": "accessibility testing page (services, 400+ projects since 2002)"},
+      {"url": "https://testpartners.co.uk", "label": "homepage (G-Cloud, public sector)"}
+    ]
+  },
+  {
+    "slug": "nexer-digital",
+    "hqCity": "Macclesfield",
+    "founded": 2007,
+    "headcountBand": "51-200",
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "industries": ["healthcare", "public-sector"],
+    "descriptionEn": "Nexer Digital is a user experience and accessibility agency based in Macclesfield, Cheshire. Since 2007 its team of more than 50 researchers, designers, developers and specialists has worked on human-centred design, with accessibility embedded through audits, training and strategic consultancy. It is a Deque partner offering automated testing and monitoring tools, delivers accessibility training across private, not-for-profit and public sector organisations, and works with health sector clients including NHS Digital, Bupa and Health Innovation Manchester.",
+    "evidence": [
+      {"url": "https://nexerdigital.com", "label": "homepage (Macclesfield office, health sector, Deque partnership)"},
+      {"url": "https://nexerdigital.com/what-we-do/", "label": "services page (audits, training, consultancy)"},
+      {"url": "https://nexerdigital.com/who-we-are/", "label": "about page (since 2007, 50+ team)"}
+    ]
+  },
+  {
+    "slug": "shaw-trust-accessibility-services",
+    "languages": ["en"],
+    "services": ["audit", "remediation", "training", "monitoring", "consulting"],
+    "industries": ["public-sector"],
+    "descriptionEn": "Shaw Trust Accessibility Services is a charitable enterprise delivered by Shaw Trust Enterprises, part of Shaw Trust, a UK registered charity (no. 287785) formed in 1982 in Shaw, Wiltshire. It offers accessibility assessments across desktop and mobile, user testing with an in-house testing team, design and template reviews, media services for accessible documents, transcripts and captioning, a subscription service for regular retesting, accessibility training and bespoke consultancy. It works with central and local government, private companies and charities.",
+    "evidence": [
+      {"url": "https://www.accessibility-services.co.uk/services/", "label": "services page (assessments, user testing, media services, subscription)"},
+      {"url": "https://accessibility-services.co.uk/about/", "label": "about page (charitable enterprise, Shaw Trust 1982, clients)"},
+      {"url": "https://accessibility-services.co.uk", "label": "homepage (part of Shaw Trust, a UK charity)"}
+    ]
+  },
+  {
+    "slug": "jim-byrne-associates",
+    "hqCity": "Glasgow",
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": ["public-sector", "education"],
+    "descriptionEn": "Jim Byrne Associates is an accessible web design and accessibility practice based in Glasgow, led by Jim Byrne, who founded The Making Connections Unit in 1996, described as one of the UK's first web accessibility consultancies. Services include website accessibility audits to WCAG 2.1 and WCAG 2.2, testing by disabled individuals, accessibility consultancy, accessible website design, and online accessibility training aimed at charities, non-profits, education, public and third sector organisations.",
+    "evidence": [
+      {"url": "https://jimbyrne.co.uk", "label": "homepage (Glasgow, WCAG 2.1/2.2 audits, sectors)"},
+      {"url": "https://jimbyrne.co.uk/about/", "label": "about page (Making Connections Unit 1996)"}
+    ]
+  },
+  {
+    "slug": "damteq",
+    "hqCity": "Fareham",
+    "headcountBand": "11-50",
+    "languages": ["en"],
+    "services": ["audit"],
+    "descriptionEn": "Damteq Solutions Ltd is a growth and digital marketing agency based in Fareham, Hampshire, with an in-house team of over 30 specialists. Alongside marketing, web design and development, SEO and business consultancy, its UX services include accessibility audits, UX audits and usability testing. The site states it partners with established SMEs with revenue over £1m and national brands, with digital marketing services from £1,500 +VAT per month and website projects from around £8,000 +VAT.",
+    "evidence": [
+      {"url": "https://damteq.co.uk/contact/", "label": "contact page (Fareham address, pricing guide)"},
+      {"url": "https://damteq.co.uk", "label": "homepage (team of over 30, accessibility audits under UX services)"}
+    ]
+  },
+  {
+    "slug": "mixd",
+    "hqCity": "Leeds",
+    "founded": 2004,
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "industries": ["public-sector", "healthcare", "education"],
+    "descriptionEn": "Mixd is a user-centred digital agency founded in 2004 and based at Platform, next to Leeds railway station. It specialises in web accessibility for the public sector, designing and building accessible websites and providing accessibility audits, training and consultancy to support compliance with the Public Sector Bodies Accessibility Regulations, including responses to GDS accessibility monitoring demands. It works extensively with the NHS and wider public sector, including healthcare, education, government and charities.",
+    "evidence": [
+      {"url": "https://mixd.co.uk", "label": "homepage (founded 2004, public sector and NHS focus, services)"},
+      {"url": "https://mixd.co.uk/contact/", "label": "contact page (Leeds office)"}
+    ]
+  },
+  {
+    "slug": "all-able",
+    "languages": ["en"],
+    "services": ["audit", "vpat", "training"],
+    "industries": ["public-sector"],
+    "descriptionEn": "All Able Ltd is a small UK team of accessibility experts with a background in public services and education. Services include accessibility audits as evidence for compliance under UK law, VPAT assessments, a pop-up empathy lab, and a range of training courses. The team has worked with nearly every area of the public sector and publishes research on accessibility statements, disproportionate burden and tactile maps, with its accessibility statement work discussed by the European Commission.",
+    "evidence": [
+      {"url": "https://www.allable.co.uk/services", "label": "services page (audits, VPAT, empathy lab, training)"},
+      {"url": "https://www.allable.co.uk/about-us", "label": "about page (small team, public sector experience)"},
+      {"url": "https://www.allable.co.uk/contact-us", "label": "contact page"}
+    ]
+  },
+  {
+    "slug": "web-usability",
+    "hqCity": "Trowbridge",
+    "founded": 2001,
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "descriptionEn": "Web Usability is a specialist, strategic user experience consultancy that has been helping organisations make better digital decisions since 2001. Founded as a family business and still independently run, it is a small organisation based at Glove Factory Studios in Holt, near Trowbridge, Wiltshire. Services include accessibility audits against WCAG, inclusive user testing, usability testing, user research, and accessibility and UX training.",
+    "evidence": [
+      {"url": "https://webusability.co.uk/contact/", "label": "site footer (Holt, Trowbridge, Wiltshire address)"},
+      {"url": "https://webusability.co.uk/about/", "label": "about page (since 2001, family business)"},
+      {"url": "https://webusability.co.uk", "label": "homepage (accessibility audit, inclusive user testing, training)"}
+    ]
+  },
+  {
+    "slug": "dig-inclusion",
+    "founded": 2012,
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["wcag-2-2", "en-301-549", "eaa", "section-508"],
+    "industries": ["public-sector"],
+    "descriptionEn": "Dig Inclusion Ltd is a specialist group of accessibility consultants and developers, active in digital inclusivity since 2012 and acquired in February 2023 by Nile, a Scotland-headquartered strategic design company. A user-led enterprise whose team includes people with different accessibility needs, it provides WCAG 2.2 AA audits, design, code and content reviews, user testing with disabled people, training, consultancy, public sector support, and Hugr, its accessibility statement tool. Its compliance pages cover EN 301 549, the EAA and Section 508.",
+    "evidence": [
+      {"url": "https://www.diginclusion.com/about-us", "label": "about page (since 2012, user-led enterprise, Nile acquisition)"},
+      {"url": "https://www.diginclusion.com/compliance", "label": "compliance page (WCAG 2.2 AA, EN 301 549, EAA, Section 508)"},
+      {"url": "https://www.diginclusion.com/services", "label": "services page (audits, training, consultancy, public sector)"}
+    ]
+  }
+]
