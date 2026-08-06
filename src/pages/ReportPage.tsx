@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
+import { paths } from '@/lib/data'
 import {
   ScannerUnavailableError,
   fetchScan,
@@ -61,7 +62,7 @@ export default function ReportPage() {
   if (!id) return null
 
   return (
-    <Layout title="Accessibility scan report" description="Automated accessibility scan results." path={`/report/${id}/`} index={false}>
+    <Layout title="Accessibility scan report" description="Automated accessibility scan results." path={paths.report(id)} index={false}>
       {state.kind === 'loading' && <p className="lede" role="status">Loading report…</p>}
 
       {state.kind === 'unavailable' && (

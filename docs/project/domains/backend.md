@@ -65,6 +65,14 @@ npx wrangler deploy
 обновить вместе при покупке домена (A0-ORIGIN), иначе CORS перекроет `/api/scan`
 с прод-фронтенда.
 
+**Turnstile — пара переменных, настраивать вместе** (D-015): `TURNSTILE_SECRET_KEY`
+(секрет, `wrangler secret put`, только в Worker) и `VITE_TURNSTILE_SITE_KEY`
+(публичный site key, build-переменная Cloudflare Pages, `src/components/
+TurnstileWidget.tsx`). Оба симметрично опциональны в dev (виджет не рендерится /
+сервер не проверяет), но в проде должны появиться синхронно — иначе либо формы
+без защиты от ботов (секрет забыт), либо все сканы падают с 403 (site key забыт,
+токен никогда не приходит, а сервер его требует).
+
 ## Дальше по Фазе 1
 
 - `A1-EXPLAIN`: Claude Haiku + KV-кэш `ruleId×locale`, секрет Anthropic API key.

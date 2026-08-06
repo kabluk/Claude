@@ -133,7 +133,28 @@ nodes:
     attempts: 1
     risk: low
     approval_required: false
-    notes: "Готово 2026-08-06: все 5 UX-требований выполнены, 6 состояний (running/done/done-clean/error/not-found/unavailable) верифицированы через Playwright с подменённым API против реального dev-сервера — 0 нарушений axe-core на каждом (см. domains/frontend.md). Попутно найден и исправлен реальный баг контраста + баг самого audit-own-a11y.mjs (D-014). status=review, не done: зависит от A1-SCAN (тоже review), и реально получить scanId для перехода на страницу можно только после A1-LANDING (форма отправки URL) — сама страница отчёта готова и протестирована независимо от них."
+    notes: "Готово 2026-08-06: все 5 UX-требований выполнены, 6 состояний (running/done/done-clean/error/not-found/unavailable) верифицированы через Playwright с подменённым API против реального dev-сервера — 0 нарушений axe-core на каждом (см. domains/frontend.md). Попутно найден и исправлен реальный баг контраста + баг самого audit-own-a11y.mjs (D-014). status=review, не done: зависит от A1-SCAN (тоже review) — сама страница отчёта готова и протестирована независимо от него."
+
+  - id: A1-LANDING
+    title: "Лендинг сканера /scan — форма URL, Turnstile, честный прогноз времени, ссылка из шапки"
+    owner: frontend-engineer
+    status: review
+    depends_on: []
+    inputs: [docs/project/VISION.md, src/lib/scanner.ts]
+    scope: [src/pages/ScanPage.tsx, src/components/TurnstileWidget.tsx, src/lib/scanner.ts, src/lib/data.ts, src/components/Layout.tsx]
+    outputs: [src/pages/ScanPage.tsx, src/components/TurnstileWidget.tsx]
+    verify:
+      - npm run build
+      - npm run typecheck
+      - npm run audit-a11y
+      - "клиентская валидация URL не делает лишний сетевой запрос"
+      - "успешная отправка ведёт на /report/:id с реальным scanId"
+      - "серверная ошибка (напр. rate limit) отображается пользователю"
+    max_attempts: 4
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Готово 2026-08-06 (D-015). Статическая пререндерящаяся страница (не client-only, в отличие от /report/:id) — 385-я страница сборки, добавлена в sitemap. 4 сценария проверены живьём через Playwright с подменённым `page.route()`: idle-рендер, невалидный URL (0 сетевых вызовов), успешный сабмит → /report/abc123/, серверная ошибка 429 → текст виден пользователю. Все состояния axe-чисты. Explicitly НЕ добавлено поле email — POST /api/scan его не использует, обещать в UI значило бы врать (D-015). status=review, не done: реальный Turnstile-виджет (внешний скрипт challenges.cloudflare.com) не тестировался в этой песочнице — тот же сетевой MITM-барьер, что у D-010; путь без VITE_TURNSTILE_SITE_KEY (виджет не рендерится) полностью проверен."
 
   - id: A1-EXPLAIN
     title: AI-пояснения находок (Claude Haiku + KV-кэш ruleId×locale)

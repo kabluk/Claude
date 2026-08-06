@@ -28,8 +28,20 @@ export type ScanReport = {
 }
 
 const API_BASE = import.meta.env.VITE_SCANNER_API ?? ''
+export const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY ?? ''
 
 export class ScannerUnavailableError extends Error {}
+
+// Тот же критерий, что worker/routes/scan.js::isHttpUrl — держать в синхроне вручную
+// (worker — plain JS без общего с фронтендом модуля, см. D-010).
+export function isValidScanUrl(value: string): boolean {
+  try {
+    const parsed = new URL(value)
+    return parsed.protocol === 'http:' || parsed.protocol === 'https:'
+  } catch {
+    return false
+  }
+}
 
 async function apiFetch(path: string, init?: RequestInit): Promise<Response> {
   if (!API_BASE) throw new ScannerUnavailableError('VITE_SCANNER_API is not configured')

@@ -53,6 +53,9 @@ export function Layout({
               All agencies
             </Link>
           </nav>
+          <Link className="btn ml-auto !py-1.5 !text-xs" to={paths.scan()}>
+            Scan your site
+          </Link>
         </div>
       </header>
       {trail.length > 0 && (

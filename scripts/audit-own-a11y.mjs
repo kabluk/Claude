@@ -26,9 +26,9 @@ if (!existsSync(DIST)) {
 
 const AXE_SOURCE = readFileSync(join(ROOT, 'node_modules/axe-core/axe.min.js'), 'utf8')
 
-// 2 представителя на шаблон — покрывает 14 шаблонов из README.
+// 2 представителя на шаблон — покрывает шаблоны из README + /scan (A1-LANDING).
 const SAMPLE_ROUTES = [
-  '/', '/agencies/', '/agencies/deque-systems/', '/agencies/tpgi/',
+  '/', '/scan/', '/agencies/', '/agencies/deque-systems/', '/agencies/tpgi/',
   '/countries/', '/germany/', '/united-states/',
   '/germany/accessibility-audit/', '/united-states/vpat/',
   '/services/', '/services/accessibility-audit/',

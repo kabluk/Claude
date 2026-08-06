@@ -4,8 +4,8 @@
 в ролях `claude-project-orchestrator` нет отдельной UX-роли, это не значит «дизайн
 не делает никто»)
 
-- Стек: React 18 + Vite + `vite-react-ssg` + Tailwind v4. 384 страницы, 14 шаблонов
-  в `src/pages/`, маршруты + `getStaticPaths` в `src/routes.tsx`.
+- Стек: React 18 + Vite + `vite-react-ssg` + Tailwind v4. 385 страниц (14 шаблонов
+  каталога + `/scan`), маршруты + `getStaticPaths` в `src/routes.tsx`.
 - SEO-слой: `src/lib/seo.tsx` (**ORIGIN-заглушка `accessatlas.example` — менять при
   домене вместе со `scripts/gen-a11y-sitemap.mjs`**), JSON-LD 5 типов, порог ≥3.
 - Иерархия заголовков проверена скриптом на всех страницах (h1→h3 баг закрыт).
@@ -37,10 +37,31 @@ API против реального dev-сервера — 0 нарушений 
 `src/vite-env.d.ts`) — без неё страница рендерится с понятным «сканер не настроен»,
 не падает сборка.
 
-## Предстоит (Фаза 1) — с явными UX-приёмочными критериями (VISION.md, D-011)
+## A1-LANDING — сделано (2026-08-06, review)
 
-- `/scan` лендинг (A1-LANDING): объяснение приватности, честный прогноз времени скана,
-  форма отправки URL — единственный способ реально получить `scanId` для `/report/:id`.
+`/scan` (`src/pages/ScanPage.tsx`) + `src/components/TurnstileWidget.tsx`. Обычная
+статическая пререндерящаяся страница (не client-only — в отличие от `/report/:id`,
+путь фиксирован, `getStaticPaths` не нужен), добавлена в `scripts/gen-a11y-
+sitemap.mjs`. Ссылка «Scan your site» в `Layout.tsx` — выделенный `.btn` справа
+от навигации, а не рядовой пункт меню (это точка входа в воронку, VISION.md).
+
+- Форма: URL-инпут + клиентская валидация (`isValidScanUrl` — дублирует
+  `worker/routes/scan.js::isHttpUrl` вручную, D-015) до сетевого запроса.
+- `TurnstileWidget`: не рендерится без `VITE_TURNSTILE_SITE_KEY` (форма всё равно
+  рабочая — сервер сам пропускает проверку без `TURNSTILE_SECRET_KEY`, degradation
+  симметричен). Реальный внешний скрипт `challenges.cloudflare.com` не тестировался
+  в этой песочнице (тот же сетевой барьер, что у Browser Rendering в D-010).
+- Честный раздел «What this does — and doesn't — do»: explicitly без email-поля —
+  `POST /api/scan` принимает `email`, но сервер с ним пока ничего не делает,
+  обещать в UI было бы враньём (D-015).
+
+Верификация: 4 сценария живьём через Playwright (`page.route()` подмена) против
+dev-сервера — idle-рендер (axe-чисто), невалидный URL (0 сетевых вызовов, axe-чисто
+на error-состоянии), успешный сабмит → реальная навигация на `/report/abc123/`,
+серверная ошибка 429 → текст виден пользователю (axe-чисто).
+
+## Предстоит (Фаза 1)
+
 - Блок «подходящие агентства» под отчётом (A1-MATCH) + доверие в UI каталога: бейджи
   верификации и ссылки-доказательства на карточке (данные `sourceRefs`/`lastVerified`
   уже есть, UI ещё не спроектирован).

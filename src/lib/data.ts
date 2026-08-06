@@ -130,6 +130,8 @@ export const paths = {
   contact: () => '/contact/',
   privacy: () => '/privacy/',
   imprint: () => '/imprint/',
+  scan: () => '/scan/',
+  report: (id: string) => `/report/${id}/`,
 }
 
 export const serviceLabel = (s: ServiceSlug) => tax.services[s].en ?? s
