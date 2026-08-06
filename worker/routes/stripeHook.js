@@ -19,35 +19,65 @@
 //
 // A2-STRIPE-LIVE (D-027): Payment Link создаётся вручную в Stripe Dashboard,
 // не через API — Dashboard-ссылка не умеет нести ДИНАМИЧЕСКУЮ metadata (она
-// одна и та же для всех покупателей одной ссылки), поэтому agency_slug
-// собирается через Stripe "custom field" на странице оплаты (агентство само
-// вписывает свой slug) — приходит в session.custom_fields, не в
-// session.metadata. Ключ поля (CUSTOM_FIELD_KEY ниже) — НЕ "agency_slug",
-// несмотря на видимый в Dashboard label с этим текстом: Stripe сгенерировал
-// key из более раннего черновика label и не обновил его при переименовании
-// — подтверждено живым оплаченным событием, не предположением. Единственный
-// продукт первого прохода — featured €590/год, разовый платёж (не подписка)
-// — until НЕ берётся из данных, присланных клиентом/Stripe вообще: считается
-// на сервере как "сегодня + 365 дней" в момент обработки события, иначе
-// платящий мог бы (по ошибке конфигурации Stripe-стороны или иначе)
-// продиктовать себе любую дату. Ежемесячная подписка и lead-пакеты (другая
-// система — credits, не featured) вне scope этого прохода, см. GRAPH.yaml notes.
+// одна и та же для всех покупателей одной ссылки), поэтому agency
+// собирается через Stripe "custom field" на странице оплаты — приходит в
+// session.custom_fields, не в session.metadata. Ключ поля (CUSTOM_FIELD_KEY
+// ниже) — НЕ то, что показывает Dashboard как label: Stripe сгенерировал key
+// из более раннего черновика label и не обновил его при переименовании —
+// подтверждено живым оплаченным событием, не предположением (D-028).
+// Единственный продукт первого прохода — featured €590/год, разовый платёж
+// (не подписка) — until НЕ берётся из данных, присланных клиентом/Stripe
+// вообще: считается на сервере как "сегодня + 365 дней" в момент обработки
+// события, иначе платящий мог бы (по ошибке конфигурации Stripe-стороны или
+// иначе) продиктовать себе любую дату. Ежемесячная подписка и lead-пакеты
+// (другая система — credits, не featured) вне scope этого прохода, см.
+// GRAPH.yaml notes.
+//
+// D-029: label поля переименован на "Your agency name" (понятнее для
+// заявителей, не все знают термин "slug") — поэтому resolveAgencySlug ниже
+// принимает и точный slug, и название агентства (data/a11y/agencies.json::name,
+// сравнение case-insensitive с нормализацией пробелов), а не только slug.
 
 import { verifyStripeSignature } from '../lib/stripeSig.js'
 import { agencies } from '../lib/matchAgenciesServer.js'
 
 const AGENCY_SLUGS = new Set(agencies.map((a) => a.slug))
+// Клиент на странице оплаты может ввести либо технический slug (если
+// когда-то видел его в URL профиля), либо название агентства как есть
+// (ожидаемо, раз label поля "Your agency name" — не все пользователи
+// знают, что такое slug). Поэтому normalized-имя тоже принимается, помимо
+// точного slug. Дубликат normalized-имени в каталоге (сейчас такого нет,
+// 245/245 уникальны) делает совпадение неоднозначным — на всякий случай
+// такое имя намеренно не резолвится ни в какой slug, а не берёт первое
+// попавшееся (см. resolveAgencySlug).
+function normalizeAgencyName(name) {
+  return name.trim().toLowerCase().replace(/\s+/g, ' ')
+}
+const AGENCY_SLUG_BY_NORMALIZED_NAME = new Map()
+for (const a of agencies) {
+  const key = normalizeAgencyName(a.name)
+  AGENCY_SLUG_BY_NORMALIZED_NAME.set(key, AGENCY_SLUG_BY_NORMALIZED_NAME.has(key) ? null : a.slug)
+}
+
+// Принимает точный slug или название агентства (в любом регистре/с любыми
+// лишними пробелами) — не выдумывает совпадение, если ни то ни другое не
+// нашлось в реальном каталоге буквально.
+function resolveAgencySlug(rawValue) {
+  const trimmed = rawValue.trim()
+  if (!trimmed) return null
+  if (AGENCY_SLUGS.has(trimmed)) return trimmed
+  return AGENCY_SLUG_BY_NORMALIZED_NAME.get(normalizeAgencyName(trimmed)) ?? null
+}
+
 // Stripe генерирует key custom field из ТЕКСТА LABEL в момент первого
 // сохранения поля и не пересчитывает его при последующем редактировании
-// label — реального "agency_slug" здесь никогда не было, несмотря на то что
-// label.custom в Dashboard сейчас показывает именно "agency_slug". Значение
-// ниже — не предположение, а буквальный key из настоящего оплаченного
-// checkout.session.completed (cs_live_a12o7c...), полученного во время
-// живой проверки A2-STRIPE-LIVE 2026-08-06 (см. DECISIONS.md D-027).
+// label — сверяй с реальным payload после каждой пересоздания/переименования
+// поля в Dashboard, не с тем, что показывает интерфейс (см. DECISIONS.md
+// D-027/D-028 — этот key уже один раз расходился с видимым label).
 const CUSTOM_FIELD_KEY = 'yourslugaccessatlas'
 const FEATURED_DAYS = 365
 
-function extractAgencySlugFromSession(session) {
+function extractCustomFieldValue(session) {
   const fields = session?.custom_fields
   if (!Array.isArray(fields)) return null
   const field = fields.find((f) => f?.key === CUSTOM_FIELD_KEY)
@@ -60,14 +90,17 @@ export function computeFeaturedUntil(now = new Date()) {
 }
 
 // Возвращает {agencySlug, until} или null, если checkout session не несёт
-// валидного agency_slug (пустое поле или опечатка, не входящая в реальный
-// каталог — не выдумываем размещение для несуществующего slug). Нет смысла
-// отклонять весь webhook — подпись Stripe подтверждена, платёж настоящий,
-// просто нечего применить автоматически (см. вызывающий код: залогировано
-// отдельно, чтобы не потерять "заплатил, но опечатался").
+// валидного agency (пустое поле, или значение — ни slug, ни название,
+// которые есть в реальном каталоге — не выдумываем размещение для
+// несуществующей записи). Нет смысла отклонять весь webhook — подпись
+// Stripe подтверждена, платёж настоящий, просто нечего применить
+// автоматически (см. вызывающий код: залогировано отдельно, чтобы не
+// потерять "заплатил, но опечатался").
 export function extractFeaturedFromSession(session, now = new Date()) {
-  const agencySlug = extractAgencySlugFromSession(session)
-  if (!agencySlug || !AGENCY_SLUGS.has(agencySlug)) return null
+  const rawValue = extractCustomFieldValue(session)
+  if (!rawValue) return null
+  const agencySlug = resolveAgencySlug(rawValue)
+  if (!agencySlug) return null
   return { agencySlug, until: computeFeaturedUntil(now) }
 }
 

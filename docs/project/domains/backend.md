@@ -587,3 +587,34 @@ HMAC-SHA256 событие с точной формой реального paylo
 (`checkout.session.completed` → `/api/stripe-hook`) + реальный
 `STRIPE_WEBHOOK_SECRET` для `wrangler secret put`. Payment Link уже реально
 принимает деньги и корректно отдаёт `agency_slug` в custom field.
+
+## A2-STRIPE-LIVE (2026-08-06, D-029) — label "Your agency name" + матчинг по имени
+
+Владелец переименовал label custom field на **"Your agency name"** — термин
+"slug" непонятен обычному заявителю (и владельцу самому, не native English).
+Это меняет то, что реально будут вводить в поле: не технический slug
+(`deque-systems`), а человекочитаемое название (`Deque Systems`). Раньше
+`extractFeaturedFromSession` матчил строго по `AGENCY_SLUGS.has(value)` —
+такой ввод молча отклонялся бы (только `console.error`, без сигнала
+заявителю), потеряв реальный платёж без применения featured.
+
+Добавлена `resolveAgencySlug(rawValue)`: сначала точный slug, затем
+normalized-имя (`trim().toLowerCase().replace(/\s+/g,' ')`) против карты
+`agencies[].name → slug`. Карта строится один раз при загрузке модуля;
+дубликат normalized-имени (проверено — сейчас 0 из 245) намеренно
+маппится на `null` (неоднозначность), а не берёт первое совпадение — не
+угадываем, какое из двух агентств имел в виду плательщик.
+
+6 новых тестов: точное совпадение по имени, case-insensitive + лишние
+пробелы, несуществующее "похожее на имя" значение → `null`. 126/126
+`worker:test`. Живая проверка: `wrangler dev --local` с точной формой
+реального события, где значение поля — буквально `"Deque Systems"` (не
+slug) → создалась верная строка `featured` c `agency_slug: "deque-systems"`
+в локальной D1 — удалена после проверки. `typecheck`/`wrangler deploy
+--dry-run` чистые.
+
+Владелец пересоздаёт саму Payment Link под новый label — ключ нового custom
+field нужно будет подтвердить тем же способом, что в D-028 (один реальный
+тестовый платёж → прислать сюда JSON `checkout.session.completed`), а не
+предполагать по видимому в Dashboard тексту (см. урок в
+`.claude/agents/devops-engineer.md`).

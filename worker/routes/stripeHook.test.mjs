@@ -149,6 +149,25 @@ test('extractFeaturedFromSession: agency slug not present in the real catalog (t
   assert.equal(extractFeaturedFromSession(session), null)
 })
 
+// Label теперь "Your agency name" (не "your slug"), не все заявители знают,
+// что такое slug — поэтому значение также резолвится по названию агентства
+// (data/a11y/agencies.json::name), не только по точному slug.
+test('extractFeaturedFromSession: value matches by agency display name (not just slug) -> resolves to the real slug', () => {
+  const now = new Date('2026-08-06T00:00:00.000Z')
+  const session = { custom_fields: [customField(REAL_CUSTOM_FIELD_KEY, 'Deque Systems')] }
+  assert.deepEqual(extractFeaturedFromSession(session, now), { agencySlug: REAL_SLUG_1, until: '2027-08-06' })
+})
+
+test('extractFeaturedFromSession: name match is case-insensitive and tolerates extra whitespace', () => {
+  const session = { custom_fields: [customField(REAL_CUSTOM_FIELD_KEY, '  deque   systems  ')] }
+  assert.deepEqual(extractFeaturedFromSession(session), { agencySlug: REAL_SLUG_1, until: computeFeaturedUntil() })
+})
+
+test('extractFeaturedFromSession: a name-like value that matches no real agency name or slug -> null', () => {
+  const session = { custom_fields: [customField(REAL_CUSTOM_FIELD_KEY, 'Some Agency That Does Not Exist LLC')] }
+  assert.equal(extractFeaturedFromSession(session), null)
+})
+
 // --- handlePostStripeHook ---------------------------------------------------
 
 test('no STRIPE_WEBHOOK_SECRET configured -> 503, body never even inspected', async () => {
