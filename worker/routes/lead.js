@@ -1,8 +1,4 @@
 // POST /api/lead: приём RFQ-заявки, матчинг подходящих агентств, запись в D1.
-// Email агентствам этим узлом НЕ отправляется — только TODO/лог вместо реального
-// вызова Resend (см. заголовок функции ниже). Реальная отправка — A2-LEAD-EMAIL,
-// отдельный узел (GRAPH.yaml), требует отдельного одобрения владельца (новый
-// внешний платный сервис + рассылка живым третьим лицам, CLAUDE.md).
 //
 // D1-доступ к таблице leads держим здесь, а не в worker/lib/db.js — тот файл
 // (см. его заголовок) специализирован под scans и не входит в scope узла
@@ -12,9 +8,18 @@
 // проверок), но живёт отдельно: leadForm.ts — TS-модуль под Vite-алиасы
 // (@data/a11y/types), недоступный из plain-ESM воркера, как и matchAgencies.ts
 // (см. worker/lib/matchAgenciesServer.js).
+//
+// A2-LEAD-EMAIL (D-025): у Agency (data/a11y/types.ts) нет поля email — только
+// website. Уведомляем ТОЛЬКО совпавшие агентства, которые реально claimed и
+// verified (claims.email — адрес, введённый и подтверждённый самим владельцем
+// профиля через A2-CLAIM-API/A2-CLAIM-EMAIL, не выдуманный и не собранный
+// вслепую). Незаявленные агентства не получают ничего — у нас просто нет для
+// них проверенного адреса; расширение (email в agencies.json и т.п.) — вне
+// scope этого узла, отдельное решение владельца.
 
-import { matchAgencies, taxonomies } from '../lib/matchAgenciesServer.js'
+import { matchAgencies, agencies, taxonomies } from '../lib/matchAgenciesServer.js'
 import { verifyTurnstile } from '../lib/turnstile.js'
+import { sendEmail, SANDBOX_FROM } from '../lib/resend.js'
 
 // KV fixed-window rate limiter, тот же паттерн, что worker/lib/ratelimit.js
 // (checkFixedWindow) — держим отдельную реализацию тут, а не расширяем
@@ -65,6 +70,57 @@ function invalidLeadFields(body) {
   if (scanId !== undefined && scanId !== null && typeof scanId !== 'string') errors.push('scanId')
 
   return errors
+}
+
+// Возвращает [{agencySlug, email}] — только claimed+verified среди matched.
+// Пусто, если matched пуст или ни одно совпавшее агентство не заявлено.
+async function findClaimedEmails(db, matchedSlugs) {
+  if (matchedSlugs.length === 0) return []
+  const placeholders = matchedSlugs.map(() => '?').join(',')
+  const { results } = await db
+    .prepare(`SELECT agency_slug, email FROM claims WHERE verified = 1 AND agency_slug IN (${placeholders})`)
+    .bind(...matchedSlugs)
+    .all()
+  return results ?? []
+}
+
+function buildLeadNotificationEmail({ agencyName, lead }) {
+  const lines = [
+    `A new accessibility service request matched your listing on AccessAtlas (${agencyName}).`,
+    '',
+    `Country: ${lead.country}`,
+    `Standard: ${lead.standard}`,
+    `Service: ${lead.service}`,
+    `Budget: ${lead.budget}`,
+    lead.deadline ? `Deadline: ${lead.deadline}` : null,
+    '',
+    `Contact: ${lead.contact.email}${lead.contact.company ? ` (${lead.contact.company})` : ''}`,
+    '',
+    'Reply directly to this email to reach out — AccessAtlas does not route responses.',
+  ].filter((l) => l !== null)
+  return { subject: `New accessibility request matching ${agencyName}`, text: lines.join('\n') }
+}
+
+// Best-effort, как sendVerifyEmailBestEffort в claim.js: запись лида в D1 не
+// зависит от Resend, отправка уведомлений — некритичный побочный эффект.
+async function notifyClaimedAgenciesBestEffort(env, { matchedSlugs, lead }) {
+  if (!env.RESEND_API_KEY || matchedSlugs.length === 0) return
+  let claimed
+  try {
+    claimed = await findClaimedEmails(env.DB, matchedSlugs)
+  } catch (err) {
+    console.error('A2-LEAD-EMAIL: failed to look up claimed agencies', err?.message ?? err)
+    return
+  }
+  for (const { agency_slug: agencySlug, email } of claimed) {
+    const agency = agencies.find((a) => a.slug === agencySlug)
+    const { subject, text } = buildLeadNotificationEmail({ agencyName: agency?.name ?? agencySlug, lead })
+    try {
+      await sendEmail(env.RESEND_API_KEY, { from: SANDBOX_FROM, to: email, subject, text })
+    } catch (err) {
+      console.error(`A2-LEAD-EMAIL: failed to notify ${agencySlug}`, err?.message ?? err)
+    }
+  }
 }
 
 async function insertLead(db, lead) {
@@ -136,22 +192,24 @@ export async function handlePostLead(request, env) {
     company: typeof body.contact.company === 'string' && body.contact.company.trim() ? body.contact.company.trim() : undefined,
   }
 
-  await insertLead(env.DB, {
-    id,
-    scanId: typeof body.scanId === 'string' ? body.scanId : undefined,
+  const lead = {
     country: body.country,
     standard: body.standard,
     service: body.service,
     budget: body.budget,
     deadline: body.deadline || undefined,
     contact,
+  }
+
+  await insertLead(env.DB, {
+    id,
+    scanId: typeof body.scanId === 'string' ? body.scanId : undefined,
+    ...lead,
     matched,
     createdAt,
   })
 
-  // TODO(A2-LEAD-EMAIL, approval_required): реальная отправка через Resend —
-  // отдельный узел, требует одобрения владельца (новый внешний платный сервис).
-  // Здесь намеренно только запись в D1 + возврат matched[], без сетевого вызова.
+  await notifyClaimedAgenciesBestEffort(env, { matchedSlugs: matched, lead })
 
   return Response.json({ leadId: id, matched }, { status: 201 })
 }

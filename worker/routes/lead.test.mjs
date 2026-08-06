@@ -2,9 +2,10 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { handlePostLead } from './lead.js'
 
-// Мини-D1: только INSERT INTO leads (...) VALUES (...) нужен этому модулю.
-// Записывает bind()-параметры позиционно, как в insertLead (worker/routes/lead.js).
-function fakeDb() {
+// Мини-D1: INSERT INTO leads (insertLead) + SELECT ... FROM claims
+// (findClaimedEmails, A2-LEAD-EMAIL) — claimedRows задаёт, какие агентства
+// уже claimed+verified в этом тесте (пусто по умолчанию — нет заявленных).
+function fakeDb(claimedRows = []) {
   const rows = []
   return {
     rows,
@@ -15,6 +16,15 @@ function fakeDb() {
             async run() {
               rows.push({ sql, args })
               return { meta: { changes: 1 } }
+            },
+            async all() {
+              if (/SELECT agency_slug, email FROM claims/.test(sql)) {
+                const slugs = new Set(args)
+                // mirrors the real query's `WHERE verified = 1`: rows default to
+                // verified unless a test explicitly marks one unverified.
+                return { results: claimedRows.filter((r) => slugs.has(r.agency_slug) && r.verified !== 0) }
+              }
+              return { results: [] }
             },
           }
         },
@@ -204,4 +214,110 @@ test('turnstile: secret configured, token accepted -> proceeds to 201', async (t
     env({ TURNSTILE_SECRET_KEY: 'secret' }),
   )
   assert.equal(res.status, 201)
+})
+
+// VALID_BODY (DE/audit/mid) real-matches these slugs, confirmed against the
+// real catalog via matchAgenciesServer.js — used to test claimed-agency notification.
+const MATCHED_SLUG = 'marc-haunschild-accessibility-consulting'
+
+test('no RESEND_API_KEY: no fetch call happens even when a matched agency is claimed', async (t) => {
+  let fetchCalled = false
+  const originalFetch = globalThis.fetch
+  globalThis.fetch = async (...args) => {
+    fetchCalled = true
+    return originalFetch(...args)
+  }
+  t.after(() => {
+    globalThis.fetch = originalFetch
+  })
+
+  const claimedDb = fakeDb([{ agency_slug: MATCHED_SLUG, email: 'owner@example.com' }])
+  const res = await handlePostLead(req(VALID_BODY), env({ DB: claimedDb }))
+  assert.equal(res.status, 201)
+  assert.equal(fetchCalled, false, 'without RESEND_API_KEY, notifyClaimedAgenciesBestEffort must no-op')
+})
+
+test('RESEND_API_KEY configured, no matched agency is claimed: no email sent', async (t) => {
+  let fetchCalled = false
+  const originalFetch = globalThis.fetch
+  globalThis.fetch = async (...args) => {
+    fetchCalled = true
+    return originalFetch(...args)
+  }
+  t.after(() => {
+    globalThis.fetch = originalFetch
+  })
+
+  const res = await handlePostLead(req(VALID_BODY), env({ RESEND_API_KEY: 're_test' }))
+  assert.equal(res.status, 201)
+  assert.equal(fetchCalled, false, 'no claims table rows -> nothing to notify')
+})
+
+test('RESEND_API_KEY configured, matched agency is claimed+verified: exactly one notification sent', async (t) => {
+  const calls = []
+  const originalFetch = globalThis.fetch
+  globalThis.fetch = async (url, options) => {
+    calls.push({ url, body: JSON.parse(options.body) })
+    return new Response(JSON.stringify({ id: 'evt_1' }), { status: 200 })
+  }
+  t.after(() => {
+    globalThis.fetch = originalFetch
+  })
+
+  const claimedDb = fakeDb([{ agency_slug: MATCHED_SLUG, email: 'owner@example.com' }])
+  const res = await handlePostLead(req(VALID_BODY), env({ DB: claimedDb, RESEND_API_KEY: 're_test' }))
+  assert.equal(res.status, 201)
+  assert.equal(calls.length, 1)
+  assert.equal(calls[0].url, 'https://api.resend.com/emails')
+  assert.deepEqual(calls[0].body.to, ['owner@example.com'])
+  assert.match(calls[0].body.text, /DE/)
+  assert.match(calls[0].body.text, /buyer@example\.com/)
+})
+
+test('RESEND_API_KEY configured but Resend fails: lead still succeeds (best-effort, not 5xx)', async (t) => {
+  const originalFetch = globalThis.fetch
+  globalThis.fetch = async () => new Response(JSON.stringify({ message: 'down' }), { status: 500 })
+  t.after(() => {
+    globalThis.fetch = originalFetch
+  })
+
+  const claimedDb = fakeDb([{ agency_slug: MATCHED_SLUG, email: 'owner@example.com' }])
+  const res = await handlePostLead(req(VALID_BODY), env({ DB: claimedDb, RESEND_API_KEY: 're_test' }))
+  assert.equal(res.status, 201, 'a Resend outage must not turn an already-persisted lead into an error response')
+  assert.equal(claimedDb.rows.length, 1, 'the lead row must still exist in D1 despite the notification failure')
+})
+
+test('claimed agency NOT in the matched set is not notified', async (t) => {
+  let fetchCalled = false
+  const originalFetch = globalThis.fetch
+  globalThis.fetch = async (...args) => {
+    fetchCalled = true
+    return originalFetch(...args)
+  }
+  t.after(() => {
+    globalThis.fetch = originalFetch
+  })
+
+  // Claimed, but for a slug that VALID_BODY's criteria won't match.
+  const claimedDb = fakeDb([{ agency_slug: 'not-in-the-matched-set', email: 'owner@example.com' }])
+  const res = await handlePostLead(req(VALID_BODY), env({ DB: claimedDb, RESEND_API_KEY: 're_test' }))
+  assert.equal(res.status, 201)
+  assert.equal(fetchCalled, false)
+})
+
+test('claim exists for a matched agency but is not yet verified: not notified', async (t) => {
+  let fetchCalled = false
+  const originalFetch = globalThis.fetch
+  globalThis.fetch = async (...args) => {
+    fetchCalled = true
+    return originalFetch(...args)
+  }
+  t.after(() => {
+    globalThis.fetch = originalFetch
+  })
+
+  const claimedDb = fakeDb([{ agency_slug: MATCHED_SLUG, email: 'owner@example.com', verified: 0 }])
+  const res = await handlePostLead(req(VALID_BODY), env({ DB: claimedDb, RESEND_API_KEY: 're_test' }))
+  assert.equal(res.status, 201)
+  assert.equal(fetchCalled, false, 'an unverified claim must not be treated as a trusted contact')
 })

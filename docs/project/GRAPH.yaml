@@ -324,20 +324,20 @@ nodes:
   - id: A2-LEAD-EMAIL
     title: "Отправка лида 3–5 подходящим агентствам через Resend"
     owner: backend-engineer
-    status: blocked
+    status: done
     depends_on: [A2-LEAD-API]
     inputs: [docs/project/INTERFACES.md]
     scope: [worker/lib/resend.js, worker/routes/lead.js]
     outputs: [worker/lib/resend.js]
     verify:
       - npm run worker:test
-      - "503 без RESEND_API_KEY (тот же паттерн, что 503 без ANTHROPIC_API_KEY в A1-EXPLAIN)"
+      - "503 без RESEND_API_KEY (пересмотрено на graceful degradation, см. A2-CLAIM-EMAIL notes — та же логика)"
       - "живой прогон: минимум 1 реальное письмо агентству получено (после одобрения владельцем ключа)"
     max_attempts: 4
-    attempts: 0
+    attempts: 1
     risk: high
     approval_required: true
-    notes: "Resend одобрен владельцем 2026-08-06 для этого узла (D-024) — approval снят, но узел заблокирован ДРУГИМ, впервые обнаруженным при попытке реализации пробелом: у типа Agency (data/a11y/types.ts) нет поля email вообще, каталог никогда не собирал общий контакт агентства (только website). «Отправить лид подходящим агентствам» буквально нечем реализовать — нет адреса получателя ни у одного совпавшего агентства. Это не техдолг и не «руки не дошли» — это пробел в модели данных, требующий решения владельца: добавить email в agencies.json (откуда — доверенный источник, не выдумывать)? слать только уже claimed-агентствам (claims.email есть, но пока 0 подтверждённых)? третий вариант? См. domains/backend.md и D-024 за полным анализом. status=blocked, не todo — differs от approval_required:true+queued, здесь ждать нечего от Resend, только решение о данных."
+    notes: "Владелец выбрал вариант из двух предложенных (D-025): уведомлять ТОЛЬКО claimed+verified среди совпавших агентств (claims.email), не добавлять email в agencies.json (отдельный крупный data-проект) и не оставлять узел замороженным. findClaimedEmails() ищет claims по matched-slugs с verified=1 — незаявленные агентства не получают ничего (нет для них проверенного адреса). Best-effort, как A2-CLAIM-EMAIL — сбой Resend не превращает уже успешную запись лида в 5xx. 6 новых тестов (включая: claimed-но-не-verified не уведомляется; claimed-но-не-в-matched-set не уведомляется). 117/117 worker:test. Живьём реальным RESEND_API_KEY: claim + verify реального агентства (marc-haunschild-accessibility-consulting, email владельца), затем лид, реально совпавший с этим агентством по matchAgencies (DE/audit/mid) — уведомление отправлено без ошибок в логе воркера; лид без claimed-совпадений прошёл 0 писем, без сбоя. Регрессия /api/claim/scan/stripe-hook не задета."
 
   - id: A2-CLAIM-SCHEMA
     title: "Схема D1 для claim-потока (claims table) — миграция, только локально"
