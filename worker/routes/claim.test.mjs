@@ -1,23 +1,44 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { handlePostClaim } from './claim.js'
+import { handlePostClaim, handleGetClaimVerify, buildVerifyEmail } from './claim.js'
 import { agencies } from '../lib/matchAgenciesServer.js'
 
 const REAL_SLUG = agencies[0].slug
 
-// Мини-D1: только INSERT INTO claims (...) VALUES (...) нужен этому модулю.
-// Записывает bind()-параметры позиционно, как в insertClaim (worker/routes/claim.js).
-function fakeDb() {
-  const rows = []
+// Мини-D1: INSERT/UPDATE/SELECT над claims в памяти — покрывает и insertClaim
+// (POST /api/claim), и SELECT+UPDATE в handleGetClaimVerify (GET /api/claim/verify).
+function fakeDb(initialRows = []) {
+  const rows = [...initialRows]
+  const calls = []
   return {
     rows,
+    calls,
     prepare(sql) {
       return {
         bind(...args) {
           return {
             async run() {
-              rows.push({ sql, args })
+              calls.push({ sql, args })
+              if (/^INSERT INTO claims/.test(sql)) {
+                const [id, agency_slug, email, token, created_at] = args
+                rows.push({ id, agency_slug, email, verified: 0, status: 'pending', token, created_at })
+              } else if (/^UPDATE claims SET verified = 1/.test(sql)) {
+                const [token] = args
+                const row = rows.find((r) => r.token === token)
+                if (row) {
+                  row.verified = 1
+                  row.status = 'verified'
+                }
+              }
               return { meta: { changes: 1 } }
+            },
+            async first() {
+              calls.push({ sql, args })
+              if (/^SELECT .* FROM claims WHERE token/.test(sql)) {
+                const [token] = args
+                return rows.find((r) => r.token === token) ?? null
+              }
+              return null
             },
           }
         },
@@ -95,16 +116,14 @@ test('valid body -> 201 {claimId}, row written to D1 with status "pending", veri
   assert.ok(data.claimId.length > 0)
 
   assert.equal(e.DB.rows.length, 1)
-  const [{ sql, args }] = e.DB.rows
-  assert.match(sql, /INSERT INTO claims/)
-  assert.match(sql, /'pending'/)
-  const [id, agencySlug, email, token, createdAt] = args
-  assert.equal(id, data.claimId)
-  assert.equal(agencySlug, REAL_SLUG)
-  assert.equal(email, 'owner@example.com')
-  assert.equal(typeof token, 'string')
-  assert.ok(token.length >= 32, 'token should be a long, non-guessable secret')
-  assert.ok(typeof createdAt === 'string' && !Number.isNaN(Date.parse(createdAt)))
+  const [row] = e.DB.rows
+  assert.equal(row.id, data.claimId)
+  assert.equal(row.status, 'pending')
+  assert.equal(row.agency_slug, REAL_SLUG)
+  assert.equal(row.email, 'owner@example.com')
+  assert.equal(typeof row.token, 'string')
+  assert.ok(row.token.length >= 32, 'token should be a long, non-guessable secret')
+  assert.ok(typeof row.created_at === 'string' && !Number.isNaN(Date.parse(row.created_at)))
 })
 
 test('the verify token is never returned in the API response (only claimId is)', async () => {
@@ -113,11 +132,10 @@ test('the verify token is never returned in the API response (only claimId is)',
   const data = await res.json()
   assert.deepEqual(Object.keys(data), ['claimId'])
 
-  const [{ args }] = e.DB.rows
-  const [, , , token] = args
+  const [row] = e.DB.rows
   // claimId (returned) must differ from token (D1-only, mailed later by A2-CLAIM-EMAIL) —
   // see docs/project/DECISIONS.md D-023.
-  assert.notEqual(data.claimId, token)
+  assert.notEqual(data.claimId, row.token)
 })
 
 test('two claims for the same agency/email get different, unpredictable tokens', async () => {
@@ -125,8 +143,8 @@ test('two claims for the same agency/email get different, unpredictable tokens',
   await handlePostClaim(req(VALID_BODY), e)
   await handlePostClaim(req(VALID_BODY), e)
   const [row1, row2] = e.DB.rows
-  assert.notEqual(row1.args[0], row2.args[0]) // different claimId
-  assert.notEqual(row1.args[3], row2.args[3]) // different token
+  assert.notEqual(row1.id, row2.id) // different claimId
+  assert.notEqual(row1.token, row2.token) // different token
 })
 
 test('email domain is NOT checked against the agency website domain at this step (GRAPH.yaml A2-CLAIM-API)', async () => {
@@ -207,4 +225,77 @@ test('turnstile: secret configured, token accepted -> proceeds to 201', async (t
     env({ TURNSTILE_SECRET_KEY: 'secret' }),
   )
   assert.equal(res.status, 201)
+})
+
+test('buildVerifyEmail embeds the token and origin in a working-looking link, not a placeholder', () => {
+  const { subject, text } = buildVerifyEmail({ agencyName: 'Deque Systems', token: 'abc123', origin: 'https://worker.example' })
+  assert.match(subject, /Deque Systems/)
+  assert.match(text, /https:\/\/worker\.example\/api\/claim\/verify\?token=abc123/)
+})
+
+test('RESEND_API_KEY configured: happy path sends exactly one email to the claim email, link uses the request origin', async (t) => {
+  const calls = []
+  const originalFetch = globalThis.fetch
+  globalThis.fetch = async (url, options) => {
+    calls.push({ url, body: JSON.parse(options.body) })
+    return new Response(JSON.stringify({ id: 'evt_1' }), { status: 200 })
+  }
+  t.after(() => {
+    globalThis.fetch = originalFetch
+  })
+
+  const res = await handlePostClaim(req(VALID_BODY), env({ RESEND_API_KEY: 're_test' }))
+  assert.equal(res.status, 201)
+  assert.equal(calls.length, 1)
+  assert.equal(calls[0].url, 'https://api.resend.com/emails')
+  assert.deepEqual(calls[0].body.to, ['owner@example.com'])
+  assert.match(calls[0].body.text, /https:\/\/worker\.example\/api\/claim\/verify\?token=/)
+})
+
+test('RESEND_API_KEY configured but Resend API fails: claim still succeeds (best-effort, not 5xx)', async (t) => {
+  const originalFetch = globalThis.fetch
+  globalThis.fetch = async () => new Response(JSON.stringify({ message: 'down' }), { status: 500 })
+  t.after(() => {
+    globalThis.fetch = originalFetch
+  })
+
+  const e = env({ RESEND_API_KEY: 're_test' })
+  const res = await handlePostClaim(req(VALID_BODY), e)
+  assert.equal(res.status, 201, 'a Resend outage must not turn an already-persisted claim into an error response')
+  assert.equal(e.DB.rows.length, 1, 'the claim row must still exist in D1 despite the email failure')
+})
+
+test('GET /api/claim/verify: missing token query param -> 400', async () => {
+  const res = await handleGetClaimVerify(new Request('https://worker.example/api/claim/verify'), env())
+  assert.equal(res.status, 400)
+})
+
+test('GET /api/claim/verify: unknown token -> 404', async () => {
+  const res = await handleGetClaimVerify(
+    new Request('https://worker.example/api/claim/verify?token=does-not-exist'),
+    env(),
+  )
+  assert.equal(res.status, 404)
+})
+
+test('GET /api/claim/verify: valid token -> flips verified=1/status=verified in D1, not just in the response', async () => {
+  const e = env()
+  const createRes = await handlePostClaim(req(VALID_BODY), e)
+  const { claimId } = await createRes.json()
+  const [row] = e.DB.rows
+  assert.equal(row.verified, 0, 'sanity check: starts unverified')
+
+  const verifyRes = await handleGetClaimVerify(
+    new Request(`https://worker.example/api/claim/verify?token=${row.token}`),
+    e,
+  )
+  assert.equal(verifyRes.status, 200)
+  const data = await verifyRes.json()
+  assert.equal(data.verified, true)
+  assert.equal(data.agencySlug, REAL_SLUG)
+
+  const [updatedRow] = e.DB.rows
+  assert.equal(updatedRow.verified, 1)
+  assert.equal(updatedRow.status, 'verified')
+  assert.equal(updatedRow.id, claimId, 'sanity check: same claim row')
 })

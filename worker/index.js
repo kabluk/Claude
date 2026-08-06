@@ -1,7 +1,7 @@
 import { handlePostScan, handleGetScan } from './routes/scan.js'
 import { handlePostExplain } from './routes/explain.js'
 import { handlePostLead } from './routes/lead.js'
-import { handlePostClaim } from './routes/claim.js'
+import { handlePostClaim, handleGetClaimVerify } from './routes/claim.js'
 import { handlePostStripeHook } from './routes/stripeHook.js'
 import { deleteExpiredScans } from './lib/retention.js'
 
@@ -47,6 +47,10 @@ export default {
 
     if (request.method === 'POST' && url.pathname === '/api/claim') {
       return withCors(await handlePostClaim(request, env), cors)
+    }
+
+    if (request.method === 'GET' && url.pathname === '/api/claim/verify') {
+      return withCors(await handleGetClaimVerify(request, env), cors)
     }
 
     // Stripe вызывает это server-to-server (не из браузера) — CORS ему не

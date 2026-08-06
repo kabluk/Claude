@@ -34,6 +34,7 @@
 
 import { agencies } from '../lib/matchAgenciesServer.js'
 import { verifyTurnstile } from '../lib/turnstile.js'
+import { sendEmail, SANDBOX_FROM } from '../lib/resend.js'
 
 const AGENCY_SLUGS = new Set(agencies.map((a) => a.slug))
 
@@ -94,6 +95,38 @@ async function insertClaim(db, claim) {
     .run()
 }
 
+// origin — берётся из самого запроса (new URL(request.url).origin), не из
+// конфига: воркер не знает заранее, на каком домене/поддомене он сейчас
+// отвечает (workers.dev сейчас, кастомный домен после A0-ORIGIN), а ссылка
+// в письме должна вести туда, куда реально можно постучаться прямо сейчас.
+export function buildVerifyEmail({ agencyName, token, origin }) {
+  const verifyUrl = `${origin}/api/claim/verify?token=${encodeURIComponent(token)}`
+  return {
+    subject: `Confirm your claim of ${agencyName} on AccessAtlas`,
+    text: `You (or someone using this email address) requested to claim the ${agencyName} listing on AccessAtlas.
+
+Confirm this request by opening the link below. If you didn't request this, you can ignore this email — nothing changes until the link is opened.
+
+${verifyUrl}`,
+  }
+}
+
+// Отправка — best-effort, не блокирует основной результат запроса: запись в
+// claims уже создана (её ценность не зависит от письма — токен можно найти
+// в D1 вручную, если понадобится), а сетевая ошибка Resend/отсутствие ключа
+// не должны превращать успешно созданную заявку в ошибку 5xx для вызывающего
+// (тот же принцип graceful degradation, что Turnstile/ANTHROPIC_API_KEY —
+// см. docs/project/DECISIONS.md D-024 про то, почему это НЕ 503-if-missing).
+async function sendVerifyEmailBestEffort(env, { agencyName, email, token, origin }) {
+  if (!env.RESEND_API_KEY) return
+  const { subject, text } = buildVerifyEmail({ agencyName, token, origin })
+  try {
+    await sendEmail(env.RESEND_API_KEY, { from: SANDBOX_FROM, to: email, subject, text })
+  } catch (err) {
+    console.error('A2-CLAIM-EMAIL: failed to send verify email', err?.message ?? err)
+  }
+}
+
 // POST /api/claim {agencySlug, email, turnstileToken?} -> 201 {claimId}
 // Синхронная запись (как /api/lead, в отличие от /api/scan): просто INSERT,
 // не сетевой вызов — ctx.waitUntil не нужен.
@@ -141,10 +174,38 @@ export async function handlePostClaim(request, env) {
     createdAt,
   })
 
-  // TODO(A2-CLAIM-EMAIL, approval_required): реальная отправка verify-ссылки
-  // через Resend — отдельный узел, требует одобрения владельца (новый внешний
-  // платный сервис). Здесь намеренно только запись в D1 + возврат claimId, без
-  // сетевого вызова и без раскрытия `token` в ответе (см. заголовок файла).
+  const agency = agencies.find((a) => a.slug === body.agencySlug)
+  const origin = new URL(request.url).origin
+  await sendVerifyEmailBestEffort(env, { agencyName: agency?.name ?? body.agencySlug, email, token, origin })
 
   return Response.json({ claimId: id }, { status: 201 })
+}
+
+// GET /api/claim/verify?token=... -> помечает claim верифицированным.
+// Токен ищется по idx_claims_token (migrations/0006_claim_token.sql), не по
+// id/claimId — id уже был отдан вызывающему в ответе POST /api/claim и не
+// доказывает владение почтой (D-023). Возвращает простой JSON, а не редирект
+// на страницу каталога — фронтенд-страница подтверждения (красивый UI) в
+// scope этого узла не входила, ссылка должна вести на что-то реально рабочее,
+// а не на несуществующую страницу (тот же принцип, что D-015), и голый JSON
+// это минимально честно выполняет.
+export async function handleGetClaimVerify(request, env) {
+  const url = new URL(request.url)
+  const token = url.searchParams.get('token')
+  if (!token) {
+    return Response.json({ error: 'token query parameter is required', code: 'bad_request' }, { status: 400 })
+  }
+
+  const row = await env.DB.prepare(`SELECT id, agency_slug, verified, status FROM claims WHERE token = ?`)
+    .bind(token)
+    .first()
+  if (!row) {
+    return Response.json({ error: 'claim not found for this token', code: 'not_found' }, { status: 404 })
+  }
+
+  if (!row.verified) {
+    await env.DB.prepare(`UPDATE claims SET verified = 1, status = 'verified' WHERE token = ?`).bind(token).run()
+  }
+
+  return Response.json({ agencySlug: row.agency_slug, verified: true })
 }

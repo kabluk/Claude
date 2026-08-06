@@ -95,9 +95,22 @@ dev --local` + прямой `SELECT`/`DELETE` из реальной локаль
 `domains/backend.md`. Разблокировало (технически) `A2-CLAIM-EMAIL`/
 `A2-CLAIM-REBUILD`, approval на обоих остаётся отдельным гейтом.
 Остальные `approval_required: false` узлы Фазы 2 — все закрыты.
-Все `approval_required: true` узлы (`A2-LEAD-EMAIL`, `A2-CLAIM-EMAIL`,
-`A2-CLAIM-REBUILD`, `A2-STRIPE-LIVE`, `A2-OUTREACH-SEND`) заблокированы до
-явного разрешения владельца — Resend и Stripe одобряются раздельно, per-node.
+
+Владелец явно одобрил Resend 2026-08-06 для трёх узлов разом (`A2-LEAD-EMAIL`,
+`A2-CLAIM-EMAIL`, `A2-OUTREACH-SEND` — по AskUserQuestion, не общее «ОК»,
+зафиксировано D-024). `A2-CLAIM-EMAIL` — **done**: `worker/lib/resend.js` +
+verify-ссылка (`claims.token`, не `claimId`, D-023) + новый эндпоинт `GET
+/api/claim/verify` (иначе ссылка вела бы в никуда — тот же принцип, что
+D-015). Живьём реальным ключом: письмо реально дошло на email владельца,
+переход по verify-ссылке реально перевёл `claims.verified` 0→1 в D1. `A2-LEAD-
+EMAIL` — **blocked**, не Resend'ом: у `Agency` вообще нет поля email, слать
+подходящим агентствам физически нечем — нужно решение владельца о модели
+данных, не код. `A2-OUTREACH-SEND` — по-прежнему заблокирован (не Resend, а
+отсутствующий домен). Общая находка (D-024): sandbox-домен Resend
+(`onboarding@resend.dev`) может слать только на email владельца аккаунта
+Resend, реальным третьим лицам — только после верификации собственного
+домена (A0-ORIGIN). Секрет НЕ загружен в прод — с этим ограничением это была
+бы частично рабочая, вводящая в заблуждение функция.
 
 ## Фаза 3 — Vertical SaaS
 
