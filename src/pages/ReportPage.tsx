@@ -224,12 +224,16 @@ function ReportBody({ report }: { report: ScanReport }) {
                         по закону вообще вне режима. Art. 4(5) директивы — исключение
                         микропредприятий действует во ВСЕХ странах ЕС одинаково,
                         поэтому это константа UI, а не поле юрисдикции. */}
+                    {/* D-035: сумм штрафов не показываем нигде и никогда — причины
+                        в шапке worker/lib/jurisdiction.js. Оговорка про scope
+                        остаётся: без неё мы называли бы «обязанностью» то, от чего
+                        конкретный бизнес освобождён самой директивой. */}
                     <p className="mt-1.5 text-xs text-amber-800">
                       <span className="font-medium">Scope:</span> microenterprises — fewer than 10 staff
                       and no more than €2M annual turnover or balance sheet — are exempt from the EAA's
                       service requirements under Article 4(5), so a small business may fall outside this
-                      regime entirely. Any amount shown is a statutory maximum for entities in scope, not
-                      an expected charge, and this report is not legal advice.
+                      regime entirely. We deliberately do not quote penalty figures: they depend on
+                      circumstances we cannot see from a scan. This report is not legal advice.
                     </p>
                   </div>
                 )}

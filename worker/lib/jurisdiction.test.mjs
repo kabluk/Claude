@@ -11,8 +11,7 @@ test('maps real .de sites (bundesregierung.de, manufactum.de) to BFSG, verified 
     assert.equal(j.law, 'BFSG')
     assert.equal(j.statementRequired, true)
     assert.equal(j.verified, true)
-    assert.equal(j.maxFineEUR, 100000)
-    assert.match(j.citation, /§37 BFSG/)
+    assert.match(j.citation, /Anlage 3 zu §14 BFSG/)
   }
 })
 
@@ -22,7 +21,6 @@ test('maps a real .fr site (impots.gouv.fr) to RGAA, statement required but NOT 
   assert.equal(j.law, 'RGAA')
   assert.equal(j.statementRequired, true)
   assert.equal(j.verified, false)
-  assert.equal(j.maxFineEUR, undefined) // не показываем непроверенную сумму
 })
 
 test('unmapped TLD returns honest unknown, does not guess a jurisdiction', () => {
@@ -53,7 +51,6 @@ test('new EAA-transposition jurisdictions (IT/IE/AT/BE/SE/DK/FI/NO) require a st
     assert.match(j.law, new RegExp(lawFragment.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')))
     assert.equal(j.statementRequired, true)
     assert.equal(j.verified, false)
-    assert.equal(j.maxFineEUR, undefined)
   }
 })
 
@@ -75,7 +72,7 @@ test('applyJurisdictionWeight bumps missing-statement to critical in a verified 
   const findings = [{ ruleId: 'a11y-statement-missing', impact: 'serious' }, { ruleId: 'color-contrast', impact: 'serious' }]
   const out = applyJurisdictionWeight(findings, jurisdiction)
   assert.equal(out[0].impact, 'critical')
-  assert.match(out[0].jurisdictionNote, /§37 BFSG/)
+  assert.match(out[0].jurisdictionNote, /Anlage 3 zu §14 BFSG/)
   assert.equal(out[1].impact, 'serious') // не юридически-decisive правило — не трогаем
 })
 
@@ -83,7 +80,7 @@ test('applyJurisdictionWeight bumps to critical in an unverified jurisdiction to
   const jurisdiction = jurisdictionForUrl('https://www.impots.gouv.fr/')
   const out = applyJurisdictionWeight([{ ruleId: 'a11y-statement-missing', impact: 'serious' }], jurisdiction)
   assert.equal(out[0].impact, 'critical')
-  assert.doesNotMatch(out[0].jurisdictionNote, /€|EUR|\d{4,}/) // никаких непроверенных цифр в отчёте
+  assert.doesNotMatch(out[0].jurisdictionNote, /€|\bEUR\b|\beuros?\b/i) // никаких сумм в отчёте
   assert.match(out[0].jurisdictionNote, /not verified/)
 })
 
@@ -138,4 +135,29 @@ test('supportedJurisdictions lists every mapped country exactly once, each with 
   for (const j of list) assert.ok(j.law && j.law.length > 0, j.country)
   // каждая страна из списка реально резолвится как override
   for (const j of list) assert.equal(resolveJurisdiction('https://example.com/', j.country).country, j.country)
+})
+
+// D-035: суммы штрафов удалены отовсюду — проверка того, что они не вернутся
+// незаметно при следующем добавлении юрисдикции. Причины в шапке jurisdiction.js.
+test('no jurisdiction carries a fine amount — the report never shows a figure', () => {
+  for (const { country } of supportedJurisdictions()) {
+    const j = resolveJurisdiction('https://example.com/', country)
+    for (const [key, value] of Object.entries(j)) {
+      assert.ok(!/fine|penalty|amount|max.*eur/i.test(key), `${country}: поле ${key} похоже на сумму штрафа`)
+      if (typeof value === 'number') assert.fail(`${country}: числовое поле ${key}=${value} — не сумма ли это?`)
+    }
+  }
+})
+
+test('jurisdictionNote never contains a money figure, in any jurisdiction', () => {
+  for (const { country } of supportedJurisdictions()) {
+    const j = resolveJurisdiction('https://example.com/', country)
+    const [out] = applyJurisdictionWeight([{ ruleId: 'a11y-statement-missing', impact: 'serious' }], j)
+    // Номера и годы в названиях законов ("RD 1112/2018", "D.Lgs. 82/2022",
+    // "Lag (2023:254)") легитимны и НЕ должны считаться суммой — поэтому ищем
+    // именно деньги: валютный маркер, либо группу цифр с разделителем тысяч
+    // (100 000 / 100.000 / 100,000), а не любой длинный числовой ряд.
+    assert.doesNotMatch(out.jurisdictionNote, /€|\bEUR\b|\beuros?\b|\d[\u00a0 .,]\d{3}\b/i,
+      `${country}: сумма просочилась в отчёт — "${out.jurisdictionNote}"`)
+  }
 })

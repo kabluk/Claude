@@ -1,0 +1,252 @@
+[
+  {
+    "clause": "9.1.1.1",
+    "wcag": "1.1.1",
+    "title": "Non-text content"
+  },
+  {
+    "clause": "9.1.2.1",
+    "wcag": "1.2.1",
+    "title": "Audio-only and video-only (pre-recorded)"
+  },
+  {
+    "clause": "9.1.2.2",
+    "wcag": "1.2.2",
+    "title": "Captions (pre-recorded)"
+  },
+  {
+    "clause": "9.1.2.3",
+    "wcag": "1.2.3",
+    "title": "Audio description or media alternative (pre-recorded)"
+  },
+  {
+    "clause": "9.1.2.4",
+    "wcag": "1.2.4",
+    "title": "Captions (live)"
+  },
+  {
+    "clause": "9.1.2.5",
+    "wcag": "1.2.5",
+    "title": "Audio description (pre-recorded)"
+  },
+  {
+    "clause": "9.1.3.1",
+    "wcag": "1.3.1",
+    "title": "Info and relationships"
+  },
+  {
+    "clause": "9.1.3.2",
+    "wcag": "1.3.2",
+    "title": "Meaningful sequence"
+  },
+  {
+    "clause": "9.1.3.3",
+    "wcag": "1.3.3",
+    "title": "Sensory characteristics"
+  },
+  {
+    "clause": "9.1.3.4",
+    "wcag": "1.3.4",
+    "title": "Orientation"
+  },
+  {
+    "clause": "9.1.3.5",
+    "wcag": "1.3.5",
+    "title": "Identify input purpose"
+  },
+  {
+    "clause": "9.1.4.1",
+    "wcag": "1.4.1",
+    "title": "Use of colour"
+  },
+  {
+    "clause": "9.1.4.2",
+    "wcag": "1.4.2",
+    "title": "Audio control"
+  },
+  {
+    "clause": "9.1.4.3",
+    "wcag": "1.4.3",
+    "title": "Contrast (minimum)"
+  },
+  {
+    "clause": "9.1.4.4",
+    "wcag": "1.4.4",
+    "title": "Resize text"
+  },
+  {
+    "clause": "9.1.4.5",
+    "wcag": "1.4.5",
+    "title": "Images of text"
+  },
+  {
+    "clause": "9.1.4.10",
+    "wcag": "1.4.10",
+    "title": "Reflow"
+  },
+  {
+    "clause": "9.1.4.11",
+    "wcag": "1.4.11",
+    "title": "Non-text contrast"
+  },
+  {
+    "clause": "9.1.4.12",
+    "wcag": "1.4.12",
+    "title": "Text spacing"
+  },
+  {
+    "clause": "9.1.4.13",
+    "wcag": "1.4.13",
+    "title": "Content on hover or focus"
+  },
+  {
+    "clause": "9.2.1.1",
+    "wcag": "2.1.1",
+    "title": "Keyboard"
+  },
+  {
+    "clause": "9.2.1.2",
+    "wcag": "2.1.2",
+    "title": "No keyboard trap"
+  },
+  {
+    "clause": "9.2.1.4",
+    "wcag": "2.1.4",
+    "title": "Character key shortcuts"
+  },
+  {
+    "clause": "9.2.2.1",
+    "wcag": "2.2.1",
+    "title": "Timing adjustable"
+  },
+  {
+    "clause": "9.2.2.2",
+    "wcag": "2.2.2",
+    "title": "Pause, stop, hide"
+  },
+  {
+    "clause": "9.2.3.1",
+    "wcag": "2.3.1",
+    "title": "Three flashes or below threshold"
+  },
+  {
+    "clause": "9.2.4.1",
+    "wcag": "2.4.1",
+    "title": "Bypass blocks"
+  },
+  {
+    "clause": "9.2.4.2",
+    "wcag": "2.4.2",
+    "title": "Page titled"
+  },
+  {
+    "clause": "9.2.4.3",
+    "wcag": "2.4.3",
+    "title": "Focus Order"
+  },
+  {
+    "clause": "9.2.4.4",
+    "wcag": "2.4.4",
+    "title": "Link purpose (in context)"
+  },
+  {
+    "clause": "9.2.4.5",
+    "wcag": "2.4.5",
+    "title": "Multiple ways"
+  },
+  {
+    "clause": "9.2.4.6",
+    "wcag": "2.4.6",
+    "title": "Headings and labels"
+  },
+  {
+    "clause": "9.2.4.7",
+    "wcag": "2.4.7",
+    "title": "Focus visible"
+  },
+  {
+    "clause": "9.2.5.1",
+    "wcag": "2.5.1",
+    "title": "Pointer gestures"
+  },
+  {
+    "clause": "9.2.5.2",
+    "wcag": "2.5.2",
+    "title": "Pointer cancellation"
+  },
+  {
+    "clause": "9.2.5.3",
+    "wcag": "2.5.3",
+    "title": "Label in name"
+  },
+  {
+    "clause": "9.2.5.4",
+    "wcag": "2.5.4",
+    "title": "Motion actuation"
+  },
+  {
+    "clause": "9.3.1.1",
+    "wcag": "3.1.1",
+    "title": "Language of page"
+  },
+  {
+    "clause": "9.3.1.2",
+    "wcag": "3.1.2",
+    "title": "Language of parts"
+  },
+  {
+    "clause": "9.3.2.1",
+    "wcag": "3.2.1",
+    "title": "On focus"
+  },
+  {
+    "clause": "9.3.2.2",
+    "wcag": "3.2.2",
+    "title": "On input"
+  },
+  {
+    "clause": "9.3.2.3",
+    "wcag": "3.2.3",
+    "title": "Consistent navigation"
+  },
+  {
+    "clause": "9.3.2.4",
+    "wcag": "3.2.4",
+    "title": "Consistent identification"
+  },
+  {
+    "clause": "9.3.3.1",
+    "wcag": "3.3.1",
+    "title": "Error identification"
+  },
+  {
+    "clause": "9.3.3.2",
+    "wcag": "3.3.2",
+    "title": "Labels or instructions"
+  },
+  {
+    "clause": "9.3.3.3",
+    "wcag": "3.3.3",
+    "title": "Error suggestion"
+  },
+  {
+    "clause": "9.3.3.4",
+    "wcag": "3.3.4",
+    "title": "Error prevention (legal, financial, data)"
+  },
+  {
+    "clause": "9.4.1.1",
+    "wcag": "4.1.1",
+    "title": "Parsing"
+  },
+  {
+    "clause": "9.4.1.2",
+    "wcag": "4.1.2",
+    "title": "Name, role, value"
+  },
+  {
+    "clause": "9.4.1.3",
+    "wcag": "4.1.3",
+    "title": "Status messages"
+  }
+]
