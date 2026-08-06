@@ -197,11 +197,30 @@ function ReportBody({ report }: { report: ScanReport }) {
                     заявлении о доступности и только в юрисдикции, где оно
                     подтверждённо обязательно (D-030/D-031). Формулировка
                     воркера уже осторожна — суммы штрафов попадают в текст
-                    только если сверены с законом. */}
+                    только если сверены с законом.
+
+                    Вторая строка — константа, а не данные из API: факт
+                    гармонизации одинаков для всех юрисдикций, тащить его через
+                    воркер незачем. Сверено с текстом Directive (EU) 2019/882
+                    (D-033): требования гармонизированы (EN 301 549), а надзор —
+                    нет; механизма «одного окна» как в GDPR ст. 56 в EAA не
+                    существует. Одна честная строка вместо перечня из 12 статей —
+                    осознанный выбор владельца против fear-marketing (R1).
+                    a11y-statement-missing и -incomplete взаимоисключающи
+                    (см. axe.js), поэтому блок не может продублироваться. */}
                 {g.jurisdictionNote && (
-                  <p className="mt-2 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">
-                    <span className="font-medium">Legal basis:</span> {g.jurisdictionNote}
-                  </p>
+                  <div className="mt-2 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">
+                    <p>
+                      <span className="font-medium">Legal basis:</span> {g.jurisdictionNote}
+                    </p>
+                    <p className="mt-1.5 text-xs text-amber-800">
+                      Accessibility requirements are harmonised across the EU by EN 301 549, so this
+                      finding reads the same in every EU market. Enforcement is not centralised: under
+                      Directive (EU) 2019/882 each country supervises services provided in its own
+                      territory through its national transposition — there is no EU-level authority and
+                      no one-stop-shop.
+                    </p>
+                  </div>
                 )}
                 <ul className="mt-2 space-y-1 text-sm text-slate-500">
                   {g.instances.slice(0, 5).map((f, i) => (
