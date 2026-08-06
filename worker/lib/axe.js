@@ -21,6 +21,7 @@ import { detectPdfLinks } from './pdf.js'
 import {
   checkReflow320, checkKeyboardTraversal, checkMedia, checkResize200, detectAndDismissCookieBanner,
 } from './domChecks.js'
+import { runSiteChecks } from './siteChecks.js'
 
 const MAX_PAGES = 6
 const NAV_TIMEOUT_MS = 15000
@@ -110,6 +111,9 @@ export async function scanSite(env, targetUrl) {
     }
 
     let cookieBannerHandled = null
+    // D-036: страницы копим для проверок УРОВНЯ САЙТА (9.2.4.5 / 9.3.2.3 / 9.3.2.4) —
+    // их нельзя сделать по одной странице, нужно сравнение между страницами.
+    const pageDocs = []
 
     for (const pageUrl of toVisit.slice(0, MAX_PAGES)) {
       // Инвариант на входе в цикл: страница уже стоит на targetUrl (либо статьи-заявления
@@ -146,6 +150,7 @@ export async function scanSite(env, targetUrl) {
       // этой проверки целая категория молчаливо не проверяется, не false negative
       // по правилу, а отсутствующая категория целиком.
       const pageHtml = await page.content()
+      pageDocs.push({ url: pageUrl, html: pageHtml })
       const pdfLinks = detectPdfLinks(pageHtml, pageUrl)
       if (pdfLinks.length > 0) {
         findings.push({
@@ -170,6 +175,12 @@ export async function scanSite(env, targetUrl) {
         findings.push(...keyboard)
       }
     }
+
+    // Проверки уровня сайта — один раз после обхода, на уже собранных страницах.
+    // page.content() читается ПОСЛЕ networkidle0, т.е. это отрисованный DOM, а не
+    // отданный сервером HTML — существенно для сайтов, где навигация/поиск
+    // монтируются JS (см. siteChecks.js, случай bundesregierung.de).
+    findings.push(...runSiteChecks(pageDocs))
 
     if (cookieBannerHandled?.found) {
       // Не находка против сайта (баннер — не нарушение сам по себе), а прозрачность

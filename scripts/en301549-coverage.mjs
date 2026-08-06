@@ -35,6 +35,11 @@ export const OUR_CHECKS = {
   '9.1.4.10': 'a11y-reflow-320',
   '9.2.1.2': 'a11y-keyboard-trap',
   '9.2.4.7': 'a11y-focus-invisible',
+  // D-036 — проверки уровня сайта (worker/lib/siteChecks.js): требуют СРАВНЕНИЯ
+  // страниц между собой, поэтому не покрывались ни axe, ни поштучными DOM-проверками.
+  '9.2.4.5': 'a11y-multiple-ways',
+  '9.3.2.3': 'a11y-inconsistent-navigation',
+  '9.3.2.4': 'a11y-inconsistent-identification',
 }
 
 // Обязанности из самой директивы, которых в главе 9 EN 301 549 нет — стандарт

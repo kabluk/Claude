@@ -4,7 +4,7 @@
      Пересобрать: npm run en301549:coverage -->
 
 Глава 9 (Web) EN 301 549 V3.2.1 — **50** критериев (Void исключены).
-Покрыто автоматически: **26 из 50 (52%)**.
+Покрыто автоматически: **29 из 50 (58%)**.
 
 Стандарт гармонизирован на весь ЕС (D-033), поэтому карта одна для всех
 13 юрисдикций — национальные законы различаются санкциями и областью
@@ -60,7 +60,7 @@ EN 301 549 описывает техническую доступность и �
 | 9.2.4.2 | 2.4.2 | Page titled | ✅ axe-core | `document-title` |
 | 9.2.4.3 | 2.4.3 | Focus Order | — нет |  |
 | 9.2.4.4 | 2.4.4 | Link purpose (in context) | ✅ axe-core | `area-alt`, `link-name` |
-| 9.2.4.5 | 2.4.5 | Multiple ways | — нет |  |
+| 9.2.4.5 | 2.4.5 | Multiple ways | ✅ наша | `a11y-multiple-ways` |
 | 9.2.4.6 | 2.4.6 | Headings and labels | — нет |  |
 | 9.2.4.7 | 2.4.7 | Focus visible | ✅ наша | `a11y-focus-invisible` |
 | 9.2.5.1 | 2.5.1 | Pointer gestures | — нет |  |
@@ -71,8 +71,8 @@ EN 301 549 описывает техническую доступность и �
 | 9.3.1.2 | 3.1.2 | Language of parts | ✅ axe-core | `valid-lang` |
 | 9.3.2.1 | 3.2.1 | On focus | — нет |  |
 | 9.3.2.2 | 3.2.2 | On input | — нет |  |
-| 9.3.2.3 | 3.2.3 | Consistent navigation | — нет |  |
-| 9.3.2.4 | 3.2.4 | Consistent identification | — нет |  |
+| 9.3.2.3 | 3.2.3 | Consistent navigation | ✅ наша | `a11y-inconsistent-navigation` |
+| 9.3.2.4 | 3.2.4 | Consistent identification | ✅ наша | `a11y-inconsistent-identification` |
 | 9.3.3.1 | 3.3.1 | Error identification | — нет |  |
 | 9.3.3.2 | 3.3.2 | Labels or instructions | ✅ axe-core | `form-field-multiple-labels` |
 | 9.3.3.3 | 3.3.3 | Error suggestion | — нет |  |
@@ -98,15 +98,12 @@ EN 301 549 описывает техническую доступность и �
 - **9.2.1.4** (WCAG 2.1.4) — Character key shortcuts
 - **9.2.3.1** (WCAG 2.3.1) — Three flashes or below threshold
 - **9.2.4.3** (WCAG 2.4.3) — Focus Order
-- **9.2.4.5** (WCAG 2.4.5) — Multiple ways
 - **9.2.4.6** (WCAG 2.4.6) — Headings and labels
 - **9.2.5.1** (WCAG 2.5.1) — Pointer gestures
 - **9.2.5.2** (WCAG 2.5.2) — Pointer cancellation
 - **9.2.5.4** (WCAG 2.5.4) — Motion actuation
 - **9.3.2.1** (WCAG 3.2.1) — On focus
 - **9.3.2.2** (WCAG 3.2.2) — On input
-- **9.3.2.3** (WCAG 3.2.3) — Consistent navigation
-- **9.3.2.4** (WCAG 3.2.4) — Consistent identification
 - **9.3.3.1** (WCAG 3.3.1) — Error identification
 - **9.3.3.3** (WCAG 3.3.3) — Error suggestion
 - **9.3.3.4** (WCAG 3.3.4) — Error prevention (legal, financial, data)
