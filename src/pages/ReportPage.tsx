@@ -207,7 +207,7 @@ function ReportBody({ report }: { report: ScanReport }) {
         </section>
       )}
 
-      <MatchedAgencies findings={report.findings} priceBand={cost?.band} />
+      <MatchedAgencies findings={report.findings} priceBand={cost?.band} scanId={report.id} />
     </div>
   )
 }

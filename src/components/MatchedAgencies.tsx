@@ -11,7 +11,15 @@ import { countries, paths } from '@/lib/data'
 
 const MATCH_LIMIT = 3
 
-export function MatchedAgencies({ findings, priceBand }: { findings: ScanFinding[]; priceBand?: PriceBand }) {
+export function MatchedAgencies({
+  findings,
+  priceBand,
+  scanId,
+}: {
+  findings: ScanFinding[]
+  priceBand?: PriceBand
+  scanId?: string
+}) {
   const [countryCode, setCountryCode] = useState('')
 
   // Есть серьёзная находка — предлагаем ремедиацию, а не просто ещё один аудит.
@@ -55,9 +63,15 @@ export function MatchedAgencies({ findings, priceBand }: { findings: ScanFinding
         <p className="lede mt-4">No agencies matched this filter yet — try a different country.</p>
       )}
 
-      <p className="mt-3 text-sm text-slate-500">
+      <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-sm text-slate-500">
         <a className="underline underline-offset-2" href={paths.agencies()}>
           Compare all agencies in the catalog →
+        </a>
+        <a
+          className="underline underline-offset-2"
+          href={scanId ? `${paths.requestQuote()}?scanId=${encodeURIComponent(scanId)}` : paths.requestQuote()}
+        >
+          Request a quote from matching agencies →
         </a>
       </p>
     </section>

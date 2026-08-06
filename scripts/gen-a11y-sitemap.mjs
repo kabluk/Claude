@@ -39,7 +39,7 @@ const inCountry = (code) =>
 // Imprint и 404 сюда не идут — index=false в самих страницах (Imprint ждёт
 // реквизитов владельца, 404 в принципе не индексируется).
 const urls = [
-  '/', '/scan/', '/agencies/', '/countries/', '/services/', '/standards/',
+  '/', '/scan/', '/request-quote/', '/agencies/', '/countries/', '/services/', '/standards/',
   '/about/', '/contact/', '/privacy/',
 ]
 for (const a of agencies) urls.push(`/agencies/${a.slug}/`)

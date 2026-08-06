@@ -137,6 +137,23 @@
    `A1-RETENTION` (ждёт первого реального срабатывания по расписанию 03:00 UTC)
    остаются в review, но не требуют новой работы — только времени/наблюдения.
    Новых кодовых узлов Фазы 1 не осталось.
+6. Фаза 2 начата 2026-08-06: `A2-LEAD-SCHEMA` **done** (`migrations/0003_leads.sql`,
+   таблица `leads` из INTERFACES.md §4, только `--local`). Разблокировало
+   `A2-LEAD-API` (технически независим от оплаты — следующий кандидат: backend,
+   D1 уже одобрен). `A2-LEAD-FORM` **done** (`/request-quote/`): чистый UI,
+   клиентская валидация, client-only превью совпадений, 0 сетевых вызовов при
+   submit. `src/lib/data.ts` (добавлен `paths.requestQuote()`) и `src/routes.tsx`
+   (маршрут `/request-quote`) тронуты за пределами буквального scope узла —
+   раскрыто явно в GRAPH.yaml notes, не тихо (тот же прецедент, что scope
+   `A1-LANDING` уже включал `routes.tsx`).
+   Изначально был не done — два пробела вне буквального scope узла: страницы
+   не было в `scripts/audit-own-a11y.mjs`/`gen-a11y-sitemap.mjs` (постоянный
+   CI-гейт и sitemap её не видели). Оба закрыты той же сессией сразу после:
+   386 страниц/349 URL в sitemap, 23 в постоянном a11y-гейте, всё зелёное.
+   Заодно найден и закрыт третий, независимый пробел: страница была **orphan**
+   (ни одна ссылка в UI на неё не вела) — добавлен CTA «Request a quote from
+   matching agencies →» в `MatchedAgencies.tsx` на `/report/:id`, с пробросом
+   `?scanId=`.
 
 ## Живой skill (D-012)
 

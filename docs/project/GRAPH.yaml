@@ -1,5 +1,5 @@
 version: 1
-updated_at: 2026-08-05
+updated_at: 2026-08-06
 limits:
   max_parallel: 3
   max_nodes_per_iteration: 8
@@ -251,3 +251,251 @@ nodes:
     risk: low
     approval_required: false
     notes: "Готово 2026-08-06 (D-019). DELETE FROM scans WHERE created_at < cutoff, окно 90 дней, ежедневный Cron Trigger 0 3 * * *. Использует существующий idx_scans_created_at — миграция не нужна. 5 юнит-тестов на фейковом D1, 39/39 worker-тестов зелёные. Реальный деплой 2026-08-06 (D-021) подтвердил Cron Trigger зарегистрированным на аккаунте владельца (`schedule: 0 3 * * *` в выводе `wrangler deploy`). status=review, не done: само срабатывание по расписанию (03:00 UTC) ещё не произошло/не пронаблюдано в рамках этой сессии — логика удаления и факт регистрации триггера подтверждены, а не единственно недостающий кусок (живой прогон scheduled()) — иначе была бы та же неполная картина, что у A1-SCAN до его закрытия."
+
+  # ---------------------------------------------------------------------
+  # Фаза 2 — Lead Marketplace. Разбито 2026-08-06 (см. HANDOFF.md, DECISIONS.md).
+  # Правило: одобрение платных CF-ресурсов на A1-SCAN (2026-08-05) НЕ переносится
+  # на новые платные/внешние ресурсы Фазы 2 (Stripe, Resend) — каждый узел,
+  # которому нужен НОВЫЙ внешний платный сервис или реальная рассылка живым
+  # третьим лицам, помечен approval_required: true отдельно. Узлы, которые только
+  # пишут код / используют уже одобренный D1 (accessatlas-scans) / работают
+  # локально — approval_required: false, консистентно с тем, как были размечены
+  # A1-REPORT/A1-COST/A1-MATCH относительно уже одобренного A1-SCAN.
+  # ---------------------------------------------------------------------
+
+  - id: A2-LEAD-SCHEMA
+    title: "Схема D1 для лидов (leads table) — миграция, только локально"
+    owner: backend-engineer
+    status: done
+    depends_on: []
+    inputs: [docs/project/INTERFACES.md, migrations/0001_init.sql, migrations/0002_error_code.sql]
+    scope: [migrations/, docs/project/INTERFACES.md]
+    outputs: [migrations/0003_leads.sql]
+    verify:
+      - npm run db:migrate:local   # применяется на локальную D1 без ошибок
+      - npm run worker:test
+      - "поля таблицы соответствуют черновику Lead/leads из INTERFACES.md §3–4, не придуманы заново"
+    max_attempts: 3
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Готово 2026-08-06: migrations/0003_leads.sql (leads: id PK, scan_id, country, standard, service, budget, deadline, contact_json, matched_json, status DEFAULT 'sent', created_at + idx на created_at и scan_id) — поля 1:1 с черновиком INTERFACES.md §4, ничего не добавлено сверх. `npm run db:migrate:local` применил все 3 миграции на локальную accessatlas-scans без ошибок (подтверждено PRAGMA table_info). `npm run worker:test` 39/39 зелёные (миграция не трогает существующий worker-код, тестов на leads пока нет — они появятся вместе с A2-LEAD-API, который читает/пишет эту таблицу). Реальный remote accessatlas-scans этим узлом не тронут — только --local. Разблокировано: A2-LEAD-API."
+
+  - id: A2-LEAD-FORM
+    title: "RFQ-форма на фронтенде — без реальной отправки (submit подключается в A2-LEAD-API)"
+    owner: frontend-engineer
+    status: done
+    depends_on: []
+    inputs: [docs/project/INTERFACES.md, docs/project/VISION.md, src/lib/matchAgencies.ts]
+    scope: [src/pages/, src/components/, src/lib/leadForm.ts]
+    outputs: [src/pages/RequestQuotePage.tsx, src/components/LeadForm.tsx, src/lib/leadForm.ts]
+    verify:
+      - npm run build
+      - npm run typecheck
+      - npm run audit-a11y
+      - "клиентская валидация полей (страна/стандарт/услуга/бюджет/контакт) по типу Lead из INTERFACES.md §3"
+      - "0 сетевых вызовов при submit, пока /api/lead не реализован — явный TODO/дисклеймер в UI, не тихая заглушка"
+    max_attempts: 4
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Готово 2026-08-06: src/lib/leadForm.ts (LeadDraft/validateLeadForm — валидирует country против data.ts::countries, standard/service/budget против таксономий, email regex, deadline не в прошлом; никакого fetch), src/components/LeadForm.tsx (форма + client-only превью подходящих агентств через уже существующий matchAgencies() — читает только забандленные статические данные, сети не трогает), src/pages/RequestQuotePage.tsx. `npm run typecheck`/`npm run build` зелёные. `npm run audit-a11y` зелёный, но НЕ покрывает новую страницу — её нет в захардкоженном SAMPLE_ROUTES (scripts/audit-own-a11y.mjs), это scripts/ — вне scope этого узла (владелец каталога — devops-engineer, INTERFACES.md §6). Поэтому прогнан отдельный одноразовый axe-прогон (Playwright, вне репозитория) по /request-quote/ в 3 состояниях формы (пустая/с ошибками валидации/после успешного client-side submit) — 0 нарушений во всех трёх; тем же прогоном перехвачены все сетевые запросы браузера во время submit — 0, включая внешние. Найден и исправлен реальный baseline-баг: heading-order (h1→h3, пропущен h2) в блоке превью совпадений — добавлен h2 «Agencies that would match». scope официально не включал src/routes.tsx и src/lib/data.ts, но без записи маршрута страница вообще недостижима — по прецеденту A1-LANDING (её scope прямо включал routes.tsx) сделаны два минимальных, явно раскрытых здесь правки: paths.requestQuote() в data.ts и один route-объект в routes.tsx. Оба пробела закрыты той же сессией сразу после: `/request-quote/` добавлена в `SAMPLE_ROUTES` (`scripts/audit-own-a11y.mjs`) и в `scripts/gen-a11y-sitemap.mjs` — постоянный CI-гейт теперь реально видит страницу (23 страницы вместо 22, живой прогон 0 нарушений), sitemap 349 URL вместо 348. Заодно найден и закрыт третий пробел, отдельный от изначально заявленных: страница была `orphan` — ни одна ссылка в UI на неё не вела (только прямой URL), несмотря на то что она в sitemap/индексируется. Добавлена точка входа из воронки: CTA «Request a quote from matching agencies →» в `MatchedAgencies.tsx` (блок на `/report/:id`, рядом с уже существующим «Compare all agencies»), с пробросом `?scanId=` — тот же паттерн deep-link, что `RequestQuotePage.tsx` уже поддерживал, но никто раньше не генерировал. Верифицировано живьём: 2 состояния формы (пустой сабмит с ошибками валидации, заполненная форма → превью совпадений с дисклеймером «Not sent yet») — axe-чисто; CTA на `/report/:id` (мокнутый API) даёт корректный `href=/request-quote/?scanId=<id>`. Полный набор (`typecheck`/`worker:test` 39/39/`build` 386 страниц/`check-links` 410 ссылок 0 битых/`audit-a11y` 23 страницы 0 нарушений) зелёный. done."
+
+  - id: A2-LEAD-API
+    title: "POST /api/lead: приём RFQ + матчинг агентств → D1, без отправки email"
+    owner: backend-engineer
+    status: todo
+    depends_on: [A2-LEAD-SCHEMA]
+    inputs: [docs/project/INTERFACES.md, src/lib/matchAgencies.ts, worker/lib/ratelimit.js, worker/lib/turnstile.js]
+    scope: [worker/routes/lead.js, worker/lib/matchAgenciesServer.js, worker/index.js]
+    outputs: [worker/routes/lead.js]
+    verify:
+      - npm run worker:test
+      - "400 на невалидный/неполный ввод (страна/стандарт/услуга обязательны)"
+      - "запись в D1 leads (локально, wrangler dev --local), matched[] совпадает с логикой matchAgencies.ts / INTERFACES.md §5"
+      - "тот же rate-limit/Turnstile паттерн, что у /api/scan — публичный write-эндпоинт не остаётся без защиты от спама"
+      - "email агентствам этим узлом НЕ отправляется (лог/TODO вместо реального вызова Resend) — реальная отправка это A2-LEAD-EMAIL"
+    max_attempts: 4
+    attempts: 0
+    risk: medium
+    approval_required: false
+    notes: "Использует уже одобренный D1 accessatlas-scans (тот же ресурс, что и A1-SCAN, одобрение 2026-08-05) — новый внешний платный сервис не создаёт, поэтому approval_required=false, по аналогии с A1-REPORT/A1-COST/A1-MATCH относительно A1-SCAN. Реальный деплой обновлённого воркера на прод — отдельное решение по факту (как было при A1-RETENTION/A1-EXPLAIN), не блокируется этим полем графа, но и не подразумевается автоматически: не деплоить без отдельного разговора с владельцем."
+
+  - id: A2-LEAD-EMAIL
+    title: "Отправка лида 3–5 подходящим агентствам через Resend"
+    owner: backend-engineer
+    status: todo
+    depends_on: [A2-LEAD-API]
+    inputs: [docs/project/INTERFACES.md]
+    scope: [worker/lib/resend.js, worker/routes/lead.js]
+    outputs: [worker/lib/resend.js]
+    verify:
+      - npm run worker:test
+      - "503 без RESEND_API_KEY (тот же паттерн, что 503 без ANTHROPIC_API_KEY в A1-EXPLAIN)"
+      - "живой прогон: минимум 1 реальное письмо агентству получено (после одобрения владельцем ключа)"
+    max_attempts: 4
+    attempts: 0
+    risk: high
+    approval_required: true
+    notes: "approval: НОВЫЙ внешний платный сервис (Resend, аккаунт+API-ключ), плюс реальная рассылка живым третьим лицам (агентствам) — по CLAUDE.md рассылки только с явного разрешения владельца. НЕ начинать без отдельного одобрения, даже если A1-SCAN CF-одобрение уже получено — оно не переносится на Resend."
+
+  - id: A2-CLAIM-SCHEMA
+    title: "Схема D1 для claim-потока (claims table) — миграция, только локально"
+    owner: backend-engineer
+    status: todo
+    depends_on: []
+    inputs: [docs/project/INTERFACES.md, data/a11y/types.ts]
+    scope: [migrations/]
+    outputs: [migrations/0004_claims.sql]
+    verify:
+      - npm run db:migrate:local
+      - npm run worker:test
+      - "поля соответствуют черновику claims из INTERFACES.md §4 (agency_slug, email, verified, patch_json, status)"
+    max_attempts: 3
+    attempts: 0
+    risk: low
+    approval_required: false
+    notes: "Технически независим от оплаты, тот же паттерн, что A2-LEAD-SCHEMA — только локальная миграция."
+
+  - id: A2-CLAIM-API
+    title: "POST /api/claim: создание claim-записи + verify-токен, БЕЗ отправки письма"
+    owner: backend-engineer
+    status: todo
+    depends_on: [A2-CLAIM-SCHEMA]
+    inputs: [docs/project/INTERFACES.md, data/a11y/types.ts]
+    scope: [worker/routes/claim.js]
+    outputs: [worker/routes/claim.js]
+    verify:
+      - npm run worker:test
+      - "400 если agencySlug не существует в agencies.json"
+      - "verify-токен генерируется и пишется в D1 (локально), но email этим узлом не отправляется"
+      - "домен email не проверяется на совпадение с доменом сайта агентства этим узлом (это часть верификации при переходе по ссылке, не при создании заявки) — если проектное решение иное, зафиксировать в DECISIONS.md"
+    max_attempts: 4
+    attempts: 0
+    risk: medium
+    approval_required: false
+    notes: "Использует уже одобренный D1. Верификация по домену почты (owner-запрос) — токен создаётся здесь, а его доставка (email) и есть тот шаг, что требует Resend → A2-CLAIM-EMAIL."
+
+  - id: A2-CLAIM-EMAIL
+    title: "Письмо со ссылкой верификации claim через Resend"
+    owner: backend-engineer
+    status: todo
+    depends_on: [A2-CLAIM-API]
+    inputs: [docs/project/INTERFACES.md]
+    scope: [worker/lib/resend.js, worker/routes/claim.js]
+    outputs: []
+    verify:
+      - npm run worker:test
+      - "503 без RESEND_API_KEY"
+      - "живой прогон: реальное verify-письмо получено на реальный email домена агентства (после одобрения владельцем)"
+    max_attempts: 4
+    attempts: 0
+    risk: high
+    approval_required: true
+    notes: "approval: тот же новый внешний сервис Resend, что у A2-LEAD-EMAIL — одобрение НЕ общее на 'Resend вообще', а per-node по правилу проекта; если владелец одобрит Resend один раз для обоих узлов явно — зафиксировать это решение в DECISIONS.md, не предполагать молча."
+
+  - id: A2-CLAIM-REBUILD
+    title: "Ежедневный ребилд: D1-оверлей claims/featured наложить на agencies.json перед сборкой"
+    owner: devops-engineer
+    status: todo
+    depends_on: [A2-CLAIM-API]
+    inputs: [docs/project/INTERFACES.md, scripts/build-a11y.mjs]
+    scope: [scripts/, .github/workflows/]
+    outputs: [scripts/apply-d1-overlay.mjs]
+    verify:
+      - node scripts/build-a11y.mjs
+      - "оверлей применяется идемпотентно: повторный прогон не меняет результат"
+      - "прод-сайт не читает D1 в рантайме (правило INTERFACES.md §4) — оверлей только на этапе сборки"
+    max_attempts: 4
+    attempts: 0
+    risk: medium
+    approval_required: true
+    notes: "approval: это НОВАЯ автоматизация, регулярно трогающая прод (ежедневный CI-ребилд + деплой живого сайта) — подпадает под правило CLAUDE.md 'Деплой ... только с явного разрешения владельца', отдельно от одобрения D1 на A1-SCAN. Логику самого скрипта (чтение D1 → патч JSON) можно писать и тестировать на фейковых/локальных данных без approval; включение в реальный CI-cron на прод-репозиторий — только с одобрения."
+
+  - id: A2-STRIPE-SCHEMA
+    title: "Схема D1 для featured (featured table) — миграция, только локально"
+    owner: backend-engineer
+    status: todo
+    depends_on: []
+    inputs: [docs/project/INTERFACES.md, data/a11y/types.ts]
+    scope: [migrations/]
+    outputs: [migrations/0005_featured.sql]
+    verify:
+      - npm run db:migrate:local
+      - npm run worker:test
+      - "поля соответствуют черновику featured из INTERFACES.md §4 (agency_slug PK, until, stripe_ref)"
+    max_attempts: 3
+    attempts: 0
+    risk: low
+    approval_required: false
+    notes: "Технически независим от оплаты — только локальная миграция, реального Stripe-аккаунта не касается."
+
+  - id: A2-STRIPE-WEBHOOK-CODE
+    title: "Обработчик POST /api/stripe-hook: проверка подписи + обновление featured, тесты на синтетических фикстурах Stripe-событий"
+    owner: backend-engineer
+    status: todo
+    depends_on: [A2-STRIPE-SCHEMA]
+    inputs: [docs/project/INTERFACES.md]
+    scope: [worker/routes/stripeHook.js, worker/lib/stripeSig.js]
+    outputs: [worker/routes/stripeHook.js, worker/routes/stripeHook.test.mjs]
+    verify:
+      - npm run worker:test
+      - "проверка подписи webhook отклоняет поддельное событие (тест на синтетическом секрете, НЕ реальном)"
+      - "checkout.session.completed → featured.until обновляется в D1 (локально)"
+    max_attempts: 4
+    attempts: 0
+    risk: medium
+    approval_required: false
+    notes: "Код + тесты полностью на синтетических фикстурах Stripe-событий (по аналогии с уроком A1-EXPLAIN, D-020: синтетика не заменяет живой прогон, но код можно и нужно писать и тестировать без реального ключа). Реальный STRIPE_SECRET_KEY/webhook signing secret — только в A2-STRIPE-LIVE."
+
+  - id: A2-STRIPE-LIVE
+    title: "Реальные Stripe Payment Links (featured €59/мес + пакеты лидов) + живой webhook secret на деплое"
+    owner: devops-engineer
+    status: todo
+    depends_on: [A2-STRIPE-WEBHOOK-CODE]
+    inputs: [docs/project/DECISIONS.md]
+    scope: [wrangler.jsonc, src/pages/]
+    outputs: []
+    verify:
+      - "живой тестовый платёж (Stripe test mode или мелкая реальная сумма по решению владельца) доходит до webhook и обновляет featured в реальной D1"
+      - "npx wrangler deploy --dry-run"
+    max_attempts: 3
+    attempts: 0
+    risk: high
+    approval_required: true
+    notes: "approval: НОВЫЙ внешний платный сервис (Stripe-аккаунт, реальные Payment Links, реальный приём денег) — прямо названный владельцем пример узла, требующего одобрения. Не начинать даже частично (создание Payment Links в Stripe-дашборде, секрет в Worker) без явного разрешения."
+
+  - id: A2-OUTREACH-PREP
+    title: "Список 99 агентств из гос-деклараций + черновик письма «заберите профиль» — без отправки"
+    owner: growth-strategist
+    status: todo
+    depends_on: []
+    inputs: [research/STATE.md, data/a11y/agencies.json]
+    scope: [research/, docs/project/domains/growth.md]
+    outputs: [research/outreach-99.json]
+    verify:
+      - "99 записей: slug, email (публичный, из декларации/сайта), ссылка-первоисточник (декларация)"
+      - "email не выдуман — только те, что реально указаны в публичном источнике; неизвестное поле остаётся пустым"
+      - "черновик письма на review, ничего не отправлено"
+    max_attempts: 3
+    attempts: 0
+    risk: low
+    approval_required: false
+    notes: "Технически независим от оплаты — сбор публичных данных + текст письма. Реальная отправка — отдельный узел A2-OUTREACH-SEND. Если задача большая (99 сайтов), см. правило оркестратора: разбить на параллельные пакеты (напр. 5 субагентов × ~20 записей), не один долгий последовательный проход."
+
+  - id: A2-OUTREACH-SEND
+    title: "Рассылка 99 агентствам через Resend"
+    owner: growth-strategist
+    status: todo
+    depends_on: [A2-OUTREACH-PREP, A2-CLAIM-API]
+    inputs: [docs/project/DECISIONS.md]
+    scope: [worker/lib/resend.js]
+    outputs: []
+    verify:
+      - "живой прогон на малой пилотной группе (напр. 5 из 99) перед полной рассылкой, по решению владельца"
+      - "ссылка «заберите профиль» в письме реально ведёт на рабочий claim-поток (A2-CLAIM-API готов), не на заглушку"
+    max_attempts: 2
+    attempts: 0
+    risk: high
+    approval_required: true
+    notes: "approval: реальная рассылка живым третьим лицам (99 агентств) через новый внешний сервис (Resend) — прямо названный владельцем/CLAUDE.md пример, требующий явного разрешения. Зависит от A2-CLAIM-API (claim-поток должен реально работать до того, как в письме появится на него ссылка — иначе письмо обещает нерабочую функцию, см. принцип 'ничего не выдумывать/не обещать несуществующее' из A1-LANDING/D-015)."

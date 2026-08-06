@@ -72,7 +72,19 @@ D1/KV, настоящий скан example.com нашёл настоящие н�
 
 ## Монетизация
 
-Не начата: нет лид-формы, claim, Stripe. По плану — Фаза 2 (ROADMAP.md).
+Фаза 2 начата 2026-08-06: `A2-LEAD-SCHEMA` — **done** (`migrations/0003_leads.sql`,
+таблица `leads` 1:1 с черновиком INTERFACES.md §4; `db:migrate:local` и
+`worker:test` 39/39 зелёные локально; remote `accessatlas-scans` не тронут).
+Разблокировало `A2-LEAD-API`. `A2-LEAD-FORM` — **done**: `/request-quote/`
+(RequestQuotePage + LeadForm + leadForm.ts) — клиентская валидация по типу Lead
+(INTERFACES.md §3), client-only превью подходящих агентств (переиспользует
+`matchAgencies()`, без сети), явный дисклеймер «not sent yet», 0 сетевых вызовов
+при submit. Найден и исправлен реальный баг heading-order (h1→h3) в блоке
+превью, страница добавлена в постоянный CI a11y-гейт и в sitemap (были не
+покрыты изначально), плюс закрыт orphan-page пробел — CTA «Request a quote»
+теперь ведёт на страницу с `/report/:id`. `build`/`typecheck`/`worker:test`/
+`check-links`/`audit-a11y` зелёные (386 страниц, sitemap 349 URL). Claim, Stripe
+ещё не начаты. По плану — Фаза 2 (ROADMAP.md).
 
 ## Инфраструктура
 

@@ -132,6 +132,7 @@ export const paths = {
   imprint: () => '/imprint/',
   scan: () => '/scan/',
   report: (id: string) => `/report/${id}/`,
+  requestQuote: () => '/request-quote/',
 }
 
 export const serviceLabel = (s: ServiceSlug) => tax.services[s].en ?? s

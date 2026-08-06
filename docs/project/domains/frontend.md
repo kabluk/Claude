@@ -112,6 +112,56 @@ empty-state (Австралия + remediation — реальная нулева�
 axe-чисты. Полный `audit-a11y` (22 страницы) и `check-links` (408 ссылок)
 перепрогнаны заново из-за общего компонента — 0 нарушений, 0 битых ссылок.
 
+## A2-LEAD-FORM — сделано (2026-08-06, done)
+
+`src/lib/leadForm.ts` (типы `LeadDraft`/`LeadFormValues` + `validateLeadForm` —
+чистая функция, без сети) + `src/components/LeadForm.tsx` (поля страна/стандарт/
+услуга/бюджет/дедлайн/email/компания) + `src/pages/RequestQuotePage.tsx`, маршрут
+`/request-quote`.
+
+- Валидация: `country` должен существовать в `data.ts::countries` (не гадаем —
+  иначе `matchAgencies` потом молча получил бы страну без единого агентства),
+  `standard`/`service`/`budget` — против таксономий, `deadline` (опционально) —
+  валидная дата не в прошлом, `email` — regex. Значения 1:1 с типом `Lead`
+  (INTERFACES.md §3), ничего сверх не добавлено.
+- UX-приём: при выборе страны стандарт подставляется через уже существующий
+  `standardForCountry()` (`matchAgencies.ts`), но только пока пользователь сам
+  не тронул поле `standard` — не перезаписываем ручной выбор молча.
+- «Отправка»: submit не делает fetch — POST /api/lead не существует (A2-LEAD-API).
+  Вместо этого — превью «кто бы совпал» через уже готовый клиентский
+  `matchAgencies()` (те же данные, что MatchedAgencies.tsx на отчёте сканера, без
+  запроса к серверу) + явный дисклеймер «Not sent yet» с указанием, что именно
+  ещё не подключено. Не тихая заглушка — сказано прямо, что и почему.
+- Найден и исправлен реальный баг: превью-секция рендерила `AgencyCard` (`<h3>`)
+  сразу после `<h1>` страницы без промежуточного `<h2>` — axe `heading-order`.
+  Добавлен `<h2>«Agencies that would match»`.
+- scope узла (`src/pages/`, `src/components/`, `src/lib/leadForm.ts`) не включал
+  `src/routes.tsx`/`src/lib/data.ts`, но без записи маршрута страница недостижима
+  вообще — по прецеденту `A1-LANDING` (её scope прямо включал `routes.tsx`)
+  добавлены `paths.requestQuote()` в `data.ts` и один route-объект в `routes.tsx`.
+  Раскрыто явно здесь и в GRAPH.yaml notes, не сделано тихо.
+
+Верификация: `typecheck`/`build` зелёные. Изначально `audit-a11y` не покрывал
+`/request-quote/` (её не было в захардкоженном `SAMPLE_ROUTES`) — закрыто сразу
+после: страница добавлена и в `SAMPLE_ROUTES` (`scripts/audit-own-a11y.mjs`), и
+в `scripts/gen-a11y-sitemap.mjs` (была не в sitemap.xml). Постоянный CI-гейт
+теперь реально видит страницу (23 страницы, 0 нарушений), sitemap — 349 URL.
+
+Заодно найден и закрыт третий, отдельный от изначально заявленных пробел:
+страница была `orphan` — ни одна ссылка в интерфейсе на неё не вела (только
+прямой URL), несмотря на то что уже индексируется. Добавлена точка входа из
+воронки: CTA «Request a quote from matching agencies →» в `MatchedAgencies.tsx`
+(блок на `/report/:id`, рядом с уже существующим «Compare all agencies в
+каталоге»), с пробросом `?scanId=<id>` в `RequestQuotePage.tsx` — deep-link,
+который страница уже умела принимать, но никто раньше не генерировал.
+
+Верифицировано живьём (Playwright+axe): пустой сабмит → ошибки валидации, 0
+нарушений; заполненная форма → превью совпадений с дисклеймером «Not sent
+yet», 0 нарушений (heading-order уже исправлен на этом этапе); CTA на
+`/report/:id` (мокнутый API) даёт корректный `href=/request-quote/?scanId=<id>`.
+Полный набор (`typecheck`/`worker:test`/`build`/`check-links`/`audit-a11y`)
+зелёный. Статус `done`.
+
 ## Отложено
 
 - Мультиязычный интерфейс (en/de/fr/pl + hreflang) — сейчас EN-only.

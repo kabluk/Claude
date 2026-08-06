@@ -30,12 +30,29 @@
 
 ## Фаза 2 — Lead Marketplace
 
-| ID | Задача | Владелец |
-|---|---|---|
-| A2-LEAD | RFQ-форма + `POST /api/lead` + матчинг + Resend | backend + frontend |
-| A2-CLAIM | Claim-поток с верификацией по домену почты, D1-оверлей + ежедневный ребилд | backend-engineer |
-| A2-STRIPE | Payment Links (featured, пакеты лидов) + вебхук | backend-engineer |
-| A2-OUTREACH | Письма 99 агентствам из деклараций «заберите профиль» | growth-strategist |
+Разбита на 13 узлов в `GRAPH.yaml` 2026-08-06 (D-022) — см. там owner/depends_on/
+verify/approval_required для каждого. Сводка (детали в GRAPH.yaml):
+
+| ID (backlog) | Sub-узлы GRAPH.yaml | Владелец | Approval |
+|---|---|---|---|
+| A2-LEAD | `A2-LEAD-SCHEMA` → `A2-LEAD-API` → `A2-LEAD-EMAIL`; `A2-LEAD-FORM` (независим) | backend + frontend | EMAIL требует Resend (approval) |
+| A2-CLAIM | `A2-CLAIM-SCHEMA` → `A2-CLAIM-API` → {`A2-CLAIM-EMAIL`, `A2-CLAIM-REBUILD`} | backend + devops | EMAIL (Resend) и REBUILD (прод-деплой) требуют approval |
+| A2-STRIPE | `A2-STRIPE-SCHEMA` → `A2-STRIPE-WEBHOOK-CODE` → `A2-STRIPE-LIVE` | backend + devops | LIVE требует Stripe (approval) |
+| A2-OUTREACH | `A2-OUTREACH-PREP` → `A2-OUTREACH-SEND` | growth-strategist | SEND требует Resend + рассылка (approval) |
+
+Статус на 2026-08-06: `A2-LEAD-SCHEMA` — **done** (`migrations/0003_leads.sql`,
+поля 1:1 с INTERFACES.md §4, `db:migrate:local` + `worker:test` 39/39 зелёные;
+разблокировало `A2-LEAD-API`). `A2-LEAD-FORM` — **done** (RequestQuotePage +
+LeadForm + leadForm.ts; клиентская валидация, client-only превью совпадений через
+уже готовый `matchAgencies()`, 0 сетевых вызовов при submit; `/request-quote/`
+добавлена в постоянный CI a11y-гейт и sitemap, плюс закрыт orphan-page пробел —
+CTA «Request a quote» добавлен в `MatchedAgencies.tsx` на `/report/:id`, страница
+раньше была недостижима ни по одной ссылке в UI). Остальные `approval_required:
+false` узлы (`A2-LEAD-API`, `A2-CLAIM-SCHEMA`, `A2-CLAIM-API`, `A2-STRIPE-SCHEMA`,
+`A2-STRIPE-WEBHOOK-CODE`, `A2-OUTREACH-PREP`) готовы к запуску без ввода владельца.
+Все `approval_required: true` узлы (`A2-LEAD-EMAIL`, `A2-CLAIM-EMAIL`,
+`A2-CLAIM-REBUILD`, `A2-STRIPE-LIVE`, `A2-OUTREACH-SEND`) заблокированы до явного
+разрешения владельца — Resend и Stripe одобряются раздельно, per-node.
 
 ## Фаза 3 — Vertical SaaS
 

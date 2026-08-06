@@ -67,6 +67,9 @@ export const routes: RouteRecord[] = [
   // Скан-отчёты непредсказуемы (id генерируется Worker'ом) — нет getStaticPaths,
   // клиентский маршрут, как /404 catch-all ниже.
   { path: '/report/:id', lazy: page(() => import('./pages/ReportPage')) },
+  // A2-LEAD-FORM: UI-only, без бэкенда (см. RequestQuotePage.tsx). Опциональный
+  // ?scanId= — клиентский параметр, не влияет на пререндер.
+  { path: '/request-quote', lazy: page(() => import('./pages/RequestQuotePage')) },
   { path: '/about', lazy: page(() => import('./pages/AboutPage')) },
   { path: '/contact', lazy: page(() => import('./pages/ContactPage')) },
   { path: '/privacy', lazy: page(() => import('./pages/PrivacyPage')) },
