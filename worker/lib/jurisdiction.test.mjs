@@ -1,6 +1,8 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { jurisdictionForUrl, applyJurisdictionWeight } from './jurisdiction.js'
+import {
+  jurisdictionForUrl, applyJurisdictionWeight, resolveJurisdiction, supportedJurisdictions,
+} from './jurisdiction.js'
 
 test('maps real .de sites (bundesregierung.de, manufactum.de) to BFSG, verified with citation', () => {
   for (const url of ['https://www.bundesregierung.de/', 'https://www.manufactum.de/']) {
@@ -95,4 +97,45 @@ test('applyJurisdictionWeight does not double-bump an already-critical finding (
   const jurisdiction = jurisdictionForUrl('https://www.bundesregierung.de/')
   const findings = [{ ruleId: 'a11y-statement-missing', impact: 'critical' }]
   assert.deepEqual(applyJurisdictionWeight(findings, jurisdiction), findings)
+})
+
+// --- resolveJurisdiction: явный выбор страны пользователем (D-032) ---------
+
+test('user override wins over TLD — the .com case TLD inference cannot solve at all', () => {
+  const j = resolveJurisdiction('https://example.com/', 'DE')
+  assert.equal(j.country, 'DE')
+  assert.equal(j.source, 'user-override')
+  assert.equal(j.statementRequired, true)
+  // без override тот же URL не определяется вовсе — ровно та дыра, что override закрывает
+  assert.equal(jurisdictionForUrl('https://example.com/').country, 'unknown')
+})
+
+test('user override wins even when the TLD maps to a different country', () => {
+  const j = resolveJurisdiction('https://example.de/', 'FR')
+  assert.equal(j.country, 'FR')
+  assert.equal(j.source, 'user-override')
+})
+
+test('override is case- and whitespace-insensitive (a select value, not a strict contract)', () => {
+  for (const raw of ['de', ' DE ', 'De']) {
+    assert.equal(resolveJurisdiction('https://example.com/', raw).country, 'DE')
+  }
+})
+
+test('unknown/empty/non-string override silently falls back to TLD instead of failing the scan', () => {
+  for (const bad of ['ZZ', '', '   ', null, undefined, 42, {}]) {
+    const j = resolveJurisdiction('https://example.de/', bad)
+    assert.equal(j.country, 'DE', String(bad))
+    assert.equal(j.source, 'tld')
+  }
+  assert.equal(resolveJurisdiction('https://example.com/', 'ZZ').country, 'unknown')
+})
+
+test('supportedJurisdictions lists every mapped country exactly once, each with a law', () => {
+  const list = supportedJurisdictions()
+  assert.equal(list.length, 13)
+  assert.equal(new Set(list.map((j) => j.country)).size, 13)
+  for (const j of list) assert.ok(j.law && j.law.length > 0, j.country)
+  // каждая страна из списка реально резолвится как override
+  for (const j of list) assert.equal(resolveJurisdiction('https://example.com/', j.country).country, j.country)
 })

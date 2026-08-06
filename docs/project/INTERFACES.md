@@ -20,7 +20,7 @@
 
 | Endpoint | Вход | Выход | Фаза | Статус |
 |---|---|---|---|---|
-| `POST /api/scan` | `{url, email?, turnstileToken?}` | `{scanId}` (202) | 1 | ✅ реализован |
+| `POST /api/scan` | `{url, email?, turnstileToken?, countryCode?}` | `{scanId}` (202) | 1 | ✅ реализован |
 | `GET /api/scan/:id` | — | ScanReport | 1 | ✅ реализован |
 | `POST /api/explain` | `{ruleId, locale?}` | `{explanation, fixExamples[]}` (KV-кэш) | 1 | ✅ реализован* |
 | `POST /api/lead` | Lead без id/status | `{leadId, matched: slug[]}` | 2 |
@@ -36,6 +36,13 @@ D-016). `sampleHtml` из черновика убран — конфликтов
 (инстанс-специфичный html "засорял" бы генерик-кэш для всех).
 
 ## 3. Типы динамики
+
+`countryCode` (ISO-3166 alpha-2, необязательный, D-032) перебивает определение
+юрисдикции по TLD — нужен для `.com`/`.eu`-сайтов, обслуживающих конкретную
+страну (по домену такие не определяются вовсе). Неизвестный код молча
+игнорируется с откатом на TLD, скан не падает. Допустимые значения —
+`worker/lib/jurisdiction.js::supportedJurisdictions()`; зеркало для UI —
+`src/lib/jurisdictions.ts`, расхождение ловит `src/lib/jurisdictions.test.mjs`.
 
 ```ts
 type ScanFinding = { ruleId: string; wcag: string[]; impact: 'minor'|'moderate'|'serious'|'critical';
@@ -55,6 +62,8 @@ type ScanFinding = { ruleId: string; wcag: string[]; impact: 'minor'|'moderate'|
 // ТОЛЬКО на a11y-statement-missing/incomplete, когда juridiction.statementRequired —
 // бампит impact до critical; сумма штрафа включается в текст только если
 // jurisdiction.verified (сейчас — только DE, §37 BFSG, D-030).
+// Отображается пользователю блоком "Legal basis" в ReportPage (с D-032; до
+// него поле возвращалось API, но фронтенд про него не знал и молча ронял).
 type ScanReport = { id: string; url: string; status: 'running'|'done'|'error'; pages: string[];
   findings: ScanFinding[]; score: number|null; error: string|null;
   errorCode: 'unreachable'|'refused'|'tls'|'timeout'|'blocked'|'internal'|null;

@@ -16,6 +16,7 @@
     "audit-a11y": "node scripts/audit-own-a11y.mjs",
     "worker:test": "node --test worker/**/*.test.mjs",
     "scripts:test": "node --test scripts/**/*.test.mjs",
+    "src:test": "node --test src/**/*.test.mjs",
     "worker:dev": "wrangler dev",
     "worker:deploy": "wrangler deploy",
     "db:migrate:local": "wrangler d1 migrations apply accessatlas-scans --local",

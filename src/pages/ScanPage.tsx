@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
 import { TurnstileWidget } from '@/components/TurnstileWidget'
 import { isValidScanUrl, submitScan, ScannerUnavailableError } from '@/lib/scanner'
+import { JURISDICTION_OPTIONS } from '@/lib/jurisdictions'
 import { paths } from '@/lib/data'
 
 type FormState = { kind: 'idle' } | { kind: 'submitting' } | { kind: 'error'; message: string }
@@ -10,6 +11,9 @@ type FormState = { kind: 'idle' } | { kind: 'submitting' } | { kind: 'error'; me
 export default function ScanPage() {
   const navigate = useNavigate()
   const [url, setUrl] = useState('')
+  // '' = определить по домену (поведение до D-032, остаётся по умолчанию —
+  // не заставляем выбирать страну ради простого скана).
+  const [countryCode, setCountryCode] = useState('')
   const [turnstileToken, setTurnstileToken] = useState<string | undefined>()
   const [state, setState] = useState<FormState>({ kind: 'idle' })
 
@@ -22,7 +26,10 @@ export default function ScanPage() {
     }
     setState({ kind: 'submitting' })
     try {
-      const { scanId } = await submitScan(trimmed, { turnstileToken })
+      const { scanId } = await submitScan(trimmed, {
+        turnstileToken,
+        ...(countryCode ? { countryCode } : {}),
+      })
       navigate(paths.report(scanId))
     } catch (err) {
       if (err instanceof ScannerUnavailableError) {
@@ -74,6 +81,35 @@ export default function ScanPage() {
             {state.message}
           </p>
         )}
+
+        <div className="mt-4">
+          <label htmlFor="scan-country" className="block text-sm font-medium text-slate-700">
+            Which country's rules should we check against?{' '}
+            <span className="font-normal text-slate-500">(optional)</span>
+          </label>
+          <select
+            id="scan-country"
+            value={countryCode}
+            onChange={(e) => setCountryCode(e.target.value)}
+            disabled={state.kind === 'submitting'}
+            aria-describedby="scan-country-help"
+            className="mt-1.5 w-full max-w-xs rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
+          >
+            <option value="">Detect from the domain</option>
+            {JURISDICTION_OPTIONS.map((j) => (
+              <option key={j.code} value={j.code}>
+                {j.label}
+              </option>
+            ))}
+          </select>
+          <p id="scan-country-help" className="mt-1.5 max-w-prose text-xs text-slate-500">
+            By default we guess from the domain ending — a <code>.de</code> site is checked against
+            German rules. That guess can't work for a <code>.com</code> site, so pick the country you
+            serve if you want the legal notes in your report. If you sell across several EU countries,
+            enforcement can come from each of them separately — this picks one to report on, not the
+            only one that applies to you.
+          </p>
+        </div>
 
         <div className="mt-4">
           <TurnstileWidget onToken={setTurnstileToken} />

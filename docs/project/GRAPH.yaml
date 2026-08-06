@@ -652,6 +652,24 @@ nodes:
     approval_required: false
     notes: "Готово 2026-08-06. detectAndDismissCookieBanner() — быстрый путь по известным вендорским селекторам (#onetrust-banner-sdk, #CybotCookiebotDialog и т.п.) + основной путь по computed style (position:fixed/sticky + z-index≥100 + покрытие ≥10% viewport + cookie-лексика в тексте), затем клик по кнопке с текстом из списка (accept/akzeptieren/j'accepte/zaakceptuj/aceptar). Живая проверка реальным Chromium: известный вендор и кастомный баннер оба детектятся и снимаются; маленький несвязанный fixed-виджет (кнопка «наверх») корректно НЕ распознаётся банннером (порог покрытия площади спас от false positive). Не находка против сайта — прозрачная scan-meta находка impact:minor, что DOM был скорректирован перед проверкой."
 
+  - id: A3-JURISDICTION-OVERRIDE
+    title: "Явный выбор страны пользователем поверх TLD-эвристики + показ jurisdictionNote в отчёте (был невидим с D-030)"
+    owner: backend-engineer
+    status: done
+    depends_on: [A3-JURISDICTION]
+    inputs: [docs/project/DECISIONS.md]
+    scope: [worker/lib/jurisdiction.js, worker/routes/scan.js, src/lib/scanner.ts, src/lib/jurisdictions.ts, src/pages/ScanPage.tsx, src/pages/ReportPage.tsx, .github/workflows/ci.yml, package.json]
+    outputs: [src/lib/jurisdictions.ts, src/lib/jurisdictions.test.mjs]
+    verify:
+      - "npm run worker:test — 175/175"
+      - "npm run src:test — 3/3 (зеркало UI-списка сверено с реальным worker-модулем)"
+      - "npm run audit-a11y — /scan/ с новым <select> без нарушений"
+    max_attempts: 3
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Готово 2026-08-06 (D-032). resolveJurisdiction(url, countryCode) — явный код страны ПЕРЕБИВАЕТ TLD (сайт на .com, обслуживающий Германию, по домену не определялся вовсе -> находка 'нет заявления' не получала вес). Невалидный/пустой/не-строковый код молча откатывается к TLD, скан не падает. КЛЮЧЕВАЯ ПОПУТНАЯ НАХОДКА: jurisdictionNote вычислялся с D-030, писался в D1, возвращался API — но фронтенд-тип ScanFinding про него не знал и ReportPage не рендерил, т.е. весь A3-JURISDICTION (две итерации) пользователь не видел ни разу; 'реализовано' и 'видно пользователю' — разные проверки, зелёные worker-тесты вторую не проверяли. Исправлено тем же проходом. Список стран для селектора — вынужденное зеркало (worker plain ESM, D-010), расхождение ловит src/lib/jurisdictions.test.mjs; проверено что тест реально падает (временно убрал Норвегию — упал, вернул — зелёный). Попутно: тесты в src/** не запускались в CI вообще, добавлен npm run src:test + шаг в ci.yml."
+
   - id: A3-JURISDICTION
     title: "Взвешивание severity по юрисдикции сайта (TLD), не только по axe impact — отсутствие заявления в 13 юрисдикциях ЕС/ЕЭЗ становится critical"
     owner: backend-engineer

@@ -4,7 +4,7 @@ import { verifyTurnstile } from '../lib/turnstile.js'
 import { scanSite } from '../lib/axe.js'
 import { scoreFromFindings } from '../lib/score.js'
 import { classifyError } from '../lib/errors.js'
-import { jurisdictionForUrl, applyJurisdictionWeight } from '../lib/jurisdiction.js'
+import { resolveJurisdiction, applyJurisdictionWeight } from '../lib/jurisdiction.js'
 
 function isHttpUrl(value) {
   try {
@@ -26,7 +26,7 @@ export async function handlePostScan(request, env, ctx) {
     return Response.json({ error: 'invalid JSON body', code: 'bad_request' }, { status: 400 })
   }
 
-  const { url, email, turnstileToken } = body ?? {}
+  const { url, email, turnstileToken, countryCode } = body ?? {}
   if (!url || !isHttpUrl(url)) {
     return Response.json({ error: 'url must be an http(s) URL', code: 'bad_request' }, { status: 400 })
   }
@@ -50,8 +50,10 @@ export async function handlePostScan(request, env, ctx) {
   // A3-JURISDICTION: "нет заявления -> §37 BFSG, до €100k" юридически весомее, чем
   // "color-contrast: serious" — взвешиваем ПОСЛЕ скана, ДО подсчёта score, чтобы
   // score.js остался generic (без знания о юрисдикциях) и продолжал работать по
-  // impact, как раньше.
-  const jurisdiction = jurisdictionForUrl(url)
+  // impact, как раньше. countryCode (опционально, от пользователя) перебивает
+  // TLD-эвристику — сайт на .com, обслуживающий Германию, иначе не определился бы
+  // вовсе (D-032). Невалидный код молча игнорируется, скан не падает.
+  const jurisdiction = resolveJurisdiction(url, countryCode)
 
   ctx.waitUntil(
     scanSite(env, url)

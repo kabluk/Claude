@@ -692,3 +692,27 @@ retsinformation.dk/riksdagen.se/ejustice.just.fgov.be/irishstatutebook.ie), не
 typecheck/`wrangler deploy --dry-run` чистые. Только таблица данных —
 `applyJurisdictionWeight()`/интеграция в `scan.js` не менялись. Полный текст —
 `DECISIONS.md` D-031.
+
+## A3-JURISDICTION-OVERRIDE — 2026-08-06 (D-032)
+
+`resolveJurisdiction(url, countryCode)` — явный код страны от пользователя
+перебивает TLD-эвристику; необязательное поле `countryCode` в `POST /api/scan`,
+селектор на `/scan` (по умолчанию «Detect from the domain» — прежнее поведение).
+Невалидный/пустой/не-строковый код молча откатывается к TLD, скан не падает.
+
+**Найденное при этом важнее самой фичи**: `jurisdictionNote` вычислялся воркером
+с D-030, писался в D1 и возвращался API — но `ScanFinding` во фронтенде про поле
+не знал, `ReportPage` его не рендерил. Две итерации (D-030, D-031) не доходили до
+пользователя ни разу, при полностью зелёных worker-тестах. Исправлено тем же
+проходом: тип, протаскивание через `groupFindingsByRule`, блок «Legal basis» в
+отчёте.
+
+`src/lib/jurisdictions.ts` — вынужденное зеркало воркера (plain ESM, D-010,
+импорт невозможен); расхождение ловит `src/lib/jurisdictions.test.mjs`, читающий
+настоящий worker-модуль. Проверено, что тест реально падает (временно убрана
+Норвегия из UI-списка — упал с точным сообщением, возвращена — зелёный).
+
+Попутно: тесты в `src/**` не запускались в CI вообще — добавлен `npm run
+src:test` в `package.json` и шаг в `ci.yml`. 175/175 `worker:test`, 3/3
+`src:test`, `audit-a11y` 23 страницы 0 нарушений (`/scan/` с новым `<select>`
+реально в списке аудита — проверено).

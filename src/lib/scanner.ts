@@ -10,6 +10,11 @@ export type ScanFinding = {
   selector: string
   page: string
   html?: string
+  // Проставляется воркером (worker/lib/jurisdiction.js) только на находках
+  // "нет заявления о доступности" и только когда юрисдикция сайта подтверждённо
+  // его требует — правовая база, и сумма штрафа ТОЛЬКО если она сверена с текстом
+  // закона (сейчас лишь DE). См. INTERFACES.md §3, DECISIONS.md D-030/D-031.
+  jurisdictionNote?: string
 }
 
 export type ScanErrorCode = 'unreachable' | 'refused' | 'tls' | 'timeout' | 'blocked' | 'internal'
@@ -48,7 +53,13 @@ async function apiFetch(path: string, init?: RequestInit): Promise<Response> {
   return fetch(`${API_BASE}${path}`, init)
 }
 
-export async function submitScan(url: string, opts?: { email?: string; turnstileToken?: string }) {
+// countryCode (необязательный, ISO-3166 alpha-2) перебивает определение
+// юрисдикции по домену — нужен для сайтов на .com/.eu и т.п., которые
+// обслуживают конкретную страну, но по TLD не определяются вовсе (D-032).
+export async function submitScan(
+  url: string,
+  opts?: { email?: string; turnstileToken?: string; countryCode?: string },
+) {
   const res = await apiFetch('/api/scan', {
     method: 'POST',
     headers: { 'content-type': 'application/json' },
@@ -113,11 +124,23 @@ export function formatWcagTag(tag: string): string {
 }
 
 export function groupFindingsByRule(findings: ScanFinding[]) {
-  const byRule = new Map<string, { ruleId: string; impact: ScanFinding['impact']; wcag: string[]; instances: ScanFinding[] }>()
+  const byRule = new Map<
+    string,
+    { ruleId: string; impact: ScanFinding['impact']; wcag: string[]; jurisdictionNote?: string; instances: ScanFinding[] }
+  >()
   for (const f of findings) {
     const existing = byRule.get(f.ruleId)
-    if (existing) existing.instances.push(f)
-    else byRule.set(f.ruleId, { ruleId: f.ruleId, impact: f.impact, wcag: f.wcag, instances: [f] })
+    if (existing) {
+      existing.instances.push(f)
+      // Правовая пометка одинакова для всех инстансов одного правила (её ставит
+      // одна и та же юрисдикция) — берём первую непустую, чтобы группа не потеряла
+      // её, если первый инстанс почему-то без неё.
+      existing.jurisdictionNote ??= f.jurisdictionNote
+    } else {
+      byRule.set(f.ruleId, {
+        ruleId: f.ruleId, impact: f.impact, wcag: f.wcag, jurisdictionNote: f.jurisdictionNote, instances: [f],
+      })
+    }
   }
   return [...byRule.values()].sort((a, b) => impactRank(a.impact) - impactRank(b.impact))
 }

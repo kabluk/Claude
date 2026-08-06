@@ -106,6 +106,28 @@ export function jurisdictionForUrl(url) {
   return { ...JURISDICTIONS[code], source: 'tld' }
 }
 
+// Список поддерживаемых юрисдикций для UI-селектора — единственный источник
+// правды и для воркера, и для фронтенда (фронт получает его не импортом —
+// worker plain-JS, D-010 — а копией в src/lib/jurisdictions.ts, синхронизация
+// проверяется тестом, чтобы список не разъехался молча).
+export function supportedJurisdictions() {
+  return Object.values(JURISDICTIONS).map((j) => ({ country: j.country, law: j.law }))
+}
+
+// A3-JURISDICTION-OVERRIDE (D-032): TLD — честная, но грубая эвристика. Сайт на
+// .com, обслуживающий Германию, по TLD не определится вовсе (country:'unknown'),
+// и юридически решающая находка "нет заявления" не получит вес. Явный выбор
+// страны пользователем точнее любой эвристики по домену — поэтому он ПЕРЕБИВАЕТ
+// TLD, а не дополняет его. Неизвестный/пустой код молча игнорируется (возврат к
+// TLD), а не роняет скан: это подсказка пользователя, не валидируемый контракт.
+export function resolveJurisdiction(url, countryCodeOverride) {
+  if (typeof countryCodeOverride === 'string') {
+    const code = countryCodeOverride.trim().toUpperCase()
+    if (JURISDICTIONS[code]) return { ...JURISDICTIONS[code], source: 'user-override' }
+  }
+  return jurisdictionForUrl(url)
+}
+
 // Находки, для которых отсутствие — юридически решающий факт (не просто axe impact).
 // Бампится до 'critical' ТОЛЬКО когда юрисдикция подтверждённо требует заявление —
 // иначе (unknown/statementRequired:false) findings остаются как были, не выдумываем
