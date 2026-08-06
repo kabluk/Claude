@@ -292,10 +292,27 @@
    обновил ту же строку (upsert, не дубликат); опечатка в slug → `200`, но
    0 строк в D1 и реальный `console.error` в логе воркера — тестовые данные
    удалены после проверки. Остаётся ручная часть на стороне владельца:
-   создать в Dashboard продукт €590/год + обязательный custom field
-   (key=`agency_slug`) + webhook endpoint (`checkout.session.completed` →
-   `/api/stripe-hook`), передать реальный `STRIPE_WEBHOOK_SECRET` для
-   `wrangler secret put`. Детали: `domains/backend.md`, `DECISIONS.md` D-027.
+   создать в Dashboard продукт €590/год + обязательный custom field +
+   webhook endpoint (`checkout.session.completed` → `/api/stripe-hook`),
+   передать реальный `STRIPE_WEBHOOK_SECRET` для `wrangler secret put`.
+   Детали: `domains/backend.md`, `DECISIONS.md` D-027.
+   **Продолжение (D-028), тот же день**: владелец настроил Payment Link и
+   сделал реальный тестовый платёж ($10, Apple Pay, `cs_live_a12o7c...`),
+   прислал целиком настоящий JSON `checkout.session.completed`. Вскрылось:
+   реальный `key` custom field — НЕ `agency_slug`, а `yourslugaccessatlas`
+   (Stripe фиксирует key из текста label только при первом сохранении поля в
+   Dashboard, не пересчитывает при последующем переименовании label —
+   владелец сначала ввёл другой текст, потом переименовал на "agency_slug",
+   видимый текст обновился, key — нет). `CUSTOM_FIELD_KEY` в `stripeHook.js`
+   исправлен на подтверждённое реальное значение, Dashboard донастраивать не
+   пришлось. Добавлен регрессионный тест: поле с key, буквально равным
+   видимому label (`"agency_slug"`), не должно приниматься за искомое —
+   иначе будущая ручная правка в Dashboard могла бы тихо всё сломать снова.
+   123/123 `worker:test`. Живьём: `wrangler dev --local` с точной формой
+   реального события (`key: "yourslugaccessatlas"`) создал настоящую строку
+   `featured` в локальной D1 с верным `until` — удалена после проверки.
+   Остаётся ровно одно: webhook endpoint + `STRIPE_WEBHOOK_SECRET`. Детали:
+   `domains/backend.md`, `DECISIONS.md` D-028.
 
 - 2026-08-06 (A2-CLAIM-API, D-023): вплетено в `software-architect.md` —
   общий, переносимый урок про flow «запрос → секретный токен по email →

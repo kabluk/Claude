@@ -22,19 +22,29 @@
 // одна и та же для всех покупателей одной ссылки), поэтому agency_slug
 // собирается через Stripe "custom field" на странице оплаты (агентство само
 // вписывает свой slug) — приходит в session.custom_fields, не в
-// session.metadata. Единственный продукт первого прохода — featured
-// €590/год, разовый платёж (не подписка) — until НЕ берётся из данных,
-// присланных клиентом/Stripe вообще: считается на сервере как "сегодня +
-// 365 дней" в момент обработки события, иначе платящий мог бы (по ошибке
-// конфигурации Stripe-стороны или иначе) продиктовать себе любую дату.
-// Ежемесячная подписка и lead-пакеты (другая система — credits, не featured)
-// вне scope этого прохода, см. GRAPH.yaml notes.
+// session.metadata. Ключ поля (CUSTOM_FIELD_KEY ниже) — НЕ "agency_slug",
+// несмотря на видимый в Dashboard label с этим текстом: Stripe сгенерировал
+// key из более раннего черновика label и не обновил его при переименовании
+// — подтверждено живым оплаченным событием, не предположением. Единственный
+// продукт первого прохода — featured €590/год, разовый платёж (не подписка)
+// — until НЕ берётся из данных, присланных клиентом/Stripe вообще: считается
+// на сервере как "сегодня + 365 дней" в момент обработки события, иначе
+// платящий мог бы (по ошибке конфигурации Stripe-стороны или иначе)
+// продиктовать себе любую дату. Ежемесячная подписка и lead-пакеты (другая
+// система — credits, не featured) вне scope этого прохода, см. GRAPH.yaml notes.
 
 import { verifyStripeSignature } from '../lib/stripeSig.js'
 import { agencies } from '../lib/matchAgenciesServer.js'
 
 const AGENCY_SLUGS = new Set(agencies.map((a) => a.slug))
-const CUSTOM_FIELD_KEY = 'agency_slug' // должен совпадать с key custom field в Payment Link (Dashboard)
+// Stripe генерирует key custom field из ТЕКСТА LABEL в момент первого
+// сохранения поля и не пересчитывает его при последующем редактировании
+// label — реального "agency_slug" здесь никогда не было, несмотря на то что
+// label.custom в Dashboard сейчас показывает именно "agency_slug". Значение
+// ниже — не предположение, а буквальный key из настоящего оплаченного
+// checkout.session.completed (cs_live_a12o7c...), полученного во время
+// живой проверки A2-STRIPE-LIVE 2026-08-06 (см. DECISIONS.md D-027).
+const CUSTOM_FIELD_KEY = 'yourslugaccessatlas'
 const FEATURED_DAYS = 365
 
 function extractAgencySlugFromSession(session) {

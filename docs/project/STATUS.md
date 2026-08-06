@@ -115,16 +115,19 @@ API-ответом. `A2-LEAD-EMAIL` — **done** (D-025): владелец вы�
 только claimed+verified среди совпавших агентств — незаявленные ничего не
 получают, охват растёт по мере роста числа claimed-профилей. Живьём:
 реальный claim+verify → совпавший лид → уведомление ушло без ошибок.
-`A2-STRIPE-LIVE` — **in progress** (D-027): владелец выбрал Payment Link
-вручную в Dashboard (не API) и scope featured €590/год, разовый платёж;
-`stripeHook.js` переписан под Stripe custom field `agency_slug`
-(`session.custom_fields`, не `session.metadata` — Dashboard-ссылка не
-несёт динамическую metadata), `until` считается на сервере (today+365).
-122/122 `worker:test`, живьём на реальной локальной D1 подтверждено:
-валидный slug → featured-строка с верным `until`, повторный платёж продлил
-ту же строку, опечатка в slug → 0 записей + залогировано. Остаётся ручная
-настройка на стороне владельца (продукт/custom field/webhook endpoint в
-Stripe Dashboard + реальный `STRIPE_WEBHOOK_SECRET`). `A2-CLAIM-REBUILD` —
+`A2-STRIPE-LIVE` — **in progress** (D-027/D-028): владелец выбрал Payment
+Link вручную в Dashboard (не API) и scope featured €590/год, разовый платёж;
+`stripeHook.js` переписан под Stripe custom field (`session.custom_fields`,
+не `session.metadata` — Dashboard-ссылка не несёт динамическую metadata),
+`until` считается на сервере (today+365). Владелец уже настроил Payment Link
+и сделал реальный тестовый платёж — прислал настоящий JSON события; выяснилось,
+что фактический `key` custom field не `agency_slug`, а `yourslugaccessatlas`
+(Stripe фиксирует key из label только при первом сохранении, не пересчитывает
+при переименовании) — код исправлен под подтверждённое реальное значение,
+добавлен регрессионный тест на путаницу label/key. 123/123 `worker:test`,
+живьём на реальной локальной D1 с точной формой реального события подтверждено.
+Остаётся ровно одно: webhook endpoint в Stripe Dashboard + реальный
+`STRIPE_WEBHOOK_SECRET`. `A2-CLAIM-REBUILD` —
 одобрен 2026-08-06, готов к прод-cron, ждёт `A0-DEPLOY` (D-026). По плану —
 Фаза 2 (ROADMAP.md).
 

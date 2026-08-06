@@ -541,9 +541,49 @@ email владельца — не реальное третье лицо) → з
   опечатка в slug (`totally-fake-typo-slug`) → 200, но 0 строк в D1 и реальный
   `console.error` в логе воркера — тестовые строки удалены после проверки.
   `npm run typecheck` и `npx wrangler deploy --dry-run` чистые.
-- ОСТАЁТСЯ: владелец должен вручную в Stripe Dashboard создать продукт
-  €590/год + добавить обязательный custom field (key ровно `agency_slug`) на
-  Payment Link, настроить webhook endpoint (`checkout.session.completed` →
-  `https://accessatlas-worker.zincroom.workers.dev/api/stripe-hook`),
+- ОСТАЁТСЯ (на момент первой версии этой заметки): владелец должен вручную в
+  Stripe Dashboard создать продукт €590/год + добавить обязательный custom
+  field на Payment Link, настроить webhook endpoint (`checkout.session.completed`
+  → `https://accessatlas-worker.zincroom.workers.dev/api/stripe-hook`),
   передать реальный `STRIPE_WEBHOOK_SECRET` для `wrangler secret put` — до
-  этого узел не принимает реальные деньги, готов только код.
+  этого узел не принимает реальные деньги, готов только код. **Уточнение
+  ниже (D-028) отменяет предположение про `key = agency_slug`.**
+
+## A2-STRIPE-LIVE (2026-08-06, D-028) — реальный key custom field ≠ agency_slug
+
+Владелец настроил Payment Link и сделал реальный тестовый платёж ($10,
+Apple Pay, `cs_live_a12o7c...`) — прислал целиком настоящий JSON события
+`checkout.session.completed`. Он вскрыл расхождение: `extractAgencySlugFromSession`
+искал поле с `key === 'agency_slug'`, но в реальном событии
+`custom_fields[0].key === "yourslugaccessatlas"`, а `custom_fields[0].label.custom
+=== "agency_slug"`. Причина — Stripe генерирует `key` custom field из текста
+`label` только один раз, в момент первого сохранения поля в Dashboard, и НЕ
+пересчитывает его при последующем переименовании label; владелец, судя по
+всему, сначала ввёл другой текст label, затем поменял его на "agency_slug" —
+видимый текст обновился, программный `key` — нет.
+
+Правка: `CUSTOM_FIELD_KEY` в `stripeHook.js` изменена с `'agency_slug'` на
+буквальное `'yourslugaccessatlas'`, с комментарием, что это значение из
+реального payload, а не предположение — Dashboard-конфигурацию трогать не
+пришлось, она уже рабочая. `stripeHook.test.mjs`: все фикстуры с
+`customField('agency_slug', ...)` заменены на `customField(REAL_CUSTOM_FIELD_KEY,
+...)`; добавлен отдельный регрессионный тест — поле с `key`, буквально равным
+видимому тексту label (`"agency_slug"`), не должно приниматься кодом за
+искомое (иначе будущая ручная правка в Dashboard, случайно создавшая второе
+поле с "похожим на правильный" key, тихо перекрыла бы обработку). 123/123
+`worker:test`. Живой прогон: `wrangler dev --local` + вручную подписанное
+HMAC-SHA256 событие с точной формой реального payload (`key:
+"yourslugaccessatlas"`, slug `marc-haunschild-accessibility-consulting`) →
+реальная строка в локальной D1 `featured` с верным `until` — удалена после
+проверки. `typecheck`/`wrangler deploy --dry-run` чистые.
+
+Урок на будущее (см. `LEARNING_LOG.md`): в конструкторах форм, где видимый
+текст поля и его программный идентификатор задаются раздельно и не
+синхронизируются автоматически при редактировании, никогда не полагаться на
+то, что идентификатор совпадает с последним увиденным текстом — сверяться
+нужно с реальным payload, не с UI.
+
+ОСТАЁТСЯ ровно одно: webhook endpoint в Stripe Dashboard
+(`checkout.session.completed` → `/api/stripe-hook`) + реальный
+`STRIPE_WEBHOOK_SECRET` для `wrangler secret put`. Payment Link уже реально
+принимает деньги и корректно отдаёт `agency_slug` в custom field.

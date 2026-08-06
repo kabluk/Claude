@@ -5,6 +5,9 @@
 // оплаты), не через session.metadata — Dashboard-ссылка не умеет нести
 // динамическую metadata, одна и та же для всех покупателей. until больше не
 // приходит извне вообще — считается на сервере (computeFeaturedUntil).
+// REAL_CUSTOM_FIELD_KEY ниже — не выдумка, а буквальный key из настоящего
+// оплаченного события (см. stripeHook.js/CUSTOM_FIELD_KEY) — Stripe не равен
+// видимому в Dashboard тексту label.
 // Живая проверка (реальная D1 через wrangler dev --local + wrangler d1 execute
 // --local) — отдельно, не заменяется этими тестами (D-020).
 
@@ -20,6 +23,11 @@ const SECRET = 'whsec_test_synthetic_0000000000000000000000'
 const REAL_SLUG_1 = 'deque-systems'
 const REAL_SLUG_2 = 'marc-haunschild-accessibility-consulting'
 const UNKNOWN_SLUG = 'acme-a11y-does-not-exist'
+// Настоящий key custom field из живого оплаченного checkout.session.completed
+// (cs_live_a12o7c..., проверка A2-STRIPE-LIVE 2026-08-06) — Stripe сгенерировал
+// его из более раннего черновика label и не пересчитал при переименовании
+// label на "agency_slug"; см. CUSTOM_FIELD_KEY в stripeHook.js и D-027.
+const REAL_CUSTOM_FIELD_KEY = 'yourslugaccessatlas'
 
 function sign(secret, timestamp, payload) {
   return createHmac('sha256', secret).update(`${timestamp}.${payload}`).digest('hex')
@@ -75,7 +83,7 @@ function checkoutSessionCompletedEvent({ agencySlug = REAL_SLUG_1, sessionId = '
       object: {
         id: sessionId,
         object: 'checkout.session',
-        custom_fields: customFields !== undefined ? customFields : [customField('agency_slug', agencySlug)],
+        custom_fields: customFields !== undefined ? customFields : [customField(REAL_CUSTOM_FIELD_KEY, agencySlug)],
       },
     },
   })
@@ -95,16 +103,16 @@ test('computeFeaturedUntil: defaults to real "now" when called with no argument'
 
 // --- extractFeaturedFromSession -----------------------------------------------
 
-test('extractFeaturedFromSession: valid custom_fields with a real agency_slug -> {agencySlug, until}', () => {
+test('extractFeaturedFromSession: valid custom_fields with the real field key -> {agencySlug, until}', () => {
   const now = new Date('2026-08-06T00:00:00.000Z')
-  const session = { custom_fields: [customField('agency_slug', REAL_SLUG_1)] }
+  const session = { custom_fields: [customField(REAL_CUSTOM_FIELD_KEY, REAL_SLUG_1)] }
   assert.deepEqual(extractFeaturedFromSession(session, now), { agencySlug: REAL_SLUG_1, until: '2027-08-06' })
 })
 
 test('extractFeaturedFromSession: until is server-computed, never trusted from the session', () => {
   // even if a session somehow carried its own "until"-looking field, it must be ignored
   const now = new Date('2026-08-06T00:00:00.000Z')
-  const session = { custom_fields: [customField('agency_slug', REAL_SLUG_1)], until: '2099-01-01' }
+  const session = { custom_fields: [customField(REAL_CUSTOM_FIELD_KEY, REAL_SLUG_1)], until: '2099-01-01' }
   assert.deepEqual(extractFeaturedFromSession(session, now), { agencySlug: REAL_SLUG_1, until: '2027-08-06' })
 })
 
@@ -115,18 +123,29 @@ test('extractFeaturedFromSession: missing/malformed custom_fields -> null', () =
   assert.equal(extractFeaturedFromSession({ custom_fields: 'not-an-array' }), null)
 })
 
-test('extractFeaturedFromSession: agency_slug field missing from custom_fields -> null', () => {
+test('extractFeaturedFromSession: field with the real key missing from custom_fields -> null', () => {
   const session = { custom_fields: [customField('some_other_field', 'value')] }
   assert.equal(extractFeaturedFromSession(session), null)
 })
 
-test('extractFeaturedFromSession: blank/whitespace-only agency_slug value -> null', () => {
-  assert.equal(extractFeaturedFromSession({ custom_fields: [customField('agency_slug', '')] }), null)
-  assert.equal(extractFeaturedFromSession({ custom_fields: [customField('agency_slug', '   ')] }), null)
+// Регрессия конкретно под находку D-027: label этого custom field в Dashboard
+// показывает текст "agency_slug", но НАСТОЯЩИЙ key поля другой
+// (REAL_CUSTOM_FIELD_KEY) — код обязан матчить по key, а не по видимому label,
+// иначе поле с key буквально "agency_slug" (которого в реальности нет, но
+// легко могло бы появиться при следующей ручной правке в Dashboard) молча
+// перекрыло бы правильное значение.
+test('extractFeaturedFromSession: a field whose key literally equals the visible label text ("agency_slug") is not mistaken for the real field', () => {
+  const session = { custom_fields: [customField('agency_slug', REAL_SLUG_1)] }
+  assert.equal(extractFeaturedFromSession(session), null)
 })
 
-test('extractFeaturedFromSession: agency_slug not present in the real catalog (typo) -> null', () => {
-  const session = { custom_fields: [customField('agency_slug', UNKNOWN_SLUG)] }
+test('extractFeaturedFromSession: blank/whitespace-only value -> null', () => {
+  assert.equal(extractFeaturedFromSession({ custom_fields: [customField(REAL_CUSTOM_FIELD_KEY, '')] }), null)
+  assert.equal(extractFeaturedFromSession({ custom_fields: [customField(REAL_CUSTOM_FIELD_KEY, '   ')] }), null)
+})
+
+test('extractFeaturedFromSession: agency slug not present in the real catalog (typo) -> null', () => {
+  const session = { custom_fields: [customField(REAL_CUSTOM_FIELD_KEY, UNKNOWN_SLUG)] }
   assert.equal(extractFeaturedFromSession(session), null)
 })
 

@@ -137,9 +137,15 @@ field (`session.custom_fields`, не `session.metadata`), валидируетс
 проверены на реальной локальной D1 (валидный slug создал featured-строку,
 повторный платёж продлил её же, опечатка — 0 записей + залогирована).
 `worker:test` 122/122, typecheck и `wrangler deploy --dry-run` чистые.
-Остаётся ручная часть на стороне владельца: создать в Dashboard продукт
-€590/год + custom field `agency_slug` + webhook endpoint, передать реальный
-`STRIPE_WEBHOOK_SECRET` для `wrangler secret put`.
+**Обновление (D-028)**: владелец уже настроил Payment Link и сделал реальный
+тестовый платёж ($10, Apple Pay) — прислал настоящий JSON события. Реальный
+`key` custom field оказался НЕ `agency_slug`, а `yourslugaccessatlas` (Stripe
+генерирует key из label только при первом сохранении поля, не пересчитывает
+при переименовании текста) — `CUSTOM_FIELD_KEY` в коде исправлен под
+подтверждённое реальное значение, Dashboard трогать не пришлось. Добавлен
+регрессионный тест на путаницу label/key. `worker:test` 123/123. Остаётся
+ровно одно: владелец должен настроить webhook endpoint в Dashboard и передать
+реальный `STRIPE_WEBHOOK_SECRET` для `wrangler secret put`.
 
 ## Фаза 3 — Vertical SaaS
 
