@@ -26,9 +26,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://www.ined.fr/fr/etat-conformite"
+        "evidenceUrl": "https://www.ined.fr/fr/etat-conformite",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -73,9 +74,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://naolib.fr/fr/accessibilite-naolib-mon-espace"
+        "evidenceUrl": "https://naolib.fr/fr/accessibilite-naolib-mon-espace",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -118,9 +120,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://esante.gouv.fr/accessibilite"
+        "evidenceUrl": "https://esante.gouv.fr/accessibilite",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -164,9 +167,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://ville-illzach.fr/wp-content/uploads/2026/02/Illzach-Declaration-daccessibilite.pdf"
+        "evidenceUrl": "https://ville-illzach.fr/wp-content/uploads/2026/02/Illzach-Declaration-daccessibilite.pdf",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -211,9 +215,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://accesmed.sante.gouv.fr/CEPS.Administration/workflow_url?&ECITIZ_ACTIVITY_PATH=CNIL&ECITIZ_PROCESS_ID=TgDonneeAccessibilite&ORG=CEPS"
+        "evidenceUrl": "https://accesmed.sante.gouv.fr/CEPS.Administration/workflow_url?&ECITIZ_ACTIVITY_PATH=CNIL&ECITIZ_PROCESS_ID=TgDonneeAccessibilite&ORG=CEPS",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -257,9 +262,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://www.cdg11.fr/declaration-accessibilite/"
+        "evidenceUrl": "https://www.cdg11.fr/declaration-accessibilite/",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -302,9 +308,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://www.mairie-arcambal.fr/accessibilite"
+        "evidenceUrl": "https://www.mairie-arcambal.fr/accessibilite",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -346,9 +353,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://www.cherbourg.fr/accessibilite/"
+        "evidenceUrl": "https://www.cherbourg.fr/accessibilite/",
+        "declarant": "unknown"
       }
     ],
     "description": {},
@@ -392,9 +400,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://sytral-mobilites.fr/fr/declaration-d-accessibilite-partiellement-conforme.html"
+        "evidenceUrl": "https://sytral-mobilites.fr/fr/declaration-d-accessibilite-partiellement-conforme.html",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -438,9 +447,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://www.blois.fr/accessibilite-du-site"
+        "evidenceUrl": "https://www.blois.fr/accessibilite-du-site",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -482,9 +492,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://www.hopital-loire-sante-nantes.fr/systeme/declaration-accessibilite/"
+        "evidenceUrl": "https://www.hopital-loire-sante-nantes.fr/systeme/declaration-accessibilite/",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -527,9 +538,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://www.anact.fr/accessibilite"
+        "evidenceUrl": "https://www.anact.fr/accessibilite",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -572,9 +584,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://www.mahj.org/fr/annexe/declaration-daccessibilite-rgaa-32063"
+        "evidenceUrl": "https://www.mahj.org/fr/annexe/declaration-daccessibilite-rgaa-32063",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -620,9 +633,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://www.academie-renseignement.gouv.fr/accessibilite"
+        "evidenceUrl": "https://www.academie-renseignement.gouv.fr/accessibilite",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -668,9 +682,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://www.transformation.gouv.fr/accessibilite"
+        "evidenceUrl": "https://www.transformation.gouv.fr/accessibilite",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -712,9 +727,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://www.ch-pyrenees.fr/accessibilite/"
+        "evidenceUrl": "https://www.ch-pyrenees.fr/accessibilite/",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -760,9 +776,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://www.soorts-hossegor.fr/accessibilite"
+        "evidenceUrl": "https://www.soorts-hossegor.fr/accessibilite",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -805,9 +822,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://www.capstreshautdebit.fr/declaration-daccessibilite/"
+        "evidenceUrl": "https://www.capstreshautdebit.fr/declaration-daccessibilite/",
+        "declarant": "private"
       }
     ],
     "description": {},
@@ -849,9 +867,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://grandreims-mobilites.fr/fr/oJn-Accessibilite-3A-partiellement-conforme.html"
+        "evidenceUrl": "https://grandreims-mobilites.fr/fr/oJn-Accessibilite-3A-partiellement-conforme.html",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -893,9 +912,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://www.sumene-artense.com/declaration-daccessibilite/"
+        "evidenceUrl": "https://www.sumene-artense.com/declaration-daccessibilite/",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -938,9 +958,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://www.notre-environnement.gouv.fr/accessibilite/accessibilite"
+        "evidenceUrl": "https://www.notre-environnement.gouv.fr/accessibilite/accessibilite",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -984,9 +1005,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://www.cariforefoccitanie.fr/accessibilite/"
+        "evidenceUrl": "https://www.cariforefoccitanie.fr/accessibilite/",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -1030,9 +1052,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://www.cholet.fr/dossiers/dossier_21_politique+accessibilite+notre+site+internet.html"
+        "evidenceUrl": "https://www.cholet.fr/dossiers/dossier_21_politique+accessibilite+notre+site+internet.html",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -1076,9 +1099,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://www.gard.fr/pages-pratiques/page-de-declaration-daccessibilite"
+        "evidenceUrl": "https://www.gard.fr/pages-pratiques/page-de-declaration-daccessibilite",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -1122,9 +1146,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://nouvelles.univ-rennes2.fr/accessibilite"
+        "evidenceUrl": "https://nouvelles.univ-rennes2.fr/accessibilite",
+        "declarant": "public-body"
       }
     ],
     "description": {},
@@ -1169,9 +1194,10 @@
     ],
     "certs": [
       {
-        "kind": "gov-declared-auditor",
+        "kind": "statement-named-auditor",
         "country": "FR",
-        "evidenceUrl": "https://philharmoniedeparis.fr/fr/accessibilite"
+        "evidenceUrl": "https://philharmoniedeparis.fr/fr/accessibilite",
+        "declarant": "public-body"
       }
     ],
     "description": {},

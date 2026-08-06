@@ -10,7 +10,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://warszawapraga-pln.sr.gov.pl/attachments/379/download" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://warszawapraga-pln.sr.gov.pl/attachments/379/download", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://warszawapraga-pln.sr.gov.pl/attachments/379/download", "label": "Raport z audytu dostępności cyfrowej — Sąd Rejonowy dla Warszawy Pragi-Północ — audyt przeprowadziła firma Reddog Systems Przemysław Bąchorek" },
@@ -30,7 +30,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://bip-uggrodzisk.podlaskie.eu/dostpno_urzdu/" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://bip-uggrodzisk.podlaskie.eu/dostpno_urzdu/", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://bip-uggrodzisk.podlaskie.eu/dostpno_urzdu/", "label": "Deklaracja dostępności Urzędu Gminy Grodzisk — badanie przeprowadzone przez podmiot zewnętrzny: Centrum Bezpieczeństwa Informatycznego" },
@@ -50,7 +50,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://energa-operator.pl/deklaracja-dostepnosci" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://energa-operator.pl/deklaracja-dostepnosci", "declarant": "private" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://energa-operator.pl/deklaracja-dostepnosci", "label": "Deklaracja dostępności Energa-Operator S.A. — badanie przeprowadzone przez podmiot zewnętrzny: perfekcyjneStrony" },
@@ -69,7 +69,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://ozkodolanow.pl/19,deklaracja-dostepnosci" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://ozkodolanow.pl/19,deklaracja-dostepnosci", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://ozkodolanow.pl/19,deklaracja-dostepnosci", "label": "Deklaracja dostępności — badanie przeprowadzone przez podmiot zewnętrzny: extranet Joanna Paździerska" },
@@ -89,7 +89,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://gops-lesznowola.pl/cms/7229/deklaracja_dostepnosci" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://gops-lesznowola.pl/cms/7229/deklaracja_dostepnosci", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://gops-lesznowola.pl/cms/7229/deklaracja_dostepnosci", "label": "Deklaracja dostępności GOPS Lesznowola — badanie przeprowadzone przez podmiot zewnętrzny: IDcom Group Sp. z o.o." },
@@ -109,7 +109,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://www.szpitalzawiercie.pl/kategorie/deklaracja-dostepnosci" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://www.szpitalzawiercie.pl/kategorie/deklaracja-dostepnosci", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://www.szpitalzawiercie.pl/kategorie/deklaracja-dostepnosci", "label": "Deklaracja dostępności Szpitala Powiatowego w Zawierciu — podmiot zewnętrzny: ALPANET - Polskie Systemy Internetowe" },
@@ -129,7 +129,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://www.konstancinjeziorna.pl/deklaracja-dostepnosci" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://www.konstancinjeziorna.pl/deklaracja-dostepnosci", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://www.konstancinjeziorna.pl/deklaracja-dostepnosci", "label": "Deklaracja dostępności Gminy Konstancin-Jeziorna — badanie przeprowadzone przez firmę Vobacom Sp. z o.o." },
@@ -149,7 +149,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://mpec.olsztyn.pl/deklaracja-dostepnosci/" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://mpec.olsztyn.pl/deklaracja-dostepnosci/", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://mpec.olsztyn.pl/deklaracja-dostepnosci/", "label": "Deklaracja dostępności MPEC Olsztyn — badanie przeprowadzone przez podmiot zewnętrzny: VIRTUALMEDIA AGENCJA INTERAKTYWNA" },
@@ -169,7 +169,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://www.nil.gov.pl/deklaracja-dostepnosci/" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://www.nil.gov.pl/deklaracja-dostepnosci/", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://www.nil.gov.pl/deklaracja-dostepnosci/", "label": "Deklaracja dostępności Naczelnej Izby Lekarskiej — badanie przeprowadzone przez podmiot zewnętrzny: VENTI sp. z o.o." },
@@ -188,7 +188,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://bip.szpitalmsw.rzeszow.pl/media/deklaracja-dostepnosci.html" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://bip.szpitalmsw.rzeszow.pl/media/deklaracja-dostepnosci.html", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://bip.szpitalmsw.rzeszow.pl/media/deklaracja-dostepnosci.html", "label": "Deklaracja dostępności SP ZOZ MSWiA w Rzeszowie — podmiot zewnętrzny: ZETO-RZESZÓW Sp. z o.o." },
@@ -208,7 +208,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://ipn.gov.pl/pl/page/24141,Deklaracja-dostepnosci.html" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://ipn.gov.pl/pl/page/24141,Deklaracja-dostepnosci.html", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://ipn.gov.pl/pl/page/24141,Deklaracja-dostepnosci.html", "label": "Deklaracja dostępności Instytutu Pamięci Narodowej — badanie przeprowadzone przez Fundację Widzialni" },
@@ -228,7 +228,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://gopsstoczek.pl/deklaracja-dostepnosci.html" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://gopsstoczek.pl/deklaracja-dostepnosci.html", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://gopsstoczek.pl/deklaracja-dostepnosci.html", "label": "Deklaracja dostępności GOPS Stoczek — badanie przeprowadzone przez firmę Altix Sp. z o.o." },
@@ -248,7 +248,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://www.gzk.pawlowice.pl/fileadmin/repozytorium/GZK/2025/DEKLARACJA_DOSTEPNOSCI.pdf" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://www.gzk.pawlowice.pl/fileadmin/repozytorium/GZK/2025/DEKLARACJA_DOSTEPNOSCI.pdf", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://www.gzk.pawlowice.pl/fileadmin/repozytorium/GZK/2025/DEKLARACJA_DOSTEPNOSCI.pdf", "label": "Deklaracja dostępności GZK Pawłowice — badanie przeprowadzone przez podmiot zewnętrzny: AGILEO" },
@@ -268,7 +268,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://sp5.czeladz.pl/main/deklaracja-dostepnosci" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://sp5.czeladz.pl/main/deklaracja-dostepnosci", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://sp5.czeladz.pl/main/deklaracja-dostepnosci", "label": "Deklaracja dostępności SP5 Czeladź — badanie przeprowadzone przez podmiot zewnętrzny: Agencja Interaktywna IntraCOM" },
@@ -288,7 +288,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://www.bip.gops.michalowice.pl/deklaracja-dostepnosci" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://www.bip.gops.michalowice.pl/deklaracja-dostepnosci", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://www.bip.gops.michalowice.pl/deklaracja-dostepnosci", "label": "Deklaracja dostępności GOPS Michałowice — badanie przeprowadzone przez podmiot zewnętrzny: Akcess-Net FH-U Cezary Małota" },
@@ -308,7 +308,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://archiwumemigranta.pl/deklaracja-dostepnosci/" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://archiwumemigranta.pl/deklaracja-dostepnosci/", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://archiwumemigranta.pl/deklaracja-dostepnosci/", "label": "Deklaracja dostępności — badanie przeprowadzone przez podmiot zewnętrzny: Spółdzielnia Socjalna FADO" },
@@ -328,7 +328,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://bip.zus.pl/deklaracja-dostepnosci" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://bip.zus.pl/deklaracja-dostepnosci", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://bip.zus.pl/deklaracja-dostepnosci", "label": "Deklaracja dostępności BIP ZUS — badania przeprowadzone przez konsorcjum Fundacja Instytut Rozwoju Regionalnego i Utilitia sp. z o.o." },
@@ -348,7 +348,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://bip.zus.pl/deklaracja-dostepnosci" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://bip.zus.pl/deklaracja-dostepnosci", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://bip.zus.pl/deklaracja-dostepnosci", "label": "Deklaracja dostępności BIP ZUS — badania przeprowadzone przez konsorcjum Fundację Instytut Rozwoju Regionalnego i Utilitia sp. z o.o." },
@@ -368,7 +368,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://szafarnia.art.pl/deklaracja-dostepnosci/" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://szafarnia.art.pl/deklaracja-dostepnosci/", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://szafarnia.art.pl/deklaracja-dostepnosci/", "label": "Deklaracja dostępności Ośrodka Chopinowskiego w Szafarni — podmiot zewnętrzny: Dranas Project sp. z o.o." },
@@ -388,7 +388,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://teatranimacji.pl/pl/deklaracja-dostepnosci" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://teatranimacji.pl/pl/deklaracja-dostepnosci", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://teatranimacji.pl/pl/deklaracja-dostepnosci", "label": "Deklaracja dostępności Teatru Animacji w Poznaniu — podmiot zewnętrzny: Kinaole Sp. z o.o." },
@@ -408,7 +408,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://www.bip.bialystok.pl/deklaracja-dostepnosci.html" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://www.bip.bialystok.pl/deklaracja-dostepnosci.html", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://www.bip.bialystok.pl/deklaracja-dostepnosci.html", "label": "Deklaracja dostępności BIP Urzędu Miejskiego w Białymstoku — audyt Fundacji Integracja w Warszawie" },
@@ -428,7 +428,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://res.cloudinary.com/teatr-wybrzeze/image/upload/v1707230874/Raport_Audyt_Cyfrowy_Teatr_Wybrzeze_2_MB_pdf_a44c7e5a20.pdf" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://res.cloudinary.com/teatr-wybrzeze/image/upload/v1707230874/Raport_Audyt_Cyfrowy_Teatr_Wybrzeze_2_MB_pdf_a44c7e5a20.pdf", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://res.cloudinary.com/teatr-wybrzeze/image/upload/v1707230874/Raport_Audyt_Cyfrowy_Teatr_Wybrzeze_2_MB_pdf_a44c7e5a20.pdf", "label": "Raport z audytu dostępności cyfrowej Teatru Wybrzeże — wykonawca: Akademia Słońca Krzysztof Frąszczak" },
@@ -447,7 +447,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://kosakowosport.pl/deklaracja-dostepnosci/" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://kosakowosport.pl/deklaracja-dostepnosci/", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://kosakowosport.pl/deklaracja-dostepnosci/", "label": "Deklaracja dostępności Kosakowo Sport sp. z o.o. — badanie przeprowadzone przez podmiot zewnętrzny: nautil.pl" },
@@ -467,7 +467,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://fundacja.cieszyn.pl/deklaracja-dostepnosci" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://fundacja.cieszyn.pl/deklaracja-dostepnosci", "declarant": "private" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://fundacja.cieszyn.pl/deklaracja-dostepnosci", "label": "Deklaracja dostępności Fundacji Zamek Cieszyn — badanie przeprowadzone przez podmiot zewnętrzny: Optimal IT Sp. z o.o." },
@@ -486,7 +486,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://bip.zerkow.pl/?bip=1&cid=1336&bsc=N" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://bip.zerkow.pl/?bip=1&cid=1336&bsc=N", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://bip.zerkow.pl/?bip=1&cid=1336&bsc=N", "label": "Deklaracja dostępności BIP Gminy Żerków — badanie przeprowadzone przez podmiot zewnętrzny: INTERmedi@ Spółka Jawna" },
@@ -506,7 +506,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "PL", "evidenceUrl": "https://szpital-strusia.poznan.pl/cms/6056" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "PL", "evidenceUrl": "https://szpital-strusia.poznan.pl/cms/6056", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://szpital-strusia.poznan.pl/cms/6056", "label": "Deklaracja dostępności Szpitala Miejskiego im. Strusia w Poznaniu — badanie przeprowadzone przez podmiot zewnętrzny [Grupa AF]" },

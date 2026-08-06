@@ -230,12 +230,17 @@ export default function BfsgCheckPage() {
                 </div>
                 <p className="mt-2 text-xs text-slate-500">
                   Genannt in:{' '}
-                  {statementEvidence(a, 'DE').map((url, i) => (
-                    <span key={url}>
+                  {statementEvidence(a, 'DE').map((e, i) => (
+                    <span key={e.url}>
                       {i > 0 && ', '}
-                      <a className="underline underline-offset-2" href={url} rel="noopener noreferrer">
-                        {hostOf(url)}
+                      <a className="underline underline-offset-2" href={e.url} rel="noopener noreferrer">
+                        {hostOf(e.url)}
                       </a>
+                      {/* D-042: чья это Erklärung — видно сразу. Часть немецких
+                          деклараций публикуют частные компании (Mazda, ADAC
+                          Stiftung), и выдавать их за «Behörde» нельзя. */}
+                      {e.declarant === 'public-body' && ' (öffentliche Stelle)'}
+                      {e.declarant === 'private' && ' (privates Unternehmen)'}
                     </span>
                   ))}
                 </p>

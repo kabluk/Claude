@@ -10,7 +10,7 @@
     "services": ["audit"],
     "standards": ["bitv"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "DE", "evidenceUrl": "https://pflege-und-zuhause.de/erklaerung-zur-barrierefreiheit" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "DE", "evidenceUrl": "https://pflege-und-zuhause.de/erklaerung-zur-barrierefreiheit", "declarant": "private" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://pflege-und-zuhause.de/erklaerung-zur-barrierefreiheit", "label": "Erklärung zur Barrierefreiheit von Ategris — Externe Prüfung durch visionbites GmbH" },
@@ -30,7 +30,7 @@
     "services": ["audit"],
     "standards": ["bitv"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "DE", "evidenceUrl": "https://stiftung.adac.de/barrierefreiheit/" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "DE", "evidenceUrl": "https://stiftung.adac.de/barrierefreiheit/", "declarant": "private" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://stiftung.adac.de/barrierefreiheit/", "label": "Erklärung zur Barrierefreiheit der ADAC Stiftung — Ergebnis einer Prüfung durch die Firma PLUSPOL interactive GbR" },
@@ -49,7 +49,7 @@
     "services": ["audit"],
     "standards": ["bitv"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "DE", "evidenceUrl": "https://www.museumsstiftung.de/barrierefreiheit/" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "DE", "evidenceUrl": "https://www.museumsstiftung.de/barrierefreiheit/", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://www.museumsstiftung.de/barrierefreiheit/", "label": "Erklärung zur Barrierefreiheit der Museumsstiftung Post und Telekommunikation — externe Prüfung durch Martin Mutter | SXO Beratung" },
@@ -68,7 +68,7 @@
     "services": ["audit"],
     "standards": ["bitv"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "DE", "evidenceUrl": "https://www.pflegedigital20.de/barrierefreiheitErklaerung.html" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "DE", "evidenceUrl": "https://www.pflegedigital20.de/barrierefreiheitErklaerung.html", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://www.pflegedigital20.de/barrierefreiheitErklaerung.html", "label": "Erklärung zur Barrierefreiheit der HAW Hamburg — unabhängig durch die Firma Brain Appeal nach BITV 2.0 geprüft" },
@@ -88,7 +88,7 @@
     "services": ["audit"],
     "standards": ["bitv"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "DE", "evidenceUrl": "https://www.mazda.de/accessibility-statement/" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "DE", "evidenceUrl": "https://www.mazda.de/accessibility-statement/", "declarant": "private" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://www.mazda.de/accessibility-statement/", "label": "Erklärung zur Barrierefreiheit der Mazda Motors (Deutschland) GmbH — Externer Audit durch: Medienkonzepte, Detlef Beyer" },
@@ -107,7 +107,7 @@
     "services": ["audit"],
     "standards": ["bitv"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "DE", "evidenceUrl": "https://suchtkooperation.nrw/fileadmin/user_upload/Barrierefreiheitserklaerung_fuer_Internetauftritte_Suchtkooperation_NRW.pdf" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "DE", "evidenceUrl": "https://suchtkooperation.nrw/fileadmin/user_upload/Barrierefreiheitserklaerung_fuer_Internetauftritte_Suchtkooperation_NRW.pdf", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://suchtkooperation.nrw/fileadmin/user_upload/Barrierefreiheitserklaerung_fuer_Internetauftritte_Suchtkooperation_NRW.pdf", "label": "Erklärung zur Barrierefreiheit der Suchtkooperation NRW — Bewertung durch Die Medialen, Colmantstraße 39, Bonn" },
@@ -127,7 +127,7 @@
     "standards": ["bitv"],
     "industries": ["public-sector"],
     "certs": [
-      { "kind": "gov-declared-auditor", "country": "DE", "evidenceUrl": "https://digitalservice.bund.de/erklaerung-zur-barrierefreiheit" },
+      { "kind": "statement-named-auditor", "country": "DE", "evidenceUrl": "https://digitalservice.bund.de/erklaerung-zur-barrierefreiheit", "declarant": "public-body" },
       { "kind": "bitv-pruefstelle", "country": "DE", "evidenceUrl": "https://bitvtest.de/bik-bitv-test-pruefverbund" }
     ],
     "description": {},
@@ -150,7 +150,7 @@
     "standards": ["bitv"],
     "industries": ["public-sector"],
     "certs": [
-      { "kind": "gov-declared-auditor", "country": "DE", "evidenceUrl": "https://www.denkort-bunker-valentin.de/barrierefreiheitserklaerung" },
+      { "kind": "statement-named-auditor", "country": "DE", "evidenceUrl": "https://www.denkort-bunker-valentin.de/barrierefreiheitserklaerung", "declarant": "public-body" },
       { "kind": "bitv-pruefstelle", "country": "DE", "evidenceUrl": "https://bitvtest.de/bik-bitv-test-pruefverbund" }
     ],
     "description": {},
@@ -172,7 +172,7 @@
     "services": ["audit"],
     "standards": ["bitv"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "DE", "evidenceUrl": "https://www.wbv-kommunikation.de/erklaerung-zur-barrierefreiheit/" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "DE", "evidenceUrl": "https://www.wbv-kommunikation.de/erklaerung-zur-barrierefreiheit/", "declarant": "private" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://www.wbv-kommunikation.de/erklaerung-zur-barrierefreiheit/", "label": "Erklärung zur Barrierefreiheit von wbv Media — WCAG-2.1-Konformitätsprüfung durchgeführt von Hellbusch Accessibility Consulting" },
@@ -191,7 +191,7 @@
     "services": ["audit"],
     "standards": ["bitv"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "DE", "evidenceUrl": "https://www.augsburg.de/barrierefreiheitserklaerung" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "DE", "evidenceUrl": "https://www.augsburg.de/barrierefreiheitserklaerung", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://www.augsburg.de/barrierefreiheitserklaerung", "label": "Barrierefreiheitserklärung der Stadt Augsburg — manuelles Barrierefreiheits-Audit nach BITV 2.0, durchgeführt von der TEAM23 GmbH" },
@@ -210,7 +210,7 @@
     "services": ["audit"],
     "standards": ["bitv"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "DE", "evidenceUrl": "https://www.uni-bremen.de/barrierefreiheit" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "DE", "evidenceUrl": "https://www.uni-bremen.de/barrierefreiheit", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://www.uni-bremen.de/barrierefreiheit", "label": "Erklärung zur Barrierefreiheit der Universität Bremen — technische Überprüfung nach BITV 2.0 durchgeführt von Liquid Impressions KG" },
@@ -229,7 +229,7 @@
     "services": ["audit"],
     "standards": ["bitv"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "DE", "evidenceUrl": "https://www.leipzig.de/barrierefreiheit" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "DE", "evidenceUrl": "https://www.leipzig.de/barrierefreiheit", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://www.leipzig.de/barrierefreiheit", "label": "Erklärung zur Barrierefreiheit der Stadt Leipzig — Prüfung durch die BIKOSAX" },
@@ -249,7 +249,7 @@
     "services": ["audit"],
     "standards": ["bitv"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "DE", "evidenceUrl": "https://www.vmt-thueringen.de/barrierefreiheit" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "DE", "evidenceUrl": "https://www.vmt-thueringen.de/barrierefreiheit", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://www.vmt-thueringen.de/barrierefreiheit", "label": "Erklärung zur Barrierefreiheit des Verkehrsverbunds Mittelthüringen — Bewertung durch die Fa. clickstorm GmbH auf Basis eines BITV-Tests" },
@@ -268,7 +268,7 @@
     "services": ["audit"],
     "standards": ["bitv"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "DE", "evidenceUrl": "https://www.ikk-classic.de/barrierefreiheit" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "DE", "evidenceUrl": "https://www.ikk-classic.de/barrierefreiheit", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://www.ikk-classic.de/barrierefreiheit", "label": "Erklärung zur Barrierefreiheit der IKK classic — Bewertung durch die Agentur Kolibri Online" },
@@ -287,7 +287,7 @@
     "services": ["audit"],
     "standards": ["bitv"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "DE", "evidenceUrl": "https://www.landkreis-freising.de/erklaerung-zur-barrierefreiheit.html" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "DE", "evidenceUrl": "https://www.landkreis-freising.de/erklaerung-zur-barrierefreiheit.html", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://www.landkreis-freising.de/erklaerung-zur-barrierefreiheit.html", "label": "Erklärung zur Barrierefreiheit des Landkreises Freising — Bewertung basiert auf einer Prüfung durch die Digitalagentur schalk&friends" },
@@ -306,7 +306,7 @@
     "services": ["audit"],
     "standards": ["bitv"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "DE", "evidenceUrl": "https://www.hochschule-rhein-waal.de/de/barrierefreiheit" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "DE", "evidenceUrl": "https://www.hochschule-rhein-waal.de/de/barrierefreiheit", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://www.hochschule-rhein-waal.de/de/barrierefreiheit", "label": "Erklärung zur Barrierefreiheit der Hochschule Rhein-Waal — BITV-Test durchgeführt vom Kompetenzzentrum Barrierefreiheit Volmarstein" },
@@ -326,7 +326,7 @@
     "services": ["audit"],
     "standards": ["bitv"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "DE", "evidenceUrl": "https://dersau.de/erklaerung-zur-barrierefreiheit/" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "DE", "evidenceUrl": "https://dersau.de/erklaerung-zur-barrierefreiheit/", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://dersau.de/erklaerung-zur-barrierefreiheit/", "label": "Erklärung zur Barrierefreiheit der Gemeinde Dersau — Bewertung durch die Agentur Joconcept Webservice, Inh. Mathias Jobs" },
@@ -345,7 +345,7 @@
     "services": ["audit"],
     "standards": ["bitv"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "DE", "evidenceUrl": "https://www.nanu-nana.at/erklaerung-zur-barrierefreiheit/" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "DE", "evidenceUrl": "https://www.nanu-nana.at/erklaerung-zur-barrierefreiheit/", "declarant": "private" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://www.nanu-nana.at/erklaerung-zur-barrierefreiheit/", "label": "Erklärung zur Barrierefreiheit von NANU-NANA — Audit durch die IFDB GmbH" },
@@ -364,7 +364,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "AT", "evidenceUrl": "https://www.univie.ac.at/ueber-uns/informationen-zur-barrierefreiheit" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "AT", "evidenceUrl": "https://www.univie.ac.at/ueber-uns/informationen-zur-barrierefreiheit", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://www.univie.ac.at/ueber-uns/informationen-zur-barrierefreiheit", "label": "Erklärung zur Barrierefreiheit der Universität Wien — Überprüfung durch eine externe Fachstelle (WIENFLUSS digital.accessibility.solutions)" },
@@ -383,7 +383,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "AT", "evidenceUrl": "https://www.gespag.at/service/impressum/barrierefreiheitserklaerung" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "AT", "evidenceUrl": "https://www.gespag.at/service/impressum/barrierefreiheitserklaerung", "declarant": "public-body" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://www.gespag.at/service/impressum/barrierefreiheitserklaerung", "label": "Barrierefreiheitserklärung der OÖ Gesundheitsholding (gespag) — externe Prüfung durch die Agentur Interface Consult GmbH" },
@@ -403,7 +403,7 @@
     "services": ["audit"],
     "standards": ["wcag-2-2"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "AT", "evidenceUrl": "https://www.factoring-verband.at/barrierefreiheit/" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "AT", "evidenceUrl": "https://www.factoring-verband.at/barrierefreiheit/", "declarant": "private" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://www.factoring-verband.at/barrierefreiheit/", "label": "Erklärung zur Barrierefreiheit des Österreichischen Factoring-Verbands — externe Prüfung durch k25 Werbeagentur GmbH" },
@@ -423,7 +423,7 @@
     "services": ["audit"],
     "standards": ["en-301-549"],
     "industries": ["public-sector"],
-    "certs": [ { "kind": "gov-declared-auditor", "country": "AT", "evidenceUrl": "https://shop.kelly.at/de/barrierefreiheit/" } ],
+    "certs": [ { "kind": "statement-named-auditor", "country": "AT", "evidenceUrl": "https://shop.kelly.at/de/barrierefreiheit/", "declarant": "private" } ],
     "description": {},
     "sourceRefs": [
       { "url": "https://shop.kelly.at/de/barrierefreiheit/", "label": "Erklärung zur Barrierefreiheit von Kelly — externer Audit durch Expert:innen der MSTAGE GmbH" },

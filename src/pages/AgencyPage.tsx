@@ -72,7 +72,7 @@ export default function AgencyPage() {
         <div className="mt-4 flex flex-wrap gap-2">
           {a.certs.map((c) => (
             <span key={c.kind} className="chip chip-accent">
-              ✓ {certLabel(c.kind)}
+              ✓ {certLabel(c)}
               {c.kind === 'iaap-certified-staff' && ` (${c.count})`}
             </span>
           ))}

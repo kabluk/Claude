@@ -18,7 +18,7 @@ export function AgencyCard({ a }: { a: Agency }) {
       <div className="mt-2 flex flex-wrap gap-1.5">
         {a.certs.map((cert) => (
           <span key={cert.kind} className="chip chip-accent">
-            ✓ {certLabel(cert.kind)}
+            ✓ {certLabel(cert)}
           </span>
         ))}
         {a.services.slice(0, 4).map((s) => (

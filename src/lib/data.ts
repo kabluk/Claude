@@ -7,6 +7,7 @@ import taxonomiesJson from '@data/a11y/taxonomies.json'
 import type {
   Agency,
   CountryMeta,
+  Declarant,
   ServiceSlug,
   StandardSlug,
   Taxonomies,
@@ -110,17 +111,24 @@ export function isFeatured(a: Agency): boolean {
 export function namedInStatements(countryCode: string): Agency[] {
   return sortListing(
     agencies.filter((a) =>
-      a.certs.some((c) => c.kind === 'gov-declared-auditor' && c.country === countryCode),
+      a.certs.some((c) => c.kind === 'statement-named-auditor' && c.country === countryCode),
     ),
   )
 }
 
-// Ссылки на сами декларации, в которых агентство названо (в этой стране).
-export function statementEvidence(a: Agency, countryCode: string): string[] {
+// Ссылки на сами декларации, в которых агентство названо (в этой стране),
+// вместе с тем, чья это декларация. D-042: читателю важно отличить орган
+// публичной власти от частной компании — раньше оба выглядели одинаково.
+export function statementEvidence(
+  a: Agency,
+  countryCode: string,
+): { url: string; declarant: Declarant }[] {
   // flatMap, а не filter().map(): filter не сужает тип элемента объединения,
   // и `evidenceUrl` был бы недоступен без каста.
   return a.certs.flatMap((c) =>
-    c.kind === 'gov-declared-auditor' && c.country === countryCode ? [c.evidenceUrl] : [],
+    c.kind === 'statement-named-auditor' && c.country === countryCode
+      ? [{ url: c.evidenceUrl, declarant: c.declarant }]
+      : [],
   )
 }
 
@@ -166,7 +174,10 @@ export const standardLabel = (s: StandardSlug) => tax.standards[s].label.en ?? s
 export const priceLabel = (p: NonNullable<Agency['priceBand']>) => tax.priceBands[p].en ?? p
 
 // Подписи бейджей сертификаций (только проверяемые виды из types.ts).
-export function certLabel(kind: Agency['certs'][number]['kind']): string {
+// Принимает сам бейдж, а не его `kind`: подпись «названы в декларации»
+// зависит ещё и от того, ЧЬЯ это декларация (D-042).
+export function certLabel(cert: Agency['certs'][number]): string {
+  const kind = cert.kind
   switch (kind) {
     case 'iaap-org-member':
       return 'IAAP organizational member'
@@ -176,14 +187,16 @@ export function certLabel(kind: Agency['certs'][number]['kind']): string {
       return 'DHS Trusted Tester'
     case 'iaap-certified-staff':
       return 'IAAP-certified staff'
-    // D-041: слаг исторический ('gov-'), но подпись приведена к тому, что
-    // ДОКАЗЫВАЮТ данные. Проверка evidenceUrl всех 90+ записей показала, что
-    // часть деклараций опубликована не госорганом, а частной компанией
-    // (mazda.de, nanu-nana.at, stiftung.adac.de) — прежняя подпись «government»
-    // утверждала больше, чем есть в источнике. Общий проверяемый знаменатель —
-    // «названы внешним прюфером в опубликованной декларации о доступности»;
-    // он и так сильный, потому что подтверждён самим документом.
-    case 'gov-declared-auditor':
-      return 'Named auditor in a published accessibility statement'
+    // D-042: перепроверены все 96 доказательств. Общий знаменатель — «названы
+    // внешним прюфером в опубликованной декларации», но декларант у 13 записей
+    // частный (mazda.de, proximus.be, stiftung.adac.de, shop.kelly.at…), и это
+    // должно быть видно в подписи, а не растворяться в общей формулировке.
+    // 'unknown' — владелец сайта-декларанта не назван на самой странице.
+    case 'statement-named-auditor':
+      return cert.declarant === 'public-body'
+        ? 'Named auditor in a public-sector accessibility statement'
+        : cert.declarant === 'private'
+          ? 'Named auditor in a private organisation’s accessibility statement'
+          : 'Named auditor in a published accessibility statement'
   }
 }

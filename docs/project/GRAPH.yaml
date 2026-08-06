@@ -740,3 +740,22 @@ nodes:
     risk: low
     approval_required: false
     notes: "Готово 2026-08-06 (D-041). Проект дважды наступал на одни грабли (D-037 и /request-quote): у gen-a11y-sitemap.mjs и audit-own-a11y.mjs СВОИ захардкоженные списки, и новая страница выпадает из обоих при полностью зелёных прогонах — оба скрипта проверяют список, а не сайт. Тест читает реальный src/routes.tsx и требует каждый статический маршрут в обоих списках; исключения для sitemap (/imprint/, /404/) заданы с причиной, а не молчанием. Третий тест страхует сам парсер: если routes.tsx сменит форму записи, гейт упадёт громко, а не станет тихо пустым."
+
+  - id: G-CERT-EVIDENCE
+    title: "Перепроверить все 96 доказательств бейджа доверия и развести декларантов (public-body / private)"
+    owner: data-engineer
+    status: done
+    depends_on: [DE-ENTRY]
+    inputs: [data/a11y/agencies.json, data/a11y/types.ts, src/lib/data.ts]
+    scope: [data/a11y/types.ts, data/a11y/agencies.json, data/a11y/collect/, data/a11y/README.md, scripts/build-a11y.mjs, src/lib/data.ts, src/components/FilterableList.tsx, src/components/AgencyCard.tsx, src/pages/AgencyPage.tsx, src/pages/BfsgCheckPage.tsx]
+    outputs: [data/a11y/types.ts, data/a11y/agencies.json]
+    verify:
+      - "node scripts/build-a11y.mjs — 245 агентств, 0 ошибок"
+      - "негативная проверка гейта: три поломанных cert → ровно 3 ошибки сборки; откат → зелёная"
+      - "npm run typecheck / worker:test 202 / src:test 3 / scripts:test 10 — чисто"
+      - "npm run build — 388 страниц, sitemap 351, check-links 417, audit-a11y 25 страниц 0 нарушений"
+    max_attempts: 3
+    attempts: 1
+    risk: high
+    approval_required: false
+    notes: "Готово 2026-08-06 (D-042). 96/96 evidenceUrl открыты вживую; ни одна запись бейдж не потеряла. kind переименован в statement-named-auditor, добавлено обязательное declarant (81 public-body / 13 private / 2 unknown). Главная находка: у 9 записей (8 NL + 200-ok, чей портал toegankelijkheidsonderzoek.nl механическая проверка по домену не ловила) доказательством была собственная страница агентства — заменено записью декларации заказчика в госреестре toegankelijkheidsverklaring.nl, отчёт ушёл в sourceRefs. Инвариант «evidenceUrl не на своём домене» + перечни kind/declarant стали ошибкой сборки в build-a11y.mjs (раньше certs не валидировались вообще). Детали и таблица проверки — domains/data.md, гейт — domains/qa.md."

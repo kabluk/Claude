@@ -18,6 +18,15 @@ const SERVICES = ['audit', 'remediation', 'vpat', 'training', 'monitoring', 'con
 const STANDARDS = ['wcag-2-2', 'en-301-549', 'section-508', 'eaa', 'bitv', 'rgaa', 'ada']
 const PRICE_BANDS = ['budget', 'mid', 'premium', 'enterprise']
 const LOCALES = ['en', 'de', 'fr', 'pl', 'es']
+// Должны совпадать с CertBadge/Declarant в data/a11y/types.ts.
+const CERT_KINDS = [
+  'iaap-org-member',
+  'bitv-pruefstelle',
+  'dhs-trusted-tester',
+  'iaap-certified-staff',
+  'statement-named-auditor',
+]
+const DECLARANTS = ['public-body', 'private', 'unknown']
 const INDEX_THRESHOLD = 3 // списочная страница индексируется только при ≥3 листингах
 
 const strict = process.argv.includes('--strict')
@@ -36,6 +45,16 @@ function domainOf(website) {
   return String(website).replace(/^https?:\/\//, '').replace(/^www\./, '').replace(/\/.*$/, '').toLowerCase()
 }
 const inEnum = (v, set) => set.includes(v)
+const hostOf = (u) => {
+  try {
+    return new URL(u).hostname.replace(/^www\./, '').toLowerCase()
+  } catch {
+    return ''
+  }
+}
+// «Регистрируемая» часть домена — грубо, последние две метки: достаточно, чтобы
+// поймать отчёт на поддомене агентства (toegankelijkheidsrapport.swink.nl).
+const registrable = (h) => h.split('.').slice(-2).join('.')
 
 for (const [i, a] of agencies.entries()) {
   const at = `agencies[${i}] ${a.slug || a.name || '?'}`
@@ -69,6 +88,20 @@ for (const [i, a] of agencies.entries()) {
   if (!Object.keys(a.description || {}).length) warnings.push(`${at}: no description (any locale)`)
   if (!a.priceBand) warnings.push(`${at}: no priceBand`)
   if (!a.certs?.length) warnings.push(`${at}: no verified certs`)
+  // Бейджи доверия валидируются жёстко (D-042): опечатка в `kind` раньше
+  // проходила молча и превращалась в бейдж, которого нет в types.ts, а
+  // доказательство на домене самого агентства — в самоаттестацию.
+  for (const c of a.certs || []) {
+    if (!inEnum(c.kind, CERT_KINDS)) errors.push(`${at}: unknown cert kind "${c.kind}"`)
+    if (c.kind !== 'statement-named-auditor') continue
+    if (!/^[A-Z]{2}$/.test(c.country || '')) errors.push(`${at}: cert.country must be ISO alpha-2`)
+    if (!inEnum(c.declarant, DECLARANTS)) errors.push(`${at}: unknown cert declarant "${c.declarant}"`)
+    const host = hostOf(c.evidenceUrl)
+    if (!host) errors.push(`${at}: cert.evidenceUrl is not a URL`)
+    else if (registrable(host) === registrable(domainOf(a.website))) {
+      errors.push(`${at}: evidenceUrl is on the agency's own domain (${host}) — self-attestation`)
+    }
+  }
 }
 
 if (errors.length) {

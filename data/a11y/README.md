@@ -26,7 +26,7 @@
 3. **UK G-Cloud / Digital Marketplace** — поиск «accessibility audit», 30–60 вендоров.
 4. **CSUN / axe-con** — списки экспонентов и спонсоров, 100+.
 5. **accessibility.com + AskJAN** — US, сид 50–80.
-6. **Декларации доступности гос-сайтов EU** (Дни 25–27) — обязательные страницы называют аудитора («audit réalisé par…», «geprüft durch…», «audyt przeprowadził…»). Ставить `certs: [{kind:'gov-declared-auditor', country, evidenceUrl}]`. Уникальный, защищаемый датасет — 150–300 локальных агентств, недоступных ни в одном каталоге.
+6. **Декларации доступности гос-сайтов EU** (Дни 25–27) — обязательные страницы называют аудитора («audit réalisé par…», «geprüft durch…», «audyt przeprowadził…»). Ставить `certs: [{kind:'statement-named-auditor', country, evidenceUrl, declarant}]`, где `declarant` — `'public-body' | 'private' | 'unknown'` (D-042; при сомнении берётся более слабая категория, не догадка). `evidenceUrl` не может лежать на домене самого агентства — это самоаттестация, сборка падает; для NL доказательство — запись заказчика в реестре `toegankelijkheidsverklaring.nl`, а отчёт аудитора идёт в `sourceRefs`. Уникальный, защищаемый датасет — 150–300 локальных агентств, недоступных ни в одном каталоге.
 7. **Google Maps/Places** (Outscraper) по запросам на 8 языках.
 
 Правила: дедуп по домену (обеспечивает build-скрипт); у каждой записи ≥1 `sourceRef` и свежая `lastVerified`; `description` пишется руками/вычитывается (черновик LLM по фактам из sourceRefs → вычитка), 40–80 слов; оверлеи (UserWay, AudioEye, accessiBe) **не добавлять** — репутация в a11y-сообществе дороже.

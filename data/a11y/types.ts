@@ -33,15 +33,28 @@ export type StandardSlug =
 export type PriceBand = 'budget' | 'mid' | 'premium' | 'enterprise'
 // budget <€3k · mid €3–10k · premium €10–30k · enterprise >€30k
 
+// Кто опубликовал декларацию, в которой названо агентство. Разделение введено
+// D-042: прежнее имя вида ('gov-declared-auditor') обещало орган публичной
+// власти, а перепроверка всех 96 доказательств показала, что 13 деклараций
+// опубликованы частными организациями (Mazda, Proximus, ADAC Stiftung, Kelly…).
+// 'unknown' — законный владелец сайта-декларанта не назван на самой странице;
+// это честнее, чем догадка (правило проекта: пустое лучше выдуманного).
+export type Declarant = 'public-body' | 'private' | 'unknown'
+
 // Сертификация/аккредитация — то, что реально проверяемо по источнику.
 export type CertBadge =
   | { kind: 'iaap-org-member' } // организационное членство в IAAP
   | { kind: 'bitv-pruefstelle' } // BIK BITV-Test прюфстелле (DE)
   | { kind: 'dhs-trusted-tester' } // US DHS Trusted Tester
   | { kind: 'iaap-certified-staff'; count: number } // CPACC/WAS/CPWA в штате
-  | { kind: 'gov-declared-auditor'; country: string; evidenceUrl: string }
-// последний вид — агентство названо аудитором в обязательной декларации
-// доступности гос-сайта; evidenceUrl указывает на саму декларацию.
+  | { kind: 'statement-named-auditor'; country: string; evidenceUrl: string; declarant: Declarant }
+// последний вид — агентство названо аудитором в ОПУБЛИКОВАННОЙ декларации
+// о доступности; evidenceUrl указывает на саму декларацию (или на запись
+// декларации в государственном реестре), declarant — чья это декларация.
+// Инвариант (D-042): evidenceUrl не может лежать на домене самого агентства —
+// самоаттестация не доказывает «нас назвал кто-то другой»; для NL, где отчёт
+// аудитора по традиции живёт у аудитора, доказательством служит запись
+// заказчика в реестре toegankelijkheidsverklaring.nl, а отчёт — в sourceRefs.
 
 export type HeadcountBand = '1' | '2-10' | '11-50' | '51-200' | '200+'
 

@@ -227,3 +227,17 @@ R1. Контраст (amber-800 на amber-50) проверен разовым �
 - **Подпись бейджа** `gov-declared-auditor` изменена на «Named auditor in a
   published accessibility statement» (и «Named in a statement» в фасете) —
   прежняя утверждала «government», чего часть `evidenceUrl` не подтверждает.
+
+## Подпись бейджа теперь зависит от декларанта (2026-08-06, D-042)
+
+`certLabel()` принимает сам бейдж, а не его `kind`: одна подпись на оба случая
+скрывала различие, ради которого задача и заводилась. Три формы:
+«Named auditor in a **public-sector** accessibility statement» (81 запись),
+«…in a **private organisation's** accessibility statement» (13),
+«…in a **published** accessibility statement» (2, декларант не установлен).
+Фасет в `FilterableList` остался один («Named in a statement») — фильтр
+отвечает на «названы ли вообще», сектор виден в подписи на карточке.
+На `/bfsg-check/` у каждой ссылки-доказательства появился маркер
+«(öffentliche Stelle)» / «(privates Unternehmen)» — читатель немецкой страницы
+видит, кто именно назвал прюфера, до того как откроет документ.
+`statementEvidence()` вернул тип: `{url, declarant}[]` вместо `string[]`.

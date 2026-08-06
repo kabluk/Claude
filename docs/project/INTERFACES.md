@@ -4,7 +4,15 @@
 
 ## 1. Данные каталога (действующий контракт)
 
-- Схема: `data/a11y/types.ts` — Agency, Guide, Taxonomies, CertBadge.
+- Схема: `data/a11y/types.ts` — Agency, Guide, Taxonomies, CertBadge, Declarant.
+- **Бейдж `statement-named-auditor`** (D-042, бывш. `gov-declared-auditor`):
+  `{ kind, country: ISO-2, evidenceUrl, declarant: 'public-body'|'private'|'unknown' }`.
+  Инварианты (проверяет `build-a11y.mjs`, нарушение = ошибка сборки):
+  `kind` из перечня в types.ts · `declarant` из перечня · `country` — ISO alpha-2 ·
+  `evidenceUrl` — валидный URL и **не** на регистрируемом домене агентства
+  (самоаттестация). Потребители: `certLabel(cert)` (принимает бейдж, не `kind`),
+  `namedInStatements(country)`, `statementEvidence(a, country) → {url, declarant}[]`,
+  фасет `Named in a statement` в `FilterableList`, `/bfsg-check/`.
 - Источник истины: `data/a11y/agencies.json` (253 записи). Всё остальное производно.
 - Конвейер: `collect/*.json` → `merge-a11y.mjs` (уважает `excluded.json`) →
   `enrich-a11y.mjs` (заполняет только пустые поля) → `build-a11y.mjs` (валидация,
