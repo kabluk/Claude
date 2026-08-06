@@ -1,5 +1,6 @@
 import { handlePostScan, handleGetScan } from './routes/scan.js'
 import { handlePostExplain } from './routes/explain.js'
+import { handlePostLead } from './routes/lead.js'
 import { deleteExpiredScans } from './lib/retention.js'
 
 function corsHeaders(env) {
@@ -36,6 +37,10 @@ export default {
 
     if (request.method === 'POST' && url.pathname === '/api/explain') {
       return withCors(await handlePostExplain(request, env), cors)
+    }
+
+    if (request.method === 'POST' && url.pathname === '/api/lead') {
+      return withCors(await handlePostLead(request, env), cors)
     }
 
     return withCors(Response.json({ error: 'not found', code: 'not_found' }, { status: 404 }), cors)

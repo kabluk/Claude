@@ -47,8 +47,15 @@ LeadForm + leadForm.ts; клиентская валидация, client-only п�
 уже готовый `matchAgencies()`, 0 сетевых вызовов при submit; `/request-quote/`
 добавлена в постоянный CI a11y-гейт и sitemap, плюс закрыт orphan-page пробел —
 CTA «Request a quote» добавлен в `MatchedAgencies.tsx` на `/report/:id`, страница
-раньше была недостижима ни по одной ссылке в UI). Остальные `approval_required:
-false` узлы (`A2-LEAD-API`, `A2-CLAIM-SCHEMA`, `A2-CLAIM-API`, `A2-STRIPE-SCHEMA`,
+раньше была недостижима ни по одной ссылке в UI). `A2-LEAD-API` — **done**
+(`worker/routes/lead.js` + `worker/lib/matchAgenciesServer.js`: POST /api/lead
+реально пишет в D1 `leads` и возвращает `{leadId, matched: slug[]}` по тому же
+алгоритму, что и `matchAgencies.ts`; rate-limit 5/ч на IP и Turnstile-паттерн
+скана переиспользованы; email агентствам НЕ отправляется, только TODO —
+реальная отправка это отдельный `A2-LEAD-EMAIL`, approval_required. 65/65
+worker:test, живьём проверено через `wrangler dev --local` + прямой `SELECT`
+из D1, детали в `domains/backend.md`). Остальные `approval_required: false`
+узлы (`A2-CLAIM-SCHEMA`, `A2-CLAIM-API`, `A2-STRIPE-SCHEMA`,
 `A2-STRIPE-WEBHOOK-CODE`, `A2-OUTREACH-PREP`) готовы к запуску без ввода владельца.
 Все `approval_required: true` узлы (`A2-LEAD-EMAIL`, `A2-CLAIM-EMAIL`,
 `A2-CLAIM-REBUILD`, `A2-STRIPE-LIVE`, `A2-OUTREACH-SEND`) заблокированы до явного

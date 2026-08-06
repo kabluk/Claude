@@ -138,14 +138,12 @@
    остаются в review, но не требуют новой работы — только времени/наблюдения.
    Новых кодовых узлов Фазы 1 не осталось.
 6. Фаза 2 начата 2026-08-06: `A2-LEAD-SCHEMA` **done** (`migrations/0003_leads.sql`,
-   таблица `leads` из INTERFACES.md §4, только `--local`). Разблокировало
-   `A2-LEAD-API` (технически независим от оплаты — следующий кандидат: backend,
-   D1 уже одобрен). `A2-LEAD-FORM` **done** (`/request-quote/`): чистый UI,
-   клиентская валидация, client-only превью совпадений, 0 сетевых вызовов при
-   submit. `src/lib/data.ts` (добавлен `paths.requestQuote()`) и `src/routes.tsx`
-   (маршрут `/request-quote`) тронуты за пределами буквального scope узла —
-   раскрыто явно в GRAPH.yaml notes, не тихо (тот же прецедент, что scope
-   `A1-LANDING` уже включал `routes.tsx`).
+   таблица `leads` из INTERFACES.md §4, только `--local`). `A2-LEAD-FORM` **done**
+   (`/request-quote/`): чистый UI, клиентская валидация, client-only превью
+   совпадений, 0 сетевых вызовов при submit. `src/lib/data.ts` (добавлен
+   `paths.requestQuote()`) и `src/routes.tsx` (маршрут `/request-quote`) тронуты
+   за пределами буквального scope узла — раскрыто явно в GRAPH.yaml notes, не
+   тихо (тот же прецедент, что scope `A1-LANDING` уже включал `routes.tsx`).
    Изначально был не done — два пробела вне буквального scope узла: страницы
    не было в `scripts/audit-own-a11y.mjs`/`gen-a11y-sitemap.mjs` (постоянный
    CI-гейт и sitemap её не видели). Оба закрыты той же сессией сразу после:
@@ -154,6 +152,15 @@
    (ни одна ссылка в UI на неё не вела) — добавлен CTA «Request a quote from
    matching agencies →» в `MatchedAgencies.tsx` на `/report/:id`, с пробросом
    `?scanId=`.
+   `A2-LEAD-API` **done** (2026-08-06): `POST /api/lead` реально пишет в D1
+   `leads` и возвращает `{leadId, matched: slug[]}`, тот же алгоритм матчинга,
+   что `matchAgencies.ts` (переиспользован через новый `worker/lib/
+   matchAgenciesServer.js` — worker не бандлится Vite, не видит `.ts`/алиасы
+   напрямую), тот же rate-limit/Turnstile паттерн, что у `/api/scan`. Email
+   агентствам НЕ отправляется (TODO — это `A2-LEAD-EMAIL`, approval_required).
+   65/65 `worker:test`, typecheck/build чистые, живьём проверено через
+   `wrangler dev --local` + прямой `SELECT` из D1 (детали: `domains/backend.md`).
+   Разблокировало (технически, approval остаётся отдельным гейтом) `A2-LEAD-EMAIL`.
 
 ## Живой skill (D-012)
 

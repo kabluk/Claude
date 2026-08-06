@@ -160,6 +160,71 @@ Trigger зарегистрированным на аккаунте владел�
 не пронаблюдано в рамках этой сессии. Логика удаления протестирована
 независимо (фейковый D1, 5 юнит-тестов).
 
-## Дальше по Фазе 1
+## A2-LEAD-API — сделано (2026-08-06, done)
 
-- Секреты: Resend, Stripe — только в Worker secrets, не в репо (Фаза 2).
+`POST /api/lead` — приём RFQ, матчинг подходящих агентств, запись в D1 `leads`
+(`migrations/0003_leads.sql`, A2-LEAD-SCHEMA). Без отправки email (это отдельный
+узел `A2-LEAD-EMAIL`, требует Resend + approval владельца).
+
+Файлы: `worker/routes/lead.js` (хендлер + валидация + rate-limit + D1-insert,
+всё в одном файле), `worker/lib/matchAgenciesServer.js` (матчинг), `worker/index.js`
+(маршрут).
+
+- **Матчинг** (`matchAgenciesServer.js`): переиспользует ТОТ ЖЕ алгоритм, что
+  `src/lib/matchAgencies.ts` (страна → сужение по HQ/countriesServed, услуга —
+  жёсткий фильтр, стандарт выводится из страны через `taxonomies.countries[code]
+  .law.slug` и сужает пул только если после сужения кто-то остался, бюджет —
+  мягкий тай-брейкер). Не импорт из `src/lib/` напрямую — `worker/` plain-ESM
+  Cloudflare Worker без Vite-бандлинга, не видит `@data/a11y/*`-алиас и не может
+  импортировать `.ts`. Каталог (`data/a11y/agencies.json` + `taxonomies.json`)
+  импортируется статически через `import ... with { type: 'json' }` (JSON import
+  attributes) — синтаксис одинаково валиден и под `node --test` (Node 22), и под
+  `wrangler`/esbuild-бандлер (подтверждено `wrangler deploy --dry-run`). Если
+  `src/lib/matchAgencies.ts` поменяется — обновить и этот файл вручную, синхронизации
+  нет.
+- **D1**: insert прямо в `lead.js`, не в `worker/lib/db.js` — тот файл специализирован
+  под `scans` (см. его заголовок) и не входит в scope узла A2-LEAD-API. `status`
+  всегда `'sent'` при создании (INTERFACES.md §3: `sent|responded|booked|closed`).
+- **Rate-limit**: отдельная реализация KV fixed-window прямо в `lead.js` (тот же
+  паттерн, что `checkFixedWindow` в `worker/lib/ratelimit.js`, но `ratelimit.js`
+  не трогали — вне scope узла). 5/час на IP — ниже, чем у скана (5/ч), потому что
+  RFQ «дороже» (задевает реальные агентства, не только вычислительный ресурс).
+- **Turnstile**: `verifyTurnstile` из `worker/lib/turnstile.js` переиспользован
+  как есть (файл не менялся), тот же паттерн, что `scan.js` — пропускается, если
+  `TURNSTILE_SECRET_KEY` не задан.
+- **Валидация**: `country` — обязан существовать в `taxonomies.countries`;
+  `standard`/`service`/`budget` — обязаны быть известными слагами (те же списки,
+  что `STANDARDS`/`SERVICES`/`PRICE_BANDS` в `src/lib/data.ts`, но вычислены
+  локально из того же `taxonomies.json`); `contact.email` — обязателен, тот же
+  regex, что `src/lib/leadForm.ts`; `deadline` — опционален, но если задан, не в
+  прошлом. Смысл проверок копирует `leadForm.ts::validateLeadForm`, реализация
+  отдельная по той же причине, что и матчинг (TS/Vite-алиасы недоступны воркеру).
+
+Верифицировано: 26 новых юнит-тестов (`worker/lib/matchAgenciesServer.test.mjs` —
+изолированные фикстуры + один smoke-тест на реальном каталоге;
+`worker/routes/lead.test.mjs` — фейковые D1/KV, включая подмену `fetch` для
+Turnstile-путей) — 65/65 `worker:test` зелёные. `npm run typecheck` и
+`npm run build` чистые (worker/ вне `tsconfig` `include`, как и весь остальной
+код Фазы 1). Живой прогон `wrangler dev --local` (после `npm run db:migrate:local`
+— миграции уже применены A2-LEAD-SCHEMA):
+- валидный лид (Германия/audit/mid) → `201 {leadId, matched: [5 реальных slug]}`;
+  подтверждено прямым `wrangler d1 execute ... SELECT` из локальной D1 — все
+  поля верные, включая `matched_json`/`contact_json`/`status='sent'`
+- пустое тело / неизвестная страна (`ZZ`) / неизвестный standard/service/budget /
+  невалидный email → `400 bad_request` с перечислением конкретных полей
+- редкая комбинация (Индия/monitoring) → `matched: []`, не падает
+- rate-limit: 6-й запрос подряд с одного IP → `429 rate_limited`; независимый IP
+  не блокируется
+- CORS/OPTIONS-preflight работает; регрессия — `/api/scan`, `/api/explain`, 404
+  по-прежнему отвечают верно после правки `worker/index.js`
+- `npx wrangler deploy --dry-run` бандлится чисто (1212.75 KiB / gzip 241.64 KiB)
+
+Не проверено и не обязано быть в этом узле: реальный публичный `TURNSTILE_SECRET_KEY`
+владельца (accept/reject-пути Turnstile проверены юнит-тестом с подменённым
+`fetch`, не живым Cloudflare API) и реальный remote-деплой обновлённого воркера
+на прод (отдельное решение по факту, как при A1-RETENTION/A1-EXPLAIN).
+
+## Дальше по Фазе 1/2
+
+- Секреты: Resend, Stripe — только в Worker secrets, не в репо (A2-LEAD-EMAIL,
+  A2-CLAIM-EMAIL, A2-STRIPE-LIVE — все approval_required).

@@ -304,7 +304,7 @@ nodes:
   - id: A2-LEAD-API
     title: "POST /api/lead: приём RFQ + матчинг агентств → D1, без отправки email"
     owner: backend-engineer
-    status: todo
+    status: done
     depends_on: [A2-LEAD-SCHEMA]
     inputs: [docs/project/INTERFACES.md, src/lib/matchAgencies.ts, worker/lib/ratelimit.js, worker/lib/turnstile.js]
     scope: [worker/routes/lead.js, worker/lib/matchAgenciesServer.js, worker/index.js]
@@ -316,10 +316,10 @@ nodes:
       - "тот же rate-limit/Turnstile паттерн, что у /api/scan — публичный write-эндпоинт не остаётся без защиты от спама"
       - "email агентствам этим узлом НЕ отправляется (лог/TODO вместо реального вызова Resend) — реальная отправка это A2-LEAD-EMAIL"
     max_attempts: 4
-    attempts: 0
+    attempts: 1
     risk: medium
     approval_required: false
-    notes: "Использует уже одобренный D1 accessatlas-scans (тот же ресурс, что и A1-SCAN, одобрение 2026-08-05) — новый внешний платный сервис не создаёт, поэтому approval_required=false, по аналогии с A1-REPORT/A1-COST/A1-MATCH относительно A1-SCAN. Реальный деплой обновлённого воркера на прод — отдельное решение по факту (как было при A1-RETENTION/A1-EXPLAIN), не блокируется этим полем графа, но и не подразумевается автоматически: не деплоить без отдельного разговора с владельцем."
+    notes: "Готово 2026-08-06. worker/lib/matchAgenciesServer.js — переиспользует ТОТ ЖЕ алгоритм, что src/lib/matchAgencies.ts (agenciesIn/withService/withStandard/sortListing/standardForCountry, INTERFACES.md §5), но как отдельный plain-ESM модуль: worker/ не бандлится Vite, не может импортировать @data/a11y/* алиас или .ts-файлы напрямую, поэтому логика продублирована вручную (JSON-каталог импортируется через `import ... with { type: 'json' }`, поддерживается и Node --test, и wrangler/esbuild — подтверждено обоими). D1-доступ к leads и rate-limiter держим прямо в worker/routes/lead.js, а не в worker/lib/db.js / worker/lib/ratelimit.js — оба файла вне scope этого узла (db.js специализирован под scans, см. его заголовок; ratelimit.js трогать не стали, чтобы не расширять scope молча) — тот же паттерн (KV fixed-window), но отдельная реализация с более низким лимитом (5/ч на IP, RFQ дороже скана). Turnstile переиспользует worker/lib/turnstile.js::verifyTurnstile как есть (файл не менялся, только импортирован), тот же паттерн, что и scan.js: пропускается, если TURNSTILE_SECRET_KEY не задан. Верифицировано: 26 новых юнит-тестов (worker/lib/matchAgenciesServer.test.mjs, worker/routes/lead.test.mjs; в т.ч. с реальным каталогом), 65/65 worker:test зелёные; typecheck и build чистые; живьём через `wrangler dev --local` — валидный лид даёт 201 {leadId, matched[]} с реальными slug'ами из каталога (Германия/audit → 5 реальных агентств), подтверждено прямым `wrangler d1 execute ... SELECT` из локальной D1 (все поля, включая matched_json/contact_json/status='sent'); 400 на пустое тело/неизвестную страну/стандарт/сервис/бюджет/email; rate-limit подтверждён живьём (6-й запрос с одного IP → 429, независимые IP не блокируются); Turnstile skip-путь (без секрета) подтверждён живьём, оба пути с секретом (accept/reject) — юнит-тестом с подменённым fetch (реальный публичный Turnstile-ключ владельца в этой сессии не запрашивался — не требуется для этого узла); email агентствам не отправляется — явный TODO-комментарий + юнит-тест, что fetch не вызывается на happy path; CORS/OPTIONS и регрессия /api/scan, /api/explain, 404 проверены тем же живым прогоном — не сломаны правкой worker/index.js. `npx wrangler deploy --dry-run` бандлится чисто. Единственное намеренно не сделанное: реальный remote-деплой обновлённого воркера на прод — отдельное решение по факту (как при A1-RETENTION/A1-EXPLAIN), не подразумевается автоматически этим узлом."
 
   - id: A2-LEAD-EMAIL
     title: "Отправка лида 3–5 подходящим агентствам через Resend"
