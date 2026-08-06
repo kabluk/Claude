@@ -54,12 +54,19 @@ CTA «Request a quote» добавлен в `MatchedAgencies.tsx` на `/report/
 скана переиспользованы; email агентствам НЕ отправляется, только TODO —
 реальная отправка это отдельный `A2-LEAD-EMAIL`, approval_required. 65/65
 worker:test, живьём проверено через `wrangler dev --local` + прямой `SELECT`
-из D1, детали в `domains/backend.md`). Остальные `approval_required: false`
-узлы (`A2-CLAIM-SCHEMA`, `A2-CLAIM-API`, `A2-STRIPE-SCHEMA`,
-`A2-STRIPE-WEBHOOK-CODE`, `A2-OUTREACH-PREP`) готовы к запуску без ввода владельца.
-Все `approval_required: true` узлы (`A2-LEAD-EMAIL`, `A2-CLAIM-EMAIL`,
-`A2-CLAIM-REBUILD`, `A2-STRIPE-LIVE`, `A2-OUTREACH-SEND`) заблокированы до явного
-разрешения владельца — Resend и Stripe одобряются раздельно, per-node.
+из D1, детали в `domains/backend.md`). `A2-OUTREACH-PREP` — **done**
+(`research/outreach-99.json`, 96 реальных агентств из деклараций; 5 параллельных
+субагентов с WebFetch нашли 82/96 реальных публичных email, 14 честно `null` с
+объяснением; черновик письма без отправки — детали в `domains/growth.md`).
+Попутно найден дополнительный блокер для `A2-OUTREACH-SEND`, не только Resend:
+письмо ссылается на реальный домен (которого пока нет) и упирается в то же
+требование Imprint-идентичности, что RISKS.md R2, применительно к email, не
+только к сайту. Остальные `approval_required: false` узлы (`A2-CLAIM-SCHEMA`,
+`A2-CLAIM-API`, `A2-STRIPE-SCHEMA`, `A2-STRIPE-WEBHOOK-CODE`) готовы к запуску
+без ввода владельца. Все `approval_required: true` узлы (`A2-LEAD-EMAIL`,
+`A2-CLAIM-EMAIL`, `A2-CLAIM-REBUILD`, `A2-STRIPE-LIVE`, `A2-OUTREACH-SEND`)
+заблокированы до явного разрешения владельца — Resend и Stripe одобряются
+раздельно, per-node.
 
 ## Фаза 3 — Vertical SaaS
 
