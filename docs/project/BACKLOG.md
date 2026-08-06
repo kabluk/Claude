@@ -78,8 +78,23 @@ worker:test, живьём проверено через `wrangler dev --local` +
 `A2-STRIPE-SCHEMA` — **done** (`migrations/0005_featured.sql`; `agency_slug` PK
 подтверждён живьём — повторный INSERT с тем же slug реально упал на UNIQUE
 constraint, не просто предположение по DDL; разблокировало
-`A2-STRIPE-WEBHOOK-CODE`). Остальные `approval_required: false` узлы
-(`A2-CLAIM-API`, `A2-STRIPE-WEBHOOK-CODE`) готовы к запуску без ввода владельца.
+`A2-STRIPE-WEBHOOK-CODE`). `A2-CLAIM-API` — **done** (2026-08-06, D-023):
+`worker/routes/claim.js` — `POST /api/claim` пишет `claims` в D1 и возвращает
+`{claimId}`, тот же стиль, что `lead.js`/`stripeHook.js` (D1 прямо в routes/,
+rate-limit 5/ч на IP, Turnstile-паттерн skip-без-секрета). `agencySlug`
+валидируется против реального `agencies.json` — неизвестный slug → 400. Email
+агентствам НЕ отправляется (`A2-CLAIM-EMAIL`, approval). Найдено и явно
+зафиксировано архитектурное решение: контракт возвращает `claimId` вызывающему
+немедленно, а verify-ссылка (будущий `A2-CLAIM-EMAIL`) должна нести отдельный
+секрет — если бы это было одно и то же значение, вызывающий получал бы
+«доказательство владения почтой» прямо из ответа API, не переходя по ссылке.
+Добавлен отдельный `token`-столбец (`migrations/0006_claim_token.sql`, вне
+буквального scope узла, раскрыто явно) вместо повторного использования
+`patch_json`. 14 новых тестов, 103/103 `worker:test`; живьём через `wrangler
+dev --local` + прямой `SELECT`/`DELETE` из реальной локальной D1 — детали
+`domains/backend.md`. Разблокировало (технически) `A2-CLAIM-EMAIL`/
+`A2-CLAIM-REBUILD`, approval на обоих остаётся отдельным гейтом.
+Остальные `approval_required: false` узлы Фазы 2 — все закрыты.
 Все `approval_required: true` узлы (`A2-LEAD-EMAIL`, `A2-CLAIM-EMAIL`,
 `A2-CLAIM-REBUILD`, `A2-STRIPE-LIVE`, `A2-OUTREACH-SEND`) заблокированы до
 явного разрешения владельца — Resend и Stripe одобряются раздельно, per-node.

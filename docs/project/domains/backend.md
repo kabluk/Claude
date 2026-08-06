@@ -328,6 +328,88 @@ A2-STRIPE-LIVE, approval_required): реальный `STRIPE_WEBHOOK_SECRET`/
 `metadata.until`, настоящий тестовый или боевой платёж, доходящий до этого
 воркера через реальный Stripe-аккаунт владельца.
 
+## A2-CLAIM-API — POST /api/claim (2026-08-06)
+
+`worker/routes/claim.js`: `POST /api/claim {agencySlug, email, turnstileToken?}
+-> 201 {claimId}`. Тот же стиль, что `lead.js`/`stripeHook.js` — D1-доступ к
+`claims` прямо в этом routes-файле, не в `worker/lib/db.js` (специализирован
+под `scans`). Fixed-window rate-limit — отдельная реализация, 5/ч на IP (тот
+же порядок, что `lead.js`), Turnstile переиспользует `worker/lib/turnstile.js`
+как есть, skip без `TURNSTILE_SECRET_KEY` (dev).
+
+**Валидация**: `agencySlug` должен существовать в реальном каталоге —
+переиспользован export `agencies` из `worker/lib/matchAgenciesServer.js`
+(уже импортирует `data/a11y/agencies.json` через `import ... with { type:
+'json' }`), не выдуманный список — неизвестный slug → `400`. `email` — только
+формат (`EMAIL_RE`), без сверки с доменом сайта агентства — намеренно, это
+явное требование узла (GRAPH.yaml): проверка домена — часть будущей верификации
+по клику на ссылку (A2-CLAIM-EMAIL/verify-эндпоинт), не создания заявки.
+
+**Архитектурное решение сверх буквального текста узла (D-023,
+`docs/project/DECISIONS.md`)**: контракт `INTERFACES.md` §2 описывает вход как
+отображающийся в ДВЕ разные вещи — verify-link (уходит только на email,
+будущий `A2-CLAIM-EMAIL`) и `claimId` (возвращается вызывающему немедленно,
+201). Черновая схема `claims` (`migrations/0004_claims.sql`, INTERFACES.md §4)
+не содержала отдельного `token`-столбца. Если бы verify-токен в ссылке
+совпадал с `id`/`claimId` из ответа API, вызывающий получал бы «доказательство
+владения почтой» прямо из самого ответа, без перехода по ссылке — ровно то,
+что email-верификация должна предотвращать (пример атаки: указать в поле
+`email` чужой рабочий адрес агентства, получить `claimId` в ответе и тут же
+«верифицировать» заявку, ни разу не увидев письма). Решение: добавлен
+отдельный секретный `token` (`migrations/0006_claim_token.sql` — `ALTER TABLE
+claims ADD COLUMN token TEXT` + `idx_claims_token`), генерируется
+`crypto.getRandomValues` (32 байта, hex), пишется в D1, но **не возвращается**
+в ответе API. `patch_json` НЕ переиспользован под токен — тот столбец
+зарезервирован под предложенные правки профиля агентства, которые накатывает
+ежедневный оверлей (`A2-CLAIM-REBUILD`); смешение форматов было бы риском для
+той логики. Это выход за буквальный `scope` узла (`worker/routes/claim.js`) —
+раскрыто явно (`GRAPH.yaml` notes, `BACKLOG.md`, этот файл, `DECISIONS.md`),
+не тихо, по тому же прецеденту, что `A1-LANDING`/`A2-LEAD-FORM` уже трогали
+файлы вне буквального scope, когда без этого узел был бы недостижим/некорректен.
+`worker/index.js` тоже тронут за пределами буквального scope — маршрут иначе
+недостижим, тот же прецедент. `INTERFACES.md` §4 обновлена тем же коммитом
+(добавлена строка про `token`).
+
+**Важно для `A2-CLAIM-EMAIL`** (следующий узел в цепочке): verify-ссылка
+должна нести `claims.token` (искать по `idx_claims_token`), НЕ `claims.id` —
+`id`/`claimId` уже раскрыт вызывающему в ответе `POST /api/claim` и не может
+служить доказательством владения почтой. Отмечено в `GRAPH.yaml` notes узла
+`A2-CLAIM-EMAIL`, чтобы не потерялось между сессиями.
+
+Верифицировано: 14 новых юнит-тестов (`worker/routes/claim.test.mjs`) —
+невалидный JSON, отсутствующие поля, неизвестный `agencySlug` (проверено
+против реального каталога через фикстуру `agencies[0].slug`, не строкового
+угадывания), невалидный email, happy path (`201 {claimId}` + запись в D1 со
+`status='pending'`, `verified=0`, непустым `token`), явный тест «`claimId` из
+ответа ≠ `token` в D1» (страхует от повторной регрессии D-023 в будущем), два
+последовательных claim выдают разные `id`/`token`, домен email намеренно НЕ
+сверяется с доменом сайта агентства, отсутствие сетевого вызова на happy path
+(email не отправляется), rate-limit (6-й запрос с одного IP → `429`,
+независимые IP не блокируются), Turnstile (skip без секрета, `403` на
+отклонённый токен, `201` на принятый). 103/103 `worker:test` (было 89).
+`npm run typecheck` и `npx wrangler deploy --dry-run` чистые.
+
+Живой прогон через `wrangler dev --local` + `wrangler d1 execute
+accessatlas-scans --local` на настоящей локальной D1 (не мок):
+- неизвестный `agencySlug` → `400 {"error":"invalid or missing fields:
+  agencySlug","code":"bad_request"}`
+- отсутствующие оба поля → `400` с обоими именами полей в `error`
+- валидный claim (`agencySlug: "deque-systems"`, реальный slug из каталога) →
+  `201 {"claimId":"..."}`; прямой `SELECT` подтвердил реальную строку:
+  `status='pending'`, `verified=0`, `patch_json=NULL`, `token` — 64-символьная
+  hex-строка (32 случайных байта), отличная от `claimId`
+- rate-limit: 5 запросов с одного IP (`5.5.5.5`) прошли `201`, 6-й → `429
+  {"code":"rate_limited"}`
+- `grep -n "fetch(" worker/routes/claim.js` — 0 совпадений: подтверждено кодом,
+  не только тестом, что email этим узлом не отправляется
+- регрессия: `/api/lead` (`201`, тот же алгоритм матчинга), `404` на неизвестный
+  путь, `OPTIONS`-preflight — все по-прежнему верны после правки `worker/index.js`
+- все тестовые строки (`claims`, `leads`) удалены из локальной D1 после проверки
+
+Не проверено и не обязано быть в этом узле (по конструкции — отдельный узел
+`A2-CLAIM-EMAIL`, approval_required): реальная отправка verify-письма через
+Resend, сам verify-эндпоинт, читающий `token` по ссылке.
+
 ## Дальше по Фазе 1/2
 
 - Секреты: Resend, Stripe (`STRIPE_SECRET_KEY`, реальные Payment Links) —

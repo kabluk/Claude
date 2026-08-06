@@ -67,7 +67,9 @@ scans(id TEXT PK, url TEXT, status TEXT DEFAULT 'running', pages_json TEXT,
 -- ниже — черновик, Фаза 2+, ещё не реализовано
 leads(id TEXT PK, scan_id TEXT NULL, country TEXT, standard TEXT, service TEXT, budget TEXT,
       deadline TEXT NULL, contact_json TEXT, matched_json TEXT, status TEXT, created_at TEXT)
-claims(id TEXT PK, agency_slug TEXT, email TEXT, verified INT, patch_json TEXT, status TEXT, created_at TEXT)
+claims(id TEXT PK, agency_slug TEXT, email TEXT, verified INT, patch_json TEXT, status TEXT, created_at TEXT,
+       token TEXT)  -- добавлен migrations/0006_claim_token.sql (D-023): id — публичный claimId,
+                     -- token — отдельный secret verify-токен, НЕ возвращается в ответе API
 featured(agency_slug TEXT PK, until TEXT, stripe_ref TEXT)
 accounts(id TEXT PK, email TEXT UNIQUE, sites_json TEXT, plan TEXT, created_at TEXT)
 ```

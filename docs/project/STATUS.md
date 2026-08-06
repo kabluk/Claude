@@ -95,9 +95,16 @@ Signature: t=…,v1=…`, константное сравнение, tolerance �
 d1 execute --local` на настоящей D1 — поддельная подпись отклонена, валидное
 событие обновило `featured.until`, продление обновило ту же строку (не
 создало вторую). Разблокировало `A2-STRIPE-LIVE` (approval_required, реальный
-Stripe-аккаунт — отдельное решение владельца). Claim-API, email-рассылки
-(Resend) и live Stripe ещё не начаты/ждут approval. По плану — Фаза 2
-(ROADMAP.md).
+Stripe-аккаунт — отдельное решение владельца). `A2-CLAIM-API` — **done**
+(2026-08-06, D-023): `POST /api/claim` (`worker/routes/claim.js`) валидирует
+`agencySlug` против реального каталога, пишет `pending`-заявку в D1 с
+отдельным secret `token` (`migrations/0006_claim_token.sql` — добавлен
+столбец сверх исходной схемы, т.к. verify-токен не может совпадать с
+`claimId`, который API и так возвращает вызывающему, иначе email-верификация
+тривиально обходится), возвращает `{claimId}`. Email не отправляется. 103/103
+`worker:test`, живой прогон через `wrangler dev --local` + прямой `SELECT` из
+D1 подтвердил структуру заявки. Email-рассылки (Resend) и live Stripe ещё не
+начаты/ждут approval. По плану — Фаза 2 (ROADMAP.md).
 
 ## Инфраструктура
 

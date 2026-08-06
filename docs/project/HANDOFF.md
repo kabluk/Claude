@@ -1,7 +1,8 @@
 # HANDOFF — что нужно знать новой сессии
 
-Обновлено: 2026-08-06 · Проект: **AccessAtlas** (ветка `accessatlas`; в `main` — чужой
-проект detnav, не трогать). Рабочая ветка итерации: `claude/accessatlas-architecture-sk6tcj`.
+Обновлено: 2026-08-06 (A2-CLAIM-API) · Проект: **AccessAtlas** (ветка `accessatlas`;
+в `main` — чужой проект detnav, не трогать). Рабочая ветка итерации:
+`claude/accessatlas-architecture-sk6tcj`.
 
 ## Как продолжить
 
@@ -182,6 +183,25 @@
    реально падает на `UNIQUE constraint` (продление — `UPDATE`, не новая
    строка, как задумано). Разблокировали `A2-CLAIM-API` и
    `A2-STRIPE-WEBHOOK-CODE`.
+   `A2-CLAIM-API` **done** (2026-08-06, D-023): `POST /api/claim` (`worker/
+   routes/claim.js`) пишет `claims` в D1 и возвращает `{claimId}`, тот же
+   стиль, что `lead.js`/`stripeHook.js`; `agencySlug` валидируется против
+   реального `agencies.json` (неизвестный → 400); rate-limit 5/ч на IP,
+   Turnstile skip-без-секрета — тот же паттерн. Email агентствам НЕ
+   отправляется (`A2-CLAIM-EMAIL`, approval). Найдено и зафиксировано (D-023,
+   `DECISIONS.md`) архитектурное решение вне буквального scope узла:
+   verify-ссылка (будущий `A2-CLAIM-EMAIL`) не может нести тот же `id`, что уже
+   возвращён вызывающему как `claimId` — иначе email-верификация тривиально
+   обходится (пример: указать чужой email агентства, получить `claimId` из
+   ответа, «верифицировать» не читая почту). Добавлен отдельный secret `token`
+   (`migrations/0006_claim_token.sql`, вне буквального scope, раскрыто явно,
+   тот же прецедент, что `A1-LANDING`/`A2-LEAD-FORM`); `patch_json` НЕ
+   переиспользован под токен (зарезервирован под правки профиля,
+   `A2-CLAIM-REBUILD`). `INTERFACES.md` §4 обновлена тем же коммитом. 14 новых
+   тестов, 103/103 `worker:test`; живьём через `wrangler dev --local` + прямой
+   `SELECT`/`DELETE` из реальной локальной D1 — детали `domains/backend.md`.
+   Разблокировало (технически) `A2-CLAIM-EMAIL`/`A2-CLAIM-REBUILD`, approval на
+   обоих остаётся отдельным гейтом.
    `A2-STRIPE-WEBHOOK-CODE` **done** (2026-08-06): `POST /api/stripe-hook`
    (`worker/routes/stripeHook.js` + `worker/lib/stripeSig.js`) — настоящий
    алгоритм проверки подписи Stripe (`Stripe-Signature: t=…,v1=…`, HMAC-SHA256
@@ -203,6 +223,16 @@
    (approval_required не снимается этим узлом — реальный Stripe-аккаунт,
    реальные деньги, отдельное одобрение владельца). Детали:
    `domains/backend.md`.
+
+- 2026-08-06 (A2-CLAIM-API, D-023): вплетено в `software-architect.md` —
+  общий, переносимый урок про flow «запрос → секретный токен по email →
+  verify-переход»: если API синхронно возвращает вызывающему то же значение,
+  что должно уйти только по email как секрет верификации, верификация
+  тривиально обходится. Найдено при чтении контракта `INTERFACES.md` §2
+  буквально (`{agencySlug, email} → verify-link | {claimId}` — ДВЕ разные
+  вещи), не по умолчанию/предположению; решение зафиксировано в DECISIONS.md
+  (D-023), не сделано молча, по прямому требованию инструкции узла
+  «зафиксируй явное решение, если сочтёшь нужным сделать иначе».
 
 ## Живой skill (D-012)
 

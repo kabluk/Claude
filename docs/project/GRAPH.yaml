@@ -360,7 +360,7 @@ nodes:
   - id: A2-CLAIM-API
     title: "POST /api/claim: создание claim-записи + verify-токен, БЕЗ отправки письма"
     owner: backend-engineer
-    status: todo
+    status: done
     depends_on: [A2-CLAIM-SCHEMA]
     inputs: [docs/project/INTERFACES.md, data/a11y/types.ts]
     scope: [worker/routes/claim.js]
@@ -371,10 +371,10 @@ nodes:
       - "verify-токен генерируется и пишется в D1 (локально), но email этим узлом не отправляется"
       - "домен email не проверяется на совпадение с доменом сайта агентства этим узлом (это часть верификации при переходе по ссылке, не при создании заявки) — если проектное решение иное, зафиксировать в DECISIONS.md"
     max_attempts: 4
-    attempts: 0
+    attempts: 1
     risk: medium
     approval_required: false
-    notes: "Использует уже одобренный D1. Верификация по домену почты (owner-запрос) — токен создаётся здесь, а его доставка (email) и есть тот шаг, что требует Resend → A2-CLAIM-EMAIL."
+    notes: "Готово 2026-08-06 (D-023). worker/routes/claim.js: POST /api/claim {agencySlug, email, turnstileToken?} -> 201 {claimId}, тот же стиль, что lead.js/stripeHook.js (D1-доступ прямо в routes/-файле, не lib/db.js; fixed-window rate-limit 5/ч на IP, отдельная реализация как у lead.js; Turnstile через уже существующий worker/lib/turnstile.js, skip без секрета). agencySlug валидируется против реального agencies.json (переиспользован export agencies из worker/lib/matchAgenciesServer.js, не выдуман список) — неизвестный slug -> 400. Домен email намеренно НЕ сверяется с доменом сайта агентства на этом шаге, как и просил узел — зафиксировано в коде-комментарии, отдельного решения не потребовалось (это и есть принятое поведение). НАЙДЕНО и явно зафиксировано архитектурное решение сверх буквального текста узла (D-023, DECISIONS.md): контракт INTERFACES.md §2 описывает вход как отображающийся в ДВЕ разные вещи — verify-link (email, будущий A2-CLAIM-EMAIL) и claimId (ответ API, сразу). Схема claims (0004_claims.sql) не содержала отдельного token-столбца — если бы verify-токен совпадал с id/claimId, вызывающий получал бы 'доказательство владения почтой' прямо из ответа API, не переходя по ссылке, что ломает саму цель email-верификации (пример атаки: указать чужой email агентства, получить claimId, тут же 'верифицировать' заявку). Добавлена migrations/0006_claim_token.sql (ALTER TABLE claims ADD COLUMN token TEXT + индекс) — выход за буквальный scope узла (worker/routes/claim.js), раскрыто явно по прецеденту A1-LANDING/A2-LEAD-FORM, не тихо; patch_json НЕ переиспользован под token (зарезервирован под будущие правки профиля, A2-CLAIM-REBUILD). INTERFACES.md §4 обновлена тем же коммитом. worker/index.js тоже тронут за пределами буквального scope — маршрут иначе недостижим (тот же прецедент). 14 новых юнит-тестов (worker/routes/claim.test.mjs, включая явный тест 'claimId != token' и 'email domain NOT checked'), 103/103 worker:test зелёные. typecheck и wrangler deploy --dry-run чистые. Живьём через wrangler dev --local + wrangler d1 execute --local на настоящей локальной D1 (не мок): неизвestный slug -> 400 с полем agencySlug в error; валидный claim -> 201 {claimId}, прямой SELECT подтвердил реальную строку (status='pending', verified=0, patch_json=NULL, token — 64-символьный hex, отличный от claimId); rate-limit подтверждён живьём (6-й запрос с одного IP -> 429, независимые IP не блокируются); grep по файлу подтвердил отсутствие fetch()/сетевых вызовов вообще — email не отправляется. Регрессия других маршрутов (/api/lead, /api/scan через index.js, 404, OPTIONS) проверена тем же живым прогоном — не сломаны правкой worker/index.js. Тестовые строки удалены из локальной D1 после проверки. Разблокировало (технически) A2-CLAIM-EMAIL и A2-CLAIM-REBUILD — approval остаётся отдельным гейтом на обоих."
 
   - id: A2-CLAIM-EMAIL
     title: "Письмо со ссылкой верификации claim через Resend"
@@ -392,7 +392,7 @@ nodes:
     attempts: 0
     risk: high
     approval_required: true
-    notes: "approval: тот же новый внешний сервис Resend, что у A2-LEAD-EMAIL — одобрение НЕ общее на 'Resend вообще', а per-node по правилу проекта; если владелец одобрит Resend один раз для обоих узлов явно — зафиксировать это решение в DECISIONS.md, не предполагать молча."
+    notes: "approval: тот же новый внешний сервис Resend, что у A2-LEAD-EMAIL — одобрение НЕ общее на 'Resend вообще', а per-node по правилу проекта; если владелец одобрит Resend один раз для обоих узлов явно — зафиксировать это решение в DECISIONS.md, не предполагать молча. Важно для реализации (D-023, см. также A2-CLAIM-API): verify-ссылка должна нести claims.token (отдельный секрет, migrations/0006_claim_token.sql, idx_claims_token), НЕ claims.id/claimId — claimId уже возвращён вызывающему в ответе POST /api/claim и не может служить доказательством владения почтой."
 
   - id: A2-CLAIM-REBUILD
     title: "Ежедневный ребилд: D1-оверлей claims/featured наложить на agencies.json перед сборкой"
