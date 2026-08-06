@@ -11,6 +11,7 @@ import {
   scanErrorMessage,
   type ScanReport,
 } from '@/lib/scanner'
+import { estimateCost, formatCostEstimate } from '@/lib/costEstimate'
 
 const POLL_INTERVAL_MS = 2500
 
@@ -122,6 +123,7 @@ function ReportBody({ report }: { report: ScanReport }) {
 
   const groups = groupFindingsByRule(report.findings)
   const uniquePages = report.pages.length
+  const cost = estimateCost(report.findings)
 
   return (
     <div>
@@ -131,16 +133,38 @@ function ReportBody({ report }: { report: ScanReport }) {
         {report.findings.length === 1 ? '' : 's'} across {groups.length} distinct rule{groups.length === 1 ? '' : 's'}
       </p>
 
-      <div className="mt-6 flex items-baseline gap-3">
-        <span className="text-4xl font-bold">{report.score ?? '—'}</span>
-        <span className="text-slate-500">/ 100</span>
+      <div className="mt-6 flex flex-wrap items-start gap-x-10 gap-y-4">
+        <div>
+          <div className="flex items-baseline gap-3">
+            <span className="text-4xl font-bold">{report.score ?? '—'}</span>
+            <span className="text-slate-500">/ 100</span>
+          </div>
+          <p className="mt-1 max-w-prose text-xs text-slate-500">
+            This score is a rough heuristic for comparing pages over time — it is not a
+            certification of WCAG conformance and does not constitute legal advice. A
+            clean automated scan does not guarantee full accessibility; manual review by
+            a qualified auditor is still required.
+          </p>
+        </div>
+
+        {cost && (
+          <div>
+            <div className="flex items-baseline gap-2">
+              <span className="text-4xl font-bold">{formatCostEstimate(cost)}</span>
+              <span className="text-slate-500">estimated to fix</span>
+            </div>
+            <p className="mt-1 max-w-prose text-xs text-slate-500">
+              A rough estimate based on the number and severity of issues found here — not a
+              quote or an offer. Actual cost depends on your codebase, team, and how the fixes
+              are made.{' '}
+              <a className="underline underline-offset-2" href={paths.agencies()}>
+                Compare agencies for a real quote
+              </a>
+              .
+            </p>
+          </div>
+        )}
       </div>
-      <p className="mt-1 max-w-prose text-xs text-slate-500">
-        This score is a rough heuristic for comparing pages over time — it is not a
-        certification of WCAG conformance and does not constitute legal advice. A
-        clean automated scan does not guarantee full accessibility; manual review by
-        a qualified auditor is still required.
-      </p>
 
       {groups.length === 0 ? (
         <p className="lede mt-8">No automatically-detectable issues found on the scanned pages. 🎉</p>

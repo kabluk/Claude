@@ -174,3 +174,22 @@ nodes:
     risk: medium
     approval_required: true
     notes: "Готово 2026-08-06 (D-016): код и 21 юнит-тест (10 explain.js + 6 ratelimit.js новых + существующие) написаны и проходят; live-проверено фиктивным ключом — запрос реально дошёл до Anthropic (401 invalid x-api-key, не сетевая ошибка), 502 с понятным сообщением. status=review, НЕ done: approval на платный ключ Anthropic ещё не дано отдельно от одобрения CF-ресурсов для A1-SCAN (правило зафиксировано заранее). Нужен настоящий ANTHROPIC_API_KEY + явное разрешение владельца, чтобы проверить happy path и закрыть узел."
+
+  - id: A1-COST
+    title: "Оценка стоимости исправлений на /report/:id — эвристика × price bands, всегда вилка"
+    owner: frontend-engineer
+    status: review
+    depends_on: [A1-REPORT]
+    inputs: [docs/project/DECISIONS.md, data/a11y/taxonomies.json]
+    scope: [src/lib/costEstimate.ts, src/pages/ReportPage.tsx]
+    outputs: [src/lib/costEstimate.ts]
+    verify:
+      - npm run build
+      - npm run typecheck
+      - "живой прогон 5 сценариев (0 находок/budget/premium/enterprise/дедуп) через Playwright, значения сверены с ручным расчётом по формуле"
+      - "каждое состояние axe-чисто"
+    max_attempts: 4
+    attempts: 2
+    risk: low
+    approval_required: false
+    notes: "Готово 2026-08-06 (D-017, уточняет D-006). Первая версия (интерполяция между двумя соседними price bands) дала неинформативно широкие диапазоны — поймано именно живой проверкой с ручным расчётом ожиданий, не код-ревью. Переделано на один band по effort-score (дубль дедуп-логики worker/lib/score.js). Формат чисел приведён к конвенции taxonomies.json (один символ валюты на диапазон) — тоже найдено верификацией. Дисклеймер и ссылка на каталог обязательны рядом с оценкой (D-006), не факультативны."
