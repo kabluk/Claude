@@ -54,7 +54,7 @@ export default function BfsgCheckPage() {
   const deGuides = guides.filter((g) => g.countryCode === 'DE')
 
   const title = 'BFSG-Check: Fehlt Ihrer Website die Erklärung zur Barrierefreiheit?'
-  const description = `Kostenloser Scan auf die Erklärung zur Barrierefreiheit nach Anlage 3 zu § 14 BFSG — und ${named.length} Prüfer, die in veröffentlichten deutschen Erklärungen namentlich genannt sind.`
+  const description = `Kostenloser Scan der Erklärung zur Barrierefreiheit nach Anlage 3 zu § 14 BFSG — und ${named.length} Prüfer, die in veröffentlichten deutschen Erklärungen namentlich genannt sind.`
 
   return (
     <Layout
@@ -113,17 +113,17 @@ export default function BfsgCheckPage() {
               ungeprüft aus.
             </li>
             <li>
-              <strong>Sie ist binär prüfbar.</strong> Ob eine Seite WCAG erfüllt, kann kein Scanner
+              <strong>Sie ist eindeutig prüfbar.</strong> Ob eine Seite WCAG erfüllt, kann kein Scanner
               abschließend sagen. Ob eine Erklärung verlinkt ist und die geforderten Angaben enthält,
               schon — ohne Fehlalarme.
             </li>
             <li>
               <strong>Sie ist der sichtbarste Teil.</strong> Die Marktüberwachung der Länder (
               <a className="underline underline-offset-2" href={MLBF_URL} rel="noopener noreferrer">
-                MLBF, Magdeburg
+                MLBF in Magdeburg
               </a>
-              ) prüft bundesweit und wird auch stichprobenartig tätig. Eine fehlende Erklärung ist von
-              außen ohne jeden Test erkennbar — für uns wie für alle anderen.
+              ) ist bundesweit zuständig und kann auch stichprobenartig vorgehen. Eine fehlende
+              Erklärung ist von außen ohne jeden Test erkennbar — für uns wie für alle anderen.
             </li>
           </ul>
 
@@ -146,9 +146,10 @@ export default function BfsgCheckPage() {
             <li>
               <h3 className="font-semibold">1. Scannen</h3>
               <p className="mt-1 text-slate-700">
-                Bis zu sechs Seiten, automatisch geprüft. Wählen Sie „Germany“ als Rechtsordnung — über
-                den Button oben ist sie bereits vorbelegt, sonst rät der Scanner anhand der Domain und
-                liegt bei <code>.com</code>-Adressen zwangsläufig daneben.{' '}
+                Bis zu sechs Seiten, automatisch geprüft. Wählen Sie „Deutschland“ (im Formular:
+                „Germany“) als Rechtsordnung — über den Button oben ist sie bereits vorbelegt. Sonst
+                leitet der Scanner die Rechtsordnung aus der Domain ab und kann sie bei{' '}
+                <code>.com</code>-Adressen gar nicht bestimmen.{' '}
                 <Link className="underline underline-offset-2" to={`${paths.scan()}?country=DE`}>
                   Zum Scan
                 </Link>
@@ -169,7 +170,7 @@ export default function BfsgCheckPage() {
             <li>
               <h3 className="font-semibold">3. Prüfstelle beauftragen</h3>
               <p className="mt-1 text-slate-700">
-                Für den belastbaren Nachweis braucht es einen Menschen. Unten stehen {named.length}{' '}
+                Für einen belastbaren Nachweis braucht es einen Menschen. Unten stehen {named.length}{' '}
                 Prüfer, die in veröffentlichten deutschen Erklärungen zur Barrierefreiheit namentlich
                 als externe Prüfstelle genannt werden — jeweils mit Link auf das Dokument.
               </p>
@@ -183,8 +184,8 @@ export default function BfsgCheckPage() {
               не вписаны руками — иначе страница начала бы врать при следующем
               росте покрытия (тот же приём, что на главной, D-038). */}
           <p className="mt-2 text-slate-700">
-            Von den {coverageSummary.total} Web-Anforderungen der EN 301 549 — der Norm, auf die die
-            Konformitätsvermutung des § 4 BFSG hinausläuft — prüfen wir {coverageSummary.covered}{' '}
+            Von den {coverageSummary.total} Web-Anforderungen der EN 301 549 — der Norm, auf der die
+            Konformitätsvermutung nach § 4 BFSG beruht — prüfen wir {coverageSummary.covered}{' '}
             automatisch. Die übrigen {coverageSummary.total - coverageSummary.covered} hängen an Sinn
             und Urteilsvermögen: Reihenfolge, Verständlichkeit, Fehlermeldungen. Kein Scanner schließt
             diese Lücke, unserer auch nicht.{' '}
@@ -272,8 +273,8 @@ export default function BfsgCheckPage() {
               SaaS за страницу, у telekom-mms прайс на Business GPT, это не аудит.
               Текст ниже верен ровно до тех пор, пока это так. */}
           <p className="mt-2 text-slate-700">
-            Wir zeigen keine Preise je Agentur: die meisten veröffentlichen keine, und geraten wird bei
-            uns nichts. Eine belastbare Größenordnung veröffentlicht der BIK-Prüfverbund selbst —{' '}
+            Wir zeigen keine Preise je Agentur: die meisten veröffentlichen keine, und wir geben auch keine
+            Schätzungen ab. Eine belastbare Größenordnung veröffentlicht der BIK-Prüfverbund selbst —{' '}
             <a className="underline underline-offset-2" href={BIK_PRICES_URL} rel="noopener noreferrer">
               indikative Seitenpreise nach Komplexitätsstufe
             </a>

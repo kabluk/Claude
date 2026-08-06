@@ -1,9 +1,14 @@
 # Vichitka: немецкий текст страницы `/bfsg-check/`
 
+> **Статус: вычитка носителем завершена 2026-08-06, правки внесены в код (D-049).**
+> Ниже — итоговый текст, как он сейчас в `src/pages/BfsgCheckPage.tsx`. Что именно
+> принято, что взято из второй версии вычитки и что отклонено (и почему) —
+> в `DECISIONS.md`, запись D-049. При следующей правке страницы обновлять этот
+> файл вместе с кодом.
+
 **Что это.** Весь немецкоязычный текст страницы `/bfsg-check/`, вынутый из кода,
 чтобы носитель языка правил формулировки, а не читал JSX. Источник —
-`src/pages/BfsgCheckPage.tsx`. Правки вносите прямо в этот файл (или пометками
-рядом) — я перенесу их в код.
+`src/pages/BfsgCheckPage.tsx`.
 
 **Что уже проверено мной, править не нужно (если только формулировка не хромает):**
 
@@ -29,6 +34,10 @@
    `Marktüberwachung`, `Konformitätsvermutung` — верны ли и уместны ли.
 4. `Prüfer` vs `Prüfstelle` — мы используем оба. Так правильно или надо
    унифицировать?
+   ✅ **Ответ вычитки: оба оставляем**, это корректно — `Prüfstelle` = организация,
+   `Prüfer` = названный человек. Предложение унифицировать всё в `Prüfstellen`
+   отклонено: ссылка «Alle {N} … für Deutschland» ведёт на весь немецкий срез
+   каталога, а не только на названных в декларациях (D-049).
 
 ---
 
@@ -38,7 +47,7 @@
 
 ## 2. Meta-описание (в поиске, не на странице)
 
-> Kostenloser Scan auf die Erklärung zur Barrierefreiheit nach Anlage 3 zu § 14
+> Kostenloser Scan der Erklärung zur Barrierefreiheit nach Anlage 3 zu § 14
 > BFSG — und {N} Prüfer, die in veröffentlichten deutschen Erklärungen namentlich
 > genannt sind.
 
@@ -72,18 +81,20 @@
 > anderen Länder weisen wir sie ausdrücklich als ungeprüft aus.
 
 **Пункт 2:**
-> **Sie ist binär prüfbar.** Ob eine Seite WCAG erfüllt, kann kein Scanner
+> **Sie ist eindeutig prüfbar.** Ob eine Seite WCAG erfüllt, kann kein Scanner
 > abschließend sagen. Ob eine Erklärung verlinkt ist und die geforderten Angaben
 > enthält, schon — ohne Fehlalarme.
 
 **Пункт 3:**
-> **Sie ist der sichtbarste Teil.** Die Marktüberwachung der Länder ([MLBF,
-> Magdeburg]) prüft bundesweit und wird auch stichprobenartig tätig. Eine fehlende
-> Erklärung ist von außen ohne jeden Test erkennbar — für uns wie für alle anderen.
+> **Sie ist der sichtbarste Teil.** Die Marktüberwachung der Länder ([MLBF] in
+> Magdeburg) ist bundesweit zuständig und kann auch stichprobenartig vorgehen.
+> Eine fehlende Erklärung ist von außen ohne jeden Test erkennbar — für uns wie
+> für alle anderen.
 
-⚠ **Проверьте по существу:** формулировка про MLBF («prüft bundesweit und wird
-auch stichprobenartig tätig»). Мы не хотим утверждать больше, чем знаем. Если это
-звучит как «они уже массово проверяют всех» — надо смягчить.
+✅ Формулировка про MLBF смягчена по замечанию вычитки: модальное «ist zuständig /
+kann vorgehen» вместо «prüft / wird tätig», чтобы не создавать впечатление
+массовых проверок. Вариант «führen stichprobenartige Kontrollen durch»
+отклонён — настоящее время утверждало бы больше, чем мы знаем (D-049).
 
 **Врезка (серый блок):**
 > **Was wir bewusst nicht tun:** Wir nennen keine Bußgeldhöhen. Sie hängen von
@@ -101,13 +112,17 @@ auch stichprobenartig tätig»). Мы не хотим утверждать бо�
 
 **Шаг 1:**
 > **1. Scannen**
-> Bis zu sechs Seiten, automatisch geprüft. Wählen Sie „Germany“ als Rechtsordnung
-> — über den Button oben ist sie bereits vorbelegt, sonst rät der Scanner anhand
-> der Domain und liegt bei `.com`-Adressen zwangsläufig daneben. [Zum Scan].
+> Bis zu sechs Seiten, automatisch geprüft. Wählen Sie „Deutschland“ (im Formular:
+> „Germany“) als Rechtsordnung — über den Button oben ist sie bereits vorbelegt.
+> Sonst leitet der Scanner die Rechtsordnung aus der Domain ab und kann sie bei
+> `.com`-Adressen gar nicht bestimmen. [Zum Scan].
 
-⚠ В интерфейсе сканера страна называется по-английски **„Germany“** — интерфейс
-пока не локализован. Так и оставить, или написать «Deutschland (im Formular:
-Germany)»?
+✅ Принято уточнение «Deutschland (im Formular: „Germany“)» — интерфейс формы пока
+английский (`G-I18N-DE`), разрыв назван вслух. Отдельно исправлена фактическая
+ошибка: сканер на `.com` не «промахивается», а возвращает `country: 'unknown'`
+(`worker/lib/jurisdiction.js`, `source: 'tld-not-mapped'`) — то есть не определяет
+юрисдикцию вовсе. И «zwangsläufig daneben», и предложенное «meist daneben» были
+неверны (D-049).
 
 **Шаг 2:**
 > **2. Befund einordnen**
@@ -116,7 +131,7 @@ Germany)»?
 
 **Шаг 3:**
 > **3. Prüfstelle beauftragen**
-> Für den belastbaren Nachweis braucht es einen Menschen. Unten stehen {N} Prüfer,
+> Für einen belastbaren Nachweis braucht es einen Menschen. Unten stehen {N} Prüfer,
 > die in veröffentlichten deutschen Erklärungen zur Barrierefreiheit namentlich
 > als externe Prüfstelle genannt werden — jeweils mit Link auf das Dokument.
 
@@ -128,19 +143,17 @@ Germany)»?
 > Was ein automatischer Scan nicht leisten kann
 
 **Текст:**
-> Von den {всего} Web-Anforderungen der EN 301 549 — der Norm, auf die die
-> Konformitätsvermutung des § 4 BFSG hinausläuft — prüfen wir {покрыто}
+> Von den {всего} Web-Anforderungen der EN 301 549 — der Norm, auf der die
+> Konformitätsvermutung nach § 4 BFSG beruht — prüfen wir {покрыто}
 > automatisch. Die übrigen {остаток} hängen an Sinn und Urteilsvermögen:
 > Reihenfolge, Verständlichkeit, Fehlermeldungen. Kein Scanner schließt diese
 > Lücke, unserer auch nicht. [Vollständige Abdeckungskarte].
 
 *(Числа подставляются из данных: сейчас 50 / 31 / 19.)*
 
-⚠ **Проверьте по существу:** «der Norm, auf die die Konformitätsvermutung des
-§ 4 BFSG hinausläuft». § 4 говорит о презумпции соответствия на основе
-гармонизированных норм, но саму EN 301 549 поимённо не называет — она
-объявляется отдельно. Формулировка «hinausläuft» выбрана как осторожная. Звучит
-ли она естественно и не утверждает ли лишнего?
+✅ «hinausläuft» заменено на «auf der die Konformitätsvermutung nach § 4 BFSG
+beruht» — точнее и естественнее, при этом по-прежнему не утверждает, что § 4
+называет EN 301 549 поимённо.
 
 ---
 
@@ -173,14 +186,14 @@ Germany)»?
 > Was kostet eine Prüfung?
 
 **Текст:**
-> Wir zeigen keine Preise je Agentur: die meisten veröffentlichen keine, und
-> geraten wird bei uns nichts. Eine belastbare Größenordnung veröffentlicht der
+> Wir zeigen keine Preise je Agentur: die meisten veröffentlichen keine, und wir
+> geben auch keine Schätzungen ab. Eine belastbare Größenordnung veröffentlicht der
 > BIK-Prüfverbund selbst — [indikative Seitenpreise nach Komplexitätsstufe]. Wie
 > sich der Aufwand zusammensetzt, steht im Leitfaden zum BITV-Test unten.
 > Verbindlich ist immer das individuelle Angebot.
 
-⚠ «geraten wird bei uns nichts» — понятно ли, что имеется в виду «мы не
-угадываем/не выдумываем»? Если звучит коряво, предложите замену.
+✅ «geraten wird bei uns nichts» звучало коряво — заменено на «wir geben auch
+keine Schätzungen ab».
 
 ---
 
