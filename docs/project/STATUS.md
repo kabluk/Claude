@@ -114,9 +114,19 @@ D1. Найдено: sandbox-домен Resend не доставляет реал
 API-ответом. `A2-LEAD-EMAIL` — **done** (D-025): владелец выбрал уведомлять
 только claimed+verified среди совпавших агентств — незаявленные ничего не
 получают, охват растёт по мере роста числа claimed-профилей. Живьём:
-реальный claim+verify → совпавший лид → уведомление ушло без ошибок. Live
-Stripe (`A2-STRIPE-LIVE`) и прод-ребилд (`A2-CLAIM-REBUILD`) — оба одобрены
-2026-08-06, в работе. По плану — Фаза 2 (ROADMAP.md).
+реальный claim+verify → совпавший лид → уведомление ушло без ошибок.
+`A2-STRIPE-LIVE` — **in progress** (D-027): владелец выбрал Payment Link
+вручную в Dashboard (не API) и scope featured €590/год, разовый платёж;
+`stripeHook.js` переписан под Stripe custom field `agency_slug`
+(`session.custom_fields`, не `session.metadata` — Dashboard-ссылка не
+несёт динамическую metadata), `until` считается на сервере (today+365).
+122/122 `worker:test`, живьём на реальной локальной D1 подтверждено:
+валидный slug → featured-строка с верным `until`, повторный платёж продлил
+ту же строку, опечатка в slug → 0 записей + залогировано. Остаётся ручная
+настройка на стороне владельца (продукт/custom field/webhook endpoint в
+Stripe Dashboard + реальный `STRIPE_WEBHOOK_SECRET`). `A2-CLAIM-REBUILD` —
+одобрен 2026-08-06, готов к прод-cron, ждёт `A0-DEPLOY` (D-026). По плану —
+Фаза 2 (ROADMAP.md).
 
 ## Инфраструктура
 

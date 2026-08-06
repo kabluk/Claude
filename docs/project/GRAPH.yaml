@@ -449,21 +449,21 @@ nodes:
     notes: "Готово 2026-08-06. worker/lib/stripeSig.js::verifyStripeSignature — реальный алгоритм Stripe (Stripe-Signature: t=…,v1=…, HMAC-SHA256 через Web Crypto secret над \"{t}.{raw_body}\", константное по времени сравнение, поддержка нескольких v1 при ротации секрета, 5-минутный tolerance на timestamp против replay). worker/routes/stripeHook.js: секрет — env.STRIPE_WEBHOOK_SECRET (НЕ STRIPE_SECRET_KEY, тот не нужен этому узлу вовсе), нет секрета → 503 (тот же паттерн, что ANTHROPIC_API_KEY в A1-EXPLAIN); подпись считается по СЫРОМУ телу (request.text(), не request.json()); agency_slug/until извлекаются из checkout.session.completed → session.metadata (единственный канал протащить нашу бизнес-данные через Stripe Checkout — реальную настройку Payment Link с этими полями делает A2-STRIPE-LIVE); апсерт в featured через `INSERT ... ON CONFLICT(agency_slug) DO UPDATE` (agency_slug PK из A2-STRIPE-SCHEMA — продление, не новая строка); любое подтверждённое-по-подписи событие (в т.ч. необрабатываемый тип, в т.ч. валидное событие с некорректной/пустой metadata) отвечает 200, чтобы Stripe не ретраил то, что мы осознанно не обрабатываем — retry имеет смысл только для реальных сбоев доставки, не для 'мы это не парсим'. 24 новых юнит-теста (worker/lib/stripeSig.test.mjs — 11, worker/routes/stripeHook.test.mjs — 13), 89/89 worker:test зелёные, все на синтетическом секрете whsec_test_..., подписи для тестов строятся через node:crypto createHmac НЕЗАВИСИМО от crypto.subtle, которым пользуется сам модуль — проверяет совместимость с реальным алгоритмом Stripe, не то, что код согласен сам с собой. typecheck и `wrangler deploy --dry-run` чистые. Живой прогон через `wrangler dev --local --var STRIPE_WEBHOOK_SECRET:whsec_local_synthetic_dev_secret` + `wrangler d1 execute --local` на реальной локальной D1 (не мок): поддельная подпись (чужой secret) → 400, D1 не тронута; отсутствующий заголовок Stripe-Signature → 400; валидное событие → 200, реальная строка появилась в featured (agency_slug/until/stripe_ref все верные); второе checkout.session.completed для того же agency_slug (продление, новый until) → тот же agency_slug, until обновился на новый, вторая строка НЕ появилась (ON CONFLICT реально сработал в настоящей SQLite/D1, не только по тексту SQL) — тестовая строка удалена после проверки. Разблокировало A2-STRIPE-LIVE (approval_required остаётся true — не снимается этим узлом)."
 
   - id: A2-STRIPE-LIVE
-    title: "Реальные Stripe Payment Links (featured €59/мес + пакеты лидов) + живой webhook secret на деплое"
+    title: "Payment Link вручную в Stripe Dashboard (featured €590/год, разовый платёж) + custom field agency_slug + живой webhook secret на деплое"
     owner: devops-engineer
-    status: todo
+    status: in_progress
     depends_on: [A2-STRIPE-WEBHOOK-CODE]
     inputs: [docs/project/DECISIONS.md]
-    scope: [wrangler.jsonc, src/pages/]
+    scope: [worker/routes/stripeHook.js, worker/routes/stripeHook.test.mjs, wrangler.jsonc]
     outputs: []
     verify:
       - "живой тестовый платёж (Stripe test mode или мелкая реальная сумма по решению владельца) доходит до webhook и обновляет featured в реальной D1"
       - "npx wrangler deploy --dry-run"
     max_attempts: 3
-    attempts: 0
+    attempts: 1
     risk: high
     approval_required: true
-    notes: "approval: НОВЫЙ внешний платный сервис (Stripe-аккаунт, реальные Payment Links, реальный приём денег) — прямо названный владельцем пример узла, требующего одобрения. Не начинать даже частично (создание Payment Links в Stripe-дашборде, секрет в Worker) без явного разрешения."
+    notes: "approval: владелец явно одобрил (2026-08-06) — Payment Link вручную в Dashboard, НЕ через API (STRIPE_SECRET_KEY не выдан и не нужен), scope сужен владельцем до одного продукта: featured €590/год, разовый платёж (не месячная подписка, не lead-пакет — оба explicitly deferred). D-027: Dashboard-ссылка не умеет нести динамическую metadata → agency_slug приходит через Stripe custom field в session.custom_fields, не session.metadata (переделано с версии A2-STRIPE-WEBHOOK-CODE); slug валидируется против реального каталога (typo/unknown → no D1 write, но console.error, не молча); until считается на сервере (today+365), никогда не берётся из данных клиента/Stripe. Код готов и живьём проверен через wrangler dev --local + wrangler d1 execute --local (реальная строка featured создана/обновлена/typo отклонён с логом) — worker:test 122/122, typecheck и wrangler deploy --dry-run чистые. ОСТАЁТСЯ: владелец должен вручную создать в Stripe Dashboard продукт €590/год + обязательный custom field (key=agency_slug) на Payment Link, настроить webhook endpoint (checkout.session.completed -> /api/stripe-hook) и передать реальный STRIPE_WEBHOOK_SECRET для `wrangler secret put` — до этого узел не принимает реальные деньги, только код готов."
 
   - id: A2-OUTREACH-PREP
     title: "Список 99 агентств из гос-деклараций + черновик письма «заберите профиль» — без отправки"

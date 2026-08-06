@@ -269,6 +269,33 @@
    либо падать без секрета, либо собирать в пустоту; approval сохраняется на
    будущее. Попутно найден и закрыт реальный пробел: `worker/`(117)/
    `scripts/`(7) тесты не запускались в CI вообще — добавлены в `ci.yml`.
+   `A2-STRIPE-LIVE` **in progress** (D-027): владелец выбрал создавать
+   Payment Link вручную в Stripe Dashboard (не через API — `STRIPE_SECRET_KEY`
+   не выдан и не нужен) и сузил scope до одного продукта: featured €590/год,
+   разовый платёж (месячная подписка и lead-пакет 10/€400 явно отложены,
+   у второго вообще нет схемы). Это меняет извлечение данных: Dashboard-ссылка
+   не умеет нести динамическую `metadata` (одна и та же для всех покупателей),
+   поэтому `agency_slug` собирается через Stripe custom field на странице
+   оплаты — приходит в `session.custom_fields`, не `session.metadata`, как
+   было в версии A2-STRIPE-WEBHOOK-CODE. `stripeHook.js` переписан:
+   `extractAgencySlugFromSession` читает `custom_fields`, валидирует slug
+   против реального каталога (`AGENCY_SLUGS`); typo/unknown → нет записи в
+   `featured`, но `console.error` отдельно (не теряется молча), webhook
+   всё равно отвечает `200`. `until` больше не приходит извне вообще —
+   `computeFeaturedUntil` считает на сервере (today+365) в момент обработки
+   события, чтобы customer-редактируемое поле не могло продиктовать себе
+   дату окончания. `stripeHook.test.mjs` переписан целиком под `custom_fields`
+   — 122/122 `worker:test`, typecheck и `wrangler deploy --dry-run` чистые.
+   Живьём через `wrangler dev --local` + `wrangler d1 execute --local` на
+   реальной локальной D1: валидный slug (`deque-systems`) → реальная строка
+   `featured` с `until` = ровно сегодня+365; второй платёж за тот же slug
+   обновил ту же строку (upsert, не дубликат); опечатка в slug → `200`, но
+   0 строк в D1 и реальный `console.error` в логе воркера — тестовые данные
+   удалены после проверки. Остаётся ручная часть на стороне владельца:
+   создать в Dashboard продукт €590/год + обязательный custom field
+   (key=`agency_slug`) + webhook endpoint (`checkout.session.completed` →
+   `/api/stripe-hook`), передать реальный `STRIPE_WEBHOOK_SECRET` для
+   `wrangler secret put`. Детали: `domains/backend.md`, `DECISIONS.md` D-027.
 
 - 2026-08-06 (A2-CLAIM-API, D-023): вплетено в `software-architect.md` —
   общий, переносимый урок про flow «запрос → секретный токен по email →

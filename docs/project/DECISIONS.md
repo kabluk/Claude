@@ -3,6 +3,41 @@
 Формат: ID | дата | решение | причина | последствия. Новые решения добавлять сверху.
 Статусы: `accepted` (принято), `proposed` (ждёт подтверждения владельца).
 
+## D-027 · 2026-08-06 · accepted
+A2-STRIPE-LIVE: владелец выбрал создавать Payment Link вручную в Stripe
+Dashboard (не через API — не давал `STRIPE_SECRET_KEY`), это меняет способ
+извлечения `agency_slug` из webhook-события. Dashboard-ссылка не умеет
+нести динамическую `metadata` — она одна и та же для всех покупателей одной
+ссылки, поэтому `agency_slug` собирается через Stripe "custom field"
+(агентство само вписывает свой slug на странице оплаты) — приходит в
+`session.custom_fields` (`[{key, label, type, text:{value}}]`), не в
+`session.metadata`, как было в первой версии `worker/routes/stripeHook.js`
+(A2-STRIPE-WEBHOOK-CODE). Извлечённый slug валидируется против реального
+каталога (`AGENCY_SLUGS`, из `matchAgenciesServer.js`) — опечатка/несуществующий
+slug не создаёт запись, но логируется `console.error` отдельно (не теряется
+молча) и НЕ считается ошибкой доставки: подпись верна, платёж настоящий,
+webhook отвечает 200 в любом случае (см. D-006/`retry` в LEARNING_LOG).
+`until` (дата окончания featured) больше не приходит извне вообще — раньше
+предполагалось из `metadata.until`, теперь считается на сервере как «сегодня
++ 365 дней» в момент обработки события (`computeFeaturedUntil`), потому что
+customer-редактируемое поле не должно иметь возможность продиктовать себе
+любую дату окончания. Scope первого прохода сознательно сужен владельцем до
+одного продукта — featured €590/год, разовый платёж (не подписка); owner
+явно отклонил и месячную подписку (€59/мес), и «lead-пакет 10/€400» для
+этого прохода — последний технически отдельная система (credits/consumption,
+не featured), для неё вообще нет схемы/кода. Живая проверка: реальный
+`wrangler dev --local` + вручную подписанный HMAC-SHA256 webhook-body с
+`custom_fields` создал настоящую строку в локальной D1 `featured` с
+`until = today+365`; второй платёж за тот же `agency_slug` обновил ту же
+строку (upsert, не дубликат); опечатка в slug не создала строку, но оставила
+`console.error` в логе воркера — не только по коду, тестовые данные удалены
+после проверки. Последствия: `worker/routes/stripeHook.test.mjs` переписан
+целиком под новую фикстуру `custom_fields`; owner ещё должен вручную
+настроить Payment Link (продукт €590/год + обязательный custom field с
+key=`agency_slug`) и Stripe webhook endpoint (`checkout.session.completed` →
+`/api/stripe-hook`) в Dashboard и передать реальный `STRIPE_WEBHOOK_SECRET`
+для деплоя как Worker-секрет — до этого узел работает только локально/тестово.
+
 ## D-026 · 2026-08-06 · accepted
 A2-CLAIM-REBUILD реализован частично: `scripts/apply-d1-overlay.mjs`
 (накладывает `claimed`/`featured` из D1 на `data/a11y/agencies.json` перед

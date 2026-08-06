@@ -125,9 +125,21 @@ Resend, реальным третьим лицам — только после �
 бы либо падать без секрета, либо собирать в пустоту. Approval сохраняется на
 будущее (D-026). Попутно: `worker:test`/`scripts:test` добавлены в `ci.yml`
 — не запускались в CI вообще до этого прохода, реальный пробел.
-`A2-STRIPE-LIVE` — одобрен, ещё не начат (нужен `STRIPE_SECRET_KEY`, отдельный
-от уже полученного `STRIPE_WEBHOOK_SECRET`, плюс подтверждение точных
-цен/продуктов перед созданием реальных Payment Links).
+`A2-STRIPE-LIVE` — **in progress** (2026-08-06, D-027): владелец выбрал
+создавать Payment Link вручную в Stripe Dashboard (не через API,
+`STRIPE_SECRET_KEY` не нужен вовсе) и сузил scope до одного продукта —
+featured €590/год, разовый платёж (месячная подписка и lead-пакет явно
+отложены). Это меняет извлечение agency_slug из webhook: Dashboard-ссылка не
+несёт динамическую metadata, поэтому slug собирается через Stripe custom
+field (`session.custom_fields`, не `session.metadata`), валидируется против
+реального каталога, `until` считается на сервере (today+365), не берётся из
+данных клиента. `worker/routes/stripeHook.js`/`.test.mjs` переписаны и живьём
+проверены на реальной локальной D1 (валидный slug создал featured-строку,
+повторный платёж продлил её же, опечатка — 0 записей + залогирована).
+`worker:test` 122/122, typecheck и `wrangler deploy --dry-run` чистые.
+Остаётся ручная часть на стороне владельца: создать в Dashboard продукт
+€590/год + custom field `agency_slug` + webhook endpoint, передать реальный
+`STRIPE_WEBHOOK_SECRET` для `wrangler secret put`.
 
 ## Фаза 3 — Vertical SaaS
 

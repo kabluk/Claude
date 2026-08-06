@@ -3,10 +3,12 @@
 Обновлено: 2026-08-05 · Владелец: devops-engineer
 
 - CI: `.github/workflows/ci.yml` на ветке — **зелёный**. Пайплайн: `npm ci` →
-  `typecheck` → `worker:test` (117) → `scripts:test` (7) → `build` →
-  `check-links` → `audit-a11y`. Последние два теста добавлены 2026-08-06
-  (A2-CLAIM-REBUILD, D-026) — до этого `worker/`/`scripts/` тесты запускались
-  только локально, CI их вообще не видел, реальный пробел, не гипотетический.
+  `typecheck` → `worker:test` (122) → `scripts:test` (7) → `build` →
+  `check-links` → `audit-a11y`. `worker:test`/`scripts:test` шаги добавлены
+  2026-08-06 (A2-CLAIM-REBUILD, D-026) — до этого `worker/`/`scripts/` тесты
+  запускались только локально, CI их вообще не видел, реальный пробел, не
+  гипотетический. Счёт `worker:test` вырос со 117 до 122 при редизайне
+  `stripeHook.js` под Stripe custom fields (A2-STRIPE-LIVE, D-027).
 - Деплой: НЕ настроен. План (A0-DEPLOY): Cloudflare Pages, прод-ветка `accessatlas`,
   build command `npm run build`, output `dist/`, конвенция `dist/404.html` уже соблюдена.
 - **A2-CLAIM-REBUILD — status review (2026-08-06, D-026)**: `scripts/apply-

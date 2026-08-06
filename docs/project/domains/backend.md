@@ -496,8 +496,54 @@ email владельца — не реальное третье лицо) → з
 
 - Секреты: `RESEND_API_KEY` одобрен и рабочий (D-024), но НЕ загружен в прод —
   ждёт верифицированного домена в Resend (A0-ORIGIN), иначе реальным третьим
-  лицам письма всё равно не дойдут. Stripe (`STRIPE_SECRET_KEY`, реальные
-  Payment Links, A2-STRIPE-LIVE) — всё ещё approval_required, не начато.
-  `STRIPE_WEBHOOK_SECRET` тоже секрет, но код, который его использует (этот
-  узел), уже написан и протестирован на синтетическом секрете — реальный
-  секрет появляется только на деплое A2-STRIPE-LIVE.
+  лицам письма всё равно не дойдут. Stripe (`STRIPE_WEBHOOK_SECRET`, код,
+  A2-STRIPE-LIVE) — код готов (см. ниже), `STRIPE_SECRET_KEY` не выдан и не
+  нужен (Payment Link создаётся вручную в Dashboard, не через API);
+  `STRIPE_WEBHOOK_SECRET` появится только когда владелец настроит реальный
+  webhook endpoint в Stripe Dashboard.
+
+## A2-STRIPE-LIVE (2026-08-06, D-027) — custom-field редизайн
+
+`worker/routes/stripeHook.js` переписан под Payment Link, создаваемый вручную
+в Stripe Dashboard (владелец явно выбрал этот путь вместо API), что меняет
+источник `agency_slug`:
+
+- Было (A2-STRIPE-WEBHOOK-CODE): `session.metadata.agency_slug`/`.until` —
+  работало бы только для Payment Link, созданного программно через API
+  (там metadata можно задать динамически на лету).
+- Стало: Dashboard-ссылка одна и та же для всех покупателей — не умеет
+  нести per-purchase metadata. `agency_slug` собирается через Stripe "custom
+  field" (агентство само вписывает slug на странице оплаты) — приходит в
+  `session.custom_fields: [{key, label, type, text:{value}}]`.
+  `extractAgencySlugFromSession` ищет поле с `key === 'agency_slug'`
+  (константа `CUSTOM_FIELD_KEY`, должна совпадать с key реального custom
+  field в Dashboard) и валидирует значение против настоящего каталога
+  (`AGENCY_SLUGS`, из `matchAgenciesServer.js`) — опечатка/несуществующий
+  slug не создаёт запись в `featured`, но логируется `console.error`
+  отдельно (не теряется молча, событие всё равно 200 — Stripe не должен
+  ретраить то, что мы осознанно не применяем).
+- `until` (дата окончания featured) больше НЕ приходит извне вообще —
+  считается на сервере (`computeFeaturedUntil`, today+365 дней в момент
+  обработки события), потому что customer-редактируемое поле не должно
+  иметь возможности продиктовать себе любую дату окончания.
+- Scope первого прохода — владелец явно сузил до одного продукта: featured
+  €590/год, разовый платёж. Месячная подписка (€59/мес) и «lead-пакет
+  10/€400» (отдельная система credits/consumption, схемы для неё вообще нет)
+  явно отклонены для этого прохода.
+- `worker/routes/stripeHook.test.mjs` переписан целиком под `custom_fields`
+  (было `metadata`) — 122/122 `worker:test` зелёные (было 117).
+- Живьём через `wrangler dev --local --var STRIPE_WEBHOOK_SECRET:...` (тот
+  же синтетический секрет, что в A2-STRIPE-WEBHOOK-CODE) +
+  `wrangler d1 execute --local` на реальной локальной D1: валидный
+  `custom_fields` с реальным slug (`deque-systems`) → 200, реальная строка
+  `featured` создана с `until` = ровно сегодня+365; повторный платёж за тот
+  же slug → та же строка обновилась (upsert, PK держит), не задублировалась;
+  опечатка в slug (`totally-fake-typo-slug`) → 200, но 0 строк в D1 и реальный
+  `console.error` в логе воркера — тестовые строки удалены после проверки.
+  `npm run typecheck` и `npx wrangler deploy --dry-run` чистые.
+- ОСТАЁТСЯ: владелец должен вручную в Stripe Dashboard создать продукт
+  €590/год + добавить обязательный custom field (key ровно `agency_slug`) на
+  Payment Link, настроить webhook endpoint (`checkout.session.completed` →
+  `https://accessatlas-worker.zincroom.workers.dev/api/stripe-hook`),
+  передать реальный `STRIPE_WEBHOOK_SECRET` для `wrangler secret put` — до
+  этого узел не принимает реальные деньги, готов только код.

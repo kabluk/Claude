@@ -1,14 +1,25 @@
 // Синтетические фикстуры Stripe checkout.session.completed события + тестовый
 // webhook-секрет — НЕ реальный STRIPE_WEBHOOK_SECRET (A2-STRIPE-WEBHOOK-CODE).
+// A2-STRIPE-LIVE (D-027): Payment Link создан вручную в Dashboard, поэтому
+// agency_slug приходит через session.custom_fields (custom field на странице
+// оплаты), не через session.metadata — Dashboard-ссылка не умеет нести
+// динамическую metadata, одна и та же для всех покупателей. until больше не
+// приходит извне вообще — считается на сервере (computeFeaturedUntil).
 // Живая проверка (реальная D1 через wrangler dev --local + wrangler d1 execute
 // --local) — отдельно, не заменяется этими тестами (D-020).
 
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { createHmac } from 'node:crypto'
-import { handlePostStripeHook, extractFeaturedFromSession } from './stripeHook.js'
+import { handlePostStripeHook, extractFeaturedFromSession, computeFeaturedUntil } from './stripeHook.js'
 
 const SECRET = 'whsec_test_synthetic_0000000000000000000000'
+// Реальные slug'и из data/a11y/agencies.json — extractFeaturedFromSession
+// валидирует против настоящего каталога (AGENCY_SLUGS), выдуманный slug
+// должен отклоняться так же, как опечатка агентства.
+const REAL_SLUG_1 = 'deque-systems'
+const REAL_SLUG_2 = 'marc-haunschild-accessibility-consulting'
+const UNKNOWN_SLUG = 'acme-a11y-does-not-exist'
 
 function sign(secret, timestamp, payload) {
   return createHmac('sha256', secret).update(`${timestamp}.${payload}`).digest('hex')
@@ -52,7 +63,11 @@ function req(rawBody, { signature, headers = {} } = {}) {
   return new Request('https://worker.example/api/stripe-hook', { method: 'POST', headers: h, body: rawBody })
 }
 
-function checkoutSessionCompletedEvent({ agencySlug = 'acme-a11y', until = '2027-01-01', sessionId = 'cs_test_1' } = {}) {
+function customField(key, value) {
+  return { key, label: { type: 'custom', custom: key }, optional: false, type: 'text', text: { value } }
+}
+
+function checkoutSessionCompletedEvent({ agencySlug = REAL_SLUG_1, sessionId = 'cs_test_1', customFields } = {}) {
   return JSON.stringify({
     id: 'evt_test_1',
     type: 'checkout.session.completed',
@@ -60,32 +75,59 @@ function checkoutSessionCompletedEvent({ agencySlug = 'acme-a11y', until = '2027
       object: {
         id: sessionId,
         object: 'checkout.session',
-        metadata: { agency_slug: agencySlug, until },
+        custom_fields: customFields !== undefined ? customFields : [customField('agency_slug', agencySlug)],
       },
     },
   })
 }
 
-// --- extractFeaturedFromSession -------------------------------------------
+// --- computeFeaturedUntil ----------------------------------------------------
 
-test('extractFeaturedFromSession: valid metadata -> {agencySlug, until}', () => {
-  const session = { metadata: { agency_slug: 'acme', until: '2027-01-01' } }
-  assert.deepEqual(extractFeaturedFromSession(session), { agencySlug: 'acme', until: '2027-01-01' })
+test('computeFeaturedUntil: today + 365 days, ISO date only', () => {
+  const now = new Date('2026-08-06T12:34:56.000Z')
+  assert.equal(computeFeaturedUntil(now), '2027-08-06')
 })
 
-test('extractFeaturedFromSession: missing metadata -> null', () => {
+test('computeFeaturedUntil: defaults to real "now" when called with no argument', () => {
+  const result = computeFeaturedUntil()
+  assert.match(result, /^\d{4}-\d{2}-\d{2}$/)
+})
+
+// --- extractFeaturedFromSession -----------------------------------------------
+
+test('extractFeaturedFromSession: valid custom_fields with a real agency_slug -> {agencySlug, until}', () => {
+  const now = new Date('2026-08-06T00:00:00.000Z')
+  const session = { custom_fields: [customField('agency_slug', REAL_SLUG_1)] }
+  assert.deepEqual(extractFeaturedFromSession(session, now), { agencySlug: REAL_SLUG_1, until: '2027-08-06' })
+})
+
+test('extractFeaturedFromSession: until is server-computed, never trusted from the session', () => {
+  // even if a session somehow carried its own "until"-looking field, it must be ignored
+  const now = new Date('2026-08-06T00:00:00.000Z')
+  const session = { custom_fields: [customField('agency_slug', REAL_SLUG_1)], until: '2099-01-01' }
+  assert.deepEqual(extractFeaturedFromSession(session, now), { agencySlug: REAL_SLUG_1, until: '2027-08-06' })
+})
+
+test('extractFeaturedFromSession: missing/malformed custom_fields -> null', () => {
   assert.equal(extractFeaturedFromSession({}), null)
   assert.equal(extractFeaturedFromSession(null), null)
+  assert.equal(extractFeaturedFromSession({ custom_fields: null }), null)
+  assert.equal(extractFeaturedFromSession({ custom_fields: 'not-an-array' }), null)
 })
 
-test('extractFeaturedFromSession: missing/blank agency_slug -> null', () => {
-  assert.equal(extractFeaturedFromSession({ metadata: { until: '2027-01-01' } }), null)
-  assert.equal(extractFeaturedFromSession({ metadata: { agency_slug: '  ', until: '2027-01-01' } }), null)
+test('extractFeaturedFromSession: agency_slug field missing from custom_fields -> null', () => {
+  const session = { custom_fields: [customField('some_other_field', 'value')] }
+  assert.equal(extractFeaturedFromSession(session), null)
 })
 
-test('extractFeaturedFromSession: missing/malformed until -> null', () => {
-  assert.equal(extractFeaturedFromSession({ metadata: { agency_slug: 'acme' } }), null)
-  assert.equal(extractFeaturedFromSession({ metadata: { agency_slug: 'acme', until: 'not-a-date' } }), null)
+test('extractFeaturedFromSession: blank/whitespace-only agency_slug value -> null', () => {
+  assert.equal(extractFeaturedFromSession({ custom_fields: [customField('agency_slug', '')] }), null)
+  assert.equal(extractFeaturedFromSession({ custom_fields: [customField('agency_slug', '   ')] }), null)
+})
+
+test('extractFeaturedFromSession: agency_slug not present in the real catalog (typo) -> null', () => {
+  const session = { custom_fields: [customField('agency_slug', UNKNOWN_SLUG)] }
+  assert.equal(extractFeaturedFromSession(session), null)
 })
 
 // --- handlePostStripeHook ---------------------------------------------------
@@ -122,7 +164,7 @@ test('tampered body vs. an otherwise-valid signature -> 400 bad_request, D1 unto
   const e = env()
   const body = checkoutSessionCompletedEvent()
   const validHeaderForOriginalBody = signedHeader(body)
-  const tamperedBody = checkoutSessionCompletedEvent({ until: '2099-01-01' })
+  const tamperedBody = checkoutSessionCompletedEvent({ agencySlug: REAL_SLUG_2 })
   const res = await handlePostStripeHook(req(tamperedBody, { signature: validHeaderForOriginalBody }), e)
   assert.equal(res.status, 400)
   assert.equal(e.DB.rows.length, 0)
@@ -148,9 +190,9 @@ test('valid signature but body is not valid JSON -> 400 bad_request', async () =
   assert.equal(e.DB.rows.length, 0)
 })
 
-test('valid signature + checkout.session.completed with valid metadata -> 200, featured upserted in D1', async () => {
+test('valid signature + checkout.session.completed with a real agency_slug custom field -> 200, featured upserted in D1 with server-computed until', async () => {
   const e = env()
-  const body = checkoutSessionCompletedEvent({ agencySlug: 'acme-a11y', until: '2027-01-01', sessionId: 'cs_test_42' })
+  const body = checkoutSessionCompletedEvent({ agencySlug: REAL_SLUG_1, sessionId: 'cs_test_42' })
   const res = await handlePostStripeHook(req(body), e)
   assert.equal(res.status, 200)
   const data = await res.json()
@@ -160,16 +202,22 @@ test('valid signature + checkout.session.completed with valid metadata -> 200, f
   const [{ sql, args }] = e.DB.rows
   assert.match(sql, /INSERT INTO featured/)
   assert.match(sql, /ON CONFLICT\(agency_slug\) DO UPDATE/)
-  assert.deepEqual(args, ['acme-a11y', '2027-01-01', 'cs_test_42'])
+  assert.equal(args[0], REAL_SLUG_1)
+  assert.match(args[1], /^\d{4}-\d{2}-\d{2}$/)
+  assert.equal(args[2], 'cs_test_42')
 })
 
-test('valid signature + checkout.session.completed but no agency_slug/until metadata -> 200, D1 untouched (bad Payment Link config is not a delivery failure)', async () => {
+test('valid signature + checkout.session.completed but agency_slug custom field missing -> 200, D1 untouched (bad Payment Link config is not a delivery failure)', async () => {
   const e = env()
-  const body = JSON.stringify({
-    id: 'evt_test_2',
-    type: 'checkout.session.completed',
-    data: { object: { id: 'cs_test_no_meta', object: 'checkout.session', metadata: {} } },
-  })
+  const body = checkoutSessionCompletedEvent({ customFields: [] })
+  const res = await handlePostStripeHook(req(body), e)
+  assert.equal(res.status, 200)
+  assert.equal(e.DB.rows.length, 0)
+})
+
+test('valid signature + checkout.session.completed with an unrecognized agency_slug (typo) -> 200, D1 untouched', async () => {
+  const e = env()
+  const body = checkoutSessionCompletedEvent({ agencySlug: UNKNOWN_SLUG })
   const res = await handlePostStripeHook(req(body), e)
   assert.equal(res.status, 200)
   assert.equal(e.DB.rows.length, 0)
@@ -187,12 +235,13 @@ test('valid signature + unhandled event type -> 200 (acknowledged, no-op), D1 un
 
 test('renewal: a second checkout.session.completed for the same agency_slug issues another upsert (ON CONFLICT extends until, verified live against real D1 per GRAPH.yaml)', async () => {
   const e = env()
-  const first = checkoutSessionCompletedEvent({ agencySlug: 'acme-a11y', until: '2027-01-01', sessionId: 'cs_1' })
-  const second = checkoutSessionCompletedEvent({ agencySlug: 'acme-a11y', until: '2027-02-01', sessionId: 'cs_2' })
+  const first = checkoutSessionCompletedEvent({ agencySlug: REAL_SLUG_1, sessionId: 'cs_1' })
+  const second = checkoutSessionCompletedEvent({ agencySlug: REAL_SLUG_1, sessionId: 'cs_2' })
 
   assert.equal((await handlePostStripeHook(req(first), e)).status, 200)
   assert.equal((await handlePostStripeHook(req(second), e)).status, 200)
 
   assert.equal(e.DB.rows.length, 2)
-  assert.deepEqual(e.DB.rows[1].args, ['acme-a11y', '2027-02-01', 'cs_2'])
+  assert.equal(e.DB.rows[1].args[0], REAL_SLUG_1)
+  assert.equal(e.DB.rows[1].args[2], 'cs_2')
 })

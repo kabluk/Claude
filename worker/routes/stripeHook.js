@@ -4,8 +4,10 @@
 // Проверка подписи — worker/lib/stripeSig.js, реальный алгоритм Stripe
 // (Stripe-Signature: t=…,v1=…, HMAC-SHA256 secret над "{t}.{raw_body}",
 // константное сравнение). Секрет — env.STRIPE_WEBHOOK_SECRET (`wrangler secret
-// put`, whsec_...), НЕ STRIPE_SECRET_KEY (тот нужен только для создания
-// Payment Links на стороне A2-STRIPE-LIVE, этому обработчику не нужен вовсе).
+// put`, whsec_...), НЕ STRIPE_SECRET_KEY (тот нужен только для программного
+// создания Payment Links; A2-STRIPE-LIVE создаёт их вручную в Dashboard —
+// см. ниже почему это меняет извлечение данных — этому обработчику
+// STRIPE_SECRET_KEY не нужен вовсе).
 //
 // Тот же паттерн "нет секрета -> 503", что worker/lib/explain.js без
 // ANTHROPIC_API_KEY (A1-EXPLAIN) — не блокирует остальной воркер, но честно
@@ -15,31 +17,48 @@
 // специализирован под scans (см. его заголовок), тот же прецедент, что
 // worker/routes/lead.js для leads.
 //
-// agency_slug и until извлекаются из session.metadata Stripe Checkout Session
-// (checkout.session.completed): Stripe не знает о нашей доменной модели
-// (агентства/подписки каталога), единственный официальный канал протащить
-// произвольные бизнес-данные через Checkout — Payment Link metadata, которую
-// сам Stripe копирует на созданную Session без изменений. Реальную настройку
-// Payment Link с этими полями metadata делает A2-STRIPE-LIVE; здесь только
-// код, который их читает.
+// A2-STRIPE-LIVE (D-027): Payment Link создаётся вручную в Stripe Dashboard,
+// не через API — Dashboard-ссылка не умеет нести ДИНАМИЧЕСКУЮ metadata (она
+// одна и та же для всех покупателей одной ссылки), поэтому agency_slug
+// собирается через Stripe "custom field" на странице оплаты (агентство само
+// вписывает свой slug) — приходит в session.custom_fields, не в
+// session.metadata. Единственный продукт первого прохода — featured
+// €590/год, разовый платёж (не подписка) — until НЕ берётся из данных,
+// присланных клиентом/Stripe вообще: считается на сервере как "сегодня +
+// 365 дней" в момент обработки события, иначе платящий мог бы (по ошибке
+// конфигурации Stripe-стороны или иначе) продиктовать себе любую дату.
+// Ежемесячная подписка и lead-пакеты (другая система — credits, не featured)
+// вне scope этого прохода, см. GRAPH.yaml notes.
 
 import { verifyStripeSignature } from '../lib/stripeSig.js'
+import { agencies } from '../lib/matchAgenciesServer.js'
 
-const UNTIL_RE = /^\d{4}-\d{2}-\d{2}/ // ISO-дата (тот же формат, что Agency.featured.until, INTERFACES.md §4)
+const AGENCY_SLUGS = new Set(agencies.map((a) => a.slug))
+const CUSTOM_FIELD_KEY = 'agency_slug' // должен совпадать с key custom field в Payment Link (Dashboard)
+const FEATURED_DAYS = 365
+
+function extractAgencySlugFromSession(session) {
+  const fields = session?.custom_fields
+  if (!Array.isArray(fields)) return null
+  const field = fields.find((f) => f?.key === CUSTOM_FIELD_KEY)
+  const value = field?.text?.value
+  return typeof value === 'string' && value.trim() ? value.trim() : null
+}
+
+export function computeFeaturedUntil(now = new Date()) {
+  return new Date(now.getTime() + FEATURED_DAYS * 24 * 60 * 60 * 1000).toISOString().slice(0, 10)
+}
 
 // Возвращает {agencySlug, until} или null, если checkout session не несёт
-// валидных данных featured-размещения (нет смысла отклонять весь webhook —
-// подпись Stripe подтверждена, событие настоящее, просто нечего применить).
-export function extractFeaturedFromSession(session) {
-  const metadata = session?.metadata
-  if (!metadata || typeof metadata !== 'object') return null
-
-  const agencySlug = metadata.agency_slug
-  const until = metadata.until
-  if (typeof agencySlug !== 'string' || !agencySlug.trim()) return null
-  if (typeof until !== 'string' || !UNTIL_RE.test(until)) return null
-
-  return { agencySlug: agencySlug.trim(), until }
+// валидного agency_slug (пустое поле или опечатка, не входящая в реальный
+// каталог — не выдумываем размещение для несуществующего slug). Нет смысла
+// отклонять весь webhook — подпись Stripe подтверждена, платёж настоящий,
+// просто нечего применить автоматически (см. вызывающий код: залогировано
+// отдельно, чтобы не потерять "заплатил, но опечатался").
+export function extractFeaturedFromSession(session, now = new Date()) {
+  const agencySlug = extractAgencySlugFromSession(session)
+  if (!agencySlug || !AGENCY_SLUGS.has(agencySlug)) return null
+  return { agencySlug, until: computeFeaturedUntil(now) }
 }
 
 // agency_slug PK (migrations/0005_featured.sql) — продление существующего
@@ -89,9 +108,17 @@ export async function handlePostStripeHook(request, env) {
     if (featured) {
       await upsertFeatured(env.DB, { ...featured, stripeRef: session?.id ?? null })
     }
-    // featured === null: metadata отсутствует/некорректна — конфигурационная
-    // проблема Payment Link (A2-STRIPE-LIVE), не повод отвечать не-2xx
-    // подлинному, верно подписанному событию Stripe.
+    if (!featured) {
+      // Подпись верна, платёж настоящий, но custom_fields не несёт
+      // валидный agency_slug (пусто или опечатка мимо реального каталога) —
+      // конфигурационная проблема Payment Link/ввода клиента, не повод
+      // отвечать не-2xx подлинному событию Stripe. Логируем отдельно, чтобы
+      // не потерять "заплатил, но опечатался" молча.
+      console.error(
+        'A2-STRIPE-LIVE: checkout.session.completed без валидного agency_slug',
+        { sessionId: session?.id ?? null, customFields: session?.custom_fields ?? null },
+      )
+    }
   }
 
   return Response.json({ received: true }, { status: 200 })
