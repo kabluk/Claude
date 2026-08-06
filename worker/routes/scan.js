@@ -4,6 +4,7 @@ import { verifyTurnstile } from '../lib/turnstile.js'
 import { scanSite } from '../lib/axe.js'
 import { scoreFromFindings } from '../lib/score.js'
 import { classifyError } from '../lib/errors.js'
+import { jurisdictionForUrl, applyJurisdictionWeight } from '../lib/jurisdiction.js'
 
 function isHttpUrl(value) {
   try {
@@ -46,11 +47,18 @@ export async function handlePostScan(request, env, ctx) {
   const id = crypto.randomUUID()
   await insertScanPending(env.DB, { id, url, email, createdAt: new Date().toISOString() })
 
+  // A3-JURISDICTION: "нет заявления -> §37 BFSG, до €100k" юридически весомее, чем
+  // "color-contrast: serious" — взвешиваем ПОСЛЕ скана, ДО подсчёта score, чтобы
+  // score.js остался generic (без знания о юрисдикциях) и продолжал работать по
+  // impact, как раньше.
+  const jurisdiction = jurisdictionForUrl(url)
+
   ctx.waitUntil(
     scanSite(env, url)
-      .then(({ pages, findings }) =>
-        completeScan(env.DB, { id, pages, findings, score: scoreFromFindings(findings) })
-      )
+      .then(({ pages, findings }) => {
+        const weighted = applyJurisdictionWeight(findings, jurisdiction)
+        return completeScan(env.DB, { id, pages, findings: weighted, score: scoreFromFindings(weighted) })
+      })
       .catch((err) => {
         const message = err?.message ?? String(err)
         return failScan(env.DB, { id, error: message, errorCode: classifyError(message) })

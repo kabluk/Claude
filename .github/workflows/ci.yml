@@ -15,6 +15,14 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run typecheck
+      # Дожинаем UX-пробел: сайт, продающий аудиты доступности, обязан проходить
+      # свои же стандарты (domains/qa.md, ROADMAP.md Фаза 1). CI-раннер без
+      # /opt/pw-browsers — ставим Chromium явно, без хардкода пути (только тут).
+      # Перенесено ПЕРЕД worker:test (2026-08-06, A3-REFLOW/KEYBOARD/MEDIA/RESIZE/
+      # COOKIEBANNER): worker/lib/domChecks.test.mjs тоже гоняет реальный Chromium
+      # (не мок) — без этого шага перед worker:test тесты падали бы в CI с "Executable
+      # doesn't exist", хотя проходили локально (браузер уже стоял в песочнице).
+      - run: npx playwright install --with-deps chromium
       # Найдено при A2-CLAIM-REBUILD: worker/ и scripts/ имели тесты (117 + 7),
       # но ни одна не запускалась в CI — только локально по памяти сессии.
       - run: npm run worker:test
@@ -22,8 +30,4 @@ jobs:
       - run: npm run build
       # Все внутренние ссылки должны разрешаться в существующие страницы
       - run: npm run check-links
-      # Дожинаем UX-пробел: сайт, продающий аудиты доступности, обязан проходить
-      # свои же стандарты (domains/qa.md, ROADMAP.md Фаза 1). CI-раннер без
-      # /opt/pw-browsers — ставим Chromium явно, без хардкода пути (только тут).
-      - run: npx playwright install --with-deps chromium
       - run: npm run audit-a11y

@@ -39,7 +39,22 @@ D-016). `sampleHtml` из черновика убран — конфликтов
 
 ```ts
 type ScanFinding = { ruleId: string; wcag: string[]; impact: 'minor'|'moderate'|'serious'|'critical';
-  selector: string; page: string; html?: string };
+  selector: string; page: string; html?: string; jurisdictionNote?: string };
+// ruleId: либо реальный axe-core ruleId (напр. "color-contrast"), либо один из
+// собственных проверок вне axe (D-030, 2026-08-06), namespace "a11y-*"/"scan-meta-*":
+//   a11y-statement-missing / a11y-statement-incomplete — A3-STATEMENT (Anlage 3)
+//   a11y-feedback-missing — A3-FEEDBACK
+//   a11y-pdf-present — A3-PDF (агрегат на страницу, не по PDF)
+//   a11y-reflow-320 — A3-REFLOW (WCAG 1.4.10)
+//   a11y-keyboard-trap / a11y-focus-invisible — A3-KEYBOARD (эвристика, может false-positive)
+//   a11y-autoplay-media / a11y-video-no-captions — A3-MEDIA
+//   a11y-resize-200 — A3-RESIZE (приближение через CSS zoom, не идентично браузерному Ctrl+)
+//   scan-meta-cookie-banner-dismissed — A3-COOKIEBANNER: не находка против сайта,
+//     прозрачность что DOM скорректирован перед проверкой (impact всегда minor)
+// jurisdictionNote: заполняется applyJurisdictionWeight() (worker/lib/jurisdiction.js)
+// ТОЛЬКО на a11y-statement-missing/incomplete, когда juridiction.statementRequired —
+// бампит impact до critical; сумма штрафа включается в текст только если
+// jurisdiction.verified (сейчас — только DE, §37 BFSG, D-030).
 type ScanReport = { id: string; url: string; status: 'running'|'done'|'error'; pages: string[];
   findings: ScanFinding[]; score: number|null; error: string|null;
   errorCode: 'unreachable'|'refused'|'tls'|'timeout'|'blocked'|'internal'|null;

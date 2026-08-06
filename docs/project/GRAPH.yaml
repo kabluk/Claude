@@ -499,3 +499,172 @@ nodes:
     risk: high
     approval_required: true
     notes: "Resend одобрен владельцем 2026-08-06 для этого узла (D-024) — approval снят, но узел остаётся заблокирован ДВУМЯ независимыми от Resend причинами: (1) реальный домен ещё не куплен (A0-ORIGIN ждёт A0-OWNER-LEGAL) — письмо не может честно ссылаться на несуществующий https://accessatlas.example; (2) подтверждено живым API-пробником (безопасно, на example.com, не на живом человеке, D-024): sandbox-домен Resend в принципе не может доставить письмо стороннему получателю без верифицированного собственного домена — 422 на любой адрес кроме email владельца аккаунта Resend. A2-CLAIM-API готов (done), ссылка «заберите профиль» вела бы на рабочий claim-поток технически, но физически ни одно из 96 писем сейчас доставить нельзя. status=todo сохранён (не blocked, как A2-LEAD-EMAIL) — здесь единственный путь вперёд один и понятен (домен), а не открытый вопрос о модели данных."
+
+  # --- Сканер: разрыв с тем, что реально проверяют регуляторы (BACKLOG.md, 2026-08-06) ---
+  # Владелец: "Начинай все по порядку" — все 9 узлов сделаны последовательно в одной
+  # итерации (сверх обычного max_nodes_per_iteration:8 — прямое указание владельца).
+
+  - id: A3-STATEMENT
+    title: "Детект заявления о доступности (Anlage 3 / EU-модель) на главной + оценка полноты 4 пунктов"
+    owner: backend-engineer
+    status: done
+    depends_on: []
+    inputs: [worker/lib/textUtils.js]
+    scope: [worker/lib/statement.js, worker/lib/statement.test.mjs, worker/lib/__fixtures__/statement-*.html]
+    outputs: [worker/lib/statement.js]
+    verify:
+      - "node --test worker/lib/statement.test.mjs — 7/7"
+      - "живая проверка на реальных страницах bundesregierung.de и impots.gouv.fr"
+    max_attempts: 4
+    attempts: 2
+    risk: medium
+    approval_required: false
+    notes: "Готово 2026-08-06. findStatementLink() ищет ссылку по тексту (не любое упоминание слова на странице — false positive иначе); evaluateStatementContent() — 4 пункта Anlage 3 по ключевым фразам. Живая проверка на реальных фикстурах (bundesregierung.de/breg-de/barrierefreiheit, impots.gouv.fr/accessibilite) нашла и исправила 2 реальных false negative первой версии: немецкий текст вставляет слова между «Erklärung» и «gilt für» (паттерны сокращены до коротких подстрок), методология называется поимённо («BITV-Test», «audit de conformité»), не словом «geprüft». normalize() также приводит типографский апостроф (’) к обычному — французское «s’applique» не матчилось без этого. Оба реальных гос. заявления теперь корректно detected complete:true."
+
+  - id: A3-FEEDBACK
+    title: "Детект доступного канала обратной связи (email/форма/телефон) по официальному EU-заголовку раздела"
+    owner: backend-engineer
+    status: done
+    depends_on: []
+    inputs: [worker/lib/textUtils.js]
+    scope: [worker/lib/feedback.js, worker/lib/feedback.test.mjs, worker/lib/__fixtures__/feedback-*.html]
+    outputs: [worker/lib/feedback.js]
+    verify:
+      - "node --test worker/lib/feedback.test.mjs — 5/5"
+      - "живая проверка на реальной странице bundesregierung.de/.../barrierefreiheit-feedback"
+    max_attempts: 4
+    attempts: 2
+    risk: medium
+    approval_required: false
+    notes: "Готово 2026-08-06. Первая идея («искать <form> тег») провалилась на живой проверке: единственный <form> на реальной странице bundesregierung.de принадлежал cookie-баннеру, не форме обратной связи. Переключились на поиск официального заголовка EU-шаблона заявления («Feedback and contact information» / «Retour d'information et contact» и переводы, Commission Implementing Decision (EU) 2018/1523) — надёжный сигнал, подтверждённый на двух реальных гос. сайтах (DE, FR). Заодно нашли, что impots.gouv.fr публикует email как голый текст без mailto: — добавлен regex на bare email в окне ±400 символов вокруг найденной фразы."
+
+  - id: A3-PDF
+    title: "Детект ссылок на PDF-документы на обойдённых страницах (axe их не видит вообще — не HTML)"
+    owner: backend-engineer
+    status: done
+    depends_on: []
+    inputs: []
+    scope: [worker/lib/pdf.js, worker/lib/pdf.test.mjs, worker/lib/__fixtures__/pdf-*.html]
+    outputs: [worker/lib/pdf.js]
+    verify:
+      - "node --test worker/lib/pdf.test.mjs — 6/6"
+      - "живая проверка: 43 уникальных реальных PDF-ссылки на bundesregierung.de/.../publikationen"
+    max_attempts: 3
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Готово 2026-08-06. detectPdfLinks() — href=\"...pdf(?query)\", резолв относительных URL, дедуп. Живая проверка нашла реальный немецкий паттерн '?__blob=publicationFile&v=4' (query после расширения) — regex должен матчить '.pdf' ДО '?', не в конце строки. 44 сырых совпадения на реальной странице, 43 уникальных (одна PDF реально линкуется дважды — не баг дедупа, настоящий дубль на сайте)."
+
+  - id: A3-REFLOW
+    title: "Reflow на 320px (WCAG 1.4.10) — viewport + горизонтальный скролл"
+    owner: backend-engineer
+    status: done
+    depends_on: []
+    inputs: []
+    scope: [worker/lib/domChecks.js, worker/lib/domChecks.test.mjs]
+    outputs: [worker/lib/domChecks.js]
+    verify:
+      - "node --test worker/lib/domChecks.test.mjs — 11/11 (реальный Chromium через Playwright)"
+    max_attempts: 4
+    attempts: 1
+    risk: medium
+    approval_required: false
+    notes: "Готово 2026-08-06 (вместе с A3-KEYBOARD/A3-MEDIA/A3-RESIZE/A3-COOKIEBANNER — общий модуль domChecks.js, общая живая проверка). checkReflow320() ставит viewport 320×800, ждёт кадр после resize (requestAnimationFrame×2 — без этого некоторые страницы ещё не успели перестроить layout), сравнивает scrollWidth/clientWidth, восстанавливает исходный viewport. Живая проверка реальным Chromium (Playwright, локальный HTML — внешний HTTPS браузеру в песочнице недоступен, тот же барьер, что у A1-LANDING/D-010): фиксированная 900px раскладка корректно даёт overflow, адаптивная — нет."
+
+  - id: A3-KEYBOARD
+    title: "Клавиатурная навигация: обход Tab, focus trap, невидимый фокус"
+    owner: backend-engineer
+    status: done
+    depends_on: []
+    inputs: []
+    scope: [worker/lib/domChecks.js, worker/lib/domChecks.test.mjs]
+    outputs: [worker/lib/domChecks.js]
+    verify:
+      - "node --test worker/lib/domChecks.test.mjs — 11/11 (реальный Chromium через Playwright)"
+    max_attempts: 4
+    attempts: 2
+    risk: medium
+    approval_required: false
+    notes: "Готово 2026-08-06. checkKeyboardTraversal() жмёт Tab до 40 раз, ловит trap (один и тот же activeElement 4 раза подряд) и невидимый фокус (computed outline/box-shadow отсутствуют). Живая проверка реальным Chromium нашла и исправила реальный баг первой версии: проверка невидимости фокуса читала document.activeElement ОТДЕЛЬНЫМ evaluate() ПОСЛЕ выхода из цикла Tab — к этому моменту фокус на короткой странице уже мог уйти на <body> (после последней ссылки), и страница с явным `a:focus{outline:3px solid blue}` ложно помечалась «невидимый фокус». Исправлено: селектор и видимость читаются за один evaluate, пока элемент точно ещё в фокусе. Регрессионный тест добавлен."
+
+  - id: A3-MEDIA
+    title: "Автовоспроизведение без mute (1.4.2) и видео без <track kind=captions> (1.2.2)"
+    owner: backend-engineer
+    status: done
+    depends_on: []
+    inputs: []
+    scope: [worker/lib/domChecks.js, worker/lib/domChecks.test.mjs]
+    outputs: [worker/lib/domChecks.js]
+    verify:
+      - "node --test worker/lib/domChecks.test.mjs — 11/11 (реальный Chromium через Playwright)"
+    max_attempts: 3
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Готово 2026-08-06. checkMedia() — прямой DOM-запрос video/audio, без эвристик текста (в отличие от statement/feedback тут не нужно — свойства autoplay/muted и наличие <track> детерминированы). Живая проверка реальным Chromium: video[autoplay] без muted и без captions-track корректно даёт 2 находки, muted+captions видео — 0."
+
+  - id: A3-RESIZE
+    title: "Увеличение текста 200% (WCAG 1.4.4) — обрезка/наложение контента"
+    owner: backend-engineer
+    status: done
+    depends_on: []
+    inputs: []
+    scope: [worker/lib/domChecks.js, worker/lib/domChecks.test.mjs]
+    outputs: [worker/lib/domChecks.js]
+    verify:
+      - "node --test worker/lib/domChecks.test.mjs — 11/11 (реальный Chromium через Playwright)"
+    max_attempts: 3
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Готово 2026-08-06. checkResize200() приближает браузерный zoom через CSS `zoom:200%` на documentElement (Chromium-специфично, но Browser Rendering — это Chromium) — честно задокументированное приближение, не идентичное Ctrl+ (тот также масштабирует UI окна браузера, вне DOM). Живая проверка: фиксированная nowrap-раскладка 1200px корректно клипается при 200%, обычный текстовый параграф — нет."
+
+  - id: A3-PAGESELECT
+    title: "Приоритизация транзакционных/формовых страниц (корзина, вход, контакт) при выборе, какие ≤6 страниц обойти"
+    owner: backend-engineer
+    status: done
+    depends_on: []
+    inputs: []
+    scope: [worker/lib/links.js, worker/lib/links.test.mjs, worker/lib/__fixtures__/links-*.html]
+    outputs: [worker/lib/links.js]
+    verify:
+      - "node --test worker/lib/links.test.mjs — 9/9"
+      - "живая проверка приоритизации на реальном HTML manufactum.de и impots.gouv.fr"
+    max_attempts: 4
+    attempts: 1
+    risk: medium
+    approval_required: false
+    notes: "Готово 2026-08-06. pickPriorityLinks() матчит ключевые слова и по пути URL, и по видимому тексту ссылки — живая проверка на manufactum.de нашла, что реальная ссылка на корзину (/warenkorb) имеет видимый текст «0,00 €» (просто сумма, БЕЗ слова «корзина») — версия, искавшая только по тексту, эту страницу вообще не подняла бы. НЕ входило в буквальный scope узла, но найдено тем же живым прогоном и исправлено тем же коммитом: старая sameOriginLinks() матчила href=\"...\" ЛЮБОГО тега, не только <a> — на реальном сайте это ловило <link rel=preload href=...woff2> (шрифты!) как «страницы» для скана, тратя весь бюджет MAX_PAGES на нескачиваемые-как-страница ресурсы. Исправлено в обеих функциях модуля (extractAnchors вынесен в textUtils.js). Регрессионный тест добавлен."
+
+  - id: A3-COOKIEBANNER
+    title: "Детект и снятие cookie-баннера ДО axe.run() — иначе axe видит перекрытый DOM"
+    owner: backend-engineer
+    status: done
+    depends_on: []
+    inputs: []
+    scope: [worker/lib/domChecks.js, worker/lib/domChecks.test.mjs]
+    outputs: [worker/lib/domChecks.js]
+    verify:
+      - "node --test worker/lib/domChecks.test.mjs — 11/11 (реальный Chromium через Playwright)"
+    max_attempts: 4
+    attempts: 1
+    risk: medium
+    approval_required: false
+    notes: "Готово 2026-08-06. detectAndDismissCookieBanner() — быстрый путь по известным вендорским селекторам (#onetrust-banner-sdk, #CybotCookiebotDialog и т.п.) + основной путь по computed style (position:fixed/sticky + z-index≥100 + покрытие ≥10% viewport + cookie-лексика в тексте), затем клик по кнопке с текстом из списка (accept/akzeptieren/j'accepte/zaakceptuj/aceptar). Живая проверка реальным Chromium: известный вендор и кастомный баннер оба детектятся и снимаются; маленький несвязанный fixed-виджет (кнопка «наверх») корректно НЕ распознаётся банннером (порог покрытия площади спас от false positive). Не находка против сайта — прозрачная scan-meta находка impact:minor, что DOM был скорректирован перед проверкой."
+
+  - id: A3-JURISDICTION
+    title: "Взвешивание severity по юрисдикции сайта (TLD), не только по axe impact — отсутствие заявления в DE/FR/ES/NL/PL становится critical"
+    owner: backend-engineer
+    status: done
+    depends_on: [A3-STATEMENT]
+    inputs: [docs/project/BACKLOG.md]
+    scope: [worker/lib/jurisdiction.js, worker/lib/jurisdiction.test.mjs, worker/routes/scan.js]
+    outputs: [worker/lib/jurisdiction.js]
+    verify:
+      - "node --test worker/lib/jurisdiction.test.mjs — 8/8"
+      - "npm run worker:test — 168/168 (после интеграции в scan.js)"
+    max_attempts: 3
+    attempts: 1
+    risk: medium
+    approval_required: false
+    notes: "Готово 2026-08-06. jurisdictionForUrl() — TLD→юрисдикция (de/fr/es/nl/pl, честно узкий список; unknown TLD -> statementRequired:null, не угадываем). ТОЛЬКO DE помечена verified:true с суммой штрафа (§37 BFSG, законодательный источник по самому исследованию) — остальные юрисдикции получают закон+обязательность заявления, БЕЗ суммы (verified:false), уважая предупреждение исследования, что страновые суммы в основном из вендорских блогов. applyJurisdictionWeight() бампит a11y-statement-missing/incomplete до critical, добавляет jurisdictionNote. Подключено в scan.js ПОСЛЕ scanSite(), ДО scoreFromFindings — score.js остался generic, не тронут."

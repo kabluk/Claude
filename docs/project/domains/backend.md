@@ -618,3 +618,62 @@ field нужно будет подтвердить тем же способом,
 тестовый платёж → прислать сюда JSON `checkout.session.completed`), а не
 предполагать по видимому в Dashboard тексту (см. урок в
 `.claude/agents/devops-engineer.md`).
+
+## A3-STATEMENT/FEEDBACK/PDF/REFLOW/KEYBOARD/MEDIA/RESIZE/PAGESELECT/COOKIEBANNER/JURISDICTION (2026-08-06)
+
+Все 9 узлов backlog "Сканер: разрыв с тем, что реально проверяют регуляторы"
+сделаны в одной итерации по прямому приоритету владельца. Новые модули:
+
+- `worker/lib/textUtils.js` — общий `normalizeText()` (NFD-диакритика + типографский
+  апостроф → ASCII) и `extractAnchors()` (только реальные `<a>`, не любой href=).
+- `worker/lib/statement.js` — `findStatementLink()`/`evaluateStatementContent()`.
+  Фикстуры (`__fixtures__/statement-*.html`) — реальные сохранённые страницы
+  bundesregierung.de и impots.gouv.fr, не синтетика.
+- `worker/lib/feedback.js` — `detectFeedbackChannel()` по официальному заголовку
+  EU-шаблона заявления (Commission Implementing Decision (EU) 2018/1523), не по
+  наличию `<form>` (реально даёт false positive на cookie-баннере).
+- `worker/lib/pdf.js` — `detectPdfLinks()`, живой фикстур на 43 реальных PDF.
+- `worker/lib/domChecks.js` — `checkReflow320`/`checkKeyboardTraversal`/`checkMedia`/
+  `checkResize200`/`detectAndDismissCookieBanner`, все принимают Puppeteer-совместимый
+  `page`. Тестируются реальным Chromium через Playwright локально (`domChecks.test.mjs`,
+  11 тестов) — внешний HTTPS браузеру недоступен в этой песочнице (тот же барьер, что
+  A1-LANDING/D-010), поэтому фикстуры — `page.setContent()`, без сети вообще.
+- `worker/lib/links.js::pickPriorityLinks()` — приоритизация по keyword-score
+  (путь URL ×2 + видимый текст ×1) поверх старой `sameOriginLinks()`.
+- `worker/lib/jurisdiction.js` — `jurisdictionForUrl()`/`applyJurisdictionWeight()`.
+
+Интеграция: `worker/lib/axe.js` теперь вызывает всё это внутри `scanSite()` (порядок:
+priority links → statement-link на главной → доп. навигация на страницу заявления
+СВЕРХ бюджета MAX_PAGES если нужно → feedback на homeHtml+statementHtml → по каждой
+из ≤6 страниц: снять cookie-баннер → axe.run() → detectPdfLinks → reflow/resize/media
+→ keyboard только на первой странице). `worker/routes/scan.js` вызывает
+`jurisdictionForUrl(url)`/`applyJurisdictionWeight()` между `scanSite()` и
+`scoreFromFindings()` — `score.js` не тронут, остался generic по `impact`.
+
+CI (`ci.yml`): шаг `npx playwright install --with-deps chromium` перенесён ПЕРЕД
+`worker:test` (раньше стоял только перед `audit-a11y`) — иначе `domChecks.test.mjs`
+падал бы в CI с "Executable doesn't exist", хотя проходил локально (браузер уже стоял).
+
+Live-верификация каждого модуля выполнена методом, не запрещённым песочницей:
+- Текстовые проверки (statement/feedback/pdf/pageselect) — реальный `fetch()` из
+  Node на живые внешние сайты (работает через прокси песочницы; настоящий браузер —
+  нет, `net::ERR_CONNECTION_RESET`, подтверждено отдельно).
+- DOM-проверки (reflow/keyboard/media/resize/cookie-banner) — реальный Chromium
+  (Playwright) против локальных HTML-фикстур на loopback (`127.0.0.1`/`page.setContent`),
+  внешняя сеть браузеру не нужна для этого класса проверок.
+- Полный E2E через `wrangler dev --local` + реальный `env.BROWSER` НЕ выполнялся —
+  Browser Rendering платный и account-bound, задача явно не требовала платных
+  ресурсов ("чисто в коде сканера"), поэтому не запускался намеренно, не по немощи.
+
+Найденные и исправленные попутные баги (вне буквального scope, раскрыто явно —
+тот же прецедент, что D-023):
+1. `sameOriginLinks()` матчила `href="..."` ЛЮБОГО тега — `<link rel=preload>`
+   (шрифты/favicon) считались "страницами" для скана. Нашлось на реальном HTML
+   manufactum.de при работе над A3-PAGESELECT.
+2. A3-KEYBOARD invisible-focus проверка читала `document.activeElement` в отдельном
+   `evaluate()` ПОСЛЕ выхода из цикла Tab — на короткой странице фокус уже мог уйти
+   на `<body>`, и страница с реальным видимым `outline` ложно флагалась. Пойман
+   живым прогоном на фикстуре `keyboard-ok.html`, исправлен, добавлен регрессионный тест.
+
+168/168 `worker:test` (было 123), `typecheck`/`build` чисты. Полные тексты решений —
+`DECISIONS.md` D-030.
