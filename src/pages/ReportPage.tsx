@@ -220,6 +220,17 @@ function ReportBody({ report }: { report: ScanReport }) {
                       territory through its national transposition — there is no EU-level authority and
                       no one-stop-shop.
                     </p>
+                    {/* D-034: без этой оговорки мы пугали бы штрафом бизнес, который
+                        по закону вообще вне режима. Art. 4(5) директивы — исключение
+                        микропредприятий действует во ВСЕХ странах ЕС одинаково,
+                        поэтому это константа UI, а не поле юрисдикции. */}
+                    <p className="mt-1.5 text-xs text-amber-800">
+                      <span className="font-medium">Scope:</span> microenterprises — fewer than 10 staff
+                      and no more than €2M annual turnover or balance sheet — are exempt from the EAA's
+                      service requirements under Article 4(5), so a small business may fall outside this
+                      regime entirely. Any amount shown is a statutory maximum for entities in scope, not
+                      an expected charge, and this report is not legal advice.
+                    </p>
                   </div>
                 )}
                 <ul className="mt-2 space-y-1 text-sm text-slate-500">
