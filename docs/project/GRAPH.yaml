@@ -232,4 +232,22 @@ nodes:
     attempts: 1
     risk: low
     approval_required: false
-    notes: "Готово 2026-08-06. Прочитан реальный код (scan.js/db.js/ratelimit.js/turnstile.js), не документация о нём: email в БД хранится, если передан через API (хотя UI-форма его не собирает, D-015) — сформулировано честно, не как «мы не собираем email»; scans в D1 хранятся без TTL/автоудаления — это НЕ то же самое, что «есть retention-политика» (RISKS.md R6 обновлён, чтобы не переоценивать закрытость риска: Privacy теперь точно описывает текущее поведение, но авто-удаление ещё не реализовано — открытый техдолг); IP — только транзитно в KV (TTL 1 час) для rate-limit, не в D1; Turnstile при включении шлёт IP в Cloudflare и может ставить свою куку — прежняя формулировка «no cookies are set» была неточной, уточнена. done, не review: чисто документная страница, ничего не зависит от живого прогона A1-SCAN по существу — зависимость в GRAPH только смысловая (описывает его данные), не техническая блокировка."
+    notes: "Готово 2026-08-06. Прочитан реальный код (scan.js/db.js/ratelimit.js/turnstile.js), не документация о нём: email в БД хранится, если передан через API (хотя UI-форма его не собирает, D-015) — сформулировано честно, не как «мы не собираем email»; на момент написания scans в D1 хранились без TTL — RISKS.md R6 обновлён тогда же, чтобы не переоценивать закрытость риска; IP — только транзитно в KV (TTL 1 час) для rate-limit, не в D1; Turnstile при включении шлёт IP в Cloudflare и может ставить свою куку — прежняя формулировка «no cookies are set» была неточной, уточнена. done, не review: чисто документная страница, ничего не зависит от живого прогона A1-SCAN по существу — зависимость в GRAPH только смысловая (описывает его данные), не техническая блокировка. Текст про retention обновлён тем же днём вслед за A1-RETENTION (см. ниже)."
+
+  - id: A1-RETENTION
+    title: "Ежедневное удаление сканов старше 90 дней (Cron Trigger + worker/lib/retention.js)"
+    owner: backend-engineer
+    status: review
+    depends_on: []
+    inputs: [docs/project/RISKS.md, migrations/0001_init.sql]
+    scope: [worker/lib/retention.js, worker/index.js, wrangler.jsonc, src/pages/PrivacyPage.tsx]
+    outputs: [worker/lib/retention.js, worker/lib/retention.test.mjs]
+    verify:
+      - npm run worker:test
+      - npx wrangler deploy --dry-run
+      - "граница: скан ровно на cutoff не удаляется (строгое <)"
+    max_attempts: 4
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Готово 2026-08-06 (D-019). DELETE FROM scans WHERE created_at < cutoff, окно 90 дней, ежедневный Cron Trigger 0 3 * * *. Использует существующий idx_scans_created_at — миграция не нужна. 5 юнит-тестов на фейковом D1 (граница/пусто/несколько записей/формула cutoff), 36/36 worker-тестов зелёные, wrangler deploy --dry-run бандлится чисто с новым триггером. PrivacyPage.tsx обновлён в ту же сессию — 'no automatic deletion yet' заменено на реальное окно. status=review, не done: Cron Trigger реально тикает только после деплоя на аккаунт владельца — тот же класс ограничения, что у A1-SCAN (D-010), логика удаления протестирована независимо от деплоя."

@@ -1,5 +1,6 @@
 import { handlePostScan, handleGetScan } from './routes/scan.js'
 import { handlePostExplain } from './routes/explain.js'
+import { deleteExpiredScans } from './lib/retention.js'
 
 function corsHeaders(env) {
   return {
@@ -38,5 +39,11 @@ export default {
     }
 
     return withCors(Response.json({ error: 'not found', code: 'not_found' }, { status: 404 }), cors)
+  },
+
+  // Cron Trigger (wrangler.jsonc: triggers.crons) — удаляет сканы старше
+  // RETENTION_DAYS (worker/lib/retention.js, D-019, RISKS.md R6).
+  async scheduled(event, env, ctx) {
+    ctx.waitUntil(deleteExpiredScans(env.DB))
   },
 }

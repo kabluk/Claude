@@ -45,10 +45,10 @@ export default function PrivacyPage() {
         <ul>
           <li>
             <strong>The URL you submit</strong>, and the scan results (pages visited, accessibility
-            findings, score) are stored in our database so the report can be shown to you. We do
-            not yet have an automatic deletion schedule for this — a report stays in the database
-            indefinitely once created. The report page itself is private: it's reachable only via
-            an unguessable link, and is excluded from search engine indexing.
+            findings, score) are stored in our database so the report can be shown to you. Scans
+            are kept for up to 90 days, after which they're automatically deleted. The report page
+            itself is private: it's reachable only via an unguessable link, and is excluded from
+            search engine indexing.
           </li>
           <li>
             <strong>No account or email is required</strong> to run a scan, and the scan form does

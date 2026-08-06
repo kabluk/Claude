@@ -25,7 +25,8 @@
 | A1-EXPLAIN | `POST /api/explain`: Claude Haiku + KV-кэш ruleId×locale, язык бизнеса, не сырой ruleId (VISION.md UX 3) | backend-engineer | A1-SCAN | **review** (код+тесты готовы, live-путь проверен фиктивным ключом; ждёт отдельного одобрения платного ключа Anthropic — не то же самое, что одобрение CF для A1-SCAN) |
 | A1-COST | Оценка стоимости (эвристика × price bands) + дисклеймер | frontend-engineer | A1-REPORT | **review** (готов, 5 сценариев верифицированы живьём против ручного расчёта) |
 | A1-MATCH | Блок «подходящие агентства» под отчётом + CTA в каталог + бейджи верификации на карточке (VISION.md UX 5) | frontend-engineer | A1-REPORT | **review** (готов, 5 сценариев верифицированы живьём против реальных данных, включая честный empty-state) |
-| A1-PRIVACY | Обновить Privacy (сканы, email, D1) | product-lead | A1-SCAN | **done** (текст сверен с реальным кодом worker/, не с предположением; хранение сканов без TTL честно названо открытым техдолгом, не «решено») |
+| A1-PRIVACY | Обновить Privacy (сканы, email, D1) | product-lead | A1-SCAN | **done** (текст сверен с реальным кодом worker/, не с предположением) |
+| A1-RETENTION | Cron Trigger: удалять сканы старше 90 дней (RISKS.md R6) | backend-engineer | — | **review** (код+5 тестов готовы, wrangler deploy --dry-run бандлится чисто; живой прогон Cron Trigger ждёт деплоя, D-019) |
 
 ## Фаза 2 — Lead Marketplace
 
