@@ -120,3 +120,89 @@ réalisé par la société Ebizproduction | bluedrop.fr». Живая ссылк
 AT 4 · ES 2 · IT 1. Счётчики на страницах выводятся из данных и пересобрались
 сами; `/bfsg-check/` по-прежнему показывает 18 немецких записей, но у каждой
 ссылки теперь стоит «öffentliche Stelle» или «privates Unternehmen».
+
+## G-PRICE: сплошная проверка опубликованных цен, 245/245 (2026-08-06, D-045)
+
+**Метод.** Не поиск «сколько стоит аудит» вообще, а обход сайтов самих агентств:
+для каждого домена — главная + все внутренние ссылки, чьи URL или текст похожи
+на прайс/услугу (`preise|cennik|tarifs|prezzi|tarieven|pricing|audit|leistungen`…),
+до ~38 страниц на сайт; в тексте искалась сумма рядом с валютой, каждое попадание
+затем читалось руками. 23 сайта отдают пустой HTML (JS-рендер или анти-бот) —
+они добраны отдельно: поиск по домену, чтение sitemap.xml и, где живая страница
+закрыта, архивная копия. Итог покрытия: **245 из 245 проверены**, слепых зон,
+о которых мы не знаем, не осталось.
+
+**Результат (честный, а не красивый).**
+
+| | сколько | что это значит |
+|---|---|---|
+| цена аудита опубликована и маппится в band | **17** (7%) | заполнено, у каждого URL прайса + цитата суммы |
+| цена опубликована, но это НЕ цена аудита | **31** (13%) | обучение, SaaS/мониторинг, ставки за час/страницу, мини-скан, чужие услуги |
+| цена не опубликована вовсе | **197** (80%) | пусто и останется пустым — «запросите предложение» |
+
+Ожидание подтвердилось: **большинство рынка цен не публикует**, и это свойство
+рынка, а не пробел в нашей работе.
+
+**Заполнено 17** (band ← цитата, правило пересчёта — D-045):
+
+| slug | band | опубликовано |
+|---|---|---|
+| `wcag-audyt-pl` | budget | «Audyt Dostępności 7399 PLN / 8499 PLN» netto |
+| `audyt-dostepnosci-pl` | budget | «Audyt Podstawowy 2 500 zł / Rozszerzony 5 000 zł netto» |
+| `reddog-systems` | budget | «Ile kosztuje audyt dostępności? 1 350 zł» (z VAT, ≤30 podstron) |
+| `eclusief` (бренд Normeris) | budget | «WCAG-onderzoek … € 1.950,-» (Quickscan € 595,-) |
+| `anysurfer` | budget | «Klein: 1250€ … Standaard: 2500€ … Complex: 4000€ voor eerste audit» |
+| `auditores-accesibilidad` | budget | «Full Audit … desde 600€» (Quick Scan desde 300€) |
+| `purin` | budget | «Barrierefreiheits-Audit ab 540 € · bis zu 3 Seiten» |
+| `damteq` | budget | «a one-off Accessibility Audit will start from £1,650 +VAT» |
+| `abilitynet` | mid | «entry-level Digital Accessibility Review is a fixed £4,950 +VAT» |
+| `access42` | mid | «Audit de conformité web : entre 1 800 € et 5 600 € HT» |
+| `boscop` | mid | audit RGAA «Initier»: «Prix indicatif : de 2000€ à 6000€ HT» |
+| `accessprod` | mid | «L'audit RGAA détaillé … de 2 100€ HT à 4 900€ HT» |
+| `jim-byrne-associates` | mid | «Costs start at £2500 … in the region of £2500 / £4000» |
+| `rockit` | mid | «Vollaudits … zwischen 4.000 und 12.000 Euro» (Quickcheck ab ~1.500) |
+| `nettkonsult` | mid | «WCAG-revisjon … fra 1 300–2 600 EUR … 4 500–13 000 EUR» |
+| `skynet-technologies` | mid | тарифы аудита «5 Pages $500 … 100 Pages $12,500» |
+| `level-level` | mid | «WCAG Audit … €2.450,-», «WCAG Audit + … Vanaf €4.500,-» |
+
+Две записи (`rockit`, `level-level`) сняты с архивной/прямой HTTP-копии: живые
+страницы отдают анти-бот заглушку нашей автоматике. Записано в `label`, как и в
+прецеденте `G-CERT-FRAGILE`, — не выдаём непроверяемое за проверенное.
+
+**Опубликовали цену, но поле оставлено пустым — 31, с причиной** (это и есть
+журнал отклонений, чтобы при следующем аудите не искать заново):
+
+- *Цена есть, но бэнд не определяется однозначно (D-045, правило ±10% от границы):*
+  `akse` (1600–4500 €), `access-first` («audit simple ≥2250€ / avec rapport ≥3000€»).
+- *Не аудит, а более узкая услуга, которую агентство само отличает от аудита:*
+  `200-ok` (miniscan vanaf €480), `accessibility-shield` ($100 Test My Site Report,
+  прямо назван preliminary), `all-able` (£100 за разбор формулировок в заявлении),
+  `abra` (от €2.000 — тестирование с пользователями с инвалидностью, не WCAG-аудит).
+- *Ставка за единицу, а не цена работы:* `urbilog` (200 € HT/страница; blind test
+  299 €), `access-by-design` (£150 за 60-минутную сессию).
+- *Подписка/SaaS/ретейнер:* `ifdb` (4,00 €/страница, 79–199 €/мес), `cardan`
+  (€175–275/мес), `tu-web-accesible` (desde 290 €/год), `accessible-web` ($299/мес),
+  `equalize-digital` (плагин $190–2 250/год + ремедиация $1 199–7 999/мес),
+  `lepszyweb` (валидатор 600–1800 PLN/год).
+- *Обучение:* `webaim`, `fundacja-widzialni`, `vision-australia-digital-access`,
+  `eagerly`, `alsacreations`, `inter-vlaanderen`, `grackledocs`.
+- *Цены на другие услуги:* `telekom-mms` (Business GPT), `creasit`, `virtualmedia`,
+  `alpanet`, `perfekcyjnestrony` (сайты и шаблоны), `metadrop` (миграции на Drupal
+  от 25 000 €), `testpros` (GSA/CUI кибербезопасность $15–40k), `nautil`
+  (архитектурный аудит, кейс).
+- *Рыночный ориентир в собственном блоге, а не прайс:* `converge-accessibility`
+  («a competent audit costs $10,000–$25,000»), `accessibility.works`
+  («$3,000 to $30,000»). Соблазн был реальным: это ровно тот случай D-044, когда
+  «похожий» текст на правильном домене говорит не о том предмете.
+
+**Германия: 0 из 40** — проверено сплошь, двумя независимыми способами (обход
+HTML + чтение главных страниц моделью). Формулировка на `/bfsg-check/`
+(«Wir zeigen keine Preise je Agentur… geraten wird bei uns nichts») остаётся
+верной; менять её не потребовалось.
+
+**Ограничения метода, которые стоит помнить.** Цена, нарисованная картинкой или
+спрятанная за формой/логином, обходом не видна; цена, опубликованная только в PDF
+прайс-листа, тоже. Курс валют зафиксирован на дату (D-045) — при сильном сдвиге
+курса пограничные записи (`damteq`, `jim-byrne-associates`, `skynet-technologies`)
+надо пересчитать, поэтому цитата суммы хранится дословно и пересчёт можно
+повторить, не открывая сайт заново.

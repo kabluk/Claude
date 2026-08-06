@@ -266,7 +266,11 @@ export default function BfsgCheckPage() {
           <h2 className="h2">Was kostet eine Prüfung?</h2>
           {/* G-PRICE: у 40/40 немецких агентств поле priceBand пусто, и мы его НЕ
               придумываем (D-006/R1). Вместо пустоты — единственная реально
-              опубликованная величина с ссылкой на первоисточник. */}
+              опубликованная величина с ссылкой на первоисточник.
+              Подтверждено сплошной проверкой 2026-08-06 (D-045): ни одно из 40
+              немецких агентств цену аудита не публикует — у ifdb опубликован
+              SaaS за страницу, у telekom-mms прайс на Business GPT, это не аудит.
+              Текст ниже верен ровно до тех пор, пока это так. */}
           <p className="mt-2 text-slate-700">
             Wir zeigen keine Preise je Agentur: die meisten veröffentlichen keine, und geraten wird bei
             uns nichts. Eine belastbare Größenordnung veröffentlicht der BIK-Prüfverbund selbst —{' '}

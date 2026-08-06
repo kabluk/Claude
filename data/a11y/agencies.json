@@ -395,10 +395,15 @@
       {
         "url": "https://access42.net/contact/",
         "label": "contact page (siège social Paris)"
+      },
+      {
+        "url": "https://access42.net/services/audit-accessibilite/",
+        "label": "\"Audit de conformité web : entre 1 800 € et 5 600 € HT\" (mobile 1 600–2 800 € HT); checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04",
-    "founded": 2014
+    "founded": 2014,
+    "priceBand": "mid"
   },
   {
     "slug": "urbilog",
@@ -480,10 +485,15 @@
       {
         "url": "https://boscop.fr/",
         "label": "live SERP FR 'audit rgaa' 2026-08-04 (research/dd-serp-fr-rgaa.json)"
+      },
+      {
+        "url": "https://boscop.fr/audit-rgaa-wcag/",
+        "label": "audit RGAA/WCAG «Initier»: \"Prix indicatif : de 2000€ à 6000€ HT\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04",
-    "headcountBand": "51-200"
+    "headcountBand": "51-200",
+    "priceBand": "mid"
   },
   {
     "slug": "agentur-barrierefreie-website",
@@ -730,6 +740,10 @@
       {
         "url": "https://wcag-audyt.pl/",
         "label": "live SERP PL 'audyt wcag' 2026-08-04 (research/dd-serp-pl-wcag.json)"
+      },
+      {
+        "url": "https://wcag-audyt.pl/cennik/",
+        "label": "cennik: \"Audyt Dostępności 7399 PLN / 8499 PLN\" (WCAG 2.1+2.2 A/AA, netto) ≈ €1.7–2.0k; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -818,6 +832,10 @@
       {
         "url": "https://audyt-dostepnosci.pl/kontakt-audyt-dostepnosci/",
         "label": "contact page (Katarzyna Basiewicz, CPACC/IAAP certification)"
+      },
+      {
+        "url": "https://audyt-dostepnosci.pl/cennik-audytu-dostepnosci/",
+        "label": "cennik: \"Audyt Podstawowy 2 500 zł netto\", \"Audyt Rozszerzony 5 000 zł netto\" ≈ €590–1.2k; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -2587,6 +2605,10 @@
       {
         "url": "https://eclusief.nl/",
         "label": "homepage, now branded Normeris (Rhenen address, one researcher, WCAG 2.2/WCAG-EM, public pricing, sectors, EAA)"
+      },
+      {
+        "url": "https://normeris.nl/diensten/wcag-onderzoek/",
+        "label": "prijzen (бренд Normeris): \"WCAG-onderzoek … € 1.950,-\", \"Quickscan … € 595,-\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -2940,9 +2962,14 @@
       {
         "url": "https://www.aaa11y.com/en/65670b63863a0f814c152e83",
         "label": "AAA11Y accessible-website gallery entry describing Level Level as a Dutch WordPress agency"
+      },
+      {
+        "url": "https://level-level.com/accessibility/diensten/audits/",
+        "label": "audits: \"WCAG Audit … €2.450,-\", \"WCAG Audit + … Vanaf €4.500,-\" (Quickscan €875,-); checked 2026-08-06 по архивной копии — живая страница отдаёт 403 автоматике"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "priceBand": "mid"
   },
   {
     "slug": "inforges",
@@ -3149,9 +3176,14 @@
       {
         "url": "https://www.auditoresaccesibilidad.com/",
         "label": "homepage — services, standards (WCAG 2.1/2.2, UNE-EN 301549), team, project count"
+      },
+      {
+        "url": "https://auditoresaccesibilidad.com/servicios-accesibilidad-digital/",
+        "label": "servicios: \"Full Audit … desde 600€\" (auditoría manual completa), \"Quick Scan … desde 300€\"; checked 2026-08-06"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "priceBand": "budget"
   },
   {
     "slug": "usable-y-accesible",
@@ -3862,9 +3894,14 @@
       {
         "url": "https://www.rockit.at/",
         "label": "homepage — Barrierefreiheits-Check service, Vienna address, reference projects"
+      },
+      {
+        "url": "https://www.rockit.at/leistungen/barrierefreiheits-analyse",
+        "label": "\"Quickcheck … startet bei etwa 1.500 Euro. Vollaudits grösserer Sites mit Konformitätserklärung bewegen sich zwischen 4.000 und 12.000 Euro\"; checked 2026-08-06 (live-страница за анти-бот защитой, текст снят прямым HTTP-запросом)"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "priceBand": "mid"
   },
   {
     "slug": "purin",
@@ -3903,9 +3940,14 @@
       {
         "url": "https://www.purin.at/",
         "label": "homepage — accessibility audit service, WCAG 2.2 AA/EN 301 549 scope, incite certification, location"
+      },
+      {
+        "url": "https://www.purin.at/leistungen/webentwicklung-barrierefreiheit/",
+        "label": "\"EAA-Audit ab 540 €\" / \"Barrierefreiheits-Audit ab 540 € · bis zu 3 Seiten · exkl. MwSt.\"; checked 2026-08-06"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "priceBand": "budget"
   },
   {
     "slug": "eleven-ways",
@@ -3990,10 +4032,15 @@
       {
         "url": "https://www.anysurfer.be/",
         "label": "homepage (project of Blindenzorg Licht en Liefde VZW, Brussels address, since 2001, services, WCAG 2.1/2.2 labels, NL/EN/FR)"
+      },
+      {
+        "url": "https://www.anysurfer.be/nl/diensten/audits",
+        "label": "audits: \"Klein: 1250€ voor eerste audit … Standaard: 2500€ … Complex: 4000€\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04",
-    "founded": 2001
+    "founded": 2001,
+    "priceBand": "budget"
   },
   {
     "slug": "funka",
@@ -4364,14 +4411,15 @@
     "sourceRefs": [
       {
         "url": "https://nettkonsult.no/tjeneste/universell-utforming/",
-        "label": "WCAG 2.1 analysis, improvements, testing and documentation for websites/apps; checked 2026-08-04"
+        "label": "\"En WCAG-revisjon for en enkel nettside starter fra 1 300–2 600 EUR. Større webapplikasjoner og portaler kan koste 4 500–13 000 EUR\"; checked 2026-08-06"
       },
       {
         "url": "https://www.nettkonsult.no/",
         "label": "homepage — WCAG service description, Oslo positioning, service list"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "priceBand": "mid"
   },
   {
     "slug": "avaava",
@@ -4610,9 +4658,14 @@
       {
         "url": "https://skynettechnologies.com/",
         "label": "homepage (WCAG 2.1/2.2 and EAA in title, services, industries)"
+      },
+      {
+        "url": "https://www.skynettechnologies.com/website-accessibility-audit",
+        "label": "manual audit tiers: \"5 Pages / 2 Templates $500 … 100 Pages / 40 Templates $12,500\" ≈ €460–11.5k; checked 2026-08-06"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "priceBand": "mid"
   },
   {
     "slug": "sierra7",
@@ -4714,7 +4767,7 @@
       },
       {
         "url": "https://abilitynet.org.uk/accessibility-services/products-and-services/accessibility-audit",
-        "label": "audit page (WCAG 2.2, VPAT/ACR, public pricing)"
+        "label": "audit page: \"our entry-level Digital Accessibility Review is a fixed £4,950 +VAT for up to 10 key pages/components\" ≈ €5.8k; checked 2026-08-06"
       },
       {
         "url": "https://abilitynet.org.uk",
@@ -5285,7 +5338,7 @@
     "sourceRefs": [
       {
         "url": "https://jimbyrne.co.uk/accessibility-testing-auditing/",
-        "label": "WCAG 2.2 auditing/testing services page (audits from GBP 2500, ISO 30071:2019), live SERP 2026-08-04"
+        "label": "\"Costs start at £2500 for a full WCAG 2.2 audit … Costs are in the region of £2500 / £4000\" ≈ €3.8k; checked 2026-08-06"
       },
       {
         "url": "https://jimbyrne.co.uk",
@@ -5296,7 +5349,8 @@
         "label": "about page (Making Connections Unit 1996)"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "priceBand": "mid"
   },
   {
     "slug": "damteq",
@@ -5337,10 +5391,15 @@
       {
         "url": "https://damteq.co.uk",
         "label": "homepage (team of over 30, accessibility audits under UX services)"
+      },
+      {
+        "url": "https://www.damteq.co.uk/marketing/ux/accessibility-audits/",
+        "label": "\"Typically, a one-off Accessibility Audit will start from £1,650 +VAT\" ≈ €1.9k; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04",
-    "headcountBand": "11-50"
+    "headcountBand": "11-50",
+    "priceBand": "budget"
   },
   {
     "slug": "mixd",
@@ -9346,9 +9405,14 @@
       {
         "url": "https://accessprod.com/",
         "label": "Homepage describing RGAA audits, training, and public-sector client list"
+      },
+      {
+        "url": "https://www.accessprod.com/prestations/audits/",
+        "label": "\"L'audit RGAA détaillé … Tarif : de 2 100€ HT à 4 900€ HT\"; checked 2026-08-06"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "priceBand": "mid"
   },
   {
     "slug": "akse",
@@ -10662,9 +10726,14 @@
       {
         "url": "https://red-dog.pl",
         "label": "official website — accessibility audit services (audyt dostępności cyfrowej, WCAG)"
+      },
+      {
+        "url": "https://red-dog.pl/dostepnosc-cyfrowa/",
+        "label": "\"Ile kosztuje audyt dostępności? 1 350 zł\" (z VAT, do 30 podstron) ≈ €320; checked 2026-08-06"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "priceBand": "budget"
   },
   {
     "slug": "centrum-bezpieczenstwa-informatycznego",

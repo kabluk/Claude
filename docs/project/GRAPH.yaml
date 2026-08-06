@@ -759,3 +759,24 @@ nodes:
     risk: high
     approval_required: false
     notes: "Готово 2026-08-06 (D-042). 96/96 evidenceUrl открыты вживую; ни одна запись бейдж не потеряла. kind переименован в statement-named-auditor, добавлено обязательное declarant (81 public-body / 13 private / 2 unknown). Главная находка: у 9 записей (8 NL + 200-ok, чей портал toegankelijkheidsonderzoek.nl механическая проверка по домену не ловила) доказательством была собственная страница агентства — заменено записью декларации заказчика в госреестре toegankelijkheidsverklaring.nl, отчёт ушёл в sourceRefs. Инвариант «evidenceUrl не на своём домене» + перечни kind/declarant стали ошибкой сборки в build-a11y.mjs (раньше certs не валидировались вообще). Детали и таблица проверки — domains/data.md, гейт — domains/qa.md."
+
+  - id: G-PRICE
+    title: "Заполнить priceBand по реально опубликованным ценам (сплошная проверка 245 агентств)"
+    owner: data-engineer
+    status: done
+    depends_on: [G-CERT-EVIDENCE]
+    inputs: [data/a11y/agencies.json, data/a11y/taxonomies.json, src/lib/costEstimate.ts, src/lib/matchAgencies.ts, src/components/FilterableList.tsx]
+    scope: [data/a11y/agencies.json, scripts/build-a11y.mjs, scripts/apply-priceband.mjs, scripts/priceband.test.mjs]
+    outputs: [data/a11y/agencies.json, scripts/priceband.test.mjs]
+    verify:
+      - "node scripts/build-a11y.mjs — 245 агентств, 0 ошибок, priceBand 17/245"
+      - "негативная проверка гейта: priceBand без цитаты цены в sourceRefs → ошибка сборки; откат → зелёная"
+      - "npm run scripts:test — 15/15 (было 10); негативная проверка: снят sourceRef с ценой у access42 → тест упал"
+      - "npm run typecheck / worker:test 202 / src:test 3 — чисто"
+      - "npm run build 388 страниц, sitemap 351, check-links 417, audit-a11y 25 страниц 0 нарушений"
+      - "живая проверка фильтра (Playwright, собранный dist): FR mid → 3 из 28, PL budget → 3 из 29, DE — чипов нет, снятие фильтра восстанавливает список; профиль без цены не показывает строку цены"
+    max_attempts: 3
+    attempts: 1
+    risk: medium
+    approval_required: false
+    notes: "Готово 2026-08-06 (D-045). 245/245 проверены обходом сайтов самих агентств; 23 сайта с пустым HTML (JS/анти-бот) добраны отдельно (поиск по домену, sitemap.xml, архивная копия). Заполнено 17 (budget 8 / mid 9), у каждого — URL прайса и дословная цитата суммы; 31 агентство публикует цену не за аудит (обучение, SaaS, ставки за час/страницу, мини-скан, чужие услуги, рыночные ориентиры в собственном блоге), 197 не публикует вовсе. Все 4 ранее заполненных значения подтвердились, но были БЕЗ источника цены — исправлено. Две записи (akse, access-first) оставлены пустыми осознанно: опубликованная вилка не определяет один бэнд. Германия 0/40 подтверждена сплошь, текст /bfsg-check/ не менялся. Главный побочный результат — инвариант в build-a11y.mjs: band без цитаты цены = ошибка сборки."

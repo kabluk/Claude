@@ -17,6 +17,11 @@ const OUT = join(A11Y, '_generated')
 const SERVICES = ['audit', 'remediation', 'vpat', 'training', 'monitoring', 'consulting']
 const STANDARDS = ['wcag-2-2', 'en-301-549', 'section-508', 'eaa', 'bitv', 'rgaa', 'ada']
 const PRICE_BANDS = ['budget', 'mid', 'premium', 'enterprise']
+// Дословная цитата цены в label источника: сумма с валютой в любом порядке
+// («€ 1.950,-», "£4,950 +VAT", "2 500 zł netto", "$500"). Ищем именно цифру
+// рядом с валютой, а не слово «price» — иначе гейт проходит по обещанию, а не
+// по факту (D-045).
+const PRICE_QUOTE = /(?:€|£|\$|zł|EUR|GBP|USD|PLN|CHF|SEK|DKK|NOK)\s?\d|\d[\d\s.,]*\s?(?:€|£|zł|EUR|GBP|USD|PLN|CHF|SEK|DKK|NOK|euro)/i
 const LOCALES = ['en', 'de', 'fr', 'pl', 'es']
 // Должны совпадать с CertBadge/Declarant в data/a11y/types.ts.
 const CERT_KINDS = [
@@ -77,6 +82,13 @@ for (const [i, a] of agencies.entries()) {
   for (const s of a.services || []) if (!inEnum(s, SERVICES)) errors.push(`${at}: unknown service "${s}"`)
   for (const s of a.standards || []) if (!inEnum(s, STANDARDS)) errors.push(`${at}: unknown standard "${s}"`)
   if (a.priceBand && !inEnum(a.priceBand, PRICE_BANDS)) errors.push(`${at}: unknown priceBand "${a.priceBand}"`)
+  // Цена без опубликованного источника — ошибка сборки (D-045). Band сам по себе
+  // ничего не доказывает: он выводится из цитаты, поэтому цитата обязана лежать
+  // рядом, в label соответствующего sourceRef. Тот же приём, что и с
+  // самоаттестацией в certs (D-042): инвариант, а не договорённость на словах.
+  if (a.priceBand && !(a.sourceRefs || []).some((r) => PRICE_QUOTE.test(r.label || ''))) {
+    errors.push(`${at}: priceBand "${a.priceBand}" set, but no sourceRef label quotes a published price (D-045)`)
+  }
   if (a.hq && a.hq.countryCode && !/^[A-Z]{2}$/.test(a.hq.countryCode)) errors.push(`${at}: hq.countryCode must be ISO alpha-2`)
   for (const c of a.countriesServed || []) {
     if (!/^[A-Z]{2}$/.test(c) && !['remote-eu', 'remote-global'].includes(c)) errors.push(`${at}: bad countriesServed "${c}"`)
