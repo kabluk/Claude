@@ -15,7 +15,8 @@ import assert from 'node:assert/strict'
 import { existsSync } from 'node:fs'
 import { chromium } from 'playwright'
 import {
-  checkReflow320, checkKeyboardTraversal, checkMedia, checkResize200, detectAndDismissCookieBanner,
+  checkReflow320, checkKeyboardTraversal, checkMedia, checkResize200,
+  detectAndDismissCookieBanner, checkEmptyHeadings,
 } from './domChecks.js'
 
 // Тот же паттерн, что scripts/audit-own-a11y.mjs: явный путь только если преустановлен.
@@ -184,3 +185,73 @@ test('A3-COOKIEBANNER: a clean page with no banner reports found:false', () =>
   withPage('<main><h1>real content</h1><p>nothing to see here</p></main>', { width: 1280, height: 800 }, async (page) => {
     assert.deepEqual(await detectAndDismissCookieBanner(page), { found: false, dismissed: false, selector: null })
   }))
+
+// --- 9.2.4.3 Focus order (D-039) ---------------------------------------------
+
+test('A3-FOCUS-ORDER: positive tabindex that reorders focus away from DOM order is flagged', async () => {
+  // DOM-порядок A,B,C,D; tabindex гонит обход B(1) -> D(2) -> C(3) -> A(4).
+  // Прыжков назад ровно два: D->C и C->A. Первая версия этого теста задавала
+  // раскладку с ОДНИМ прыжком и провалилась — порог MIN_OUT_OF_ORDER_STEPS=2
+  // сработал как задумано (одиночный прыжок законен), ошибка была в фикстуре.
+  const html = `<style>a:focus{outline:2px solid blue}</style>
+    <a href="#" tabindex="4" id="a">A</a>
+    <a href="#" tabindex="1" id="b">B</a>
+    <a href="#" tabindex="3" id="c">C</a>
+    <a href="#" tabindex="2" id="d">D</a>`
+  await withPage(html, { width: 1280, height: 800 }, async (page) => {
+    const findings = await checkKeyboardTraversal(page, 'p1')
+    const order = findings.find((f) => f.ruleId === 'a11y-focus-order')
+    assert.ok(order, `ожидали a11y-focus-order, получили: ${findings.map((f) => f.ruleId).join(',') || 'ничего'}`)
+    assert.equal(order.impact, 'serious')
+    assert.match(order.html, /positive tabindex/)
+  })
+})
+
+test('A3-FOCUS-ORDER: a normal document-order page is NOT flagged (regression against noise)', async () => {
+  const html = `<style>a:focus{outline:2px solid blue}</style>
+    <a href="#">one</a><a href="#">two</a><a href="#">three</a><a href="#">four</a>`
+  await withPage(html, { width: 1280, height: 800 }, async (page) => {
+    const findings = await checkKeyboardTraversal(page, 'p1')
+    assert.equal(findings.find((f) => f.ruleId === 'a11y-focus-order'), undefined)
+  })
+})
+
+test('A3-FOCUS-ORDER: a single backwards jump alone is tolerated (skip-link/modal are legitimate)', async () => {
+  // Только ОДИН элемент с положительным tabindex -> ровно один прыжок назад.
+  const html = `<style>a:focus{outline:2px solid blue}</style>
+    <a href="#">one</a><a href="#">two</a><a href="#" tabindex="1">jumps to front</a>`
+  await withPage(html, { width: 1280, height: 800 }, async (page) => {
+    const findings = await checkKeyboardTraversal(page, 'p1')
+    assert.equal(findings.find((f) => f.ruleId === 'a11y-focus-order'), undefined)
+  })
+})
+
+// --- 9.2.4.6 Headings and labels (D-039) -------------------------------------
+
+test('A3-HEADINGS: an empty heading is flagged, a normal one is not', async () => {
+  await withPage('<h1>Real title</h1><h2></h2><h2>   </h2>', { width: 1280, height: 800 }, async (page) => {
+    const f = await checkEmptyHeadings(page, 'p1')
+    assert.ok(f)
+    assert.equal(f.ruleId, 'a11y-empty-heading')
+    assert.match(f.html, /^2 headings/)
+  })
+  await withPage('<h1>Title</h1><h2>Section</h2>', { width: 1280, height: 800 }, async (page) => {
+    assert.equal(await checkEmptyHeadings(page, 'p2'), null)
+  })
+})
+
+test('A3-HEADINGS: a heading whose name comes from aria-label or an image alt is not empty', async () => {
+  const html = `<h2 aria-label="Pricing"></h2>
+    <h2><img src="d.png" alt="Our services"></h2>
+    <span id="ref">Referenced title</span><h2 aria-labelledby="ref"></h2>`
+  await withPage(html, { width: 1280, height: 800 }, async (page) => {
+    assert.equal(await checkEmptyHeadings(page, 'p1'), null)
+  })
+})
+
+test('A3-HEADINGS: hidden and aria-hidden headings are skipped (invisible to everyone)', async () => {
+  const html = '<h2 style="display:none"></h2><h2 aria-hidden="true"></h2><h1>Visible</h1>'
+  await withPage(html, { width: 1280, height: 800 }, async (page) => {
+    assert.equal(await checkEmptyHeadings(page, 'p1'), null)
+  })
+})

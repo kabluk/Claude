@@ -40,6 +40,10 @@ export const OUR_CHECKS = {
   '9.2.4.5': 'a11y-multiple-ways',
   '9.3.2.3': 'a11y-inconsistent-navigation',
   '9.3.2.4': 'a11y-inconsistent-identification',
+  // D-039 — расширение уже существующего обхода Tab и простой DOM-запрос,
+  // без второго прохода по странице и без новых браузерных API.
+  '9.2.4.3': 'a11y-focus-order',
+  '9.2.4.6': 'a11y-empty-heading',
 }
 
 // Обязанности из самой директивы, которых в главе 9 EN 301 549 нет — стандарт

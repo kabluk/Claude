@@ -4,7 +4,7 @@
      Пересобрать: npm run en301549:coverage -->
 
 Глава 9 (Web) EN 301 549 V3.2.1 — **50** критериев (Void исключены).
-Покрыто автоматически: **29 из 50 (58%)**.
+Покрыто автоматически: **31 из 50 (62%)**.
 
 Стандарт гармонизирован на весь ЕС (D-033), поэтому карта одна для всех
 13 юрисдикций — национальные законы различаются санкциями и областью
@@ -58,10 +58,10 @@ EN 301 549 описывает техническую доступность и �
 | 9.2.3.1 | 2.3.1 | Three flashes or below threshold | — нет |  |
 | 9.2.4.1 | 2.4.1 | Bypass blocks | ✅ axe-core | `bypass` |
 | 9.2.4.2 | 2.4.2 | Page titled | ✅ axe-core | `document-title` |
-| 9.2.4.3 | 2.4.3 | Focus Order | — нет |  |
+| 9.2.4.3 | 2.4.3 | Focus Order | ✅ наша | `a11y-focus-order` |
 | 9.2.4.4 | 2.4.4 | Link purpose (in context) | ✅ axe-core | `area-alt`, `link-name` |
 | 9.2.4.5 | 2.4.5 | Multiple ways | ✅ наша | `a11y-multiple-ways` |
-| 9.2.4.6 | 2.4.6 | Headings and labels | — нет |  |
+| 9.2.4.6 | 2.4.6 | Headings and labels | ✅ наша | `a11y-empty-heading` |
 | 9.2.4.7 | 2.4.7 | Focus visible | ✅ наша | `a11y-focus-invisible` |
 | 9.2.5.1 | 2.5.1 | Pointer gestures | — нет |  |
 | 9.2.5.2 | 2.5.2 | Pointer cancellation | — нет |  |
@@ -97,8 +97,6 @@ EN 301 549 описывает техническую доступность и �
 - **9.1.4.13** (WCAG 1.4.13) — Content on hover or focus
 - **9.2.1.4** (WCAG 2.1.4) — Character key shortcuts
 - **9.2.3.1** (WCAG 2.3.1) — Three flashes or below threshold
-- **9.2.4.3** (WCAG 2.4.3) — Focus Order
-- **9.2.4.6** (WCAG 2.4.6) — Headings and labels
 - **9.2.5.1** (WCAG 2.5.1) — Pointer gestures
 - **9.2.5.2** (WCAG 2.5.2) — Pointer cancellation
 - **9.2.5.4** (WCAG 2.5.4) — Motion actuation

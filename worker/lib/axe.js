@@ -19,7 +19,8 @@ import { findStatementLink, evaluateStatementContent } from './statement.js'
 import { detectFeedbackChannel } from './feedback.js'
 import { detectPdfLinks } from './pdf.js'
 import {
-  checkReflow320, checkKeyboardTraversal, checkMedia, checkResize200, detectAndDismissCookieBanner,
+  checkReflow320, checkKeyboardTraversal, checkMedia, checkResize200,
+  detectAndDismissCookieBanner, checkEmptyHeadings,
 } from './domChecks.js'
 import { runSiteChecks } from './siteChecks.js'
 
@@ -167,6 +168,8 @@ export async function scanSite(env, targetUrl) {
       if (resize) findings.push(resize)
       const media = await checkMedia(page, pageUrl).catch(() => [])
       findings.push(...media)
+      const emptyHeadings = await checkEmptyHeadings(page, pageUrl).catch(() => null)
+      if (emptyHeadings) findings.push(emptyHeadings)
 
       // A3-KEYBOARD — только на первой странице (представительно; Tab-обход всех 6
       // стоил бы заметно больше времени скана без пропорциональной пользы).

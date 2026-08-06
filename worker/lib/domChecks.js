@@ -44,13 +44,22 @@ export async function checkReflow320(page, pageUrl) {
 // border) дадут false positive; безопаснее, чем молчать про реальный focus trap.
 const MAX_TAB_STEPS = 40
 const TRAP_REPEAT_THRESHOLD = 4 // столько раз подряд один и тот же элемент -> trap
+// Одиночный прыжок назад законен (skip-link, модалка), повторяющийся — нет.
+const MIN_OUT_OF_ORDER_STEPS = 2
 
 export async function checkKeyboardTraversal(page, pageUrl) {
-  await page.evaluate(() => document.body.focus())
+  // Сбрасываем накопитель предыдущего элемента: функция может вызываться на
+  // нескольких страницах подряд в одном браузере, и остаточная ссылка дала бы
+  // ложный «прыжок назад» на первом же шаге следующей страницы.
+  await page.evaluate(() => {
+    delete window.__aaPrevFocused
+    document.body.focus()
+  })
   const selectors = []
   let sameStreak = 0
   let trapSelector = null
   let lastInvisible = false // невидимость фокуса ПОСЛЕДНЕГО реально сфокусированного шага
+  const outOfOrder = [] // шаги, где фокус ушёл назад по документу (9.2.4.3)
 
   for (let i = 0; i < MAX_TAB_STEPS; i++) {
     await page.keyboard.press('Tab')
@@ -68,7 +77,23 @@ export async function checkKeyboardTraversal(page, pageUrl) {
         (typeof el.className === 'string' && el.className ? `.${el.className.trim().split(/\s+/).join('.')}` : '')
       const cs = getComputedStyle(el)
       const invisible = (cs.outlineStyle === 'none' || cs.outlineWidth === '0px') && cs.boxShadow === 'none'
-      return { sel, invisible }
+
+      // A3-FOCUS-ORDER (9.2.4.3): порядок обхода должен следовать порядку в DOM.
+      // Сравниваем с ПРЕДЫДУЩИМ сфокусированным элементом через
+      // compareDocumentPosition — узел нельзя вернуть наружу, поэтому держим
+      // ссылку на нём же, в окне страницы. Прыжок назад по документу — сигнал,
+      // что порядок переопределён (обычно положительным tabindex).
+      const prev = window.__aaPrevFocused
+      let backwards = false
+      if (prev && prev.isConnected && prev !== el) {
+        // DOCUMENT_POSITION_FOLLOWING = prev идёт ПОСЛЕ el, т.е. фокус ушёл назад
+        backwards = Boolean(el.compareDocumentPosition(prev) & Node.DOCUMENT_POSITION_FOLLOWING)
+      }
+      window.__aaPrevFocused = el
+      const tabindex = el.getAttribute('tabindex')
+      const positiveTabindex = tabindex !== null && Number(tabindex) > 0
+
+      return { sel, invisible, backwards, positiveTabindex }
     })
     if (step === null) break // вышли за пределы фокусируемых элементов — конец обхода
     if (selectors.length && selectors[selectors.length - 1] === step.sel) {
@@ -80,6 +105,7 @@ export async function checkKeyboardTraversal(page, pageUrl) {
     } else {
       sameStreak = 0
     }
+    if (step.backwards) outOfOrder.push({ sel: step.sel, positiveTabindex: step.positiveTabindex })
     selectors.push(step.sel)
     lastInvisible = step.invisible
   }
@@ -90,6 +116,25 @@ export async function checkKeyboardTraversal(page, pageUrl) {
       ruleId: 'a11y-keyboard-trap', wcag: ['wcag2.1.2'], impact: 'critical',
       selector: trapSelector, page: pageUrl,
       html: `Tab did not move focus past this element after ${TRAP_REPEAT_THRESHOLD} presses`,
+    })
+  }
+
+  // 9.2.4.3 Focus Order. Одиночный прыжок назад бывает законным (модалка,
+  // skip-link, кастомный виджет), поэтому сообщаем только о ПОВТОРЯЮЩЕМСЯ
+  // расхождении — и отдельно называем положительный tabindex, если он есть:
+  // это почти всегда настоящая причина, а не совпадение.
+  if (outOfOrder.length >= MIN_OUT_OF_ORDER_STEPS) {
+    const withPositiveTabindex = outOfOrder.filter((o) => o.positiveTabindex)
+    findings.push({
+      ruleId: 'a11y-focus-order',
+      wcag: ['wcag243'],
+      impact: 'serious',
+      selector: outOfOrder[0].sel,
+      page: pageUrl,
+      html: `tab order moves backwards through the document ${outOfOrder.length} times` +
+        (withPositiveTabindex.length
+          ? `; ${withPositiveTabindex.length} of those elements use a positive tabindex, which overrides document order`
+          : ' (heuristic — a modal or custom widget may reorder focus legitimately)'),
     })
   }
 
@@ -211,4 +256,45 @@ export async function detectAndDismissCookieBanner(page) {
   }
 
   return { found: true, dismissed, selector: bannerHandle.selector }
+}
+
+// A3-HEADINGS (9.2.4.6 Headings and labels): заголовок обязан описывать тему
+// раздела. Полностью автоматизировать «описательность» нельзя — это смысл, — но
+// один случай проверяется однозначно и без ложных срабатываний: ПУСТОЙ заголовок
+// не описывает ничего по определению. Учитываем доступное имя целиком
+// (aria-label/aria-labelledby, alt вложенной картинки), поэтому <h2><img alt="Цены">
+// пустым не считается. Скрытые заголовки (display:none) пропускаем — их нет ни для
+// кого, включая скринридер.
+const MAX_REPORTED_EMPTY_HEADINGS = 5
+
+export async function checkEmptyHeadings(page, pageUrl) {
+  const empties = await page.evaluate(() => {
+    const out = []
+    const nodes = document.querySelectorAll('h1,h2,h3,h4,h5,h6,[role="heading"]')
+    for (const h of nodes) {
+      const cs = getComputedStyle(h)
+      if (cs.display === 'none' || cs.visibility === 'hidden') continue
+      if (h.getAttribute('aria-hidden') === 'true') continue
+      const labelled = (h.getAttribute('aria-label') || '').trim()
+      const labelledBy = h.getAttribute('aria-labelledby')
+      const fromRef = labelledBy
+        ? labelledBy.split(/\s+/).map((id) => document.getElementById(id)?.textContent ?? '').join(' ').trim()
+        : ''
+      const imgAlt = [...h.querySelectorAll('img[alt]')].map((i) => i.getAttribute('alt')).join(' ').trim()
+      const text = (h.textContent || '').trim()
+      if (text || labelled || fromRef || imgAlt) continue
+      out.push(h.id ? `#${h.id}` : h.tagName.toLowerCase())
+    }
+    return out
+  })
+
+  if (empties.length === 0) return null
+  return {
+    ruleId: 'a11y-empty-heading',
+    wcag: ['wcag246'],
+    impact: 'moderate',
+    selector: empties.slice(0, MAX_REPORTED_EMPTY_HEADINGS).join(', '),
+    page: pageUrl,
+    html: `${empties.length} heading${empties.length === 1 ? '' : 's'} with no text or accessible name — a heading that says nothing cannot describe its section`,
+  }
 }

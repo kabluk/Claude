@@ -281,9 +281,9 @@
    "clause": "9.2.4.3",
    "wcag": "2.4.3",
    "title": "Focus Order",
-   "status": "none",
+   "status": "ours",
    "axeRules": [],
-   "ours": null
+   "ours": "a11y-focus-order"
   },
   {
    "clause": "9.2.4.4",
@@ -308,9 +308,9 @@
    "clause": "9.2.4.6",
    "wcag": "2.4.6",
    "title": "Headings and labels",
-   "status": "none",
+   "status": "ours",
    "axeRules": [],
-   "ours": null
+   "ours": "a11y-empty-heading"
   },
   {
    "clause": "9.2.4.7",
