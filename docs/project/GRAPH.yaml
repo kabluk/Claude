@@ -193,3 +193,23 @@ nodes:
     risk: low
     approval_required: false
     notes: "Готово 2026-08-06 (D-017, уточняет D-006). Первая версия (интерполяция между двумя соседними price bands) дала неинформативно широкие диапазоны — поймано именно живой проверкой с ручным расчётом ожиданий, не код-ревью. Переделано на один band по effort-score (дубль дедуп-логики worker/lib/score.js). Формат чисел приведён к конвенции taxonomies.json (один символ валюты на диапазон) — тоже найдено верификацией. Дисклеймер и ссылка на каталог обязательны рядом с оценкой (D-006), не факультативны."
+
+  - id: A1-MATCH
+    title: "Блок «подходящие агентства» под отчётом (страна/услуга/бюджет) + бейджи верификации на AgencyCard"
+    owner: frontend-engineer
+    status: review
+    depends_on: [A1-REPORT]
+    inputs: [docs/project/BACKLOG.md, docs/project/VISION.md, src/lib/data.ts, data/a11y/types.ts]
+    scope: [src/lib/matchAgencies.ts, src/components/MatchedAgencies.tsx, src/components/AgencyCard.tsx, src/pages/ReportPage.tsx]
+    outputs: [src/lib/matchAgencies.ts, src/components/MatchedAgencies.tsx]
+    verify:
+      - npm run typecheck
+      - npm run build
+      - npm run audit-a11y
+      - npm run check-links
+      - "5 сценариев Playwright против реальных agencies.json: any country / country=Germany (сверено с ручным фильтром) / critical finding → remediation-пул / честный empty-state (Australia+remediation, реальный 0-результатный кейс в данных) / верификационный бейдж на AgencyCard"
+    max_attempts: 4
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Готово 2026-08-06 (D-018). matchAgencies.ts переиспользует sortListing/agenciesIn/withService/withStandard из data.ts, не изобретает новый порядок. Бейдж верификации (sourceRefs.length + lastVerified) добавлен в AgencyCard — общий компонент, задел проверен полным audit-a11y (22 страницы, 0 нарушений) и check-links (408 ссылок, 0 битых) заново, не только новых страниц. status=review, не done: зависит от A1-REPORT (само review из-за живого прогона A1-SCAN) — блок технически готов и верифицирован независимо от этой цепочки."

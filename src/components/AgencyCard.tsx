@@ -33,6 +33,10 @@ export function AgencyCard({ a }: { a: Agency }) {
         ))}
         {a.priceBand && <span className="chip">{priceLabel(a.priceBand)}</span>}
       </div>
+      <p className="mt-2 text-xs text-slate-500">
+        ✓ Checked against {a.sourceRefs.length} source{a.sourceRefs.length === 1 ? '' : 's'} · last verified{' '}
+        {a.lastVerified}
+      </p>
     </Link>
   )
 }

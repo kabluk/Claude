@@ -24,7 +24,7 @@
 | A1-LANDING | Лендинг сканера `/scan`, форма URL, Turnstile, ссылка из шапки, честный прогноз времени | frontend-engineer | — (техн. независим) | **review** (готов, 4 сценария верифицированы; реальный Turnstile-виджет не тестировался — сетевой барьер песочницы) |
 | A1-EXPLAIN | `POST /api/explain`: Claude Haiku + KV-кэш ruleId×locale, язык бизнеса, не сырой ruleId (VISION.md UX 3) | backend-engineer | A1-SCAN | **review** (код+тесты готовы, live-путь проверен фиктивным ключом; ждёт отдельного одобрения платного ключа Anthropic — не то же самое, что одобрение CF для A1-SCAN) |
 | A1-COST | Оценка стоимости (эвристика × price bands) + дисклеймер | frontend-engineer | A1-REPORT | **review** (готов, 5 сценариев верифицированы живьём против ручного расчёта) |
-| A1-MATCH | Блок «подходящие агентства» под отчётом + CTA в каталог + бейджи верификации на карточке (VISION.md UX 5) | frontend-engineer | A1-REPORT | todo |
+| A1-MATCH | Блок «подходящие агентства» под отчётом + CTA в каталог + бейджи верификации на карточке (VISION.md UX 5) | frontend-engineer | A1-REPORT | **review** (готов, 5 сценариев верифицированы живьём против реальных данных, включая честный empty-state) |
 | A1-PRIVACY | Обновить Privacy (сканы, email, D1) | product-lead | A1-SCAN | todo |
 
 ## Фаза 2 — Lead Marketplace

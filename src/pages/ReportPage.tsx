@@ -12,6 +12,7 @@ import {
   type ScanReport,
 } from '@/lib/scanner'
 import { estimateCost, formatCostEstimate } from '@/lib/costEstimate'
+import { MatchedAgencies } from '@/components/MatchedAgencies'
 
 const POLL_INTERVAL_MS = 2500
 
@@ -205,6 +206,8 @@ function ReportBody({ report }: { report: ScanReport }) {
           </ul>
         </section>
       )}
+
+      <MatchedAgencies findings={report.findings} priceBand={cost?.band} />
     </div>
   )
 }
