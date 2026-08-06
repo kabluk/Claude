@@ -102,6 +102,28 @@ export function isFeatured(a: Agency): boolean {
   return !!a.featured && a.featured.until >= new Date().toISOString().slice(0, 10)
 }
 
+// Агентства, названные внешним прюфером в ОПУБЛИКОВАННОЙ декларации о
+// доступности (DE: «Erklärung zur Barrierefreiheit») конкретной страны.
+// Отбор идёт по `cert.country`, а не по стране HQ: доказательство привязано к
+// документу, а не к адресу агентства. Каждая запись несёт `evidenceUrl` — сам
+// документ, поэтому утверждение проверяемо читателем, а не только нами.
+export function namedInStatements(countryCode: string): Agency[] {
+  return sortListing(
+    agencies.filter((a) =>
+      a.certs.some((c) => c.kind === 'gov-declared-auditor' && c.country === countryCode),
+    ),
+  )
+}
+
+// Ссылки на сами декларации, в которых агентство названо (в этой стране).
+export function statementEvidence(a: Agency, countryCode: string): string[] {
+  // flatMap, а не filter().map(): filter не сужает тип элемента объединения,
+  // и `evidenceUrl` был бы недоступен без каста.
+  return a.certs.flatMap((c) =>
+    c.kind === 'gov-declared-auditor' && c.country === countryCode ? [c.evidenceUrl] : [],
+  )
+}
+
 // «Похожие агентства» на профиле: та же страна HQ + общая услуга.
 export function relatedTo(a: Agency, n = 5): Agency[] {
   return sortListing(
@@ -132,6 +154,9 @@ export const paths = {
   imprint: () => '/imprint/',
   scan: () => '/scan/',
   methodology: () => '/methodology/',
+  // Немецкий входной путь (D-041). Статический сегмент — react-router ранжирует
+  // его выше динамического '/:country', поэтому конфликта со страной нет.
+  bfsgCheck: () => '/bfsg-check/',
   report: (id: string) => `/report/${id}/`,
   requestQuote: () => '/request-quote/',
 }
@@ -151,7 +176,14 @@ export function certLabel(kind: Agency['certs'][number]['kind']): string {
       return 'DHS Trusted Tester'
     case 'iaap-certified-staff':
       return 'IAAP-certified staff'
+    // D-041: слаг исторический ('gov-'), но подпись приведена к тому, что
+    // ДОКАЗЫВАЮТ данные. Проверка evidenceUrl всех 90+ записей показала, что
+    // часть деклараций опубликована не госорганом, а частной компанией
+    // (mazda.de, nanu-nana.at, stiftung.adac.de) — прежняя подпись «government»
+    // утверждала больше, чем есть в источнике. Общий проверяемый знаменатель —
+    // «названы внешним прюфером в опубликованной декларации о доступности»;
+    // он и так сильный, потому что подтверждён самим документом.
     case 'gov-declared-auditor':
-      return 'Named auditor in a government accessibility statement'
+      return 'Named auditor in a published accessibility statement'
   }
 }

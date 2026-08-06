@@ -158,14 +158,26 @@ export function resolveJurisdiction(url, countryCodeOverride) {
 // требование там, где не проверили.
 const LEGALLY_DECISIVE_RULE_IDS = new Set(['a11y-statement-missing', 'a11y-statement-incomplete'])
 
+// D-040: РАНЬШЕ здесь стоял ранний выход `if (f.impact === 'critical') return f`,
+// и он молча ломал ровно ту цепочку, ради которой модуль написан. axe.js отдаёт
+// `a11y-statement-missing` СРАЗУ с impact:'critical' (это самая решающая находка),
+// поэтому находка «заявления нет» никогда не получала jurisdictionNote — правовое
+// основание видел только куда более слабый случай `-incomplete` (impact:'serious').
+// Тесты этого не ловили, т.к. подавали 'serious' там, где прод отдаёт 'critical'
+// (fixture drift). Правило теперь разделено: ПОМЕТКА ставится всегда, БАМП
+// impact — только если находка ниже critical.
 export function applyJurisdictionWeight(findings, jurisdiction) {
   if (!jurisdiction?.statementRequired) return findings
   return findings.map((f) => {
     if (!LEGALLY_DECISIVE_RULE_IDS.has(f.ruleId)) return f
-    if (f.impact === 'critical') return f
     return {
       ...f,
       impact: 'critical',
+      // Код страны отдельным полем, а не разбором строки заметки: фронтенду нужно
+      // знать юрисдикцию, чтобы вести немецкий трафик по немецкому пути
+      // (INTERFACES.md §3). Парсить `jurisdictionNote` регуляркой — молчаливая
+      // связка текста копирайта с логикой, ломается при первой правке формулировки.
+      jurisdictionCountry: jurisdiction.country,
       // Ни в одной ветке нет и не должно быть суммы (D-035). `verified`
       // означает качество ПРАВОВОЙ ССЫЛКИ: сверена ли она с первоисточником
       // и относится ли к частному сектору — а не «проверена ли сумма штрафа».

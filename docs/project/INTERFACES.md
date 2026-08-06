@@ -44,9 +44,17 @@ D-016). `sampleHtml` из черновика убран — конфликтов
 `worker/lib/jurisdiction.js::supportedJurisdictions()`; зеркало для UI —
 `src/lib/jurisdictions.ts`, расхождение ловит `src/lib/jurisdictions.test.mjs`.
 
+`jurisdictionCountry` (ISO-3166 alpha-2, D-041) добавлен рядом с
+`jurisdictionNote` и ставится ровно там же — на юридически решающих находках
+(`a11y-statement-*`) в юрисдикции, требующей заявление. Нужен, чтобы UI мог
+ветвиться по стране, НЕ разбирая текст заметки регуляркой: заметка — копирайт,
+она будет меняться, и связка «текст → логика» ломается молча. Поля нет вовсе на
+находках, к которым правовая пометка не относится.
+
 ```ts
 type ScanFinding = { ruleId: string; wcag: string[]; impact: 'minor'|'moderate'|'serious'|'critical';
-  selector: string; page: string; html?: string; jurisdictionNote?: string };
+  selector: string; page: string; html?: string; jurisdictionNote?: string;
+  jurisdictionCountry?: string };
 // ruleId: либо реальный axe-core ruleId (напр. "color-contrast"), либо один из
 // собственных проверок вне axe (D-030, 2026-08-06), namespace "a11y-*"/"scan-meta-*":
 //   a11y-statement-missing / a11y-statement-incomplete — A3-STATEMENT (Anlage 3)

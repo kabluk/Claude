@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
 import { TurnstileWidget } from '@/components/TurnstileWidget'
 import { isValidScanUrl, submitScan, ScannerUnavailableError } from '@/lib/scanner'
@@ -16,6 +16,23 @@ export default function ScanPage() {
   const [countryCode, setCountryCode] = useState('')
   const [turnstileToken, setTurnstileToken] = useState<string | undefined>()
   const [state, setState] = useState<FormState>({ kind: 'idle' })
+
+  // D-041: `?country=DE` предвыбирает юрисдикцию — так работает ссылка с
+  // немецкого входного пути (/bfsg-check/), где страна уже известна и повторно
+  // спрашивать её незачем.
+  //
+  // Намеренно в useEffect, а не в инициализаторе useState: страница пререндерится SSG, где
+  // query-строки нет вовсе. Инициализируй мы состояние из параметра — сервер
+  // отрисовал бы пустой select, клиент выбранный, и React получил бы
+  // расхождение при гидратации. Здесь же значение ставится ПОСЛЕ гидратации.
+  //
+  // Неизвестный код молча игнорируется (как и в воркере, D-032): это подсказка
+  // из ссылки, а не валидируемый контракт — падать из-за неё страница не должна.
+  const [searchParams] = useSearchParams()
+  useEffect(() => {
+    const raw = searchParams.get('country')?.trim().toUpperCase()
+    if (raw && JURISDICTION_OPTIONS.some((j) => j.code === raw)) setCountryCode(raw)
+  }, [searchParams])
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()

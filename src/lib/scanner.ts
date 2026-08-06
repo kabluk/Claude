@@ -15,6 +15,11 @@ export type ScanFinding = {
   // его требует — правовая база, и сумма штрафа ТОЛЬКО если она сверена с текстом
   // закона (сейчас лишь DE). См. INTERFACES.md §3, DECISIONS.md D-030/D-031.
   jurisdictionNote?: string
+  // ISO-3166 alpha-2 юрисдикции, к которой относится заметка выше (D-040).
+  // Нужен, чтобы страница отчёта могла увести немецкого посетителя на немецкий
+  // путь, НЕ разбирая текст заметки регуляркой (копирайт менялся бы — логика
+  // ломалась бы молча). Ставится ровно там же, где jurisdictionNote.
+  jurisdictionCountry?: string
 }
 
 export type ScanErrorCode = 'unreachable' | 'refused' | 'tls' | 'timeout' | 'blocked' | 'internal'
@@ -126,7 +131,14 @@ export function formatWcagTag(tag: string): string {
 export function groupFindingsByRule(findings: ScanFinding[]) {
   const byRule = new Map<
     string,
-    { ruleId: string; impact: ScanFinding['impact']; wcag: string[]; jurisdictionNote?: string; instances: ScanFinding[] }
+    {
+      ruleId: string
+      impact: ScanFinding['impact']
+      wcag: string[]
+      jurisdictionNote?: string
+      jurisdictionCountry?: string
+      instances: ScanFinding[]
+    }
   >()
   for (const f of findings) {
     const existing = byRule.get(f.ruleId)
@@ -136,9 +148,15 @@ export function groupFindingsByRule(findings: ScanFinding[]) {
       // одна и та же юрисдикция) — берём первую непустую, чтобы группа не потеряла
       // её, если первый инстанс почему-то без неё.
       existing.jurisdictionNote ??= f.jurisdictionNote
+      existing.jurisdictionCountry ??= f.jurisdictionCountry
     } else {
       byRule.set(f.ruleId, {
-        ruleId: f.ruleId, impact: f.impact, wcag: f.wcag, jurisdictionNote: f.jurisdictionNote, instances: [f],
+        ruleId: f.ruleId,
+        impact: f.impact,
+        wcag: f.wcag,
+        jurisdictionNote: f.jurisdictionNote,
+        jurisdictionCountry: f.jurisdictionCountry,
+        instances: [f],
       })
     }
   }

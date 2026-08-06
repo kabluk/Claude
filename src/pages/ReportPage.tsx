@@ -239,6 +239,24 @@ function ReportBody({ report }: { report: ScanReport }) {
                       regime entirely. We deliberately do not quote penalty figures: they depend on
                       circumstances we cannot see from a scan. This report is not legal advice.
                     </p>
+                    {/* D-041: конец цепочки, ради которой правовая пометка вообще
+                        существует. Германия — единственная юрисдикция, где ссылка
+                        сверена с первоисточником И где у нас есть прюферы, названные
+                        в опубликованных декларациях; поэтому путь есть только для DE,
+                        а не выдуман для всех. Условие идёт по коду страны, а не по
+                        разбору текста заметки (см. scanner.ts). */}
+                    {g.jurisdictionCountry === 'DE' && (
+                      <p className="mt-2 text-xs">
+                        <a
+                          className="font-medium underline underline-offset-2"
+                          href={paths.bfsgCheck()}
+                          lang="de"
+                        >
+                          Auf Deutsch: was Anlage 3 zu § 14 BFSG verlangt — und welche Prüfer in
+                          veröffentlichten Erklärungen namentlich genannt sind →
+                        </a>
+                      </p>
+                    )}
                   </div>
                 )}
                 <ul className="mt-2 space-y-1 text-sm text-slate-500">

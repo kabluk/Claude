@@ -29,7 +29,7 @@ const AXE_SOURCE = readFileSync(join(ROOT, 'node_modules/axe-core/axe.min.js'), 
 // 2 представителя на шаблон — покрывает шаблоны из README + /scan (A1-LANDING)
 // + /request-quote (A2-LEAD-FORM).
 const SAMPLE_ROUTES = [
-  '/', '/scan/', '/methodology/', '/request-quote/', '/agencies/', '/agencies/deque-systems/', '/agencies/tpgi/',
+  '/', '/scan/', '/methodology/', '/bfsg-check/', '/request-quote/', '/agencies/', '/agencies/deque-systems/', '/agencies/tpgi/',
   '/countries/', '/germany/', '/united-states/',
   '/germany/accessibility-audit/', '/united-states/vpat/',
   '/services/', '/services/accessibility-audit/',

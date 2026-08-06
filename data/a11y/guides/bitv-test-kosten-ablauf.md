@@ -25,7 +25,7 @@
       "a": "Die BITV 2.0 verpflichtet nur öffentliche Stellen. Private Unternehmen unterliegen seit dem 28. Juni 2025 aber dem BFSG, das über die Konformitätsvermutung auf dieselbe Norm EN 301 549 hinausläuft. Ein BITV- oder WCAG-Test prüft genau diese Anforderungen und ist damit auch für Unternehmen ein belastbarer Nachweis."
     }
   ],
-  "cta": { "label": "BITV-Prüfung mit einer erfahrenen Prüfstelle planen", "path": "/standards/bitv/" },
+  "cta": { "label": "Zuerst kostenlos prüfen, dann Prüfstelle wählen (BFSG-Check)", "path": "/bfsg-check/" },
   "relatedAgencies": ["dias", "bitv-consult", "mindscreen", "tollwerk"]
 }
 ---

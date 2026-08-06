@@ -17,7 +17,9 @@ import { AgencyCard } from './AgencyCard'
 const CERT_KINDS = [
   ['iaap-org-member', 'IAAP member'],
   ['bitv-pruefstelle', 'BITV Prüfstelle'],
-  ['gov-declared-auditor', 'Gov-declared auditor'],
+  // D-041: подпись приведена к доказуемому — часть деклараций опубликована не
+  // госорганом (см. certLabel в data.ts).
+  ['gov-declared-auditor', 'Named in a statement'],
   ['dhs-trusted-tester', 'DHS Trusted Tester'],
 ] as const
 

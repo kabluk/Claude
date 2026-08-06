@@ -17,15 +17,15 @@
       "a": "Nein. Das BFSG erfasst Produkte und Dienstleistungen, die für Verbraucherinnen und Verbraucher bestimmt sind. Reine B2B-Shops oder -Dienste fallen nicht darunter. Vorsicht bei Mischformen: Sobald ein Online-Shop faktisch auch Verbrauchern offensteht, ist er in der Regel als Dienstleistung im elektronischen Geschäftsverkehr erfasst."
     },
     {
-      "q": "Welche Strafen drohen bei Verstößen gegen das BFSG?",
-      "a": "§ 37 BFSG sieht Bußgelder von bis zu 100.000 Euro für bestimmte Verstöße vor, etwa gegen die zentralen Barrierefreiheitspflichten; andere Ordnungswidrigkeiten können mit bis zu 10.000 Euro geahndet werden. Daneben kann die Marktüberwachung Produkte vom Markt nehmen oder die Einstellung einer Dienstleistung verlangen. Auch Abmahnungen durch Verbände sind möglich."
+      "q": "Was passiert bei Verstößen gegen das BFSG?",
+      "a": "§ 37 BFSG behandelt Verstöße als Ordnungswidrigkeiten, die mit einem Bußgeld geahndet werden können. Konkrete Beträge nennen wir bewusst nicht: Sie hängen von Art und Schwere des Verstoßes sowie von den Umständen des Einzelfalls ab. Praktisch wirksamer sind die Instrumente der Marktüberwachung — sie kann Nachbesserung verlangen, Produkte vom Markt nehmen oder die Erbringung einer nicht konformen Dienstleistung untersagen. Auch Abmahnungen durch Wettbewerber und qualifizierte Verbände sind möglich."
     },
     {
       "q": "Reicht eine barrierefreie Website oder brauche ich ein Audit?",
       "a": "Das BFSG verlangt, dass die Anforderungen tatsächlich erfüllt und dokumentiert sind — nicht nur ein subjektiver Eindruck von Barrierefreiheit. Ein externes Audit nach EN 301 549 bzw. WCAG (etwa ein BITV- oder WCAG-Test) liefert den belastbaren Nachweis, deckt konkrete Mängel auf und ist die übliche Grundlage für die geforderte Dokumentation und Barrierefreiheitserklärung."
     }
   ],
-  "cta": { "label": "Barrierefreiheits-Audit für Ihr Unternehmen anfragen", "path": "/germany/accessibility-audit/" },
+  "cta": { "label": "Website prüfen und Prüfstelle finden (BFSG-Check)", "path": "/bfsg-check/" },
   "relatedAgencies": ["dias", "deutsche-telekom-mms", "anatom5", "barrierefreiheit-umsetzen"]
 }
 ---
@@ -95,7 +95,7 @@ Wichtig: Diese Fristen betreffen Bestandsprodukte und Altverträge. Für Ihre We
 
 Die Länder haben die Marktüberwachung gebündelt: Die [Marktüberwachungsstelle der Länder für die Barrierefreiheit von Produkten und Dienstleistungen (MLBF)](https://mlbf-barrierefrei.de/) mit Sitz in Magdeburg hat [im September 2025 ihre Arbeit aufgenommen](https://ms.sachsen-anhalt.de/themen/menschen-mit-behinderungen/aktuelles/marktueberwachungsstelle-der-laender-fuer-die-barrierefreiheit-von-produkten-und-dienstleistungen) und prüft bundesweit, ob Produkte und Dienstleistungen die Anforderungen erfüllen. Sie kann Nachbesserung verlangen, Produkte zurückrufen lassen und die Erbringung nicht konformer Dienstleistungen untersagen. Verbraucher können Verstöße direkt bei der Behörde melden.
 
-Bei Ordnungswidrigkeiten drohen nach § 37 BFSG **Bußgelder bis zu 100.000 Euro**, bei bestimmten weiteren Verstößen bis zu 10.000 Euro. Hinzu kommt das zivilrechtliche Risiko: Wettbewerber und qualifizierte Verbände können Verstöße abmahnen, und nicht barrierefreie Checkout-Strecken kosten messbar Umsatz.
+§ 37 BFSG behandelt Verstöße als **Ordnungswidrigkeiten**, die mit einem Bußgeld geahndet werden können. Konkrete Beträge nennen wir hier bewusst nicht: Sie hängen von Art und Schwere des Verstoßes und von Umständen des Einzelfalls ab — und ein Teil der Anbieter fällt über die Kleinstunternehmensregel (§ 3 Abs. 3 BFSG) gar nicht erst unter die Dienstleistungspflichten. Praktisch relevanter als die Obergrenze im Gesetz sind ohnehin die Instrumente der Marktüberwachung: Nachbesserung, Rückruf, Untersagung der Dienstleistung. Hinzu kommt das zivilrechtliche Risiko: Wettbewerber und qualifizierte Verbände können Verstöße abmahnen, und nicht barrierefreie Checkout-Strecken kosten messbar Umsatz.
 
 ## Was jetzt zu tun ist: Fahrplan in sechs Schritten
 

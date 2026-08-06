@@ -65,6 +65,9 @@ export const routes: RouteRecord[] = [
   },
   { path: '/scan', lazy: page(() => import('./pages/ScanPage')) },
   { path: '/methodology', lazy: page(() => import('./pages/MethodologyPage')) },
+  // Немецкий входной путь (D-041). Статический сегмент ранжируется react-router
+  // выше динамического '/:country' ниже по файлу, поэтому со страной не спорит.
+  { path: '/bfsg-check', lazy: page(() => import('./pages/BfsgCheckPage')) },
   // Скан-отчёты непредсказуемы (id генерируется Worker'ом) — нет getStaticPaths,
   // клиентский маршрут, как /404 catch-all ниже.
   { path: '/report/:id', lazy: page(() => import('./pages/ReportPage')) },

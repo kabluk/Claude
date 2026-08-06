@@ -90,10 +90,37 @@ test('applyJurisdictionWeight leaves findings untouched for unmapped jurisdictio
   assert.deepEqual(applyJurisdictionWeight(findings, jurisdiction), findings)
 })
 
-test('applyJurisdictionWeight does not double-bump an already-critical finding (no redundant note overwrite)', () => {
+// D-040 — регрессия на молчаливую поломку главной цепочки продукта.
+// Прежний код выходил рано на уже-critical находке, а axe.js отдаёт
+// `a11y-statement-missing` именно с impact:'critical'. Итог: у САМОЙ решающей
+// находки правового основания не было вовсе. Тест подаёт ту форму, которую
+// реально отдаёт прод, а не удобную 'serious'.
+test('the already-critical missing statement (the shape axe.js really emits) still gets its legal basis', () => {
   const jurisdiction = jurisdictionForUrl('https://www.bundesregierung.de/')
-  const findings = [{ ruleId: 'a11y-statement-missing', impact: 'critical' }]
-  assert.deepEqual(applyJurisdictionWeight(findings, jurisdiction), findings)
+  const out = applyJurisdictionWeight([{ ruleId: 'a11y-statement-missing', impact: 'critical' }], jurisdiction)
+  assert.equal(out[0].impact, 'critical')
+  assert.match(out[0].jurisdictionNote, /Anlage 3 zu §14 BFSG/)
+  assert.equal(out[0].jurisdictionCountry, 'DE')
+})
+
+// Анти-drift: тест выше опирается на то, что axe.js действительно отдаёт эту
+// находку как 'critical'. Проверяем это по РЕАЛЬНОМУ исходнику модуля, а не по
+// памяти — иначе фикстура снова разойдётся с продом и пропустит ту же ошибку.
+test('axe.js really emits a11y-statement-missing as critical (guards the fixture above)', async () => {
+  const { readFileSync } = await import('node:fs')
+  const src = readFileSync(new URL('./axe.js', import.meta.url), 'utf8')
+  const m = src.match(/ruleId:\s*'a11y-statement-missing'[^}]*?impact:\s*'(\w+)'/s)
+  assert.ok(m, 'a11y-statement-missing emission not found in axe.js')
+  assert.equal(m[1], 'critical')
+})
+
+test('jurisdictionCountry is set for every weighted finding, so the UI never parses the note text', () => {
+  const out = applyJurisdictionWeight(
+    [{ ruleId: 'a11y-statement-incomplete', impact: 'serious' }, { ruleId: 'color-contrast', impact: 'serious' }],
+    jurisdictionForUrl('https://www.impots.gouv.fr/'),
+  )
+  assert.equal(out[0].jurisdictionCountry, 'FR')
+  assert.equal(out[1].jurisdictionCountry, undefined) // не decisive — поля нет вовсе
 })
 
 // --- resolveJurisdiction: явный выбор страны пользователем (D-032) ---------
