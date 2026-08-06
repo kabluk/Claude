@@ -83,8 +83,21 @@ D1/KV, настоящий скан example.com нашёл настоящие н�
 превью, страница добавлена в постоянный CI a11y-гейт и в sitemap (были не
 покрыты изначально), плюс закрыт orphan-page пробел — CTA «Request a quote»
 теперь ведёт на страницу с `/report/:id`. `build`/`typecheck`/`worker:test`/
-`check-links`/`audit-a11y` зелёные (386 страниц, sitemap 349 URL). Claim, Stripe
-ещё не начаты. По плану — Фаза 2 (ROADMAP.md).
+`check-links`/`audit-a11y` зелёные (386 страниц, sitemap 349 URL). `A2-LEAD-API`
+— **done**: `POST /api/lead` пишет в D1, тот же матчинг, что `matchAgencies.ts`.
+`A2-CLAIM-SCHEMA`/`A2-STRIPE-SCHEMA` — **done** (миграции `claims`/`featured`).
+`A2-STRIPE-WEBHOOK-CODE` — **done** (2026-08-06): `POST /api/stripe-hook`
+проверяет подпись Stripe по настоящему алгоритму (HMAC-SHA256, `Stripe-
+Signature: t=…,v1=…`, константное сравнение, tolerance против replay,
+`worker/lib/stripeSig.js`) и апсертит `featured` по `checkout.session.completed`
+(`ON CONFLICT(agency_slug) DO UPDATE`). 24 новых теста на синтетическом
+секрете, 89/89 `worker:test`; живьём через `wrangler dev --local` + `wrangler
+d1 execute --local` на настоящей D1 — поддельная подпись отклонена, валидное
+событие обновило `featured.until`, продление обновило ту же строку (не
+создало вторую). Разблокировало `A2-STRIPE-LIVE` (approval_required, реальный
+Stripe-аккаунт — отдельное решение владельца). Claim-API, email-рассылки
+(Resend) и live Stripe ещё не начаты/ждут approval. По плану — Фаза 2
+(ROADMAP.md).
 
 ## Инфраструктура
 

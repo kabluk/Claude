@@ -1,6 +1,7 @@
 import { handlePostScan, handleGetScan } from './routes/scan.js'
 import { handlePostExplain } from './routes/explain.js'
 import { handlePostLead } from './routes/lead.js'
+import { handlePostStripeHook } from './routes/stripeHook.js'
 import { deleteExpiredScans } from './lib/retention.js'
 
 function corsHeaders(env) {
@@ -41,6 +42,13 @@ export default {
 
     if (request.method === 'POST' && url.pathname === '/api/lead') {
       return withCors(await handlePostLead(request, env), cors)
+    }
+
+    // Stripe вызывает это server-to-server (не из браузера) — CORS ему не
+    // нужен, но withCors безвреден для не-браузерного клиента и держит один
+    // общий путь ответа для всех маршрутов этого воркера.
+    if (request.method === 'POST' && url.pathname === '/api/stripe-hook') {
+      return withCors(await handlePostStripeHook(request, env), cors)
     }
 
     return withCors(Response.json({ error: 'not found', code: 'not_found' }, { status: 404 }), cors)

@@ -40,7 +40,18 @@ verify/approval_required для каждого. Сводка (детали в GR
 | A2-STRIPE | `A2-STRIPE-SCHEMA` → `A2-STRIPE-WEBHOOK-CODE` → `A2-STRIPE-LIVE` | backend + devops | LIVE требует Stripe (approval) |
 | A2-OUTREACH | `A2-OUTREACH-PREP` → `A2-OUTREACH-SEND` | growth-strategist | SEND требует Resend + рассылка (approval) |
 
-Статус на 2026-08-06: `A2-LEAD-SCHEMA` — **done** (`migrations/0003_leads.sql`,
+Статус на 2026-08-06: `A2-STRIPE-SCHEMA` и `A2-STRIPE-WEBHOOK-CODE` — **done**
+(`migrations/0005_featured.sql` + `worker/routes/stripeHook.js` +
+`worker/lib/stripeSig.js`: `POST /api/stripe-hook` реально проверяет подпись
+Stripe (Stripe-Signature: t=…,v1=…, HMAC-SHA256 над `"{t}.{raw_body}"`,
+константное сравнение, tolerance на replay) и по `checkout.session.completed`
+апсертит `featured` через `ON CONFLICT(agency_slug) DO UPDATE`. 24 новых
+юнит-теста на синтетическом секрете, 89/89 `worker:test` зелёные; живьём
+через `wrangler dev --local` + `wrangler d1 execute --local` на реальной D1:
+поддельная подпись отклонена, валидное событие обновило `featured.until`,
+продление (второй event) обновило ту же строку — детали `domains/backend.md`.
+Разблокировало `A2-STRIPE-LIVE`, approval всё ещё нужен на нём отдельно.
+`A2-LEAD-SCHEMA` — **done** (`migrations/0003_leads.sql`,
 поля 1:1 с INTERFACES.md §4, `db:migrate:local` + `worker:test` 39/39 зелёные;
 разблокировало `A2-LEAD-API`). `A2-LEAD-FORM` — **done** (RequestQuotePage +
 LeadForm + leadForm.ts; клиентская валидация, client-only превью совпадений через

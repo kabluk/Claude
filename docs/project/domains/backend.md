@@ -224,7 +224,115 @@ Turnstile-путей) — 65/65 `worker:test` зелёные. `npm run typecheck
 `fetch`, не живым Cloudflare API) и реальный remote-деплой обновлённого воркера
 на прод (отдельное решение по факту, как при A1-RETENTION/A1-EXPLAIN).
 
+## A2-STRIPE-WEBHOOK-CODE — сделано (2026-08-06, done)
+
+`POST /api/stripe-hook` — проверка подписи Stripe webhook + обновление
+`featured` (платное размещение агентства, `migrations/0005_featured.sql`,
+A2-STRIPE-SCHEMA). Реальный `STRIPE_SECRET_KEY`/webhook signing secret,
+настоящие Payment Links — отдельный узел `A2-STRIPE-LIVE`, approval_required.
+
+Файлы: `worker/lib/stripeSig.js` (проверка подписи, самостоятельный модуль без
+зависимостей от Stripe SDK), `worker/routes/stripeHook.js` (хендлер + D1-upsert,
+всё в одном файле — тот же паттерн, что `lead.js` для `leads`), `worker/index.js`
+(маршрут).
+
+- **Проверка подписи** (`stripeSig.js::verifyStripeSignature`): настоящий
+  алгоритм Stripe, не упрощённая схема. Заголовок `Stripe-Signature: t=<unix>,
+  v1=<hex>[,v1=<hex>...]`. Подпись — `HMAC-SHA256(secret, "{t}.{raw_body}")`,
+  hex-encoded, через Web Crypto (`crypto.subtle`, доступен и в Workers, и в
+  Node ≥19 для тестов). Сравнение константное по времени
+  (`timingSafeEqualHex` — побайтовый XOR-аккумулятор, без раннего `return` на
+  первом несовпадении, кроме проверки длины — обе строки фиксированной длины
+  hex-дайджеста SHA-256, так что длина сама по себе не течёт информацию о
+  подобранных байтах). Несколько `v1=` в одном заголовке поддержаны (Stripe
+  шлёт больше одной подписи в окне ротации секрета — валидно, если совпала
+  ЛЮБАЯ). `v0` (устаревшая SHA1-схема) намеренно игнорируется, как и в
+  официальном Stripe SDK. Отдельно проверяется `timestamp` не старше 5 минут
+  (`toleranceSeconds`, дефолт как в `stripe-node`) — защита от replay
+  перехваченного, но валидно подписанного старого запроса; вызывающий код
+  может расширить окно явным параметром (тестам это нужно для управляемых
+  фикстур).
+- **Подпись считается по СЫРОМУ телу**: `stripeHook.js` вызывает
+  `request.text()`, не `request.json()`, до всякого парсинга — любая
+  ре-сериализация JSON (порядок ключей, пробелы) дала бы другую строку и
+  ломала бы подпись на ровном месте, даже для настоящих Stripe-событий.
+- **Секрет**: `env.STRIPE_WEBHOOK_SECRET` (`wrangler secret put`, `whsec_...`),
+  НЕ `STRIPE_SECRET_KEY` — этому узлу вообще не нужен полный API-ключ Stripe
+  (он не делает исходящих вызовов в Stripe API, только проверяет входящие
+  события), `STRIPE_SECRET_KEY` появится только в A2-STRIPE-LIVE вместе с
+  реальными Payment Links. Секрет не настроен → `503 unavailable` до всякой
+  проверки подписи, тот же паттерн, что `ANTHROPIC_API_KEY` в A1-EXPLAIN
+  (`explain.js`) — не блокирует остальной воркер.
+- **`checkout.session.completed` → `featured`**: `agency_slug`/`until`
+  извлекаются из `session.metadata` (`extractFeaturedFromSession`) — Stripe не
+  знает о нашей доменной модели, `metadata` на Payment Link/Checkout Session —
+  единственный официальный канал протащить произвольные бизнес-поля через
+  Stripe без изменений; сам Payment Link с этими полями настраивает
+  A2-STRIPE-LIVE. Если `metadata` отсутствует/`agency_slug` пуст/`until` не
+  похож на ISO-дату — `featured` не трогаем, но всё равно отвечаем `200`:
+  подпись Stripe подтверждена (событие настоящее), просто нечего применить —
+  это проблема конфигурации Payment Link, а не повод просить Stripe повторить
+  доставку.
+- **D1 upsert**: `INSERT INTO featured (...) VALUES (...) ON CONFLICT
+  (agency_slug) DO UPDATE SET until = excluded.until, stripe_ref =
+  excluded.stripe_ref` — `agency_slug` уже `PRIMARY KEY` (A2-STRIPE-SCHEMA), тот
+  же паттерн, что и raw SQL в `lead.js`/`scan.js`. `stripe_ref` = `session.id`
+  чекаут-сессии, для сверки и возвратов, не для рантайм-логики.
+- **Любое другое подтверждённое событие** (тип не `checkout.session.completed`)
+  → `200 {received: true}`, no-op — Stripe ретраит недоставленные вебхуки при
+  не-2xx, отвечать не-2xx на то, что мы осознанно не обрабатываем, вызвало бы
+  бессмысленные повторы.
+
+Верифицировано: 24 новых юнит-теста на синтетическом секрете
+`whsec_test_synthetic_...` (`worker/lib/stripeSig.test.mjs` — 11 тестов:
+валидная подпись, подмена payload после подписания, чужой секрет, отсутствующий
+заголовок, `t=`/`v1=` по отдельности отсутствуют, просроченный timestamp,
+явный override tolerance, ротация секрета (несколько `v1=`), отсутствующий
+секрет; `worker/routes/stripeHook.test.mjs` — 13 тестов: `extractFeaturedFromSession`
+изолированно + вся цепочка хендлера — 503 без секрета, 400 на отсутствующий
+заголовок/подделанную подпись/испорченный после подписания body/просроченный
+timestamp/невалидный JSON, 200+upsert на валидное событие, 200+no-op на
+событие без метаданных и на необрабатываемый тип, 200×2 на «продление» одного
+`agency_slug` двумя разными checkout-сессиями). Подписи в тестах строятся через
+`node:crypto` `createHmac` — независимо от `crypto.subtle`, которым пользуется
+сам `stripeSig.js`, так что тест реально проверяет совместимость с алгоритмом
+Stripe, а не то, что модуль лишь согласуется сам с собой. 89/89 `worker:test`
+зелёные (было 65). `npm run typecheck` и `npx wrangler deploy --dry-run`
+чистые (1217.44 KiB / gzip 242.88 KiB).
+
+Живой прогон (не только юнит-тесты на фейковом D1) через `wrangler dev --local
+--var STRIPE_WEBHOOK_SECRET:whsec_local_synthetic_dev_secret` (синтетический
+секрет как аргумент процесса, не в файле) + `wrangler d1 execute
+accessatlas-scans --local` на настоящей локальной SQLite/D1:
+- заголовок, подписанный ЧУЖИМ секретом → `400 {"code":"bad_request",
+  "error":"invalid webhook signature (signature_mismatch)"}`, `featured`
+  не тронута (`SELECT` — 0 строк)
+- запрос вовсе без `Stripe-Signature` → `400`
+- валидно подписанное `checkout.session.completed` (`agency_slug:
+  "stripe-webhook-live-test-agency"`, `until: "2027-03-01"`, `session.id:
+  "cs_live_test_1"`) → `200 {"received":true}`, `SELECT * FROM featured WHERE
+  agency_slug=...` вернул ровно эту строку со всеми тремя полями верно
+- второе валидное событие для того же `agency_slug` (продление, `until:
+  "2027-06-01"`, `session.id: "cs_live_test_2"`) → `SELECT * FROM featured`
+  вернул ОДНУ строку (не две) с обновлёнными `until`/`stripe_ref` — `ON
+  CONFLICT DO UPDATE` реально сработал в настоящей SQLite, не только по
+  тексту SQL в моках юнит-теста
+- регрессия: CORS OPTIONS-preflight, `/api/lead` (400 на пустое тело), 404 на
+  неизвестный путь — все по-прежнему верны после правки `worker/index.js`
+- тестовая строка удалена (`DELETE FROM featured WHERE agency_slug=...`) после
+  проверки, локальная D1 оставлена чистой
+
+Не проверено и не обязано быть в этом узле (по конструкции — отдельный узел
+A2-STRIPE-LIVE, approval_required): реальный `STRIPE_WEBHOOK_SECRET`/
+`STRIPE_SECRET_KEY` Stripe, настоящие Payment Links с `metadata.agency_slug`/
+`metadata.until`, настоящий тестовый или боевой платёж, доходящий до этого
+воркера через реальный Stripe-аккаунт владельца.
+
 ## Дальше по Фазе 1/2
 
-- Секреты: Resend, Stripe — только в Worker secrets, не в репо (A2-LEAD-EMAIL,
-  A2-CLAIM-EMAIL, A2-STRIPE-LIVE — все approval_required).
+- Секреты: Resend, Stripe (`STRIPE_SECRET_KEY`, реальные Payment Links) —
+  только в Worker secrets, не в репо (A2-LEAD-EMAIL, A2-CLAIM-EMAIL,
+  A2-STRIPE-LIVE — все approval_required). `STRIPE_WEBHOOK_SECRET` тоже
+  секрет, но код, который его использует (этот узел), уже написан и
+  протестирован на синтетическом секрете — реальный секрет появляется только
+  на деплое A2-STRIPE-LIVE.

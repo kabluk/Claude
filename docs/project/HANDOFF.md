@@ -182,6 +182,27 @@
    реально падает на `UNIQUE constraint` (продление — `UPDATE`, не новая
    строка, как задумано). Разблокировали `A2-CLAIM-API` и
    `A2-STRIPE-WEBHOOK-CODE`.
+   `A2-STRIPE-WEBHOOK-CODE` **done** (2026-08-06): `POST /api/stripe-hook`
+   (`worker/routes/stripeHook.js` + `worker/lib/stripeSig.js`) — настоящий
+   алгоритм проверки подписи Stripe (`Stripe-Signature: t=…,v1=…`, HMAC-SHA256
+   через Web Crypto над `"{t}.{raw_body}"`, константное сравнение, поддержка
+   ротации секрета через несколько `v1=`, 5-минутный tolerance на timestamp
+   против replay), не упрощённая имитация. `checkout.session.completed` →
+   `agency_slug`/`until` из `session.metadata` → `featured` через `INSERT ...
+   ON CONFLICT(agency_slug) DO UPDATE` (продление, не новая строка). Секрет —
+   `env.STRIPE_WEBHOOK_SECRET`, не `STRIPE_SECRET_KEY` (тот не нужен этому
+   узлу вовсе); без секрета — `503`, тот же паттерн, что `ANTHROPIC_API_KEY` в
+   A1-EXPLAIN. 24 новых юнит-теста на синтетическом секрете (`whsec_test_...`,
+   подписи в тестах строятся `node:crypto` независимо от `crypto.subtle` кода)
+   — 89/89 `worker:test` зелёные, typecheck/`wrangler deploy --dry-run` чистые.
+   Живьём через `wrangler dev --local` + `wrangler d1 execute --local` на
+   настоящей D1 (не моке): поддельная подпись → `400`, D1 не тронута; валидное
+   событие → `200`, реальная строка в `featured`; второе событие того же
+   `agency_slug` (продление) обновило ту же строку, не создало вторую —
+   тестовая запись удалена после проверки. Разблокировало `A2-STRIPE-LIVE`
+   (approval_required не снимается этим узлом — реальный Stripe-аккаунт,
+   реальные деньги, отдельное одобрение владельца). Детали:
+   `domains/backend.md`.
 
 ## Живой skill (D-012)
 
