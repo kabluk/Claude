@@ -153,7 +153,7 @@ export default function AgencyPage() {
               </li>
             ))}
           </ul>
-          <p className="mt-2 text-xs text-slate-400">
+          <p className="mt-2 text-xs text-slate-500">
             Every listing on this site cites where its facts come from. Spotted an error?
             The agency can claim this profile to correct it.
           </p>

@@ -34,10 +34,14 @@
 type ScanFinding = { ruleId: string; wcag: string[]; impact: 'minor'|'moderate'|'serious'|'critical';
   selector: string; page: string; html?: string };
 type ScanReport = { id: string; url: string; status: 'running'|'done'|'error'; pages: string[];
-  findings: ScanFinding[]; score: number|null; error: string|null; createdAt: string;
-  completedAt: string|null };
+  findings: ScanFinding[]; score: number|null; error: string|null;
+  errorCode: 'unreachable'|'refused'|'tls'|'timeout'|'blocked'|'internal'|null;
+  createdAt: string; completedAt: string|null };
 // score: 0–100, дедуп по ruleId (худшая severity среди инстансов) — см. D-010,
 // worker/lib/score.js. Эвристика для сортировки/сравнения, НЕ сертификация (D-006).
+// errorCode: маленький enum для UI (worker/lib/errors.js, D-013) — error остаётся
+// сырым текстом для отладки, errorCode превращается фронтендом в понятную фразу
+// без парсинга стектрейсов (VISION.md UX-требование 4).
 type Lead = { id: string; scanId?: string; country: string; standard: StandardSlug;
   service: ServiceSlug; budget: PriceBand; deadline?: string; contact: {email: string; company?: string};
   matched: string[]; status: 'sent'|'responded'|'booked'|'closed'; createdAt: string };
@@ -48,9 +52,9 @@ type Lead = { id: string; scanId?: string; country: string; standard: StandardSl
 ## 4. D1
 
 ```
--- scans: реализовано, migrations/0001_init.sql
+-- scans: реализовано, migrations/0001_init.sql + 0002_error_code.sql
 scans(id TEXT PK, url TEXT, status TEXT DEFAULT 'running', pages_json TEXT,
-      findings_json TEXT, score INT, error TEXT, email TEXT NULL,
+      findings_json TEXT, score INT, error TEXT, error_code TEXT, email TEXT NULL,
       created_at TEXT, completed_at TEXT)
 
 -- ниже — черновик, Фаза 2+, ещё не реализовано

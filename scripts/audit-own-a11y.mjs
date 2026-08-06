@@ -3,10 +3,17 @@
 // критерий выхода Фазы 1). Гоняет axe-core через Playwright по dist/ — по 2
 // представителя каждого из 14 шаблонов (шаблонный баг повторяется на всех
 // инстансах, сканировать все 384 страницы избыточно). Запускать после `npm run build`.
+//
+// ВАЖНО: страницы отдаются через настоящий локальный HTTP-сервер, не file://.
+// Под file:// абсолютные пути вида /assets/app-XXXX.css резолвятся в корень
+// файловой системы, а не в dist/ — CSS молча не грузится, и любая проверка на
+// цвет/контраст тривиально "проходит" на неокрашенном HTML. Так был потерян
+// реальный баг контраста в первой версии этого скрипта (D-014) — не повторять.
 
-import { readFileSync, existsSync } from 'node:fs'
+import { readFileSync, existsSync, createReadStream, statSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
-import { dirname, join, resolve } from 'node:path'
+import { dirname, join, extname } from 'node:path'
+import { createServer } from 'node:http'
 import { chromium } from 'playwright'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
@@ -30,10 +37,28 @@ const SAMPLE_ROUTES = [
   '/about/', '/contact/', '/privacy/', '/imprint/', '/404/',
 ]
 
-function toFileUrl(route) {
-  const path = route === '/' ? join(DIST, 'index.html') : join(DIST, route, 'index.html')
-  return 'file://' + resolve(path)
+const MIME = { '.html': 'text/html', '.css': 'text/css', '.js': 'application/javascript', '.json': 'application/json', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.png': 'image/png' }
+
+function filePathFor(urlPath) {
+  const clean = urlPath.split('?')[0]
+  const direct = join(DIST, clean)
+  if (existsSync(direct) && statSync(direct).isFile()) return direct
+  return join(DIST, clean, 'index.html')
 }
+
+const server = createServer((req, res) => {
+  const path = filePathFor(req.url)
+  if (!existsSync(path)) {
+    res.writeHead(404)
+    res.end('not found')
+    return
+  }
+  res.writeHead(200, { 'content-type': MIME[extname(path)] ?? 'application/octet-stream' })
+  createReadStream(path).pipe(res)
+})
+await new Promise((resolve) => server.listen(0, '127.0.0.1', resolve))
+const port = server.address().port
+const base = `http://127.0.0.1:${port}`
 
 const results = []
 
@@ -46,18 +71,19 @@ const browser = await chromium.launch(launchOptions)
 try {
   const page = await browser.newPage()
   for (const route of SAMPLE_ROUTES) {
-    const fileUrl = toFileUrl(route)
-    if (!existsSync(new URL(fileUrl).pathname)) {
+    const url = base + route
+    if (!existsSync(filePathFor(route))) {
       results.push({ route, error: 'файл не найден' })
       continue
     }
-    await page.goto(fileUrl, { waitUntil: 'load' })
+    await page.goto(url, { waitUntil: 'load' })
     await page.addScriptTag({ content: AXE_SOURCE })
     const axeResults = await page.evaluate(async () => await window.axe.run())
     results.push({ route, violations: axeResults.violations })
   }
 } finally {
   await browser.close()
+  server.close()
 }
 
 let totalViolations = 0

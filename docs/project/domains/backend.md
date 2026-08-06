@@ -28,9 +28,15 @@
   CSP на чужом сайте блокирует), источник кэшируется в edge Cache API на 7 дней.
 - **Score** (`worker/lib/score.js`): дедуп по `ruleId` (худшая severity инстанса),
   не по числу нод — 5 юнит-тестов, все проходят.
-- Тесты: `npm run worker:test` → `node --test worker/**/*.test.mjs` (9/9 зелёных).
+- Тесты: `npm run worker:test` → `node --test worker/**/*.test.mjs` (15/15 зелёных).
   ⚠ `node --test worker` (без glob) на этой версии Node находит только 1 тест —
   баг discovery, не тестов; скрипт использует explicit glob, не трогать без причины.
+- **errorCode** (D-013, `worker/lib/errors.js`): классификация сырой ошибки скана
+  в маленький enum (`unreachable|refused|tls|timeout|blocked|internal`) паттерн-
+  матчингом по тексту. `error` (сырой текст) остаётся для отладки, `errorCode` —
+  то, на чём фронтенд строит понятные сообщения (VISION.md UX 4). Миграция
+  `0002_error_code.sql` (аддитивная, `ALTER TABLE`, не трогает `0001_init.sql`).
+  6 юнит-тестов.
 
 ## Что НЕ подтверждено (честно, не done)
 

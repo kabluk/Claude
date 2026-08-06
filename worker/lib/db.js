@@ -1,4 +1,4 @@
-// D1-доступ к таблице scans. Схема: migrations/0001_init.sql.
+// D1-доступ к таблице scans. Схема: migrations/0001_init.sql + 0002_error_code.sql.
 
 export async function insertScanPending(db, { id, url, email, createdAt }) {
   await db
@@ -16,10 +16,10 @@ export async function completeScan(db, { id, pages, findings, score }) {
     .run()
 }
 
-export async function failScan(db, { id, error }) {
+export async function failScan(db, { id, error, errorCode }) {
   await db
-    .prepare(`UPDATE scans SET status = 'error', error = ?, completed_at = ? WHERE id = ?`)
-    .bind(String(error).slice(0, 500), new Date().toISOString(), id)
+    .prepare(`UPDATE scans SET status = 'error', error = ?, error_code = ?, completed_at = ? WHERE id = ?`)
+    .bind(String(error).slice(0, 500), errorCode, new Date().toISOString(), id)
     .run()
 }
 
@@ -34,6 +34,7 @@ export async function getScan(db, id) {
     findings: row.findings_json ? JSON.parse(row.findings_json) : [],
     score: row.score,
     error: row.error,
+    errorCode: row.error_code,
     createdAt: row.created_at,
     completedAt: row.completed_at,
   }

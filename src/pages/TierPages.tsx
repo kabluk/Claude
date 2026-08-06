@@ -104,7 +104,7 @@ export function AgenciesIndexPage() {
               <Link className="hover:underline" to={paths.agency(a.slug)}>
                 {a.name}
               </Link>{' '}
-              <span className="text-slate-400">{a.hq.countryCode}</span>
+              <span className="text-slate-500">{a.hq.countryCode}</span>
             </li>
           ))}
       </ul>

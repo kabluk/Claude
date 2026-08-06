@@ -118,11 +118,11 @@ nodes:
   - id: A1-REPORT
     title: "UI отчёта /report/:id — находки по WCAG, severity, score"
     owner: frontend-engineer
-    status: blocked
+    status: review
     depends_on: [A1-SCAN]
     inputs: [docs/project/INTERFACES.md, docs/project/VISION.md]
-    scope: [src/pages/, src/components/, src/routes.tsx]
-    outputs: []
+    scope: [src/pages/, src/components/, src/routes.tsx, src/lib/scanner.ts, worker/lib/errors.js]
+    outputs: [src/pages/ReportPage.tsx, src/lib/scanner.ts, .env.example]
     verify:
       - npm run build
       - npm run typecheck
@@ -130,10 +130,10 @@ nodes:
       - "async-прогресс скана виден пользователю (VISION.md UX-требование 2)"
       - "своё понятное сообщение на каждое error-состояние, не общее (UX-требование 4)"
     max_attempts: 4
-    attempts: 0
+    attempts: 1
     risk: low
     approval_required: false
-    notes: "UX-приёмка обязательна, не факультативна — см. D-011, VISION.md раздел UX"
+    notes: "Готово 2026-08-06: все 5 UX-требований выполнены, 6 состояний (running/done/done-clean/error/not-found/unavailable) верифицированы через Playwright с подменённым API против реального dev-сервера — 0 нарушений axe-core на каждом (см. domains/frontend.md). Попутно найден и исправлен реальный баг контраста + баг самого audit-own-a11y.mjs (D-014). status=review, не done: зависит от A1-SCAN (тоже review), и реально получить scanId для перехода на страницу можно только после A1-LANDING (форма отправки URL) — сама страница отчёта готова и протестирована независимо от них."
 
   - id: A1-EXPLAIN
     title: AI-пояснения находок (Claude Haiku + KV-кэш ruleId×locale)

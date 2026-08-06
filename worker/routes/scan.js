@@ -3,6 +3,7 @@ import { checkRateLimit } from '../lib/ratelimit.js'
 import { verifyTurnstile } from '../lib/turnstile.js'
 import { scanSite } from '../lib/axe.js'
 import { scoreFromFindings } from '../lib/score.js'
+import { classifyError } from '../lib/errors.js'
 
 function isHttpUrl(value) {
   try {
@@ -50,7 +51,10 @@ export async function handlePostScan(request, env, ctx) {
       .then(({ pages, findings }) =>
         completeScan(env.DB, { id, pages, findings, score: scoreFromFindings(findings) })
       )
-      .catch((err) => failScan(env.DB, { id, error: err?.message ?? String(err) }))
+      .catch((err) => {
+        const message = err?.message ?? String(err)
+        return failScan(env.DB, { id, error: message, errorCode: classifyError(message) })
+      })
   )
 
   return Response.json({ scanId: id }, { status: 202 })

@@ -63,6 +63,9 @@ export const routes: RouteRecord[] = [
     lazy: page(() => import('./pages/GuidePage')),
     getStaticPaths: () => guides.map((g) => `/guides/${g.slug}/`),
   },
+  // Скан-отчёты непредсказуемы (id генерируется Worker'ом) — нет getStaticPaths,
+  // клиентский маршрут, как /404 catch-all ниже.
+  { path: '/report/:id', lazy: page(() => import('./pages/ReportPage')) },
   { path: '/about', lazy: page(() => import('./pages/AboutPage')) },
   { path: '/contact', lazy: page(() => import('./pages/ContactPage')) },
   { path: '/privacy', lazy: page(() => import('./pages/PrivacyPage')) },
