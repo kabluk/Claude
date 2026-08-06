@@ -135,10 +135,30 @@ function render(rows) {
 function main() {
   const axeByWcag = axeCoverageByWcag(axe.getRules())
   const rows = buildCoverage(CLAUSES, axeByWcag, OUR_CHECKS)
-  const out = join(ROOT, 'docs', 'project', 'EN301549-COVERAGE.md')
-  writeFileSync(out, render(rows))
+  writeFileSync(join(ROOT, 'docs', 'project', 'EN301549-COVERAGE.md'), render(rows))
+
+  // Тот же расчёт — в JSON для публичной страницы /methodology (D-037). Сайт НЕ
+  // импортирует axe-core (это утяжелило бы бандл) и не пересчитывает покрытие
+  // сам: единственный источник правды — этот скрипт, страница только рисует.
+  writeFileSync(
+    join(ROOT, 'data', 'a11y', 'en301549-coverage.json'),
+    JSON.stringify(
+      { generatedFrom: 'EN 301 549 V3.2.1 ch.9 + axe-core ' + axeVersion() + ' + worker/lib checks', rows },
+      null,
+      1,
+    ) + '\n',
+  )
+
   const covered = rows.filter((r) => r.status !== 'none').length
-  console.log(`✓ en301549-coverage: ${covered}/${rows.length} критериев покрыто → docs/project/EN301549-COVERAGE.md`)
+  console.log(`✓ en301549-coverage: ${covered}/${rows.length} критериев покрыто → docs/project/EN301549-COVERAGE.md + data/a11y/en301549-coverage.json`)
+}
+
+function axeVersion() {
+  try {
+    return JSON.parse(readFileSync(join(ROOT, 'node_modules', 'axe-core', 'package.json'), 'utf8')).version
+  } catch {
+    return 'unknown'
+  }
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) main()

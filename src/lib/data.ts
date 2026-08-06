@@ -131,6 +131,7 @@ export const paths = {
   privacy: () => '/privacy/',
   imprint: () => '/imprint/',
   scan: () => '/scan/',
+  methodology: () => '/methodology/',
   report: (id: string) => `/report/${id}/`,
   requestQuote: () => '/request-quote/',
 }

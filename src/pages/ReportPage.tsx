@@ -144,7 +144,11 @@ function ReportBody({ report }: { report: ScanReport }) {
             This score is a rough heuristic for comparing pages over time — it is not a
             certification of WCAG conformance and does not constitute legal advice. A
             clean automated scan does not guarantee full accessibility; manual review by
-            a qualified auditor is still required.
+            a qualified auditor is still required.{' '}
+            <a className="underline underline-offset-2" href={paths.methodology()}>
+              See exactly what this scan covers
+            </a>
+            .
           </p>
         </div>
 

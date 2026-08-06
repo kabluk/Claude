@@ -1,0 +1,503 @@
+{
+ "generatedFrom": "EN 301 549 V3.2.1 ch.9 + axe-core 4.13.0 + worker/lib checks",
+ "rows": [
+  {
+   "clause": "9.1.1.1",
+   "wcag": "1.1.1",
+   "title": "Non-text content",
+   "status": "axe",
+   "axeRules": [
+    "aria-meter-name",
+    "aria-progressbar-name",
+    "image-alt",
+    "input-image-alt",
+    "object-alt",
+    "role-img-alt",
+    "svg-img-alt"
+   ],
+   "ours": null
+  },
+  {
+   "clause": "9.1.2.1",
+   "wcag": "1.2.1",
+   "title": "Audio-only and video-only (pre-recorded)",
+   "status": "axe",
+   "axeRules": [
+    "audio-caption"
+   ],
+   "ours": null
+  },
+  {
+   "clause": "9.1.2.2",
+   "wcag": "1.2.2",
+   "title": "Captions (pre-recorded)",
+   "status": "both",
+   "axeRules": [
+    "video-caption"
+   ],
+   "ours": "a11y-video-no-captions"
+  },
+  {
+   "clause": "9.1.2.3",
+   "wcag": "1.2.3",
+   "title": "Audio description or media alternative (pre-recorded)",
+   "status": "none",
+   "axeRules": [],
+   "ours": null
+  },
+  {
+   "clause": "9.1.2.4",
+   "wcag": "1.2.4",
+   "title": "Captions (live)",
+   "status": "none",
+   "axeRules": [],
+   "ours": null
+  },
+  {
+   "clause": "9.1.2.5",
+   "wcag": "1.2.5",
+   "title": "Audio description (pre-recorded)",
+   "status": "none",
+   "axeRules": [],
+   "ours": null
+  },
+  {
+   "clause": "9.1.3.1",
+   "wcag": "1.3.1",
+   "title": "Info and relationships",
+   "status": "axe",
+   "axeRules": [
+    "aria-hidden-body",
+    "aria-required-children",
+    "aria-required-parent",
+    "definition-list",
+    "dlitem",
+    "list",
+    "listitem",
+    "p-as-heading",
+    "table-fake-caption",
+    "td-has-header",
+    "td-headers-attr",
+    "th-has-data-cells"
+   ],
+   "ours": null
+  },
+  {
+   "clause": "9.1.3.2",
+   "wcag": "1.3.2",
+   "title": "Meaningful sequence",
+   "status": "none",
+   "axeRules": [],
+   "ours": null
+  },
+  {
+   "clause": "9.1.3.3",
+   "wcag": "1.3.3",
+   "title": "Sensory characteristics",
+   "status": "none",
+   "axeRules": [],
+   "ours": null
+  },
+  {
+   "clause": "9.1.3.4",
+   "wcag": "1.3.4",
+   "title": "Orientation",
+   "status": "axe",
+   "axeRules": [
+    "css-orientation-lock"
+   ],
+   "ours": null
+  },
+  {
+   "clause": "9.1.3.5",
+   "wcag": "1.3.5",
+   "title": "Identify input purpose",
+   "status": "axe",
+   "axeRules": [
+    "autocomplete-valid"
+   ],
+   "ours": null
+  },
+  {
+   "clause": "9.1.4.1",
+   "wcag": "1.4.1",
+   "title": "Use of colour",
+   "status": "axe",
+   "axeRules": [
+    "link-in-text-block"
+   ],
+   "ours": null
+  },
+  {
+   "clause": "9.1.4.2",
+   "wcag": "1.4.2",
+   "title": "Audio control",
+   "status": "both",
+   "axeRules": [
+    "no-autoplay-audio"
+   ],
+   "ours": "a11y-autoplay-media"
+  },
+  {
+   "clause": "9.1.4.3",
+   "wcag": "1.4.3",
+   "title": "Contrast (minimum)",
+   "status": "axe",
+   "axeRules": [
+    "color-contrast"
+   ],
+   "ours": null
+  },
+  {
+   "clause": "9.1.4.4",
+   "wcag": "1.4.4",
+   "title": "Resize text",
+   "status": "both",
+   "axeRules": [
+    "meta-viewport"
+   ],
+   "ours": "a11y-resize-200"
+  },
+  {
+   "clause": "9.1.4.5",
+   "wcag": "1.4.5",
+   "title": "Images of text",
+   "status": "none",
+   "axeRules": [],
+   "ours": null
+  },
+  {
+   "clause": "9.1.4.10",
+   "wcag": "1.4.10",
+   "title": "Reflow",
+   "status": "ours",
+   "axeRules": [],
+   "ours": "a11y-reflow-320"
+  },
+  {
+   "clause": "9.1.4.11",
+   "wcag": "1.4.11",
+   "title": "Non-text contrast",
+   "status": "none",
+   "axeRules": [],
+   "ours": null
+  },
+  {
+   "clause": "9.1.4.12",
+   "wcag": "1.4.12",
+   "title": "Text spacing",
+   "status": "axe",
+   "axeRules": [
+    "avoid-inline-spacing"
+   ],
+   "ours": null
+  },
+  {
+   "clause": "9.1.4.13",
+   "wcag": "1.4.13",
+   "title": "Content on hover or focus",
+   "status": "none",
+   "axeRules": [],
+   "ours": null
+  },
+  {
+   "clause": "9.2.1.1",
+   "wcag": "2.1.1",
+   "title": "Keyboard",
+   "status": "axe",
+   "axeRules": [
+    "frame-focusable-content",
+    "scrollable-region-focusable",
+    "server-side-image-map"
+   ],
+   "ours": null
+  },
+  {
+   "clause": "9.2.1.2",
+   "wcag": "2.1.2",
+   "title": "No keyboard trap",
+   "status": "ours",
+   "axeRules": [],
+   "ours": "a11y-keyboard-trap"
+  },
+  {
+   "clause": "9.2.1.4",
+   "wcag": "2.1.4",
+   "title": "Character key shortcuts",
+   "status": "none",
+   "axeRules": [],
+   "ours": null
+  },
+  {
+   "clause": "9.2.2.1",
+   "wcag": "2.2.1",
+   "title": "Timing adjustable",
+   "status": "axe",
+   "axeRules": [
+    "meta-refresh"
+   ],
+   "ours": null
+  },
+  {
+   "clause": "9.2.2.2",
+   "wcag": "2.2.2",
+   "title": "Pause, stop, hide",
+   "status": "axe",
+   "axeRules": [
+    "blink",
+    "marquee"
+   ],
+   "ours": null
+  },
+  {
+   "clause": "9.2.3.1",
+   "wcag": "2.3.1",
+   "title": "Three flashes or below threshold",
+   "status": "none",
+   "axeRules": [],
+   "ours": null
+  },
+  {
+   "clause": "9.2.4.1",
+   "wcag": "2.4.1",
+   "title": "Bypass blocks",
+   "status": "axe",
+   "axeRules": [
+    "bypass"
+   ],
+   "ours": null
+  },
+  {
+   "clause": "9.2.4.2",
+   "wcag": "2.4.2",
+   "title": "Page titled",
+   "status": "axe",
+   "axeRules": [
+    "document-title"
+   ],
+   "ours": null
+  },
+  {
+   "clause": "9.2.4.3",
+   "wcag": "2.4.3",
+   "title": "Focus Order",
+   "status": "none",
+   "axeRules": [],
+   "ours": null
+  },
+  {
+   "clause": "9.2.4.4",
+   "wcag": "2.4.4",
+   "title": "Link purpose (in context)",
+   "status": "axe",
+   "axeRules": [
+    "area-alt",
+    "link-name"
+   ],
+   "ours": null
+  },
+  {
+   "clause": "9.2.4.5",
+   "wcag": "2.4.5",
+   "title": "Multiple ways",
+   "status": "ours",
+   "axeRules": [],
+   "ours": "a11y-multiple-ways"
+  },
+  {
+   "clause": "9.2.4.6",
+   "wcag": "2.4.6",
+   "title": "Headings and labels",
+   "status": "none",
+   "axeRules": [],
+   "ours": null
+  },
+  {
+   "clause": "9.2.4.7",
+   "wcag": "2.4.7",
+   "title": "Focus visible",
+   "status": "ours",
+   "axeRules": [],
+   "ours": "a11y-focus-invisible"
+  },
+  {
+   "clause": "9.2.5.1",
+   "wcag": "2.5.1",
+   "title": "Pointer gestures",
+   "status": "none",
+   "axeRules": [],
+   "ours": null
+  },
+  {
+   "clause": "9.2.5.2",
+   "wcag": "2.5.2",
+   "title": "Pointer cancellation",
+   "status": "none",
+   "axeRules": [],
+   "ours": null
+  },
+  {
+   "clause": "9.2.5.3",
+   "wcag": "2.5.3",
+   "title": "Label in name",
+   "status": "axe",
+   "axeRules": [
+    "label-content-name-mismatch"
+   ],
+   "ours": null
+  },
+  {
+   "clause": "9.2.5.4",
+   "wcag": "2.5.4",
+   "title": "Motion actuation",
+   "status": "none",
+   "axeRules": [],
+   "ours": null
+  },
+  {
+   "clause": "9.3.1.1",
+   "wcag": "3.1.1",
+   "title": "Language of page",
+   "status": "axe",
+   "axeRules": [
+    "html-has-lang",
+    "html-lang-valid",
+    "html-xml-lang-mismatch"
+   ],
+   "ours": null
+  },
+  {
+   "clause": "9.3.1.2",
+   "wcag": "3.1.2",
+   "title": "Language of parts",
+   "status": "axe",
+   "axeRules": [
+    "valid-lang"
+   ],
+   "ours": null
+  },
+  {
+   "clause": "9.3.2.1",
+   "wcag": "3.2.1",
+   "title": "On focus",
+   "status": "none",
+   "axeRules": [],
+   "ours": null
+  },
+  {
+   "clause": "9.3.2.2",
+   "wcag": "3.2.2",
+   "title": "On input",
+   "status": "none",
+   "axeRules": [],
+   "ours": null
+  },
+  {
+   "clause": "9.3.2.3",
+   "wcag": "3.2.3",
+   "title": "Consistent navigation",
+   "status": "ours",
+   "axeRules": [],
+   "ours": "a11y-inconsistent-navigation"
+  },
+  {
+   "clause": "9.3.2.4",
+   "wcag": "3.2.4",
+   "title": "Consistent identification",
+   "status": "ours",
+   "axeRules": [],
+   "ours": "a11y-inconsistent-identification"
+  },
+  {
+   "clause": "9.3.3.1",
+   "wcag": "3.3.1",
+   "title": "Error identification",
+   "status": "none",
+   "axeRules": [],
+   "ours": null
+  },
+  {
+   "clause": "9.3.3.2",
+   "wcag": "3.3.2",
+   "title": "Labels or instructions",
+   "status": "axe",
+   "axeRules": [
+    "form-field-multiple-labels"
+   ],
+   "ours": null
+  },
+  {
+   "clause": "9.3.3.3",
+   "wcag": "3.3.3",
+   "title": "Error suggestion",
+   "status": "none",
+   "axeRules": [],
+   "ours": null
+  },
+  {
+   "clause": "9.3.3.4",
+   "wcag": "3.3.4",
+   "title": "Error prevention (legal, financial, data)",
+   "status": "none",
+   "axeRules": [],
+   "ours": null
+  },
+  {
+   "clause": "9.4.1.1",
+   "wcag": "4.1.1",
+   "title": "Parsing",
+   "status": "axe",
+   "axeRules": [
+    "duplicate-id-active",
+    "duplicate-id"
+   ],
+   "ours": null
+  },
+  {
+   "clause": "9.4.1.2",
+   "wcag": "4.1.2",
+   "title": "Name, role, value",
+   "status": "axe",
+   "axeRules": [
+    "area-alt",
+    "aria-allowed-attr",
+    "aria-braille-equivalent",
+    "aria-command-name",
+    "aria-conditional-attr",
+    "aria-deprecated-role",
+    "aria-hidden-body",
+    "aria-hidden-focus",
+    "aria-input-field-name",
+    "aria-prohibited-attr",
+    "aria-required-attr",
+    "aria-roledescription",
+    "aria-roles",
+    "aria-tab-name",
+    "aria-toggle-field-name",
+    "aria-tooltip-name",
+    "aria-valid-attr-value",
+    "aria-valid-attr",
+    "button-name",
+    "duplicate-id-aria",
+    "frame-title-unique",
+    "frame-title",
+    "input-button-name",
+    "input-image-alt",
+    "label",
+    "link-name",
+    "nested-interactive",
+    "select-name",
+    "summary-name"
+   ],
+   "ours": null
+  },
+  {
+   "clause": "9.4.1.3",
+   "wcag": "4.1.3",
+   "title": "Status messages",
+   "status": "none",
+   "axeRules": [],
+   "ours": null
+  }
+ ]
+}

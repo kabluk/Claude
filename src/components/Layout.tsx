@@ -92,6 +92,9 @@ export function Layout({
             <Link className="hover:text-slate-900" to={paths.about()}>
               About
             </Link>
+            <Link className="hover:text-slate-900" to={paths.methodology()}>
+              What we check
+            </Link>
             <Link className="hover:text-slate-900" to={paths.contact()}>
               Contact
             </Link>
