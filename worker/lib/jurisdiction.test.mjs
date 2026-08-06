@@ -29,6 +29,40 @@ test('unmapped TLD returns honest unknown, does not guess a jurisdiction', () =>
   assert.equal(j.statementRequired, null)
 })
 
+// 2026-08-06: 8 юрисдикций добавлены под реальные страны в каталоге (agencies.json),
+// каждая с законом транспозиции EAA, подтверждённым по официальному правовому порталу
+// страны (RIS/Finlex/Lovdata/retsinformation.dk/riksdagen.se/ejustice.just.fgov.be/
+// irishstatutebook.ie), не по агрегатору. Все — verified:false (нет проверенной суммы
+// штрафа), тот же стандарт, что у FR/ES/NL/PL с самого начала A3-JURISDICTION.
+test('new EAA-transposition jurisdictions (IT/IE/AT/BE/SE/DK/FI/NO) require a statement but stay unverified (no fine figure)', () => {
+  const cases = [
+    ['https://example.it/', 'IT', 'D.Lgs. 82/2022'],
+    ['https://example.ie/', 'IE', 'S.I. No. 636/2023'],
+    ['https://example.at/', 'AT', 'BaFG'],
+    ['https://example.be/', 'BE', 'Loi du 5.11.2023 (2023046827)'],
+    ['https://example.se/', 'SE', 'Lag (2023:254)'],
+    ['https://example.dk/', 'DK', 'LOV nr 801 af 07/06/2022'],
+    ['https://example.fi/', 'FI', 'Laki 306/2019 + asetus 179/2023'],
+    ['https://example.no/', 'NO', 'Forskrift om universell utforming av IKT-løsninger'],
+  ]
+  for (const [url, country, lawFragment] of cases) {
+    const j = jurisdictionForUrl(url)
+    assert.equal(j.country, country, url)
+    assert.match(j.law, new RegExp(lawFragment.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')))
+    assert.equal(j.statementRequired, true)
+    assert.equal(j.verified, false)
+    assert.equal(j.maxFineEUR, undefined)
+  }
+})
+
+test('a jurisdiction with a deliberately unsupported TLD (.com, .co.uk, .com.au) stays honest unknown, not a silent guess', () => {
+  for (const url of ['https://example.com/', 'https://example.co.uk/', 'https://example.com.au/']) {
+    const j = jurisdictionForUrl(url)
+    assert.equal(j.country, 'unknown')
+    assert.equal(j.statementRequired, null)
+  }
+})
+
 test('invalid URL does not throw', () => {
   const j = jurisdictionForUrl('not a url')
   assert.equal(j.country, 'unknown')

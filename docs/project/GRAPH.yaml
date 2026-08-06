@@ -653,7 +653,7 @@ nodes:
     notes: "Готово 2026-08-06. detectAndDismissCookieBanner() — быстрый путь по известным вендорским селекторам (#onetrust-banner-sdk, #CybotCookiebotDialog и т.п.) + основной путь по computed style (position:fixed/sticky + z-index≥100 + покрытие ≥10% viewport + cookie-лексика в тексте), затем клик по кнопке с текстом из списка (accept/akzeptieren/j'accepte/zaakceptuj/aceptar). Живая проверка реальным Chromium: известный вендор и кастомный баннер оба детектятся и снимаются; маленький несвязанный fixed-виджет (кнопка «наверх») корректно НЕ распознаётся банннером (порог покрытия площади спас от false positive). Не находка против сайта — прозрачная scan-meta находка impact:minor, что DOM был скорректирован перед проверкой."
 
   - id: A3-JURISDICTION
-    title: "Взвешивание severity по юрисдикции сайта (TLD), не только по axe impact — отсутствие заявления в DE/FR/ES/NL/PL становится critical"
+    title: "Взвешивание severity по юрисдикции сайта (TLD), не только по axe impact — отсутствие заявления в 13 юрисдикциях ЕС/ЕЭЗ становится critical"
     owner: backend-engineer
     status: done
     depends_on: [A3-STATEMENT]
@@ -661,10 +661,10 @@ nodes:
     scope: [worker/lib/jurisdiction.js, worker/lib/jurisdiction.test.mjs, worker/routes/scan.js]
     outputs: [worker/lib/jurisdiction.js]
     verify:
-      - "node --test worker/lib/jurisdiction.test.mjs — 8/8"
-      - "npm run worker:test — 168/168 (после интеграции в scan.js)"
+      - "node --test worker/lib/jurisdiction.test.mjs — 10/10"
+      - "npm run worker:test — 170/170 (после интеграции в scan.js)"
     max_attempts: 3
-    attempts: 1
+    attempts: 2
     risk: medium
     approval_required: false
-    notes: "Готово 2026-08-06. jurisdictionForUrl() — TLD→юрисдикция (de/fr/es/nl/pl, честно узкий список; unknown TLD -> statementRequired:null, не угадываем). ТОЛЬКO DE помечена verified:true с суммой штрафа (§37 BFSG, законодательный источник по самому исследованию) — остальные юрисдикции получают закон+обязательность заявления, БЕЗ суммы (verified:false), уважая предупреждение исследования, что страновые суммы в основном из вендорских блогов. applyJurisdictionWeight() бампит a11y-statement-missing/incomplete до critical, добавляет jurisdictionNote. Подключено в scan.js ПОСЛЕ scanSite(), ДО scoreFromFindings — score.js остался generic, не тронут."
+    notes: "Готово 2026-08-06, расширено тем же днём (D-031) — владелец выбрал 'юрисдикции' вторым пунктом из предложенного меню. jurisdictionForUrl() — TLD→юрисдикция, изначально de/fr/es/nl/pl, расширено до 13 стран (+it/ie/at/be/se/dk/fi/no) — выбраны по реальному покрытию каталога (agencies.json: у всех 13 есть реальные агентства в данных), не наугад. Каждая новая страна — закон транспозиции EAA подтверждён по официальному правовому порталу страны (RIS Austria, Finlex, Lovdata Норвегия, retsinformation.dk, riksdagen.se, ejustice.just.fgov.be, irishstatutebook.ie), не по агрегатору/блогу. ТОЛЬКO DE помечена verified:true с суммой штрафа (§37 BFSG) — все остальные 12, включая новые 8, получают закон+обязательность заявления БЕЗ суммы (verified:false), тот же стандарт, что был у FR/ES/NL/PL с первого прохода. GB/US/CA/AU/CH/IN сознательно НЕ включены — материально другая правовая база (не транспозиция EAA), задокументировано в коде явно, не молчаливый пробел. applyJurisdictionWeight()/интеграция в scan.js не менялись — только таблица данных."
