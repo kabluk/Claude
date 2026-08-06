@@ -13,6 +13,7 @@ import {
   withStandard,
 } from '@/lib/data'
 import { guides } from '@/lib/guides'
+import { coverageSummary } from '@/lib/coverage'
 
 export default function HomePage() {
   const certified = agencies.filter((a) => a.certs.length > 0).length
@@ -109,16 +110,40 @@ export default function HomePage() {
         </section>
       )}
 
-      <section className="mt-12 max-w-2xl rounded-xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-600">
-        <h2 className="text-base font-semibold text-slate-800">How listings are verified</h2>
-        <p className="mt-2">
-          Every agency here is backed by at least one public source — a certification register
-          (BIK BITV-Test, IAAP), a government procurement framework, a mandatory accessibility
-          statement naming the auditor, or the agency's own published service pages. The source
-          links are shown on each profile. Fields we could not verify stay empty — we never
-          guess prices, certifications or locations.
-        </p>
-      </section>
+      {/* Два парных блока доверия: как проверен каталог и что умеет сканер.
+          Второй (D-038) намеренно называет ГРАНИЦУ, а не процент как достижение —
+          для нового посетителя это ответ на «зачем мне агентство, если есть
+          бесплатный сканер», то есть вход в каталог, а не отговорка от него.
+          Цифры берутся из coverageSummary (данные, посчитанные скриптом), а не
+          вписаны руками — иначе при следующем росте покрытия главная бы врала. */}
+      <div className="mt-12 grid gap-4 sm:grid-cols-2">
+        <section className="rounded-xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-600">
+          <h2 className="text-base font-semibold text-slate-800">How listings are verified</h2>
+          <p className="mt-2">
+            Every agency here is backed by at least one public source — a certification register
+            (BIK BITV-Test, IAAP), a government procurement framework, a mandatory accessibility
+            statement naming the auditor, or the agency's own published service pages. The source
+            links are shown on each profile. Fields we could not verify stay empty — we never
+            guess prices, certifications or locations.
+          </p>
+        </section>
+
+        <section className="rounded-xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-600">
+          <h2 className="text-base font-semibold text-slate-800">What a free scan can and can't tell you</h2>
+          <p className="mt-2">
+            Our scanner checks {coverageSummary.covered} of the {coverageSummary.total} website
+            requirements in EN 301 549 — the standard the European Accessibility Act points to —
+            plus whether your accessibility statement exists and holds up. The other{' '}
+            {coverageSummary.total - coverageSummary.covered} depend on meaning and judgement and
+            need a human auditor. No scanner closes that gap, ours included.
+          </p>
+          <p className="mt-3">
+            <Link className="underline underline-offset-2" to={paths.methodology()}>
+              See the full list of what we check →
+            </Link>
+          </p>
+        </section>
+      </div>
     </Layout>
   )
 }
