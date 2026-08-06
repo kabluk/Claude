@@ -342,7 +342,7 @@ nodes:
   - id: A2-CLAIM-SCHEMA
     title: "Схема D1 для claim-потока (claims table) — миграция, только локально"
     owner: backend-engineer
-    status: todo
+    status: done
     depends_on: []
     inputs: [docs/project/INTERFACES.md, data/a11y/types.ts]
     scope: [migrations/]
@@ -352,10 +352,10 @@ nodes:
       - npm run worker:test
       - "поля соответствуют черновику claims из INTERFACES.md §4 (agency_slug, email, verified, patch_json, status)"
     max_attempts: 3
-    attempts: 0
+    attempts: 1
     risk: low
     approval_required: false
-    notes: "Технически независим от оплаты, тот же паттерн, что A2-LEAD-SCHEMA — только локальная миграция."
+    notes: "Готово 2026-08-06. migrations/0004_claims.sql, поля 1:1 с INTERFACES.md §4. Применена локально (npm run db:migrate:local), схема подтверждена живьём (PRAGMA table_info), реальный INSERT+SELECT тестовой записи прошёл и удалён. worker:test 65/65 (не задет — миграция не трогает код), typecheck/wrangler deploy --dry-run чистые. Разблокировало A2-CLAIM-API."
 
   - id: A2-CLAIM-API
     title: "POST /api/claim: создание claim-записи + verify-токен, БЕЗ отправки письма"
@@ -415,7 +415,7 @@ nodes:
   - id: A2-STRIPE-SCHEMA
     title: "Схема D1 для featured (featured table) — миграция, только локально"
     owner: backend-engineer
-    status: todo
+    status: done
     depends_on: []
     inputs: [docs/project/INTERFACES.md, data/a11y/types.ts]
     scope: [migrations/]
@@ -425,10 +425,10 @@ nodes:
       - npm run worker:test
       - "поля соответствуют черновику featured из INTERFACES.md §4 (agency_slug PK, until, stripe_ref)"
     max_attempts: 3
-    attempts: 0
+    attempts: 1
     risk: low
     approval_required: false
-    notes: "Технически независим от оплаты — только локальная миграция, реального Stripe-аккаунта не касается."
+    notes: "Готово 2026-08-06. migrations/0005_featured.sql, поля 1:1 с INTERFACES.md §4. agency_slug PK — намеренно (одно активное featured-размещение на агентство, продление через UPDATE, не новую строку); подтверждено живьём: второй INSERT с тем же agency_slug реально упал на UNIQUE constraint (SQLITE_CONSTRAINT_PRIMARYKEY), не просто предположение по DDL. Применена локально, INSERT+SELECT тестовой записи прошёл и удалён. worker:test 65/65, typecheck/wrangler deploy --dry-run чистые. Разблокировало A2-STRIPE-WEBHOOK-CODE."
 
   - id: A2-STRIPE-WEBHOOK-CODE
     title: "Обработчик POST /api/stripe-hook: проверка подписи + обновление featured, тесты на синтетических фикстурах Stripe-событий"

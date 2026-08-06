@@ -174,6 +174,14 @@
    `A2-OUTREACH-SEND`: письмо ссылается на реальный домен (которого пока нет,
    `A0-ORIGIN`) и упирается в то же требование Imprint-идентичности отправителя,
    что RISKS.md R2 — применительно к email, а не только к сайту.
+   `A2-CLAIM-SCHEMA` и `A2-STRIPE-SCHEMA` **done** (2026-08-06): `migrations/
+   0004_claims.sql` и `0005_featured.sql`, поля 1:1 с INTERFACES.md §4.
+   Применены локально, схема и ограничения подтверждены живьём через `wrangler
+   d1 execute` — не только по DDL: реальный INSERT+SELECT в обеих таблицах, и
+   отдельно проверено, что повторный INSERT в `featured` с тем же `agency_slug`
+   реально падает на `UNIQUE constraint` (продление — `UPDATE`, не новая
+   строка, как задумано). Разблокировали `A2-CLAIM-API` и
+   `A2-STRIPE-WEBHOOK-CODE`.
 
 ## Живой skill (D-012)
 

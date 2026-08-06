@@ -61,12 +61,17 @@ worker:test, живьём проверено через `wrangler dev --local` +
 Попутно найден дополнительный блокер для `A2-OUTREACH-SEND`, не только Resend:
 письмо ссылается на реальный домен (которого пока нет) и упирается в то же
 требование Imprint-идентичности, что RISKS.md R2, применительно к email, не
-только к сайту. Остальные `approval_required: false` узлы (`A2-CLAIM-SCHEMA`,
-`A2-CLAIM-API`, `A2-STRIPE-SCHEMA`, `A2-STRIPE-WEBHOOK-CODE`) готовы к запуску
-без ввода владельца. Все `approval_required: true` узлы (`A2-LEAD-EMAIL`,
-`A2-CLAIM-EMAIL`, `A2-CLAIM-REBUILD`, `A2-STRIPE-LIVE`, `A2-OUTREACH-SEND`)
-заблокированы до явного разрешения владельца — Resend и Stripe одобряются
-раздельно, per-node.
+только к сайту. `A2-CLAIM-SCHEMA` — **done** (`migrations/0004_claims.sql`,
+поля 1:1 с INTERFACES.md §4; применена локально, схема и реальный INSERT/SELECT
+подтверждены живьём через `wrangler d1 execute`; разблокировало `A2-CLAIM-API`).
+`A2-STRIPE-SCHEMA` — **done** (`migrations/0005_featured.sql`; `agency_slug` PK
+подтверждён живьём — повторный INSERT с тем же slug реально упал на UNIQUE
+constraint, не просто предположение по DDL; разблокировало
+`A2-STRIPE-WEBHOOK-CODE`). Остальные `approval_required: false` узлы
+(`A2-CLAIM-API`, `A2-STRIPE-WEBHOOK-CODE`) готовы к запуску без ввода владельца.
+Все `approval_required: true` узлы (`A2-LEAD-EMAIL`, `A2-CLAIM-EMAIL`,
+`A2-CLAIM-REBUILD`, `A2-STRIPE-LIVE`, `A2-OUTREACH-SEND`) заблокированы до
+явного разрешения владельца — Resend и Stripe одобряются раздельно, per-node.
 
 ## Фаза 3 — Vertical SaaS
 
