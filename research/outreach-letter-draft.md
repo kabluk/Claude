@@ -2,7 +2,8 @@
 
 Single email per agency, sent once. Subject line and body use plain
 placeholders filled from `research/outreach-99.json` at send time
-(A2-OUTREACH-SEND, not this node).
+(A2-OUTREACH-SEND, not this node). That file now also carries
+`declarant`, which selects one of two phrasings — see Segmentation below.
 
 ## Subject
 
@@ -18,7 +19,7 @@ I'm reaching out because you're listed on AccessAtlas
 accessibility audit agencies for WCAG/EAA/ADA/BFSG/RGAA compliance work.
 
 You're listed because {{agencyName}} is named as the accessibility
-auditor in a public accessibility declaration we found:
+auditor in {{declarationPhrase}} we found:
 {{evidenceUrl}}
 
 Your listing is free and already live. I'd like to ask two things:
@@ -40,6 +41,41 @@ Best,
 {{senderTitle}}, AccessAtlas
 {{contactEmail}}
 ```
+
+## Segmentation (D-043)
+
+`{{declarationPhrase}}` is the ONLY text that differs between the two
+segments. It is filled from `declarant` in `research/outreach-99.json`,
+which is derived from `agencies.json` — not hand-maintained here, so it
+cannot drift from the badge.
+
+| `declarant` | count | `{{declarationPhrase}}` |
+|---|---|---|
+| `public-body` | 83 | `the accessibility declaration of a public authority` |
+| `private` | 13 | `a company's published accessibility declaration` |
+
+Why segment at all — the two groups are in different situations, and the
+old single wording ("a public accessibility declaration") was ambiguous
+for both. It reads either as "publicly available" (true of both) or "made
+by a public body" (true of only 83), so the 13 private-sector records were
+being described slightly wrong.
+
+- **Public-body auditors (83).** Their visible track record is public-sector
+  work — procurement frameworks, BITV-Test, government portals. The EAA
+  moved the demand to *private* companies (e-commerce, banking, transport
+  booking), which is a market most of them are not yet found in. For them
+  AccessAtlas is reach into a segment they can already serve.
+- **Private-sector auditors (13).** Already working with commercial clients,
+  so the offer is not a new market but visibility next to comparable peers,
+  with the same evidence-based verification standard applied to everyone.
+
+Deliberately NOT segmented: the ask, the opt-out, the absence of any paid
+pitch. Splitting those would turn one honest letter into two sales tracks,
+which is exactly the posture the design notes below reject.
+
+Not implemented as sending logic anywhere — `A2-OUTREACH-SEND` stays
+blocked on domain + Imprint + Resend approval (see BACKLOG). This node
+only makes the data and copy ready.
 
 ## Design notes (why it's written this way)
 

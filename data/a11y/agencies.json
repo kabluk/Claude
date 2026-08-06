@@ -7640,8 +7640,8 @@
       {
         "kind": "statement-named-auditor",
         "country": "BE",
-        "evidenceUrl": "https://www.toekomstparochiekerken.be/toegankelijkheidsverklaring",
-        "declarant": "unknown"
+        "evidenceUrl": "https://www.vvsg.be/toegankelijkheidsverklaring",
+        "declarant": "public-body"
       }
     ],
     "description": {
@@ -7958,7 +7958,7 @@
         "kind": "statement-named-auditor",
         "country": "ES",
         "evidenceUrl": "https://visitles3viles.cat/es/accessibilidad/",
-        "declarant": "unknown"
+        "declarant": "public-body"
       }
     ],
     "description": {

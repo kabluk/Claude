@@ -7,7 +7,8 @@
     "evidenceUrl": "https://toegankelijkheidsrapport.swink.nl/kadaster-catalogus-hercontrole/audit/",
     "email": "info@swink.nl",
     "emailSource": "homepage footer, shown obfuscated as \"info op swink punt nl\" (Dutch for info@swink.nl)",
-    "emailSourceUrl": "https://swink.nl"
+    "emailSourceUrl": "https://swink.nl",
+    "declarant": "public-body"
   },
   {
     "slug": "accessy",
@@ -17,7 +18,8 @@
     "evidenceUrl": "https://www.accessy.club/wp-content/uploads/2025/10/Toegankelijkheidsonderzoek-amstelveen.vergunning.blitts.nl_.pdf",
     "email": "Info@accessy.club",
     "emailSource": "contact page, shown as mailto link",
-    "emailSourceUrl": "https://www.accessy.club/over-accessy/contact"
+    "emailSourceUrl": "https://www.accessy.club/over-accessy/contact",
+    "declarant": "public-body"
   },
   {
     "slug": "abra",
@@ -27,7 +29,8 @@
     "evidenceUrl": "https://www.digitoegankelijk.nl/sites/default/files/2024-04/Toegankelijkheidsonderzoek%20Fixi%20App%20Android%20v8.pdf",
     "email": "info@abra.nl",
     "emailSource": "homepage, \"Neem contact op\" section, mailto link",
-    "emailSourceUrl": "https://abra.nl"
+    "emailSourceUrl": "https://abra.nl",
+    "declarant": "public-body"
   },
   {
     "slug": "cipix-internetbureau",
@@ -37,7 +40,8 @@
     "evidenceUrl": "https://www.werkenbijdrechtsteden.nl/wp-content/uploads/2024/11/Rapport-onderzoek-digitale-toegankelijkheid-website-werkenbijdrechtsteden-nov2024.pdf",
     "email": "info@cipix.nl",
     "emailSource": "homepage/contact footer",
-    "emailSourceUrl": "https://cipix.nl"
+    "emailSourceUrl": "https://cipix.nl",
+    "declarant": "public-body"
   },
   {
     "slug": "zekers-online-communicatie",
@@ -47,7 +51,8 @@
     "evidenceUrl": "https://www.vechtstromen.nl/publish/pages/35920/audit_vechtpark_hardenberg_hertest.pdf",
     "email": "marjolijn@zekersonline.nl",
     "emailSource": "homepage header nav and \"Over mij\"/footer contact info",
-    "emailSourceUrl": "https://zekersonline.nl"
+    "emailSourceUrl": "https://zekersonline.nl",
+    "declarant": "public-body"
   },
   {
     "slug": "200-ok",
@@ -57,7 +62,8 @@
     "evidenceUrl": "https://toegankelijkheidsonderzoek.nl/veiligthuiszuidhollandzuid.nl/",
     "email": "info@200ok.nl",
     "emailSource": "contact page, mailto link",
-    "emailSourceUrl": "https://200ok.nl/contact"
+    "emailSourceUrl": "https://200ok.nl/contact",
+    "declarant": "public-body"
   },
   {
     "slug": "toegankelijk-online",
@@ -67,7 +73,8 @@
     "evidenceUrl": "https://toegankelijkonline.nl/audits/4fab3dbe-72e5-4c9e-86e8-9f53084d7ea3",
     "email": "info@toegankelijkonline.nl",
     "emailSource": "contact page, shown obfuscated as \"info (at) toegankelijkonline.nl\"",
-    "emailSourceUrl": "https://toegankelijkonline.nl/contact"
+    "emailSourceUrl": "https://toegankelijkonline.nl/contact",
+    "declarant": "public-body"
   },
   {
     "slug": "x-com",
@@ -77,7 +84,8 @@
     "evidenceUrl": "https://www.gulpen-wittem.nl/data/downloadables/2/3/1/5/digitaal-nachtregister_wcag-rapport.pdf",
     "email": "info@x-com.nl",
     "emailSource": "homepage footer, Cloudflare-obfuscated mailto link decoded from the page's own hex-encoded data",
-    "emailSourceUrl": "https://x-com.nl"
+    "emailSourceUrl": "https://x-com.nl",
+    "declarant": "public-body"
   },
   {
     "slug": "chent",
@@ -87,7 +95,8 @@
     "evidenceUrl": "https://www.wcagregister.nl/organisaties/gemeente-hoorn/doorstroompuntwestfriesland-nl-hertest-31102025.html",
     "email": "contact@chent.nl",
     "emailSource": "homepage footer contact section",
-    "emailSourceUrl": "https://chent.nl"
+    "emailSourceUrl": "https://chent.nl",
+    "declarant": "public-body"
   },
   {
     "slug": "accessibility-desk",
@@ -97,7 +106,8 @@
     "evidenceUrl": "https://auditing.accessibilitydesk.com/public/reports/202/202512161056/604",
     "email": "we@accessibilitydesk.com",
     "emailSource": "homepage footer contact section, Cloudflare-obfuscated mailto link decoded from the page's own hex-encoded data",
-    "emailSourceUrl": "https://accessibilitydesk.com"
+    "emailSourceUrl": "https://accessibilitydesk.com",
+    "declarant": "public-body"
   },
   {
     "slug": "janita-top",
@@ -107,7 +117,8 @@
     "evidenceUrl": "https://janitatop.nl/rapporten/2024/ikw",
     "email": "info@janitatop.nl",
     "emailSource": "contact page, \"E-mail:\" line",
-    "emailSourceUrl": "https://janitatop.nl/contact"
+    "emailSourceUrl": "https://janitatop.nl/contact",
+    "declarant": "public-body"
   },
   {
     "slug": "frameless",
@@ -117,7 +128,8 @@
     "evidenceUrl": "https://toegankelijkheidsrapport.frameless.io/rapport/aanpakdrugscriminaliteit.utrecht.nl-2024-12",
     "email": "hello@frameless.io",
     "emailSource": "homepage contact section (\"Mail ons op hello@frameless.io\")",
-    "emailSourceUrl": "https://frameless.io"
+    "emailSourceUrl": "https://frameless.io",
+    "declarant": "public-body"
   },
   {
     "slug": "media-duo",
@@ -127,7 +139,8 @@
     "evidenceUrl": "https://toegankelijkheid.mediaduo.nl/gemeente-emmen/2025-04-11-emmen-geeft-energie",
     "email": "info@mediaduo.nl",
     "emailSource": "homepage contact information section",
-    "emailSourceUrl": "https://mediaduo.nl"
+    "emailSourceUrl": "https://mediaduo.nl",
+    "declarant": "public-body"
   },
   {
     "slug": "digital-natives",
@@ -137,7 +150,8 @@
     "evidenceUrl": "https://toegankelijkheid.digitalnatives.nl/filmfonds/2024",
     "email": "hello@digitalnatives.nl",
     "emailSource": "homepage footer (\"mail naar hello@digitalnatives.nl\"), also on contact page",
-    "emailSourceUrl": "https://digitalnatives.nl"
+    "emailSourceUrl": "https://digitalnatives.nl",
+    "declarant": "public-body"
   },
   {
     "slug": "eagerly",
@@ -147,7 +161,8 @@
     "evidenceUrl": "https://www.uwv.nl/assets-kai/files/4e81d972-5885-487b-bbea-2a2873ec38d5/202512-wcag-2-1-aa-audit-uwv-panels-ww-wia-en-wajong.pdf",
     "email": "info@eagerly.nl",
     "emailSource": "homepage header/footer contact section",
-    "emailSourceUrl": "https://eagerly.nl"
+    "emailSourceUrl": "https://eagerly.nl",
+    "declarant": "public-body"
   },
   {
     "slug": "uxmen",
@@ -157,7 +172,8 @@
     "evidenceUrl": "https://www.toekomstparochiekerken.be/toegankelijkheidsverklaring",
     "email": "info@uxmen.be",
     "emailSource": "homepage footer contact information",
-    "emailSourceUrl": "https://uxmen.be"
+    "emailSourceUrl": "https://uxmen.be",
+    "declarant": "public-body"
   },
   {
     "slug": "humix",
@@ -167,7 +183,8 @@
     "evidenceUrl": "https://www.visitbruges.be/nl/toegankelijkheidsverklaring",
     "email": "info@humix.be",
     "emailSource": "contact page",
-    "emailSourceUrl": "https://humix.be/contact"
+    "emailSourceUrl": "https://humix.be/contact",
+    "declarant": "public-body"
   },
   {
     "slug": "inter-vlaanderen",
@@ -177,7 +194,8 @@
     "evidenceUrl": "https://www.scoutsengidsenvlaanderen.be/toegankelijkheidsverklaring",
     "email": "info@inter.vlaanderen",
     "emailSource": "contact page (general contact email; site now hosted under vlaanderen.be/inter after redirect)",
-    "emailSourceUrl": "https://www.vlaanderen.be/inter/contact"
+    "emailSourceUrl": "https://www.vlaanderen.be/inter/contact",
+    "declarant": "private"
   },
   {
     "slug": "lcp",
@@ -187,7 +205,8 @@
     "evidenceUrl": "https://www.toerismedadizele.be/toegankelijkheidsverklaring",
     "email": "info@lcp.be",
     "emailSource": "contact page",
-    "emailSourceUrl": "https://lcp.be/contact"
+    "emailSourceUrl": "https://lcp.be/contact",
+    "declarant": "public-body"
   },
   {
     "slug": "craftzing",
@@ -197,7 +216,8 @@
     "evidenceUrl": "https://www.proximus.be/fr/id_cr_accessibility_statement/particuliers/r-orphans/declaration-daccessibilite.html",
     "email": "info@craftzing.com",
     "emailSource": "homepage footer contact section, Cloudflare-obfuscated mailto link decoded from the page's own hex-encoded data",
-    "emailSourceUrl": "https://craftzing.com"
+    "emailSourceUrl": "https://craftzing.com",
+    "declarant": "private"
   },
   {
     "slug": "tothomweb",
@@ -207,7 +227,8 @@
     "evidenceUrl": "https://atc.gencat.cat/es/ajuda/accessibilitat/index.html",
     "email": null,
     "emailSource": "checked homepage and contact page; email is Cloudflare-obfuscated (\"[email protected]\" / spaced \"info @ tothomweb.com\") not shown as plain text, so not reported",
-    "emailSourceUrl": null
+    "emailSourceUrl": null,
+    "declarant": "public-body"
   },
   {
     "slug": "databot-technologies",
@@ -217,7 +238,8 @@
     "evidenceUrl": "https://visitles3viles.cat/es/accessibilidad/",
     "email": "hola@databot.es",
     "emailSource": "own accessibility declaration page (webaccesible.io)",
-    "emailSourceUrl": "https://webaccesible.io/declaracion-accesibilidad"
+    "emailSourceUrl": "https://webaccesible.io/declaracion-accesibilidad",
+    "declarant": "public-body"
   },
   {
     "slug": "fondazione-lia",
@@ -227,7 +249,8 @@
     "evidenceUrl": "https://www.hubscuola.it/app/docs/RE/20250728_Dic_acc_Rizzoli_Education_e-commerce.pdf",
     "email": "segreteria@fondazionelia.org",
     "emailSource": "homepage",
-    "emailSourceUrl": "https://fondazionelia.org"
+    "emailSourceUrl": "https://fondazionelia.org",
+    "declarant": "private"
   },
   {
     "slug": "visionbites",
@@ -237,7 +260,8 @@
     "evidenceUrl": "https://pflege-und-zuhause.de/erklaerung-zur-barrierefreiheit",
     "email": "info@visionbites.de",
     "emailSource": "homepage",
-    "emailSourceUrl": "https://visionbites.de"
+    "emailSourceUrl": "https://visionbites.de",
+    "declarant": "private"
   },
   {
     "slug": "pluspol-interactive",
@@ -247,7 +271,8 @@
     "evidenceUrl": "https://stiftung.adac.de/barrierefreiheit/",
     "email": "kontakt@pluspol-interactive.de",
     "emailSource": "impressum",
-    "emailSourceUrl": "https://pluspol-interactive.de/impressum"
+    "emailSourceUrl": "https://pluspol-interactive.de/impressum",
+    "declarant": "private"
   },
   {
     "slug": "sxo-beratung-martin-mutter",
@@ -257,7 +282,8 @@
     "evidenceUrl": "https://www.museumsstiftung.de/barrierefreiheit/",
     "email": "hallo@martin-mutter.com",
     "emailSource": "impressum",
-    "emailSourceUrl": "https://martin-mutter.com/impressum"
+    "emailSourceUrl": "https://martin-mutter.com/impressum",
+    "declarant": "public-body"
   },
   {
     "slug": "brain-appeal",
@@ -267,7 +293,8 @@
     "evidenceUrl": "https://www.pflegedigital20.de/barrierefreiheitErklaerung.html",
     "email": "info@brain-appeal.com",
     "emailSource": "impressum",
-    "emailSourceUrl": "https://brain-appeal.com/impressum"
+    "emailSourceUrl": "https://brain-appeal.com/impressum",
+    "declarant": "public-body"
   },
   {
     "slug": "medienkonzepte",
@@ -277,7 +304,8 @@
     "evidenceUrl": "https://www.mazda.de/accessibility-statement/",
     "email": "info@medienkonzepte.de",
     "emailSource": "impressum (footer contact area; a second address fragen@medienkonzepte.de is also listed under Kontakt)",
-    "emailSourceUrl": "https://medienkonzepte.de/impressum"
+    "emailSourceUrl": "https://medienkonzepte.de/impressum",
+    "declarant": "private"
   },
   {
     "slug": "die-medialen",
@@ -287,7 +315,8 @@
     "evidenceUrl": "https://suchtkooperation.nrw/fileadmin/user_upload/Barrierefreiheitserklaerung_fuer_Internetauftritte_Suchtkooperation_NRW.pdf",
     "email": "info@diemedialen.de",
     "emailSource": "impressum",
-    "emailSourceUrl": "https://diemedialen.de/impressum"
+    "emailSourceUrl": "https://diemedialen.de/impressum",
+    "declarant": "public-body"
   },
   {
     "slug": "stiftung-pfennigparade",
@@ -297,7 +326,8 @@
     "evidenceUrl": "https://digitalservice.bund.de/erklaerung-zur-barrierefreiheit",
     "email": "info@pfennigparade.de",
     "emailSource": "impressum",
-    "emailSourceUrl": "https://www.pfennigparade.de/impressum"
+    "emailSourceUrl": "https://www.pfennigparade.de/impressum",
+    "declarant": "public-body"
   },
   {
     "slug": "marc-haunschild-accessibility-consulting",
@@ -307,7 +337,8 @@
     "evidenceUrl": "https://www.denkort-bunker-valentin.de/barrierefreiheitserklaerung",
     "email": "info@accessibility.consulting",
     "emailSource": "homepage",
-    "emailSourceUrl": "https://accessibility.consulting"
+    "emailSourceUrl": "https://accessibility.consulting",
+    "declarant": "public-body"
   },
   {
     "slug": "hellbusch-accessibility-consulting",
@@ -317,7 +348,8 @@
     "evidenceUrl": "https://www.wbv-kommunikation.de/erklaerung-zur-barrierefreiheit/",
     "email": "jan@hellbusch.de",
     "emailSource": "impressum",
-    "emailSourceUrl": "https://www.barrierefreies-webdesign.de/kontakt/impressum.html"
+    "emailSourceUrl": "https://www.barrierefreies-webdesign.de/kontakt/impressum.html",
+    "declarant": "private"
   },
   {
     "slug": "team23",
@@ -327,7 +359,8 @@
     "evidenceUrl": "https://www.augsburg.de/barrierefreiheitserklaerung",
     "email": "hallo@team23.de",
     "emailSource": "impressum",
-    "emailSourceUrl": "https://www.team23.de/impressum"
+    "emailSourceUrl": "https://www.team23.de/impressum",
+    "declarant": "public-body"
   },
   {
     "slug": "liquid-impressions",
@@ -337,7 +370,8 @@
     "evidenceUrl": "https://www.uni-bremen.de/barrierefreiheit",
     "email": "info@liquid-impressions.com",
     "emailSource": "impressum (site now redirects to barrierefreie-werbeagentur.de, same operator; original domain address still listed on that impressum)",
-    "emailSourceUrl": "https://barrierefreie-werbeagentur.de/impressum"
+    "emailSourceUrl": "https://barrierefreie-werbeagentur.de/impressum",
+    "declarant": "public-body"
   },
   {
     "slug": "bikosax",
@@ -347,7 +381,8 @@
     "evidenceUrl": "https://www.leipzig.de/barrierefreiheit",
     "email": "bikosax@dzblesen.de",
     "emailSource": "bikosax.de now redirects to dzb lesen's BIKOSAX service page, which lists a dedicated BIKOSAX contact email",
-    "emailSourceUrl": "https://www.dzblesen.de/auftraege/digitales"
+    "emailSourceUrl": "https://www.dzblesen.de/auftraege/digitales",
+    "declarant": "public-body"
   },
   {
     "slug": "clickstorm",
@@ -357,7 +392,8 @@
     "evidenceUrl": "https://www.vmt-thueringen.de/barrierefreiheit",
     "email": null,
     "emailSource": "impressum only shows an anti-spam obfuscated string (\"infonoSpam@clickstorm.de\" / \"info@clnoSpamickstorm.de\") with a 'noSpam' infix; the plain-text address a visitor actually sees could not be confirmed from fetched content, so not reported",
-    "emailSourceUrl": null
+    "emailSourceUrl": null,
+    "declarant": "public-body"
   },
   {
     "slug": "kolibri-online",
@@ -367,7 +403,8 @@
     "evidenceUrl": "https://www.ikk-classic.de/barrierefreiheit",
     "email": "hello@kolibri-online.com",
     "emailSource": "impressum",
-    "emailSourceUrl": "https://www.kolibri-online.com/impressum"
+    "emailSourceUrl": "https://www.kolibri-online.com/impressum",
+    "declarant": "public-body"
   },
   {
     "slug": "schalk-and-friends",
@@ -377,7 +414,8 @@
     "evidenceUrl": "https://www.landkreis-freising.de/erklaerung-zur-barrierefreiheit.html",
     "email": "info@schalk-and-friends.de",
     "emailSource": "impressum",
-    "emailSourceUrl": "https://www.schalk-and-friends.de/impressum"
+    "emailSourceUrl": "https://www.schalk-and-friends.de/impressum",
+    "declarant": "public-body"
   },
   {
     "slug": "kbv-kompetenzzentrum-barrierefreiheit-volmarstein",
@@ -387,7 +425,8 @@
     "evidenceUrl": "https://www.hochschule-rhein-waal.de/de/barrierefreiheit",
     "email": "info@kb-esv.de",
     "emailSource": "kb-volmarstein.de now redirects to kb-esv.de (same org, Evangelische Stiftung Volmarstein / KBV); email found on that site's Kontakt page",
-    "emailSourceUrl": "https://kb-esv.de/others/kontakt"
+    "emailSourceUrl": "https://kb-esv.de/others/kontakt",
+    "declarant": "public-body"
   },
   {
     "slug": "joconcept-webservice",
@@ -397,7 +436,8 @@
     "evidenceUrl": "https://dersau.de/erklaerung-zur-barrierefreiheit/",
     "email": "post@joconcept.de",
     "emailSource": "impressum",
-    "emailSourceUrl": "https://www.joconcept.de/impressum"
+    "emailSourceUrl": "https://www.joconcept.de/impressum",
+    "declarant": "public-body"
   },
   {
     "slug": "ifdb",
@@ -407,7 +447,8 @@
     "evidenceUrl": "https://www.nanu-nana.at/erklaerung-zur-barrierefreiheit/",
     "email": "hello@ifdb.io",
     "emailSource": "impressum/kontakt section (shown obfuscated as \"hello (at) ifdb.io\")",
-    "emailSourceUrl": "https://ifdb.io/impressum"
+    "emailSourceUrl": "https://ifdb.io/impressum",
+    "declarant": "private"
   },
   {
     "slug": "wienfluss",
@@ -417,7 +458,8 @@
     "evidenceUrl": "https://www.univie.ac.at/ueber-uns/informationen-zur-barrierefreiheit",
     "email": "office@wienfluss.net",
     "emailSource": "impressum",
-    "emailSourceUrl": "https://wienfluss.net/impressum"
+    "emailSourceUrl": "https://wienfluss.net/impressum",
+    "declarant": "public-body"
   },
   {
     "slug": "interface-consult",
@@ -427,7 +469,8 @@
     "evidenceUrl": "https://www.gespag.at/service/impressum/barrierefreiheitserklaerung",
     "email": "office@usability.at",
     "emailSource": "impressum (shown obfuscated as \"office[at]usability.at\")",
-    "emailSourceUrl": "https://www.usability.at/impressum"
+    "emailSourceUrl": "https://www.usability.at/impressum",
+    "declarant": "public-body"
   },
   {
     "slug": "k25-werbeagentur",
@@ -437,7 +480,8 @@
     "evidenceUrl": "https://www.factoring-verband.at/barrierefreiheit/",
     "email": "office@k25.at",
     "emailSource": "impressum",
-    "emailSourceUrl": "https://www.k25.at/impressum"
+    "emailSourceUrl": "https://www.k25.at/impressum",
+    "declarant": "private"
   },
   {
     "slug": "mstage",
@@ -447,7 +491,8 @@
     "evidenceUrl": "https://shop.kelly.at/de/barrierefreiheit/",
     "email": "office@mstage.at",
     "emailSource": "impressum (contact section, listed for both office locations)",
-    "emailSourceUrl": "https://mstage.at/impressum"
+    "emailSourceUrl": "https://mstage.at/impressum",
+    "declarant": "private"
   },
   {
     "slug": "accessprod",
@@ -457,7 +502,8 @@
     "evidenceUrl": "https://www.ined.fr/fr/etat-conformite",
     "email": "contact@accessprod.com",
     "emailSource": "homepage / contact section (\"Nous écrire\")",
-    "emailSourceUrl": "https://accessprod.com/contact"
+    "emailSourceUrl": "https://accessprod.com/contact",
+    "declarant": "public-body"
   },
   {
     "slug": "akse",
@@ -467,7 +513,8 @@
     "evidenceUrl": "https://naolib.fr/fr/accessibilite-naolib-mon-espace",
     "email": "contact@akse.co",
     "emailSource": "mentions légales page",
-    "emailSourceUrl": "https://akse.co/mentions-legales"
+    "emailSourceUrl": "https://akse.co/mentions-legales",
+    "declarant": "public-body"
   },
   {
     "slug": "access-first",
@@ -477,7 +524,8 @@
     "evidenceUrl": "https://esante.gouv.fr/accessibilite",
     "email": null,
     "emailSource": "site returned HTTP 403 Forbidden on every path tried (homepage, /contact, /mentions-legales, /a-propos); declaration at esante.gouv.fr names Access First as auditor but lists no contact email for them",
-    "emailSourceUrl": null
+    "emailSourceUrl": null,
+    "declarant": "public-body"
   },
   {
     "slug": "alsacreations",
@@ -487,7 +535,8 @@
     "evidenceUrl": "https://ville-illzach.fr/wp-content/uploads/2026/02/Illzach-Declaration-daccessibilite.pdf",
     "email": null,
     "emailSource": "checked homepage (alsacreations.fr redirects/relates to alsacreations.com), /contact, and the declaration PDF; only a contact form and the client's own email were found, no Alsacréations email displayed",
-    "emailSourceUrl": null
+    "emailSourceUrl": null,
+    "declarant": "public-body"
   },
   {
     "slug": "atalan",
@@ -497,7 +546,8 @@
     "evidenceUrl": "https://accesmed.sante.gouv.fr/CEPS.Administration/workflow_url?&ECITIZ_ACTIVITY_PATH=CNIL&ECITIZ_PROCESS_ID=TgDonneeAccessibilite&ORG=CEPS",
     "email": "contact@atalan.fr",
     "emailSource": "homepage, Paris contact section",
-    "emailSourceUrl": "https://www.atalan.fr"
+    "emailSourceUrl": "https://www.atalan.fr",
+    "declarant": "public-body"
   },
   {
     "slug": "axenum",
@@ -507,7 +557,8 @@
     "evidenceUrl": "https://www.cdg11.fr/declaration-accessibilite/",
     "email": "projet@axenum.fr",
     "emailSource": "contact page",
-    "emailSourceUrl": "https://axenum.fr/contact"
+    "emailSourceUrl": "https://axenum.fr/contact",
+    "declarant": "public-body"
   },
   {
     "slug": "ceciaa",
@@ -517,7 +568,8 @@
     "evidenceUrl": "https://www.mairie-arcambal.fr/accessibilite",
     "email": null,
     "emailSource": "checked homepage, /contact, /qui-sommes-nous, /mentions-legales — only a phone number listed, no email displayed",
-    "emailSourceUrl": null
+    "emailSourceUrl": null,
+    "declarant": "public-body"
   },
   {
     "slug": "com-access",
@@ -527,7 +579,8 @@
     "evidenceUrl": "https://sytral-mobilites.fr/fr/declaration-d-accessibilite-partiellement-conforme.html",
     "email": "contact@com-access.fr",
     "emailSource": "homepage, header and footer",
-    "emailSourceUrl": "https://www.com-access.fr"
+    "emailSourceUrl": "https://www.com-access.fr",
+    "declarant": "public-body"
   },
   {
     "slug": "copsae",
@@ -537,7 +590,8 @@
     "evidenceUrl": "https://www.blois.fr/accessibilite-du-site",
     "email": null,
     "emailSource": "contact page shows only a contact form (no email text); homepage returned HTTP 403 Forbidden on repeated attempts",
-    "emailSourceUrl": null
+    "emailSourceUrl": null,
+    "declarant": "public-body"
   },
   {
     "slug": "creasit",
@@ -547,7 +601,8 @@
     "evidenceUrl": "https://www.hopital-loire-sante-nantes.fr/systeme/declaration-accessibilite/",
     "email": null,
     "emailSource": "checked homepage, /contact (404), /mentions-legales, /qui-sommes-nous, and the client's own accessibility declaration — no Créasit email displayed anywhere",
-    "emailSourceUrl": null
+    "emailSourceUrl": null,
+    "declarant": "public-body"
   },
   {
     "slug": "ebizproduction",
@@ -557,7 +612,8 @@
     "evidenceUrl": "https://www.anact.fr/accessibilite",
     "email": null,
     "emailSource": "checked homepage (bluedrop.fr), /contact (404), /mentions-legales (404), /nous-contacter (404), and the client declaration (access denied) — only a phone number found, no email",
-    "emailSourceUrl": null
+    "emailSourceUrl": null,
+    "declarant": "public-body"
   },
   {
     "slug": "eclydre",
@@ -567,7 +623,8 @@
     "evidenceUrl": "https://www.mahj.org/fr/annexe/declaration-daccessibilite-rgaa-32063",
     "email": "contact@eclydre.fr",
     "emailSource": "homepage, footer and \"écrivez-nous\" link",
-    "emailSourceUrl": "https://eclydre.fr"
+    "emailSourceUrl": "https://eclydre.fr",
+    "declarant": "public-body"
   },
   {
     "slug": "ethic-first",
@@ -577,7 +634,8 @@
     "evidenceUrl": "https://www.academie-renseignement.gouv.fr/accessibilite",
     "email": "contact@ethicfirst.fr",
     "emailSource": "homepage header",
-    "emailSourceUrl": "https://ethicfirst.fr"
+    "emailSourceUrl": "https://ethicfirst.fr",
+    "declarant": "public-body"
   },
   {
     "slug": "ideance",
@@ -587,7 +645,8 @@
     "evidenceUrl": "https://www.transformation.gouv.fr/accessibilite",
     "email": "contact@ideance.fr",
     "emailSource": "homepage (shown obfuscated as \"contact[AT]ideance[DOT]fr\")",
-    "emailSourceUrl": "https://www.ideance.net"
+    "emailSourceUrl": "https://www.ideance.net",
+    "declarant": "public-body"
   },
   {
     "slug": "inovagora",
@@ -597,7 +656,8 @@
     "evidenceUrl": "https://www.ch-pyrenees.fr/accessibilite/",
     "email": null,
     "emailSource": "checked homepage, /contact, /mentions-legales, /qui-sommes-nous, and the client accessibility declaration — only a phone number and contact form found, no email displayed",
-    "emailSourceUrl": null
+    "emailSourceUrl": null,
+    "declarant": "public-body"
   },
   {
     "slug": "ipedis",
@@ -607,7 +667,8 @@
     "evidenceUrl": "https://www.soorts-hossegor.fr/accessibilite",
     "email": "contact@ipedis.com",
     "emailSource": "mentions légales page",
-    "emailSourceUrl": "https://www.ipedis.com/mentions-legales"
+    "emailSourceUrl": "https://www.ipedis.com/mentions-legales",
+    "declarant": "public-body"
   },
   {
     "slug": "licorn-publishing",
@@ -617,7 +678,8 @@
     "evidenceUrl": "https://www.capstreshautdebit.fr/declaration-daccessibilite/",
     "email": "contact@licornpublishing.com",
     "emailSource": "contact page",
-    "emailSourceUrl": "https://licornpublishing.com/contact"
+    "emailSourceUrl": "https://licornpublishing.com/contact",
+    "declarant": "private"
   },
   {
     "slug": "lorweb",
@@ -627,7 +689,8 @@
     "evidenceUrl": "https://grandreims-mobilites.fr/fr/oJn-Accessibilite-3A-partiellement-conforme.html",
     "email": "hello@lorweb.com",
     "emailSource": "contact page (listed under 'Lorweb France' office; note: site is lorweb.group but displayed email uses lorweb.com domain)",
-    "emailSourceUrl": "https://lorweb.group/contact"
+    "emailSourceUrl": "https://lorweb.group/contact",
+    "declarant": "public-body"
   },
   {
     "slug": "net-15",
@@ -637,7 +700,8 @@
     "evidenceUrl": "https://www.sumene-artense.com/declaration-daccessibilite/",
     "email": "lorenzo@net15.fr",
     "emailSource": "mentions légales page (listed as Data Protection Officer / Délégué à la Protection des Données contact, not a general contact address)",
-    "emailSourceUrl": "https://www.net15.fr/mentions-legales"
+    "emailSourceUrl": "https://www.net15.fr/mentions-legales",
+    "declarant": "public-body"
   },
   {
     "slug": "numerik-ea",
@@ -647,7 +711,8 @@
     "evidenceUrl": "https://www.notre-environnement.gouv.fr/accessibilite/accessibilite",
     "email": null,
     "emailSource": "checked homepage, /contact (form only, no address shown), /mentions-legales, and the evidenceUrl declaration (notre-environnement.gouv.fr) — no email listed anywhere for numerik-ea",
-    "emailSourceUrl": null
+    "emailSourceUrl": null,
+    "declarant": "public-body"
   },
   {
     "slug": "silaos",
@@ -657,7 +722,8 @@
     "evidenceUrl": "https://www.cariforefoccitanie.fr/accessibilite/",
     "email": "contact@silaos.fr",
     "emailSource": "contact page / footer",
-    "emailSourceUrl": "https://silaos.fr/contact"
+    "emailSourceUrl": "https://silaos.fr/contact",
+    "declarant": "public-body"
   },
   {
     "slug": "specinov",
@@ -667,7 +733,8 @@
     "evidenceUrl": "https://www.cholet.fr/dossiers/dossier_21_politique+accessibilite+notre+site+internet.html",
     "email": "commercial@specinov.fr",
     "emailSource": "contact page (also appears in footer)",
-    "emailSourceUrl": "https://www.specinov.fr/contact"
+    "emailSourceUrl": "https://www.specinov.fr/contact",
+    "declarant": "public-body"
   },
   {
     "slug": "stratis",
@@ -677,7 +744,8 @@
     "evidenceUrl": "https://www.gard.fr/pages-pratiques/page-de-declaration-daccessibilite",
     "email": null,
     "emailSource": "checked /contact, /mentions-legales, /contactez-nous (all point to a contact form only), and the evidenceUrl declaration (gard.fr, which names Stratis as auditor but gives no auditor email) — no email listed anywhere for Stratis",
-    "emailSourceUrl": null
+    "emailSourceUrl": null,
+    "declarant": "public-body"
   },
   {
     "slug": "tanaguru",
@@ -687,7 +755,8 @@
     "evidenceUrl": "https://nouvelles.univ-rennes2.fr/accessibilite",
     "email": "contact@tanaguru.com",
     "emailSource": "contact page",
-    "emailSourceUrl": "https://tanaguru.com/contact"
+    "emailSourceUrl": "https://tanaguru.com/contact",
+    "declarant": "public-body"
   },
   {
     "slug": "temesis",
@@ -697,7 +766,8 @@
     "evidenceUrl": "https://philharmoniedeparis.fr/fr/accessibilite",
     "email": "dpo@temesis.com",
     "emailSource": "mentions légales page (listed as Data Protection Officer contact, not a general contact address); note the evidenceUrl declaration itself names Temesis as auditor of the Philharmonie Live mobile app but lists no auditor email",
-    "emailSourceUrl": "https://temesis.com/mentions-legales"
+    "emailSourceUrl": "https://temesis.com/mentions-legales",
+    "declarant": "public-body"
   },
   {
     "slug": "reddog-systems",
@@ -707,7 +777,8 @@
     "evidenceUrl": "https://warszawapraga-pln.sr.gov.pl/attachments/379/download",
     "email": "p.bachorek@red-dog.pl",
     "emailSource": "kontakt page (owner Przemysław Bąchorek's email)",
-    "emailSourceUrl": "https://red-dog.pl/kontakt"
+    "emailSourceUrl": "https://red-dog.pl/kontakt",
+    "declarant": "public-body"
   },
   {
     "slug": "centrum-bezpieczenstwa-informatycznego",
@@ -717,7 +788,8 @@
     "evidenceUrl": "https://bip-uggrodzisk.podlaskie.eu/dostpno_urzdu/",
     "email": "biuro@cbi24.pl",
     "emailSource": "homepage footer ('BIURO' office contact)",
-    "emailSourceUrl": "https://cbi24.pl"
+    "emailSourceUrl": "https://cbi24.pl",
+    "declarant": "public-body"
   },
   {
     "slug": "perfekcyjnestrony",
@@ -727,7 +799,8 @@
     "evidenceUrl": "https://energa-operator.pl/deklaracja-dostepnosci",
     "email": null,
     "emailSource": "perfekcyjnestrony.pl currently resolves to a suspended/parked hosting provider page (only a generic 'webmaster@perfekcyjnestrony.pl' hosting-suspension notice, not a real business contact); the evidenceUrl declaration (energa-operator.pl) names 'perfekcyjneStrony.pl Łukasz Krzyżoszczak' as auditor but lists no auditor email, only the client company's own accessibility contact",
-    "emailSourceUrl": null
+    "emailSourceUrl": null,
+    "declarant": "private"
   },
   {
     "slug": "extranet-joanna-pazdzierska",
@@ -737,7 +810,8 @@
     "evidenceUrl": "https://ozkodolanow.pl/19,deklaracja-dostepnosci",
     "email": "joanna.pazdzierska@extranet.pl",
     "emailSource": "kontakt page (owner Joanna Paździerska's direct email, alongside general biuro@/pomoc@/doradca@ addresses also listed)",
-    "emailSourceUrl": "https://www.extranet.pl/kontakt"
+    "emailSourceUrl": "https://www.extranet.pl/kontakt",
+    "declarant": "public-body"
   },
   {
     "slug": "idcom-group",
@@ -747,7 +821,8 @@
     "evidenceUrl": "https://gops-lesznowola.pl/cms/7229/deklaracja_dostepnosci",
     "email": "biuro@idcom.pl",
     "emailSource": "kontakt page",
-    "emailSourceUrl": "https://idcom.pl/kontakt"
+    "emailSourceUrl": "https://idcom.pl/kontakt",
+    "declarant": "public-body"
   },
   {
     "slug": "alpanet",
@@ -757,7 +832,8 @@
     "evidenceUrl": "https://www.szpitalzawiercie.pl/kategorie/deklaracja-dostepnosci",
     "email": "biuro@alpanet.pl",
     "emailSource": "kontakt page",
-    "emailSourceUrl": "https://alpanet.pl/kontakt"
+    "emailSourceUrl": "https://alpanet.pl/kontakt",
+    "declarant": "public-body"
   },
   {
     "slug": "vobacom",
@@ -767,7 +843,8 @@
     "evidenceUrl": "https://www.konstancinjeziorna.pl/deklaracja-dostepnosci",
     "email": "vobacom@vobacom.pl",
     "emailSource": "kontakt page (general contact; handel@/praca@/pomoc@ also listed for specific departments)",
-    "emailSourceUrl": "https://vobacom.pl/kontakt"
+    "emailSourceUrl": "https://vobacom.pl/kontakt",
+    "declarant": "public-body"
   },
   {
     "slug": "virtualmedia",
@@ -777,7 +854,8 @@
     "evidenceUrl": "https://mpec.olsztyn.pl/deklaracja-dostepnosci/",
     "email": "info@virtualmedia.pl",
     "emailSource": "kontakt page",
-    "emailSourceUrl": "https://virtualmedia.pl/kontakt"
+    "emailSourceUrl": "https://virtualmedia.pl/kontakt",
+    "declarant": "public-body"
   },
   {
     "slug": "venti",
@@ -787,7 +865,8 @@
     "evidenceUrl": "https://www.nil.gov.pl/deklaracja-dostepnosci/",
     "email": "info@venti.com.pl",
     "emailSource": "homepage footer (note: site is venti.pl but displayed email uses venti.com.pl domain)",
-    "emailSourceUrl": "https://venti.pl"
+    "emailSourceUrl": "https://venti.pl",
+    "declarant": "public-body"
   },
   {
     "slug": "zeto-rzeszow",
@@ -797,7 +876,8 @@
     "evidenceUrl": "https://bip.szpitalmsw.rzeszow.pl/media/deklaracja-dostepnosci.html",
     "email": "bok@zetorzeszow.pl",
     "emailSource": "kontakt page (general 'Biuro Obsługi Klienta' contact; separate branch addresses for detal/krosno/przemysl/lublin also listed)",
-    "emailSourceUrl": "https://zetorzeszow.pl/kontakt"
+    "emailSourceUrl": "https://zetorzeszow.pl/kontakt",
+    "declarant": "public-body"
   },
   {
     "slug": "fundacja-widzialni",
@@ -807,7 +887,8 @@
     "evidenceUrl": "https://ipn.gov.pl/pl/page/24141,Deklaracja-dostepnosci.html",
     "email": "biuro@widzialni.eu",
     "emailSource": "contact section (footer), displayed on homepage",
-    "emailSourceUrl": "https://widzialni.org"
+    "emailSourceUrl": "https://widzialni.org",
+    "declarant": "public-body"
   },
   {
     "slug": "altix",
@@ -817,7 +898,8 @@
     "evidenceUrl": "https://gopsstoczek.pl/deklaracja-dostepnosci.html",
     "email": "biuro@altix.pl",
     "emailSource": "contact page (general office email)",
-    "emailSourceUrl": "https://altix.pl/kontakt"
+    "emailSourceUrl": "https://altix.pl/kontakt",
+    "declarant": "public-body"
   },
   {
     "slug": "agileo-it",
@@ -827,7 +909,8 @@
     "evidenceUrl": "https://www.gzk.pawlowice.pl/fileadmin/repozytorium/GZK/2025/DEKLARACJA_DOSTEPNOSCI.pdf",
     "email": "info@agileo.it",
     "emailSource": "footer contact info on homepage",
-    "emailSourceUrl": "https://agileo.it"
+    "emailSourceUrl": "https://agileo.it",
+    "declarant": "public-body"
   },
   {
     "slug": "intracom-pl",
@@ -837,7 +920,8 @@
     "evidenceUrl": "https://sp5.czeladz.pl/main/deklaracja-dostepnosci",
     "email": null,
     "emailSource": "checked homepage, /kontakt, /o-nas, and /polityka-prywatnosci; only a phone number and a contact form are shown, no email displayed",
-    "emailSourceUrl": null
+    "emailSourceUrl": null,
+    "declarant": "public-body"
   },
   {
     "slug": "akcess-net",
@@ -847,7 +931,8 @@
     "evidenceUrl": "https://www.bip.gops.michalowice.pl/deklaracja-dostepnosci",
     "email": "bok@akcessnet.eu",
     "emailSource": "contact page (Skontaktuj się z nami section)",
-    "emailSourceUrl": "https://akcessnet.eu/kontakt"
+    "emailSourceUrl": "https://akcessnet.eu/kontakt",
+    "declarant": "public-body"
   },
   {
     "slug": "spoldzielnia-socjalna-fado",
@@ -857,7 +942,8 @@
     "evidenceUrl": "https://archiwumemigranta.pl/deklaracja-dostepnosci/",
     "email": "biuro@spoldzielniafado.pl",
     "emailSource": "contact page",
-    "emailSourceUrl": "https://spoldzielniafado.pl/kontakt"
+    "emailSourceUrl": "https://spoldzielniafado.pl/kontakt",
+    "declarant": "public-body"
   },
   {
     "slug": "utilitia",
@@ -867,7 +953,8 @@
     "evidenceUrl": "https://bip.zus.pl/deklaracja-dostepnosci",
     "email": "biuro@utilitia.pl",
     "emailSource": "contact page (general office email)",
-    "emailSourceUrl": "https://utilitia.pl/kontakt/"
+    "emailSourceUrl": "https://utilitia.pl/kontakt/",
+    "declarant": "public-body"
   },
   {
     "slug": "fundacja-instytut-rozwoju-regionalnego",
@@ -877,7 +964,8 @@
     "evidenceUrl": "https://bip.zus.pl/deklaracja-dostepnosci",
     "email": "biuro@firr.org.pl",
     "emailSource": "homepage footer (main HQ contact)",
-    "emailSourceUrl": "https://firr.org.pl"
+    "emailSourceUrl": "https://firr.org.pl",
+    "declarant": "public-body"
   },
   {
     "slug": "dranas-project",
@@ -887,7 +975,8 @@
     "evidenceUrl": "https://szafarnia.art.pl/deklaracja-dostepnosci/",
     "email": "biuro@dranasproject.pl",
     "emailSource": "contact page (mailto link and 'Napisz do nas' section)",
-    "emailSourceUrl": "https://dranasproject.pl/kontakt"
+    "emailSourceUrl": "https://dranasproject.pl/kontakt",
+    "declarant": "public-body"
   },
   {
     "slug": "kinaole",
@@ -897,7 +986,8 @@
     "evidenceUrl": "https://teatranimacji.pl/pl/deklaracja-dostepnosci",
     "email": "hello@kinaole.co",
     "emailSource": "homepage footer",
-    "emailSourceUrl": "https://kinaole.co"
+    "emailSourceUrl": "https://kinaole.co",
+    "declarant": "public-body"
   },
   {
     "slug": "fundacja-integracja",
@@ -907,7 +997,8 @@
     "evidenceUrl": "https://www.bip.bialystok.pl/deklaracja-dostepnosci.html",
     "email": "integracja@integracja.org",
     "emailSource": "homepage footer (KONTAKT section)",
-    "emailSourceUrl": "https://integracja.org"
+    "emailSourceUrl": "https://integracja.org",
+    "declarant": "public-body"
   },
   {
     "slug": "akademia-slonca",
@@ -917,7 +1008,8 @@
     "evidenceUrl": "https://res.cloudinary.com/teatr-wybrzeze/image/upload/v1707230874/Raport_Audyt_Cyfrowy_Teatr_Wybrzeze_2_MB_pdf_a44c7e5a20.pdf",
     "email": "biuro@akademia-slonca.pl",
     "emailSource": "homepage footer company info section",
-    "emailSourceUrl": "https://akademia-slonca.pl"
+    "emailSourceUrl": "https://akademia-slonca.pl",
+    "declarant": "public-body"
   },
   {
     "slug": "nautil",
@@ -927,7 +1019,8 @@
     "evidenceUrl": "https://kosakowosport.pl/deklaracja-dostepnosci/",
     "email": "biuro@nautil.pl",
     "emailSource": "homepage footer (Kontakt section, mailto link)",
-    "emailSourceUrl": "https://nautil.pl"
+    "emailSourceUrl": "https://nautil.pl",
+    "declarant": "public-body"
   },
   {
     "slug": "optimal-it",
@@ -937,7 +1030,8 @@
     "evidenceUrl": "https://fundacja.cieszyn.pl/deklaracja-dostepnosci",
     "email": null,
     "emailSource": "checked homepage, /kontakt, /kontakt/, and /polityka-prywatnosci; only a physical address and social media links are shown, no email displayed",
-    "emailSourceUrl": null
+    "emailSourceUrl": null,
+    "declarant": "private"
   },
   {
     "slug": "intermedia-spolka-jawna",
@@ -947,7 +1041,8 @@
     "evidenceUrl": "https://bip.zerkow.pl/?bip=1&cid=1336&bsc=N",
     "email": "bok@i.media.pl",
     "emailSource": "homepage footer contact section",
-    "emailSourceUrl": "https://i.media.pl"
+    "emailSourceUrl": "https://i.media.pl",
+    "declarant": "public-body"
   },
   {
     "slug": "grupa-af",
@@ -957,6 +1052,7 @@
     "evidenceUrl": "https://szpital-strusia.poznan.pl/cms/6056",
     "email": "bok@grupaaf.pl",
     "emailSource": "homepage footer contact section",
-    "emailSourceUrl": "https://grupaaf.pl"
+    "emailSourceUrl": "https://grupaaf.pl",
+    "declarant": "public-body"
   }
 ]
