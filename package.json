@@ -16,7 +16,7 @@
     "audit-a11y": "node scripts/audit-own-a11y.mjs",
     "worker:test": "node --test worker/**/*.test.mjs",
     "scripts:test": "node --test scripts/**/*.test.mjs",
-    "src:test": "node --test src/**/*.test.mjs",
+    "src:test": "tsx --test src/**/*.test.mjs",
     "en301549:coverage": "node scripts/en301549-coverage.mjs",
     "worker:dev": "wrangler dev",
     "worker:deploy": "wrangler deploy",
@@ -40,6 +40,7 @@
     "axe-core": "^4.13.0",
     "playwright": "^1.62.1",
     "tailwindcss": "^4.3.3",
+    "tsx": "^4.23.9",
     "typescript": "^5.9.3",
     "vite": "^8.1.5",
     "wrangler": "^4.119.0"

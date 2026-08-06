@@ -37,8 +37,13 @@ export type ScanReport = {
   completedAt: string | null
 }
 
-const API_BASE = import.meta.env.VITE_SCANNER_API ?? ''
-export const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY ?? ''
+// `?.` не косметика: `import.meta.env` подставляет Vite, и вне сборки его нет
+// вовсе. Без него этот модуль нельзя импортировать из node-теста — а он тянется
+// как зависимость чистых функций (groupFindingsByRule), из-за чего оценка
+// стоимости оставалась непокрытой тестами до D-046. В самой сборке поведение
+// не меняется.
+const API_BASE = import.meta.env?.VITE_SCANNER_API ?? ''
+export const TURNSTILE_SITE_KEY = import.meta.env?.VITE_TURNSTILE_SITE_KEY ?? ''
 
 export class ScannerUnavailableError extends Error {}
 
