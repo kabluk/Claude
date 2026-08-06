@@ -505,7 +505,6 @@
       }
     ],
     "lastVerified": "2026-08-04",
-    "headcountBand": "51-200",
     "priceBand": "mid"
   },
   {
@@ -557,8 +556,7 @@
         "label": "Impressum (HQ, sole proprietor)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "headcountBand": "1"
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "visuellverstehen",
@@ -660,8 +658,7 @@
         "label": "About page (team)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "headcountBand": "2-10"
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "dmk-ebusiness",
@@ -715,8 +712,7 @@
         "label": "Kennzahlen der Agentur: \"2 Standorte · 34 Mitarbeitende · Gründung 2008\"; checked 2026-08-06"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "headcountBand": "11-50"
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "wcag-audyt-pl",
@@ -921,8 +917,7 @@
         "label": "Über DIAS: \"Die DIAS GmbH – kurz für: Daten, Informationssysteme und Analysen im Sozialen – wurde 1994 von Rehabilitationsforschern der Universität Hamburg gegründet.\"; checked 2026-08-06"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "headcountBand": "2-10"
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "deutsche-telekom-mms",
@@ -986,8 +981,7 @@
         "label": "Accessibility services page (audits, standards, trainings)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "headcountBand": "200+"
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "materna",
@@ -1269,8 +1263,7 @@
         "label": "Impressum (GbR, two partners, Greven)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "headcountBand": "2-10"
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "insert-effect",
@@ -1384,8 +1377,7 @@
         "label": "Impressum (operator In der Gemeinde leben gGmbH)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "headcountBand": "2-10"
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "adesso-mobile",
@@ -1444,8 +1436,7 @@
         "label": "Impressum (adesso SE, Dortmund)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "headcountBand": "200+"
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "hdm-stuttgart-kompetenzzentrum",
@@ -1759,8 +1750,7 @@
         "label": "Impressum (Detlef Girke, Hoechberg)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "headcountBand": "1"
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "marcus-herrmann",
@@ -1808,8 +1798,7 @@
         "label": "Homepage (services, BIK testing body, standards, Berlin address)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "headcountBand": "1"
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "hcltech",
@@ -1962,8 +1951,7 @@
         "label": "homepage (services, offices, volume figures)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "headcountBand": "200+"
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "crawford-technologies",
@@ -2156,8 +2144,7 @@
         "label": "homepage (200+ QA engineers, industries)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "headcountBand": "200+"
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "intopia",
@@ -2553,8 +2540,7 @@
         "label": "homepage footer (locations, accessibility services, industries)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "headcountBand": "200+"
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "braille-institute-access-solutions",
@@ -2683,7 +2669,6 @@
       }
     ],
     "lastVerified": "2026-08-04",
-    "headcountBand": "1",
     "priceBand": "budget"
   },
   {
@@ -3306,8 +3291,7 @@
         "label": "homepage/CV (independent professional, freelance since 2009, standards covered, services, certifications, public/private clients)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "headcountBand": "1"
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "ilunion-accesibilidad",
@@ -4988,8 +4972,7 @@
         "label": "Geschichte: \"Die Hilfsgemeinschaft der Blinden und Sehschwachen Österreichs wurde 1935 gegründet und feiert heuer ihr 90-jähriges Jubiläum!\"; checked 2026-08-06"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "headcountBand": "51-200"
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "zoonou",
@@ -5368,8 +5351,7 @@
         "label": "about page (since 2007, 50+ team)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "headcountBand": "51-200"
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "shaw-trust-accessibility-services",
@@ -5526,7 +5508,6 @@
       }
     ],
     "lastVerified": "2026-08-04",
-    "headcountBand": "11-50",
     "priceBand": "budget"
   },
   {

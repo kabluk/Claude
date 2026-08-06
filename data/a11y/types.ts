@@ -56,8 +56,6 @@ export type CertBadge =
 // аудитора по традиции живёт у аудитора, доказательством служит запись
 // заказчика в реестре toegankelijkheidsverklaring.nl, а отчёт — в sourceRefs.
 
-export type HeadcountBand = '1' | '2-10' | '11-50' | '51-200' | '200+'
-
 export interface Office {
   city: string
   countryCode: string // ISO-3166 alpha-2, uppercase
@@ -75,7 +73,6 @@ export interface Agency {
   name: string
   website: string // канонический домен — ключ дедупликации
   founded?: number
-  headcountBand?: HeadcountBand
   hq: Office
   offices: Office[] // может быть пустым, если известен только HQ
   countriesServed: string[] // ISO-коды; спец-значения 'remote-eu','remote-global'

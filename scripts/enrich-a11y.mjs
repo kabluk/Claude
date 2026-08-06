@@ -5,7 +5,7 @@
 // sourceRefs (дедуп по url), lastVerified обновляется у затронутых записей.
 // Запуск: node scripts/enrich-a11y.mjs [--dry]
 //
-// Формат патча: [{ slug, hqCity?, founded?, headcountBand?, languages?,
+// Формат патча: [{ slug, hqCity?, founded?, languages?,
 //   services?, standards?, industries?, priceBand?, descriptionEn?,
 //   descriptionDe?, descriptionFr?, descriptionPl?, descriptionEs?,
 //   evidence?: [{url,label}] }]
@@ -22,7 +22,6 @@ const dry = process.argv.includes('--dry')
 const SERVICES = ['audit', 'remediation', 'vpat', 'training', 'monitoring', 'consulting']
 const STANDARDS = ['wcag-2-2', 'en-301-549', 'section-508', 'eaa', 'bitv', 'rgaa', 'ada']
 const BANDS = ['budget', 'mid', 'premium', 'enterprise']
-const HEADS = ['1', '2-10', '11-50', '51-200', '200+']
 const DESC_KEYS = { descriptionEn: 'en', descriptionDe: 'de', descriptionFr: 'fr', descriptionPl: 'pl', descriptionEs: 'es' }
 
 const agencies = JSON.parse(readFileSync(join(A11Y, 'agencies.json'), 'utf8'))
@@ -63,8 +62,6 @@ for (const f of readdirSync(ENRICH).filter((x) => x.endsWith('.json'))) {
 
     if (p.hqCity) fill(!a.hq.city, () => { a.hq.city = p.hqCity; stats.city++ })
     if (p.founded) fill(!a.founded, () => { a.founded = p.founded; stats.fields++ })
-    if (p.headcountBand && HEADS.includes(p.headcountBand))
-      fill(!a.headcountBand, () => { a.headcountBand = p.headcountBand; stats.fields++ })
     if (p.priceBand && BANDS.includes(p.priceBand))
       fill(!a.priceBand, () => { a.priceBand = p.priceBand; stats.fields++ })
     if (Array.isArray(p.languages) && p.languages.length)
