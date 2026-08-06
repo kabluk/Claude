@@ -63,3 +63,22 @@ test('parseExplainResponse strips blank fixExamples entries', () => {
   const result = parseExplainResponse('{"explanation": "ok", "fixExamples": ["real fix", "", "  "]}')
   assert.deepEqual(result.fixExamples, ['real fix'])
 })
+
+// Реальный ответ Claude Haiku на этот промпт, зафиксированный живой проверкой
+// (D-020): модель обернула JSON в markdown code fence, несмотря на "ONLY a
+// JSON object" в промпте. До фикса это давало 502 на каждый cache-miss.
+test('parseExplainResponse handles a ```json fenced response (actual model behavior)', () => {
+  const fenced = '```json\n{"explanation": "Images need alt text.", "fixExamples": ["Add alt attributes."]}\n```'
+  const result = parseExplainResponse(fenced)
+  assert.deepEqual(result, { explanation: 'Images need alt text.', fixExamples: ['Add alt attributes.'] })
+})
+
+test('parseExplainResponse handles a fence without the "json" language tag', () => {
+  const fenced = '```\n{"explanation": "ok", "fixExamples": []}\n```'
+  // fixExamples пуст, а explanation не пустой -> валиден (пустой массив это нормально, не "не знаю")
+  assert.deepEqual(parseExplainResponse(fenced), { explanation: 'ok', fixExamples: [] })
+})
+
+test('parseExplainResponse still rejects fenced-but-malformed JSON', () => {
+  assert.equal(parseExplainResponse('```json\n{"explanation": "truncated"\n```'), null)
+})

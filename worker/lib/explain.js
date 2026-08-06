@@ -50,12 +50,23 @@ Rules:
   with {"explanation": "", "fixExamples": []} instead of guessing.`
 }
 
+// Модель нередко оборачивает ответ в markdown code fence (```json ... ```),
+// несмотря на явную просьбу в промпте вернуть "ONLY a JSON object" — обнаружено
+// живой проверкой с реальным ключом (D-020), синтетические фикстуры этот случай
+// не покрывали. Снимаем фенс перед JSON.parse, а не переписываем промпт ещё
+// строже — поведение модели не гарантировано, парсер должен быть терпимее.
+function stripCodeFence(text) {
+  const trimmed = text.trim()
+  const match = /^```(?:json)?\s*\n([\s\S]*?)\n```$/.exec(trimmed)
+  return match ? match[1] : trimmed
+}
+
 // Валидирует и нормализует ответ модели. Возвращает null при явно мусорном/
 // неполном JSON — вызывающий код решает, что делать (не кэшировать, отдать 502).
 export function parseExplainResponse(text) {
   let parsed
   try {
-    parsed = JSON.parse(text)
+    parsed = JSON.parse(stripCodeFence(text))
   } catch {
     return null
   }

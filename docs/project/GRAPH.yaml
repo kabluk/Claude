@@ -159,7 +159,7 @@ nodes:
   - id: A1-EXPLAIN
     title: AI-пояснения находок (Claude Haiku + KV-кэш ruleId×locale)
     owner: backend-engineer
-    status: review
+    status: done
     depends_on: [A1-SCAN]
     inputs: [docs/project/DECISIONS.md, docs/project/INTERFACES.md]
     scope: [worker/]
@@ -170,10 +170,10 @@ nodes:
       - "повторный запрос того же ruleId отдаётся из кэша (KV EXPLAIN_CACHE, ключ ruleId×locale)"
       - "лимит: 30/час на IP (checkExplainRateLimit)"
     max_attempts: 4
-    attempts: 1
+    attempts: 2
     risk: medium
     approval_required: true
-    notes: "Готово 2026-08-06 (D-016): код и 21 юнит-тест (10 explain.js + 6 ratelimit.js новых + существующие) написаны и проходят; live-проверено фиктивным ключом — запрос реально дошёл до Anthropic (401 invalid x-api-key, не сетевая ошибка), 502 с понятным сообщением. status=review, НЕ done: approval на платный ключ Anthropic ещё не дано отдельно от одобрения CF-ресурсов для A1-SCAN (правило зафиксировано заранее). Нужен настоящий ANTHROPIC_API_KEY + явное разрешение владельца, чтобы проверить happy path и закрыть узел."
+    notes: "Закрыто 2026-08-06 (D-020): владелец явно одобрил ANTHROPIC_API_KEY отдельно от CF-одобрения A1-SCAN (правило сработало как задумано). Live-прогон настоящим ключом через `wrangler dev --local --var` (ключ передан только как аргумент процесса, нигде не записан на диск и не закоммичен) вскрыл РЕАЛЬНЫЙ баг: Claude Haiku оборачивает JSON в markdown code fence несмотря на промпт «ONLY a JSON object» — parseExplainResponse падал на JSON.parse, каждый cache-miss отдавал 502. Ни одна прежняя синтетическая фикстура это не покрывала. Исправлено (stripCodeFence), 5 новых фикстур в explain.test.mjs (в т.ч. фенс без языкового тега, битый JSON внутри фенса) — 39/39 worker-тестов зелёные. Живьём подтверждены все документированные пути: happy path (200, реальное объяснение), cache hit (0.025s vs 3.8s на промахе), abstention на нераспознанный ruleId (502, честная причина), 400 на невалидный ruleId, 503 без ключа. depends_on: A1-SCAN — смысловая связь (пояснения относятся к находкам скана), не техническая: сама фича не требует живого Browser Rendering/деплоя, поэтому done, а не review, несмотря на то что A1-SCAN сам ещё review."
 
   - id: A1-COST
     title: "Оценка стоимости исправлений на /report/:id — эвристика × price bands, всегда вилка"

@@ -39,22 +39,24 @@
 
 ## Фаза 1 (Decision Engine)
 
-Все 6 узлов Фазы 1 (A1-SCAN, A1-REPORT, A1-LANDING, A1-EXPLAIN, A1-COST, A1-MATCH)
-status **review** — код написан, покрыт тестами, живьём верифицирован независимо
-от блокеров ниже. Ничего не в `done`, потому что цепочка упирается в A1-SCAN:
+`A1-EXPLAIN` и `A1-PRIVACY` — **done**. Остальные 5 узлов (A1-SCAN, A1-REPORT,
+A1-LANDING, A1-COST, A1-MATCH, A1-RETENTION) — status **review**: код написан,
+покрыт тестами, живьём верифицирован независимо, но цепочка упирается в A1-SCAN:
 
 - `A1-SCAN`: Worker написан (`worker/`, `wrangler.jsonc`, `migrations/`),
-  routing/D1/KV/error-handling проверены живьём, 31/31 юнит-тестов (весь `worker/`)
+  routing/D1/KV/error-handling проверены живьём, 39/39 юнит-тестов (весь `worker/`)
   зелёные. Реальная axe-core инъекция не подтверждена — упёрлась в MITM-прокси
   песочницы (D-010, `domains/backend.md`). Нужен один прогон на реальном аккаунте
-  владельца, чтобы закрыть узел и каскадом — A1-REPORT/A1-MATCH.
-- `A1-EXPLAIN`: код и тесты готовы (D-016), ждёт отдельного одобрения платного
-  `ANTHROPIC_API_KEY` (не то же самое, что одобрение CF-ресурсов).
-- `A1-REPORT`/`A1-LANDING`/`A1-COST`/`A1-MATCH`: полностью верифицированы живьём
-  (Playwright + axe-core против реального dev-сервера, часть — против реальных
-  данных `agencies.json`), технически готовы, статус review унаследован по цепочке
-  зависимостей от A1-SCAN. Детали — `docs/project/domains/frontend.md`,
-  `docs/project/DECISIONS.md` (D-013…D-018).
+  владельца, чтобы закрыть узел и каскадом — A1-REPORT/A1-MATCH/A1-RETENTION.
+- `A1-EXPLAIN`: **закрыт 2026-08-06** (D-020) — владелец дал отдельное одобрение
+  `ANTHROPIC_API_KEY`, живой прогон реальным ключом нашёл и исправил настоящий
+  баг (markdown-фенс вокруг JSON-ответа модели), не гипотетический.
+- `A1-REPORT`/`A1-LANDING`/`A1-COST`/`A1-MATCH`/`A1-RETENTION`: полностью
+  верифицированы живьём (Playwright + axe-core против реального dev-сервера,
+  часть — против реальных данных `agencies.json`; retention — против фейкового
+  D1), технически готовы, статус review унаследован по цепочке зависимостей от
+  A1-SCAN (Cron Trigger реально затикает только после деплоя). Детали —
+  `docs/project/domains/frontend.md`, `backend.md`, `DECISIONS.md` (D-013…D-020).
 
 ## Монетизация
 
