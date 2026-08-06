@@ -1,13 +1,16 @@
 # STATUS — фактическое состояние
 
-Обновлено: 2026-08-05 (см. также подробный legacy-статус: `research/STATE.md`)
+Обновлено: 2026-08-06 (см. также подробный legacy-статус: `research/STATE.md`)
 
 ## Кратко
 
 Слой 1 (Directory) построен и **готов к деплою** — все агентские блокеры Фазы 0
-закрыты. Единственное, что осталось перед запуском, — ввод от владельца проекта
-(реквизиты Imprint + домен). Слои 2–4 не начаты. Ветка проекта — `accessatlas`;
-рабочая ветка этой итерации — `claude/accessatlas-architecture-sk6tcj`.
+закрыты, ждёт только ввода от владельца (реквизиты Imprint + домен). Слой 2
+(сканер) **реально задеплоен и работает** на аккаунте владельца
+(`https://accessatlas-worker.zincroom.workers.dev`, D-021) — не демо, настоящие
+D1/KV, настоящий скан example.com нашёл настоящие находки. Слои 3–4 не начаты.
+Ветка проекта — `accessatlas`; рабочая ветка этой итерации —
+`claude/accessatlas-architecture-sk6tcj`.
 
 ## Проверено сегодня (командами, не по памяти)
 
@@ -39,24 +42,33 @@
 
 ## Фаза 1 (Decision Engine)
 
-`A1-EXPLAIN` и `A1-PRIVACY` — **done**. Остальные 5 узлов (A1-SCAN, A1-REPORT,
-A1-LANDING, A1-COST, A1-MATCH, A1-RETENTION) — status **review**: код написан,
-покрыт тестами, живьём верифицирован независимо, но цепочка упирается в A1-SCAN:
+**Фактически закрыта по коду.** `A1-SCAN`, `A1-REPORT`, `A1-EXPLAIN`, `A1-COST`,
+`A1-MATCH`, `A1-PRIVACY` — **done**. Только `A1-LANDING` и `A1-RETENTION`
+остаются в review, и оба не требуют новой работы — только времени/наблюдения:
 
-- `A1-SCAN`: Worker написан (`worker/`, `wrangler.jsonc`, `migrations/`),
-  routing/D1/KV/error-handling проверены живьём, 39/39 юнит-тестов (весь `worker/`)
-  зелёные. Реальная axe-core инъекция не подтверждена — упёрлась в MITM-прокси
-  песочницы (D-010, `domains/backend.md`). Нужен один прогон на реальном аккаунте
-  владельца, чтобы закрыть узел и каскадом — A1-REPORT/A1-MATCH/A1-RETENTION.
-- `A1-EXPLAIN`: **закрыт 2026-08-06** (D-020) — владелец дал отдельное одобрение
-  `ANTHROPIC_API_KEY`, живой прогон реальным ключом нашёл и исправил настоящий
-  баг (markdown-фенс вокруг JSON-ответа модели), не гипотетический.
-- `A1-REPORT`/`A1-LANDING`/`A1-COST`/`A1-MATCH`/`A1-RETENTION`: полностью
-  верифицированы живьём (Playwright + axe-core против реального dev-сервера,
-  часть — против реальных данных `agencies.json`; retention — против фейкового
-  D1), технически готовы, статус review унаследован по цепочке зависимостей от
-  A1-SCAN (Cron Trigger реально затикает только после деплоя). Детали —
-  `docs/project/domains/frontend.md`, `backend.md`, `DECISIONS.md` (D-013…D-020).
+- `A1-SCAN`: реально задеплоен 2026-08-06 (D-021) на аккаунт владельца — D1
+  `accessatlas-scans`, KV `RATE_LIMIT_KV`/`EXPLAIN_CACHE`, `wrangler.jsonc`
+  содержит настоящие id. Живой скан `https://example.com` через Browser
+  Rendering нашёл 2 подлинные axe-core находки, score 94, подтверждено прямым
+  SELECT из D1. Закрывает главный пробел D-010 (MITM-прокси песочницы блокировал
+  только *локальный* Chromium Browser Rendering — реальный деплой этого не
+  требует).
+- `A1-REPORT`/`A1-COST`/`A1-MATCH`: зависели только от A1-SCAN/A1-REPORT по
+  цепочке, их собственная верификация (Playwright, реальные `agencies.json`)
+  была завершена раньше — теперь done.
+- `A1-EXPLAIN`: закрыт 2026-08-06 (D-020, D-021) — реальный `ANTHROPIC_API_KEY`
+  нашёл и исправил настоящий баг (markdown-фенс вокруг JSON), затем загружен
+  как реальный Worker secret на живой деплой и подтверждён запросом.
+- `A1-LANDING`: review — внешний скрипт Turnstile (`challenges.cloudflare.com`)
+  не проверен реальным браузером; подтверждено отдельно, что браузер этой
+  песочницы вообще не может достучаться до внешнего HTTPS (не специфично для
+  Turnstile).
+- `A1-RETENTION`: review — Cron Trigger подтверждён зарегистрированным на
+  реальном деплое (`schedule: 0 3 * * *`), но первое фактическое срабатывание
+  (03:00 UTC) ещё не пронаблюдано.
+
+Детали — `docs/project/domains/frontend.md`, `backend.md`, `DECISIONS.md`
+(D-013…D-021).
 
 ## Монетизация
 

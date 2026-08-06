@@ -19,14 +19,14 @@
 
 | ID | Задача | Владелец | Зависит от | Статус |
 |---|---|---|---|---|
-| A1-SCAN | Worker: `POST /api/scan` + Browser Rendering + axe-core → D1; rate-limit, Turnstile | backend-engineer | — (техн. независим) | **review** (код готов, живой прогон на реальном CF-аккаунте ждёт) |
-| A1-REPORT | UI `/report/:id`: находки по WCAG, severity, score, шаринг + async-прогресс + error-состояния (VISION.md UX 2,4) | frontend-engineer | A1-SCAN | **review** (готов и верифицирован, ждёт A1-SCAN done) |
+| A1-SCAN | Worker: `POST /api/scan` + Browser Rendering + axe-core → D1; rate-limit, Turnstile | backend-engineer | — (техн. независим) | **done** (реально задеплоен на аккаунт владельца 2026-08-06, живой скан example.com нашёл настоящие находки, D-021) |
+| A1-REPORT | UI `/report/:id`: находки по WCAG, severity, score, шаринг + async-прогресс + error-состояния (VISION.md UX 2,4) | frontend-engineer | A1-SCAN | **done** (готов, верифицирован; A1-SCAN done, реальный ScanReport совпал с контрактом) |
 | A1-LANDING | Лендинг сканера `/scan`, форма URL, Turnstile, ссылка из шапки, честный прогноз времени | frontend-engineer | — (техн. независим) | **review** (готов, 4 сценария верифицированы; реальный Turnstile-виджет не тестировался — сетевой барьер песочницы) |
-| A1-EXPLAIN | `POST /api/explain`: Claude Haiku + KV-кэш ruleId×locale, язык бизнеса, не сырой ruleId (VISION.md UX 3) | backend-engineer | A1-SCAN | **done** (владелец одобрил ключ, live-прогон реальным ключом нашёл и исправил настоящий баг парсинга — markdown-фенс вокруг JSON-ответа модели, D-020) |
-| A1-COST | Оценка стоимости (эвристика × price bands) + дисклеймер | frontend-engineer | A1-REPORT | **review** (готов, 5 сценариев верифицированы живьём против ручного расчёта) |
-| A1-MATCH | Блок «подходящие агентства» под отчётом + CTA в каталог + бейджи верификации на карточке (VISION.md UX 5) | frontend-engineer | A1-REPORT | **review** (готов, 5 сценариев верифицированы живьём против реальных данных, включая честный empty-state) |
+| A1-EXPLAIN | `POST /api/explain`: Claude Haiku + KV-кэш ruleId×locale, язык бизнеса, не сырой ruleId (VISION.md UX 3) | backend-engineer | A1-SCAN | **done** (владелец одобрил ключ, live-прогон нашёл и исправил настоящий баг парсинга — markdown-фенс, D-020; секрет теперь и в проде, D-021) |
+| A1-COST | Оценка стоимости (эвристика × price bands) + дисклеймер | frontend-engineer | A1-REPORT | **done** (готов, 5 сценариев верифицированы живьём против ручного расчёта; A1-REPORT done) |
+| A1-MATCH | Блок «подходящие агентства» под отчётом + CTA в каталог + бейджи верификации на карточке (VISION.md UX 5) | frontend-engineer | A1-REPORT | **done** (готов, 5 сценариев верифицированы живьём против реальных данных; A1-REPORT done) |
 | A1-PRIVACY | Обновить Privacy (сканы, email, D1) | product-lead | A1-SCAN | **done** (текст сверен с реальным кодом worker/, не с предположением) |
-| A1-RETENTION | Cron Trigger: удалять сканы старше 90 дней (RISKS.md R6) | backend-engineer | — | **review** (код+5 тестов готовы, wrangler deploy --dry-run бандлится чисто; живой прогон Cron Trigger ждёт деплоя, D-019) |
+| A1-RETENTION | Cron Trigger: удалять сканы старше 90 дней (RISKS.md R6) | backend-engineer | — | **review** (задеплоено 2026-08-06, Cron Trigger подтверждён зарегистрированным на реальном аккаунте; первое срабатывание 03:00 UTC ещё не пронаблюдано, D-019/D-021) |
 
 ## Фаза 2 — Lead Marketplace
 

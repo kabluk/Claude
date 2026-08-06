@@ -1,8 +1,21 @@
 # Домен: backend
 
-Обновлено: 2026-08-05 · Владелец: backend-engineer
+Обновлено: 2026-08-06 · Владелец: backend-engineer
 
-## A1-SCAN — реализован, статус review (D-010)
+## A1-SCAN — закрыт, статус done (D-010, D-021)
+
+**Реально задеплоен на аккаунт владельца 2026-08-06**: `https://accessatlas-
+worker.zincroom.workers.dev`. D1 `accessatlas-scans` (`ff550a44-5ca8-4cc4-9c1e-
+51b714c6a754`), KV `RATE_LIMIT_KV`/`EXPLAIN_CACHE` — реальные id в `wrangler.jsonc`
+(не секреты, коммитятся). Живой скан `https://example.com` через Browser
+Rendering нашёл 2 подлинные axe-core находки (`landmark-one-main`, `region` —
+у example.com действительно нет `<main>`), score 94 — подтверждено прямым
+`SELECT` из реальной D1, не только ответом API. Ошибочный путь тоже проверен
+живьём: заведомо несуществующий домен → `status: error`, `errorCode: refused`
+(`ERR_CONNECTION_RESET`). Транзиентные edge-ошибки Cloudflare (1104/1042)
+наблюдались на 2 из 8 опросов в первые ~10с сразу после деплоя — самостоятельно
+прошли, не связаны с данными (нормальная пропагация по глобальной сети,
+см. `devops-engineer.md`).
 
 Файлы: `worker/index.js` (роутер + CORS), `worker/routes/scan.js` (POST/GET),
 `worker/lib/{db,ratelimit,turnstile,axe,score,links}.js`, `wrangler.jsonc`,
@@ -38,7 +51,7 @@
   `0002_error_code.sql` (аддитивная, `ALTER TABLE`, не трогает `0001_init.sql`).
   6 юнит-тестов.
 
-## A1-EXPLAIN — реализован, статус review (D-016)
+## A1-EXPLAIN — закрыт, статус done (D-016, D-020, D-021)
 
 `worker/lib/explain.js` (промпт, парсинг ответа, кэш) + `worker/routes/explain.js`
 (POST /api/explain) + `checkExplainRateLimit` в `worker/lib/ratelimit.js` (ядро
@@ -58,46 +71,39 @@
 - **Деградация без секрета**: `/api/explain` без `ANTHROPIC_API_KEY` отвечает 503,
   не падает и не пытается тайно тратить деньги — проверено вживую.
 
-### Что НЕ подтверждено (честно, не done)
+Оба честных пробела выше — **закрыты 2026-08-06 (D-021)**: реальный
+`ANTHROPIC_API_KEY` загружен как настоящий Worker secret на живой деплой,
+подтверждён живым запросом — объяснение для `landmark-one-main` (ровно то
+правило, что нашёл живой скан example.com выше) пришло адекватное.
+Наблюдение: секрет пропагируется по глобальной сети Cloudflare не мгновенно
+(несколько 503 «not configured» сразу после `secret put`), прошло за секунды —
+не баг, обычная эксплуатационная задержка, см. `devops-engineer.md`.
+`axe.run()` против живого сайта тоже подтверждён (см. A1-SCAN выше) — MITM-
+прокси песочницы блокировал только *локально запущенный* Chromium Browser
+Rendering, реальный деплой на Cloudflare этого ограничения не имеет.
 
-**Реальная генерация пояснения не подтверждена — нужен платный API-ключ Anthropic,
-и это отдельное одобрение, не то же самое, что разрешение на платные ресурсы CF
-для A1-SCAN** (правило зафиксировано заранее в HANDOFF.md/RISKS.md, D-016). Всё,
-что можно было проверить без реального ключа — проверено живьём: 400/503/429/502
-через `wrangler dev`, включая тест фиктивным ключом (`--var ANTHROPIC_API_KEY:...`)
-— запрос реально дошёл до Anthropic и получил настоящий `401 invalid x-api-key`,
-подтверждая, что сетевой путь и обработка ошибок работают. В отличие от Browser
-Rendering (D-010), здесь MITM-прокси песочницы не помешал — это обычный `fetch`
-внутри Worker-рантайма, не отдельно запущенный процесс со своим доверием к CA.
-
-## Что НЕ подтверждено (честно, не done)
-
-Реальная инъекция и выполнение `axe.run()` против живого сайта — единственный
-непроверенный кусок. В этой сессии дошли до `page.goto()` (браузер реально
-запустился локально после `CI=true`, снимающего `--no-sandbox`-ограничение
-контейнера), но напоролись на MITM-прокси песочницы: локальный Chromium не
-доверяет её CA, TLS/сертификатные ошибки на любой внешний сайт. Это ограничение
-среды разработки этой сессии, не кода — у настоящего Cloudflare Browser Rendering
-в проде прямой выход в интернет. **Перед тем как считать A1-SCAN done**, нужен
-один прогон `wrangler dev --remote` (использует реальную инфраструктуру CF, требует
-`wrangler login` с аккаунтом владельца) или прямой прод-деплой.
-
-## Деплой (когда владелец даст добро на конкретный шаг)
+## Деплой — выполнен 2026-08-06 (D-021)
 
 ```bash
-npx wrangler login                                  # аккаунт владельца
 npx wrangler d1 create accessatlas-scans            # → database_id в wrangler.jsonc
 npx wrangler kv namespace create RATE_LIMIT_KV       # → id в wrangler.jsonc
 npx wrangler kv namespace create EXPLAIN_CACHE       # → id в wrangler.jsonc
 npx wrangler d1 migrations apply accessatlas-scans --remote
-npx wrangler secret put TURNSTILE_SECRET_KEY         # опционально для dev
-npx wrangler secret put ANTHROPIC_API_KEY            # нужен явный OK владельца, см. D-016
+npx wrangler secret put ANTHROPIC_API_KEY            # владелец одобрил, D-020
 npx wrangler deploy
 ```
 
-`ALLOWED_ORIGIN` в `wrangler.jsonc` дублирует ORIGIN из `src/lib/seo.tsx` —
-обновить вместе при покупке домена (A0-ORIGIN), иначе CORS перекроет `/api/scan`
-с прод-фронтенда.
+Аутентификация — скопированный Cloudflare API-токен (Workers Scripts/Workers
+KV/D1: Edit), переданный владельцем в чат и использованный только как значение
+переменной окружения процесса (`CLOUDFLARE_API_TOKEN=...`), никогда не
+записывался на диск и не коммитился — `wrangler login` в этой безголовой
+сессии невозможен (OAuth-колбэк идёт на localhost контейнера, недостижим для
+браузера владельца). `TURNSTILE_SECRET_KEY` **не задан** — Turnstile на проде
+пока не активен, форма сканера всё равно работает (сервер пропускает проверку
+без секрета). `ALLOWED_ORIGIN` в `wrangler.jsonc` всё ещё плейсхолдер
+`accessatlas.example` — обновить вместе с покупкой домена (A0-ORIGIN), до
+этого CORS не пустит браузерные запросы с задеплоенного каталога, только
+прямые API-вызовы (curl и т.п.).
 
 **Turnstile — пара переменных, настраивать вместе** (D-015): `TURNSTILE_SECRET_KEY`
 (секрет, `wrangler secret put`, только в Worker) и `VITE_TURNSTILE_SITE_KEY`
@@ -148,10 +154,11 @@ UTC) — закрывает TBD выше (R6/D-019). `DELETE FROM scans WHERE cr
 бандлится чисто с новым триггером. Privacy Policy обновлена вслед за этим —
 раньше честно говорила «no automatic deletion yet», теперь называет реальное окно.
 
-**status=review, не done**: Cron Triggers реально начинают тикать только после
-деплоя на аккаунт владельца — сама логика удаления протестирована независимо
-(фейковый D1), но живой прогон по расписанию не подтверждён, тот же класс
-ограничения, что у A1-SCAN (D-010).
+**status=review, не done**: реальный деплой 2026-08-06 (D-021) подтвердил Cron
+Trigger зарегистрированным на аккаунте владельца (`schedule: 0 3 * * *` в
+выводе `wrangler deploy`) — но само срабатывание по расписанию (03:00 UTC) ещё
+не пронаблюдано в рамках этой сессии. Логика удаления протестирована
+независимо (фейковый D1, 5 юнит-тестов).
 
 ## Дальше по Фазе 1
 

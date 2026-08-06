@@ -4,10 +4,7 @@
   "main": "worker/index.js",
   "compatibility_date": "2024-09-23",
   "compatibility_flags": ["nodejs_compat"],
-  // TODO(devops, перед первым деплоем): создать реальные ресурсы и заменить id:
-  //   npx wrangler d1 create accessatlas-scans
-  //   npx wrangler kv namespace create RATE_LIMIT_KV
-  //   npx wrangler kv namespace create EXPLAIN_CACHE
+  // Реальные ресурсы созданы 2026-08-06 на аккаунте владельца (D-010 закрыт).
   // Секреты НЕ сюда — `npx wrangler secret put TURNSTILE_SECRET_KEY` /
   // `npx wrangler secret put ANTHROPIC_API_KEY` (последний нужен только для
   // A1-EXPLAIN — без него /api/explain отвечает 503, остальной сайт работает).
@@ -15,13 +12,13 @@
     {
       "binding": "DB",
       "database_name": "accessatlas-scans",
-      "database_id": "REPLACE_ME_AFTER_D1_CREATE",
+      "database_id": "ff550a44-5ca8-4cc4-9c1e-51b714c6a754",
       "migrations_dir": "migrations"
     }
   ],
   "kv_namespaces": [
-    { "binding": "RATE_LIMIT_KV", "id": "REPLACE_ME_AFTER_KV_CREATE" },
-    { "binding": "EXPLAIN_CACHE", "id": "REPLACE_ME_AFTER_KV_CREATE" }
+    { "binding": "RATE_LIMIT_KV", "id": "99832c9f43c24f76bd28b0bd4ca08cd3" },
+    { "binding": "EXPLAIN_CACHE", "id": "d9762377e6114656a32dad4996b9a564" }
   ],
   "browser": { "binding": "BROWSER" },
   // Ежедневная зачистка scans старше worker/lib/retention.js::RETENTION_DAYS (D-019).

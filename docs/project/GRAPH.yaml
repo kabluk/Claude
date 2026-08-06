@@ -103,22 +103,22 @@ nodes:
   - id: A1-SCAN
     title: "Сканер MVP: POST /api/scan (Browser Rendering + axe-core) -> D1, GET /api/scan/:id"
     owner: backend-engineer
-    status: review
+    status: done
     depends_on: []
     inputs: [docs/project/domains/architecture.md, docs/project/INTERFACES.md]
     scope: [worker/, wrangler.jsonc, migrations/]
     outputs: [worker/, wrangler.jsonc, migrations/0001_init.sql, docs/project/domains/backend.md]
     verify: ["wrangler dev: скан example.com возвращает findings", npm run typecheck, npm run worker:test]
     max_attempts: 4
-    attempts: 1
+    attempts: 2
     risk: medium
     approval_required: true
-    notes: "Владелец одобрил платные ресурсы CF 2026-08-05. Код написан и залит (D-010): routing/валидация/D1/KV/ctx.waitUntil error-handling проверены live через wrangler dev; 9/9 юнит-тестов (score.js, links.js) зелёные; wrangler deploy --dry-run бандлится чисто. НЕ подтверждено: реальная axe-core инъекция против живого сайта — упёрлась в MITM-прокси песочницы (локальный Chromium не доверяет CA), не в код. status=review, не done — нужен один прогон `wrangler dev --remote` или прод-деплой на реальном аккаунте владельца, дальше — А1-REPORT/A1-EXPLAIN разблокируются"
+    notes: "Закрыто 2026-08-06 (D-021). Реальный деплой на аккаунт владельца (D1 accessatlas-scans, RATE_LIMIT_KV, EXPLAIN_CACHE — реальные ID в wrangler.jsonc), настоящий скан https://example.com через Browser Rendering: 2 подлинные axe-core находки (landmark-one-main, region — у example.com действительно нет <main>), score 94. Ошибочный путь тоже проверен живьём: заведомо несуществующий домен -> status=error, errorCode=refused (ERR_CONNECTION_RESET), понятный текст. Данные подтверждены прямым SELECT из реальной D1. Транзиентные edge-ошибки Cloudflare (1104/1042) наблюдались в первые ~10с сразу после деплоя на 2 из 8 опросов — не связаны с данными/кодом, самостоятельно прошли. Cron Trigger (A1-RETENTION) подтверждён зарегистрированным на аккаунте (schedule в выводе deploy)."
 
   - id: A1-REPORT
     title: "UI отчёта /report/:id — находки по WCAG, severity, score"
     owner: frontend-engineer
-    status: review
+    status: done
     depends_on: [A1-SCAN]
     inputs: [docs/project/INTERFACES.md, docs/project/VISION.md]
     scope: [src/pages/, src/components/, src/routes.tsx, src/lib/scanner.ts, worker/lib/errors.js]
@@ -133,7 +133,7 @@ nodes:
     attempts: 1
     risk: low
     approval_required: false
-    notes: "Готово 2026-08-06: все 5 UX-требований выполнены, 6 состояний (running/done/done-clean/error/not-found/unavailable) верифицированы через Playwright с подменённым API против реального dev-сервера — 0 нарушений axe-core на каждом (см. domains/frontend.md). Попутно найден и исправлен реальный баг контраста + баг самого audit-own-a11y.mjs (D-014). status=review, не done: зависит от A1-SCAN (тоже review) — сама страница отчёта готова и протестирована независимо от него."
+    notes: "Готово 2026-08-06: все 5 UX-требований выполнены, 6 состояний верифицированы через Playwright с подменённым API против реального dev-сервера — 0 нарушений axe-core (см. domains/frontend.md). Найден и исправлен реальный баг контраста (D-014). Закрыто 2026-08-06 (D-021): A1-SCAN теперь done, реальный ScanReport с живого воркера побайтово совпадает с контрактом, который ReportPage.tsx уже потреблял в мокнутых тестах. Один остаточный, честно незакрытый пробел: реальный браузер (Playwright Chromium) в этой песочнице не может достучаться ни до какого внешнего HTTPS вообще (подтверждено отдельно на example.com, не только на нашем воркере) — тот же класс ограничения, что у Browser Rendering (D-010), а не баг фронтенда/бэкенда. Полный browser+live-backend E2E непроверяем именно в этой среде."
 
   - id: A1-LANDING
     title: "Лендинг сканера /scan — форма URL, Turnstile, честный прогноз времени, ссылка из шапки"
@@ -173,12 +173,12 @@ nodes:
     attempts: 2
     risk: medium
     approval_required: true
-    notes: "Закрыто 2026-08-06 (D-020): владелец явно одобрил ANTHROPIC_API_KEY отдельно от CF-одобрения A1-SCAN (правило сработало как задумано). Live-прогон настоящим ключом через `wrangler dev --local --var` (ключ передан только как аргумент процесса, нигде не записан на диск и не закоммичен) вскрыл РЕАЛЬНЫЙ баг: Claude Haiku оборачивает JSON в markdown code fence несмотря на промпт «ONLY a JSON object» — parseExplainResponse падал на JSON.parse, каждый cache-miss отдавал 502. Ни одна прежняя синтетическая фикстура это не покрывала. Исправлено (stripCodeFence), 5 новых фикстур в explain.test.mjs (в т.ч. фенс без языкового тега, битый JSON внутри фенса) — 39/39 worker-тестов зелёные. Живьём подтверждены все документированные пути: happy path (200, реальное объяснение), cache hit (0.025s vs 3.8s на промахе), abstention на нераспознанный ruleId (502, честная причина), 400 на невалидный ruleId, 503 без ключа. depends_on: A1-SCAN — смысловая связь (пояснения относятся к находкам скана), не техническая: сама фича не требует живого Browser Rendering/деплоя, поэтому done, а не review, несмотря на то что A1-SCAN сам ещё review."
+    notes: "Закрыто 2026-08-06 (D-020, D-021): владелец явно одобрил ANTHROPIC_API_KEY отдельно от CF-одобрения A1-SCAN (правило сработало как задумано). Live-прогон настоящим ключом через `wrangler dev --local --var` (ключ передан только как аргумент процесса, нигде не записан на диск и не закоммичен) вскрыл РЕАЛЬНЫЙ баг: Claude Haiku оборачивает JSON в markdown code fence несмотря на промпт «ONLY a JSON object» — parseExplainResponse падал на JSON.parse, каждый cache-miss отдавал 502. Ни одна прежняя синтетическая фикстура это не покрывала. Исправлено (stripCodeFence), 5 новых фикстур в explain.test.mjs — 39/39 worker-тестов зелёные. Живьём подтверждены все документированные пути: happy path, cache hit, abstention, 400, 503. Отдельно: тот же ключ загружен как настоящий Worker secret (`wrangler secret put`) на реальный деплой A1-SCAN и подтверждён живым запросом — объяснение для `landmark-one-main` (ровно то правило, что реально нашёл живой скан example.com) пришло реальное и по делу. Замечено: сразу после `secret put` часть запросов ещё получала 503 (секрет не пропагировался мгновенно на все edge-узлы Cloudflare) — не баг, обычная эксплуатационная задержка распространения секрета по глобальной сети, самостоятельно прошла за секунды."
 
   - id: A1-COST
     title: "Оценка стоимости исправлений на /report/:id — эвристика × price bands, всегда вилка"
     owner: frontend-engineer
-    status: review
+    status: done
     depends_on: [A1-REPORT]
     inputs: [docs/project/DECISIONS.md, data/a11y/taxonomies.json]
     scope: [src/lib/costEstimate.ts, src/pages/ReportPage.tsx]
@@ -192,12 +192,12 @@ nodes:
     attempts: 2
     risk: low
     approval_required: false
-    notes: "Готово 2026-08-06 (D-017, уточняет D-006). Первая версия (интерполяция между двумя соседними price bands) дала неинформативно широкие диапазоны — поймано именно живой проверкой с ручным расчётом ожиданий, не код-ревью. Переделано на один band по effort-score (дубль дедуп-логики worker/lib/score.js). Формат чисел приведён к конвенции taxonomies.json (один символ валюты на диапазон) — тоже найдено верификацией. Дисклеймер и ссылка на каталог обязательны рядом с оценкой (D-006), не факультативны."
+    notes: "Готово 2026-08-06 (D-017, уточняет D-006). Первая версия (интерполяция между двумя соседними price bands) дала неинформативно широкие диапазоны — поймано именно живой проверкой с ручным расчётом ожиданий, не код-ревью. Переделано на один band по effort-score (дубль дедуп-логики worker/lib/score.js). Формат чисел приведён к конвенции taxonomies.json (один символ валюты на диапазон) — тоже найдено верификацией. Дисклеймер и ссылка на каталог обязательны рядом с оценкой (D-006), не факультативны. Закрыто как done 2026-08-06: A1-REPORT, от которого зависел этот узел, теперь тоже done (D-021)."
 
   - id: A1-MATCH
     title: "Блок «подходящие агентства» под отчётом (страна/услуга/бюджет) + бейджи верификации на AgencyCard"
     owner: frontend-engineer
-    status: review
+    status: done
     depends_on: [A1-REPORT]
     inputs: [docs/project/BACKLOG.md, docs/project/VISION.md, src/lib/data.ts, data/a11y/types.ts]
     scope: [src/lib/matchAgencies.ts, src/components/MatchedAgencies.tsx, src/components/AgencyCard.tsx, src/pages/ReportPage.tsx]
@@ -212,7 +212,7 @@ nodes:
     attempts: 1
     risk: low
     approval_required: false
-    notes: "Готово 2026-08-06 (D-018). matchAgencies.ts переиспользует sortListing/agenciesIn/withService/withStandard из data.ts, не изобретает новый порядок. Бейдж верификации (sourceRefs.length + lastVerified) добавлен в AgencyCard — общий компонент, задел проверен полным audit-a11y (22 страницы, 0 нарушений) и check-links (408 ссылок, 0 битых) заново, не только новых страниц. status=review, не done: зависит от A1-REPORT (само review из-за живого прогона A1-SCAN) — блок технически готов и верифицирован независимо от этой цепочки."
+    notes: "Готово 2026-08-06 (D-018). matchAgencies.ts переиспользует sortListing/agenciesIn/withService/withStandard из data.ts, не изобретает новый порядок. Бейдж верификации (sourceRefs.length + lastVerified) добавлен в AgencyCard — общий компонент, задел проверен полным audit-a11y (22 страницы, 0 нарушений) и check-links (408 ссылок, 0 битых) заново, не только новых страниц. Закрыто как done 2026-08-06: A1-REPORT, от которого зависел этот узел, теперь тоже done (D-021)."
 
   - id: A1-PRIVACY
     title: "Обновить Privacy Policy под данные сканера (URL, результаты, IP, Turnstile)"
@@ -250,4 +250,4 @@ nodes:
     attempts: 1
     risk: low
     approval_required: false
-    notes: "Готово 2026-08-06 (D-019). DELETE FROM scans WHERE created_at < cutoff, окно 90 дней, ежедневный Cron Trigger 0 3 * * *. Использует существующий idx_scans_created_at — миграция не нужна. 5 юнит-тестов на фейковом D1 (граница/пусто/несколько записей/формула cutoff), 36/36 worker-тестов зелёные, wrangler deploy --dry-run бандлится чисто с новым триггером. PrivacyPage.tsx обновлён в ту же сессию — 'no automatic deletion yet' заменено на реальное окно. status=review, не done: Cron Trigger реально тикает только после деплоя на аккаунт владельца — тот же класс ограничения, что у A1-SCAN (D-010), логика удаления протестирована независимо от деплоя."
+    notes: "Готово 2026-08-06 (D-019). DELETE FROM scans WHERE created_at < cutoff, окно 90 дней, ежедневный Cron Trigger 0 3 * * *. Использует существующий idx_scans_created_at — миграция не нужна. 5 юнит-тестов на фейковом D1, 39/39 worker-тестов зелёные. Реальный деплой 2026-08-06 (D-021) подтвердил Cron Trigger зарегистрированным на аккаунте владельца (`schedule: 0 3 * * *` в выводе `wrangler deploy`). status=review, не done: само срабатывание по расписанию (03:00 UTC) ещё не произошло/не пронаблюдано в рамках этой сессии — логика удаления и факт регистрации триггера подтверждены, а не единственно недостающий кусок (живой прогон scheduled()) — иначе была бы та же неполная картина, что у A1-SCAN до его закрытия."
