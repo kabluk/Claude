@@ -22,11 +22,18 @@
 |---|---|---|---|---|
 | `POST /api/scan` | `{url, email?, turnstileToken?}` | `{scanId}` (202) | 1 | ✅ реализован |
 | `GET /api/scan/:id` | — | ScanReport | 1 | ✅ реализован |
-| `POST /api/explain` | `{ruleId, locale, sampleHtml?}` | `{explanation, fixExamples[]}` (KV-кэш) | 1 |
+| `POST /api/explain` | `{ruleId, locale?}` | `{explanation, fixExamples[]}` (KV-кэш) | 1 | ✅ реализован* |
 | `POST /api/lead` | Lead без id/status | `{leadId, matched: slug[]}` | 2 |
 | `POST /api/claim` | `{agencySlug, email}` → verify-link | `{claimId}` | 2 |
 | `POST /api/stripe-hook` | Stripe event | 200 | 2 |
 | `GET /api/account/…` | magic-link cookie | сайты, сканы, дельты | 3 |
+
+\* `/api/explain`: код полный и протестирован (400 на невалидный ruleId, 429 на
+rate-limit, 503 без ключа, 502 с ошибкой парсится корректно — проверено вживую
+фиктивным ключом, реальный Anthropic API вернул настоящий 401). НЕ протестирован
+только happy path — нужен настоящий `ANTHROPIC_API_KEY` (платный, решение владельца,
+D-016). `sampleHtml` из черновика убран — конфликтовал с кэшем по ruleId×locale
+(инстанс-специфичный html "засорял" бы генерик-кэш для всех).
 
 ## 3. Типы динамики
 

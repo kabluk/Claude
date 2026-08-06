@@ -7,7 +7,10 @@
   // TODO(devops, перед первым деплоем): создать реальные ресурсы и заменить id:
   //   npx wrangler d1 create accessatlas-scans
   //   npx wrangler kv namespace create RATE_LIMIT_KV
-  // Секрет TURNSTILE_SECRET_KEY НЕ сюда — `npx wrangler secret put TURNSTILE_SECRET_KEY`.
+  //   npx wrangler kv namespace create EXPLAIN_CACHE
+  // Секреты НЕ сюда — `npx wrangler secret put TURNSTILE_SECRET_KEY` /
+  // `npx wrangler secret put ANTHROPIC_API_KEY` (последний нужен только для
+  // A1-EXPLAIN — без него /api/explain отвечает 503, остальной сайт работает).
   "d1_databases": [
     {
       "binding": "DB",
@@ -17,7 +20,8 @@
     }
   ],
   "kv_namespaces": [
-    { "binding": "RATE_LIMIT_KV", "id": "REPLACE_ME_AFTER_KV_CREATE" }
+    { "binding": "RATE_LIMIT_KV", "id": "REPLACE_ME_AFTER_KV_CREATE" },
+    { "binding": "EXPLAIN_CACHE", "id": "REPLACE_ME_AFTER_KV_CREATE" }
   ],
   "browser": { "binding": "BROWSER" },
   "vars": {

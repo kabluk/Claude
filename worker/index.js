@@ -1,4 +1,5 @@
 import { handlePostScan, handleGetScan } from './routes/scan.js'
+import { handlePostExplain } from './routes/explain.js'
 
 function corsHeaders(env) {
   return {
@@ -30,6 +31,10 @@ export default {
     if (request.method === 'GET' && url.pathname.startsWith('/api/scan/')) {
       const id = url.pathname.slice('/api/scan/'.length)
       return withCors(await handleGetScan(id, env), cors)
+    }
+
+    if (request.method === 'POST' && url.pathname === '/api/explain') {
+      return withCors(await handlePostExplain(request, env), cors)
     }
 
     return withCors(Response.json({ error: 'not found', code: 'not_found' }, { status: 404 }), cors)

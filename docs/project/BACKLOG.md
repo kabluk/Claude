@@ -22,7 +22,7 @@
 | A1-SCAN | Worker: `POST /api/scan` + Browser Rendering + axe-core → D1; rate-limit, Turnstile | backend-engineer | — (техн. независим) | **review** (код готов, живой прогон на реальном CF-аккаунте ждёт) |
 | A1-REPORT | UI `/report/:id`: находки по WCAG, severity, score, шаринг + async-прогресс + error-состояния (VISION.md UX 2,4) | frontend-engineer | A1-SCAN | **review** (готов и верифицирован, ждёт A1-SCAN done) |
 | A1-LANDING | Лендинг сканера `/scan`, форма URL, Turnstile, ссылка из шапки, честный прогноз времени | frontend-engineer | — (техн. независим) | **review** (готов, 4 сценария верифицированы; реальный Turnstile-виджет не тестировался — сетевой барьер песочницы) |
-| A1-EXPLAIN | `POST /api/explain`: Claude Haiku + KV-кэш ruleId×locale, язык бизнеса, не сырой ruleId (VISION.md UX 3) | backend-engineer | A1-SCAN | todo |
+| A1-EXPLAIN | `POST /api/explain`: Claude Haiku + KV-кэш ruleId×locale, язык бизнеса, не сырой ruleId (VISION.md UX 3) | backend-engineer | A1-SCAN | **review** (код+тесты готовы, live-путь проверен фиктивным ключом; ждёт отдельного одобрения платного ключа Anthropic — не то же самое, что одобрение CF для A1-SCAN) |
 | A1-COST | Оценка стоимости (эвристика × price bands) + дисклеймер | frontend-engineer | A1-REPORT | todo |
 | A1-MATCH | Блок «подходящие агентства» под отчётом + CTA в каталог + бейджи верификации на карточке (VISION.md UX 5) | frontend-engineer | A1-REPORT | todo |
 | A1-PRIVACY | Обновить Privacy (сканы, email, D1) | product-lead | A1-SCAN | todo |

@@ -159,14 +159,18 @@ nodes:
   - id: A1-EXPLAIN
     title: AI-пояснения находок (Claude Haiku + KV-кэш ruleId×locale)
     owner: backend-engineer
-    status: blocked
+    status: review
     depends_on: [A1-SCAN]
-    inputs: [docs/project/DECISIONS.md]
+    inputs: [docs/project/DECISIONS.md, docs/project/INTERFACES.md]
     scope: [worker/]
-    outputs: []
-    verify: ["повторный запрос того же ruleId отдаётся из кэша", "лимит бюджета настроен"]
+    outputs: [worker/lib/explain.js, worker/routes/explain.js, worker/lib/ratelimit.js]
+    verify:
+      - npm run worker:test
+      - "400 на невалидный ruleId, 503 без ANTHROPIC_API_KEY, 502 с понятной причиной при ошибке API"
+      - "повторный запрос того же ruleId отдаётся из кэша (KV EXPLAIN_CACHE, ключ ruleId×locale)"
+      - "лимит: 30/час на IP (checkExplainRateLimit)"
     max_attempts: 4
-    attempts: 0
+    attempts: 1
     risk: medium
     approval_required: true
-    notes: "approval: платный API-ключ Anthropic в секретах Worker"
+    notes: "Готово 2026-08-06 (D-016): код и 21 юнит-тест (10 explain.js + 6 ratelimit.js новых + существующие) написаны и проходят; live-проверено фиктивным ключом — запрос реально дошёл до Anthropic (401 invalid x-api-key, не сетевая ошибка), 502 с понятным сообщением. status=review, НЕ done: approval на платный ключ Anthropic ещё не дано отдельно от одобрения CF-ресурсов для A1-SCAN (правило зафиксировано заранее). Нужен настоящий ANTHROPIC_API_KEY + явное разрешение владельца, чтобы проверить happy path и закрыть узел."

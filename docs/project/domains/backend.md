@@ -28,7 +28,7 @@
   CSP на чужом сайте блокирует), источник кэшируется в edge Cache API на 7 дней.
 - **Score** (`worker/lib/score.js`): дедуп по `ruleId` (худшая severity инстанса),
   не по числу нод — 5 юнит-тестов, все проходят.
-- Тесты: `npm run worker:test` → `node --test worker/**/*.test.mjs` (15/15 зелёных).
+- Тесты: `npm run worker:test` → `node --test worker/**/*.test.mjs` (31/31 зелёных).
   ⚠ `node --test worker` (без glob) на этой версии Node находит только 1 тест —
   баг discovery, не тестов; скрипт использует explicit glob, не трогать без причины.
 - **errorCode** (D-013, `worker/lib/errors.js`): классификация сырой ошибки скана
@@ -37,6 +37,38 @@
   то, на чём фронтенд строит понятные сообщения (VISION.md UX 4). Миграция
   `0002_error_code.sql` (аддитивная, `ALTER TABLE`, не трогает `0001_init.sql`).
   6 юнит-тестов.
+
+## A1-EXPLAIN — реализован, статус review (D-016)
+
+`worker/lib/explain.js` (промпт, парсинг ответа, кэш) + `worker/routes/explain.js`
+(POST /api/explain) + `checkExplainRateLimit` в `worker/lib/ratelimit.js` (ядро
+лимитера обобщено между scan и explain, добавлены юнит-тесты, которых раньше не
+было ни у одной из этих функций — 6 тестов в `ratelimit.test.mjs`).
+
+- **Кэш**: отдельный KV `EXPLAIN_CACHE` (не `RATE_LIMIT_KV` — разное назначение и
+  TTL), ключ `explain:${ruleId}:${locale}`, TTL 30 дней. Промпт намеренно не
+  получает `sampleHtml`/селектор конкретного экземпляра — иначе первый вызывающий
+  «засорял» бы генерик-кэш формулировкой под свой сайт.
+- **Модель**: `claude-haiku-4-5-20251001`, JSON-only ответ, парсится и валидируется
+  (`parseExplainResponse` — 10 юнит-тестов). Промпт явно просит вернуть пустой
+  `explanation`, если `ruleId` не узнан уверенно — сервер трактует это как «нет
+  объяснения», не выдумывает.
+- **Rate-limit**: 30/час на IP — почти всегда cache-hit, лимит нужен только против
+  забивания кэша мусорными `ruleId` (каждый промах — оплаченный вызов).
+- **Деградация без секрета**: `/api/explain` без `ANTHROPIC_API_KEY` отвечает 503,
+  не падает и не пытается тайно тратить деньги — проверено вживую.
+
+### Что НЕ подтверждено (честно, не done)
+
+**Реальная генерация пояснения не подтверждена — нужен платный API-ключ Anthropic,
+и это отдельное одобрение, не то же самое, что разрешение на платные ресурсы CF
+для A1-SCAN** (правило зафиксировано заранее в HANDOFF.md/RISKS.md, D-016). Всё,
+что можно было проверить без реального ключа — проверено живьём: 400/503/429/502
+через `wrangler dev`, включая тест фиктивным ключом (`--var ANTHROPIC_API_KEY:...`)
+— запрос реально дошёл до Anthropic и получил настоящий `401 invalid x-api-key`,
+подтверждая, что сетевой путь и обработка ошибок работают. В отличие от Browser
+Rendering (D-010), здесь MITM-прокси песочницы не помешал — это обычный `fetch`
+внутри Worker-рантайма, не отдельно запущенный процесс со своим доверием к CA.
 
 ## Что НЕ подтверждено (честно, не done)
 
@@ -56,8 +88,10 @@
 npx wrangler login                                  # аккаунт владельца
 npx wrangler d1 create accessatlas-scans            # → database_id в wrangler.jsonc
 npx wrangler kv namespace create RATE_LIMIT_KV       # → id в wrangler.jsonc
+npx wrangler kv namespace create EXPLAIN_CACHE       # → id в wrangler.jsonc
 npx wrangler d1 migrations apply accessatlas-scans --remote
 npx wrangler secret put TURNSTILE_SECRET_KEY         # опционально для dev
+npx wrangler secret put ANTHROPIC_API_KEY            # нужен явный OK владельца, см. D-016
 npx wrangler deploy
 ```
 
@@ -75,6 +109,5 @@ TurnstileWidget.tsx`). Оба симметрично опциональны в d
 
 ## Дальше по Фазе 1
 
-- `A1-EXPLAIN`: Claude Haiku + KV-кэш `ruleId×locale`, секрет Anthropic API key.
-- Секреты: Anthropic API key, Resend, Stripe — только в Worker secrets, не в репо.
+- Секреты: Resend, Stripe — только в Worker secrets, не в репо (Фаза 2).
 - TBD: retention сканов (GDPR, R6) — сейчас `scans` не чистится по TTL.
