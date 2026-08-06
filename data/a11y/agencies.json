@@ -468,6 +468,7 @@
     "slug": "boscop",
     "name": "Boscop",
     "website": "boscop.fr",
+    "founded": 1993,
     "hq": {
       "city": "Angers",
       "countryCode": "FR"
@@ -502,6 +503,10 @@
       {
         "url": "https://boscop.fr/audit-rgaa-wcag/",
         "label": "audit RGAA/WCAG «Initier»: \"Prix indicatif : de 2000€ à 6000€ HT\"; checked 2026-08-06"
+      },
+      {
+        "url": "https://boscop.fr/notre-scop/",
+        "label": "Notre SCOP : \"Créée à Paris fin 1993, l'entreprise, alors appelée V-Technologies, a planté ses racines en Anjou dès l'année suivante.\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -4242,6 +4247,7 @@
     "slug": "sensus",
     "name": "Sensus",
     "website": "sensus.dk",
+    "founded": 1987,
     "hq": {
       "city": "Hillerød",
       "countryCode": "DK"
@@ -4276,6 +4282,10 @@
       {
         "url": "https://www.sensus.dk/",
         "label": "homepage — service list, Hillerød address, EN standard/WCAG/EAA references, Sensus Academy"
+      },
+      {
+        "url": "https://sensus.dk/om-sensus/",
+        "label": "Om Sensus: \"Virksomheden blev etableret i 1987 og har siden arbejdet med rådgivning og udvikling.\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -4370,6 +4380,7 @@
     "slug": "siteimprove",
     "name": "Siteimprove",
     "website": "siteimprove.com",
+    "founded": 2003,
     "hq": {
       "city": "Copenhagen",
       "countryCode": "DK"
@@ -4410,6 +4421,10 @@
       {
         "url": "https://www.siteimprove.com/",
         "label": "homepage — platform overview, EAA/ADA resource centers, certifications"
+      },
+      {
+        "url": "https://www.siteimprove.com/about-us/",
+        "label": "About Us: \"Morten Ebbesen is the founder of Siteimprove ... He founded Siteimprove in 2003 and led the company as CEO for 18 years, growing it from a startup into a global SaaS leader.\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -7075,6 +7090,7 @@
     "slug": "swink",
     "name": "Swink",
     "website": "swink.nl",
+    "founded": 2007,
     "hq": {
       "city": "",
       "countryCode": "NL"
@@ -7122,6 +7138,10 @@
       {
         "url": "https://toegankelijkheidsrapport.swink.nl/kadaster-catalogus-hercontrole/audit/",
         "label": "audit report referenced by that accessibility statement (published by the auditor)"
+      },
+      {
+        "url": "https://swink.nl/en/about-us/our-story/",
+        "label": "Our Story: \"Out of that wonderment, Swink was founded in 2007. Founder Paul Malschaert wondered how he could bring these untapped talents and the labor market together.\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -11454,6 +11474,7 @@
     "slug": "zeto-rzeszow",
     "name": "ZETO-RZESZÓW Sp. z o.o.",
     "website": "zetorzeszow.pl",
+    "founded": 1966,
     "hq": {
       "city": "Rzeszów",
       "countryCode": "PL"
@@ -11502,6 +11523,10 @@
       {
         "url": "https://zetorzeszow.pl",
         "label": "Homepage — company profile, service lines, office locations"
+      },
+      {
+        "url": "https://firma.zetorzeszow.pl/historia/",
+        "label": "Historia: \"1 lipca 1966 roku władze państwa polskiego powołały do życia Zakład Elektronicznej Techniki Obliczeniowej (ZETO) w Rzeszowie.\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -11570,6 +11595,7 @@
     "slug": "altix",
     "name": "Altix Sp. z o.o.",
     "website": "altix.pl",
+    "founded": 1989,
     "hq": {
       "city": "Warszawa",
       "countryCode": "PL"
@@ -11620,6 +11646,10 @@
       {
         "url": "https://altix.pl",
         "label": "Homepage — offer, initiatives, HQ address"
+      },
+      {
+        "url": "https://www.altix.pl/pl/o-firmie/historia-firmy/",
+        "label": "Historia firmy: \"Spółkę Altix zawiązali w maju 1989 r.: Marek Kalbarczyk — informatyk, Eryk Zieliński — ekonomista i tłumacz, dr Stanisław Jakubowski i Igor Busłowicz – informatycy.\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"

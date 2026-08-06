@@ -820,6 +820,80 @@ const UPDATES = [
       },
     ],
   },
+
+  // --- G-FOUNDED-LI (D-051): пробный пакет 20 из 180 записей без founded, ---
+  //     проверенных глубже, чем первый проход D-047 (Impressum/торговый
+  //     реестр/страница истории, не только homepage+About+sitemap) ----------
+  {
+    slug: 'siteimprove',
+    year: 2003,
+    refs: [
+      {
+        url: 'https://www.siteimprove.com/about-us/',
+        label:
+          'About Us: "Morten Ebbesen is the founder of Siteimprove ... He founded Siteimprove in 2003 and led the company as CEO for 18 years, growing it from a startup into a global SaaS leader."; ' +
+          CHECKED,
+      },
+    ],
+  },
+  {
+    slug: 'swink',
+    year: 2007,
+    refs: [
+      {
+        url: 'https://swink.nl/en/about-us/our-story/',
+        label:
+          'Our Story: "Out of that wonderment, Swink was founded in 2007. Founder Paul Malschaert wondered how he could bring these untapped talents and the labor market together."; ' +
+          CHECKED,
+      },
+    ],
+  },
+  {
+    slug: 'altix',
+    year: 1989,
+    refs: [
+      {
+        url: 'https://www.altix.pl/pl/o-firmie/historia-firmy/',
+        label:
+          'Historia firmy: "Spółkę Altix zawiązali w maju 1989 r.: Marek Kalbarczyk — informatyk, Eryk Zieliński — ekonomista i tłumacz, dr Stanisław Jakubowski i Igor Busłowicz – informatycy."; ' +
+          CHECKED,
+      },
+    ],
+  },
+  {
+    slug: 'zeto-rzeszow',
+    year: 1966,
+    refs: [
+      {
+        url: 'https://firma.zetorzeszow.pl/historia/',
+        label:
+          'Historia: "1 lipca 1966 roku władze państwa polskiego powołały do życia Zakład Elektronicznej Techniki Obliczeniowej (ZETO) w Rzeszowie."; ' +
+          CHECKED,
+      },
+    ],
+  },
+  {
+    slug: 'sensus',
+    year: 1987,
+    refs: [
+      {
+        url: 'https://sensus.dk/om-sensus/',
+        label: 'Om Sensus: "Virksomheden blev etableret i 1987 og har siden arbejdet med rådgivning og udvikling."; ' + CHECKED,
+      },
+    ],
+  },
+  {
+    slug: 'boscop',
+    year: 1993,
+    refs: [
+      {
+        url: 'https://boscop.fr/notre-scop/',
+        label:
+          'Notre SCOP : "Créée à Paris fin 1993, l\'entreprise, alors appelée V-Technologies, a planté ses racines en Anjou dès l\'année suivante."; ' +
+          CHECKED,
+      },
+    ],
+  },
 ]
 
 // Значения, стоявшие до G-FOUNDED, для которых опубликованного года основания
