@@ -213,3 +213,23 @@ nodes:
     risk: low
     approval_required: false
     notes: "Готово 2026-08-06 (D-018). matchAgencies.ts переиспользует sortListing/agenciesIn/withService/withStandard из data.ts, не изобретает новый порядок. Бейдж верификации (sourceRefs.length + lastVerified) добавлен в AgencyCard — общий компонент, задел проверен полным audit-a11y (22 страницы, 0 нарушений) и check-links (408 ссылок, 0 битых) заново, не только новых страниц. status=review, не done: зависит от A1-REPORT (само review из-за живого прогона A1-SCAN) — блок технически готов и верифицирован независимо от этой цепочки."
+
+  - id: A1-PRIVACY
+    title: "Обновить Privacy Policy под данные сканера (URL, результаты, IP, Turnstile)"
+    owner: product-lead
+    status: done
+    depends_on: [A1-SCAN]
+    inputs: [worker/routes/scan.js, worker/lib/db.js, worker/lib/ratelimit.js, worker/lib/turnstile.js, migrations/0001_init.sql, docs/project/RISKS.md]
+    scope: [src/pages/PrivacyPage.tsx, docs/project/RISKS.md]
+    outputs: [src/pages/PrivacyPage.tsx]
+    verify:
+      - npm run typecheck
+      - npm run build
+      - npm run audit-a11y
+      - npm run check-links
+      - "текст сверен с реальным кодом worker/, не с предположением о том, что он делает"
+    max_attempts: 4
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Готово 2026-08-06. Прочитан реальный код (scan.js/db.js/ratelimit.js/turnstile.js), не документация о нём: email в БД хранится, если передан через API (хотя UI-форма его не собирает, D-015) — сформулировано честно, не как «мы не собираем email»; scans в D1 хранятся без TTL/автоудаления — это НЕ то же самое, что «есть retention-политика» (RISKS.md R6 обновлён, чтобы не переоценивать закрытость риска: Privacy теперь точно описывает текущее поведение, но авто-удаление ещё не реализовано — открытый техдолг); IP — только транзитно в KV (TTL 1 час) для rate-limit, не в D1; Turnstile при включении шлёт IP в Cloudflare и может ставить свою куку — прежняя формулировка «no cookies are set» была неточной, уточнена. done, не review: чисто документная страница, ничего не зависит от живого прогона A1-SCAN по существу — зависимость в GRAPH только смысловая (описывает его данные), не техническая блокировка."
