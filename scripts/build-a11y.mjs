@@ -22,6 +22,12 @@ const PRICE_BANDS = ['budget', 'mid', 'premium', 'enterprise']
 // рядом с валютой, а не слово «price» — иначе гейт проходит по обещанию, а не
 // по факту (D-045).
 const PRICE_QUOTE = /(?:€|£|\$|zł|EUR|GBP|USD|PLN|CHF|SEK|DKK|NOK)\s?\d|\d[\d\s.,]*\s?(?:€|£|zł|EUR|GBP|USD|PLN|CHF|SEK|DKK|NOK|euro)/i
+// Дословная цитата года основания в label источника (D-047). Проверяем не
+// «есть где-то год», а «есть ИМЕННО тот год, что стоит в поле founded», и не
+// внутри ISO-даты: «checked 2026-08-06» не должен засчитываться как источник
+// для founded: 2026. Тот же приём, что с ценой: гейт по факту, не по обещанию.
+const stripIsoDates = (s) => String(s).replace(/\d{4}-\d{2}-\d{2}/g, ' ')
+const quotesYear = (label, year) => new RegExp(`(?<!\\d)${year}(?!\\d)`).test(stripIsoDates(label))
 const LOCALES = ['en', 'de', 'fr', 'pl', 'es']
 // Должны совпадать с CertBadge/Declarant в data/a11y/types.ts.
 const CERT_KINDS = [
@@ -88,6 +94,17 @@ for (const [i, a] of agencies.entries()) {
   // самоаттестацией в certs (D-042): инвариант, а не договорённость на словах.
   if (a.priceBand && !(a.sourceRefs || []).some((r) => PRICE_QUOTE.test(r.label || ''))) {
     errors.push(`${at}: priceBand "${a.priceBand}" set, but no sourceRef label quotes a published price (D-045)`)
+  }
+  // Год основания без опубликованного источника — ошибка сборки (D-047).
+  // Год легко спутать: регистрация домена, копирайт в футере, год начала
+  // специализации, основание материнской компании. Поэтому рядом обязана
+  // лежать дословная цитата ИМЕННО этого года со страницы агентства.
+  if (a.founded != null) {
+    if (!Number.isInteger(a.founded) || a.founded < 1800 || a.founded > new Date().getFullYear()) {
+      errors.push(`${at}: founded "${a.founded}" is not a plausible year`)
+    } else if (!(a.sourceRefs || []).some((r) => quotesYear(r.label || '', a.founded))) {
+      errors.push(`${at}: founded ${a.founded} set, but no sourceRef label quotes that year (D-047)`)
+    }
   }
   if (a.hq && a.hq.countryCode && !/^[A-Z]{2}$/.test(a.hq.countryCode)) errors.push(`${at}: hq.countryCode must be ISO alpha-2`)
   for (const c of a.countriesServed || []) {

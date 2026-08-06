@@ -206,3 +206,68 @@ HTML + чтение главных страниц моделью). Формул�
 курса пограничные записи (`damteq`, `jim-byrne-associates`, `skynet-technologies`)
 надо пересчитать, поэтому цитата суммы хранится дословно и пересчёт можно
 повторить, не открывая сайт заново.
+
+## G-FOUNDED: год основания — 65/245, журнал отклонений (2026-08-06, D-047)
+
+Метод тот же, что закрыл G-PRICE: сплошной обход всех 245 сайтов
+(homepage → «About/Über uns/O nas/À propos» по ссылкам → те же страницы из
+`sitemap.xml` → LinkedIn-профиль, если на него ссылается сам сайт), поиск
+формулировок основания на 12 языках, затем ручная адъюдикация каждой находки.
+Патч воспроизводим: `scripts/apply-founded.mjs`.
+
+**Итог.** `founded` заполнен у **65 из 245** (было 31): проставлено 43,
+исправлено 1, снято 9, добавлено 66 источников. По странам: US 15, DE 12,
+FR 11, GB 10, PL 5, IE 3, CA 2, NL 2, AT/AU/CH/ES/FI по 1. Германия: **12 из 40**
+(было 8).
+
+### Почему LinkedIn не стал источником
+
+Год есть в LinkedIn-профиле у **121** агентства — заманчиво было закрыть этим
+половину каталога. Замер остановил: у **24** агентств год опубликован и на
+сайте, и в LinkedIn, и они **расходятся в 6 случаях (25%)**. В пяти из шести
+права оказалась страница агентства (шестое — ошибка нашего извлечения:
+«Powstały w 1994 r. magazyn „Integracja“» — про журнал, а не про фонд).
+Значение с известной долей ошибки 1 к 4 в каталоге, который продаёт
+проверяемость, недопустимо. LinkedIn засчитан только как подтверждение
+(правило D, 15 записей); **72 записи, где он остался единственным источником,
+отклонены**.
+
+### Журнал отклонений
+
+| Категория | Сколько | Примеры и причина |
+|---|---|---|
+| Только LinkedIn, на сайте года нет | 72 | `tpgi` 2002, `allyant` 2022, `siteimprove` 2003, `torchbox` 2000, `system-concepts` 1981, `funka`, `axess-lab`, `swink`, `craftzing`, `altix`, `zeto-rzeszow`… — источник не перепроверяется по сайту, расхождение ~25% |
+| Конфликт сайт ↔ LinkedIn, взят сайт | 4 | `level-access` (LI 1997 → сайт 1999), `dmk-ebusiness` (2005 → 2008), `metadrop` (2010 → 2011), `equal-entry` (2014 → 2012) |
+| Конфликт внутри собственных публикаций → пусто | 5 | `avaava` (бренд 2009 vs юрлицо Avaava Digital Oy 2017), `twin-cubes` («Seit 2010» vs «Gegründet 2017»), `brain-appeal` («seit 1998» vs 2013), `skynet-technologies` (сайт 2002 — группа, LI 2019 — Skynet Technologies USA LLC), `alpanet` («Z Państwem od 2000 roku» vs отзыв «od 2012 roku») |
+| Год относится к ДРУГОМУ юрлицу или объекту | 9 | `anatom5` 2014 — год основания IAAP, не агентства; `bsvh` 1925 — «Genossenschaft blinder Handwerker Hansa»; `new-editions-consulting` 1979 — журнал Inc. на странице наград; `numerik-ea` 2001 — агентство ecedi (партнёр); `fundacja-integracja` 1994 — журнал «Integracja», не фонд; `optimal-it` 1996/1994/1936 — годы КЛИЕНТОВ из портфолио; `nomensa` 2014 — Sionic Advisors (фирма CEO); `hcltech` 1976 — материнская HCL, а запись про HCLTech; `bikosax` 1894 — dzb lesen, другая организация |
+| Год деятельности/специализации, не организации | 20+ | `anysurfer` «Sinds 2001 helpen we organisaties», `ilikecake` «proven track record … since 2006», `nexer-digital` «Since 2007, our team has built a reputation», `bitv-consult` «seit 2008 als selbstständiger Berater», `wienfluss` «mit Kompetenz seit 2005», `venti` «kampanie Google Ads … od 2005 roku», `akcess-net` «Od 2002 roku pomagamy firmom», `kolibri-online`/`damteq`/`atalan`/`ipedis` — тот же класс, но спасены правилом D |
+| Год закона, сертификата, мероприятия | 8 | `ethic-first` «Depuis 2019, les entreprises privées…» (норма права), `net-15` «Depuis 2019 l’Audit RGAA…», `sito-web-accessibile` «in vigore dal 2025», `specinov` «Label NR niveau 2 depuis 2022», `liquid-impressions` «Seit 2020 weisen wir … Eignung nach», `fondazione-lia` «ogni anno dal 2011» (GAAD), `deutsche-telekom-mms` «Seit 2021 … Strom aus erneuerbaren Energien» |
+| Опыт основателя, а не компании | 4 | `digitelle` «har bygget på WordPress siden 2005», `zekers-online-communicatie` «Online sinds 1997», `purin` «WordPress seit 2005», `usable-y-accesible` (сайт-CV фрилансера) |
+| Год не опубликован вовсе | ~140 | `usablenet`, `web-usability`, `dig-inclusion` — в том числе три записи, у которых значение стояло раньше |
+
+Копирайт в футере («© 2003–2026») не использовался ни разу: проверка требует
+формулировку основания рядом с годом, а не просто год.
+
+### Что было со старыми значениями
+
+Повторение находки G-PRICE: **из 31 значения источник года был ни у одного**.
+После проверки 21 подтверждено дословной цитатой, 1 исправлено, 9 снято.
+
+- **Исправлено:** `knowbility` 1998 → 1999. Главная: «worldwide leader in
+  accessible information technology since 1998» (опыт). Страница About:
+  «It was founded in 1999 as the result of a two year community collaboration».
+  Явная формулировка перевешивает маркетинговую.
+- **Снято (9):** `anatom5`, `bitv-consult`, `anysurfer`, `ilikecake`,
+  `nexer-digital`, `usable-y-accesible` — держались на формулировках о
+  деятельности; `usablenet`, `web-usability`, `dig-inclusion` — года на сайте
+  нет вообще.
+- **Восстановлено с источником:** `insert-effect` 2002 (сайт «Seit 2002
+  entwickeln wir Web und Apps» + LinkedIn «Gegründet 2002», правило D).
+
+### Гейт
+
+`founded` без sourceRef, цитирующего ИМЕННО этот год, — ошибка
+`build-a11y.mjs`. ISO-даты из label вырезаются перед проверкой, иначе
+вездесущее «checked 2026-08-06» доказывало бы `founded: 2026`. Негативная
+проверка: четыре нарушения → 4 ошибки, exit 1; откат → зелёная сборка.
+Дубль правила и регресс-тест на ISO-дату — `scripts/founded.test.mjs`.

@@ -780,3 +780,24 @@ nodes:
     risk: medium
     approval_required: false
     notes: "Готово 2026-08-06 (D-045). 245/245 проверены обходом сайтов самих агентств; 23 сайта с пустым HTML (JS/анти-бот) добраны отдельно (поиск по домену, sitemap.xml, архивная копия). Заполнено 17 (budget 8 / mid 9), у каждого — URL прайса и дословная цитата суммы; 31 агентство публикует цену не за аудит (обучение, SaaS, ставки за час/страницу, мини-скан, чужие услуги, рыночные ориентиры в собственном блоге), 197 не публикует вовсе. Все 4 ранее заполненных значения подтвердились, но были БЕЗ источника цены — исправлено. Две записи (akse, access-first) оставлены пустыми осознанно: опубликованная вилка не определяет один бэнд. Германия 0/40 подтверждена сплошь, текст /bfsg-check/ не менялся. Главный побочный результат — инвариант в build-a11y.mjs: band без цитаты цены = ошибка сборки."
+
+  - id: G-FOUNDED
+    title: "Заполнить founded по реально опубликованным годам основания (сплошная проверка 245 агентств)"
+    owner: data-engineer
+    status: done
+    depends_on: [G-PRICE]
+    inputs: [data/a11y/agencies.json, data/a11y/types.ts, scripts/apply-priceband.mjs, src/pages/AgencyPage.tsx]
+    scope: [data/a11y/agencies.json, scripts/build-a11y.mjs, scripts/apply-founded.mjs, scripts/founded.test.mjs, src/pages/AgencyPage.tsx]
+    outputs: [data/a11y/agencies.json, scripts/apply-founded.mjs, scripts/founded.test.mjs]
+    verify:
+      - "node scripts/build-a11y.mjs — 245 агентств, 0 ошибок, founded 65/245"
+      - "негативная проверка гейта: 4 нарушения (год без цитаты, год не тот, год только в ISO-дате, год 1200) → 4 ошибки, exit 1; откат → зелёная"
+      - "npm run scripts:test — 20/20 (было 15); негативная проверка: снят sourceRef с годом у temesis → тест упал, откат → 20/20"
+      - "npm run typecheck / worker:test 202 / src:test 10 — чисто"
+      - "npm run build 388 страниц, sitemap 351, check-links 417, audit-a11y 25 страниц 0 нарушений"
+      - "строка «In business since» присутствует в 65 профилях собранного dist/ и отсутствует у профилей без года"
+    max_attempts: 3
+    attempts: 1
+    risk: medium
+    approval_required: false
+    notes: "Готово 2026-08-06 (D-047). 245/245 проверены обходом сайтов (homepage → about-ссылки → sitemap.xml → LinkedIn, если на него ссылается сам сайт). Заполнено 65 (было 31): 43 новых, 1 исправлено (knowbility 1998→1999), 9 снято. Как и в G-PRICE, ни у одного из 31 старого значения не было источника года. Главное решение: LinkedIn ОТКЛОНЁН как самостоятельный источник по измерению — из 24 записей, где год есть и на сайте, и в LinkedIn, они расходятся в 6 (25%); засчитывается только как подтверждение совпадающего года с собственного сайта (правило D, 15 записей), 72 LinkedIn-only отклонены. Побочно: founded не рендерился НИГДЕ — добавлена строка «In business since» в профиль. Журнал отклонений (8 категорий) — domains/data.md."

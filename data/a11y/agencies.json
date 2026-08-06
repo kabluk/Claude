@@ -3,6 +3,7 @@
     "slug": "deque-systems",
     "name": "Deque Systems",
     "website": "deque.com",
+    "founded": 1999,
     "hq": {
       "city": "Herndon",
       "countryCode": "US"
@@ -42,11 +43,10 @@
       },
       {
         "url": "https://www.deque.com/company/",
-        "label": "company page (founded 1999)"
+        "label": "company page (founded 1999) · founded: \"When was Deque founded? CEO and Founder Preety Kumar started Deque in 1999.\" (checked 2026-08-06)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "founded": 1999
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "tpgi",
@@ -105,6 +105,7 @@
     "slug": "level-access",
     "name": "Level Access",
     "website": "levelaccess.com",
+    "founded": 1999,
     "hq": {
       "city": "Stafford",
       "countryCode": "US"
@@ -147,15 +148,19 @@
       {
         "url": "https://www.levelaccess.com/",
         "label": "deepdive competitor analysis §3, major US a11y firm"
+      },
+      {
+        "url": "https://www.levelaccess.com/company/",
+        "label": "Our story: \"Level Access was founded in 1999 by engineers with disabilities\"; checked 2026-08-06"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "founded": 1999
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "digital-accessibility-centre",
     "name": "Digital Accessibility Centre",
     "website": "digitalaccessibilitycentre.org",
+    "founded": 2010,
     "hq": {
       "city": "Swansea",
       "countryCode": "GB"
@@ -194,15 +199,14 @@
       },
       {
         "url": "https://digitalaccessibilitycentre.org/about.html",
-        "label": "about page (founded 2010, ~50 staff, disabled testers)"
+        "label": "about page (founded 2010, ~50 staff, disabled testers) · founded: \"The Digital Accessibility Centre was founded in 2010 and established as a social enterprise operating on a not-for-profit basis.\" (checked 2026-08-06)"
       },
       {
         "url": "https://digitalaccessibilitycentre.org",
         "label": "homepage (services, EAA)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "founded": 2010
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "be-accessible",
@@ -307,6 +311,7 @@
     "slug": "mile-high-accessibility",
     "name": "Mile High Accessibility",
     "website": "milehighaccessibility.com",
+    "founded": 2019,
     "hq": {
       "city": "",
       "countryCode": "US"
@@ -342,16 +347,16 @@
       },
       {
         "url": "https://www.milehighaccessibility.com/about-1",
-        "label": "about page (founded 2019, services, standards)"
+        "label": "about page (founded 2019, services, standards) · founded: \"Mile High Accessibility Consultants (MHAC) was founded in 2019, by key personnel from a well-known ADA consulting firm\" (checked 2026-08-06)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "founded": 2019
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "access42",
     "name": "Access42",
     "website": "access42.net",
+    "founded": 2014,
     "hq": {
       "city": "Paris",
       "countryCode": "FR"
@@ -399,16 +404,20 @@
       {
         "url": "https://access42.net/services/audit-accessibilite/",
         "label": "\"Audit de conformité web : entre 1 800 € et 5 600 € HT\" (mobile 1 600–2 800 € HT); checked 2026-08-06"
+      },
+      {
+        "url": "https://access42.net/scop/historique/",
+        "label": "historique: \"La création d'Access42, en septembre 2014, tire son origine dans l'appel d'offres du SGMAP pour la mise à jour du RGAA.\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04",
-    "founded": 2014,
     "priceBand": "mid"
   },
   {
     "slug": "urbilog",
     "name": "Urbilog",
     "website": "urbilog.com",
+    "founded": 1995,
     "hq": {
       "city": "Villeneuve-d'Ascq",
       "countryCode": "FR"
@@ -447,6 +456,10 @@
       {
         "url": "https://urbilog.com/",
         "label": "homepage (HQ address in footer, EA status, services, RGAA)"
+      },
+      {
+        "url": "https://urbilog.com/a-propos",
+        "label": "Qui sommes-nous : \"Urbilog a été créée en 1995 à l'initiative de précurseurs en accessibilité numérique\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -654,6 +667,7 @@
     "slug": "dmk-ebusiness",
     "name": "DMK E-BUSINESS",
     "website": "dmk-ebusiness.de",
+    "founded": 2008,
     "hq": {
       "city": "Chemnitz",
       "countryCode": "DE"
@@ -695,10 +709,13 @@
       {
         "url": "https://dmk-ebusiness.de/impressum",
         "label": "Impressum (HQ Chemnitz)"
+      },
+      {
+        "url": "https://dmk-ebusiness.de/",
+        "label": "Kennzahlen der Agentur: \"2 Standorte · 34 Mitarbeitende · Gründung 2008\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04",
-    "founded": 2008,
     "headcountBand": "11-50"
   },
   {
@@ -845,6 +862,7 @@
     "slug": "dias",
     "name": "DIAS GmbH",
     "website": "dias.de",
+    "founded": 1994,
     "hq": {
       "city": "Hamburg",
       "countryCode": "DE"
@@ -897,10 +915,13 @@
       {
         "url": "https://dias.de/barrierefreies-internet.html",
         "label": "Services page (BIK BITV/WCAG tests, workshops, consulting)"
+      },
+      {
+        "url": "https://www.dias.de/ueber-dias.html",
+        "label": "Über DIAS: \"Die DIAS GmbH – kurz für: Daten, Informationssysteme und Analysen im Sozialen – wurde 1994 von Rehabilitationsforschern der Universität Hamburg gegründet.\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04",
-    "founded": 1994,
     "headcountBand": "2-10"
   },
   {
@@ -972,6 +993,7 @@
     "slug": "materna",
     "name": "Materna Information & Communications SE",
     "website": "materna.de",
+    "founded": 1980,
     "hq": {
       "city": "Dortmund",
       "countryCode": "DE"
@@ -1021,10 +1043,13 @@
       {
         "url": "https://www.materna.de/services/digital-experience/digitale-barrierefreiheit/",
         "label": "Digital accessibility service page (tests, standards, BIK testing body)"
+      },
+      {
+        "url": "https://www.materna.de/DE/Unternehmen/unternehmen_node.html",
+        "label": "Unternehmen / Key Facts: \"Die Materna-Gruppe wurde 1980 gegründet.\" (\"Gründung: 1980\"); checked 2026-08-06"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "founded": 1980
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "anatom5",
@@ -1078,13 +1103,13 @@
         "label": "Impressum (HQ Duesseldorf)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "founded": 2003
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "tollwerk",
     "name": "tollwerk GmbH",
     "website": "tollwerk.de",
+    "founded": 2000,
     "hq": {
       "city": "Nürnberg",
       "countryCode": "DE"
@@ -1129,6 +1154,10 @@
       {
         "url": "https://tollwerk.de/impressum",
         "label": "Impressum (HQ Nuernberg)"
+      },
+      {
+        "url": "https://tollwerk.de/tollwerk/team",
+        "label": "Team: \"Im Jahr 2000 hat Joschi das Tollwerk gegründet, 2020 dann die Transformation zur kollegial-selbstorganisierten Organisation angestoßen.\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -1137,6 +1166,7 @@
     "slug": "sozialhelden",
     "name": "Sozialhelden e.V.",
     "website": "sozialhelden.de",
+    "founded": 2004,
     "hq": {
       "city": "Berlin",
       "countryCode": "DE"
@@ -1179,10 +1209,13 @@
       {
         "url": "https://sozialhelden.de/impressum",
         "label": "Impressum (e.V., Berlin)"
+      },
+      {
+        "url": "https://sozialhelden.de/",
+        "label": "Startseite: \"Seit Raúl Krauthausen 2004 die Sozialheld*innen mit seinen Mitstreiter*innen gegründet hat, haben wir schon viel erreicht.\"; checked 2026-08-06"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "founded": 2004
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "barrierefreiheit-umsetzen",
@@ -1243,6 +1276,7 @@
     "slug": "insert-effect",
     "name": "insert effect GmbH",
     "website": "inserteffect.com",
+    "founded": 2002,
     "hq": {
       "city": "Nürnberg",
       "countryCode": "DE"
@@ -1287,10 +1321,17 @@
       {
         "url": "https://inserteffect.com/impressum",
         "label": "Impressum (HQ Nuernberg)"
+      },
+      {
+        "url": "https://inserteffect.com/",
+        "label": "Startseite: \"Seit 2002 entwickeln wir Web und Apps\"; checked 2026-08-06"
+      },
+      {
+        "url": "https://www.linkedin.com/company/inserteffect/",
+        "label": "LinkedIn-Unternehmensprofil (со своего сайта): \"Gegründet 2002\"; checked 2026-08-06"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "founded": 2002
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "piksl-labor-bielefeld",
@@ -1463,6 +1504,7 @@
     "slug": "bsvh",
     "name": "Blinden- und Sehbehindertenverein Hamburg (BSVH)",
     "website": "bsvh.org",
+    "founded": 1909,
     "hq": {
       "city": "Hamburg",
       "countryCode": "DE"
@@ -1508,10 +1550,13 @@
       {
         "url": "https://bsvh.org",
         "label": "Homepage (HQ address Hamburg)"
+      },
+      {
+        "url": "https://www.bsvh.org/geschichte.html",
+        "label": "Geschichte: \"Am 4. Januar 1909, dem 100. Geburtstag von Louis Braille, trafen sich einige blinde Männer, um den „Verein der Blinden von Hamburg und Umgegend“ zu gründen.\"; checked 2026-08-06"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "founded": 1909
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "barrierekompass",
@@ -1715,7 +1760,6 @@
       }
     ],
     "lastVerified": "2026-08-04",
-    "founded": 2008,
     "headcountBand": "1"
   },
   {
@@ -1925,6 +1969,7 @@
     "slug": "crawford-technologies",
     "name": "Crawford Technologies",
     "website": "crawfordtech.com",
+    "founded": 1995,
     "hq": {
       "city": "",
       "countryCode": "CA"
@@ -1957,6 +2002,10 @@
       {
         "url": "https://crawfordtech.com/",
         "label": "homepage — services, industries, AccessibilityNow platform, WCAG/Section 508 mentions"
+      },
+      {
+        "url": "https://crawfordtech.com/about-us/",
+        "label": "About us: \"Founded in 1995 by Ernie Crawford, Crawford Technologies has grown and expanded since then\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -2006,6 +2055,7 @@
     "slug": "microassist",
     "name": "Microassist",
     "website": "microassist.com",
+    "founded": 1988,
     "hq": {
       "city": "Austin",
       "countryCode": "US"
@@ -2042,15 +2092,19 @@
       {
         "url": "https://www.microassist.com/",
         "label": "homepage footer (Austin address, since 1988, services)"
+      },
+      {
+        "url": "https://www.microassist.com/about/",
+        "label": "About: \"Founded in 1988, Microassist helps companies and organizations improve their most valuable resources: their employees.\"; checked 2026-08-06"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "founded": 1988
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "qualitylogic",
     "name": "QualityLogic",
     "website": "qualitylogic.com",
+    "founded": 1986,
     "hq": {
       "city": "Boise",
       "countryCode": "US"
@@ -2091,7 +2145,7 @@
       },
       {
         "url": "https://www.qualitylogic.com/our-company/who-we-are/",
-        "label": "who we are page (Boise HQ, founded 1986)"
+        "label": "who we are page (Boise HQ, founded 1986) · founded: \"QualityLogic was founded in 1986 to help solve compatibility problems between print systems and software applications.\" (checked 2026-08-06)"
       },
       {
         "url": "https://www.qualitylogic.com/digital-accessibility/",
@@ -2103,13 +2157,13 @@
       }
     ],
     "lastVerified": "2026-08-04",
-    "founded": 1986,
     "headcountBand": "200+"
   },
   {
     "slug": "intopia",
     "name": "Intopia",
     "website": "intopia.digital",
+    "founded": 2016,
     "hq": {
       "city": "Melbourne",
       "countryCode": "AU"
@@ -2147,6 +2201,10 @@
       {
         "url": "https://intopia.digital/contact-us/",
         "label": "contact page — Melbourne/Sydney phone/description"
+      },
+      {
+        "url": "https://intopia.digital/about-us/",
+        "label": "About us: \"Intopia was founded in 2016, by Adem Cifcioglu, Sarah Pulis, and Stewart Hay.\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -2155,6 +2213,7 @@
     "slug": "accessibil-it",
     "name": "Accessibil-IT",
     "website": "accessibilit.com",
+    "founded": 2009,
     "hq": {
       "city": "",
       "countryCode": "CA"
@@ -2185,6 +2244,10 @@
       {
         "url": "https://www.accessibilit.com/",
         "label": "homepage — services, PDF/UA and WCAG 2.0 compliance claims"
+      },
+      {
+        "url": "https://accessibilit.com/about-us/",
+        "label": "About Us: \"Founded in 2009, Accessibil-IT is recognized as global accessible PDF specialists.\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -2193,6 +2256,7 @@
     "slug": "tamman",
     "name": "Tamman",
     "website": "tammaninc.com",
+    "founded": 2007,
     "hq": {
       "city": "",
       "countryCode": "US"
@@ -2225,15 +2289,14 @@
       },
       {
         "url": "https://tammaninc.com/about/",
-        "label": "about page (founded 2007, services)"
+        "label": "about page (founded 2007, services) · founded: \"Founded in 2007, our portfolio ranges from small and medium-sized businesses to enterprise web applications\" (checked 2026-08-06)"
       },
       {
         "url": "https://tammaninc.com/",
         "label": "homepage (consulting, staffing, Chax merger)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "founded": 2007
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "usablenet",
@@ -2288,13 +2351,13 @@
         "label": "pricing page (plans without published prices)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "founded": 2000
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "eye-square",
     "name": "eye square",
     "website": "eye-square.com",
+    "founded": 1999,
     "hq": {
       "city": "Berlin",
       "countryCode": "DE"
@@ -2333,6 +2396,10 @@
       {
         "url": "https://eye-square.com",
         "label": "Homepage (research services, clients, Berlin address)"
+      },
+      {
+        "url": "https://www.eye-square.com/en/company/",
+        "label": "Company / Quick facts: \"Established 1999 in Berlin, Germany\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -2379,6 +2446,7 @@
     "slug": "continual-engine",
     "name": "Continual Engine",
     "website": "continualengine.com",
+    "founded": 2017,
     "hq": {
       "city": "",
       "countryCode": "US"
@@ -2431,15 +2499,19 @@
       {
         "url": "https://continualengine.com/",
         "label": "homepage (products, compliance resources incl. RGAA, BITV, EAA)"
+      },
+      {
+        "url": "https://www.continualengine.com/about-us/",
+        "label": "About: \"Since our inception in 2017, we have come a long way\" + таймлайн \"2017 Continual Engine inception\"; checked 2026-08-06"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "founded": 2017
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "apex-covantage",
     "name": "Apex CoVantage",
     "website": "apexcovantage.com",
+    "founded": 1988,
     "hq": {
       "city": "",
       "countryCode": "US"
@@ -2474,7 +2546,7 @@
       },
       {
         "url": "https://apexcovantage.com/about",
-        "label": "about page (1988 origin, staff counts, offices)"
+        "label": "about page (1988 origin, staff counts, offices) · founded: \"1988 Apex Data Services Founded\" (checked 2026-08-06)"
       },
       {
         "url": "https://apexcovantage.com/",
@@ -2482,7 +2554,6 @@
       }
     ],
     "lastVerified": "2026-08-04",
-    "founded": 1988,
     "headcountBand": "200+"
   },
   {
@@ -2527,6 +2598,7 @@
     "slug": "wcag-nl",
     "name": "WCAG.nl",
     "website": "wcag.nl",
+    "founded": 2016,
     "hq": {
       "city": "Zutphen",
       "countryCode": "NL"
@@ -2558,11 +2630,10 @@
       },
       {
         "url": "https://wcag.nl/",
-        "label": "homepage (founded 2016, WCAG-EM and WCAG 2.2 AA audits, VoorMeerWaarde BV Zutphen address)"
+        "label": "homepage (founded 2016, WCAG-EM and WCAG 2.2 AA audits, VoorMeerWaarde BV Zutphen address) · founded: \"WCAG.nl is in 2016 gestart met het delen van kennis op het gebied van digitale toegankelijkheid.\" (checked 2026-08-06)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "founded": 2016
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "eclusief",
@@ -2619,6 +2690,7 @@
     "slug": "stichting-accessibility",
     "name": "Stichting Accessibility",
     "website": "accessibility.nl",
+    "founded": 1999,
     "hq": {
       "city": "Utrecht",
       "countryCode": "NL"
@@ -2655,11 +2727,10 @@
       },
       {
         "url": "https://accessibility.nl/",
-        "label": "homepage (stichting, founded 1999, Utrecht address, services, sectors, EAA, ANBI/W3C)"
+        "label": "homepage (stichting, founded 1999, Utrecht address, services, sectors, EAA, ANBI/W3C) · founded: \"Wat in 1999 begon als een initiatief om Nederland digitaal toegankelijk te maken, is uitgegroeid tot een organisatie die impact maakt\" (checked 2026-08-06)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "founded": 1999
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "audit-house",
@@ -3101,6 +3172,7 @@
     "slug": "metadrop",
     "name": "Metadrop",
     "website": "metadrop.net",
+    "founded": 2011,
     "hq": {
       "city": "Madrid",
       "countryCode": "ES"
@@ -3135,6 +3207,10 @@
       {
         "url": "https://www.metadrop.net/",
         "label": "homepage/footer — Madrid address, Drupal Audit Services incl. accessibility audit consultancy, ENS certification"
+      },
+      {
+        "url": "https://metadrop.net/",
+        "label": "portada: \"Fundada en 2011, Metadrop se ha consolidado como un referente en la comunidad Drupal.\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -3231,7 +3307,6 @@
       }
     ],
     "lastVerified": "2026-08-04",
-    "founded": 2009,
     "headcountBand": "1"
   },
   {
@@ -3489,6 +3564,7 @@
     "slug": "usability-ie",
     "name": "Usability.ie",
     "website": "usability.ie",
+    "founded": 2026,
     "hq": {
       "city": "Dublin",
       "countryCode": "IE"
@@ -3519,6 +3595,10 @@
       {
         "url": "https://www.usability.ie/",
         "label": "homepage — accessibility evaluation service, WCAG 2.1 AA scope, sister-studio handoff"
+      },
+      {
+        "url": "https://usability.ie/about.html",
+        "label": "About: \"Sister practice to digitaldesign.ie · Established 2026\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -3527,6 +3607,7 @@
     "slug": "path-ie",
     "name": "Path",
     "website": "path.ie",
+    "founded": 2006,
     "hq": {
       "city": "Dublin",
       "countryCode": "IE"
@@ -3558,6 +3639,10 @@
       {
         "url": "https://www.path.ie/",
         "label": "homepage — Digital Accessibility service (audits, training), Dublin registered address, client list"
+      },
+      {
+        "url": "https://path.ie/about/",
+        "label": "Our Story: \"We began in 2006 as a web design studio.\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -3566,6 +3651,7 @@
     "slug": "digital-strategy-ie",
     "name": "Digital Strategy Consultants",
     "website": "digitalstrategy.ie",
+    "founded": 2012,
     "hq": {
       "city": "Dublin",
       "countryCode": "IE"
@@ -3598,6 +3684,10 @@
       {
         "url": "https://www.digitalstrategy.ie/",
         "label": "homepage — Dublin address, broader digital-marketing service list"
+      },
+      {
+        "url": "https://digitalstrategy.ie/about/",
+        "label": "About: \"Digital Strategy Consultants, founded in 2012, is a digital marketing agency and consultancy based in Dublin\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -3726,8 +3816,7 @@
         "label": "homepage (Dublin in title, services, WCAG 2.0 work since 2006, public-sector and college clients)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "founded": 2006
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "content-design-ireland",
@@ -4039,7 +4128,6 @@
       }
     ],
     "lastVerified": "2026-08-04",
-    "founded": 2001,
     "priceBand": "budget"
   },
   {
@@ -4466,6 +4554,7 @@
     "slug": "eficode",
     "name": "Eficode",
     "website": "eficode.com",
+    "founded": 2005,
     "hq": {
       "city": "",
       "countryCode": "FI"
@@ -4504,6 +4593,10 @@
       {
         "url": "https://www.eficode.com/contact",
         "label": "contact/offices page — Helsinki and Tampere offices among global network"
+      },
+      {
+        "url": "https://eficode.com/our-approach",
+        "label": "Who we are: \"We started in Finland in 2005 with a simple conviction\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -4556,6 +4649,7 @@
     "slug": "open-doors-organization",
     "name": "Open Doors Organization",
     "website": "opendoorsnfp.org",
+    "founded": 2000,
     "hq": {
       "city": "Chicago",
       "countryCode": "US"
@@ -4597,10 +4691,13 @@
       {
         "url": "https://opendoorsnfp.org/about-us/our-mission-history/",
         "label": "mission & history page (founded 2000, Chicago, Des Plaines address)"
+      },
+      {
+        "url": "https://opendoorsnfp.org/our-mission-history/",
+        "label": "Our Mission & History: \"Open Doors Organization (ODO), a 501(c)(3) non-profit organization based in Chicago, Illinois, was founded in 2000\"; checked 2026-08-06"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "founded": 2000
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "skynet-technologies",
@@ -4719,6 +4816,7 @@
     "slug": "abilitynet",
     "name": "AbilityNet",
     "website": "abilitynet.org.uk",
+    "founded": 1998,
     "hq": {
       "city": "Leamington Spa",
       "countryCode": "GB"
@@ -4772,16 +4870,20 @@
       {
         "url": "https://abilitynet.org.uk",
         "label": "homepage (charity, established 1998)"
+      },
+      {
+        "url": "https://abilitynet.org.uk/about",
+        "label": "About AbilityNet: \"Founded by IBM and Microsoft in 1998, AbilityNet is a global leader in digital inclusion and digital accessibility\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04",
-    "founded": 1998,
     "priceBand": "mid"
   },
   {
     "slug": "axes4",
     "name": "axes4 GmbH",
     "website": "axes4.com",
+    "founded": 2015,
     "hq": {
       "city": "Zürich",
       "countryCode": "CH"
@@ -4825,6 +4927,14 @@
       {
         "url": "https://www.axes4.com/en/imprint",
         "label": "imprint — Zurich address"
+      },
+      {
+        "url": "https://axes4.com/de/ueber-uns/kurz-vorgestellt",
+        "label": "Kurz vorgestellt: \"Seit 2015 machen wir die Welt für alle Menschen besser, weil zugänglicher\"; checked 2026-08-06"
+      },
+      {
+        "url": "https://www.linkedin.com/company/axes4/",
+        "label": "LinkedIn-Unternehmensprofil (со своего сайта): \"Gegründet 2015\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -4833,6 +4943,7 @@
     "slug": "hilfsgemeinschaft",
     "name": "Hilfsgemeinschaft der Blinden und Sehschwachen Österreichs",
     "website": "hilfsgemeinschaft.at",
+    "founded": 1935,
     "hq": {
       "city": "Vienna",
       "countryCode": "AT"
@@ -4871,6 +4982,10 @@
       {
         "url": "https://www.hilfsgemeinschaft.at/barrierefrei-werden",
         "label": "Barrierefrei werden page (Access Austria: website/app testing, consulting, training, WACA certification)"
+      },
+      {
+        "url": "https://hilfsgemeinschaft.at/die-hilfsgemeinschaft/geschichte",
+        "label": "Geschichte: \"Die Hilfsgemeinschaft der Blinden und Sehschwachen Österreichs wurde 1935 gegründet und feiert heuer ihr 90-jähriges Jubiläum!\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -4880,6 +4995,7 @@
     "slug": "zoonou",
     "name": "Zoonou",
     "website": "zoonou.com",
+    "founded": 2007,
     "hq": {
       "city": "Eastbourne",
       "countryCode": "GB"
@@ -4928,6 +5044,10 @@
       {
         "url": "https://zoonou.com",
         "label": "homepage (employee-owned B Corp, 50+ team)"
+      },
+      {
+        "url": "https://zoonou.com/company/",
+        "label": "Company: \"Established in 2007 by Nick and Jonathan, we're now a 50+ strong team\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -5249,7 +5369,6 @@
       }
     ],
     "lastVerified": "2026-08-04",
-    "founded": 2007,
     "headcountBand": "51-200"
   },
   {
@@ -5356,6 +5475,7 @@
     "slug": "damteq",
     "name": "Damteq",
     "website": "damteq.co.uk",
+    "founded": 2006,
     "hq": {
       "city": "Fareham",
       "countryCode": "GB"
@@ -5395,6 +5515,14 @@
       {
         "url": "https://www.damteq.co.uk/marketing/ux/accessibility-audits/",
         "label": "\"Typically, a one-off Accessibility Audit will start from £1,650 +VAT\" ≈ €1.9k; checked 2026-08-06"
+      },
+      {
+        "url": "https://damteq.co.uk/about/",
+        "label": "About: \"We’re a people-first Growth Agency that has been growing businesses since 2006.\"; checked 2026-08-06"
+      },
+      {
+        "url": "https://www.linkedin.com/company/damteq/",
+        "label": "LinkedIn company profile (linked from the site): \"Founded 2006\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -5405,6 +5533,7 @@
     "slug": "mixd",
     "name": "Mixd",
     "website": "mixd.co.uk",
+    "founded": 2004,
     "hq": {
       "city": "Leeds",
       "countryCode": "GB"
@@ -5445,10 +5574,13 @@
       {
         "url": "https://mixd.co.uk/contact/",
         "label": "contact page (Leeds office)"
+      },
+      {
+        "url": "https://www.mixd.co.uk/about/",
+        "label": "Who we are: \"Founded in 2004, we are a multidisciplinary team of designers, engineers and delivery experts\"; checked 2026-08-06"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "founded": 2004
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "all-able",
@@ -5548,8 +5680,7 @@
         "label": "homepage (accessibility audit, inclusive user testing, training)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "founded": 2001
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "dig-inclusion",
@@ -5603,8 +5734,7 @@
         "label": "services page (audits, training, consultancy, public sector)"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "founded": 2012
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "tetralogical",
@@ -5648,6 +5778,7 @@
     "slug": "cyber-duck",
     "name": "Cyber-Duck",
     "website": "cyber-duck.co.uk",
+    "founded": 2005,
     "hq": {
       "city": "London",
       "countryCode": "GB"
@@ -5679,6 +5810,14 @@
       {
         "url": "https://www.cyber-duck.co.uk/",
         "label": "redirects to caci.co.uk/what-we-do — company rebrand, HQ, IAAP/Disability Confident/ISO badges"
+      },
+      {
+        "url": "https://cyber-duck.co.uk/our-culture",
+        "label": "Our story: \"Since 2005 our pioneering people and process has seen CACI Digital Experience grow, explore and showcase ground-breaking work\"; checked 2026-08-06"
+      },
+      {
+        "url": "https://www.linkedin.com/company/cyber-duck/",
+        "label": "LinkedIn company profile (linked from the site): \"Established in 2005, CACI Digital Experience (formerly Cyber-Duck)\" / \"Founded 2005\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -5725,6 +5864,7 @@
     "slug": "access-by-design",
     "name": "Access by Design",
     "website": "accessbydesign.uk",
+    "founded": 2006,
     "hq": {
       "city": "Chichester",
       "countryCode": "GB"
@@ -5758,6 +5898,10 @@
       {
         "url": "https://accessbydesign.uk/",
         "label": "homepage — history, services, WCAG 2.2/EAA mentions, Chichester address"
+      },
+      {
+        "url": "https://accessbydesign.uk/about/our-history/",
+        "label": "Our History: \"Access by Design was founded by Clive Loseby in 2006.\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -5766,6 +5910,7 @@
     "slug": "ten10",
     "name": "Ten10",
     "website": "ten10.com",
+    "founded": 2008,
     "hq": {
       "city": "",
       "countryCode": "GB"
@@ -5801,6 +5946,14 @@
       {
         "url": "https://scalefactory.com/accessibility/",
         "label": "site's own accessibility statement"
+      },
+      {
+        "url": "https://ten10.com/about/",
+        "label": "About: \"SINCE 2008 · 3,500+ projects delivered\"; checked 2026-08-06"
+      },
+      {
+        "url": "https://www.linkedin.com/company/ten10-group/",
+        "label": "LinkedIn company profile (linked from the site): \"Founded 2008\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -5809,6 +5962,7 @@
     "slug": "ascentiq-solutions",
     "name": "Ascentiq Solutions",
     "website": "ascentiqsolutions.co.uk",
+    "founded": 2012,
     "hq": {
       "city": "Ilford",
       "countryCode": "GB"
@@ -5837,6 +5991,10 @@
       {
         "url": "https://ascentiqsolutions.co.uk/",
         "label": "homepage — services list incl. Accessibility Testing Services, Ilford address in footer"
+      },
+      {
+        "url": "https://ascentiqsolutions.co.uk/about-us/",
+        "label": "About Us: \"AscentiQ Solutions is a UK based IT company, established in 2012\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -5845,6 +6003,7 @@
     "slug": "silktide",
     "name": "Silktide",
     "website": "silktide.com",
+    "founded": 2001,
     "hq": {
       "city": "",
       "countryCode": "GB"
@@ -5880,6 +6039,10 @@
       {
         "url": "https://silktide.com/",
         "label": "homepage — product modules, WCAG 2.2/ADA/EAA mentions, locations in footer"
+      },
+      {
+        "url": "https://silktide.com/company/",
+        "label": "Company: \"Founded in 2001, Silktide helps thousands of customers analyze tens of millions of web pages every year.\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -5931,6 +6094,7 @@
     "slug": "equal-entry",
     "name": "Equal Entry",
     "website": "equalentry.com",
+    "founded": 2012,
     "hq": {
       "city": "",
       "countryCode": "US"
@@ -5966,7 +6130,7 @@
       },
       {
         "url": "https://equalentry.com/about/",
-        "label": "about page (founder Thomas Logan located in New York, NY)"
+        "label": "about page (founder Thomas Logan located in New York, NY) · founded: \"Equal Entry was founded in 2012 by accessibility expert Thomas Logan.\" (checked 2026-08-06)"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -5975,6 +6139,7 @@
     "slug": "knowbility",
     "name": "Knowbility",
     "website": "knowbility.org",
+    "founded": 1999,
     "hq": {
       "city": "Austin",
       "countryCode": "US"
@@ -6008,10 +6173,13 @@
       {
         "url": "https://knowbility.org/",
         "label": "homepage (Austin address, since 1998, 501(c)(3), services and programs)"
+      },
+      {
+        "url": "https://knowbility.org/about",
+        "label": "Our Story: \"It was founded in 1999 as the result of a two year community collaboration to raise awareness and improve skills around digital accessibility\"; checked 2026-08-06"
       }
     ],
-    "lastVerified": "2026-08-04",
-    "founded": 1998
+    "lastVerified": "2026-08-04"
   },
   {
     "slug": "perkins-access",
@@ -6058,6 +6226,7 @@
     "slug": "testpros",
     "name": "TestPros",
     "website": "testpros.com",
+    "founded": 1988,
     "hq": {
       "city": "Sterling",
       "countryCode": "US"
@@ -6094,6 +6263,10 @@
       {
         "url": "https://testpros.com/",
         "label": "homepage — founded 1988, Sterling VA address, accessibility compliance domains"
+      },
+      {
+        "url": "https://testpros.com/about/",
+        "label": "About TestPros: \"Established in 1988, TestPros provides independent IT assessment and security assurance services.\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -6143,6 +6316,7 @@
     "slug": "webaim",
     "name": "WebAIM",
     "website": "webaim.org",
+    "founded": 1999,
     "hq": {
       "city": "Logan",
       "countryCode": "US"
@@ -6176,6 +6350,14 @@
       {
         "url": "https://webaim.org/",
         "label": "homepage — services, Logan UT / Utah State University address in footer"
+      },
+      {
+        "url": "https://webaim.org/about",
+        "label": "About WebAIM: \"WebAIM (Web Accessibility In Mind) has provided comprehensive web accessibility solutions since 1999.\"; checked 2026-08-06"
+      },
+      {
+        "url": "https://www.linkedin.com/company/webaim/",
+        "label": "LinkedIn company profile (linked from the site): \"Founded 1999\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -6184,6 +6366,7 @@
     "slug": "bureau-of-internet-accessibility",
     "name": "Bureau of Internet Accessibility",
     "website": "boia.org",
+    "founded": 2001,
     "hq": {
       "city": "East Greenwich",
       "countryCode": "US"
@@ -6219,6 +6402,14 @@
       {
         "url": "https://www.boia.org/",
         "label": "homepage — services, standards covered, East Greenwich RI address in footer"
+      },
+      {
+        "url": "https://www.boia.org/about",
+        "label": "About: \"The Bureau of Internet Accessibility (BoIA) has been helping eliminate the digital divide since 2001.\"; checked 2026-08-06"
+      },
+      {
+        "url": "https://www.linkedin.com/company/bureau-of-internet-accessibility/",
+        "label": "LinkedIn company profile (linked from the site): \"Founded 2001\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -6644,6 +6835,7 @@
     "slug": "braille-works",
     "name": "Braille Works",
     "website": "brailleworks.com",
+    "founded": 1994,
     "hq": {
       "city": "",
       "countryCode": "US"
@@ -6677,6 +6869,14 @@
       {
         "url": "https://brailleworks.com/",
         "label": "homepage — services, certifications, in-house compliance expert claims"
+      },
+      {
+        "url": "https://brailleworks.com/braille-transcription-company/",
+        "label": "company page: \"We are cost-effective, women-owned, have HITRUST Common Security Framework v9.3.1, and consistent growth since 1994.\"; checked 2026-08-06"
+      },
+      {
+        "url": "https://www.linkedin.com/company/braille-works/",
+        "label": "LinkedIn company profile (linked from the site): \"Founded 1994\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -8380,6 +8580,7 @@
     "slug": "die-medialen",
     "name": "Die Medialen GmbH",
     "website": "diemedialen.de",
+    "founded": 2003,
     "hq": {
       "city": "Bonn",
       "countryCode": "DE"
@@ -8428,6 +8629,10 @@
       {
         "url": "https://diemedialen.de/impressum",
         "label": "Impressum — HQ Bonn"
+      },
+      {
+        "url": "https://diemedialen.de/internetagentur/die-medialen-geschichte",
+        "label": "Die Medialen Geschichte: \"Entdecken Sie die besonderen Momente der Medialen von unserer Gründung im Jahr 2003 bis heute.\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -8436,6 +8641,7 @@
     "slug": "stiftung-pfennigparade",
     "name": "Stiftung Pfennigparade",
     "website": "pfennigparade.de",
+    "founded": 1952,
     "hq": {
       "city": "München",
       "countryCode": "DE"
@@ -8493,6 +8699,10 @@
       {
         "url": "https://pfennigparade.de/fuer-unternehmen",
         "label": "Für Unternehmen — corporate services"
+      },
+      {
+        "url": "https://www.pfennigparade.de/ueber-uns/geschichte/",
+        "label": "Geschichte: \"Die Pfennigparade wird 1952 gegründet und widmet sich zunächst der Bekämpfung der seit Kriegsende andauernden Polioepidemie.\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -8788,6 +8998,7 @@
     "slug": "clickstorm",
     "name": "clickstorm GmbH",
     "website": "clickstorm.de",
+    "founded": 2002,
     "hq": {
       "city": "Leipzig",
       "countryCode": "DE"
@@ -8840,6 +9051,10 @@
       {
         "url": "https://clickstorm.de/barrierefreiheit",
         "label": "Barrierefreiheitserklärung — BITV 2.0 self-assessment"
+      },
+      {
+        "url": "https://clickstorm.de/agentur/",
+        "label": "Agentur: \"2002 in Leipzig gegründet und mit einem Händchen für die Entwirrung der härtesten Knoten\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -8848,6 +9063,7 @@
     "slug": "kolibri-online",
     "name": "Kolibri Online GmbH",
     "website": "kolibri-online.com",
+    "founded": 2008,
     "hq": {
       "city": "Hamburg",
       "countryCode": "DE"
@@ -8897,6 +9113,14 @@
       {
         "url": "https://kolibri-online.com/impressum",
         "label": "Impressum — Hamburg HQ"
+      },
+      {
+        "url": "https://kolibri-online.com/agentur/",
+        "label": "Agentur: \"Wir sind Kolibri. Content-Marketing- und Lokalisierungsagentur seit 2008.\"; checked 2026-08-06"
+      },
+      {
+        "url": "https://www.linkedin.com/company/kolibri-online/",
+        "label": "LinkedIn-Unternehmensprofil (со своего сайта): \"Gegründet 2008\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -9361,6 +9585,7 @@
     "slug": "accessprod",
     "name": "AccessProd",
     "website": "accessprod.com",
+    "founded": 2018,
     "hq": {
       "city": "Besançon",
       "countryCode": "FR"
@@ -9404,11 +9629,15 @@
       },
       {
         "url": "https://accessprod.com/",
-        "label": "Homepage describing RGAA audits, training, and public-sector client list"
+        "label": "Homepage describing RGAA audits, training, and public-sector client list · founded: \"À vos côtés depuis 2018\" (checked 2026-08-06)"
       },
       {
         "url": "https://www.accessprod.com/prestations/audits/",
         "label": "\"L'audit RGAA détaillé … Tarif : de 2 100€ HT à 4 900€ HT\"; checked 2026-08-06"
+      },
+      {
+        "url": "https://www.linkedin.com/company/accessprod/",
+        "label": "profil LinkedIn (lié depuis le site) : \"Fondée en 2018\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -9577,6 +9806,7 @@
     "slug": "atalan",
     "name": "Atalan",
     "website": "atalan.fr",
+    "founded": 2002,
     "hq": {
       "city": "",
       "countryCode": "FR"
@@ -9618,7 +9848,11 @@
       },
       {
         "url": "https://atalan.fr/",
-        "label": "official website — accessibility audit services"
+        "label": "official website — accessibility audit services · founded: \"Spécialisés dans l'accessibilité numérique depuis 2002, nous intervenons en tant qu'expert indépendant dans vos projets.\" (checked 2026-08-06)"
+      },
+      {
+        "url": "https://www.linkedin.com/company/atalan_2",
+        "label": "profil LinkedIn (lié depuis le site) : \"Fondée en 2002\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -9676,6 +9910,7 @@
     "slug": "ceciaa",
     "name": "CECIAA",
     "website": "ceciaa.com",
+    "founded": 1990,
     "hq": {
       "city": "Maisons-Alfort",
       "countryCode": "FR"
@@ -9720,6 +9955,10 @@
       {
         "url": "https://ceciaa.com/softaccess",
         "label": "SoftAccess page describing RGAA audit, declaration and action-plan services"
+      },
+      {
+        "url": "https://www.ceciaa.com/qui-sommes-nous",
+        "label": "Qui sommes-nous : \"CECIAA a été créée en 1990 par des personnes aveugles dont Jean-Luc AUGAUDY, aujourd'hui Président de la Société.\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -9728,6 +9967,7 @@
     "slug": "com-access",
     "name": "Com'access",
     "website": "com-access.fr",
+    "founded": 2013,
     "hq": {
       "city": "Le Mesnil-le-Roi",
       "countryCode": "FR"
@@ -9769,6 +10009,14 @@
       {
         "url": "https://com-access.fr/",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://com-access.fr/qui-sommes-nous/",
+        "label": "Qui sommes-nous : \"Depuis 2013, pour répondre à nos valeurs, nous avons réuni nos expertises pour proposer accompagnement, conseil et formation\"; checked 2026-08-06"
+      },
+      {
+        "url": "https://www.linkedin.com/company/com-access/",
+        "label": "profil LinkedIn (lié depuis le site) : \"Fondée en 2013\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -9777,6 +10025,7 @@
     "slug": "copsae",
     "name": "Copsaé",
     "website": "copsae.fr",
+    "founded": 2021,
     "hq": {
       "city": "Nantes",
       "countryCode": "FR"
@@ -9826,6 +10075,14 @@
       {
         "url": "https://www.copsae.fr/a-propos/qui-est-copsae/",
         "label": "About page identifying founders and Nantes-based cooperative activity"
+      },
+      {
+        "url": "https://copsae.fr/a-propos/",
+        "label": "À propos : \"Copsae … est l'activité professionnelle de Julie Moynat depuis 2021 au sein de la Coopérative d'Activité et d'Emploi, l'Ouvre-Boîtes à Nantes.\"; checked 2026-08-06"
+      },
+      {
+        "url": "https://www.linkedin.com/company/copsae/",
+        "label": "profil LinkedIn (lié depuis le site) : \"Fondée en 2021\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -10150,6 +10407,7 @@
     "slug": "ipedis",
     "name": "Ipedis",
     "website": "ipedis.com",
+    "founded": 2006,
     "hq": {
       "city": "Paris",
       "countryCode": "FR"
@@ -10196,7 +10454,11 @@
       },
       {
         "url": "https://ipedis.com/",
-        "label": "Homepage with founding year, ESUS status, standards referenced, and client list"
+        "label": "Homepage with founding year, ESUS status, standards referenced, and client list · founded: \"un web inclusif et accessible à tous, y compris les personnes en situation de handicap, c'est le challenge d'IPEDIS depuis 2006\" (checked 2026-08-06)"
+      },
+      {
+        "url": "https://www.linkedin.com/company/ipedis/",
+        "label": "profil LinkedIn (lié depuis le site) : \"Fondée en 2006\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -10205,6 +10467,7 @@
     "slug": "licorn-publishing",
     "name": "Licorn Publishing",
     "website": "licornpublishing.com",
+    "founded": 2006,
     "hq": {
       "city": "Rennes",
       "countryCode": "FR"
@@ -10248,7 +10511,11 @@
       },
       {
         "url": "https://licornpublishing.com/",
-        "label": "Homepage confirming Rennes/Paris agency founded 2006 and client list"
+        "label": "Homepage confirming Rennes/Paris agency founded 2006 and client list · founded: \"Depuis 2006, notre agence accompagne les entreprises en quête d'une identité forte et développe leurs projets digitaux.\" (checked 2026-08-06)"
+      },
+      {
+        "url": "https://www.linkedin.com/company/licorn-publishing/",
+        "label": "profil LinkedIn (lié depuis le site) : \"Fondée en 2006\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -10359,6 +10626,7 @@
     "slug": "numerik-ea",
     "name": "Numerik-ea",
     "website": "numerik-ea.fr",
+    "founded": 2016,
     "hq": {
       "city": "Paris",
       "countryCode": "FR"
@@ -10402,7 +10670,7 @@
       },
       {
         "url": "https://numerik-ea.fr/",
-        "label": "Homepage describing entreprise-adaptée status, accessibility compliance audits, and client list"
+        "label": "Homepage describing entreprise-adaptée status, accessibility compliance audits, and client list · founded: \"Créée en 2016, numerik-ea est la première entreprise adaptée (EA) – agence web spécialisée dans l'accessibilité numérique\" (checked 2026-08-06)"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -10623,6 +10891,7 @@
     "slug": "temesis",
     "name": "Temesis",
     "website": "temesis.com",
+    "founded": 2000,
     "hq": {
       "city": "Paris",
       "countryCode": "FR"
@@ -10673,6 +10942,10 @@
       {
         "url": "https://temesis.com/",
         "label": "Homepage confirming Paris address and Ctrl-a group affiliation"
+      },
+      {
+        "url": "https://temesis.com/a-propos/",
+        "label": "À propos : \"Créée en 2000, Temesis est une agence de conseil en numérique responsable, spécialisée en accessibilité numérique\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -10854,6 +11127,7 @@
     "slug": "extranet-joanna-pazdzierska",
     "name": "extranet Joanna Paździerska",
     "website": "extranet.pl",
+    "founded": 2002,
     "hq": {
       "city": "Toruń",
       "countryCode": "PL"
@@ -10902,6 +11176,10 @@
       {
         "url": "https://extranet.pl",
         "label": "Homepage — services incl. audyty dostępności cyfrowej, HQ"
+      },
+      {
+        "url": "https://extranet.pl/4,o-nas",
+        "label": "O nas: \"Firma Extranet istnieje od 2002 roku.\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -11081,6 +11359,7 @@
     "slug": "virtualmedia",
     "name": "Virtualmedia Agencja Interaktywna",
     "website": "virtualmedia.pl",
+    "founded": 2003,
     "hq": {
       "city": "Olsztyn",
       "countryCode": "PL"
@@ -11129,6 +11408,10 @@
       {
         "url": "https://virtualmedia.pl",
         "label": "Homepage — services, HQ, client testimonial mentioning WCAG 2.1"
+      },
+      {
+        "url": "https://www.virtualmedia.pl/o-nas",
+        "label": "O nas: \"VIRTUALMEDIA działa w Olsztynie nieprzerwanie od 2003 roku, tworząc profesjonalne rozwiązania z zakresu stron internetowych\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -11595,6 +11878,7 @@
     "slug": "utilitia",
     "name": "Utilitia Sp. z o.o.",
     "website": "utilitia.pl",
+    "founded": 2008,
     "hq": {
       "city": "Kraków",
       "countryCode": "PL"
@@ -11647,6 +11931,10 @@
       {
         "url": "https://utilitia.pl",
         "label": "Homepage — full service list, certification authority"
+      },
+      {
+        "url": "https://utilitia.pl/o-nas/",
+        "label": "O nas: \"Nasza firma powstała w grudniu 2008 roku.\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -11655,6 +11943,7 @@
     "slug": "fundacja-instytut-rozwoju-regionalnego",
     "name": "Fundacja Instytut Rozwoju Regionalnego (FIRR)",
     "website": "firr.org.pl",
+    "founded": 2003,
     "hq": {
       "city": "Kraków",
       "countryCode": "PL"
@@ -11706,6 +11995,10 @@
       {
         "url": "https://firr.org.pl",
         "label": "Homepage — foundation profile, WCAG 2.1 Polish translation, branch offices"
+      },
+      {
+        "url": "https://firr.org.pl/o-nas/",
+        "label": "O nas: \"Fundacja Instytut Rozwoju Regionalnego jest organizacją pożytku publicznego, działającą od 2003 r., z siedzibą w Krakowie\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -12115,6 +12408,7 @@
     "slug": "grupa-af",
     "name": "Grupa AF Sp. z o.o.",
     "website": "grupaaf.pl",
+    "founded": 2011,
     "hq": {
       "city": "Świdnica",
       "countryCode": "PL"
@@ -12162,6 +12456,10 @@
       {
         "url": "https://grupaaf.pl",
         "label": "Homepage — company profile, service menu incl. Dostępność"
+      },
+      {
+        "url": "https://grupaaf.pl/about/",
+        "label": "O nas: \"10-letnie doświadczenie w branży (na rynku od 2011 roku)\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"

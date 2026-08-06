@@ -113,6 +113,12 @@ export default function AgencyPage() {
                 <dd>{priceLabel(a.priceBand)}</dd>
               </div>
             )}
+            {a.founded != null && (
+              <div className="flex justify-between gap-4 border-b border-slate-100 pb-2">
+                <dt className="text-slate-500">In business since</dt>
+                <dd>{a.founded}</dd>
+              </div>
+            )}
             {a.languages.length > 0 && (
               <div className="flex justify-between gap-4 border-b border-slate-100 pb-2">
                 <dt className="text-slate-500">Working languages</dt>
