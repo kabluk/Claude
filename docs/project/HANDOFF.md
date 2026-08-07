@@ -91,6 +91,20 @@
 Подробности — в `DECISIONS.md` по указанным номерам; здесь только то, что меняет
 поведение будущей сессии.
 
+- **Первая дизайн-итерация конституции выполнена: CN-TOKENS + CN-HERO — done**
+  (D-063, 2026-08-07). Главная — scanner-first (§7: «Check your website
+  accessibility» / «Scan website» / «Free instant scan. No signup required.»),
+  логика отправки одна на hero и `/scan/` (`useScanForm`,
+  `src/components/ScanForm.tsx`). Дизайн-система — токены `@theme` в
+  `src/styles.css`; **источник правды дизайна — `domains/design.md`** (палитра
+  hex, типографика, фокус, severity, анти-паттерны) — новые UI-решения сверять
+  с ним. Severity теперь семантическая (critical/serious/moderate/minor +
+  success/info, не акцент), фокус-кольцо всегда видимо, числа-метрики —
+  `.num` (tabular-nums). Fear-заголовок главной снят. Контраст палитры —
+  гейт: `audit-a11y` 26 стр. 0 нарушений; при смене палитры чинить палитру,
+  не проверку. Скриншоты before/after этой итерации — scratchpad `design/`
+  (вне репо). Остаток CN-NAV: только переименования IA (Knowledge/Experts),
+  шапка уже сделана. CN-COMPONENTS разблокирован (ждал CN-TOKENS).
 - **Принята Design Constitution владельца** (D-062, 2026-08-07):
   `docs/project/DESIGN_CONSTITUTION.md` — направляющий документ продукта/
   дизайна (позиционирование Accessibility Intelligence Platform, UX, IA,

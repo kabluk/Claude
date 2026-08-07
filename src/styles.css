@@ -1,13 +1,60 @@
 @import 'tailwindcss';
 
+/* ============================================================================
+   AccessAtlas design tokens (CN-TOKENS, D-063).
+   Источник правды по значениям и назначению: docs/project/domains/design.md.
+   Конституция: §24 (quiet & precise), §25 (типографика), §27 (цвет = состояние
+   раньше бренда), §57 (анти-паттерны: без градиентов, glassmorphism, неона).
+
+   Нейтральная база — slate Tailwind (холодный серый со сдвигом оттенка к
+   синему, hue ≈ 257): НЕ переопределяется, используется как есть, чтобы не
+   пересчитывать контраст заново. Здесь объявляется только то, чего в Tailwind
+   нет: один акцент и семантические severity-цвета, согласованные со шкалой
+   impact axe-core (scanner.ts: critical/serious/moderate/minor).
+   ========================================================================== */
 @theme {
+  /* Типографика: гротеск (Inter Variable, self-hosted через @fontsource —
+     без CDN, см. main.tsx) + системный моно-компаньон для кода и селекторов.
+     Кастомный моно-шрифт НЕ вводится сознательно (перфоманс/CSP) — D-063. */
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
-  --color-accent: oklch(0.51 0.19 264); /* indigo-700-ish, контраст ≥4.5:1 на белом */
-  --color-accent-soft: oklch(0.95 0.03 264);
-  --color-ink: oklch(0.24 0.02 260);
+  --font-mono: ui-monospace, 'SFMono-Regular', 'Menlo', 'Consolas', 'Liberation Mono', monospace;
+
+  /* Один сдержанный акцент — индиго. Роль: интерактив, бренд, evidence-бейджи.
+     НЕ используется для severity — там семантические цвета ниже. */
+  --color-accent: #4338ca; /* контраст 7.9:1 на белом, 7.2:1 на -soft */
+  --color-accent-strong: #3730a3; /* hover/active */
+  --color-accent-soft: #eef2ff; /* фоновая подложка */
+  --color-accent-border: #c7d2fe;
+
+  --color-ink: #1e293b; /* основной текст (slate-800) */
+
+  /* Severity: семантическая шкала находок сканера + success/info (§27).
+     Пары text/bg/border подобраны так, что text ≥ 4.5:1 и на белом, и на
+     своей soft-подложке (проверяется axe в audit-own-a11y). Цвет никогда не
+     единственный носитель смысла — рядом всегда текстовая метка. */
+  --color-critical: #b91c1c;
+  --color-critical-soft: #fef2f2;
+  --color-critical-border: #fecaca;
+  --color-serious: #9a3412;
+  --color-serious-soft: #fff7ed;
+  --color-serious-border: #fed7aa;
+  --color-moderate: #854d0e;
+  --color-moderate-soft: #fffbeb;
+  --color-moderate-border: #fde68a;
+  --color-minor: #334155;
+  --color-minor-soft: #f1f5f9;
+  --color-minor-border: #e2e8f0;
+  --color-success: #166534;
+  --color-success-soft: #f0fdf4;
+  --color-success-border: #bbf7d0;
+  --color-info: #4338ca;
+  --color-info-soft: #eef2ff;
+  --color-info-border: #c7d2fe;
 }
 
-/* Каталог доступности обязан сам быть доступным: видимый фокус везде. */
+/* Каталог доступности обязан сам быть доступным: видимый фокус везде,
+   всегда, одним и тем же кольцом (§24 clear focus states). Никогда не
+   подавляется outline:none без замены. */
 :focus-visible {
   outline: 2px solid var(--color-accent);
   outline-offset: 2px;
@@ -31,11 +78,35 @@ body {
   .lede {
     @apply mt-3 max-w-2xl text-base text-slate-600;
   }
+  /* Числа-метрики: всегда tabular-nums, чтобы колонки цифр не плясали (§25). */
+  .num {
+    @apply tabular-nums;
+  }
   .chip {
     @apply inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-0.5 text-xs font-medium text-slate-700;
   }
   .chip-accent {
-    @apply border-indigo-200 bg-[color:var(--color-accent-soft)] text-[color:var(--color-accent)];
+    @apply border-[color:var(--color-accent-border)] bg-[color:var(--color-accent-soft)] text-[color:var(--color-accent)];
+  }
+  /* Severity-чипы отчёта сканера — семантика, не бренд (§27). Композиция в
+     разметке: class="chip chip-critical". Метка текстом обязательна. */
+  .chip-critical {
+    @apply border-[color:var(--color-critical-border)] bg-[color:var(--color-critical-soft)] text-[color:var(--color-critical)];
+  }
+  .chip-serious {
+    @apply border-[color:var(--color-serious-border)] bg-[color:var(--color-serious-soft)] text-[color:var(--color-serious)];
+  }
+  .chip-moderate {
+    @apply border-[color:var(--color-moderate-border)] bg-[color:var(--color-moderate-soft)] text-[color:var(--color-moderate)];
+  }
+  .chip-minor {
+    @apply border-[color:var(--color-minor-border)] bg-[color:var(--color-minor-soft)] text-[color:var(--color-minor)];
+  }
+  .chip-success {
+    @apply border-[color:var(--color-success-border)] bg-[color:var(--color-success-soft)] text-[color:var(--color-success)];
+  }
+  .chip-info {
+    @apply border-[color:var(--color-info-border)] bg-[color:var(--color-info-soft)] text-[color:var(--color-info)];
   }
   /* использовать как class="chip chip-btn" — Tailwind v4 не даёт @apply
      собственных классов, поэтому композиция в разметке */
@@ -43,7 +114,7 @@ body {
     @apply cursor-pointer select-none transition hover:border-slate-400;
   }
   .chip-btn[aria-pressed='true'] {
-    @apply border-indigo-600 bg-indigo-600 text-white;
+    @apply border-[color:var(--color-accent)] bg-[color:var(--color-accent)] text-white;
   }
   .card {
     @apply block rounded-xl border border-slate-200 bg-white p-4 transition hover:border-slate-400 hover:shadow-sm;
@@ -53,10 +124,15 @@ body {
     @apply flex items-baseline justify-between gap-2;
   }
   .btn {
-    @apply inline-flex items-center gap-2 rounded-lg bg-[color:var(--color-accent)] px-4 py-2 text-sm font-semibold text-white transition hover:opacity-90;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-[color:var(--color-accent)] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[color:var(--color-accent-strong)];
   }
   .btn-ghost {
-    @apply inline-flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-500;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-500;
+  }
+  /* Поля форм: единый вид, фокус — глобальное кольцо :focus-visible (не
+     подавляется), плюс смена цвета рамки для mouse-фокуса. */
+  .input {
+    @apply rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-[color:var(--color-ink)] placeholder:text-slate-400 focus:border-slate-500;
   }
 
   /* Типографика тела гайдов (markdown → HTML без typography-плагина) */
@@ -101,6 +177,6 @@ body {
     @apply my-4 border-l-4 border-slate-200 pl-4 text-slate-600 italic;
   }
   .prose-guide code {
-    @apply rounded bg-slate-100 px-1 py-0.5 text-[0.85em];
+    @apply rounded bg-slate-100 px-1 py-0.5 font-mono text-[0.85em];
   }
 }

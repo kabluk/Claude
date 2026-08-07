@@ -981,7 +981,7 @@ nodes:
   - id: CN-HERO
     title: "Scanner-first главная (конституция §7-8, §59): функциональный hero с URL-вводом, каталог ниже"
     owner: frontend-engineer
-    status: todo
+    status: done
     depends_on: []
     inputs: [docs/project/DESIGN_CONSTITUTION.md (§7-8, §37, §59), src/pages/HomePage.tsx, src/pages/ScanPage.tsx, src/lib/scanner.ts]
     scope: [src/pages/HomePage.tsx, src/components/, src/lib/data.ts]
@@ -993,7 +993,27 @@ nodes:
       - "без fear-копирайтинга (D-035), без выдуманных счётчиков — 'sites scanned today' только если реально считается из D1, иначе не показывать"
       - "живой прогон Playwright: ввод URL на главной реально доводит до /report/:id (мокнутый API), состояние ошибки валидации видно"
     max_attempts: 3
-    attempts: 0
+    attempts: 1
     risk: medium
     approval_required: false
-    notes: "Заведён 2026-08-07 (D-062) как первая и самая рычажная дельта конституции: сканер уже реально задеплоен, домена не требует, меняет подачу продукта с 'каталог с кнопкой скана' на 'платформа со сканером на входе'. Остальные CN-задачи — BACKLOG.md раздел 'Конституция'."
+    notes: "Заведён 2026-08-07 (D-062) как первая и самая рычажная дельта конституции: сканер уже реально задеплоен, домена не требует, меняет подачу продукта с 'каталог с кнопкой скана' на 'платформа со сканером на входе'. Готово 2026-08-07 (D-063): hero дословно по §7 ('Check your website accessibility' / 'Scan website' / 'Free instant scan. No signup required.'), логика отправки НЕ продублирована — общий useScanForm (src/components/ScanForm.tsx) для hero и /scan/, валидация тот же isValidScanUrl. Fear-заголовок '…before the deadline finds you' снят (D-035/§57). 'Sites scanned today' не показывается — реального агрегата из D1 нет; stat-ряд только из чисел сборки (245/19/121/31из50). Каталог и оба trust-блока ниже hero (§8). Все verify прошли: build 400 стр., typecheck чисто, audit-a11y 26 стр. 0 нарушений, живой Playwright — невалидный URL даёт видимый role=alert, валидный доводит до /report/demo123 на мокнутом API, фокус-кольцо 2px видно при Tab. Скриншоты before/after — scratchpad design/."
+
+  - id: CN-TOKENS
+    title: "Дизайн-токены/типографика (конституция §24-29): нейтральная база, один акцент, семантические severity-цвета, фокус, tabular-nums"
+    owner: frontend-engineer
+    status: done
+    depends_on: [CN-HERO]
+    inputs: [docs/project/DESIGN_CONSTITUTION.md (§24-29, §37-38, §57), src/styles.css, src/pages/ReportPage.tsx]
+    scope: [src/styles.css, src/pages/, src/components/, docs/project/domains/design.md]
+    outputs: [src/styles.css, docs/project/domains/design.md]
+    verify:
+      - "npm run build / typecheck / worker:test / src:test / scripts:test — зелёные"
+      - "npm run audit-a11y — 26 страниц 0 нарушений: контраст новой палитры проверен axe живьём (главный риск итерации)"
+      - "severity-палитра согласована со шкалой impact axe-core (scanner.ts), все пары text-on-soft ≥4.5:1 (посчитано скриптом)"
+      - "фокус-кольцо видимо всегда: последние focus:outline-none сняты (LeadForm, ScanPage), Playwright подтвердил outline 2px при Tab"
+      - "шрифты self-hosted (Inter Variable уже в бандле) или system-stack — CDN нет; tabular-nums (.num) на числах-метриках"
+    max_attempts: 3
+    attempts: 1
+    risk: medium
+    approval_required: false
+    notes: "Заведён и закрыт 2026-08-07 одной итерацией с CN-HERO (D-063, первая дизайн-итерация по запросу владельца 'нужно дополнить UX и дизайн'). Решения и обоснования: DECISIONS.md D-063; источник правды системы — docs/project/domains/design.md (палитра hex+назначение, типографика, spacing, фокус, severity-семантика, анти-паттерны §57). База — slate как есть, акцент один #4338ca, severity: critical #b91c1c / serious #9a3412 / moderate #854d0e / minor slate + success/info. Кастомный моно-шрифт сознательно не введён (system-stack), tabular-nums через .num. ReportPage severity-чипы переведены с chip-accent на chip-{impact}."

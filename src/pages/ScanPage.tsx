@@ -1,21 +1,19 @@
 import { useEffect, useState } from 'react'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
 import { TurnstileWidget } from '@/components/TurnstileWidget'
-import { isValidScanUrl, submitScan, ScannerUnavailableError } from '@/lib/scanner'
+import { useScanForm } from '@/components/ScanForm'
 import { JURISDICTION_OPTIONS } from '@/lib/jurisdictions'
 import { paths } from '@/lib/data'
 
-type FormState = { kind: 'idle' } | { kind: 'submitting' } | { kind: 'error'; message: string }
-
 export default function ScanPage() {
-  const navigate = useNavigate()
-  const [url, setUrl] = useState('')
+  // Логика отправки/валидации — общая с hero главной (useScanForm, CN-HERO):
+  // здесь остаётся только то, чего нет в hero — юрисдикция и Turnstile.
+  const { url, setUrl, state, submit } = useScanForm()
   // '' = определить по домену (поведение до D-032, остаётся по умолчанию —
   // не заставляем выбирать страну ради простого скана).
   const [countryCode, setCountryCode] = useState('')
   const [turnstileToken, setTurnstileToken] = useState<string | undefined>()
-  const [state, setState] = useState<FormState>({ kind: 'idle' })
 
   // D-041: `?country=DE` предвыбирает юрисдикцию — так работает ссылка с
   // немецкого входного пути (/bfsg-check/), где страна уже известна и повторно
@@ -34,27 +32,9 @@ export default function ScanPage() {
     if (raw && JURISDICTION_OPTIONS.some((j) => j.code === raw)) setCountryCode(raw)
   }, [searchParams])
 
-  async function handleSubmit(e: React.FormEvent) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    const trimmed = url.trim()
-    if (!isValidScanUrl(trimmed)) {
-      setState({ kind: 'error', message: 'Enter a full URL starting with http:// or https://.' })
-      return
-    }
-    setState({ kind: 'submitting' })
-    try {
-      const { scanId } = await submitScan(trimmed, {
-        turnstileToken,
-        ...(countryCode ? { countryCode } : {}),
-      })
-      navigate(paths.report(scanId))
-    } catch (err) {
-      if (err instanceof ScannerUnavailableError) {
-        setState({ kind: 'error', message: 'The scanner is not available on this deployment yet.' })
-      } else {
-        setState({ kind: 'error', message: err instanceof Error ? err.message : 'Could not start the scan. Try again.' })
-      }
-    }
+    void submit({ turnstileToken, ...(countryCode ? { countryCode } : {}) })
   }
 
   return (
@@ -86,7 +66,7 @@ export default function ScanPage() {
             disabled={state.kind === 'submitting'}
             aria-describedby={state.kind === 'error' ? 'scan-url-error' : undefined}
             aria-invalid={state.kind === 'error'}
-            className="min-w-0 flex-1 rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
+            className="input min-w-0 flex-1"
           />
           <button type="submit" className="btn" disabled={state.kind === 'submitting'}>
             {state.kind === 'submitting' ? 'Starting scan…' : 'Scan now'}
@@ -94,7 +74,7 @@ export default function ScanPage() {
         </div>
 
         {state.kind === 'error' && (
-          <p id="scan-url-error" role="alert" className="mt-2 text-sm text-red-700">
+          <p id="scan-url-error" role="alert" className="mt-2 text-sm font-medium text-[color:var(--color-critical)]">
             {state.message}
           </p>
         )}
@@ -110,7 +90,7 @@ export default function ScanPage() {
             onChange={(e) => setCountryCode(e.target.value)}
             disabled={state.kind === 'submitting'}
             aria-describedby="scan-country-help"
-            className="mt-1.5 w-full max-w-xs rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500"
+            className="input mt-1.5 w-full max-w-xs"
           >
             <option value="">Detect from the domain</option>
             {JURISDICTION_OPTIONS.map((j) => (

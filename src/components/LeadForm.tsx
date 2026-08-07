@@ -217,8 +217,8 @@ export function LeadForm({ scanId }: { scanId?: string }) {
   )
 }
 
-const selectClass =
-  'mt-1.5 block w-full rounded-md border border-slate-300 px-3 py-2 text-sm focus:border-slate-500 focus:outline-none focus:ring-1 focus:ring-slate-500'
+// Токены CN-TOKENS: единый .input, глобальное фокус-кольцо не подавляется.
+const selectClass = 'input mt-1.5 block w-full'
 
 function Field({
   label,
@@ -238,7 +238,7 @@ function Field({
       </label>
       {children}
       {error && (
-        <p id={`${htmlFor}-error`} role="alert" className="mt-1 text-sm text-red-700">
+        <p id={`${htmlFor}-error`} role="alert" className="mt-1 text-sm font-medium text-[color:var(--color-critical)]">
           {error}
         </p>
       )}

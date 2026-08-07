@@ -129,7 +129,7 @@ function ReportBody({ report }: { report: ScanReport }) {
   return (
     <div>
       <h1 className="h1">Accessibility report for {report.url}</h1>
-      <p className="mt-1 text-slate-500">
+      <p className="num mt-1 text-slate-500">
         {uniquePages} page{uniquePages === 1 ? '' : 's'} scanned · {report.findings.length} issue instance
         {report.findings.length === 1 ? '' : 's'} across {groups.length} distinct rule{groups.length === 1 ? '' : 's'}
       </p>
@@ -137,8 +137,8 @@ function ReportBody({ report }: { report: ScanReport }) {
       <div className="mt-6 flex flex-wrap items-start gap-x-10 gap-y-4">
         <div>
           <div className="flex items-baseline gap-3">
-            <span className="text-4xl font-bold">{report.score ?? '—'}</span>
-            <span className="text-slate-500">/ 100</span>
+            <span className="num text-4xl font-bold">{report.score ?? '—'}</span>
+            <span className="num text-slate-500">/ 100</span>
           </div>
           <p className="mt-1 max-w-prose text-xs text-slate-500">
             This score is a rough heuristic for comparing pages over time — it is not a
@@ -155,7 +155,7 @@ function ReportBody({ report }: { report: ScanReport }) {
         {cost && (
           <div>
             <div className="flex items-baseline gap-2">
-              <span className="text-4xl font-bold">{formatCostEstimate(cost)}</span>
+              <span className="num text-4xl font-bold">{formatCostEstimate(cost)}</span>
               <span className="text-slate-500">estimated to fix</span>
             </div>
             <p className="mt-1 max-w-prose text-xs text-slate-500">
@@ -172,7 +172,20 @@ function ReportBody({ report }: { report: ScanReport }) {
       </div>
 
       {groups.length === 0 ? (
-        <p className="lede mt-8">No automatically-detectable issues found on the scanned pages. 🎉</p>
+        /* Success-состояние (§37): семантический токен + следующий шаг, не тупик.
+           Честная оговорка остаётся — чистый автоскан ≠ полная доступность. */
+        <div className="mt-8 max-w-2xl rounded-xl border border-[color:var(--color-success-border)] bg-[color:var(--color-success-soft)] p-5">
+          <p className="font-semibold text-[color:var(--color-success)]">
+            No automatically-detectable issues found on the scanned pages.
+          </p>
+          <p className="mt-1.5 text-sm text-slate-600">
+            That covers what automation can see — criteria that depend on meaning and judgement
+            still need a human review.{' '}
+            <a className="underline underline-offset-2" href={paths.methodology()}>
+              What this scan covers
+            </a>
+          </p>
+        </div>
       ) : (
         <section className="mt-8">
           <h2 className="h2 mt-0">Findings</h2>
@@ -180,11 +193,12 @@ function ReportBody({ report }: { report: ScanReport }) {
             {groups.map((g) => (
               <li key={g.ruleId} className="rounded-lg border border-slate-200 p-4">
                 <div className="flex flex-wrap items-center gap-2">
-                  <span className={`chip ${g.impact === 'critical' || g.impact === 'serious' ? 'chip-accent' : ''}`}>
-                    {impactLabel(g.impact)}
-                  </span>
+                  {/* Severity — семантические токены (CN-TOKENS, §27), не акцент
+                      бренда: акцент зарезервирован за интерактивом/evidence.
+                      Цвет никогда не единственный носитель — метка текстом. */}
+                  <span className={`chip chip-${g.impact}`}>{impactLabel(g.impact)}</span>
                   <span className="font-medium">{g.ruleId}</span>
-                  <span className="text-sm text-slate-500">
+                  <span className="num text-sm text-slate-500">
                     {g.instances.length} instance{g.instances.length === 1 ? '' : 's'}
                   </span>
                 </div>

@@ -28,7 +28,9 @@ export function Layout({
       >
         Skip to content
       </a>
-      <header className="border-b border-slate-200">
+      {/* CN-NAV (шапка, D-063): Scan — первый и единственный акцентный элемент
+          навигации; остальные пункты нейтральные. Один акцент на поверхность. */}
+      <header className="border-b border-slate-200 bg-white">
         <div className="container-page flex flex-wrap items-center gap-x-6 gap-y-2 py-4">
           <Link to="/" className="text-lg font-bold tracking-tight">
             <span aria-hidden="true" className="mr-1.5 text-[color:var(--color-accent)]">
@@ -36,7 +38,13 @@ export function Layout({
             </span>
             {SITE_NAME}
           </Link>
-          <nav aria-label="Main" className="flex gap-4 text-sm font-medium text-slate-600">
+          <nav aria-label="Main" className="flex flex-wrap items-center gap-4 text-sm font-medium text-slate-600">
+            <Link
+              className="font-semibold text-[color:var(--color-accent)] hover:text-[color:var(--color-accent-strong)]"
+              to={paths.scan()}
+            >
+              Scan
+            </Link>
             <Link className="hover:text-slate-900" to={paths.countries()}>
               Countries
             </Link>
@@ -54,7 +62,7 @@ export function Layout({
             </Link>
           </nav>
           <Link className="btn ml-auto !py-1.5 !text-xs" to={paths.scan()}>
-            Scan your site
+            Scan website
           </Link>
         </div>
       </header>
@@ -78,11 +86,12 @@ export function Layout({
       <main id="main" className="container-page pb-16 pt-6">
         {children}
       </main>
-      <footer className="border-t border-slate-200 py-10 text-sm text-slate-500">
+      <footer className="border-t border-slate-200 bg-slate-50 py-10 text-sm text-slate-600">
         <div className="container-page space-y-3">
           <p>
-            {SITE_NAME} — {agencies.length} verified digital-accessibility agencies across{' '}
-            {countries.length} countries. Every listing cites its source; nothing is invented.
+            {SITE_NAME} — <span className="num">{agencies.length}</span> verified
+            digital-accessibility agencies across <span className="num">{countries.length}</span>{' '}
+            countries. Every listing cites its source; nothing is invented.
           </p>
           <p>
             We list audit and remediation specialists only — no automated «overlay» widgets.

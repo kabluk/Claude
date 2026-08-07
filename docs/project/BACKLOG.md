@@ -318,12 +318,12 @@ Featured — B2B (агентствам, действующим в своей п�
 
 | ID | Задача | Владелец | Зависит от | Статус |
 |---|---|---|---|---|
-| CN-HERO | Scanner-first главная (§7-8, §59): функциональный hero с URL-вводом «Check your website accessibility», каталог — ниже; копирайтинг по §59 | frontend-engineer | — (домен НЕ нужен, сканер в проде) | todo (следующий кандидат) |
-| CN-NAV | IA-приоритеты (§6): Scan первым пунктом, «Guides» → «Knowledge», подпись «Experts» в UI (модель данных `agencies` не переименовывается — D-062) | frontend-engineer | CN-HERO | todo |
+| CN-HERO | Scanner-first главная (§7-8, §59): функциональный hero с URL-вводом «Check your website accessibility», каталог — ниже; копирайтинг по §59 | frontend-engineer | — (домен НЕ нужен, сканер в проде) | **done** (2026-08-07, D-063: hero + общий `useScanForm`, fear-заголовок снят, stat-ряд только из реальных данных) |
+| CN-NAV | IA-приоритеты (§6): Scan первым пунктом, «Guides» → «Knowledge», подпись «Experts» в UI (модель данных `agencies` не переименовывается — D-062) | frontend-engineer | CN-HERO | todo (частично: шапка сделана в D-063 — Scan первый акцентный пункт; остаются переименования Knowledge/Experts) |
 | CN-SCAN-STREAM | Deploy-подобный поток фаз скана (§10) вместо текстового прогресса — фазы воркера реальные (statement/feedback/DOM/axe) | frontend + backend | — | todo |
 | CN-WCAG22 | Самопроверку сайта поднять до WCAG 2.2 AA (§40): проверить конфиг axe в `audit-own-a11y.mjs`, 2.2-правила в axe 4.13 уже есть | qa-engineer | — | todo (малый) |
 | CN-WCAG-PAGES | Страницы `/wcag/[criterion]` (§20, §43) из реальных данных `en301549-coverage.json` (критерий → правила → наши проверки → гайды) | frontend + data | — | todo |
-| CN-TOKENS | Дизайн-токены/типографика (§24-29): self-hosted шрифтовая пара, семантические цвета severity, тонкая система | frontend-engineer | CN-HERO | todo |
+| CN-TOKENS | Дизайн-токены/типографика (§24-29): self-hosted шрифтовая пара, семантические цвета severity, тонкая система | frontend-engineer | CN-HERO | **done** (2026-08-07, D-063: @theme в styles.css, severity-палитра ≥4.5:1, `.num` tabular-nums, фокус-кольцо всюду; источник правды — `domains/design.md`) |
 | CN-COMPONENTS | Публичная библиотека доступных компонентов (§22) — новая крупная поверхность, backlink-движок | frontend-engineer | CN-TOKENS | todo (фаза) |
 | CN-RESEARCH | Регулярные data-продукты/бенчмарки (§23, §45) на уникальных данных | growth + data | A0-DEPLOY | todo (после деплоя) |
 

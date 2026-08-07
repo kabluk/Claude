@@ -1,6 +1,9 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
 import { JsonLd, ORIGIN, SITE_NAME } from '@/lib/seo'
+import { useScanForm } from '@/components/ScanForm'
+import { TurnstileWidget } from '@/components/TurnstileWidget'
 import {
   SERVICES,
   STANDARDS,
@@ -17,10 +20,17 @@ import { coverageSummary } from '@/lib/coverage'
 
 export default function HomePage() {
   const certified = agencies.filter((a) => a.certs.length > 0).length
+  // CN-HERO (конституция §7): главная — вход в живой продукт, не лендинг.
+  // Логика отправки полностью общая со /scan/ (useScanForm) — здесь только
+  // разметка. Никаких выдуманных счётчиков («sites scanned today» показывать
+  // нечем — реального агрегата в D1 у статической главной нет, D-063).
+  const { url, setUrl, state, submit } = useScanForm()
+  const [turnstileToken, setTurnstileToken] = useState<string | undefined>()
+
   return (
     <Layout
-      title={`${SITE_NAME}: ${agencies.length} verified WCAG & EAA audit agencies`}
-      description={`Find a verified digital-accessibility agency in ${countries.length} countries. WCAG 2.2, EN 301 549, Section 508, EAA, BITV, RGAA — real auditors, no overlays, every listing with cited sources.`}
+      title={`${SITE_NAME}: free accessibility scan + ${agencies.length} verified audit agencies`}
+      description={`Check your website accessibility with a free instant scan, then find a verified audit agency in ${countries.length} countries. WCAG 2.2, EN 301 549, Section 508, EAA, BITV, RGAA — real auditors, no overlays, every listing with cited sources.`}
       path="/"
     >
       <JsonLd
@@ -31,33 +41,102 @@ export default function HomePage() {
           url: `${ORIGIN}/`,
         }}
       />
-      <section className="py-8 sm:py-12">
-        <h1 className="h1 max-w-3xl">
-          Find a verified accessibility audit agency — before the deadline finds you
-        </h1>
-        <p className="lede">
-          {agencies.length} agencies across {countries.length} countries, checked against public
-          sources: WCAG 2.2, EN 301 549, Section 508, the European Accessibility Act, BITV and
-          RGAA. {certified} hold independently verifiable certifications. No automated
-          «overlay» vendors — real auditors only.
-        </p>
-        <div className="mt-6 flex flex-wrap gap-3">
-          <Link className="btn" to={paths.countries()}>
-            Browse by country
-          </Link>
-          <Link className="btn-ghost" to={paths.services()}>
-            Browse by service
-          </Link>
+
+      {/* 1. Функциональный hero (§7-8, §59): продукт объясняет себя взаимодействием. */}
+      <section className="py-12 sm:py-16">
+        <div className="mx-auto max-w-2xl text-center">
+          <h1 className="h1">Check your website accessibility</h1>
+          <p className="lede mx-auto">
+            Know where your website stands: an instant automated scan against WCAG — including the
+            accessibility-statement checks European regulators start with.
+          </p>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault()
+              void submit({ turnstileToken })
+            }}
+            className="mx-auto mt-6 max-w-xl"
+            noValidate
+          >
+            <label htmlFor="hero-scan-url" className="sr-only">
+              Website URL
+            </label>
+            <div className="flex flex-col gap-2 sm:flex-row">
+              <input
+                id="hero-scan-url"
+                type="url"
+                inputMode="url"
+                required
+                placeholder="https://example.com"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                disabled={state.kind === 'submitting'}
+                aria-describedby={state.kind === 'error' ? 'hero-scan-error' : undefined}
+                aria-invalid={state.kind === 'error'}
+                className="input min-w-0 flex-1 px-4 py-3 !text-base"
+              />
+              <button type="submit" className="btn px-6 py-3 !text-base" disabled={state.kind === 'submitting'}>
+                {state.kind === 'submitting' ? 'Starting scan…' : 'Scan website'}
+              </button>
+            </div>
+            {state.kind === 'error' && (
+              <p
+                id="hero-scan-error"
+                role="alert"
+                className="mt-2 text-left text-sm font-medium text-[color:var(--color-critical)]"
+              >
+                {state.message}
+              </p>
+            )}
+            <p className="mt-3 text-sm text-slate-500">
+              Free instant scan. No signup required.{' '}
+              <Link className="underline underline-offset-2 hover:text-slate-700" to={paths.scan()}>
+                Advanced options
+              </Link>
+            </p>
+            <TurnstileWidget onToken={setTurnstileToken} />
+          </form>
         </div>
+
+        {/* 2. Live product proof (§8) — только реальные числа из данных сборки,
+            каждое считается из agencies.json / en301549-coverage.json. */}
+        <dl className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-6 text-center sm:grid-cols-4">
+          {/* flex-col-reverse: число визуально сверху, DOM-порядок dt→dd валиден */}
+          <div className="flex flex-col-reverse">
+            <dt className="text-xs font-medium uppercase tracking-wide text-slate-500">Verified agencies</dt>
+            <dd className="num mt-1 text-2xl font-bold">{agencies.length}</dd>
+          </div>
+          <div className="flex flex-col-reverse">
+            <dt className="text-xs font-medium uppercase tracking-wide text-slate-500">Countries</dt>
+            <dd className="num mt-1 text-2xl font-bold">{countries.length}</dd>
+          </div>
+          <div className="flex flex-col-reverse">
+            <dt className="text-xs font-medium uppercase tracking-wide text-slate-500">Verifiable certifications</dt>
+            <dd className="num mt-1 text-2xl font-bold">{certified}</dd>
+          </div>
+          <div className="flex flex-col-reverse">
+            <dt className="text-xs font-medium uppercase tracking-wide text-slate-500">EN 301 549 checks</dt>
+            <dd className="num mt-1 text-2xl font-bold">
+              {coverageSummary.covered}
+              <span className="text-base font-medium text-slate-500">/{coverageSummary.total}</span>
+            </dd>
+          </div>
+        </dl>
       </section>
 
+      {/* 3+. Каталог и доверие остаются ниже hero — порядок §8. */}
       <section>
-        <h2 className="h2">By country</h2>
-        <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <h2 className="h2">Find a verified audit agency</h2>
+        <p className="max-w-2xl text-sm text-slate-600">
+          When the scan finds work to do, these are the people who fix it: {agencies.length} audit
+          and remediation specialists, checked against public sources — no automated «overlay»
+          vendors, {certified} with independently verifiable certifications.
+        </p>
+        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
           {countries.slice(0, 12).map((c) => (
             <Link key={c.code} to={paths.country(c)} className="card tile">
               <span className="font-semibold">{c.name}</span>
-              <span className="text-sm text-slate-500">{c.count} agencies</span>
+              <span className="num text-sm text-slate-500">{c.count} agencies</span>
             </Link>
           ))}
         </div>
@@ -75,7 +154,7 @@ export default function HomePage() {
         <div className="flex flex-wrap gap-2">
           {SERVICES.map((s) => (
             <Link key={s} to={paths.service(s)} className="chip hover:border-slate-400">
-              {serviceLabel(s)} · {withService(agencies, s).length}
+              {serviceLabel(s)} · <span className="num">{withService(agencies, s).length}</span>
             </Link>
           ))}
         </div>
@@ -86,7 +165,7 @@ export default function HomePage() {
         <div className="flex flex-wrap gap-2">
           {STANDARDS.map((s) => (
             <Link key={s} to={paths.standard(s)} className="chip hover:border-slate-400">
-              {standardLabel(s)} · {withStandard(agencies, s).length}
+              {standardLabel(s)} · <span className="num">{withStandard(agencies, s).length}</span>
             </Link>
           ))}
         </div>
