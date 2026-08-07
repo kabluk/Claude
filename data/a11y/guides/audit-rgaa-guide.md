@@ -18,7 +18,7 @@
     },
     {
       "q": "Quelles sanctions en cas de non-conformité au RGAA ?",
-      "a": "Depuis l'ordonnance du 6 septembre 2023, l'Arcom peut mettre en demeure les organismes concernés puis prononcer des sanctions pécuniaires allant jusqu'à 50 000 euros pour non-respect des exigences d'accessibilité et jusqu'à 25 000 euros pour manquement aux obligations de déclaration, de schéma pluriannuel ou d'affichage. Ces montants sont modulés selon la nature, la gravité et la durée du manquement."
+      "a": "Depuis l'ordonnance du 6 septembre 2023, l'Arcom peut constater le manquement, mettre en demeure l'organisme concerné puis, si celui-ci persiste, prononcer une sanction pécuniaire — la loi distingue le non-respect des exigences d'accessibilité du simple défaut d'affichage (déclaration, schéma pluriannuel). Nous ne citons pas de montant précis ici : le plafond légal dépend de la nature, de la gravité et de la durée du manquement, et une entreprise concernée au seul titre de son chiffre d'affaires n'est contrôlée par l'Arcom que sur ses obligations d'affichage — un chiffre isolé donnerait une image inexacte du risque réel."
     },
     {
       "q": "À quelle fréquence faut-il refaire un audit RGAA ?",
@@ -75,14 +75,9 @@ Le [schéma pluriannuel de mise en accessibilité](https://accessibilite.numeriq
 
 ## Sanctions : ce que risque un organisme non conforme
 
-Depuis l'ordonnance du 6 septembre 2023, qui a créé l'article 47-1 de la loi de 2005, [l'Arcom est chargée de contrôler le respect de ces obligations](https://www.arcom.fr/nous-connaitre/nos-missions/garantir-le-pluralisme-et-la-cohesion-sociale/les-droits-des-personnes-handicapees/accessibilite-des-sites-et-des-services-numeriques). Selon l'Arcom elle-même, la procédure est graduée : constat par des agents assermentés, mise en demeure, puis sanction pécuniaire si le manquement persiste :
+Depuis l'ordonnance du 6 septembre 2023, qui a créé l'article 47-1 de la loi de 2005, [l'Arcom est chargée de contrôler le respect de ces obligations](https://www.arcom.fr/nous-connaitre/nos-missions/garantir-le-pluralisme-et-la-cohesion-sociale/les-droits-des-personnes-handicapees/accessibilite-des-sites-et-des-services-numeriques). Selon l'Arcom elle-même, la procédure est graduée : constat par des agents assermentés, mise en demeure, puis sanction pécuniaire si le manquement persiste, avec une sanction distincte selon qu'il s'agit d'un non-respect des exigences d'accessibilité (critères RGAA) ou d'une absence de déclaration d'accessibilité, de schéma pluriannuel ou d'affichage de l'état de conformité.
 
-| Manquement | Sanction maximale |
-|---|---|
-| Non-respect des exigences d'accessibilité (critères RGAA) | **50 000 €** |
-| Absence de déclaration d'accessibilité, de schéma pluriannuel ou d'affichage de l'état de conformité | **25 000 €** |
-
-Ces montants sont modulables selon la nature, la gravité et la durée du manquement, et une nouvelle sanction peut être prononcée si le manquement persiste au-delà de six mois. Précision importante donnée par l'Arcom : pour les entreprises concernées au seul titre de leur chiffre d'affaires, elle ne contrôle que les obligations d'affichage — mais le risque réputationnel et contentieux (Défenseur des droits, associations) demeure. Pour les services couverts par l'Acte européen sur l'accessibilité, des autorités sectorielles de contrôle disposent de pouvoirs propres depuis le 28 juin 2025.
+Nous ne citons volontairement aucun montant ici : le plafond légal se module selon la nature, la gravité et la durée du manquement, et une nouvelle sanction peut être prononcée si celui-ci persiste au-delà de six mois — un chiffre isolé, sorti de ce contexte, surestimerait ou sous-estimerait le risque réel selon les cas. Précision importante donnée par l'Arcom : pour les entreprises concernées au seul titre de leur chiffre d'affaires, elle ne contrôle que les obligations d'affichage — mais le risque réputationnel et contentieux (Défenseur des droits, associations) demeure. Pour les services couverts par l'Acte européen sur l'accessibilité, des autorités sectorielles de contrôle disposent de pouvoirs propres depuis le 28 juin 2025.
 
 ## Comment se déroule un audit RGAA
 
