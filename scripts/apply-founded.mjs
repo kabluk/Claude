@@ -900,14 +900,14 @@ const UPDATES = [
 // найти не удалось: сайт датирует только ДЕЯТЕЛЬНОСТЬ («seit/since/depuis …»)
 // либо не называет год вовсе. Снимаются явно — журнал в domains/data.md.
 const CLEAR = [
-  'anatom5', // "Accessibility Experten seit 2003" — год специализации, агентство старше
+  'anatom5', // "Accessibility Experten seit 2003" — год специализации, агентство старше; ПЕРЕСМОТРЕНО D-052/D-053: apply-founded-li.mjs находит явное "gegründet" на /agentur/grundsatz (2003), тот же год
   'bitv-consult', // "seit 2008 als selbstständiger Berater" — начало практики, не основание
   'usablenet', // год не опубликован нигде на сайте
   'usable-y-accesible', // сайт-CV, год компании не назван
   'ilikecake', // "proven track record … since 2006" — опыт, не основание
-  'anysurfer', // "Sinds 2001 helpen we organisaties" — деятельность, не основание
+  'anysurfer', // "Sinds 2001 helpen we organisaties" — деятельность, не основание; ПЕРЕСМОТРЕНО D-052: apply-founded-li.mjs находит явное основание (2001, под именем BlindSurfer) на отдельной странице истории
   'nexer-digital', // "Since 2007, our team has built a reputation" — репутация, не основание
-  'web-usability', // год не опубликован нигде на сайте
+  'web-usability', // год не опубликован нигде на сайте — живой сайт был за anti-bot; ПЕРЕСМОТРЕНО D-053: apply-founded-li.mjs находит явное "established in 2001" через архивную копию Wayback
   'dig-inclusion', // год не опубликован нигде на сайте
 ]
 

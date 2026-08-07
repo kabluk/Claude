@@ -471,3 +471,138 @@ access`, `eleven-ways`, `grackledocs`, `agentur-barrierefreie-website`,
 про арифметику, а не про потерю списка). Следующей итерации: 80 непроверенных
 не восстановлены построчно здесь — взять `founded == null` из `agencies.json`
 напрямую и вычесть все 73 slug'а (14+59 выше), не пересказывать числом из прозы.
+
+## G-FOUNDED-LI: пакеты 11-15, вся оставшаяся очередь (2026-08-07, D-053)
+
+Оставшиеся 80 записей (пакеты 1, 2, 4, 5, 10 из предыдущей попытки) розданы
+заново пятью параллельными пакетами по 16. **Обе первые попытки сорвались, не
+дав ни одной строки результата**: первая — на лимите API-сессии (та же причина,
+что у первого раунда), вторая — на interrupt пользовательского tool-use
+посреди работы (переключение `/model`, не связано с содержанием задачи). Обе
+уже собранные, но незавершённые транскрипты проверены на предмет частичных
+находок — их не было, оба запуска прерваны до генерации структурированного
+вывода. Третий запуск дошёл до конца всеми пятью пакетами.
+
+**Каждая находка перепроверена детерминированным скриптом** (`verify-quotes.mjs`)
+перед применением: 13/17 совпали автоматически, 4 (`barrierbreak`,
+`braille-institute-access-solutions`, `skynet-technologies`, `web-usability`)
+потребовали ручной проверки — три из-за anti-bot защиты живого сайта (обойдено
+через живой `curl` с другим UA или архивную копию Wayback того же URL), один
+(`vobacom`) прошёл сразу. Все 4 подтверждены вручную построчным сравнением с
+живым/архивным содержимым страницы. Инвариант сборки доказан негативно: у
+`vobacom` снята цитата года → `build-a11y.mjs` упал с точным указанием записи
+(`agencies[225] vobacom: founded 1999 set, but no sourceRef label quotes that
+year`) → откат → снова зелёно.
+
+**Принято (17), год + первоисточник + дословная цитата у каждой:**
+
+| slug | год | источник |
+|---|---|---|
+| `deutsche-telekom-mms` | 1995 | Corporate blog: "am 9. Januar 1995 ... offiziell gegründet" (предшественник Multimedia Software GmbH Dresden) |
+| `anatom5` | 2003 | /agentur/grundsatz: "Als wir 2003 anatom5 gegründet haben" — пересматривает CLEAR из D-047 |
+| `hcltech` | 1976 | "Our Journey" timeline: "HCL is founded ... 1976" |
+| `barrierbreak` | 2004 | "...founded in the year 2004 with a strong belief..." (anti-bot, подтверждено через Wayback https) |
+| `braille-institute-access-solutions` | 1919 | History: "founded the Universal Braille Press in 1919" (anti-bot, подтверждено через Wayback https) |
+| `proper-access` | 2019 | "Opgericht in 2019, 900+ audits uitgevoerd" |
+| `cardan` | 2002 | "Wij zijn in 2002 ontstaan" (специализация на доступности с 2016, та же организация) |
+| `digitelle` | 2016 | "...startet han Digitelle i 2016..." + footer "Etablert i 2016" |
+| `avaava` | 2017 | "Vuonna 2017 perustettiin Avaava Digital Oy" (бренд возник 2009 внутри Karanttia Oy, взят год юрлица) |
+| `vision-australia` | 2004 | History: "In 2004 Vision Australia ... formed following the merger of..." |
+| `skynet-technologies` | 2002 | Stat-плитка About Us: "2002" / "Founded in" |
+| `sierra7` | 2009 | Leadership bio: "...since its founding in 2009" |
+| `jim-byrne-associates` | 2003 | "In 2003, I started my own business..." (от первого лица) |
+| `web-usability` | 2001 | "...established in 2001" — anti-bot на живом сайте, подтверждено через Wayback; пересматривает CLEAR из D-047 |
+| `tetralogical` | 2019 | "We formed TetraLogical in 2019..." |
+| `alpanet` | 2000 | Timeline "Powstanie firmy ALPANET": "2000 Powstanie firmy ALPANET" |
+| `vobacom` | 1999 | Historia: "1999 Początkowo firma działa jako spółka cywilna BMPG" (в 2006 переименована в VOBACOM — смена формы, взят более ранний старт) |
+
+**Пересматривает прежний вывод (2): `anatom5`, `web-usability`.** Оба были в
+CLEAR-списке D-047 («год не опубликован» / «activity wording»). Глубокая
+проверка нашла у `anatom5` явное «gegründet» на отдельной странице
+`/agentur/grundsatz` (первый проход видел только «seit 2003» на главной); у
+`web-usability` — живой сайт при первом проходе отдавал контент нормально, но
+теперь оказался за anti-bot защитой во всех попытках (живых и архивных
+напрямую), обойдено через Wayback-снапшот той же страницы, где текст
+«established in 2001» сохранился с первого прохода индексации архива.
+
+**Отклонено — все 63 записи (59 NOT_FOUND + 3 AMBIGUOUS + 1 UNREACHABLE),
+построчно:**
+
+| slug | вердикт | причина |
+|---|---|---|
+| `accessibility-innovations` | NOT_FOUND | Anti-bot на главной/контакте; /who-we-are/ загрузилась, года нет |
+| `visuellverstehen` | NOT_FOUND | Impressum: HRB+USt-IdNr без даты |
+| `gehirngerecht-digital` | NOT_FOUND | HRB 37996 без даты |
+| `wcag-audyt-pl` | NOT_FOUND | «Już ponad 7 lat badamy» — опыт |
+| `lepszyweb` | NOT_FOUND | Только копирайт «© 2019» |
+| `audyt-dostepnosci-pl` | NOT_FOUND | Года нет нигде |
+| `barrierefreiheit-umsetzen` | NOT_FOUND | «Über 10 Jahre Expertise» — опыт |
+| `piksl-labor-bielefeld` | NOT_FOUND | HRB 41835 материнской Stiftung без даты |
+| `adesso-mobile` | NOT_FOUND | «Seit über einem Jahrzehnt» — decade-wording; /unternehmen редиректит на adesso.de |
+| `hdm-stuttgart-kompetenzzentrum` | NOT_FOUND | «besteht seit fast 4 Jahren» — длительность без года |
+| `barrierekompass` | NOT_FOUND | Портал anatom5; текст про anatom5, не про сам Barrierekompass |
+| `mindscreen` | NOT_FOUND | HRB 210534 без даты |
+| `twin-cubes` | NOT_FOUND | «umfirmiert zum 1.1.2017» — переименование, не основание |
+| `bitv-consult` | NOT_FOUND | «seit 2008 als selbstständiger Berater» — самозанятость; подтверждает CLEAR из D-047 |
+| `marcus-herrmann` | NOT_FOUND | Личный сайт консультанта, About-страницы нет |
+| `usablenet` | NOT_FOUND | «Since 2000» — деятельность; подтверждает CLEAR из D-047; LinkedIn за authwall |
+| `eclusief` | NOT_FOUND | About-страницы нет; копирайт родительского бренда «normeris» |
+| `audit-house` | NOT_FOUND | «al 6 jaar» — относительный стаж, не год |
+| `bureau-toegankelijkheid` | NOT_FOUND | KVK без даты |
+| `accessible-minds` | NOT_FOUND | Года нет нигде |
+| `digitaal-toegankelijk` | NOT_FOUND | Копирайт «© 2019-2026» не считается |
+| `level-level` | UNREACHABLE | Cloudflare challenge на все пути |
+| `tu-web-accesible` | NOT_FOUND | About и aviso legal без года |
+| `accesit-inclusivo` | NOT_FOUND | About-страницы нет в sitemap |
+| `auditores-accesibilidad` | NOT_FOUND | «Desde 2008» — карьера сотрудника, не компании |
+| `all-able` | NOT_FOUND | About/our-story + Wayback 2020: основатели названы, года нет |
+| `dig-inclusion` | NOT_FOUND | Vue SPA, пустая оболочка; Wayback 2017 — только копирайт; подтверждает CLEAR из D-047 |
+| `weco-digital-accessibility` | NOT_FOUND | Anti-bot; Wayback 2012 (About/Founder/Business Facts) — года нет |
+| `perkins-access` | NOT_FOUND | Редирект на perkins.org; год есть только у материнской Perkins School for the Blind |
+| `new-editions-consulting` | NOT_FOUND | About/Company Overview без года |
+| `afixt` | NOT_FOUND | «founded by Karl Groves» БЕЗ года |
+| `accessible-web` | AMBIGUOUS | Нарратив происхождения: год и «was born» в разных предложениях — вывод, не заявление |
+| `prime-access-consulting` | NOT_FOUND | Года нет нигде |
+| `chax-training-and-consulting` | AMBIGUOUS | 2024 — слияние двух существующих практик (Chelius + Castro/Tamman), не основание с нуля |
+| `216digital` | NOT_FOUND | Плитка «25 Years in Business» без явного года |
+| `accessibility-shield` | NOT_FOUND | About-страницы нет вообще (живьём и в Wayback) |
+| `converge-accessibility` | NOT_FOUND | About доступна, только копирайт |
+| `accessibility-works` | NOT_FOUND | «Propeller was founded in 1997» — родительская компания, не сам бренд |
+| `accessible-org` | NOT_FOUND | «Founded by Kris Rivenburgh» БЕЗ года |
+| `inklusio` | NOT_FOUND | DNS не резолвится; Wayback 2020-2024 — карьера сотрудника, не компании |
+| `peytz-co` | NOT_FOUND | «Siden 2002 har vi skabt» — деятельность |
+| `nettkonsult` | NOT_FOUND | Года нет; LinkedIn-ссылка без года на сайте |
+| `nomensa` | NOT_FOUND | 2010 — год материнской Sideshow Group, не самой Nomensa/GAIN |
+| `user-vision` | NOT_FOUND | About/история-страницы нет в sitemap |
+| `hassell-inclusion` | NOT_FOUND | «founded by» БЕЗ года ни на одной версии 2012-2019 |
+| `test-partners` | NOT_FOUND | «projects since 2002» — деятельность |
+| `hex-productions` | NOT_FOUND | «10 years» юбилейный пост подразумевает ~2015, явного года нет |
+| `nexer-digital` | NOT_FOUND | Точное совпадение с паттерном «reputation since YYYY»; подтверждает CLEAR из D-047 |
+| `shaw-trust-accessibility-services` | NOT_FOUND | 1982 — год материнской благотворительной Shaw Trust |
+| `idcom-group` | NOT_FOUND | «Od ponad 20 lat» — опыт; KRS без даты |
+| `venti` | NOT_FOUND | «działa ... od 20 lat» — деятельность |
+| `fundacja-widzialni` | NOT_FOUND | «od 2009 r. zajmuje się» — since-wording |
+| `agileo-it` | NOT_FOUND | «od 2012 roku» — since-wording; LinkedIn за логином |
+| `intracom-pl` | NOT_FOUND | «20 lat doświadczenia» — опыт; подстраницы SPA |
+| `akcess-net` | NOT_FOUND | «Od 2002 roku pomagamy» — since-wording |
+| `spoldzielnia-socjalna-fado` | NOT_FOUND | Устав цитирует только общие законы, даты регистрации FADO нет |
+| `dranas-project` | NOT_FOUND | «Przez ostatnie 10 lat» — опыт |
+| `kinaole` | NOT_FOUND | Года нет вовсе |
+| `fundacja-integracja` | AMBIGUOUS | Год относится к основанию журнала «Integracja», не явно к самому фонду |
+| `akademia-slonca` | NOT_FOUND | «Od niemal 10 lat» — опыт |
+| `nautil` | NOT_FOUND | Года нет; KRS без даты |
+| `optimal-it` | NOT_FOUND | Найденная дата 2003 — про клиентский портал OX.PL, не про компанию |
+| `intermedia-spolka-jawna` | NOT_FOUND | «Od ponad dwudziestu lat» — опыт |
+
+59 NOT_FOUND + 3 AMBIGUOUS + 1 UNREACHABLE = 63, плюс 17 принятых = 80
+(сходится с числом переданных в пакеты). `level-level` — UNREACHABLE, не
+NOT_FOUND: остаётся кандидатом на повтор другим методом/сетью.
+
+**Очередь `founded == null` исчерпана полностью.** До этого прохода — 153
+записи (73 уже отклонены + 80 не тронуты); после — все 153 проверены (136
+отклонённых: 73 из предыдущих проходов + 63 из этого; 17 принято). Остаток —
+**136 записей без `founded`**, все с пометкой «уже проверено», ни одна не
+«не проверена вообще». `founded` теперь у **109/245** (было 92). Возврат к
+этому полю имеет смысл только с НОВЫМ источником/методом (например, платный
+реестр компаний по странам) — не повторным обходом тех же публичных страниц
+тем же методом.

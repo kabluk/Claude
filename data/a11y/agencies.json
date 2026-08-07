@@ -984,9 +984,14 @@
       {
         "url": "https://www.telekom-mms.com/barrierefreiheit",
         "label": "Accessibility services page (audits, standards, trainings)"
+      },
+      {
+        "url": "https://www.telekom-mms.com/blog/artikel/detail/30-jahre-telekom-mms-von-der-mutigen-idee-zur-digitalen-erfolgsgeschichte",
+        "label": "Corporate blog: \"Vor 30 Jahren, am 9. Januar 1995, wurde unser Unternehmen als „Multimedia Software GmbH Dresden\" mit einem Eintrag ins Handelsregister offiziell gegründet.\" (Vorgänger, später T-Systems Multimedia Solutions / Deutsche Telekom MMS); checked 2026-08-07 (пакеты 11-15, третий запуск)"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 1995
   },
   {
     "slug": "materna",
@@ -1100,9 +1105,14 @@
       {
         "url": "https://anatom5.de/impressum",
         "label": "Impressum (HQ Duesseldorf)"
+      },
+      {
+        "url": "https://anatom5.de/agentur/grundsatz",
+        "label": "\"Als wir 2003 anatom5 gegründet haben, stand digitale Barrierefreiheit kaum auf der Agenda\" — пересматривает CLEAR из D-047 (тогда видели только \"seit 2003\" на главной); checked 2026-08-07 (пакеты 11-15, третий запуск)"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2003
   },
   {
     "slug": "tollwerk",
@@ -1842,9 +1852,14 @@
       {
         "url": "https://www.hcltech.com/engineering-rd-services/product-engineering/accessibility-services",
         "label": "Accessibility Services page (title/description indexed) — service list, VPAT-as-a-service, PWD studies"
+      },
+      {
+        "url": "https://www.hcltech.com/about-us",
+        "label": "\"Our Journey\" timeline, запись 1976: \"HCL is founded as one of the original tech, computing and engineering startups of India\"; checked 2026-08-07 (пакеты 11-15, третий запуск)"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 1976
   },
   {
     "slug": "barrierbreak",
@@ -1898,9 +1913,14 @@
       {
         "url": "https://www.barrierbreak.com/contact-us/",
         "label": "contact page — Mumbai HQ address"
+      },
+      {
+        "url": "https://www.barrierbreak.com/accessibility-barrierbreak/",
+        "label": "\"...an accessibility testing and consulting company based in India, founded in the year 2004 with a strong belief that that technology can empower people with disabilities...\"; checked 2026-08-07 (пакеты 11-15, третий запуск)"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2004
   },
   {
     "slug": "allyant",
@@ -2581,9 +2601,14 @@
       {
         "url": "https://brailleinstitute.org/",
         "label": "homepage footer (Los Angeles address, 501(c)(3))"
+      },
+      {
+        "url": "https://www.brailleinstitute.org/about-us/history/",
+        "label": "History: \"...founded the Universal Braille Press in 1919, which was later incorporated as Braille Institute of America, Inc.\"; checked 2026-08-07 (пакеты 11-15, третий запуск)"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 1919
   },
   {
     "slug": "wcag-nl",
@@ -2886,9 +2911,14 @@
       {
         "url": "https://properaccess.nl/",
         "label": "Homepage — WCAG/EAA audit & monitoring services, Amsterdam address, IAAP CPACC/WAS certifications, client list"
+      },
+      {
+        "url": "https://www.properaccess.nl/auditbureau-digitale-toegankelijkheid/",
+        "label": "\"Opgericht in 2019, 900+ audits uitgevoerd\"; checked 2026-08-07 (пакеты 11-15, третий запуск)"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2019
   },
   {
     "slug": "digitaal-toegankelijk",
@@ -2979,9 +3009,14 @@
       {
         "url": "https://www.cardan.com/contact",
         "label": "contact page (Burgemeester Brokxlaan 32, Tilburg)"
+      },
+      {
+        "url": "https://www.cardan.com/over-cardan",
+        "label": "\"Wij zijn in 2002 ontstaan om mensen die zelfstandig lastiger aan een baan kunnen komen, een kans te geven om zich verder te ontwikkelen.\" (specialisatie in digitale toegankelijkheid sinds 2016, zelfde organisatie); checked 2026-08-07 (пакеты 11-15, третий запуск)"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2002
   },
   {
     "slug": "level-level",
@@ -4484,9 +4519,14 @@
       {
         "url": "https://www.digitelle.no/",
         "label": "homepage — WCAG 2.2 AA-by-default claim, Lørenskog address, founding year"
+      },
+      {
+        "url": "https://digitelle.no/om-oss/",
+        "label": "\"...startet han Digitelle i 2016...\" + footer \"Etablert i 2016, med over 20 års WordPress-erfaring.\"; checked 2026-08-07 (пакеты 11-15, третий запуск)"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2016
   },
   {
     "slug": "nettkonsult",
@@ -4566,9 +4606,14 @@
       {
         "url": "https://www.avaava.fi/",
         "label": "homepage — service list, Helsinki address, wayfinding-design track record, Avaava Academy"
+      },
+      {
+        "url": "https://avaava.fi/yritys/yritystarina",
+        "label": "\"Vuonna 2017 perustettiin Avaava Digital Oy yhdessä hallituksen puheenjohtajan Petteri Alinikulan kanssa.\" (Avaava-merkki syntyi 2009 emoyhtiö Karanttia Oy:n sisällä, yhtiöitettiin Avaava Digital Oy:ksi 2017); checked 2026-08-07 (пакеты 11-15, третий запуск)"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2017
   },
   {
     "slug": "eficode",
@@ -4661,9 +4706,14 @@
       {
         "url": "https://www.visionaustralia.org/",
         "label": "homepage — org description, Digital Access business/corporate section"
+      },
+      {
+        "url": "https://www.visionaustralia.org/about-us/who-we-are/history",
+        "label": "\"In 2004 Vision Australia became Australia's first national blindness agency. Vision Australia was formed following the merger of the Royal Blind Society (RBS), the Royal Victorian Institute for the Blind (RVIB), Vision Australia Foundation (VAF), and the National Information Library Services (NILS) in July 2004.\"; checked 2026-08-07 (пакеты 11-15, третий запуск)"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2004
   },
   {
     "slug": "open-doors-organization",
@@ -4779,10 +4829,15 @@
       {
         "url": "https://www.skynettechnologies.com/website-accessibility-audit",
         "label": "manual audit tiers: \"5 Pages / 2 Templates $500 … 100 Pages / 40 Templates $12,500\" ≈ €460–11.5k; checked 2026-08-06"
+      },
+      {
+        "url": "https://www.skynettechnologies.com/about-us",
+        "label": "Stat-плитка на странице About Us: \"2002\" с подписью \"Founded in\" сразу под числом; checked 2026-08-07 (пакеты 11-15, третий запуск)"
       }
     ],
     "lastVerified": "2026-08-04",
-    "priceBand": "mid"
+    "priceBand": "mid",
+    "founded": 2002
   },
   {
     "slug": "sierra7",
@@ -4828,9 +4883,14 @@
       {
         "url": "https://sierra7.com/?s=508",
         "label": "site search (VA Section 508 enablement contract news)"
+      },
+      {
+        "url": "https://sierra7.com/our-leadership/",
+        "label": "Leadership bio: \"...has been a Sierra7 partner since its founding in 2009\"; checked 2026-08-07 (пакеты 11-15, третий запуск)"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2009
   },
   {
     "slug": "abilitynet",
@@ -5484,10 +5544,15 @@
       {
         "url": "https://jimbyrne.co.uk/about/",
         "label": "about page (Making Connections Unit 1996)"
+      },
+      {
+        "url": "https://jimbyrne.co.uk/about-jim-byrne-associates-accessible-website-design/",
+        "label": "Заявление от первого лица: \"In 2003, I started my own business to provide accessibility auditing and accessible website design services to a wider group of organisations.\"; checked 2026-08-07 (пакеты 11-15, третий запуск)"
       }
     ],
     "lastVerified": "2026-08-04",
-    "priceBand": "mid"
+    "priceBand": "mid",
+    "founded": 2003
   },
   {
     "slug": "damteq",
@@ -5695,9 +5760,14 @@
       {
         "url": "https://webusability.co.uk",
         "label": "homepage (accessibility audit, inclusive user testing, training)"
+      },
+      {
+        "url": "https://web.archive.org/web/20260101053403/https://www.webusability.co.uk/about-us/",
+        "label": "\"Web Usability is a strategic user experience consultancy, established in 2001.\" — живой сайт был за anti-bot (sgcaptcha), подтверждено через архивную копию Wayback того же URL; пересматривает CLEAR из D-047 (\"год не опубликован нигде на сайте\" — тогда сайт тоже был недоступен); checked 2026-08-07 (пакеты 11-15, третий запуск)"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2001
   },
   {
     "slug": "dig-inclusion",
@@ -5787,9 +5857,14 @@
       {
         "url": "https://tetralogical.com/",
         "label": "homepage — services, team, address in footer (60 Windsor Avenue, London)"
+      },
+      {
+        "url": "https://tetralogical.com/about/",
+        "label": "\"We formed TetraLogical in 2019 because we saw the market become more driven by legal compliance than meeting the needs of different people.\"; checked 2026-08-07 (пакеты 11-15, третий запуск)"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2019
   },
   {
     "slug": "cyber-duck",
@@ -11384,9 +11459,14 @@
       {
         "url": "https://alpanet.pl",
         "label": "Homepage — portfolio categories incl. WCAG 2.1 for local government and BIP"
+      },
+      {
+        "url": "https://alpanet.pl/o-nas",
+        "label": "Таймлайн истории, заголовок \"Powstanie firmy ALPANET\": \"2000 Powstanie firmy ALPANET Firma ALPANET rozpoczęła swoją działalność, stawiając na innowacje i nowoczesne technologie.\"; checked 2026-08-07 (пакеты 11-15, третий запуск)"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2000
   },
   {
     "slug": "vobacom",
@@ -11441,9 +11521,14 @@
       {
         "url": "https://vobacom.pl",
         "label": "Homepage — service menu incl. Wdrożenie WCAG"
+      },
+      {
+        "url": "https://vobacom.pl/o-firmie",
+        "label": "Таймлайн \"Historia\": \"1999 Początkowo firma działa jako spółka cywilna BMPG (Business Media Professional Group)...\" (в 2006 преобразована в sp. z o.o. и переименована в VOBACOM — смена формы, не основание; взята более ранняя дата старта деятельности); checked 2026-08-07 (пакеты 11-15, третий запуск)"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 1999
   },
   {
     "slug": "virtualmedia",

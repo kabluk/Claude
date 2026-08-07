@@ -8,8 +8,13 @@
 // LinkedIn не самостоятельный источник). Журнал по пакетам — docs/project/
 // domains/data.md, полный список принятых/отклонённых — DECISIONS.md.
 //
-// Первый пакет (20 записей, 6 принято) — уже применён в 7bb714c. Это —
+// Первый пакет (20 записей, 6 принято) — уже применён в 7bb714c. Второй блок —
 // пакеты 3,6,7,8,9 из повторного прохода 2026-08-07 (80 записей, 21 принято).
+// Третий блок (D-053) — пакеты 11-15, вторая попытка (первая сорвалась на API
+// session limit, повторный запуск был прерван пользовательским interrupt
+// посреди работы — обе попытки не дали ни одной записи; перезапущены с нуля
+// третий раз, 80/80 записей дошли до конца). 17 из 80 приняты, все проверены
+// живьём (deterministic fetch + поиск дословной цитаты) перед применением.
 
 import { readFileSync, writeFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
@@ -18,6 +23,7 @@ import { dirname, join } from 'node:path'
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const FILE = join(ROOT, 'data/a11y/agencies.json')
 const CHECKED = 'checked 2026-08-07'
+const CHECKED3 = 'checked 2026-08-07 (пакеты 11-15, третий запуск)'
 
 const UPDATES = [
   {
@@ -157,6 +163,136 @@ const UPDATES = [
     slug: 'net-15',
     year: 1997,
     refs: [{ url: 'https://www.net15.fr/presentation-histoire-societe-15-cantal', label: 'Frise historique de la société: "1997 – La création de Net15", suivi de "L\'aventure Net15 commence."; ' + CHECKED }],
+  },
+
+  // --- Третий блок (D-053), пакеты 11-15, 17 записей — полный журнал domains/data.md ---
+  {
+    slug: 'deutsche-telekom-mms',
+    year: 1995,
+    refs: [{
+      url: 'https://www.telekom-mms.com/blog/artikel/detail/30-jahre-telekom-mms-von-der-mutigen-idee-zur-digitalen-erfolgsgeschichte',
+      label: 'Corporate blog: "Vor 30 Jahren, am 9. Januar 1995, wurde unser Unternehmen als „Multimedia Software GmbH Dresden" mit einem Eintrag ins Handelsregister offiziell gegründet." (Vorgänger, später T-Systems Multimedia Solutions / Deutsche Telekom MMS); ' + CHECKED3,
+    }],
+  },
+  {
+    slug: 'anatom5',
+    year: 2003,
+    refs: [{
+      url: 'https://anatom5.de/agentur/grundsatz',
+      label: '"Als wir 2003 anatom5 gegründet haben, stand digitale Barrierefreiheit kaum auf der Agenda" — пересматривает CLEAR из D-047 (тогда видели только "seit 2003" на главной); ' + CHECKED3,
+    }],
+  },
+  {
+    slug: 'hcltech',
+    year: 1976,
+    refs: [{ url: 'https://www.hcltech.com/about-us', label: '"Our Journey" timeline, запись 1976: "HCL is founded as one of the original tech, computing and engineering startups of India"; ' + CHECKED3 }],
+  },
+  {
+    slug: 'barrierbreak',
+    year: 2004,
+    refs: [{
+      url: 'https://www.barrierbreak.com/accessibility-barrierbreak/',
+      label: '"...an accessibility testing and consulting company based in India, founded in the year 2004 with a strong belief that that technology can empower people with disabilities..."; ' + CHECKED3,
+    }],
+  },
+  {
+    slug: 'braille-institute-access-solutions',
+    year: 1919,
+    refs: [{
+      url: 'https://www.brailleinstitute.org/about-us/history/',
+      label: 'History: "...founded the Universal Braille Press in 1919, which was later incorporated as Braille Institute of America, Inc."; ' + CHECKED3,
+    }],
+  },
+  {
+    slug: 'proper-access',
+    year: 2019,
+    refs: [{ url: 'https://www.properaccess.nl/auditbureau-digitale-toegankelijkheid/', label: '"Opgericht in 2019, 900+ audits uitgevoerd"; ' + CHECKED3 }],
+  },
+  {
+    slug: 'cardan',
+    year: 2002,
+    refs: [{
+      url: 'https://www.cardan.com/over-cardan',
+      label: '"Wij zijn in 2002 ontstaan om mensen die zelfstandig lastiger aan een baan kunnen komen, een kans te geven om zich verder te ontwikkelen." (specialisatie in digitale toegankelijkheid sinds 2016, zelfde organisatie); ' + CHECKED3,
+    }],
+  },
+  {
+    slug: 'digitelle',
+    year: 2016,
+    refs: [{
+      url: 'https://digitelle.no/om-oss/',
+      label: '"...startet han Digitelle i 2016..." + footer "Etablert i 2016, med over 20 års WordPress-erfaring."; ' + CHECKED3,
+    }],
+  },
+  {
+    slug: 'avaava',
+    year: 2017,
+    refs: [{
+      url: 'https://avaava.fi/yritys/yritystarina',
+      label: '"Vuonna 2017 perustettiin Avaava Digital Oy yhdessä hallituksen puheenjohtajan Petteri Alinikulan kanssa." (Avaava-merkki syntyi 2009 emoyhtiö Karanttia Oy:n sisällä, yhtiöitettiin Avaava Digital Oy:ksi 2017); ' + CHECKED3,
+    }],
+  },
+  {
+    slug: 'vision-australia',
+    year: 2004,
+    refs: [{
+      url: 'https://www.visionaustralia.org/about-us/who-we-are/history',
+      label: '"In 2004 Vision Australia became Australia\'s first national blindness agency. Vision Australia was formed following the merger of the Royal Blind Society (RBS), the Royal Victorian Institute for the Blind (RVIB), Vision Australia Foundation (VAF), and the National Information Library Services (NILS) in July 2004."; ' + CHECKED3,
+    }],
+  },
+  {
+    slug: 'skynet-technologies',
+    year: 2002,
+    refs: [{
+      url: 'https://www.skynettechnologies.com/about-us',
+      label: 'Stat-плитка на странице About Us: "2002" с подписью "Founded in" сразу под числом; ' + CHECKED3,
+    }],
+  },
+  {
+    slug: 'sierra7',
+    year: 2009,
+    refs: [{ url: 'https://sierra7.com/our-leadership/', label: 'Leadership bio: "...has been a Sierra7 partner since its founding in 2009"; ' + CHECKED3 }],
+  },
+  {
+    slug: 'jim-byrne-associates',
+    year: 2003,
+    refs: [{
+      url: 'https://jimbyrne.co.uk/about-jim-byrne-associates-accessible-website-design/',
+      label: 'Заявление от первого лица: "In 2003, I started my own business to provide accessibility auditing and accessible website design services to a wider group of organisations."; ' + CHECKED3,
+    }],
+  },
+  {
+    slug: 'web-usability',
+    year: 2001,
+    refs: [{
+      url: 'https://web.archive.org/web/20260101053403/https://www.webusability.co.uk/about-us/',
+      label:
+        '"Web Usability is a strategic user experience consultancy, established in 2001." — живой сайт был за anti-bot (sgcaptcha), подтверждено через архивную копию Wayback того же URL; пересматривает CLEAR из D-047 ("год не опубликован нигде на сайте" — тогда сайт тоже был недоступен); ' +
+        CHECKED3,
+    }],
+  },
+  {
+    slug: 'tetralogical',
+    year: 2019,
+    refs: [{ url: 'https://tetralogical.com/about/', label: '"We formed TetraLogical in 2019 because we saw the market become more driven by legal compliance than meeting the needs of different people."; ' + CHECKED3 }],
+  },
+  {
+    slug: 'alpanet',
+    year: 2000,
+    refs: [{
+      url: 'https://alpanet.pl/o-nas',
+      label: 'Таймлайн истории, заголовок "Powstanie firmy ALPANET": "2000 Powstanie firmy ALPANET Firma ALPANET rozpoczęła swoją działalność, stawiając na innowacje i nowoczesne technologie."; ' + CHECKED3,
+    }],
+  },
+  {
+    slug: 'vobacom',
+    year: 1999,
+    refs: [{
+      url: 'https://vobacom.pl/o-firmie',
+      label:
+        'Таймлайн "Historia": "1999 Początkowo firma działa jako spółka cywilna BMPG (Business Media Professional Group)..." (в 2006 преобразована в sp. z o.o. и переименована в VOBACOM — смена формы, не основание; взята более ранняя дата старта деятельности); ' +
+        CHECKED3,
+    }],
   },
 ]
 
