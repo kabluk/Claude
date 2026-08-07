@@ -77,7 +77,9 @@ Two groups routinely underestimate their exposure:
 
 Federal buyers assess accessibility claims through an **Accessibility Conformance Report (ACR)** — typically built on the [VPAT® template from the Information Technology Industry Council](https://www.itic.org/policy/accessibility/vpat). The VPAT is the blank template; the completed, product-specific document is the ACR. [Section508.gov recommends](https://www.section508.gov/sell/acr/) that vendors produce an ACR for any ICT marketed to the federal government, and contracting officers use ACRs during market research and proposal evaluation.
 
-An honest ACR does not need to claim perfection. Buyers expect "Partially Supports" entries with clear explanations. What kills credibility is a report that claims full support everywhere, cites no testing methodology, or is years out of date. (See our dedicated VPAT and ACR guide for the details.)
+An honest ACR does not need to claim perfection. Buyers expect "Partially Supports" entries with clear explanations. What kills credibility is a report that claims full support everywhere, cites no testing methodology, or is years out of date. (See our dedicated [VPAT and ACR guide](/guides/vpat-acr-guide/) for the details.)
+
+Selling to EU buyers as well as U.S. federal ones? The same ACR template has an EU edition built around EN 301 549 instead of the Revised 508 Standards — see [how the two map to each other and to WCAG](/guides/vpat-en-301-549-mapping-guide/).
 
 ## How Section 508 Testing Works
 

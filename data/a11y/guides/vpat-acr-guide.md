@@ -54,6 +54,8 @@ The WCAG versions differ per edition because each underlying standard incorporat
 
 **Which edition should you pick?** If your pipeline is exclusively U.S. federal, the 508 edition is sufficient. If you sell internationally or expect European Accessibility Act–driven requests, the INT edition covers everything at the cost of a longer document. Many vendors default to INT so one report answers every RFP.
 
+Selling into the EU specifically? The EU and INT editions don't just cite EN 301 549 — clause by clause, our [VPAT/ACR vs. EN 301 549 and WCAG guide](/guides/vpat-en-301-549-mapping-guide/) shows exactly which EN 301 549 sections the template answers with their own criteria and which ones it answers purely by cross-referencing the WCAG tables above.
+
 For each criterion, the report declares one of four conformance levels defined by ITI: **Supports**, **Partially Supports**, **Does Not Support**, or **Not Applicable** — each with a remarks column explaining the result. ("Partially Supports" replaced the older "Supports with Exceptions" wording at the request of U.S. Access Board representatives.)
 
 ## Who Asks for an ACR, and Why

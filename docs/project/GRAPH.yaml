@@ -880,3 +880,33 @@ nodes:
     risk: low
     approval_required: false
     notes: "Готово 2026-08-07 (D-058). Побочная находка из notes узла G-GUIDES-EAA-8, закрыта отдельной итерацией сразу после обнаружения, не отложена. Оба места переписаны без цифр (Arcom-процедура/§37 BFSG-Ordnungswidrigkeit + MLBF, с явным объяснением почему цифра не приводится), ссылка на блог юрфирмы taylorwessing.com заменена внутренней ссылкой на bfsg-pflichten-guide.md. Гейт scripts/no-fine-amounts.test.mjs — эвристика 'сумма + слово о санкции в одной строке', не ловит легитимный контент (порог микропредприятий, цены аудита в bitv-test-kosten-ablauf.md). Третий подряд случай того же дрейфа (D-035 сам, затем D-041) — постоянный гейт добавлен вместо очередного разового фикса."
+
+  - id: G-GUIDES-VPAT-CLUSTER
+    title: "VPAT-кластер: гайд связывает VPAT/ACR с EN 301 549 и WCAG 2.1 AA, объясняет когда VPAT нужен (US 508 + EU-контекст), отличает от Barrierefreiheitserklärung/RGAA déclaration"
+    owner: data-engineer
+    status: done
+    depends_on: []
+    inputs: [data/a11y/guides/vpat-acr-guide.md, data/a11y/guides/section-508-compliance-guide.md, data/a11y/guides/en-301-549-explained.md, data/a11y/guides/barrierefreiheitserklaerung-bfsg-anlage3.md, data/a11y/guides/audit-rgaa-guide.md, data/a11y/agencies.json]
+    scope:
+      - data/a11y/guides/vpat-en-301-549-mapping-guide.md
+      - data/a11y/guides/vpat-acr-guide.md
+      - data/a11y/guides/section-508-compliance-guide.md
+      - data/a11y/guides/en-301-549-explained.md
+    outputs:
+      - "новый гайд vpat-en-301-549-mapping-guide.md + встречные ссылки из 3 существующих гайдов (анти-orphan) + исправленная дата черновика EN 301 549 V4 в en-301-549-explained.md"
+    verify:
+      - "npm run build-a11y — 245 агентств, 0 ошибок"
+      - "npm run typecheck — чисто"
+      - "npm run worker:test — 202/202, npm run src:test — 10/10, npm run scripts:test — 21/21 (без изменений в тестах)"
+      - "npm run build — 398 страниц (было 397), sitemap 361 (было 360)"
+      - "npm run check-links — 435 уникальных ссылок, 0 битых (было 434)"
+      - "npm run audit-a11y — 25 страниц постоянного сэмпла, 0 нарушений"
+      - "разовый axe-прогон новой страницы + 3 изменённых (не входят в постоянный сэмпл) — нашёл 1 нарушение (empty-table-header, пустой заголовок первой колонки в сравнительной таблице), исправлено, повторный прогон 4/4 чисто"
+      - "живая перепроверка (не по коду, не по памяти): скачаны и распакованы сами .docx-шаблоны ITI (EU- и 508-редакция VPAT 2.5Rev) — структура Clause 4-13 EN 301 549, cross-reference на WCAG для Web/части Non-web Documents/Software подтверждена текстом самого шаблона; первичный PDF ETSI (не вторичные блоги) для статуса черновика EN 301 549 V4 — нашёл более новую версию (V4.1.0 2026-06 в фазе Vote), чем указанная в существующем en-301-549-explained.md (V4.1.0 ноябрь 2025) — исправлено как побочная находка в этой же итерации"
+      - "relatedAgencies (tpgi/level-access/qualitylogic/usablenet) сверены скриптом против agencies.json — все существуют и реально покрывают оба standards: section-508 И en-301-549"
+      - "grep + explicit no-fine-amounts.test.mjs прогон по новому файлу — сумм и слов о штрафе нет"
+    max_attempts: 2
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Готово 2026-08-07 (D-059). Третий кусок G-GUIDES из меню, оставленного в notes G-GUIDES-EAA-8. Единственная связка (ACR-секция ↔ EN 301 549 clause ↔ WCAG) не существовала ни в одном из трёх смежных гайдов (vpat-acr-guide/section-508-compliance-guide/en-301-549-explained — все из базового импорта 2026-08-06, факты не проверялись живьём в этом проекте ни разу). Раздел про отличие от Barrierefreiheitserklärung/RGAA déclaration построен только на перекрёстных ссылках на уже существующие гайды (D-033/D-056/D-057), факты BFSG/RGAA не передублированы. standard:'section-508' — гайд встал на /standards/section-508/ рядом с vpat-acr-guide/section-508-compliance-guide через существующий guidesFor()-механизм StandardPage.tsx, без единой ручной правки списка."

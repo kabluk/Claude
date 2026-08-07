@@ -13,7 +13,7 @@
     },
     {
       "q": "What is the current version of EN 301 549?",
-      "a": "The current published harmonised version is V3.2.1, from March 2021, which references WCAG 2.1. A revised version 4 has circulated as a final draft since November 2025; it is designed to support the European Accessibility Act and to incorporate WCAG 2.2 AA, with publication expected during 2026."
+      "a": "The current published harmonised version is V3.2.1, from March 2021, which references WCAG 2.1. A revised version 4 is now a final draft (V4.1.0, June 2026) in ETSI's approval vote; it is designed to support the European Accessibility Act and to incorporate WCAG 2.2 AA, with publication and Official Journal citation expected during 2026."
     },
     {
       "q": "Who is legally required to follow EN 301 549?",
@@ -39,7 +39,7 @@ Its special status comes from being a **harmonised standard**: when the European
 ## Which version applies in 2026
 
 - **Published and cited today: V3.2.1 (March 2021).** This is the version cited in the Official Journal for the [Web Accessibility Directive](https://eur-lex.europa.eu/eli/dir/2016/2102/oj) via [Commission Implementing Decision (EU) 2021/1339](https://eur-lex.europa.eu/eli/dec_impl/2021/1339/oj). It references WCAG 2.1.
-- **In the pipeline: version 4.** A final draft, [V4.1.0 (November 2025)](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/04.01.00_20/en_301549v040100ev.pdf), has been through the standardisation approval process, revised specifically to support the [European Accessibility Act](https://eur-lex.europa.eu/eli/dir/2019/882/oj) and to incorporate **WCAG 2.2** level AA, along with updated requirements in areas such as real-time text. Publication of the final version and its citation in the Official Journal are expected in the course of 2026.
+- **In the pipeline: version 4.** The current [final draft, V4.1.0 (June 2026)](https://www.etsi.org/deliver/etsi_en/301500_301599/301549/04.01.00_30/en_301549v040100va.pdf), is now in ETSI's formal Vote phase, revised specifically to support the [European Accessibility Act](https://eur-lex.europa.eu/eli/dir/2019/882/oj) and to incorporate **WCAG 2.2** level AA, along with updated requirements in areas such as real-time text. It also adds a new Annex ZB and clause A.2 — tables built specifically to evaluate EAA conformance, alongside the existing Web Accessibility Directive mapping in Annex ZA. It carries no legal weight until the European Commission cites it in the Official Journal, expected in the course of 2026.
 
 Practical consequence: audit against V3.2.1 (WCAG 2.1 AA) today, but include WCAG 2.2's new success criteria in your backlog now — they become part of the presumption of conformity as soon as version 4 is cited.
 
@@ -78,7 +78,7 @@ So "EN 301 549 conformant" is a strictly stronger claim than "WCAG AA conformant
 
 - **EU public sector.** The [Web Accessibility Directive (EU) 2016/2102](https://eur-lex.europa.eu/eli/dir/2016/2102/oj) requires public-sector websites and mobile apps to be accessible; EN 301 549 is the harmonised standard cited for it, and national monitoring bodies test against it. Public bodies must also publish accessibility statements.
 - **EU private sector via the EAA.** The [European Accessibility Act](https://eur-lex.europa.eu/eli/dir/2019/882/oj), in application since 28 June 2025, sets functional requirements for e-commerce, banking, telecoms, transport ticketing, e-books, self-service terminals and more. Using the harmonised standard is the recognised route to a presumption of conformity — see our [EAA country guide](/guides/european-accessibility-act-guide/).
-- **Public procurement.** The standard was born as a procurement tool, and EU tenders for ICT routinely require EN 301 549 conformance, which is why vendors document it in an Accessibility Conformance Report (the EU version of the VPAT template has sections for EN 301 549 clauses).
+- **Public procurement.** The standard was born as a procurement tool, and EU tenders for ICT routinely require EN 301 549 conformance, which is why vendors document it in an Accessibility Conformance Report — the EU edition of the [VPAT template](/guides/vpat-acr-guide/) is built directly around EN 301 549's clauses, and [our mapping guide](/guides/vpat-en-301-549-mapping-guide/) shows exactly how each clause is answered.
 - **Beyond the EU.** Several non-EU countries reference EN 301 549 in their own rules and procurement practice, making it the de facto international standard for non-US markets (the US uses Section 508, which is likewise WCAG-based).
 
 ## EN 301 549 audit vs a pure WCAG audit
