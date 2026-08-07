@@ -307,3 +307,28 @@ Featured — B2B (агентствам, действующим в своей п�
 `routes.tsx`, путь в `paths`, страница добавлена и в `gen-a11y-sitemap.mjs`, и в `audit-own-a11y.mjs`
 (ловит `scripts/page-lists.test.mjs`, прошёл без изменений в самом тесте). Опубликовано done +
 индексируемо (не noindex, как `/imprint/`) — обоснование выбора в `DECISIONS.md` D-060.
+
+## Конституция дизайна владельца (2026-08-07, D-062)
+
+Владелец передал `docs/project/DESIGN_CONSTITUTION.md` (64 секции). Вердикт —
+дополнить, не заменять (§62 конституции сам требует сохранять архитектуру);
+полная карта соответствия — `domains/architecture.md`. Большая часть принципов
+уже реализована независимо (D-035, D-042, A1-EXPLAIN, A2-LEAD-FORM, R1, D-060).
+Реальные дельты, в порядке приоритета:
+
+| ID | Задача | Владелец | Зависит от | Статус |
+|---|---|---|---|---|
+| CN-HERO | Scanner-first главная (§7-8, §59): функциональный hero с URL-вводом «Check your website accessibility», каталог — ниже; копирайтинг по §59 | frontend-engineer | — (домен НЕ нужен, сканер в проде) | todo (следующий кандидат) |
+| CN-NAV | IA-приоритеты (§6): Scan первым пунктом, «Guides» → «Knowledge», подпись «Experts» в UI (модель данных `agencies` не переименовывается — D-062) | frontend-engineer | CN-HERO | todo |
+| CN-SCAN-STREAM | Deploy-подобный поток фаз скана (§10) вместо текстового прогресса — фазы воркера реальные (statement/feedback/DOM/axe) | frontend + backend | — | todo |
+| CN-WCAG22 | Самопроверку сайта поднять до WCAG 2.2 AA (§40): проверить конфиг axe в `audit-own-a11y.mjs`, 2.2-правила в axe 4.13 уже есть | qa-engineer | — | todo (малый) |
+| CN-WCAG-PAGES | Страницы `/wcag/[criterion]` (§20, §43) из реальных данных `en301549-coverage.json` (критерий → правила → наши проверки → гайды) | frontend + data | — | todo |
+| CN-TOKENS | Дизайн-токены/типографика (§24-29): self-hosted шрифтовая пара, семантические цвета severity, тонкая система | frontend-engineer | CN-HERO | todo |
+| CN-COMPONENTS | Публичная библиотека доступных компонентов (§22) — новая крупная поверхность, backlink-движок | frontend-engineer | CN-TOKENS | todo (фаза) |
+| CN-RESEARCH | Регулярные data-продукты/бенчмарки (§23, §45) на уникальных данных | growth + data | A0-DEPLOY | todo (после деплоя) |
+
+Правило поверх всех CN-задач: поля/фильтры/метрики из §15-16 (response time,
+availability, satisfaction) вводятся ТОЛЬКО с реальными данными маркетплейса —
+выдумывать запрещено (D-045/D-047 главнее, конституция §5.5 требует того же).
+Issue-management/kanban/score-trend (§11-12) — уже покрыты Фазой 3, требуют
+аккаунтов, отдельных CN-задач не заводится.

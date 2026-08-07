@@ -977,3 +977,23 @@ nodes:
     risk: low
     approval_required: false
     notes: "Заведён 2026-08-07 при отсутствии других незаблокированных узлов графа (все прочие: done, blocked на A0-OWNER-LEGAL, review в ожидании пассивного наблюдения, или todo но функционально заблокированы доменом — A2-OUTREACH-SEND). Прямое продолжение G-GUIDES-BFSG-STATEMENT/EAA-8/VPAT-CLUSTER (D-056/D-057/D-059) — единственный явно названный в HANDOFF.md/BACKLOG.md остаток G-GUIDES ('ещё BFSG-контент: Muster-Vorlage/чеклист'). Baseline-числа в verify (245/0, 399→400 стр., 362→363 sitemap, 437 ссылок, 21/21 scripts:test) сняты живым прогоном непосредственно перед постановкой узла, не предположены. Готово 2026-08-07: новый гайд `barrierefreiheitserklaerung-muster-checkliste.md` — Platzhalter-Muster для всех пяти пунктов Anlage 3 + 7-пунктовая Veröffentlichungs-Checkliste; пять пунктов не пересказаны дословно, только ссылка + практический слой (проверено вручную). Встречные ссылки добавлены в обе стороны (barrierefreiheitserklaerung-bfsg-anlage3.md, bfsg-pflichten-guide.md) — анти-orphan. Интеграция полностью автоматическая (src/lib/guides.ts глобит директорию, routes.tsx/gen-a11y-sitemap.mjs не тронуты). Все verify прошли: build-a11y 245/0, typecheck чисто, worker:test 202/202, src:test 10/10, scripts:test 21/21 (no-fine-amounts.test.mjs включая новый файл, без правок теста), build 400 страниц (было 399), sitemap 363 (было 362), check-links 438/0 битых (было 437), audit-a11y 26 страниц постоянного сэмпла 0 нарушений (не изменялся), отдельный разовый axe-прогон 3 страниц (новая + 2 изменённые, временный скрипт-копия harness'а audit-own-a11y.mjs, удалён после прогона) — 0 нарушений. grep €/EUR/Bußgeld/fine/penalty по новому файлу — 0 совпадений. Живой WebFetch-фактчек не проводился и не требовался verify этого узла — новых юридических фактов не добавлено, только практический слой поверх уже перепроверенных в D-056/D-060 фактов (Anlage 3, §16/17 BFSG, MLBF, Art. 246 EGBGB)."
+
+  - id: CN-HERO
+    title: "Scanner-first главная (конституция §7-8, §59): функциональный hero с URL-вводом, каталог ниже"
+    owner: frontend-engineer
+    status: todo
+    depends_on: []
+    inputs: [docs/project/DESIGN_CONSTITUTION.md (§7-8, §37, §59), src/pages/HomePage.tsx, src/pages/ScanPage.tsx, src/lib/scanner.ts]
+    scope: [src/pages/HomePage.tsx, src/components/, src/lib/data.ts]
+    outputs: [src/pages/HomePage.tsx]
+    verify:
+      - "npm run build / typecheck / audit-a11y (главная в постоянном сэмпле) — зелёные"
+      - "hero: URL-ввод + CTA 'Scan website' + микрокопия 'Free instant scan. No signup required.' (§59); отправка ведёт на существующий scan-поток, НЕ дублирует его логику"
+      - "каталог и доверие (245 записей, evidence) остаются на главной ниже hero — §8 порядок секций"
+      - "без fear-копирайтинга (D-035), без выдуманных счётчиков — 'sites scanned today' только если реально считается из D1, иначе не показывать"
+      - "живой прогон Playwright: ввод URL на главной реально доводит до /report/:id (мокнутый API), состояние ошибки валидации видно"
+    max_attempts: 3
+    attempts: 0
+    risk: medium
+    approval_required: false
+    notes: "Заведён 2026-08-07 (D-062) как первая и самая рычажная дельта конституции: сканер уже реально задеплоен, домена не требует, меняет подачу продукта с 'каталог с кнопкой скана' на 'платформа со сканером на входе'. Остальные CN-задачи — BACKLOG.md раздел 'Конституция'."
