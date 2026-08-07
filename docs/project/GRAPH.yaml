@@ -1091,19 +1091,20 @@ nodes:
     notes: "Закрыт 2026-08-07 (D-066): 31 страница + индекс, 433 файла сборки (было 401), sitemap 395 (было 363), check-links 474-0, audit-a11y 29 стр. 0 нарушений. Скриншоты: scratchpad design/wcag-{index,1-3-1-axe,1-4-10-ours}.png."
 
   - id: CN-SCAN-PHASES
-    title: "НАСТОЯЩИЙ пофазный стрим скана (statement/feedback/DOM-checks/axe по страницам) — расширение контракта API"
+    title: "НАСТОЯЩИЙ пофазный стрим скана (discovering/statement/axe/dom-checks/aggregating) — расширение контракта API"
     owner: backend-engineer
-    status: todo
+    status: review
     depends_on: [CN-SCAN-STREAM]
     inputs: [worker/lib/axe.js, worker/routes/scan.js, worker/lib/db.js, docs/project/INTERFACES.md, src/lib/scanStream.ts]
-    scope: [worker/, src/lib/scanStream.ts, src/components/ScanStream.tsx, docs/project/INTERFACES.md]
-    outputs: [worker/lib/db.js, docs/project/INTERFACES.md]
+    scope: [worker/, migrations/, src/lib/, src/components/ScanStream.tsx, docs/project/INTERFACES.md]
+    outputs: [migrations/0007_scan_progress.sql, worker/lib/progress.js, worker/lib/db.js, worker/lib/axe.js, src/lib/scanner.ts, src/lib/scanStream.ts, docs/project/INTERFACES.md]
     verify:
-      - "воркер пишет промежуточный прогресс в D1 (фаза/страница) по ходу scanSite, GET /api/scan/:id отдаёт его; изменение контракта — только с записью в DECISIONS.md (правило CLAUDE.md)"
-      - "UI-шаги в ScanStream появляются из новых полей, ни один шаг не выдуман"
-      - "worker:test + живой Playwright-прогон"
+      - "воркер пишет промежуточный прогресс в D1 по ходу scanSite, GET /api/scan/:id отдаёт его — ✅ живой прогон wrangler dev --local: 8 прямых sqlite-чтений с непустым progress_json в середине скана, финал перезаписал в NULL"
+      - "изменение контракта записано в DECISIONS.md (D-067) и INTERFACES.md §3/§4 — ✅"
+      - "UI-шаги в ScanStream только из реальных полей, ни один не выдуман; fallback на трёхшаговый поток без progress — ✅ тесты"
+      - "worker:test 211/211 (+db.test.mjs, progress.test.mjs), src:test 20/20 — ✅"
     max_attempts: 3
-    attempts: 0
+    attempts: 1
     risk: medium
     approval_required: true
-    notes: "Заведён 2026-08-07 (D-064) как честная граница CN-SCAN-STREAM: текущий контракт пофазного прогресса не отдаёт, а рисовать фазы без данных запрещено. Требует изменения контракта API (INTERFACES.md §3, запись в DECISIONS.md) И деплоя воркера — деплой только с явного разрешения владельца (D-022), отсюда approval_required. UI-каркас (scanStream.ts) готов принять новые шаги."
+    notes: "Заведён 2026-08-07 (D-064), код полностью готов 2026-08-07 (D-067). Статус review: **ждёт worker:deploy — явное решение владельца (D-022), деплой этой итерацией сознательно НЕ делался**. До деплоя прод-воркер отдаёт старое поведение (без progress) — UI работает с обоими (parseScanProgress → null → поток D-064). Вместе с деплоем на прод должна уехать миграция 0007 (db:migrate:remote). Локальный Browser Rendering в песочнице: CI=1 (miniflare добавляет --no-sandbox), axe-source через тестовый шов env.AXE_SOURCE_URL (в prod не задан)."

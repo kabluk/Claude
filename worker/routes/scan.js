@@ -1,4 +1,5 @@
 import { insertScanPending, completeScan, failScan, getScan } from '../lib/db.js'
+import { makeProgressReporter } from '../lib/progress.js'
 import { checkRateLimit } from '../lib/ratelimit.js'
 import { verifyTurnstile } from '../lib/turnstile.js'
 import { scanSite } from '../lib/axe.js'
@@ -56,7 +57,10 @@ export async function handlePostScan(request, env, ctx) {
   const jurisdiction = resolveJurisdiction(url, countryCode)
 
   ctx.waitUntil(
-    scanSite(env, url)
+    // CN-SCAN-PHASES (D-067): промежуточный прогресс пишется в D1 по ходу скана;
+    // completeScan/failScan финально перезаписывают его в NULL. Ошибки записи
+    // прогресса проглатываются репортером — скан важнее телеметрии.
+    scanSite(env, url, makeProgressReporter(env.DB, id))
       .then(({ pages, findings }) => {
         const weighted = applyJurisdictionWeight(findings, jurisdiction)
         return completeScan(env.DB, { id, pages, findings: weighted, score: scoreFromFindings(weighted) })

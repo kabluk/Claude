@@ -3,23 +3,22 @@
 // ЖЁСТКОЕ правило: шаги строятся ТОЛЬКО из полей, которые воркер реально пишет
 // в D1 и отдаёт через GET /api/scan/:id (worker/lib/db.js::getScan,
 // INTERFACES.md §3): status 'running'|'done'|'error', createdAt, completedAt,
-// pages, findings, errorCode. Пофазного прогресса (statement/feedback/
-// DOM-checks/axe по страницам) контракт НЕ отдаёт: pages_json/findings_json
-// пишутся одним UPDATE при завершении (completeScan), промежуточных записей
-// нет. Поэтому шага три — и ни одним больше.
+// pages, findings, errorCode — и, с CN-SCAN-PHASES (D-067), `progress`
+// (phase + pagesDone/pagesTotal), когда воркер его реально отдаёт.
 //
-// Фейковые таймеры вида «Checking semantic structure…», не привязанные к
-// реальному состоянию воркера, — это выдумывание данных в UI, тот же класс
-// запрета, что D-035/D-045 для данных каталога. Настоящий пофазный стрим —
-// отдельный узел CN-SCAN-PHASES в GRAPH.yaml: требует изменения контракта
-// API + деплоя воркера (деплой = решение владельца, D-022).
+// Два честных режима:
+// - progress есть (новый воркер, скан running) → реальные фазовые шаги;
+// - progress нет (СТАРЫЙ задеплоенный воркер — деплой ждёт решения владельца,
+//   D-022; старые записи; done/error) → трёхшаговый поток D-064.
+// Фейковые таймеры, не привязанные к реальному состоянию воркера, по-прежнему
+// запрещены — тот же класс запрета, что D-035/D-045.
 
-import type { ScanReport } from './scanner'
+import type { ScanPhase, ScanProgress, ScanReport } from './scanner'
 
 export type StreamStepStatus = 'done' | 'active' | 'failed' | 'pending'
 
 export type StreamStep = {
-  id: 'requested' | 'scanning' | 'report'
+  id: 'requested' | 'scanning' | 'report' | 'discovering' | 'statement' | 'pages' | 'aggregating'
   label: string
   detail: string | null
   status: StreamStepStatus
@@ -44,8 +43,99 @@ function scanDuration(report: ScanReport): string | null {
   return Number.isFinite(ms) ? formatElapsed(ms) : null
 }
 
+// CN-SCAN-PHASES (D-067): реальные фазовые шаги, когда воркер отдаёт progress.
+// Порядок видимых шагов; axe и dom-checks чередуются по страницам и оба живут
+// в одном видимом шаге 'pages' — иначе таймлайн прыгал бы туда-сюда.
+const PHASE_TO_STEP: Record<ScanPhase, number> = {
+  discovering: 0,
+  statement: 1,
+  axe: 2,
+  'dom-checks': 2,
+  aggregating: 3,
+}
+
+function statusFor(stepIndex: number, currentIndex: number): StreamStepStatus {
+  if (stepIndex < currentIndex) return 'done'
+  if (stepIndex === currentIndex) return 'active'
+  return 'pending'
+}
+
+function phasedSteps(progress: ScanProgress): StreamStep[] {
+  const current = PHASE_TO_STEP[progress.phase]
+  const { pagesDone, pagesTotal } = progress
+  // «Page N of M» — только когда воркер реально прислал оба счётчика.
+  const pageCounter =
+    pagesTotal != null && pagesDone != null
+      ? `page ${Math.min(pagesDone + 1, pagesTotal)} of ${pagesTotal}`
+      : null
+
+  const pagesDetail =
+    current < 2
+      ? 'axe-core rules and browser checks (reflow, keyboard, media) on every visited page.'
+      : current > 2
+        ? `${pagesTotal != null ? pagesTotal : 'All'} page${pagesTotal === 1 ? '' : 's'} checked.`
+        : progress.phase === 'axe'
+          ? `Running axe-core rules — ${pageCounter ?? 'in progress'}.`
+          : `Browser checks (reflow, keyboard, media, headings) — ${pageCounter ?? 'in progress'}.`
+
+  return [
+    {
+      id: 'requested',
+      label: 'Scan requested',
+      detail: 'Accepted by the scanner — a headless browser is doing the work.',
+      status: 'done',
+    },
+    {
+      id: 'discovering',
+      label: 'Discovering pages',
+      detail:
+        current === 0
+          ? 'Loading the home page and picking up to 6 pages to scan — transactional pages first.'
+          : pagesTotal != null
+            ? `${pagesTotal} page${pagesTotal === 1 ? '' : 's'} selected — transactional pages first.`
+            : 'Pages selected.',
+      status: statusFor(0, current),
+    },
+    {
+      id: 'statement',
+      label: 'Accessibility statement & feedback channel',
+      detail:
+        current <= 1
+          ? 'Looking for the accessibility statement and a way to report barriers — the first things a regulator checks.'
+          : 'Checked.',
+      status: statusFor(1, current),
+    },
+    {
+      id: 'pages',
+      label: 'Checking pages',
+      detail: pagesDetail,
+      status: statusFor(2, current),
+    },
+    {
+      id: 'aggregating',
+      label: 'Aggregating results',
+      detail:
+        current < 3
+          ? 'Site-level checks, legal weighting and the score come last.'
+          : 'Site-level checks (navigation consistency, multiple ways), legal weighting, score.',
+      status: statusFor(3, current),
+    },
+    {
+      id: 'report',
+      label: 'Report',
+      detail: 'Appears here as soon as the scan finishes — no reload needed.',
+      status: 'pending',
+    },
+  ]
+}
+
 export function scanStreamSteps(report: ScanReport): StreamStep[] {
   const { status } = report
+
+  // D-067: реальные фазы — только пока скан running И воркер их реально отдал.
+  // done/error всегда сводятся к итоговому трёхшаговому виду (воркер стирает
+  // прогресс при завершении; даже устаревший progress здесь игнорируется).
+  if (status === 'running' && report.progress) return phasedSteps(report.progress)
 
   const requested: StreamStep = {
     id: 'requested',

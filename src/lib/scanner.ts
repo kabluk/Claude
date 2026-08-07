@@ -24,6 +24,18 @@ export type ScanFinding = {
 
 export type ScanErrorCode = 'unreachable' | 'refused' | 'tls' | 'timeout' | 'blocked' | 'internal'
 
+// CN-SCAN-PHASES (D-067): фазы, которые воркер РЕАЛЬНО проходит и пишет в D1
+// (worker/lib/progress.js — источник; INTERFACES.md §3 — контракт).
+export const SCAN_PHASES = ['discovering', 'statement', 'axe', 'dom-checks', 'aggregating'] as const
+export type ScanPhase = (typeof SCAN_PHASES)[number]
+
+export type ScanProgress = {
+  phase: ScanPhase
+  pagesDone: number | null
+  pagesTotal: number | null
+  updatedAt?: string
+}
+
 export type ScanReport = {
   id: string
   url: string
@@ -35,6 +47,28 @@ export type ScanReport = {
   errorCode: ScanErrorCode | null
   createdAt: string
   completedAt: string | null
+  // null: старый воркер/старая запись без прогресса, завершённый скан, или
+  // непонятная форма — UI обязан работать без него (fallback D-064).
+  progress: ScanProgress | null
+}
+
+// Парсер прогресса — строгий к чужим формам, мягкий к отсутствию: всё, что не
+// соответствует контракту (нет объекта, неизвестная фаза — в т.ч. от БОЛЕЕ
+// НОВОГО воркера), превращается в null, и UI честно падает на трёхшаговый
+// поток D-064, а не рисует мусор. Счётчики вне смысла (отрицательные, NaN)
+// обнуляются в null по одному, не убивая фазу целиком.
+export function parseScanProgress(raw: unknown): ScanProgress | null {
+  if (typeof raw !== 'object' || raw === null) return null
+  const o = raw as Record<string, unknown>
+  if (typeof o.phase !== 'string' || !(SCAN_PHASES as readonly string[]).includes(o.phase)) return null
+  const count = (v: unknown): number | null =>
+    typeof v === 'number' && Number.isInteger(v) && v >= 0 ? v : null
+  return {
+    phase: o.phase as ScanPhase,
+    pagesDone: count(o.pagesDone),
+    pagesTotal: count(o.pagesTotal),
+    updatedAt: typeof o.updatedAt === 'string' ? o.updatedAt : undefined,
+  }
 }
 
 // `?.` не косметика: `import.meta.env` подставляет Vite, и вне сборки его нет
@@ -86,7 +120,10 @@ export async function fetchScan(id: string): Promise<ScanReport | null> {
   const res = await apiFetch(`/api/scan/${encodeURIComponent(id)}`)
   if (res.status === 404) return null
   if (!res.ok) throw new Error(`failed to load scan: HTTP ${res.status}`)
-  return (await res.json()) as ScanReport
+  const raw = (await res.json()) as Omit<ScanReport, 'progress'> & { progress?: unknown }
+  // Задеплоенный воркер может быть старше этого клиента (D-022: деплой — решение
+  // владельца): поля progress может не быть вовсе — парсер даёт null, UI живёт.
+  return { ...raw, progress: parseScanProgress(raw.progress) }
 }
 
 // Понятные, не технические тексты под каждый errorCode (VISION.md UX-требование 4,

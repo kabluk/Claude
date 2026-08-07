@@ -2,7 +2,35 @@
 
 Обновлено: 2026-08-07 (см. также подробный legacy-статус: `research/STATE.md`)
 
-## Последнее (2026-08-07, третья дизайн-итерация, пункт 2: CN-WCAG-PAGES / D-066)
+## Последнее (2026-08-07, третья дизайн-итерация, пункт 3: CN-SCAN-PHASES / D-067)
+
+Пофазный прогресс скана реализован в коде целиком; **деплоя воркера НЕ было** —
+узел `review`, ждёт `worker:deploy` (явное решение владельца, D-022). Контракт
+(записан в INTERFACES.md §3/§4 + D-067): `scans.progress_json`
+(migrations/0007) → `progress: {phase: discovering|statement|axe|dom-checks|
+aggregating, pagesDone, pagesTotal, updatedAt} | null` в GET /api/scan/:id.
+Фазы — ровно те, что scanSite реально проходит; запись гейтится
+`status='running'` (запоздавший UPDATE не оживёт на завершённом скане);
+completeScan/failScan перезаписывают прогресс в NULL; ошибка записи прогресса
+не роняет скан (best-effort). UI: `parseScanProgress` строг к чужим формам
+(неизвестная фаза → null → честный fallback на трёхшаговый поток D-064 —
+обязателен, пока прод-воркер старый), ScanStream при running+progress рисует
+реальные фазовые шаги с «page N of M» из реальных счётчиков.
+
+Верификация: worker:test **211** (+9: db.test.mjs — прогресс/финал/гейт/
+legacy-строки; progress.test.mjs — порядок фаз, невалидная фаза, проглатывание
+ошибки D1, синхронизация SCAN_PHASES ↔ точки эмиссии в axe.js), src:test **20**
+(+6: парсер, фазовые шаги, fallback), остальной набор без изменений зелёный
+(scripts:test 25, build 433, sitemap 395, check-links 474-0, audit-a11y 29-0).
+**Живой прогон** `wrangler dev --local` (CI=1 → --no-sandbox для локального
+Browser Rendering; axe через тестовый шов env.AXE_SOURCE_URL) против
+медленного мок-сайта (4s/страницу): фазы реально видны в D1 в середине скана —
+8 прямых sqlite-чтений с непустым progress_json (discovering → axe
+pagesDone 1→4/5 → dom-checks), финал перезаписал NULL и в GET, и в D1; скан
+завершился done с реальными находками (score 69). До деплоя на проде остаётся
+старое поведение — UI работает с обоими воркерами.
+
+## Предыдущее (2026-08-07, третья дизайн-итерация, пункт 2: CN-WCAG-PAGES / D-066)
 
 Новая SEO-поверхность `/wcag/[criterion]` (§20/§43) целиком из
 `data/a11y/en301549-coverage.json`: **31 страница критериев + индекс `/wcag/`**.

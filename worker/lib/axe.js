@@ -31,7 +31,17 @@ const AXE_CDN_URL = `https://cdn.jsdelivr.net/npm/axe-core@${AXE_VERSION}/axe.mi
 const USER_AGENT = 'AccessAtlasBot/1.0 (+https://accessatlas.example/about; accessibility scanner)'
 const MAX_PDF_FINDINGS_PER_PAGE = 1 // одна агрегирующая находка на страницу, не по PDF — иначе счёт взрывается
 
-async function getAxeSource() {
+async function getAxeSource(env) {
+  // Тестовый шов (D-067): env.AXE_SOURCE_URL позволяет локальному прогону
+  // (`wrangler dev --local` в песочнице без выхода на CDN) отдать axe-core со
+  // своего фикстур-сервера. В prod-конфиге переменная НЕ задана — идёт CDN,
+  // поведение не меняется. Локальный override не кэшируется в edge-кэше.
+  const override = env?.AXE_SOURCE_URL
+  if (override) {
+    const res = await fetch(override)
+    if (!res.ok) throw new Error(`axe-core fetch failed: HTTP ${res.status}`)
+    return res.text()
+  }
   const cache = caches.default
   const cacheKey = new Request(AXE_CDN_URL)
   const cached = await cache.match(cacheKey)
@@ -45,8 +55,14 @@ async function getAxeSource() {
   return body
 }
 
-export async function scanSite(env, targetUrl) {
-  const axeSource = await getAxeSource()
+// CN-SCAN-PHASES (D-067): onProgress(phase, pagesDone, pagesTotal) — репортер
+// из worker/lib/progress.js (пишет промежуточные UPDATE в D1). Параметр
+// необязателен: без него scanSite работает как раньше (тесты/переиспользование).
+// Каждая точка эмиссии стоит РОВНО там, где соответствующая работа реально
+// начинается — фазы не выдумываются наперёд (тот же принцип, что D-064).
+export async function scanSite(env, targetUrl, onProgress = async () => {}) {
+  await onProgress('discovering', 0, null)
+  const axeSource = await getAxeSource(env)
   const browser = await puppeteer.launch(env.BROWSER)
   const findings = []
   const pagesScanned = []
@@ -61,6 +77,8 @@ export async function scanSite(env, targetUrl) {
     // A3-PAGESELECT: транзакционные/формовые страницы (корзина, вход, контакт)
     // приоритетнее первых-N ссылок в DOM-порядке — жалобы и надзор бьют по ним.
     const toVisit = [targetUrl, ...pickPriorityLinks(homeHtml, targetUrl, MAX_PAGES - 1)]
+    const pagesTotal = Math.min(toVisit.length, MAX_PAGES)
+    await onProgress('statement', 0, pagesTotal)
 
     // A3-STATEMENT: ищем заявление о доступности ТОЛЬКО на главной (Anlage 3
     // требует, чтобы оно было "на видном месте" — типично футер/навигация главной).
@@ -116,7 +134,9 @@ export async function scanSite(env, targetUrl) {
     // их нельзя сделать по одной странице, нужно сравнение между страницами.
     const pageDocs = []
 
-    for (const pageUrl of toVisit.slice(0, MAX_PAGES)) {
+    for (const [pageIndex, pageUrl] of toVisit.slice(0, MAX_PAGES).entries()) {
+      // D-067: pagesDone = сколько страниц ПОЛНОСТЬЮ пройдено; текущая — pageIndex.
+      await onProgress('axe', pageIndex, pagesTotal)
       // Инвариант на входе в цикл: страница уже стоит на targetUrl (либо статьи-заявления
       // не было вовсе, либо мы явно вернулись на неё после её проверки выше) — поэтому
       // для первого элемента toVisit (всегда targetUrl) повторная навигация не нужна.
@@ -146,6 +166,9 @@ export async function scanSite(env, targetUrl) {
           })
         }
       }
+
+      // D-067: axe для этой страницы закончен, дальше браузерные проверки её же.
+      await onProgress('dom-checks', pageIndex, pagesTotal)
 
       // A3-PDF: PDF в scope EAA/EN 301 549, axe их не видит вообще (не HTML) — без
       // этой проверки целая категория молчаливо не проверяется, не false negative
@@ -179,6 +202,7 @@ export async function scanSite(env, targetUrl) {
       }
     }
 
+    await onProgress('aggregating', pagesScanned.length, pagesTotal)
     // Проверки уровня сайта — один раз после обхода, на уже собранных страницах.
     // page.content() читается ПОСЛЕ networkidle0, т.е. это отрисованный DOM, а не
     // отданный сервером HTML — существенно для сайтов, где навигация/поиск

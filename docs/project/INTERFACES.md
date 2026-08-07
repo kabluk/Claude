@@ -80,10 +80,28 @@ type ScanFinding = { ruleId: string; wcag: string[]; impact: 'minor'|'moderate'|
 // jurisdiction.verified (сейчас — только DE, §37 BFSG, D-030).
 // Отображается пользователю блоком "Legal basis" в ReportPage (с D-032; до
 // него поле возвращалось API, но фронтенд про него не знал и молча ронял).
+type ScanProgress = { phase: 'discovering'|'statement'|'axe'|'dom-checks'|'aggregating';
+  pagesDone: number; pagesTotal: number|null; updatedAt: string };
+// CN-SCAN-PHASES (D-067): промежуточный прогресс скана. Фазы — ровно те, что
+// scanSite() реально проходит (worker/lib/progress.js — канонический список):
+// discovering (главная + выбор ≤6 страниц) → statement (заявление + feedback) →
+// затем ПО КАЖДОЙ странице axe → dom-checks (фазы чередуются, pagesDone/pagesTotal
+// говорят где обход) → aggregating (site-checks + юрисдикция + score).
+// Пишется updateScanProgress() по ходу скана ТОЛЬКО при status='running'
+// (гейт в SQL); completeScan/failScan финально перезаписывают progress_json в
+// NULL — завершённый скан прогресса не имеет. Ошибка записи прогресса
+// проглатывается (best-effort телеметрия, скан важнее).
+// ОБРАТНАЯ СОВМЕСТИМОСТЬ (обязательство UI, D-064): поле может отсутствовать —
+// старые строки D1, БД без миграции 0007, и ЗАДЕПЛОЕННЫЙ воркер до следующего
+// worker:deploy (решение владельца, D-022) его не отдают. Клиентский парсер
+// (src/lib/scanner.ts::parseScanProgress) превращает отсутствие/неизвестную
+// фазу/мусорные счётчики в null — UI падает на трёхшаговый поток D-064,
+// не рисует мусор. Неизвестная фаза от более нового воркера — тоже null.
+
 type ScanReport = { id: string; url: string; status: 'running'|'done'|'error'; pages: string[];
   findings: ScanFinding[]; score: number|null; error: string|null;
   errorCode: 'unreachable'|'refused'|'tls'|'timeout'|'blocked'|'internal'|null;
-  createdAt: string; completedAt: string|null };
+  createdAt: string; completedAt: string|null; progress: ScanProgress|null };
 // score: 0–100, дедуп по ruleId (худшая severity среди инстансов) — см. D-010,
 // worker/lib/score.js. Эвристика для сортировки/сравнения, НЕ сертификация (D-006).
 // errorCode: маленький enum для UI (worker/lib/errors.js, D-013) — error остаётся
@@ -100,9 +118,12 @@ type Lead = { id: string; scanId?: string; country: string; standard: StandardSl
 
 ```
 -- scans: реализовано, migrations/0001_init.sql + 0002_error_code.sql
+--        + 0007_scan_progress.sql (D-067; на ПРОД-D1 миграция ещё не применена —
+--        едет вместе со следующим worker:deploy, решение владельца)
 scans(id TEXT PK, url TEXT, status TEXT DEFAULT 'running', pages_json TEXT,
       findings_json TEXT, score INT, error TEXT, error_code TEXT, email TEXT NULL,
-      created_at TEXT, completed_at TEXT)
+      created_at TEXT, completed_at TEXT,
+      progress_json TEXT)  -- JSON ScanProgress (§3), NULL когда скан завершён/старая запись
 
 -- ниже — черновик, Фаза 2+, ещё не реализовано
 leads(id TEXT PK, scan_id TEXT NULL, country TEXT, standard TEXT, service TEXT, budget TEXT,

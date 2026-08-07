@@ -3,6 +3,39 @@
 Формат: ID | дата | решение | причина | последствия. Новые решения добавлять сверху.
 Статусы: `accepted` (принято), `proposed` (ждёт подтверждения владельца).
 
+## D-067 · 2026-08-07 · accepted
+CN-SCAN-PHASES: пофазный прогресс скана реализован в коде. **ДЕПЛОЯ НЕ БЫЛО** —
+узел остаётся `review`, «ждёт worker:deploy — явное решение владельца» (D-022).
+
+- **Контракт** (INTERFACES.md §3/§4, это изменение схемы — потому запись здесь):
+  `scans.progress_json` (migrations/0007_scan_progress.sql) → `progress:
+  {phase, pagesDone, pagesTotal, updatedAt} | null` в GET /api/scan/:id. Фазы —
+  ровно те, что scanSite реально проходит (`worker/lib/progress.js` —
+  канонический список): discovering → statement → (по каждой странице) axe →
+  dom-checks → aggregating. Никаких выдуманных фаз — тот же принцип, что D-064.
+- **Запись**: `updateScanProgress` пишет ТОЛЬКО при `status='running'` (гейт в
+  SQL — запоздавшая запись не оживёт на завершённом скане); completeScan/
+  failScan финально перезаписывают progress_json в NULL. Ошибка записи
+  прогресса проглатывается репортером — телеметрия не роняет скан
+  (деградация, не retry). Тестовый шов: `env.AXE_SOURCE_URL` (только для
+  локального прогона; в prod не задан, поведение CDN не изменилось).
+- **Обратная совместимость**: старые строки/БД без миграции/задеплоенный
+  СТАРЫЙ воркер не отдают поле — `parseScanProgress` (src/lib/scanner.ts)
+  превращает отсутствие/неизвестную фазу/мусорные счётчики в null, UI падает
+  на трёхшаговый поток D-064. UI обязан работать с обоими воркерами — работает.
+- **UI**: ScanStream при running+progress рисует реальные фазовые шаги
+  (discovering/statement/pages(axe+dom-checks, «page N of M» из реальных
+  счётчиков)/aggregating/report); done/error всегда сводятся к итоговому виду.
+- **Проверено**: worker:test 211 (+9: db.test.mjs, progress.test.mjs — включая
+  синхронизацию SCAN_PHASES ↔ реальные точки эмиссии в axe.js), src:test 20
+  (+6: парсер и фазовые шаги). Живой прогон `wrangler dev --local` (CI=1 даёт
+  --no-sandbox для локального Browser Rendering) против медленного мок-сайта
+  (4s/страница): фазы реально видны В D1 в середине скана (прямые sqlite-чтения:
+  8 снимков c непустым progress_json, discovering → axe pagesDone 1→4/5 →
+  dom-checks), финальный completeScan перезаписал прогресс в NULL и в GET, и в
+  D1. На задеплоенном воркере до деплоя остаётся старое поведение — UI работает
+  с обоими (fallback проверен тестом «running без progress»).
+
 ## D-066 · 2026-08-07 · accepted
 CN-WCAG-PAGES закрыт: новая SEO-поверхность `/wcag/[criterion]` (§20/§43) из
 РЕАЛЬНЫХ данных `data/a11y/en301549-coverage.json` — 31 страница + индекс `/wcag/`.
