@@ -5,7 +5,7 @@
   "title": "European Accessibility Act: country-by-country guide for businesses",
   "description": "What the European Accessibility Act means for businesses now in force: scope, exemptions, EN 301 549, and how Germany, France and Ireland enforce it.",
   "standard": "eaa",
-  "updated": "2026-08-04",
+  "updated": "2026-08-07",
   "faq": [
     {
       "q": "Is the European Accessibility Act already in force?",
@@ -96,12 +96,17 @@ For ICT, that standard is [EN 301 549](https://www.etsi.org/deliver/etsi_en/3015
 |---|---|---|
 | **Germany** | [Barrierefreiheitsstärkungsgesetz (BFSG)](https://www.gesetze-im-internet.de/bfsg/), 2021, plus the BFSGV regulation | Enforced by market surveillance authorities of the Länder; fines can reach [EUR 100,000](https://www.taylorwessing.com/en/interface/2022/the-european-accessibility-act/european-accessibility-act-transposition-in-germany-an-overview) for the most serious violations |
 | **France** | [Loi n° 2023-171 of 9 March 2023 (DDADUE)](https://www.legifrance.gouv.fr/dossierlegislatif/JORFDOLE000046590737/) with subsequent ordinance and decrees | Builds on the existing framework of Article 47 of the 2005 disability law and the RGAA testing methodology |
-| **Ireland** | [S.I. No. 636/2023 — European Union (Accessibility Requirements of Products and Services) Regulations 2023](https://www.irishstatutebook.ie/eli/2023/si/636/made/en/print) | The [CCPC](https://www.ccpc.ie/business/enforcement/accessibility/european-accessibly-act-obligations-for-businesses/) is a lead enforcement body; breaches can be criminal offences |
+| **Ireland** | [S.I. No. 636/2023 — European Union (Accessibility Requirements of Products and Services) Regulations 2023](https://www.irishstatutebook.ie/eli/2023/si/636/made/en/print) | The [CCPC](https://www.ccpc.ie/business/enforcement/accessibility/european-accessibly-act-obligations-for-businesses/) is a lead enforcement body; breaches can be criminal offences — [full guide](/guides/eaa-ireland-guide/) |
 | **Netherlands** | [Implementatiewet toegankelijkheidsvoorschriften producten en diensten](https://www.eerstekamer.nl/wetsvoorstel/36380_implementatiewet) (adopted 2024) | Implemented by amending existing laws, including the Warenwet, Telecommunicatiewet and the Civil Code |
 | **Poland** | [Act of 26 April 2024 on ensuring accessibility requirements for certain products and services](https://www.funduszeunijne.gov.pl/strony/o-funduszach/fundusze-europejskie-bez-barier/dostepnosc/polski-akt-o-dostepnosci/czy-pad-dotyczy-twojej-firmy/) — the "Polski Akt o Dostępności" | Applies from 28 June 2025; coordinated by the Ministry of Funds and Regional Policy |
 | **Spain** | [Ley 11/2023 of 8 May](https://www.boe.es/eli/es/l/2023/05/08/11) | Transposes the EAA together with several other EU directives |
-| **Italy** | [Decreto Legislativo 27 May 2022, n. 82](https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2022-05-27;82) | Extends the framework of the 2004 "Legge Stanca"; AgID plays a central role |
-| **Austria** | [Barrierefreiheitsgesetz (BaFG)](https://www.sozialministerium.gv.at/Themen/Soziales/Menschen-mit-Behinderungen/Barrierefreiheitsgesetz.html), BGBl. I Nr. 76/2023 | Applies from 28 June 2025; the Sozialministeriumservice handles complaints |
+| **Italy** | [Decreto Legislativo 27 May 2022, n. 82](https://www.normattiva.it/uri-res/N2Ls?urn:nir:stato:decreto.legislativo:2022-05-27;82) | Extends the framework of the 2004 "Legge Stanca"; AgID plays a central role — [full guide](/guides/eaa-italy-guide/) |
+| **Austria** | [Barrierefreiheitsgesetz (BaFG)](https://www.ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=20012316), BGBl. I Nr. 76/2023 | Applies from 28 June 2025; the Sozialministeriumservice handles complaints — [full guide](/guides/eaa-austria-guide/) (German) |
+| **Belgium** | [Loi du 5 novembre 2023, n° 2023046827](https://www.ejustice.just.fgov.be/eli/loi/2023/11/05/2023046827/justel) | A partial transposition folded into the existing Code de droit économique — [full guide](/guides/eaa-belgium-guide/) |
+| **Sweden** | [Lag (2023:254) om vissa produkters och tjänsters tillgänglighet](https://www.riksdagen.se/sv/dokument-och-lagar/dokument/svensk-forfattningssamling/lag-2023254-om-vissa-produkters-och-tjansters_sfs-2023-254/) | Distinct from Sweden's existing public-sector accessibility rules — [full guide](/guides/eaa-sweden-guide/) |
+| **Denmark** | [Lov om tilgængelighedskrav for produkter og tjenester, LOV nr 801 af 07/06/2022](https://www.retsinformation.dk/eli/lta/2022/801) | Separate from Denmark's public-sector accessibility rules — [full guide](/guides/eaa-denmark-guide/) |
+| **Finland** | [Laki 306/2019](https://www.finlex.fi/fi/laki/ajantasa/2019/20190306) extended by [asetus 179/2023](https://www.finlex.fi/fi/laki/alkup/2023/20230179) | The 2019 act alone covers only the public sector; the 2023 decree adds the private-sector EAA requirements — [full guide](/guides/eaa-finland-guide/) |
+| **Norway** | [Forskrift 21.6.2013 nr. 732](https://lovdata.no/dokument/SF/forskrift/2013-06-21-732) | Not an EU member, not an EAA transposition — predates the directive; Norwegian businesses selling into the EU are bound by the EAA separately through that activity, not through this forskrift — [full guide](/guides/eaa-norway-guide/) |
 
 **Enforcement and penalties vary by country.** Each Member State designated its own market surveillance authorities and set its own sanctions, ranging from administrative fines to, in some jurisdictions, criminal liability. The figures above are the ones we can verify against a source; check the national act and authority for your market rather than relying on generic "EAA fine" numbers circulating online.
 
