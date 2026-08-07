@@ -9,6 +9,7 @@ import {
   withService,
 } from './lib/data'
 import { guides } from './lib/guides'
+import { wcagPages } from './lib/wcag'
 
 // Ленивые импорты — свой чанк на шаблон страницы.
 const page = (load: () => Promise<{ default: () => JSX.Element | null }>) => async () => ({
@@ -65,6 +66,15 @@ export const routes: RouteRecord[] = [
   },
   { path: '/scan', lazy: page(() => import('./pages/ScanPage')) },
   { path: '/methodology', lazy: page(() => import('./pages/MethodologyPage')) },
+  // CN-WCAG-PAGES (D-066): справочник критериев — только критерии с реальной
+  // автоматикой (порог в src/lib/wcag.ts), пути целиком из coverage-данных.
+  // Статический сегмент /wcag ранжируется выше '/:country' (как /bfsg-check).
+  { path: '/wcag', lazy: page(() => import('./pages/WcagIndexPage')) },
+  {
+    path: '/wcag/:criterion',
+    lazy: page(() => import('./pages/WcagCriterionPage')),
+    getStaticPaths: () => wcagPages.map((p) => paths.wcagCriterion(p.slug)),
+  },
   // Немецкий входной путь (D-041). Статический сегмент ранжируется react-router
   // выше динамического '/:country' ниже по файлу, поэтому со страной не спорит.
   { path: '/bfsg-check', lazy: page(() => import('./pages/BfsgCheckPage')) },

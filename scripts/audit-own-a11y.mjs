@@ -35,6 +35,10 @@ const SAMPLE_ROUTES = [
   '/services/', '/services/accessibility-audit/',
   '/standards/', '/standards/wcag-2-2/',
   '/guides/', '/guides/wcag-audit-guide/', '/guides/vpat-acr-guide/',
+  // CN-WCAG-PAGES (D-066): шаблон WcagCriterionPage — 2 представителя разных
+  // форм данных (axe-only с многими правилами; ours-only с оговоркой-эвристикой)
+  // + индекс. Слаги детерминированы данными coverage.json.
+  '/wcag/', '/wcag/1-3-1/', '/wcag/1-4-10/',
   '/about/', '/contact/', '/privacy/', '/imprint/', '/accessibility-statement/', '/404/',
 ]
 

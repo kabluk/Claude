@@ -40,9 +40,17 @@ const inCountry = (code) =>
 // реквизитов владельца, 404 в принципе не индексируется).
 const urls = [
   '/', '/scan/', '/methodology/', '/bfsg-check/', '/request-quote/', '/agencies/', '/countries/', '/services/', '/standards/',
-  '/about/', '/contact/', '/privacy/', '/accessibility-statement/',
+  '/wcag/', '/about/', '/contact/', '/privacy/', '/accessibility-statement/',
 ]
 for (const a of agencies) urls.push(`/agencies/${a.slug}/`)
+
+// CN-WCAG-PAGES (D-066): страницы критериев — из того же JSON, что и сами
+// страницы (src/lib/wcag.ts); порог осмысленности тот же: status !== 'none'.
+// Слаг — номер WCAG с дефисами. Согласованность охраняет scripts/wcag-pages.test.mjs.
+const coverage = JSON.parse(readFileSync(join(ROOT, 'data/a11y/en301549-coverage.json'), 'utf8'))
+for (const r of coverage.rows) {
+  if (r.status !== 'none') urls.push(`/wcag/${r.wcag.replace(/\./g, '-')}/`)
+}
 
 // Гайды: data/a11y/guides/*.md (slug — имя файла), всегда индексируемые.
 const GUIDES_DIR = join(ROOT, 'data/a11y/guides')

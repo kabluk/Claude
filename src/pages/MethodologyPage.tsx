@@ -50,6 +50,14 @@ export default function MethodologyPage() {
           violations; it cannot confirm a requirement is met. No number on this page is a statement
           of conformance, and nothing here is legal advice.
         </p>
+        {/* CN-WCAG-PAGES (D-066): вход в per-criterion справочник — анти-orphan. */}
+        <p className="mt-2 max-w-prose text-sm text-slate-600">
+          Every automated criterion also has its own page naming the exact rules —{' '}
+          <a className="underline underline-offset-2" href={paths.wcag()}>
+            browse the WCAG criteria reference
+          </a>
+          .
+        </p>
       </div>
 
       <section className="mt-10">
@@ -143,7 +151,17 @@ export default function MethodologyPage() {
                   <tr key={r.clause} className="border-b border-slate-100">
                     <td className="py-2 pr-3 align-top text-slate-500">{r.clause}</td>
                     <td className="py-2 pr-3 align-top text-slate-500">{r.wcag}</td>
-                    <td className="py-2 pr-3 align-top">{r.title}</td>
+                    <td className="py-2 pr-3 align-top">
+                      {/* Покрытый критерий ведёт на свою страницу (D-066);
+                          непокрытый страницы не имеет — порог thin-content. */}
+                      {r.status !== 'none' ? (
+                        <a className="underline underline-offset-2" href={`/wcag/${r.wcag.replace(/\./g, '-')}/`}>
+                          {r.title}
+                        </a>
+                      ) : (
+                        r.title
+                      )}
+                    </td>
                     <td className="py-2 align-top">
                       <StatusChip row={r} />
                     </td>

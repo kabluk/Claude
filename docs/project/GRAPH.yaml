@@ -1072,6 +1072,24 @@ nodes:
     approval_required: false
     notes: "Готово 2026-08-07 (D-064). Сначала проверен реальный контракт: воркер пишет только running->done|error одним UPDATE, пофазного прогресса нет — поэтому 3 честных шага (requested/scanning/report), а не фейковые фазовые таймеры (тот же класс запрета, что D-035/D-045, только в UI). Побочно снята существовавшая ложь: 'Scanned N pages so far' всегда показывал 0. Elapsed — от серверного createdAt (переживает перезагрузку), длительность done-скана — только серверные метки. Доступность: статус шага формой+текстом, не цветом; тикающий elapsed вне live-региона; единый sr-only live-регион в ReportPage; ошибка не тупик (Run a new scan, §38). Скриншоты: scratchpad design/scan-stream-{running,done,error}.png."
 
+  - id: CN-WCAG-PAGES
+    title: "SEO-поверхность /wcag/[criterion] (конституция §20/§43) из реальных данных en301549-coverage.json"
+    owner: frontend-engineer
+    status: done
+    depends_on: []
+    inputs: [data/a11y/en301549-coverage.json, src/lib/coverage.ts, docs/project/DESIGN_CONSTITUTION.md (§20, §43-44)]
+    scope: [src/lib/, src/pages/, src/routes.tsx, scripts/gen-a11y-sitemap.mjs, scripts/audit-own-a11y.mjs, scripts/]
+    outputs: [src/lib/wcag.ts, src/pages/WcagIndexPage.tsx, src/pages/WcagCriterionPage.tsx, scripts/wcag-pages.test.mjs]
+    verify:
+      - "полный набор зелёный; audit-a11y включает /wcag/ + 2 представителя шаблона"
+      - "порог thin-content (status !== 'none') реализован в страницах И sitemap; гейт wcag-pages.test.mjs доказан негативно"
+      - "вся фактура из данных/кода воркера — ничего не выдумано (уровень A/AA не показывается: его нет в данных)"
+    max_attempts: 3
+    attempts: 1
+    risk: medium
+    approval_required: false
+    notes: "Закрыт 2026-08-07 (D-066): 31 страница + индекс, 433 файла сборки (было 401), sitemap 395 (было 363), check-links 474-0, audit-a11y 29 стр. 0 нарушений. Скриншоты: scratchpad design/wcag-{index,1-3-1-axe,1-4-10-ours}.png."
+
   - id: CN-SCAN-PHASES
     title: "НАСТОЯЩИЙ пофазный стрим скана (statement/feedback/DOM-checks/axe по страницам) — расширение контракта API"
     owner: backend-engineer

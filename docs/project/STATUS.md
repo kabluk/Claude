@@ -2,7 +2,31 @@
 
 Обновлено: 2026-08-07 (см. также подробный legacy-статус: `research/STATE.md`)
 
-## Последнее (2026-08-07, третья дизайн-итерация, пункт 1: CN-NAV / D-065)
+## Последнее (2026-08-07, третья дизайн-итерация, пункт 2: CN-WCAG-PAGES / D-066)
+
+Новая SEO-поверхность `/wcag/[criterion]` (§20/§43) целиком из
+`data/a11y/en301549-coverage.json`: **31 страница критериев + индекс `/wcag/`**.
+Порог осмысленности записан в D-066 и в коде (`src/lib/wcag.ts`): страница
+только при `status !== 'none'` (≥1 axe-правило и/или наш модуль); 19
+`none`-критериев страниц не имеют — на индексе перечислены честно как «manual
+review only». Каждая страница: WCAG SC + clause EN 301 549 + точные axe-правила
+из данных + наш модуль с описанием, выведенным из кода воркера (все 11 в
+`OURS_DESCRIPTIONS` с указанием файла-источника), честные оговорки эвристик,
+«What automation cannot prove», /methodology/, related guides (динамически по
+standard), CTA на скан, prev/next. JSON-LD: TechArticle + ItemList + breadcrumbs.
+Слаг из номера SC (`1-4-10`), не из названия. Sitemap читает тот же JSON с тем
+же порогом; новый постоянный гейт `scripts/wcag-pages.test.mjs` (доказан
+негативно дважды: снятое описание модуля и подсаженная страница none-критерия —
+падения с точным указанием). Audit-сэмпл: `/wcag/` + `1-3-1` (axe-only) +
+`1-4-10` (ours-only). Anti-orphan: входы с /methodology/ (включая построчные
+ссылки полной таблицы) и с индекса Knowledge.
+
+Верификация: build-a11y 245 / typecheck / worker:test 202 / src:test 14 /
+scripts:test **25** (было 21) / build **433** файла (было 401), sitemap **395**
+(было 363) / check-links **474**-0 / audit-a11y **29**-0 (было 26). Скриншоты
+для владельца: scratchpad `design/wcag-{index,1-3-1-axe,1-4-10-ours}.png`.
+
+## Предыдущее (2026-08-07, третья дизайн-итерация, пункт 1: CN-NAV / D-065)
 
 Остаток `CN-NAV` закрыт: IA-ярлыки по §6 конституции — «Guides» → **«Knowledge»**
 (шапка, h1 `/guides/`, breadcrumb гайдов), «All agencies» → **«Experts»** (шапка,

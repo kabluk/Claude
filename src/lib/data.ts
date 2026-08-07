@@ -163,6 +163,9 @@ export const paths = {
   accessibilityStatement: () => '/accessibility-statement/',
   scan: () => '/scan/',
   methodology: () => '/methodology/',
+  // CN-WCAG-PAGES (D-066): справочник критериев из en301549-coverage.json.
+  wcag: () => '/wcag/',
+  wcagCriterion: (slug: string) => `/wcag/${slug}/`,
   // Немецкий входной путь (D-041). Статический сегмент — react-router ранжирует
   // его выше динамического '/:country', поэтому конфликта со страной нет.
   bfsgCheck: () => '/bfsg-check/',
