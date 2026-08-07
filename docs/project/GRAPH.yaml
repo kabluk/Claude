@@ -801,3 +801,25 @@ nodes:
     risk: medium
     approval_required: false
     notes: "Готово 2026-08-06 (D-047). 245/245 проверены обходом сайтов (homepage → about-ссылки → sitemap.xml → LinkedIn, если на него ссылается сам сайт). Заполнено 65 (было 31): 43 новых, 1 исправлено (knowbility 1998→1999), 9 снято. Как и в G-PRICE, ни у одного из 31 старого значения не было источника года. Главное решение: LinkedIn ОТКЛОНЁН как самостоятельный источник по измерению — из 24 записей, где год есть и на сайте, и в LinkedIn, они расходятся в 6 (25%); засчитывается только как подтверждение совпадающего года с собственного сайта (правило D, 15 записей), 72 LinkedIn-only отклонены. Побочно: founded не рендерился НИГДЕ — добавлена строка «In business since» в профиль. Журнал отклонений (8 категорий) — domains/data.md."
+
+  - id: G-GUIDES-BFSG-STATEMENT
+    title: "Первый гайд BFSG-кластера про Anlage 3 (Barrierefreiheitserklärung: пять пунктов, где публиковать)"
+    owner: product-lead
+    status: done
+    depends_on: []
+    inputs: [worker/lib/statement.js, data/a11y/guides/bfsg-pflichten-guide.md, docs/project/DECISIONS.md]
+    scope: [data/a11y/guides/barrierefreiheitserklaerung-bfsg-anlage3.md, data/a11y/guides/bfsg-pflichten-guide.md]
+    outputs: [data/a11y/guides/barrierefreiheitserklaerung-bfsg-anlage3.md]
+    verify:
+      - npm run build   # 389 страниц, dist/guides/barrierefreiheitserklaerung-bfsg-anlage3/index.html существует
+      - npm run typecheck
+      - npm run check-links   # 418 ссылок, 0 битых
+      - npm run audit-a11y    # 25 страниц, 0 нарушений (постоянный сэмпл)
+      - "разовый axe-прогон на /guides/barrierefreiheitserklaerung-bfsg-anlage3/ — 0 нарушений, порядок заголовков без пропусков"
+      - "sitemap 352 URL (было 351), новый гайд внутри"
+      - "нет сумм штрафов в тексте (grep на €/EUR/Bußgeld-цифры) — инвариант D-035"
+    max_attempts: 3
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Готово 2026-08-07 (D-056). product-lead выбрал G-GUIDES вместо G-I18N для этой итерации (см. D-056 за полным обоснованием — hreflang из G-I18N упирается в тот же A0-ORIGIN блокер, что и весь деплой; масштаб G-I18N не оценён; трафик до деплоя может расти только через контент). Пять обязательных пунктов Anlage 3 сверены внешним поиском (gesetze-im-internet.de отдавал 503 в моменте, вторичный источник bfsg-gesetz.de использован как временная замена, независимо согласуется с уже закодированной эвристикой worker/lib/statement.js). relatedAgencies переиспользует уже проверенный набор из bfsg-pflichten-guide.md, не выдуман заново. Интеграция полностью через существующие динамические механизмы (getStaticPaths, sitemap-генератор по каталогу, BfsgCheckPage-фильтр по countryCode) — ни один захардкоженный список руками не трогали, кроме одной обратной ссылки в bfsg-pflichten-guide.md. Остаток G-GUIDES (EAA-кластер для 8 новых юрисдикций D-031, VPAT-кластер, ещё BFSG-контент) НЕ начат — заведётся отдельными узлами по мере выбора следующего куска."

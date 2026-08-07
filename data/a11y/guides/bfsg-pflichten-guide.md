@@ -102,7 +102,7 @@ Die Länder haben die Marktüberwachung gebündelt: Die [Marktüberwachungsstell
 1. **Anwendungsbereich klären.** Prüfen Sie, welche Ihrer Produkte und Dienstleistungen unter § 1 BFSG fallen und ob die Kleinstunternehmen-Ausnahme greift. Die [Bundesfachstelle Barrierefreiheit](https://www.bundesfachstelle-barrierefreiheit.de/) bietet dazu kostenlose Erstinformationen (§ 15 BFSG).
 2. **Ist-Zustand erheben.** Lassen Sie ein Audit nach EN 301 549 / WCAG 2.1 AA durchführen — automatisierte Scans finden nur einen Teil der Barrieren, manuelles Testen mit Screenreader und Tastatur ist Pflichtprogramm.
 3. **Mängel priorisieren und beheben.** Blockierende Barrieren zuerst: Tastaturbedienbarkeit, Formulare und Fehlermeldungen, Kontraste, Alternativtexte, Fokusführung im Checkout.
-4. **Dokumentation aufbauen.** Erstellen Sie die nach Anlage 3 BFSG geforderten Informationen zur Barrierefreiheit Ihrer Dienstleistung und halten Sie die Bewertung aktuell.
+4. **Dokumentation aufbauen.** Erstellen Sie die nach Anlage 3 BFSG geforderten Informationen zur Barrierefreiheit Ihrer Dienstleistung und halten Sie die Bewertung aktuell — die [fünf Pflichtangaben im Detail](/guides/barrierefreiheitserklaerung-bfsg-anlage3/) erklären wir separat, inklusive Muster-Aufbau.
 5. **Prozesse verankern.** Barrierefreiheit gehört in Design-Systeme, Definition of Done, Redaktionsleitfäden und Lieferantenverträge — sonst erodiert jeder erreichte Stand mit dem nächsten Release.
 6. **Nachweis durch externe Prüfung.** Ein unabhängiger BITV- oder WCAG-Test einer erfahrenen Prüfstelle liefert einen belastbaren Konformitätsnachweis gegenüber Marktüberwachung und Geschäftspartnern und deckt Restfehler auf, die interne Teams übersehen.
 
