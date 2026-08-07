@@ -60,4 +60,4 @@ Eine vollständige Erklärung folgt meist dieser Reihenfolge: (1) Geltungsbereic
 
 ## Nächster Schritt
 
-Der [BFSG-Check](/bfsg-check/) prüft automatisch, ob eine Erklärung überhaupt gefunden wird und ob die fünf Bestandteile oben erkennbar sind — als kostenloser erster Schritt, bevor eine Prüfstelle den Inhalt im Detail bewertet.
+Der [BFSG-Check](/bfsg-check/) prüft automatisch, ob eine Erklärung überhaupt gefunden wird und ob die fünf Bestandteile oben erkennbar sind — als kostenloser erster Schritt, bevor eine Prüfstelle den Inhalt im Detail bewertet. Für Muster-Formulierungen zu jedem der fünf Punkte oben und eine Checkliste für die technische Veröffentlichung siehe [Barrierefreiheitserklärung: Muster-Formulierungen und Checkliste](/guides/barrierefreiheitserklaerung-muster-checkliste/).

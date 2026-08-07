@@ -2,7 +2,50 @@
 
 Обновлено: 2026-08-07 (см. также подробный legacy-статус: `research/STATE.md`)
 
-## Последнее (2026-08-07, собственное заявление о доступности AccessAtlas / D-060)
+## Последнее (2026-08-07, G-GUIDES четвёртый кусок — Muster/Checkliste / G-GUIDES-BFSG-MUSTER)
+
+Закрыт последний заявленный кусок BFSG-кластера `G-GUIDES`: новый гайд
+`data/a11y/guides/barrierefreiheitserklaerung-muster-checkliste.md` (de,
+`standard: eaa`, `countryCode: DE`) — практическая Muster-Vorlage
+(Platzhalter-Formulierungen für alle fünf Anlage-3-Punkte) плюс
+7-пунктовая Veröffentlichungs-Checkliste (Menüpunkt, Footer-Link,
+Barrierefreiheit der Erklärung selbst, ausgefüllte Platzhalter, Datum,
+konkrete Mängel statt Pauschalaussagen, Pflege nach Audit/Relaunch). Пять
+пунктов Anlage 3 не пересказаны заново дословно — только ссылка на
+`barrierefreiheitserklaerung-bfsg-anlage3.md` плюс новый практический слой
+(явное требование узла). Встречные ссылки добавлены в обе стороны:
+из `barrierefreiheitserklaerung-bfsg-anlage3.md` и `bfsg-pflichten-guide.md`
+на новый гайд (анти-orphan).
+
+Интеграция без ручных списков — тот же механизм, что у трёх предыдущих
+кусков кластера: `src/lib/guides.ts` глобит `data/a11y/guides/*.md`,
+роут/статик-путь и sitemap-запись возникают автоматически, ручных правок в
+`routes.tsx`/`gen-a11y-sitemap.mjs`/`GuidesIndexPage.tsx` не потребовалось.
+
+Baseline подтверждён живым прогоном непосредственно перед стартом узла
+(245/0, typecheck чисто, 202/10/21 тестов, 399 страниц, sitemap 362,
+check-links 437/0). После изменения: `build-a11y` 245/0 без изменений,
+`typecheck` чисто, `worker:test` 202/202, `src:test` 10/10, `scripts:test`
+21/21 (включая `no-fine-amounts.test.mjs` — новый файл прошёл гейт D-035/
+D-058 без правок теста, тест глобит директорию сам), `build` 400 страниц
+(было 399), sitemap 363 URL (было 362), `check-links` 438 уникальных ссылок
+0 битых (было 437), `audit-a11y` 26 страниц постоянного сэмпла 0 нарушений
+(без изменений — новая страница туда не добавлялась, не требовалось verify
+узла). Отдельный разовый axe-прогон новой страницы и обеих изменённых
+существующих (не входят в постоянный сэмпл) — временный скрипт-копия
+харнесса `audit-own-a11y.mjs`, запущен и удалён из репозитория сразу после:
+все 3 страницы чисты, 0 нарушений. `grep` на €/EUR/Bußgeld/fine/penalty по
+новому файлу — 0 совпадений. Новых юридических фактов в текст не добавлено
+(только практический слой поверх уже перепроверенных в D-056/D-060 фактов:
+Anlage 3, § 16/17 BFSG, MLBF, Art. 246 EGBGB) — живой WebFetch-фактчек не
+требовался этим узлом и не проводился. Деплоя и платных ресурсов не было.
+
+`G-GUIDES` (BACKLOG.md) закрыт как последовательность из четырёх кусков:
+BFSG-STATEMENT (D-056) → EAA-8 (D-057) → VPAT-CLUSTER (D-059) →
+BFSG-MUSTER (этот узел). Побочная находка D-057 (суммы штрафов,
+G-GUIDES-FINE-SWEEP) закрыта ранее отдельно (D-058).
+
+## Предыдущее (2026-08-07, собственное заявление о доступности AccessAtlas / D-060)
 
 Найденный пробел закрыт: AccessAtlas продаёт платное Featured через Stripe,
 что подняло вопрос — не обязан ли сам сайт иметь собственное заявление о
