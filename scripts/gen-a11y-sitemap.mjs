@@ -40,7 +40,7 @@ const inCountry = (code) =>
 // реквизитов владельца, 404 в принципе не индексируется).
 const urls = [
   '/', '/scan/', '/methodology/', '/bfsg-check/', '/request-quote/', '/agencies/', '/countries/', '/services/', '/standards/',
-  '/about/', '/contact/', '/privacy/',
+  '/about/', '/contact/', '/privacy/', '/accessibility-statement/',
 ]
 for (const a of agencies) urls.push(`/agencies/${a.slug}/`)
 

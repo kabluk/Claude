@@ -910,3 +910,40 @@ nodes:
     risk: low
     approval_required: false
     notes: "Готово 2026-08-07 (D-059). Третий кусок G-GUIDES из меню, оставленного в notes G-GUIDES-EAA-8. Единственная связка (ACR-секция ↔ EN 301 549 clause ↔ WCAG) не существовала ни в одном из трёх смежных гайдов (vpat-acr-guide/section-508-compliance-guide/en-301-549-explained — все из базового импорта 2026-08-06, факты не проверялись живьём в этом проекте ни разу). Раздел про отличие от Barrierefreiheitserklärung/RGAA déclaration построен только на перекрёстных ссылках на уже существующие гайды (D-033/D-056/D-057), факты BFSG/RGAA не передублированы. standard:'section-508' — гайд встал на /standards/section-508/ рядом с vpat-acr-guide/section-508-compliance-guide через существующий guidesFor()-механизм StandardPage.tsx, без единой ручной правки списка."
+
+  - id: A0-A11Y-STATEMENT
+    title: "Собственное заявление о доступности AccessAtlas (/accessibility-statement/) — пробел найден: платное Featured через Stripe поднимает вопрос e-commerce-service по EAA для самого сайта"
+    owner: product-lead
+    status: done
+    depends_on: []
+    inputs:
+      - worker/lib/statement.js
+      - data/a11y/guides/barrierefreiheitserklaerung-bfsg-anlage3.md
+      - docs/project/EN301549-COVERAGE.md
+      - scripts/en301549-coverage.mjs
+      - scripts/audit-own-a11y.mjs
+      - src/pages/ImprintPage.tsx
+    scope:
+      - src/pages/AccessibilityStatementPage.tsx
+      - src/routes.tsx
+      - src/lib/data.ts
+      - src/components/Layout.tsx
+      - scripts/gen-a11y-sitemap.mjs
+      - scripts/audit-own-a11y.mjs
+    outputs: [src/pages/AccessibilityStatementPage.tsx]
+    verify:
+      - "npm run build-a11y — 245 агентств, 0 ошибок"
+      - "npm run typecheck — чисто"
+      - "npm run worker:test — 202/202, npm run src:test — 10/10, npm run scripts:test — 21/21 (page-lists.test.mjs ловит пропуск страницы в sitemap/audit-own-a11y — прошёл без изменений в самом тесте)"
+      - "npm run build — 399 страниц (было 398), sitemap 362 URL (было 361)"
+      - "npm run check-links — 437 уникальных ссылок, 0 битых (было 435)"
+      - "npm run audit-a11y — 26 страниц (было 25, новая страница внутри постоянного сэмпла с первого дня, не разово), 0 нарушений"
+      - "npm run en301549:coverage — запущен живьём непосредственно перед написанием текста статуса соответствия (31/50, 62%), число взято из coverageSummary (src/lib/coverage.ts), не вписано руками — не может разойтись с /methodology/"
+      - "живая проверка встроенного HTML dist/accessibility-statement/index.html: числа 50/31/62% и текст 'Self-assessed'/'25 sampled pages' реально присутствуют в собранной странице, не только в JSX-исходнике"
+      - "grep на €/EUR/Bußgeld/fine/penalty по новому файлу — нет ни одного (инвариант D-035); единственное совпадение '§' — параграф закона, не сумма"
+      - "фактчек вживую (не по памяти прошлого чата): Art. 3(30) EAA и § 2 Nr. 26 BFSG — оба подтверждены WebFetch/WebSearch на первичный/вторичный текст, оба определяют e-commerce service через 'Verbrauchervertrag'/consumer contract"
+    max_attempts: 2
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Готово 2026-08-07 (D-060). Пробел найден пользователем, не в BACKLOG/GRAPH ранее. Живой фактчек (WebFetch на eur-lex.europa.eu текст Art. 3(30)/3(22) EAA + WebSearch/WebFetch на §2 Nr.26 BFSG, gesetze-im-internet.de) скорректировал исходную посылку задачи: платные Featured-размещения продаются агентствам (бизнесам, действующим в рамках своей профессии) — это B2B, а не 'Verbrauchervertrag' с потребителем, который требует и Art. 3(30) EAA, и §2 Nr.26 BFSG для статуса 'e-commerce service'. Сама по себе продажа Featured эту классификацию строго не включает. Бесплатный сканер (/scan) — более сильный кандидат: доступен 'по индивидуальному запросу' любому посетителю без требования торговой цели. Страница не утверждает разрешённую классификацию как факт — честно называет обе стороны неопределённости и публикуется добровольно независимо от исхода (сама компания работает в сфере доступности — репутационный довод сильнее спорного юридического триггера). 3 из 5 пунктов Anlage 3 закрыты живыми фактами без выдумывания (описание услуги, правовая основа с оговоркой о юрисдикции, статус соответствия — из свежего audit-a11y/en301549-coverage). Оставшиеся 2 пункта (идентификация Anbieter по Art. 246 EGBGB, надзорный орган) ЗАВИСЯТ ОТ ОДНОГО И ТОГО ЖЕ БЛОКЕРА — A0-OWNER-LEGAL (какая страна регистрации, та и юрисдикция/орган) — не только идентификация, как в исходной формулировке задачи; орган MLBF назван как иллюстрация (используется в собственных гайдах проекта), явно не заявлен как 'наш'. Канал обратной связи переиспользует /contact/ (уже существующий реальный email), не изобретён новый. Опубликовано как done + индексируемо (не noindex, как /imprint/) — обоснование в DECISIONS.md D-060: страница сама по себе фактически полна и честна о своём единственном пробеле (тот же паттерн, что уже использует /privacy/, которая тоже ссылается на неполный /imprint/, но сама остаётся индексируемой)."

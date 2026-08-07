@@ -160,6 +160,7 @@ export const paths = {
   contact: () => '/contact/',
   privacy: () => '/privacy/',
   imprint: () => '/imprint/',
+  accessibilityStatement: () => '/accessibility-statement/',
   scan: () => '/scan/',
   methodology: () => '/methodology/',
   // Немецкий входной путь (D-041). Статический сегмент — react-router ранжирует

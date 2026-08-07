@@ -35,7 +35,7 @@ const SAMPLE_ROUTES = [
   '/services/', '/services/accessibility-audit/',
   '/standards/', '/standards/wcag-2-2/',
   '/guides/', '/guides/wcag-audit-guide/', '/guides/vpat-acr-guide/',
-  '/about/', '/contact/', '/privacy/', '/imprint/', '/404/',
+  '/about/', '/contact/', '/privacy/', '/imprint/', '/accessibility-statement/', '/404/',
 ]
 
 const MIME = { '.html': 'text/html', '.css': 'text/css', '.js': 'application/javascript', '.json': 'application/json', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.png': 'image/png' }

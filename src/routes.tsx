@@ -78,6 +78,10 @@ export const routes: RouteRecord[] = [
   { path: '/contact', lazy: page(() => import('./pages/ContactPage')) },
   { path: '/privacy', lazy: page(() => import('./pages/PrivacyPage')) },
   { path: '/imprint', lazy: page(() => import('./pages/ImprintPage')) },
+  {
+    path: '/accessibility-statement',
+    lazy: page(() => import('./pages/AccessibilityStatementPage')),
+  },
   // Статический /404/ — прямые ссылки и копия в dist/404.html (см.
   // gen-a11y-sitemap.mjs) для конвенции хостингов (Cloudflare Pages/Netlify).
   { path: '/404', lazy: page(() => import('./pages/NotFoundPage')) },

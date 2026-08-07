@@ -104,6 +104,9 @@ export function Layout({
             <Link className="hover:text-slate-900" to={paths.imprint()}>
               Imprint
             </Link>
+            <Link className="hover:text-slate-900" to={paths.accessibilityStatement()}>
+              Accessibility Statement
+            </Link>
           </nav>
         </div>
       </footer>
