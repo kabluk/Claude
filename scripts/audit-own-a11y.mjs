@@ -79,7 +79,16 @@ try {
     }
     await page.goto(url, { waitUntil: 'load' })
     await page.addScriptTag({ content: AXE_SOURCE })
-    const axeResults = await page.evaluate(async () => await window.axe.run())
+    // CN-WCAG22 (§40 конституции): дефолтный axe.run() гоняет все правила,
+    // ВКЛЮЧЁННЫЕ по умолчанию, — а `target-size` (единственное wcag22aa-правило
+    // в axe-core 4.13) поставляется с enabled:false и без явного включения
+    // молча не проверяется. Проверено на axe._audit.rules: без этой строки
+    // самопроверка была «WCAG 2.1 AA + best practices», а не 2.2 AA.
+    // runOnly:{tags} сознательно НЕ используется — он бы отключил
+    // best-practice-правила, которые сейчас тоже держат гейт.
+    const axeResults = await page.evaluate(
+      async () => await window.axe.run(document, { rules: { 'target-size': { enabled: true } } })
+    )
     results.push({ route, violations: axeResults.violations })
   }
 } finally {

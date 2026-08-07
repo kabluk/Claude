@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
+import { ScanStream } from '@/components/ScanStream'
 import { paths } from '@/lib/data'
 import {
   ScannerUnavailableError,
@@ -63,9 +64,27 @@ export default function ReportPage() {
 
   if (!id) return null
 
+  // Единый live-регион на все переходы состояний (loading → running → done/
+  // error): существует с первого рендера, поэтому скринридер слышит смену
+  // статуса, даже когда визуальный блок целиком заменяется отчётом. Тикающий
+  // elapsed сюда сознательно НЕ входит (см. ScanStream).
+  const liveMessage =
+    state.kind === 'loading'
+      ? 'Loading report'
+      : state.kind === 'report'
+        ? state.report.status === 'running'
+          ? 'Scan in progress'
+          : state.report.status === 'done'
+            ? 'Scan finished, report ready'
+            : 'Scan failed'
+        : ''
+
   return (
     <Layout title="Accessibility scan report" description="Automated accessibility scan results." path={paths.report(id)} index={false}>
-      {state.kind === 'loading' && <p className="lede" role="status">Loading report…</p>}
+      <p className="sr-only" role="status" aria-live="polite">
+        {liveMessage}
+      </p>
+      {state.kind === 'loading' && <p className="lede">Loading report…</p>}
 
       {state.kind === 'unavailable' && (
         <div role="alert" className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-amber-900">
@@ -94,21 +113,18 @@ export default function ReportPage() {
 }
 
 function ReportBody({ report }: { report: ScanReport }) {
+  // CN-SCAN-STREAM: running/error рисуются deploy-подобным потоком шагов
+  // (ScanStream) из РЕАЛЬНЫХ полей API. Прежний текст «Scanned N pages so far»
+  // снят как раз поэтому: pages_json пишется одним куском при завершении,
+  // счётчик всегда показывал 0 и лишь притворялся живым прогрессом.
   if (report.status === 'running') {
     return (
       <div>
         <h1 className="h1">Scanning {report.url}</h1>
-        <p className="lede" role="status" aria-live="polite">
-          Scanned {report.pages.length} page{report.pages.length === 1 ? '' : 's'} so far. This usually
-          takes under a minute for a typical site — this page updates on its own, no need to reload.
+        <p className="lede">
+          Most sites finish in under a minute — this page updates on its own, no need to reload.
         </p>
-        {report.pages.length > 0 && (
-          <ul className="mt-4 space-y-1 text-sm text-slate-500">
-            {report.pages.map((p) => (
-              <li key={p}>✓ {p}</li>
-            ))}
-          </ul>
-        )}
+        <ScanStream report={report} />
       </div>
     )
   }
@@ -118,6 +134,13 @@ function ReportBody({ report }: { report: ScanReport }) {
       <div role="alert">
         <h1 className="h1">Couldn't scan {report.url}</h1>
         <p className="lede">{scanErrorMessage(report.errorCode)}</p>
+        <ScanStream report={report} />
+        {/* §38: ошибка — не тупик, путь вперёд обязателен. */}
+        <p className="mt-8">
+          <Link className="btn" to={paths.scan()}>
+            Run a new scan
+          </Link>
+        </p>
       </div>
     )
   }

@@ -65,6 +65,26 @@ body {
   @apply bg-white text-[color:var(--color-ink)] font-sans antialiased;
 }
 
+/* Активный шаг scan-потока (CN-SCAN-STREAM). Вращение — функциональный
+   индикатор «идёт работа», не декоративный motion (§57 запрещает декоративный,
+   не смысловой). При prefers-reduced-motion: reduce анимация снимается
+   полностью (§35): остаётся статичное полукольцо — состояние по-прежнему
+   отличимо формой (кольцо ≠ галка ≠ крест ≠ точка), движение не обязано
+   быть носителем смысла. */
+@keyframes stream-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.stream-spinner {
+  animation: stream-spin 1s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .stream-spinner {
+    animation: none;
+  }
+}
+
 @layer components {
   .container-page {
     @apply mx-auto w-full max-w-5xl px-4 sm:px-6;

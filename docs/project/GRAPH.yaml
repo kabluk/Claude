@@ -1,5 +1,5 @@
 version: 1
-updated_at: 2026-08-06
+updated_at: 2026-08-07
 limits:
   max_parallel: 3
   max_nodes_per_iteration: 8
@@ -1017,3 +1017,58 @@ nodes:
     risk: medium
     approval_required: false
     notes: "Заведён и закрыт 2026-08-07 одной итерацией с CN-HERO (D-063, первая дизайн-итерация по запросу владельца 'нужно дополнить UX и дизайн'). Решения и обоснования: DECISIONS.md D-063; источник правды системы — docs/project/domains/design.md (палитра hex+назначение, типографика, spacing, фокус, severity-семантика, анти-паттерны §57). База — slate как есть, акцент один #4338ca, severity: critical #b91c1c / serious #9a3412 / moderate #854d0e / minor slate + success/info. Кастомный моно-шрифт сознательно не введён (system-stack), tabular-nums через .num. ReportPage severity-чипы переведены с chip-accent на chip-{impact}."
+
+  - id: CN-WCAG22
+    title: "Самопроверка сайта до WCAG 2.2 AA (конституция §40): target-size в audit-own-a11y"
+    owner: qa-engineer
+    status: done
+    depends_on: []
+    inputs: [scripts/audit-own-a11y.mjs, node_modules/axe-core (4.13), src/pages/AccessibilityStatementPage.tsx]
+    scope: [scripts/audit-own-a11y.mjs, src/pages/AccessibilityStatementPage.tsx, docs/project/domains/design.md]
+    outputs: [scripts/audit-own-a11y.mjs]
+    verify:
+      - "канарейка: посаженное нарушение target-size (16x16px кнопка) ловится новым конфигом и НЕ ловится старым — гейт умеет провалиться"
+      - "npm run build && npm run audit-a11y — 26 страниц 0 нарушений с включённым target-size"
+      - "npm run typecheck / check-links — зелёные"
+    max_attempts: 3
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Готово 2026-08-07 (D-064). Находка: дефолтный axe.run() НЕ гонял target-size — единственное wcag22aa-правило axe-core 4.13 поставляется с enabled:false; самопроверка молча была 2.0/2.1 AA + best practices. Включено явно через rules:{'target-size':{enabled:true}}; runOnly:{tags} сознательно не использован (снял бы best-practice-правила гейта). Канарейка подтвердила силу проверки (старый конфиг молчит, новый ловит), 26 страниц — 0 нарушений, чинить не пришлось: интерактивные цели сайта уже >=24px. Обновлены /accessibility-statement/ (rule set назван явно) и domains/design.md §7."
+
+  - id: CN-SCAN-STREAM
+    title: "Deploy-подобный поток состояний скана (конституция §10) — только реальные состояния API"
+    owner: frontend-engineer
+    status: done
+    depends_on: []
+    inputs: [worker/routes/scan.js, worker/lib/db.js, src/pages/ReportPage.tsx, src/lib/scanner.ts, docs/project/INTERFACES.md]
+    scope: [src/lib/scanStream.ts, src/components/ScanStream.tsx, src/pages/ReportPage.tsx, src/styles.css]
+    outputs: [src/lib/scanStream.ts, src/components/ScanStream.tsx]
+    verify:
+      - "шаги строятся ТОЛЬКО из полей GET /api/scan/:id (running|done|error, createdAt, completedAt, pages, findings) — проверено чтением worker/lib/db.js, тест src/lib/scanStream.test.mjs фиксирует ровно 3 шага"
+      - "живой Playwright с мокнутым API: очередь -> running (elapsed тикает) -> done; error; not-found — 17 проверок зелёные"
+      - "prefers-reduced-motion: reduce -> animation none (плюс контроль, что без reduce анимация живая); axe на running/error состояниях 0 нарушений"
+      - "npm run src:test / typecheck / build — зелёные"
+    max_attempts: 3
+    attempts: 1
+    risk: medium
+    approval_required: false
+    notes: "Готово 2026-08-07 (D-064). Сначала проверен реальный контракт: воркер пишет только running->done|error одним UPDATE, пофазного прогресса нет — поэтому 3 честных шага (requested/scanning/report), а не фейковые фазовые таймеры (тот же класс запрета, что D-035/D-045, только в UI). Побочно снята существовавшая ложь: 'Scanned N pages so far' всегда показывал 0. Elapsed — от серверного createdAt (переживает перезагрузку), длительность done-скана — только серверные метки. Доступность: статус шага формой+текстом, не цветом; тикающий elapsed вне live-региона; единый sr-only live-регион в ReportPage; ошибка не тупик (Run a new scan, §38). Скриншоты: scratchpad design/scan-stream-{running,done,error}.png."
+
+  - id: CN-SCAN-PHASES
+    title: "НАСТОЯЩИЙ пофазный стрим скана (statement/feedback/DOM-checks/axe по страницам) — расширение контракта API"
+    owner: backend-engineer
+    status: todo
+    depends_on: [CN-SCAN-STREAM]
+    inputs: [worker/lib/axe.js, worker/routes/scan.js, worker/lib/db.js, docs/project/INTERFACES.md, src/lib/scanStream.ts]
+    scope: [worker/, src/lib/scanStream.ts, src/components/ScanStream.tsx, docs/project/INTERFACES.md]
+    outputs: [worker/lib/db.js, docs/project/INTERFACES.md]
+    verify:
+      - "воркер пишет промежуточный прогресс в D1 (фаза/страница) по ходу scanSite, GET /api/scan/:id отдаёт его; изменение контракта — только с записью в DECISIONS.md (правило CLAUDE.md)"
+      - "UI-шаги в ScanStream появляются из новых полей, ни один шаг не выдуман"
+      - "worker:test + живой Playwright-прогон"
+    max_attempts: 3
+    attempts: 0
+    risk: medium
+    approval_required: true
+    notes: "Заведён 2026-08-07 (D-064) как честная граница CN-SCAN-STREAM: текущий контракт пофазного прогресса не отдаёт, а рисовать фазы без данных запрещено. Требует изменения контракта API (INTERFACES.md §3, запись в DECISIONS.md) И деплоя воркера — деплой только с явного разрешения владельца (D-022), отсюда approval_required. UI-каркас (scanStream.ts) готов принять новые шаги."

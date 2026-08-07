@@ -88,8 +88,11 @@ export default function AccessibilityStatementPage() {
             <strong>Permanent self-scan.</strong> Every build runs our own scanner tooling
             (axe-core) against a fixed sample of pages covering every page template on the
             site, including this one (<code>npm run audit-a11y</code>), as a build gate — a
-            page template that fails blocks release. As of this statement's last review date,
-            that gate ran clean: 0 violations across all 26 sampled pages.
+            page template that fails blocks release. The rule set covers WCAG 2.0/2.1 A and
+            AA plus the WCAG 2.2 Level AA rule automation can check (<code>target-size</code>,
+            explicitly enabled — axe-core ships it switched off by default), alongside
+            axe-core's best-practice rules. As of this statement's last review date, that
+            gate ran clean: 0 violations across all 26 sampled pages.
           </li>
           <li>
             <strong>Standard coverage.</strong> Of the {coverageSummary.total} checkable success
