@@ -54,11 +54,14 @@ export function Layout({
             <Link className="hover:text-slate-900" to={paths.standards()}>
               Standards
             </Link>
+            {/* CN-NAV (D-062 §6): подписи IA — «Knowledge»/«Experts». URL /guides/ и
+                /agencies/ сознательно НЕ переименованы (SEO/внешние ссылки живут);
+                модель данных agencies тоже не трогается — только UI-ярлыки. */}
             <Link className="hover:text-slate-900" to="/guides/">
-              Guides
+              Knowledge
             </Link>
             <Link className="hover:text-slate-900" to={paths.agencies()}>
-              All agencies
+              Experts
             </Link>
           </nav>
           <Link className="btn ml-auto !py-1.5 !text-xs" to={paths.scan()}>

@@ -3,6 +3,26 @@
 Формат: ID | дата | решение | причина | последствия. Новые решения добавлять сверху.
 Статусы: `accepted` (принято), `proposed` (ждёт подтверждения владельца).
 
+## D-065 · 2026-08-07 · accepted
+CN-NAV закрыт: переименования IA по §6 конституции — только UI-ярлыки, не URL.
+
+- «Guides» → **«Knowledge»**: шапка (`Layout.tsx`), h1 индекс-страницы
+  (`GuidesIndexPage.tsx`), breadcrumb гайдов (`GuidePage.tsx`). «All agencies» →
+  **«Experts»**: шапка, h1 `/agencies/` (`TierPages.tsx`), breadcrumb профиля
+  (`AgencyPage.tsx`). Футер ссылок Guides/agencies не имел — не менялся.
+- **URL `/guides/*` и `/agencies/*` сознательно НЕ переименованы** (SEO и внешние
+  ссылки живут). Редирект/смена URL на `/knowledge/`/`/experts/` — отдельное
+  будущее решение владельца, НЕ принято этой итерацией; если принимать — только
+  с 301 и обновлением sitemap/page-lists.
+- Модель данных `agencies` не тронута (инвариант D-062). Прозаические ссылки в
+  контенте («Compare all agencies in the catalog», «All guides →», «See all
+  agencies») оставлены как есть: «guides»/«agencies» там — тип контента, не
+  пункт навигации; SEO-титулы страниц тоже не тронуты (keyword-rich, важнее
+  ярлыка).
+- Проверки: полный набор зелёный (245 / typecheck / 202 / 14 / 21 / build 400,
+  sitemap 363 / check-links 439-0 / audit-a11y 26-0); ярлыки подтверждены в
+  собранном `dist/` grep'ом.
+
 ## D-064 · 2026-08-07 · accepted
 Вторая дизайн-итерация конституции: CN-WCAG22 + CN-SCAN-STREAM (оба узла done).
 

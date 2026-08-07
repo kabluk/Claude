@@ -998,6 +998,23 @@ nodes:
     approval_required: false
     notes: "Заведён 2026-08-07 (D-062) как первая и самая рычажная дельта конституции: сканер уже реально задеплоен, домена не требует, меняет подачу продукта с 'каталог с кнопкой скана' на 'платформа со сканером на входе'. Готово 2026-08-07 (D-063): hero дословно по §7 ('Check your website accessibility' / 'Scan website' / 'Free instant scan. No signup required.'), логика отправки НЕ продублирована — общий useScanForm (src/components/ScanForm.tsx) для hero и /scan/, валидация тот же isValidScanUrl. Fear-заголовок '…before the deadline finds you' снят (D-035/§57). 'Sites scanned today' не показывается — реального агрегата из D1 нет; stat-ряд только из чисел сборки (245/19/121/31из50). Каталог и оба trust-блока ниже hero (§8). Все verify прошли: build 400 стр., typecheck чисто, audit-a11y 26 стр. 0 нарушений, живой Playwright — невалидный URL даёт видимый role=alert, валидный доводит до /report/demo123 на мокнутом API, фокус-кольцо 2px видно при Tab. Скриншоты before/after — scratchpad design/."
 
+  - id: CN-NAV
+    title: "IA-переименования (конституция §6): 'Guides' → 'Knowledge', 'All agencies' → 'Experts' — только UI-ярлыки, не URL"
+    owner: frontend-engineer
+    status: done
+    depends_on: [CN-HERO]
+    inputs: [docs/project/DESIGN_CONSTITUTION.md (§6), src/components/Layout.tsx, src/pages/GuidesIndexPage.tsx, src/pages/TierPages.tsx]
+    scope: [src/components/Layout.tsx, src/pages/]
+    outputs: [src/components/Layout.tsx, src/pages/GuidesIndexPage.tsx, src/pages/GuidePage.tsx, src/pages/AgencyPage.tsx, src/pages/TierPages.tsx]
+    verify:
+      - "npm run build / typecheck / check-links / audit-a11y — зелёные; ярлыки видны в собранном dist/"
+      - "URL /guides/* и /agencies/* НЕ изменены; модель данных agencies не тронута (D-062)"
+    max_attempts: 3
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Первая часть (Scan — первый акцентный пункт шапки) сделана в D-063; остаток закрыт 2026-08-07 (D-065): ярлыки Knowledge/Experts в шапке, h1 обеих индекс-страниц и breadcrumbs. Смена URL на /knowledge/ и /experts/ — сознательно НЕ сделана, отдельное будущее решение владельца (если делать — только 301 + sitemap/page-lists). Прозаические упоминания guides/agencies в контенте оставлены — тип контента, не пункт навигации."
+
   - id: CN-TOKENS
     title: "Дизайн-токены/типографика (конституция §24-29): нейтральная база, один акцент, семантические severity-цвета, фокус, tabular-nums"
     owner: frontend-engineer

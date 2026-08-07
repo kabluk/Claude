@@ -94,7 +94,9 @@ export function AgenciesIndexPage() {
       path={paths.agencies()}
       crumbs={[]}
     >
-      <h1 className="h1">All agencies</h1>
+      {/* CN-NAV (D-062 §6): UI-ярлык — «Experts»; URL /agencies/ и модель данных
+          agencies не переименовываются. */}
+      <h1 className="h1">Experts</h1>
       <p className="lede">{agencies.length} verified listings. Prefer a shortlist? Start from your <Link className="underline underline-offset-2" to={paths.countries()}>country</Link> or <Link className="underline underline-offset-2" to={paths.services()}>service</Link>.</p>
       <ul className="mt-6 columns-1 gap-6 sm:columns-2 lg:columns-3">
         {[...list]

@@ -116,8 +116,10 @@
   `.num` (tabular-nums). Fear-заголовок главной снят. Контраст палитры —
   гейт: `audit-a11y` 26 стр. 0 нарушений; при смене палитры чинить палитру,
   не проверку. Скриншоты before/after этой итерации — scratchpad `design/`
-  (вне репо). Остаток CN-NAV: только переименования IA (Knowledge/Experts),
-  шапка уже сделана. CN-COMPONENTS разблокирован (ждал CN-TOKENS).
+  (вне репо). CN-NAV полностью закрыт (D-065, 2026-08-07): ярлыки
+  Knowledge/Experts в UI; URL /guides/*//agencies/* сознательно не менялись —
+  смена URL, если понадобится, — отдельное решение владельца (301 + sitemap).
+  CN-COMPONENTS разблокирован (ждал CN-TOKENS).
 - **Принята Design Constitution владельца** (D-062, 2026-08-07):
   `docs/project/DESIGN_CONSTITUTION.md` — направляющий документ продукта/
   дизайна (позиционирование Accessibility Intelligence Platform, UX, IA,

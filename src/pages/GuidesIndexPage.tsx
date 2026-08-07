@@ -19,7 +19,9 @@ export default function GuidesIndexPage() {
       path="/guides/"
       crumbs={[]}
     >
-      <h1 className="h1">Guides</h1>
+      {/* CN-NAV (D-062 §6): IA-ярлык раздела — «Knowledge»; сами материалы
+          по-прежнему называются guides (тип контента, не пункт навигации). */}
+      <h1 className="h1">Knowledge</h1>
       <p className="lede">
         Practical, source-linked guides to accessibility law and audits. Each one ends where it
         should: with verified providers who do this work.

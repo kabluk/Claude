@@ -43,7 +43,7 @@ export default function GuidePage() {
       title={g.title}
       description={g.description}
       path={path}
-      crumbs={[{ name: 'Guides', path: '/guides/' }]}
+      crumbs={[{ name: 'Knowledge', path: '/guides/' }]}
     >
       {/* язык статьи может отличаться от языка интерфейса */}
       <Head>

@@ -54,7 +54,7 @@ export default function AgencyPage() {
       crumbs={
         country
           ? [{ name: 'Countries', path: paths.countries() }, { name: country.name, path: paths.country(country) }]
-          : [{ name: 'All agencies', path: paths.agencies() }]
+          : [{ name: 'Experts', path: paths.agencies() }]
       }
     >
       <JsonLd data={ld} />
