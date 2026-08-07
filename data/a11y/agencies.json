@@ -3463,10 +3463,11 @@
       },
       {
         "url": "https://www.sernicola-labs.com/",
-        "label": "homepage — A11Y accessibility audit/remediation service, Milan office address, founding story"
+        "label": "homepage — A11Y accessibility audit/remediation service, Milan office address, founding story · founded: schema.org JSON-LD (homepage source): \"...software house con sede a Milano, fondata nel 2015...\" + foundingDate:\"2015\"; checked 2026-08-07"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2015
   },
   {
     "slug": "gmg-net",
@@ -3504,9 +3505,14 @@
       {
         "url": "https://www.gmgnet.com/",
         "label": "homepage — EAA accessibility audit service, Genoa office address, case studies"
+      },
+      {
+        "url": "https://www.gmgnet.com/digital-agency-genova/",
+        "label": "Chi siamo, timeline: \"2000 - Nasce Gmg Net da un'idea di Luca e Giuseppe\"; checked 2026-08-07"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2000
   },
   {
     "slug": "egg-design",
@@ -3932,9 +3938,14 @@
       {
         "url": "https://www.myability.org/impressum",
         "label": "Impressum (myAbility Social Enterprise GmbH, Kärntner Ring 12/2b, 1010 Wien; Munich subsidiary)"
+      },
+      {
+        "url": "https://www.myability.org/ueber-uns/ueber-myability",
+        "label": "Über myAbility: \"2014 gründeten sie dann gemeinsam mit Sandra Edelmann und Michael Aumann die soziale Unternehmensberatung myAbility.\"; checked 2026-08-07"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2014
   },
   {
     "slug": "rockit",
@@ -4114,10 +4125,15 @@
       {
         "url": "https://www.anysurfer.be/nl/diensten/audits",
         "label": "audits: \"Klein: 1250€ voor eerste audit … Standaard: 2500€ … Complex: 4000€\"; checked 2026-08-06"
+      },
+      {
+        "url": "https://www.anysurfer.be/nl/contact/geschiedenis",
+        "label": "Geschiedenis-pagina: \"Op 18 april 2001 werden het project, het bijbehorende kwaliteitslabel en de eerste toegankelijke websites voorgesteld aan de pers.\" — oprichting onder de oorspronkelijke naam BlindSurfer (in 2006 alleen hernoemd tot AnySurfer); checked 2026-08-07. Herroept D-047's CLEAR-oordeel (toen was alleen de homepage-tekst \"Sinds 2001 helpen we organisaties\" bekend — activiteitswoorden; de geschiedenispagina toont de daadwerkelijke oprichting)."
       }
     ],
     "lastVerified": "2026-08-04",
-    "priceBand": "budget"
+    "priceBand": "budget",
+    "founded": 2001
   },
   {
     "slug": "funka",
@@ -4239,9 +4255,14 @@
       {
         "url": "https://www.etu.se/",
         "label": "homepage — accessibility service list, Sundbyberg HQ, founding year, office network"
+      },
+      {
+        "url": "https://etu.se/etu/",
+        "label": "Om ETU, \"Så började ETU-resan\": \"Vi startade ETU 1995, med visionen att göra entreprenörskap, tillgänglighet och utbildning på ett annorlunda sätt.\"; checked 2026-08-07"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 1995
   },
   {
     "slug": "sensus",
@@ -6957,9 +6978,14 @@
       {
         "url": "https://accessabilityofficer.com/",
         "label": "homepage — services, DARTSuite platform, ADA Title II focus, government client reach"
+      },
+      {
+        "url": "https://accessabilityofficer.com/about/",
+        "label": "About (Meet the Founder): \"Before founding AccessAbility Officer in 2021 and launching the Certified AccessAbility Testing Program in 2022...\"; checked 2026-08-07"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2021
   },
   {
     "slug": "equalize-digital",
@@ -7499,9 +7525,14 @@
       {
         "url": "https://x-com.nl/",
         "label": "Homepage confirming location (Maasbree), ISO 27001:2022 certification and DDA membership"
+      },
+      {
+        "url": "https://www.x-com.nl/over-ons/geschiedenis/",
+        "label": "Geschiedenis-tijdlijn (\"2000: Oprichting X-com\", inhoud JS-gerenderd uit x-com.nl/timeline.json): \"In 2000 richten partners Bas Peters en Wim van der Wouw gezamenlijk X-com op aan de markt in Baarlo.\"; checked 2026-08-07"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2000
   },
   {
     "slug": "chent",
@@ -7546,9 +7577,14 @@
       {
         "url": "https://chent.nl/",
         "label": "official website — accessibility audit services"
+      },
+      {
+        "url": "https://www.chent.nl/over-chent/",
+        "label": "Over Chent, \"Onze achtergrond\": \"Chent is in 2018 opgericht vanuit een commerciële en technische basis.\"; checked 2026-08-07"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2018
   },
   {
     "slug": "accessibility-desk",
@@ -7694,14 +7730,15 @@
       },
       {
         "url": "https://frameless.io/",
-        "label": "official website — WCAG audit services"
+        "label": "official website — WCAG audit services · founded: Homepage (single-page site): \"Sinds de oprichting van Frameless in 2013 hebben we diverse opdrachten mogen doen\"; checked 2026-08-07"
       },
       {
         "url": "https://toegankelijkheidsrapport.frameless.io/rapport/aanpakdrugscriminaliteit.utrecht.nl-2024-12",
         "label": "audit report referenced by that accessibility statement (published by the auditor)"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2013
   },
   {
     "slug": "media-duo",
@@ -8015,9 +8052,14 @@
       {
         "url": "https://www.inter.vlaanderen/",
         "label": "official website — accessibility expertise centre and audits"
+      },
+      {
+        "url": "https://www.vlaanderen.be/inter/over-inter/het-agentschap-inter",
+        "label": "\"Inter werd opgericht via het Vlaamse machtigingsdecreet van 28 maart 2014.\" (officiële oprichting per decreet; op 1 mei 2015 gingen de vijf voorloper-vzw's operationeel op in het agentschap); checked 2026-08-07"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2014
   },
   {
     "slug": "lcp",
@@ -8287,9 +8329,14 @@
       {
         "url": "https://www.fondazionelia.org/",
         "label": "official website — audit di piattaforme e siti"
+      },
+      {
+        "url": "https://www.fondazionelia.org/chi-siamo/fondazione/",
+        "label": "\"Nel 2014, per raccogliere l'eredità del progetto e garantirne la sua continuità nel tempo, AIE ha quindi costituito Fondazione LIA.\" (il progetto LIA è iniziato nel 2011, la fondazione è del 2014); checked 2026-08-07"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2014
   },
   {
     "slug": "visionbites",
@@ -8401,9 +8448,14 @@
       {
         "url": "https://pluspol-interactive.de",
         "label": "Homepage — agency description, process, accessibility service"
+      },
+      {
+        "url": "https://pluspol-interactive.de/agentur/",
+        "label": "Agentur-Seite: \"2002 als Start-up von Jörg Brückner, Stefan Dittmar und Thomas Lange an der Hochschule Mittweida gegründet, entwickelte sich PLUSPOL interactive schnell zu einer professionellen Digitalagentur\"; checked 2026-08-07"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2002
   },
   {
     "slug": "sxo-beratung-martin-mutter",
@@ -8517,9 +8569,14 @@
       {
         "url": "https://brain-appeal.com/leistungen",
         "label": "Leistungen — Barrierefreiheit nach BITV in Konzeption"
+      },
+      {
+        "url": "https://www.brain-appeal.com/typo3-agentur-mannheim/20-jahre-firmengeschichte",
+        "label": "Firmengeschichte, Eintrag \"1998\" markiert \"Das Gründerjahr!\" (das Einzelunternehmen METEOS Deutschland wurde 2013 zur Brain Appeal GmbH — Rechtsformwechsel, die Seite selbst nennt 1998 als Gründungsjahr); checked 2026-08-07"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 1998
   },
   {
     "slug": "medienkonzepte",
@@ -8991,9 +9048,14 @@
       {
         "url": "https://bikosax.de",
         "label": "Homepage — services, standards, HQ"
+      },
+      {
+        "url": "https://www.dzblesen.de/ueber-uns/das-zentrum/geschichte",
+        "label": "bikosax.de leitet weiter auf www.dzblesen.de — BIKOSAX ist ein Dienst der dzb lesen (Deutsches Zentrum für barrierefreies Lesen), keine andere Organisation. Geschichte-Seite: \"Am 12. November 1894 gegründet und als Deutsche Zentralbücherei für Blinde (DZB) bekannt, ist das Haus seit 130 Jahren Bibliothek für blinde und sehbehinderte Menschen\"; checked 2026-08-07"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 1894
   },
   {
     "slug": "clickstorm",
@@ -9463,9 +9525,14 @@
       {
         "url": "https://www.usability.at/kontakt/",
         "label": "Kontakt page — Vienna office address"
+      },
+      {
+        "url": "https://www.usability.at/ueberuns/index.html",
+        "label": "Über uns: \"Interface Consult wurde 1994 als Universitäts Spin-Off durch Dr. Martina Manhartsberger ... gegründet.\"; checked 2026-08-07"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 1994
   },
   {
     "slug": "k25-werbeagentur",
@@ -9578,9 +9645,14 @@
       {
         "url": "https://www.mstage.at/",
         "label": "homepage — service list incl. Web Accessibility under shop optimization, St. Pölten/Wels addresses, E-CONOMIX Group"
+      },
+      {
+        "url": "https://mstage.at/unsere-geschichte",
+        "label": "Unsere Geschichte, Abschnitt \"mStage GmbH\": \"2012 wurde mStage auf Gesellschaftern mit langjähriger Erfahrung in Web- und CRM-Dienstleistungen gegründet\"; checked 2026-08-07"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2012
   },
   {
     "slug": "accessprod",
@@ -9799,9 +9871,14 @@
       {
         "url": "https://alsacreations.fr/",
         "label": "Homepage describing RGAA-compliant sites, accessibility audits, and client list"
+      },
+      {
+        "url": "https://www.alsacreations.fr/timeline",
+        "label": "Notre histoire, sous le titre \"2006 : Le lancement\": \"Création officielle de l'agence. On démarre avec deux PC, une imprimante, des chats, et beaucoup de rêves.\"; checked 2026-08-07"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 2006
   },
   {
     "slug": "atalan",
@@ -10187,9 +10264,14 @@
       {
         "url": "https://bluedrop.fr/",
         "label": "Homepage describing RGAA accessibility training center, audit/remediation services, and Marseille/Beirut locations"
+      },
+      {
+        "url": "https://www.bluedrop.fr/l-agence-drupal",
+        "label": "Page agence, tuile chiffrée: \"1998\" avec la légende \"Année de création\" (corroboré par la frise \"Création de la société — Création de l'agence à Marseille et Beyrouth, par les 3 associés actuels\" et \"28 ans d'histoire\"); checked 2026-08-07"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 1998
   },
   {
     "slug": "eclydre",
@@ -10238,10 +10320,11 @@
       },
       {
         "url": "https://www.eclydre.fr/agence",
-        "label": "Agency page with founding year 1993, Paris address, staff size, and service list including web accessibility"
+        "label": "Agency page with founding year 1993, Paris address, staff size, and service list including web accessibility · founded: Page agence: \"Eclydre est une agence web indépendante fondée en 1993.\"; checked 2026-08-07"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 1993
   },
   {
     "slug": "ethic-first",
@@ -10563,14 +10646,15 @@
       },
       {
         "url": "https://lorweb.group/lorweb",
-        "label": "official website — accessibility audit services"
+        "label": "official website — accessibility audit services · founded: Page histoire: \"Fondé en 1997 par Jean-Philippe Brechon, Lorweb Group s'est rapidement imposé...\"; \"Lorweb Group est né officiellement en 1997\"; checked 2026-08-07"
       },
       {
         "url": "https://lorweb.group/",
         "label": "Homepage listing the accessibility audit service with RGAA compliance mention and Metz/Luxembourg location"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 1997
   },
   {
     "slug": "net-15",
@@ -10619,9 +10703,14 @@
       {
         "url": "https://net15.fr/",
         "label": "Homepage describing the RGAA audit and accessibility declaration service, with Aurillac address"
+      },
+      {
+        "url": "https://www.net15.fr/presentation-histoire-societe-15-cantal",
+        "label": "Frise historique de la société: \"1997 – La création de Net15\", suivi de \"L'aventure Net15 commence.\"; checked 2026-08-07"
       }
     ],
-    "lastVerified": "2026-08-04"
+    "lastVerified": "2026-08-04",
+    "founded": 1997
   },
   {
     "slug": "numerik-ea",

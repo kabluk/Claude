@@ -325,3 +325,141 @@ NOT FOUND. Ни одна находка не принята по слову аг
 и оставшиеся из 180, где неизвестно даже это. Список остатка не восстановлен
 построчно — при следующей итерации G-FOUNDED-LI брать оставшиеся `founded == null`
 записи из `data/a11y/agencies.json` напрямую, не из прозы.
+
+## G-FOUNDED-LI: повторный проход, пакеты 3/6/7/8/9 из 10 (2026-08-07)
+
+Очередь `founded == null` реконструирована заново из `agencies.json` (160 записей,
+как и предсказывал прошлый журнал), разбита на 10 пакетов по 16 и роздана
+параллельным субагентам (метод глубже первого прохода D-047: About/История/Team →
+Impressum/торговые реестры/aviso legal → footer, не только homepage+About+sitemap).
+
+**Пять пакетов из десяти упали на лимите сессии** (`API error: session limit`,
+не ошибка метода) — пакеты 1, 2, 4, 5, 10 (80 записей) не выполнены, остаются в
+очереди на следующую итерацию наравне с непроверенными. Ниже — результат ТОЛЬКО
+пяти успешных пакетов (3, 6, 7, 8, 9 — 80 записей).
+
+**Каждая находка перепроверена детерминированным скриптом** (`verify-quotes.mjs`,
+не хранится в репозитории — одноразовый инструмент сессии), не по слову агента:
+скрипт скачивает страницу-источник и ищет дословную цитату в тексте. 18/21 совпали
+автоматически; 3 (`x-com`, `ebizproduction`, `net-15`) потребовали ручной проверки
+из-за JS-рендера / HTML-сущностей / нестандартного дефиса — все три подтверждены
+вручную (см. коммит). Затем инвариант сборки доказан негативно: у `lorweb` снята
+цитата года → `build-a11y.mjs` упал с точным указанием записи, `founded.test.mjs`
+дал 4/5 вместо 5/5 → откат → снова зелёно.
+
+**Принято (21), год + первоисточник + дословная цитата у каждой:**
+
+| slug | год | источник |
+|---|---|---|
+| `sernicola-labs` | 2015 | schema.org JSON-LD homepage: `foundingDate:"2015"` + "fondata nel 2015" |
+| `gmg-net` | 2000 | Chi siamo: "2000 - Nasce Gmg Net da un'idea di Luca e Giuseppe" |
+| `myability` | 2014 | Über myAbility: "2014 gründeten sie ... myAbility" |
+| `anysurfer` | 2001 | Geschiedenis: "Op 18 april 2001 werden het project ... voorgesteld aan de pers" (oprichting als BlindSurfer, in 2006 alleen hernoemd) |
+| `etu` | 1995 | Om ETU: "Vi startade ETU 1995" |
+| `accessability-officer` | 2021 | About: "founding AccessAbility Officer in 2021" |
+| `x-com` | 2000 | Geschiedenis-tijdlijn (JS uit timeline.json): "In 2000 richten partners Bas Peters en Wim van der Wouw gezamenlijk X-com op" |
+| `chent` | 2018 | Over Chent: "Chent is in 2018 opgericht" |
+| `frameless` | 2013 | Homepage: "Sinds de oprichting van Frameless in 2013" |
+| `inter-vlaanderen` | 2014 | "Inter werd opgericht via het Vlaamse machtigingsdecreet van 28 maart 2014" |
+| `fondazione-lia` | 2014 | "Nel 2014 ... AIE ha quindi costituito Fondazione LIA" |
+| `pluspol-interactive` | 2002 | Agentur: "2002 als Start-up von Jörg Brückner, Stefan Dittmar und Thomas Lange ... gegründet" |
+| `brain-appeal` | 1998 | Firmengeschichte, Eintrag "1998" = "Das Gründerjahr!" |
+| `bikosax` | 1894 | dzb lesen (bikosax.de leitet dorthin) Geschichte: "Am 12. November 1894 gegründet" |
+| `interface-consult` | 1994 | Über uns: "Interface Consult wurde 1994 als Universitäts Spin-Off ... gegründet" |
+| `mstage` | 2012 | Unsere Geschichte: "2012 wurde mStage ... gegründet" |
+| `alsacreations` | 2006 | Timeline "2006 : Le lancement": "Création officielle de l'agence" |
+| `ebizproduction` | 1998 | bluedrop.fr, tuile "1998" / "Année de création" |
+| `eclydre` | 1993 | Agence: "Eclydre est une agence web indépendante fondée en 1993" |
+| `lorweb` | 1997 | Histoire: "Fondé en 1997 par Jean-Philippe Brechon" |
+| `net-15` | 1997 | Frise historique: "1997 – La création de Net15" |
+
+**Пересматривает прежний вывод (1): `anysurfer`.** D-047 видел только формулировку
+деятельности на главной («Sinds 2001 helpen we organisaties») и не заполнил поле.
+Глубокая проверка нашла страницу истории с явным основанием под первоначальным
+именем BlindSurfer (переименован в AnySurfer только в 2006, миссия не менялась) —
+принято по правилу A, не по вкусу.
+
+**Отклонено — все 59 записей построчно (не пересказ числом, D-051), сгенерировано
+из сырых результатов пакетов, не по памяти:**
+
+| slug | вердикт | причина |
+|---|---|---|
+| `200-ok` | NOT_FOUND | CV назад до 1997, номер KVK, года основания 200 OK нет |
+| `ablr` | NOT_FOUND | История происхождения без года; /about 404 |
+| `abra` | AMBIGUOUS | Activity-start wording; единственное «opgericht» на странице — про Stichting Appt (2020, другая организация) |
+| `access-armada` | NOT_FOUND | Только опыт («nearly 15 years») |
+| `access-first` | UNREACHABLE | 403 «forbidden by administrative rules» на все запросы (geo/IP-блок прокси) |
+| `accessibility-desk` | NOT_FOUND | Our-story называет основателей, года нет; © 2022 — копирайт |
+| `accessible-ie` | NOT_FOUND | «initiative of xwerx.com … almost 25 years» — опыт; рег. номер 328994 без даты |
+| `accessy` | NOT_FOUND | «initiatief van Marco Hout», года нет |
+| `akse` | NOT_FOUND | «+50 clients accompagnés depuis 2020» — деятельность; SIRET без даты; LinkedIn-ссылки нет |
+| `applause` | NOT_FOUND | Только «pioneered crowdtesting in 2007» (старт практики); LinkedIn заблокирован (999/503) |
+| `axenum` | NOT_FOUND | Одностраничник + mentions légales без даты; на сайте только даты законов |
+| `centrum-bezpieczenstwa-informatycznego` | NOT_FOUND | KRS без даты; «dawniej jednoosobowa działalność» — смена формы без года; награда 2018 не основание |
+| `cipix-internetbureau` | NOT_FOUND | Только опыт; Cipix Internet B.V. названа без года |
+| `content-design-ireland` | UNREACHABLE | SiteGround anti-bot captcha на все запросы, контент не получен |
+| `creasit` | NOT_FOUND | «Plus de 26 ans d'expérience» — опыт |
+| `databot-technologies` | NOT_FOUND | webaccesible.io без about/legal; databot.es за JS anti-bot |
+| `digital-natives` | NOT_FOUND | «mede-oprichter» + «20 jaar ervaring» без года; KVK без даты |
+| `eagerly` | NOT_FOUND | «Al 26+ jaar lang» — длительность без года |
+| `egg-design` | AMBIGUOUS | Founder + since-wording; LinkedIn-ссылки на сайте нет |
+| `equalize-digital` | NOT_FOUND | Только деятельность; LinkedIn заблокирован |
+| `ethic-first` | NOT_FOUND | Года нет нигде; только даты законов |
+| `hellbusch-accessibility-consulting` | NOT_FOUND | «Seit 2005 … freiberuflicher Consultant» — старт самозанятости |
+| `humix` | NOT_FOUND | About без дат; Cronos Group — материнская, не считается |
+| `ia-labs` | NOT_FOUND | Сайт-заглушка «now Vially»; рег. номер без даты |
+| `ideance` | NOT_FOUND | RCS Rouen — номер без даты |
+| `ifdb` | NOT_FOUND | Формулировка основания БЕЗ года («gegründet» без цифры) |
+| `ilikecake` | NOT_FOUND | Since-wording, внутренне противоречивая (2005 vs 2006); подтверждает CLEAR из D-047 |
+| `ilunion-accesibilidad` | NOT_FOUND | Только «años de experiencia»; история — на материнской ilunion.com |
+| `inovagora` | NOT_FOUND | «Expert CMS WordPress depuis 20 ans» — специализация |
+| `integrity-xd` | NOT_FOUND | Нет About/Story; года нет нигде |
+| `janita-top` | NOT_FOUND | Старт самозанятости (отклоняемая категория) |
+| `joconcept-webservice` | NOT_FOUND | Ueber-mich — CV владельца, карьерный шаг, не основание |
+| `k25-werbeagentur` | NOT_FOUND | About/team/Impressum без года |
+| `kbv-kompetenzzentrum-barrierefreiheit-volmarstein` | AMBIGUOUS | 2020 — ребрендинг существующей институции, 2025 — смена формы на gGmbH |
+| `lcp` | NOT_FOUND | Over-ons без года; proclaimer без даты регистрации |
+| `liquid-impressions` | NOT_FOUND | HRA без даты; «Inbetriebnahme der Webseite 2022» — запуск сайта; «seit 2020» — преквалификация закупок |
+| `marc-haunschild-accessibility-consulting` | NOT_FOUND | Личный сайт фрилансера; «seit 2019» — спикерство |
+| `media-duo` | NOT_FOUND | Одностраничник WP; только копирайт |
+| `medienkonzepte` | NOT_FOUND | Вехи деятельности без даты основания; «seit über 20 Jahren spezialisiert» |
+| `perfekcyjnestrony` | NOT_FOUND | JS-счётчик «lat na rynku» (опыт); about-страницы нет |
+| `purin` | NOT_FOUND | «eigenes Unternehmen seit 2019» — seit-wording |
+| `reddog-systems` | NOT_FOUND | «Od ponad 10 lat» — опыт |
+| `rockit` | NOT_FOUND | Firmenbuch-номер без даты; года нигде нет |
+| `schalk-and-friends` | NOT_FOUND | «seit 1999» только в meta/JSON-LD; LinkedIn за authwall |
+| `silaos` | NOT_FOUND | «Depuis 2016» — деятельность; LinkedIn-ссылки нет |
+| `siti-accessibili` | NOT_FOUND | Основатель назван без года; «anni di esperienza» |
+| `sito-web-accessibile` | NOT_FOUND | Одностраничник, проект SyncLab Studio; только даты нормативки EAA |
+| `specinov` | NOT_FOUND | RCS Angers без даты; таймлайн 2017 — только RSE-путь; «depuis près de 20 ans» — отзыв клиента |
+| `stratis` | AMBIGUOUS | Depuis-wording + «depuis 27 ans»; LinkedIn недоступен через прокси |
+| `sxo-beratung-martin-mutter` | AMBIGUOUS | Старт самозанятости (отклоняемая категория) |
+| `tanaguru` | NOT_FOUND | SAS без даты; «© 2009-2026» — копирайт, 2009 про open-source софт |
+| `team23` | NOT_FOUND | Все about-страницы и Impressum без года |
+| `toegankelijk-online` | NOT_FOUND | Нет about-страницы; «25+ jaar ervaring» |
+| `tothomweb` | NOT_FOUND | «+15 anys treballant» — опыт; Registre Mercantil без даты |
+| `usable-y-accesible` | NOT_FOUND | CV-таймлайн, карьерное wording; подтверждает CLEAR из D-047 |
+| `uxmen` | NOT_FOUND | Только копирайт и «deel van The Digitals» |
+| `visionbites` | NOT_FOUND | «seit 20 Jahren»/«Seit über 15 Jahren» без года; HRB без даты |
+| `wienfluss` | NOT_FOUND | «Mit Engagement … seit 2005» — деятельность; FN без даты; LinkedIn-ссылки нет |
+| `zekers-online-communicatie` | AMBIGUOUS | Started-as-freelancer wording; «Online sinds 1997» — личная карьера |
+
+51 NOT_FOUND, 6 AMBIGUOUS, 2 UNREACHABLE = 59, плюс 21 принятая = 80 (сходится с
+числом переданных в пакеты). `content-design-ireland` и `access-first` —
+UNREACHABLE, не NOT_FOUND: остаются в очереди для повторной попытки другим
+методом/сетью, не считаются проверенными.
+
+**Побочная находка: у `bikosax` домен-редирект.** `bikosax.de` перенаправляет на
+`www.dzblesen.de` — BIKOSAX является сервисом самой организации dzb lesen (не
+материнской компании, тот же признак, что и `funka` в прошлый раз, но здесь верно
+обратное: это не смена формы, а тот же субъект под сервисным брендом). Источник —
+основной домен организации, а не поддомен-редирект.
+
+**Остаток `founded == null` после этого патча — 139 записей** (160 − 21 принятых).
+Из них 59 УЖЕ проверены в этом проходе и отклонены (таблица выше — NOT_FOUND/
+AMBIGUOUS/UNREACHABLE, не браться за них повторно без нового источника/метода);
+остальные 80 (пакеты 1, 2, 4, 5, 10) НЕ проверены вообще — сорвались на лимите
+сессии, не «отклонены» (59 + 80 = 139, сходится). Следующей итерации: список для
+непроверенных 80 не восстановлен построчно здесь — взять `founded == null` из
+`agencies.json` напрямую и вычесть 59 slug'ов из таблицы выше, не пересказывать
+числом из прозы (тот же урок D-051).
