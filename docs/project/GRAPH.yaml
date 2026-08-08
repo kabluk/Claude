@@ -1316,6 +1316,25 @@ nodes:
     approval_required: false
     notes: "Готово 2026-08-08 (D-082). Заведён сразу после Form field (D-081), по выбору владельца через AskUserQuestion (компонент Switch, модель Sonnet). Реализовано субагентом, результат перепроверен родительской сессией живьём. Самый простой компонент библиотеки — ловушку паттерна (role=checkbox вместо role=switch) закрыли по конструкции, а не поймали гейтом: примитив — нативный <button role=\"switch\">, не <input type=\"checkbox\">, поэтому checkbox-семантике просто неоткуда взяться, а Enter/Space работают бесплатно (нативная кнопка). Единственный источник состояния — одна переменная checked, управляющая и aria-checked, и позицией ползунка (тот же принцип не-рассинхрона, что уже был предупреждением у Toast/MenuButton). Label — aria-labelledby на соседний span, не <label>-обёртка: осознанно, чтобы не расширять кликабельную область на текст лейбла незаметно для потребителя компонента. Демо — два независимых переключателя в разных стартовых состояниях (Email on, SMS off)."
 
+  - id: CN-COMPONENTS-PAGINATION
+    title: "Pagination — 12-й компонент библиотеки (CN-COMPONENTS-REST 9/10)"
+    owner: frontend-engineer
+    status: todo
+    depends_on: [CN-COMPONENTS]
+    inputs: [data/a11y/components.json, src/lib/componentsLib.tsx, scripts/audit-own-a11y.mjs, scripts/components.test.mjs]
+    scope: [src/components/library/Pagination.tsx, src/lib/componentsLib.tsx, data/a11y/components.json, scripts/audit-own-a11y.mjs]
+    outputs: [src/components/library/Pagination.tsx]
+    verify:
+      - "npm run audit-a11y — /components/pagination/ в постоянном сэмпле; 0 нарушений"
+      - "живой Playwright: обёртка — <nav> с осмысленным aria-label (не голое 'navigation', не конфликтующее с другими nav-ориентирами страницы — тот же landmark-unique урок, что у Breadcrumbs D-077), текущая страница помечена aria-current='page' (буквальное значение 'page', не true), ссылки/кнопки Prev/Next доступны с понятным accessible name вне визуального контекста (не голое 'Prev' без указания на что), disabled-состояние Prev на первой / Next на последней странице реализовано доступно (не просто визуально приглушено), переход между страницами клавиатурой работает"
+      - "npm run scripts:test — components.test проходит без изменений в самом тесте"
+      - "npm run typecheck / npm run build / npm run check-links / npm run worker:test / npm run src:test — все зелёные"
+    max_attempts: 3
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Заведён 2026-08-08 сразу после Switch (D-082), по выбору владельца через AskUserQuestion (компонент Pagination, модель Sonnet). На сайте сейчас НЕТ существующей пагинации ни на одной странице (списки агентств/гайдов рендерятся целиком) — в отличие от Breadcrumbs/FormField, здесь нет прецедента 'извлечь из работающего кода', компонент пишется с нуля по паттерну. Данные демо — синтетическая, но правдоподобная механика (не факт о каталоге)."
+
   - id: CN-COMPONENTS-TOOLTIP
     title: "Tooltip — 5-й готовый компонент библиотеки (CN-COMPONENTS-REST 2/10)"
     owner: frontend-engineer
