@@ -88,8 +88,8 @@ export function Layout({
                 карты. СВОЙ inline-SVG в стиле иконочной системы проекта
                 (stroke, currentColor, ~1.75) — Material Symbols/иконочные
                 шрифты с CDN сознательно НЕ подключаются (§29: один икон-стиль;
-                CSP/self-host, D-063). В dark плашка — primary-container, глиф
-                остаётся светлым (токены brand-plate/brand-glyph). */}
+                CSP/self-host, D-063). Токены brand-plate/brand-glyph — тема
+                только светлая (D-073), dark-переопределения не существует. */}
             <span
               aria-hidden="true"
               className="flex h-8 w-8 items-center justify-center rounded-lg bg-brand-plate text-brand-glyph"
@@ -147,7 +147,11 @@ export function Layout({
             </Link>
           </nav>
           <Link
-            className="ml-auto inline-flex items-center rounded-full bg-secondary-container px-4 py-1.5 font-mono text-xs font-medium tracking-[0.05em] uppercase text-on-secondary-container transition hover:bg-primary-container hover:text-on-primary-container"
+            /* CN-BRANDBOOK-V2: primary-container сменил роль на «средний тон
+               hover» (#5e6ad2) — текст на hover переключён на on-primary
+               (белый, 4.70:1), а не on-primary-container (#00006e даёт на
+               новом фоне только 3.65:1, провал AA). */
+            className="ml-auto inline-flex items-center rounded-full bg-secondary-container px-4 py-1.5 font-mono text-xs font-medium tracking-[0.05em] uppercase text-on-secondary-container transition hover:bg-primary-container hover:text-on-primary"
             to={paths.scan()}
           >
             {t.ctaScanWebsite}
@@ -191,7 +195,10 @@ export function Layout({
             {t.footer.introSuffix(agencies.length, countries.length)}
           </p>
           <p>{t.footer.noOverlays}</p>
-          <nav aria-label={t.ariaLegal} className="flex flex-wrap gap-x-4 gap-y-1 pt-2">
+          {/* CN-BRANDBOOK-V2: --color-secondary — новый токен, назначенный
+              именно футер-ссылкам в макете (5.8:1 на surface-container-low,
+              AA). Только цвет текста меняется, разметка/структура прежние. */}
+          <nav aria-label={t.ariaLegal} className="flex flex-wrap gap-x-4 gap-y-1 pt-2 text-secondary">
             <Link className="hover:text-on-surface" to={paths.about()}>
               {t.footer.nav.about}
             </Link>

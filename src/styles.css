@@ -1,69 +1,77 @@
 @import 'tailwindcss';
 
 /* ============================================================================
-   Verscala design tokens (CN-BRANDBOOK, D-072; ранее CN-TOKENS, D-063).
-   Источник правды по значениям и назначению: docs/project/domains/design.md +
-   docs/project/BRAND_BOOK.md (спецификация, извлечённая из brand book и
-   31 Stitch-макета владельца, upload 2026-08-08).
+   Verscala design tokens (CN-BRANDBOOK-V2, 2026-08-08; ранее CN-BRANDBOOK,
+   D-072; ранее CN-TOKENS, D-063). Источник правды по значениям и назначению:
+   docs/project/domains/design.md + docs/project/BRAND_BOOK.md.
 
-   Палитра — Material-3-подобная система пар «цвет / on-цвет» из макетов.
-   Значения LIGHT взяты ИЗ КОДА макетов (не выдуманы); severity-шкала в
-   макетах отсутствует (кроме error) — подобрана в тон и посчитана скриптом
-   (scratchpad contrast-d072.mjs): каждая текст-пара ≥ 4.5:1 на background, на
+   CN-BRANDBOOK-V2: владелец загрузил новый Stitch-макет главной страницы
+   (scratchpad `mockup-home.html`, 2026-08-08) — палитра/радиусы/типографика
+   обновлены на значения из его `<script id="tailwind-config">` (не на глаз).
+   Часть значений палитры СОВПАДАЕТ с прошлым макетом (secondary/on-surface* /
+   outline* /background), часть ИЗМЕНИЛАСЬ (primary чуть темнее; у
+   primary-container сменилась РОЛЬ: было «светлая подложка» #e0e0ff, стало
+   «средний тон для hover кнопок» #5e6ad2 — единственное место, где токен
+   использовался в src/, `Layout.tsx` CTA-hover, перепарено на `on-primary`
+   вместо `on-primary-container`, потому что старая тёмно-синяя пара
+   #00006e/#5e6ad2 даёт 3.65:1, провал; белый на новом primary-container —
+   4.70:1, AA проходит).
+
+   Палитра — Material-3-подобная система пар «цвет / on-цвет». Severity-шкала
+   в макетах отсутствует (кроме error) — подобрана в тон и посчитана скриптом,
+   не тронута этим узлом: каждая текст-пара ≥ 4.5:1 на background, на
    surface/card и на своей soft-подложке.
 
    Принципы D-063 СОХРАНЕНЫ: семантическая severity (1:1 с axe impact),
    всегда видимый фокус, tabular-nums, контраст-гейт (audit-own-a11y).
    Заменена палитра/форма, не принципы.
 
-   ТЕМА: ТОЛЬКО светлая (D-073, реверс части D-072 по прямому указанию
-   владельца, 2026-08-08). Сайт рендерит эти значения токенов ВСЕГДА,
+   ТЕМА: ТОЛЬКО светлая (D-073). Сайт рендерит эти значения токенов ВСЕГДА,
    независимо от системной темы посетителя — никакого
    `@media (prefers-color-scheme: dark)`-переопределения нет и не должно
    появляться снова без нового решения владельца. Компоненты по-прежнему
-   стилизуются ТОЛЬКО токенами (не hex/slate-классами напрямую) — это
-   упрощает будущий возврат тёмной темы, если он понадобится, но сам возврат
-   не входит в это решение.
+   стилизуются ТОЛЬКО токенами (не hex/slate-классами напрямую).
    ========================================================================== */
 @theme {
-  /* Типографика: Inter Variable (self-hosted @fontsource, как раньше) +
-     JetBrains Mono Variable (self-hosted, D-072) для UI-лейблов и кода.
-     Brand book визуально называет «Geist», но код ВСЕХ 31 макетов использует
-     Inter — расхождение зафиксировано в D-072, взят Inter. */
-  --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
+  /* Типографика: Geist Variable (self-hosted @fontsource, CN-BRANDBOOK-V2) —
+     гарнитура нового макета, заменяет Inter Variable (удалён из зависимостей,
+     нигде больше не использовался) + JetBrains Mono Variable (self-hosted,
+     без изменений) для UI-лейблов и кода. CDN-шрифты запрещены (D-072). */
+  --font-sans: 'Geist Variable', ui-sans-serif, system-ui, sans-serif;
   --font-mono:
     'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', 'Menlo', 'Consolas', 'Liberation Mono', monospace;
 
-  /* Радиусы brand book: компактные у панелей/карточек (0.125–0.5rem),
-     pill — только кнопки и чипы (rounded-full). */
-  --radius-sm: 0.125rem;
-  --radius-md: 0.25rem;
-  --radius-lg: 0.375rem;
-  --radius-xl: 0.5rem;
+  /* Радиусы CN-BRANDBOOK-V2: макет мягче прежнего. Вместо собственной шкалы
+     достаточно ВЕРНУТЬСЯ к дефолтной шкале Tailwind v4 (не переопределять
+     sm/md/lg/xl вовсе) — она уже даёт ровно нужные три числа на нужных
+     ступенях: lg=0.5rem (кнопки/поля), xl=0.75rem (чипы), 2xl=1rem
+     (карточки/панели), см. node_modules/tailwindcss/theme.css. Компонентные
+     классы ниже (.btn/.input/.chip/.card) явно называют свою ступень —
+     смотри их определения в @layer components. */
 
-  /* --- Core palette, LIGHT (по умолчанию). Значения из макетов. --- */
-  --color-primary: #4f5bd5;
+  /* --- Core palette, LIGHT (по умолчанию). Значения из макета mockup-home.html. --- */
+  --color-primary: #4450b7;
   --color-on-primary: #ffffff;
-  --color-primary-hover: #3d49c8; /* hover/active .btn — темнее, контраст растёт */
-  --color-primary-container: #e0e0ff;
-  --color-on-primary-container: #00006e;
+  --color-primary-hover: #33409b; /* темнее нового primary, контраст с белым 9.4:1 (было 6.8:1) */
+  --color-primary-container: #5e6ad2; /* РОЛЬ ИЗМЕНИЛАСЬ: средний тон, hover кнопок — не светлая подложка */
+  --color-on-primary-container: #00006e; /* больше не используется в src/ (см. примечание выше); значение сохранено как исторический артефакт палитры, не удалено — не мешает и не рендерится */
+  --color-secondary: #5c5f60; /* новый токен CN-BRANDBOOK-V2: футер-ссылки (было on-surface-variant) */
   --color-secondary-container: #e1e0f9;
   --color-on-secondary-container: #181a2c;
-  --color-background: #ffffff;
+  --color-background: #fcf8fb;
   --color-surface: #fcf8fb;
   --color-surface-container-low: #f6f2f5;
-  --color-surface-container: #f1edf0;
-  --color-on-surface: #1c1b1f;
-  --color-on-surface-variant: #46464f;
-  --color-outline: #777680;
-  --color-outline-variant: #c7c5d0;
+  --color-surface-container: #f0edf0;
+  --color-on-surface: #1c1b1d;
+  --color-on-surface-variant: #454652;
+  --color-outline: #767684;
+  --color-outline-variant: #c6c5d5;
   --color-error: #ba1a1a;
   --color-on-error: #ffffff;
   --color-error-container: #ffdad6;
 
-  /* Логотип: плашка primary со светлым stroke-глифом карты. В dark плашка —
-     primary-container (#5e6ad2), чтобы глиф ОСТАВАЛСЯ белым, как в макетах. */
-  --color-brand-plate: #4f5bd5;
+  /* Логотип: плашка primary со светлым stroke-глифом карты. */
+  --color-brand-plate: #4450b7;
   --color-brand-glyph: #ffffff;
 
   /* Severity: семантическая шкала находок сканера + success/info (§27),
@@ -170,38 +178,89 @@ body {
   }
 }
 
+/* Hero ambient rings (CN-BRANDBOOK-V2, HomePage): decorative brand accent
+   behind the hero, not a status indicator — the heading/subtitle/form carry
+   100% of the meaning without it. Rotation is real motion regardless of
+   intent, so it is removed entirely under prefers-reduced-motion: reduce
+   (§35), leaving two static rings. */
+@keyframes hero-ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.hero-ring {
+  animation: hero-ring-spin 120s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-ring {
+    animation: none;
+  }
+}
+
+/* Hero badge dot (CN-BRANDBOOK-V2, HomePage): decorative pulse on the eyebrow
+   badge, echoing "instant scan" — NOT live telemetry (no real-time engine
+   status exists to report, D-035/D-045 inventory honesty). Same
+   reduced-motion discipline as the rest of the motion system: the dot stays
+   visible and solid, just stops pulsing. */
+@keyframes badge-dot-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.badge-dot {
+  animation: badge-dot-pulse 2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .badge-dot {
+    animation: none;
+  }
+}
+
 @layer components {
   .container-page {
     @apply mx-auto w-full max-w-5xl px-4 sm:px-6;
   }
-  /* Type-scale brand book (D-072): display-lg 48/52/-0.04em/700 — только hero;
-     .h1 = headline-lg 32/40/-0.02em/600; .h2 = headline-md 24/32/-0.02em/600;
-     body-lg 16/24 (дефолт), body-md 14/20 (text-sm). Новые кегли не заводить
-     без записи в design.md. */
+  /* Type-scale CN-BRANDBOOK-V2 (значения из mockup-home.html tailwind-config
+     fontSize, не на глаз): .display = display 48px/1.1/-0.02em/600 — только
+     hero; .h1 = headline-lg 32px/1.2/-0.02em/600; .h2 = headline-md
+     24px/1.3/-0.01em/500; .lede = body-lg 16px/1.6; .label = label-sm
+     11px/1.2/0.05em/500/mono/uppercase. body-md 14px/1.5 остаётся дефолтным
+     text-sm (расхождение с дефолтным line-height Tailwind — 20px против
+     21px — в пределах допуска, глобально text-sm не переопределён, чтобы не
+     трогать непроверенные 213 мест использования по всему сайту). label-md
+     13px/1.2/0.02em/500/mono (не uppercase) из макета сейчас нигде не
+     применяется — не заводится как класс без использования. Новые кегли не
+     заводить без записи в design.md. */
   .display {
-    @apply text-4xl sm:text-[3rem] sm:leading-[3.25rem] font-bold tracking-[-0.04em];
+    @apply text-4xl sm:text-[3rem] font-semibold leading-[1.15] sm:leading-[1.1] tracking-[-0.02em];
   }
   .h1 {
-    @apply text-[2rem] leading-10 font-semibold tracking-[-0.02em];
+    @apply text-[2rem] font-semibold leading-[1.2] tracking-[-0.02em];
   }
   .h2 {
-    @apply mt-10 mb-3 text-2xl leading-8 font-semibold tracking-[-0.02em];
+    @apply mt-10 mb-3 text-2xl font-medium leading-[1.3] tracking-[-0.01em];
   }
   .lede {
-    @apply mt-3 max-w-2xl text-base text-on-surface-variant;
+    @apply mt-3 max-w-2xl text-base leading-[1.6] text-on-surface-variant;
   }
-  /* label-md brand book: 12px / 500 / tracking 0.05em / uppercase, JetBrains
-     Mono — кнопочные подписи, чипы-метки, mono-подписи секций. */
+  /* label-sm brand book: 11px / 500 / tracking 0.05em / uppercase / mono —
+     кнопочные подписи, чипы-метки, mono-подписи секций, hero-бейдж. */
   .label {
-    @apply font-mono text-xs font-medium tracking-[0.05em] uppercase;
+    @apply font-mono text-[11px] font-medium leading-[1.2] tracking-[0.05em] uppercase;
   }
   /* Числа-метрики: всегда tabular-nums, чтобы колонки цифр не плясали (§25). */
   .num {
     @apply tabular-nums;
   }
   .chip {
-    /* label-md инлайном: @apply собственных классов в Tailwind v4 нельзя */
-    @apply inline-flex items-center gap-1 rounded-full border border-outline-variant bg-surface-container-low px-2.5 py-0.5 font-mono text-xs font-medium tracking-[0.05em] uppercase text-on-surface-variant;
+    /* label-sm инлайном: @apply собственных классов в Tailwind v4 нельзя.
+       Радиус CN-BRANDBOOK-V2: chips 0.75rem = rounded-xl дефолтной шкалы
+       Tailwind (было rounded-full/pill). */
+    @apply inline-flex items-center gap-1 rounded-xl border border-outline-variant bg-surface-container-low px-2.5 py-0.5 font-mono text-[11px] font-medium tracking-[0.05em] uppercase text-on-surface-variant;
   }
   .chip-accent {
     @apply border-transparent bg-secondary-container text-on-secondary-container;
@@ -234,31 +293,37 @@ body {
   .chip-btn[aria-pressed='true'] {
     @apply border-[color:var(--color-primary)] bg-primary text-on-primary;
   }
-  /* Карточки: компактные радиусы brand book (rounded-xl = 0.5rem после
-     переопределения), подложка surface-container-low, глубина границей. */
+  /* Карточки/панели: радиус CN-BRANDBOOK-V2 — 1rem = rounded-2xl дефолтной
+     шкалы Tailwind (было rounded-xl = 0.5rem под старым переопределением;
+     та же utility-класс держится, только сама шкала теперь дефолтная — см.
+     примечание в @theme). Подложка surface-container-low, глубина границей. */
   .card {
-    @apply block rounded-xl border border-outline-variant bg-surface-container-low p-4 transition hover:border-outline hover:shadow-sm;
+    @apply block rounded-2xl border border-outline-variant bg-surface-container-low p-4 transition hover:border-outline hover:shadow-sm;
   }
   /* использовать как class="card tile" */
   .tile {
     @apply flex items-baseline justify-between gap-2;
   }
-  /* Кнопки — pill (brand book), подпись — label-md (JetBrains Mono).
-     Hover = смена цвета токеном, не прозрачности (opacity роняет контраст). */
+  /* Кнопки CN-BRANDBOOK-V2: мягкий угол 0.5rem (rounded-lg дефолтной шкалы),
+     pill (rounded-full) макет больше не использует ни для кнопок, ни для
+     полей — подпись остаётся label-sm (JetBrains Mono). Hover = смена цвета
+     токеном, не прозрачности (opacity роняет контраст). */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 font-mono text-xs font-medium tracking-[0.05em] uppercase text-on-primary transition hover:bg-primary-hover;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-2.5 font-mono text-[11px] font-medium tracking-[0.05em] uppercase text-on-primary transition hover:bg-primary-hover;
   }
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-outline px-5 py-2.5 font-mono text-xs font-medium tracking-[0.05em] uppercase text-on-surface transition hover:bg-surface-container;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-outline px-5 py-2.5 font-mono text-[11px] font-medium tracking-[0.05em] uppercase text-on-surface transition hover:bg-surface-container;
   }
-  /* Поля форм: pill, как текст-филды макетов; фокус — глобальное кольцо
-     :focus-visible (не подавляется) + смена цвета рамки для mouse-фокуса. */
+  /* Поля форм CN-BRANDBOOK-V2: 0.5rem (rounded-lg), как кнопки — не pill;
+     фокус — глобальное кольцо :focus-visible (не подавляется) + смена цвета
+     рамки для mouse-фокуса. Плейсхолдер — on-surface-variant (8.9:1 на
+     surface), НЕ outline-variant (1.6:1, провал AA). */
   .input {
-    @apply rounded-full border border-outline bg-surface px-4 py-2 text-sm text-on-surface placeholder:text-on-surface-variant focus:border-primary;
+    @apply rounded-lg border border-outline bg-surface px-4 py-2 text-sm text-on-surface placeholder:text-on-surface-variant focus:border-primary;
   }
-  /* Многострочные поля: pill не годится — компактный радиус brand book. */
+  /* Многострочные поля — тот же радиус, что у остальных полей. */
   .input-area {
-    @apply rounded-xl border border-outline bg-surface px-4 py-2 text-sm text-on-surface placeholder:text-on-surface-variant focus:border-primary;
+    @apply rounded-lg border border-outline bg-surface px-4 py-2 text-sm text-on-surface placeholder:text-on-surface-variant focus:border-primary;
   }
 
   /* Типографика тела гайдов (markdown → HTML без typography-плагина) */

@@ -4,7 +4,7 @@
 // прошедшие порог ≥3 листингов (страницы ниже порога существуют, но с
 // noindex — их в sitemap не включаем). Логика слагов зеркалит src/lib/data.ts.
 
-import { readFileSync, writeFileSync, copyFileSync, existsSync } from 'node:fs'
+import { readFileSync, writeFileSync, copyFileSync, existsSync, readdirSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import { dirname, join } from 'node:path'
 
@@ -119,3 +119,32 @@ if (existsSync(notFoundNested)) {
 }
 
 console.log(`✓ sitemap: ${urls.length} URL → dist/sitemap.xml (+robots.txt)`)
+
+// D-095: гейт против «кракозябр» в собранном HTML. Повод — реальный дефект,
+// найденный на ПРОДЕ: `dist/ireland/accessibility-training/index.html` содержал
+// U+FFFD (replacement character) вместо многоточия в placeholder поиска —
+// «Search by name or city�…». Исходник (`src/components/FilterableList.tsx`)
+// при этом чист, и та же строка на ~30 других страницах того же шаблона
+// собралась верно: дефект НЕПОСТОЯННЫЙ (одна страница из 452), поэтому
+// разовая правка бессмысленна — нужен гейт, ловящий повтор.
+// U+FFFD не может появиться в осмысленном контенте: это маркер «здесь был
+// байт, который не удалось декодировать», то есть всегда повреждение.
+const htmlFiles = []
+const walk = (dir) => {
+  for (const entry of readdirSync(dir, { withFileTypes: true })) {
+    const full = join(dir, entry.name)
+    if (entry.isDirectory()) walk(full)
+    else if (entry.name.endsWith('.html')) htmlFiles.push(full)
+  }
+}
+walk(DIST)
+const corrupted = htmlFiles.filter((f) => readFileSync(f, 'utf8').includes('�'))
+if (corrupted.length > 0) {
+  console.error(
+    `\n✗ В собранном HTML найден U+FFFD (повреждённый символ) в ${corrupted.length} файл(ах):`,
+  )
+  for (const f of corrupted) console.error(`  ${f.slice(DIST.length + 1)}`)
+  console.error('Пересоберите; если повторяется — искать источник в контенте/шаблоне.')
+  process.exit(1)
+}
+console.log(`✓ кодировка: U+FFFD не найден ни в одном из ${htmlFiles.length} HTML`)

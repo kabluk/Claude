@@ -18,6 +18,74 @@ import {
 import { guides } from '@/lib/guides'
 import { coverageSummary } from '@/lib/coverage'
 
+// CN-BRANDBOOK-V2: ISO alpha-2 → regional-indicator flag emoji, вычислено из
+// кода страны (нет своего изображения/шрифта иконок для флагов, D-068 §29
+// держит одну icon-систему — эмодзи не часть её, но и не требует подключения
+// ничего). Декоративно (aria-hidden) — рядом всегда идёт текстовое название
+// страны, дублировать его для скринридера не нужно.
+function flagEmoji(code: string): string {
+  return code
+    .toUpperCase()
+    .replace(/./g, (c) => String.fromCodePoint(127397 + c.charCodeAt(0)))
+}
+
+// Инлайн stroke-SVG, стиль иконочной системы проекта (currentColor, ~1.75,
+// round caps/joins — как логотип в Layout.tsx и индикаторы ScanStream.tsx).
+// Material Symbols/CDN-иконки сознательно не подключаются (§29, D-068).
+function LinkIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M9 15 15 9" />
+      <path d="M11 6.5 13 4.5a3.5 3.5 0 0 1 5 5l-2 2" />
+      <path d="M13 17.5 11 19.5a3.5 3.5 0 0 1-5-5l2-2" />
+    </svg>
+  )
+}
+
+function ArrowRightIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M5 12h14" />
+      <path d="M13 6l6 6-6 6" />
+    </svg>
+  )
+}
+
+function ChevronRightIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className={className}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d="M9 6l6 6-6 6" />
+    </svg>
+  )
+}
+
 export default function HomePage() {
   const certified = agencies.filter((a) => a.certs.length > 0).length
   // CN-HERO (конституция §7): главная — вход в живой продукт, не лендинг.
@@ -26,6 +94,11 @@ export default function HomePage() {
   // нечем — реального агрегата в D1 у статической главной нет, D-063).
   const { url, setUrl, state, submit } = useScanForm()
   const [turnstileToken, setTurnstileToken] = useState<string | undefined>()
+
+  // CN-BRANDBOOK-V2 bento (§6 задачи): top-N стран по числу агентств.
+  // `countries` уже отсортирован по count убывания (src/lib/data.ts), поэтому
+  // здесь ничего не пересчитывается и не хардкодится — просто срез топа.
+  const topCountries = countries.slice(0, 6)
 
   return (
     <Layout
@@ -42,14 +115,63 @@ export default function HomePage() {
         }}
       />
 
-      {/* 1. Функциональный hero (§7-8, §59): продукт объясняет себя взаимодействием. */}
-      <section className="py-12 sm:py-16">
-        <div className="mx-auto max-w-2xl text-center">
-          {/* CN-BRANDBOOK (D-072): mono-чип над заголовком, как в макете. Текст —
-              честный факт (сканер реально гоняет axe против WCAG), а не выдуманная
-              телеметрия «engine active» из макета (инвариант D-035/D-045). */}
-          <p className="chip chip-accent">Automated WCAG scan</p>
-          <h1 className="display mt-4">Check your website accessibility</h1>
+      {/* 1. Функциональный hero (§7-8, §59): продукт объясняет себя взаимодействием.
+          CN-BRANDBOOK-V2: композиция по новому Stitch-макету владельца
+          (scratchpad mockup-home.html) — бейдж/h1-акцент/форма/stats-бар из
+          него, подзаголовок и блоки доверия ниже — существующий контент
+          сайта (копирайтинг не входит в этот узел, D-035/D-045: не берём
+          выдуманные данные и плейсхолдеры макета). */}
+      <section className="relative overflow-hidden py-12 sm:py-16">
+        {/* Декоративные фоновые кольца — только форма, ничего не сообщают;
+            вращение снимается под prefers-reduced-motion (.hero-ring, §35). */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0 flex items-center justify-center opacity-20"
+        >
+          <svg viewBox="0 0 800 800" className="hero-ring h-[44rem] w-[44rem]" fill="none">
+            <circle
+              cx="400"
+              cy="400"
+              r="300"
+              stroke="currentColor"
+              strokeWidth="1"
+              strokeDasharray="10 20"
+              className="text-primary"
+            />
+            <circle
+              cx="400"
+              cy="400"
+              r="200"
+              stroke="currentColor"
+              strokeWidth="1"
+              strokeDasharray="5 15"
+              className="text-primary-container"
+            />
+          </svg>
+        </div>
+
+        <div className="relative z-10 mx-auto max-w-2xl text-center">
+          {/* Бейдж: факт о том, как работает сканер, а не выдуманная
+              телеметрия «engine active» из макета (D-035/D-045). */}
+          <div className="inline-flex items-center gap-2 rounded-full bg-surface-container-low px-4 py-2 shadow-sm">
+            <span aria-hidden="true" className="badge-dot h-2 w-2 rounded-full bg-primary" />
+            <span className="label text-on-surface-variant">Instant automated scan against WCAG</span>
+          </div>
+
+          <h1 className="display mt-4">
+            Check your website{' '}
+            <span className="relative inline-block text-[color:var(--color-primary)]">
+              accessibility
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 100 20"
+                preserveAspectRatio="none"
+                className="absolute -bottom-1 left-0 h-3 w-full text-[color:var(--color-primary-container)] opacity-60"
+              >
+                <path d="M0,10 Q50,20 100,10" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+              </svg>
+            </span>
+          </h1>
           <p className="lede mx-auto">
             Know where your website stands: an instant automated scan against WCAG — including the
             accessibility-statement checks European regulators start with.
@@ -65,7 +187,10 @@ export default function HomePage() {
             <label htmlFor="hero-scan-url" className="sr-only">
               Website URL
             </label>
-            <div className="flex flex-col gap-2 sm:flex-row">
+            <div className="flex items-center gap-1 rounded-2xl bg-surface p-2 shadow-xl">
+              <span aria-hidden="true" className="hidden shrink-0 items-center pl-3 text-on-surface-variant sm:flex">
+                <LinkIcon className="h-5 w-5" />
+              </span>
               <input
                 id="hero-scan-url"
                 type="url"
@@ -77,10 +202,15 @@ export default function HomePage() {
                 disabled={state.kind === 'submitting'}
                 aria-describedby={state.kind === 'error' ? 'hero-scan-error' : undefined}
                 aria-invalid={state.kind === 'error'}
-                className="input min-w-0 flex-1 px-4 py-3 !text-base"
+                className="min-w-0 flex-1 bg-transparent px-3 py-3 text-base text-on-surface placeholder:text-on-surface-variant disabled:opacity-60"
               />
-              <button type="submit" className="btn px-6 py-3" disabled={state.kind === 'submitting'}>
+              <button
+                type="submit"
+                className="btn shrink-0 whitespace-nowrap px-6 py-3"
+                disabled={state.kind === 'submitting'}
+              >
                 {state.kind === 'submitting' ? 'Starting scan…' : 'Scan website'}
+                {state.kind !== 'submitting' && <ArrowRightIcon className="h-4 w-4" />}
               </button>
             </div>
             {state.kind === 'error' && (
@@ -104,23 +234,29 @@ export default function HomePage() {
 
         {/* 2. Live product proof (§8) — только реальные числа из данных сборки,
             каждое считается из agencies.json / en301549-coverage.json. */}
-        <dl className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-6 text-center sm:grid-cols-4">
+        <dl className="relative z-10 mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-4 rounded-2xl bg-[color:var(--color-surface-container-low)]/60 p-6 text-center sm:grid-cols-4 sm:gap-8">
           {/* flex-col-reverse: число визуально сверху, DOM-порядок dt→dd валиден */}
           <div className="flex flex-col-reverse">
-            <dt className="label text-on-surface-variant">Verified agencies</dt>
-            <dd className="num mt-1 text-2xl font-bold">{agencies.length}</dd>
+            <dt className="label mt-1 text-on-surface-variant">Verified agencies</dt>
+            <dd className="num text-[2rem] font-semibold leading-[1.2] tracking-[-0.02em] text-[color:var(--color-primary)]">
+              {agencies.length}
+            </dd>
           </div>
           <div className="flex flex-col-reverse">
-            <dt className="label text-on-surface-variant">Countries</dt>
-            <dd className="num mt-1 text-2xl font-bold">{countries.length}</dd>
+            <dt className="label mt-1 text-on-surface-variant">Countries</dt>
+            <dd className="num text-[2rem] font-semibold leading-[1.2] tracking-[-0.02em] text-[color:var(--color-primary)]">
+              {countries.length}
+            </dd>
           </div>
           <div className="flex flex-col-reverse">
-            <dt className="label text-on-surface-variant">Verifiable certifications</dt>
-            <dd className="num mt-1 text-2xl font-bold">{certified}</dd>
+            <dt className="label mt-1 text-on-surface-variant">Verifiable certifications</dt>
+            <dd className="num text-[2rem] font-semibold leading-[1.2] tracking-[-0.02em] text-[color:var(--color-primary)]">
+              {certified}
+            </dd>
           </div>
           <div className="flex flex-col-reverse">
-            <dt className="label text-on-surface-variant">EN 301 549 checks</dt>
-            <dd className="num mt-1 text-2xl font-bold">
+            <dt className="label mt-1 text-on-surface-variant">EN 301 549 checks</dt>
+            <dd className="num text-[2rem] font-semibold leading-[1.2] tracking-[-0.02em] text-[color:var(--color-primary)]">
               {coverageSummary.covered}
               <span className="text-base font-medium text-on-surface-variant">/{coverageSummary.total}</span>
             </dd>
@@ -128,55 +264,85 @@ export default function HomePage() {
         </dl>
       </section>
 
-      {/* 3+. Каталог и доверие остаются ниже hero — порядок §8. */}
-      <section>
-        <h2 className="h2">Find a verified audit agency</h2>
-        <p className="max-w-2xl text-sm text-on-surface-variant">
-          When the scan finds work to do, these are the people who fix it: {agencies.length} audit
-          and remediation specialists, checked against public sources — no automated «overlay»
-          vendors, {certified} with independently verifiable certifications.
-        </p>
-        <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-          {countries.slice(0, 12).map((c) => (
-            <Link key={c.code} to={paths.country(c)} className="card tile">
-              <span className="font-semibold">{c.name}</span>
-              <span className="num text-sm text-on-surface-variant">{c.count} agencies</span>
-            </Link>
-          ))}
-        </div>
-        {countries.length > 12 && (
-          <p className="mt-3 text-sm">
-            <Link className="underline underline-offset-2" to={paths.countries()}>
-              All {countries.length} countries →
-            </Link>
-          </p>
-        )}
-      </section>
+      {/* 3. Bento: агентства по странам (реальные счётчики из countries/agenciesIn,
+          src/lib/data.ts — уже отсортировано по убыванию) + фильтры по
+          услуге/стандарту. Замена прежних отдельных секций «By service»/«By
+          standard» ниже по странице — макет сводит их в одну панель рядом со
+          списком стран, дублировать их дальше по странице незачем. */}
+      <section className="mt-4">
+        <div className="grid grid-cols-1 gap-6 lg:grid-cols-12">
+          <div className="lg:col-span-8">
+            <div className="mb-2 flex flex-wrap items-end justify-between gap-2">
+              <div>
+                <h2 className="h2 mt-0">Find a verified audit agency</h2>
+                <p className="mt-1 max-w-2xl text-sm text-on-surface-variant">
+                  When the scan finds work to do, these are the people who fix it: {agencies.length} audit
+                  and remediation specialists, checked against public sources — no automated «overlay»
+                  vendors, {certified} with independently verifiable certifications.
+                </p>
+              </div>
+              <Link
+                className="label inline-flex shrink-0 items-center gap-1 text-[color:var(--color-primary)] hover:text-[color:var(--color-primary-hover)]"
+                to={paths.countries()}
+              >
+                All {countries.length} countries
+                <ArrowRightIcon className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {topCountries.map((c) => (
+                <Link
+                  key={c.code}
+                  to={paths.country(c)}
+                  className="card flex items-center justify-between gap-3"
+                >
+                  <span className="flex items-center gap-3">
+                    <span
+                      aria-hidden="true"
+                      className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface-container text-lg"
+                    >
+                      {flagEmoji(c.code)}
+                    </span>
+                    <span>
+                      <span className="block font-semibold text-on-surface">{c.name}</span>
+                      <span className="label block text-on-surface-variant">{c.count} agencies</span>
+                    </span>
+                  </span>
+                  <ChevronRightIcon className="h-4 w-4 shrink-0 text-outline-variant" />
+                </Link>
+              ))}
+            </div>
+          </div>
 
-      <section>
-        <h2 className="h2">By service</h2>
-        <div className="flex flex-wrap gap-2">
-          {SERVICES.map((s) => (
-            <Link key={s} to={paths.service(s)} className="chip hover:border-outline">
-              {serviceLabel(s)} · <span className="num">{withService(agencies, s).length}</span>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section>
-        <h2 className="h2">By standard</h2>
-        <div className="flex flex-wrap gap-2">
-          {STANDARDS.map((s) => (
-            <Link key={s} to={paths.standard(s)} className="chip hover:border-outline">
-              {standardLabel(s)} · <span className="num">{withStandard(agencies, s).length}</span>
-            </Link>
-          ))}
+          <div className="lg:col-span-4">
+            <div className="card flex flex-col gap-6 p-6">
+              <div>
+                <h3 className="label text-on-surface">By service</h3>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {SERVICES.map((s) => (
+                    <Link key={s} to={paths.service(s)} className="chip hover:border-outline">
+                      {serviceLabel(s)} · <span className="num">{withService(agencies, s).length}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <h3 className="label text-on-surface">By standard</h3>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {STANDARDS.map((s) => (
+                    <Link key={s} to={paths.standard(s)} className="chip hover:border-outline">
+                      {standardLabel(s)} · <span className="num">{withStandard(agencies, s).length}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
       {guides.length > 0 && (
-        <section>
+        <section className="mt-12">
           <h2 className="h2">Compliance guides</h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {guides.slice(0, 6).map((g) => (
@@ -200,7 +366,7 @@ export default function HomePage() {
           Цифры берутся из coverageSummary (данные, посчитанные скриптом), а не
           вписаны руками — иначе при следующем росте покрытия главная бы врала. */}
       <div className="mt-12 grid gap-4 sm:grid-cols-2">
-        <section className="rounded-xl border border-outline-variant bg-surface-container-low p-5 text-sm text-on-surface-variant">
+        <section className="rounded-2xl border border-outline-variant bg-surface-container-low p-5 text-sm text-on-surface-variant">
           <h2 className="text-base font-semibold text-on-surface">How listings are verified</h2>
           <p className="mt-2">
             Every agency here is backed by at least one public source — a certification register
@@ -211,7 +377,7 @@ export default function HomePage() {
           </p>
         </section>
 
-        <section className="rounded-xl border border-outline-variant bg-surface-container-low p-5 text-sm text-on-surface-variant">
+        <section className="rounded-2xl border border-outline-variant bg-surface-container-low p-5 text-sm text-on-surface-variant">
           <h2 className="text-base font-semibold text-on-surface">What a free scan can and can't tell you</h2>
           <p className="mt-2">
             Our scanner checks {coverageSummary.covered} of the {coverageSummary.total} website
