@@ -1278,6 +1278,25 @@ nodes:
     approval_required: false
     notes: "Готово 2026-08-08 (D-080). Заведён сразу после Menu button (D-079), по выбору владельца через AskUserQuestion (компонент Select/listbox, модель Sonnet). Реализовано субагентом, результат перепроверен родительской сессией живьём. Архитектурное решение задокументировано явно в шапке файла: НАСТОЯЩИЙ roving tabindex (не aria-activedescendant) — обоснование сравнивает оба существующих прецедента библиотеки (Combobox: virtual focus вынужден editable-полем; MenuButton: real focus, т.к. ничего не редактируется) и относит Select к случаю MenuButton, т.к. триггер — кнопка, а не текстовое поле. Второе архитектурное решение: selection НЕ следует за focus — active (курсор по списку) и selected (закоммиченное значение) разведены как отдельное состояние, поэтому Escape — отдельный путь «ничего не менять», а не откат уже перезаписанного значения (в отличие от нативного <select>, где выбор совпадает с фокусом). Демо — реальные 7 стандартов каталога (WCAG/EN 301 549/Section 508/…) из taxonomies.json, ведёт на существующие /standards/[slug]/. Повторное открытие возвращает фокус на уже выбранную опцию, не на первую — предотвращает потерю места в длинном списке."
 
+  - id: CN-COMPONENTS-FORM-FIELD
+    title: "Form field — 10-й компонент библиотеки (CN-COMPONENTS-REST 7/10)"
+    owner: frontend-engineer
+    status: todo
+    depends_on: [CN-COMPONENTS]
+    inputs: [data/a11y/components.json, src/lib/componentsLib.tsx, scripts/audit-own-a11y.mjs, scripts/components.test.mjs, src/components/LeadForm.tsx, src/pages/RequestQuotePage.tsx]
+    scope: [src/components/library/FormField.tsx, src/lib/componentsLib.tsx, data/a11y/components.json, scripts/audit-own-a11y.mjs]
+    outputs: [src/components/library/FormField.tsx]
+    verify:
+      - "npm run audit-a11y — /components/form-field/ в постоянном сэмпле; ошибка появляется по действию пользователя (INTERACT при необходимости) — если пример статичен (ошибка сразу видна), 0 нарушений без раскрытия"
+      - "живой Playwright: label связан с input (htmlFor/id или обёртка), hint связан через aria-describedby ДО появления ошибки, ошибка появляется в aria-describedby ВМЕСТЕ с hint (не вместо, если оба актуальны) или заменяет его — решение задокументировать; aria-invalid=true выставляется только когда есть реальная ошибка; фокус НЕ уводится при появлении ошибки; ошибка анонсируется живой областью (role=alert или aria-live) без кражи фокуса"
+      - "npm run scripts:test — components.test проходит без изменений в самом тесте"
+      - "npm run typecheck / npm run build / npm run check-links / npm run worker:test / npm run src:test — все зелёные"
+    max_attempts: 3
+    attempts: 1
+    risk: medium
+    approval_required: false
+    notes: "Заведён 2026-08-08 сразу после Select/listbox (D-080), по выбору владельца через AskUserQuestion (компонент Form field, модель Sonnet). Прикладной компонент — не композитный виджет уровня Combobox/Menu/Select, но с собственными ловушками (описание ошибки, которое существует в DOM, но не связано aria-describedby; фокус, уводимый на ошибку; aria-invalid, выставленный всегда). Перед реализацией сверить с уже существующими полями форм сайта (LeadForm/RequestQuotePage/ClaimForm — где есть), чтобы демо не изобретало параллельную, несовместимую конвенцию поля ввода."
+
   - id: CN-COMPONENTS-TOOLTIP
     title: "Tooltip — 5-й готовый компонент библиотеки (CN-COMPONENTS-REST 2/10)"
     owner: frontend-engineer
