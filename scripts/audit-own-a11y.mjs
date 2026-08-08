@@ -46,7 +46,7 @@ const SAMPLE_ROUTES = [
   // сам виджет. У модалки и тоста живой пример появляется только по действию
   // пользователя — их раскрытое/анонсированное состояние аудитируется отдельно,
   // см. INTERACT ниже.
-  '/components/', '/components/accordion/', '/components/tabs/', '/components/modal-dialog/', '/components/toast/', '/components/tooltip/',
+  '/components/', '/components/accordion/', '/components/tabs/', '/components/modal-dialog/', '/components/toast/', '/components/tooltip/', '/components/breadcrumbs/',
   // CN-RESEARCH (D-071): индекс отчётов + сам отчёт (таблицы-бары, stat-плитки,
   // JSON-LD Dataset/Report) — обе поверхности под постоянным axe-гейтом.
   '/reports/', '/reports/verified-audit-market/',

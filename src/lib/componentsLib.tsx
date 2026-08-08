@@ -17,12 +17,14 @@ import { Tabs } from '@/components/library/Tabs'
 import { Modal } from '@/components/library/Modal'
 import { ToastRegion, useToasts } from '@/components/library/Toast'
 import { Tooltip } from '@/components/library/Tooltip'
+import { Breadcrumbs } from '@/components/library/Breadcrumbs'
 
 import AccordionSrc from '@/components/library/Accordion.tsx?raw'
 import TabsSrc from '@/components/library/Tabs.tsx?raw'
 import ModalSrc from '@/components/library/Modal.tsx?raw'
 import ToastSrc from '@/components/library/Toast.tsx?raw'
 import TooltipSrc from '@/components/library/Tooltip.tsx?raw'
+import BreadcrumbsSrc from '@/components/library/Breadcrumbs.tsx?raw'
 
 export type ComponentStatus = 'ready' | 'planned'
 export interface KeyRow {
@@ -190,6 +192,24 @@ const DEMOS: Record<string, { demo: () => JSX.Element; code: string }> = {
   tooltip: {
     code: TooltipSrc,
     demo: () => <TooltipDemo />,
+  },
+  breadcrumbs: {
+    code: BreadcrumbsSrc,
+    demo: () => (
+      // This page already carries the site's own "Breadcrumb" landmark above,
+      // so the example must name itself differently — otherwise two landmarks
+      // share a name and neither can be identified. axe's landmark-unique
+      // caught exactly this before the label became a prop.
+      <Breadcrumbs
+        label="Breadcrumb example"
+        trail={[
+          { name: 'Home', path: '/' },
+          { name: 'Countries', path: '/countries/' },
+          { name: 'Germany', path: '/germany/' },
+        ]}
+        current="Accessibility audit"
+      />
+    ),
   },
 }
 

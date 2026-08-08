@@ -115,7 +115,33 @@
     { "slug": "combobox", "name": "Combobox", "status": "planned", "pattern": "Combobox · aria-expanded + aria-activedescendant", "summary": "A text input paired with a filterable listbox popup — the most intricate composite widget, and the one autocomplete UIs most often break." },
     { "slug": "menu-button", "name": "Menu button", "status": "planned", "pattern": "Menu · roving focus, type-ahead", "summary": "A button that opens a menu of actions, navigable with the arrow keys and closable with Escape." },
     { "slug": "listbox-select", "name": "Select (listbox)", "status": "planned", "pattern": "Listbox · single/multi select", "summary": "A custom single- or multi-select built on role=listbox when the native <select> cannot be styled to requirements — with the native element as the honest first choice." },
-    { "slug": "breadcrumbs", "name": "Breadcrumbs", "status": "planned", "pattern": "Navigation landmark · aria-current", "summary": "A trail of ancestor links in a nav landmark, with aria-current marking the present page." },
+    {
+      "slug": "breadcrumbs",
+      "name": "Breadcrumbs",
+      "status": "ready",
+      "pattern": "Navigation landmark · aria-current, CSS separators",
+      "impl": "Breadcrumbs",
+      "summary": "An ordered trail of ancestor links inside a named nav landmark, with the current page marked by aria-current and left unlinked. The pattern where typing the separator into the markup quietly makes every level noisier to listen to.",
+      "keyboard": [
+        { "keys": "Tab / Shift + Tab", "does": "moves through the ancestor links; the current page is not a link and is skipped, because there is nowhere to go" }
+      ],
+      "screenReader": [
+        "The landmark is announced by its label — “Breadcrumb navigation” — which is why the aria-label matters on a page that also has a main nav, and why a second trail on the same page needs a different name.",
+        "The list announces its length, so the user knows how deep the trail is before moving through it.",
+        "The separators are CSS ::after content and are never announced; a “/” typed into the markup would be read aloud between every item.",
+        "The last item is announced as the current page thanks to aria-current=“page”."
+      ],
+      "ariaNotes": [
+        "nav needs aria-label (or aria-labelledby) whenever the page carries more than one navigation landmark — and the name must be unique among them, which is why the label here is a prop and not a constant.",
+        "aria-current=“page” belongs on the item representing the page you are on — not on an ancestor, and not on every item.",
+        "An <ol>, not a <ul>: the order of a trail is meaningful."
+      ],
+      "pitfalls": [
+        { "bad": "Writing the separator as text: <li>Home</li> / <li>Countries</li>.", "good": "Draw it with CSS ::after — decoration must not reach the accessibility tree." },
+        { "bad": "Linking the current page to itself and leaving it unmarked.", "good": "Render it as plain text carrying aria-current=“page”." },
+        { "bad": "Two nav landmarks sharing one name — a hard-coded aria-label=\"Breadcrumb\" beside the site's own trail.", "good": "Name each landmark distinctly; axe's landmark-unique catches the collision, and without it a screen-reader user cannot tell the two apart." }
+      ]
+    },
     { "slug": "pagination", "name": "Pagination", "status": "planned", "pattern": "Navigation landmark · aria-current=“page”", "summary": "Page-by-page navigation of a long list, with the current page marked and controls that read clearly out of context." },
     {
       "slug": "toast",

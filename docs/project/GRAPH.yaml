@@ -1203,6 +1203,24 @@ nodes:
     approval_required: false
     notes: "Готово 2026-08-08 (D-073). Блок @media (prefers-color-scheme: dark) с 23 токенами удалён целиком, не закомментирован и не скрыт переключателем — надёжнее, чем JS-класс, который можно забыть подключить на новой странице. color-scheme в проекте не выставлялся ни разу (проверено grep до и после). Конституция §28 сама формулирует «dark mode is optional» — реверс применяет её же принцип. Обратимо: dark-значения остались в BRAND_BOOK.md §2 как исторические, но возврат — новое решение владельца, не автоматический откат."
 
+  - id: CN-COMPONENTS-BREADCRUMBS
+    title: "Breadcrumbs — 6-й готовый компонент библиотеки (CN-COMPONENTS-REST 3/10)"
+    owner: frontend-engineer
+    status: done
+    depends_on: [CN-COMPONENTS]
+    inputs: [data/a11y/components.json, src/lib/componentsLib.tsx, src/components/Layout.tsx, scripts/audit-own-a11y.mjs]
+    scope: [src/components/library/Breadcrumbs.tsx, src/lib/componentsLib.tsx, data/a11y/components.json, scripts/audit-own-a11y.mjs]
+    outputs: [src/components/library/Breadcrumbs.tsx]
+    verify:
+      - "npm run audit-a11y — /components/breadcrumbs/ в постоянном сэмпле; 38 страниц 0 нарушений (INTERACT не нужен: пример статичен)"
+      - "npm run scripts:test — components.test проходит (ready → полный набор §22 + файл реализации + сэмпл аудита)"
+      - "собранный dist: на странице два nav-ориентира с РАЗНЫМИ именами (Breadcrumb / Breadcrumb example), aria-current=page присутствует, разделитель '/' в разметке отсутствует"
+    max_attempts: 3
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Готово 2026-08-08 (D-077). Выбран вместо Combobox сознательно: контекст сессии был на 77%, Combobox — самый тяжёлый оставшийся композит. Паттерн извлечён из работающего Layout.tsx, а не написан заново. Гейт audit-a11y поймал реальное нарушение в первой версии — landmark-unique: зашитый aria-label=\"Breadcrumb\" столкнулся с трейлом самого сайта на той же странице. Починка архитектурная, не косметическая: label стал пропом, потому что уникальность имени ориентира — свойство страницы, а не компонента."
+
   - id: CN-COMPONENTS-TOOLTIP
     title: "Tooltip — 5-й готовый компонент библиотеки (CN-COMPONENTS-REST 2/10)"
     owner: frontend-engineer
