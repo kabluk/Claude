@@ -56,7 +56,15 @@ const SAMPLE_ROUTES = [
   // modal/toast/combobox/menu-button/listbox-select выше) — второй,
   // "открытый" прогон axe здесь не проверил бы ничего нового, поэтому
   // INTERACT для него не заведён (CN-COMPONENTS-SWITCH).
-  '/components/', '/components/accordion/', '/components/tabs/', '/components/modal-dialog/', '/components/toast/', '/components/tooltip/', '/components/breadcrumbs/', '/components/combobox/', '/components/menu-button/', '/components/listbox-select/', '/components/form-field/', '/components/switch/',
+  // pagination демонстрирует ДВА независимых инстанса, каждый уже в своём
+  // граничном состоянии в статическом HTML: первый стартует на странице 1
+  // (Previous aria-disabled), второй — на последней странице (Next
+  // aria-disabled); усечённый диапазон "…" тоже виден без клика. Как и у
+  // Switch, здесь нет попапа/скрытого контента, раскрываемого только по
+  // действию — клик лишь переносит aria-current на другую уже присутствующую
+  // в DOM кнопку, второй "открытый" прогон axe не проверил бы ничего нового,
+  // поэтому INTERACT не заведён (CN-COMPONENTS-PAGINATION).
+  '/components/', '/components/accordion/', '/components/tabs/', '/components/modal-dialog/', '/components/toast/', '/components/tooltip/', '/components/breadcrumbs/', '/components/combobox/', '/components/menu-button/', '/components/listbox-select/', '/components/form-field/', '/components/switch/', '/components/pagination/',
   // CN-RESEARCH (D-071): индекс отчётов + сам отчёт (таблицы-бары, stat-плитки,
   // JSON-LD Dataset/Report) — обе поверхности под постоянным axe-гейтом.
   '/reports/', '/reports/verified-audit-market/',

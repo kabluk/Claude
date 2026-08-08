@@ -1319,21 +1319,21 @@ nodes:
   - id: CN-COMPONENTS-PAGINATION
     title: "Pagination — 12-й компонент библиотеки (CN-COMPONENTS-REST 9/10)"
     owner: frontend-engineer
-    status: todo
+    status: done
     depends_on: [CN-COMPONENTS]
     inputs: [data/a11y/components.json, src/lib/componentsLib.tsx, scripts/audit-own-a11y.mjs, scripts/components.test.mjs]
     scope: [src/components/library/Pagination.tsx, src/lib/componentsLib.tsx, data/a11y/components.json, scripts/audit-own-a11y.mjs]
     outputs: [src/components/library/Pagination.tsx]
     verify:
-      - "npm run audit-a11y — /components/pagination/ в постоянном сэмпле; 0 нарушений"
-      - "живой Playwright: обёртка — <nav> с осмысленным aria-label (не голое 'navigation', не конфликтующее с другими nav-ориентирами страницы — тот же landmark-unique урок, что у Breadcrumbs D-077), текущая страница помечена aria-current='page' (буквальное значение 'page', не true), ссылки/кнопки Prev/Next доступны с понятным accessible name вне визуального контекста (не голое 'Prev' без указания на что), disabled-состояние Prev на первой / Next на последней странице реализовано доступно (не просто визуально приглушено), переход между страницами клавиатурой работает"
-      - "npm run scripts:test — components.test проходит без изменений в самом тесте"
-      - "npm run typecheck / npm run build / npm run check-links / npm run worker:test / npm run src:test — все зелёные"
+      - "npm run audit-a11y — /components/pagination/ в постоянном сэмпле; демо — ДВА инстанса, каждый статично в своём граничном состоянии (первый на стр.1 Prev-disabled, второй на последней Next-disabled), INTERACT не понадобился; 44 стр. 0 нарушений — ✅"
+      - "живой Playwright (независимый прогон родительской сессии): 2 <nav> с РАЗНЫМИ непустыми aria-label (реальный axe landmark-unique прогон 0 нарушений — на странице всего 6 nav[aria-label], важно фильтровать по <ul>-потомку, не индексировать вслепую), aria-current='page' (точная строка) ровно на одном элементе на инстанс, текущая страница — <span>, не <a>/<button>, клик по номеру двигает aria-current, Prev на стр.1 — aria-disabled='true' И Playwright реально отказывается кликнуть (actionability-проверка), accessible name Prev/Next через getByRole совпадает, эллипсис aria-hidden присутствует — 17/17 проверок ✅ (два ложных fail в первом прогоне — оба в собственном скрипте: несуществующий button:has-text-селектор, затем индексация nav[0] без фильтра по <ul> взяла не тот landmark, оба исправлены и подтверждены)"
+      - "npm run scripts:test — components.test проходит без изменений в самом тесте (37/37) — ✅"
+      - "npm run typecheck / npm run build / npm run check-links / npm run worker:test / npm run src:test — все зелёные (build 447 стр. sitemap 410, check-links 495-0, worker:test 211/211, src:test 20/20) — ✅"
     max_attempts: 3
     attempts: 1
     risk: low
     approval_required: false
-    notes: "Заведён 2026-08-08 сразу после Switch (D-082), по выбору владельца через AskUserQuestion (компонент Pagination, модель Sonnet). На сайте сейчас НЕТ существующей пагинации ни на одной странице (списки агентств/гайдов рендерятся целиком) — в отличие от Breadcrumbs/FormField, здесь нет прецедента 'извлечь из работающего кода', компонент пишется с нуля по паттерну. Данные демо — синтетическая, но правдоподобная механика (не факт о каталоге)."
+    notes: "Готово 2026-08-08 (D-083). Заведён сразу после Switch (D-082), по выбору владельца через AskUserQuestion (компонент Pagination, модель Sonnet). Реализовано субагентом, результат перепроверен родительской сессией живьём. Не именованный APG-паттерн (в отличие от Combobox/Menu/Listbox) — общие принципы навигационной доступности применены к конкретной задаче, поэтому легко выглядеть правильно, будучи практически бесполезным; ловушки закрыты явно: <nav aria-label> (label — проп, не константа, тот же урок Breadcrumbs D-077 — на сайте уже 6 nav-ориентиров на странице компонентов), текущая страница — <span> с aria-current='page' (не 'true', не кликабельная ссылка на саму себя), Prev/Next с видимым текстом 'Previous'/'Next' (не голые иконки), эллипсис aria-hidden декоративен (не притворяется управляющим элементом). Решение по disabled: aria-disabled='true' на реально фокусируемой <button> (не нативный disabled) — сохраняет форму ряда кнопок в таб-порядке независимо от текущей страницы; подтверждено живьём двойным способом (сам атрибут + отказ Playwright's actionability engine кликнуть). На сайте НЕТ существующей пагинации ни на одной странице — в отличие от Breadcrumbs/FormField, здесь не было прецедента 'извлечь из работающего кода', компонент написан с нуля по общим принципам. Первый прогон audit-a11y и живой проверки — оба чистые сразу (target-size ≥36px кнопки выбраны заранее)."
 
   - id: CN-COMPONENTS-TOOLTIP
     title: "Tooltip — 5-й готовый компонент библиотеки (CN-COMPONENTS-REST 2/10)"

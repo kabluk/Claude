@@ -285,7 +285,38 @@
         { "bad": "Two nav landmarks sharing one name — a hard-coded aria-label=\"Breadcrumb\" beside the site's own trail.", "good": "Name each landmark distinctly; axe's landmark-unique catches the collision, and without it a screen-reader user cannot tell the two apart." }
       ]
     },
-    { "slug": "pagination", "name": "Pagination", "status": "planned", "pattern": "Navigation landmark · aria-current=“page”", "summary": "Page-by-page navigation of a long list, with the current page marked and controls that read clearly out of context." },
+    {
+      "slug": "pagination",
+      "name": "Pagination",
+      "status": "ready",
+      "pattern": "Navigation landmark · aria-current=“page”",
+      "impl": "Pagination",
+      "summary": "Page-by-page navigation of a long list, with the current page marked and controls that read clearly out of context.",
+      "keyboard": [
+        { "keys": "Tab / Shift + Tab", "does": "moves between Previous, each visible page number, and Next in visual order — a plain row of buttons, no arrow-key layer to learn" },
+        { "keys": "Enter or Space", "does": "on a focused page-number button, goes to that page; on Previous/Next, moves one page — does nothing when the focused control is aria-disabled" }
+      ],
+      "screenReader": [
+        "The landmark is announced by its label, which must be unique among any other navigation landmarks on the same page — otherwise two are indistinguishable by name alone.",
+        "The list of page numbers announces its length before the user starts moving through it.",
+        "The current page is announced as “page” via aria-current, not read as an ordinary button — there is nothing to activate because it is plain text, not a control.",
+        "Previous and Next are announced by their visible text (“Previous”/“Next”), never by the arrow glyph alone, so the name is meaningful without seeing the icon.",
+        "A disabled Previous or Next is announced as unavailable (aria-disabled) rather than silently missing from the tab sequence.",
+        "The truncation “…” between page numbers is not announced at all — it carries no destination, so it is hidden from assistive technology instead of being read as a dead end."
+      ],
+      "ariaNotes": [
+        "nav needs aria-label (or aria-labelledby) whenever the page carries more than one navigation landmark — the same rule Breadcrumbs documents, and the same axe rule (landmark-unique) that catches a collision.",
+        "aria-current=“page” takes the literal string “page”, not “true” — aria-current is an enumerated attribute (page/step/location/date/time/true/false) and “page” is the value meant for exactly this case.",
+        "The current page is rendered as plain text, never a link/button pointing at itself — a control that only reloads where the user already is has no purpose and is easy to mistake for a real destination.",
+        "Previous/Next disabled state uses aria-disabled on a still-focusable <button>, not the native disabled attribute — see the component's pitfalls for why."
+      ],
+      "pitfalls": [
+        { "bad": "A bare “‹”/“›” glyph as the entire Previous/Next button, with no text and no aria-label.", "good": "Give the button visible text containing the word “Previous”/“Next” (or an aria-label that does), so the accessible name says what the icon only implies visually." },
+        { "bad": "aria-current=\"true\" on the current page.", "good": "Use the literal string aria-current=\"page\" — the value ARIA defines specifically for “this is the current page in a set”." },
+        { "bad": "Using the native disabled attribute on Previous/Next, so the button vanishes from the Tab sequence on the first/last page and the control row's shape shifts depending on which page is showing.", "good": "Use aria-disabled=\"true\" on a still-focusable button, and guard the click/activate handler so it does nothing — the control stays discoverable and the tab order stays constant." },
+        { "bad": "Rendering the current page as a link that points at itself, or leaving it with no aria-current at all so every page number looks the same.", "good": "Render the current page as plain text, not a control, and mark it aria-current=\"page\"." }
+      ]
+    },
     {
       "slug": "toast",
       "name": "Toast / status message",

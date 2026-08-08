@@ -26,6 +26,7 @@ import { MenuButton, type MenuItemDef } from '@/components/library/MenuButton'
 import { ListboxSelect } from '@/components/library/ListboxSelect'
 import { FormField } from '@/components/library/FormField'
 import { Switch } from '@/components/library/Switch'
+import { Pagination } from '@/components/library/Pagination'
 
 import AccordionSrc from '@/components/library/Accordion.tsx?raw'
 import TabsSrc from '@/components/library/Tabs.tsx?raw'
@@ -38,6 +39,7 @@ import MenuButtonSrc from '@/components/library/MenuButton.tsx?raw'
 import ListboxSelectSrc from '@/components/library/ListboxSelect.tsx?raw'
 import FormFieldSrc from '@/components/library/FormField.tsx?raw'
 import SwitchSrc from '@/components/library/Switch.tsx?raw'
+import PaginationSrc from '@/components/library/Pagination.tsx?raw'
 
 export type ComponentStatus = 'ready' | 'planned'
 export interface KeyRow {
@@ -349,6 +351,56 @@ function SwitchDemo() {
   )
 }
 
+// Two independent Pagination instances, each already showing a different
+// edge state in the page's static, no-interaction HTML — "Search results"
+// starts on page 1 (Previous disabled) and "Directory" starts on its last
+// page (Next disabled) — so both disabled states, and the truncated "…"
+// range in between, are visible without a click, the same reasoning as
+// Switch's two pre-set toggles. Distinct `aria-label`s ("Search results
+// pages" / "Directory pages") are load-bearing, not decorative: two <nav>
+// landmarks with the site's default "Pagination" name on one page would
+// collide under axe's landmark-unique, the exact trap this component's own
+// header comment (note 1) documents (same lesson as Breadcrumbs, D-077).
+// The numbers themselves are a synthetic, plausible search-results/directory
+// mechanic — not a claim about how many pages any real listing on this site
+// has (CN-COMPONENTS-PAGINATION: the catalogue's own lists render in full,
+// unpaginated).
+function PaginationDemo() {
+  const [searchPage, setSearchPage] = useState(1)
+  const [directoryPage, setDirectoryPage] = useState(12)
+  return (
+    <div className="flex flex-col gap-8">
+      <div>
+        <p className="mb-2 text-xs font-medium text-on-surface-variant">
+          Search results — page {searchPage} of 9
+        </p>
+        <Pagination
+          label="Search results pages"
+          currentPage={searchPage}
+          totalPages={9}
+          onPageChange={setSearchPage}
+        />
+      </div>
+      <div>
+        <p className="mb-2 text-xs font-medium text-on-surface-variant">
+          Directory — page {directoryPage} of 12
+        </p>
+        <Pagination
+          label="Directory pages"
+          currentPage={directoryPage}
+          totalPages={12}
+          onPageChange={setDirectoryPage}
+        />
+      </div>
+      <p className="max-w-prose text-xs text-on-surface-variant">
+        Click a page number, or Tab to one and press Enter/Space. Previous is disabled on page 1 of
+        the first list; Next is disabled on the last page of the second — both stay in the tab
+        order rather than disappearing, so a keyboard user always finds them in the same place.
+      </p>
+    </div>
+  )
+}
+
 const DEMOS: Record<string, { demo: () => JSX.Element; code: string }> = {
   accordion: {
     code: AccordionSrc,
@@ -425,6 +477,10 @@ const DEMOS: Record<string, { demo: () => JSX.Element; code: string }> = {
   switch: {
     code: SwitchSrc,
     demo: () => <SwitchDemo />,
+  },
+  pagination: {
+    code: PaginationSrc,
+    demo: () => <PaginationDemo />,
   },
   breadcrumbs: {
     code: BreadcrumbsSrc,
