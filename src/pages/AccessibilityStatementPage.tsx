@@ -10,12 +10,14 @@ import { coverageSummary } from '@/lib/coverage'
 // question for the site itself — see the "Legal basis" section below for the
 // live fact-check of that classification (not taken on faith).
 //
-// One section (provider identification) is honestly incomplete: it links to
-// /imprint/, which is itself pending the owner's legal registration
-// (A0-OWNER-LEGAL in docs/project/GRAPH.yaml). No entity, address, or contact
-// is invented here. The enforcement-body section has the same limitation, for
-// the same reason (which authority applies depends on which country the
-// operator ends up registered in).
+// Provider identification is now resolved (D-089, 2026-08-08): the operating
+// entity is a US (California) corporation, not an EU/EEA one — see /imprint/.
+// That raises a genuinely unresolved question the legal-basis and
+// enforcement-body sections below say plainly rather than paper over: which
+// (if any) EU market-surveillance authority has jurisdiction over a
+// non-EU-established provider serving EU users is not something we've
+// resolved with counsel. Nothing here is invented to sound more settled than
+// it is.
 export default function AccessibilityStatementPage() {
   return (
     <Layout
@@ -54,12 +56,15 @@ export default function AccessibilityStatementPage() {
           German transposition, the Barrierefreiheitsstärkungsgesetz (BFSG), is the most
           concretely specified national model available — Anlage 3 zu § 14 BFSG lists the exact
           contents a statement must have, and that list is what structures this page. We use it as
-          a template rather than a confirmed jurisdiction: AccessAtlas' operating entity is not
-          registered yet (see{' '}
+          a template rather than a confirmed jurisdiction: our operating entity (see{' '}
           <Link className="underline underline-offset-2" to={paths.imprint()}>
             Imprint
           </Link>
-          ), so we don't yet know which country's transposition will actually govern us.
+          ) is registered in California, USA — not in an EU/EEA member state. Whether, and under
+          which national transposition, a non-EU-established provider serving EU users is directly
+          governed is a genuinely unsettled question we have not resolved with legal counsel. We
+          keep using the BFSG structure as the clearest available template, not as a claim about
+          which law actually applies to us.
         </p>
         <p>
           One nuance worth stating honestly, because it's the reason this page exists: whether
@@ -112,22 +117,22 @@ export default function AccessibilityStatementPage() {
         <h2>Provider identification</h2>
         <p>
           Anlage 3 requires the provider's identity and contact details here (the same information
-          Art. 246 EGBGB requires for distance contracts). That data isn't invented: our operating
-          entity, address, and registration details are pending the owner's legal setup, tracked as{' '}
-          <code>A0-OWNER-LEGAL</code> in our project backlog. Once registered, the same details
-          will appear on our{' '}
+          Art. 246 EGBGB requires for distance contracts). Full details — legal entity, address,
+          and the person authorised to represent it — are published on our{' '}
           <Link className="underline underline-offset-2" to={paths.imprint()}>
             Imprint
           </Link>{' '}
-          page and be linked from here — not duplicated, so there's exactly one place these facts
-          can drift out of date.
+          page and not duplicated here, so there's exactly one place these facts can drift out of
+          date.
         </p>
 
         <h2>Enforcement body</h2>
         <p>
-          Which market-surveillance authority has jurisdiction depends on the country our operating
-          entity is registered in — the same open item as above. For illustration, the authority
-          named in the guides on this site for the German market is the{' '}
+          Our operating entity is registered in the United States (California), not in an EU/EEA
+          member state — which market-surveillance authority, if any, has jurisdiction over a
+          non-EU-established provider serving EU users is not something we've resolved with legal
+          counsel. For illustration, the authority named in the guides on this site for the German
+          market is the{' '}
           <a
             className="underline underline-offset-2"
             href="https://mlbf-barrierefrei.de/"
@@ -137,8 +142,7 @@ export default function AccessibilityStatementPage() {
             Marktüberwachungsstelle der Länder für die Barrierefreiheit von Produkten und
             Dienstleistungen (MLBF)
           </a>
-          , Magdeburg. That's a factual reference, not a claim that MLBF is our enforcement body —
-          we'll name the actual applicable authority here once our registration is settled.
+          , Magdeburg. That's a factual reference, not a claim that MLBF is our enforcement body.
         </p>
 
         <h2>Feedback</h2>
