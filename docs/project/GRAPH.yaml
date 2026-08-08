@@ -1243,21 +1243,21 @@ nodes:
   - id: CN-COMPONENTS-MENU-BUTTON
     title: "Menu button — 8-й компонент библиотеки (CN-COMPONENTS-REST 5/10)"
     owner: frontend-engineer
-    status: todo
+    status: done
     depends_on: [CN-COMPONENTS]
     inputs: [data/a11y/components.json, src/lib/componentsLib.tsx, scripts/audit-own-a11y.mjs, scripts/components.test.mjs]
     scope: [src/components/library/MenuButton.tsx, src/lib/componentsLib.tsx, data/a11y/components.json, scripts/audit-own-a11y.mjs]
     outputs: [src/components/library/MenuButton.tsx]
     verify:
-      - "npm run audit-a11y — /components/menu-button/ в постоянном сэмпле, INTERACT открывает меню и аудитирует РАСКРЫТОЕ состояние (role=menu + role=menuitem); 0 нарушений"
-      - "живой Playwright: ArrowDown/Up двигают роving tabindex/фокус между пунктами меню (реальный DOM-фокус, НЕ aria-activedescendant — это паттерн Menu, отличный от Combobox), Home/End на первый/последний пункт, type-ahead прыгает к пункту по первой букве, Enter/Space активирует пункт и закрывает меню с возвратом фокуса на кнопку, Escape закрывает без активации с возвратом фокуса на кнопку, клик вне меню закрывает без активации"
-      - "npm run scripts:test — components.test проходит без изменений в самом тесте"
-      - "npm run typecheck / npm run build / npm run check-links / npm run worker:test / npm run src:test — все зелёные"
+      - "npm run audit-a11y — /components/menu-button/ в постоянном сэмпле, INTERACT открывает меню и аудитирует РАСКРЫТОЕ состояние (role=menu + role=menuitem); 40 стр. 0 нарушений — ✅"
+      - "живой Playwright (независимый прогон родительской сессии): ArrowDown/Up двигают реальный DOM-фокус между пунктами меню (подтверждено — aria-activedescendant на странице не встречается вовсе) с оборачиванием, Home/End на первый/последний пункт, type-ahead прыгает к пункту по первой букве, Enter активирует пункт (реальная навигация на /contact/ подтверждена по URL) и закрывает меню с возвратом фокуса на кнопку, Escape закрывает без активации с возвратом фокуса, Tab закрывает БЕЗ возврата фокуса на кнопку, клик по пункту активирует и закрывает, клик вне меню закрывает без активации — 16/16 проверок ✅"
+      - "npm run scripts:test — components.test проходит без изменений в самом тесте (37/37) — ✅"
+      - "npm run typecheck / npm run build / npm run check-links / npm run worker:test / npm run src:test — все зелёные (build 443 стр. sitemap 406, check-links 491-0, worker:test 211/211, src:test 20/20) — ✅"
     max_attempts: 3
     attempts: 1
     risk: medium
     approval_required: false
-    notes: "Заведён 2026-08-08 сразу после Combobox (D-078), по выбору владельца через AskUserQuestion (компонент Menu button, модель Sonnet — стандартный выбор проекта, четыре из семи готовых компонентов сделаны на нём). Данные демо — реальные действия сайта (не выдуманные пункты меню)."
+    notes: "Готово 2026-08-08 (D-079). Заведён сразу после Combobox (D-078), по выбору владельца через AskUserQuestion (компонент Menu button, модель Sonnet — стандартный выбор проекта). Реализовано субагентом на Sonnet, результат перепроверен родительской сессией живьём (диф прочитан построчно, все гейты перезапущены, независимый Playwright-скрипт написан заново — 16/16). Архитектурная суть: НАСТОЯЩИЙ roving tabindex (реальные .focus()-вызовы через refs, tabIndex 0/-1) — противоположность виртуальному фокусу Combobox (aria-activedescendant), тот же механизм, что у Tabs. Демо — «Page actions» (Copy link/Print this page/Report an issue), последний пункт реально ведёт на существующий /contact/, не выдуманная фича. Tab закрывает меню и НЕ возвращает фокус на кнопку (в отличие от Escape/Enter) — APG трактует Tab как переход к следующему элементу, не как dismiss-клавишу."
 
   - id: CN-COMPONENTS-TOOLTIP
     title: "Tooltip — 5-й готовый компонент библиотеки (CN-COMPONENTS-REST 2/10)"

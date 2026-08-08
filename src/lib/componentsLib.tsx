@@ -11,7 +11,7 @@
 // that those stay in step.
 
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import componentsData from '@data/a11y/components.json'
 import { countries, paths, type CountryInfo } from '@/lib/data'
 import { Accordion } from '@/components/library/Accordion'
@@ -21,6 +21,7 @@ import { ToastRegion, useToasts } from '@/components/library/Toast'
 import { Tooltip } from '@/components/library/Tooltip'
 import { Breadcrumbs } from '@/components/library/Breadcrumbs'
 import { Combobox } from '@/components/library/Combobox'
+import { MenuButton, type MenuItemDef } from '@/components/library/MenuButton'
 
 import AccordionSrc from '@/components/library/Accordion.tsx?raw'
 import TabsSrc from '@/components/library/Tabs.tsx?raw'
@@ -29,6 +30,7 @@ import ToastSrc from '@/components/library/Toast.tsx?raw'
 import TooltipSrc from '@/components/library/Tooltip.tsx?raw'
 import BreadcrumbsSrc from '@/components/library/Breadcrumbs.tsx?raw'
 import ComboboxSrc from '@/components/library/Combobox.tsx?raw'
+import MenuButtonSrc from '@/components/library/MenuButton.tsx?raw'
 
 export type ComponentStatus = 'ready' | 'planned'
 export interface KeyRow {
@@ -177,6 +179,54 @@ function ComboboxDemo() {
   )
 }
 
+function MenuButtonDemo() {
+  const navigate = useNavigate()
+  const [status, setStatus] = useState<string | null>(null)
+
+  // Ordinary page actions on this component library page itself — not a claim
+  // that the site has a "share" feature. "Report an issue" is the one item
+  // with a real destination: /contact/ already exists on this site, so
+  // choosing it really navigates there, same as clicking a link would.
+  const items: MenuItemDef[] = [
+    {
+      label: 'Copy link',
+      onSelect: async () => {
+        try {
+          await navigator.clipboard.writeText(window.location.href)
+          setStatus('Link copied to the clipboard.')
+        } catch {
+          setStatus("Couldn't copy automatically — copy the address bar instead.")
+        }
+      },
+    },
+    {
+      label: 'Print this page',
+      onSelect: () => {
+        setStatus('Opening the print dialog…')
+        window.print()
+      },
+    },
+    {
+      label: 'Report an issue',
+      onSelect: () => navigate(paths.contact()),
+    },
+  ]
+
+  return (
+    // data-a11y-demo-menu lets the permanent axe gate click the button and
+    // audit the OPEN menu (role=menu + role=menuitem) — see
+    // scripts/audit-own-a11y.mjs. It never activates an item, so the
+    // navigation in "Report an issue" cannot fire during the audit.
+    <div data-a11y-demo-menu>
+      <MenuButton label="Page actions" items={items} />
+      <p className="mt-3 max-w-prose text-xs text-on-surface-variant" role="status">
+        {status ??
+          'Click, or Down/Up on the button, to open the menu. Arrow keys move real focus between items and wrap at both ends; typing a letter jumps to the next item starting with it; Enter/Space runs the item; Escape closes without running anything.'}
+      </p>
+    </div>
+  )
+}
+
 const DEMOS: Record<string, { demo: () => JSX.Element; code: string }> = {
   accordion: {
     code: AccordionSrc,
@@ -237,6 +287,10 @@ const DEMOS: Record<string, { demo: () => JSX.Element; code: string }> = {
   combobox: {
     code: ComboboxSrc,
     demo: () => <ComboboxDemo />,
+  },
+  'menu-button': {
+    code: MenuButtonSrc,
+    demo: () => <MenuButtonDemo />,
   },
   breadcrumbs: {
     code: BreadcrumbsSrc,

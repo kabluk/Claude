@@ -46,7 +46,7 @@ const SAMPLE_ROUTES = [
   // сам виджет. У модалки и тоста живой пример появляется только по действию
   // пользователя — их раскрытое/анонсированное состояние аудитируется отдельно,
   // см. INTERACT ниже.
-  '/components/', '/components/accordion/', '/components/tabs/', '/components/modal-dialog/', '/components/toast/', '/components/tooltip/', '/components/breadcrumbs/', '/components/combobox/',
+  '/components/', '/components/accordion/', '/components/tabs/', '/components/modal-dialog/', '/components/toast/', '/components/tooltip/', '/components/breadcrumbs/', '/components/combobox/', '/components/menu-button/',
   // CN-RESEARCH (D-071): индекс отчётов + сам отчёт (таблицы-бары, stat-плитки,
   // JSON-LD Dataset/Report) — обе поверхности под постоянным axe-гейтом.
   '/reports/', '/reports/verified-audit-market/',
@@ -94,6 +94,15 @@ const INTERACT = {
     await page.waitForSelector('[role="listbox"]', { state: 'visible' })
     await page.keyboard.press('ArrowDown')
     await page.waitForSelector('[role="option"][aria-selected="true"]', { state: 'visible' })
+  },
+  // CN-COMPONENTS-MENU-BUTTON: the static HTML holds only the closed trigger —
+  // role=menu/menuitem exist only after the user opens it. Click the button
+  // and wait for the menu to become visible, so the second axe pass covers
+  // the open menu (its items, roving-tabindex focus target, and contrast on
+  // its own popup surface), not just the closed button.
+  '/components/menu-button/': async (page) => {
+    await page.click('[data-a11y-demo-menu] button[aria-haspopup="menu"]')
+    await page.waitForSelector('[role="menu"]', { state: 'visible' })
   },
 }
 

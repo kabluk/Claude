@@ -153,7 +153,43 @@
         { "bad": "The active option is scrolled out of the popup's viewport.", "good": "Scroll it into view yourself — nothing is really focused, so the browser will not do it for you." }
       ]
     },
-    { "slug": "menu-button", "name": "Menu button", "status": "planned", "pattern": "Menu · roving focus, type-ahead", "summary": "A button that opens a menu of actions, navigable with the arrow keys and closable with Escape." },
+    {
+      "slug": "menu-button",
+      "name": "Menu button",
+      "status": "ready",
+      "pattern": "Menu · roving focus, type-ahead",
+      "impl": "MenuButton",
+      "summary": "A button that opens a menu of actions, navigable with the arrow keys and closable with Escape. The pattern where the highlighted item is only a CSS state: real DOM focus moves onto the menu items themselves (roving tabindex), the opposite arrangement from this library's Combobox.",
+      "keyboard": [
+        { "keys": "Enter / Space / Down / Up (on the button)", "does": "opens the menu; Down puts focus on the first item, Up puts focus on the last item — the same convention as native OS menus" },
+        { "keys": "Down / Up (in the menu)", "does": "moves real focus to the next/previous item and wraps at both ends" },
+        { "keys": "Home / End", "does": "moves focus to the first / last item" },
+        { "keys": "A letter key", "does": "moves focus to the next item whose label starts with that letter, cyclically — a single keystroke, not a buffered filter" },
+        { "keys": "Enter / Space (on an item)", "does": "runs that item, closes the menu, and returns focus to the button" },
+        { "keys": "Escape", "does": "closes the menu without running anything and returns focus to the button" },
+        { "keys": "Tab", "does": "closes the menu and moves on to the next element in the page's tab order — focus is not pulled back to the button, because Tab is a \"move to what's next\" key, not a dismiss key" }
+      ],
+      "screenReader": [
+        "The button is announced with its expanded state and that it has a popup menu (aria-haspopup=\"menu\"), before the user opens it.",
+        "Opening the menu moves real focus onto the first (or, via Up, the last) item, so it is announced as a menu item, its position in the menu, and the menu's own accessible name — the same experience a screen-reader user gets from any other focusable control, because it genuinely is one here.",
+        "Each further arrow/Home/End/type-ahead move re-announces the newly focused item; nothing is announced as a pointer moving over a highlight.",
+        "Escape and Tab are both silent on the way out (no extra announcement) beyond whatever the newly focused element itself announces — the button on Escape, the next tabbable element on Tab."
+      ],
+      "ariaNotes": [
+        "The trigger is a real <button> with aria-haspopup=\"menu\", aria-expanded reflecting the live open/closed state, and aria-controls pointing at the menu's id only while it exists.",
+        "The container is role=\"menu\" with aria-label naming it; each action is role=\"menuitem\". This library keeps every item a plain action (no checkbox/radio menuitem variants) — the pattern's simplest, most common shape.",
+        "Roving tabindex: exactly one item carries tabindex=0 (the one that would receive focus next) and every other item carries tabindex=-1. Moving between items calls a real .focus() on the target element via a ref — this is the same mechanism as this library's Tabs, not the aria-activedescendant virtual focus used by Combobox. A menu's items are not editable text, so nothing needs to keep the caret parked elsewhere the way Combobox's input does — real focus is the simpler, correct default here.",
+        "aria-controls is set only while the menu is open, matching Combobox and Breadcrumbs' other conditional relationships in this library — an id reference to something that no longer exists is a broken relationship, not a harmless leftover."
+      ],
+      "pitfalls": [
+        { "bad": "The highlighted item is only a CSS class; DOM focus stays on the button the whole time it is open.", "good": "Move real focus onto the active menu item (roving tabindex) — a screen-reader user arrowing through the menu must hear each item as it becomes current, not just see a highlight move." },
+        { "bad": "Escape or Enter closes the menu but leaves focus on whatever item happened to be active, or drops it to the top of the page.", "good": "Return focus to the button on every keyboard close path (Escape, and Enter/Space after running an item) — the button is where the interaction started." },
+        { "bad": "Tab is intercepted to force focus back onto the button, the same as Escape.", "good": "Let Tab close the menu and continue moving through the page's own tab order — APG treats Tab as \"move to what's next\", not a dismiss key, and hijacking it fights the browser." },
+        { "bad": "Up on the closed button opens the menu at the first item, same as Down.", "good": "Up opens at the LAST item — the native-menu convention for \"I'm approaching from the bottom\"." },
+        { "bad": "Typing a letter filters the menu down to matching items, like a combobox.", "good": "A menu's type-ahead is a single-keystroke jump to the next matching item, cyclically — not a buffered filter; menus don't narrow their own contents." },
+        { "bad": "A click outside the menu is ignored, or the menu is closed by making the button re-steal focus from whatever the user just clicked.", "good": "Close without activating anything and without moving focus — the user's click already told the browser where they wanted to be." }
+      ]
+    },
     { "slug": "listbox-select", "name": "Select (listbox)", "status": "planned", "pattern": "Listbox · single/multi select", "summary": "A custom single- or multi-select built on role=listbox when the native <select> cannot be styled to requirements — with the native element as the honest first choice." },
     {
       "slug": "breadcrumbs",
