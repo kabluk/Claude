@@ -29,7 +29,7 @@
   "relatedAgencies": ["access42", "urbilog", "boscop"]
 }
 ---
-L'audit RGAA est le passage obligé de toute démarche de conformité en accessibilité numérique en France : c'est lui qui produit le taux de conformité affiché dans votre déclaration d'accessibilité, et c'est sur ses résultats que s'appuient l'Arcom et le Défenseur des droits en cas de contrôle ou de plainte. Ce guide fait le point sur le cadre légal en vigueur en 2026, le déroulement concret d'un audit, les livrables obligatoires et les critères de choix d'un auditeur.
+L'audit RGAA est le passage obligé de toute démarche de conformité en accessibilité numérique en France : c'est lui qui produit le taux de conformité affiché dans votre déclaration d'accessibilité, et c'est sur ses résultats que s'appuient l'Arcom et le Défenseur des droits en cas de contrôle ou de plainte. Ce guide fait le point sur le cadre légal en vigueur en 2026, le déroulement concret d'un audit, les livrables obligatoires et les critères de choix d'un auditeur. Pour les bases du référentiel lui-même — origine, 106 critères, 13 thématiques, différence avec les WCAG — voir notre [guide « qu'est-ce que le RGAA »](/guides/rgaa-guide/).
 
 ## Qu'est-ce que le RGAA ?
 

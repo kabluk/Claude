@@ -984,7 +984,7 @@ nodes:
   - id: G-GUIDES-RGAA-FR
     title: "FR-гайд под голое `rgaa` (8100/мес по DataForSEO 2026-08-08): что такое RGAA, 106 критериев, связь WCAG/EN 301 549, кому обязателен — информационный интент, без дублирования audit-rgaa-guide"
     owner: product-lead
-    status: in_progress
+    status: done
     depends_on: []
     inputs:
       - data/a11y/guides/audit-rgaa-guide.md
@@ -1004,7 +1004,7 @@ nodes:
     attempts: 1
     risk: low
     approval_required: false
-    notes: "Заведён 2026-08-08 по данным keyword-рефреша DataForSEO (владелец дал API in-memory): голое `rgaa` 8100/мес @ $3.63 — largest gap спрос↔контент; существующий audit-rgaa-guide метит только в `audit rgaa` 390/мес. Модель узла — Sonnet (выбор владельца через AskUserQuestion, совет хука haiku отклонён)."
+    notes: "Заведён 2026-08-08 по данным keyword-рефреша DataForSEO (владелец дал API in-memory): голое `rgaa` 8100/мес @ $3.63 — largest gap спрос↔контент; существующий audit-rgaa-guide метит только в `audit rgaa` 390/мес. Модель узла — Sonnet (выбор владельца через AskUserQuestion, совет хука haiku отклонён). Готово 2026-08-08 (D-090): data/a11y/guides/rgaa-guide.md, реализован субагентом, перепроверен родительской сессией НЕЗАВИСИМО — гайд прочитан построчно, диф audit-rgaa-guide.md (1 строка, взаимная ссылка) прочитан, ВСЕ гейты перезапущены родителем (build-a11y 245 / typecheck / scripts:test 48/48 вкл. no-fine-amounts / worker:test 211 / src:test 20 / build 451 стр. sitemap 414 / check-links 500-0 / audit-a11y 47-0), разовый axe новой страницы (свой скрипт, не субагента) 0 нарушений, <html lang=fr> + английский chrome (aria-label=Main) в dist подтверждены. Фактчек-находка родителя: «18 mois на обновление декларации» отсутствовал в списке проверенного субагентом — подтверждён родителем на официальной странице DINUM déclaration-accessibilité дословно, факт верен. RGAA 4.1.2 и «RGAA 5 fin 2026» перепроверены родителем на homepage DINUM дословно."
 
   - id: CN-HERO
     title: "Scanner-first главная (конституция §7-8, §59): функциональный hero с URL-вводом, каталог ниже"
