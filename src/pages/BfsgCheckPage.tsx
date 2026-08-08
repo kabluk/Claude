@@ -11,13 +11,15 @@
 // остальное на странице — данные из agencies.json и посчитанное покрытие
 // EN 301 549, ничего вписанного руками.
 //
-// Язык: контент немецкий, оболочка (шапка/футер) пока английская — полная
-// локализация интерфейса это отдельная задача G-I18N, сознательно вне scope.
-// Тот же компромисс, что у немецких гайдов (GuidePage выставляет html lang по
-// локали статьи) — здесь он повторён осознанно, а не по недосмотру.
+// Язык: контент немецкий; шапка/футер тоже немецкие (G-I18N-CHROME-DE) —
+// передаём locale="de" в Layout, который теперь единолично ставит
+// <html lang> (см. Layout.tsx). До этого узла шапка/футер оставались
+// английскими — задокументированный компромисс BACKLOG.md (G-I18N-DE),
+// который эта правка и закрывает. Полная локализация интерфейса всего сайта
+// (роутинг /de/, hreflang, перевод контента) — по-прежнему отдельная, более
+// широкая задача G-I18N, вне scope этого узла.
 
 import { Link } from 'react-router-dom'
-import { Head } from 'vite-react-ssg'
 import { Layout } from '@/components/Layout'
 import { JsonLd, ORIGIN, SITE_NAME } from '@/lib/seo'
 import { coverageSummary } from '@/lib/coverage'
@@ -56,17 +58,18 @@ export default function BfsgCheckPage() {
   const title = 'BFSG-Check: Fehlt Ihrer Website die Erklärung zur Barrierefreiheit?'
   const description = `Kostenloser Scan der Erklärung zur Barrierefreiheit nach Anlage 3 zu § 14 BFSG — und ${named.length} Prüfer, die in veröffentlichten deutschen Erklärungen namentlich genannt sind.`
 
+  // Крошка на немецком (Deutschland, не Germany) — страница целиком немецкая,
+  // а сам breadcrumb-регион теперь тоже рендерится в de-хроме
+  // (G-I18N-CHROME-DE); ведёт на /germany/ — сам URL и целевая англоязычная
+  // страница страны не меняются.
   return (
     <Layout
       title={title}
       description={description}
       path={paths.bfsgCheck()}
-      crumbs={[{ name: 'Germany', path: paths.country(germany) }]}
+      crumbs={[{ name: 'Deutschland', path: paths.country(germany) }]}
+      locale="de"
     >
-      {/* Язык контента страницы — немецкий (как у немецких гайдов). */}
-      <Head>
-        <html lang="de" />
-      </Head>
       <JsonLd
         data={{
           '@context': 'https://schema.org',

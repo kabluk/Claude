@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 import { agencies, countries, paths } from '@/lib/data'
 import { Meta, JsonLd, breadcrumbsLd, SITE_NAME, type Crumb } from '@/lib/seo'
+import { chromeDict, type ChromeLocale } from '@/lib/i18n'
 
 export function Layout({
   title,
@@ -9,6 +10,8 @@ export function Layout({
   path,
   index = true,
   crumbs,
+  locale = 'en',
+  htmlLang,
   children,
 }: {
   title: string
@@ -16,17 +19,37 @@ export function Layout({
   path: string
   index?: boolean
   crumbs?: Crumb[] // без последнего звена-самой-страницы — оно добавится
+  // G-I18N-CHROME-DE: язык ШАПКИ/ФУТЕРА (nav-лейблы, CTA, футер) — словарь
+  // сейчас есть только для 'en'/'de'. Default 'en' — существующее поведение
+  // всех ~440 английских страниц не меняется ни на байт.
+  locale?: ChromeLocale
+  // Язык ДОКУМЕНТА (<html lang>) — по умолчанию равен locale, но их
+  // РАЗЛИЧИЕ осмысленно: на гайдах с fr/pl-контентом (GuidePage.tsx) chrome
+  // остаётся английским (locale='en', словаря на fr/pl ещё нет), а тело
+  // статьи — настоящее fr/pl; тогда htmlLang=g.locale передаётся отдельно,
+  // чтобы <html lang> продолжал верно называть язык документа, как и до
+  // этого узла, не откатываясь на 'en' вслед за словарём хрома. Единственный
+  // источник правды для <html lang> в проекте всё равно один — этот компонент
+  // (раньше страницы дублировали его через собственный <Head>).
+  htmlLang?: string
   children: ReactNode
 }) {
-  const trail: Crumb[] = crumbs ? [{ name: 'Home', path: '/' }, ...crumbs] : []
+  const t = chromeDict(locale)
+  const trail: Crumb[] = crumbs ? [{ name: t.breadcrumbHome, path: '/' }, ...crumbs] : []
   return (
     <>
-      <Meta title={title} description={description} path={path} index={index} />
+      <Meta
+        title={title}
+        description={description}
+        path={path}
+        index={index}
+        htmlLang={htmlLang ?? locale}
+      />
       <a
         href="#main"
         className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-surface-container focus:px-3 focus:py-2 focus:shadow"
       >
-        Skip to content
+        {t.skipToContent}
       </a>
       {/* CN-NAV (шапка, D-063) + CN-BRANDBOOK (D-072): sticky-шапка с лёгким
           backdrop-blur, как в макетах; Scan — первый и единственный акцентный
@@ -62,52 +85,52 @@ export function Layout({
             </span>
             {SITE_NAME}
           </Link>
-          <nav aria-label="Main" className="flex flex-wrap items-center gap-4 text-sm font-medium text-on-surface-variant">
+          <nav aria-label={t.ariaMain} className="flex flex-wrap items-center gap-4 text-sm font-medium text-on-surface-variant">
             <Link
               className="font-semibold text-[color:var(--color-primary)] hover:text-[color:var(--color-primary-hover)]"
               to={paths.scan()}
             >
-              Scan
+              {t.nav.scan}
             </Link>
             <Link className="hover:text-on-surface" to={paths.countries()}>
-              Countries
+              {t.nav.countries}
             </Link>
             <Link className="hover:text-on-surface" to={paths.services()}>
-              Services
+              {t.nav.services}
             </Link>
             <Link className="hover:text-on-surface" to={paths.standards()}>
-              Standards
+              {t.nav.standards}
             </Link>
             {/* CN-NAV (D-062 §6): подписи IA — «Knowledge»/«Experts». URL /guides/ и
                 /agencies/ сознательно НЕ переименованы (SEO/внешние ссылки живут);
                 модель данных agencies тоже не трогается — только UI-ярлыки. */}
             <Link className="hover:text-on-surface" to="/guides/">
-              Knowledge
+              {t.nav.knowledge}
             </Link>
             {/* CN-COMPONENTS (D-068): публичная библиотека доступных компонентов
                 (§22) — часть Knowledge-поверхности, отдельный пункт для веса. */}
             <Link className="hover:text-on-surface" to={paths.components()}>
-              Components
+              {t.nav.components}
             </Link>
             {/* CN-RESEARCH (D-071): data products из каталога — флагманская
                 SEO-поверхность (§23), в навигации для веса и анти-orphan. */}
             <Link className="hover:text-on-surface" to={paths.reports()}>
-              Reports
+              {t.nav.reports}
             </Link>
             <Link className="hover:text-on-surface" to={paths.agencies()}>
-              Experts
+              {t.nav.experts}
             </Link>
           </nav>
           <Link
             className="ml-auto inline-flex items-center rounded-full bg-secondary-container px-4 py-1.5 font-mono text-xs font-medium tracking-[0.05em] uppercase text-on-secondary-container transition hover:bg-primary-container hover:text-on-primary-container"
             to={paths.scan()}
           >
-            Scan website
+            {t.ctaScanWebsite}
           </Link>
         </div>
       </header>
       {trail.length > 0 && (
-        <nav aria-label="Breadcrumb" className="container-page pt-4 text-sm text-on-surface-variant">
+        <nav aria-label={t.ariaBreadcrumb} className="container-page pt-4 text-sm text-on-surface-variant">
           <JsonLd data={breadcrumbsLd([...trail, { name: title, path }])} />
           <ol className="flex flex-wrap gap-1">
             {trail.map((c) => (
@@ -128,33 +151,39 @@ export function Layout({
       </main>
       <footer className="border-t border-outline-variant bg-surface-container-low py-10 text-sm text-on-surface-variant">
         <div className="container-page space-y-3">
+          {/* Числа — реальные данные (agencies.length/countries.length),
+              обёрнуты в .num (tabular-nums, §25) как и раньше; текст вокруг —
+              из словаря функциями introMiddle/introSuffix (не заморожена
+              строка с числом внутри). Структура children (текст — span —
+              текст — span — {' '} — текст) сохранена 1:1 с исходной, чтобы
+              SSR-разметка (в т.ч. гидрационные <!-- --> между соседними
+              текстовыми узлами) для английских страниц не сдвинулась ни на
+              байт. */}
           <p>
-            {SITE_NAME} — <span className="num">{agencies.length}</span> verified
-            digital-accessibility agencies across <span className="num">{countries.length}</span>{' '}
-            countries. Every listing cites its source; nothing is invented.
+            {SITE_NAME} — <span className="num">{agencies.length}</span>
+            {t.footer.introMiddle(agencies.length, countries.length)}
+            <span className="num">{countries.length}</span>{' '}
+            {t.footer.introSuffix(agencies.length, countries.length)}
           </p>
-          <p>
-            We list audit and remediation specialists only — no automated «overlay» widgets.
-            Listings are free; agencies can claim their profile to keep it current.
-          </p>
-          <nav aria-label="Legal" className="flex flex-wrap gap-x-4 gap-y-1 pt-2">
+          <p>{t.footer.noOverlays}</p>
+          <nav aria-label={t.ariaLegal} className="flex flex-wrap gap-x-4 gap-y-1 pt-2">
             <Link className="hover:text-on-surface" to={paths.about()}>
-              About
+              {t.footer.nav.about}
             </Link>
             <Link className="hover:text-on-surface" to={paths.methodology()}>
-              What we check
+              {t.footer.nav.whatWeCheck}
             </Link>
             <Link className="hover:text-on-surface" to={paths.contact()}>
-              Contact
+              {t.footer.nav.contact}
             </Link>
             <Link className="hover:text-on-surface" to={paths.privacy()}>
-              Privacy
+              {t.footer.nav.privacy}
             </Link>
             <Link className="hover:text-on-surface" to={paths.imprint()}>
-              Imprint
+              {t.footer.nav.imprint}
             </Link>
             <Link className="hover:text-on-surface" to={paths.accessibilityStatement()}>
-              Accessibility Statement
+              {t.footer.nav.accessibilityStatement}
             </Link>
           </nav>
         </div>

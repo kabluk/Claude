@@ -14,15 +14,27 @@ export function Meta({
   description,
   path,
   index = true,
+  htmlLang,
 }: {
   title: string
   description: string
   path: string // с завершающим слэшем, напр. '/germany/'
   index?: boolean
+  // G-I18N-CHROME-DE: <html lang> для страницы. Намеренно рендерится ВНУТРИ
+  // уже существующего <Head> этого компонента, а не как отдельный <Head> в
+  // Layout.tsx — второй <Head>-сиблинг в дереве Layout сдвинул бы позиционные
+  // индексы всех следующих детей Fragment'а на единицу, а с ними и
+  // React.useId() у любого интерактивного компонента внутри <main>{children}
+  // (Accordion/Combobox/формы) — тот же id при каждой пересборке ожидает
+  // audit-a11y/визуальные снапшоты, а не только React. Один <Head>-компонент,
+  // просто с ещё одним ребёнком — эту проблему не создаёт (сиблинги Meta в
+  // Layout не сдвигаются от того, что происходит ВНУТРИ самого Meta).
+  htmlLang?: string
 }) {
   const url = `${ORIGIN}${path}`
   return (
     <Head>
+      {htmlLang && <html lang={htmlLang} />}
       <title>{title}</title>
       <meta name="description" content={description} />
       <link rel="canonical" href={url} />

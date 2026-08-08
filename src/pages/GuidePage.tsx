@@ -1,5 +1,4 @@
 import { Link, useParams } from 'react-router-dom'
-import { Head } from 'vite-react-ssg'
 import { Layout } from '@/components/Layout'
 import { AgencyCard } from '@/components/AgencyCard'
 import { JsonLd, ORIGIN, SITE_NAME } from '@/lib/seo'
@@ -38,17 +37,24 @@ export default function GuidePage() {
         }
       : null
 
+  // G-I18N-CHROME-DE: словарь шапки/футера сейчас переведён только на de —
+  // для fr/pl (по одному гайду, без словаря) честно остаётся английский
+  // chrome, а не притворяется переводом (locale — раскладка nav/footer).
+  // htmlLang — отдельно язык ДОКУМЕНТА, равен реальной локали статьи
+  // (g.locale, как и до этого узла) независимо от locale хрома — иначе
+  // фр/пл-гайды тихо потеряли бы верный <html lang> (стал бы 'en' вслед за
+  // chrome), хотя их тело как было, так и осталось на fr/pl.
+  const chromeLocale = g.locale === 'de' ? 'de' : 'en'
+
   return (
     <Layout
       title={g.title}
       description={g.description}
       path={path}
       crumbs={[{ name: 'Knowledge', path: '/guides/' }]}
+      locale={chromeLocale}
+      htmlLang={g.locale}
     >
-      {/* язык статьи может отличаться от языка интерфейса */}
-      <Head>
-        <html lang={g.locale} />
-      </Head>
       <JsonLd data={articleLd} />
       {faqLd && <JsonLd data={faqLd} />}
 
