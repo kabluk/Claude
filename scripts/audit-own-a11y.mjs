@@ -75,9 +75,10 @@ const SAMPLE_ROUTES = [
   // (тот же принцип, что у Switch/Pagination выше), поэтому INTERACT для
   // него не заведён (CN-COMPONENTS-DATA-TABLE).
   '/components/', '/components/accordion/', '/components/tabs/', '/components/modal-dialog/', '/components/toast/', '/components/tooltip/', '/components/breadcrumbs/', '/components/combobox/', '/components/menu-button/', '/components/listbox-select/', '/components/form-field/', '/components/switch/', '/components/pagination/', '/components/data-table/',
-  // CN-RESEARCH (D-071): индекс отчётов + сам отчёт (таблицы-бары, stat-плитки,
-  // JSON-LD Dataset/Report) — обе поверхности под постоянным axe-гейтом.
-  '/reports/', '/reports/verified-audit-market/',
+  // CN-RESEARCH (D-071) / CN-RESEARCH-EN301549-AUTOMATION: индекс отчётов + оба
+  // отчёта (таблицы-бары, stat-плитки, JSON-LD Dataset/Report) — все три
+  // поверхности под постоянным axe-гейтом.
+  '/reports/', '/reports/verified-audit-market/', '/reports/en301549-automation-coverage/',
   '/about/', '/contact/', '/privacy/', '/imprint/', '/accessibility-statement/', '/404/',
 ]
 

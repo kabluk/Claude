@@ -2,14 +2,18 @@ import { Link, useParams } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
 import { JsonLd, ORIGIN, SITE_NAME } from '@/lib/seo'
 import { paths } from '@/lib/data'
-import { reportBySlug, stats } from '@/lib/reports'
+import { reportBySlug, stats, en301549Stats, type ReportMeta } from '@/lib/reports'
 
-// CN-RESEARCH (§23, D-071): a single data-product page. The prose is authored;
-// every number is read from `stats` (computed by scripts/reports-data.mjs from
-// data/a11y/agencies.json, gated by scripts/reports-data.test.mjs). The framing
-// is deliberately exact — this analyses OUR catalog's records, it is not a
-// benchmark of third-party websites, for which we have no verified scan corpus
-// (D-010); claiming otherwise would need invented figures (D-045/D-047).
+// CN-RESEARCH (§23, D-071) / CN-RESEARCH-EN301549-AUTOMATION: a data-product
+// page. The prose is authored; every number is read from a computed stats
+// object (never typed by hand). This page now backs TWO reports with
+// DIFFERENT data shapes, so it is a dispatcher on `meta.slug`: a shared shell
+// (JSON-LD, h1, dateline, dek) renders the same way for every report, and the
+// body — everything below the dek — is a per-slug component looked up in
+// REPORT_BODIES, the same "data → per-slug content" shape as DEMOS in
+// src/lib/componentsLib.tsx. verified-audit-market's body below is the exact
+// content this page rendered before the refactor — unchanged markup, unchanged
+// text, unchanged numbers — so its output stays byte-identical.
 
 function StatTile({ value, label, note }: { value: string | number; label: string; note?: string }) {
   return (
@@ -52,57 +56,21 @@ function BarList({ caption, rows }: { caption: string; rows: { key: string; labe
   )
 }
 
-export default function ReportDocPage() {
-  const { slug } = useParams()
-  const meta = reportBySlug(slug!)
-  if (!meta) return null
-  const path = paths.reportDoc(meta.slug)
-
+// ---------------------------------------------------------------------------
+// Report body: verified-audit-market (data/a11y/agencies.json via stats).
+// Unchanged from before the multi-report refactor.
+// ---------------------------------------------------------------------------
+function VerifiedAuditMarketBody({ meta }: { meta: ReportMeta }) {
   const pct = (n: number) => Math.round((n / stats.total) * 100)
   const e = stats.evidence
 
-  const datasetLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Dataset',
-    name: meta.title,
-    description: meta.dek,
-    creator: { '@type': 'Organization', name: SITE_NAME },
-    dateModified: meta.updated,
-    isAccessibleForFree: true,
-    measurementTechnique: 'Aggregated from verified public sources cited per catalog record',
-    variableMeasured: [
-      'Headquarters country',
-      'Declared standards',
-      'Third-party accessibility-statement evidence',
-      'Declarant type (public body vs. private)',
-      'Founding year',
-      'Price band',
-    ],
-    mainEntityOfPage: `${ORIGIN}${path}`,
-  }
-  const reportLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Report',
-    headline: meta.title,
-    description: meta.dek,
-    datePublished: meta.updated,
-    dateModified: meta.updated,
-    author: { '@type': 'Organization', name: SITE_NAME },
-    publisher: { '@type': 'Organization', name: SITE_NAME },
-    mainEntityOfPage: `${ORIGIN}${path}`,
-  }
-
   return (
-    <Layout
-      title={`${meta.title} — AccessAtlas`}
-      description={meta.dek}
-      path={path}
-      crumbs={[{ name: 'Reports', path: paths.reports() }]}
-    >
-      <JsonLd data={datasetLd} />
-      <JsonLd data={reportLd} />
-
-      <h1 className="h1">{meta.title}</h1>
+    <>
+      {/* The dateline's trailing text ("catalog records") is static JSX text,
+          not an interpolated expression — kept that way deliberately so the
+          SSR output for this report stays byte-identical to before the
+          multi-report refactor (an interpolated trailing string would add an
+          extra hydration comment marker that was not there before). */}
       <p className="mt-2 text-sm text-on-surface-variant">
         Updated <span className="num">{meta.updated}</span> · computed from{' '}
         <span className="num">{stats.total}</span> catalog records
@@ -256,6 +224,224 @@ export default function ReportDocPage() {
           Free instant check, then find a verified specialist from this dataset.
         </span>
       </p>
+    </>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Report body: en301549-automation-coverage (data/a11y/en301549-coverage.json
+// via en301549Stats, computed by scripts/en301549-report-data.mjs).
+// ---------------------------------------------------------------------------
+function En301549AutomationBody({ meta }: { meta: ReportMeta }) {
+  const s = en301549Stats
+
+  return (
+    <>
+      <p className="mt-2 text-sm text-on-surface-variant">
+        Updated <span className="num">{meta.updated}</span> · computed from{' '}
+        <span className="num">{s.total}</span> EN 301 549 criteria
+      </p>
+      <p className="lede">{meta.dek}</p>
+
+      {/* Honest framing up front (§21) — the same principle as the first
+          report's box, with this report's own content. */}
+      <div className="mt-6 rounded-xl border border-[color:var(--color-info-border)] bg-[color:var(--color-info-soft)] p-4 text-sm text-on-surface-variant">
+        <p>
+          <strong>What this is.</strong> A criterion-by-criterion map of EN 301 549 chapter 9 (the
+          web-accessibility chapter referenced by the European Accessibility Act): for each of the{' '}
+          {s.total} success criteria, whether an automated check exists — an axe-core rule, one of
+          AccessAtlas&rsquo;s own worker checks, or both — and where automation stops entirely.
+        </p>
+        <p className="mt-2">
+          <strong>What this is not.</strong> &ldquo;Automated&rdquo; means <em>a test exists that can
+          find failures</em>, not that passing it proves conformance. An automated pass never certifies
+          a page as accessible — it only means the specific things a machine can check did not fail. The{' '}
+          {s.manualOnly.count} criteria below with no automated check at all still need a human, and so
+          do the {s.automated.count} with one, for everything the check cannot see.
+        </p>
+      </div>
+
+      <section className="mt-8">
+        <h2 className="h2">The chapter at a glance</h2>
+        <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <StatTile value={s.total} label="EN 301 549 ch.9 criteria" note="Web (chapter 9), V3.2.1" />
+          <StatTile value={`${s.automated.percent}%`} label="Have an automated check" note={`${s.automated.count} of ${s.total} criteria`} />
+          <StatTile value={s.byStatus.axe} label="Covered by axe-core alone" />
+          <StatTile value={s.byStatus.ours + s.byStatus.both} label="With our own worker check" note={`${s.byStatus.both} also covered by axe-core`} />
+        </div>
+      </section>
+
+      <section className="mt-10 max-w-3xl">
+        <h2 className="h2">Coverage by WCAG principle</h2>
+        <p className="max-w-prose text-sm text-on-surface-variant">
+          EN 301 549&rsquo;s web chapter incorporates WCAG&rsquo;s four organising principles —
+          Perceivable, Operable, Understandable, Robust — grouped here by the first digit of each
+          criterion&rsquo;s WCAG number, an objective, publicly documented split, not an editorial one.
+          Automation coverage is uneven across them: structural and interface-level requirements
+          automate more readily than judgement calls about meaning.
+        </p>
+        <BarList
+          caption="EN 301 549 chapter 9 criteria with an automated check, by WCAG principle"
+          rows={s.principles.map((p) => ({
+            key: p.key,
+            label: `${p.title} (${p.automated}/${p.total})`,
+            count: p.automated,
+          }))}
+        />
+      </section>
+
+      <section className="mt-10 max-w-3xl">
+        <h2 className="h2">What automation cannot prove</h2>
+        <p className="max-w-prose text-sm text-on-surface-variant">
+          These <span className="num">{s.manualCriteria.length}</span> criteria have{' '}
+          <strong>no automated check at all</strong> in our data — not a gap in our tooling specifically,
+          but the honest state of automated accessibility testing generally: judging whether an
+          alternative is truly equivalent, whether an error message is genuinely helpful, or whether a
+          navigation pattern stays predictable is not something a script can decide. Every one of these
+          needs a human reviewer, every time.
+        </p>
+        <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+          {s.manualCriteria.map((c) => (
+            <li key={c.wcag} className="rounded-lg border border-outline-variant p-3 text-sm">
+              <span className="num font-mono text-xs text-on-surface-variant">{c.wcag}</span>{' '}
+              <span className="text-on-surface">{c.title}</span>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="mt-10 max-w-3xl">
+        <h2 className="h2">Where our own checks go beyond bare axe-core</h2>
+        <p className="max-w-prose text-sm text-on-surface-variant">
+          <span className="num">{s.ownModules.length}</span> criteria get an automated check only
+          because AccessAtlas&rsquo;s own worker code adds one — axe-core&rsquo;s static-markup rules do
+          not reach real-browser behaviour like keyboard traps, focus order, or resize/reflow at all.
+          Each of these is a heuristic with a named, documented limitation, not a silent guess — the full
+          caveat for each check is on its{' '}
+          <Link className="underline underline-offset-2" to={paths.wcag()}>
+            criterion page
+          </Link>
+          .
+        </p>
+        <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+          {s.ownModules.map((m) => (
+            <li key={m.wcag} className="rounded-lg border border-outline-variant p-3 text-sm">
+              <span className="num font-mono text-xs text-on-surface-variant">{m.wcag}</span>{' '}
+              <span className="text-on-surface">{m.title}</span>
+              <div className="mt-1 font-mono text-xs text-on-surface-variant">{m.ours}</div>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="mt-10 max-w-3xl">
+        <h2 className="h2">Why AccessAtlas does not publish site scores</h2>
+        <p className="max-w-prose text-sm text-on-surface-variant">
+          With only {s.automated.percent}% of EN 301 549&rsquo;s web criteria having any automated check
+          — and none of those checks proving conformance on their own — a single numeric
+          &ldquo;accessibility score&rdquo; for a site would compress a mostly-manual standard into a
+          number automation cannot honestly produce. That is why AccessAtlas&rsquo;s own scanner reports
+          findings against the rules it actually ran, not a score, and why our{' '}
+          <Link className="underline underline-offset-2" to={paths.methodology()}>
+            methodology
+          </Link>{' '}
+          and{' '}
+          <Link className="underline underline-offset-2" to={paths.accessibilityStatement()}>
+            accessibility statement
+          </Link>{' '}
+          name the same {s.automated.count}/{s.total} figure, not a friendlier one.
+        </p>
+      </section>
+
+      <section className="mt-10 max-w-3xl">
+        <h2 className="h2">How this was made</h2>
+        <p className="max-w-prose text-sm text-on-surface-variant">
+          Every number on this page is computed at build time from{' '}
+          <span className="font-mono text-xs">data/a11y/en301549-coverage.json</span> — generated from{' '}
+          {s.generatedFrom} — by a single aggregator script, separate from the one behind our other
+          report; a test recomputes the figures from that same source and fails if the published
+          snapshot drifts. This is the identical dataset that drives our{' '}
+          <Link className="underline underline-offset-2" to={paths.methodology()}>
+            methodology
+          </Link>{' '}
+          page and the per-criterion pages under{' '}
+          <Link className="underline underline-offset-2" to={paths.wcag()}>
+            /wcag/
+          </Link>
+          , read once here as a single narrative instead of a lookup table.
+        </p>
+      </section>
+
+      <p className="mt-10 text-sm">
+        <Link className="btn" to={paths.scan()}>
+          Scan your website
+        </Link>{' '}
+        <span className="ml-2 text-on-surface-variant">
+          See exactly which of these {s.total} criteria our free scan actually checked on your site.
+        </span>
+      </p>
+    </>
+  )
+}
+
+const REPORT_BODIES: Record<string, (props: { meta: ReportMeta }) => JSX.Element> = {
+  'verified-audit-market': VerifiedAuditMarketBody,
+  'en301549-automation-coverage': En301549AutomationBody,
+}
+
+function jsonLdFor(meta: ReportMeta, path: string) {
+  const datasetLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    name: meta.title,
+    description: meta.dek,
+    creator: { '@type': 'Organization', name: SITE_NAME },
+    dateModified: meta.updated,
+    isAccessibleForFree: true,
+    measurementTechnique: meta.measurementTechnique,
+    variableMeasured: meta.variableMeasured,
+    mainEntityOfPage: `${ORIGIN}${path}`,
+  }
+  const reportLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Report',
+    headline: meta.title,
+    description: meta.dek,
+    datePublished: meta.updated,
+    dateModified: meta.updated,
+    author: { '@type': 'Organization', name: SITE_NAME },
+    publisher: { '@type': 'Organization', name: SITE_NAME },
+    mainEntityOfPage: `${ORIGIN}${path}`,
+  }
+  return { datasetLd, reportLd }
+}
+
+export default function ReportDocPage() {
+  const { slug } = useParams()
+  const meta = reportBySlug(slug!)
+  if (!meta) return null
+  const path = paths.reportDoc(meta.slug)
+  const Body = REPORT_BODIES[meta.slug]
+  const { datasetLd, reportLd } = jsonLdFor(meta, path)
+
+  return (
+    <Layout
+      title={`${meta.title} — AccessAtlas`}
+      description={meta.dek}
+      path={path}
+      crumbs={[{ name: 'Reports', path: paths.reports() }]}
+    >
+      <JsonLd data={datasetLd} />
+      <JsonLd data={reportLd} />
+
+      <h1 className="h1">{meta.title}</h1>
+
+      {/* The dateline + dek are rendered INSIDE each per-slug body, not here —
+          verified-audit-market's dateline ends in static text ("catalog
+          records"), and keeping that text static (not an interpolated
+          {meta.recordsLabel}) is what keeps its SSR output byte-identical to
+          before this file supported more than one report. */}
+      {Body ? <Body meta={meta} /> : null}
     </Layout>
   )
 }
