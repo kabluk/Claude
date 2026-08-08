@@ -1109,7 +1109,26 @@ nodes:
     attempts: 1
     risk: low
     approval_required: false
-    notes: "Заведён и первый кусок закрыт 2026-08-08 (D-071): /reports/verified-audit-market + индекс /reports/. Раньше бэклог помечал CN-RESEARCH как depends_on A0-DEPLOY — снято: отчёт на СВОИХ данных не требует деплоя, работа разблокирована независимо от блокера владельца (как G-GUIDES, D-056). НЕЛЬЗЯ делать бенчмарк топ-100 чужих сайтов / accessibility index — корпуса сканов нет (D-010), это потребовало бы выдуманных цифр (D-045/D-047). Реальный уникальный датасет — сам каталог (245 записей): страны/стандарты/типы декларантов/доля с проверяемым доказательством. Следующий кусок — новый data-продукт по решению направления роста, не автопродолжение."
+    notes: "Заведён и первый кусок закрыт 2026-08-08 (D-071): /reports/verified-audit-market + индекс /reports/. Раньше бэклог помечал CN-RESEARCH как depends_on A0-DEPLOY — снято: отчёт на СВОИХ данных не требует деплоя, работа разблокирована независимо от блокера владельца (как G-GUIDES, D-056). НЕЛЬЗЯ делать бенчмарк топ-100 чужих сайтов / accessibility index — корпуса сканов нет (D-010), это потребовало бы выдуманных цифр (D-045/D-047). Реальный уникальный датасет — сам каталог (245 записей): страны/стандарты/типы декларантов/доля с проверяемым доказательством. Второй кусок — CN-RESEARCH-EN301549-AUTOMATION (владелец выбрал через AskUserQuestion 2026-08-08, после закрытия CN-COMPONENTS-REST)."
+
+  - id: CN-RESEARCH-EN301549-AUTOMATION
+    title: "Второй data-продукт: покрытие EN 301 549 автоматизацией — что проверка может и не может доказать"
+    owner: growth-strategist
+    status: todo
+    depends_on: []
+    inputs: [data/a11y/en301549-coverage.json, src/lib/wcag.ts, scripts/reports-data.mjs, scripts/reports-data.test.mjs, src/lib/reports.ts, src/pages/ReportDocPage.tsx, src/pages/ReportsIndexPage.tsx]
+    scope: [scripts/en301549-report-data.mjs, scripts/en301549-report-data.test.mjs, data/a11y/en301549-report.json, src/lib/reports.ts, src/pages/ReportDocPage.tsx, src/pages/ReportsIndexPage.tsx, scripts/audit-own-a11y.mjs]
+    outputs: [data/a11y/en301549-report.json, src/pages/ReportDocPage.tsx]
+    verify:
+      - "новый аггрегатор (отдельный файл, не трогает scripts/reports-data.mjs) считает статистику из en301549-coverage.json: сколько из 50 критериев gl.9 автоматизировано (axe/ours/both) vs только вручную (none), с группировкой по WCAG POUR-принципу (Perceivable/Operable/Understandable/Robust — по первой цифре номера SC); отдельный тест-гейт по образцу reports-data.test.mjs (пересчёт + сравнение со снапшотом, доказан негативно + внутренняя согласованность сумм)"
+      - "существующий отчёт verified-audit-market НЕ изменился ни числом, ни текстом после рефакторинга ReportDocPage.tsx/reports.ts — reports-data.test.mjs (существующий, не трогать) остаётся зелёным без изменений; live-сверка собранного dist/reports/verified-audit-market/ до/после — идентичен"
+      - "новая страница отчёта: честная рамка 'что это / что не это' (§21, тот же принцип, что у первого отчёта); JSON-LD Dataset+Report; ссылка на /methodology/ и /wcag/; индекс /reports/ показывает оба отчёта"
+      - "npm run audit-a11y — новый /reports/[slug]/ в постоянном сэмпле, индекс /reports/ по-прежнему чист; npm run typecheck / build / check-links / scripts:test / worker:test / src:test — все зелёные"
+    max_attempts: 3
+    attempts: 1
+    risk: medium
+    approval_required: false
+    notes: "Заведён 2026-08-08 по выбору владельца через AskUserQuestion (после закрытия CN-COMPONENTS-REST 10/10) — второй data-продукт, НЕ пересчёт того же agencies.json другими словами: свежий источник (en301549-coverage.json, уже питает /wcag/[criterion], D-066), никогда не собирался в отдельный отчёт-нарратив. Архитектурный вызов: `src/lib/reports.ts`/`ReportDocPage.tsx` сейчас жёстко завязаны на ОДИН отчёт (`stats: ReportStats` — одна плоская структура, вся проза в ReportDocPage.tsx захардкожена под форму данных agencies-отчёта) — второй отчёт с другой формой данных требует рефакторинга на диспетчер по slug, при этом существующий отчёт обязан остаться байт-в-байт тем же (числа/текст), не только технически проходить тест. Позиционирование: подтверждает уже принятую честность проекта про границы автоматизации (D-035/D-045, methodology, accessibility-statement) — не новая мысль, а первый раз собранная в отдельный публикуемый data-продукт."
 
   - id: CN-WCAG22
     title: "Самопроверка сайта до WCAG 2.2 AA (конституция §40): target-size в audit-own-a11y"
