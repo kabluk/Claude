@@ -1335,6 +1335,25 @@ nodes:
     approval_required: false
     notes: "Готово 2026-08-08 (D-083). Заведён сразу после Switch (D-082), по выбору владельца через AskUserQuestion (компонент Pagination, модель Sonnet). Реализовано субагентом, результат перепроверен родительской сессией живьём. Не именованный APG-паттерн (в отличие от Combobox/Menu/Listbox) — общие принципы навигационной доступности применены к конкретной задаче, поэтому легко выглядеть правильно, будучи практически бесполезным; ловушки закрыты явно: <nav aria-label> (label — проп, не константа, тот же урок Breadcrumbs D-077 — на сайте уже 6 nav-ориентиров на странице компонентов), текущая страница — <span> с aria-current='page' (не 'true', не кликабельная ссылка на саму себя), Prev/Next с видимым текстом 'Previous'/'Next' (не голые иконки), эллипсис aria-hidden декоративен (не притворяется управляющим элементом). Решение по disabled: aria-disabled='true' на реально фокусируемой <button> (не нативный disabled) — сохраняет форму ряда кнопок в таб-порядке независимо от текущей страницы; подтверждено живьём двойным способом (сам атрибут + отказ Playwright's actionability engine кликнуть). На сайте НЕТ существующей пагинации ни на одной странице — в отличие от Breadcrumbs/FormField, здесь не было прецедента 'извлечь из работающего кода', компонент написан с нуля по общим принципам. Первый прогон audit-a11y и живой проверки — оба чистые сразу (target-size ≥36px кнопки выбраны заранее)."
 
+  - id: CN-COMPONENTS-DATA-TABLE
+    title: "Data table — 13-й и ПОСЛЕДНИЙ компонент библиотеки (CN-COMPONENTS-REST 10/10)"
+    owner: frontend-engineer
+    status: todo
+    depends_on: [CN-COMPONENTS]
+    inputs: [data/a11y/components.json, src/lib/componentsLib.tsx, scripts/audit-own-a11y.mjs, scripts/components.test.mjs, src/pages/ReportDocPage.tsx]
+    scope: [src/components/library/DataTable.tsx, src/lib/componentsLib.tsx, data/a11y/components.json, scripts/audit-own-a11y.mjs]
+    outputs: [src/components/library/DataTable.tsx]
+    verify:
+      - "npm run audit-a11y — /components/data-table/ в постоянном сэмпле; если сортировка меняет DOM-порядок строк по клику — решить, нужен ли INTERACT для второго прогона (вероятно нет, т.к. это не попап, но подтвердить); 0 нарушений"
+      - "живой Playwright: реальные <table>/<thead>/<tbody>/<th scope='col'>/<td>, сортируемые заголовки — <button> внутри <th> (не сам <th> кликабелен — сохраняет разметку таблицы валидной), aria-sort ('ascending'/'descending'/'none' — точные строки) синхронно с реальным порядком строк после клика, смена сортировки анонсируется live-областью (aria-live='polite' сообщение вида 'Sorted by X, ascending', не молча), фокус не теряется/не улетает при сортировке, только ОДНА колонка одновременно имеет aria-sort≠none"
+      - "npm run scripts:test — components.test проходит без изменений в самом тесте"
+      - "npm run typecheck / npm run build / npm run check-links / npm run worker:test / npm run src:test — все зелёные"
+    max_attempts: 3
+    attempts: 1
+    risk: medium
+    approval_required: false
+    notes: "Заведён 2026-08-08 сразу после Pagination (D-083), по выбору владельца через AskUserQuestion (компонент Data table, модель Sonnet — заключительный узел CN-COMPONENTS-REST, все 10 компонентов остатка библиотеки будут done). На сайте уже есть статичная (несортируемая) таблица с scope='row' в ReportDocPage.tsx — сверить конвенцию разметки/стилей таблицы, но сортировка — новая механика, прецедента извлечения нет. После этого узла CN-COMPONENTS-REST закрывается ПОЛНОСТЬЮ (10/10), вся библиотека §22 — 13/13 готовых компонентов."
+
   - id: CN-COMPONENTS-TOOLTIP
     title: "Tooltip — 5-й готовый компонент библиотеки (CN-COMPONENTS-REST 2/10)"
     owner: frontend-engineer
