@@ -1297,6 +1297,25 @@ nodes:
     approval_required: false
     notes: "Готово 2026-08-08 (D-081). CN-COMPONENTS-REST — 7/10 (10 готовых компонентов библиотеки §22 всего: 3 исходных Accordion/Tabs/Modal + 7 из REST). Остаток REST — 3: Pagination, Switch, Data table. Заведён сразу после Select/listbox (D-080), по выбору владельца через AskUserQuestion (компонент Form field, модель Sonnet). Реализовано субагентом, результат перепроверен родительской сессией живьём (диф прочитан построчно, все гейты перезапущены, независимый Playwright — 11/11). Ключевое решение — обобщение уже РАБОТАЮЩЕГО в проде паттерна `Field` из `src/components/LeadForm.tsx` (`/request-quote/`), а не написание с нуля из спецификации (тот же прецедент, что Breadcrumbs, D-077). Два реальных расширения сверх LeadForm: (1) hint и error объединяются в aria-describedby одновременно, не один вместо другого — сам `Field` из LeadForm hint вообще не поддерживал; (2) автоматическое связывание id/aria-invalid/aria-describedby через `cloneElement` на переданный control (тот же приём, что уже в Tooltip.tsx) — LeadForm сейчас повторяет эту проводку вручную на всех 6 полях, FormField закрывает этот пробел по конструкции. LeadForm.tsx НЕ рефакторен на новый компонент — вне scope узла, кандидат для отдельной задачи."
 
+  - id: CN-COMPONENTS-SWITCH
+    title: "Switch — 11-й компонент библиотеки (CN-COMPONENTS-REST 8/10)"
+    owner: frontend-engineer
+    status: todo
+    depends_on: [CN-COMPONENTS]
+    inputs: [data/a11y/components.json, src/lib/componentsLib.tsx, scripts/audit-own-a11y.mjs, scripts/components.test.mjs]
+    scope: [src/components/library/Switch.tsx, src/lib/componentsLib.tsx, data/a11y/components.json, scripts/audit-own-a11y.mjs]
+    outputs: [src/components/library/Switch.tsx]
+    verify:
+      - "npm run audit-a11y — /components/switch/ в постоянном сэмпле; 0 нарушений"
+      - "живой Playwright: role=switch на элементе (не checkbox), aria-checked синхронно с визуальным состоянием, Space/Enter или клик переключает, состояние объявляется как on/off (не true/false в UI-тексте), фокус-кольцо видимо, не путается с checkbox-семантикой (нет [role=checkbox]/native checkbox без role=switch)"
+      - "npm run scripts:test — components.test проходит без изменений в самом тесте"
+      - "npm run typecheck / npm run build / npm run check-links / npm run worker:test / npm run src:test — все зелёные"
+    max_attempts: 3
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Заведён 2026-08-08 сразу после Form field (D-081), по выбору владельца через AskUserQuestion (компонент Switch, модель Sonnet — самый простой из трёх оставшихся). Данные демо — реальная механика (например переключатель предпочтения в UI-примере), не выдуманные факты о продукте."
+
   - id: CN-COMPONENTS-TOOLTIP
     title: "Tooltip — 5-й готовый компонент библиотеки (CN-COMPONENTS-REST 2/10)"
     owner: frontend-engineer
