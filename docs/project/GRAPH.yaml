@@ -1240,6 +1240,25 @@ nodes:
     approval_required: false
     notes: "Готово 2026-08-08 (D-078). Реализовано субагентом (Opus, по явному выбору владельца через AskUserQuestion — самый рискованный оставшийся композит), результат перепроверен родительской сессией живьём (не по заявлению): диф прочитан построчно, все 5 гейтов перезапущены, отдельный независимый Playwright-скрипт (18 проверок) написан и прогнан заново против собранного dist/, не переиспользуя скрипт субагента. Ключевая архитектурная особенность паттерна: DOM-фокус НИКОГДА не покидает input — активная опция помечается только aria-activedescendant (виртуальный фокус), это ARIA 1.2 combobox, не roving tabindex (тот — паттерн Tabs). Демо — реальные данные каталога (19 стран + реальные счётчики агентств из data/a11y/taxonomies.json, те же, что на /countries/), не выдуманный список. Гейт a11y прошёл с первого прогона (ловушки закрыты по конструкции: mousedown preventDefault против blur-до-click, пустой результат как role=status вместо пустого/фейкового listbox-option, ручной scrollIntoView). Осознанные отклонения: Home/End двигают активную опцию только при открытом попапе (иначе — родная каретка); ввод текста не авто-активирует первую опцию (Enter не должен коммитить то, что пользователь не смотрел); Escape не очищает поле; анимации открытия нет (нечего отключать под prefers-reduced-motion)."
 
+  - id: CN-COMPONENTS-MENU-BUTTON
+    title: "Menu button — 8-й компонент библиотеки (CN-COMPONENTS-REST 5/10)"
+    owner: frontend-engineer
+    status: todo
+    depends_on: [CN-COMPONENTS]
+    inputs: [data/a11y/components.json, src/lib/componentsLib.tsx, scripts/audit-own-a11y.mjs, scripts/components.test.mjs]
+    scope: [src/components/library/MenuButton.tsx, src/lib/componentsLib.tsx, data/a11y/components.json, scripts/audit-own-a11y.mjs]
+    outputs: [src/components/library/MenuButton.tsx]
+    verify:
+      - "npm run audit-a11y — /components/menu-button/ в постоянном сэмпле, INTERACT открывает меню и аудитирует РАСКРЫТОЕ состояние (role=menu + role=menuitem); 0 нарушений"
+      - "живой Playwright: ArrowDown/Up двигают роving tabindex/фокус между пунктами меню (реальный DOM-фокус, НЕ aria-activedescendant — это паттерн Menu, отличный от Combobox), Home/End на первый/последний пункт, type-ahead прыгает к пункту по первой букве, Enter/Space активирует пункт и закрывает меню с возвратом фокуса на кнопку, Escape закрывает без активации с возвратом фокуса на кнопку, клик вне меню закрывает без активации"
+      - "npm run scripts:test — components.test проходит без изменений в самом тесте"
+      - "npm run typecheck / npm run build / npm run check-links / npm run worker:test / npm run src:test — все зелёные"
+    max_attempts: 3
+    attempts: 1
+    risk: medium
+    approval_required: false
+    notes: "Заведён 2026-08-08 сразу после Combobox (D-078), по выбору владельца через AskUserQuestion (компонент Menu button, модель Sonnet — стандартный выбор проекта, четыре из семи готовых компонентов сделаны на нём). Данные демо — реальные действия сайта (не выдуманные пункты меню)."
+
   - id: CN-COMPONENTS-TOOLTIP
     title: "Tooltip — 5-й готовый компонент библиотеки (CN-COMPONENTS-REST 2/10)"
     owner: frontend-engineer
