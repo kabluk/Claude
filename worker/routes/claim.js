@@ -102,8 +102,8 @@ async function insertClaim(db, claim) {
 export function buildVerifyEmail({ agencyName, token, origin }) {
   const verifyUrl = `${origin}/api/claim/verify?token=${encodeURIComponent(token)}`
   return {
-    subject: `Confirm your claim of ${agencyName} on AccessAtlas`,
-    text: `You (or someone using this email address) requested to claim the ${agencyName} listing on AccessAtlas.
+    subject: `Confirm your claim of ${agencyName} on Verscala`,
+    text: `You (or someone using this email address) requested to claim the ${agencyName} listing on Verscala.
 
 Confirm this request by opening the link below. If you didn't request this, you can ignore this email — nothing changes until the link is opened.
 

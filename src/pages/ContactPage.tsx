@@ -9,7 +9,7 @@ export default function ContactPage() {
   return (
     <Layout
       title="Contact"
-      description="How to reach AccessAtlas — corrections, listing updates, and general enquiries."
+      description="How to reach Verscala — corrections, listing updates, and general enquiries."
       path={paths.contact()}
       crumbs={[]}
     >

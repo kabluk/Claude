@@ -2,17 +2,16 @@ import { Layout } from '@/components/Layout'
 import { paths } from '@/lib/data'
 
 // Легальные реквизиты предоставлены владельцем напрямую 2026-08-08 (D-089),
-// не выдуманы. index остаётся false: A0-ORIGIN (реальный домен вместо
-// accessatlas.example) — отдельный незакрытый узел, и снимать noindex до
-// него преждевременно (см. GRAPH.yaml). Разведено с Layout: locale/htmlLang
-// не трогаются — эта страница на английском, как и весь остальной chrome.
+// не выдуманы. A0-ORIGIN закрыт (домен куплен 2026-08-08) — index больше не
+// false, страница индексируется и попадает в sitemap (см. GRAPH.yaml).
+// Разведено с Layout: locale/htmlLang не трогаются — эта страница на
+// английском, как и весь остальной chrome.
 export default function ImprintPage() {
   return (
     <Layout
       title="Imprint"
-      description="Legal notice for AccessAtlas."
+      description="Legal notice for Verscala."
       path={paths.imprint()}
-      index={false}
       crumbs={[]}
     >
       <h1 className="h1">Imprint</h1>

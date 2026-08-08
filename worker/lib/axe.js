@@ -28,7 +28,7 @@ const MAX_PAGES = 6
 const NAV_TIMEOUT_MS = 15000
 const AXE_VERSION = '4.10.2'
 const AXE_CDN_URL = `https://cdn.jsdelivr.net/npm/axe-core@${AXE_VERSION}/axe.min.js`
-const USER_AGENT = 'AccessAtlasBot/1.0 (+https://accessatlas.example/about; accessibility scanner)'
+const USER_AGENT = 'VerscalaBot/1.0 (+https://verscala.com/about; accessibility scanner)'
 const MAX_PDF_FINDINGS_PER_PAGE = 1 // одна агрегирующая находка на страницу, не по PDF — иначе счёт взрывается
 
 async function getAxeSource(env) {

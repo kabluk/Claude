@@ -59,7 +59,7 @@ nodes:
   - id: A0-OWNER-LEGAL
     title: Реквизиты Imprint + покупка домена
     owner: product-lead
-    status: blocked
+    status: done
     depends_on: []
     inputs: []
     scope: [src/pages/ImprintPage.tsx, src/pages/AccessibilityStatementPage.tsx]
@@ -67,7 +67,7 @@ nodes:
     verify:
       - "D-089 (2026-08-08): реквизиты юрлица получены от владельца напрямую в чат, опубликованы на /imprint/ — Murman Express Inc, California corporation, 2699½ N Beachwood Drive STE 4048, Los Angeles CA 90068; представитель Evgenii Skliarov (CEO); email zincroom@gmail.com; телефон +1 213 421 8848. typecheck/build 450 стр./audit-a11y 47 стр. 0 нарушений/check-links 498-0/scripts:test 48/48 — ✅"
       - "AccessibilityStatementPage.tsx обновлён: секция Provider identification перестала быть 'pending', Legal basis и Enforcement body честно называют новую находку — юрлицо НЕ в ЕС/ЕЭЗ (California, USA), какой надзорный орган применим к неевропейскому оператору — не решено с юристом, не выдумано — ✅"
-      - "ОСТАЁТСЯ БЛОКЕРОМ: домен ещё не куплен (часть исходного scope этого узла) — index остаётся false на /imprint/, A0-ORIGIN/A0-DEPLOY по-прежнему blocked именно на домене, не на юр-реквизитах"
+      - "Домен куплен владельцем 2026-08-08: verscala.com (GoDaddy, 2 года, + M365 Email — ящик info@verscala.com владелец создаст позже). Узел закрыт ПОЛНОСТЬЮ (D-089 реквизиты + D-091 домен). Публичный бренд переименован в Verscala (D-091)"
     max_attempts: 1
     attempts: 1
     risk: high
@@ -77,7 +77,7 @@ nodes:
   - id: A0-ORIGIN
     title: "Ребрендинг AccessAtlas→Verscala + реальный домен verscala.com (куплен владельцем 2026-08-08), снять noindex с Imprint"
     owner: frontend-engineer
-    status: in_progress
+    status: done
     depends_on: [A0-OWNER-LEGAL]
     inputs: [src/lib/seo.tsx, scripts/gen-a11y-sitemap.mjs, wrangler.jsonc]
     scope: [src/, scripts/gen-a11y-sitemap.mjs, wrangler.jsonc]
@@ -91,7 +91,7 @@ nodes:
     attempts: 1
     risk: medium
     approval_required: false
-    notes: "Разблокирован 2026-08-08: владелец купил verscala.com на GoDaddy (+M365 Email — ящик info@verscala.com будет создан владельцем позже, Imprint пока остаётся с gmail). Внутреннее имя проекта в docs/project/ НЕ переименовывается (историческая память); ребрендинг касается только user-facing строк (SITE_NAME, JSON-LD, тексты страниц)."
+    notes: "Разблокирован 2026-08-08: владелец купил verscala.com на GoDaddy (+M365 Email — ящик info@verscala.com будет создан владельцем позже, Imprint пока остаётся с gmail). Внутреннее имя проекта в docs/project/ НЕ переименовывается (историческая память); ребрендинг касается только user-facing строк (SITE_NAME, JSON-LD, тексты страниц). Готово 2026-08-08 (D-091): 18 файлов, субагент Sonnet, перепроверено родителем независимо — все гейты перезапущены (245/48/20/211, build 451 стр. / sitemap 415 — imprint добавлен, check-links 500-0, audit-a11y 47-0), грепы: 0 «accessatlas.example» в исходниках, 0 «AccessAtlas» в dist, canonical/robots на verscala.com. Воркер редеплой (Version 14ed0644), CORS проверен живьём preflight'ом: access-control-allow-origin: https://verscala.com (после ~30 сек edge-пропагации — тот же класс, что D-020). Оставлены сознательно: имя воркера accessatlas-worker, D1/KV-имена, CUSTOM_FIELD_KEY Stripe (yourslugaccessatlas — обязан совпадать с живым payload), внутренние комментарии scripts/."
 
   - id: A0-DEPLOY
     title: Cloudflare Pages деплой + автодеплой из CI

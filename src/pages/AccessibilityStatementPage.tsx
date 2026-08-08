@@ -3,9 +3,9 @@ import { Layout } from '@/components/Layout'
 import { paths } from '@/lib/data'
 import { coverageSummary } from '@/lib/coverage'
 
-// AccessAtlas' own accessibility statement (Anlage 3 zu §14 BFSG-style structure,
+// Verscala's own accessibility statement (Anlage 3 zu §14 BFSG-style structure,
 // same shape our own guide at /guides/barrierefreiheitserklaerung-bfsg-anlage3/
-// recommends to others). Added 2026-08-07 after a gap was found: AccessAtlas
+// recommends to others). Added 2026-08-07 after a gap was found: Verscala
 // sells paid "Featured" placement via Stripe, which raises the e-commerce-service
 // question for the site itself — see the "Legal basis" section below for the
 // live fact-check of that classification (not taken on faith).
@@ -22,14 +22,14 @@ export default function AccessibilityStatementPage() {
   return (
     <Layout
       title="Accessibility Statement"
-      description="AccessAtlas' own accessibility statement — scope, legal basis, conformity status with testing method, provider identification, and enforcement body."
+      description="Verscala's own accessibility statement — scope, legal basis, conformity status with testing method, provider identification, and enforcement body."
       path={paths.accessibilityStatement()}
       crumbs={[]}
     >
       <h1 className="h1">Accessibility Statement</h1>
       <div className="prose-guide mt-6 max-w-2xl">
         <p>
-          <em>Last reviewed: 2026-08-07.</em> AccessAtlas is itself in the business of digital
+          <em>Last reviewed: 2026-08-07.</em> Verscala is itself in the business of digital
           accessibility, so we hold this site to the same disclosure standard we recommend to the
           agencies and sites we write about — see our guide on{' '}
           <Link className="underline underline-offset-2" to="/guides/barrierefreiheitserklaerung-bfsg-anlage3/">
@@ -68,7 +68,7 @@ export default function AccessibilityStatementPage() {
         </p>
         <p>
           One nuance worth stating honestly, because it's the reason this page exists: whether
-          AccessAtlas is itself an "e-commerce service" under the Act is not a settled question for
+          Verscala is itself an "e-commerce service" under the Act is not a settled question for
           every part of the site. Both Art. 3(30) EAA and § 2 Nr. 26 BFSG define an e-commerce
           service as one provided "with a view to concluding a consumer contract" — and "consumer"
           (Art. 3(22) EAA / § 13 BGB) means a natural person acting outside their trade, business,

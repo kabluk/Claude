@@ -15,7 +15,7 @@ const RESEND_API_URL = 'https://api.resend.com/emails'
 // аккаунта Resend — на произвольный сторонний адрес отдаёт 422
 // validation_error. До верификации собственного домена (нужен реальный
 // домен сайта, A0-ORIGIN) это ограничение Resend, не нашего кода.
-export const SANDBOX_FROM = 'AccessAtlas <onboarding@resend.dev>'
+export const SANDBOX_FROM = 'Verscala <onboarding@resend.dev>'
 
 export async function sendEmail(apiKey, { from, to, subject, text, html }) {
   const res = await fetch(RESEND_API_URL, {

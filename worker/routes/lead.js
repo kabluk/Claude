@@ -86,7 +86,7 @@ async function findClaimedEmails(db, matchedSlugs) {
 
 function buildLeadNotificationEmail({ agencyName, lead }) {
   const lines = [
-    `A new accessibility service request matched your listing on AccessAtlas (${agencyName}).`,
+    `A new accessibility service request matched your listing on Verscala (${agencyName}).`,
     '',
     `Country: ${lead.country}`,
     `Standard: ${lead.standard}`,
@@ -96,7 +96,7 @@ function buildLeadNotificationEmail({ agencyName, lead }) {
     '',
     `Contact: ${lead.contact.email}${lead.contact.company ? ` (${lead.contact.company})` : ''}`,
     '',
-    'Reply directly to this email to reach out — AccessAtlas does not route responses.',
+    'Reply directly to this email to reach out — Verscala does not route responses.',
   ].filter((l) => l !== null)
   return { subject: `New accessibility request matching ${agencyName}`, text: lines.join('\n') }
 }

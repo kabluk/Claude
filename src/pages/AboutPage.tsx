@@ -5,15 +5,15 @@ import { agencies, countries, paths } from '@/lib/data'
 export default function AboutPage() {
   return (
     <Layout
-      title="About AccessAtlas"
-      description="What AccessAtlas is, how listings are verified, and what we deliberately leave out."
+      title="About Verscala"
+      description="What Verscala is, how listings are verified, and what we deliberately leave out."
       path={paths.about()}
       crumbs={[]}
     >
-      <h1 className="h1">About AccessAtlas</h1>
+      <h1 className="h1">About Verscala</h1>
       <div className="prose-guide mt-6 max-w-3xl">
         <p>
-          AccessAtlas is a directory of {agencies.length} agencies and consultancies that audit
+          Verscala is a directory of {agencies.length} agencies and consultancies that audit
           digital products for accessibility compliance — WCAG, EN 301 549, Section 508, the
           European Accessibility Act, BITV 2.0, RGAA and related national implementations —
           across {countries.length} countries.

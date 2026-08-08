@@ -15,7 +15,7 @@ export default function RequestQuotePage() {
   return (
     <Layout
       title="Request accessibility quotes"
-      description="Tell us your country, standard, service and budget — see which verified agencies in the AccessAtlas directory match, free."
+      description="Tell us your country, standard, service and budget — see which verified agencies in the Verscala directory match, free."
       path={paths.requestQuote()}
       crumbs={[]}
     >

@@ -44,18 +44,27 @@
   D1/KV, настоящие находки.
 - **Слои 3–4** — не начаты.
 
-## Единственный блокер запуска — на владельце
+## ⚡ Бренд: публично — Verscala (verscala.com), внутренне — AccessAtlas
 
-**Домен** (остаток `A0-OWNER-LEGAL`). Юр-реквизиты закрыты 2026-08-08 (D-089:
-Murman Express Inc, California — реально опубликованы на `/imprint/`), домен —
-единственное, что осталось от исходного scope узла. Самый рычажный вопрос во
-всём проекте: блокирует три вещи разом, а не одну.
+С 2026-08-08 (D-091) публичный бренд сайта — **Verscala**, домен —
+**verscala.com** (куплен владельцем). Внутреннее имя проекта в docs/project/,
+CLAUDE.md, именах ресурсов Cloudflare (`accessatlas-worker`, D1
+`accessatlas-scans`) сознательно НЕ менялось. Новые user-facing тексты пишут
+«Verscala»; внутренние документы продолжают говорить «AccessAtlas».
 
-1. Деплой каталога: `A0-OWNER-LEGAL` → `A0-ORIGIN` → `A0-DEPLOY` → `A0-GSC`.
-2. CORS воркера (`ALLOWED_ORIGIN` в `wrangler.jsonc` — сейчас проходят только
-   прямые API-запросы, не браузер каталога).
-3. Реальную доставку писем: `A2-CLAIM-EMAIL` готов, но sandbox-домен Resend
-   физически не доставляет сторонним получателям (D-024).
+## Блокеры запуска — что осталось на владельце
+
+`A0-OWNER-LEGAL` ЗАКРЫТ полностью (D-089 реквизиты + D-091 домен). CORS
+воркера уже на verscala.com (D-091, проверено живьём). Остались:
+
+1. **`A0-DEPLOY`**: approval владельца на создание Cloudflare Pages-проекта +
+   перенаправление DNS verscala.com на Cloudflare (домен куплен на GoDaddy —
+   нужны nameservers/CNAME). После этого `A0-GSC`.
+2. **Resend**: верификация домена verscala.com в Resend теперь ВОЗМОЖНА
+   (блокер D-024 снят) — после неё реальная доставка писем третьим лицам
+   (`A2-CLAIM-EMAIL` в прод, `A2-OUTREACH-SEND`).
+3. **Email в Imprint**: владелец создаст `info@verscala.com` (M365 куплен
+   вместе с доменом) и скажет — поменять gmail на него отдельным коммитом.
 
 Второй блокер на владельце — **Stripe**: `A2-STRIPE-LIVE` ждёт тестового платежа
 на пересозданной Payment Link и реального `STRIPE_WEBHOOK_SECRET` (D-027…D-029).
@@ -124,6 +133,15 @@ Murman Express Inc, California — реально опубликованы на 
 Подробности — в `DECISIONS.md` по указанным номерам; здесь только то, что меняет
 поведение будущей сессии.
 
+- **РЕБРЕНДИНГ: AccessAtlas → Verscala, домен verscala.com, A0-ORIGIN done**
+  (D-091, 2026-08-08). Владелец выбрал имя Verscala из ~30 проверенных
+  кандидатов (полная история отбора — D-091/STATUS) и купил домен. 18
+  файлов user-facing строк переименованы (вкл. email-тексты воркера и
+  User-Agent бота VerscalaBot), noindex снят с /imprint/ (sitemap 415),
+  воркер редеплоен с CORS на verscala.com — подтверждено живым preflight.
+  Keyword-рефреш DataForSEO тем же днём (данные — domains/growth.md):
+  голое `rgaa` 8100/мес → новый fr-гайд rgaa-guide.md (D-090), голое
+  `wcag` большое на всех рынках, новые рынки ES/SE/FI/DK ≈ +9000/мес.
 - **Юр-реквизиты Imprint опубликованы, `A0-OWNER-LEGAL` частично закрыт**
   (D-089, 2026-08-08). Владелец передал напрямую в чат: Murman Express Inc
   (California corporation), адрес, представитель (Evgenii Skliarov, CEO),

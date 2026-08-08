@@ -5,7 +5,7 @@ import { paths } from '@/lib/data'
 import { reports, stats } from '@/lib/reports'
 
 // CN-RESEARCH (§23, D-071) / CN-RESEARCH-EN301549-AUTOMATION: index of
-// AccessAtlas data products. Each report is built from one of AccessAtlas's own
+// Verscala data products. Each report is built from one of Verscala's own
 // structured datasets (see each report's own "How this was made" section for
 // which one) via a build-time aggregator — not a benchmark of third-party
 // websites, which we have no verified corpus for. Numbers on the cards read out
@@ -16,15 +16,15 @@ import { reports, stats } from '@/lib/reports'
 export default function ReportsIndexPage() {
   return (
     <Layout
-      title="Reports — original data from AccessAtlas's own datasets"
-      description="Original, recurring data products built from AccessAtlas's own structured data — not benchmarks of other companies' websites. Every figure is computed from the data, with the method shown in full."
+      title="Reports — original data from Verscala's own datasets"
+      description="Original, recurring data products built from Verscala's own structured data — not benchmarks of other companies' websites. Every figure is computed from the data, with the method shown in full."
       path={paths.reports()}
       crumbs={[]}
     >
       <JsonLd data={itemListLd(reports.map((r) => paths.reportDoc(r.slug)))} />
       <h1 className="h1">Reports</h1>
       <p className="lede">
-        Original analysis built from AccessAtlas&rsquo;s own structured data — the {stats.total}-record
+        Original analysis built from Verscala&rsquo;s own structured data — the {stats.total}-record
         specialist catalog, the EN 301 549 automation-coverage map that powers our scanner&rsquo;s{' '}
         <Link className="underline underline-offset-2" to={paths.methodology()}>
           methodology

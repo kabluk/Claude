@@ -3,6 +3,67 @@
 Формат: ID | дата | решение | причина | последствия. Новые решения добавлять сверху.
 Статусы: `accepted` (принято), `proposed` (ждёт подтверждения владельца).
 
+## D-091 · 2026-08-08 · accepted
+**Публичный бренд переименован: AccessAtlas → Verscala; домен verscala.com
+куплен владельцем; A0-ORIGIN и A0-OWNER-LEGAL закрыты полностью.**
+
+Предыстория выбора имени (вся в этой сессии): владелец захотел более
+короткое имя, понятное неанглоязычным. Проверено ~30 кандидатов
+(WebSearch на тёзок + RDAP Verisign на занятость .com): почти все
+«естественные» короткие имена заняты (в т.ч. Duna/Ovido — прямо в
+compliance-нише; Actvisio отклонён из-за созвучия с Activision; Varatlas
+— из-за занятого .com и созвучия с Varonis Atlas; Veraudi — свободен, но
+окончание «-audi» = dilution-риск известного автобренда). Финалисты
+Veratla/Verscani/Verscala/Veraskan — все с нулевым брендовым и
+поисковым следом (branded search vacuum, DataForSEO null). Владелец
+выбрал **Verscala** (Ver(ify) + scala — «шкала/ступени», перекликается с
+уровнями WCAG) и купил verscala.com на GoDaddy (2 года, + M365 Email;
+ящик info@verscala.com создаст позже — Imprint пока остаётся с gmail,
+смена адреса — отдельный маленький коммит по подтверждению владельца).
+
+Объём ребрендинга: 18 файлов, только user-facing строки — SITE_NAME/
+ORIGIN (seo.tsx), sitemap-генератор (+ /imprint/ в список — noindex снят,
+страница индексируема, sitemap 413→415: +rgaa-guide D-090, +imprint),
+ALLOWED_ORIGIN (wrangler.jsonc), тексты страниц About/Contact/Privacy/
+NotFound/RequestQuote/AccessibilityStatement/Reports, email-тексты
+воркера (claim/lead), User-Agent сканера (VerscalaBot/1.0 +verscala.com
+— внешне видимая идентичность бота, это бренд), SANDBOX_FROM Resend.
+**Сознательно НЕ переименованы**: внутреннее имя проекта в docs/project/
+и CLAUDE.md (историческая память, решения D-001…D-090 писались про
+AccessAtlas), имя воркера `accessatlas-worker` и D1/KV-идентификаторы
+(инфраструктурные идентификаторы, не бренд; переименование = пересоздание
+ресурсов — отдельное решение при реальной необходимости), Stripe
+CUSTOM_FIELD_KEY `yourslugaccessatlas` (обязан байт-в-байт совпадать с
+живым payload Stripe — D-028 предупреждает ровно об этом классе ошибки).
+
+Реализация — субагент (Sonnet, выбор владельца через AskUserQuestion);
+проверка родителем независимая: диф всех 18 файлов прочитан, полный
+набор гейтов перезапущен родителем (build-a11y 245, typecheck,
+scripts:test 48/48, src:test 20/20, worker:test 211/211, build 451 стр./
+sitemap 415, check-links 500-0, audit-a11y 47 стр. 0 нарушений), грепы
+родителя: «accessatlas.example» в src/scripts/wrangler — 0, «AccessAtlas»
+в dist/ — 0, canonical и robots.txt — на verscala.com. Субагент
+корректно поймал грамматику притяжательного («AccessAtlas'» →
+«Verscala's» — имя больше не оканчивается на s).
+
+Воркер редеплоен с новым ALLOWED_ORIGIN (одобрение владельца получено
+вместе с выбором модели; тот же CF-токен, что D-088, по-прежнему
+in-memory; Version ID 14ed0644). CORS проверен живьём двумя
+preflight-запросами: новый origin получает
+`access-control-allow-origin: https://verscala.com`. Заголовок
+обновился не мгновенно — ~30 секунд edge-пропагации (тот же класс
+задержки, что у секретов в D-020: первый preflight после деплоя ещё
+отдавал старый origin при уже верных биндингах в выводе deploy —
+не паниковать, повторить с паузой).
+
+Последствия: `A0-DEPLOY` разблокирован (остаётся approval владельца на
+Pages-проект + DNS). Верификация домена в Resend теперь ВОЗМОЖНА
+(D-024-блокер снят доменом) — после неё реальная доставка писем третьим
+лицам (A2-CLAIM-EMAIL прод, A2-OUTREACH-SEND). hreflang из G-I18N больше
+не упирается в отсутствие домена. Импортозамещение бренда в будущих
+текстах: новые страницы пишут «Verscala», внутренние документы проекта
+продолжают говорить «AccessAtlas» про кодовую базу.
+
 ## D-090 · 2026-08-08 · accepted
 **`G-GUIDES-RGAA-FR` — новый FR-гайд `rgaa-guide.md` под информационный
 интент голого `rgaa` (8100/мес), выбран по данным, а не по интуиции.**

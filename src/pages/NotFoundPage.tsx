@@ -6,7 +6,7 @@ export default function NotFoundPage() {
   return (
     <Layout
       title="Page not found"
-      description="This page doesn't exist on AccessAtlas."
+      description="This page doesn't exist on Verscala."
       path="/404/"
       index={false}
       crumbs={[]}

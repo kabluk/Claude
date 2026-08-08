@@ -4,10 +4,10 @@
 
 import { Head } from 'vite-react-ssg'
 
-// TODO: заменить на боевой домен перед деплоем (.example — маркер-заглушка;
-// та же константа продублирована в scripts/gen-a11y-sitemap.mjs).
-export const ORIGIN = 'https://accessatlas.example'
-export const SITE_NAME = 'AccessAtlas'
+// Боевой домен (A0-ORIGIN, куплен 2026-08-08); та же константа
+// продублирована в scripts/gen-a11y-sitemap.mjs.
+export const ORIGIN = 'https://verscala.com'
+export const SITE_NAME = 'Verscala'
 
 export function Meta({
   title,

@@ -187,7 +187,7 @@ export const reports: ReportMeta[] = [
   {
     slug: 'verified-audit-market',
     title: 'The verified accessibility-audit market, by the evidence',
-    dek: `Who is listed across ${stats.hqCountries.count} countries, by what proof, and what we could and could not verify — read directly from the ${stats.total} records in the AccessAtlas catalog.`,
+    dek: `Who is listed across ${stats.hqCountries.count} countries, by what proof, and what we could and could not verify — read directly from the ${stats.total} records in the Verscala catalog.`,
     updated: '2026-08-08',
     measurementTechnique: 'Aggregated from verified public sources cited per catalog record',
     variableMeasured: [
@@ -205,7 +205,7 @@ export const reports: ReportMeta[] = [
     dek: `Of the ${en301549Stats.total} web success criteria in EN 301 549 chapter 9, ${en301549Stats.automated.count} (${en301549Stats.automated.percent}%) have an automated check — axe-core, our own worker code, or both. The other ${en301549Stats.manualOnly.count} need a human, always.`,
     updated: '2026-08-08',
     measurementTechnique:
-      'Coverage mapping of EN 301 549 chapter 9 success criteria against axe-core 4.13.0 rule metadata and AccessAtlas worker check modules',
+      'Coverage mapping of EN 301 549 chapter 9 success criteria against axe-core 4.13.0 rule metadata and Verscala worker check modules',
     variableMeasured: [
       'EN 301 549 clause',
       'WCAG 2.x success criterion',
@@ -218,11 +218,11 @@ export const reports: ReportMeta[] = [
     title: 'Where the law requires a specialist — and where our catalog is thinnest',
     dek:
       jurisdictionStats.uncovered.count > 0
-        ? `${jurisdictionStats.uncovered.count} of the ${jurisdictionStats.totalJurisdictions} EU/EEA jurisdictions where AccessAtlas's own scanner treats an accessibility statement as legally required currently have zero catalog specialists serving them.`
-        : `All ${jurisdictionStats.totalJurisdictions} EU/EEA jurisdictions where AccessAtlas's own scanner treats an accessibility statement as legally required have at least one catalog specialist — but coverage ranges from ${jurisdictionStats.deepestCoverage?.agencyCount ?? 0} down to just ${jurisdictionStats.thinnestCoverage?.agencyCount ?? 0}.`,
+        ? `${jurisdictionStats.uncovered.count} of the ${jurisdictionStats.totalJurisdictions} EU/EEA jurisdictions where Verscala's own scanner treats an accessibility statement as legally required currently have zero catalog specialists serving them.`
+        : `All ${jurisdictionStats.totalJurisdictions} EU/EEA jurisdictions where Verscala's own scanner treats an accessibility statement as legally required have at least one catalog specialist — but coverage ranges from ${jurisdictionStats.deepestCoverage?.agencyCount ?? 0} down to just ${jurisdictionStats.thinnestCoverage?.agencyCount ?? 0}.`,
     updated: '2026-08-08',
     measurementTechnique:
-      'Join of the AccessAtlas catalog (data/a11y/agencies.json, filtered by agencies[].countriesServed) against the 13 jurisdictions the AccessAtlas scanner itself treats as requiring an accessibility statement (worker/lib/jurisdiction.js)',
+      'Join of the Verscala catalog (data/a11y/agencies.json, filtered by agencies[].countriesServed) against the 13 jurisdictions the Verscala scanner itself treats as requiring an accessibility statement (worker/lib/jurisdiction.js)',
     variableMeasured: [
       'Jurisdiction (country)',
       'Applicable law transposing the European Accessibility Act (or, for Norway, its EEA equivalent)',

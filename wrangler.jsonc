@@ -24,8 +24,9 @@
   // Ежедневная зачистка scans старше worker/lib/retention.js::RETENTION_DAYS (D-019).
   "triggers": { "crons": ["0 3 * * *"] },
   "vars": {
-    // Дублирует ORIGIN из src/lib/seo.tsx / scripts/gen-a11y-sitemap.mjs — обновить
-    // вместе при покупке домена (A0-ORIGIN), иначе CORS у /api/scan будет закрыт.
-    "ALLOWED_ORIGIN": "https://accessatlas.example"
+    // Дублирует ORIGIN из src/lib/seo.tsx / scripts/gen-a11y-sitemap.mjs — боевой
+    // домен (A0-ORIGIN, куплен 2026-08-08); держать в синхроне, иначе CORS у
+    // /api/scan будет закрыт.
+    "ALLOWED_ORIGIN": "https://verscala.com"
   }
 }

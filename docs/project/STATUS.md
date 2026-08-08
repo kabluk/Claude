@@ -2,7 +2,28 @@
 
 Обновлено: 2026-08-08 (см. также подробный legacy-статус: `research/STATE.md`)
 
-## Последнее (2026-08-08, G-GUIDES-RGAA-FR done / D-090)
+## Последнее (2026-08-08, РЕБРЕНДИНГ: AccessAtlas → Verscala, домен verscala.com / D-091)
+
+**Публичный бренд теперь — Verscala, домен — verscala.com** (куплен
+владельцем на GoDaddy 2026-08-08, + M365 Email; ящик info@verscala.com
+владелец создаст позже — Imprint пока с gmail). Внутреннее имя проекта в
+docs/project/ сознательно остаётся AccessAtlas (историческая память).
+
+Выполнено (D-091, субагент Sonnet + независимая проверка родителем):
+18 файлов user-facing строк (SITE_NAME/ORIGIN/тексты страниц/email-тексты
+воркера/User-Agent бота VerscalaBot), noindex снят с `/imprint/` (sitemap
+теперь **415 URL**), воркер редеплоен — CORS `https://verscala.com`
+подтверждён живым preflight (после ~30 сек edge-пропагации, класс D-020).
+Все гейты: build **451 стр.**, check-links 500-0, audit-a11y 47-0, тесты
+48/20/211. Грепы: 0 «AccessAtlas» в dist/, 0 «accessatlas.example» в
+исходниках. НЕ переименованы: воркер `accessatlas-worker`, D1/KV,
+Stripe-ключ (инфраструктура, не бренд).
+
+**Разблокировано этим**: `A0-DEPLOY` (нужен только approval Pages + DNS),
+верификация домена в Resend (снимает sandbox-ограничение D-024 →
+реальная доставка писем), hreflang для G-I18N.
+
+## Предыдущее (2026-08-08, G-GUIDES-RGAA-FR done / D-090)
 
 **D-090 — `data/a11y/guides/rgaa-guide.md`**: FR-гайд под информационный
 интент голого `rgaa` (8100/мес по DataForSEO против 390 у `audit rgaa`) —

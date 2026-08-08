@@ -82,7 +82,7 @@ function VerifiedAuditMarketBody({ meta }: { meta: ReportMeta }) {
           what it is not. */}
       <div className="mt-6 rounded-xl border border-[color:var(--color-info-border)] bg-[color:var(--color-info-soft)] p-4 text-sm text-on-surface-variant">
         <p>
-          <strong>What this is.</strong> An analysis of the AccessAtlas catalog as a dataset: who is
+          <strong>What this is.</strong> An analysis of the Verscala catalog as a dataset: who is
           listed, where they are based, which standards they name, and — the part most directories skip
           — what independent evidence backs each listing.
         </p>
@@ -251,7 +251,7 @@ function En301549AutomationBody({ meta }: { meta: ReportMeta }) {
           <strong>What this is.</strong> A criterion-by-criterion map of EN 301 549 chapter 9 (the
           web-accessibility chapter referenced by the European Accessibility Act): for each of the{' '}
           {s.total} success criteria, whether an automated check exists — an axe-core rule, one of
-          AccessAtlas&rsquo;s own worker checks, or both — and where automation stops entirely.
+          Verscala&rsquo;s own worker checks, or both — and where automation stops entirely.
         </p>
         <p className="mt-2">
           <strong>What this is not.</strong> &ldquo;Automated&rdquo; means <em>a test exists that can
@@ -315,7 +315,7 @@ function En301549AutomationBody({ meta }: { meta: ReportMeta }) {
         <h2 className="h2">Where our own checks go beyond bare axe-core</h2>
         <p className="max-w-prose text-sm text-on-surface-variant">
           <span className="num">{s.ownModules.length}</span> criteria get an automated check only
-          because AccessAtlas&rsquo;s own worker code adds one — axe-core&rsquo;s static-markup rules do
+          because Verscala&rsquo;s own worker code adds one — axe-core&rsquo;s static-markup rules do
           not reach real-browser behaviour like keyboard traps, focus order, or resize/reflow at all.
           Each of these is a heuristic with a named, documented limitation, not a silent guess — the full
           caveat for each check is on its{' '}
@@ -336,12 +336,12 @@ function En301549AutomationBody({ meta }: { meta: ReportMeta }) {
       </section>
 
       <section className="mt-10 max-w-3xl">
-        <h2 className="h2">Why AccessAtlas does not publish site scores</h2>
+        <h2 className="h2">Why Verscala does not publish site scores</h2>
         <p className="max-w-prose text-sm text-on-surface-variant">
           With only {s.automated.percent}% of EN 301 549&rsquo;s web criteria having any automated check
           — and none of those checks proving conformance on their own — a single numeric
           &ldquo;accessibility score&rdquo; for a site would compress a mostly-manual standard into a
-          number automation cannot honestly produce. That is why AccessAtlas&rsquo;s own scanner reports
+          number automation cannot honestly produce. That is why Verscala&rsquo;s own scanner reports
           findings against the rules it actually ran, not a score, and why our{' '}
           <Link className="underline underline-offset-2" to={paths.methodology()}>
             methodology
@@ -408,7 +408,7 @@ function JurisdictionCoverageGapBody({ meta }: { meta: ReportMeta }) {
           about the real world. */}
       <div className="mt-6 rounded-xl border border-[color:var(--color-info-border)] bg-[color:var(--color-info-soft)] p-4 text-sm text-on-surface-variant">
         <p>
-          <strong>What this is.</strong> A join of two datasets AccessAtlas already maintains: the{' '}
+          <strong>What this is.</strong> A join of two datasets Verscala already maintains: the{' '}
           {j.totalJurisdictions} jurisdictions its own scanner treats as legally requiring a website
           accessibility statement (the same list used to weight scan findings), crossed against how many
           catalog specialists actually list that country under their service area.
@@ -445,7 +445,7 @@ function JurisdictionCoverageGapBody({ meta }: { meta: ReportMeta }) {
           <>
             <p className="max-w-prose text-sm text-on-surface-variant">
               These <span className="num">{j.uncovered.count}</span> jurisdictions legally require an
-              accessibility statement, and the AccessAtlas catalog currently lists no specialist serving
+              accessibility statement, and the Verscala catalog currently lists no specialist serving
               any of them:
             </p>
             <ul className="mt-4 grid gap-2 sm:grid-cols-2">
@@ -516,7 +516,7 @@ function JurisdictionCoverageGapBody({ meta }: { meta: ReportMeta }) {
       <section className="mt-10 max-w-3xl">
         <h2 className="h2">How this was made</h2>
         <p className="max-w-prose text-sm text-on-surface-variant">
-          This report joins two datasets AccessAtlas already publishes elsewhere, rather than introducing
+          This report joins two datasets Verscala already publishes elsewhere, rather than introducing
           a third: the {j.totalJurisdictions}-jurisdiction list from{' '}
           <span className="font-mono text-xs">worker/lib/jurisdiction.js</span> — the same module our
           scanner uses at scan time to decide when a missing accessibility statement is a legally decisive
@@ -585,7 +585,7 @@ export default function ReportDocPage() {
 
   return (
     <Layout
-      title={`${meta.title} — AccessAtlas`}
+      title={`${meta.title} — Verscala`}
       description={meta.dek}
       path={path}
       crumbs={[{ name: 'Reports', path: paths.reports() }]}

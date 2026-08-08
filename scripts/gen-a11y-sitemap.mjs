@@ -10,8 +10,8 @@ import { dirname, join } from 'node:path'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DIST = join(ROOT, 'dist')
-// TODO: заменить на боевой домен перед деплоем (продублировано в src/lib/seo.tsx).
-const ORIGIN = 'https://accessatlas.example'
+// Боевой домен (A0-ORIGIN, куплен 2026-08-08); продублировано в src/lib/seo.tsx.
+const ORIGIN = 'https://verscala.com'
 const THRESHOLD = 3
 
 if (!existsSync(DIST)) {
@@ -36,11 +36,11 @@ const slugify = (s) =>
 const inCountry = (code) =>
   agencies.filter((a) => a.hq.countryCode === code || (a.countriesServed || []).includes(code))
 
-// Imprint и 404 сюда не идут — index=false в самих страницах (Imprint ждёт
-// реквизитов владельца, 404 в принципе не индексируется).
+// 404 сюда не идёт — index=false в самой странице, в принципе не индексируется.
+// Imprint индексируется с A0-ORIGIN (реквизиты и домен закрыты, D-089) — в sitemap.
 const urls = [
   '/', '/scan/', '/methodology/', '/bfsg-check/', '/request-quote/', '/agencies/', '/countries/', '/services/', '/standards/',
-  '/wcag/', '/components/', '/reports/', '/about/', '/contact/', '/privacy/', '/accessibility-statement/',
+  '/wcag/', '/components/', '/reports/', '/about/', '/contact/', '/privacy/', '/accessibility-statement/', '/imprint/',
 ]
 for (const a of agencies) urls.push(`/agencies/${a.slug}/`)
 

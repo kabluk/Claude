@@ -6,7 +6,7 @@ export default function PrivacyPage() {
   return (
     <Layout
       title="Privacy Policy"
-      description="What AccessAtlas does and does not collect — including the accessibility scanner. Static catalog, no accounts, no tracking scripts."
+      description="What Verscala does and does not collect — including the accessibility scanner. Static catalog, no accounts, no tracking scripts."
       path={paths.privacy()}
       crumbs={[]}
     >
