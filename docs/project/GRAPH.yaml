@@ -1224,21 +1224,21 @@ nodes:
   - id: CN-COMPONENTS-COMBOBOX
     title: "Combobox — 7-й компонент библиотеки (CN-COMPONENTS-REST 4/10), самый тяжёлый оставшийся композит"
     owner: frontend-engineer
-    status: todo
+    status: done
     depends_on: [CN-COMPONENTS]
     inputs: [data/a11y/components.json, src/lib/componentsLib.tsx, scripts/audit-own-a11y.mjs, scripts/components.test.mjs]
     scope: [src/components/library/Combobox.tsx, src/lib/componentsLib.tsx, data/a11y/components.json, scripts/audit-own-a11y.mjs]
     outputs: [src/components/library/Combobox.tsx]
     verify:
-      - "npm run audit-a11y — /components/combobox/ в постоянном сэмпле, INTERACT открывает popup и аудитирует РАСКРЫТОЕ состояние (role=listbox+role=option); 0 нарушений"
-      - "живой Playwright: ArrowDown/Up двигают aria-activedescendant БЕЗ увода DOM-фокуса с input (ключевое отличие ARIA 1.2 combobox от roving tabindex), фильтрация по вводу сужает список, Enter выбирает и закрывает popup, Escape закрывает без выбора и без потери фокуса, клик по опции выбирает"
-      - "npm run scripts:test — components.test проходит (ready → полный набор §22 + файл реализации + сэмпл аудита)"
-      - "npm run typecheck / npm run build — зелёные"
+      - "npm run audit-a11y — /components/combobox/ в постоянном сэмпле, INTERACT открывает popup и аудитирует РАСКРЫТОЕ состояние (role=listbox+role=option); 39 стр. 0 нарушений — ✅"
+      - "живой Playwright (независимый прогон родительской сессии, не только заявление субагента): ArrowDown/Up двигают aria-activedescendant БЕЗ увода DOM-фокуса с input, фильтрация по вводу сужает список без авто-активации, Enter выбирает и закрывает popup с фокусом на input, Escape закрывает без выбора и без потери фокуса/значения, клик по опции выбирает, пустой фильтр — role=status, не пустой listbox — 18/18 проверок ✅"
+      - "npm run scripts:test — components.test проходит без изменений в самом тесте (37/37) — ✅"
+      - "npm run typecheck / npm run build / npm run check-links / npm run worker:test / npm run src:test — все зелёные (typecheck чисто, build 442 стр. sitemap 405, check-links 490-0, worker:test 211/211, src:test 20/20) — ✅"
     max_attempts: 3
     attempts: 1
     risk: medium
     approval_required: false
-    notes: "Заведён 2026-08-08 как следующий узел CN-COMPONENTS-REST (сессия со свежим контекстом, ровно то, чего требовал D-077). Данные для демо — реальные, не выдуманные (D-045/D-047 главнее любого узла CN)."
+    notes: "Готово 2026-08-08 (D-078). Реализовано субагентом (Opus, по явному выбору владельца через AskUserQuestion — самый рискованный оставшийся композит), результат перепроверен родительской сессией живьём (не по заявлению): диф прочитан построчно, все 5 гейтов перезапущены, отдельный независимый Playwright-скрипт (18 проверок) написан и прогнан заново против собранного dist/, не переиспользуя скрипт субагента. Ключевая архитектурная особенность паттерна: DOM-фокус НИКОГДА не покидает input — активная опция помечается только aria-activedescendant (виртуальный фокус), это ARIA 1.2 combobox, не roving tabindex (тот — паттерн Tabs). Демо — реальные данные каталога (19 стран + реальные счётчики агентств из data/a11y/taxonomies.json, те же, что на /countries/), не выдуманный список. Гейт a11y прошёл с первого прогона (ловушки закрыты по конструкции: mousedown preventDefault против blur-до-click, пустой результат как role=status вместо пустого/фейкового listbox-option, ручной scrollIntoView). Осознанные отклонения: Home/End двигают активную опцию только при открытом попапе (иначе — родная каретка); ввод текста не авто-активирует первую опцию (Enter не должен коммитить то, что пользователь не смотрел); Escape не очищает поле; анимации открытия нет (нечего отключать под prefers-reduced-motion)."
 
   - id: CN-COMPONENTS-TOOLTIP
     title: "Tooltip — 5-й готовый компонент библиотеки (CN-COMPONENTS-REST 2/10)"

@@ -11,13 +11,16 @@
 // that those stay in step.
 
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import componentsData from '@data/a11y/components.json'
+import { countries, paths, type CountryInfo } from '@/lib/data'
 import { Accordion } from '@/components/library/Accordion'
 import { Tabs } from '@/components/library/Tabs'
 import { Modal } from '@/components/library/Modal'
 import { ToastRegion, useToasts } from '@/components/library/Toast'
 import { Tooltip } from '@/components/library/Tooltip'
 import { Breadcrumbs } from '@/components/library/Breadcrumbs'
+import { Combobox } from '@/components/library/Combobox'
 
 import AccordionSrc from '@/components/library/Accordion.tsx?raw'
 import TabsSrc from '@/components/library/Tabs.tsx?raw'
@@ -25,6 +28,7 @@ import ModalSrc from '@/components/library/Modal.tsx?raw'
 import ToastSrc from '@/components/library/Toast.tsx?raw'
 import TooltipSrc from '@/components/library/Tooltip.tsx?raw'
 import BreadcrumbsSrc from '@/components/library/Breadcrumbs.tsx?raw'
+import ComboboxSrc from '@/components/library/Combobox.tsx?raw'
 
 export type ComponentStatus = 'ready' | 'planned'
 export interface KeyRow {
@@ -136,6 +140,43 @@ function TooltipDemo() {
   )
 }
 
+function ComboboxDemo() {
+  const [picked, setPicked] = useState<CountryInfo | null>(null)
+  // Real catalogue data (D-045/D-047): the same country list — and the same
+  // agency counts — that /countries/ renders, so this demo is the site's own
+  // country filter rather than an invented fruit list.
+  const options = countries.map((c) => ({
+    value: c.slug,
+    label: c.name,
+    hint: `${c.count} ${c.count === 1 ? 'agency' : 'agencies'}`,
+  }))
+  return (
+    // data-a11y-demo-combobox marks the demo for the permanent axe gate, which
+    // clicks the input inside it, types, and arrows down to audit the OPEN
+    // state — the listbox, its options, and the active-option highlight (see
+    // scripts/audit-own-a11y.mjs). The marker sits on the demo wrapper, not
+    // inside the component, so the primitive's own API stays free of
+    // test hooks.
+    <div data-a11y-demo-combobox>
+      <Combobox
+        label="Filter by country"
+        placeholder="Start typing a country…"
+        options={options}
+        onSelect={(o) => setPicked(countries.find((c) => c.slug === o.value) ?? null)}
+      />
+      <p className="mt-3 max-w-prose text-xs text-on-surface-variant">
+        {picked ? (
+          <Link className="underline underline-offset-2" to={paths.country(picked)}>
+            {picked.count} audit {picked.count === 1 ? 'agency' : 'agencies'} in {picked.name} →
+          </Link>
+        ) : (
+          'Type to filter, or press Down to see every country. Arrow keys move the highlight while the caret stays in the field; Enter picks the highlighted country; Escape closes the list and keeps what you typed.'
+        )}
+      </p>
+    </div>
+  )
+}
+
 const DEMOS: Record<string, { demo: () => JSX.Element; code: string }> = {
   accordion: {
     code: AccordionSrc,
@@ -192,6 +233,10 @@ const DEMOS: Record<string, { demo: () => JSX.Element; code: string }> = {
   tooltip: {
     code: TooltipSrc,
     demo: () => <TooltipDemo />,
+  },
+  combobox: {
+    code: ComboboxSrc,
+    demo: () => <ComboboxDemo />,
   },
   breadcrumbs: {
     code: BreadcrumbsSrc,

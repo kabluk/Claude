@@ -112,7 +112,47 @@
         { "bad": "Moving the pointer toward the tooltip to read more of it makes the tooltip disappear first.", "good": "Give the pointer a short grace period to reach the tooltip, and keep it open while the pointer is over the tooltip itself (WCAG 1.4.13 hoverable)." }
       ]
     },
-    { "slug": "combobox", "name": "Combobox", "status": "planned", "pattern": "Combobox · aria-expanded + aria-activedescendant", "summary": "A text input paired with a filterable listbox popup — the most intricate composite widget, and the one autocomplete UIs most often break." },
+    {
+      "slug": "combobox",
+      "name": "Combobox",
+      "status": "ready",
+      "pattern": "Combobox · aria-expanded + aria-activedescendant",
+      "impl": "Combobox",
+      "summary": "A text input paired with a filterable listbox popup — the most intricate composite widget, and the one autocomplete UIs most often break. The pattern where the highlighted option is not really focused: DOM focus stays in the text field the whole time, and aria-activedescendant is what tells a screen reader where you are.",
+      "keyboard": [
+        { "keys": "Typing", "does": "filters the list to options containing what you typed (case-insensitive) and opens the popup if it was closed" },
+        { "keys": "Down / Up", "does": "moves the active option and wraps at both ends; opens the popup first if it was closed. The caret never leaves the text field" },
+        { "keys": "Alt + Down", "does": "opens the popup without activating an option — “show me the list, I am not choosing yet”" },
+        { "keys": "Home / End", "does": "jumps to the first / last option currently visible while the popup is open; with the popup closed they keep their normal meaning and move the caret" },
+        { "keys": "Enter", "does": "selects the active option, puts its label in the field and closes the popup; focus stays in the field. With the popup open it never submits the surrounding form" },
+        { "keys": "Escape", "does": "closes the popup without selecting; what you typed and where your focus is both stay exactly as they were" },
+        { "keys": "Tab / Shift + Tab", "does": "leaves the field, which closes the popup without selecting" }
+      ],
+      "screenReader": [
+        "The field is announced by its label and as a combobox, with its expanded state — so the user knows a list can open before they open it.",
+        "Arrowing through the list announces each option (“Germany, 12 of 19”) even though nothing was actually focused: the input's aria-activedescendant points at the active option, and the screen reader follows that pointer.",
+        "Because real focus never leaves the input, the user can keep typing to narrow the list at any point without first returning from the list — the two actions do not compete.",
+        "A filter with no results is announced through a role=\"status\" line inside the popup, so the user hears “No matches for …” instead of silence and an empty box.",
+        "Selecting closes the popup and the field now reads back the chosen label, which is the confirmation that the choice landed."
+      ],
+      "ariaNotes": [
+        "role=\"combobox\" goes on the text input itself (ARIA 1.2), together with aria-expanded, aria-haspopup=\"listbox\", aria-controls pointing at the popup, and aria-autocomplete=\"list\" — list, because the popup filters and the field is never rewritten behind the user.",
+        "aria-activedescendant on the input carries the id of the active option; the options themselves are NOT focusable and carry no tabindex. This is the opposite of the roving-tabindex arrangement used by tabs, and it is what allows an editable field to keep receiving keystrokes while the user walks the list.",
+        "The visual highlight is styling only (a data attribute here). Styling without aria-activedescendant leaves a screen-reader user moving through a list silently; aria-activedescendant without a visible highlight leaves a sighted keyboard user with no idea where they are. Both are required.",
+        "Each option is role=\"option\" with a unique id and aria-selected; aria-selected marks the active option, and the committed value is shown by the field itself.",
+        "aria-controls is set only while the popup exists — a relationship pointing at an id that has been removed is a broken relationship, not a harmless leftover.",
+        "Nothing is auto-activated by typing, so aria-activedescendant is absent until the user arrows into the list: Enter then can only commit an option the user actually moved to."
+      ],
+      "pitfalls": [
+        { "bad": "The arrow keys call option.focus(), moving real DOM focus onto the list.", "good": "Keep focus in the input and move aria-activedescendant instead — otherwise typing stops working the moment the user presses Down." },
+        { "bad": "The active option is only highlighted with CSS.", "good": "Pair the highlight with aria-activedescendant on the input, so the option is announced as well as drawn." },
+        { "bad": "The popup closes on blur, so clicking an option never selects it — mousedown blurs the field before click fires.", "good": "preventDefault() on the option's mousedown: focus stays in the field and the click lands." },
+        { "bad": "The native input keeps its browser autofill (autoComplete left at the default).", "good": "Set autocomplete=\"off\" — otherwise the browser's own dropdown covers the popup and answers the same arrow keys." },
+        { "bad": "Escape clears the field, or moves focus somewhere else.", "good": "Escape dismisses the popup only; the typed text and the focus position both survive." },
+        { "bad": "An empty filter shows an empty listbox, or a fake “No results” option.", "good": "Show a real message in a role=\"status\" line — a fake option is announced as “option 1 of 1” and can be selected as a value." },
+        { "bad": "The active option is scrolled out of the popup's viewport.", "good": "Scroll it into view yourself — nothing is really focused, so the browser will not do it for you." }
+      ]
+    },
     { "slug": "menu-button", "name": "Menu button", "status": "planned", "pattern": "Menu · roving focus, type-ahead", "summary": "A button that opens a menu of actions, navigable with the arrow keys and closable with Escape." },
     { "slug": "listbox-select", "name": "Select (listbox)", "status": "planned", "pattern": "Listbox · single/multi select", "summary": "A custom single- or multi-select built on role=listbox when the native <select> cannot be styled to requirements — with the native element as the honest first choice." },
     {

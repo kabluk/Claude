@@ -46,7 +46,7 @@ const SAMPLE_ROUTES = [
   // сам виджет. У модалки и тоста живой пример появляется только по действию
   // пользователя — их раскрытое/анонсированное состояние аудитируется отдельно,
   // см. INTERACT ниже.
-  '/components/', '/components/accordion/', '/components/tabs/', '/components/modal-dialog/', '/components/toast/', '/components/tooltip/', '/components/breadcrumbs/',
+  '/components/', '/components/accordion/', '/components/tabs/', '/components/modal-dialog/', '/components/toast/', '/components/tooltip/', '/components/breadcrumbs/', '/components/combobox/',
   // CN-RESEARCH (D-071): индекс отчётов + сам отчёт (таблицы-бары, stat-плитки,
   // JSON-LD Dataset/Report) — обе поверхности под постоянным axe-гейтом.
   '/reports/', '/reports/verified-audit-market/',
@@ -79,6 +79,21 @@ const INTERACT = {
   '/components/tooltip/': async (page) => {
     await page.focus('[data-a11y-demo-focus]')
     await page.waitForSelector('[role="tooltip"]', { state: 'visible' })
+  },
+  // CN-COMPONENTS-COMBOBOX: статический HTML страницы содержит только закрытый
+  // инпут — сам паттерн (listbox, option, активная опция) появляется лишь по
+  // действию пользователя. Кликаем инпут, печатаем подстроку (фильтр сужает
+  // список) и жмём ArrowDown, чтобы появилась АКТИВНАЯ опция: тогда второй
+  // прогон axe проверяет и контраст подсветки активной опции, и её имя, а не
+  // только сам факт наличия списка. Ждём aria-selected="true" — то есть именно
+  // ту опцию, на которую указывает aria-activedescendant инпута.
+  '/components/combobox/': async (page) => {
+    const input = '[data-a11y-demo-combobox] input[role="combobox"]'
+    await page.click(input)
+    await page.type(input, 'an')
+    await page.waitForSelector('[role="listbox"]', { state: 'visible' })
+    await page.keyboard.press('ArrowDown')
+    await page.waitForSelector('[role="option"][aria-selected="true"]', { state: 'visible' })
   },
 }
 
