@@ -34,7 +34,7 @@ export default function ImprintPage() {
 
         <h2>Contact</h2>
         <p>
-          Email: <a href="mailto:zincroom@gmail.com">zincroom@gmail.com</a>
+          Email: <a href="mailto:info@verscala.com">info@verscala.com</a>
           <br />
           Phone: <a href="tel:+12134218848">+1 213 421 8848</a>
         </p>

@@ -2,8 +2,9 @@ import { Layout } from '@/components/Layout'
 import { paths } from '@/lib/data'
 
 // Контактный email — единственный реальный канал на сейчас (нет форм,
-// нет бэкенда). Заменить/дополнить, когда появится доменная почта.
-const CONTACT_EMAIL = 'zincroom@gmail.com'
+// нет бэкенда). Доменная почта появилась 2026-08-08 (M365, куплена вместе
+// с verscala.com) — адрес обновлён с личного gmail на info@verscala.com.
+const CONTACT_EMAIL = 'info@verscala.com'
 
 export default function ContactPage() {
   return (
