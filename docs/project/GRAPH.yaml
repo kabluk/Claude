@@ -1130,6 +1130,25 @@ nodes:
     approval_required: false
     notes: "Готово 2026-08-08 (D-085). Заведён по выбору владельца через AskUserQuestion (после закрытия CN-COMPONENTS-REST 10/10) — второй data-продукт, НЕ пересчёт того же agencies.json другими словами: свежий источник (en301549-coverage.json, уже питает /wcag/[criterion], D-066), никогда не собирался в отдельный отчёт-нарратив. Архитектурный вызов решён явно: src/lib/reports.ts/ReportDocPage.tsx были жёстко завязаны на ОДИН отчёт — рефакторены на диспетчер по slug (REPORT_BODIES, тот же приём, что DEMOS в componentsLib.tsx), каждый отчёт несёт свой типизированный stats-экспорт и свой аггрегатор/гейт. Единственная тонкость, которую субагент сам поймал и задокументировал: дедлайн первого отчёта («computed from N catalog records») оставлен статичным JSX-текстом, не интерполяцией через общий пропс — интерполированная версия добавила бы лишний React hydration comment-маркер и сломала бы побайтовую идентичность SSR-вывода. Позиционирование: подтверждает уже принятую честность проекта про границы автоматизации (D-035/D-045) — первый раз собранная в отдельный публикуемый data-продукт, с той же цифрой 31/50, что уже называют /methodology/ и /accessibility-statement/ (не более дружелюбной)."
 
+  - id: CN-RESEARCH-JURISDICTION-COVERAGE
+    title: "Третий data-продукт: где закон требует специалиста, а в каталоге его нет — синтез agencies.json + worker/lib/jurisdiction.js"
+    owner: growth-strategist
+    status: todo
+    depends_on: []
+    inputs: [data/a11y/agencies.json, worker/lib/jurisdiction.js, scripts/reports-data.mjs, src/lib/reports.ts, src/pages/ReportDocPage.tsx]
+    scope: [scripts/jurisdiction-report-data.mjs, scripts/jurisdiction-report-data.test.mjs, data/a11y/jurisdiction-report.json, src/lib/reports.ts, src/pages/ReportDocPage.tsx, src/pages/ReportsIndexPage.tsx, scripts/audit-own-a11y.mjs]
+    outputs: [data/a11y/jurisdiction-report.json, src/pages/ReportDocPage.tsx]
+    verify:
+      - "новый аггрегатор ИМПОРТИРУЕТ worker/lib/jurisdiction.js напрямую (Node ESM, plain JS без браузерных API — подтверждено живым импортом до делегирования) через supportedJurisdictions(), НЕ дублирует список законов вручную — рассинхрон структурно невозможен, в отличие от src/lib/jurisdictions.ts (та копия — для рантайм-браузера, другая причина дублирования, D-010, не путать)"
+      - "для каждой из 13 юрисдикций (закон+статья уже проверены по первоисточнику, D-030/D-031/D-034) — сколько агентств каталога реально обслуживают эту страну (agencies[].countriesServed, исключая remote-*, тот же фильтр, что hqCountries в reports-data.mjs) — честно показать юрисдикции с нулевым покрытием, не сглаживать"
+      - "НИ ОДНОЙ суммы штрафа на странице (D-035, инвариант всего проекта) — grep по €/EUR/fine/penalty/Bußgeld на новом файле перед коммитом; verified:true/false из jurisdiction.js передаётся как есть, не выдаётся за большую уверенность, чем есть"
+      - "существующие ДВА отчёта не изменились ни числом, ни текстом (та же байтовая проверка dist/ до/после, что применялась в D-085 родительской сессией); npm run audit-a11y / typecheck / build / check-links / scripts:test / worker:test / src:test — все зелёные"
+    max_attempts: 3
+    attempts: 1
+    risk: medium
+    approval_required: false
+    notes: "Заведён 2026-08-08 сразу после D-085 (второй отчёт), по выбору владельца через AskUserQuestion: свежих источников почти не осталось (agencies.json и en301549-coverage.json уже выработаны первыми двумя отчётами), поэтому владелец выбрал НОВЫЙ УГОЛ — синтез двух уже существующих реальных датасетов, не новую тему с нуля. worker/lib/jurisdiction.js — юридические факты, уже перепроверенные по первоисточникам в отдельной сессии (D-030…D-034), НЕ новое юридическое исследование этим узлом. Технический ключ: worker/lib/jurisdiction.js — plain ESM JS без браузерных API, поэтому build-time Node-скрипт может импортировать его НАПРЯМУЮ (в отличие от src/lib/jurisdictions.ts — та копия существует по другой причине, для клиентского браузерного бандла /scan, синхронизируется тестом; аггрегатору отчёта такое дублирование не нужно вовсе)."
+
   - id: CN-WCAG22
     title: "Самопроверка сайта до WCAG 2.2 AA (конституция §40): target-size в audit-own-a11y"
     owner: qa-engineer
