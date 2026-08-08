@@ -7,19 +7,23 @@
    31 Stitch-макета владельца, upload 2026-08-08).
 
    Палитра — Material-3-подобная система пар «цвет / on-цвет» из макетов.
-   Значения LIGHT/DARK взяты ИЗ КОДА макетов (не выдуманы); severity-шкала в
-   макетах отсутствует (кроме error) — подобрана в тон обеим темам и посчитана
-   скриптом (scratchpad contrast-d072.mjs): каждая текст-пара ≥ 4.5:1 на
-   background, на surface/card и на своей soft-подложке.
+   Значения LIGHT взяты ИЗ КОДА макетов (не выдуманы); severity-шкала в
+   макетах отсутствует (кроме error) — подобрана в тон и посчитана скриптом
+   (scratchpad contrast-d072.mjs): каждая текст-пара ≥ 4.5:1 на background, на
+   surface/card и на своей soft-подложке.
 
    Принципы D-063 СОХРАНЕНЫ: семантическая severity (1:1 с axe impact),
-   всегда видимый фокус, tabular-nums, контраст-гейт (audit-own-a11y, теперь
-   ОБЕ темы). Заменена палитра/форма, не принципы.
+   всегда видимый фокус, tabular-nums, контраст-гейт (audit-own-a11y).
+   Заменена палитра/форма, не принципы.
 
-   ПРАВИЛО ТЕМ: компоненты стилизуются ТОЛЬКО токенами. Каждый токен объявлен
-   в @theme (light) и переопределён в dark-блоке ниже. Ни один цвет не живёт
-   только в dark-ветке — dark-блок имеет право лишь переопределять уже
-   объявленное здесь (классическая ошибка тем, D-072).
+   ТЕМА: ТОЛЬКО светлая (D-073, реверс части D-072 по прямому указанию
+   владельца, 2026-08-08). Сайт рендерит эти значения токенов ВСЕГДА,
+   независимо от системной темы посетителя — никакого
+   `@media (prefers-color-scheme: dark)`-переопределения нет и не должно
+   появляться снова без нового решения владельца. Компоненты по-прежнему
+   стилизуются ТОЛЬКО токенами (не hex/slate-классами напрямую) — это
+   упрощает будущий возврат тёмной темы, если он понадобится, но сам возврат
+   не входит в это решение.
    ========================================================================== */
 @theme {
   /* Типографика: Inter Variable (self-hosted @fontsource, как раньше) +
@@ -85,54 +89,6 @@
   --color-info: #4451c8;
   --color-info-soft: #e0e0ff;
   --color-info-border: #a9b0f5;
-}
-
-/* --- DARK: переопределение ТЕХ ЖЕ токенов (prefers-color-scheme). Значения
-   core — из dark-макетов; severity — подобраны и посчитаны тем же скриптом.
-   Новые токены здесь объявлять НЕЛЬЗЯ — только переопределять @theme. --- */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-primary: #bdc2ff;
-    --color-on-primary: #121f8b;
-    --color-primary-hover: #d3d6ff; /* hover светлее: on-primary тёмный, контраст растёт */
-    --color-primary-container: #5e6ad2;
-    --color-on-primary-container: #fdfaff;
-    --color-secondary-container: #3d4285;
-    --color-on-secondary-container: #adb2fd;
-    --color-background: #121315;
-    --color-surface: #121315;
-    --color-surface-container-low: #1b1c1d;
-    --color-surface-container: #1f2021;
-    --color-on-surface: #e3e2e3;
-    --color-on-surface-variant: #c6c5d5;
-    --color-outline: #908f9e;
-    --color-outline-variant: #454652;
-    --color-error: #ffb4ab;
-    --color-on-error: #690005;
-    --color-error-container: #93000a;
-
-    --color-brand-plate: #5e6ad2;
-    --color-brand-glyph: #fdfaff;
-
-    --color-critical: #ffb4ab;
-    --color-critical-soft: #351a18;
-    --color-critical-border: #7e2a24;
-    --color-serious: #ffb875;
-    --color-serious-soft: #332217;
-    --color-serious-border: #7c4a12;
-    --color-moderate: #e0c94d;
-    --color-moderate-soft: #2e2a15;
-    --color-moderate-border: #6d5e00;
-    --color-minor: #c6c5d5;
-    --color-minor-soft: #1f2021;
-    --color-minor-border: #454652;
-    --color-success: #8fd6ab;
-    --color-success-soft: #16291d;
-    --color-success-border: #2c6b45;
-    --color-info: #bdc2ff;
-    --color-info-soft: #252a51;
-    --color-info-border: #3d4285;
-  }
 }
 
 /* Каталог доступности обязан сам быть доступным: видимый фокус везде,

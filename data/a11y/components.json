@@ -82,7 +82,36 @@
         { "bad": "aria-modal=“true” with no real focus constraint.", "good": "aria-modal is a promise to assistive tech — back it with an actual focus trap." }
       ]
     },
-    { "slug": "tooltip", "name": "Tooltip", "status": "planned", "pattern": "Tooltip · aria-describedby, Escape to dismiss", "summary": "A supplementary label revealed on hover and focus, dismissible with Escape, never the only place critical information lives." },
+    {
+      "slug": "tooltip",
+      "name": "Tooltip",
+      "status": "ready",
+      "pattern": "Tooltip · role=tooltip, aria-describedby, Escape to dismiss",
+      "impl": "Tooltip",
+      "summary": "A supplementary label revealed on hover and focus, dismissible with Escape, never the only place critical information lives. The pattern where showing it on hover alone is the single most common way tooltips break for keyboard users.",
+      "keyboard": [
+        { "keys": "Tab / Shift + Tab", "does": "moves focus to the trigger, which shows the tooltip — the primary way keyboard users see it" },
+        { "keys": "Escape", "does": "hides the tooltip; focus stays on the trigger, it is never moved" }
+      ],
+      "screenReader": [
+        "The trigger is announced as normal (its own role and name), followed by its description — the tooltip text — because the trigger's aria-describedby points at it.",
+        "Nothing is announced as a separate interruption: a description is read as part of the trigger, not as a live announcement, so this pattern is silent for anyone who is not currently focused on the trigger.",
+        "Moving focus away hides the tooltip and removes the description association until the trigger is focused again."
+      ],
+      "ariaNotes": [
+        "role=\"tooltip\" on the bubble; the trigger carries aria-describedby pointing at its id — describedby, not labelledby, because a tooltip supplements the trigger's existing accessible name, it does not replace it.",
+        "aria-describedby is added only while the tooltip is visible and removed when it hides, so a screen reader is never pointed at an id that is not currently meaningful.",
+        "The trigger shows the tooltip on both focus and hover — hover alone is not sufficient, because it is entirely invisible to anyone who never moves a mouse.",
+        "WCAG 1.4.13 (Content on Hover or Focus): the tooltip is dismissible (Escape, without moving focus), hoverable (the pointer can move from the trigger onto the tooltip itself without it disappearing — a short grace period on mouseleave allows that), and persistent (it does not vanish on its own timer while still hovered or focused)."
+      ],
+      "pitfalls": [
+        { "bad": "The tooltip only shows on mouseover/mouseout.", "good": "Show it on focus as well as hover — otherwise a keyboard user never sees it at all." },
+        { "bad": "Escape (or any dismissal) moves focus off the trigger.", "good": "Dismiss the tooltip only; leave focus exactly where it was." },
+        { "bad": "aria-labelledby is used to attach the tooltip.", "good": "Use aria-describedby — a tooltip supplements the accessible name, it is not the name itself." },
+        { "bad": "A tooltip contains a link or a button so it can be \"more useful\".", "good": "Tooltips cannot safely contain interactive content — if you need that, the correct pattern is a popover (a dialog-like disclosure), not a tooltip." },
+        { "bad": "Moving the pointer toward the tooltip to read more of it makes the tooltip disappear first.", "good": "Give the pointer a short grace period to reach the tooltip, and keep it open while the pointer is over the tooltip itself (WCAG 1.4.13 hoverable)." }
+      ]
+    },
     { "slug": "combobox", "name": "Combobox", "status": "planned", "pattern": "Combobox · aria-expanded + aria-activedescendant", "summary": "A text input paired with a filterable listbox popup — the most intricate composite widget, and the one autocomplete UIs most often break." },
     { "slug": "menu-button", "name": "Menu button", "status": "planned", "pattern": "Menu · roving focus, type-ahead", "summary": "A button that opens a menu of actions, navigable with the arrow keys and closable with Escape." },
     { "slug": "listbox-select", "name": "Select (listbox)", "status": "planned", "pattern": "Listbox · single/multi select", "summary": "A custom single- or multi-select built on role=listbox when the native <select> cannot be styled to requirements — with the native element as the honest first choice." },

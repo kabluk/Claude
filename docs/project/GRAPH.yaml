@@ -1184,3 +1184,39 @@ nodes:
     risk: medium
     approval_required: true
     notes: "Заведён 2026-08-07 (D-064), код полностью готов 2026-08-07 (D-067). Статус review. **Причина уточнена 2026-08-08 (D-069):** разрешение владельца на деплой ЕСТЬ (D-022, «делай всё»); блок теперь ТЕХНИЧЕСКИЙ и локальный для среды — из текущего окружения `worker:deploy` невозможен (нет CLOUDFLARE_API_TOKEN, ~/.wrangler пуст, wrangler whoami виснет), хотя `wrangler deploy --dry-run` проходит чисто и все привязки резолвятся к реальным ID (accessatlas-scans, оба KV, Browser Rendering). Ждёт **среды с CF-токеном ИЛИ владелец сам запускает `npm run worker:deploy` + `db:migrate:remote`**. Отдельно: ALLOWED_ORIGIN в wrangler.jsonc — плейсхолдер, деплой сейчас не починил бы CORS каталога (нужен A0-ORIGIN). До деплоя прод-воркер отдаёт старое поведение (без progress) — UI работает с обоими (parseScanProgress → null → поток D-064). Локальный Browser Rendering в песочнице: CI=1 (miniflare добавляет --no-sandbox), axe-source через тестовый шов env.AXE_SOURCE_URL (в prod не задан)."
+
+  - id: CN-LIGHT-ONLY
+    title: "Убрать тёмную тему — светлый фон везде (прямое указание владельца, реверс части D-072)"
+    owner: frontend-engineer
+    status: done
+    depends_on: [CN-BRANDBOOK]
+    inputs: [src/styles.css, scripts/audit-own-a11y.mjs, docs/project/BRAND_BOOK.md, docs/project/domains/design.md]
+    scope: [src/styles.css, scripts/audit-own-a11y.mjs, docs/project/BRAND_BOOK.md, docs/project/domains/design.md]
+    outputs: []
+    verify:
+      - "npm run audit-a11y — ОДИН проход (light), 0 нарушений"
+      - "живая проверка: Playwright colorScheme:'dark' против dist/ — фон/текст/--color-primary совпадают со СВЕТЛЫМИ токенами (доказательство, что реверс реальный: при оставшемся dark-блоке тест обязан провалиться)"
+      - "grep prefers-color-scheme по src/ — только комментарий-запрет, ни одного переопределения"
+    max_attempts: 2
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Готово 2026-08-08 (D-073). Блок @media (prefers-color-scheme: dark) с 23 токенами удалён целиком, не закомментирован и не скрыт переключателем — надёжнее, чем JS-класс, который можно забыть подключить на новой странице. color-scheme в проекте не выставлялся ни разу (проверено grep до и после). Конституция §28 сама формулирует «dark mode is optional» — реверс применяет её же принцип. Обратимо: dark-значения остались в BRAND_BOOK.md §2 как исторические, но возврат — новое решение владельца, не автоматический откат."
+
+  - id: CN-COMPONENTS-TOOLTIP
+    title: "Tooltip — 5-й готовый компонент библиотеки (CN-COMPONENTS-REST 2/10)"
+    owner: frontend-engineer
+    status: done
+    depends_on: [CN-COMPONENTS]
+    inputs: [data/a11y/components.json, src/lib/componentsLib.tsx, scripts/audit-own-a11y.mjs]
+    scope: [src/components/library/Tooltip.tsx, src/lib/componentsLib.tsx, data/a11y/components.json, scripts/audit-own-a11y.mjs]
+    outputs: [src/components/library/Tooltip.tsx]
+    verify:
+      - "npm run audit-a11y — /components/tooltip/ в постоянном сэмпле, INTERACT фокусирует триггер и аудитирует РАСКРЫТОЕ состояние; 37 страниц 0 нарушений"
+      - "живой Playwright: фокус показывает подсказку (не только hover), aria-describedby указывает на role=tooltip, Escape скрывает И фокус остаётся на триггере, hover показывает, подсказка переживает наведение курсора на себя (WCAG 1.4.13 hoverable)"
+      - "npm run scripts:test — components.test проходит (реестр/данные/сэмпл в согласии)"
+    max_attempts: 3
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Готово 2026-08-08 (D-074). Выбран из-за самой частой ошибки паттерна: показ только по mouseover делает подсказку невидимой для клавиатуры — здесь фокус первичен, hover дополнителен. Escape скрывает, НЕ уводя фокус (WCAG 1.4.13 dismissible): пользователь только читал подпись, отнимать позицию нельзя. Hoverable — grace-период 150мс + mouseenter на пузырьке. Проектное ограничение в типе: content — string, не слот для детей; ARIA-роль tooltip не поддерживает интерактивное содержимое, для такого нужен popover — тип делает нарушение невозможным, а не отговаривает в документации."

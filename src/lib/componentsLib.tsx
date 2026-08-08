@@ -16,11 +16,13 @@ import { Accordion } from '@/components/library/Accordion'
 import { Tabs } from '@/components/library/Tabs'
 import { Modal } from '@/components/library/Modal'
 import { ToastRegion, useToasts } from '@/components/library/Toast'
+import { Tooltip } from '@/components/library/Tooltip'
 
 import AccordionSrc from '@/components/library/Accordion.tsx?raw'
 import TabsSrc from '@/components/library/Tabs.tsx?raw'
 import ModalSrc from '@/components/library/Modal.tsx?raw'
 import ToastSrc from '@/components/library/Toast.tsx?raw'
+import TooltipSrc from '@/components/library/Tooltip.tsx?raw'
 
 export type ComponentStatus = 'ready' | 'planned'
 export interface KeyRow {
@@ -105,6 +107,33 @@ function ToastDemo() {
   )
 }
 
+function TooltipDemo() {
+  return (
+    <div>
+      <div className="flex flex-wrap items-center gap-6">
+        {/* data-a11y-demo-focus lets the permanent axe gate focus this trigger and
+            audit the tooltip in its OPEN state — see scripts/audit-own-a11y.mjs.
+            Focus, not hover, is the trigger the gate can drive, which is also the
+            trigger keyboard users depend on. */}
+        <Tooltip content="Automated checks cover 31 of the 50 web criteria in EN 301 549. The rest need a human reviewer.">
+          <button type="button" data-a11y-demo-focus className="btn-ghost">
+            What does the score cover?
+          </button>
+        </Tooltip>
+        <Tooltip content="Verified against a public source: a certification register, a procurement record, or a published accessibility statement naming the auditor.">
+          <span tabIndex={0} className="chip chip-info">
+            Verified listing
+          </span>
+        </Tooltip>
+      </div>
+      <p className="mt-3 max-w-prose text-xs text-on-surface-variant">
+        Tab to either trigger — the tooltip appears on focus, not only on hover. Escape hides it
+        without moving your focus away.
+      </p>
+    </div>
+  )
+}
+
 const DEMOS: Record<string, { demo: () => JSX.Element; code: string }> = {
   accordion: {
     code: AccordionSrc,
@@ -157,6 +186,10 @@ const DEMOS: Record<string, { demo: () => JSX.Element; code: string }> = {
   toast: {
     code: ToastSrc,
     demo: () => <ToastDemo />,
+  },
+  tooltip: {
+    code: TooltipSrc,
+    demo: () => <TooltipDemo />,
   },
 }
 

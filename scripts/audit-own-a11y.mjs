@@ -46,7 +46,7 @@ const SAMPLE_ROUTES = [
   // сам виджет. У модалки и тоста живой пример появляется только по действию
   // пользователя — их раскрытое/анонсированное состояние аудитируется отдельно,
   // см. INTERACT ниже.
-  '/components/', '/components/accordion/', '/components/tabs/', '/components/modal-dialog/', '/components/toast/',
+  '/components/', '/components/accordion/', '/components/tabs/', '/components/modal-dialog/', '/components/toast/', '/components/tooltip/',
   // CN-RESEARCH (D-071): индекс отчётов + сам отчёт (таблицы-бары, stat-плитки,
   // JSON-LD Dataset/Report) — обе поверхности под постоянным axe-гейтом.
   '/reports/', '/reports/verified-audit-market/',
@@ -70,6 +70,15 @@ const INTERACT = {
   '/components/toast/': async (page) => {
     await page.click('[data-a11y-demo-toast]')
     await page.waitForSelector('[role="alert"] .toast-item', { state: 'visible' })
+  },
+  // CN-COMPONENTS-REST (Tooltip): the bubble exists in the DOM only while the
+  // trigger is focused or hovered. Drive it by FOCUS — the trigger keyboard
+  // users depend on, and the one a headless run can reproduce deterministically
+  // — then audit the open state (role=tooltip, its contrast on its own surface,
+  // and the aria-describedby wiring on the trigger).
+  '/components/tooltip/': async (page) => {
+    await page.focus('[data-a11y-demo-focus]')
+    await page.waitForSelector('[role="tooltip"]', { state: 'visible' })
   },
 }
 
@@ -106,46 +115,39 @@ const launchOptions = existsSync(PREINSTALLED_CHROMIUM) ? { executablePath: PREI
 const browser = await chromium.launch(launchOptions)
 try {
   const page = await browser.newPage()
-  // CN-BRANDBOOK (D-072, §28 конституции): тёмная тема — полноценная, а не
-  // бонус, поэтому гейт гоняет ВЕСЬ набор шаблонов в ОБЕИХ темах (light —
-  // дефолт, dark — emulateMedia colorScheme). Сэмплирование dark сознательно
-  // НЕ делается: палитра переключается на уровне токенов :root, и любая
-  // страница может держать цвет, живущий только в одной теме, — цена второго
-  // прохода несколько минут, цена пропущенного контраст-бага — красный WCAG-гейт
-  // у продукта, который сам продаёт проверку доступности. При нарушении в dark
-  // чинить палитру/токены, не проверку.
-  for (const scheme of ['light', 'dark']) {
-    await page.emulateMedia({ colorScheme: scheme })
-    const tag = scheme === 'dark' ? ' [dark]' : ''
-    for (const route of SAMPLE_ROUTES) {
-      const url = base + route
-      if (!existsSync(filePathFor(route))) {
-        results.push({ route: route + tag, error: 'файл не найден' })
-        continue
-      }
-      await page.goto(url, { waitUntil: 'load' })
-      await page.addScriptTag({ content: AXE_SOURCE })
-      // CN-WCAG22 (§40 конституции): дефолтный axe.run() гоняет все правила,
-      // ВКЛЮЧЁННЫЕ по умолчанию, — а `target-size` (единственное wcag22aa-правило
-      // в axe-core 4.13) поставляется с enabled:false и без явного включения
-      // молча не проверяется. Проверено на axe._audit.rules: без этой строки
-      // самопроверка была «WCAG 2.1 AA + best practices», а не 2.2 AA.
-      // runOnly:{tags} сознательно НЕ используется — он бы отключил
-      // best-practice-правила, которые сейчас тоже держат гейт.
-      const axeResults = await page.evaluate(
+  // D-073 (реверс части CN-BRANDBOOK/D-072 по прямому указанию владельца,
+  // 2026-08-08): тёмной темы больше нет — сайт всегда рендерит светлые
+  // значения токенов, поэтому второй проход с emulateMedia({colorScheme:
+  // 'dark'}) убран, а не оставлен «на всякий случай». Один проход, светлая
+  // палитра — единственная, которую нужно проверять.
+  for (const route of SAMPLE_ROUTES) {
+    const url = base + route
+    if (!existsSync(filePathFor(route))) {
+      results.push({ route, error: 'файл не найден' })
+      continue
+    }
+    await page.goto(url, { waitUntil: 'load' })
+    await page.addScriptTag({ content: AXE_SOURCE })
+    // CN-WCAG22 (§40 конституции): дефолтный axe.run() гоняет все правила,
+    // ВКЛЮЧЁННЫЕ по умолчанию, — а `target-size` (единственное wcag22aa-правило
+    // в axe-core 4.13) поставляется с enabled:false и без явного включения
+    // молча не проверяется. Проверено на axe._audit.rules: без этой строки
+    // самопроверка была «WCAG 2.1 AA + best practices», а не 2.2 AA.
+    // runOnly:{tags} сознательно НЕ используется — он бы отключил
+    // best-practice-правила, которые сейчас тоже держат гейт.
+    const axeResults = await page.evaluate(
+      async () => await window.axe.run(document, { rules: { 'target-size': { enabled: true } } })
+    )
+    results.push({ route, violations: axeResults.violations })
+
+    // Второй прогон по раскрытому состоянию (напр. открытая модалка) — то же
+    // правило target-size, тот же порог serious/critical.
+    if (INTERACT[route]) {
+      await INTERACT[route](page)
+      const openResults = await page.evaluate(
         async () => await window.axe.run(document, { rules: { 'target-size': { enabled: true } } })
       )
-      results.push({ route: route + tag, violations: axeResults.violations })
-
-      // Второй прогон по раскрытому состоянию (напр. открытая модалка) — то же
-      // правило target-size, тот же порог serious/critical.
-      if (INTERACT[route]) {
-        await INTERACT[route](page)
-        const openResults = await page.evaluate(
-          async () => await window.axe.run(document, { rules: { 'target-size': { enabled: true } } })
-        )
-        results.push({ route: `${route} (open)${tag}`, violations: openResults.violations })
-      }
+      results.push({ route: `${route} (open)`, violations: openResults.violations })
     }
   }
 } finally {
@@ -174,7 +176,7 @@ for (const r of results) {
 }
 
 console.log(
-  `\n${totalViolations === 0 ? '✓' : '⚠'} audit-own-a11y: ${SAMPLE_ROUTES.length} страниц × 2 темы (light+dark), ${totalViolations} нарушени${totalViolations === 1 ? 'е' : 'й'} (${seriousOrWorse} serious/critical)`
+  `\n${totalViolations === 0 ? '✓' : '⚠'} audit-own-a11y: ${SAMPLE_ROUTES.length} страниц (light), ${totalViolations} нарушени${totalViolations === 1 ? 'е' : 'й'} (${seriousOrWorse} serious/critical)`
 )
 
 if (seriousOrWorse > 0) process.exit(1)
