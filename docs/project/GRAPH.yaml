@@ -1259,6 +1259,25 @@ nodes:
     approval_required: false
     notes: "Готово 2026-08-08 (D-079). Заведён сразу после Combobox (D-078), по выбору владельца через AskUserQuestion (компонент Menu button, модель Sonnet — стандартный выбор проекта). Реализовано субагентом на Sonnet, результат перепроверен родительской сессией живьём (диф прочитан построчно, все гейты перезапущены, независимый Playwright-скрипт написан заново — 16/16). Архитектурная суть: НАСТОЯЩИЙ roving tabindex (реальные .focus()-вызовы через refs, tabIndex 0/-1) — противоположность виртуальному фокусу Combobox (aria-activedescendant), тот же механизм, что у Tabs. Демо — «Page actions» (Copy link/Print this page/Report an issue), последний пункт реально ведёт на существующий /contact/, не выдуманная фича. Tab закрывает меню и НЕ возвращает фокус на кнопку (в отличие от Escape/Enter) — APG трактует Tab как переход к следующему элементу, не как dismiss-клавишу."
 
+  - id: CN-COMPONENTS-LISTBOX-SELECT
+    title: "Select (listbox) — 9-й компонент библиотеки (CN-COMPONENTS-REST 6/10)"
+    owner: frontend-engineer
+    status: todo
+    depends_on: [CN-COMPONENTS]
+    inputs: [data/a11y/components.json, src/lib/componentsLib.tsx, scripts/audit-own-a11y.mjs, scripts/components.test.mjs]
+    scope: [src/components/library/ListboxSelect.tsx, src/lib/componentsLib.tsx, data/a11y/components.json, scripts/audit-own-a11y.mjs]
+    outputs: [src/components/library/ListboxSelect.tsx]
+    verify:
+      - "npm run audit-a11y — /components/listbox-select/ в постоянном сэмпле, INTERACT открывает popup и аудитирует РАСКРЫТОЕ состояние (role=listbox+role=option); 0 нарушений"
+      - "живой Playwright: ArrowDown/Up двигают реальный DOM-фокус (roving tabindex, тот же механизм, что Menu button) или aria-activedescendant (решение реализации задокументировать явно — родственник Combobox по паттерну, но не editable) без потери выбора, Home/End на первый/последний пункт, Enter/Space выбирает и закрывает popup с фокусом на кнопке, Escape закрывает без изменения выбора, typeahead по первой букве, клик по опции выбирает"
+      - "npm run scripts:test — components.test проходит без изменений в самом тесте"
+      - "npm run typecheck / npm run build / npm run check-links / npm run worker:test / npm run src:test — все зелёные"
+    max_attempts: 3
+    attempts: 1
+    risk: medium
+    approval_required: false
+    notes: "Заведён 2026-08-08 сразу после Menu button (D-079), по выбору владельца через AskUserQuestion (компонент Select/listbox, модель Sonnet). Родственник Combobox (тот же role=listbox popup), но НЕ editable — значит нет причины навязывать виртуальный фокус aria-activedescendant там, где ничего не печатается; решение о механизме фокуса (roving tabindex vs aria-activedescendant) принять по месту и явно задокументировать в шапке файла, сверяя с нативным <select> как честной альтернативой по умолчанию. Данные демо — реальные (D-045/D-047 главнее)."
+
   - id: CN-COMPONENTS-TOOLTIP
     title: "Tooltip — 5-й готовый компонент библиотеки (CN-COMPONENTS-REST 2/10)"
     owner: frontend-engineer
