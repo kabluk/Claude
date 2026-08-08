@@ -75,18 +75,23 @@ nodes:
     notes: "Юр-реквизиты закрыты (D-089); домен — единственное, что осталось от исходного scope узла. Без домена не снять noindex с /imprint/ (эта правка — задача A0-ORIGIN, не эта) и не открыть A0-DEPLOY."
 
   - id: A0-ORIGIN
-    title: Заменить accessatlas.example на реальный домен, снять noindex с Imprint
+    title: "Ребрендинг AccessAtlas→Verscala + реальный домен verscala.com (куплен владельцем 2026-08-08), снять noindex с Imprint"
     owner: frontend-engineer
-    status: blocked
+    status: in_progress
     depends_on: [A0-OWNER-LEGAL]
-    inputs: [src/lib/seo.tsx, scripts/gen-a11y-sitemap.mjs]
-    scope: [src/lib/seo.tsx, scripts/gen-a11y-sitemap.mjs, src/pages/ImprintPage.tsx]
+    inputs: [src/lib/seo.tsx, scripts/gen-a11y-sitemap.mjs, wrangler.jsonc]
+    scope: [src/, scripts/gen-a11y-sitemap.mjs, wrangler.jsonc]
     outputs: []
-    verify: [npm run build, "grep -r accessatlas.example → пусто"]
+    verify:
+      - "grep -r 'accessatlas.example' по src/scripts/wrangler.jsonc → пусто; grep 'AccessAtlas' по dist/ → пусто"
+      - "полный набор гейтов зелёный; dist-дифф до/после объясним только сменой имени/домена/noindex (ничего структурного)"
+      - "/imprint/ индексируем (noindex снят), sitemap на https://verscala.com"
+      - "воркер редеплой с ALLOWED_ORIGIN=https://verscala.com (одобрено владельцем вместе с моделью Sonnet), CORS-заголовок проверен живьём"
     max_attempts: 2
-    attempts: 0
-    risk: low
+    attempts: 1
+    risk: medium
     approval_required: false
+    notes: "Разблокирован 2026-08-08: владелец купил verscala.com на GoDaddy (+M365 Email — ящик info@verscala.com будет создан владельцем позже, Imprint пока остаётся с gmail). Внутреннее имя проекта в docs/project/ НЕ переименовывается (историческая память); ребрендинг касается только user-facing строк (SITE_NAME, JSON-LD, тексты страниц)."
 
   - id: A0-DEPLOY
     title: Cloudflare Pages деплой + автодеплой из CI
