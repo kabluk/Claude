@@ -96,17 +96,22 @@ nodes:
   - id: A0-DEPLOY
     title: Cloudflare Pages деплой + автодеплой из CI
     owner: devops-engineer
-    status: blocked
-    depends_on: [A0-OWNER-LEGAL]
+    status: review
+    depends_on: [A0-ORIGIN]
     inputs: [.github/workflows/ci.yml, docs/deepdive-accessibility-directory.md]
     scope: [.github/workflows/, wrangler/pages config]
     outputs: []
-    verify: ["прод-URL отдаёт 200", "dist/404.html работает", "sitemap.xml доступен"]
+    verify:
+      - "прод-URL отдаёт 200 — ✅ verscala.pages.dev: главная, /imprint/, /scan/, /guides/rgaa-guide/, /reports/jurisdiction-coverage-gap/, /agencies/deque-systems/, /components/data-table/, /wcag/, /sitemap.xml — все 200"
+      - "в живом HTML бренд Verscala, 0 вхождений AccessAtlas, canonical https://verscala.com/ — ✅"
+      - "кастомные домены verscala.com + www привязаны к проекту — ✅ (status pending до перевода NS)"
+      - "ОСТАЁТСЯ: владелец меняет NS на GoDaddy ns73/ns74.domaincontrol.com → arvind/gwen.ns.cloudflare.com; после этого зона active, домены Pages active, сайт на verscala.com"
+      - "НЕ СДЕЛАНО: автодеплой из CI (вторая половина узла) — сейчас деплой ручной (wrangler pages deploy --branch main)"
     max_attempts: 4
-    attempts: 0
+    attempts: 1
     risk: medium
     approval_required: true
-    notes: "approval: создание внешнего ресурса (Pages-проект) и привязка домена. A0-ENRICH/A0-DESC-REST/A0-CI-FIX все done — единственный оставшийся блокер Фазы 0 это A0-OWNER-LEGAL (ввод владельца)"
+    notes: "D-092 (2026-08-08): Pages-проект `verscala` создан, 962 файла задеплоены, домены привязаны. ЛОВУШКА, стоившая ложного «готово»: первый деплой ушёл в PREVIEW (проект создан с production-веткой main, а деплой шёл с git-ветки итерации) — команда рапортовала успех, а боевой URL отдавал 404; починка `--branch main`. DNS: 9 почтовых записей переведены в dns-only (проксирование сломало бы DKIM/M365 — см. D-092), парковочные A GoDaddy заменены на CNAME → verscala.pages.dev (proxied). Узел остаётся `review`: NS у регистратора не переключены + автодеплой из CI не настроен."
 
   - id: A1-SCAN
     title: "Сканер MVP: POST /api/scan (Browser Rendering + axe-core) -> D1, GET /api/scan/:id"

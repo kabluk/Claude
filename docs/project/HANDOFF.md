@@ -54,17 +54,32 @@ CLAUDE.md, именах ресурсов Cloudflare (`accessatlas-worker`, D1
 
 ## Блокеры запуска — что осталось на владельце
 
-`A0-OWNER-LEGAL` ЗАКРЫТ полностью (D-089 реквизиты + D-091 домен). CORS
-воркера уже на verscala.com (D-091, проверено живьём). Остались:
+`A0-OWNER-LEGAL` и `A0-ORIGIN` закрыты. Сайт **задеплоен и живой** на
+`https://verscala.pages.dev` (D-092), `info@verscala.com` в Imprint/Contact.
 
-1. **`A0-DEPLOY`**: approval владельца на создание Cloudflare Pages-проекта +
-   перенаправление DNS verscala.com на Cloudflare (домен куплен на GoDaddy —
-   нужны nameservers/CNAME). После этого `A0-GSC`.
-2. **Resend**: верификация домена verscala.com в Resend теперь ВОЗМОЖНА
-   (блокер D-024 снят) — после неё реальная доставка писем третьим лицам
+1. **NS у регистратора — единственный шаг до боевого домена.** В панели
+   GoDaddy сменить nameservers `ns73/ns74.domaincontrol.com` →
+   **`arvind.ns.cloudflare.com`** + **`gwen.ns.cloudflare.com`**. До этого
+   зона `pending`, кастомные домены Pages `pending`, сайт только на
+   `verscala.pages.dev`. После — сразу `A0-GSC` (Search Console).
+   ⚠ DNS уже подготовлен: 9 почтовых записей переведены в `dns-only`
+   (иначе проксирование сломало бы DKIM/M365 в момент перевода NS, D-092) —
+   не включать проксирование на почтовых записях обратно.
+2. **Автодеплой из CI** — вторая половина `A0-DEPLOY`, НЕ сделана: деплой
+   сейчас ручной (`npx wrangler pages deploy dist --project-name verscala
+   --branch main`; без `--branch main` уйдёт в preview и боевой URL отдаст
+   404 — реальный прецедент D-092).
+3. **Resend**: верификация домена verscala.com теперь ВОЗМОЖНА (блокер
+   D-024 снят) — после неё реальная доставка писем третьим лицам
    (`A2-CLAIM-EMAIL` в прод, `A2-OUTREACH-SEND`).
-3. **Email в Imprint**: владелец создаст `info@verscala.com` (M365 куплен
-   вместе с доменом) и скажет — поменять gmail на него отдельным коммитом.
+
+**Про CF-токены** (стоило нескольких итераций, D-092): права уровня
+аккаунта (Workers/D1/KV/Browser Rendering/Pages) и уровня зон (DNS, Zone)
+живут в РАЗНЫХ политиках одного токена — под ресурсом «Entire Account»
+зонных прав в списке нет вовсе. Проверяй права эмпирически (запрос к
+каждому API), а не по названиям чекбоксов. И не заводи два токена с
+одинаковым именем — секрет от одного при правах у другого выглядит как
+«права не применяются».
 
 Второй блокер на владельце — **Stripe**: `A2-STRIPE-LIVE` ждёт тестового платежа
 на пересозданной Payment Link и реального `STRIPE_WEBHOOK_SECRET` (D-027…D-029).

@@ -2,7 +2,39 @@
 
 Обновлено: 2026-08-08 (см. также подробный legacy-статус: `research/STATE.md`)
 
-## Последнее (2026-08-08, РЕБРЕНДИНГ: AccessAtlas → Verscala, домен verscala.com / D-091)
+## Последнее (2026-08-08, САЙТ ЗАДЕПЛОЕН на Cloudflare Pages / D-092)
+
+**Сайт живой на `https://verscala.pages.dev`** — Pages-проект `verscala`,
+962 файла. Проверено живьём: главная, `/imprint/`, `/scan/`,
+`/guides/rgaa-guide/`, `/reports/jurisdiction-coverage-gap/`,
+`/agencies/deque-systems/`, `/components/data-table/`, `/wcag/`,
+`/sitemap.xml` — все **200**; в HTML бренд Verscala, 0 «AccessAtlas»,
+canonical `https://verscala.com/`.
+
+**Ловушка, поймана живой проверкой:** первый деплой рапортовал успех, но
+боевой URL отдавал **404** — деплой ушёл в preview (проект с
+production-веткой `main`, деплой с git-ветки итерации). Починка
+`--branch main`. Успешный лог деплоя ≠ работающий боевой адрес.
+
+**Критично по DNS:** при импорте из GoDaddy Cloudflare включил
+проксирование на 12 записях, включая DKIM/`autodiscover`/`sip` — это
+сломало бы почту `info@verscala.com` в момент перевода NS. 9 почтовых
+записей переведены в `dns-only` через API и перепроверены. Промежуточно
+сессия ОШИБОЧНО объявила проблему решённой, опираясь на DNS-запрос: у
+зоны в статусе `pending` проксирование в DNS-ответах не видно вовсе.
+Ошибка найдена сверкой с API до перевода NS.
+
+Парковочные A-записи GoDaddy удалены → `CNAME verscala.com →
+verscala.pages.dev` (proxied). Домены `verscala.com` и `www` привязаны к
+проекту, статус `pending`.
+
+**Единственный оставшийся шаг — на владельце:** в GoDaddy сменить
+nameservers `ns73/ns74.domaincontrol.com` → **`arvind.ns.cloudflare.com`**,
+**`gwen.ns.cloudflare.com`**. После этого зона `active`, домены Pages
+`active`, сайт открывается на `verscala.com`. Автодеплой из CI пока НЕ
+настроен — деплой ручной (`wrangler pages deploy dist --branch main`).
+
+## Предыдущее (2026-08-08, РЕБРЕНДИНГ: AccessAtlas → Verscala, домен verscala.com / D-091)
 
 **Публичный бренд теперь — Verscala, домен — verscala.com** (куплен
 владельцем на GoDaddy 2026-08-08, + M365 Email; ящик info@verscala.com

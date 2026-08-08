@@ -12,7 +12,7 @@
 | A0-CI-FIX | Починить CI: недостающие `lint:upl`/`lint:minimize`/`check-links.mjs` (package-lock.json уже добавлен) | devops-engineer | — | **done** |
 | A0-OWNER-LEGAL | Реквизиты Imprint (юрлицо/ФИО, адрес, HR/VAT для DE) + покупка домена | **владелец** | — | **done ПОЛНОСТЬЮ** (D-089 реквизиты: Murman Express Inc, California, на `/imprint/`; D-091 домен: **verscala.com** куплен 2026-08-08 на GoDaddy + M365 Email) |
 | A0-ORIGIN | ~~Заменить accessatlas.example~~ → выполнено как ребрендинг: **AccessAtlas→Verscala** (18 файлов, все user-facing строки) + `verscala.com` в seo/sitemap/wrangler + noindex снят с Imprint (в sitemap теперь 415 URL) | frontend-engineer | A0-OWNER-LEGAL | **done** (D-091, 2026-08-08: субагент Sonnet, независимая проверка родителем, воркер редеплоен — CORS `https://verscala.com` подтверждён живым preflight) |
-| A0-DEPLOY | Конфиг Cloudflare Pages + деплой из CI по push в `accessatlas` | devops-engineer | A0-ORIGIN | **разблокирован** (домен есть; остаётся approval владельца на создание Pages-проекта + DNS verscala.com → Cloudflare) |
+| A0-DEPLOY | Конфиг Cloudflare Pages + деплой из CI по push в `accessatlas` | devops-engineer | A0-ORIGIN | **review** (D-092, 2026-08-08: Pages-проект `verscala` создан, 962 файла задеплоены, живой сайт на `verscala.pages.dev` — все ключевые страницы 200; домены `verscala.com`+`www` привязаны, `pending` до перевода NS. **Осталось:** владелец меняет NS на GoDaddy → `arvind/gwen.ns.cloudflare.com`; автодеплой из CI ещё не настроен — деплой пока ручной) |
 | A0-GSC | Google Search Console: sitemap, мониторинг индексации первую неделю | growth-strategist | A0-DEPLOY | todo |
 
 ## Фаза 1 — Decision Engine
