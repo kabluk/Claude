@@ -64,7 +64,17 @@ const SAMPLE_ROUTES = [
   // действию — клик лишь переносит aria-current на другую уже присутствующую
   // в DOM кнопку, второй "открытый" прогон axe не проверил бы ничего нового,
   // поэтому INTERACT не заведён (CN-COMPONENTS-PAGINATION).
-  '/components/', '/components/accordion/', '/components/tabs/', '/components/modal-dialog/', '/components/toast/', '/components/tooltip/', '/components/breadcrumbs/', '/components/combobox/', '/components/menu-button/', '/components/listbox-select/', '/components/form-field/', '/components/switch/', '/components/pagination/',
+  // data-table демонстрирует сортируемую таблицу, УЖЕ отсортированную по
+  // "Founded" в статическом HTML (initialSort в componentsLib.tsx) — тот же
+  // приём, что у Accordion/Switch/Pagination: интересное состояние (реальный
+  // aria-sort="ascending" на одном <th>) видно без единого клика. Сама
+  // сортировка меняет порядок <tr> в DOM, но не открывает попап и не
+  // раскрывает контент, скрытый до клика (в отличие от
+  // modal/toast/combobox/menu-button/listbox-select) — второй, "открытый"
+  // прогон axe после клика по заголовку не проверил бы ничего нового
+  // (тот же принцип, что у Switch/Pagination выше), поэтому INTERACT для
+  // него не заведён (CN-COMPONENTS-DATA-TABLE).
+  '/components/', '/components/accordion/', '/components/tabs/', '/components/modal-dialog/', '/components/toast/', '/components/tooltip/', '/components/breadcrumbs/', '/components/combobox/', '/components/menu-button/', '/components/listbox-select/', '/components/form-field/', '/components/switch/', '/components/pagination/', '/components/data-table/',
   // CN-RESEARCH (D-071): индекс отчётов + сам отчёт (таблицы-бары, stat-плитки,
   // JSON-LD Dataset/Report) — обе поверхности под постоянным axe-гейтом.
   '/reports/', '/reports/verified-audit-market/',

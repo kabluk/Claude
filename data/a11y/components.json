@@ -377,7 +377,54 @@
         { "bad": "The only difference between on and off is track color, which fails for anyone who can't distinguish those colors (WCAG 1.4.1).", "good": "Move the thumb to a different position (and change color as a bonus, not the only signal) so the state is visible by shape/position too." }
       ]
     },
-    { "slug": "data-table", "name": "Data table", "status": "planned", "pattern": "Table semantics · scope, sortable headers", "summary": "A sortable, semantic table with proper header association and aria-sort, readable cell by cell." },
+    {
+      "slug": "data-table",
+      "name": "Data table",
+      "status": "ready",
+      "pattern": "Table semantics · scope, sortable headers",
+      "impl": "DataTable",
+      "summary": "A sortable, semantic table with proper header association and aria-sort, readable cell by cell.",
+      "keyboard": [
+        {
+          "keys": "Tab / Shift + Tab",
+          "does": "moves between the sortable column-header buttons, and into any interactive content inside the body cells (a link, in the demo) — a real button per header, no arrow-key layer to learn"
+        },
+        {
+          "keys": "Enter or Space",
+          "does": "on a focused column-header button, sorts the table by that column — ascending on the first activation, descending on the next activation of the same column"
+        }
+      ],
+      "screenReader": [
+        "Column headers are announced as their name plus \"button\", so a sortable column reads as an activatable control, not inert text.",
+        "The header a column is currently sorted by is announced with its sort direction (\"ascending\"/\"descending\") via aria-sort; every other header is announced with no sort state at all, not \"not sorted\" — silence there is deliberate, not a gap.",
+        "After a click or Enter/Space on a header, a separate announcement follows — \"Sorted by [column], ascending\" — because aria-sort describes the state, not the moment it changed; without the live sentence, a screen reader user would have to go re-read the header to notice anything happened.",
+        "Each data row is read cell by cell against its column header, the same as any properly marked-up table — row order in that reading matches the order sighted rows are now displayed in."
+      ],
+      "ariaNotes": [
+        "aria-sort goes on the <th>, never on the button inside it — the attribute describes a property of the column (how the table is currently ordered), and the header cell is what states that structurally.",
+        "aria-sort is omitted entirely (not set to \"none\") on any column that is not the current sort key — including one that WAS sorted a moment ago and lost that status when the user sorted by a different column; \"not currently sorted\" is one state, not two, so nothing distinguishes \"never sorted\" from \"sorted, then superseded\".",
+        "Exactly one <th> carries aria-sort with a real value (\"ascending\"/\"descending\") at any time — sorting is single-column here, so a second sorted header would contradict the first.",
+        "The sort control is a real <button> nested inside the <th>, not an onClick handler on the <th> itself — a header cell has no interactive role of its own, so a bare click handler on one is invisible to both the keyboard and a screen reader."
+      ],
+      "pitfalls": [
+        {
+          "bad": "A <div> grid styled to look like a table, or a <th> with a raw onClick and no button inside it.",
+          "good": "Real <table>/<thead>/<tbody>/<tr>/<th scope=\"col\">/<td> markup, with a <button> nested inside each sortable <th> so it is focusable and Enter/Space already work without a hand-written key handler."
+        },
+        {
+          "bad": "Writing aria-sort=\"none\" on every column that has never been the sort key, or leaving a stale aria-sort=\"ascending\" on a header after the user sorted a different column instead.",
+          "good": "Set aria-sort to \"ascending\"/\"descending\" on the one column currently in effect, and simply omit the attribute everywhere else — including a column that was sorted a moment ago and no longer is."
+        },
+        {
+          "bad": "Swapping only a visual sort-arrow icon on click while the underlying row data — and the actual <tr> order in the DOM — stays untouched.",
+          "good": "Re-sort the real data and re-render <tbody> in the new order, so the DOM order a screen reader walks and the order a sighted user scans always agree with each other."
+        },
+        {
+          "bad": "Announcing nothing when sorting happens, leaving a screen reader user to notice the change only by re-reading every row.",
+          "good": "Post a sentence like \"Sorted by Founded, ascending.\" to an always-present role=\"status\"/aria-live=\"polite\" region on every sort, the same live-region shape Toast.tsx already uses for its own announcements."
+        }
+      ]
+    },
     {
       "slug": "form-field",
       "name": "Form field",

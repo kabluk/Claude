@@ -1058,7 +1058,7 @@ nodes:
   - id: CN-COMPONENTS
     title: "Публичная библиотека доступных компонентов (§22) — ПЕРВЫЙ КУСОК: каркас + 3 из 13"
     owner: frontend-engineer
-    status: partial
+    status: done
     depends_on: [CN-TOKENS]
     inputs: [docs/project/DESIGN_CONSTITUTION.md (§22, §24-29, §57), docs/project/domains/design.md, src/pages/GuidePage.tsx, src/pages/WcagCriterionPage.tsx, src/lib/guides.ts, src/lib/wcag.ts]
     scope: [data/a11y/components.json, src/components/library/, src/lib/componentsLib.tsx, src/pages/ComponentsIndexPage.tsx, src/pages/ComponentPage.tsx, src/routes.tsx, src/lib/data.ts, src/components/Layout.tsx, src/pages/GuidesIndexPage.tsx, src/styles.css, scripts/audit-own-a11y.mjs, scripts/gen-a11y-sitemap.mjs, scripts/components.test.mjs]
@@ -1074,24 +1074,24 @@ nodes:
     attempts: 1
     risk: medium
     approval_required: false
-    notes: "Заведён и частично закрыт 2026-08-08 (D-068, четвёртая дизайн-итерация). ПЕРВЫЙ КУСОК по явному требованию владельца: образцовый каркас + 3 фундаментальных компонента (Accordion/aria-expanded, Tabs/roving-tabindex+arrows, Modal/focus-trap+Esc+возврат), а не 13 наспех. Конвенция как guides/wcag: данные в data/a11y/components.json → страницы; готовую страницу имеют только ready-компоненты; код показывается через ?raw-исходник примитива (не дрейфует). Гейт audit-a11y СРАЗУ поймал 3 реальных нарушения (slate-400 2.63:1, scrollable pre без фокуса, opacity-анимация модалки → транзиентный контраст 1.1) — починены (см. D-068). Иконки: введена одна stroke-SVG система (§29). Остаток — узел CN-COMPONENTS-REST."
+    notes: "Заведён и закрыт 2026-08-08 (D-068, четвёртая дизайн-итерация). ПЕРВЫЙ КУСОК по явному требованию владельца: образцовый каркас + 3 фундаментальных компонента (Accordion/aria-expanded, Tabs/roving-tabindex+arrows, Modal/focus-trap+Esc+возврат), а не 13 наспех. Конвенция как guides/wcag: данные в data/a11y/components.json → страницы; готовую страницу имеют только ready-компоненты; код показывается через ?raw-исходник примитива (не дрейфует). Гейт audit-a11y СРАЗУ поймал 3 реальных нарушения (slate-400 2.63:1, scrollable pre без фокуса, opacity-анимация модалки → транзиентный контраст 1.1) — починены (см. D-068). Иконки: введена одна stroke-SVG система (§29). Остаток (узел CN-COMPONENTS-REST) закрыт 2026-08-08 (D-084, Data table, последний из 10) — вся инициатива §22 завершена, библиотека 13/13 готовых компонентов."
 
   - id: CN-COMPONENTS-REST
     title: "Остаток библиотеки §22: 10 компонентов, по одному образцовому за раз"
     owner: frontend-engineer
-    status: todo
+    status: done
     depends_on: [CN-COMPONENTS]
     inputs: [data/a11y/components.json, src/lib/componentsLib.tsx, src/components/library/, docs/project/DESIGN_CONSTITUTION.md (§22)]
     scope: [data/a11y/components.json, src/components/library/, src/lib/componentsLib.tsx, scripts/audit-own-a11y.mjs]
     outputs: [data/a11y/components.json, src/components/library/]
     verify:
-      - "каждый новый компонент: живой пример проходит axe в постоянном audit-a11y + Playwright на его клавиатуру; components.test.mjs зелёный (ready → полный набор §22 + файл реализации)"
-      - "страница появляется ТОЛЬКО когда пример реален (планка та же); planned-запись до тех пор без impl/страницы (R1)"
+      - "каждый новый компонент: живой пример проходит axe в постоянном audit-a11y + Playwright на его клавиатуру; components.test.mjs зелёный (ready → полный набор §22 + файл реализации) — ✅ все 10/10"
+      - "страница появляется ТОЛЬКО когда пример реален (планка та же); planned-запись до тех пор без impl/страницы (R1) — соблюдено на всех 10"
     max_attempts: 3
     attempts: 1
     risk: low
     approval_required: false
-    notes: "Заведён 2026-08-08 (D-068) как явный остаток CN-COMPONENTS. Было 10 компонентов planned. **1/10 закрыт 2026-08-08 (D-070): Toast / status message** (ARIA live-region, role=status/alert) — примитив src/components/library/Toast.tsx, промоушен planned→ready в components.json, INTERACT-гейт в audit-own-a11y (клик [data-a11y-demo-toast], аудит role=alert), components.test усилён; audit-a11y 34-0, живой Playwright 6/6 (role, фокус не украден, live-region до сообщения, reduced-motion→animation:none). Индекс /components/ = 4 ready. Остаётся **9 planned**: Tooltip, Combobox, Menu button, Select(listbox), Breadcrumbs, Pagination, Switch, Data table, Form field. Делать по одному — планка образцовости выше скорости; НЕ заводить страницы-заглушки пачкой."
+    notes: "Готово 2026-08-08. Заведён (D-068) как явный остаток CN-COMPONENTS, было 10 planned. Закрыт последовательно, по одному за раз, каждый — выбор владельца через AskUserQuestion (узел + модель): Toast (D-070) → Tooltip (D-074) → Breadcrumbs (D-077) → Combobox (D-078, Opus, самый рискованный композит) → Menu button (D-079, Sonnet) → Select/listbox (D-080, Sonnet) → Form field (D-081, Sonnet, единственный извлечённый из уже работающего LeadForm.tsx, не написанный с нуля) → Switch (D-082, Sonnet, простейший — ловушка закрыта по конструкции) → Pagination (D-083, Sonnet, не именованный APG-паттерн) → **Data table (D-084, Sonnet, последний — сортировка + aria-sort + live-объявления)**. Библиотека §22 — **13/13 готовых компонентов** (3 исходных Accordion/Tabs/Modal + эти 10). Каждый компонент перепроверен родительской сессией живьём (не по заявлению субагента): диф построчно + полный набор гейтов + независимый Playwright-скрипт, написанный заново, не переиспользованный от субагента. Четыре раза за серию независимая проверка ловила баг в СВОЁМ скрипте, не в компоненте — см. D-079/D-080/D-082/D-083."
 
   - id: CN-RESEARCH
     title: "Честные data-продукты (§23/§45) на уникальных данных — из самого каталога, не бенчмарк чужих сайтов"
@@ -1338,21 +1338,21 @@ nodes:
   - id: CN-COMPONENTS-DATA-TABLE
     title: "Data table — 13-й и ПОСЛЕДНИЙ компонент библиотеки (CN-COMPONENTS-REST 10/10)"
     owner: frontend-engineer
-    status: todo
+    status: done
     depends_on: [CN-COMPONENTS]
     inputs: [data/a11y/components.json, src/lib/componentsLib.tsx, scripts/audit-own-a11y.mjs, scripts/components.test.mjs, src/pages/ReportDocPage.tsx]
     scope: [src/components/library/DataTable.tsx, src/lib/componentsLib.tsx, data/a11y/components.json, scripts/audit-own-a11y.mjs]
     outputs: [src/components/library/DataTable.tsx]
     verify:
-      - "npm run audit-a11y — /components/data-table/ в постоянном сэмпле; если сортировка меняет DOM-порядок строк по клику — решить, нужен ли INTERACT для второго прогона (вероятно нет, т.к. это не попап, но подтвердить); 0 нарушений"
-      - "живой Playwright: реальные <table>/<thead>/<tbody>/<th scope='col'>/<td>, сортируемые заголовки — <button> внутри <th> (не сам <th> кликабелен — сохраняет разметку таблицы валидной), aria-sort ('ascending'/'descending'/'none' — точные строки) синхронно с реальным порядком строк после клика, смена сортировки анонсируется live-областью (aria-live='polite' сообщение вида 'Sorted by X, ascending', не молча), фокус не теряется/не улетает при сортировке, только ОДНА колонка одновременно имеет aria-sort≠none"
-      - "npm run scripts:test — components.test проходит без изменений в самом тесте"
-      - "npm run typecheck / npm run build / npm run check-links / npm run worker:test / npm run src:test — все зелёные"
+      - "npm run audit-a11y — /components/data-table/ в постоянном сэмпле; демо смонтировано уже отсортированным (initialSort), INTERACT не понадобился (сортировка не открывает попап, только переупорядочивает уже присутствующие строки); 45 стр. 0 нарушений — ✅"
+      - "живой Playwright (независимый прогон родительской сессии): 4 th[scope=col], сортирующие кнопки ВНУТРИ th (не сам th кликабелен, 0 onclick на th), реальный порядок строк меняется после клика (сравнение первой ячейки до/после), aria-sort точно 'ascending' затем 'descending' на том же столбце, ровно один th с aria-sort одновременно (сброшен на предыдущем при переключении столбца), live-область содержит непустой текст с названием столбца, фокус остаётся на кликнутой кнопке сортировки — 14/14 проверок ✅, ни одного бага в собственном скрипте на этот раз (впервые в серии)"
+      - "npm run scripts:test — components.test проходит без изменений в самом тесте (37/37) — ✅"
+      - "npm run typecheck / npm run build / npm run check-links / npm run worker:test / npm run src:test — все зелёные (build 448 стр. sitemap 411, check-links 496-0, worker:test 211/211, src:test 20/20) — ✅"
     max_attempts: 3
     attempts: 1
     risk: medium
     approval_required: false
-    notes: "Заведён 2026-08-08 сразу после Pagination (D-083), по выбору владельца через AskUserQuestion (компонент Data table, модель Sonnet — заключительный узел CN-COMPONENTS-REST, все 10 компонентов остатка библиотеки будут done). На сайте уже есть статичная (несортируемая) таблица с scope='row' в ReportDocPage.tsx — сверить конвенцию разметки/стилей таблицы, но сортировка — новая механика, прецедента извлечения нет. После этого узла CN-COMPONENTS-REST закрывается ПОЛНОСТЬЮ (10/10), вся библиотека §22 — 13/13 готовых компонентов."
+    notes: "Готово 2026-08-08 (D-084). Заведён сразу после Pagination (D-083), по выбору владельца через AskUserQuestion (компонент Data table, модель Sonnet). Реализовано субагентом, результат перепроверен родительской сессией живьём. Ключевые решения задокументированы в шапке файла: кнопка ВНУТРИ th, не сам th кликабелен (th не имеет интерактивной роли — bare onClick невидим для клавиатуры/скринридера); aria-sort на th, не на кнопке (описывает свойство столбца, не элемента управления); aria-sort НИКОГДА не пишется явной строкой 'none' — ни для никогда-не-сортированных столбцов, ни для столбца, потерявшего статус сортировки при переключении на другой (единое состояние {key,direction}|undefined, без памяти по столбцам — 'было отсортировано, но сортировка ушла' не отличается от 'сейчас не отсортировано'); реальный порядок строк меняется (сравнение через sortValue, не чтение текста уже отрисованных ячеек); фокус остаётся на кнопке — DOM-элемент не удаляется/не пересоздаётся при сортировке, никакого специального управления фокусом не потребовалось. Данные демо — реальный срез каталога (7 агентств, по одной на страну HQ, agencies.json), не выдумка (D-045/D-047), та же конвенция, что у Combobox/ListboxSelect. **Это последний узел CN-COMPONENTS-REST — 10/10 закрыт, вся библиотека §22 — 13/13 готовых компонентов.**"
 
   - id: CN-COMPONENTS-TOOLTIP
     title: "Tooltip — 5-й готовый компонент библиотеки (CN-COMPONENTS-REST 2/10)"

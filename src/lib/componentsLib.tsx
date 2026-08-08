@@ -14,7 +14,8 @@ import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import componentsData from '@data/a11y/components.json'
 import type { StandardSlug } from '@data/a11y/types'
-import { countries, paths, STANDARDS, standardLabel, tax, type CountryInfo } from '@/lib/data'
+import { agencies, countries, countryByCode, paths, STANDARDS, standardLabel, tax, type CountryInfo } from '@/lib/data'
+import type { Agency } from '@data/a11y/types'
 import { Accordion } from '@/components/library/Accordion'
 import { Tabs } from '@/components/library/Tabs'
 import { Modal } from '@/components/library/Modal'
@@ -27,6 +28,7 @@ import { ListboxSelect } from '@/components/library/ListboxSelect'
 import { FormField } from '@/components/library/FormField'
 import { Switch } from '@/components/library/Switch'
 import { Pagination } from '@/components/library/Pagination'
+import { DataTable, type DataTableColumn } from '@/components/library/DataTable'
 
 import AccordionSrc from '@/components/library/Accordion.tsx?raw'
 import TabsSrc from '@/components/library/Tabs.tsx?raw'
@@ -40,6 +42,7 @@ import ListboxSelectSrc from '@/components/library/ListboxSelect.tsx?raw'
 import FormFieldSrc from '@/components/library/FormField.tsx?raw'
 import SwitchSrc from '@/components/library/Switch.tsx?raw'
 import PaginationSrc from '@/components/library/Pagination.tsx?raw'
+import DataTableSrc from '@/components/library/DataTable.tsx?raw'
 
 export type ComponentStatus = 'ready' | 'planned'
 export interface KeyRow {
@@ -401,6 +404,89 @@ function PaginationDemo() {
   )
 }
 
+// Real catalogue data (D-045/D-047), the same reasoning as Combobox's and
+// ListboxSelect's demos above: a seven-agency slice — one per HQ country,
+// each with a real founding year and a nonzero standards count so every
+// column sorts into a visibly different order — picked from
+// data/a11y/agencies.json rather than invented rows. Sorting is the
+// mechanic under test here, not the data source, but a real slice was no
+// harder to reach for than a fictional one, so it's the real slice.
+const DATA_TABLE_SLUGS = [
+  'deque-systems',
+  'digital-accessibility-centre',
+  'access42',
+  'dmk-ebusiness',
+  'wcag-nl',
+  'crawford-technologies',
+  'vision-australia',
+]
+
+function DataTableDemo() {
+  const rows = DATA_TABLE_SLUGS.map((slug) => agencies.find((a) => a.slug === slug)).filter(
+    (a): a is Agency => a != null,
+  )
+
+  const columns: DataTableColumn<Agency>[] = [
+    {
+      key: 'name',
+      header: 'Agency',
+      sortValue: (a) => a.name,
+      cell: (a) => (
+        <Link className="underline underline-offset-2" to={paths.agency(a.slug)}>
+          {a.name}
+        </Link>
+      ),
+    },
+    {
+      key: 'country',
+      header: 'Country',
+      sortValue: (a) => countryByCode(a.hq.countryCode)?.name ?? a.hq.countryCode,
+      cell: (a) => countryByCode(a.hq.countryCode)?.name ?? a.hq.countryCode,
+    },
+    {
+      key: 'founded',
+      header: 'Founded',
+      sortValue: (a) => a.founded ?? 0,
+      cell: (a) => <span className="num">{a.founded ?? '—'}</span>,
+    },
+    {
+      key: 'standards',
+      header: 'Standards',
+      sortValue: (a) => a.standards.length,
+      cell: (a) => <span className="num">{a.standards.length}</span>,
+    },
+  ]
+
+  return (
+    <div>
+      {/* data-a11y-demo-data-table marks the demo for the permanent axe gate
+          — see scripts/audit-own-a11y.mjs. Unlike Modal/Toast/Combobox/
+          MenuButton/ListboxSelect, sorting reveals no popup and no content
+          hidden until a click; it only reorders rows already fully present
+          in the DOM, so there is nothing an "opened-state" second axe pass
+          would catch that the first pass, run against the page's initial
+          (already-sorted, see initialSort below) HTML, does not. */}
+      <div data-a11y-demo-data-table>
+        <DataTable
+          caption="Accessibility agencies by founding year and standards coverage"
+          columns={columns}
+          rows={rows}
+          getRowId={(a) => a.slug}
+          initialSort={{ key: 'founded', direction: 'ascending' }}
+        />
+      </div>
+      <p className="mt-3 max-w-prose text-xs text-on-surface-variant">
+        Click a column header, or Tab to one and press Enter/Space, to sort by it — ascending first,
+        descending on a second click of the same column. The order of the rows themselves changes, not
+        just an arrow icon; a screen reader hears "Sorted by [column], ascending" each time, and the
+        column currently in effect is the only one carrying aria-sort. Real agencies from this site's own
+        catalogue, one per headquarters country — not a claim that these seven are the field's largest or
+        oldest, just a small, real slice to sort.
+      </p>
+    </div>
+  )
+}
+
 const DEMOS: Record<string, { demo: () => JSX.Element; code: string }> = {
   accordion: {
     code: AccordionSrc,
@@ -481,6 +567,10 @@ const DEMOS: Record<string, { demo: () => JSX.Element; code: string }> = {
   pagination: {
     code: PaginationSrc,
     demo: () => <PaginationDemo />,
+  },
+  'data-table': {
+    code: DataTableSrc,
+    demo: () => <DataTableDemo />,
   },
   breadcrumbs: {
     code: BreadcrumbsSrc,
