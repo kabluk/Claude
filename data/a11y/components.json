@@ -88,7 +88,34 @@
     { "slug": "listbox-select", "name": "Select (listbox)", "status": "planned", "pattern": "Listbox · single/multi select", "summary": "A custom single- or multi-select built on role=listbox when the native <select> cannot be styled to requirements — with the native element as the honest first choice." },
     { "slug": "breadcrumbs", "name": "Breadcrumbs", "status": "planned", "pattern": "Navigation landmark · aria-current", "summary": "A trail of ancestor links in a nav landmark, with aria-current marking the present page." },
     { "slug": "pagination", "name": "Pagination", "status": "planned", "pattern": "Navigation landmark · aria-current=“page”", "summary": "Page-by-page navigation of a long list, with the current page marked and controls that read clearly out of context." },
-    { "slug": "toast", "name": "Toast / status message", "status": "planned", "pattern": "Live region · role=status / role=alert", "summary": "A transient notification announced through a polite or assertive live region without stealing focus." },
+    {
+      "slug": "toast",
+      "name": "Toast / status message",
+      "status": "ready",
+      "pattern": "Live region · role=status / role=alert",
+      "impl": "Toast",
+      "summary": "A transient notification announced through a polite or assertive live region without stealing focus. The ARIA live-region pattern, where the hard part is invisible: the region has to exist before the message does.",
+      "keyboard": [
+        { "keys": "Tab / Shift + Tab", "does": "reaches each visible toast's Dismiss button — toasts do not steal focus, so they sit in the normal tab order" },
+        { "keys": "Enter or Space", "does": "on a focused Dismiss button, removes that toast" }
+      ],
+      "screenReader": [
+        "A polite status (“Changes saved”) is announced at the next natural pause, without interrupting whatever is currently being read.",
+        "An error is announced immediately as an alert, interrupting the current speech because it needs attention now.",
+        "Focus never moves to the toast — the user stays exactly where they were, and the message simply arrives in the background."
+      ],
+      "ariaNotes": [
+        "The live region is rendered from first paint — empty — so assistive tech is already observing it when a message is inserted. A region that mounts together with its first message is frequently not announced at all.",
+        "role=\"status\" carries an implicit aria-live=\"polite\"; role=\"alert\" an implicit aria-live=\"assertive\". Match the politeness to the urgency — assertive is only for things that must interrupt.",
+        "aria-atomic=\"false\" so only the newly added toast is announced, not the whole stack re-read on every change."
+      ],
+      "pitfalls": [
+        { "bad": "The toast element is added to the DOM only when the first message fires.", "good": "Render the empty live region up front and insert only the message text into it — otherwise the very first toast is silent." },
+        { "bad": "Everything uses role=\"alert\", so a routine “saved” message rudely interrupts the screen reader.", "good": "Use role=\"status\" (polite) for success and info; reserve role=\"alert\" (assertive) for errors." },
+        { "bad": "Focus is moved onto the toast so it “gets noticed”.", "good": "Leave focus where it is — a live region announces without stealing focus, which is the entire point of the pattern." },
+        { "bad": "An error toast auto-dismisses after three seconds, before a screen-reader user can read or act on it.", "good": "Let errors persist until dismissed; only auto-clear low-stakes polite messages (WCAG 2.2.1, Timing Adjustable)." }
+      ]
+    },
     { "slug": "switch", "name": "Switch", "status": "planned", "pattern": "Switch · role=switch, aria-checked", "summary": "An on/off toggle distinct from a checkbox, reporting its state as “on” or “off”." },
     { "slug": "data-table", "name": "Data table", "status": "planned", "pattern": "Table semantics · scope, sortable headers", "summary": "A sortable, semantic table with proper header association and aria-sort, readable cell by cell." },
     { "slug": "form-field", "name": "Form field", "status": "planned", "pattern": "Labelling · error text + aria-describedby", "summary": "A labelled input with programmatically associated help and error messages, and errors announced without a focus jump." }

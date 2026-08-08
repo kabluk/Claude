@@ -142,7 +142,10 @@ CF-токеном ИЛИ владелец сам запускает `npm run wor
   `audit-own-a11y.mjs`, открытая модалка тоже (INTERACT-хук); гейт поймал 3
   реальных нарушения — починены. 10 остальных — честный `Planned` без страниц;
   остаток — узел `CN-COMPONENTS-REST` (по одному за раз). Новый гейт —
-  `scripts/components.test.mjs`.
+  `scripts/components.test.mjs`. **1/10 остатка закрыт (D-070, 2026-08-08):
+  Toast / status message** — ARIA live-region (`role=status`/`alert`), примитив
+  `src/components/library/Toast.tsx`, INTERACT-гейт по `role=alert` в
+  `audit-own-a11y.mjs`; индекс `/components/` = 4 ready, осталось 9 planned.
 - **Принята Design Constitution владельца** (D-062, 2026-08-07):
   `docs/project/DESIGN_CONSTITUTION.md` — направляющий документ продукта/
   дизайна (позиционирование Accessibility Intelligence Platform, UX, IA,

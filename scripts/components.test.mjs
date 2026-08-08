@@ -80,3 +80,8 @@ test('the modal open state is audited, not just its static (closed) markup', () 
   const audit = read('scripts/audit-own-a11y.mjs')
   assert.ok(audit.includes("'/components/modal-dialog/':"), 'открытое состояние модалки не подключено к INTERACT в audit-own-a11y.mjs')
 })
+
+test('the toast live (announced) state is audited, not just its empty region', () => {
+  const audit = read('scripts/audit-own-a11y.mjs')
+  assert.ok(audit.includes("'/components/toast/':"), 'анонсированное состояние тоста не подключено к INTERACT в audit-own-a11y.mjs')
+})

@@ -39,6 +39,32 @@ Playwright **20/20** (клавиатура трёх компонентов). С�
 scratchpad `design/components-{index,accordion,tabs,modal}.png`. Схема
 `data/a11y/types.ts` НЕ тронута (типы компонентов локальны в реестре).
 
+## Последнее (2026-08-08, CN-COMPONENTS-REST пункт 1: Toast / D-070)
+
+Библиотека §22 приросла ОДНИМ компонентом — **Toast / status message**
+(ARIA live-region). Промоушен `toast` `planned → ready` в
+`data/a11y/components.json` (полный §22-набор) + `impl` в реестре
+`componentsLib` + примитив `src/components/library/Toast.tsx` (`useToasts` +
+`ToastRegion`). Индекс `/components/` теперь **4 ready** (было 3), 9 planned.
+
+Ключевое поведение: две всегда-смонтированные live-области (`role=alert`
+assertive для ошибок, `role=status` polite для успеха; регионы в DOM с первого
+кадра — иначе первый тост немой), фокус НЕ уводится на тост, политика закрытия
+по WCAG 2.2.1 (ошибка живёт до ручного закрытия, polite авто-исчезает 5с),
+анимация входа transform-only и снимается под `prefers-reduced-motion`.
+
+Постоянный гейт: `/components/toast/` + INTERACT-хук в `audit-own-a11y.mjs`
+(клик `[data-a11y-demo-toast]`, аудит раскрытого `role=alert`);
+`components.test.mjs` усилён проверкой этого подключения.
+
+Верификация: build-a11y **245** / typecheck чисто / worker:test **211** /
+src:test **20** / scripts:test **33** (+2: toast-набор + toast-INTERACT) /
+build **437** стр., sitemap **400** URL / check-links **482**-0 /
+audit-a11y **34**-0 (было 29). Живой Playwright на поведение (role, фокус не
+украден, live-region до первого сообщения, reduced-motion → animation:none) —
+6/6. Скриншот — scratchpad `design/components-toast.png`. Деплой не требуется
+(чистый фронтенд).
+
 ## Последнее (2026-08-07, третья дизайн-итерация, пункт 3: CN-SCAN-PHASES / D-067)
 
 Пофазный прогресс скана реализован в коде целиком; **деплоя воркера НЕ было** —

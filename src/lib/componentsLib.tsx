@@ -15,10 +15,12 @@ import componentsData from '@data/a11y/components.json'
 import { Accordion } from '@/components/library/Accordion'
 import { Tabs } from '@/components/library/Tabs'
 import { Modal } from '@/components/library/Modal'
+import { ToastRegion, useToasts } from '@/components/library/Toast'
 
 import AccordionSrc from '@/components/library/Accordion.tsx?raw'
 import TabsSrc from '@/components/library/Tabs.tsx?raw'
 import ModalSrc from '@/components/library/Modal.tsx?raw'
+import ToastSrc from '@/components/library/Toast.tsx?raw'
 
 export type ComponentStatus = 'ready' | 'planned'
 export interface KeyRow {
@@ -73,6 +75,36 @@ function ModalDemo() {
   )
 }
 
+function ToastDemo() {
+  const { toasts, notify, dismiss } = useToasts()
+  return (
+    <div>
+      <div className="flex flex-wrap gap-2">
+        <button type="button" className="btn" onClick={() => notify('Changes saved.', { tone: 'status' })}>
+          Save changes
+        </button>
+        {/* data-a11y-demo-toast lets the permanent axe gate raise a toast and audit
+            its live state — see scripts/audit-own-a11y.mjs. The error tone persists
+            (no timer), so the audited toast never vanishes mid-run. */}
+        <button
+          type="button"
+          data-a11y-demo-toast
+          className="btn-ghost"
+          onClick={() => notify('Could not save — check your connection and try again.', { tone: 'alert' })}
+        >
+          Trigger an error
+        </button>
+      </div>
+      <p className="mt-3 max-w-prose text-xs text-slate-500">
+        “Save changes” posts a polite status message that clears itself after a few seconds; “Trigger an
+        error” posts an assertive alert that stays until you dismiss it. Neither one moves your focus — the
+        message is announced in the background.
+      </p>
+      <ToastRegion toasts={toasts} onDismiss={dismiss} />
+    </div>
+  )
+}
+
 const DEMOS: Record<string, { demo: () => JSX.Element; code: string }> = {
   accordion: {
     code: AccordionSrc,
@@ -121,6 +153,10 @@ const DEMOS: Record<string, { demo: () => JSX.Element; code: string }> = {
   'modal-dialog': {
     code: ModalSrc,
     demo: () => <ModalDemo />,
+  },
+  toast: {
+    code: ToastSrc,
+    demo: () => <ToastDemo />,
   },
 }
 

@@ -108,6 +108,28 @@ body {
   }
 }
 
+/* Toast entrance (CN-COMPONENTS-REST): a transient message slides up a few
+   pixels — functional (marks a new notification arriving), not decorative.
+   Transform-only, same discipline as the modal: opacity is never animated, so
+   the toast surface is always fully opaque and its text contrast never dips
+   during the transition. Fully removed under prefers-reduced-motion: reduce
+   (§35) — the toast then simply appears, its meaning carried by the live-region
+   role and the text, never by motion. A screen-reader user hears the same
+   announcement either way; the animation is purely for sighted users. */
+@keyframes toast-rise {
+  from {
+    transform: translateY(8px);
+  }
+}
+.toast-item {
+  animation: toast-rise 0.15s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .toast-item {
+    animation: none;
+  }
+}
+
 @layer components {
   .container-page {
     @apply mx-auto w-full max-w-5xl px-4 sm:px-6;

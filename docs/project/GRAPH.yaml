@@ -1068,10 +1068,10 @@ nodes:
       - "каждый новый компонент: живой пример проходит axe в постоянном audit-a11y + Playwright на его клавиатуру; components.test.mjs зелёный (ready → полный набор §22 + файл реализации)"
       - "страница появляется ТОЛЬКО когда пример реален (планка та же); planned-запись до тех пор без impl/страницы (R1)"
     max_attempts: 3
-    attempts: 0
+    attempts: 1
     risk: low
     approval_required: false
-    notes: "Заведён 2026-08-08 (D-068) как явный остаток CN-COMPONENTS. 10 компонентов: Tooltip, Combobox, Menu button, Select(listbox), Breadcrumbs, Pagination, Toast, Switch, Data table, Form field (все уже перечислены как planned в components.json). Делать по одному — планка образцовости выше скорости; НЕ заводить страницы-заглушки пачкой."
+    notes: "Заведён 2026-08-08 (D-068) как явный остаток CN-COMPONENTS. Было 10 компонентов planned. **1/10 закрыт 2026-08-08 (D-070): Toast / status message** (ARIA live-region, role=status/alert) — примитив src/components/library/Toast.tsx, промоушен planned→ready в components.json, INTERACT-гейт в audit-own-a11y (клик [data-a11y-demo-toast], аудит role=alert), components.test усилён; audit-a11y 34-0, живой Playwright 6/6 (role, фокус не украден, live-region до сообщения, reduced-motion→animation:none). Индекс /components/ = 4 ready. Остаётся **9 planned**: Tooltip, Combobox, Menu button, Select(listbox), Breadcrumbs, Pagination, Switch, Data table, Form field. Делать по одному — планка образцовости выше скорости; НЕ заводить страницы-заглушки пачкой."
 
   - id: CN-WCAG22
     title: "Самопроверка сайта до WCAG 2.2 AA (конституция §40): target-size в audit-own-a11y"
