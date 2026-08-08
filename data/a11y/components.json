@@ -316,6 +316,36 @@
     },
     { "slug": "switch", "name": "Switch", "status": "planned", "pattern": "Switch · role=switch, aria-checked", "summary": "An on/off toggle distinct from a checkbox, reporting its state as “on” or “off”." },
     { "slug": "data-table", "name": "Data table", "status": "planned", "pattern": "Table semantics · scope, sortable headers", "summary": "A sortable, semantic table with proper header association and aria-sort, readable cell by cell." },
-    { "slug": "form-field", "name": "Form field", "status": "planned", "pattern": "Labelling · error text + aria-describedby", "summary": "A labelled input with programmatically associated help and error messages, and errors announced without a focus jump." }
+    {
+      "slug": "form-field",
+      "name": "Form field",
+      "status": "ready",
+      "pattern": "Labelling · error text + aria-describedby",
+      "impl": "FormField",
+      "summary": "A labelled input with programmatically associated help and error messages, and errors announced without a focus jump.",
+      "keyboard": [
+        { "keys": "Tab / Shift + Tab", "does": "moves focus onto the control itself — the label is not a separate stop, only the wrapped field is" },
+        { "keys": "Ordinary typing / selection", "does": "behaves exactly as the wrapped native control would on its own; the wrapper adds no keyboard behaviour of its own" }
+      ],
+      "screenReader": [
+        "The label is announced as the field's accessible name because <label htmlFor> targets the control's id directly — visual proximity in the markup is not what creates that association.",
+        "The hint is read as part of the field's description as soon as it exists, before any error is present.",
+        "When an error appears, it is announced immediately as an alert; it does not replace the hint in the field's description — both ids stay joined in aria-describedby, so the next time the field is described (e.g. re-focused), both are read.",
+        "aria-invalid is announced as an invalid entry only while a real error exists; it disappears — not \"becomes false\" — the moment the error clears."
+      ],
+      "ariaNotes": [
+        "label uses htmlFor pointing at the control's id, not implicit wrapping — the association keeps working for control types that don't nest cleanly inside a <label>.",
+        "aria-describedby is the union of the hint id and the error id, joined by a space, never one replacing the other — the most common way real forms break this pattern is losing the hint's aria-describedby the instant the error's takes over, exactly when the hint is needed most.",
+        "aria-invalid is set to true only when an error is actually present; it is omitted the rest of the time, not hardcoded to \"false\" — an explicit false is itself noise some screen readers announce, and it erases the one moment the attribute matters.",
+        "The error text lives in role=\"alert\", so it is announced without moving focus off the field the user is still typing into."
+      ],
+      "pitfalls": [
+        { "bad": "The hint's id is dropped from aria-describedby the moment an error appears.", "good": "Join both ids — [hintId, errorId].filter(Boolean).join(' ') — so the hint stays available exactly when the user needs it most." },
+        { "bad": "aria-invalid=\"false\" is hardcoded on every field, error or not.", "good": "Omit aria-invalid entirely until there is a real error — an explicit \"false\" is noise, and it hides the one moment the attribute is meaningful." },
+        { "bad": "The error message exists in the DOM but nothing points a screen reader at it.", "good": "Give it an id inside aria-describedby (and role=\"alert\", as here) — text that only sits visually near the field is invisible to anyone not looking at the screen." },
+        { "bad": "Focus is moved to the error message, or to the top of the form, when validation fails.", "good": "Leave focus exactly where it was — the field the user is already in — and let role=\"alert\" announce the error in the background." },
+        { "bad": "A label element sits visually above the input with no htmlFor and no id on the input to match it.", "good": "Use <label htmlFor={id}> with a matching id on the control, so screen readers announce the name programmatically, not just sighted users seeing it nearby." }
+      ]
+    }
   ]
 }

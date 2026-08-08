@@ -1281,21 +1281,21 @@ nodes:
   - id: CN-COMPONENTS-FORM-FIELD
     title: "Form field — 10-й компонент библиотеки (CN-COMPONENTS-REST 7/10)"
     owner: frontend-engineer
-    status: todo
+    status: done
     depends_on: [CN-COMPONENTS]
     inputs: [data/a11y/components.json, src/lib/componentsLib.tsx, scripts/audit-own-a11y.mjs, scripts/components.test.mjs, src/components/LeadForm.tsx, src/pages/RequestQuotePage.tsx]
     scope: [src/components/library/FormField.tsx, src/lib/componentsLib.tsx, data/a11y/components.json, scripts/audit-own-a11y.mjs]
     outputs: [src/components/library/FormField.tsx]
     verify:
-      - "npm run audit-a11y — /components/form-field/ в постоянном сэмпле; ошибка появляется по действию пользователя (INTERACT при необходимости) — если пример статичен (ошибка сразу видна), 0 нарушений без раскрытия"
-      - "живой Playwright: label связан с input (htmlFor/id или обёртка), hint связан через aria-describedby ДО появления ошибки, ошибка появляется в aria-describedby ВМЕСТЕ с hint (не вместо, если оба актуальны) или заменяет его — решение задокументировать; aria-invalid=true выставляется только когда есть реальная ошибка; фокус НЕ уводится при появлении ошибки; ошибка анонсируется живой областью (role=alert или aria-live) без кражи фокуса"
-      - "npm run scripts:test — components.test проходит без изменений в самом тесте"
-      - "npm run typecheck / npm run build / npm run check-links / npm run worker:test / npm run src:test — все зелёные"
+      - "npm run audit-a11y — /components/form-field/ в постоянном сэмпле; демо смонтировано touched=true с невалидным значением, ошибка видна статично (INTERACT не потребовался); 42 стр. 0 нарушений — ✅"
+      - "живой Playwright (независимый прогон родительской сессии): label[for] совпадает с id input, клик по label фокусирует поле; ДО ошибки aria-describedby указывает только на hint; ПОСЛЕ появления ошибки aria-describedby содержит ОБА id (hint+error, оба реально существуют в DOM), не заменяет один другим; aria-invalid='true' только при реальной ошибке, после исправления атрибут отсутствует полностью (null, не строка 'false'); ошибка внутри role=alert; фокус НЕ уводится с поля при появлении ошибки — 11/11 проверок ✅"
+      - "npm run scripts:test — components.test проходит без изменений в самом тесте (37/37) — ✅"
+      - "npm run typecheck / npm run build / npm run check-links / npm run worker:test / npm run src:test — все зелёные (build 445 стр. sitemap 408, check-links 493-0, worker:test 211/211, src:test 20/20) — ✅"
     max_attempts: 3
     attempts: 1
     risk: medium
     approval_required: false
-    notes: "Заведён 2026-08-08 сразу после Select/listbox (D-080), по выбору владельца через AskUserQuestion (компонент Form field, модель Sonnet). Прикладной компонент — не композитный виджет уровня Combobox/Menu/Select, но с собственными ловушками (описание ошибки, которое существует в DOM, но не связано aria-describedby; фокус, уводимый на ошибку; aria-invalid, выставленный всегда). Перед реализацией сверить с уже существующими полями форм сайта (LeadForm/RequestQuotePage/ClaimForm — где есть), чтобы демо не изобретало параллельную, несовместимую конвенцию поля ввода."
+    notes: "Готово 2026-08-08 (D-081). CN-COMPONENTS-REST — 7/10 (10 готовых компонентов библиотеки §22 всего: 3 исходных Accordion/Tabs/Modal + 7 из REST). Остаток REST — 3: Pagination, Switch, Data table. Заведён сразу после Select/listbox (D-080), по выбору владельца через AskUserQuestion (компонент Form field, модель Sonnet). Реализовано субагентом, результат перепроверен родительской сессией живьём (диф прочитан построчно, все гейты перезапущены, независимый Playwright — 11/11). Ключевое решение — обобщение уже РАБОТАЮЩЕГО в проде паттерна `Field` из `src/components/LeadForm.tsx` (`/request-quote/`), а не написание с нуля из спецификации (тот же прецедент, что Breadcrumbs, D-077). Два реальных расширения сверх LeadForm: (1) hint и error объединяются в aria-describedby одновременно, не один вместо другого — сам `Field` из LeadForm hint вообще не поддерживал; (2) автоматическое связывание id/aria-invalid/aria-describedby через `cloneElement` на переданный control (тот же приём, что уже в Tooltip.tsx) — LeadForm сейчас повторяет эту проводку вручную на всех 6 полях, FormField закрывает этот пробел по конструкции. LeadForm.tsx НЕ рефакторен на новый компонент — вне scope узла, кандидат для отдельной задачи."
 
   - id: CN-COMPONENTS-TOOLTIP
     title: "Tooltip — 5-й готовый компонент библиотеки (CN-COMPONENTS-REST 2/10)"

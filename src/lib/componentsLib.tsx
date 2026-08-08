@@ -24,6 +24,7 @@ import { Breadcrumbs } from '@/components/library/Breadcrumbs'
 import { Combobox } from '@/components/library/Combobox'
 import { MenuButton, type MenuItemDef } from '@/components/library/MenuButton'
 import { ListboxSelect } from '@/components/library/ListboxSelect'
+import { FormField } from '@/components/library/FormField'
 
 import AccordionSrc from '@/components/library/Accordion.tsx?raw'
 import TabsSrc from '@/components/library/Tabs.tsx?raw'
@@ -34,6 +35,7 @@ import BreadcrumbsSrc from '@/components/library/Breadcrumbs.tsx?raw'
 import ComboboxSrc from '@/components/library/Combobox.tsx?raw'
 import MenuButtonSrc from '@/components/library/MenuButton.tsx?raw'
 import ListboxSelectSrc from '@/components/library/ListboxSelect.tsx?raw'
+import FormFieldSrc from '@/components/library/FormField.tsx?raw'
 
 export type ComponentStatus = 'ready' | 'planned'
 export interface KeyRow {
@@ -273,6 +275,48 @@ function ListboxSelectDemo() {
   )
 }
 
+// A plausible, if synthetic, validation rule (must look like an email) —
+// the UI mechanic being demonstrated is real, the "you must be a valid
+// address" rule is a stand-in, not a claim about any real backend endpoint
+// (D-045-style boundary: no invented catalogue facts, an invented UI rule is
+// fine). Starts already touched with an invalid value, so the error — and
+// the fact that the hint stays put alongside it — is visible in the page's
+// static, no-interaction state (same reasoning as Accordion/Tabs already
+// having an example open by default): no INTERACT hook needed in
+// scripts/audit-own-a11y.mjs, and the a11y gate gets the real thing rather
+// than an idle empty field.
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+function FormFieldDemo() {
+  const [value, setValue] = useState('not-an-email')
+  const [touched, setTouched] = useState(true)
+  const error = touched && !EMAIL_RE.test(value) ? 'Enter a valid email address, like name@example.com.' : undefined
+
+  return (
+    <div className="max-w-sm">
+      <FormField
+        label="Email address"
+        hint="We'll only use this to send your accessibility report."
+        error={error}
+      >
+        <input
+          type="email"
+          inputMode="email"
+          className="input mt-1.5 block w-full"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          onBlur={() => setTouched(true)}
+        />
+      </FormField>
+      <p className="mt-3 max-w-prose text-xs text-on-surface-variant">
+        Clear the field or type a valid address, then tab or click away — the hint never disappears;
+        the error (role="alert") joins it in aria-describedby instead of replacing it, and focus stays
+        on the field the whole time.
+      </p>
+    </div>
+  )
+}
+
 const DEMOS: Record<string, { demo: () => JSX.Element; code: string }> = {
   accordion: {
     code: AccordionSrc,
@@ -341,6 +385,10 @@ const DEMOS: Record<string, { demo: () => JSX.Element; code: string }> = {
   'listbox-select': {
     code: ListboxSelectSrc,
     demo: () => <ListboxSelectDemo />,
+  },
+  'form-field': {
+    code: FormFieldSrc,
+    demo: () => <FormFieldDemo />,
   },
   breadcrumbs: {
     code: BreadcrumbsSrc,

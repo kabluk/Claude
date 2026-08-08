@@ -45,8 +45,11 @@ const SAMPLE_ROUTES = [
   // HTML (панель/таб раскрыты по умолчанию), поэтому аудит страницы проверяет
   // сам виджет. У модалки и тоста живой пример появляется только по действию
   // пользователя — их раскрытое/анонсированное состояние аудитируется отдельно,
-  // см. INTERACT ниже.
-  '/components/', '/components/accordion/', '/components/tabs/', '/components/modal-dialog/', '/components/toast/', '/components/tooltip/', '/components/breadcrumbs/', '/components/combobox/', '/components/menu-button/', '/components/listbox-select/',
+  // см. INTERACT ниже. У form-field демо тоже статично уже показывает ошибку
+  // (поле смонтировано touched=true с невалидным значением) — hint и error
+  // одновременно видны, и связаны в aria-describedby, без единого клика, так
+  // что отдельного INTERACT не требуется (CN-COMPONENTS-FORM-FIELD).
+  '/components/', '/components/accordion/', '/components/tabs/', '/components/modal-dialog/', '/components/toast/', '/components/tooltip/', '/components/breadcrumbs/', '/components/combobox/', '/components/menu-button/', '/components/listbox-select/', '/components/form-field/',
   // CN-RESEARCH (D-071): индекс отчётов + сам отчёт (таблицы-бары, stat-плитки,
   // JSON-LD Dataset/Report) — обе поверхности под постоянным axe-гейтом.
   '/reports/', '/reports/verified-audit-market/',
