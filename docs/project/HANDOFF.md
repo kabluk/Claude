@@ -38,7 +38,7 @@
 Платформа web-доступности (EAA/WCAG/ADA/BFSG/RGAA), развитие
 **Directory → Decision Engine → Lead Marketplace → Vertical SaaS** (VISION.md, D-003).
 
-- **Слой 1, каталог** — построен, готов к деплою, ждёт только владельца.
+- **Слой 1, каталог** — построен и **в проде**: https://verscala.com (D-094).
 - **Слой 2, сканер** — реально задеплоен и работает:
   `https://accessatlas-worker.zincroom.workers.dev` (D-021). Не демо: настоящие
   D1/KV, настоящие находки.
@@ -52,26 +52,27 @@ CLAUDE.md, именах ресурсов Cloudflare (`accessatlas-worker`, D1
 `accessatlas-scans`) сознательно НЕ менялось. Новые user-facing тексты пишут
 «Verscala»; внутренние документы продолжают говорить «AccessAtlas».
 
-## Блокеры запуска — что осталось на владельце
+## 🚀 Сайт в проде: https://verscala.com
 
-`A0-OWNER-LEGAL` и `A0-ORIGIN` закрыты. Сайт **задеплоен и живой** на
-`https://verscala.pages.dev` (D-092), `info@verscala.com` в Imprint/Contact.
+Запущен 2026-08-08 (D-094). Фаза 0 закрыта: `A0-OWNER-LEGAL` → `A0-ORIGIN` →
+`A0-DEPLOY` (основная часть). Зона Cloudflare `active`, сайт и `www` отдают
+200, почта `info@verscala.com` работает (MX Outlook, DKIM резолвится в
+Microsoft — записи держатся `dns-only`, D-092; **не включать проксирование
+на почтовых записях**).
 
-1. **NS у регистратора — единственный шаг до боевого домена.** В панели
-   GoDaddy сменить nameservers `ns73/ns74.domaincontrol.com` →
-   **`arvind.ns.cloudflare.com`** + **`gwen.ns.cloudflare.com`**. До этого
-   зона `pending`, кастомные домены Pages `pending`, сайт только на
-   `verscala.pages.dev`. После — сразу `A0-GSC` (Search Console).
-   ⚠ DNS уже подготовлен: 9 почтовых записей переведены в `dns-only`
-   (иначе проксирование сломало бы DKIM/M365 в момент перевода NS, D-092) —
-   не включать проксирование на почтовых записях обратно.
-2. **Автодеплой из CI** — вторая половина `A0-DEPLOY`, НЕ сделана: деплой
-   сейчас ручной (`npx wrangler pages deploy dist --project-name verscala
-   --branch main`; без `--branch main` уйдёт в preview и боевой URL отдаст
-   404 — реальный прецедент D-092).
-3. **Resend**: верификация домена verscala.com теперь ВОЗМОЖНА (блокер
-   D-024 снят) — после неё реальная доставка писем третьим лицам
-   (`A2-CLAIM-EMAIL` в прод, `A2-OUTREACH-SEND`).
+Деплой сейчас РУЧНОЙ:
+`npx wrangler pages deploy dist --project-name verscala --branch main`
+(без `--branch main` уйдёт в preview, боевой URL отдаст 404 — D-092).
+
+## Что осталось
+
+1. **`A0-GSC`** — Search Console, sitemap (415 URL), мониторинг индексации
+   первую неделю. Разблокирован, очевидный следующий шаг.
+2. **Автодеплой из CI** — вторая половина `A0-DEPLOY`, не сделана.
+3. **Resend**: верификация домена verscala.com теперь возможна (блокер D-024
+   снят) → реальная доставка писем (`A2-CLAIM-EMAIL` в прод,
+   `A2-OUTREACH-SEND`).
+4. **`A2-STRIPE-LIVE`**: ждёт `STRIPE_WEBHOOK_SECRET` от владельца.
 
 **Про CF-токены** (стоило нескольких итераций, D-092): права уровня
 аккаунта (Workers/D1/KV/Browser Rendering/Pages) и уровня зон (DNS, Zone)
@@ -81,10 +82,7 @@ CLAUDE.md, именах ресурсов Cloudflare (`accessatlas-worker`, D1
 одинаковым именем — секрет от одного при правах у другого выглядит как
 «права не применяются».
 
-Второй блокер на владельце — **Stripe**: `A2-STRIPE-LIVE` ждёт тестового платежа
-на пересозданной Payment Link и реального `STRIPE_WEBHOOK_SECRET` (D-027…D-029).
-До этого реальные платежи не обновляют прод-D1. Отдельно: перенос репозитория в
-`kabluk/accessatlas` ждёт GitHub-интеграцию.
+Отдельно: перенос репозитория в `kabluk/accessatlas` ждёт GitHub-интеграцию.
 
 ✅ **`worker:deploy` реально выполнен 2026-08-08 (D-088).** Владелец выдал
 `CLOUDFLARE_API_TOKEN` in-memory прямо в чат (никогда не на диске/в коммите);
@@ -93,10 +91,6 @@ CLAUDE.md, именах ресурсов Cloudflare (`accessatlas-worker`, D1
 прогресс CN-SCAN-PHASES (D-067) оба подтверждены живьём на проде реальными
 сканами (`www.w3.org/WAI/`, `countryCode=DE`) — не по логу деплоя. Детали —
 `DECISIONS.md` D-088, `STATUS.md`.
-
-⚠ `ALLOWED_ORIGIN` в `wrangler.jsonc` остаётся плейсхолдером
-`https://accessatlas.example` — этот деплой НЕ чинит CORS каталога, нужен
-реальный домен (`A0-ORIGIN`/`A0-OWNER-LEGAL`), отдельный блокер.
 
 ## Правила, которые нельзя нарушать
 
@@ -134,7 +128,7 @@ CLAUDE.md, именах ресурсов Cloudflare (`accessatlas-worker`, D1
 |---|---|
 | `STATUS.md` | фактическое состояние, что проверено командами |
 | `DECISIONS.md` | журнал решений, причины и последствия |
-| `GRAPH.yaml` | граф задач; blocked на владельце: `A0-OWNER-LEGAL` → … → `A0-GSC` |
+| `GRAPH.yaml` | граф задач; Фаза 0 закрыта (D-094), следующий свободный узел — `A0-GSC` |
 | `BACKLOG.md` | все фазы; `ROADMAP.md` — критерии выхода фаз |
 | `INTERFACES.md` | контракты API/D1/типов |
 | `domains/backend.md` | реализация сканера, команды деплоя |
@@ -178,8 +172,8 @@ CLAUDE.md, именах ресурсов Cloudflare (`accessatlas-worker`, D1
   5 миграций (`0003`…`0007`) применены на реальной D1, воркер задеплоен.
   Оба долгожданных исправления — пофазный прогресс (D-067) и правовая
   пометка юрисдикции на находке «заявления нет» (D-040) — подтверждены
-  ЖИВЬЁМ на проде реальными сканами, не по логу деплоя. `ALLOWED_ORIGIN`
-  остаётся плейсхолдером — CORS каталога всё ещё блокирован `A0-ORIGIN`.
+  ЖИВЬЁМ на проде реальными сканами, не по логу деплоя. (`ALLOWED_ORIGIN`
+  тогда был плейсхолдером; исправлен на verscala.com в D-091.)
   Секрет использован строго in-memory, ни разу не на диске/в коммите.
 - **Тема ТОЛЬКО светлая** (D-073, 2026-08-08) — прямое указание владельца,
   реверс части D-072 того же дня. `@media (prefers-color-scheme: dark)` в
