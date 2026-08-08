@@ -1,0 +1,85 @@
+name: Deploy to Cloudflare Pages
+
+# Автодеплой каталога (A0-DEPLOY, вторая половина узла — D-099).
+#
+# ДВА ТРИГГЕРА, и это осознанно:
+#  - workflow_dispatch: ручной запуск кнопкой. Работает СЕГОДНЯ, независимо от
+#    того, в какой ветке идёт работа. Рабочая ветка итерации меняется каждую
+#    сессию (claude/accessatlas-*-<suffix>), завязывать деплой на её имя нельзя.
+#  - push в `accessatlas`: стабильная ветка проекта. На 2026-08-08 она отстала
+#    на 121 коммит (в ней ещё «253 agencies, 395 pages») — до её актуализации
+#    этот триггер просто не сработает, и это лучше, чем деплоить старое.
+#
+# ГЛАВНОЕ, ради чего узел вообще заведён (D-098): сборка ОБЯЗАНА получить
+# VITE_SCANNER_API. Это переменная времени сборки; без неё фронтенд молча
+# считает сканер недоступным, и на проде ломается основная функция продукта —
+# ровно это и случилось при ручных деплоях. Здесь она задана явно и не может
+# быть забыта.
+#
+# main НЕ триггерит деплой намеренно: в `main` этого репозитория живёт другой,
+# несвязанный проект.
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [accessatlas]
+
+concurrency:
+  # Параллельные деплои одного проекта Pages наступают друг другу на пятки:
+  # выигрывает не последний коммит, а последний ЗАВЕРШИВШИЙСЯ билд.
+  group: pages-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+
+      # Гейты перед деплоем — не дублирование ci.yml, а защита прода: ci.yml
+      # гоняется на каждый push в любую ветку, а сюда попадает только то, что
+      # реально поедет пользователям. Порядок от дешёвого к дорогому.
+      - run: npm run typecheck
+      - run: npm run src:test
+      - run: npm run scripts:test
+      - run: npm run worker:test
+
+      - name: Build (с адресом сканера — иначе сканер молча отключится, D-098)
+        run: npm run build
+        env:
+          VITE_SCANNER_API: ${{ vars.VITE_SCANNER_API }}
+
+      # Проверка, что адрес сканера реально попал в бандл. Без неё пустая
+      # переменная (не заданная в настройках репозитория) дала бы зелёный
+      # деплой со сломанным сканером — тот самый тихий отказ из D-098.
+      - name: Verify scanner API is wired into the bundle
+        run: |
+          if [ -z "${{ vars.VITE_SCANNER_API }}" ]; then
+            echo "::error::VITE_SCANNER_API не задан (Settings → Secrets and variables → Actions → Variables)."
+            exit 1
+          fi
+          if ! grep -rq "$(echo '${{ vars.VITE_SCANNER_API }}' | sed 's#https\?://##')" dist/assets/; then
+            echo "::error::Адрес сканера не найден в собранном бандле — сканер будет недоступен на проде."
+            exit 1
+          fi
+          echo "✓ адрес сканера присутствует в dist/assets/"
+
+      - run: npm run check-links
+
+      - name: Install Chromium for the accessibility gate
+        run: npx playwright install --with-deps chromium
+      - run: npm run audit-a11y
+
+      - name: Deploy to Cloudflare Pages
+        # --branch main: production-ветка проекта Pages. Без неё деплой уходит в
+        # preview, боевой URL продолжает отдавать старое (реальный прецедент,
+        # D-092 — команда рапортует успех, а сайт не меняется).
+        run: npx wrangler pages deploy dist --project-name verscala --branch main
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
