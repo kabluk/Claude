@@ -39,11 +39,11 @@ export default function ComponentsIndexPage() {
             <li key={c.slug}>
               <Link to={paths.component(c.slug)} className="card h-full">
                 <div className="flex items-center justify-between gap-2">
-                  <h3 className="font-semibold text-[color:var(--color-ink)]">{c.name}</h3>
+                  <h3 className="font-semibold text-[color:var(--color-on-surface)]">{c.name}</h3>
                   <span className="chip chip-success">Ready</span>
                 </div>
-                <p className="mt-1 font-mono text-xs text-slate-500">{c.pattern}</p>
-                <p className="mt-2 text-sm text-slate-600">{c.summary}</p>
+                <p className="mt-1 font-mono text-xs text-on-surface-variant">{c.pattern}</p>
+                <p className="mt-2 text-sm text-on-surface-variant">{c.summary}</p>
               </Link>
             </li>
           ))}
@@ -52,27 +52,27 @@ export default function ComponentsIndexPage() {
 
       <section className="mt-10">
         <h2 className="h2">Planned</h2>
-        <p className="max-w-prose text-sm text-slate-600">
+        <p className="max-w-prose text-sm text-on-surface-variant">
           The library is being built one exemplary component at a time — a page ships only when its
           live example is real and passes the same accessibility bar. These patterns are on the way;
           they are listed here honestly, with no page and no broken link until they are ready.
         </p>
         <ul className="mt-4 grid gap-2 sm:grid-cols-2">
           {planned.map((c) => (
-            <li key={c.slug} className="rounded-xl border border-dashed border-slate-200 p-3">
+            <li key={c.slug} className="rounded-xl border border-dashed border-outline-variant p-3">
               <div className="flex items-center justify-between gap-2">
-                <span className="font-semibold text-slate-500">{c.name}</span>
+                <span className="font-semibold text-on-surface-variant">{c.name}</span>
                 <span className="chip">Planned</span>
               </div>
-              <p className="mt-1 font-mono text-xs text-slate-500">{c.pattern}</p>
+              <p className="mt-1 font-mono text-xs text-on-surface-variant">{c.pattern}</p>
             </li>
           ))}
         </ul>
       </section>
 
-      <div className="mt-10 max-w-3xl rounded-xl border border-indigo-100 bg-[color:var(--color-accent-soft)] p-6">
+      <div className="mt-10 max-w-3xl rounded-xl border border-outline-variant bg-secondary-container p-6">
         <p className="font-semibold">Need the same rigour on your own site?</p>
-        <p className="mt-1 text-sm text-slate-600">
+        <p className="mt-1 text-sm text-on-surface-variant">
           Free instant scan against the automated checks — then compare verified auditors for the
           judgement calls automation cannot make.
         </p>

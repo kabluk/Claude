@@ -106,34 +106,46 @@ const launchOptions = existsSync(PREINSTALLED_CHROMIUM) ? { executablePath: PREI
 const browser = await chromium.launch(launchOptions)
 try {
   const page = await browser.newPage()
-  for (const route of SAMPLE_ROUTES) {
-    const url = base + route
-    if (!existsSync(filePathFor(route))) {
-      results.push({ route, error: 'файл не найден' })
-      continue
-    }
-    await page.goto(url, { waitUntil: 'load' })
-    await page.addScriptTag({ content: AXE_SOURCE })
-    // CN-WCAG22 (§40 конституции): дефолтный axe.run() гоняет все правила,
-    // ВКЛЮЧЁННЫЕ по умолчанию, — а `target-size` (единственное wcag22aa-правило
-    // в axe-core 4.13) поставляется с enabled:false и без явного включения
-    // молча не проверяется. Проверено на axe._audit.rules: без этой строки
-    // самопроверка была «WCAG 2.1 AA + best practices», а не 2.2 AA.
-    // runOnly:{tags} сознательно НЕ используется — он бы отключил
-    // best-practice-правила, которые сейчас тоже держат гейт.
-    const axeResults = await page.evaluate(
-      async () => await window.axe.run(document, { rules: { 'target-size': { enabled: true } } })
-    )
-    results.push({ route, violations: axeResults.violations })
-
-    // Второй прогон по раскрытому состоянию (напр. открытая модалка) — то же
-    // правило target-size, тот же порог serious/critical.
-    if (INTERACT[route]) {
-      await INTERACT[route](page)
-      const openResults = await page.evaluate(
+  // CN-BRANDBOOK (D-072, §28 конституции): тёмная тема — полноценная, а не
+  // бонус, поэтому гейт гоняет ВЕСЬ набор шаблонов в ОБЕИХ темах (light —
+  // дефолт, dark — emulateMedia colorScheme). Сэмплирование dark сознательно
+  // НЕ делается: палитра переключается на уровне токенов :root, и любая
+  // страница может держать цвет, живущий только в одной теме, — цена второго
+  // прохода несколько минут, цена пропущенного контраст-бага — красный WCAG-гейт
+  // у продукта, который сам продаёт проверку доступности. При нарушении в dark
+  // чинить палитру/токены, не проверку.
+  for (const scheme of ['light', 'dark']) {
+    await page.emulateMedia({ colorScheme: scheme })
+    const tag = scheme === 'dark' ? ' [dark]' : ''
+    for (const route of SAMPLE_ROUTES) {
+      const url = base + route
+      if (!existsSync(filePathFor(route))) {
+        results.push({ route: route + tag, error: 'файл не найден' })
+        continue
+      }
+      await page.goto(url, { waitUntil: 'load' })
+      await page.addScriptTag({ content: AXE_SOURCE })
+      // CN-WCAG22 (§40 конституции): дефолтный axe.run() гоняет все правила,
+      // ВКЛЮЧЁННЫЕ по умолчанию, — а `target-size` (единственное wcag22aa-правило
+      // в axe-core 4.13) поставляется с enabled:false и без явного включения
+      // молча не проверяется. Проверено на axe._audit.rules: без этой строки
+      // самопроверка была «WCAG 2.1 AA + best practices», а не 2.2 AA.
+      // runOnly:{tags} сознательно НЕ используется — он бы отключил
+      // best-practice-правила, которые сейчас тоже держат гейт.
+      const axeResults = await page.evaluate(
         async () => await window.axe.run(document, { rules: { 'target-size': { enabled: true } } })
       )
-      results.push({ route: `${route} (open)`, violations: openResults.violations })
+      results.push({ route: route + tag, violations: axeResults.violations })
+
+      // Второй прогон по раскрытому состоянию (напр. открытая модалка) — то же
+      // правило target-size, тот же порог serious/critical.
+      if (INTERACT[route]) {
+        await INTERACT[route](page)
+        const openResults = await page.evaluate(
+          async () => await window.axe.run(document, { rules: { 'target-size': { enabled: true } } })
+        )
+        results.push({ route: `${route} (open)${tag}`, violations: openResults.violations })
+      }
     }
   }
 } finally {
@@ -162,7 +174,7 @@ for (const r of results) {
 }
 
 console.log(
-  `\n${totalViolations === 0 ? '✓' : '⚠'} audit-own-a11y: ${SAMPLE_ROUTES.length} страниц, ${totalViolations} нарушени${totalViolations === 1 ? 'е' : 'й'} (${seriousOrWorse} serious/critical)`
+  `\n${totalViolations === 0 ? '✓' : '⚠'} audit-own-a11y: ${SAMPLE_ROUTES.length} страниц × 2 темы (light+dark), ${totalViolations} нарушени${totalViolations === 1 ? 'е' : 'й'} (${seriousOrWorse} serious/critical)`
 )
 
 if (seriousOrWorse > 0) process.exit(1)

@@ -21,7 +21,7 @@ export default function ContactPage() {
         </p>
         <p>
           <a
-            className="text-lg font-semibold text-[color:var(--color-accent)] underline decoration-slate-300 underline-offset-2 hover:decoration-current"
+            className="text-lg font-semibold text-[color:var(--color-primary)] underline decoration-outline-variant underline-offset-2 hover:decoration-current"
             href={`mailto:${CONTACT_EMAIL}`}
           >
             {CONTACT_EMAIL}

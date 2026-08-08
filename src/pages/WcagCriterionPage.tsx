@@ -53,7 +53,7 @@ export default function WcagCriterionPage() {
         <h2 className="h2">What automation checks</h2>
         {row.axeRules.length > 0 && (
           <>
-            <p className="text-sm text-slate-600">
+            <p className="text-sm text-on-surface-variant">
               {row.axeRules.length === 1 ? 'One axe-core rule tests' : `${row.axeRules.length} axe-core rules test`}{' '}
               failures of this criterion. Our scanner runs {row.axeRules.length === 1 ? 'it' : 'them'} on
               every page it visits:
@@ -68,7 +68,7 @@ export default function WcagCriterionPage() {
           </>
         )}
         {row.ours && ours && (
-          <p className="mt-4 text-sm text-slate-600">
+          <p className="mt-4 text-sm text-on-surface-variant">
             {row.axeRules.length > 0 ? 'On top of axe-core, our' : 'axe-core has no rule for this criterion, so our'}{' '}
             own browser check <code className="chip">{row.ours}</code> {ours.does}.
             {ours.caveat && <> Honest limitation: {ours.caveat}.</>}
@@ -78,7 +78,7 @@ export default function WcagCriterionPage() {
 
       <section className="mt-8 max-w-3xl">
         <h2 className="h2">What automation cannot prove</h2>
-        <p className="text-sm text-slate-600">
+        <p className="text-sm text-on-surface-variant">
           An automated test finds <em>some</em> failures of WCAG {row.wcag}; it cannot confirm the
           criterion is met. Whether the result actually works for people — in context, with real
           content — is a judgement call that needs a human auditor. Nothing on this page is a
@@ -110,9 +110,9 @@ export default function WcagCriterionPage() {
         </section>
       )}
 
-      <div className="mt-10 max-w-3xl rounded-xl border border-indigo-100 bg-[color:var(--color-accent-soft)] p-6">
+      <div className="mt-10 max-w-3xl rounded-xl border border-outline-variant bg-secondary-container p-6">
         <p className="font-semibold">Does your site pass {row.axeRules.length + (row.ours ? 1 : 0) === 1 ? 'this check' : 'these checks'}?</p>
-        <p className="mt-1 text-sm text-slate-600">
+        <p className="mt-1 text-sm text-on-surface-variant">
           Free instant scan. No signup required. WCAG {row.wcag} is one of the criteria it tests.
         </p>
         <Link className="btn mt-4" to={paths.scan()}>

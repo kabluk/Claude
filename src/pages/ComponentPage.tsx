@@ -40,15 +40,15 @@ export default function ComponentPage() {
     >
       <JsonLd data={techArticleLd} />
       <h1 className="h1">{c.name}</h1>
-      <p className="mt-2 font-mono text-sm text-slate-500">{c.pattern}</p>
+      <p className="mt-2 font-mono text-sm text-on-surface-variant">{c.pattern}</p>
       <p className="lede">{c.summary}</p>
 
       <section className="mt-8">
         <h2 className="h2">Live example</h2>
-        <p className="max-w-prose text-sm text-slate-600">
+        <p className="max-w-prose text-sm text-on-surface-variant">
           Real and interactive — use it with the mouse, or Tab to it and use the keys below.
         </p>
-        <div className="mt-4 rounded-xl border border-slate-200 bg-white p-6">
+        <div className="mt-4 rounded-xl border border-outline-variant bg-surface-container-low p-6">
           <Demo />
         </div>
       </section>
@@ -58,10 +58,10 @@ export default function ComponentPage() {
         <table className="w-full border-collapse text-sm">
           <thead>
             <tr>
-              <th scope="col" className="border-b-2 border-slate-200 px-3 py-2 text-left font-semibold">
+              <th scope="col" className="border-b-2 border-outline-variant px-3 py-2 text-left font-semibold">
                 Key
               </th>
-              <th scope="col" className="border-b-2 border-slate-200 px-3 py-2 text-left font-semibold">
+              <th scope="col" className="border-b-2 border-outline-variant px-3 py-2 text-left font-semibold">
                 Action
               </th>
             </tr>
@@ -69,12 +69,12 @@ export default function ComponentPage() {
           <tbody>
             {c.keyboard?.map((k) => (
               <tr key={k.keys}>
-                <td className="border-b border-slate-100 px-3 py-2 align-top">
-                  <kbd className="rounded border border-slate-300 bg-slate-50 px-1.5 py-0.5 font-mono text-xs">
+                <td className="border-b border-outline-variant px-3 py-2 align-top">
+                  <kbd className="rounded border border-outline bg-surface-container-low px-1.5 py-0.5 font-mono text-xs">
                     {k.keys}
                   </kbd>
                 </td>
-                <td className="border-b border-slate-100 px-3 py-2 align-top text-slate-600">{k.does}</td>
+                <td className="border-b border-outline-variant px-3 py-2 align-top text-on-surface-variant">{k.does}</td>
               </tr>
             ))}
           </tbody>
@@ -83,10 +83,10 @@ export default function ComponentPage() {
 
       <section className="mt-8 max-w-3xl">
         <h2 className="h2">Screen reader</h2>
-        <ul className="space-y-2 text-sm text-slate-600">
+        <ul className="space-y-2 text-sm text-on-surface-variant">
           {c.screenReader?.map((s, idx) => (
             <li key={idx} className="flex gap-2">
-              <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-slate-300" />
+              <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-outline" />
               <span>{s}</span>
             </li>
           ))}
@@ -95,10 +95,10 @@ export default function ComponentPage() {
 
       <section className="mt-8 max-w-3xl">
         <h2 className="h2">ARIA notes</h2>
-        <ul className="space-y-2 text-sm text-slate-600">
+        <ul className="space-y-2 text-sm text-on-surface-variant">
           {c.ariaNotes?.map((s, idx) => (
             <li key={idx} className="flex gap-2">
-              <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--color-accent-border)]" />
+              <span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--color-info-border)]" />
               <span>{s}</span>
             </li>
           ))}
@@ -107,7 +107,7 @@ export default function ComponentPage() {
 
       <section className="mt-8">
         <h2 className="h2">Code</h2>
-        <p className="max-w-prose text-sm text-slate-600">
+        <p className="max-w-prose text-sm text-on-surface-variant">
           The real source of the example above — copy it and it works. This is the file that renders
           on this page, so the code and the live example can never drift apart.
         </p>
@@ -120,14 +120,14 @@ export default function ComponentPage() {
         <h2 className="h2">Accessibility pitfalls</h2>
         <ul className="space-y-4">
           {c.pitfalls?.map((p, idx) => (
-            <li key={idx} className="rounded-xl border border-slate-200 p-4">
+            <li key={idx} className="rounded-xl border border-outline-variant p-4">
               <p className="flex gap-2 text-sm">
                 <span className="chip chip-critical shrink-0">Avoid</span>
-                <span className="text-slate-700">{p.bad}</span>
+                <span className="text-on-surface-variant">{p.bad}</span>
               </p>
               <p className="mt-2 flex gap-2 text-sm">
                 <span className="chip chip-success shrink-0">Do</span>
-                <span className="text-slate-700">{p.good}</span>
+                <span className="text-on-surface-variant">{p.good}</span>
               </p>
             </li>
           ))}

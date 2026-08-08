@@ -101,7 +101,7 @@ export default function BfsgCheckPage() {
 
         <section className="mt-12 max-w-3xl">
           <h2 className="h2 mt-0">Warum zuerst die Erklärung zur Barrierefreiheit?</h2>
-          <ul className="mt-3 space-y-3 text-slate-700">
+          <ul className="mt-3 space-y-3 text-on-surface-variant">
             <li>
               <strong>Sie ist gesetzlich verlangt.</strong> Die Anforderungen an die Erklärung stehen
               in <strong>Anlage 3 zu § 14 BFSG</strong> (
@@ -129,7 +129,7 @@ export default function BfsgCheckPage() {
 
           {/* Гарантия против fear-marketing (R1, D-035): границы названы на самой
               странице, а не только в наших документах. */}
-          <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600">
+          <div className="mt-6 rounded-xl border border-outline-variant bg-surface-container-low p-4 text-sm text-on-surface-variant">
             <p>
               <strong>Was wir bewusst nicht tun:</strong> Wir nennen keine Bußgeldhöhen. Sie hängen von
               Umständen ab, die aus einem Scan nicht erkennbar sind — und{' '}
@@ -145,7 +145,7 @@ export default function BfsgCheckPage() {
           <ol className="mt-3 space-y-4">
             <li>
               <h3 className="font-semibold">1. Scannen</h3>
-              <p className="mt-1 text-slate-700">
+              <p className="mt-1 text-on-surface-variant">
                 Bis zu sechs Seiten, automatisch geprüft. Wählen Sie „Deutschland“ (im Formular:
                 „Germany“) als Rechtsordnung — über den Button oben ist sie bereits vorbelegt. Sonst
                 leitet der Scanner die Rechtsordnung aus der Domain ab und kann sie bei{' '}
@@ -158,7 +158,7 @@ export default function BfsgCheckPage() {
             </li>
             <li>
               <h3 className="font-semibold">2. Befund einordnen</h3>
-              <p className="mt-1 text-slate-700">
+              <p className="mt-1 text-on-surface-variant">
                 Fehlt die Erklärung, weist der Bericht die Rechtsgrundlage direkt am Befund aus. Was der
                 Scan abdeckt und was nicht, steht offen auf{' '}
                 <Link className="underline underline-offset-2" to={paths.methodology()}>
@@ -169,7 +169,7 @@ export default function BfsgCheckPage() {
             </li>
             <li>
               <h3 className="font-semibold">3. Prüfstelle beauftragen</h3>
-              <p className="mt-1 text-slate-700">
+              <p className="mt-1 text-on-surface-variant">
                 Für einen belastbaren Nachweis braucht es einen Menschen. Unten stehen {named.length}{' '}
                 Prüfer, die in veröffentlichten deutschen Erklärungen zur Barrierefreiheit namentlich
                 als externe Prüfstelle genannt werden — jeweils mit Link auf das Dokument.
@@ -183,7 +183,7 @@ export default function BfsgCheckPage() {
           {/* Цифры из coverageSummary (посчитано scripts/en301549-coverage.mjs),
               не вписаны руками — иначе страница начала бы врать при следующем
               росте покрытия (тот же приём, что на главной, D-038). */}
-          <p className="mt-2 text-slate-700">
+          <p className="mt-2 text-on-surface-variant">
             Von den {coverageSummary.total} Web-Anforderungen der EN 301 549 — der Norm, auf der die
             Konformitätsvermutung nach § 4 BFSG beruht — prüfen wir {coverageSummary.covered}{' '}
             automatisch. Die übrigen {coverageSummary.total - coverageSummary.covered} hängen an Sinn
@@ -200,7 +200,7 @@ export default function BfsgCheckPage() {
           <h2 className="h2">
             In deutschen Erklärungen zur Barrierefreiheit genannte Prüfer ({named.length})
           </h2>
-          <p className="mt-2 max-w-3xl text-slate-700">
+          <p className="mt-2 max-w-3xl text-on-surface-variant">
             Diese Agenturen haben wir nicht selbst ausgewählt: Sie werden in veröffentlichten
             Erklärungen zur Barrierefreiheit als externe Prüfstelle benannt. Die Quelle steht bei jedem
             Eintrag — prüfen Sie sie nach.
@@ -214,10 +214,10 @@ export default function BfsgCheckPage() {
                       {a.name}
                     </Link>
                   </h3>
-                  <span className="shrink-0 text-xs text-slate-500">{a.hq.city}</span>
+                  <span className="shrink-0 text-xs text-on-surface-variant">{a.hq.city}</span>
                 </div>
                 {a.description.de && (
-                  <p className="mt-1 line-clamp-3 text-sm text-slate-600">{a.description.de}</p>
+                  <p className="mt-1 line-clamp-3 text-sm text-on-surface-variant">{a.description.de}</p>
                 )}
                 <div className="mt-2 flex flex-wrap gap-1.5">
                   {a.certs.some((c) => c.kind === 'bitv-pruefstelle') && (
@@ -229,7 +229,7 @@ export default function BfsgCheckPage() {
                     </span>
                   ))}
                 </div>
-                <p className="mt-2 text-xs text-slate-500">
+                <p className="mt-2 text-xs text-on-surface-variant">
                   Genannt in:{' '}
                   {statementEvidence(a, 'DE').map((e, i) => (
                     <span key={e.url}>
@@ -272,7 +272,7 @@ export default function BfsgCheckPage() {
               немецких агентств цену аудита не публикует — у ifdb опубликован
               SaaS за страницу, у telekom-mms прайс на Business GPT, это не аудит.
               Текст ниже верен ровно до тех пор, пока это так. */}
-          <p className="mt-2 text-slate-700">
+          <p className="mt-2 text-on-surface-variant">
             Wir zeigen keine Preise je Agentur: die meisten veröffentlichen keine, und wir geben auch keine
             Schätzungen ab. Eine belastbare Größenordnung veröffentlicht der BIK-Prüfverbund selbst —{' '}
             <a className="underline underline-offset-2" href={BIK_PRICES_URL} rel="noopener noreferrer">
@@ -292,7 +292,7 @@ export default function BfsgCheckPage() {
                   <Link className="font-medium underline underline-offset-2" to={`/guides/${g.slug}/`}>
                     {g.title}
                   </Link>
-                  <p className="mt-0.5 text-sm text-slate-600">{g.description}</p>
+                  <p className="mt-0.5 text-sm text-on-surface-variant">{g.description}</p>
                 </li>
               ))}
             </ul>

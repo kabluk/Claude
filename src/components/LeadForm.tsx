@@ -196,7 +196,7 @@ export function LeadForm({ scanId }: { scanId?: string }) {
       {stage.kind === 'ready' && (
         <section className="mt-8 max-w-2xl" aria-live="polite">
           <h2 className="h2 mt-0">Agencies that would match</h2>
-          <div className="rounded-md border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-900">
+          <div className="rounded-md border border-[color:var(--color-moderate-border)] bg-[color:var(--color-moderate-soft)] px-4 py-3 text-sm text-[color:var(--color-moderate)]">
             <strong>Not sent yet.</strong> Request routing isn't live on this build — nothing was
             submitted anywhere. This is a preview of who would receive it once the backend
             (<code>POST /api/lead</code>) is connected.
@@ -233,7 +233,7 @@ function Field({
 }) {
   return (
     <div>
-      <label htmlFor={htmlFor} className="block text-sm font-medium text-slate-700">
+      <label htmlFor={htmlFor} className="block text-sm font-medium text-on-surface-variant">
         {label}
       </label>
       {children}

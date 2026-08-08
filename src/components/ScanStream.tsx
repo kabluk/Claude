@@ -46,14 +46,14 @@ function StepIndicator({ status }: { status: StreamStepStatus }) {
   if (status === 'active') {
     return (
       <span className={`${INDICATOR_BASE} border-transparent`} aria-hidden="true">
-        <span className="stream-spinner h-5 w-5 rounded-full border-2 border-[color:var(--color-accent-border)] border-t-[color:var(--color-accent)]" />
+        <span className="stream-spinner h-5 w-5 rounded-full border-2 border-[color:var(--color-info-border)] border-t-[color:var(--color-primary)]" />
       </span>
     )
   }
   // pending
   return (
-    <span className={`${INDICATOR_BASE} border-slate-300 bg-white`} aria-hidden="true">
-      <span className="h-1.5 w-1.5 rounded-full bg-slate-300" />
+    <span className={`${INDICATOR_BASE} border-outline bg-surface`} aria-hidden="true">
+      <span className="h-1.5 w-1.5 rounded-full bg-outline" />
     </span>
   )
 }
@@ -71,13 +71,13 @@ function StreamStepRow({ step, isLast, elapsed }: { step: StreamStep; isLast: bo
     step.status === 'failed'
       ? 'text-[color:var(--color-critical)]'
       : step.status === 'pending'
-        ? 'text-slate-500'
-        : 'text-[color:var(--color-ink)]'
+        ? 'text-on-surface-variant'
+        : 'text-[color:var(--color-on-surface)]'
   return (
     <li className="relative flex gap-3 pb-7 last:pb-0">
       {/* Соединительная линия таймлайна — чистая декорация, aria-hidden. */}
       {!isLast && (
-        <span aria-hidden="true" className="absolute top-6 bottom-1 left-3 w-px -translate-x-1/2 bg-slate-200" />
+        <span aria-hidden="true" className="absolute top-6 bottom-1 left-3 w-px -translate-x-1/2 bg-outline-variant" />
       )}
       <StepIndicator status={step.status} />
       <div className="min-w-0 pt-0.5">
@@ -87,10 +87,10 @@ function StreamStepRow({ step, isLast, elapsed }: { step: StreamStep; isLast: bo
           {elapsed && (
             /* Реальное прошедшее время от серверного createdAt; вне live-региона,
                чтобы скринридер не читал каждый тик. */
-            <span className="num ml-2 font-normal text-slate-500">{elapsed}</span>
+            <span className="num ml-2 font-normal text-on-surface-variant">{elapsed}</span>
           )}
         </p>
-        {step.detail && <p className="mt-1 max-w-prose text-sm text-slate-600">{step.detail}</p>}
+        {step.detail && <p className="mt-1 max-w-prose text-sm text-on-surface-variant">{step.detail}</p>}
       </div>
     </li>
   )

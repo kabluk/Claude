@@ -28,7 +28,7 @@ export default function WcagIndexPage() {
         prove. The remaining {coverageSummary.total - coverageSummary.covered} depend on meaning and
         judgement; no automated page would add anything beyond their name, so they link nowhere.
       </p>
-      <p className="mt-3 text-sm text-slate-600">
+      <p className="mt-3 text-sm text-on-surface-variant">
         How the numbers are derived — and their limits — is documented in{' '}
         <Link className="underline underline-offset-2" to={paths.methodology()}>
           what our scanner checks
@@ -41,7 +41,7 @@ export default function WcagIndexPage() {
           <h2 className="h2">
             {g.key}. {g.title}
           </h2>
-          <p className="max-w-prose text-sm text-slate-600">{g.blurb}</p>
+          <p className="max-w-prose text-sm text-on-surface-variant">{g.blurb}</p>
           <ul className="mt-4 grid gap-1.5 text-sm sm:grid-cols-2">
             {g.rows.map((r) =>
               isCovered(r) ? (
@@ -54,7 +54,7 @@ export default function WcagIndexPage() {
                   </Link>
                 </li>
               ) : (
-                <li key={r.clause} className="text-slate-500">
+                <li key={r.clause} className="text-on-surface-variant">
                   <span className="num">{r.wcag}</span> {r.title}{' '}
                   <span className="text-xs">— manual review only</span>
                 </li>
@@ -68,7 +68,7 @@ export default function WcagIndexPage() {
         <Link className="btn" to={paths.scan()}>
           Scan your website
         </Link>{' '}
-        <span className="ml-2 text-slate-600">
+        <span className="ml-2 text-on-surface-variant">
           Free instant scan against every automated check listed here.
         </span>
       </p>

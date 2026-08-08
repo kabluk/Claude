@@ -61,7 +61,7 @@ export default function AgencyPage() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="h1">{a.name}</h1>
-          {place && <p className="mt-1 text-slate-500">{place}</p>}
+          {place && <p className="mt-1 text-on-surface-variant">{place}</p>}
         </div>
         <a className="btn" href={`https://${a.website}`} target="_blank" rel="noopener noreferrer nofollow">
           Visit website ↗
@@ -86,21 +86,21 @@ export default function AgencyPage() {
           <h2 className="h2 mt-0">Services</h2>
           <div className="flex flex-wrap gap-1.5">
             {a.services.map((s) => (
-              <Link key={s} to={country ? paths.combo(country, s) : paths.service(s)} className="chip hover:border-slate-400">
+              <Link key={s} to={country ? paths.combo(country, s) : paths.service(s)} className="chip hover:border-outline">
                 {serviceLabel(s)}
               </Link>
             ))}
-            {a.services.length === 0 && <p className="text-sm text-slate-500">Pending verification.</p>}
+            {a.services.length === 0 && <p className="text-sm text-on-surface-variant">Pending verification.</p>}
           </div>
 
           <h2 className="h2">Standards</h2>
           <div className="flex flex-wrap gap-1.5">
             {a.standards.map((s) => (
-              <Link key={s} to={paths.standard(s)} className="chip hover:border-slate-400">
+              <Link key={s} to={paths.standard(s)} className="chip hover:border-outline">
                 {standardLabel(s)}
               </Link>
             ))}
-            {a.standards.length === 0 && <p className="text-sm text-slate-500">Pending verification.</p>}
+            {a.standards.length === 0 && <p className="text-sm text-on-surface-variant">Pending verification.</p>}
           </div>
         </section>
 
@@ -108,26 +108,26 @@ export default function AgencyPage() {
           <h2 className="h2 mt-0">Details</h2>
           <dl className="space-y-2 text-sm">
             {a.priceBand && (
-              <div className="flex justify-between gap-4 border-b border-slate-100 pb-2">
-                <dt className="text-slate-500">Typical audit price</dt>
+              <div className="flex justify-between gap-4 border-b border-outline-variant pb-2">
+                <dt className="text-on-surface-variant">Typical audit price</dt>
                 <dd>{priceLabel(a.priceBand)}</dd>
               </div>
             )}
             {a.founded != null && (
-              <div className="flex justify-between gap-4 border-b border-slate-100 pb-2">
-                <dt className="text-slate-500">In business since</dt>
+              <div className="flex justify-between gap-4 border-b border-outline-variant pb-2">
+                <dt className="text-on-surface-variant">In business since</dt>
                 <dd>{a.founded}</dd>
               </div>
             )}
             {a.languages.length > 0 && (
-              <div className="flex justify-between gap-4 border-b border-slate-100 pb-2">
-                <dt className="text-slate-500">Working languages</dt>
+              <div className="flex justify-between gap-4 border-b border-outline-variant pb-2">
+                <dt className="text-on-surface-variant">Working languages</dt>
                 <dd className="uppercase">{a.languages.join(', ')}</dd>
               </div>
             )}
             {a.countriesServed.length > 0 && (
-              <div className="flex justify-between gap-4 border-b border-slate-100 pb-2">
-                <dt className="text-slate-500">Serves</dt>
+              <div className="flex justify-between gap-4 border-b border-outline-variant pb-2">
+                <dt className="text-on-surface-variant">Serves</dt>
                 <dd className="text-right">
                   {a.countriesServed
                     .map((c) =>
@@ -138,13 +138,13 @@ export default function AgencyPage() {
               </div>
             )}
             {a.industries.length > 0 && (
-              <div className="flex justify-between gap-4 border-b border-slate-100 pb-2">
-                <dt className="text-slate-500">Industries</dt>
+              <div className="flex justify-between gap-4 border-b border-outline-variant pb-2">
+                <dt className="text-on-surface-variant">Industries</dt>
                 <dd className="text-right">{a.industries.map((i) => tax.industries[i]?.en ?? i).join(', ')}</dd>
               </div>
             )}
             <div className="flex justify-between gap-4 pb-2">
-              <dt className="text-slate-500">Last verified</dt>
+              <dt className="text-on-surface-variant">Last verified</dt>
               <dd>{a.lastVerified}</dd>
             </div>
           </dl>
@@ -153,13 +153,13 @@ export default function AgencyPage() {
           <ul className="space-y-1 text-sm">
             {a.sourceRefs.map((r) => (
               <li key={r.url}>
-                <a className="text-[color:var(--color-accent)] underline decoration-slate-300 underline-offset-2 hover:decoration-current" href={r.url} target="_blank" rel="noopener noreferrer nofollow">
+                <a className="text-[color:var(--color-primary)] underline decoration-outline-variant underline-offset-2 hover:decoration-current" href={r.url} target="_blank" rel="noopener noreferrer nofollow">
                   {r.label}
                 </a>
               </li>
             ))}
           </ul>
-          <p className="mt-2 text-xs text-slate-500">
+          <p className="mt-2 text-xs text-on-surface-variant">
             Every listing on this site cites where its facts come from. Spotted an error?
             The agency can claim this profile to correct it.
           </p>

@@ -45,7 +45,11 @@ export default function HomePage() {
       {/* 1. Функциональный hero (§7-8, §59): продукт объясняет себя взаимодействием. */}
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-2xl text-center">
-          <h1 className="h1">Check your website accessibility</h1>
+          {/* CN-BRANDBOOK (D-072): mono-чип над заголовком, как в макете. Текст —
+              честный факт (сканер реально гоняет axe против WCAG), а не выдуманная
+              телеметрия «engine active» из макета (инвариант D-035/D-045). */}
+          <p className="chip chip-accent">Automated WCAG scan</p>
+          <h1 className="display mt-4">Check your website accessibility</h1>
           <p className="lede mx-auto">
             Know where your website stands: an instant automated scan against WCAG — including the
             accessibility-statement checks European regulators start with.
@@ -75,7 +79,7 @@ export default function HomePage() {
                 aria-invalid={state.kind === 'error'}
                 className="input min-w-0 flex-1 px-4 py-3 !text-base"
               />
-              <button type="submit" className="btn px-6 py-3 !text-base" disabled={state.kind === 'submitting'}>
+              <button type="submit" className="btn px-6 py-3" disabled={state.kind === 'submitting'}>
                 {state.kind === 'submitting' ? 'Starting scan…' : 'Scan website'}
               </button>
             </div>
@@ -88,9 +92,9 @@ export default function HomePage() {
                 {state.message}
               </p>
             )}
-            <p className="mt-3 text-sm text-slate-500">
+            <p className="mt-3 text-sm text-on-surface-variant">
               Free instant scan. No signup required.{' '}
-              <Link className="underline underline-offset-2 hover:text-slate-700" to={paths.scan()}>
+              <Link className="underline underline-offset-2 hover:text-on-surface" to={paths.scan()}>
                 Advanced options
               </Link>
             </p>
@@ -103,22 +107,22 @@ export default function HomePage() {
         <dl className="mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-6 text-center sm:grid-cols-4">
           {/* flex-col-reverse: число визуально сверху, DOM-порядок dt→dd валиден */}
           <div className="flex flex-col-reverse">
-            <dt className="text-xs font-medium uppercase tracking-wide text-slate-500">Verified agencies</dt>
+            <dt className="label text-on-surface-variant">Verified agencies</dt>
             <dd className="num mt-1 text-2xl font-bold">{agencies.length}</dd>
           </div>
           <div className="flex flex-col-reverse">
-            <dt className="text-xs font-medium uppercase tracking-wide text-slate-500">Countries</dt>
+            <dt className="label text-on-surface-variant">Countries</dt>
             <dd className="num mt-1 text-2xl font-bold">{countries.length}</dd>
           </div>
           <div className="flex flex-col-reverse">
-            <dt className="text-xs font-medium uppercase tracking-wide text-slate-500">Verifiable certifications</dt>
+            <dt className="label text-on-surface-variant">Verifiable certifications</dt>
             <dd className="num mt-1 text-2xl font-bold">{certified}</dd>
           </div>
           <div className="flex flex-col-reverse">
-            <dt className="text-xs font-medium uppercase tracking-wide text-slate-500">EN 301 549 checks</dt>
+            <dt className="label text-on-surface-variant">EN 301 549 checks</dt>
             <dd className="num mt-1 text-2xl font-bold">
               {coverageSummary.covered}
-              <span className="text-base font-medium text-slate-500">/{coverageSummary.total}</span>
+              <span className="text-base font-medium text-on-surface-variant">/{coverageSummary.total}</span>
             </dd>
           </div>
         </dl>
@@ -127,7 +131,7 @@ export default function HomePage() {
       {/* 3+. Каталог и доверие остаются ниже hero — порядок §8. */}
       <section>
         <h2 className="h2">Find a verified audit agency</h2>
-        <p className="max-w-2xl text-sm text-slate-600">
+        <p className="max-w-2xl text-sm text-on-surface-variant">
           When the scan finds work to do, these are the people who fix it: {agencies.length} audit
           and remediation specialists, checked against public sources — no automated «overlay»
           vendors, {certified} with independently verifiable certifications.
@@ -136,7 +140,7 @@ export default function HomePage() {
           {countries.slice(0, 12).map((c) => (
             <Link key={c.code} to={paths.country(c)} className="card tile">
               <span className="font-semibold">{c.name}</span>
-              <span className="num text-sm text-slate-500">{c.count} agencies</span>
+              <span className="num text-sm text-on-surface-variant">{c.count} agencies</span>
             </Link>
           ))}
         </div>
@@ -153,7 +157,7 @@ export default function HomePage() {
         <h2 className="h2">By service</h2>
         <div className="flex flex-wrap gap-2">
           {SERVICES.map((s) => (
-            <Link key={s} to={paths.service(s)} className="chip hover:border-slate-400">
+            <Link key={s} to={paths.service(s)} className="chip hover:border-outline">
               {serviceLabel(s)} · <span className="num">{withService(agencies, s).length}</span>
             </Link>
           ))}
@@ -164,7 +168,7 @@ export default function HomePage() {
         <h2 className="h2">By standard</h2>
         <div className="flex flex-wrap gap-2">
           {STANDARDS.map((s) => (
-            <Link key={s} to={paths.standard(s)} className="chip hover:border-slate-400">
+            <Link key={s} to={paths.standard(s)} className="chip hover:border-outline">
               {standardLabel(s)} · <span className="num">{withStandard(agencies, s).length}</span>
             </Link>
           ))}
@@ -196,8 +200,8 @@ export default function HomePage() {
           Цифры берутся из coverageSummary (данные, посчитанные скриптом), а не
           вписаны руками — иначе при следующем росте покрытия главная бы врала. */}
       <div className="mt-12 grid gap-4 sm:grid-cols-2">
-        <section className="rounded-xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-600">
-          <h2 className="text-base font-semibold text-slate-800">How listings are verified</h2>
+        <section className="rounded-xl border border-outline-variant bg-surface-container-low p-5 text-sm text-on-surface-variant">
+          <h2 className="text-base font-semibold text-on-surface">How listings are verified</h2>
           <p className="mt-2">
             Every agency here is backed by at least one public source — a certification register
             (BIK BITV-Test, IAAP), a government procurement framework, a mandatory accessibility
@@ -207,8 +211,8 @@ export default function HomePage() {
           </p>
         </section>
 
-        <section className="rounded-xl border border-slate-200 bg-slate-50 p-5 text-sm text-slate-600">
-          <h2 className="text-base font-semibold text-slate-800">What a free scan can and can't tell you</h2>
+        <section className="rounded-xl border border-outline-variant bg-surface-container-low p-5 text-sm text-on-surface-variant">
+          <h2 className="text-base font-semibold text-on-surface">What a free scan can and can't tell you</h2>
           <p className="mt-2">
             Our scanner checks {coverageSummary.covered} of the {coverageSummary.total} website
             requirements in EN 301 549 — the standard the European Accessibility Act points to —

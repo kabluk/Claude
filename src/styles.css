@@ -1,68 +1,152 @@
 @import 'tailwindcss';
 
 /* ============================================================================
-   AccessAtlas design tokens (CN-TOKENS, D-063).
-   Источник правды по значениям и назначению: docs/project/domains/design.md.
-   Конституция: §24 (quiet & precise), §25 (типографика), §27 (цвет = состояние
-   раньше бренда), §57 (анти-паттерны: без градиентов, glassmorphism, неона).
+   AccessAtlas design tokens (CN-BRANDBOOK, D-072; ранее CN-TOKENS, D-063).
+   Источник правды по значениям и назначению: docs/project/domains/design.md +
+   docs/project/BRAND_BOOK.md (спецификация, извлечённая из brand book и
+   31 Stitch-макета владельца, upload 2026-08-08).
 
-   Нейтральная база — slate Tailwind (холодный серый со сдвигом оттенка к
-   синему, hue ≈ 257): НЕ переопределяется, используется как есть, чтобы не
-   пересчитывать контраст заново. Здесь объявляется только то, чего в Tailwind
-   нет: один акцент и семантические severity-цвета, согласованные со шкалой
-   impact axe-core (scanner.ts: critical/serious/moderate/minor).
+   Палитра — Material-3-подобная система пар «цвет / on-цвет» из макетов.
+   Значения LIGHT/DARK взяты ИЗ КОДА макетов (не выдуманы); severity-шкала в
+   макетах отсутствует (кроме error) — подобрана в тон обеим темам и посчитана
+   скриптом (scratchpad contrast-d072.mjs): каждая текст-пара ≥ 4.5:1 на
+   background, на surface/card и на своей soft-подложке.
+
+   Принципы D-063 СОХРАНЕНЫ: семантическая severity (1:1 с axe impact),
+   всегда видимый фокус, tabular-nums, контраст-гейт (audit-own-a11y, теперь
+   ОБЕ темы). Заменена палитра/форма, не принципы.
+
+   ПРАВИЛО ТЕМ: компоненты стилизуются ТОЛЬКО токенами. Каждый токен объявлен
+   в @theme (light) и переопределён в dark-блоке ниже. Ни один цвет не живёт
+   только в dark-ветке — dark-блок имеет право лишь переопределять уже
+   объявленное здесь (классическая ошибка тем, D-072).
    ========================================================================== */
 @theme {
-  /* Типографика: гротеск (Inter Variable, self-hosted через @fontsource —
-     без CDN, см. main.tsx) + системный моно-компаньон для кода и селекторов.
-     Кастомный моно-шрифт НЕ вводится сознательно (перфоманс/CSP) — D-063. */
+  /* Типографика: Inter Variable (self-hosted @fontsource, как раньше) +
+     JetBrains Mono Variable (self-hosted, D-072) для UI-лейблов и кода.
+     Brand book визуально называет «Geist», но код ВСЕХ 31 макетов использует
+     Inter — расхождение зафиксировано в D-072, взят Inter. */
   --font-sans: 'Inter Variable', ui-sans-serif, system-ui, sans-serif;
-  --font-mono: ui-monospace, 'SFMono-Regular', 'Menlo', 'Consolas', 'Liberation Mono', monospace;
+  --font-mono:
+    'JetBrains Mono Variable', ui-monospace, 'SFMono-Regular', 'Menlo', 'Consolas', 'Liberation Mono', monospace;
 
-  /* Один сдержанный акцент — индиго. Роль: интерактив, бренд, evidence-бейджи.
-     НЕ используется для severity — там семантические цвета ниже. */
-  --color-accent: #4338ca; /* контраст 7.9:1 на белом, 7.2:1 на -soft */
-  --color-accent-strong: #3730a3; /* hover/active */
-  --color-accent-soft: #eef2ff; /* фоновая подложка */
-  --color-accent-border: #c7d2fe;
+  /* Радиусы brand book: компактные у панелей/карточек (0.125–0.5rem),
+     pill — только кнопки и чипы (rounded-full). */
+  --radius-sm: 0.125rem;
+  --radius-md: 0.25rem;
+  --radius-lg: 0.375rem;
+  --radius-xl: 0.5rem;
 
-  --color-ink: #1e293b; /* основной текст (slate-800) */
+  /* --- Core palette, LIGHT (по умолчанию). Значения из макетов. --- */
+  --color-primary: #4f5bd5;
+  --color-on-primary: #ffffff;
+  --color-primary-hover: #3d49c8; /* hover/active .btn — темнее, контраст растёт */
+  --color-primary-container: #e0e0ff;
+  --color-on-primary-container: #00006e;
+  --color-secondary-container: #e1e0f9;
+  --color-on-secondary-container: #181a2c;
+  --color-background: #ffffff;
+  --color-surface: #fcf8fb;
+  --color-surface-container-low: #f6f2f5;
+  --color-surface-container: #f1edf0;
+  --color-on-surface: #1c1b1f;
+  --color-on-surface-variant: #46464f;
+  --color-outline: #777680;
+  --color-outline-variant: #c7c5d0;
+  --color-error: #ba1a1a;
+  --color-on-error: #ffffff;
+  --color-error-container: #ffdad6;
 
-  /* Severity: семантическая шкала находок сканера + success/info (§27).
-     Пары text/bg/border подобраны так, что text ≥ 4.5:1 и на белом, и на
-     своей soft-подложке (проверяется axe в audit-own-a11y). Цвет никогда не
-     единственный носитель смысла — рядом всегда текстовая метка. */
-  --color-critical: #b91c1c;
-  --color-critical-soft: #fef2f2;
-  --color-critical-border: #fecaca;
-  --color-serious: #9a3412;
-  --color-serious-soft: #fff7ed;
-  --color-serious-border: #fed7aa;
-  --color-moderate: #854d0e;
-  --color-moderate-soft: #fffbeb;
-  --color-moderate-border: #fde68a;
-  --color-minor: #334155;
-  --color-minor-soft: #f1f5f9;
-  --color-minor-border: #e2e8f0;
-  --color-success: #166534;
-  --color-success-soft: #f0fdf4;
-  --color-success-border: #bbf7d0;
-  --color-info: #4338ca;
-  --color-info-soft: #eef2ff;
-  --color-info-border: #c7d2fe;
+  /* Логотип: плашка primary со светлым stroke-глифом карты. В dark плашка —
+     primary-container (#5e6ad2), чтобы глиф ОСТАВАЛСЯ белым, как в макетах. */
+  --color-brand-plate: #4f5bd5;
+  --color-brand-glyph: #ffffff;
+
+  /* Severity: семантическая шкала находок сканера + success/info (§27),
+     1:1 со шкалой impact axe-core (critical/serious/moderate/minor).
+     В макетах этой шкалы нет — подобрана в тон палитре (critical = error
+     family), посчитана скриптом. Цвет никогда не единственный носитель
+     смысла — рядом всегда текстовая метка. */
+  --color-critical: #ba1a1a;
+  --color-critical-soft: #ffedea;
+  --color-critical-border: #ffb4ab;
+  --color-serious: #8f4c00;
+  --color-serious-soft: #ffeedd;
+  --color-serious-border: #ffb875;
+  --color-moderate: #6d5e00;
+  --color-moderate-soft: #fff3c4;
+  --color-moderate-border: #d1c26d;
+  --color-minor: #46464f;
+  --color-minor-soft: #f1edf0;
+  --color-minor-border: #c7c5d0;
+  --color-success: #1f6d42;
+  --color-success-soft: #d9f4e1;
+  --color-success-border: #8fd6ab;
+  --color-info: #4451c8;
+  --color-info-soft: #e0e0ff;
+  --color-info-border: #a9b0f5;
+}
+
+/* --- DARK: переопределение ТЕХ ЖЕ токенов (prefers-color-scheme). Значения
+   core — из dark-макетов; severity — подобраны и посчитаны тем же скриптом.
+   Новые токены здесь объявлять НЕЛЬЗЯ — только переопределять @theme. --- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #bdc2ff;
+    --color-on-primary: #121f8b;
+    --color-primary-hover: #d3d6ff; /* hover светлее: on-primary тёмный, контраст растёт */
+    --color-primary-container: #5e6ad2;
+    --color-on-primary-container: #fdfaff;
+    --color-secondary-container: #3d4285;
+    --color-on-secondary-container: #adb2fd;
+    --color-background: #121315;
+    --color-surface: #121315;
+    --color-surface-container-low: #1b1c1d;
+    --color-surface-container: #1f2021;
+    --color-on-surface: #e3e2e3;
+    --color-on-surface-variant: #c6c5d5;
+    --color-outline: #908f9e;
+    --color-outline-variant: #454652;
+    --color-error: #ffb4ab;
+    --color-on-error: #690005;
+    --color-error-container: #93000a;
+
+    --color-brand-plate: #5e6ad2;
+    --color-brand-glyph: #fdfaff;
+
+    --color-critical: #ffb4ab;
+    --color-critical-soft: #351a18;
+    --color-critical-border: #7e2a24;
+    --color-serious: #ffb875;
+    --color-serious-soft: #332217;
+    --color-serious-border: #7c4a12;
+    --color-moderate: #e0c94d;
+    --color-moderate-soft: #2e2a15;
+    --color-moderate-border: #6d5e00;
+    --color-minor: #c6c5d5;
+    --color-minor-soft: #1f2021;
+    --color-minor-border: #454652;
+    --color-success: #8fd6ab;
+    --color-success-soft: #16291d;
+    --color-success-border: #2c6b45;
+    --color-info: #bdc2ff;
+    --color-info-soft: #252a51;
+    --color-info-border: #3d4285;
+  }
 }
 
 /* Каталог доступности обязан сам быть доступным: видимый фокус везде,
    всегда, одним и тем же кольцом (§24 clear focus states). Никогда не
-   подавляется outline:none без замены. */
+   подавляется outline:none без замены. Цвет — токен: в dark кольцо
+   автоматически светлое (#bdc2ff, 10.9:1 на фоне). */
 :focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-primary);
   outline-offset: 2px;
   border-radius: 2px;
 }
 
 body {
-  @apply bg-white text-[color:var(--color-ink)] font-sans antialiased;
+  @apply bg-background text-on-surface font-sans antialiased;
 }
 
 /* Активный шаг scan-потока (CN-SCAN-STREAM). Вращение — функциональный
@@ -88,10 +172,10 @@ body {
 /* Modal entrance (CN-COMPONENTS): the scrim appears at once and the panel rises
    a few pixels — functional (marks the dialog appearing), not decorative.
    Deliberately transform-only: the panel opacity is never animated, so its
-   white surface is always fully opaque over the dark scrim. Animating the
-   panel's (or the backdrop container's) opacity would composite the panel
-   semi-transparently over the scrim for ~150ms, dropping text contrast to ~1.1
-   — a real, if brief, failure that our own axe gate caught. Fully removed under
+   opaque surface always fully covers the scrim. Animating the panel's (or the
+   backdrop container's) opacity would composite the panel semi-transparently
+   over the scrim for ~150ms, dropping text contrast to ~1.1 — a real, if
+   brief, failure that our own axe gate caught. Fully removed under
    prefers-reduced-motion: reduce (§35); the dialog then simply appears, its
    meaning carried by the role and the focus move, never by motion. */
 @keyframes modal-rise {
@@ -134,24 +218,37 @@ body {
   .container-page {
     @apply mx-auto w-full max-w-5xl px-4 sm:px-6;
   }
+  /* Type-scale brand book (D-072): display-lg 48/52/-0.04em/700 — только hero;
+     .h1 = headline-lg 32/40/-0.02em/600; .h2 = headline-md 24/32/-0.02em/600;
+     body-lg 16/24 (дефолт), body-md 14/20 (text-sm). Новые кегли не заводить
+     без записи в design.md. */
+  .display {
+    @apply text-4xl sm:text-[3rem] sm:leading-[3.25rem] font-bold tracking-[-0.04em];
+  }
   .h1 {
-    @apply text-3xl sm:text-4xl font-bold tracking-tight;
+    @apply text-[2rem] leading-10 font-semibold tracking-[-0.02em];
   }
   .h2 {
-    @apply mt-10 mb-3 text-xl font-semibold tracking-tight;
+    @apply mt-10 mb-3 text-2xl leading-8 font-semibold tracking-[-0.02em];
   }
   .lede {
-    @apply mt-3 max-w-2xl text-base text-slate-600;
+    @apply mt-3 max-w-2xl text-base text-on-surface-variant;
+  }
+  /* label-md brand book: 12px / 500 / tracking 0.05em / uppercase, JetBrains
+     Mono — кнопочные подписи, чипы-метки, mono-подписи секций. */
+  .label {
+    @apply font-mono text-xs font-medium tracking-[0.05em] uppercase;
   }
   /* Числа-метрики: всегда tabular-nums, чтобы колонки цифр не плясали (§25). */
   .num {
     @apply tabular-nums;
   }
   .chip {
-    @apply inline-flex items-center gap-1 rounded-full border border-slate-200 bg-slate-50 px-2.5 py-0.5 text-xs font-medium text-slate-700;
+    /* label-md инлайном: @apply собственных классов в Tailwind v4 нельзя */
+    @apply inline-flex items-center gap-1 rounded-full border border-outline-variant bg-surface-container-low px-2.5 py-0.5 font-mono text-xs font-medium tracking-[0.05em] uppercase text-on-surface-variant;
   }
   .chip-accent {
-    @apply border-[color:var(--color-accent-border)] bg-[color:var(--color-accent-soft)] text-[color:var(--color-accent)];
+    @apply border-transparent bg-secondary-container text-on-secondary-container;
   }
   /* Severity-чипы отчёта сканера — семантика, не бренд (§27). Композиция в
      разметке: class="chip chip-critical". Метка текстом обязательна. */
@@ -176,45 +273,53 @@ body {
   /* использовать как class="chip chip-btn" — Tailwind v4 не даёт @apply
      собственных классов, поэтому композиция в разметке */
   .chip-btn {
-    @apply cursor-pointer select-none transition hover:border-slate-400;
+    @apply cursor-pointer select-none transition hover:border-outline;
   }
   .chip-btn[aria-pressed='true'] {
-    @apply border-[color:var(--color-accent)] bg-[color:var(--color-accent)] text-white;
+    @apply border-[color:var(--color-primary)] bg-primary text-on-primary;
   }
+  /* Карточки: компактные радиусы brand book (rounded-xl = 0.5rem после
+     переопределения), подложка surface-container-low, глубина границей. */
   .card {
-    @apply block rounded-xl border border-slate-200 bg-white p-4 transition hover:border-slate-400 hover:shadow-sm;
+    @apply block rounded-xl border border-outline-variant bg-surface-container-low p-4 transition hover:border-outline hover:shadow-sm;
   }
   /* использовать как class="card tile" */
   .tile {
     @apply flex items-baseline justify-between gap-2;
   }
+  /* Кнопки — pill (brand book), подпись — label-md (JetBrains Mono).
+     Hover = смена цвета токеном, не прозрачности (opacity роняет контраст). */
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-[color:var(--color-accent)] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[color:var(--color-accent-strong)];
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 font-mono text-xs font-medium tracking-[0.05em] uppercase text-on-primary transition hover:bg-primary-hover;
   }
   .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-slate-500;
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-outline px-5 py-2.5 font-mono text-xs font-medium tracking-[0.05em] uppercase text-on-surface transition hover:bg-surface-container;
   }
-  /* Поля форм: единый вид, фокус — глобальное кольцо :focus-visible (не
-     подавляется), плюс смена цвета рамки для mouse-фокуса. */
+  /* Поля форм: pill, как текст-филды макетов; фокус — глобальное кольцо
+     :focus-visible (не подавляется) + смена цвета рамки для mouse-фокуса. */
   .input {
-    @apply rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm text-[color:var(--color-ink)] placeholder:text-slate-400 focus:border-slate-500;
+    @apply rounded-full border border-outline bg-surface px-4 py-2 text-sm text-on-surface placeholder:text-on-surface-variant focus:border-primary;
+  }
+  /* Многострочные поля: pill не годится — компактный радиус brand book. */
+  .input-area {
+    @apply rounded-xl border border-outline bg-surface px-4 py-2 text-sm text-on-surface placeholder:text-on-surface-variant focus:border-primary;
   }
 
   /* Типографика тела гайдов (markdown → HTML без typography-плагина) */
   .prose-guide {
-    @apply text-[0.98rem] leading-relaxed text-slate-700;
+    @apply text-[0.98rem] leading-relaxed text-on-surface-variant;
   }
   .prose-guide h2 {
-    @apply mt-10 mb-3 text-xl font-semibold tracking-tight text-[color:var(--color-ink)];
+    @apply mt-10 mb-3 text-2xl leading-8 font-semibold tracking-[-0.02em] text-on-surface;
   }
   .prose-guide h3 {
-    @apply mt-6 mb-2 text-base font-semibold text-[color:var(--color-ink)];
+    @apply mt-6 mb-2 text-base font-semibold text-on-surface;
   }
   .prose-guide p {
     @apply my-3;
   }
   .prose-guide a {
-    @apply text-[color:var(--color-accent)] underline decoration-slate-300 underline-offset-2 hover:decoration-current;
+    @apply text-primary underline decoration-outline-variant underline-offset-2 hover:decoration-current;
   }
   .prose-guide ul,
   .prose-guide ol {
@@ -227,21 +332,21 @@ body {
     @apply list-decimal;
   }
   .prose-guide strong {
-    @apply font-semibold text-[color:var(--color-ink)];
+    @apply font-semibold text-on-surface;
   }
   .prose-guide table {
     @apply my-4 w-full border-collapse text-sm;
   }
   .prose-guide th {
-    @apply border-b-2 border-slate-200 px-3 py-2 text-left font-semibold;
+    @apply border-b-2 border-outline-variant px-3 py-2 text-left font-semibold;
   }
   .prose-guide td {
-    @apply border-b border-slate-100 px-3 py-2 align-top;
+    @apply border-b border-outline-variant px-3 py-2 align-top;
   }
   .prose-guide blockquote {
-    @apply my-4 border-l-4 border-slate-200 pl-4 text-slate-600 italic;
+    @apply my-4 border-l-4 border-outline-variant pl-4 text-on-surface-variant italic;
   }
   .prose-guide code {
-    @apply rounded bg-slate-100 px-1 py-0.5 font-mono text-[0.85em];
+    @apply rounded-md bg-surface-container px-1 py-0.5 font-mono text-[0.85em];
   }
 }

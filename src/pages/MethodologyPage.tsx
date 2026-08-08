@@ -37,21 +37,21 @@ export default function MethodologyPage() {
         of them a machine can check — and where it stops.
       </p>
 
-      <div className="mt-6 rounded-lg border border-slate-200 p-5">
+      <div className="mt-6 rounded-lg border border-outline-variant p-5">
         <div className="flex flex-wrap items-baseline gap-3">
           <span className="text-4xl font-bold">
             {coverageSummary.covered}/{coverageSummary.total}
           </span>
-          <span className="text-slate-500">requirements checked automatically ({coverageSummary.percent}%)</span>
+          <span className="text-on-surface-variant">requirements checked automatically ({coverageSummary.percent}%)</span>
         </div>
-        <p className="mt-2 max-w-prose text-sm text-slate-600">
+        <p className="mt-2 max-w-prose text-sm text-on-surface-variant">
           «Checked automatically» means a test exists that can find failures of that requirement — it
           does <strong>not</strong> mean conformance is proven. An automated test finds some
           violations; it cannot confirm a requirement is met. No number on this page is a statement
           of conformance, and nothing here is legal advice.
         </p>
         {/* CN-WCAG-PAGES (D-066): вход в per-criterion справочник — анти-orphan. */}
-        <p className="mt-2 max-w-prose text-sm text-slate-600">
+        <p className="mt-2 max-w-prose text-sm text-on-surface-variant">
           Every automated criterion also has its own page naming the exact rules —{' '}
           <a className="underline underline-offset-2" href={paths.wcag()}>
             browse the WCAG criteria reference
@@ -64,14 +64,14 @@ export default function MethodologyPage() {
         <h2 className="h2">By principle</h2>
         <ul className="mt-4 space-y-4">
           {groups.map((g) => (
-            <li key={g.key} className="rounded-lg border border-slate-200 p-4">
+            <li key={g.key} className="rounded-lg border border-outline-variant p-4">
               <div className="flex flex-wrap items-baseline gap-2">
                 <h3 className="text-base font-medium">{g.title}</h3>
-                <span className="text-sm text-slate-500">
+                <span className="text-sm text-on-surface-variant">
                   {g.covered} of {g.total} automated
                 </span>
               </div>
-              <p className="mt-1 max-w-prose text-sm text-slate-600">{g.blurb}</p>
+              <p className="mt-1 max-w-prose text-sm text-on-surface-variant">{g.blurb}</p>
             </li>
           ))}
         </ul>
@@ -79,7 +79,7 @@ export default function MethodologyPage() {
 
       <section className="mt-10">
         <h2 className="h2">Checks that go beyond the technical standard</h2>
-        <p className="max-w-prose text-sm text-slate-600">
+        <p className="max-w-prose text-sm text-on-surface-variant">
           EN 301 549 describes technical accessibility; it says nothing about documents. These duties
           come from the Accessibility Act itself, and in several countries they are the first thing a
           regulator looks at. They are counted separately, not folded into the number above.
@@ -89,7 +89,7 @@ export default function MethodologyPage() {
             <li key={b.label} className="flex flex-wrap items-baseline gap-x-2">
               <span className="chip chip-accent">Automated</span>
               <span>{b.label}</span>
-              <span className="text-slate-500">— {b.basis}</span>
+              <span className="text-on-surface-variant">— {b.basis}</span>
             </li>
           ))}
         </ul>
@@ -97,7 +97,7 @@ export default function MethodologyPage() {
 
       <section className="mt-10">
         <h2 className="h2">Where a person is still needed</h2>
-        <p className="max-w-prose text-sm text-slate-600">
+        <p className="max-w-prose text-sm text-on-surface-variant">
           The remaining {uncovered.length} requirements depend on meaning, context and judgement —
           whether reading order makes sense, whether an error message actually helps, whether a
           gesture has a simple alternative. Some would require typing into your forms, which we
@@ -105,9 +105,9 @@ export default function MethodologyPage() {
         </p>
         <ul className="mt-4 grid gap-1.5 text-sm sm:grid-cols-2">
           {uncovered.map((r) => (
-            <li key={r.clause} className="text-slate-600">
-              <span className="font-medium text-slate-800">{r.title}</span>{' '}
-              <span className="text-xs text-slate-500">(WCAG {r.wcag})</span>
+            <li key={r.clause} className="text-on-surface-variant">
+              <span className="font-medium text-on-surface">{r.title}</span>{' '}
+              <span className="text-xs text-on-surface-variant">(WCAG {r.wcag})</span>
             </li>
           ))}
         </ul>
@@ -126,7 +126,7 @@ export default function MethodologyPage() {
 
       <section className="mt-10">
         <h2 className="h2">Full requirement list</h2>
-        <details className="mt-2 rounded-lg border border-slate-200 p-4">
+        <details className="mt-2 rounded-lg border border-outline-variant p-4">
           <summary className="cursor-pointer text-sm font-medium">
             Show all {coverageSummary.total} chapter 9 requirements
           </summary>
@@ -136,7 +136,7 @@ export default function MethodologyPage() {
                 EN 301 549 chapter 9 requirements and whether our scanner checks them automatically
               </caption>
               <thead>
-                <tr className="border-b border-slate-200">
+                <tr className="border-b border-outline-variant">
                   <th scope="col" className="py-2 pr-3 font-medium">Clause</th>
                   <th scope="col" className="py-2 pr-3 font-medium">WCAG</th>
                   <th scope="col" className="py-2 pr-3 font-medium">Requirement</th>
@@ -148,9 +148,9 @@ export default function MethodologyPage() {
                     читаться как обзор, а не как выгрузка на 50 строк — владелец
                     просил лёгкость. Но список доступен целиком, без «напишите нам». */}
                 {coverageByPrinciple().flatMap((g) => g.rows).map((r) => (
-                  <tr key={r.clause} className="border-b border-slate-100">
-                    <td className="py-2 pr-3 align-top text-slate-500">{r.clause}</td>
-                    <td className="py-2 pr-3 align-top text-slate-500">{r.wcag}</td>
+                  <tr key={r.clause} className="border-b border-outline-variant">
+                    <td className="py-2 pr-3 align-top text-on-surface-variant">{r.clause}</td>
+                    <td className="py-2 pr-3 align-top text-on-surface-variant">{r.wcag}</td>
                     <td className="py-2 pr-3 align-top">
                       {/* Покрытый критерий ведёт на свою страницу (D-066);
                           непокрытый страницы не имеет — порог thin-content. */}
@@ -170,7 +170,7 @@ export default function MethodologyPage() {
               </tbody>
             </table>
           </div>
-          <p className="mt-3 text-xs text-slate-500">Derived from {coverageGeneratedFrom}.</p>
+          <p className="mt-3 text-xs text-on-surface-variant">Derived from {coverageGeneratedFrom}.</p>
         </details>
       </section>
 

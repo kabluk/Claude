@@ -45,7 +45,7 @@ export default function ServicePage() {
             s,
           ).length
           return n > 0 ? (
-            <Link key={c.code} to={paths.combo(c, s)} className="chip hover:border-slate-400">
+            <Link key={c.code} to={paths.combo(c, s)} className="chip hover:border-outline">
               {c.name} · {n}
             </Link>
           ) : null

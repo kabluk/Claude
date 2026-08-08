@@ -51,7 +51,7 @@ export default function ScanPage() {
       </p>
 
       <form onSubmit={handleSubmit} className="mt-6 max-w-xl" noValidate>
-        <label htmlFor="scan-url" className="block text-sm font-medium text-slate-700">
+        <label htmlFor="scan-url" className="block text-sm font-medium text-on-surface-variant">
           Website URL
         </label>
         <div className="mt-1.5 flex flex-wrap gap-2">
@@ -80,9 +80,9 @@ export default function ScanPage() {
         )}
 
         <div className="mt-4">
-          <label htmlFor="scan-country" className="block text-sm font-medium text-slate-700">
+          <label htmlFor="scan-country" className="block text-sm font-medium text-on-surface-variant">
             Which country's rules should we check against?{' '}
-            <span className="font-normal text-slate-500">(optional)</span>
+            <span className="font-normal text-on-surface-variant">(optional)</span>
           </label>
           <select
             id="scan-country"
@@ -99,7 +99,7 @@ export default function ScanPage() {
               </option>
             ))}
           </select>
-          <p id="scan-country-help" className="mt-1.5 max-w-prose text-xs text-slate-500">
+          <p id="scan-country-help" className="mt-1.5 max-w-prose text-xs text-on-surface-variant">
             By default we guess from the domain ending — a <code>.de</code> site is checked against
             German rules. That guess can't work for a <code>.com</code> site, so pick the country you
             serve if you want the legal notes in your report. If you sell across several EU countries,
@@ -115,7 +115,7 @@ export default function ScanPage() {
 
       <section className="mt-10 max-w-2xl">
         <h2 className="h2 mt-0">What this does — and doesn't — do</h2>
-        <ul className="space-y-2 text-sm text-slate-600">
+        <ul className="space-y-2 text-sm text-on-surface-variant">
           <li>We scan the page you submit plus up to 5 linked pages on the same site, live, using a headless browser and axe-core.</li>
           <li>No account or email is required to run a scan.</li>
           <li>Your report is saved so we can show it to you again — reachable only through its private link, never indexed or listed publicly.</li>

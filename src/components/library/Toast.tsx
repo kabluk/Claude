@@ -105,12 +105,12 @@ function ToastItem({ toast, onDismiss }: { toast: ToastMsg; onDismiss: (id: numb
           </svg>
         )}
       </span>
-      <p className="flex-1 text-sm text-[color:var(--color-ink)]">{toast.message}</p>
+      <p className="flex-1 text-sm text-[color:var(--color-on-surface)]">{toast.message}</p>
       <button
         type="button"
         onClick={() => onDismiss(toast.id)}
         aria-label="Dismiss notification"
-        className="shrink-0 rounded-lg p-1 text-slate-500 hover:bg-black/5 hover:text-slate-900"
+        className="shrink-0 rounded-lg p-1 text-on-surface-variant hover:bg-black/5 hover:text-on-surface"
       >
         <svg viewBox="0 0 12 12" aria-hidden="true" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.75">
           <path d="M3 3l6 6M9 3l-6 6" strokeLinecap="round" />

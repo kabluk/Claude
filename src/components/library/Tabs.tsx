@@ -39,7 +39,7 @@ export function Tabs({ tabs, label }: { tabs: TabItem[]; label: string }) {
 
   return (
     <div>
-      <div role="tablist" aria-label={label} onKeyDown={onKeyDown} className="flex flex-wrap gap-1 border-b border-slate-200">
+      <div role="tablist" aria-label={label} onKeyDown={onKeyDown} className="flex flex-wrap gap-1 border-b border-outline-variant">
         {tabs.map((t, i) => {
           const isSel = i === selected
           return (
@@ -57,8 +57,8 @@ export function Tabs({ tabs, label }: { tabs: TabItem[]; label: string }) {
               onClick={() => setSelected(i)}
               className={`-mb-px border-b-2 px-4 py-2 text-sm font-semibold ${
                 isSel
-                  ? 'border-[color:var(--color-accent)] text-[color:var(--color-accent)]'
-                  : 'border-transparent text-slate-600 hover:text-slate-900'
+                  ? 'border-[color:var(--color-primary)] text-[color:var(--color-primary)]'
+                  : 'border-transparent text-on-surface-variant hover:text-on-surface'
               }`}
             >
               {t.label}
@@ -74,7 +74,7 @@ export function Tabs({ tabs, label }: { tabs: TabItem[]; label: string }) {
           aria-labelledby={`${baseId}-tab-${i}`}
           hidden={i !== selected}
           tabIndex={0}
-          className="px-1 py-4 text-sm text-slate-600"
+          className="px-1 py-4 text-sm text-on-surface-variant"
         >
           {t.content}
         </div>

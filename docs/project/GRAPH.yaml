@@ -1035,6 +1035,26 @@ nodes:
     approval_required: false
     notes: "Заведён и закрыт 2026-08-07 одной итерацией с CN-HERO (D-063, первая дизайн-итерация по запросу владельца 'нужно дополнить UX и дизайн'). Решения и обоснования: DECISIONS.md D-063; источник правды системы — docs/project/domains/design.md (палитра hex+назначение, типографика, spacing, фокус, severity-семантика, анти-паттерны §57). База — slate как есть, акцент один #4338ca, severity: critical #b91c1c / serious #9a3412 / moderate #854d0e / minor slate + success/info. Кастомный моно-шрифт сознательно не введён (system-stack), tabular-nums через .num. ReportPage severity-чипы переведены с chip-accent на chip-{impact}."
 
+  - id: CN-BRANDBOOK
+    title: "Применить brand book + Stitch-макеты владельца (D-072): токены обеих тем, JetBrains Mono, pill/компакт-форма, dark полноценно"
+    owner: frontend-engineer
+    status: done
+    depends_on: [CN-TOKENS]
+    inputs: [scratchpad stitch/stitch_premium_web_studio_design (31 макет, code.html+screen.png), docs/project/BRAND_BOOK.md, docs/project/DESIGN_CONSTITUTION.md (§24-29, §28), docs/project/domains/design.md]
+    scope: [src/styles.css, src/main.tsx, src/pages/, src/components/, scripts/audit-own-a11y.mjs, docs/project/BRAND_BOOK.md, docs/project/domains/design.md, package.json]
+    outputs: [src/styles.css, docs/project/BRAND_BOOK.md, docs/project/domains/design.md, scripts/audit-own-a11y.mjs]
+    verify:
+      - "токены обеих тем — точные значения из code.html макетов (не выдуманы); severity-пары подобраны и посчитаны скриптом ≥4.5:1 на background/surface/soft в СВОЕЙ теме — ✅ contrast-d072.mjs, все ok"
+      - "ни один цвет не живёт только в dark-ветке: dark-блок лишь переопределяет @theme; sweep slate/amber/indigo из src/ полный (0 остатков) — ✅"
+      - "audit-own-a11y гоняет ВСЕ шаблоны в ОБЕИХ темах; 36 стр. × 2 = 0 нарушений; dark-проход доказан провал-способным (канарейка → 8 [dark]-маршрутов красные, light нетронут) — ✅"
+      - "Playwright обе темы: hero-сабмит → отчёт (мок форм воркера), фокус-кольцо = primary своей темы, модалка/табы/аккордеон/тост, scan-error — ✅ 16/16"
+      - "полный набор: build-a11y 245 / typecheck / worker:test 211 / src:test 20 / scripts:test 37 / build / check-links 487-0 — ✅"
+    max_attempts: 3
+    attempts: 1
+    risk: medium
+    approval_required: false
+    notes: "Заведён и закрыт 2026-08-08 (D-072) по прямому указанию владельца «Примени brand book и дизайн из этих примеров». Палитра D-063 superseded, принципы сохранены. Спецификация извлечена в BRAND_BOOK.md (сами 8.7MB макетов в репо не тащим). Сознательные отклонения от макетов перечислены в D-072 (Material Symbols/CDN, dark class-toggle, выдуманная телеметрия, фиктивные числа). pitch_deck_* — отдельный артефакт, узел не заводился, todo-строка G-PITCH-DECK в BACKLOG.md ждёт решения владельца о формате."
+
   - id: CN-COMPONENTS
     title: "Публичная библиотека доступных компонентов (§22) — ПЕРВЫЙ КУСОК: каркас + 3 из 13"
     owner: frontend-engineer

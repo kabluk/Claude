@@ -28,7 +28,7 @@ export default function RequestQuotePage() {
 
       <div
         role="note"
-        className="mt-4 max-w-2xl rounded-md border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-600"
+        className="mt-4 max-w-2xl rounded-md border border-outline-variant bg-surface-container-low px-4 py-3 text-sm text-on-surface-variant"
       >
         <strong>Nothing is sent when you submit this form.</strong> Live request routing to
         agencies (email, tracking, responses) isn't connected on this build. Until then, use the{' '}

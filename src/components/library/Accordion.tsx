@@ -40,7 +40,7 @@ export function Accordion({
   }
 
   return (
-    <div className="divide-y divide-slate-200 rounded-xl border border-slate-200">
+    <div className="divide-y divide-outline-variant rounded-xl border border-outline-variant">
       {items.map((item, i) => {
         const expanded = open.has(i)
         const btnId = `${baseId}-h${i}`
@@ -54,14 +54,14 @@ export function Accordion({
                 aria-expanded={expanded}
                 aria-controls={panelId}
                 onClick={() => toggle(i)}
-                className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-semibold text-[color:var(--color-ink)] hover:bg-slate-50"
+                className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left text-sm font-semibold text-[color:var(--color-on-surface)] hover:bg-surface-container"
               >
                 {item.title}
                 <Chevron expanded={expanded} />
               </button>
             </Heading>
             {expanded && (
-              <div id={panelId} role="region" aria-labelledby={btnId} className="px-4 pb-4 text-sm text-slate-600">
+              <div id={panelId} role="region" aria-labelledby={btnId} className="px-4 pb-4 text-sm text-on-surface-variant">
                 {item.content}
               </div>
             )}
@@ -81,7 +81,7 @@ function Chevron({ expanded }: { expanded: boolean }) {
     <svg
       viewBox="0 0 12 12"
       aria-hidden="true"
-      className="h-3 w-3 shrink-0 text-slate-400 transition-transform duration-150 motion-reduce:transition-none"
+      className="h-3 w-3 shrink-0 text-on-surface-variant transition-transform duration-150 motion-reduce:transition-none"
       style={{ transform: expanded ? 'rotate(180deg)' : 'none' }}
       fill="none"
       stroke="currentColor"

@@ -34,7 +34,7 @@ export default function GuidesIndexPage() {
               <h2 className="font-semibold" lang={g.locale}>
                 {g.title}
               </h2>
-              <p className="mt-1 line-clamp-2 text-sm text-slate-600" lang={g.locale}>
+              <p className="mt-1 line-clamp-2 text-sm text-on-surface-variant" lang={g.locale}>
                 {g.description}
               </p>
               <div className="mt-2 flex flex-wrap gap-1.5">
@@ -46,19 +46,19 @@ export default function GuidesIndexPage() {
           )
         })}
       </div>
-      {guides.length === 0 && <p className="mt-6 text-slate-500">Guides are being written.</p>}
+      {guides.length === 0 && <p className="mt-6 text-on-surface-variant">Guides are being written.</p>}
       {/* CN-WCAG-PAGES (D-066) / CN-COMPONENTS (D-068): справочники — часть
           Knowledge-раздела. */}
       <section className="mt-10">
         <h2 className="h2">Reference</h2>
-        <p className="max-w-prose text-sm text-slate-600">
+        <p className="max-w-prose text-sm text-on-surface-variant">
           <Link className="underline underline-offset-2" to="/wcag/">
             WCAG success criteria: what automation can check
           </Link>{' '}
           — per-criterion pages naming the exact axe-core rules and browser checks our scanner runs,
           and what still needs a human auditor.
         </p>
-        <p className="mt-2 max-w-prose text-sm text-slate-600">
+        <p className="mt-2 max-w-prose text-sm text-on-surface-variant">
           <Link className="underline underline-offset-2" to="/components/">
             Accessible component library
           </Link>{' '}

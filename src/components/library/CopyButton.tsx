@@ -47,7 +47,7 @@ export function CopyButton({ text }: { text: string }) {
       <button
         type="button"
         onClick={onClick}
-        className="inline-flex items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-2.5 py-1 text-xs font-semibold text-slate-700 hover:border-slate-500"
+        className="inline-flex items-center gap-1.5 rounded-lg border border-outline bg-surface px-2.5 py-1 text-xs font-semibold text-on-surface-variant hover:border-outline"
       >
         <svg viewBox="0 0 14 14" aria-hidden="true" className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.5">
           {copied ? (

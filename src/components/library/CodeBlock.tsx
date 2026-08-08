@@ -6,9 +6,9 @@ import { CopyButton } from './CopyButton'
 // sync with the live example above it.
 export function CodeBlock({ code, label }: { code: string; label?: string }) {
   return (
-    <figure className="overflow-hidden rounded-xl border border-slate-200">
-      <figcaption className="flex items-center justify-between gap-3 border-b border-slate-200 bg-slate-50 px-3 py-2">
-        <span className="font-mono text-xs text-slate-500">{label ?? 'Source'}</span>
+    <figure className="overflow-hidden rounded-xl border border-outline-variant">
+      <figcaption className="flex items-center justify-between gap-3 border-b border-outline-variant bg-surface-container-low px-3 py-2">
+        <span className="font-mono text-xs text-on-surface-variant">{label ?? 'Source'}</span>
         <CopyButton text={code} />
       </figcaption>
       {/* tabIndex 0 gives keyboard users access to the horizontal scroll of a
@@ -18,9 +18,9 @@ export function CodeBlock({ code, label }: { code: string; label?: string }) {
         tabIndex={0}
         role="group"
         aria-label={`${label ?? 'Source'} code`}
-        className="overflow-x-auto bg-white p-4 text-[0.8rem] leading-relaxed"
+        className="overflow-x-auto bg-surface p-4 text-[0.8rem] leading-relaxed"
       >
-        <code className="font-mono text-slate-800">{code}</code>
+        <code className="font-mono text-on-surface">{code}</code>
       </pre>
     </figure>
   )

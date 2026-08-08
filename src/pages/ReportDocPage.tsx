@@ -13,10 +13,10 @@ import { reportBySlug, stats } from '@/lib/reports'
 
 function StatTile({ value, label, note }: { value: string | number; label: string; note?: string }) {
   return (
-    <div className="rounded-xl border border-slate-200 bg-white p-4">
-      <div className="num text-2xl font-bold text-[color:var(--color-ink)]">{value}</div>
-      <div className="mt-1 text-sm font-medium text-slate-700">{label}</div>
-      {note && <div className="mt-1 text-xs text-slate-500">{note}</div>}
+    <div className="rounded-xl border border-outline-variant bg-surface-container-low p-4">
+      <div className="num text-2xl font-bold text-[color:var(--color-on-surface)]">{value}</div>
+      <div className="mt-1 text-sm font-medium text-on-surface-variant">{label}</div>
+      {note && <div className="mt-1 text-xs text-on-surface-variant">{note}</div>}
     </div>
   )
 }
@@ -32,17 +32,17 @@ function BarList({ caption, rows }: { caption: string; rows: { key: string; labe
       <tbody>
         {rows.map((r) => (
           <tr key={r.key}>
-            <th scope="row" className="w-44 py-1.5 pr-3 text-left align-middle font-normal text-slate-700">
+            <th scope="row" className="w-44 py-1.5 pr-3 text-left align-middle font-normal text-on-surface-variant">
               {r.label}
             </th>
             <td className="py-1.5 align-middle">
               <div className="flex items-center gap-2">
                 <span
                   aria-hidden="true"
-                  className="inline-block h-2.5 rounded-full bg-[color:var(--color-accent-border)]"
+                  className="inline-block h-2.5 rounded-full bg-[color:var(--color-info-border)]"
                   style={{ width: `${Math.max(3, (r.count / max) * 100)}%` }}
                 />
-                <span className="num text-slate-600">{r.count}</span>
+                <span className="num text-on-surface-variant">{r.count}</span>
               </div>
             </td>
           </tr>
@@ -103,7 +103,7 @@ export default function ReportDocPage() {
       <JsonLd data={reportLd} />
 
       <h1 className="h1">{meta.title}</h1>
-      <p className="mt-2 text-sm text-slate-500">
+      <p className="mt-2 text-sm text-on-surface-variant">
         Updated <span className="num">{meta.updated}</span> · computed from{' '}
         <span className="num">{stats.total}</span> catalog records
       </p>
@@ -111,7 +111,7 @@ export default function ReportDocPage() {
 
       {/* Honest framing up front (§21): say what this is and, just as loudly,
           what it is not. */}
-      <div className="mt-6 rounded-xl border border-[color:var(--color-info-border)] bg-[color:var(--color-info-soft)] p-4 text-sm text-slate-700">
+      <div className="mt-6 rounded-xl border border-[color:var(--color-info-border)] bg-[color:var(--color-info-soft)] p-4 text-sm text-on-surface-variant">
         <p>
           <strong>What this is.</strong> An analysis of the AccessAtlas catalog as a dataset: who is
           listed, where they are based, which standards they name, and — the part most directories skip
@@ -137,7 +137,7 @@ export default function ReportDocPage() {
 
       <section className="mt-10 max-w-3xl">
         <h2 className="h2">Where the specialists are based</h2>
-        <p className="max-w-prose text-sm text-slate-600">
+        <p className="max-w-prose text-sm text-on-surface-variant">
           Headquarters country of each listing. The market the catalog has reached so far is
           concentrated in the EAA/BFSG and US-Section-508 economies — Germany and the United States lead,
           with Poland, France, the United Kingdom and the Netherlands close behind.
@@ -150,7 +150,7 @@ export default function ReportDocPage() {
 
       <section className="mt-10 max-w-3xl">
         <h2 className="h2">By which standard they work</h2>
-        <p className="max-w-prose text-sm text-slate-600">
+        <p className="max-w-prose text-sm text-on-surface-variant">
           Standards each specialist declares it audits against (a listing can name several). WCAG 2.2 is
           the near-universal baseline; the European harmonised standard EN 301 549 and the EAA follow,
           reflecting where regulatory demand is sharpest.
@@ -163,7 +163,7 @@ export default function ReportDocPage() {
 
       <section className="mt-10 max-w-3xl">
         <h2 className="h2">By what evidence they are listed</h2>
-        <p className="max-w-prose text-sm text-slate-600">
+        <p className="max-w-prose text-sm text-on-surface-variant">
           A directory is only as trustworthy as the proof behind each entry. The strongest evidence we
           record is being named as the auditor in someone else&rsquo;s <em>published</em> accessibility
           statement — evidence that lives on a third party&rsquo;s domain, not the agency&rsquo;s own.{' '}
@@ -180,8 +180,8 @@ export default function ReportDocPage() {
             { key: 'iaap-staff', label: 'IAAP-certified staff', count: e.certKinds['iaap-certified-staff'] ?? 0 },
           ]}
         />
-        <h3 className="mt-6 text-base font-semibold text-slate-800">Who published that statement</h3>
-        <p className="max-w-prose text-sm text-slate-600">
+        <h3 className="mt-6 text-base font-semibold text-on-surface">Who published that statement</h3>
+        <p className="max-w-prose text-sm text-on-surface-variant">
           For the {e.recordsWithNamedAuditorStatement} named-auditor statements, we record who declared
           it — because &ldquo;a public body named them&rdquo; and &ldquo;a private company named
           them&rdquo; are different strengths of evidence, and we refuse to blur the two.
@@ -198,21 +198,21 @@ export default function ReportDocPage() {
 
       <section className="mt-10 max-w-3xl">
         <h2 className="h2">What we deliberately do not claim</h2>
-        <p className="max-w-prose text-sm text-slate-600">
+        <p className="max-w-prose text-sm text-on-surface-variant">
           The honest shape of a dataset includes its gaps. Two fields are populated only where a source
           proves them, and left empty otherwise rather than guessed:
         </p>
-        <ul className="mt-4 space-y-3 text-sm text-slate-600">
-          <li className="rounded-xl border border-slate-200 p-4">
-            <strong className="text-slate-800">Price.</strong> We publish a price band for only{' '}
+        <ul className="mt-4 space-y-3 text-sm text-on-surface-variant">
+          <li className="rounded-xl border border-outline-variant p-4">
+            <strong className="text-on-surface">Price.</strong> We publish a price band for only{' '}
             <span className="num">{stats.priceBands.withBand}</span> of{' '}
             <span className="num">{stats.total}</span> listings — the{' '}
             <span className="num">{stats.priceBands.withoutBand}</span> others have no verifiable
             published price, so we show none. A band is never inferred from a company&rsquo;s size or
             country.
           </li>
-          <li className="rounded-xl border border-slate-200 p-4">
-            <strong className="text-slate-800">Founding year.</strong>{' '}
+          <li className="rounded-xl border border-outline-variant p-4">
+            <strong className="text-on-surface">Founding year.</strong>{' '}
             <span className="num">{stats.founded.withYear}</span> listings have a founding year we could
             verify against an imprint, register, or company-history page (the oldest dates to{' '}
             <span className="num">{stats.founded.oldest}</span>, the median to{' '}
@@ -225,7 +225,7 @@ export default function ReportDocPage() {
 
       <section className="mt-10 max-w-3xl">
         <h2 className="h2">How this was made</h2>
-        <p className="max-w-prose text-sm text-slate-600">
+        <p className="max-w-prose text-sm text-on-surface-variant">
           Every number on this page is computed at build time from{' '}
           <span className="font-mono text-xs">data/a11y/agencies.json</span> by a single aggregator
           script — nothing here is transcribed by hand, and a test recomputes the figures from the
@@ -235,7 +235,7 @@ export default function ReportDocPage() {
           <span className="num">{stats.sources.recordsWithMultiple}</span> listings stand on two or
           more.
         </p>
-        <p className="mt-3 max-w-prose text-sm text-slate-600">
+        <p className="mt-3 max-w-prose text-sm text-on-surface-variant">
           How each field is verified — and its limits — is documented in our{' '}
           <Link className="underline underline-offset-2" to={paths.methodology()}>
             methodology
@@ -252,7 +252,7 @@ export default function ReportDocPage() {
         <Link className="btn" to={paths.scan()}>
           Scan your website
         </Link>{' '}
-        <span className="ml-2 text-slate-600">
+        <span className="ml-2 text-on-surface-variant">
           Free instant check, then find a verified specialist from this dataset.
         </span>
       </p>

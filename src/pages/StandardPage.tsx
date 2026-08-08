@@ -63,7 +63,7 @@ export default function StandardPage() {
       {guidesFor({ standard: s }).length > 0 && (
         <div className="mt-4 flex flex-wrap gap-2">
           {guidesFor({ standard: s }).map((g) => (
-            <Link key={g.slug} to={`/guides/${g.slug}/`} className="chip hover:border-slate-400" lang={g.locale}>
+            <Link key={g.slug} to={`/guides/${g.slug}/`} className="chip hover:border-outline" lang={g.locale}>
               📖 {g.title}
             </Link>
           ))}

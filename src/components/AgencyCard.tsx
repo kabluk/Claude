@@ -8,13 +8,13 @@ export function AgencyCard({ a }: { a: Agency }) {
   return (
     <Link
       to={paths.agency(a.slug)}
-      className={`card ${isFeatured(a) ? 'ring-2 ring-[color:var(--color-accent)]' : ''}`}
+      className={`card ${isFeatured(a) ? 'ring-2 ring-[color:var(--color-primary)]' : ''}`}
     >
       <div className="flex items-baseline justify-between gap-3">
         <h3 className="font-semibold">{a.name}</h3>
-        <span className="shrink-0 text-xs text-slate-500">{place}</span>
+        <span className="shrink-0 text-xs text-on-surface-variant">{place}</span>
       </div>
-      {a.description.en && <p className="mt-1 line-clamp-2 text-sm text-slate-600">{a.description.en}</p>}
+      {a.description.en && <p className="mt-1 line-clamp-2 text-sm text-on-surface-variant">{a.description.en}</p>}
       <div className="mt-2 flex flex-wrap gap-1.5">
         {a.certs.map((cert) => (
           <span key={cert.kind} className="chip chip-accent">
@@ -33,7 +33,7 @@ export function AgencyCard({ a }: { a: Agency }) {
         ))}
         {a.priceBand && <span className="chip">{priceLabel(a.priceBand)}</span>}
       </div>
-      <p className="mt-2 text-xs text-slate-500">
+      <p className="mt-2 text-xs text-on-surface-variant">
         ✓ Checked against {a.sourceRefs.length} source{a.sourceRefs.length === 1 ? '' : 's'} · last verified{' '}
         {a.lastVerified}
       </p>

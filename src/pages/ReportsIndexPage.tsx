@@ -25,7 +25,7 @@ export default function ReportsIndexPage() {
         computed from the underlying data at build time, and each report shows exactly what was counted
         and what we could not verify.
       </p>
-      <p className="mt-3 max-w-prose text-sm text-slate-600">
+      <p className="mt-3 max-w-prose text-sm text-on-surface-variant">
         These are analyses of our own structured dataset, not benchmarks of other companies&rsquo;
         websites — we do not publish scores we cannot verify.
       </p>
@@ -35,13 +35,13 @@ export default function ReportsIndexPage() {
           <li key={r.slug}>
             <Link
               to={paths.reportDoc(r.slug)}
-              className="block rounded-xl border border-slate-200 bg-white p-5 transition hover:border-slate-400 hover:shadow-sm"
+              className="block rounded-xl border border-outline-variant bg-surface-container-low p-5 transition hover:border-outline hover:shadow-sm"
             >
-              <h2 className="text-lg font-semibold tracking-tight text-[color:var(--color-ink)]">
+              <h2 className="text-lg font-semibold tracking-tight text-[color:var(--color-on-surface)]">
                 {r.title}
               </h2>
-              <p className="mt-1 text-sm text-slate-600">{r.dek}</p>
-              <p className="mt-2 text-xs text-slate-500">
+              <p className="mt-1 text-sm text-on-surface-variant">{r.dek}</p>
+              <p className="mt-2 text-xs text-on-surface-variant">
                 Updated <span className="num">{r.updated}</span>
               </p>
             </Link>
@@ -53,7 +53,7 @@ export default function ReportsIndexPage() {
         <Link className="btn" to={paths.scan()}>
           Scan your website
         </Link>{' '}
-        <span className="ml-2 text-slate-600">Free instant check against the automated rules we run.</span>
+        <span className="ml-2 text-on-surface-variant">Free instant check against the automated rules we run.</span>
       </p>
     </Layout>
   )

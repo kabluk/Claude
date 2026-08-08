@@ -54,7 +54,7 @@ export default function GuidePage() {
 
       <article lang={g.locale}>
         <h1 className="h1 max-w-3xl">{g.title}</h1>
-        <p className="mt-2 text-sm text-slate-500">
+        <p className="mt-2 text-sm text-on-surface-variant">
           Updated {g.updated}
           {g.standard && (
             <>
@@ -85,7 +85,7 @@ export default function GuidePage() {
               {g.faq.map((f) => (
                 <div key={f.q}>
                   <dt className="font-semibold">{f.q}</dt>
-                  <dd className="mt-1 text-slate-600">{f.a}</dd>
+                  <dd className="mt-1 text-on-surface-variant">{f.a}</dd>
                 </div>
               ))}
             </dl>
@@ -94,9 +94,9 @@ export default function GuidePage() {
       </article>
 
       {g.cta && (
-        <div className="mt-10 max-w-3xl rounded-xl border border-indigo-100 bg-[color:var(--color-accent-soft)] p-6">
+        <div className="mt-10 max-w-3xl rounded-xl border border-outline-variant bg-secondary-container p-6">
           <p className="font-semibold">Ready for the next step?</p>
-          <p className="mt-1 text-sm text-slate-600">
+          <p className="mt-1 text-sm text-on-surface-variant">
             Compare verified providers — every listing cites its sources.
           </p>
           <Link className="btn mt-4" to={g.cta.path}>

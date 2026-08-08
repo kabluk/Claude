@@ -53,7 +53,7 @@ export default function ComboPage() {
         )}
         . Sources are cited on every profile.
       </p>
-      <p className="mt-3 text-sm text-slate-500">
+      <p className="mt-3 text-sm text-on-surface-variant">
         See also:{' '}
         <Link className="underline underline-offset-2" to={paths.country(c)}>
           all agencies in {c.name}

@@ -3,6 +3,69 @@
 Формат: ID | дата | решение | причина | последствия. Новые решения добавлять сверху.
 Статусы: `accepted` (принято), `proposed` (ждёт подтверждения владельца).
 
+## D-072 · 2026-08-08 · accepted
+**Применён brand book владельца** (upload 2026-08-08: brand book + 31
+Stitch-макет) — прямое указание «Примени brand book и дизайн из этих примеров».
+Уточняет §24–29 конституции; **палитра D-063 superseded**, принципы D-063
+(семантическая severity 1:1 с axe impact, всегда видимый фокус, tabular-nums,
+контраст-гейт) сохранены. Узел `CN-BRANDBOOK`; спецификация —
+`docs/project/BRAND_BOOK.md`; источник правды — `domains/design.md`.
+
+- **Токены**: M3-подобные пары «цвет/on-цвет» в ДВУХ темах
+  (`prefers-color-scheme`), значения обеих тем — из code.html макетов, не
+  выдуманы. Механика: `@theme` (light) + dark-переопределение тех же
+  `--color-*` на `:root` — Tailwind v4 эмитит утилиты как `var(--color-*)`,
+  поэтому вся разметка переключается токенами. Инвариант: компоненты
+  стилизуются только токенами; ни один цвет не живёт только в dark-ветке.
+  Весь slate/amber/индиго-слой D-063 выметен из src/ (sweep ~250 употреблений).
+- **Severity**: в макетах шкалы нет (кроме error) — подобрана в тон обеим
+  темам (critical = error family), каждая пара посчитана скриптом
+  (scratchpad `contrast-d072.mjs`): текст ≥4.5:1 на background/surface/soft в
+  своей теме. Info в light — #4451c8 (чуть темнее primary): сам primary не
+  дотягивает 4.5 на своей soft #e0e0ff — посчитано, не мнение.
+- **Типографика**: ⚠ brand book визуально пишет «Geist», но код ВСЕХ 31
+  макетов использует Inter — расхождение зафиксировано, взят Inter (уже
+  self-hosted). JetBrains Mono — введён self-hosted
+  (`@fontsource-variable/jetbrains-mono`, variable woff2) для label-md
+  (12/500/0.05em/uppercase: кнопки, чипы-метки, mono-подписи) и кода —
+  пересматривает «кастомный моно не вводим» из D-063/D-068 по прямому
+  указанию владельца. Type-scale: display-lg 48/52/-0.04em/700 (hero),
+  headline-lg 32/40 (h1), headline-md 24/32 (h2), body 16/14, label-md.
+- **Форма**: кнопки/чипы — pill; карточки/панели — компактные радиусы
+  .125–.5rem (шкала --radius-* переопределена); шапка sticky +
+  backdrop-blur; логотип — плашка primary со светлым stroke-глифом карты
+  (свой SVG в икон-системе D-068; в dark плашка primary-container, глиф
+  остаётся светлым — токены brand-plate/brand-glyph).
+- **Dark mode — полноценный** (§28): `audit-own-a11y` гоняет ВСЕ 36 шаблонов
+  в ОБЕИХ темах (emulateMedia colorScheme, dark без сэмплирования — палитра
+  токенная, цена второго прохода — минуты). Первый прогон дал 0 нарушений в
+  обеих темах — потому что пары посчитаны заранее скриптом; гейт доказан
+  провал-способным канарейкой (притемнённый dark `on-surface-variant` →
+  8 [dark]-маршрутов красные, light-проход не тронут).
+- **Отклонения от макетов — сознательные, с причинами**:
+  1) Material Symbols (иконочный шрифт с CDN) — НЕ подключён: §29 один
+     икон-стиль (stroke-SVG D-068) + self-host/CSP D-063; логотип-глиф
+     нарисован своим SVG.
+  2) CDN Google Fonts из макетов — не переносится, шрифты self-hosted.
+  3) `darkMode: "class"` из tailwind-конфига макетов — у нас
+     `prefers-color-scheme`; JS-переключатель — отдельное будущее решение.
+  4) Выдуманная телеметрия/числа макетов («SCANNING ENGINE ACTIVE»,
+     «99.8% Audit Accuracy», «121 Active Certifications» как маркетинг,
+     «142 agencies/36 countries», «ACCESSATLAS CORE V2.4.0») — не
+     скопированы: D-035/D-045 запрещают числа без источника; hero-чип
+     заменён честным «Automated WCAG scan», stat-ряд — реальные числа сборки.
+  5) Контент/структура страниц НЕ ломались под пиксель макета — только стиль
+     (наша структура уже совпадала: scanner-first home = accessatlas_home).
+  6) `pitch_deck_*` (10 макетов) — отдельный инвесторский артефакт, НЕ сайт:
+     в этот заход не применялся, зафиксирован todo-строкой в BACKLOG.
+- **Верификация**: полный набор зелёный (build-a11y 245 / typecheck /
+  worker:test 211 / src:test 20 / scripts:test 37 / build 439 стр. /
+  check-links 487-0 / audit-a11y 36×2 тем — 0). Живой Playwright в обеих
+  темах: hero-сабмит доводит до отчёта (мок-API форм воркера), фокус-кольцо
+  = primary своей темы (computed outline), модалка/табы/аккордеон/тост
+  работают, scan-error с путём вперёд. Скриншоты обеих тем — scratchpad
+  `design/brand-{light,dark}-*.png`.
+
 ## D-071 · 2026-08-08 · accepted
 `CN-RESEARCH` (§23/§45) — ЧЕСТНЫЙ первый data-продукт. Отчёт
 `/reports/verified-audit-market` («The verified accessibility-audit market, by

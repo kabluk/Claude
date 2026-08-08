@@ -95,7 +95,7 @@ function ToastDemo() {
           Trigger an error
         </button>
       </div>
-      <p className="mt-3 max-w-prose text-xs text-slate-500">
+      <p className="mt-3 max-w-prose text-xs text-on-surface-variant">
         “Save changes” posts a polite status message that clears itself after a few seconds; “Trigger an
         error” posts an assertive alert that stays until you dismiss it. Neither one moves your focus — the
         message is announced in the background.

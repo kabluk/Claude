@@ -33,7 +33,7 @@ export function CountriesPage() {
         {countries.map((c) => (
           <Link key={c.code} to={paths.country(c)} className="card tile">
             <span className="font-semibold">{c.name}</span>
-            <span className="text-sm text-slate-500">{c.count}</span>
+            <span className="text-sm text-on-surface-variant">{c.count}</span>
           </Link>
         ))}
       </div>
@@ -55,7 +55,7 @@ export function ServicesPage() {
         {SERVICES.map((s) => (
           <Link key={s} to={paths.service(s)} className="card tile">
             <span className="font-semibold">{serviceLabel(s)}</span>
-            <span className="text-sm text-slate-500">{withService(agencies, s).length}</span>
+            <span className="text-sm text-on-surface-variant">{withService(agencies, s).length}</span>
           </Link>
         ))}
       </div>
@@ -77,7 +77,7 @@ export function StandardsPage() {
         {STANDARDS.map((s) => (
           <Link key={s} to={paths.standard(s)} className="card tile">
             <span className="font-semibold">{standardLabel(s)}</span>
-            <span className="text-sm text-slate-500">{withStandard(agencies, s).length}</span>
+            <span className="text-sm text-on-surface-variant">{withStandard(agencies, s).length}</span>
           </Link>
         ))}
       </div>
@@ -106,7 +106,7 @@ export function AgenciesIndexPage() {
               <Link className="hover:underline" to={paths.agency(a.slug)}>
                 {a.name}
               </Link>{' '}
-              <span className="text-slate-500">{a.hq.countryCode}</span>
+              <span className="text-on-surface-variant">{a.hq.countryCode}</span>
             </li>
           ))}
       </ul>

@@ -60,7 +60,7 @@ export default function CountryPage() {
       </p>
 
       {law && (
-        <div className="mt-5 max-w-2xl rounded-xl border border-indigo-100 bg-[color:var(--color-accent-soft)] p-4 text-sm">
+        <div className="mt-5 max-w-2xl rounded-xl border border-outline-variant bg-secondary-container p-4 text-sm">
           <p>
             <strong>Applicable law in {c.name}:</strong> {law.name}
             {law.inForce && <> — in force since {law.inForce}</>}
@@ -77,7 +77,7 @@ export default function CountryPage() {
           строкой данных; сейчас в ней честно ровно одна запись, потому что
           verified-ссылка и названные в декларациях прюферы есть только у DE. */}
       {COUNTRY_ENTRY[c.code] && (
-        <div className="mt-4 max-w-2xl rounded-xl border border-slate-200 bg-slate-50 p-4 text-sm">
+        <div className="mt-4 max-w-2xl rounded-xl border border-outline-variant bg-surface-container-low p-4 text-sm">
           <p lang={COUNTRY_ENTRY[c.code].lang}>
             {COUNTRY_ENTRY[c.code].blurb}{' '}
             <Link
@@ -94,7 +94,7 @@ export default function CountryPage() {
         {SERVICES.map((s) => {
           const n = withService(list, s).length
           return n > 0 ? (
-            <Link key={s} to={paths.combo(c, s)} className="chip hover:border-slate-400">
+            <Link key={s} to={paths.combo(c, s)} className="chip hover:border-outline">
               {serviceLabel(s)} · {n}
             </Link>
           ) : null
@@ -104,7 +104,7 @@ export default function CountryPage() {
       {guidesFor({ countryCode: c.code }).length > 0 && (
         <div className="mt-4 flex flex-wrap gap-2">
           {guidesFor({ countryCode: c.code }).map((g) => (
-            <Link key={g.slug} to={`/guides/${g.slug}/`} className="chip hover:border-slate-400" lang={g.locale}>
+            <Link key={g.slug} to={`/guides/${g.slug}/`} className="chip hover:border-outline" lang={g.locale}>
               📖 {g.title}
             </Link>
           ))}

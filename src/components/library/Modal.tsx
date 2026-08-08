@@ -79,7 +79,7 @@ export function Modal({
 
   return (
     <div
-      className="modal-backdrop fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4"
+      className="modal-backdrop fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4"
       onClick={(e) => {
         // Backdrop click closes; clicks inside the dialog do not bubble here.
         if (e.target === e.currentTarget) onClose()
@@ -90,16 +90,16 @@ export function Modal({
         role="dialog"
         aria-modal="true"
         aria-labelledby={titleId}
-        className="modal-panel w-full max-w-md rounded-xl border border-slate-200 bg-white p-6 shadow-lg"
+        className="modal-panel w-full max-w-md rounded-xl border border-outline-variant bg-surface-container-low p-6 shadow-lg"
       >
         <div className="flex items-start justify-between gap-4">
-          <h2 id={titleId} className="text-lg font-semibold text-[color:var(--color-ink)]">
+          <h2 id={titleId} className="text-lg font-semibold text-[color:var(--color-on-surface)]">
             {title}
           </h2>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-lg p-1 text-slate-500 hover:bg-slate-100 hover:text-slate-900"
+            className="rounded-lg p-1 text-on-surface-variant hover:bg-surface-container hover:text-on-surface"
             aria-label="Close dialog"
           >
             <svg viewBox="0 0 12 12" aria-hidden="true" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="1.75">
@@ -107,7 +107,7 @@ export function Modal({
             </svg>
           </button>
         </div>
-        <div className="mt-3 text-sm text-slate-600">{children}</div>
+        <div className="mt-3 text-sm text-on-surface-variant">{children}</div>
       </div>
     </div>
   )

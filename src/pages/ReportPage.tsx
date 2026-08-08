@@ -87,7 +87,7 @@ export default function ReportPage() {
       {state.kind === 'loading' && <p className="lede">Loading report…</p>}
 
       {state.kind === 'unavailable' && (
-        <div role="alert" className="rounded-lg border border-amber-200 bg-amber-50 p-4 text-amber-900">
+        <div role="alert" className="rounded-lg border border-[color:var(--color-moderate-border)] bg-[color:var(--color-moderate-soft)] p-4 text-[color:var(--color-moderate)]">
           <h1 className="h1">Scanner is not configured</h1>
           <p className="mt-2">This deployment does not have a scanner backend connected yet.</p>
         </div>
@@ -152,7 +152,7 @@ function ReportBody({ report }: { report: ScanReport }) {
   return (
     <div>
       <h1 className="h1">Accessibility report for {report.url}</h1>
-      <p className="num mt-1 text-slate-500">
+      <p className="num mt-1 text-on-surface-variant">
         {uniquePages} page{uniquePages === 1 ? '' : 's'} scanned · {report.findings.length} issue instance
         {report.findings.length === 1 ? '' : 's'} across {groups.length} distinct rule{groups.length === 1 ? '' : 's'}
       </p>
@@ -161,9 +161,9 @@ function ReportBody({ report }: { report: ScanReport }) {
         <div>
           <div className="flex items-baseline gap-3">
             <span className="num text-4xl font-bold">{report.score ?? '—'}</span>
-            <span className="num text-slate-500">/ 100</span>
+            <span className="num text-on-surface-variant">/ 100</span>
           </div>
-          <p className="mt-1 max-w-prose text-xs text-slate-500">
+          <p className="mt-1 max-w-prose text-xs text-on-surface-variant">
             This score is a rough heuristic for comparing pages over time — it is not a
             certification of WCAG conformance and does not constitute legal advice. A
             clean automated scan does not guarantee full accessibility; manual review by
@@ -179,9 +179,9 @@ function ReportBody({ report }: { report: ScanReport }) {
           <div>
             <div className="flex items-baseline gap-2">
               <span className="num text-4xl font-bold">{formatCostEstimate(cost)}</span>
-              <span className="text-slate-500">estimated to fix</span>
+              <span className="text-on-surface-variant">estimated to fix</span>
             </div>
-            <p className="mt-1 max-w-prose text-xs text-slate-500">
+            <p className="mt-1 max-w-prose text-xs text-on-surface-variant">
               A rough estimate based on the number and severity of issues found here — not a
               quote or an offer. Actual cost depends on your codebase, team, and how the fixes
               are made.{' '}
@@ -201,7 +201,7 @@ function ReportBody({ report }: { report: ScanReport }) {
           <p className="font-semibold text-[color:var(--color-success)]">
             No automatically-detectable issues found on the scanned pages.
           </p>
-          <p className="mt-1.5 text-sm text-slate-600">
+          <p className="mt-1.5 text-sm text-on-surface-variant">
             That covers what automation can see — criteria that depend on meaning and judgement
             still need a human review.{' '}
             <a className="underline underline-offset-2" href={paths.methodology()}>
@@ -214,14 +214,14 @@ function ReportBody({ report }: { report: ScanReport }) {
           <h2 className="h2 mt-0">Findings</h2>
           <ul className="space-y-3">
             {groups.map((g) => (
-              <li key={g.ruleId} className="rounded-lg border border-slate-200 p-4">
+              <li key={g.ruleId} className="rounded-lg border border-outline-variant p-4">
                 <div className="flex flex-wrap items-center gap-2">
                   {/* Severity — семантические токены (CN-TOKENS, §27), не акцент
                       бренда: акцент зарезервирован за интерактивом/evidence.
                       Цвет никогда не единственный носитель — метка текстом. */}
                   <span className={`chip chip-${g.impact}`}>{impactLabel(g.impact)}</span>
                   <span className="font-medium">{g.ruleId}</span>
-                  <span className="num text-sm text-slate-500">
+                  <span className="num text-sm text-on-surface-variant">
                     {g.instances.length} instance{g.instances.length === 1 ? '' : 's'}
                   </span>
                 </div>
@@ -250,11 +250,11 @@ function ReportBody({ report }: { report: ScanReport }) {
                     a11y-statement-missing и -incomplete взаимоисключающи
                     (см. axe.js), поэтому блок не может продублироваться. */}
                 {g.jurisdictionNote && (
-                  <div className="mt-2 rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-900">
+                  <div className="mt-2 rounded-md border border-[color:var(--color-moderate-border)] bg-[color:var(--color-moderate-soft)] px-3 py-2 text-sm text-[color:var(--color-moderate)]">
                     <p>
                       <span className="font-medium">Legal basis:</span> {g.jurisdictionNote}
                     </p>
-                    <p className="mt-1.5 text-xs text-amber-800">
+                    <p className="mt-1.5 text-xs text-[color:var(--color-moderate)]">
                       Accessibility requirements are harmonised across the EU by EN 301 549, so this
                       finding reads the same in every EU market. Enforcement is not centralised: under
                       Directive (EU) 2019/882 each country supervises services provided in its own
@@ -269,7 +269,7 @@ function ReportBody({ report }: { report: ScanReport }) {
                         в шапке worker/lib/jurisdiction.js. Оговорка про scope
                         остаётся: без неё мы называли бы «обязанностью» то, от чего
                         конкретный бизнес освобождён самой директивой. */}
-                    <p className="mt-1.5 text-xs text-amber-800">
+                    <p className="mt-1.5 text-xs text-[color:var(--color-moderate)]">
                       <span className="font-medium">Scope:</span> microenterprises — fewer than 10 staff
                       and no more than €2M annual turnover or balance sheet — are exempt from the EAA's
                       service requirements under Article 4(5), so a small business may fall outside this
@@ -296,7 +296,7 @@ function ReportBody({ report }: { report: ScanReport }) {
                     )}
                   </div>
                 )}
-                <ul className="mt-2 space-y-1 text-sm text-slate-500">
+                <ul className="mt-2 space-y-1 text-sm text-on-surface-variant">
                   {g.instances.slice(0, 5).map((f, i) => (
                     <li key={i} className="truncate">
                       {f.page} — <code className="text-xs">{f.selector}</code>

@@ -74,7 +74,7 @@ export function FilterableList({
           onChange={(e) => setQ(e.target.value)}
           placeholder="Search by name or city…"
           aria-label="Search agencies"
-          className="w-full max-w-sm rounded-lg border border-slate-300 px-3 py-2 text-sm"
+          className="w-full max-w-sm rounded-lg border border-outline px-3 py-2 text-sm"
         />
         <div className="flex flex-wrap gap-1.5">
           {!hideServiceFacet &&
@@ -126,7 +126,7 @@ export function FilterableList({
         </div>
       </div>
 
-      <p aria-live="polite" className="mt-4 text-sm text-slate-500">
+      <p aria-live="polite" className="mt-4 text-sm text-on-surface-variant">
         {shown.length} of {items.length} agencies
       </p>
       <div className="mt-3 grid gap-3 sm:grid-cols-2">
@@ -135,7 +135,7 @@ export function FilterableList({
         ))}
       </div>
       {shown.length === 0 && (
-        <p className="mt-6 text-slate-500">No agencies match these filters yet.</p>
+        <p className="mt-6 text-on-surface-variant">No agencies match these filters yet.</p>
       )}
     </div>
   )
