@@ -49,7 +49,14 @@ const SAMPLE_ROUTES = [
   // (поле смонтировано touched=true с невалидным значением) — hint и error
   // одновременно видны, и связаны в aria-describedby, без единого клика, так
   // что отдельного INTERACT не требуется (CN-COMPONENTS-FORM-FIELD).
-  '/components/', '/components/accordion/', '/components/tabs/', '/components/modal-dialog/', '/components/toast/', '/components/tooltip/', '/components/breadcrumbs/', '/components/combobox/', '/components/menu-button/', '/components/listbox-select/', '/components/form-field/',
+  // switch демонстрирует ДВА переключателя, изначально в РАЗНЫХ положениях
+  // (один on, один off) — оба визуальных состояния уже есть в статическом
+  // HTML без единого клика, и у переключателя нет ни попапа, ни скрытого
+  // контента, который появлялся бы только по действию (в отличие от
+  // modal/toast/combobox/menu-button/listbox-select выше) — второй,
+  // "открытый" прогон axe здесь не проверил бы ничего нового, поэтому
+  // INTERACT для него не заведён (CN-COMPONENTS-SWITCH).
+  '/components/', '/components/accordion/', '/components/tabs/', '/components/modal-dialog/', '/components/toast/', '/components/tooltip/', '/components/breadcrumbs/', '/components/combobox/', '/components/menu-button/', '/components/listbox-select/', '/components/form-field/', '/components/switch/',
   // CN-RESEARCH (D-071): индекс отчётов + сам отчёт (таблицы-бары, stat-плитки,
   // JSON-LD Dataset/Report) — обе поверхности под постоянным axe-гейтом.
   '/reports/', '/reports/verified-audit-market/',

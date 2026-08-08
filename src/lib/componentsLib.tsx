@@ -25,6 +25,7 @@ import { Combobox } from '@/components/library/Combobox'
 import { MenuButton, type MenuItemDef } from '@/components/library/MenuButton'
 import { ListboxSelect } from '@/components/library/ListboxSelect'
 import { FormField } from '@/components/library/FormField'
+import { Switch } from '@/components/library/Switch'
 
 import AccordionSrc from '@/components/library/Accordion.tsx?raw'
 import TabsSrc from '@/components/library/Tabs.tsx?raw'
@@ -36,6 +37,7 @@ import ComboboxSrc from '@/components/library/Combobox.tsx?raw'
 import MenuButtonSrc from '@/components/library/MenuButton.tsx?raw'
 import ListboxSelectSrc from '@/components/library/ListboxSelect.tsx?raw'
 import FormFieldSrc from '@/components/library/FormField.tsx?raw'
+import SwitchSrc from '@/components/library/Switch.tsx?raw'
 
 export type ComponentStatus = 'ready' | 'planned'
 export interface KeyRow {
@@ -317,6 +319,36 @@ function FormFieldDemo() {
   )
 }
 
+// Two independent switches, deliberately started in DIFFERENT states (one
+// on, one off) — so the page's static, no-interaction HTML already shows
+// both visual states side by side and the permanent axe gate audits both
+// without needing an INTERACT hook (same reasoning as Accordion/Tabs already
+// having an example open by default, and FormField's error being visible
+// from first paint). A toggle here has no popup and no hidden content to
+// reveal — clicking it only flips a state axe would see either way, so
+// unlike Modal/Toast/Combobox/MenuButton/ListboxSelect there is nothing a
+// second, "opened" axe pass would catch that the first pass does not.
+function SwitchDemo() {
+  const [emailNotifications, setEmailNotifications] = useState(true)
+  const [smsNotifications, setSmsNotifications] = useState(false)
+  return (
+    <div className="flex max-w-sm flex-col gap-4">
+      <Switch
+        checked={emailNotifications}
+        onChange={setEmailNotifications}
+        label="Email notifications"
+        showStateLabel
+      />
+      <Switch checked={smsNotifications} onChange={setSmsNotifications} label="SMS notifications" showStateLabel />
+      <p className="text-xs text-on-surface-variant">
+        Click either track, or Tab to it and press Space or Enter — both switch it the same way. The
+        “On”/“Off” caption always matches what a screen reader hears from aria-checked; it never says
+        something different from the actual state.
+      </p>
+    </div>
+  )
+}
+
 const DEMOS: Record<string, { demo: () => JSX.Element; code: string }> = {
   accordion: {
     code: AccordionSrc,
@@ -389,6 +421,10 @@ const DEMOS: Record<string, { demo: () => JSX.Element; code: string }> = {
   'form-field': {
     code: FormFieldSrc,
     demo: () => <FormFieldDemo />,
+  },
+  switch: {
+    code: SwitchSrc,
+    demo: () => <SwitchDemo />,
   },
   breadcrumbs: {
     code: BreadcrumbsSrc,

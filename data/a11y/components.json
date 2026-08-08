@@ -314,7 +314,38 @@
         { "bad": "An error toast auto-dismisses after three seconds, before a screen-reader user can read or act on it.", "good": "Let errors persist until dismissed; only auto-clear low-stakes polite messages (WCAG 2.2.1, Timing Adjustable)." }
       ]
     },
-    { "slug": "switch", "name": "Switch", "status": "planned", "pattern": "Switch · role=switch, aria-checked", "summary": "An on/off toggle distinct from a checkbox, reporting its state as “on” or “off”." },
+    {
+      "slug": "switch",
+      "name": "Switch",
+      "status": "ready",
+      "pattern": "Switch · role=switch, aria-checked",
+      "impl": "Switch",
+      "summary": "An on/off toggle distinct from a checkbox, reporting its state as “on” or “off”.",
+      "keyboard": [
+        { "keys": "Tab / Shift + Tab", "does": "moves focus onto the switch, showing the same visible focus ring every control on this site uses" },
+        { "keys": "Enter or Space", "does": "toggles the switch between on and off — both keys work because the switch is a real <button>, which treats them as a click natively" }
+      ],
+      "screenReader": [
+        "The switch is announced by its accessible name (from aria-labelledby, pointing at the adjacent visible label) followed by its state, “on” or “off” — not “checked”/“not checked”, which is what a checkbox would say.",
+        "role=\"switch\" is announced explicitly, distinguishing it from a checkbox even though both are two-state controls.",
+        "Toggling it — by click, Space, or Enter — immediately re-announces the new state, because aria-checked changes on the same element the screen reader is already tracking.",
+        "An optional visible “On”/“Off” caption next to the track is marked aria-hidden, so it is never read as a second, potentially conflicting announcement alongside aria-checked."
+      ],
+      "ariaNotes": [
+        "role=\"switch\" is used, not role=\"checkbox\" and not a bare <input type=\"checkbox\"> with no role — a switch reports an immediate on/off state change, semantically distinct from a checkbox's checked/unchecked membership state, and the two are easy to conflate.",
+        "aria-checked (true/false) is driven by exactly one boolean prop that also positions the thumb — there is no second piece of state that could disagree with it, the same discipline this library already applies to Toast's live region and MenuButton's aria-expanded.",
+        "The component is a native <button>, not <input type=\"checkbox\" role=\"switch\">, so Enter and Space both activate it for free from the platform's own button semantics — no hand-written key handler exists that could implement only one of the two.",
+        "The visible label is linked via aria-labelledby to an adjacent <span>, not wrapped inside the button — the accessible name is still correct, but the button's hit target stays exactly the track's bounds rather than silently growing to include the label text.",
+        "The on/off state is never color-only (WCAG 1.4.1): the thumb's track position (left vs. right) is a shape/position difference on its own, and the color change on the track is additional reinforcement, not the only signal."
+      ],
+      "pitfalls": [
+        { "bad": "role=\"checkbox\" (or no role at all) on what is visually a toggle switch.", "good": "Use role=\"switch\" so assistive tech announces on/off, the semantics the control actually has, not checked/unchecked." },
+        { "bad": "aria-checked is set from a separate variable than the one driving the thumb's visual position, so the two can silently drift apart.", "good": "Derive both the ARIA state and the visual position from the same single boolean — there is only ever one source of truth." },
+        { "bad": "A hand-written onKeyDown only calls the toggle handler on Space, forgetting Enter (or the reverse).", "good": "Use a native <button> — it already treats both Enter and Space as a click, so there is no custom key logic to get half-right." },
+        { "bad": "A visible “On”/“Off” caption is set from its own state and can end up reading the opposite of what aria-checked announces.", "good": "Compute the caption directly from the same checked value driving aria-checked, and mark it aria-hidden so it reinforces rather than competes with the spoken announcement." },
+        { "bad": "The only difference between on and off is track color, which fails for anyone who can't distinguish those colors (WCAG 1.4.1).", "good": "Move the thumb to a different position (and change color as a bonus, not the only signal) so the state is visible by shape/position too." }
+      ]
+    },
     { "slug": "data-table", "name": "Data table", "status": "planned", "pattern": "Table semantics · scope, sortable headers", "summary": "A sortable, semantic table with proper header association and aria-sort, readable cell by cell." },
     {
       "slug": "form-field",

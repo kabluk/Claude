@@ -1300,21 +1300,21 @@ nodes:
   - id: CN-COMPONENTS-SWITCH
     title: "Switch — 11-й компонент библиотеки (CN-COMPONENTS-REST 8/10)"
     owner: frontend-engineer
-    status: todo
+    status: done
     depends_on: [CN-COMPONENTS]
     inputs: [data/a11y/components.json, src/lib/componentsLib.tsx, scripts/audit-own-a11y.mjs, scripts/components.test.mjs]
     scope: [src/components/library/Switch.tsx, src/lib/componentsLib.tsx, data/a11y/components.json, scripts/audit-own-a11y.mjs]
     outputs: [src/components/library/Switch.tsx]
     verify:
-      - "npm run audit-a11y — /components/switch/ в постоянном сэмпле; 0 нарушений"
-      - "живой Playwright: role=switch на элементе (не checkbox), aria-checked синхронно с визуальным состоянием, Space/Enter или клик переключает, состояние объявляется как on/off (не true/false в UI-тексте), фокус-кольцо видимо, не путается с checkbox-семантикой (нет [role=checkbox]/native checkbox без role=switch)"
-      - "npm run scripts:test — components.test проходит без изменений в самом тесте"
-      - "npm run typecheck / npm run build / npm run check-links / npm run worker:test / npm run src:test — все зелёные"
+      - "npm run audit-a11y — /components/switch/ в постоянном сэмпле; демо статично показывает оба состояния (on+off) без клика, INTERACT не потребовался; 43 стр. 0 нарушений — ✅"
+      - "живой Playwright (независимый прогон родительской сессии): role=switch на обоих элементах (не checkbox, на странице 0 role=checkbox/голых input[type=checkbox]), два переключателя стартуют в РАЗНЫХ состояниях, элемент — реальный <button>, клик/Space/Enter каждый по отдельности переключает aria-checked синхронно с визуальным положением ползунка, aria-labelledby резолвится в реальный видимый текст, aria-hidden On/Off-подпись буквально совпадает с aria-checked — 9/9 проверок ✅ (один ложный fail в первом прогоне — CSS-селектор моего скрипта задел вложенный span ползунка вместо span-подписи; исправлено через lastElementChild, подтверждено)"
+      - "npm run scripts:test — components.test проходит без изменений в самом тесте (37/37) — ✅"
+      - "npm run typecheck / npm run build / npm run check-links / npm run worker:test / npm run src:test — все зелёные (build 446 стр. sitemap 409, check-links 494-0, worker:test 211/211, src:test 20/20) — ✅"
     max_attempts: 3
     attempts: 1
     risk: low
     approval_required: false
-    notes: "Заведён 2026-08-08 сразу после Form field (D-081), по выбору владельца через AskUserQuestion (компонент Switch, модель Sonnet — самый простой из трёх оставшихся). Данные демо — реальная механика (например переключатель предпочтения в UI-примере), не выдуманные факты о продукте."
+    notes: "Готово 2026-08-08 (D-082). Заведён сразу после Form field (D-081), по выбору владельца через AskUserQuestion (компонент Switch, модель Sonnet). Реализовано субагентом, результат перепроверен родительской сессией живьём. Самый простой компонент библиотеки — ловушку паттерна (role=checkbox вместо role=switch) закрыли по конструкции, а не поймали гейтом: примитив — нативный <button role=\"switch\">, не <input type=\"checkbox\">, поэтому checkbox-семантике просто неоткуда взяться, а Enter/Space работают бесплатно (нативная кнопка). Единственный источник состояния — одна переменная checked, управляющая и aria-checked, и позицией ползунка (тот же принцип не-рассинхрона, что уже был предупреждением у Toast/MenuButton). Label — aria-labelledby на соседний span, не <label>-обёртка: осознанно, чтобы не расширять кликабельную область на текст лейбла незаметно для потребителя компонента. Демо — два независимых переключателя в разных стартовых состояниях (Email on, SMS off)."
 
   - id: CN-COMPONENTS-TOOLTIP
     title: "Tooltip — 5-й готовый компонент библиотеки (CN-COMPONENTS-REST 2/10)"
