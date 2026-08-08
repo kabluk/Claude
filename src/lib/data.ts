@@ -163,6 +163,9 @@ export const paths = {
   accessibilityStatement: () => '/accessibility-statement/',
   scan: () => '/scan/',
   methodology: () => '/methodology/',
+  // CN-COMPONENTS (D-068): публичная библиотека доступных компонентов (§22).
+  components: () => '/components/',
+  component: (slug: string) => `/components/${slug}/`,
   // CN-WCAG-PAGES (D-066): справочник критериев из en301549-coverage.json.
   wcag: () => '/wcag/',
   wcagCriterion: (slug: string) => `/wcag/${slug}/`,

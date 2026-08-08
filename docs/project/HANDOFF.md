@@ -1,6 +1,6 @@
 # HANDOFF — что нужно знать новой сессии
 
-Обновлено: 2026-08-07 · Проект **AccessAtlas**, ветка `accessatlas`
+Обновлено: 2026-08-08 · Проект **AccessAtlas**, ветка `accessatlas`
 (в `main` — чужой проект detnav, не трогать). Рабочая ветка итерации:
 `claude/accessatlas-project-x8fz3t` (пересоздана от `accessatlas`-истории —
 предыдущее состояние этой ветки было ошибочно заведено от `main`/detnav,
@@ -128,7 +128,16 @@
   (вне репо). CN-NAV полностью закрыт (D-065, 2026-08-07): ярлыки
   Knowledge/Experts в UI; URL /guides/*//agencies/* сознательно не менялись —
   смена URL, если понадобится, — отдельное решение владельца (301 + sitemap).
-  CN-COMPONENTS разблокирован (ждал CN-TOKENS).
+  CN-COMPONENTS начат ПЕРВЫМ КУСКОМ (D-068, 2026-08-08): публичная библиотека
+  доступных компонентов (§22) — каркас `/components/` + `/components/[slug]` из
+  `data/a11y/components.json` (конвенция как guides/wcag) + 3 из 13 реально
+  доступных компонента (Accordion/Tabs/Modal). Живые примеры — настоящие
+  React-примитивы (`src/components/library/`), код показан их же исходником
+  (`?raw`). Собственная a11y — постоянный гейт: индекс + 3 страницы в
+  `audit-own-a11y.mjs`, открытая модалка тоже (INTERACT-хук); гейт поймал 3
+  реальных нарушения — починены. 10 остальных — честный `Planned` без страниц;
+  остаток — узел `CN-COMPONENTS-REST` (по одному за раз). Новый гейт —
+  `scripts/components.test.mjs`.
 - **Принята Design Constitution владельца** (D-062, 2026-08-07):
   `docs/project/DESIGN_CONSTITUTION.md` — направляющий документ продукта/
   дизайна (позиционирование Accessibility Intelligence Platform, UX, IA,

@@ -1,0 +1,96 @@
+{
+  "_comment": "CN-COMPONENTS (constitution §22, D-068): metadata for the accessible component library. The 3 'ready' entries have a real, working, keyboard-accessible implementation in src/components/library/<impl>.tsx, rendered live on their page; their displayed code is that file's real source (Vite ?raw import). 'planned' entries are named honestly on the index with no page and no broken link. Invariants (required fields, ready→impl file exists, ready slugs mirrored in sitemap + audit gate) are enforced by scripts/components.test.mjs. Nothing here is invented: keyboard/SR/ARIA facts follow the WAI-ARIA Authoring Practices patterns and the shipped implementations.",
+  "components": [
+    {
+      "slug": "accordion",
+      "name": "Accordion",
+      "status": "ready",
+      "pattern": "Disclosure · aria-expanded",
+      "impl": "Accordion",
+      "summary": "Stacked sections that expand and collapse independently. The foundational aria-expanded disclosure pattern that a dozen other widgets build on.",
+      "keyboard": [
+        { "keys": "Enter or Space", "does": "toggles the focused section open or closed" },
+        { "keys": "Tab / Shift + Tab", "does": "moves between section headers and into an open panel" }
+      ],
+      "screenReader": [
+        "Each header is announced as a button carrying its state — “collapsed” or “expanded”.",
+        "Toggling re-announces the new state; the revealed panel is exposed as a region labelled by its header.",
+        "Because the headers are real headings, heading navigation still lists every section."
+      ],
+      "ariaNotes": [
+        "The trigger is a native <button> inside a heading (h2–h4), so role, focus and Enter/Space come from the platform.",
+        "aria-expanded on the button reflects the panel state; aria-controls links the button to its panel id.",
+        "A collapsed panel is removed from the DOM entirely, so nothing hidden is focusable or read out."
+      ],
+      "pitfalls": [
+        { "bad": "A <div> with onClick as the header.", "good": "Use a real <button> so keyboard, focus and role are free and correct." },
+        { "bad": "The collapsed panel is only visually hidden but stays in the tab order.", "good": "Remove it from the DOM (or use the hidden attribute) so it is not reachable." },
+        { "bad": "No aria-expanded, so a screen reader cannot tell open from closed.", "good": "Toggle aria-expanded on the button on every state change." }
+      ]
+    },
+    {
+      "slug": "tabs",
+      "name": "Tabs",
+      "status": "ready",
+      "pattern": "Tabs · roving tabindex + arrow keys",
+      "impl": "Tabs",
+      "summary": "One panel visible at a time, chosen from a row of tabs. Teaches the roving-tabindex idea and arrow-key navigation that trip up most hand-rolled versions.",
+      "keyboard": [
+        { "keys": "Left / Right Arrow", "does": "moves to the previous / next tab and selects it, wrapping at the ends" },
+        { "keys": "Home / End", "does": "moves to the first / last tab" },
+        { "keys": "Tab", "does": "leaves the tablist and moves into the selected panel" }
+      ],
+      "screenReader": [
+        "The tablist is announced with its accessible name; each tab reports whether it is selected and its position (“2 of 3”).",
+        "Arrowing to another tab re-announces it; the shown panel is labelled by its tab."
+      ],
+      "ariaNotes": [
+        "Roving tabindex: only the selected tab has tabindex 0, the rest tabindex -1, so Tab does not walk through every tab.",
+        "role=“tab” + aria-selected on each tab; role=“tabpanel” + aria-labelledby on each panel; aria-controls links them.",
+        "Hidden panels use the hidden attribute, removing them from both the tab order and the accessibility tree."
+      ],
+      "pitfalls": [
+        { "bad": "Every tab is a tab stop, so Tab cycles through all of them before reaching the panel.", "good": "Use a roving tabindex; the arrow keys move between tabs instead." },
+        { "bad": "The arrow keys do nothing.", "good": "Handle Left / Right / Home / End on the tablist." },
+        { "bad": "Automatic activation on a panel that is expensive to render, so arrowing lags.", "good": "For heavy panels use manual activation — arrows move focus, Enter/Space selects." }
+      ]
+    },
+    {
+      "slug": "modal-dialog",
+      "name": "Modal dialog",
+      "status": "ready",
+      "pattern": "Dialog · focus trap + Escape + focus return",
+      "impl": "Modal",
+      "summary": "A dialog that takes over the page until dismissed. The pattern where a broken implementation strands keyboard users most visibly — focus trap, Escape, and returning focus are all things static markup cannot promise.",
+      "keyboard": [
+        { "keys": "Tab / Shift + Tab", "does": "cycles through the focusable elements inside the dialog only — focus is trapped" },
+        { "keys": "Escape", "does": "closes the dialog" }
+      ],
+      "screenReader": [
+        "On open, focus moves into the dialog and its accessible name (the title) is announced.",
+        "aria-modal=“true” tells the screen reader to treat everything outside the dialog as unavailable."
+      ],
+      "ariaNotes": [
+        "role=“dialog” with aria-modal=“true” and aria-labelledby pointing at the visible title.",
+        "Focus is moved into the dialog on open and returned to the triggering element on every close path.",
+        "Focus is trapped: Tab and Shift+Tab wrap within the dialog and never reach the page behind it."
+      ],
+      "pitfalls": [
+        { "bad": "Focus stays on the page behind the dialog, so Tab walks into hidden content.", "good": "Move focus into the dialog on open and trap it there." },
+        { "bad": "Closing the dialog drops focus to the top of the page.", "good": "Return focus to the element that opened the dialog." },
+        { "bad": "No Escape handler — the dialog can only be closed with the mouse.", "good": "Close on Escape as well as the close button." },
+        { "bad": "aria-modal=“true” with no real focus constraint.", "good": "aria-modal is a promise to assistive tech — back it with an actual focus trap." }
+      ]
+    },
+    { "slug": "tooltip", "name": "Tooltip", "status": "planned", "pattern": "Tooltip · aria-describedby, Escape to dismiss", "summary": "A supplementary label revealed on hover and focus, dismissible with Escape, never the only place critical information lives." },
+    { "slug": "combobox", "name": "Combobox", "status": "planned", "pattern": "Combobox · aria-expanded + aria-activedescendant", "summary": "A text input paired with a filterable listbox popup — the most intricate composite widget, and the one autocomplete UIs most often break." },
+    { "slug": "menu-button", "name": "Menu button", "status": "planned", "pattern": "Menu · roving focus, type-ahead", "summary": "A button that opens a menu of actions, navigable with the arrow keys and closable with Escape." },
+    { "slug": "listbox-select", "name": "Select (listbox)", "status": "planned", "pattern": "Listbox · single/multi select", "summary": "A custom single- or multi-select built on role=listbox when the native <select> cannot be styled to requirements — with the native element as the honest first choice." },
+    { "slug": "breadcrumbs", "name": "Breadcrumbs", "status": "planned", "pattern": "Navigation landmark · aria-current", "summary": "A trail of ancestor links in a nav landmark, with aria-current marking the present page." },
+    { "slug": "pagination", "name": "Pagination", "status": "planned", "pattern": "Navigation landmark · aria-current=“page”", "summary": "Page-by-page navigation of a long list, with the current page marked and controls that read clearly out of context." },
+    { "slug": "toast", "name": "Toast / status message", "status": "planned", "pattern": "Live region · role=status / role=alert", "summary": "A transient notification announced through a polite or assertive live region without stealing focus." },
+    { "slug": "switch", "name": "Switch", "status": "planned", "pattern": "Switch · role=switch, aria-checked", "summary": "An on/off toggle distinct from a checkbox, reporting its state as “on” or “off”." },
+    { "slug": "data-table", "name": "Data table", "status": "planned", "pattern": "Table semantics · scope, sortable headers", "summary": "A sortable, semantic table with proper header association and aria-sort, readable cell by cell." },
+    { "slug": "form-field", "name": "Form field", "status": "planned", "pattern": "Labelling · error text + aria-describedby", "summary": "A labelled input with programmatically associated help and error messages, and errors announced without a focus jump." }
+  ]
+}

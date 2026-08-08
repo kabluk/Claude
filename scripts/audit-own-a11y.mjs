@@ -39,8 +39,26 @@ const SAMPLE_ROUTES = [
   // форм данных (axe-only с многими правилами; ours-only с оговоркой-эвристикой)
   // + индекс. Слаги детерминированы данными coverage.json.
   '/wcag/', '/wcag/1-3-1/', '/wcag/1-4-10/',
+  // CN-COMPONENTS (§22, D-068): собственные интерактивные примеры библиотеки
+  // обязаны сами проходить axe — это НЕ разовая проверка. Индекс + все три
+  // готовых компонента: у accordion и tabs живой пример присутствует уже в
+  // статическом HTML (панель/таб раскрыты по умолчанию), поэтому аудит страницы
+  // проверяет сам виджет. У модалки открытое состояние в статике отсутствует —
+  // её раскрытое состояние аудитируется отдельно, см. INTERACT ниже.
+  '/components/', '/components/accordion/', '/components/tabs/', '/components/modal-dialog/',
   '/about/', '/contact/', '/privacy/', '/imprint/', '/accessibility-statement/', '/404/',
 ]
+
+// Маршруты, где живой пример раскрывается только по действию пользователя:
+// после обычного прогона axe скрипт выполняет interact() и гоняет axe ещё раз
+// уже по открытому состоянию. Так открытая модалка (focus trap, role=dialog,
+// aria-modal) остаётся ПОСТОЯННЫМ гейтом, а не разовой Playwright-проверкой.
+const INTERACT = {
+  '/components/modal-dialog/': async (page) => {
+    await page.click('[data-a11y-demo-open]')
+    await page.waitForSelector('[role="dialog"]', { state: 'visible' })
+  },
+}
 
 const MIME = { '.html': 'text/html', '.css': 'text/css', '.js': 'application/javascript', '.json': 'application/json', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.png': 'image/png' }
 
@@ -94,6 +112,16 @@ try {
       async () => await window.axe.run(document, { rules: { 'target-size': { enabled: true } } })
     )
     results.push({ route, violations: axeResults.violations })
+
+    // Второй прогон по раскрытому состоянию (напр. открытая модалка) — то же
+    // правило target-size, тот же порог serious/critical.
+    if (INTERACT[route]) {
+      await INTERACT[route](page)
+      const openResults = await page.evaluate(
+        async () => await window.axe.run(document, { rules: { 'target-size': { enabled: true } } })
+      )
+      results.push({ route: `${route} (open)`, violations: openResults.violations })
+    }
   }
 } finally {
   await browser.close()

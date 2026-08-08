@@ -10,6 +10,7 @@ import {
 } from './lib/data'
 import { guides } from './lib/guides'
 import { wcagPages } from './lib/wcag'
+import { readyComponents } from './lib/componentsLib'
 
 // Ленивые импорты — свой чанк на шаблон страницы.
 const page = (load: () => Promise<{ default: () => JSX.Element | null }>) => async () => ({
@@ -66,6 +67,16 @@ export const routes: RouteRecord[] = [
   },
   { path: '/scan', lazy: page(() => import('./pages/ScanPage')) },
   { path: '/methodology', lazy: page(() => import('./pages/MethodologyPage')) },
+  // CN-COMPONENTS (§22, D-068): библиотека доступных компонентов. Индекс честно
+  // перечисляет все 13 паттернов; собственные страницы имеют только готовые
+  // компоненты (порог — readyComponents в src/lib/componentsLib.tsx), пути из
+  // data/a11y/components.json. Согласованность с sitemap/audit — components.test.mjs.
+  { path: '/components', lazy: page(() => import('./pages/ComponentsIndexPage')) },
+  {
+    path: '/components/:slug',
+    lazy: page(() => import('./pages/ComponentPage')),
+    getStaticPaths: () => readyComponents.map((c) => paths.component(c.slug)),
+  },
   // CN-WCAG-PAGES (D-066): справочник критериев — только критерии с реальной
   // автоматикой (порог в src/lib/wcag.ts), пути целиком из coverage-данных.
   // Статический сегмент /wcag ранжируется выше '/:country' (как /bfsg-check).

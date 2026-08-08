@@ -47,7 +47,8 @@ export default function GuidesIndexPage() {
         })}
       </div>
       {guides.length === 0 && <p className="mt-6 text-slate-500">Guides are being written.</p>}
-      {/* CN-WCAG-PAGES (D-066): справочник критериев — часть Knowledge-раздела. */}
+      {/* CN-WCAG-PAGES (D-066) / CN-COMPONENTS (D-068): справочники — часть
+          Knowledge-раздела. */}
       <section className="mt-10">
         <h2 className="h2">Reference</h2>
         <p className="max-w-prose text-sm text-slate-600">
@@ -56,6 +57,13 @@ export default function GuidesIndexPage() {
           </Link>{' '}
           — per-criterion pages naming the exact axe-core rules and browser checks our scanner runs,
           and what still needs a human auditor.
+        </p>
+        <p className="mt-2 max-w-prose text-sm text-slate-600">
+          <Link className="underline underline-offset-2" to="/components/">
+            Accessible component library
+          </Link>{' '}
+          — real, keyboard-accessible UI patterns with their keyboard map, screen-reader behaviour,
+          ARIA notes, copyable source, and the pitfalls that most often break them.
         </p>
       </section>
     </Layout>

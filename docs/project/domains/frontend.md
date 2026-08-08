@@ -257,3 +257,44 @@ R1. Контраст (amber-800 на amber-50) проверен разовым �
 В фасеты и фильтры год НЕ добавлялся: при заполненности 27% фильтр «основана до
 20XX» скрывал бы три четверти каталога. Если год понадобится как сигнал доверия
 в списках — сначала поднимать заполненность (`G-FOUNDED-LI`), потом фильтр.
+
+## Библиотека доступных компонентов (CN-COMPONENTS, §22, D-068)
+
+Новая публичная поверхность `/components/`. Заведена ПЕРВЫМ КУСКОМ: каркас + 3
+из 13 компонентов (образцовость важнее скорости). Остаток — `CN-COMPONENTS-REST`.
+
+**Конвенция (как guides/wcag, не ручной список).** Метаданные —
+`data/a11y/components.json` (13 записей: 3 `ready` + 10 `planned`). Реестр
+`src/lib/componentsLib.tsx` соединяет каждый `ready`-компонент с живым
+React-примитивом (`src/components/library/`) и его же исходником через Vite
+`?raw` — показанный на странице код НЕ может разойтись с работающим примером.
+Страницы: `ComponentsIndexPage` (`/components/`, перечисляет все 13 честно) и
+`ComponentPage` (`/components/[slug]`, только `ready` — порог `readyComponents`).
+Роуты — `getStaticPaths` из `readyComponents`; `paths.components/component`.
+
+**Примитивы** (`src/components/library/`): `Accordion` (native `<button>` в
+heading → Enter/Space бесплатно; `aria-expanded`+`aria-controls`; свёрнутая
+панель удаляется из DOM), `Tabs` (roving tabindex: только выбранный таб
+tabindex=0; Arrow/Home/End двигают выбор и фокус; панели `hidden`), `Modal`
+(controlled `open`/`onClose`; focus trap в capture-фазе; фокус входит на
+открытии и возвращается на триггер на любом пути закрытия; `Escape`;
+`role=dialog` + `aria-modal` + `aria-labelledby`), `CopyButton` (реальный
+Clipboard API + `execCommand`-фолбэк + polite live-region-анонс), `CodeBlock`
+(`<pre tabIndex=0 role=group>` — иначе scrollable-region без клавиатуры).
+
+**Гейты (постоянные, не разовые).** `audit-own-a11y.mjs`: индекс + все 3
+страницы в сэмпле; **открытая** модалка аудитируется отдельно — INTERACT-хук
+кликает `[data-a11y-demo-open]`, ждёт `role=dialog`, гоняет axe по раскрытому
+диалогу (33 стр., 0 нарушений). `scripts/components.test.mjs`: `planned` без
+impl; `ready` с полным набором §22 + файл реализации существует; каждый `ready`
+в sitemap и в аудите; открытое состояние модалки подключено. `page-lists.test`
+уже покрывает статический `/components/`. Живой Playwright (20/20) — клавиатура
+трёх компонентов вживую, не по коду.
+
+**Уроки итерации.** Гейт СРАЗУ поймал 3 реальных нарушения, которых код-ревью
+не увидело: (1) `text-slate-400` (2.63:1, запрещён design.md); (2) `<pre>` кода
+scrollable без фокуса; (3) анимация входа модалки через `opacity` на
+контейнере-бэкдропе композитила панель полупрозрачной над тёмным скримом →
+контраст ~1.1 на 150 мс (реальный баг и для зрячих) → вход только `transform`,
+панель всегда непрозрачна. `useId()` даёт id с `:` — в тестах селектор
+`[id="…"]`, не `#…`. Иконки — одна stroke-SVG система (design.md §6).

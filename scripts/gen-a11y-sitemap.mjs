@@ -40,7 +40,7 @@ const inCountry = (code) =>
 // реквизитов владельца, 404 в принципе не индексируется).
 const urls = [
   '/', '/scan/', '/methodology/', '/bfsg-check/', '/request-quote/', '/agencies/', '/countries/', '/services/', '/standards/',
-  '/wcag/', '/about/', '/contact/', '/privacy/', '/accessibility-statement/',
+  '/wcag/', '/components/', '/about/', '/contact/', '/privacy/', '/accessibility-statement/',
 ]
 for (const a of agencies) urls.push(`/agencies/${a.slug}/`)
 
@@ -50,6 +50,15 @@ for (const a of agencies) urls.push(`/agencies/${a.slug}/`)
 const coverage = JSON.parse(readFileSync(join(ROOT, 'data/a11y/en301549-coverage.json'), 'utf8'))
 for (const r of coverage.rows) {
   if (r.status !== 'none') urls.push(`/wcag/${r.wcag.replace(/\./g, '-')}/`)
+}
+
+// CN-COMPONENTS (D-068): страницы компонентов — из data/a11y/components.json,
+// того же JSON, что и сами страницы (src/lib/componentsLib.tsx). Порог тот же:
+// собственную страницу (и место в sitemap) получают только готовые компоненты
+// (status === 'ready'). Согласованность охраняет scripts/components.test.mjs.
+const componentsData = JSON.parse(readFileSync(join(ROOT, 'data/a11y/components.json'), 'utf8'))
+for (const c of componentsData.components) {
+  if (c.status === 'ready') urls.push(`/components/${c.slug}/`)
 }
 
 // Гайды: data/a11y/guides/*.md (slug — имя файла), всегда индексируемые.

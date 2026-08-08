@@ -1035,6 +1035,44 @@ nodes:
     approval_required: false
     notes: "Заведён и закрыт 2026-08-07 одной итерацией с CN-HERO (D-063, первая дизайн-итерация по запросу владельца 'нужно дополнить UX и дизайн'). Решения и обоснования: DECISIONS.md D-063; источник правды системы — docs/project/domains/design.md (палитра hex+назначение, типографика, spacing, фокус, severity-семантика, анти-паттерны §57). База — slate как есть, акцент один #4338ca, severity: critical #b91c1c / serious #9a3412 / moderate #854d0e / minor slate + success/info. Кастомный моно-шрифт сознательно не введён (system-stack), tabular-nums через .num. ReportPage severity-чипы переведены с chip-accent на chip-{impact}."
 
+  - id: CN-COMPONENTS
+    title: "Публичная библиотека доступных компонентов (§22) — ПЕРВЫЙ КУСОК: каркас + 3 из 13"
+    owner: frontend-engineer
+    status: partial
+    depends_on: [CN-TOKENS]
+    inputs: [docs/project/DESIGN_CONSTITUTION.md (§22, §24-29, §57), docs/project/domains/design.md, src/pages/GuidePage.tsx, src/pages/WcagCriterionPage.tsx, src/lib/guides.ts, src/lib/wcag.ts]
+    scope: [data/a11y/components.json, src/components/library/, src/lib/componentsLib.tsx, src/pages/ComponentsIndexPage.tsx, src/pages/ComponentPage.tsx, src/routes.tsx, src/lib/data.ts, src/components/Layout.tsx, src/pages/GuidesIndexPage.tsx, src/styles.css, scripts/audit-own-a11y.mjs, scripts/gen-a11y-sitemap.mjs, scripts/components.test.mjs]
+    outputs: [data/a11y/components.json, src/components/library/{Accordion,Tabs,Modal,CopyButton,CodeBlock}.tsx, src/lib/componentsLib.tsx, src/pages/ComponentsIndexPage.tsx, src/pages/ComponentPage.tsx, scripts/components.test.mjs]
+    verify:
+      - "build:data / typecheck / worker:test 211 / src:test 20 / scripts:test 32 / build 436 / check-links 481-0 — зелёные"
+      - "audit-a11y 33 стр. 0 нарушений: индекс + все 3 страницы компонентов в ПОСТОЯННОМ сэмпле; открытая модалка аудитируется отдельно (INTERACT-хук кликает [data-a11y-demo-open] и гоняет axe по role=dialog)"
+      - "живой Playwright: accordion Enter-toggle + панель в/из DOM; tabs Arrow/Home/End двигают выбор И фокус (roving); modal focus trap (6× Tab внутри) + Esc + возврат фокуса на триггер — 20/20"
+      - "каждый живой пример реально работает клавиатурой и мышью (не картинка); код в примерах — реальный исходник примитива (?raw), кнопка Copy реально копирует"
+      - "prefers-reduced-motion: анимация rise модалки и поворот chevron сняты под reduce; фокус-кольца видимы (D-063)"
+      - "порог честности: 10 незаделанных — явный Planned без страницы/ссылки; components.test.mjs гейтит инварианты и согласованность с sitemap/аудитом"
+    max_attempts: 3
+    attempts: 1
+    risk: medium
+    approval_required: false
+    notes: "Заведён и частично закрыт 2026-08-08 (D-068, четвёртая дизайн-итерация). ПЕРВЫЙ КУСОК по явному требованию владельца: образцовый каркас + 3 фундаментальных компонента (Accordion/aria-expanded, Tabs/roving-tabindex+arrows, Modal/focus-trap+Esc+возврат), а не 13 наспех. Конвенция как guides/wcag: данные в data/a11y/components.json → страницы; готовую страницу имеют только ready-компоненты; код показывается через ?raw-исходник примитива (не дрейфует). Гейт audit-a11y СРАЗУ поймал 3 реальных нарушения (slate-400 2.63:1, scrollable pre без фокуса, opacity-анимация модалки → транзиентный контраст 1.1) — починены (см. D-068). Иконки: введена одна stroke-SVG система (§29). Остаток — узел CN-COMPONENTS-REST."
+
+  - id: CN-COMPONENTS-REST
+    title: "Остаток библиотеки §22: 10 компонентов, по одному образцовому за раз"
+    owner: frontend-engineer
+    status: todo
+    depends_on: [CN-COMPONENTS]
+    inputs: [data/a11y/components.json, src/lib/componentsLib.tsx, src/components/library/, docs/project/DESIGN_CONSTITUTION.md (§22)]
+    scope: [data/a11y/components.json, src/components/library/, src/lib/componentsLib.tsx, scripts/audit-own-a11y.mjs]
+    outputs: [data/a11y/components.json, src/components/library/]
+    verify:
+      - "каждый новый компонент: живой пример проходит axe в постоянном audit-a11y + Playwright на его клавиатуру; components.test.mjs зелёный (ready → полный набор §22 + файл реализации)"
+      - "страница появляется ТОЛЬКО когда пример реален (планка та же); planned-запись до тех пор без impl/страницы (R1)"
+    max_attempts: 3
+    attempts: 0
+    risk: low
+    approval_required: false
+    notes: "Заведён 2026-08-08 (D-068) как явный остаток CN-COMPONENTS. 10 компонентов: Tooltip, Combobox, Menu button, Select(listbox), Breadcrumbs, Pagination, Toast, Switch, Data table, Form field (все уже перечислены как planned в components.json). Делать по одному — планка образцовости выше скорости; НЕ заводить страницы-заглушки пачкой."
+
   - id: CN-WCAG22
     title: "Самопроверка сайта до WCAG 2.2 AA (конституция §40): target-size в audit-own-a11y"
     owner: qa-engineer

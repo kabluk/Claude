@@ -60,6 +60,11 @@ export function Layout({
             <Link className="hover:text-slate-900" to="/guides/">
               Knowledge
             </Link>
+            {/* CN-COMPONENTS (D-068): публичная библиотека доступных компонентов
+                (§22) — часть Knowledge-поверхности, отдельный пункт для веса. */}
+            <Link className="hover:text-slate-900" to={paths.components()}>
+              Components
+            </Link>
             <Link className="hover:text-slate-900" to={paths.agencies()}>
               Experts
             </Link>

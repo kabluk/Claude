@@ -85,6 +85,29 @@ body {
   }
 }
 
+/* Modal entrance (CN-COMPONENTS): the scrim appears at once and the panel rises
+   a few pixels — functional (marks the dialog appearing), not decorative.
+   Deliberately transform-only: the panel opacity is never animated, so its
+   white surface is always fully opaque over the dark scrim. Animating the
+   panel's (or the backdrop container's) opacity would composite the panel
+   semi-transparently over the scrim for ~150ms, dropping text contrast to ~1.1
+   — a real, if brief, failure that our own axe gate caught. Fully removed under
+   prefers-reduced-motion: reduce (§35); the dialog then simply appears, its
+   meaning carried by the role and the focus move, never by motion. */
+@keyframes modal-rise {
+  from {
+    transform: translateY(8px);
+  }
+}
+.modal-panel {
+  animation: modal-rise 0.15s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .modal-panel {
+    animation: none;
+  }
+}
+
 @layer components {
   .container-page {
     @apply mx-auto w-full max-w-5xl px-4 sm:px-6;
