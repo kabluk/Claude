@@ -30,8 +30,23 @@ likely to consume a large context:
 - Keep large logs, research, and file listings out of the main conversation.
 - Use subagents for broad exploration and implementation details.
 - After a completed phase, update `HANDOFF.md`.
-- Start a fresh session when the main thread becomes dominated by historical details.
 - Never hide interface changes or architectural decisions.
+
+**Заполнение контекста измеряется, а не оценивается на глаз** (D-076). Хук
+`.claude/scripts/context_monitor.py` (UserPromptSubmit) читает реальный
+`usage` из транскрипта сессии и вмешивается на двух порогах:
+
+- **≥70% — `CONTEXT_MONITOR: WRAP_UP`**: доведи текущий узел до коммита,
+  обнови `STATUS.md`/`HANDOFF.md`, не начинай крупную новую задачу; скажи
+  владельцу одной строкой.
+- **≥85% — `CONTEXT_MONITOR: HANDOFF_NOW`**: заверши или честно объяви
+  незаконченным текущий кусок, убедись, что память проекта отражает факт, и
+  **покажи владельцу готовый промпт новой сессии целиком, в блоке кода** —
+  хук передаёт его в контексте, собранным из фактического состояния git.
+
+Порог окна — `CONTEXT_LIMIT_TOKENS` (по умолчанию 1 000 000). Игнорировать эти
+сообщения нельзя: они появляются редко и именно тогда, когда «продолжаем»
+начинает означать «теряем ранние договорённости».
 
 ## Completion standard
 
