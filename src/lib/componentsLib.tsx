@@ -13,7 +13,8 @@
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import componentsData from '@data/a11y/components.json'
-import { countries, paths, type CountryInfo } from '@/lib/data'
+import type { StandardSlug } from '@data/a11y/types'
+import { countries, paths, STANDARDS, standardLabel, tax, type CountryInfo } from '@/lib/data'
 import { Accordion } from '@/components/library/Accordion'
 import { Tabs } from '@/components/library/Tabs'
 import { Modal } from '@/components/library/Modal'
@@ -22,6 +23,7 @@ import { Tooltip } from '@/components/library/Tooltip'
 import { Breadcrumbs } from '@/components/library/Breadcrumbs'
 import { Combobox } from '@/components/library/Combobox'
 import { MenuButton, type MenuItemDef } from '@/components/library/MenuButton'
+import { ListboxSelect } from '@/components/library/ListboxSelect'
 
 import AccordionSrc from '@/components/library/Accordion.tsx?raw'
 import TabsSrc from '@/components/library/Tabs.tsx?raw'
@@ -31,6 +33,7 @@ import TooltipSrc from '@/components/library/Tooltip.tsx?raw'
 import BreadcrumbsSrc from '@/components/library/Breadcrumbs.tsx?raw'
 import ComboboxSrc from '@/components/library/Combobox.tsx?raw'
 import MenuButtonSrc from '@/components/library/MenuButton.tsx?raw'
+import ListboxSelectSrc from '@/components/library/ListboxSelect.tsx?raw'
 
 export type ComponentStatus = 'ready' | 'planned'
 export interface KeyRow {
@@ -227,6 +230,49 @@ function MenuButtonDemo() {
   )
 }
 
+function ListboxSelectDemo() {
+  const [picked, setPicked] = useState<StandardSlug | null>(null)
+  // Real catalogue data (D-045/D-047): the same seven standards — and the
+  // same scopes — that /standards/ lists and /standards/[slug]/ documents,
+  // so this demo is the site's own standards picker rather than an invented
+  // option list.
+  const scopeLabel: Record<string, string> = {
+    global: 'Global',
+    eu: 'EU',
+    us: 'US',
+    de: 'DE',
+    fr: 'FR',
+  }
+  const options = STANDARDS.map((s) => ({
+    value: s,
+    label: standardLabel(s),
+    hint: scopeLabel[tax.standards[s].scope] ?? tax.standards[s].scope,
+  }))
+  return (
+    // data-a11y-demo-listbox marks the demo for the permanent axe gate, which
+    // opens the popup (button click) and waits for the visible role=listbox
+    // before the second axe pass audits the OPEN state — see
+    // scripts/audit-own-a11y.mjs.
+    <div data-a11y-demo-listbox>
+      <ListboxSelect
+        label="Choose a standard to learn about"
+        placeholder="Select a standard…"
+        options={options}
+        onSelect={(o) => setPicked(o.value as StandardSlug)}
+      />
+      <p className="mt-3 max-w-prose text-xs text-on-surface-variant">
+        {picked ? (
+          <Link className="underline underline-offset-2" to={paths.standard(picked)}>
+            Read about {standardLabel(picked)} →
+          </Link>
+        ) : (
+          'Click, or Enter/Space/Down/Up on the button, to open the list — focus lands on the current selection, or the first standard if nothing is chosen yet. Arrow keys move real focus between options and wrap at both ends; typing a letter jumps to the next option starting with it; Enter/Space confirms the focused option and closes the popup; Escape closes without changing anything you had already chosen.'
+        )}
+      </p>
+    </div>
+  )
+}
+
 const DEMOS: Record<string, { demo: () => JSX.Element; code: string }> = {
   accordion: {
     code: AccordionSrc,
@@ -291,6 +337,10 @@ const DEMOS: Record<string, { demo: () => JSX.Element; code: string }> = {
   'menu-button': {
     code: MenuButtonSrc,
     demo: () => <MenuButtonDemo />,
+  },
+  'listbox-select': {
+    code: ListboxSelectSrc,
+    demo: () => <ListboxSelectDemo />,
   },
   breadcrumbs: {
     code: BreadcrumbsSrc,

@@ -190,7 +190,74 @@
         { "bad": "A click outside the menu is ignored, or the menu is closed by making the button re-steal focus from whatever the user just clicked.", "good": "Close without activating anything and without moving focus — the user's click already told the browser where they wanted to be." }
       ]
     },
-    { "slug": "listbox-select", "name": "Select (listbox)", "status": "planned", "pattern": "Listbox · single/multi select", "summary": "A custom single- or multi-select built on role=listbox when the native <select> cannot be styled to requirements — with the native element as the honest first choice." },
+    {
+      "slug": "listbox-select",
+      "name": "Select (listbox)",
+      "status": "ready",
+      "pattern": "Listbox · single-select, roving focus, type-ahead",
+      "impl": "ListboxSelect",
+      "summary": "A collapsible single-select listbox: a button that opens a popup role=\"listbox\" for cases where the native <select> cannot be styled to requirements — the native element stays the honest first choice everywhere else.",
+      "keyboard": [
+        {
+          "keys": "Enter / Space / Down / Up (on the button)",
+          "does": "opens the popup; focus lands on the currently selected option, or the first option if nothing is selected yet"
+        },
+        {
+          "keys": "Down / Up (in the popup)",
+          "does": "moves real focus to the next/previous option and wraps at both ends — the selection is not changed yet"
+        },
+        {
+          "keys": "Home / End",
+          "does": "moves focus to the first / last option"
+        },
+        {
+          "keys": "A letter key",
+          "does": "moves focus to the next option whose label starts with that letter, cyclically — a single keystroke, not a buffered filter"
+        },
+        {
+          "keys": "Enter / Space (on an option)",
+          "does": "confirms the focused option as the selection, closes the popup, and returns focus to the button"
+        },
+        {
+          "keys": "Escape",
+          "does": "closes the popup WITHOUT changing the selection and returns focus to the button"
+        }
+      ],
+      "screenReader": [
+        "The button is announced with the field's label, its own current value or placeholder, and that it has a popup listbox (aria-haspopup=\"listbox\") with its expanded state, before the user opens it.",
+        "Opening the popup moves real focus onto the currently selected option (or the first option), so it is announced as an option, its position and selected state in the list, and the listbox's own accessible name — the same experience a screen-reader user gets from any other focusable control, because it genuinely is one here.",
+        "Each further arrow/Home/End/type-ahead move re-announces the newly focused option; nothing is announced as a pointer moving over a highlight, and moving focus alone does not announce a new selection because moving focus alone does not select anything.",
+        "Confirming an option (Enter/Space/click) moves focus back to the button, which now announces the newly selected value as part of its own accessible name."
+      ],
+      "ariaNotes": [
+        "The trigger is a real <button> with aria-haspopup=\"listbox\", aria-expanded reflecting the live open/closed state, aria-controls pointing at the popup's id only while it exists, and aria-labelledby joining the field's label with the button's own visible text (the ARIA APG collapsible-listbox two-id pattern) so the announced name always includes the current value or an honest placeholder — never a bare \"button\".",
+        "The popup is role=\"listbox\" with aria-labelledby naming it from the same field label; each item is role=\"option\" with aria-selected on the one committed value — not on whatever option merely has focus while the user is still arrowing through the list.",
+        "Roving tabindex: exactly one option carries tabindex=0 (the one that would receive focus next) and every other option carries tabindex=-1. Moving between options calls a real .focus() on the target element via a ref — the same mechanism as this library's Tabs and Menu button, not the aria-activedescendant virtual focus Combobox uses. Nothing inside this popup is editable text, so nothing needs to keep a caret parked elsewhere the way Combobox's input does — real focus is the simpler, correct default here, the same reasoning Menu button already gives for its own items.",
+        "Selection intentionally does not follow focus: a separate 'focused option' and 'selected option' let Escape close the popup by touching nothing, instead of reverting a value that arrow keys had already overwritten — APG allows either model for a single-select listbox, and this one is the one that makes Escape's 'change nothing' promise literally true rather than an emulated undo."
+      ],
+      "pitfalls": [
+        {
+          "bad": "The button's visible label is empty or reads a raw value like the internal slug when nothing is selected yet.",
+          "good": "Show an honest placeholder (e.g. \"Select a standard…\") until a real option is chosen, and the option's human label afterwards — never a blank control a screen reader announces as nothing."
+        },
+        {
+          "bad": "Arrowing through options immediately overwrites the committed selection (selection follows focus), so Escape can only fake a revert by remembering the value the popup had on open.",
+          "good": "Keep focus and selection as two different pieces of state: arrow keys move focus only, Enter/Space commits it, and Escape closes without touching the committed value at all."
+        },
+        {
+          "bad": "Opening the popup always starts at the first option, even when a value is already selected.",
+          "good": "Open with focus on the currently selected option (falling back to the first option only when nothing is selected) — losing your place every time you reopen a long list is the most common native-<select>-replacement complaint."
+        },
+        {
+          "bad": "The highlighted option is only a CSS class; DOM focus stays on the button the whole time the popup is open.",
+          "good": "Move real focus onto the focused option (roving tabindex), the same mechanism this library's Menu button uses — a screen-reader user arrowing through the list must hear each option as it becomes current, not just see a highlight move."
+        },
+        {
+          "bad": "Typing a letter filters the option list down to matches, like a combobox.",
+          "good": "A listbox popup's type-ahead is a single-keystroke jump to the next matching option, cyclically — not a buffered filter; the full option list stays present the whole time."
+        }
+      ]
+    },
     {
       "slug": "breadcrumbs",
       "name": "Breadcrumbs",

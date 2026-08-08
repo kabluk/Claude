@@ -46,7 +46,7 @@ const SAMPLE_ROUTES = [
   // сам виджет. У модалки и тоста живой пример появляется только по действию
   // пользователя — их раскрытое/анонсированное состояние аудитируется отдельно,
   // см. INTERACT ниже.
-  '/components/', '/components/accordion/', '/components/tabs/', '/components/modal-dialog/', '/components/toast/', '/components/tooltip/', '/components/breadcrumbs/', '/components/combobox/', '/components/menu-button/',
+  '/components/', '/components/accordion/', '/components/tabs/', '/components/modal-dialog/', '/components/toast/', '/components/tooltip/', '/components/breadcrumbs/', '/components/combobox/', '/components/menu-button/', '/components/listbox-select/',
   // CN-RESEARCH (D-071): индекс отчётов + сам отчёт (таблицы-бары, stat-плитки,
   // JSON-LD Dataset/Report) — обе поверхности под постоянным axe-гейтом.
   '/reports/', '/reports/verified-audit-market/',
@@ -103,6 +103,16 @@ const INTERACT = {
   '/components/menu-button/': async (page) => {
     await page.click('[data-a11y-demo-menu] button[aria-haspopup="menu"]')
     await page.waitForSelector('[role="menu"]', { state: 'visible' })
+  },
+  // CN-COMPONENTS-LISTBOX-SELECT: the static HTML holds only the closed
+  // trigger button — role=listbox/option exist only after the user opens
+  // the popup. Click the button and wait for the listbox to become visible,
+  // so the second axe pass covers the open popup (its options, the roving-
+  // tabindex focus target, and contrast on its own surface), not just the
+  // closed button.
+  '/components/listbox-select/': async (page) => {
+    await page.click('[data-a11y-demo-listbox] button[aria-haspopup="listbox"]')
+    await page.waitForSelector('[role="listbox"]', { state: 'visible' })
   },
 }
 

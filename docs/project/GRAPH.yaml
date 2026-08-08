@@ -1262,21 +1262,21 @@ nodes:
   - id: CN-COMPONENTS-LISTBOX-SELECT
     title: "Select (listbox) — 9-й компонент библиотеки (CN-COMPONENTS-REST 6/10)"
     owner: frontend-engineer
-    status: todo
+    status: done
     depends_on: [CN-COMPONENTS]
     inputs: [data/a11y/components.json, src/lib/componentsLib.tsx, scripts/audit-own-a11y.mjs, scripts/components.test.mjs]
     scope: [src/components/library/ListboxSelect.tsx, src/lib/componentsLib.tsx, data/a11y/components.json, scripts/audit-own-a11y.mjs]
     outputs: [src/components/library/ListboxSelect.tsx]
     verify:
-      - "npm run audit-a11y — /components/listbox-select/ в постоянном сэмпле, INTERACT открывает popup и аудитирует РАСКРЫТОЕ состояние (role=listbox+role=option); 0 нарушений"
-      - "живой Playwright: ArrowDown/Up двигают реальный DOM-фокус (roving tabindex, тот же механизм, что Menu button) или aria-activedescendant (решение реализации задокументировать явно — родственник Combobox по паттерну, но не editable) без потери выбора, Home/End на первый/последний пункт, Enter/Space выбирает и закрывает popup с фокусом на кнопке, Escape закрывает без изменения выбора, typeahead по первой букве, клик по опции выбирает"
-      - "npm run scripts:test — components.test проходит без изменений в самом тесте"
-      - "npm run typecheck / npm run build / npm run check-links / npm run worker:test / npm run src:test — все зелёные"
+      - "npm run audit-a11y — /components/listbox-select/ в постоянном сэмпле, INTERACT открывает popup и аудитирует РАСКРЫТОЕ состояние (role=listbox+role=option); 41 стр. 0 нарушений — ✅"
+      - "живой Playwright (независимый прогон родительской сессии): реальный DOM-фокус (roving tabindex, aria-activedescendant НИГДЕ на странице не встречается) двигается ArrowDown/Up с оборачиванием, повторное открытие возвращает фокус на уже выбранную опцию (не на первую), Enter выбирает и закрывает popup с фокусом на кнопке, Escape закрывает БЕЗ изменения выбора, typeahead по первой букве, клик по опции выбирает и закрывает, клик вне — закрывает без изменения выбора — 15/15 проверок ✅ (первый прогон дал 1 ложный fail — ошибка в самом проверочном скрипте: сравнивал textContent опции с hint против текста кнопки без hint; точечно подтверждено — совпадают)"
+      - "npm run scripts:test — components.test проходит без изменений в самом тесте (37/37) — ✅"
+      - "npm run typecheck / npm run build / npm run check-links / npm run worker:test / npm run src:test — все зелёные (build 444 стр. sitemap 407, check-links 492-0, worker:test 211/211, src:test 20/20) — ✅"
     max_attempts: 3
     attempts: 1
     risk: medium
     approval_required: false
-    notes: "Заведён 2026-08-08 сразу после Menu button (D-079), по выбору владельца через AskUserQuestion (компонент Select/listbox, модель Sonnet). Родственник Combobox (тот же role=listbox popup), но НЕ editable — значит нет причины навязывать виртуальный фокус aria-activedescendant там, где ничего не печатается; решение о механизме фокуса (roving tabindex vs aria-activedescendant) принять по месту и явно задокументировать в шапке файла, сверяя с нативным <select> как честной альтернативой по умолчанию. Данные демо — реальные (D-045/D-047 главнее)."
+    notes: "Готово 2026-08-08 (D-080). Заведён сразу после Menu button (D-079), по выбору владельца через AskUserQuestion (компонент Select/listbox, модель Sonnet). Реализовано субагентом, результат перепроверен родительской сессией живьём. Архитектурное решение задокументировано явно в шапке файла: НАСТОЯЩИЙ roving tabindex (не aria-activedescendant) — обоснование сравнивает оба существующих прецедента библиотеки (Combobox: virtual focus вынужден editable-полем; MenuButton: real focus, т.к. ничего не редактируется) и относит Select к случаю MenuButton, т.к. триггер — кнопка, а не текстовое поле. Второе архитектурное решение: selection НЕ следует за focus — active (курсор по списку) и selected (закоммиченное значение) разведены как отдельное состояние, поэтому Escape — отдельный путь «ничего не менять», а не откат уже перезаписанного значения (в отличие от нативного <select>, где выбор совпадает с фокусом). Демо — реальные 7 стандартов каталога (WCAG/EN 301 549/Section 508/…) из taxonomies.json, ведёт на существующие /standards/[slug]/. Повторное открытие возвращает фокус на уже выбранную опцию, не на первую — предотвращает потерю места в длинном списке."
 
   - id: CN-COMPONENTS-TOOLTIP
     title: "Tooltip — 5-й готовый компонент библиотеки (CN-COMPONENTS-REST 2/10)"
