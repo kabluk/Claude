@@ -60,12 +60,17 @@ CLAUDE.md, именах ресурсов Cloudflare (`accessatlas-worker`, D1
 Microsoft — записи держатся `dns-only`, D-092; **не включать проксирование
 на почтовых записях**).
 
-Деплой сейчас РУЧНОЙ:
+Деплой сейчас РУЧНОЙ, и собирать НУЖНО с адресом сканера, иначе он молча
+отключится на проде (D-098):
+`VITE_SCANNER_API=https://accessatlas-worker.zincroom.workers.dev npm run build`
 `npx wrangler pages deploy dist --project-name verscala --branch main`
 (без `--branch main` уйдёт в preview, боевой URL отдаст 404 — D-092).
 
 ## Что осталось
 
+0. ⚠️ **`A1-REPORT-DIRECT-LINK` (высокий)** — прямая ссылка на `/report/:id`
+   отдаёт 404: корневой `404.html` отключает SPA-фоллбек Pages. Свежий сабмит
+   работает, присланная ссылка — нет. Детали и проверенные тупики — D-098.
 1. **`A0-GSC`** — Search Console, sitemap (415 URL), мониторинг индексации
    первую неделю. Разблокирован, очевидный следующий шаг.
 2. **Автодеплой из CI** — вторая половина `A0-DEPLOY`, не сделана.
