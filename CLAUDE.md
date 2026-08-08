@@ -43,11 +43,19 @@ A task is complete only when:
 
 ## Model economy
 
-Before substantial work, use the Model Advisor result attached by the UserPromptSubmit
-hook. Recommend `/model haiku`, `/model sonnet`, or `/model opus` in one short sentence
-when the task's complexity, risk, or expected context makes the recommendation useful.
-Never claim to know the active session model, and do not pause an explicitly requested
-task merely to ask whether the user wants to switch.
+**Перед существенной работой — остановись и дай владельцу выбрать модель**
+(указание владельца 2026-08-08, отменяет прежнее «не приостанавливай задачу ради
+вопроса о модели»). Не «отметить, что совет не подходит, и пойти дальше» — именно
+приостановиться и предложить выбор через `AskUserQuestion`: варианты `haiku` /
+`sonnet` / `opus`, у каждого одной строкой цена ошибки и объём задачи. Рекомендацию
+хука Model Advisor показывай как один из входов, а не как вердикт: она считается по
+длине и форме промпта и на этом проекте регулярно занижала оценку (например `haiku`
+на реверс дизайн-системы). Свою оценку давай рядом и обосновывай.
+
+Приостановка нужна перед существенной работой: новый узел графа, дизайн-итерация,
+правка данных каталога, всё, что потребует прогона проверок и коммита. НЕ нужна
+на разговорных ответах, уточнениях, показе файла, продолжении уже выбранного
+владельцем пункта меню. Никогда не утверждай, что знаешь активную модель сессии.
 
 ## Execution modes
 
