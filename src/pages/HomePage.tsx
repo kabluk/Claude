@@ -158,19 +158,11 @@ export default function HomePage() {
             <span className="label text-on-surface-variant">Instant automated scan against WCAG</span>
           </div>
 
+          {/* Рукописное подчёркивание из макета убрано по указанию владельца
+              (2026-08-08): акцент несёт цвет слова, второй маркер избыточен. */}
           <h1 className="display mt-4">
             Check your website{' '}
-            <span className="relative inline-block text-[color:var(--color-primary)]">
-              accessibility
-              <svg
-                aria-hidden="true"
-                viewBox="0 0 100 20"
-                preserveAspectRatio="none"
-                className="absolute -bottom-1 left-0 h-3 w-full text-[color:var(--color-primary-container)] opacity-60"
-              >
-                <path d="M0,10 Q50,20 100,10" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
-              </svg>
-            </span>
+            <span className="text-[color:var(--color-primary)]">accessibility</span>
           </h1>
           <p className="lede mx-auto">
             Know where your website stands: an instant automated scan against WCAG — including the
@@ -235,26 +227,30 @@ export default function HomePage() {
         {/* 2. Live product proof (§8) — только реальные числа из данных сборки,
             каждое считается из agencies.json / en301549-coverage.json. */}
         <dl className="relative z-10 mx-auto mt-10 grid max-w-3xl grid-cols-2 gap-4 rounded-2xl bg-[color:var(--color-surface-container-low)]/60 p-6 text-center sm:grid-cols-4 sm:gap-8">
-          {/* flex-col-reverse: число визуально сверху, DOM-порядок dt→dd валиден */}
-          <div className="flex flex-col-reverse">
+          {/* flex-col-reverse: число визуально сверху, DOM-порядок dt→dd валиден.
+              justify-end — в column-reverse «end» это ВЕРХ ячейки: без него
+              содержимое прижато к низу, и у метрики с двухстрочной подписью
+              («Verifiable certifications») число уезжало выше остальных
+              (замечено владельцем на живом сайте 2026-08-08). */}
+          <div className="flex flex-col-reverse justify-end">
             <dt className="label mt-1 text-on-surface-variant">Verified agencies</dt>
             <dd className="num text-[2rem] font-semibold leading-[1.2] tracking-[-0.02em] text-[color:var(--color-primary)]">
               {agencies.length}
             </dd>
           </div>
-          <div className="flex flex-col-reverse">
+          <div className="flex flex-col-reverse justify-end">
             <dt className="label mt-1 text-on-surface-variant">Countries</dt>
             <dd className="num text-[2rem] font-semibold leading-[1.2] tracking-[-0.02em] text-[color:var(--color-primary)]">
               {countries.length}
             </dd>
           </div>
-          <div className="flex flex-col-reverse">
+          <div className="flex flex-col-reverse justify-end">
             <dt className="label mt-1 text-on-surface-variant">Verifiable certifications</dt>
             <dd className="num text-[2rem] font-semibold leading-[1.2] tracking-[-0.02em] text-[color:var(--color-primary)]">
               {certified}
             </dd>
           </div>
-          <div className="flex flex-col-reverse">
+          <div className="flex flex-col-reverse justify-end">
             <dt className="label mt-1 text-on-surface-variant">EN 301 549 checks</dt>
             <dd className="num text-[2rem] font-semibold leading-[1.2] tracking-[-0.02em] text-[color:var(--color-primary)]">
               {coverageSummary.covered}
