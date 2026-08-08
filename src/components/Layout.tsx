@@ -1,8 +1,32 @@
-import type { ReactNode } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect, type ReactNode } from 'react'
+import { Link, useLocation, useNavigationType } from 'react-router-dom'
 import { agencies, countries, paths } from '@/lib/data'
 import { Meta, JsonLd, breadcrumbsLd, SITE_NAME, type Crumb } from '@/lib/seo'
 import { chromeDict, type ChromeLocale } from '@/lib/i18n'
+
+// Сброс прокрутки при переходе между страницами. Без него react-router
+// сохраняет позицию предыдущей страницы: клик по карточке агентства из
+// середины длинного списка открывал профиль сразу в его середине (найдено
+// владельцем на живом сайте, D-093).
+//
+// ХУК, а не JSX-компонент вроде <ScrollToTop /> внутри Layout — сознательно:
+// новый узел в общем каркасе сдвинул бы позиционные индексы детей Fragment'а,
+// а с ними React.useId() у любого интерактивного компонента на КАЖДОЙ из 451
+// страницы (ровно этот баг ловили в D-087). Хук не добавляет узлов в дерево.
+//
+// Два исключения, оба намеренные:
+// - есть #hash → страница открывается по якорю, прокрутку не трогаем;
+// - navigationType === 'POP' (кнопки Назад/Вперёд) → пользователь ждёт
+//   возврата на прежнее место, а не прыжка наверх.
+function useScrollToTopOnNavigate() {
+  const { pathname, hash } = useLocation()
+  const navigationType = useNavigationType()
+  useEffect(() => {
+    if (hash) return
+    if (navigationType === 'POP') return
+    window.scrollTo(0, 0)
+  }, [pathname, hash, navigationType])
+}
 
 export function Layout({
   title,
@@ -34,6 +58,7 @@ export function Layout({
   htmlLang?: string
   children: ReactNode
 }) {
+  useScrollToTopOnNavigate()
   const t = chromeDict(locale)
   const trail: Crumb[] = crumbs ? [{ name: t.breadcrumbHome, path: '/' }, ...crumbs] : []
   return (
