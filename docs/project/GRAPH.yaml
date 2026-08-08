@@ -981,6 +981,31 @@ nodes:
     approval_required: false
     notes: "Заведён 2026-08-07 при отсутствии других незаблокированных узлов графа (все прочие: done, blocked на A0-OWNER-LEGAL, review в ожидании пассивного наблюдения, или todo но функционально заблокированы доменом — A2-OUTREACH-SEND). Прямое продолжение G-GUIDES-BFSG-STATEMENT/EAA-8/VPAT-CLUSTER (D-056/D-057/D-059) — единственный явно названный в HANDOFF.md/BACKLOG.md остаток G-GUIDES ('ещё BFSG-контент: Muster-Vorlage/чеклист'). Baseline-числа в verify (245/0, 399→400 стр., 362→363 sitemap, 437 ссылок, 21/21 scripts:test) сняты живым прогоном непосредственно перед постановкой узла, не предположены. Готово 2026-08-07: новый гайд `barrierefreiheitserklaerung-muster-checkliste.md` — Platzhalter-Muster для всех пяти пунктов Anlage 3 + 7-пунктовая Veröffentlichungs-Checkliste; пять пунктов не пересказаны дословно, только ссылка + практический слой (проверено вручную). Встречные ссылки добавлены в обе стороны (barrierefreiheitserklaerung-bfsg-anlage3.md, bfsg-pflichten-guide.md) — анти-orphan. Интеграция полностью автоматическая (src/lib/guides.ts глобит директорию, routes.tsx/gen-a11y-sitemap.mjs не тронуты). Все verify прошли: build-a11y 245/0, typecheck чисто, worker:test 202/202, src:test 10/10, scripts:test 21/21 (no-fine-amounts.test.mjs включая новый файл, без правок теста), build 400 страниц (было 399), sitemap 363 (было 362), check-links 438/0 битых (было 437), audit-a11y 26 страниц постоянного сэмпла 0 нарушений (не изменялся), отдельный разовый axe-прогон 3 страниц (новая + 2 изменённые, временный скрипт-копия harness'а audit-own-a11y.mjs, удалён после прогона) — 0 нарушений. grep €/EUR/Bußgeld/fine/penalty по новому файлу — 0 совпадений. Живой WebFetch-фактчек не проводился и не требовался verify этого узла — новых юридических фактов не добавлено, только практический слой поверх уже перепроверенных в D-056/D-060 фактов (Anlage 3, §16/17 BFSG, MLBF, Art. 246 EGBGB)."
 
+  - id: G-GUIDES-RGAA-FR
+    title: "FR-гайд под голое `rgaa` (8100/мес по DataForSEO 2026-08-08): что такое RGAA, 106 критериев, связь WCAG/EN 301 549, кому обязателен — информационный интент, без дублирования audit-rgaa-guide"
+    owner: product-lead
+    status: in_progress
+    depends_on: []
+    inputs:
+      - data/a11y/guides/audit-rgaa-guide.md
+      - docs/project/domains/growth.md (keyword-рефреш 2026-08-08)
+      - docs/project/DECISIONS.md (D-035 no-fines, D-058 прецедент RGAA-контента)
+    scope:
+      - data/a11y/guides/
+    outputs:
+      - "новый fr-гайд информационного интента (что такое RGAA) + встречные ссылки с audit-rgaa-guide.md (анти-orphan в обе стороны)"
+    verify:
+      - "юридические/технические факты (версия RGAA, число критериев, орган, связь с WCAG) сверены живьём с первоисточником (accessibilite.numerique.gouv.fr / DINUM), не по памяти модели"
+      - "полный набор гейтов: build-a11y 245 / typecheck / worker:test / src:test / scripts:test (вкл. no-fine-amounts) / build / check-links / audit-a11y — зелёные"
+      - "разовый axe-прогон новой страницы — 0 нарушений"
+      - "sitemap: +1 URL, новый гайд внутри; <html lang=fr> в собранном dist, chrome честно английский (D-087)"
+      - "не дублирует транзакционный audit-rgaa-guide.md — информационный интент, взаимные ссылки"
+    max_attempts: 3
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Заведён 2026-08-08 по данным keyword-рефреша DataForSEO (владелец дал API in-memory): голое `rgaa` 8100/мес @ $3.63 — largest gap спрос↔контент; существующий audit-rgaa-guide метит только в `audit rgaa` 390/мес. Модель узла — Sonnet (выбор владельца через AskUserQuestion, совет хука haiku отклонён)."
+
   - id: CN-HERO
     title: "Scanner-first главная (конституция §7-8, §59): функциональный hero с URL-вводом, каталог ниже"
     owner: frontend-engineer
