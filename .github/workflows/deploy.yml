@@ -40,6 +40,14 @@ jobs:
           cache: npm
       - run: npm ci
 
+      # Chromium СРАЗУ после npm ci, ДО worker:test — урок из ci.yml (2026-08-06,
+      # A3-REFLOW/KEYBOARD/MEDIA/RESIZE/COOKIEBANNER): worker/lib/domChecks.test.mjs
+      # гоняет реальный Chromium через Playwright, не мок. Этот же порядок был
+      # регрессирован здесь при написании D-099 (шаг стоял только перед audit-a11y,
+      # уже после worker:test) — упало живьём на первом прогоне (D-101):
+      # "browserType.launch: Executable doesn't exist", чисто раннер без браузера.
+      - run: npx playwright install --with-deps chromium
+
       # Гейты перед деплоем — не дублирование ci.yml, а защита прода: ci.yml
       # гоняется на каждый push в любую ветку, а сюда попадает только то, что
       # реально поедет пользователям. Порядок от дешёвого к дорогому.
@@ -69,9 +77,6 @@ jobs:
           echo "✓ адрес сканера присутствует в dist/assets/"
 
       - run: npm run check-links
-
-      - name: Install Chromium for the accessibility gate
-        run: npx playwright install --with-deps chromium
       - run: npm run audit-a11y
 
       - name: Deploy to Cloudflare Pages
