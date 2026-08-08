@@ -2,7 +2,60 @@
 
 Обновлено: 2026-08-08 (см. также подробный legacy-статус: `research/STATE.md`)
 
-## Последнее (2026-08-08, G-I18N первый безопасный кусок: немецкий chrome / D-087)
+## Последнее (2026-08-08, worker:deploy реально выполнен — CN-SCAN-PHASES done / D-088)
+
+**D-088 — `worker:deploy` + `db:migrate:remote` выполнены на проде.** После
+D-087 владелец попросил продолжить `G-I18N` целиком; сузили через
+`AskUserQuestion` до вопроса «с чего начать остаток» — владелец выбрал НЕ
+продолжать `G-I18N` сейчас, а взять ранее отложенное `worker:deploy` вместо
+`G-PITCH-DECK`.
+
+Технический блокер D-069 (нет `CLOUDFLARE_API_TOKEN` в среде) подтверждён
+повторно в этой сессии тем же способом, затем снят: владелец создал Custom
+API Token в Cloudflare Dashboard (по нашей рекомендации — только Workers
+Scripts/D1/Workers KV Storage/Browser Rendering, Edit, не «Select all 273
+permissions») и передал в чат. Токен использован **только in-memory**
+(инлайн в env конкретных `wrangler`-команд), ни разу не на диске и не в
+коммите — `git status` до/после чист.
+
+Порядок: `wrangler whoami` подтвердил валидный токен на аккаунте владельца
+→ `wrangler deploy --dry-run` чисто (все биндинги резолвятся) → 5 миграций
+(`0003`…`0007_scan_progress.sql`) прочитаны построчно — только `CREATE
+TABLE IF NOT EXISTS`/`ALTER TABLE ADD COLUMN`, ничего деструктивного →
+применены на реальной D1 (`accessatlas-scans`) → `wrangler deploy`
+задеплоил воркер (Version ID `bf8087e6`).
+
+**Проверено живьём, не по логу деплоя**: реальный `POST /api/scan` дважды.
+`example.com` — базовая работоспособность (score 68, 5 находок). Многостраничный
+`https://www.w3.org/WAI/`, пойман в процессе секундным опросом
+`GET /api/scan/:id` — реальные фазы `discovering→statement(pagesTotal:6)→
+axe(pagesDone 0→5/6)→dom-checks` последовательно видны в ответе API, финал
+сбросил `progress` в `null`, ровно контракт D-067. Третий прогон (тот же
+URL, `countryCode=DE`) подтвердил живьём **исправление D-040**, которое
+HANDOFF отмечал как «живёт только в коде»: находка
+`a11y-statement-incomplete` реально получила `impact: "critical"`,
+`jurisdictionCountry: "DE"`, `jurisdictionNote: "DE: BFSG, Anlage 3 zu §14
+BFSG"` на проде.
+
+Полный набор гейтов перезапущен (код не менялся, только инфраструктура):
+`typecheck` чисто, `build` 450 стр./sitemap 413 (без изменений), `audit-a11y`
+**47 страниц (light), 0 нарушений**, `scripts:test` 48/48, `check-links`
+498-0, `worker:test` 211/211, `src:test` 20/20 — идентично состоянию до
+деплоя. `CN-SCAN-PHASES` — `done`. `ALLOWED_ORIGIN` в `wrangler.jsonc`
+остаётся плейсхолдером — CORS каталога этот деплой не чинит (нужен
+`A0-ORIGIN`). `G-PITCH-DECK` остаётся следующим отложенным направлением.
+
+Побочная находка на входе сессии (окружение, не код): ветка
+`claude/accessatlas-g-i18n-continue-0em3dj`, назначенная харнессом,
+физически указывала на посторонний проект (ES review packet / Cloudflare
+checklist / NY-FL страницы, HEAD совпадал с текущим `main`) — тот же класс
+проблемы, что уже был в D-078, но с другим посторонним содержимым. Владелец
+подтвердил пересоздание ветки от `origin/claude/accessatlas-project-x8fz3t`
+(HEAD `16eb837`, реальное состояние AccessAtlas); push прошёл без force —
+на origin под этим именем ничего не оказалось, локальный кэш `git branch -a`
+был просто устаревшим.
+
+## Предыдущее (2026-08-08, G-I18N первый безопасный кусок: немецкий chrome / D-087)
 
 **D-087 — `G-I18N-CHROME-DE`.** Владелец попросил взять `G-I18N` целиком.
 Полный масштаб (UI на 4 языках + `hreflang` + перевод сотен

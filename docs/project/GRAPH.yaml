@@ -1226,7 +1226,7 @@ nodes:
   - id: CN-SCAN-PHASES
     title: "НАСТОЯЩИЙ пофазный стрим скана (discovering/statement/axe/dom-checks/aggregating) — расширение контракта API"
     owner: backend-engineer
-    status: review
+    status: done
     depends_on: [CN-SCAN-STREAM]
     inputs: [worker/lib/axe.js, worker/routes/scan.js, worker/lib/db.js, docs/project/INTERFACES.md, src/lib/scanStream.ts]
     scope: [worker/, migrations/, src/lib/, src/components/ScanStream.tsx, docs/project/INTERFACES.md]
@@ -1236,11 +1236,12 @@ nodes:
       - "изменение контракта записано в DECISIONS.md (D-067) и INTERFACES.md §3/§4 — ✅"
       - "UI-шаги в ScanStream только из реальных полей, ни один не выдуман; fallback на трёхшаговый поток без progress — ✅ тесты"
       - "worker:test 211/211 (+db.test.mjs, progress.test.mjs), src:test 20/20 — ✅"
+      - "D-088 (2026-08-08): реально задеплоено на прод — 5 миграций (0003-0007) применены на реальной D1 accessatlas-scans, worker deploy успешен (Version ID bf8087e6). Живой прогон против https://www.w3.org/WAI/ с countryCode=DE поймал реальные фазы discovering(0)→statement(6)→axe(1..5/6)→dom-checks в GET /api/scan/:id, финал сбросил progress в null. Попутно подтверждён живьём D-040 (juridiction-note reaching a11y-statement-incomplete): impact критический, jurisdictionCountry:DE, jurisdictionNote с точной статьёй BFSG — ✅"
     max_attempts: 3
     attempts: 1
     risk: medium
     approval_required: true
-    notes: "Заведён 2026-08-07 (D-064), код полностью готов 2026-08-07 (D-067). Статус review. **Причина уточнена 2026-08-08 (D-069):** разрешение владельца на деплой ЕСТЬ (D-022, «делай всё»); блок теперь ТЕХНИЧЕСКИЙ и локальный для среды — из текущего окружения `worker:deploy` невозможен (нет CLOUDFLARE_API_TOKEN, ~/.wrangler пуст, wrangler whoami виснет), хотя `wrangler deploy --dry-run` проходит чисто и все привязки резолвятся к реальным ID (accessatlas-scans, оба KV, Browser Rendering). Ждёт **среды с CF-токеном ИЛИ владелец сам запускает `npm run worker:deploy` + `db:migrate:remote`**. Отдельно: ALLOWED_ORIGIN в wrangler.jsonc — плейсхолдер, деплой сейчас не починил бы CORS каталога (нужен A0-ORIGIN). До деплоя прод-воркер отдаёт старое поведение (без progress) — UI работает с обоими (parseScanProgress → null → поток D-064). Локальный Browser Rendering в песочнице: CI=1 (miniflare добавляет --no-sandbox), axe-source через тестовый шов env.AXE_SOURCE_URL (в prod не задан)."
+    notes: "Заведён 2026-08-07 (D-064), код полностью готов 2026-08-07 (D-067). **Причина блокировки уточнена 2026-08-08 (D-069):** разрешение владельца на деплой ЕСТЬ (D-022, «делай всё»); блок был ТЕХНИЧЕСКИЙ и локальный для среды — из тогдашнего окружения `worker:deploy` был невозможен (нет CLOUDFLARE_API_TOKEN). **Закрыт 2026-08-08 (D-088):** владелец выдал CLOUDFLARE_API_TOKEN in-memory прямо в чат (никогда не записан на диск/в коммит), деплой и миграции выполнены реально, проверено живым сканом на проде. ALLOWED_ORIGIN в wrangler.jsonc остаётся плейсхолдером — деплой не чинит CORS каталога (нужен A0-ORIGIN, отдельный блокер). Локальный Browser Rendering в песочнице: CI=1 (miniflare добавляет --no-sandbox), axe-source через тестовый шов env.AXE_SOURCE_URL (в prod не задан)."
 
   - id: CN-LIGHT-ONLY
     title: "Убрать тёмную тему — светлый фон везде (прямое указание владельца, реверс части D-072)"
