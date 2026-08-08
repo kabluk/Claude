@@ -1,19 +1,20 @@
 import { Link, useParams } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
 import { JsonLd, ORIGIN, SITE_NAME } from '@/lib/seo'
-import { paths } from '@/lib/data'
-import { reportBySlug, stats, en301549Stats, type ReportMeta } from '@/lib/reports'
+import { paths, countryByCode } from '@/lib/data'
+import { reportBySlug, stats, en301549Stats, jurisdictionStats, type ReportMeta } from '@/lib/reports'
 
-// CN-RESEARCH (§23, D-071) / CN-RESEARCH-EN301549-AUTOMATION: a data-product
-// page. The prose is authored; every number is read from a computed stats
-// object (never typed by hand). This page now backs TWO reports with
-// DIFFERENT data shapes, so it is a dispatcher on `meta.slug`: a shared shell
-// (JSON-LD, h1, dateline, dek) renders the same way for every report, and the
-// body — everything below the dek — is a per-slug component looked up in
-// REPORT_BODIES, the same "data → per-slug content" shape as DEMOS in
-// src/lib/componentsLib.tsx. verified-audit-market's body below is the exact
-// content this page rendered before the refactor — unchanged markup, unchanged
-// text, unchanged numbers — so its output stays byte-identical.
+// CN-RESEARCH (§23, D-071) / CN-RESEARCH-EN301549-AUTOMATION /
+// CN-RESEARCH-JURISDICTION-COVERAGE: a data-product page. The prose is
+// authored; every number is read from a computed stats object (never typed by
+// hand). This page now backs THREE reports with DIFFERENT data shapes, so it
+// is a dispatcher on `meta.slug`: a shared shell (JSON-LD, h1, dateline, dek)
+// renders the same way for every report, and the body — everything below the
+// dek — is a per-slug component looked up in REPORT_BODIES, the same
+// "data → per-slug content" shape as DEMOS in src/lib/componentsLib.tsx.
+// verified-audit-market's and en301549-automation-coverage's bodies below are
+// UNCHANGED by adding the third report — same markup, same text, same
+// numbers, so their output stays byte-identical.
 
 function StatTile({ value, label, note }: { value: string | number; label: string; note?: string }) {
   return (
@@ -384,8 +385,166 @@ function En301549AutomationBody({ meta }: { meta: ReportMeta }) {
   )
 }
 
+// ---------------------------------------------------------------------------
+// Report body: jurisdiction-coverage-gap — a SYNTHESIS of
+// data/a11y/agencies.json (report 1's source) and worker/lib/jurisdiction.js
+// (the scanner's own jurisdiction list), via jurisdictionStats, computed by
+// scripts/jurisdiction-report-data.mjs.
+// ---------------------------------------------------------------------------
+function JurisdictionCoverageGapBody({ meta }: { meta: ReportMeta }) {
+  const j = jurisdictionStats
+  const hasGap = j.uncovered.count > 0
+
+  return (
+    <>
+      <p className="mt-2 text-sm text-on-surface-variant">
+        Updated <span className="num">{meta.updated}</span> · computed from{' '}
+        <span className="num">{j.totalJurisdictions}</span> jurisdictions
+      </p>
+      <p className="lede">{meta.dek}</p>
+
+      {/* Honest framing up front (§21), same principle as the other two
+          reports' boxes: this is about the CATALOG's composition, not a claim
+          about the real world. */}
+      <div className="mt-6 rounded-xl border border-[color:var(--color-info-border)] bg-[color:var(--color-info-soft)] p-4 text-sm text-on-surface-variant">
+        <p>
+          <strong>What this is.</strong> A join of two datasets AccessAtlas already maintains: the{' '}
+          {j.totalJurisdictions} jurisdictions its own scanner treats as legally requiring a website
+          accessibility statement (the same list used to weight scan findings), crossed against how many
+          catalog specialists actually list that country under their service area.
+        </p>
+        <p className="mt-2">
+          <strong>What this is not.</strong> A jurisdiction with no listed specialist does not mean no
+          specialist exists there — it means none is in <em>our</em> catalog yet. This page counts only
+          our own records, the same discipline as our other reports: nothing here is inferred about
+          agencies we have not verified and listed.
+        </p>
+      </div>
+
+      <section className="mt-8">
+        <h2 className="h2">The gap at a glance</h2>
+        <div className="mt-4 grid grid-cols-2 gap-3 sm:grid-cols-4">
+          <StatTile value={j.totalJurisdictions} label="Jurisdictions requiring a statement" note="EU/EEA, EAA transposition or equivalent" />
+          <StatTile value={j.uncovered.count} label="With zero catalog specialists" />
+          <StatTile
+            value={j.thinnestCoverage?.agencyCount ?? '—'}
+            label="Thinnest coverage"
+            note={j.thinnestCoverage ? j.thinnestCoverage.jurisdictions.join(', ') : undefined}
+          />
+          <StatTile
+            value={j.deepestCoverage?.agencyCount ?? '—'}
+            label="Deepest coverage"
+            note={j.deepestCoverage ? j.deepestCoverage.jurisdictions.join(', ') : undefined}
+          />
+        </div>
+      </section>
+
+      <section className="mt-10 max-w-3xl">
+        <h2 className="h2">Jurisdictions with zero catalog coverage</h2>
+        {hasGap ? (
+          <>
+            <p className="max-w-prose text-sm text-on-surface-variant">
+              These <span className="num">{j.uncovered.count}</span> jurisdictions legally require an
+              accessibility statement, and the AccessAtlas catalog currently lists no specialist serving
+              any of them:
+            </p>
+            <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+              {j.uncovered.jurisdictions.map((r) => (
+                <li key={r.country} className="rounded-lg border border-outline-variant p-3 text-sm">
+                  <span className="font-medium text-on-surface">{r.name}</span>{' '}
+                  <span className="text-on-surface-variant">— {r.law}</span>
+                </li>
+              ))}
+            </ul>
+          </>
+        ) : (
+          <p className="max-w-prose text-sm text-on-surface-variant">
+            None, currently — we checked all {j.totalJurisdictions} rather than assume this list would be
+            empty or non-empty. Every jurisdiction the scanner treats as requiring a statement has at
+            least one catalog specialist serving it today. That is a coverage floor, not a depth claim:
+            see the breakdown below for how thin some of that coverage still is.
+          </p>
+        )}
+      </section>
+
+      <section className="mt-10 max-w-3xl">
+        <h2 className="h2">How coverage breaks down, jurisdiction by jurisdiction</h2>
+        <p className="max-w-prose text-sm text-on-surface-variant">
+          Number of catalog specialists whose declared service area (
+          <span className="font-mono text-xs">countriesServed</span>) includes each jurisdiction. Germany
+          leads by a wide margin; several jurisdictions — Finland and Norway among them — currently have
+          only {j.thinnestCoverage?.agencyCount ?? 0} each.
+        </p>
+        <BarList
+          caption="Catalog specialists serving each jurisdiction that legally requires an accessibility statement"
+          rows={j.covered.jurisdictions.map((r) => ({ key: r.country, label: r.name, count: r.agencyCount }))}
+        />
+      </section>
+
+      <section className="mt-10 max-w-3xl">
+        <h2 className="h2">How sure we are about each law citation</h2>
+        <p className="max-w-prose text-sm text-on-surface-variant">
+          <span className="num">{j.verifiedLawCount}</span> of {j.totalJurisdictions} law citations —
+          Germany&rsquo;s BFSG — is checked against its primary legal text and, in our scanner, carries a
+          specific article citation. The other <span className="num">{j.unverifiedLawCount}</span> are
+          shown as-is from public legal sources but not yet cross-checked line-by-line against the primary
+          statute the way Germany&rsquo;s was. <code>verified</code> here describes the quality of the{' '}
+          <em>legal citation</em> only — it is not a statement about whether the underlying requirement to
+          publish a statement is real (it is, for all {j.totalJurisdictions}) and never a statement about
+          any penalty, which this page does not show for any jurisdiction, verified or not.
+        </p>
+      </section>
+
+      <section className="mt-10 max-w-3xl">
+        <h2 className="h2">Find or request a specialist</h2>
+        <p className="max-w-prose text-sm text-on-surface-variant">
+          Browse catalog specialists by country, or tell us which jurisdiction you need coverage for and
+          we will help you find one.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {j.covered.jurisdictions.map((r) => {
+            const c = countryByCode(r.country)
+            return c ? (
+              <Link key={r.country} to={paths.country(c)} className="chip hover:border-outline">
+                {r.name} · {r.agencyCount}
+              </Link>
+            ) : null
+          })}
+        </div>
+      </section>
+
+      <section className="mt-10 max-w-3xl">
+        <h2 className="h2">How this was made</h2>
+        <p className="max-w-prose text-sm text-on-surface-variant">
+          This report joins two datasets AccessAtlas already publishes elsewhere, rather than introducing
+          a third: the {j.totalJurisdictions}-jurisdiction list from{' '}
+          <span className="font-mono text-xs">worker/lib/jurisdiction.js</span> — the same module our
+          scanner uses at scan time to decide when a missing accessibility statement is a legally decisive
+          finding, not just an invented list for this page — crossed against{' '}
+          <span className="font-mono text-xs">data/a11y/agencies.json</span>, the catalog behind our{' '}
+          <Link className="underline underline-offset-2" to={paths.reportDoc('verified-audit-market')}>
+            first report
+          </Link>
+          . A build-time aggregator computes every number here, and a test recomputes them from both
+          source files and fails if the published snapshot drifts.
+        </p>
+      </section>
+
+      <p className="mt-10 text-sm">
+        <Link className="btn" to={paths.requestQuote()}>
+          Request a quote
+        </Link>{' '}
+        <span className="ml-2 text-on-surface-variant">
+          Tell us your jurisdiction and we will route you to a verified specialist, or flag the gap.
+        </span>
+      </p>
+    </>
+  )
+}
+
 const REPORT_BODIES: Record<string, (props: { meta: ReportMeta }) => JSX.Element> = {
   'verified-audit-market': VerifiedAuditMarketBody,
+  'jurisdiction-coverage-gap': JurisdictionCoverageGapBody,
   'en301549-automation-coverage': En301549AutomationBody,
 }
 

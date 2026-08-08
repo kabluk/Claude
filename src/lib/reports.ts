@@ -1,31 +1,37 @@
-// CN-RESEARCH (§23, D-071) / CN-RESEARCH-EN301549-AUTOMATION: the reports layer.
+// CN-RESEARCH (§23, D-071) / CN-RESEARCH-EN301549-AUTOMATION /
+// CN-RESEARCH-JURISDICTION-COVERAGE: the reports layer.
 //
 // Two things are deliberately kept apart, per report:
-//   - the STATS (data/a11y/reports.json, data/a11y/en301549-report.json) are
-//     computed from their own source data by their own aggregator scripts
-//     (scripts/reports-data.mjs, scripts/en301549-report-data.mjs) and each
-//     guarded by its own test — no number here is typed by hand;
+//   - the STATS (data/a11y/reports.json, data/a11y/en301549-report.json,
+//     data/a11y/jurisdiction-report.json) are computed from their own source
+//     data by their own aggregator scripts (scripts/reports-data.mjs,
+//     scripts/en301549-report-data.mjs, scripts/jurisdiction-report-data.mjs)
+//     and each guarded by its own test — no number here is typed by hand;
 //   - the EDITORIAL metadata below (slug, title, framing prose, JSON-LD
 //     variables) is authored.
 //
-// This module now backs MORE THAN ONE report, each with a DIFFERENT data
-// shape (ReportStats vs En301549Stats) — verified-audit-market reads
-// data/a11y/agencies.json, en301549-automation-coverage reads
-// data/a11y/en301549-coverage.json. Rather than force both into one flat
-// structure, each report keeps its own stats export and its own body content
-// in src/pages/ReportDocPage.tsx, which dispatches on `meta.slug` — the same
-// "data → per-slug content" shape already used by DEMOS in
-// src/lib/componentsLib.tsx and by the coverage-driven pages in
-// src/lib/wcag.ts. ReportMeta only carries what the SHARED page shell (JSON-LD,
-// title, dateline, dek) needs from every report, regardless of its data shape.
+// This module now backs THREE reports, each with a DIFFERENT data shape
+// (ReportStats / En301549Stats / JurisdictionStats) — verified-audit-market
+// reads data/a11y/agencies.json, en301549-automation-coverage reads
+// data/a11y/en301549-coverage.json, jurisdiction-coverage-gap SYNTHESISES the
+// first report's source (agencies.json) with worker/lib/jurisdiction.js — it
+// is not a third new dataset, it is a new angle on the two already in use.
+// Rather than force all three into one flat structure, each report keeps its
+// own stats export and its own body content in src/pages/ReportDocPage.tsx,
+// which dispatches on `meta.slug` — the same "data → per-slug content" shape
+// already used by DEMOS in src/lib/componentsLib.tsx and by the
+// coverage-driven pages in src/lib/wcag.ts. ReportMeta only carries what the
+// SHARED page shell (JSON-LD, title, dateline, dek) needs from every report,
+// regardless of its data shape.
 //
-// verified-audit-market's stats/meta values are UNCHANGED from before this
-// refactor — reports-data.mjs, reports-data.test.mjs and data/a11y/reports.json
-// are untouched, and this file still reads reports.json the same way it always
-// did, so the page they feed renders byte-identical output.
+// verified-audit-market's and en301549-automation-coverage's stats/meta
+// values are UNCHANGED by this addition — their aggregators, tests and
+// snapshots are untouched, and this file still reads their JSON the same way
+// it always did, so the pages they feed render byte-identical output.
 
 import reportsData from '@data/a11y/reports.json'
 import en301549ReportData from '@data/a11y/en301549-report.json'
+import jurisdictionReportData from '@data/a11y/jurisdiction-report.json'
 
 // ---------------------------------------------------------------------------
 // Report 1: verified-audit-market (data/a11y/agencies.json). Unchanged.
@@ -120,6 +126,41 @@ export interface En301549Stats {
 export const en301549Stats = en301549ReportData as En301549Stats
 
 // ---------------------------------------------------------------------------
+// Report 3: jurisdiction-coverage-gap — a SYNTHESIS of data/a11y/agencies.json
+// (report 1's source) and worker/lib/jurisdiction.js (the scanner's own
+// jurisdiction list), computed by scripts/jurisdiction-report-data.mjs and
+// gated by scripts/jurisdiction-report-data.test.mjs — a third
+// aggregator/gate pair that does not touch either of the first two.
+// ---------------------------------------------------------------------------
+
+export interface JurisdictionRow {
+  country: string
+  name: string
+  law: string
+  lawFull: string | null
+  statementRequired: boolean
+  verified: boolean
+  citation: string | null
+  agencyCount: number
+}
+export interface JurisdictionCoverageExtreme {
+  agencyCount: number
+  jurisdictions: string[]
+}
+export interface JurisdictionStats {
+  source: string
+  totalJurisdictions: number
+  uncovered: { count: number; jurisdictions: JurisdictionRow[] }
+  covered: { count: number; jurisdictions: JurisdictionRow[] }
+  verifiedLawCount: number
+  unverifiedLawCount: number
+  thinnestCoverage: JurisdictionCoverageExtreme | null
+  deepestCoverage: JurisdictionCoverageExtreme | null
+}
+
+export const jurisdictionStats = jurisdictionReportData as JurisdictionStats
+
+// ---------------------------------------------------------------------------
 // Shared editorial metadata — what the common page shell in ReportDocPage.tsx
 // needs regardless of which report it renders. The body content itself (every
 // section past the dateline/dek/what-this-is box) is per-slug, authored
@@ -170,6 +211,23 @@ export const reports: ReportMeta[] = [
       'WCAG 2.x success criterion',
       'Automation status (axe rule / our own check / both / manual only)',
       'WCAG POUR principle (Perceivable, Operable, Understandable, Robust)',
+    ],
+  },
+  {
+    slug: 'jurisdiction-coverage-gap',
+    title: 'Where the law requires a specialist — and where our catalog is thinnest',
+    dek:
+      jurisdictionStats.uncovered.count > 0
+        ? `${jurisdictionStats.uncovered.count} of the ${jurisdictionStats.totalJurisdictions} EU/EEA jurisdictions where AccessAtlas's own scanner treats an accessibility statement as legally required currently have zero catalog specialists serving them.`
+        : `All ${jurisdictionStats.totalJurisdictions} EU/EEA jurisdictions where AccessAtlas's own scanner treats an accessibility statement as legally required have at least one catalog specialist — but coverage ranges from ${jurisdictionStats.deepestCoverage?.agencyCount ?? 0} down to just ${jurisdictionStats.thinnestCoverage?.agencyCount ?? 0}.`,
+    updated: '2026-08-08',
+    measurementTechnique:
+      'Join of the AccessAtlas catalog (data/a11y/agencies.json, filtered by agencies[].countriesServed) against the 13 jurisdictions the AccessAtlas scanner itself treats as requiring an accessibility statement (worker/lib/jurisdiction.js)',
+    variableMeasured: [
+      'Jurisdiction (country)',
+      'Applicable law transposing the European Accessibility Act (or, for Norway, its EEA equivalent)',
+      'Whether the law citation is verified against a primary source',
+      'Number of catalog specialists serving that jurisdiction',
     ],
   },
 ]

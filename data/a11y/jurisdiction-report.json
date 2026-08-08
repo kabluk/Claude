@@ -1,0 +1,158 @@
+{
+  "source": "data/a11y/agencies.json + worker/lib/jurisdiction.js",
+  "totalJurisdictions": 13,
+  "uncovered": {
+    "count": 0,
+    "jurisdictions": []
+  },
+  "covered": {
+    "count": 13,
+    "jurisdictions": [
+      {
+        "country": "DE",
+        "name": "Germany",
+        "law": "BFSG",
+        "lawFull": "Barrierefreiheitsstärkungsgesetz",
+        "statementRequired": true,
+        "verified": true,
+        "citation": "Anlage 3 zu §14 BFSG",
+        "agencyCount": 42
+      },
+      {
+        "country": "PL",
+        "name": "Poland",
+        "law": "Ustawa o dostępności cyfrowej",
+        "lawFull": null,
+        "statementRequired": true,
+        "verified": false,
+        "citation": null,
+        "agencyCount": 29
+      },
+      {
+        "country": "FR",
+        "name": "France",
+        "law": "RGAA",
+        "lawFull": "Référentiel général d'amélioration de l'accessibilité",
+        "statementRequired": true,
+        "verified": false,
+        "citation": null,
+        "agencyCount": 28
+      },
+      {
+        "country": "NL",
+        "name": "Netherlands",
+        "law": "Tijdelijk besluit digitale toegankelijkheid overheid",
+        "lawFull": null,
+        "statementRequired": true,
+        "verified": false,
+        "citation": null,
+        "agencyCount": 25
+      },
+      {
+        "country": "AT",
+        "name": "Austria",
+        "law": "BaFG",
+        "lawFull": "Barrierefreiheitsgesetz, BGBl. I Nr. 76/2023",
+        "statementRequired": true,
+        "verified": false,
+        "citation": null,
+        "agencyCount": 11
+      },
+      {
+        "country": "ES",
+        "name": "Spain",
+        "law": "RD 1112/2018",
+        "lawFull": "Real Decreto de accesibilidad de sitios web",
+        "statementRequired": true,
+        "verified": false,
+        "citation": null,
+        "agencyCount": 9
+      },
+      {
+        "country": "IE",
+        "name": "Ireland",
+        "law": "S.I. No. 636/2023",
+        "lawFull": "European Union (Accessibility Requirements of Products and Services) Regulations 2023",
+        "statementRequired": true,
+        "verified": false,
+        "citation": null,
+        "agencyCount": 8
+      },
+      {
+        "country": "BE",
+        "name": "Belgium",
+        "law": "Loi du 5.11.2023 (2023046827)",
+        "lawFull": "Loi du 5 novembre 2023 modifiant plusieurs livres du Code de droit économique — transposition partielle directive (UE) 2019/882",
+        "statementRequired": true,
+        "verified": false,
+        "citation": null,
+        "agencyCount": 7
+      },
+      {
+        "country": "IT",
+        "name": "Italy",
+        "law": "EAA transposition (D.Lgs. 82/2022)",
+        "lawFull": "Decreto Legislativo 27 maggio 2022, n. 82 (attuazione direttiva (UE) 2019/882); obbligo di dichiarazione di accessibilità radicato nella Legge Stanca (L. 4/2004) per la PA, esteso al privato",
+        "statementRequired": true,
+        "verified": false,
+        "citation": null,
+        "agencyCount": 5
+      },
+      {
+        "country": "DK",
+        "name": "Denmark",
+        "law": "LOV nr 801 af 07/06/2022",
+        "lawFull": "Lov om tilgængelighedskrav for produkter og tjenester",
+        "statementRequired": true,
+        "verified": false,
+        "citation": null,
+        "agencyCount": 4
+      },
+      {
+        "country": "SE",
+        "name": "Sweden",
+        "law": "Lag (2023:254)",
+        "lawFull": "Lag (2023:254) om vissa produkters och tjänsters tillgänglighet",
+        "statementRequired": true,
+        "verified": false,
+        "citation": null,
+        "agencyCount": 3
+      },
+      {
+        "country": "FI",
+        "name": "Finland",
+        "law": "Laki 306/2019 + asetus 179/2023",
+        "lawFull": "Laki digitaalisten palvelujen tarjoamisesta (306/2019), EAA-vaatimukset täydennetty asetuksella 179/2023",
+        "statementRequired": true,
+        "verified": false,
+        "citation": null,
+        "agencyCount": 2
+      },
+      {
+        "country": "NO",
+        "name": "Norway",
+        "law": "Forskrift om universell utforming av IKT-løsninger",
+        "lawFull": "Forskrift 21.6.2013 nr. 732, hjemlet i diskriminerings- og tilgjengelighetsloven (Norge: EØS-avtalen, ikke EU-medlem)",
+        "statementRequired": true,
+        "verified": false,
+        "citation": null,
+        "agencyCount": 2
+      }
+    ]
+  },
+  "verifiedLawCount": 1,
+  "unverifiedLawCount": 12,
+  "thinnestCoverage": {
+    "agencyCount": 2,
+    "jurisdictions": [
+      "FI",
+      "NO"
+    ]
+  },
+  "deepestCoverage": {
+    "agencyCount": 42,
+    "jurisdictions": [
+      "DE"
+    ]
+  }
+}

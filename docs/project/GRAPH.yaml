@@ -1133,21 +1133,21 @@ nodes:
   - id: CN-RESEARCH-JURISDICTION-COVERAGE
     title: "Третий data-продукт: где закон требует специалиста, а в каталоге его нет — синтез agencies.json + worker/lib/jurisdiction.js"
     owner: growth-strategist
-    status: todo
+    status: done
     depends_on: []
     inputs: [data/a11y/agencies.json, worker/lib/jurisdiction.js, scripts/reports-data.mjs, src/lib/reports.ts, src/pages/ReportDocPage.tsx]
     scope: [scripts/jurisdiction-report-data.mjs, scripts/jurisdiction-report-data.test.mjs, data/a11y/jurisdiction-report.json, src/lib/reports.ts, src/pages/ReportDocPage.tsx, src/pages/ReportsIndexPage.tsx, scripts/audit-own-a11y.mjs]
     outputs: [data/a11y/jurisdiction-report.json, src/pages/ReportDocPage.tsx]
     verify:
-      - "новый аггрегатор ИМПОРТИРУЕТ worker/lib/jurisdiction.js напрямую (Node ESM, plain JS без браузерных API — подтверждено живым импортом до делегирования) через supportedJurisdictions(), НЕ дублирует список законов вручную — рассинхрон структурно невозможен, в отличие от src/lib/jurisdictions.ts (та копия — для рантайм-браузера, другая причина дублирования, D-010, не путать)"
-      - "для каждой из 13 юрисдикций (закон+статья уже проверены по первоисточнику, D-030/D-031/D-034) — сколько агентств каталога реально обслуживают эту страну (agencies[].countriesServed, исключая remote-*, тот же фильтр, что hqCountries в reports-data.mjs) — честно показать юрисдикции с нулевым покрытием, не сглаживать"
-      - "НИ ОДНОЙ суммы штрафа на странице (D-035, инвариант всего проекта) — grep по €/EUR/fine/penalty/Bußgeld на новом файле перед коммитом; verified:true/false из jurisdiction.js передаётся как есть, не выдаётся за большую уверенность, чем есть"
-      - "существующие ДВА отчёта не изменились ни числом, ни текстом (та же байтовая проверка dist/ до/после, что применялась в D-085 родительской сессией); npm run audit-a11y / typecheck / build / check-links / scripts:test / worker:test / src:test — все зелёные"
+      - "новый аггрегатор ИМПОРТИРУЕТ worker/lib/jurisdiction.js напрямую через supportedJurisdictions()+jurisdictionForUrl() (публичный TLD-lookup, не новый экспорт) — родительская сессия независимо подтвердила все 13 TLD==код страны через отдельный живой прогон; НЕ дублирует список законов вручную — ✅"
+      - "для каждой из 13 юрисдикций — сколько агентств каталога реально обслуживают эту страну (countriesServed, исключая remote-*); честная находка: **0 из 13 юрисдикций с нулевым покрытием** (DE максимум — 42, FI/NO минимум — по 2) — заголовок скорректирован субагентом под реальный результат вместо предполагавшегося 'has none yet' — ✅"
+      - "НИ ОДНОЙ суммы штрафа — подтверждено родительской сессией отдельным grep (все совпадения ложные: fileURLToPath/European/названия законов/сам текст об отсутствии сумм); постоянный автоматический тест на это же (word-boundary regex, не путает 'fine' с 'Finland') — ✅"
+      - "существующие ДВА отчёта не изменились — родительская сессия независимо пересобрала dist/ до/после (git stash -u) и сравнила ОБЕ страницы побайтово — содержательно идентичны; npm run audit-a11y 47 стр. 0 нарушений / typecheck / build 450 стр. sitemap 413 / check-links 498-0 / scripts:test 48/48 (было 41) / worker:test 211/211 / src:test 20/20 — все перепроверены заново, зелёные — ✅"
     max_attempts: 3
     attempts: 1
     risk: medium
     approval_required: false
-    notes: "Заведён 2026-08-08 сразу после D-085 (второй отчёт), по выбору владельца через AskUserQuestion: свежих источников почти не осталось (agencies.json и en301549-coverage.json уже выработаны первыми двумя отчётами), поэтому владелец выбрал НОВЫЙ УГОЛ — синтез двух уже существующих реальных датасетов, не новую тему с нуля. worker/lib/jurisdiction.js — юридические факты, уже перепроверенные по первоисточникам в отдельной сессии (D-030…D-034), НЕ новое юридическое исследование этим узлом. Технический ключ: worker/lib/jurisdiction.js — plain ESM JS без браузерных API, поэтому build-time Node-скрипт может импортировать его НАПРЯМУЮ (в отличие от src/lib/jurisdictions.ts — та копия существует по другой причине, для клиентского браузерного бандла /scan, синхронизируется тестом; аггрегатору отчёта такое дублирование не нужно вовсе)."
+    notes: "Готово 2026-08-08 (D-086). Заведён сразу после D-085 (второй отчёт), по выбору владельца через AskUserQuestion: свежих источников почти не осталось, поэтому владелец выбрал НОВЫЙ УГОЛ — синтез agencies.json + worker/lib/jurisdiction.js (юр-факты уже перепроверены по первоисточникам, D-030…D-034, НЕ новое юридическое исследование этим узлом). Технический приём: jurisdiction.js — plain ESM JS без браузерных API, build-time Node-скрипт импортирует его напрямую (в отличие от src/lib/jurisdictions.ts — та копия для клиентского бандла /scan, другая причина дублирования). Гейт `jurisdiction-report-data.test.mjs` (7 тестов) — самый строгий из трёх аггрегаторов серии: помимо снапшота проверяет независимый пересчёт agencyCount прямо из agencies.json (не доверяя даже своему же аггрегатору) и что ровно DE verified:true. Урок для LEARNING_LOG: заголовок отчёта писался ПОСЛЕ подсчёта, не до — гипотеза 'юрисдикции без специалистов' не подтвердилась (0 из 13), и заголовок честно заменён на то, что показали данные, а не подогнан под предположение."
 
   - id: CN-WCAG22
     title: "Самопроверка сайта до WCAG 2.2 AA (конституция §40): target-size в audit-own-a11y"
