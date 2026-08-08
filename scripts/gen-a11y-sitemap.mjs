@@ -40,7 +40,7 @@ const inCountry = (code) =>
 // реквизитов владельца, 404 в принципе не индексируется).
 const urls = [
   '/', '/scan/', '/methodology/', '/bfsg-check/', '/request-quote/', '/agencies/', '/countries/', '/services/', '/standards/',
-  '/wcag/', '/components/', '/about/', '/contact/', '/privacy/', '/accessibility-statement/',
+  '/wcag/', '/components/', '/reports/', '/about/', '/contact/', '/privacy/', '/accessibility-statement/',
 ]
 for (const a of agencies) urls.push(`/agencies/${a.slug}/`)
 
@@ -60,6 +60,13 @@ const componentsData = JSON.parse(readFileSync(join(ROOT, 'data/a11y/components.
 for (const c of componentsData.components) {
   if (c.status === 'ready') urls.push(`/components/${c.slug}/`)
 }
+
+// CN-RESEARCH (D-071): страницы отчётов — slug-и берём из src/lib/reports.ts
+// (единственный источник правды списка отчётов; регекс ловит только записи
+// массива `slug: '…'`, не поля интерфейса без кавычек). Числа отчётов —
+// data/a11y/reports.json, гейт согласованности данных — reports-data.test.mjs.
+const reportsSrc = readFileSync(join(ROOT, 'src/lib/reports.ts'), 'utf8')
+for (const m of reportsSrc.matchAll(/slug:\s*'([^']+)'/g)) urls.push(`/reports/${m[1]}/`)
 
 // Гайды: data/a11y/guides/*.md (slug — имя файла), всегда индексируемые.
 const GUIDES_DIR = join(ROOT, 'data/a11y/guides')

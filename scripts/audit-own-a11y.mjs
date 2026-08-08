@@ -47,6 +47,9 @@ const SAMPLE_ROUTES = [
   // пользователя — их раскрытое/анонсированное состояние аудитируется отдельно,
   // см. INTERACT ниже.
   '/components/', '/components/accordion/', '/components/tabs/', '/components/modal-dialog/', '/components/toast/',
+  // CN-RESEARCH (D-071): индекс отчётов + сам отчёт (таблицы-бары, stat-плитки,
+  // JSON-LD Dataset/Report) — обе поверхности под постоянным axe-гейтом.
+  '/reports/', '/reports/verified-audit-market/',
   '/about/', '/contact/', '/privacy/', '/imprint/', '/accessibility-statement/', '/404/',
 ]
 

@@ -173,6 +173,11 @@ export const paths = {
   // его выше динамического '/:country', поэтому конфликта со страной нет.
   bfsgCheck: () => '/bfsg-check/',
   report: (id: string) => `/report/${id}/`,
+  // CN-RESEARCH (§23, D-071): data products из самого каталога. `report(id)` выше
+  // — это скан-отчёт воркера (/report/:id), а reports/reportDoc — исследования
+  // (/reports/, /reports/:slug); имена намеренно различны, чтобы не путать.
+  reports: () => '/reports/',
+  reportDoc: (slug: string) => `/reports/${slug}/`,
   requestQuote: () => '/request-quote/',
 }
 

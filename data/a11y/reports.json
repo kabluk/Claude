@@ -1,0 +1,181 @@
+{
+  "source": "data/a11y/agencies.json",
+  "total": 245,
+  "hqCountries": {
+    "count": 19,
+    "distribution": [
+      {
+        "code": "DE",
+        "name": "Germany",
+        "count": 40
+      },
+      {
+        "code": "US",
+        "name": "United States",
+        "count": 40
+      },
+      {
+        "code": "PL",
+        "name": "Poland",
+        "count": 29
+      },
+      {
+        "code": "FR",
+        "name": "France",
+        "count": 28
+      },
+      {
+        "code": "GB",
+        "name": "United Kingdom",
+        "count": 25
+      },
+      {
+        "code": "NL",
+        "name": "Netherlands",
+        "count": 25
+      },
+      {
+        "code": "AT",
+        "name": "Austria",
+        "count": 9
+      },
+      {
+        "code": "ES",
+        "name": "Spain",
+        "count": 9
+      },
+      {
+        "code": "IE",
+        "name": "Ireland",
+        "count": 8
+      },
+      {
+        "code": "BE",
+        "name": "Belgium",
+        "count": 7
+      },
+      {
+        "code": "IT",
+        "name": "Italy",
+        "count": 5
+      },
+      {
+        "code": "DK",
+        "name": "Denmark",
+        "count": 4
+      },
+      {
+        "code": "AU",
+        "name": "Australia",
+        "count": 3
+      },
+      {
+        "code": "CA",
+        "name": "Canada",
+        "count": 3
+      },
+      {
+        "code": "SE",
+        "name": "Sweden",
+        "count": 3
+      },
+      {
+        "code": "FI",
+        "name": "Finland",
+        "count": 2
+      },
+      {
+        "code": "IN",
+        "name": "India",
+        "count": 2
+      },
+      {
+        "code": "NO",
+        "name": "Norway",
+        "count": 2
+      },
+      {
+        "code": "CH",
+        "name": "Switzerland",
+        "count": 1
+      }
+    ]
+  },
+  "countriesCovered": 20,
+  "standards": [
+    {
+      "slug": "wcag-2-2",
+      "label": "WCAG 2.2",
+      "count": 152
+    },
+    {
+      "slug": "en-301-549",
+      "label": "EN 301 549",
+      "count": 99
+    },
+    {
+      "slug": "eaa",
+      "label": "European Accessibility Act",
+      "count": 57
+    },
+    {
+      "slug": "bitv",
+      "label": "BITV 2.0",
+      "count": 41
+    },
+    {
+      "slug": "ada",
+      "label": "ADA",
+      "count": 35
+    },
+    {
+      "slug": "rgaa",
+      "label": "RGAA",
+      "count": 31
+    },
+    {
+      "slug": "section-508",
+      "label": "Section 508",
+      "count": 29
+    }
+  ],
+  "priceBands": {
+    "withBand": 17,
+    "withoutBand": 228,
+    "distribution": {
+      "budget": 8,
+      "mid": 9,
+      "premium": 0,
+      "enterprise": 0
+    }
+  },
+  "evidence": {
+    "recordsWithAnyCert": 121,
+    "recordsWithNamedAuditorStatement": 96,
+    "namedAuditorByDeclarant": {
+      "public-body": 83,
+      "private": 13,
+      "unknown": 0
+    },
+    "certKinds": {
+      "statement-named-auditor": 96,
+      "bitv-pruefstelle": 19,
+      "iaap-org-member": 8,
+      "dhs-trusted-tester": 0,
+      "iaap-certified-staff": 0
+    }
+  },
+  "founded": {
+    "withYear": 109,
+    "withoutYear": 136,
+    "oldest": 1894,
+    "newest": 2026,
+    "median": 2003
+  },
+  "sources": {
+    "totalRefs": 832,
+    "recordsWithMultiple": 241,
+    "minPerRecord": 1,
+    "everyRecordHasAtLeastOne": true
+  }
+}

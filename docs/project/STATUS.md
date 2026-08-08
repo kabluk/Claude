@@ -39,6 +39,30 @@ Playwright **20/20** (клавиатура трёх компонентов). С�
 scratchpad `design/components-{index,accordion,tabs,modal}.png`. Схема
 `data/a11y/types.ts` НЕ тронута (типы компонентов локальны в реестре).
 
+## Последнее (2026-08-08, CN-RESEARCH первый честный кусок / D-071)
+
+Первый data-продукт: `/reports/verified-audit-market` («The verified
+accessibility-audit market, by the evidence») + индекс `/reports/`. Построен на
+**самом каталоге** (245 записей), не на корпусе сканов чужих сайтов (которого
+нет, D-010) — честно назван разбором наших данных, не бенчмарком чужих сайтов
+(§21), с явным блоком «What this is / is not».
+
+Все числа считаются `scripts/reports-data.mjs` из `agencies.json` →
+`data/a11y/reports.json`; страница читает снапшот, ничего руками. Гейт
+`scripts/reports-data.test.mjs` пересчитывает и требует совпадения (доказан
+негативно: правка `total` → красный, откат → зелёный) + внутренняя
+согласованность. Показывает: 19 стран HQ, стандарты, 121/245 с проверяемым
+credential и 96 названы аудитором в опубликованной декларации (public-body 83 /
+private 13, D-042); честный раздел «чего НЕ утверждаем» — priceBand 17/245,
+founded 109/245. JSON-LD Dataset + Report, «Reports» в главной навигации.
+
+Верификация: build-a11y **245** / typecheck чисто / worker:test **211** /
+src:test **20** / scripts:test **37** (+4: reports-data.test) / build **439**
+стр., sitemap **402** URL / check-links **487**-0 / audit-a11y **36**-0 (было
+34: +/reports/ +/reports/verified-audit-market/). Скриншоты — scratchpad
+`design/research-index.png`, `research-report-top.png`, `research-report-full.png`.
+Деплой не требуется (плоский фронтенд).
+
 ## Последнее (2026-08-08, CN-COMPONENTS-REST пункт 1: Toast / D-070)
 
 Библиотека §22 приросла ОДНИМ компонентом — **Toast / status message**

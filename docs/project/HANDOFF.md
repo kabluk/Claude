@@ -146,6 +146,19 @@ CF-токеном ИЛИ владелец сам запускает `npm run wor
   Toast / status message** — ARIA live-region (`role=status`/`alert`), примитив
   `src/components/library/Toast.tsx`, INTERACT-гейт по `role=alert` в
   `audit-own-a11y.mjs`; индекс `/components/` = 4 ready, осталось 9 planned.
+- **CN-RESEARCH — первый честный data-продукт** (D-071, 2026-08-08):
+  `/reports/verified-audit-market` + индекс `/reports/`. Построен на САМОМ
+  каталоге (245 записей), не на корпусе сканов чужих сайтов (которого нет,
+  D-010) — честно назван разбором наших данных, не бенчмарком чужих сайтов
+  (запрещено делать site-scores из ничего, D-045/D-047). Все числа считаются
+  `scripts/reports-data.mjs` (agencies.json → `data/a11y/reports.json`),
+  страница читает снапшот; гейт `scripts/reports-data.test.mjs` пересчитывает и
+  падает на любом расхождении/ручной правке (доказан негативно). Конвенция §43:
+  редакционные метаданные (title/dek) в `src/lib/reports.ts`, числа в
+  JSON-снапшоте — разделены. **CN-RESEARCH больше НЕ зависит от `A0-DEPLOY`** —
+  отчёт на своих данных деплоя не требует (как G-GUIDES). «Reports» в главной
+  навигации. Новая поверхность — под тем же правилом: попадает в
+  `gen-a11y-sitemap.mjs` (slug регексом по reports.ts) И `audit-own-a11y.mjs`.
 - **Принята Design Constitution владельца** (D-062, 2026-08-07):
   `docs/project/DESIGN_CONSTITUTION.md` — направляющий документ продукта/
   дизайна (позиционирование Accessibility Intelligence Platform, UX, IA,

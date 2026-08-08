@@ -1073,6 +1073,24 @@ nodes:
     approval_required: false
     notes: "Заведён 2026-08-08 (D-068) как явный остаток CN-COMPONENTS. Было 10 компонентов planned. **1/10 закрыт 2026-08-08 (D-070): Toast / status message** (ARIA live-region, role=status/alert) — примитив src/components/library/Toast.tsx, промоушен planned→ready в components.json, INTERACT-гейт в audit-own-a11y (клик [data-a11y-demo-toast], аудит role=alert), components.test усилён; audit-a11y 34-0, живой Playwright 6/6 (role, фокус не украден, live-region до сообщения, reduced-motion→animation:none). Индекс /components/ = 4 ready. Остаётся **9 planned**: Tooltip, Combobox, Menu button, Select(listbox), Breadcrumbs, Pagination, Switch, Data table, Form field. Делать по одному — планка образцовости выше скорости; НЕ заводить страницы-заглушки пачкой."
 
+  - id: CN-RESEARCH
+    title: "Честные data-продукты (§23/§45) на уникальных данных — из самого каталога, не бенчмарк чужих сайтов"
+    owner: growth-strategist
+    status: in_progress
+    depends_on: []
+    inputs: [data/a11y/agencies.json, data/a11y/taxonomies.json, docs/project/DESIGN_CONSTITUTION.md (§23,§43,§45)]
+    scope: [scripts/reports-data.mjs, scripts/reports-data.test.mjs, data/a11y/reports.json, src/lib/reports.ts, src/pages/ReportsIndexPage.tsx, src/pages/ReportDocPage.tsx, src/routes.tsx, src/lib/data.ts, src/components/Layout.tsx, scripts/gen-a11y-sitemap.mjs, scripts/audit-own-a11y.mjs]
+    outputs: [data/a11y/reports.json, src/pages/ReportDocPage.tsx]
+    verify:
+      - "все числа отчёта считаются скриптом из agencies.json (не руками); reports-data.test.mjs пересчитывает и требует совпадения со снапшотом — ✅ доказан негативно (правка total→красный, откат→зелёный)"
+      - "отчёт назван честно как разбор НАШЕГО каталога, не бенчмарк чужих сайтов; никаких выдуманных site-scores (D-045/D-047) — ✅ блок What this is / is not"
+      - "индекс + отчёт в audit-own-a11y (36-0) и sitemap; JSON-LD Dataset+Report; CTA; анти-orphan (Reports в навигации) — ✅"
+    max_attempts: 3
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "Заведён и первый кусок закрыт 2026-08-08 (D-071): /reports/verified-audit-market + индекс /reports/. Раньше бэклог помечал CN-RESEARCH как depends_on A0-DEPLOY — снято: отчёт на СВОИХ данных не требует деплоя, работа разблокирована независимо от блокера владельца (как G-GUIDES, D-056). НЕЛЬЗЯ делать бенчмарк топ-100 чужих сайтов / accessibility index — корпуса сканов нет (D-010), это потребовало бы выдуманных цифр (D-045/D-047). Реальный уникальный датасет — сам каталог (245 записей): страны/стандарты/типы декларантов/доля с проверяемым доказательством. Следующий кусок — новый data-продукт по решению направления роста, не автопродолжение."
+
   - id: CN-WCAG22
     title: "Самопроверка сайта до WCAG 2.2 AA (конституция §40): target-size в audit-own-a11y"
     owner: qa-engineer

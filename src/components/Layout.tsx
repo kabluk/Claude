@@ -65,6 +65,11 @@ export function Layout({
             <Link className="hover:text-slate-900" to={paths.components()}>
               Components
             </Link>
+            {/* CN-RESEARCH (D-071): data products из каталога — флагманская
+                SEO-поверхность (§23), в навигации для веса и анти-orphan. */}
+            <Link className="hover:text-slate-900" to={paths.reports()}>
+              Reports
+            </Link>
             <Link className="hover:text-slate-900" to={paths.agencies()}>
               Experts
             </Link>

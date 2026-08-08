@@ -11,6 +11,7 @@ import {
 import { guides } from './lib/guides'
 import { wcagPages } from './lib/wcag'
 import { readyComponents } from './lib/componentsLib'
+import { reports } from './lib/reports'
 
 // Ленивые импорты — свой чанк на шаблон страницы.
 const page = (load: () => Promise<{ default: () => JSX.Element | null }>) => async () => ({
@@ -85,6 +86,16 @@ export const routes: RouteRecord[] = [
     path: '/wcag/:criterion',
     lazy: page(() => import('./pages/WcagCriterionPage')),
     getStaticPaths: () => wcagPages.map((p) => paths.wcagCriterion(p.slug)),
+  },
+  // CN-RESEARCH (§43, D-071): data products из самого каталога. Индекс /reports/
+  // + /reports/:slug (пути из reports в src/lib/reports.ts). Числа считаются
+  // скриптом (data/a11y/reports.json), гейт — scripts/reports-data.test.mjs.
+  // Статический сегмент /reports ранжируется выше '/:country'.
+  { path: '/reports', lazy: page(() => import('./pages/ReportsIndexPage')) },
+  {
+    path: '/reports/:slug',
+    lazy: page(() => import('./pages/ReportDocPage')),
+    getStaticPaths: () => reports.map((r) => paths.reportDoc(r.slug)),
   },
   // Немецкий входной путь (D-041). Статический сегмент ранжируется react-router
   // выше динамического '/:country' ниже по файлу, поэтому со страной не спорит.
