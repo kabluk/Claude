@@ -31,6 +31,12 @@ function toggle<T>(set: Set<T>, v: T): Set<T> {
   return next
 }
 
+// "1 agency" / "20 agencies" — для aria-label кнопки-чипа: число рядом с
+// подписью читается скринридером слитно («Training 20»), поэтому полную
+// формулировку даём отдельно через aria-label, а видимый текст оставляем
+// компактным (подпись + число классом .num).
+const agencyCount = (n: number) => `${n} ${n === 1 ? 'agency' : 'agencies'}`
+
 export function FilterableList({
   items,
   heading = 'Agencies',
@@ -62,7 +68,50 @@ export function FilterableList({
     )
   }, [items, services, standards, certs, prices, q])
 
-  const facet = (avail: number) => (avail > 1 ? '' : 'hidden')
+  // Фасет виден, только если на этой странице есть хотя бы одно агентство под
+  // него — считаем по items (полный список страницы), а не по shown, иначе
+  // чипы исчезали бы по мере выбора других фильтров (дезориентирует). Порог
+  // >= 1: одно агентство — уже валидный результат, прятать его нечестно.
+  const facetHidden = (avail: number) => (avail >= 1 ? '' : 'hidden')
+
+  const hasActiveFilters =
+    services.size > 0 || standards.size > 0 || certs.size > 0 || prices.size > 0 || q.trim() !== ''
+
+  const resetFilters = () => {
+    setServices(new Set())
+    setStandards(new Set())
+    setCerts(new Set())
+    setPrices(new Set())
+    setQ('')
+  }
+
+  const serviceCounts = useMemo(
+    () =>
+      new Map(SERVICES.map((s) => [s, items.filter((a) => a.services.includes(s)).length])),
+    [items],
+  )
+  const standardCounts = useMemo(
+    () =>
+      new Map(STANDARDS.map((s) => [s, items.filter((a) => a.standards.includes(s)).length])),
+    [items],
+  )
+  const certCounts = useMemo(
+    () =>
+      new Map(
+        CERT_KINDS.map(([kind]) => [kind, items.filter((a) => a.certs.some((c) => c.kind === kind)).length]),
+      ),
+    [items],
+  )
+  const priceCounts = useMemo(
+    () =>
+      new Map(
+        (Object.keys(tax.priceBands) as PriceBand[]).map((p) => [
+          p,
+          items.filter((a) => a.priceBand === p).length,
+        ]),
+      ),
+    [items],
+  )
 
   return (
     <div>
@@ -78,51 +127,75 @@ export function FilterableList({
         />
         <div className="flex flex-wrap gap-1.5">
           {!hideServiceFacet &&
-            SERVICES.map((s) => (
-              <button
-                key={s}
-                type="button"
-                className="chip chip-btn"
-                aria-pressed={services.has(s)}
-                onClick={() => setServices(toggle(services, s))}
-              >
-                {serviceLabel(s)}
-              </button>
-            ))}
+            SERVICES.map((s) => {
+              const count = serviceCounts.get(s) ?? 0
+              return (
+                <button
+                  key={s}
+                  type="button"
+                  className={`chip chip-btn ${facetHidden(count)}`}
+                  aria-pressed={services.has(s)}
+                  aria-label={`${serviceLabel(s)}, ${agencyCount(count)}`}
+                  onClick={() => setServices(toggle(services, s))}
+                >
+                  <span aria-hidden="true">
+                    {serviceLabel(s)} <span className="num">{count}</span>
+                  </span>
+                </button>
+              )
+            })}
           {!hideStandardFacet &&
-            STANDARDS.map((s) => (
+            STANDARDS.map((s) => {
+              const count = standardCounts.get(s) ?? 0
+              return (
+                <button
+                  key={s}
+                  type="button"
+                  className={`chip chip-btn ${facetHidden(count)}`}
+                  aria-pressed={standards.has(s)}
+                  aria-label={`${standardLabel(s)}, ${agencyCount(count)}`}
+                  onClick={() => setStandards(toggle(standards, s))}
+                >
+                  <span aria-hidden="true">
+                    {standardLabel(s)} <span className="num">{count}</span>
+                  </span>
+                </button>
+              )
+            })}
+          {CERT_KINDS.map(([kind, label]) => {
+            const count = certCounts.get(kind) ?? 0
+            return (
               <button
-                key={s}
+                key={kind}
                 type="button"
-                className="chip chip-btn"
-                aria-pressed={standards.has(s)}
-                onClick={() => setStandards(toggle(standards, s))}
+                className={`chip chip-btn ${facetHidden(count)}`}
+                aria-pressed={certs.has(kind)}
+                aria-label={`${label}, ${agencyCount(count)}`}
+                onClick={() => setCerts(toggle(certs, kind))}
               >
-                {standardLabel(s)}
+                <span aria-hidden="true">
+                  ✓ {label} <span className="num">{count}</span>
+                </span>
               </button>
-            ))}
-          {CERT_KINDS.map(([kind, label]) => (
-            <button
-              key={kind}
-              type="button"
-              className="chip chip-btn"
-              aria-pressed={certs.has(kind)}
-              onClick={() => setCerts(toggle(certs, kind))}
-            >
-              ✓ {label}
-            </button>
-          ))}
-          {(Object.keys(tax.priceBands) as PriceBand[]).map((p) => (
-            <button
-              key={p}
-              type="button"
-              className={`chip chip-btn ${facet(items.filter((a) => a.priceBand === p).length)}`}
-              aria-pressed={prices.has(p)}
-              onClick={() => setPrices(toggle(prices, p))}
-            >
-              {priceLabel(p)}
-            </button>
-          ))}
+            )
+          })}
+          {(Object.keys(tax.priceBands) as PriceBand[]).map((p) => {
+            const count = priceCounts.get(p) ?? 0
+            return (
+              <button
+                key={p}
+                type="button"
+                className={`chip chip-btn ${facetHidden(count)}`}
+                aria-pressed={prices.has(p)}
+                aria-label={`${priceLabel(p)}, ${agencyCount(count)}`}
+                onClick={() => setPrices(toggle(prices, p))}
+              >
+                <span aria-hidden="true">
+                  {priceLabel(p)} <span className="num">{count}</span>
+                </span>
+              </button>
+            )
+          })}
         </div>
       </div>
 
@@ -135,7 +208,14 @@ export function FilterableList({
         ))}
       </div>
       {shown.length === 0 && (
-        <p className="mt-6 text-on-surface-variant">No agencies match these filters yet.</p>
+        <div className="mt-6">
+          <p className="text-on-surface-variant">No agencies match these filters yet.</p>
+          {hasActiveFilters && (
+            <button type="button" className="btn-ghost mt-3" onClick={resetFilters}>
+              Reset filters
+            </button>
+          )}
+        </div>
       )}
     </div>
   )
