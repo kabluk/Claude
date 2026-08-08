@@ -1221,6 +1221,25 @@ nodes:
     approval_required: false
     notes: "Готово 2026-08-08 (D-077). Выбран вместо Combobox сознательно: контекст сессии был на 77%, Combobox — самый тяжёлый оставшийся композит. Паттерн извлечён из работающего Layout.tsx, а не написан заново. Гейт audit-a11y поймал реальное нарушение в первой версии — landmark-unique: зашитый aria-label=\"Breadcrumb\" столкнулся с трейлом самого сайта на той же странице. Починка архитектурная, не косметическая: label стал пропом, потому что уникальность имени ориентира — свойство страницы, а не компонента."
 
+  - id: CN-COMPONENTS-COMBOBOX
+    title: "Combobox — 7-й компонент библиотеки (CN-COMPONENTS-REST 4/10), самый тяжёлый оставшийся композит"
+    owner: frontend-engineer
+    status: todo
+    depends_on: [CN-COMPONENTS]
+    inputs: [data/a11y/components.json, src/lib/componentsLib.tsx, scripts/audit-own-a11y.mjs, scripts/components.test.mjs]
+    scope: [src/components/library/Combobox.tsx, src/lib/componentsLib.tsx, data/a11y/components.json, scripts/audit-own-a11y.mjs]
+    outputs: [src/components/library/Combobox.tsx]
+    verify:
+      - "npm run audit-a11y — /components/combobox/ в постоянном сэмпле, INTERACT открывает popup и аудитирует РАСКРЫТОЕ состояние (role=listbox+role=option); 0 нарушений"
+      - "живой Playwright: ArrowDown/Up двигают aria-activedescendant БЕЗ увода DOM-фокуса с input (ключевое отличие ARIA 1.2 combobox от roving tabindex), фильтрация по вводу сужает список, Enter выбирает и закрывает popup, Escape закрывает без выбора и без потери фокуса, клик по опции выбирает"
+      - "npm run scripts:test — components.test проходит (ready → полный набор §22 + файл реализации + сэмпл аудита)"
+      - "npm run typecheck / npm run build — зелёные"
+    max_attempts: 3
+    attempts: 1
+    risk: medium
+    approval_required: false
+    notes: "Заведён 2026-08-08 как следующий узел CN-COMPONENTS-REST (сессия со свежим контекстом, ровно то, чего требовал D-077). Данные для демо — реальные, не выдуманные (D-045/D-047 главнее любого узла CN)."
+
   - id: CN-COMPONENTS-TOOLTIP
     title: "Tooltip — 5-й готовый компонент библиотеки (CN-COMPONENTS-REST 2/10)"
     owner: frontend-engineer
