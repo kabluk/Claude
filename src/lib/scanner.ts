@@ -151,6 +151,41 @@ export function scanErrorMessage(errorCode: ScanErrorCode | null): string {
   return errorCode ? (ERROR_MESSAGES[errorCode] ?? ERROR_MESSAGES.internal) : ERROR_MESSAGES.internal
 }
 
+// D-107: score → слово, для карточки отчёта (макет владельца, Stitch). Пороги
+// выбраны владельцем явно (не подобраны под красивую границу): 90 Excellent,
+// 70 Good, 50 Needs work, ниже — Poor. Единственный источник правды — здесь;
+// ReportPage только маппит грейд на chip-класс (те же 4 семантических токена
+// severity, что уже красят находки — не вводим отдельную цветовую систему
+// «под скор», см. styles.css chip-critical/-serious/-moderate/-success).
+export type ScoreGrade = 'excellent' | 'good' | 'needs-work' | 'poor'
+
+export function scoreGrade(score: number): ScoreGrade {
+  if (score >= 90) return 'excellent'
+  if (score >= 70) return 'good'
+  if (score >= 50) return 'needs-work'
+  return 'poor'
+}
+
+const SCORE_GRADE_LABEL: Record<ScoreGrade, string> = {
+  excellent: 'Excellent',
+  good: 'Good',
+  'needs-work': 'Needs work',
+  poor: 'Poor',
+}
+export const scoreGradeLabel = (grade: ScoreGrade) => SCORE_GRADE_LABEL[grade]
+
+// chip-success переиспользуется для двух верхних грейдов — это не потеря
+// различимости: сам грейд-текст (Excellent/Good) уже различает их, а зелёный
+// цвет для обоих «в порядке» исходов совпадает с тем, как success-токен уже
+// используется в блоке «находок не найдено» ниже по отчёту.
+const SCORE_GRADE_CHIP_CLASS: Record<ScoreGrade, string> = {
+  excellent: 'chip-success',
+  good: 'chip-success',
+  'needs-work': 'chip-moderate',
+  poor: 'chip-critical',
+}
+export const scoreGradeChipClass = (grade: ScoreGrade) => SCORE_GRADE_CHIP_CLASS[grade]
+
 const IMPACT_LABEL: Record<ScanFinding['impact'], string> = {
   critical: 'Critical',
   serious: 'Serious',

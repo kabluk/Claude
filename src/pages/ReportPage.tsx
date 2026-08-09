@@ -10,6 +10,9 @@ import {
   groupFindingsByRule,
   impactLabel,
   scanErrorMessage,
+  scoreGrade,
+  scoreGradeLabel,
+  scoreGradeChipClass,
   type ScanReport,
 } from '@/lib/scanner'
 import { estimateCost, formatCostEstimate } from '@/lib/costEstimate'
@@ -180,6 +183,13 @@ function ReportBody({ report }: { report: ScanReport }) {
   const groups = groupFindingsByRule(report.findings)
   const uniquePages = report.pages.length
   const cost = estimateCost(report.findings)
+  // Кольцо-визуализация (D-107, макет владельца): длина окружности постоянна
+  // (r=45 → 2πr≈282.7), меняется только dashoffset — 0 при 100/100 (кольцо
+  // закрыто целиком), полная окружность при 0 (кольцо пустое). score может
+  // быть null (тип ScanReport допускает старые записи без него, scanner.ts) —
+  // тогда кольцо не рисуем вовсе, а не показываем «0/100» мимо реального грейда.
+  const CIRCLE_CIRCUMFERENCE = 2 * Math.PI * 45
+  const grade = report.score != null ? scoreGrade(report.score) : null
 
   return (
     <div>
@@ -189,39 +199,78 @@ function ReportBody({ report }: { report: ScanReport }) {
         {report.findings.length === 1 ? '' : 's'} across {groups.length} distinct rule{groups.length === 1 ? '' : 's'}
       </p>
 
-      <div className="mt-6 flex flex-wrap items-start gap-x-10 gap-y-4">
-        <div>
-          <div className="flex items-baseline gap-3">
-            <span className="num text-4xl font-bold">{report.score ?? '—'}</span>
-            <span className="num text-on-surface-variant">/ 100</span>
-          </div>
-          <p className="mt-1 max-w-prose text-xs text-on-surface-variant">
-            This score is a rough heuristic for comparing pages over time — it is not a
-            certification of WCAG conformance and does not constitute legal advice. A
-            clean automated scan does not guarantee full accessibility; manual review by
-            a qualified auditor is still required.{' '}
-            <a className="underline underline-offset-2" href={paths.methodology()}>
-              See exactly what this scan covers
-            </a>
-            .
-          </p>
-        </div>
-
-        {cost && (
+      <div className="mt-8 grid gap-6 lg:grid-cols-3">
+        {/* Score — 2 колонки на широком экране, как в макете владельца (Stitch). */}
+        <div className="card flex flex-col justify-between gap-8 sm:flex-row sm:items-center lg:col-span-2">
           <div>
-            <div className="flex items-baseline gap-2">
-              <span className="num text-4xl font-bold">{formatCostEstimate(cost)}</span>
-              <span className="text-on-surface-variant">estimated to fix</span>
+            <span className="text-xs font-medium uppercase tracking-widest text-on-surface-variant">
+              Overall score
+            </span>
+            <div className="mt-3 flex flex-wrap items-baseline gap-3">
+              <span className="num text-6xl font-bold tracking-tight">{report.score ?? '—'}</span>
+              <span className="num text-xl text-on-surface-variant">/ 100</span>
+              {/* Грейд текстом рядом с числом (не только цветом кольца) —
+                  тот же принцип «цвет не единственный носитель», что и у
+                  severity-чипов находок ниже. */}
+              {grade && <span className={`chip ${scoreGradeChipClass(grade)}`}>{scoreGradeLabel(grade)}</span>}
             </div>
-            <p className="mt-1 max-w-prose text-xs text-on-surface-variant">
-              A rough estimate based on the number and severity of issues found here — not a
-              quote or an offer. Actual cost depends on your codebase, team, and how the fixes
-              are made.{' '}
-              <a className="underline underline-offset-2" href={paths.agencies()}>
-                Compare agencies for a real quote
+            <p className="mt-3 max-w-prose text-xs text-on-surface-variant">
+              This score is a rough heuristic for comparing pages over time — it is not a
+              certification of WCAG conformance and does not constitute legal advice. A
+              clean automated scan does not guarantee full accessibility; manual review by
+              a qualified auditor is still required.{' '}
+              <a className="underline underline-offset-2" href={paths.methodology()}>
+                See exactly what this scan covers
               </a>
               .
             </p>
+          </div>
+          {grade && report.score != null && (
+            <div className="relative flex h-32 w-32 shrink-0 items-center justify-center self-center sm:self-auto" aria-hidden="true">
+              <svg viewBox="0 0 100 100" className="h-full w-full -rotate-90">
+                <circle cx="50" cy="50" r="45" fill="none" stroke="var(--color-outline-variant)" strokeWidth="8" />
+                <circle
+                  cx="50"
+                  cy="50"
+                  r="45"
+                  fill="none"
+                  strokeWidth="8"
+                  strokeLinecap="round"
+                  className={
+                    grade === 'poor'
+                      ? 'stroke-[color:var(--color-critical)]'
+                      : grade === 'needs-work'
+                        ? 'stroke-[color:var(--color-moderate)]'
+                        : 'stroke-[color:var(--color-success)]'
+                  }
+                  strokeDasharray={CIRCLE_CIRCUMFERENCE}
+                  strokeDashoffset={CIRCLE_CIRCUMFERENCE * (1 - report.score / 100)}
+                />
+              </svg>
+              <span className="absolute text-sm font-semibold">{scoreGradeLabel(grade)}</span>
+            </div>
+          )}
+        </div>
+
+        {cost && (
+          <div className="card flex flex-col justify-between">
+            <div>
+              <span className="text-xs font-medium uppercase tracking-widest text-on-surface-variant">
+                Remediation estimate
+              </span>
+              <div className="num mt-3 text-4xl font-bold tracking-tight">{formatCostEstimate(cost)}</div>
+              <p className="mt-3 text-xs text-on-surface-variant">
+                A rough estimate based on the number and severity of issues found here — not a
+                quote or an offer. Actual cost depends on your codebase, team, and how the fixes
+                are made.
+              </p>
+            </div>
+            <Link
+              className="mt-6 inline-flex items-center gap-1.5 text-sm font-medium text-[color:var(--color-primary)] underline underline-offset-2"
+              to={paths.agencies()}
+            >
+              Compare agencies for a real quote →
+            </Link>
           </div>
         )}
       </div>
@@ -243,30 +292,122 @@ function ReportBody({ report }: { report: ScanReport }) {
         </div>
       ) : (
         <section className="mt-8">
-          <h2 className="h2 mt-0">Findings</h2>
-          <ul className="space-y-3">
-            {groups.map((g) => (
-              <li key={g.ruleId} className="rounded-lg border border-outline-variant p-4">
-                <div className="flex flex-wrap items-center gap-2">
-                  {/* Severity — семантические токены (CN-TOKENS, §27), не акцент
-                      бренда: акцент зарезервирован за интерактивом/evidence.
-                      Цвет никогда не единственный носитель — метка текстом. */}
-                  <span className={`chip chip-${g.impact}`}>{impactLabel(g.impact)}</span>
-                  <span className="font-medium">{g.ruleId}</span>
-                  <span className="num text-sm text-on-surface-variant">
-                    {g.instances.length} instance{g.instances.length === 1 ? '' : 's'}
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <h2 className="h2 mt-0">Findings</h2>
+            {/* Сводка серьёзности рядом с заголовком (макет владельца) — те же
+                числа, что уже есть в groups, просто агрегированы по impact.
+                Считаем ГРУППЫ (различимые правила), не инстансы — тот же
+                принцип дедупа, что и everywhere в отчёте (effortScore и т.д.),
+                иначе один экран с 50 инстансами одного правила выглядел бы
+                серьёзнее сайта с 5 разными проблемами. */}
+            <div className="flex flex-wrap gap-2">
+              {(['critical', 'serious', 'moderate', 'minor'] as const).map((impact) => {
+                const n = groups.filter((g) => g.impact === impact).length
+                return n > 0 ? (
+                  <span key={impact} className={`chip chip-${impact}`}>
+                    {n} {impactLabel(impact)}
                   </span>
-                </div>
-                {g.wcag.length > 0 && (
-                  <div className="mt-2 flex flex-wrap gap-1.5">
-                    {g.wcag.map((tag) => (
-                      <span key={tag} className="chip">
-                        {formatWcagTag(tag)}
-                      </span>
-                    ))}
-                  </div>
-                )}
-                {/* Правовая пометка приходит только на находки об отсутствующем
+                ) : null
+              })}
+            </div>
+          </div>
+          <ul className="mt-6 space-y-4">
+            {groups.map((g) => (
+              <FindingGroupCard key={g.ruleId} group={g} />
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <MatchedAgencies findings={report.findings} priceBand={cost?.band} scanId={report.id} />
+
+      {/* Замена «Book a call» из макета владельца (Stitch): бронирования звонков
+          у нас нет и не выдумываем — ведёт на РЕАЛЬНЫЙ /request-quote/ (тот же
+          путь, что и текстовая ссылка внутри MatchedAgencies чуть выше), просто
+          с визуальным весом, каким в макете был контакт с «экспертом». */}
+      <div className="mt-8 rounded-3xl bg-[color:var(--color-primary)] p-8 text-[color:var(--color-on-primary)]">
+        <h3 className="text-lg font-bold">Want someone else to fix this?</h3>
+        <p className="mt-2 max-w-prose text-sm text-[color:var(--color-on-primary)]/80">
+          Send this report to matching agencies from our catalog and get quotes — no obligation.
+        </p>
+        <Link
+          className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[color:var(--color-on-primary)] px-5 py-2.5 text-sm font-bold text-[color:var(--color-primary)]"
+          to={`${paths.requestQuote()}?scanId=${encodeURIComponent(report.id)}`}
+        >
+          Request a quote →
+        </Link>
+      </div>
+    </div>
+  )
+}
+
+const IMPACT_BORDER_VAR: Record<string, string> = {
+  critical: 'var(--color-critical)',
+  serious: 'var(--color-serious)',
+  moderate: 'var(--color-moderate)',
+  minor: 'var(--color-minor)',
+}
+// Фон счётчика инстансов — готовые -soft токены (styles.css), не самодельный
+// color-mix: первая версия (18% примеси поверх --color-surface-container-low)
+// давала критичному тексту контраст 4.30:1 — провал AA (нужно 4.5), поймано
+// расчётом перед деплоем, а не аудитом постфактум. -soft токены уже
+// откалиброваны для пары «свой текст поверх своего фона» (мин. 5.7:1 у всех
+// четырёх, см. .chip-critical и т.д.) — переиспользуем их, а не изобретаем
+// заново тот же расчёт с риском повторить ту же ошибку.
+const IMPACT_SOFT_VAR: Record<string, string> = {
+  critical: 'var(--color-critical-soft)',
+  serious: 'var(--color-serious-soft)',
+  moderate: 'var(--color-moderate-soft)',
+  minor: 'var(--color-minor-soft)',
+}
+
+function FindingGroupCard({ group: g }: { group: ReturnType<typeof groupFindingsByRule>[number] }) {
+  const [expanded, setExpanded] = useState(false)
+  const first = g.instances[0]
+
+  return (
+    <li
+      className="card relative overflow-hidden border-l-4 pl-6"
+      style={{ borderLeftColor: IMPACT_BORDER_VAR[g.impact] }}
+    >
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <div className="flex flex-wrap items-center gap-2">
+            {/* Severity — семантические токены (CN-TOKENS, §27), не акцент
+                бренда: акцент зарезервирован за интерактивом/evidence.
+                Цвет никогда не единственный носитель — метка текстом. */}
+            <span className={`chip chip-${g.impact}`}>{impactLabel(g.impact)}</span>
+            <span className="font-mono text-sm text-on-surface-variant">{g.ruleId}</span>
+          </div>
+          {g.wcag.length > 0 && (
+            <div className="mt-2 flex flex-wrap gap-1.5">
+              {g.wcag.map((tag) => (
+                <span key={tag} className="chip">
+                  {formatWcagTag(tag)}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+        <span
+          className="num flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-semibold"
+          style={{ backgroundColor: IMPACT_SOFT_VAR[g.impact], color: IMPACT_BORDER_VAR[g.impact] }}
+          title={`${g.instances.length} instance${g.instances.length === 1 ? '' : 's'}`}
+        >
+          {g.instances.length}
+        </span>
+      </div>
+
+      {/* Первый инстанс — реальный HTML-фрагмент со страницы (f.html), а не
+          выдуманный пример: то же поле, что воркер уже пишет в findings
+          (worker/lib/axe.js), просто до этой правки нигде не показывалось. */}
+      {first?.html && (
+        <div className="mt-4 overflow-x-auto rounded-lg bg-surface-container-low p-3 font-mono text-xs text-on-surface-variant">
+          <code className="whitespace-pre">{first.html}</code>
+        </div>
+      )}
+
+      {/* Правовая пометка приходит только на находки об отсутствующем
                     заявлении о доступности и только в юрисдикции, где оно
                     подтверждённо обязательно (D-030/D-031). Формулировка
                     воркера уже осторожна — суммы штрафов попадают в текст
@@ -328,21 +469,32 @@ function ReportBody({ report }: { report: ScanReport }) {
                     )}
                   </div>
                 )}
-                <ul className="mt-2 space-y-1 text-sm text-on-surface-variant">
-                  {g.instances.slice(0, 5).map((f, i) => (
-                    <li key={i} className="truncate">
-                      {f.page} — <code className="text-xs">{f.selector}</code>
-                    </li>
-                  ))}
-                  {g.instances.length > 5 && <li>… and {g.instances.length - 5} more</li>}
-                </ul>
-              </li>
-            ))}
-          </ul>
-        </section>
+      {g.instances.length > 1 && (
+        <>
+          <button
+            type="button"
+            onClick={() => setExpanded((v) => !v)}
+            className="mt-4 inline-flex items-center gap-1 text-sm font-medium text-[color:var(--color-primary)] underline underline-offset-2"
+            aria-expanded={expanded}
+          >
+            {expanded ? 'Hide instances' : `View all ${g.instances.length} instances`}
+          </button>
+          {expanded && (
+            <ul className="mt-2 space-y-1 text-sm text-on-surface-variant">
+              {g.instances.map((f, i) => (
+                <li key={i} className="truncate">
+                  {f.page} — <code className="text-xs">{f.selector}</code>
+                </li>
+              ))}
+            </ul>
+          )}
+        </>
       )}
-
-      <MatchedAgencies findings={report.findings} priceBand={cost?.band} scanId={report.id} />
-    </div>
+      {g.instances.length === 1 && first && (
+        <p className="mt-4 truncate text-sm text-on-surface-variant">
+          {first.page} — <code className="text-xs">{first.selector}</code>
+        </p>
+      )}
+    </li>
   )
 }
