@@ -133,13 +133,18 @@ export async function fetchScan(id: string): Promise<ScanReport | null> {
 
 // Понятные, не технические тексты под каждый errorCode (VISION.md UX-требование 4,
 // D-013) — сырой error/стектрейс здесь никогда не показывается пользователю.
+// АНГЛИЙСКИЙ (D-105): исходно строки были написаны по-русски (D-013 создавался
+// до фиксации языка продукта) и прожили так до первого реального сбоя на
+// проде — владелец увидел русскую ошибку на английском сайте. Ни один гейт
+// это не ловил: тексты живут только в клиентском error-состоянии и не
+// попадают в пререндеренный HTML, который проверяют наши проверки.
 const ERROR_MESSAGES: Record<ScanErrorCode, string> = {
-  unreachable: 'Не удалось найти этот сайт. Проверьте адрес — возможно, опечатка или сайт больше не существует.',
-  refused: 'Сайт отказался принять соединение. Возможно, он временно недоступен — попробуйте ещё раз позже.',
-  tls: 'У сайта проблема с сертификатом безопасности (HTTPS). Мы не можем просканировать его, пока это не будет исправлено.',
-  timeout: 'Сайт слишком долго не отвечал, и сканирование остановилось. Попробуйте ещё раз — возможно, сервер сейчас перегружен.',
-  blocked: 'Сайт заблокировал наш сканер (например, через robots.txt или защиту от ботов). Мы уважаем эти ограничения и не обходим их.',
-  internal: 'У нас на стороне что-то пошло не так во время сканирования. Мы уже знаем об этом — попробуйте ещё раз через несколько минут.',
+  unreachable: "We couldn't find this site. Check the address — it may be a typo, or the site may no longer exist.",
+  refused: 'The site refused the connection. It may be temporarily down — please try again later.',
+  tls: 'The site has a problem with its security certificate (HTTPS). We can’t scan it until that is fixed.',
+  timeout: 'The site took too long to respond and the scan stopped. Try again — the server may be overloaded right now.',
+  blocked: 'The site blocked our scanner (for example via robots.txt or bot protection). We respect these restrictions and do not bypass them.',
+  internal: 'Something went wrong on our side during the scan. We already know about it — please try again in a few minutes.',
 }
 
 export function scanErrorMessage(errorCode: ScanErrorCode | null): string {

@@ -70,6 +70,13 @@ export async function scanSite(env, targetUrl, onProgress = async () => {}) {
   try {
     const page = await browser.newPage()
     await page.setUserAgent(USER_AGENT)
+    // D-105: без этого сайты с CSP `script-src 'nonce-…'` (первый живой случай —
+    // en.zebrakita.de, Google Sites) блокируют addScriptTag с axe: globalThis.axe
+    // остаётся undefined, скан падал «Cannot read properties of undefined
+    // (reading 'run')». Обход CSP законен для аудита: мы читаем DOM, а не
+    // атакуем страницу; политика сайта защищает его посетителей, не запрещает
+    // инструментам смотреть разметку. Вызывать строго ДО первой навигации.
+    await page.setBypassCSP(true)
     page.setDefaultNavigationTimeout(NAV_TIMEOUT_MS)
 
     await page.goto(targetUrl, { waitUntil: 'networkidle0' })
@@ -150,6 +157,11 @@ export async function scanSite(env, targetUrl, onProgress = async () => {}) {
       if (pageUrl === toVisit[0]) cookieBannerHandled = bannerResult
 
       await page.addScriptTag({ content: axeSource })
+      // Диагностируемый отказ вместо «reading 'run'» из недр evaluate: если
+      // axe всё же не внедрился (новый способ блокировки, не CSP), пусть в
+      // scans.error попадёт понятная строка с URL страницы (D-105).
+      const axeAttached = await page.evaluate(() => typeof globalThis.axe?.run === 'function')
+      if (!axeAttached) throw new Error(`axe-core failed to attach on ${pageUrl} (page blocked script injection?)`)
       const results = await page.evaluate(async () => await globalThis.axe.run())
       pagesScanned.push(pageUrl)
 
