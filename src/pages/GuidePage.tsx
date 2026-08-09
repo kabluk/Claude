@@ -4,6 +4,7 @@ import { AgencyCard } from '@/components/AgencyCard'
 import { JsonLd, ORIGIN, SITE_NAME } from '@/lib/seo'
 import { guideBySlug } from '@/lib/guides'
 import { agencyBySlug, countryByCode, paths, standardLabel } from '@/lib/data'
+import { chromeDict, type ChromeLocale } from '@/lib/i18n'
 
 export default function GuidePage() {
   const { slug } = useParams()
@@ -37,21 +38,23 @@ export default function GuidePage() {
         }
       : null
 
-  // G-I18N-CHROME-DE: словарь шапки/футера сейчас переведён только на de —
-  // для fr/pl (по одному гайду, без словаря) честно остаётся английский
-  // chrome, а не притворяется переводом (locale — раскладка nav/footer).
-  // htmlLang — отдельно язык ДОКУМЕНТА, равен реальной локали статьи
-  // (g.locale, как и до этого узла) независимо от locale хрома — иначе
-  // фр/пл-гайды тихо потеряли бы верный <html lang> (стал бы 'en' вслед за
-  // chrome), хотя их тело как было, так и осталось на fr/pl.
-  const chromeLocale = g.locale === 'de' ? 'de' : 'en'
+  // G-I18N-CHROME (D-102): словарь есть на en/de/fr/pl — ровно на тех
+  // локалях, на которых существует контент. `es` входит в A11Y_LOCALES
+  // (data/a11y/types.ts), но гайдов на нём пока нет; сводим его к 'en' ЯВНО,
+  // а не молчаливым fallback — когда испанский гайд появится, TypeScript
+  // здесь ничего не подскажет, зато подскажет этот комментарий.
+  // htmlLang — отдельно язык ДОКУМЕНТА (g.locale). Сейчас для de/fr/pl он
+  // совпадает с chrome, но развязка сохраняется намеренно: для будущего
+  // испанского гайда тело останется 'es', а chrome честно упадёт на 'en'.
+  const chromeLocale: ChromeLocale = g.locale === 'es' ? 'en' : g.locale
+  const t = chromeDict(chromeLocale)
 
   return (
     <Layout
       title={g.title}
       description={g.description}
       path={path}
-      crumbs={[{ name: 'Knowledge', path: '/guides/' }]}
+      crumbs={[{ name: t.nav.knowledge, path: '/guides/' }]}
       locale={chromeLocale}
       htmlLang={g.locale}
     >
@@ -61,7 +64,10 @@ export default function GuidePage() {
       <article lang={g.locale}>
         <h1 className="h1 max-w-3xl">{g.title}</h1>
         <p className="mt-2 text-sm text-on-surface-variant">
-          Updated {g.updated}
+          {/* Одним выражением, а не «{label} {date}»: соседние текстовые узлы
+              React SSR разделяет служебными <!-- --> — лишний мусор в разметке
+              на ровном месте. */}
+          {`${t.guide.updated} ${g.updated}`}
           {g.standard && (
             <>
               {' · '}
@@ -86,7 +92,7 @@ export default function GuidePage() {
 
         {g.faq.length > 0 && (
           <section className="mt-10 max-w-3xl">
-            <h2 className="h2">FAQ</h2>
+            <h2 className="h2">{t.guide.faq}</h2>
             <dl className="space-y-5">
               {g.faq.map((f) => (
                 <div key={f.q}>
@@ -101,10 +107,8 @@ export default function GuidePage() {
 
       {g.cta && (
         <div className="mt-10 max-w-3xl rounded-xl border border-outline-variant bg-secondary-container p-6">
-          <p className="font-semibold">Ready for the next step?</p>
-          <p className="mt-1 text-sm text-on-surface-variant">
-            Compare verified providers — every listing cites its sources.
-          </p>
+          <p className="font-semibold">{t.guide.ctaTitle}</p>
+          <p className="mt-1 text-sm text-on-surface-variant">{t.guide.ctaSubtitle}</p>
           <Link className="btn mt-4" to={g.cta.path}>
             {g.cta.label}
           </Link>
@@ -113,7 +117,7 @@ export default function GuidePage() {
 
       {related.length > 0 && (
         <section>
-          <h2 className="h2">Verified agencies for this topic</h2>
+          <h2 className="h2">{t.guide.relatedAgencies}</h2>
           <div className="grid gap-3 sm:grid-cols-2">
             {related.map((a) => (
               <AgencyCard key={a.slug} a={a} />

@@ -35,6 +35,14 @@ const SAMPLE_ROUTES = [
   '/services/', '/services/accessibility-audit/',
   '/standards/', '/standards/wcag-2-2/',
   '/guides/', '/guides/wcag-audit-guide/', '/guides/vpat-acr-guide/',
+  // G-I18N-CHROME (D-102): гайды с НЕанглийским chrome — отдельные
+  // представители, по одному на локаль. Раньше в выборке были только
+  // английские, и аудит был слеп ровно к тому, что менялось: переведённые
+  // aria-label ориентиров (главная навигация, хлебные крошки, правовая
+  // навигация в футере) и <html lang>, отличный от en. Пустой или
+  // задвоенный aria-label на локали, которую никто не проверяет, — это
+  // молчаливый провал для пользователя скринридера.
+  '/guides/bfsg-pflichten-guide/', '/guides/rgaa-guide/', '/guides/audyt-wcag-przewodnik/',
   // CN-WCAG-PAGES (D-066): шаблон WcagCriterionPage — 2 представителя разных
   // форм данных (axe-only с многими правилами; ours-only с оговоркой-эвристикой)
   // + индекс. Слаги детерминированы данными coverage.json.
