@@ -13,9 +13,8 @@ import {
   type ScanReport,
 } from '@/lib/scanner'
 import { estimateCost, formatCostEstimate } from '@/lib/costEstimate'
+import { decidePollNext, type PollAttempt } from '@/lib/reportPolling'
 import { MatchedAgencies } from '@/components/MatchedAgencies'
-
-const POLL_INTERVAL_MS = 2500
 
 type LoadState =
   | { kind: 'loading' }
@@ -35,23 +34,56 @@ export default function ReportPage() {
   useEffect(() => {
     if (!id) return
     let cancelled = false
+    // Серия сбоев ПОДРЯД (D-106). Живёт в замыкании эффекта, общее для всех
+    // вызовов poll(); обнуляется любым успешным ответом внутри decidePollNext.
+    let consecutiveErrors = 0
+
+    // Не-report исходы (404 / сканер не настроен / сбой сети). Вынесено, чтобы
+    // report-путь оставался линейным. Всё решение — в чистой decidePollNext
+    // (проверяется reportPolling.test.mjs); здесь только маппинг в setState.
+    function handleNonReport(attempt: PollAttempt, message: string) {
+      const decision = decidePollNext(attempt, consecutiveErrors)
+      switch (decision.show) {
+        case 'not-found':
+          setState({ kind: 'not-found' })
+          break
+        case 'unavailable':
+          setState({ kind: 'unavailable' })
+          break
+        case 'retry':
+          // НЕ трогаем state: последний показанный прогресс остаётся на экране,
+          // пользователь не видит мигания «ошибка» на каждом блипе сети.
+          consecutiveErrors = decision.consecutiveErrors
+          timerRef.current = setTimeout(poll, decision.delayMs)
+          break
+        case 'load-error':
+          setState({ kind: 'load-error', message })
+          break
+        // 'report' сюда не приходит: report-исход обрабатывается в poll() выше.
+      }
+    }
 
     async function poll() {
       try {
         const report = await fetchScan(id!)
         if (cancelled) return
-        if (!report) {
-          setState({ kind: 'not-found' })
+        if (report) {
+          consecutiveErrors = 0
+          setState({ kind: 'report', report })
+          const next = decidePollNext({ kind: 'ok', status: report.status }, 0)
+          if (next.show === 'report' && next.keepPolling) {
+            timerRef.current = setTimeout(poll, next.retryDelayMs)
+          }
           return
         }
-        setState({ kind: 'report', report })
-        if (report.status === 'running') {
-          timerRef.current = setTimeout(poll, POLL_INTERVAL_MS)
-        }
+        handleNonReport({ kind: 'not-found' }, '') // fetchScan вернул null → HTTP 404
       } catch (err) {
         if (cancelled) return
-        if (err instanceof ScannerUnavailableError) setState({ kind: 'unavailable' })
-        else setState({ kind: 'load-error', message: err instanceof Error ? err.message : String(err) })
+        const attempt: PollAttempt =
+          err instanceof ScannerUnavailableError
+            ? { kind: 'unavailable' }
+            : { kind: 'transient-error' }
+        handleNonReport(attempt, err instanceof Error ? err.message : String(err))
       }
     }
     poll()
