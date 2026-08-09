@@ -18,7 +18,12 @@
 // попытке выше) или render() (независимый клиентский рендер с нуля по
 // window.location — а он всегда настоящий /report/<id>).
 export async function onRequest(context) {
-  const shellUrl = new URL('/report-shell.html', context.request.url)
+  // Без расширения, а не /report-shell.html: Cloudflare Pages сам делает
+  // 308 с '.html' на «чистый» URL (тот же механизм, что убирает .html для
+  // обычных страниц) — ASSETS.fetch() внутри Function следует той же логике
+  // и на 'report-shell.html' отдаёт пустое тело с Location вместо контента.
+  // Найдено живьём на preview-деплое, не в документации Cloudflare.
+  const shellUrl = new URL('/report-shell', context.request.url)
   const asset = await context.env.ASSETS.fetch(new Request(shellUrl, context.request))
   return new Response(asset.body, { status: 200, headers: asset.headers })
 }
