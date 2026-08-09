@@ -76,7 +76,12 @@ export function parseScanProgress(raw: unknown): ScanProgress | null {
 // как зависимость чистых функций (groupFindingsByRule), из-за чего оценка
 // стоимости оставалась непокрытой тестами до D-046. В самой сборке поведение
 // не меняется.
-const API_BASE = import.meta.env?.VITE_SCANNER_API ?? ''
+// .replace(/\/+$/,'') — не косметика (D-104): переменную в настройках GitHub
+// владелец ввёл со слэшем на конце, бандл склеил `...workers.dev/` +
+// `/api/scan` = `//api/scan`, роутер воркера такой путь не знает → 404
+// «not found» под формой на проде. Значение из окружения — пользовательский
+// ввод, нормализуем здесь, а не надеемся на дисциплину при вводе.
+const API_BASE = (import.meta.env?.VITE_SCANNER_API ?? '').replace(/\/+$/, '')
 export const TURNSTILE_SITE_KEY = import.meta.env?.VITE_TURNSTILE_SITE_KEY ?? ''
 
 export class ScannerUnavailableError extends Error {}
