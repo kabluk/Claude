@@ -120,22 +120,66 @@ if (existsSync(notFoundNested)) {
 
 console.log(`✓ sitemap: ${urls.length} URL → dist/sitemap.xml (+robots.txt)`)
 
-// D-098 (ОТКРЫТО, не исправлено): прямой заход на `/report/:id` отдаёт 404.
-// Маршрут динамический (id сканов неограниченны), статического файла под него
-// нет. Cloudflare Pages включает SPA-фоллбек ТОЛЬКО когда в корне отсутствует
-// `404.html` — а мы его кладём сознательно (строки ниже, конвенция хостингов),
-// и он же перехватывает все неизвестные пути раньше любых правил.
-// Проверено живьём: `_redirects` с `/report/* /index.html 200` НЕ помогает —
-// 404.html имеет приоритет; правило было добавлено и удалено, чтобы не
-// оставлять в коде видимость решения. Отдать вместо этого сам 404.html тоже
-// не работает: приложение стартует, но маршрут не монтируется — пререндеренная
-// разметка 404-страницы не совпадает с тем, что рендерит роутер для отчёта.
-// Ломается именно тот сценарий, ради которого отчёт существует («reachable
-// only through its private link» на /scan/): свежий сабмит формы работает
-// (клиентская навигация), а открытая заново или присланная ссылка — нет.
-// Настоящее решение — Pages Functions (`functions/report/[[path]].js`),
-// отдающая шелл со статусом 200, ИЛИ client-only-маршрут с собственным
-// шеллом. Это отдельный узел: новая поверхность деплоя, нужен свежий контекст.
+// A1-REPORT-DIRECT-LINK / D-103: генерируем dist/report-shell.html — шелл,
+// который `functions/report/[[path]].js` отдаёт со статусом 200 на любой
+// `/report/*` (см. полный разбор проблемы и двух проваленных попыток в
+// комментарии того файла). Строим из уже готового 404.html — та же
+// структура <head> (все нужные <script>/<link> для JS-бандла), только:
+//   1. Убираем `data-server-rendered="true"` с #root. Это не косметика —
+//      клиентский вход vite-react-ssg (node_modules/vite-react-ssg/dist/
+//      index.mjs) буквально проверяет этот атрибут через
+//      `document.querySelector('[data-server-rendered=true]')`, чтобы
+//      выбрать hydrate() или render(). hydrate() требует, чтобы уже
+//      отрисованная разметка совпадала с тем, что React отрендерит для
+//      ТЕКУЩЕГО URL — а тут в разметке чужая страница (404), поэтому
+//      hydrate № и есть та самая уже провалившаяся попытка «отдать
+//      404.html как есть». render() — независимый от разметки клиентский
+//      рендер с нуля (createRoot(container).render), который смотрит
+//      только на window.location — а он всегда настоящий /report/<id>.
+//   2. Очищаем содержимое #root (без атрибута оно всё равно будет стёрто
+//      render()'ом, но иначе на долю секунды мелькнёт «Page not found»).
+//   3. Убираем 404-специфичные <script>-теги (JSON-LD хлебных крошек,
+//      __staticRouterHydrationData) — они про несуществующий маршрут.
+//   4. Заголовок/OG — нейтральные; `noindex,follow` уже стоит в 404.html
+//      (NotFoundPage index={false}) и переносится как есть — важно: теперь
+//      этот шелл отвечает 200 на ЛЮБОЙ /report/<что угодно>, включая
+//      несуществующие id, так что noindex обязан быть в статической
+//      разметке, а не только выставляться клиентом после монтирования.
+const shellSrc = join(DIST, '404.html')
+if (existsSync(shellSrc)) {
+  let shell = readFileSync(shellSrc, 'utf8')
+  // Порядок важен: закрывающий #root </div> идёт СРАЗУ ПЕРЕД скриптом
+  // __VITE_REACT_SSG_HASH__ (а не перед </body> — между ними ничего, кроме
+  // этого скрипта), поэтому сначала убираем __staticRouterHydrationData
+  // (он ВНУТРИ #root, до его закрывающего </div>), а уже потом чистим само
+  // содержимое #root, привязываясь к соседству с HASH-скриптом — якорь,
+  // который держится независимо от того, что именно лежит внутри #root.
+  const applied = []
+  const step = (label, re, replacement) => {
+    const next = shell.replace(re, replacement)
+    if (next === shell) throw new Error(`report-shell: шаг «${label}» не нашёл совпадение — 404.html изменил структуру?`)
+    shell = next
+    applied.push(label)
+  }
+  step('breadcrumb JSON-LD', /<script type="application\/ld\+json">[\s\S]*?<\/script>/, '')
+  step('staticRouterHydrationData', /<script>window\.__staticRouterHydrationData[\s\S]*?<\/script>/, '')
+  step(
+    'очистка #root',
+    /(<div id="root")[^>]*(>)[\s\S]*?(<\/div>\s*<script>window\.__VITE_REACT_SSG_HASH__)/,
+    '$1$2$3',
+  )
+  step('заголовок', /<title[^>]*>[^<]*<\/title>/, '<title data-rh="true">Verscala — scan report</title>')
+  if (shell.includes('data-server-rendered')) {
+    throw new Error('report-shell: data-server-rendered пережил очистку #root — регулярка «очистка #root» не то съела')
+  }
+  if (!shell.includes('noindex')) {
+    throw new Error('report-shell: noindex потерян при генерации — нельзя пускать в индекс произвольные /report/*')
+  }
+  writeFileSync(join(DIST, 'report-shell.html'), shell)
+  console.log(`✓ report-shell.html собран из 404.html (A1-REPORT-DIRECT-LINK): ${applied.join(', ')}`)
+} else {
+  throw new Error('report-shell: dist/404.html не найден — шелл строить не из чего')
+}
 
 // D-095: гейт против «кракозябр» в собранном HTML. Повод — реальный дефект,
 // найденный на ПРОДЕ: `dist/ireland/accessibility-training/index.html` содержал
