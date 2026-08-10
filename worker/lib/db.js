@@ -38,6 +38,26 @@ export async function failScan(db, { id, error, errorCode }) {
     .run()
 }
 
+// D-109: второй рубеж против вечного `running`. Первый (сторож D-108) живёт
+// ВНУТРИ изолята со сканом — и умирает вместе с ним: на проде скан, запущенный
+// уже с работающим сторожем, всё равно застрял в `running` (изолят убит
+// платформой, waitUntil-промис и таймер исчезли, failScan не записался).
+// Этот UPDATE вызывается из КОРОТКОГО GET-запроса (handleGetScan) — судьба
+// изолята со сканом на него не влияет.
+// Гейт `AND status = 'running'` обязателен: между SELECT в getScan и этим
+// UPDATE ещё живой (просто медленный) скан мог успеть записать done — жать
+// его в error поверх готового результата нельзя. Возвращает, была ли строка
+// реально закрыта именно этим вызовом.
+export async function reapStaleScan(db, { id, error }) {
+  const result = await db
+    .prepare(
+      `UPDATE scans SET status = 'error', error = ?, error_code = 'timeout', completed_at = ?, progress_json = NULL WHERE id = ? AND status = 'running'`
+    )
+    .bind(String(error).slice(0, 500), new Date().toISOString(), id)
+    .run()
+  return (result?.meta?.changes ?? 0) > 0
+}
+
 export async function getScan(db, id) {
   const row = await db.prepare(`SELECT * FROM scans WHERE id = ?`).bind(id).first()
   if (!row) return null

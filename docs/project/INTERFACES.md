@@ -107,11 +107,15 @@ type ScanReport = { id: string; url: string; status: 'running'|'done'|'error'; p
 // errorCode: маленький enum для UI (worker/lib/errors.js, D-013) — error остаётся
 // сырым текстом для отладки, errorCode превращается фронтендом в понятную фразу
 // без парсинга стектрейсов (VISION.md UX-требование 4).
-// ГАРАНТИЯ ЗАВЕРШЕНИЯ (D-108): status='running' конечен. scanSite() накрыт
-// сторожевым таймаутом 120с (env.SCAN_TIMEOUT_MS переопределяет) на ВЕСЬ прогон;
-// по его срабатыванию скан уходит обычным путём в failScan с errorCode='timeout'
-// (сообщение содержит слово "timeout" — этого требует classifyError). Новый код
-// ошибки НЕ вводится: для фронтенда это тот же случай "сайт не уложился".
+// ГАРАНТИЯ ЗАВЕРШЕНИЯ (D-108 + D-109): status='running' конечен, ДВА рубежа.
+// 1) scanSite() накрыт сторожевым таймаутом 120с (env.SCAN_TIMEOUT_MS
+//    переопределяет) на ВЕСЬ прогон; по срабатыванию — failScan с
+//    errorCode='timeout' (сообщение содержит слово "timeout" — этого требует
+//    classifyError). Новый код ошибки НЕ вводится.
+// 2) Сторож живёт в изоляте со сканом и умирает вместе с ним (случалось на
+//    проде) — поэтому GET /api/scan/:id сам закрывает running старше
+//    SCAN_TIMEOUT_MS + 60с (reapStaleScan, SQL-гейт AND status='running'
+//    против гонки: done живого скана никогда не затирается).
 type Lead = { id: string; scanId?: string; country: string; standard: StandardSlug;
   service: ServiceSlug; budget: PriceBand; deadline?: string; contact: {email: string; company?: string};
   matched: string[]; status: 'sent'|'responded'|'booked'|'closed'; createdAt: string };

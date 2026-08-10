@@ -1,8 +1,8 @@
-import { insertScanPending, completeScan, failScan, getScan } from '../lib/db.js'
+import { insertScanPending, completeScan, failScan, getScan, reapStaleScan } from '../lib/db.js'
 import { makeProgressReporter } from '../lib/progress.js'
 import { checkRateLimit } from '../lib/ratelimit.js'
 import { verifyTurnstile } from '../lib/turnstile.js'
-import { scanSite } from '../lib/axe.js'
+import { scanSite, resolveScanTimeoutMs } from '../lib/axe.js'
 import { scoreFromFindings } from '../lib/score.js'
 import { classifyError } from '../lib/errors.js'
 import { resolveJurisdiction, applyJurisdictionWeight } from '../lib/jurisdiction.js'
@@ -74,9 +74,36 @@ export async function handlePostScan(request, env, ctx) {
   return Response.json({ scanId: id }, { status: 202 })
 }
 
+// D-109: буфер поверх сторожа D-108 — GET считает скан протухшим только когда
+// внутренний сторож уже ТОЧНО должен был сработать и записать failScan сам.
+// Если этого не случилось, изолят со сканом мёртв (вместе со сторожем), и
+// закрывать строку больше некому, кроме этого короткого запроса.
+export const REAP_GRACE_MS = 60_000
+
+export function isScanStale(scan, env, now = Date.now()) {
+  if (scan.status !== 'running') return false
+  const startedAt = Date.parse(scan.createdAt)
+  // Строка без парсибельной даты не «свежая», а сломанная — считаем протухшей:
+  // вернуть running, который никто никогда не закроет, хуже честной ошибки.
+  if (Number.isNaN(startedAt)) return true
+  return now - startedAt > resolveScanTimeoutMs(env) + REAP_GRACE_MS
+}
+
 // GET /api/scan/:id -> ScanReport (см. INTERFACES.md §3)
 export async function handleGetScan(id, env) {
   const scan = await getScan(env.DB, id)
   if (!scan) return Response.json({ error: 'not found', code: 'not_found' }, { status: 404 })
+  if (isScanStale(scan, env)) {
+    await reapStaleScan(env.DB, {
+      id,
+      // Слово "timeout" в тексте — для симметрии с D-108; errorCode здесь
+      // задаётся напрямую в SQL, classifyError не участвует.
+      error: 'scan timeout: worker died mid-scan, closed by watchdog on read',
+    })
+    // Перечитываем, а не собираем ответ руками: если гонка (скан успел
+    // дописать done между SELECT и UPDATE) — гейт в reapStaleScan ничего не
+    // тронул, и пользователь получит НАСТОЯЩИЙ результат, а не ошибку.
+    return Response.json(await getScan(env.DB, id))
+  }
   return Response.json(scan)
 }
