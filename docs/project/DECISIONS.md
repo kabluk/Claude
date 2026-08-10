@@ -50,6 +50,15 @@ link-name), восстановил; оба состояния реально п�
 typecheck, worker 327/327, src 47/47, scripts 48/48, audit 52-0 (с env).
 Никаких deploy/сети. Субагент в этот раз docs не трогал (кроме отчёта).
 
+**Дополнено тем же днём:** родитель добавил в гейт ТРЕТЬЕ состояние отчёта —
+`status:'error'` (errorCode `blocked`): user-facing тексты ошибки
+(`scanErrorMessage`) и кнопка «Run a new scan» тоже были вне axe. Wait-target
+параметризован под состояние (`heading`: done → «Accessibility report for»,
+error → «Couldn't scan»). Прошло чисто (53 страницы), своя канарейка —
+обнулил ссылку «Run a new scan» → `link-name` serious ровно на
+`/report/:id (error)`, восстановил. Итог: 3 состояния `/report/:id` под
+постоянным гейтом (locked/unlocked/error).
+
 ## D-116 · 2026-08-10 · accepted
 **Платная ветка воронки: разовая оплата €19.99 через Stripe Checkout
 открывает PDF-план (второй путь рядом с бесплатным лидом D-115). Код готов

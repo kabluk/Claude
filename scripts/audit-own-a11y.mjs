@@ -250,9 +250,36 @@ const reportFixture = (planUnlocked) => ({
   planUnlocked,
 })
 
+// `heading` — the <h1> that marks THIS state fully rendered (each state renders
+// a different one, ReportPage.tsx). The done states show "Accessibility report
+// for {url}" (ReportBody); the error state renders "Couldn't scan {url}" — a
+// separate, user-facing surface (scanErrorMessage text + "Run a new scan"),
+// unaudited until now. The wait below races the state's own heading against
+// "Scanner is not configured" so a build without VITE_SCANNER_API fails fast
+// and clearly instead of hanging.
 const REPORT_STATES = [
-  { label: '/report/:id (locked)', fixture: reportFixture(false) },
-  { label: '/report/:id (unlocked)', fixture: reportFixture(true) },
+  { label: '/report/:id (locked)', fixture: reportFixture(false), heading: /Accessibility report for/ },
+  { label: '/report/:id (unlocked)', fixture: reportFixture(true), heading: /Accessibility report for/ },
+  {
+    label: '/report/:id (error)',
+    heading: /Couldn't scan/,
+    // A scan that failed has no findings/score to render — the page shows the
+    // honest error message for its errorCode and a "Run a new scan" action.
+    fixture: {
+      id: REPORT_FIXTURE_ID,
+      url: 'https://example.com',
+      status: 'error',
+      pages: [],
+      findings: [],
+      score: null,
+      error: 'the site blocked our scanner',
+      errorCode: 'blocked',
+      createdAt: '2026-08-01T10:00:00.000Z',
+      completedAt: '2026-08-01T10:00:20.000Z',
+      progress: null,
+      planUnlocked: false,
+    },
+  },
 ]
 
 // В управляемых dev-средах (Claude Code on the web) Chromium предустановлен по
@@ -302,7 +329,7 @@ try {
   // Two mocked states of the same client-only /report/:id route (fixture
   // defined above, outside this try, so its length is available to the
   // final summary too).
-  for (const { label, fixture } of REPORT_STATES) {
+  for (const { label, fixture, heading } of REPORT_STATES) {
     // scanner.ts::fetchScan calls `${API_BASE}/api/scan/${id}` (GET). The
     // locked panel's "Get the plan" button would additionally POST
     // `/api/scan/:id/checkout`, but the audit never clicks it, so this
@@ -329,7 +356,7 @@ try {
     // actionable message: this is a build-config problem, not an a11y one.
     // CI builds with a fixture value (ci.yml) so it never hits this branch.
     const rendered = await Promise.race([
-      page.getByRole('heading', { level: 1, name: /Accessibility report for/ }).waitFor({ timeout: 15000 }).then(() => 'report'),
+      page.getByRole('heading', { level: 1, name: heading }).waitFor({ timeout: 15000 }).then(() => 'report'),
       page.getByRole('heading', { level: 1, name: /Scanner is not configured/ }).waitFor({ timeout: 15000 }).then(() => 'unconfigured'),
     ]).catch(() => 'timeout')
     if (rendered !== 'report') {

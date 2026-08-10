@@ -8,7 +8,8 @@
 туда приходят платящие) была вне axe-гейта, т.к. клиентская и не
 пререндерится; её a11y держалась на юнит-тестах. Теперь `audit-own-a11y.mjs`
 рендерит `/report/:id` через report-shell + мок API-фикстуры и гоняет axe
-по locked и unlocked панелям пейволла (52 страницы, было 50).
+по locked/unlocked/error состояниям (53 страницы, было 50; error-состояние
+добавлено тем же днём — тексты ошибок + «Run a new scan» тоже user-facing).
 
 Попутно вскрыт build-config-дефект: `ci.yml` собирал dist без
 `VITE_SCANNER_API` (build-time inlining) → отчёт рендерил «не настроено» →
