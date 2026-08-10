@@ -3,6 +3,67 @@
 Формат: ID | дата | решение | причина | последствия. Новые решения добавлять сверху.
 Статусы: `accepted` (принято), `proposed` (ждёт подтверждения владельца).
 
+## D-121 · 2026-08-10 · accepted
+**SSG-баг U+FFFD починен. Корень — НЕ `vite-react-ssg`, а баг React 18.3.1 в
+потоковом писателе `react-dom/server` (Node). Правка через `patch-package`.**
+
+Гипотеза D-120 («`vite-react-ssg` рвёт многобайтовый символ на границе чанка в
+`WritableAsPromise._write`, `chunk.toString()` декодирует половинку») **не
+подтвердилась**. Проверено инструментированием, а не чтением кода: во всех 902
+вызовах `renderStaticApp` строка `_output` чиста — U+FFFD не возникает там ни
+разу. Патч `vite-react-ssg` не помог бы.
+
+Настоящий корень — `react-dom/cjs/react-dom-server.node.*.js`, функция
+`writeStringChunk`: React кодирует строку в буфер-«вид» 2048 байт через
+`TextEncoder.encodeInto`. Если очередной многобайтовый символ целиком не влезает,
+`encodeInto` останавливается, а React сбрасывает в поток **весь** вид
+(`writeToDestination(destination, currentView)`) вместо заполненной части
+`currentView.subarray(0, writtenBytes)`. Незаполненный хвост вида уходит наружу
+нулевыми байтами. То есть в HTML попадали не «половинки» символа, а **NUL
+(U+0000)** — ровно столько, сколько осталось места, перед целым символом. В том
+же файле два соседних места сбрасывают вид правильно, через
+`subarray(0, writtenBytes)`, — это внутреннее доказательство, что перед нами
+дефект, а не замысел.
+
+Почему пострадали ровно 2 страницы из 451: дальше `vite-react-ssg` прогоняет HTML
+через `jsdom`, а спецификация HTML велит NUL в тексте body **игнорировать**
+(токен отбрасывается молча), но в script-data и в значении атрибута — заменять на
+U+FFFD. NUL возникал на многих страницах (`level-access`, `bsvh`, `waca`, `swink`,
+`chent`, `stratis`, `stiftung-pfennigparade`, `fundacja-widzialni`…), но видимую
+порчу дал только там, где лёг внутрь `<script type="application/ld+json">`
+(`agencies/akse` — `é` в «Aksé») и внутрь `aria-label`
+(`switzerland/accessibility-remediation` — `€` в «Under €3k»; вопреки записи
+D-120, вторая страница про евро, а не про «Aksé»). Данные и имя «Aksé» ни при чём,
+источник чист; правка Layout D-118 лишь сдвинула вывод так, что байт лёг на
+границу 2048.
+
+Починка: `patch-package` (новая devDependency, `"postinstall": "patch-package"`),
+патч `patches/react-dom+18.3.1.patch` — одна и та же строка в двух файлах
+(`react-dom-server.node.development.js` и `.production.min.js`):
+`writeToDestination(destination, currentView)` →
+`writeToDestination(destination, currentView.subarray(0, writtenBytes))`. Это же
+исправление есть в апстриме React (React 19); поднимать мажор React ради одной
+строки — несоразмерно. `vite-react-ssg` и `vite.config.ts` НЕ тронуты:
+не-потокового режима у `renderStaticApp` нет (вызывается без опций из 3 мест,
+`renderToString` — только фолбэк при отсутствии `renderToPipeableStream`).
+
+Проверено: 3 сборки подряд — exit 0, «U+FFFD не найден ни в одном из 453 HTML»;
+0 U+FFFD и 0 NUL во всех 909 текстовых файлах `dist/`; «Aksé» в JSON-LD хлебных
+крошек байт-в-байт `41 6b 73 c3 a9`; 19 из 19 не-ASCII названий агентств
+присутствуют в своих страницах дословно. **Канарейка**: `npx patch-package
+--reverse` → `npm run build` падает с кодом 1 и называет ровно те же 2 файла;
+патч обратно → сборка зелёная. Патч переживает `rm -rf node_modules && npm
+install` (postinstall переприменяет — сверено содержимым файлов, не логом).
+Полный dist-дифф с нормализацией `__VITE_REACT_SSG_HASH__`: 958 из 961 файлов
+побайтово идентичны, различаются ровно 2 починенные страницы плюс порядок ключей
+в `static-loader-data-manifest` (недетерминизм параллельной очереди; набор из 451
+ключа и значения совпадают) — порча никуда не «переехала».
+
+Гейты: typecheck 0, src:test 47/47, scripts:test 48/48, worker:test 327/327,
+check-links 500 ссылок / 0 битых, audit-a11y 53 страницы / 0 нарушений (сборка с
+`VITE_SCANNER_API=https://audit-fixture.invalid`, как в CI). НЕ задеплоено, push
+не делался.
+
 ## D-120 · 2026-08-10 · accepted (частично — воркер; сайт заблокирован)
 **Деплой накопленного (D-114…D-119) по «да» владельца + CF-токен. ВОРКЕР
 выкачен и проверен живьём; САЙТ заблокирован SSG-багом U+FFFD (D-095-класс),

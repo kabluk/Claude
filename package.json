@@ -5,6 +5,7 @@
   "type": "module",
   "description": "AccessAtlas — directory of verified digital-accessibility audit agencies (EAA / WCAG / ADA / BFSG / RGAA).",
   "scripts": {
+    "postinstall": "patch-package",
     "dev": "vite",
     "build:data": "node scripts/build-a11y.mjs",
     "build": "node scripts/build-a11y.mjs && vite-react-ssg build && node scripts/gen-a11y-sitemap.mjs",
@@ -39,6 +40,7 @@
     "@types/react-dom": "^18.3.7",
     "@vitejs/plugin-react": "^6.0.4",
     "axe-core": "^4.13.0",
+    "patch-package": "^8.0.1",
     "playwright": "^1.62.1",
     "tailwindcss": "^4.3.3",
     "tsx": "^4.23.9",
