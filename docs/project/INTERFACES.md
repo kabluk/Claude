@@ -30,6 +30,7 @@
 |---|---|---|---|---|
 | `POST /api/scan` | `{url, email?, turnstileToken?, countryCode?}` | `{scanId}` (202) · 503 `queue_unavailable` (D-110) | 1 | ✅ реализован |
 | `GET /api/scan/:id` | — | ScanReport | 1 | ✅ реализован |
+| `GET /api/scan/:id/pdf` | — | `application/pdf` (план исправлений) | 2 | ✅ код готов, гейта доступа НЕТ |
 | `POST /api/explain` | `{ruleId, locale?}` | `{explanation, fixExamples[]}` (KV-кэш) | 1 | ✅ реализован* |
 | `POST /api/lead` | Lead без id/status | `{leadId, matched: slug[]}` | 2 |
 | `POST /api/claim` | `{agencySlug, email}` → verify-link | `{claimId}` | 2 |
@@ -113,6 +114,17 @@ type ScanReport = { id: string; url: string; status: 'running'|'done'|'error'; p
 // errorCode: маленький enum для UI (worker/lib/errors.js, D-013) — error остаётся
 // сырым текстом для отладки, errorCode превращается фронтендом в понятную фразу
 // без парсинга стектрейсов (VISION.md UX-требование 4).
+// GET /api/scan/:id/pdf (A2-PDF-PLAN, D-114) — план исправлений PDF, печатается
+// Browser Rendering'ом из HTML, собранного в воркере (worker/lib/pdfPlan.js —
+// данные, pdfPlanHtml.js — разметка, routes/scanPdf.js — D1 + печать).
+// ⚠️ ГЕЙТА ДОСТУПА НЕТ: сейчас эндпоинт открыт любому, кто знает id скана.
+// Пейволл — отдельный узел (A2-REPORT-PAYWALL): гейт встаёт ПЕРЕД генерацией.
+// Маршрут обязан матчиться РАНЬШЕ `/api/scan/:id`, иначе тот съест путь как
+// id="<uuid>/pdf" и молча вернёт 404 (см. worker/index.js).
+// Решение владельца по показу (D-114): находки на /report/:id остаются
+// ОТКРЫТЫМИ, закрывается только план; закрытая часть НЕ отдаётся клиенту —
+// CSS-блюр поверх реального текста запрещён (обходится view-source и даёт
+// скринридеру то, что скрыто от глаз — недопустимо для нашей ниши).
 // errorCode='busy' (A1-SCAN-BUSY-RETRY): лимит Browser Rendering (429 на
 // создании браузера), а НЕ поломка у нас и не проблема сайта — пишется только
 // после исчерпания busy-ретраев консьюмера (20с, затем 40с; всего 3 доставки).

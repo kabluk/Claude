@@ -1,4 +1,5 @@
 import { handlePostScan, handleGetScan } from './routes/scan.js'
+import { handleGetScanPdf } from './routes/scanPdf.js'
 import { handlePostExplain } from './routes/explain.js'
 import { handlePostLead } from './routes/lead.js'
 import { handlePostClaim, handleGetClaimVerify } from './routes/claim.js'
@@ -31,6 +32,14 @@ export default {
 
     if (request.method === 'POST' && url.pathname === '/api/scan') {
       return withCors(await handlePostScan(request, env, ctx), cors)
+    }
+
+    // A2-PDF-PLAN: /:id/pdf must be matched BEFORE the plain /:id route below —
+    // that one matches on startsWith('/api/scan/') alone and would otherwise
+    // swallow this path with id === "<uuid>/pdf" (never found, silent 404).
+    if (request.method === 'GET' && url.pathname.startsWith('/api/scan/') && url.pathname.endsWith('/pdf')) {
+      const id = url.pathname.slice('/api/scan/'.length, -'/pdf'.length)
+      return withCors(await handleGetScanPdf(id, env), cors)
     }
 
     if (request.method === 'GET' && url.pathname.startsWith('/api/scan/')) {
