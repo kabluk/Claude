@@ -118,7 +118,12 @@ export function Layout({
               (§23, D-071) не пострадал. URL /guides//agencies/ не переименованы
               (CN-NAV, D-062 §6): подписи IA — Knowledge/Experts, сами адреса и
               модель данных agencies не трогаем. */}
-          <nav aria-label={t.ariaMain} className="flex flex-wrap items-center gap-4 text-sm font-medium text-on-surface-variant">
+          {/* D-118: на мобиле nav занимает СВОЙ полный ряд (order-last w-full),
+              тогда логотип и CTA делят ряд выше — итого 2 ряда, а не 3 (высота,
+              жалоба владельца). На десктопе (md+) nav возвращается в общую строку
+              (order-none w-auto): логотип · nav · CTA в один ряд. Только классы —
+              структура DOM не меняется, useId не сдвигается. */}
+          <nav aria-label={t.ariaMain} className="order-last flex w-full flex-wrap items-center gap-4 text-sm font-medium text-on-surface-variant md:order-none md:w-auto">
             <Link
               className="font-semibold text-[color:var(--color-primary)] hover:text-[color:var(--color-primary-hover)]"
               to={paths.scan()}
