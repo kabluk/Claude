@@ -3,6 +3,35 @@
 Формат: ID | дата | решение | причина | последствия. Новые решения добавлять сверху.
 Статусы: `accepted` (принято), `proposed` (ждёт подтверждения владельца).
 
+## D-122 · 2026-08-10 · accepted (частично — фикс подтверждён; деплой на новом блокере)
+**Push D-121 в `accessatlas` подтвердил фикс U+FFFD в реальном CI (не только
+локально), но деплой упал на НЕСВЯЗАННОЙ причине: невалидный
+`CLOUDFLARE_API_TOKEN` в GitHub Actions secrets.**
+
+Родительская сессия независимо перепроверила работу субагента перед push: чтение
+патча (`patches/react-dom+18.3.1.patch`), `rm -rf node_modules && npm ci` →
+патч переприменился (постустановка), собственная сборка с реальным
+`VITE_SCANNER_API` → чисто, побайтовая проверка «Aksé» и `aria-label="Under
+€3k"`, канарейка (`patch-package --reverse` → билд падает ровно на тех же 2
+файлах, восстановление → зелёно), typecheck и src:test 47/47 — независимо от
+отчёта субагента. Затем push в `accessatlas` (fast-forward, без расхождений).
+
+CI (run `31439945281`) прошёл ВСЕ гейты зелёными вплоть до самого последнего
+шага: typecheck, src:test, scripts:test, worker:test, Build (с U+FFFD-гейтом
+D-095), Verify scanner API wired, check-links, audit-a11y 53/0. Это
+окончательное доказательство: SSG-баг чинится не только на машине разработки.
+Упал только шаг `Deploy to Cloudflare Pages` — `wrangler pages deploy` вернул
+`Invalid access token [code: 9109]` на `/accounts/*/pages/projects/verscala`.
+Прод-сайт цел (старый D-113), деплой просто не произошёл — не порча, а честный
+отказ по недостающему валидному секрету.
+
+**Следствие**: SSG-задача (главная задача сессии) закрыта по существу — баг
+найден, исправлен, доказан живым CI. Остаётся отдельный инфра-блокер, не
+входивший в скоуп: нужен свежий `CLOUDFLARE_API_TOKEN` от владельца в GitHub
+repo secrets (Settings → Secrets and variables → Actions), возможно и
+`CLOUDFLARE_ACCOUNT_ID` — обе ошибки указывают на токен/доступ, не на
+конфигурацию workflow.
+
 ## D-121 · 2026-08-10 · accepted
 **SSG-баг U+FFFD починен. Корень — НЕ `vite-react-ssg`, а баг React 18.3.1 в
 потоковом писателе `react-dom/server` (Node). Правка через `patch-package`.**
