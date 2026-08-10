@@ -33,8 +33,46 @@ export function buildScanJobMessage({ id, url, countryCode }) {
   return { v: SCAN_JOB_VERSION, id, url, countryCode: countryCode ?? null }
 }
 
+// A1-SCAN-BUSY-RETRY. Максимум ДОСТАВОК одного сообщения: `msg.attempts` в
+// Cloudflare Queues — счётчик доставок и начинается с 1, поэтому
+// `max_retries: 2` в wrangler.jsonc даёт ровно 3 доставки. Константу нельзя
+// вывести из рантайма (в сообщении её нет), значит она дублирует конфиг —
+// а за дрейфом дубликата следит гейт в scanJob.test.mjs, который парсит
+// wrangler.jsonc и сверяет `1 + max_retries` с этим числом.
+export const MAX_DELIVERIES = 3
+
+// Задержка перед следующей доставкой, по номеру ТЕКУЩЕЙ доставки: 20с после
+// 1-й, 40с после 2-й. Арифметика упирается в окно реапа D-109: строка
+// `running` закрывается на чтении через SCAN_TIMEOUT_MS (120с) + REAP_GRACE_MS
+// (60с) = 180с от created_at, который ставится в POST.
+//   доставка 1: ~0с, отказ busy приходит почти сразу (puppeteer.launch падает
+//               ДО сторожа D-108 и до единой навигации) → ретрай +20с;
+//   доставка 2: ~20с, то же самое → ретрай +40с;
+//   доставка 3: ~60с. Если браузер наконец дали — на полный сторожевой скан
+//               (120с) остаётся ровно 180-60=120с, впритык, но реап и не
+//               обязан ждать: `completeScan` без status-гейта перезапишет
+//               реапнутую строку настоящим результатом (D-110).
+//               Если снова busy — failScan пишется на ~60с, с запасом.
+// Отсюда и потолок: третья задержка (80с+) увела бы старт скана за окно реапа,
+// и пользователь получал бы 'timeout' от сторожа вместо честного 'busy'.
+export const BUSY_RETRY_DELAYS_SECONDS = [20, 40]
+
+// null = ретраить нельзя (не busy, попытки исчерпаны или счётчик доставок
+// непонятен) → зовущий пишет обычный failScan.
+export function busyRetryDelaySeconds(errorCode, attempts) {
+  if (errorCode !== 'busy') return null
+  // Незнакомый/отсутствующий attempts трактуем как «последняя доставка»: без
+  // счётчика мы не знаем, сколько ретраев уже было, а лишний `retry()` сверх
+  // max_retries платформа просто отбросит — сообщение исчезнет, исход в D1 так
+  // и не будет записан, и строку закроет реап D-109 ошибкой 'timeout' (ложь
+  // вместо 'busy'). Честный отказ прямо сейчас безопаснее потерянного скана.
+  if (!Number.isInteger(attempts) || attempts < 1) return null
+  if (attempts >= MAX_DELIVERIES) return null
+  return BUSY_RETRY_DELAYS_SECONDS[attempts - 1] ?? null
+}
+
 // Возвращает строку-исход (для тестов и логов):
-//   'completed' | 'failed' | 'skipped' | 'missing' | 'invalid' | 'retry'
+//   'completed' | 'failed' | 'skipped' | 'missing' | 'invalid' | 'retry' | 'busy-retry'
 // deps — тестовый шов (по образцу env.__launchBrowser в axe.js, но параметром:
 // в прод-объекте env ничего лишнего не появляется).
 export async function runScanJob(env, msg, deps = {}) {
@@ -92,7 +130,26 @@ export async function runScanJob(env, msg, deps = {}) {
     outcome = 'completed'
   } catch (err) {
     const message = err?.message ?? String(err)
-    record = () => failScan(env.DB, { id, error: message, errorCode: classifyError(message) })
+    const errorCode = classifyError(message)
+
+    // A1-SCAN-BUSY-RETRY: Browser Rendering занят (429 на создании браузера).
+    // Это не отказ скана — это «сейчас нельзя, попробуй позже», и записывать
+    // его пользователю как исход, пока остались доставки, значит терять
+    // работоспособный скан из-за секундного всплеска на платформе.
+    const delaySeconds = busyRetryDelaySeconds(errorCode, msg.attempts)
+    if (delaySeconds !== null) {
+      // Строку в D1 НЕ трогаем вообще: она остаётся `running` с текущим
+      // прогрессом, и идемпотентный гейт выше пропустит следующую доставку
+      // именно поэтому. Любая запись здесь (даже прогресса) была бы либо
+      // затиранием, либо новым состоянием, которое гейт не умеет читать.
+      msg.retry({ delaySeconds })
+      return 'busy-retry'
+    }
+
+    // Попытки исчерпаны (или ошибка не busy) — обычный исход. classifyError
+    // уже дал 'busy', пользователь увидит честное «сканер на пределе», а не
+    // «что-то сломалось у нас».
+    record = () => failScan(env.DB, { id, error: message, errorCode })
     outcome = 'failed'
   }
 

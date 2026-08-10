@@ -100,13 +100,16 @@ type ScanProgress = { phase: 'discovering'|'statement'|'axe'|'dom-checks'|'aggre
 
 type ScanReport = { id: string; url: string; status: 'running'|'done'|'error'; pages: string[];
   findings: ScanFinding[]; score: number|null; error: string|null;
-  errorCode: 'unreachable'|'refused'|'tls'|'timeout'|'blocked'|'internal'|null;
+  errorCode: 'unreachable'|'refused'|'tls'|'timeout'|'blocked'|'busy'|'internal'|null;
   createdAt: string; completedAt: string|null; progress: ScanProgress|null };
 // score: 0–100, дедуп по ruleId (худшая severity среди инстансов) — см. D-010,
 // worker/lib/score.js. Эвристика для сортировки/сравнения, НЕ сертификация (D-006).
 // errorCode: маленький enum для UI (worker/lib/errors.js, D-013) — error остаётся
 // сырым текстом для отладки, errorCode превращается фронтендом в понятную фразу
 // без парсинга стектрейсов (VISION.md UX-требование 4).
+// errorCode='busy' (A1-SCAN-BUSY-RETRY): лимит Browser Rendering (429 на
+// создании браузера), а НЕ поломка у нас и не проблема сайта — пишется только
+// после исчерпания busy-ретраев консьюмера (20с, затем 40с; всего 3 доставки).
 // ГАРАНТИЯ ЗАВЕРШЕНИЯ (D-108 + D-109 + D-110): status='running' конечен, ТРИ рубежа.
 // 1) scanSite() накрыт сторожевым таймаутом 120с (env.SCAN_TIMEOUT_MS
 //    переопределяет) на ВЕСЬ прогон; по срабатыванию — failScan с

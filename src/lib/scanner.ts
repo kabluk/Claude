@@ -22,7 +22,11 @@ export type ScanFinding = {
   jurisdictionCountry?: string
 }
 
-export type ScanErrorCode = 'unreachable' | 'refused' | 'tls' | 'timeout' | 'blocked' | 'internal'
+// 'busy' (A1-SCAN-BUSY-RETRY): очередь сканера упёрлась в лимит Browser
+// Rendering. Отдельный код нужен именно потому, что это НЕ 'internal': у нас
+// ничего не сломано и с сайтом пользователя всё в порядке — врать об этом
+// нельзя (worker/lib/errors.js, worker/lib/scanJob.js).
+export type ScanErrorCode = 'unreachable' | 'refused' | 'tls' | 'timeout' | 'blocked' | 'busy' | 'internal'
 
 // CN-SCAN-PHASES (D-067): фазы, которые воркер РЕАЛЬНО проходит и пишет в D1
 // (worker/lib/progress.js — источник; INTERFACES.md §3 — контракт).
@@ -144,6 +148,7 @@ const ERROR_MESSAGES: Record<ScanErrorCode, string> = {
   tls: 'The site has a problem with its security certificate (HTTPS). We can’t scan it until that is fixed.',
   timeout: 'The site took too long to respond and the scan stopped. Try again — the server may be overloaded right now.',
   blocked: 'The site blocked our scanner (for example via robots.txt or bot protection). We respect these restrictions and do not bypass them.',
+  busy: 'Our scanner is at capacity right now because of high demand — nothing is wrong with your site. Please try again in a few minutes.',
   internal: 'Something went wrong on our side during the scan. We already know about it — please try again in a few minutes.',
 }
 
