@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useParams, useSearchParams } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
 import { ScanStream } from '@/components/ScanStream'
 import { paths } from '@/lib/data'
@@ -21,6 +21,14 @@ import {
 import { estimateCost, formatCostEstimate } from '@/lib/costEstimate'
 import { decidePollNext, type PollAttempt } from '@/lib/reportPolling'
 import { MatchedAgencies } from '@/components/MatchedAgencies'
+import { useToasts, ToastRegion } from '@/components/library/Toast'
+
+// A2-STRIPE-CHECKOUT tail: Stripe redirects the browser back to
+// success_url/cancel_url set in worker/routes/planCheckout.js, both of which
+// are this exact report URL plus `?checkout=success|cancel` — nothing else
+// on the site produces this param, so its mere presence is the signal.
+const UNLOCK_POLL_MS = 2500
+const UNLOCK_POLL_ATTEMPTS = 4
 
 type LoadState =
   | { kind: 'loading' }
@@ -36,6 +44,12 @@ export default function ReportPage() {
   const { id } = useParams()
   const [state, setState] = useState<LoadState>({ kind: 'loading' })
   const timerRef = useRef<ReturnType<typeof setTimeout>>()
+  const [searchParams, setSearchParams] = useSearchParams()
+  const { toasts, notify, dismiss } = useToasts()
+  // Guards the whole ?checkout= side effect to fire exactly once — without it,
+  // clearing the query param below (a setState) would re-run the effect on
+  // its own change, and a StrictMode double-invoke would fire it twice.
+  const checkoutHandledRef = useRef(false)
 
   useEffect(() => {
     if (!id) return
@@ -100,6 +114,81 @@ export default function ReportPage() {
     }
   }, [id])
 
+  // Handle the redirect back from Stripe Checkout (worker/routes/planCheckout.js
+  // sets success_url/cancel_url to this exact page + ?checkout=success|cancel).
+  // Only meaningful once the report itself has loaded — status:'done' is
+  // required anyway for planUnlocked to mean anything.
+  useEffect(() => {
+    if (checkoutHandledRef.current) return
+    if (state.kind !== 'report' || state.report.status !== 'done') return
+    const checkoutParam = searchParams.get('checkout')
+    if (checkoutParam !== 'success' && checkoutParam !== 'cancel') return
+    checkoutHandledRef.current = true
+
+    // Strip the param immediately (not after the async work below) so a
+    // reload — or the retry loop's own setState — never re-shows the toast.
+    const nextParams = new URLSearchParams(searchParams)
+    nextParams.delete('checkout')
+    setSearchParams(nextParams, { replace: true })
+
+    if (checkoutParam === 'cancel') {
+      notify('Checkout cancelled — no payment was made.')
+      return
+    }
+
+    if (state.report.planUnlocked) {
+      notify('Payment successful — your plan is unlocked below.')
+      return
+    }
+
+    // Stripe's webhook (the only thing that actually flips planUnlocked,
+    // worker/routes/planCheckout.js) can land a beat after the browser
+    // redirect — reportPolling.ts already stopped polling once status
+    // reached 'done', so re-poll a few times here instead of assuming the
+    // webhook won.
+    let cancelled = false
+    let attempt = 0
+    const scanId = state.report.id
+    async function pollForUnlock() {
+      attempt++
+      try {
+        const fresh = await fetchScan(scanId)
+        if (cancelled) return
+        if (fresh?.planUnlocked) {
+          setState({ kind: 'report', report: fresh })
+          notify('Payment successful — your plan is unlocked below.')
+          return
+        }
+      } catch {
+        // Transient — fall through to the retry/give-up logic below same as a
+        // successful-but-still-locked response; never a silent dead end.
+      }
+      if (cancelled) return
+      if (attempt < UNLOCK_POLL_ATTEMPTS) {
+        setTimeout(pollForUnlock, UNLOCK_POLL_MS)
+      } else {
+        notify('Payment received — this can take a moment to appear. Refresh the page if the plan is still locked.', {
+          duration: null,
+        })
+      }
+    }
+    notify('Payment received — unlocking your plan…')
+    pollForUnlock()
+
+    return () => {
+      cancelled = true
+    }
+    // Deliberately NOT depending on searchParams/setSearchParams/notify:
+    // setSearchParams above changes searchParams on its own, which would
+    // re-run this effect immediately and tear down the retry loop via the
+    // cleanup above before its first fetchScan() even resolved (caught live
+    // in a Playwright run — race case, not exercised by the unit/axe
+    // fixtures, which mock an already-unlocked report). checkoutHandledRef
+    // already makes every re-entry into this effect after the first a no-op,
+    // so state is the only dependency that can meaningfully re-trigger it.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state])
+
   if (!id) return null
 
   // Единый live-регион на все переходы состояний (loading → running → done/
@@ -119,6 +208,7 @@ export default function ReportPage() {
 
   return (
     <Layout title="Accessibility scan report" description="Automated accessibility scan results." path={paths.report(id)} index={false}>
+      <ToastRegion toasts={toasts} onDismiss={dismiss} />
       <p className="sr-only" role="status" aria-live="polite">
         {liveMessage}
       </p>

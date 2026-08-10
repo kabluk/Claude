@@ -261,6 +261,17 @@ const REPORT_STATES = [
   { label: '/report/:id (locked)', fixture: reportFixture(false), heading: /Accessibility report for/ },
   { label: '/report/:id (unlocked)', fixture: reportFixture(true), heading: /Accessibility report for/ },
   {
+    // A2-STRIPE-CHECKOUT tail: ?checkout=success (worker/routes/planCheckout.js
+    // success_url) with an already-unlocked fixture — the ReportPage effect
+    // shows the "Payment successful" toast (ToastRegion) synchronously, no
+    // need to wait out the unlock-poll retry loop it also owns. That loop is
+    // covered by src:test (reportPolling-adjacent logic), not here.
+    label: '/report/:id (checkout success toast)',
+    fixture: reportFixture(true),
+    heading: /Accessibility report for/,
+    query: '?checkout=success',
+  },
+  {
     label: '/report/:id (error)',
     heading: /Couldn't scan/,
     // A scan that failed has no findings/score to render — the page shows the
@@ -329,7 +340,7 @@ try {
   // Two mocked states of the same client-only /report/:id route (fixture
   // defined above, outside this try, so its length is available to the
   // final summary too).
-  for (const { label, fixture, heading } of REPORT_STATES) {
+  for (const { label, fixture, heading, query } of REPORT_STATES) {
     // scanner.ts::fetchScan calls `${API_BASE}/api/scan/${id}` (GET). The
     // locked panel's "Get the plan" button would additionally POST
     // `/api/scan/:id/checkout`, but the audit never clicks it, so this
@@ -339,7 +350,7 @@ try {
     await page.route('**/api/scan/**', (route) =>
       route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(fixture) }),
     )
-    await page.goto(`${base}/report/${REPORT_FIXTURE_ID}/`, { waitUntil: 'load' })
+    await page.goto(`${base}/report/${REPORT_FIXTURE_ID}/${query ?? ''}`, { waitUntil: 'load' })
     // Wait for the actual report render, not a timer: ReportBody's own <h1>
     // ("Accessibility report for {url}") only appears once state has reached
     // `{kind:'report'}` with status 'done' — loading/unavailable/not-found
@@ -366,6 +377,13 @@ try {
         `Rebuild with a value inlined, e.g.  VITE_SCANNER_API=https://audit-fixture.invalid npm run build  ` +
         `(CI does this in .github/workflows/ci.yml). This is a build-config issue, NOT an accessibility violation.`,
       )
+    }
+    // A2-STRIPE-CHECKOUT tail: ?checkout=success fires the toast from a
+    // useEffect, a beat after the heading above — wait for the actual text
+    // instead of racing axe against it (a miss here would silently audit an
+    // empty ToastRegion, not the toast itself).
+    if (query?.includes('checkout=success')) {
+      await page.getByText('Payment successful').waitFor({ timeout: 5000 })
     }
     await page.addScriptTag({ content: AXE_SOURCE })
     const reportAxeResults = await page.evaluate(
