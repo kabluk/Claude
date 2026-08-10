@@ -4,6 +4,7 @@ import { handlePostLead } from './routes/lead.js'
 import { handlePostClaim, handleGetClaimVerify } from './routes/claim.js'
 import { handlePostStripeHook } from './routes/stripeHook.js'
 import { deleteExpiredScans } from './lib/retention.js'
+import { handleScanQueueBatch } from './lib/scanJob.js'
 
 function corsHeaders(env) {
   return {
@@ -67,5 +68,14 @@ export default {
   // RETENTION_DAYS (worker/lib/retention.js, D-019, RISKS.md R6).
   async scheduled(event, env, ctx) {
     ctx.waitUntil(deleteExpiredScans(env.DB))
+  },
+
+  // Consumer очереди accessatlas-scan-queue (D-110): одно сообщение — один скан.
+  // Здесь НЕТ ctx.waitUntil: у консьюмера инвокация живёт до конца await'а
+  // (до 15 минут), и именно поэтому скан переехал сюда из waitUntil (30с).
+  // ack/retry делает сам обработчик (worker/lib/scanJob.js) — по исходу записи
+  // в D1, а не по факту доставки сообщения.
+  async queue(batch, env, ctx) {
+    await handleScanQueueBatch(batch, env)
   },
 }

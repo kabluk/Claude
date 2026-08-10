@@ -28,7 +28,7 @@
 
 | Endpoint | Вход | Выход | Фаза | Статус |
 |---|---|---|---|---|
-| `POST /api/scan` | `{url, email?, turnstileToken?, countryCode?}` | `{scanId}` (202) | 1 | ✅ реализован |
+| `POST /api/scan` | `{url, email?, turnstileToken?, countryCode?}` | `{scanId}` (202) · 503 `queue_unavailable` (D-110) | 1 | ✅ реализован |
 | `GET /api/scan/:id` | — | ScanReport | 1 | ✅ реализован |
 | `POST /api/explain` | `{ruleId, locale?}` | `{explanation, fixExamples[]}` (KV-кэш) | 1 | ✅ реализован* |
 | `POST /api/lead` | Lead без id/status | `{leadId, matched: slug[]}` | 2 |
@@ -107,7 +107,7 @@ type ScanReport = { id: string; url: string; status: 'running'|'done'|'error'; p
 // errorCode: маленький enum для UI (worker/lib/errors.js, D-013) — error остаётся
 // сырым текстом для отладки, errorCode превращается фронтендом в понятную фразу
 // без парсинга стектрейсов (VISION.md UX-требование 4).
-// ГАРАНТИЯ ЗАВЕРШЕНИЯ (D-108 + D-109): status='running' конечен, ДВА рубежа.
+// ГАРАНТИЯ ЗАВЕРШЕНИЯ (D-108 + D-109 + D-110): status='running' конечен, ТРИ рубежа.
 // 1) scanSite() накрыт сторожевым таймаутом 120с (env.SCAN_TIMEOUT_MS
 //    переопределяет) на ВЕСЬ прогон; по срабатыванию — failScan с
 //    errorCode='timeout' (сообщение содержит слово "timeout" — этого требует
@@ -116,6 +116,24 @@ type ScanReport = { id: string; url: string; status: 'running'|'done'|'error'; p
 //    проде) — поэтому GET /api/scan/:id сам закрывает running старше
 //    SCAN_TIMEOUT_MS + 60с (reapStaleScan, SQL-гейт AND status='running'
 //    против гонки: done живого скана никогда не затирается).
+// 3) D-110: скан больше НЕ выполняется в ctx.waitUntil — у waitUntil жёсткий
+//    потолок 30с после отправки ответа, и рубеж (1) вместе со сканом просто
+//    отменялся платформой. POST /api/scan теперь только кладёт джоб в очередь
+//    `accessatlas-scan-queue` (producer-биндинг SCAN_QUEUE) и отвечает 202;
+//    сканирует consumer (worker/lib/scanJob.js), у которого инвокация живёт до
+//    15 минут — там сторож (1) впервые может реально доработать.
+//    Контракт сообщения (только примитивы, переживает деплой):
+//      { v: 1, id: string, url: string, countryCode: string|null }
+//    Юрисдикция НЕ передаётся — пересчитывается в consumer'е resolveJurisdiction.
+//    Consumer идемпотентен (очередь даёт at-least-once): перед сканом читает
+//    строку и сканирует ТОЛЬКО при status='running'; любой другой статус —
+//    исход уже записан (прошлой доставкой или реапом (2)), ack без скана.
+//    ack и на успехе, и на ошибке скана; retry() — только когда исход НЕ
+//    записан в D1 (D1 недоступен), max_retries=2 в wrangler.jsonc.
+//    Новый ответ POST /api/scan: 503 {code:'queue_unavailable'} — биндинга
+//    очереди нет либо send() отверг сообщение. Тихого отката на waitUntil нет
+//    намеренно: он вернул бы ровно ту молчаливую поломку, ради которой сделан
+//    переезд. Клиент обязан обрабатывать 503 как «скан не запущен».
 type Lead = { id: string; scanId?: string; country: string; standard: StandardSlug;
   service: ServiceSlug; budget: PriceBand; deadline?: string; contact: {email: string; company?: string};
   matched: string[]; status: 'sent'|'responded'|'booked'|'closed'; createdAt: string };
@@ -146,6 +164,14 @@ accounts(id TEXT PK, email TEXT UNIQUE, sites_json TEXT, plan TEXT, created_at T
 
 Правило: D1-оверлеи (claims/featured) подхватываются ежедневным ребилдом; статический
 сайт никогда не читает D1 в рантайме.
+
+Очередь `accessatlas-scan-queue` (создана 2026-08-10, D-110): producer-биндинг
+`SCAN_QUEUE` (POST /api/scan), consumer — тот же воркер (`queue` handler в
+`worker/index.js` → `worker/lib/scanJob.js`). `max_batch_size: 1` (один скан =
+один браузер Browser Rendering), `max_retries: 2`, `max_concurrency: 2`
+(лимит одновременных сессий Browser Rendering). Dead-letter очереди нет:
+исчерпавшее повторы сообщение отбрасывается, строку в `running` закрывает
+рубеж (2) — реап D-109 при первом GET.
 
 ## 5. Матчинг «отчёт → агентства» (контракт Фазы 1)
 
