@@ -26,6 +26,19 @@ import { runSiteChecks } from './siteChecks.js'
 
 const MAX_PAGES = 6
 const NAV_TIMEOUT_MS = 15000
+// D-108: сторожевой таймаут на ВЕСЬ прогон одного скана. NAV_TIMEOUT_MS покрывает
+// только page.goto(); всё остальное (axe.run() внутри page.evaluate, браузерные
+// проверки domChecks.js) таймаута не имело вообще — на проде это дало сканы,
+// висевшие в status='running' 13 минут и 23 ЧАСА (оба — en.zebrakita.de, Google
+// Sites, застряли на РАЗНЫХ страницах, т.е. дело не в конкретной странице).
+// `.catch()` вокруг проверок ловит только отклонённый промис, не зависший, —
+// поэтому сторож ставится один, снаружи, и покрывает любое будущее зависание.
+//
+// Потолок: реальные успешные сканы укладываются в 20–40с на 6 страниц; худший
+// «медленный, но живой» бюджет навигаций — 8 переходов (главная + заявление +
+// возврат + 5 страниц обхода) × NAV_TIMEOUT_MS = 120с. Ставим ровно этот потолок:
+// ниже — резали бы живые медленные сайты, выше — пользователь ждёт зря.
+const SCAN_TIMEOUT_MS = 120000
 const AXE_VERSION = '4.10.2'
 const AXE_CDN_URL = `https://cdn.jsdelivr.net/npm/axe-core@${AXE_VERSION}/axe.min.js`
 const USER_AGENT = 'VerscalaBot/1.0 (+https://verscala.com/about; accessibility scanner)'
@@ -55,6 +68,44 @@ async function getAxeSource(env) {
   return body
 }
 
+// Тестовый шов (тот же приём, что env.AXE_SOURCE_URL выше, D-067):
+// env.SCAN_TIMEOUT_MS позволяет тесту поставить порог в десятки миллисекунд,
+// а эксплуатации — подкрутить потолок через vars без релиза кода. Мусорное или
+// неположительное значение молча игнорируется — скан не должен падать из-за
+// опечатки в конфиге, он должен работать с дефолтом.
+export function resolveScanTimeoutMs(env) {
+  const raw = Number(env?.SCAN_TIMEOUT_MS)
+  return Number.isFinite(raw) && raw > 0 ? raw : SCAN_TIMEOUT_MS
+}
+
+// Закрытие браузера само по себе может залипнуть на той же залипшей сессии, из-за
+// которой сработал сторож, — тогда мы бы вернулись ровно к исходному багу, только
+// на строчку ниже. Поэтому close() тоже ограничен по времени, а его ошибка
+// проглатывается: настоящий результат (или настоящая причина отказа) важнее
+// проблемы на разборке, и терять успешный скан из-за неё нельзя.
+const CLOSE_TIMEOUT_MS = 5000
+async function closeBrowserSafely(browser) {
+  let timer
+  try {
+    await Promise.race([
+      browser.close(),
+      new Promise((resolve) => { timer = setTimeout(resolve, CLOSE_TIMEOUT_MS) }),
+    ])
+  } catch {
+    // разборка best-effort
+  } finally {
+    clearTimeout(timer)
+  }
+}
+
+// Тестовый шов: в тестах сюда подставляется фейковый браузер, чтобы проверить
+// поведение сторожа без Browser Rendering (платный ресурс, в CI недоступен).
+// В prod-конфиге переменная не задана — идёт обычный puppeteer.launch.
+function launchBrowser(env) {
+  if (typeof env?.__launchBrowser === 'function') return env.__launchBrowser()
+  return puppeteer.launch(env.BROWSER)
+}
+
 // CN-SCAN-PHASES (D-067): onProgress(phase, pagesDone, pagesTotal) — репортер
 // из worker/lib/progress.js (пишет промежуточные UPDATE в D1). Параметр
 // необязателен: без него scanSite работает как раньше (тесты/переиспользование).
@@ -63,11 +114,14 @@ async function getAxeSource(env) {
 export async function scanSite(env, targetUrl, onProgress = async () => {}) {
   await onProgress('discovering', 0, null)
   const axeSource = await getAxeSource(env)
-  const browser = await puppeteer.launch(env.BROWSER)
+  const browser = await launchBrowser(env)
   const findings = []
   const pagesScanned = []
 
-  try {
+  // Тело скана вынесено в функцию, чтобы целиком отдать его сторожевому таймауту
+  // ниже. Ловить каждое отдельное место, где браузер может залипнуть, — заведомо
+  // неполный список (D-108); сторож снаружи покрывает и те, что ещё не найдены.
+  async function runScan() {
     const page = await browser.newPage()
     await page.setUserAgent(USER_AGENT)
     // D-105: без этого сайты с CSP `script-src 'nonce-…'` (первый живой случай —
@@ -230,9 +284,39 @@ export async function scanSite(env, targetUrl, onProgress = async () => {}) {
         html: `cookie/consent banner detected and ${cookieBannerHandled.dismissed ? 'dismissed' : 'left in place (no matching accept button)'} before running axe`,
       })
     }
-  } finally {
-    await browser.close()
   }
 
+  const timeoutMs = resolveScanTimeoutMs(env)
+  let watchdog
+  // Работа и сторож гоняются, а `finally` стоит СНАРУЖИ гонки — по срабатыванию
+  // сторожа управление уходит в browser.close() немедленно, не дожидаясь
+  // зависшей операции. Именно close() и убивает залипшую сессию Browser
+  // Rendering, поэтому утечки ресурса на таймауте нет.
+  const work = runScan()
+  // Зависшая работа может отклониться ПОЗЖЕ (её оборвёт browser.close()) — без
+  // этого обработчика получим unhandled rejection в изоляте уже после того, как
+  // scan.js записал failScan. Гонке ниже это не мешает: catch не «съедает» work.
+  work.catch(() => {})
+  try {
+    await Promise.race([
+      work,
+      new Promise((_resolve, reject) => {
+        watchdog = setTimeout(
+          // Слово "timeout" в сообщении обязательно: classifyError() (errors.js)
+          // матчит именно его и отдаёт фронтенду код `timeout` с готовым текстом.
+          // Формулировка «timed out» под этот паттерн НЕ подходит.
+          () => reject(new Error(`scan timeout: no result after ${timeoutMs}ms`)),
+          timeoutMs,
+        )
+      }),
+    ])
+  } finally {
+    clearTimeout(watchdog)
+    await closeBrowserSafely(browser)
+  }
+
+  // Прогресс, записанный в D1 до этого момента, трогать не нужно: таймаут — это
+  // просто ещё один путь в .catch() в routes/scan.js, а failScan сам стирает
+  // progress_json, как и на любой другой ошибке.
   return { pages: pagesScanned, findings }
 }
