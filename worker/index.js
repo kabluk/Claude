@@ -1,5 +1,6 @@
 import { handlePostScan, handleGetScan } from './routes/scan.js'
 import { handleGetScanPdf } from './routes/scanPdf.js'
+import { handlePostPlanCheckout } from './routes/planCheckout.js'
 import { handlePostExplain } from './routes/explain.js'
 import { handlePostLead } from './routes/lead.js'
 import { handlePostClaim, handleGetClaimVerify } from './routes/claim.js'
@@ -40,6 +41,15 @@ export default {
     if (request.method === 'GET' && url.pathname.startsWith('/api/scan/') && url.pathname.endsWith('/pdf')) {
       const id = url.pathname.slice('/api/scan/'.length, -'/pdf'.length)
       return withCors(await handleGetScanPdf(id, env), cors)
+    }
+
+    // A2-STRIPE-CHECKOUT: POST /:id/checkout — like /pdf above, matched by its
+    // suffix BEFORE any general /api/scan/ route so the id is sliced cleanly
+    // (there is no general POST /api/scan/:id route today, but keep the same
+    // discipline the GET /pdf comment established).
+    if (request.method === 'POST' && url.pathname.startsWith('/api/scan/') && url.pathname.endsWith('/checkout')) {
+      const id = url.pathname.slice('/api/scan/'.length, -'/checkout'.length)
+      return withCors(await handlePostPlanCheckout(id, request, env), cors)
     }
 
     if (request.method === 'GET' && url.pathname.startsWith('/api/scan/')) {

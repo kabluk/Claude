@@ -70,6 +70,44 @@ export async function hasLeadForScan(db, scanId) {
   return row != null
 }
 
+// A2-STRIPE-CHECKOUT: second unlock path for the PDF plan — a one-time €19.99
+// Stripe payment (migrations/0008_plan_purchases.sql). Same falsy-guard rubric
+// as hasLeadForScan: a missing/empty scanId returns false WITHOUT a query
+// (an id-less SELECT would either error or match nothing usefully).
+export async function hasPaidPlanForScan(db, scanId) {
+  if (!scanId) return false
+  const row = await db.prepare(`SELECT 1 FROM plan_purchases WHERE scan_id = ? LIMIT 1`).bind(scanId).first()
+  return row != null
+}
+
+// A2-STRIPE-CHECKOUT: records a confirmed plan purchase. Idempotent — Stripe
+// delivers webhooks at-least-once, so the SAME checkout.session.completed can
+// arrive twice; ON CONFLICT(scan_id) DO UPDATE keeps exactly one row per scan
+// and a repeat delivery neither throws nor duplicates. paid_at is the caller's
+// SERVER timestamp (see stripeHook.js — never trusted from Stripe/the client),
+// mirroring computeFeaturedUntil.
+export async function recordPlanPurchase(db, { scanId, stripeRef, paidAt }) {
+  await db
+    .prepare(
+      `INSERT INTO plan_purchases (scan_id, stripe_ref, paid_at) VALUES (?, ?, ?)
+       ON CONFLICT(scan_id) DO UPDATE SET stripe_ref = excluded.stripe_ref, paid_at = excluded.paid_at`,
+    )
+    .bind(scanId, stripeRef ?? null, paidAt)
+    .run()
+}
+
+// A2-STRIPE-CHECKOUT: the single access rule for the PDF plan — unlocked iff a
+// lead was left for this scan (free branch of the funnel, HANDOFF "Воронка")
+// OR the plan was paid for (Stripe Checkout). This is the ONE helper the gate
+// (scanPdf.js) and withPlanUnlocked (scan.js) call — both used to call
+// hasLeadForScan directly, now they get both paths for free.
+// Short-circuits: a found lead skips the second query entirely (the free
+// branch is the common case and worth more than €19.99, HANDOFF "Воронка").
+export async function isPlanUnlocked(db, scanId) {
+  if (await hasLeadForScan(db, scanId)) return true
+  return hasPaidPlanForScan(db, scanId)
+}
+
 export async function getScan(db, id) {
   const row = await db.prepare(`SELECT * FROM scans WHERE id = ?`).bind(id).first()
   if (!row) return null

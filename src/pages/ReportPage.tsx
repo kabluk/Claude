@@ -15,6 +15,7 @@ import {
   scoreGradeChipClass,
   scanPdfUrl,
   decidePlanPanel,
+  createPlanCheckout,
   type ScanReport,
 } from '@/lib/scanner'
 import { estimateCost, formatCostEstimate } from '@/lib/costEstimate'
@@ -381,10 +382,50 @@ function RemediationPlanPanel({
     )
   }
 
-  // panel === 'locked'. Teaser copy below is built entirely from real fields
-  // of `groups[0]` (the highest-priority group — same impact sort the
-  // Findings list above already uses) — nothing about the fix itself is
-  // invented (D-035/D-045: no field without a source).
+  // panel === 'locked'
+  return <LockedPlanPanel report={report} groups={groups} />
+}
+
+// A2-STRIPE-CHECKOUT: the locked plan panel, split out so it can own the
+// checkout hook state (RemediationPlanPanel returns early for hidden/unlocked,
+// and a hook cannot live after a conditional return). The €19.99 button is now
+// active: it asks the worker for a Stripe Checkout Session and redirects to it.
+function LockedPlanPanel({
+  report,
+  groups,
+}: {
+  report: ScanReport
+  groups: ReturnType<typeof groupFindingsByRule>
+}) {
+  // 'idle' | 'loading' (request in flight / redirecting) | 'unavailable'
+  // (503 — card payment not wired, free branch still works) | 'error'
+  // (unexpected failure — never a silent no-op).
+  const [checkout, setCheckout] = useState<'idle' | 'loading' | 'unavailable' | 'error'>('idle')
+
+  async function onGetPlan() {
+    setCheckout('loading')
+    try {
+      const result = await createPlanCheckout(report.id)
+      if (result.kind === 'redirect') {
+        window.location.href = result.url
+        return // keep the button in 'loading' — the page is navigating away
+      }
+      if (result.kind === 'already-unlocked') {
+        // Already accessible (a lead was left, or it was already paid) — send
+        // the user straight to the plan instead of charging again.
+        window.location.href = scanPdfUrl(report.id)
+        return
+      }
+      setCheckout('unavailable') // 503: degrade honestly to the free branch below
+    } catch {
+      setCheckout('error')
+    }
+  }
+
+  // Teaser copy below is built entirely from real fields of `groups[0]` (the
+  // highest-priority group — same impact sort the Findings list above already
+  // uses) — nothing about the fix itself is invented (D-035/D-045: no field
+  // without a source).
   const top = groups[0]
   const pagesAffected = new Set(top.instances.map((f) => f.page)).size
 
@@ -434,11 +475,12 @@ function RemediationPlanPanel({
         <div className="mt-6 flex flex-wrap items-center gap-3">
           <button
             type="button"
-            disabled
-            aria-describedby="plan-payment-note"
+            onClick={onGetPlan}
+            disabled={checkout === 'loading'}
+            aria-describedby={checkout === 'unavailable' || checkout === 'error' ? 'plan-payment-note' : undefined}
             className="btn disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-surface-container-low disabled:text-on-surface-variant"
           >
-            Get the plan — €19.99
+            {checkout === 'loading' ? 'Redirecting…' : 'Get the plan — €19.99'}
           </button>
           <Link
             className="btn-ghost"
@@ -447,9 +489,20 @@ function RemediationPlanPanel({
             Have a specialist do it — plan free
           </Link>
         </div>
-        <p id="plan-payment-note" className="mt-2 text-xs text-on-surface-variant">
-          Card payment coming soon.
-        </p>
+        {/* Honest inline degradation — never a silent failure. 503 means card
+            payment isn't wired on this deployment; the free specialist branch
+            above still works, so point the user at it. 'error' is an
+            unexpected failure. role=status so a screen reader hears it appear. */}
+        {checkout === 'unavailable' && (
+          <p id="plan-payment-note" role="status" className="mt-2 max-w-prose text-xs text-on-surface-variant">
+            Card payment isn’t available yet — you can still get the plan free via a specialist request above.
+          </p>
+        )}
+        {checkout === 'error' && (
+          <p id="plan-payment-note" role="status" className="mt-2 max-w-prose text-xs text-[color:var(--color-critical)]">
+            Something went wrong starting the payment. Please try again, or get the plan free via a specialist request above.
+          </p>
+        )}
 
         <p className="mt-5 max-w-prose text-xs text-on-surface-variant">
           An estimate for planning, not a compliance certificate or legal advice.

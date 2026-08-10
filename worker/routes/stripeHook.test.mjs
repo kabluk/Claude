@@ -89,6 +89,17 @@ function checkoutSessionCompletedEvent({ agencySlug = REAL_SLUG_1, sessionId = '
   })
 }
 
+// A2-STRIPE-CHECKOUT: a PROGRAMMATIC plan-purchase session carries scan_id in
+// metadata (not custom_fields — that's the featured path). This is how the one
+// webhook tells the two products apart.
+function planPurchaseEvent({ scanId = 'scan-abc', sessionId = 'cs_plan_1' } = {}) {
+  return JSON.stringify({
+    id: 'evt_plan_1',
+    type: 'checkout.session.completed',
+    data: { object: { id: sessionId, object: 'checkout.session', metadata: { scan_id: scanId } } },
+  })
+}
+
 // --- computeFeaturedUntil ----------------------------------------------------
 
 test('computeFeaturedUntil: today + 365 days, ISO date only', () => {
@@ -268,6 +279,61 @@ test('valid signature + unhandled event type -> 200 (acknowledged, no-op), D1 un
   assert.equal(res.status, 200)
   const data = await res.json()
   assert.deepEqual(data, { received: true })
+  assert.equal(e.DB.rows.length, 0)
+})
+
+// --- A2-STRIPE-CHECKOUT: plan-purchase path ---------------------------------
+
+test('valid signature + checkout.session.completed with metadata.scan_id -> records plan_purchase with a SERVER-side paid_at', async () => {
+  const e = env()
+  const before = Date.now()
+  const res = await handlePostStripeHook(req(planPurchaseEvent({ scanId: 'scan-xyz', sessionId: 'cs_plan_42' })), e)
+  const after = Date.now()
+  assert.equal(res.status, 200)
+  assert.deepEqual(await res.json(), { received: true })
+
+  assert.equal(e.DB.rows.length, 1)
+  const [{ sql, args }] = e.DB.rows
+  assert.match(sql, /INSERT INTO plan_purchases/)
+  assert.match(sql, /ON CONFLICT\(scan_id\) DO UPDATE/)
+  assert.equal(args[0], 'scan-xyz')
+  assert.equal(args[1], 'cs_plan_42')
+  // paid_at is the server's processing time, not anything from the event.
+  const paidAt = Date.parse(args[2])
+  assert.ok(paidAt >= before && paidAt <= after, 'paid_at must be server-side "now", not client/Stripe data')
+})
+
+test('plan purchase is idempotent-safe at the handler level: a repeat delivery issues another upsert (ON CONFLICT dedups in real D1)', async () => {
+  const e = env()
+  const evt = planPurchaseEvent({ scanId: 'scan-dup', sessionId: 'cs_dup' })
+  assert.equal((await handlePostStripeHook(req(evt), e)).status, 200)
+  assert.equal((await handlePostStripeHook(req(evt), e)).status, 200)
+  assert.equal(e.DB.rows.length, 2, 'both deliveries run the upsert')
+  assert.ok(e.DB.rows.every((r) => /INSERT INTO plan_purchases/.test(r.sql)))
+  assert.ok(e.DB.rows.every((r) => r.args[0] === 'scan-dup'))
+})
+
+test('a session with metadata.scan_id is treated as a PLAN purchase, never as featured (no featured upsert)', async () => {
+  const e = env()
+  await handlePostStripeHook(req(planPurchaseEvent()), e)
+  assert.equal(e.DB.rows.length, 1)
+  assert.match(e.DB.rows[0].sql, /INSERT INTO plan_purchases/)
+  assert.doesNotMatch(e.DB.rows[0].sql, /INSERT INTO featured/)
+})
+
+test('the featured path is unchanged: a custom_fields session (no metadata.scan_id) still upserts featured', async () => {
+  const e = env()
+  await handlePostStripeHook(req(checkoutSessionCompletedEvent({ agencySlug: REAL_SLUG_1, sessionId: 'cs_feat' })), e)
+  assert.equal(e.DB.rows.length, 1)
+  assert.match(e.DB.rows[0].sql, /INSERT INTO featured/)
+})
+
+test('plan purchase with a forged signature -> 400, D1 untouched (no unlock without a valid signature)', async () => {
+  const e = env()
+  const body = planPurchaseEvent()
+  const forged = signedHeader(body, { secret: 'attacker-guessed-secret' })
+  const res = await handlePostStripeHook(req(body, { signature: forged }), e)
+  assert.equal(res.status, 400)
   assert.equal(e.DB.rows.length, 0)
 })
 

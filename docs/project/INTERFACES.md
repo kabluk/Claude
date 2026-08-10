@@ -30,7 +30,8 @@
 |---|---|---|---|---|
 | `POST /api/scan` | `{url, email?, turnstileToken?, countryCode?}` | `{scanId}` (202) · 503 `queue_unavailable` (D-110) | 1 | ✅ реализован |
 | `GET /api/scan/:id` | — | ScanReport | 1 | ✅ реализован |
-| `GET /api/scan/:id/pdf` | — | `application/pdf` (план исправлений) | 2 | ✅ код готов, гейта доступа НЕТ |
+| `GET /api/scan/:id/pdf` | — | `application/pdf` (план исправлений) | 2 | ✅ гейт `402 plan_locked`, открыт лидом ИЛИ оплатой |
+| `POST /api/scan/:id/checkout` | — (сумма только на сервере) | `{url}` · `{alreadyUnlocked:true}` · 503 `checkout_unavailable` · 502 `checkout_failed` | 2 | ✅ A2-STRIPE-CHECKOUT — Stripe Checkout Session (€19.99) |
 | `POST /api/explain` | `{ruleId, locale?}` | `{explanation, fixExamples[]}` (KV-кэш) | 1 | ✅ реализован* |
 | `POST /api/lead` | Lead без id/status | `{leadId, matched: slug[]}` | 2 |
 | `POST /api/claim` | `{agencySlug, email}` → verify-link | `{claimId}` | 2 |
@@ -110,9 +111,13 @@ type ScanReport = { id: string; url: string; status: 'running'|'done'|'error'; p
   errorCode: 'unreachable'|'refused'|'tls'|'timeout'|'blocked'|'busy'|'internal'|null;
   createdAt: string; completedAt: string|null; progress: ScanProgress|null;
   planUnlocked: boolean };
-// planUnlocked (A2-REPORT-PAYWALL): NOT a payment status — true iff a lead was
-// left for this scan_id (worker/lib/db.js::hasLeadForScan), which is what
-// unlocks GET /api/scan/:id/pdf; computed only when status='done'.
+// planUnlocked (A2-REPORT-PAYWALL + A2-STRIPE-CHECKOUT): true iff a lead was
+// left for this scan_id (hasLeadForScan) OR the €19.99 plan was paid via
+// Stripe Checkout (hasPaidPlanForScan) — единый хелпер isPlanUnlocked
+// (worker/lib/db.js: лид проверяется первым, оплата — только если лида нет).
+// Открывает GET /api/scan/:id/pdf; computed only when status='done'. Оплата
+// записывается ТОЛЬКО подписанным вебхуком (plan_purchases), никогда по
+// success_url (клиент может подделать редирект, не заплатив).
 // score: 0–100, дедуп по ruleId (худшая severity среди инстансов) — см. D-010,
 // worker/lib/score.js. Эвристика для сортировки/сравнения, НЕ сертификация (D-006).
 // errorCode: маленький enum для UI (worker/lib/errors.js, D-013) — error остаётся
@@ -184,6 +189,11 @@ claims(id TEXT PK, agency_slug TEXT, email TEXT, verified INT, patch_json TEXT, 
        token TEXT)  -- добавлен migrations/0006_claim_token.sql (D-023): id — публичный claimId,
                      -- token — отдельный secret verify-токен, НЕ возвращается в ответе API
 featured(agency_slug TEXT PK, until TEXT, stripe_ref TEXT)
+-- A2-STRIPE-CHECKOUT, migrations/0008_plan_purchases.sql: платный анлок PDF-плана.
+-- scan_id PK — анлок per-scan, один на скан; повтор оплаты/вебхука обновляет
+-- строку (ON CONFLICT, идемпотентно — Stripe шлёт at-least-once). paid_at —
+-- СЕРВЕРНОЕ время обработки подписанного вебхука, НЕ из данных Stripe/клиента.
+plan_purchases(scan_id TEXT PK, stripe_ref TEXT, paid_at TEXT NOT NULL)
 accounts(id TEXT PK, email TEXT UNIQUE, sites_json TEXT, plan TEXT, created_at TEXT)
 ```
 

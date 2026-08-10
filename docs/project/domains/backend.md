@@ -1270,3 +1270,55 @@ Cloudflare Browser Rendering и не платный вызов) — роут п�
    вышла за окно `SCAN_TIMEOUT_MS+REAP_GRACE_MS` (по умолчанию 180с) и
    реапалась в `error` раньше проверки статуса; исправлено — `created_at:
    new Date().toISOString()` для этого конкретного теста.
+
+## A2-STRIPE-CHECKOUT (D-116) — платный анлок PDF-плана €19.99
+
+Второй путь открытия плана рядом с бесплатной лид-веткой (D-115); лид-ветка не
+тронута. Единый хелпер доступа `isPlanUnlocked(db, scanId)` = лид ИЛИ оплата
+(лид проверяется первым, `plan_purchases` запрашивается только при отсутствии
+лида); его зовут и гейт `scanPdf.js`, и `withPlanUnlocked` в `scan.js`.
+
+**Почему Checkout создаётся программно, а не статической Payment Link как
+featured (D-027):** план PER-SCAN — сессия обязана нести `scan_id`, чтобы
+вебхук открыл именно этот скан. Статическая ссылка несёт только статическую
+metadata (одну на всех), поэтому `worker/routes/planCheckout.js`
+(`POST /api/scan/:id/checkout`) бьёт в Stripe API (`STRIPE_SECRET_KEY`),
+кладёт `metadata[scan_id]`, возвращает `{url}`. Тестовый шов `env.__stripeFetch`.
+
+**Денежные инварианты (проверены канарейками субагента + своей канарейкой
+родителя):**
+- Сумма €19.99 (`1999`, minor units) — серверная константа, тело запроса для
+  цены НЕ читается вовсе (клиент не может продиктовать 0).
+- Анлок пишется ТОЛЬКО в вебхуке с подтверждённой подписью (`plan_purchases`);
+  `success_url`-редирект НЕ доверяется (клиент подделает без оплаты). Ветка
+  plan-вебхука стоит ПОСЛЕ `verifyStripeSignature` — форжёный вебхук → 400 до
+  записи.
+- `paid_at` — серверное время обработки, не из данных Stripe/клиента.
+- Идемпотентность: `recordPlanPurchase` — `INSERT ... ON CONFLICT(scan_id) DO
+  UPDATE`; Stripe доставляет at-least-once, повтор события не плодит строк и не
+  падает.
+- featured vs plan в одном вебхуке различаются наличием `metadata.scan_id`
+  (plan) против `custom_fields` (featured); featured-путь не изменён.
+- `already unlocked` (лид или уже оплачено) → `200 {alreadyUnlocked:true}`,
+  сессия НЕ создаётся (нет двойного списания).
+
+**Схема:** `migrations/0008_plan_purchases.sql` (`scan_id` PK, `stripe_ref`,
+`paid_at`) — создана, НЕ применена (деплой/миграции — решение владельца).
+
+**Коды planCheckout:** 503 `checkout_unavailable` (нет `STRIPE_SECRET_KEY` или
+origin) · 404 · 409 `scan_not_ready` · 422 `scan_failed` · 200 `{alreadyUnlocked}`
+· 200 `{url}` · 502 `checkout_failed` (Stripe non-2xx / сеть / нет url).
+
+**Фронтенд:** кнопка €19.99 активна → `createPlanCheckout` → редирект на Stripe;
+already-unlocked → сразу на PDF; 503 → честная inline-плашка «Card payment isn’t
+available yet — … specialist request above» (свободная ветка остаётся видимой),
+error → сообщение; обе `role=status`. Скелетон locked-панели — без изменений
+(5 пустых `aria-hidden` `<div>`, текста плана в DOM нет).
+
+**Проверить живьём (владелец, тестовые ключи Stripe):** реальная сессия
+открывается, тест-карта → вебхук с `metadata.scan_id` (сверить, что реальный
+ключ payload'а буквально `scan_id` — D-028 однажды поймал дрейф ключа
+custom_field) → строка `plan_purchases` → `GET /pdf` 200 (открыт оплатой, без
+лида); featured не регрессировал; без ключа — кнопка показывает 503-плашку.
+Вебхук в Stripe должен быть подписан на `checkout.session.completed` (тот же
+эндпоинт, что featured).

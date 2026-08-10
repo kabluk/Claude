@@ -4,7 +4,10 @@
 
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { insertScanPending, updateScanProgress, completeScan, failScan, getScan, hasLeadForScan } from './db.js'
+import {
+  insertScanPending, updateScanProgress, completeScan, failScan, getScan,
+  hasLeadForScan, hasPaidPlanForScan, recordPlanPurchase, isPlanUnlocked,
+} from './db.js'
 
 function fakeScansDb(initialRows = []) {
   const rows = [...initialRows]
@@ -138,6 +141,94 @@ test('hasLeadForScan: falsy scanId returns false WITHOUT querying the DB', async
   assert.equal(await hasLeadForScan(db, ''), false)
   assert.equal(await hasLeadForScan(db, null), false)
   assert.equal(db.calls.length, 0, 'no SQL should run for a falsy scanId')
+})
+
+// A2-STRIPE-CHECKOUT: mini-D1 covering BOTH unlock tables — the two SELECT
+// forms isPlanUnlocked issues and the INSERT ... ON CONFLICT that
+// recordPlanPurchase issues (with real upsert semantics so idempotency is
+// actually exercised, not just asserted on the SQL string).
+function fakeUnlockDb({ leadScanIds = [], paidScanIds = [] } = {}) {
+  const leads = new Set(leadScanIds)
+  const paid = new Map()
+  for (const id of paidScanIds) paid.set(id, { stripe_ref: null, paid_at: '2026-01-01T00:00:00.000Z' })
+  const calls = []
+  return {
+    calls,
+    paid,
+    prepare(sql) {
+      return {
+        bind(...args) {
+          calls.push({ sql, args })
+          return {
+            async first() {
+              if (/^SELECT 1 FROM leads WHERE scan_id = \? LIMIT 1/.test(sql)) {
+                return leads.has(args[0]) ? { 1: 1 } : null
+              }
+              if (/^SELECT 1 FROM plan_purchases WHERE scan_id = \? LIMIT 1/.test(sql)) {
+                return paid.has(args[0]) ? { 1: 1 } : null
+              }
+              return null
+            },
+            async run() {
+              if (/^INSERT INTO plan_purchases/.test(sql)) {
+                assert.match(sql, /ON CONFLICT\(scan_id\) DO UPDATE/, 'purchase insert must be an idempotent upsert')
+                const [scanId, stripeRef, paidAt] = args
+                // ON CONFLICT(scan_id) DO UPDATE — a Map keyed by scan_id gives
+                // exactly this: a second insert of the same scan overwrites,
+                // never adds a second entry.
+                paid.set(scanId, { stripe_ref: stripeRef, paid_at: paidAt })
+                return { meta: { changes: 1 } }
+              }
+              return { meta: { changes: 0 } }
+            },
+          }
+        },
+      }
+    },
+  }
+}
+
+test('hasPaidPlanForScan: true when a purchase row exists, false otherwise', async () => {
+  const db = fakeUnlockDb({ paidScanIds: ['paid-scan'] })
+  assert.equal(await hasPaidPlanForScan(db, 'paid-scan'), true)
+  assert.equal(await hasPaidPlanForScan(db, 'unpaid-scan'), false)
+})
+
+test('hasPaidPlanForScan: falsy scanId returns false WITHOUT querying', async () => {
+  const db = fakeUnlockDb({ paidScanIds: ['x'] })
+  assert.equal(await hasPaidPlanForScan(db, undefined), false)
+  assert.equal(await hasPaidPlanForScan(db, ''), false)
+  assert.equal(await hasPaidPlanForScan(db, null), false)
+  assert.equal(db.calls.length, 0, 'no SQL for a falsy scanId')
+})
+
+test('recordPlanPurchase is idempotent: two writes for the same scan_id leave exactly one row', async () => {
+  const db = fakeUnlockDb()
+  await recordPlanPurchase(db, { scanId: 's1', stripeRef: 'cs_a', paidAt: '2026-08-10T00:00:00.000Z' })
+  await recordPlanPurchase(db, { scanId: 's1', stripeRef: 'cs_b', paidAt: '2026-08-10T00:05:00.000Z' })
+  assert.equal(db.paid.size, 1, 'a repeated webhook must not duplicate the unlock row')
+  assert.equal(db.paid.get('s1').stripe_ref, 'cs_b', 'the latest delivery wins on conflict')
+})
+
+test('isPlanUnlocked: all four lead×paid combinations', async () => {
+  assert.equal(await isPlanUnlocked(fakeUnlockDb({}), 's'), false) // neither
+  assert.equal(await isPlanUnlocked(fakeUnlockDb({ leadScanIds: ['s'] }), 's'), true) // lead only
+  assert.equal(await isPlanUnlocked(fakeUnlockDb({ paidScanIds: ['s'] }), 's'), true) // paid only
+  assert.equal(await isPlanUnlocked(fakeUnlockDb({ leadScanIds: ['s'], paidScanIds: ['s'] }), 's'), true) // both
+})
+
+test('isPlanUnlocked: a found lead short-circuits — plan_purchases is NOT queried', async () => {
+  const db = fakeUnlockDb({ leadScanIds: ['s'], paidScanIds: ['s'] })
+  assert.equal(await isPlanUnlocked(db, 's'), true)
+  assert.equal(db.calls.length, 1, 'only the leads SELECT should run when a lead exists')
+  assert.match(db.calls[0].sql, /FROM leads/)
+})
+
+test('isPlanUnlocked: no lead -> falls through to the paid check (second query runs)', async () => {
+  const db = fakeUnlockDb({ paidScanIds: ['s'] })
+  assert.equal(await isPlanUnlocked(db, 's'), true)
+  assert.equal(db.calls.length, 2, 'no lead -> both leads then plan_purchases are queried')
+  assert.match(db.calls[1].sql, /FROM plan_purchases/)
 })
 
 test('backward compatibility: rows without the progress column read as progress: null', async () => {

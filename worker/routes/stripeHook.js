@@ -39,6 +39,7 @@
 // сравнение case-insensitive с нормализацией пробелов), а не только slug.
 
 import { verifyStripeSignature } from '../lib/stripeSig.js'
+import { recordPlanPurchase } from '../lib/db.js'
 import { agencies } from '../lib/matchAgenciesServer.js'
 
 const AGENCY_SLUGS = new Set(agencies.map((a) => a.slug))
@@ -147,6 +148,28 @@ export async function handlePostStripeHook(request, env) {
 
   if (event?.type === 'checkout.session.completed') {
     const session = event.data?.object
+
+    // A2-STRIPE-CHECKOUT: the PDF-plan purchase is told apart from the featured
+    // purchase (D-027) by the presence of metadata.scan_id. The plan session
+    // is created PROGRAMMATICALLY (worker/routes/planCheckout.js) and stamps
+    // scan_id into metadata; the featured session is a static Dashboard Payment
+    // Link that carries agency via custom_fields and no such metadata. Both
+    // event types coexist here — this branch handles the plan, the featured
+    // branch below is unchanged.
+    const scanId = session?.metadata?.scan_id
+    if (typeof scanId === 'string' && scanId.trim()) {
+      // paid_at is the SERVER's processing time, never taken from Stripe/the
+      // client data — same principle as computeFeaturedUntil. Idempotent
+      // (recordPlanPurchase ON CONFLICT): Stripe's at-least-once retries can
+      // deliver this same event twice without duplicating or throwing.
+      await recordPlanPurchase(env.DB, {
+        scanId: scanId.trim(),
+        stripeRef: session?.id ?? null,
+        paidAt: new Date().toISOString(),
+      })
+      return Response.json({ received: true }, { status: 200 })
+    }
+
     const featured = extractFeaturedFromSession(session)
     if (featured) {
       await upsertFeatured(env.DB, { ...featured, stripeRef: session?.id ?? null })

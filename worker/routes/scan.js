@@ -1,4 +1,4 @@
-import { insertScanPending, failScan, getScan, reapStaleScan, hasLeadForScan } from '../lib/db.js'
+import { insertScanPending, failScan, getScan, reapStaleScan, isPlanUnlocked } from '../lib/db.js'
 import { checkRateLimit } from '../lib/ratelimit.js'
 import { verifyTurnstile } from '../lib/turnstile.js'
 import { resolveScanTimeoutMs } from '../lib/axe.js'
@@ -106,15 +106,16 @@ export function isScanStale(scan, env, now = Date.now()) {
   return now - startedAt > resolveScanTimeoutMs(env) + REAP_GRACE_MS
 }
 
-// A2-REPORT-PAYWALL: attaches `planUnlocked` — whether the PDF plan is
-// unlocked for this scan (a lead was left, see hasLeadForScan). Computed
-// ONLY when status === 'done': this report is polled repeatedly while a scan
-// is 'running' (every POLL_INTERVAL_MS, src/lib/reportPolling.ts), and a D1
-// query on every one of those polls for a plan that can't exist yet (no
-// completed findings to build it from) would be pure waste. running/error
-// scans get `false` with no query at all.
+// A2-REPORT-PAYWALL + A2-STRIPE-CHECKOUT: attaches `planUnlocked` — whether the
+// PDF plan is unlocked for this scan (a lead was left OR the €19.99 plan was
+// paid for, see isPlanUnlocked). Computed ONLY when status === 'done': this
+// report is polled repeatedly while a scan is 'running' (every
+// POLL_INTERVAL_MS, src/lib/reportPolling.ts), and a D1 query on every one of
+// those polls for a plan that can't exist yet (no completed findings to build
+// it from) would be pure waste. running/error scans get `false` with no query
+// at all.
 async function withPlanUnlocked(env, scan) {
-  const planUnlocked = scan.status === 'done' ? await hasLeadForScan(env.DB, scan.id) : false
+  const planUnlocked = scan.status === 'done' ? await isPlanUnlocked(env.DB, scan.id) : false
   return { ...scan, planUnlocked }
 }
 

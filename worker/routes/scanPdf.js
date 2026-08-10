@@ -6,7 +6,7 @@
 // BROWSER check / generatePdf() — see handleGetScanPdf below.
 
 import puppeteer from '@cloudflare/puppeteer'
-import { getScan, reapStaleScan, hasLeadForScan } from '../lib/db.js'
+import { getScan, reapStaleScan, isPlanUnlocked } from '../lib/db.js'
 import { isScanStale } from './scan.js'
 import { resolveJurisdiction } from '../lib/jurisdiction.js'
 import { buildPlanData } from '../lib/pdfPlan.js'
@@ -149,12 +149,13 @@ export async function handleGetScanPdf(id, env) {
     return jsonError(422, 'scan failed — there is no result to build a plan from', 'scan_failed')
   }
 
-  // A2-REPORT-PAYWALL: access gate. Unlocked = a lead was left for this scan
-  // (the free branch of the funnel, HANDOFF "Воронка" — "сделайте за меня"
-  // gives the plan away because the lead is worth more than €19.99). Paid
-  // unlock (Stripe) is a separate, not-yet-built node — this slice only
-  // wires the free branch, which needed no schema change (leads.scan_id
-  // already exists, migrations/0003_leads.sql).
+  // A2-REPORT-PAYWALL + A2-STRIPE-CHECKOUT: access gate. Unlocked = a lead was
+  // left for this scan (the free branch of the funnel, HANDOFF "Воронка" —
+  // "сделайте за меня" gives the plan away because the lead is worth more than
+  // €19.99) OR the €19.99 plan was paid for via Stripe Checkout
+  // (migrations/0008_plan_purchases.sql). isPlanUnlocked (worker/lib/db.js)
+  // is the single source of that rule — it checks the lead first and only
+  // queries plan_purchases if there is none.
   //
   // Placed HERE — after the cheap status checks above, BEFORE the BROWSER
   // check and generatePdf() below — so a locked request never spends
@@ -167,7 +168,7 @@ export async function handleGetScanPdf(id, env) {
   // its free-branch substitute, a lead. 'plan_locked' (not 'forbidden') so
   // the frontend can render "buy the plan / request a quote" rather than a
   // generic access-denied message.
-  if (!(await hasLeadForScan(env.DB, id))) {
+  if (!(await isPlanUnlocked(env.DB, id))) {
     return jsonError(402, 'this plan is not unlocked yet', 'plan_locked')
   }
 

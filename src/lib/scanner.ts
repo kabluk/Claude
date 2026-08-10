@@ -165,6 +165,45 @@ export function scanPdfUrl(id: string): string {
   return `${API_BASE}/api/scan/${encodeURIComponent(id)}/pdf`
 }
 
+// A2-STRIPE-CHECKOUT: result of asking the worker to start a €19.99 plan
+// purchase. Three honest outcomes, never a silent failure:
+//  - {kind:'redirect', url}      — go to Stripe hosted checkout
+//  - {kind:'already-unlocked'}   — plan is already accessible (lead or prior
+//                                   payment); UI should go to the plan, not pay
+//  - {kind:'unavailable'}        — card payment isn't wired on this deployment
+//                                   (503 checkout_unavailable); UI degrades to
+//                                   the free specialist-request branch
+export type PlanCheckoutResult =
+  | { kind: 'redirect'; url: string }
+  | { kind: 'already-unlocked' }
+  | { kind: 'unavailable' }
+
+// A2-STRIPE-CHECKOUT: response → outcome mapping, pure so it is unit-testable
+// without a live worker (API_BASE is unset in tsx tests, so the fetch wrapper
+// below can't run there — same reason submitScan/fetchScan aren't unit-tested).
+// 503 is a first-class, distinguishable outcome (not an exception) so
+// ReportPage can degrade honestly to the free branch; other non-2xx throw (a
+// real, unexpected server error the caller should surface, never swallow).
+export async function interpretCheckoutResponse(res: Response): Promise<PlanCheckoutResult> {
+  if (res.status === 503) return { kind: 'unavailable' }
+  if (!res.ok) {
+    const body = (await res.json().catch(() => ({ error: res.statusText }))) as { error?: string }
+    throw new Error(body.error ?? `checkout request failed: HTTP ${res.status}`)
+  }
+  const data = (await res.json().catch(() => ({}))) as { url?: unknown; alreadyUnlocked?: unknown }
+  if (data.alreadyUnlocked === true) return { kind: 'already-unlocked' }
+  if (typeof data.url === 'string' && data.url) return { kind: 'redirect', url: data.url }
+  throw new Error('checkout response had no URL')
+}
+
+// A2-STRIPE-CHECKOUT: POST /api/scan/:id/checkout via the same API_BASE every
+// other scanner call uses. The server sets the €19.99 amount — this request
+// carries no body a client could use to dictate a price.
+export async function createPlanCheckout(id: string): Promise<PlanCheckoutResult> {
+  const res = await apiFetch(`/api/scan/${encodeURIComponent(id)}/checkout`, { method: 'POST' })
+  return interpretCheckoutResponse(res)
+}
+
 // A2-REPORT-PAYWALL: pure "what does the plan panel show" decision, kept out
 // of ReportPage so it's testable without rendering. Three states, not two:
 // a scan with zero issue groups has nothing to build a remediation plan
