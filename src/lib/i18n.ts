@@ -36,6 +36,10 @@ export interface ChromeDict {
   ariaMain: string
   ariaBreadcrumb: string
   ariaLegal: string
+  // Footer «Explore» nav — вторичные разделы каталога, вынесенные из шапки
+  // (компактность, D-118). Отдельный landmark → отдельное уникальное имя
+  // (landmark-unique, D-083), поэтому свой ключ, а не переиспользование ariaMain.
+  ariaExplore: string
   nav: {
     scan: string
     countries: string
@@ -93,6 +97,7 @@ const en: ChromeDict = {
   ariaMain: 'Main',
   ariaBreadcrumb: 'Breadcrumb',
   ariaLegal: 'Legal',
+  ariaExplore: 'Explore',
   nav: {
     scan: 'Scan',
     countries: 'Countries',
@@ -133,6 +138,7 @@ const de: ChromeDict = {
   ariaMain: 'Hauptnavigation',
   ariaBreadcrumb: 'Brotkrümelnavigation',
   ariaLegal: 'Rechtliches',
+  ariaExplore: 'Entdecken',
   nav: {
     scan: 'Scan',
     countries: 'Länder',
@@ -175,6 +181,7 @@ const fr: ChromeDict = {
   skipToContent: 'Aller au contenu',
   ariaMain: 'Navigation principale',
   ariaBreadcrumb: "Fil d'Ariane",
+  ariaExplore: 'Explorer',
   // Не «Mentions légales»: так называется конкретная ссылка (imprint) внутри
   // этой же навигации — имя ориентира должно отличаться от имени ссылки.
   ariaLegal: 'Informations légales',
@@ -235,6 +242,7 @@ const pl: ChromeDict = {
   ariaMain: 'Nawigacja główna',
   ariaBreadcrumb: 'Ścieżka nawigacyjna',
   ariaLegal: 'Informacje prawne',
+  ariaExplore: 'Przeglądaj',
   nav: {
     scan: 'Skan',
     countries: 'Kraje',

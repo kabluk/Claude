@@ -110,6 +110,14 @@ export function Layout({
             </span>
             {SITE_NAME}
           </Link>
+          {/* D-118: шапка сокращена до ядра IA — Scan (акцент) / Countries /
+              Knowledge / Experts. Раньше 8 пунктов на мобиле переносились
+              (flex-wrap) в 2–3 ряда, и шапка росла в высоту (жалоба владельца).
+              Вторичные разделы (Services/Standards/Components/Reports) переехали
+              в футер-nav «Explore» ниже — site-wide линк сохранён, SEO/анти-orphan
+              (§23, D-071) не пострадал. URL /guides//agencies/ не переименованы
+              (CN-NAV, D-062 §6): подписи IA — Knowledge/Experts, сами адреса и
+              модель данных agencies не трогаем. */}
           <nav aria-label={t.ariaMain} className="flex flex-wrap items-center gap-4 text-sm font-medium text-on-surface-variant">
             <Link
               className="font-semibold text-[color:var(--color-primary)] hover:text-[color:var(--color-primary-hover)]"
@@ -120,27 +128,8 @@ export function Layout({
             <Link className="hover:text-on-surface" to={paths.countries()}>
               {t.nav.countries}
             </Link>
-            <Link className="hover:text-on-surface" to={paths.services()}>
-              {t.nav.services}
-            </Link>
-            <Link className="hover:text-on-surface" to={paths.standards()}>
-              {t.nav.standards}
-            </Link>
-            {/* CN-NAV (D-062 §6): подписи IA — «Knowledge»/«Experts». URL /guides/ и
-                /agencies/ сознательно НЕ переименованы (SEO/внешние ссылки живут);
-                модель данных agencies тоже не трогается — только UI-ярлыки. */}
             <Link className="hover:text-on-surface" to="/guides/">
               {t.nav.knowledge}
-            </Link>
-            {/* CN-COMPONENTS (D-068): публичная библиотека доступных компонентов
-                (§22) — часть Knowledge-поверхности, отдельный пункт для веса. */}
-            <Link className="hover:text-on-surface" to={paths.components()}>
-              {t.nav.components}
-            </Link>
-            {/* CN-RESEARCH (D-071): data products из каталога — флагманская
-                SEO-поверхность (§23), в навигации для веса и анти-orphan. */}
-            <Link className="hover:text-on-surface" to={paths.reports()}>
-              {t.nav.reports}
             </Link>
             <Link className="hover:text-on-surface" to={paths.agencies()}>
               {t.nav.experts}
@@ -195,6 +184,25 @@ export function Layout({
             {t.footer.introSuffix(agencies.length, countries.length)}
           </p>
           <p>{t.footer.noOverlays}</p>
+          {/* D-118: вторичные разделы каталога, вынесенные из шапки ради её
+              компактности. Отдельный landmark с уникальным именем (t.ariaExplore,
+              landmark-unique D-083); цвет on-surface-variant (как ядро-nav), а не
+              secondary — это навигация по разделам, не мелкий шрифт правовых
+              ссылок ниже. Так каждый из 8 разделов сохраняет site-wide линк. */}
+          <nav aria-label={t.ariaExplore} className="flex flex-wrap gap-x-4 gap-y-1 pt-2">
+            <Link className="hover:text-on-surface" to={paths.services()}>
+              {t.nav.services}
+            </Link>
+            <Link className="hover:text-on-surface" to={paths.standards()}>
+              {t.nav.standards}
+            </Link>
+            <Link className="hover:text-on-surface" to={paths.components()}>
+              {t.nav.components}
+            </Link>
+            <Link className="hover:text-on-surface" to={paths.reports()}>
+              {t.nav.reports}
+            </Link>
+          </nav>
           {/* CN-BRANDBOOK-V2: --color-secondary — новый токен, назначенный
               именно футер-ссылкам в макете (5.8:1 на surface-container-low,
               AA). Только цвет текста меняется, разметка/структура прежние. */}
