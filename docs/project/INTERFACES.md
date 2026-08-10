@@ -74,6 +74,12 @@ type ScanFinding = { ruleId: string; wcag: string[]; impact: 'minor'|'moderate'|
 //   a11y-resize-200 — A3-RESIZE (приближение через CSS zoom, не идентично браузерному Ctrl+)
 //   scan-meta-cookie-banner-dismissed — A3-COOKIEBANNER: не находка против сайта,
 //     прозрачность что DOM скорректирован перед проверкой (impact всегда minor)
+//   scan-meta-page-skipped — SCAN-RESILIENCE (D-113): страница пропущена после
+//     неудачи навигации/инжекта axe, скан продолжен без неё; причина — в html.
+//     Только для ПОДстраниц: отказ главной по-прежнему валит скан целиком.
+// Инвариант scan-meta-* (D-113): мета-находки НЕ влияют на score
+// (worker/lib/score.js::isMetaFinding) и на смету (src/lib/costEstimate.ts) —
+// прозрачность качества скана не должна штрафовать сайт за отказ сканера.
 // jurisdictionNote: заполняется applyJurisdictionWeight() (worker/lib/jurisdiction.js)
 // ТОЛЬКО на a11y-statement-missing/incomplete, когда juridiction.statementRequired —
 // бампит impact до critical; сумма штрафа включается в текст только если

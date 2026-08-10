@@ -27,3 +27,19 @@ test('nine distinct critical rules floor the score at 0, not negative', () => {
 test('unknown impact string defaults to weight 1 rather than throwing', () => {
   assert.equal(scoreFromFindings([{ ruleId: 'x', impact: 'unknown' }]), 99)
 })
+
+// SCAN-RESILIENCE (2026-08-10). scan-meta-* — прозрачность качества скана
+// («баннер снят перед проверкой», «страница пропущена»), а не дефект сайта.
+// До этого фикса каждая такая пометка молча стоила сайту 1 балл: получалось,
+// что мы штрафуем сайт за отказ НАШЕГО сканера и что честно признаться дороже,
+// чем промолчать. Тот же принцип уже действует в смете (src/lib/costEstimate.ts).
+test('scan-meta-* findings do not affect the score', () => {
+  const real = [{ ruleId: 'image-alt', impact: 'serious' }]
+  const meta = [
+    { ruleId: 'scan-meta-cookie-banner-dismissed', impact: 'minor' },
+    { ruleId: 'scan-meta-page-skipped', impact: 'minor' },
+  ]
+  assert.equal(scoreFromFindings(meta), 100)
+  assert.equal(scoreFromFindings([...real, ...meta]), scoreFromFindings(real))
+  assert.equal(scoreFromFindings([...real, ...meta]), 93)
+})
