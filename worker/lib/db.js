@@ -58,6 +58,18 @@ export async function reapStaleScan(db, { id, error }) {
   return (result?.meta?.changes ?? 0) > 0
 }
 
+// A2-REPORT-PAYWALL: access rule for the PDF plan is "a lead was left for
+// this scan_id" (migrations/0003_leads.sql already has scan_id + an index on
+// it — the free branch of the funnel needed no schema change). Missing/falsy
+// scanId returns false WITHOUT a query: handleGetScan (worker/routes/scan.js)
+// calls this on every poll of a 'done' report, and an id-less lookup would
+// either error or (worse) match every leads row with scan_id IS NULL.
+export async function hasLeadForScan(db, scanId) {
+  if (!scanId) return false
+  const row = await db.prepare(`SELECT 1 FROM leads WHERE scan_id = ? LIMIT 1`).bind(scanId).first()
+  return row != null
+}
+
 export async function getScan(db, id) {
   const row = await db.prepare(`SELECT * FROM scans WHERE id = ?`).bind(id).first()
   if (!row) return null

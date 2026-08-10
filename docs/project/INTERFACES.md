@@ -108,7 +108,11 @@ type ScanProgress = { phase: 'discovering'|'statement'|'axe'|'dom-checks'|'aggre
 type ScanReport = { id: string; url: string; status: 'running'|'done'|'error'; pages: string[];
   findings: ScanFinding[]; score: number|null; error: string|null;
   errorCode: 'unreachable'|'refused'|'tls'|'timeout'|'blocked'|'busy'|'internal'|null;
-  createdAt: string; completedAt: string|null; progress: ScanProgress|null };
+  createdAt: string; completedAt: string|null; progress: ScanProgress|null;
+  planUnlocked: boolean };
+// planUnlocked (A2-REPORT-PAYWALL): NOT a payment status — true iff a lead was
+// left for this scan_id (worker/lib/db.js::hasLeadForScan), which is what
+// unlocks GET /api/scan/:id/pdf; computed only when status='done'.
 // score: 0–100, дедуп по ruleId (худшая severity среди инстансов) — см. D-010,
 // worker/lib/score.js. Эвристика для сортировки/сравнения, НЕ сертификация (D-006).
 // errorCode: маленький enum для UI (worker/lib/errors.js, D-013) — error остаётся

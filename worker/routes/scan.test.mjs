@@ -15,11 +15,17 @@ import assert from 'node:assert/strict'
 import { handlePostScan, handleGetScan, isScanStale, REAP_GRACE_MS } from './scan.js'
 import { resolveScanTimeoutMs } from '../lib/axe.js'
 
-function fakeScansDb(initialRows = []) {
+// A2-REPORT-PAYWALL: `leadScanIds` + `selectCalls` let tests assert both the
+// planUnlocked VALUE and, separately, whether the leads table was queried at
+// all — handleGetScan must skip that query entirely while status='running'
+// (see the dedicated test below).
+function fakeScansDb(initialRows = [], leadScanIds = []) {
   const rows = [...initialRows]
+  const selectCalls = []
   const find = (id) => rows.find((r) => r.id === id)
   return {
     rows,
+    selectCalls,
     prepare(sql) {
       return {
         bind(...args) {
@@ -65,6 +71,10 @@ function fakeScansDb(initialRows = []) {
             },
             async first() {
               if (/^SELECT \* FROM scans WHERE id/.test(sql)) return find(args[0]) ?? null
+              if (/^SELECT 1 FROM leads WHERE scan_id = \? LIMIT 1/.test(sql)) {
+                selectCalls.push(args[0])
+                return leadScanIds.includes(args[0]) ? { 1: 1 } : null
+              }
               return null
             },
           }
@@ -110,6 +120,42 @@ test('D-109: свежий running отдаётся как есть — ника�
   assert.equal(body.status, 'running')
   assert.deepEqual(body.progress, { phase: 'axe', pagesDone: 4, pagesTotal: 6 })
   assert.equal(db.rows[0].status, 'running')
+})
+
+// ── A2-REPORT-PAYWALL: planUnlocked ──────────────────────────────────────
+
+const doneRow = (id) => ({
+  id, url: 'https://example.test/', status: 'done', created_at: iso(60_000),
+  pages_json: '["https://example.test/"]', findings_json: '[]', score: 100,
+  error: null, error_code: null, completed_at: iso(1_000), progress_json: null,
+})
+
+test('planUnlocked: true for a done scan with a lead on file', async () => {
+  const db = fakeScansDb([doneRow('s4')], ['s4'])
+  const res = await handleGetScan('s4', env(db))
+  const body = await res.json()
+  assert.equal(body.status, 'done')
+  assert.equal(body.planUnlocked, true)
+})
+
+test('planUnlocked: false for a done scan with no lead', async () => {
+  const db = fakeScansDb([doneRow('s5')]) // no leads registered
+  const res = await handleGetScan('s5', env(db))
+  const body = await res.json()
+  assert.equal(body.status, 'done')
+  assert.equal(body.planUnlocked, false)
+})
+
+test('planUnlocked: false for a running scan, and NO leads query is made at all (avoid a D1 hit on every poll)', async () => {
+  const freshAge = ENV_TIMEOUT + REAP_GRACE_MS - 1_000
+  // Lead exists for this scan_id already — proves the false below comes from
+  // the status==='running' short-circuit, not from an absent lead.
+  const db = fakeScansDb([runningRow('s6', iso(freshAge))], ['s6'])
+  const res = await handleGetScan('s6', env(db))
+  const body = await res.json()
+  assert.equal(body.status, 'running')
+  assert.equal(body.planUnlocked, false)
+  assert.equal(db.selectCalls.length, 0, 'handleGetScan must not query leads while the scan is still running')
 })
 
 test('D-109: гонка — скан дописал done между SELECT и UPDATE; гейт в SQL не даёт затереть результат', async () => {

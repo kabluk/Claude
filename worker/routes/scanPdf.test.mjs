@@ -7,8 +7,10 @@ import assert from 'node:assert/strict'
 import { handleGetScanPdf } from './scanPdf.js'
 
 // Mini-D1: same shape as worker/lib/db.test.mjs::fakeScansDb, trimmed to the
-// two SQL forms this route actually triggers (getScan + reapStaleScan).
-function fakeScansDb(initialRows = []) {
+// SQL forms this route actually triggers (getScan + reapStaleScan), PLUS
+// A2-REPORT-PAYWALL's `SELECT 1 FROM leads WHERE scan_id = ?` (hasLeadForScan)
+// — `leadScanIds` names which scan ids have a lead on file in this test.
+function fakeScansDb(initialRows = [], leadScanIds = []) {
   const rows = [...initialRows]
   const find = (id) => rows.find((r) => r.id === id)
   return {
@@ -19,6 +21,9 @@ function fakeScansDb(initialRows = []) {
           return {
             async first() {
               if (/^SELECT \* FROM scans WHERE id/.test(sql)) return find(args[0]) ?? null
+              if (/^SELECT 1 FROM leads WHERE scan_id = \? LIMIT 1/.test(sql)) {
+                return leadScanIds.includes(args[0]) ? { 1: 1 } : null
+              }
               return null
             },
             async run() {
@@ -112,18 +117,36 @@ test('a scan stuck "running" past the watchdog+grace window is reaped, then trea
   assert.equal(db.rows[0].status, 'error')
 })
 
-test('no BROWSER binding and no test seam -> 503, not a crash inside generatePdf', async () => {
-  const env = { DB: fakeScansDb([scanRow()]) }
+// ── A2-REPORT-PAYWALL: access gate ──────────────────────────────────────────
+
+test('no lead for this scan -> 402 plan_locked, generatePdf/browser never touched', async () => {
+  let launched = false
+  const env = {
+    DB: fakeScansDb([scanRow()]), // done scan, no lead registered for 's1'
+    __launchBrowser: async () => {
+      launched = true
+      throw new Error('must not be called: gate should have short-circuited before generatePdf')
+    },
+  }
+  const res = await handleGetScanPdf('s1', env)
+  assert.equal(res.status, 402)
+  const body = await res.json()
+  assert.equal(body.code, 'plan_locked')
+  assert.equal(launched, false, 'a locked request must never spend Browser Rendering')
+})
+
+test('a lead exists for this scan -> gate passes, no BROWSER binding still -> 503 (not 402)', async () => {
+  const env = { DB: fakeScansDb([scanRow()], ['s1']) }
   const res = await handleGetScanPdf('s1', env)
   assert.equal(res.status, 503)
   const body = await res.json()
   assert.equal(body.code, 'pdf_unavailable')
 })
 
-test('happy path: done scan -> 200 application/pdf, real bytes from page.pdf()', async () => {
+test('happy path: done scan with a lead on file -> 200 application/pdf, real bytes from page.pdf()', async () => {
   const bytes = new Uint8Array([0x25, 0x50, 0x44, 0x46]) // "%PDF"
   const { browser, calls } = fakePdfBrowser({ pdfBytes: bytes })
-  const env = { DB: fakeScansDb([scanRow()]), __launchBrowser: async () => browser }
+  const env = { DB: fakeScansDb([scanRow()], ['s1']), __launchBrowser: async () => browser }
 
   const res = await handleGetScanPdf('s1', env)
   assert.equal(res.status, 200)
@@ -144,14 +167,14 @@ test('happy path: done scan -> 200 application/pdf, real bytes from page.pdf()',
 
 test('browser session is closed even on success (finally)', async () => {
   const { browser, calls } = fakePdfBrowser()
-  const env = { DB: fakeScansDb([scanRow()]), __launchBrowser: async () => browser }
+  const env = { DB: fakeScansDb([scanRow()], ['s1']), __launchBrowser: async () => browser }
   await handleGetScanPdf('s1', env)
   assert.equal(calls.closed, true)
 })
 
 test('a page.pdf() that never resolves is caught by the PDF-specific watchdog, not left hanging', async () => {
   const { browser, calls } = fakePdfBrowser({ hang: true })
-  const env = { DB: fakeScansDb([scanRow()]), __launchBrowser: async () => browser, PDF_TIMEOUT_MS: 30 }
+  const env = { DB: fakeScansDb([scanRow()], ['s1']), __launchBrowser: async () => browser, PDF_TIMEOUT_MS: 30 }
 
   const startedAt = Date.now()
   const res = await handleGetScanPdf('s1', env)
@@ -178,7 +201,7 @@ test('jurisdiction override is reconstructed from a real jurisdictionCountry fin
   }]
   const row = scanRow({ findings_json: JSON.stringify(findings) })
   const { browser, calls } = fakePdfBrowser()
-  const env = { DB: fakeScansDb([row]), __launchBrowser: async () => browser }
+  const env = { DB: fakeScansDb([row], ['s1']), __launchBrowser: async () => browser }
 
   const res = await handleGetScanPdf('s1', env)
   assert.equal(res.status, 200)

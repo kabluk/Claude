@@ -4,7 +4,7 @@
 
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { insertScanPending, updateScanProgress, completeScan, failScan, getScan } from './db.js'
+import { insertScanPending, updateScanProgress, completeScan, failScan, getScan, hasLeadForScan } from './db.js'
 
 function fakeScansDb(initialRows = []) {
   const rows = [...initialRows]
@@ -96,6 +96,48 @@ test('a late progress write never revives on a finished scan (WHERE status = run
 
   const scan = await getScan(db, 's4')
   assert.equal(scan.progress, null, 'запоздавший прогресс не должен ожить на завершённом скане')
+})
+
+// A2-REPORT-PAYWALL: mini-D1 over `leads` only — SELECT 1 FROM leads WHERE
+// scan_id = ? LIMIT 1, the one SQL form hasLeadForScan actually issues.
+function fakeLeadsDb(scanIds = []) {
+  const calls = []
+  return {
+    calls,
+    prepare(sql) {
+      return {
+        bind(...args) {
+          calls.push({ sql, args })
+          return {
+            async first() {
+              if (/^SELECT 1 FROM leads WHERE scan_id = \? LIMIT 1/.test(sql)) {
+                return scanIds.includes(args[0]) ? { 1: 1 } : null
+              }
+              return null
+            },
+          }
+        },
+      }
+    },
+  }
+}
+
+test('hasLeadForScan: true when a lead exists for this scan_id', async () => {
+  const db = fakeLeadsDb(['scan-with-lead'])
+  assert.equal(await hasLeadForScan(db, 'scan-with-lead'), true)
+})
+
+test('hasLeadForScan: false when no lead references this scan_id', async () => {
+  const db = fakeLeadsDb(['scan-with-lead'])
+  assert.equal(await hasLeadForScan(db, 'scan-without-lead'), false)
+})
+
+test('hasLeadForScan: falsy scanId returns false WITHOUT querying the DB', async () => {
+  const db = fakeLeadsDb(['anything'])
+  assert.equal(await hasLeadForScan(db, undefined), false)
+  assert.equal(await hasLeadForScan(db, ''), false)
+  assert.equal(await hasLeadForScan(db, null), false)
+  assert.equal(db.calls.length, 0, 'no SQL should run for a falsy scanId')
 })
 
 test('backward compatibility: rows without the progress column read as progress: null', async () => {

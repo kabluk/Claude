@@ -1,12 +1,12 @@
 // GET /api/scan/:id/pdf -> application/pdf (A2-PDF-PLAN).
 // D1 read (worker/lib/db.js) + jurisdiction resolution (worker/lib/jurisdiction.js,
 // untouched) + pure plan assembly (worker/lib/pdfPlan.js) + pure HTML render
-// (worker/lib/pdfPlanHtml.js) + Browser Rendering print. No paywall here by
-// design (owner decision, task scope) — this route is deliberately the single
-// place a future access gate would sit, before generatePdf() is called.
+// (worker/lib/pdfPlanHtml.js) + Browser Rendering print. A2-REPORT-PAYWALL:
+// access gate lives right here, after the status checks and before the
+// BROWSER check / generatePdf() — see handleGetScanPdf below.
 
 import puppeteer from '@cloudflare/puppeteer'
-import { getScan, reapStaleScan } from '../lib/db.js'
+import { getScan, reapStaleScan, hasLeadForScan } from '../lib/db.js'
 import { isScanStale } from './scan.js'
 import { resolveJurisdiction } from '../lib/jurisdiction.js'
 import { buildPlanData } from '../lib/pdfPlan.js'
@@ -147,6 +147,28 @@ export async function handleGetScanPdf(id, env) {
   }
   if (scan.status === 'error') {
     return jsonError(422, 'scan failed — there is no result to build a plan from', 'scan_failed')
+  }
+
+  // A2-REPORT-PAYWALL: access gate. Unlocked = a lead was left for this scan
+  // (the free branch of the funnel, HANDOFF "Воронка" — "сделайте за меня"
+  // gives the plan away because the lead is worth more than €19.99). Paid
+  // unlock (Stripe) is a separate, not-yet-built node — this slice only
+  // wires the free branch, which needed no schema change (leads.scan_id
+  // already exists, migrations/0003_leads.sql).
+  //
+  // Placed HERE — after the cheap status checks above, BEFORE the BROWSER
+  // check and generatePdf() below — so a locked request never spends
+  // Browser Rendering (a paid, rate-limited resource) generating a plan
+  // nobody is allowed to have yet.
+  //
+  // 402 Payment Required is the accurate status: this is not 403 (caller
+  // isn't forbidden by identity/permissions) or 404 (the plan's source data
+  // exists — the scan is done) — what's missing is specifically payment, or
+  // its free-branch substitute, a lead. 'plan_locked' (not 'forbidden') so
+  // the frontend can render "buy the plan / request a quote" rather than a
+  // generic access-denied message.
+  if (!(await hasLeadForScan(env.DB, id))) {
+    return jsonError(402, 'this plan is not unlocked yet', 'plan_locked')
   }
 
   // Fail loudly before any expensive work, same rubric as POST /api/scan's

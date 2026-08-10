@@ -54,6 +54,13 @@ export type ScanReport = {
   // null: старый воркер/старая запись без прогресса, завершённый скан, или
   // непонятная форма — UI обязан работать без него (fallback D-064).
   progress: ScanProgress | null
+  // A2-REPORT-PAYWALL: is the PDF remediation plan unlocked for this scan?
+  // This is NOT a payment status — it means "was a lead left for this
+  // scan_id" (worker/lib/db.js::hasLeadForScan). true unlocks the free
+  // branch of the funnel (HANDOFF "Воронка": a lead is worth more than the
+  // €19.99 plan); Stripe-paid unlock is a separate, later node. Only ever
+  // true when status === 'done' (worker/routes/scan.js::withPlanUnlocked).
+  planUnlocked: boolean
 }
 
 // Парсер прогресса — строгий к чужим формам, мягкий к отсутствию: всё, что не
@@ -125,14 +132,52 @@ export async function submitScan(
   return (await res.json()) as { scanId: string }
 }
 
+// A2-REPORT-PAYWALL: strict-to-garbage, same rubric as parseScanProgress —
+// an older deployed worker (D-022/D-064) simply won't send this field at
+// all, and anything that isn't the literal boolean `true` must read as
+// LOCKED, never accidentally unlocked. There is no partial/unknown state
+// worth preserving here (unlike progress's phase enum): the field is a
+// single boolean, so "not exactly true" and "absent" collapse to the same
+// safe default.
+export function parsePlanUnlocked(raw: unknown): boolean {
+  return raw === true
+}
+
 export async function fetchScan(id: string): Promise<ScanReport | null> {
   const res = await apiFetch(`/api/scan/${encodeURIComponent(id)}`)
   if (res.status === 404) return null
   if (!res.ok) throw new Error(`failed to load scan: HTTP ${res.status}`)
-  const raw = (await res.json()) as Omit<ScanReport, 'progress'> & { progress?: unknown }
+  const raw = (await res.json()) as Omit<ScanReport, 'progress' | 'planUnlocked'> & {
+    progress?: unknown
+    planUnlocked?: unknown
+  }
   // Задеплоенный воркер может быть старше этого клиента (D-022: деплой — решение
-  // владельца): поля progress может не быть вовсе — парсер даёт null, UI живёт.
-  return { ...raw, progress: parseScanProgress(raw.progress) }
+  // владельца): поля progress/planUnlocked может не быть вовсе — парсеры дают
+  // null/false, UI живёт.
+  return { ...raw, progress: parseScanProgress(raw.progress), planUnlocked: parsePlanUnlocked(raw.planUnlocked) }
+}
+
+// A2-REPORT-PAYWALL: the unlocked PDF plan is downloaded straight from the
+// scanner origin (worker/routes/scanPdf.js), not this static site — reuses
+// the same API_BASE every other scanner call already goes through, so the
+// host is never hardcoded or duplicated in a page component.
+export function scanPdfUrl(id: string): string {
+  return `${API_BASE}/api/scan/${encodeURIComponent(id)}/pdf`
+}
+
+// A2-REPORT-PAYWALL: pure "what does the plan panel show" decision, kept out
+// of ReportPage so it's testable without rendering. Three states, not two:
+// a scan with zero issue groups has nothing to build a remediation plan
+// from — showing a paywall (or even an unlocked-but-empty plan) for "we
+// found nothing" would be a dishonest upsell, not a UX nicety.
+export type PlanPanelState = 'hidden' | 'unlocked' | 'locked'
+
+export function decidePlanPanel(
+  report: Pick<ScanReport, 'planUnlocked'>,
+  findingGroupCount: number,
+): PlanPanelState {
+  if (findingGroupCount === 0) return 'hidden'
+  return report.planUnlocked ? 'unlocked' : 'locked'
 }
 
 // Понятные, не технические тексты под каждый errorCode (VISION.md UX-требование 4,

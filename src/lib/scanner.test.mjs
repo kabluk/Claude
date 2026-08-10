@@ -4,7 +4,7 @@
 
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { scoreGrade, scoreGradeLabel, scoreGradeChipClass } from './scanner.ts'
+import { scoreGrade, scoreGradeLabel, scoreGradeChipClass, parsePlanUnlocked, decidePlanPanel } from './scanner.ts'
 
 test('границы 90/70/50 — ровно на пороге ещё верхний грейд, на 1 ниже — уже нижний', () => {
   assert.equal(scoreGrade(100), 'excellent')
@@ -31,4 +31,30 @@ test('верхние два грейда используют success-токен
   assert.equal(scoreGradeChipClass('good'), 'chip-success')
   assert.equal(scoreGradeChipClass('needs-work'), 'chip-moderate')
   assert.equal(scoreGradeChipClass('poor'), 'chip-critical')
+})
+
+// A2-REPORT-PAYWALL: planUnlocked must default to LOCKED for anything that
+// isn't the literal boolean `true` — an older deployed worker (D-022/D-064)
+// simply omits the field, and that must never read as unlocked.
+test('parsePlanUnlocked: only literal `true` unlocks; missing/garbage stays locked', () => {
+  assert.equal(parsePlanUnlocked(true), true)
+  assert.equal(parsePlanUnlocked(undefined), false)
+  assert.equal(parsePlanUnlocked(null), false)
+  assert.equal(parsePlanUnlocked('true'), false)
+  assert.equal(parsePlanUnlocked(1), false)
+  assert.equal(parsePlanUnlocked({}), false)
+})
+
+// A2-REPORT-PAYWALL: which panel ReportPage renders, as a pure decision so it
+// is testable without rendering. A scan with zero issue groups has nothing to
+// build a plan from — must hide, never sell an empty plan, regardless of
+// planUnlocked.
+test('decidePlanPanel: zero finding groups always hides the panel', () => {
+  assert.equal(decidePlanPanel({ planUnlocked: true }, 0), 'hidden')
+  assert.equal(decidePlanPanel({ planUnlocked: false }, 0), 'hidden')
+})
+
+test('decidePlanPanel: with findings, planUnlocked selects unlocked vs locked', () => {
+  assert.equal(decidePlanPanel({ planUnlocked: true }, 3), 'unlocked')
+  assert.equal(decidePlanPanel({ planUnlocked: false }, 3), 'locked')
 })

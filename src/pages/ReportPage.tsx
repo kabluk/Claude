@@ -13,6 +13,8 @@ import {
   scoreGrade,
   scoreGradeLabel,
   scoreGradeChipClass,
+  scanPdfUrl,
+  decidePlanPanel,
   type ScanReport,
 } from '@/lib/scanner'
 import { estimateCost, formatCostEstimate } from '@/lib/costEstimate'
@@ -319,6 +321,8 @@ function ReportBody({ report }: { report: ScanReport }) {
         </section>
       )}
 
+      <RemediationPlanPanel report={report} groups={groups} />
+
       <MatchedAgencies findings={report.findings} priceBand={cost?.band} scanId={report.id} />
 
       {/* Замена «Book a call» из макета владельца (Stitch): бронирования звонков
@@ -338,6 +342,120 @@ function ReportBody({ report }: { report: ScanReport }) {
         </Link>
       </div>
     </div>
+  )
+}
+
+// A2-REPORT-PAYWALL: owner-approved paywall layout (variant 1). Findings stay
+// fully open above this (HANDOFF "Воронка", reconfirmed D-114 after the NYT
+// paywall reference) — only the PDF *plan* is gated. Which panel to show is a
+// pure decision (decidePlanPanel, src/lib/scanner.ts, unit-tested) — this
+// component only renders the outcome.
+function RemediationPlanPanel({
+  report,
+  groups,
+}: {
+  report: ScanReport
+  groups: ReturnType<typeof groupFindingsByRule>
+}) {
+  const panel = decidePlanPanel(report, groups.length)
+  if (panel === 'hidden') return null
+
+  if (panel === 'unlocked') {
+    return (
+      <section className="mt-10">
+        <h2 className="h2 mt-0">Your remediation plan</h2>
+        {/* Same success-panel pattern as the "no issues found" block above
+            (rounded-xl border/soft-bg, no .card) — .card's hover:border-outline
+            would otherwise fight this border's semantic success color. */}
+        <div className="rounded-xl border border-[color:var(--color-success-border)] bg-[color:var(--color-success-soft)] p-5">
+          <p className="font-semibold text-[color:var(--color-success)]">Your plan is ready</p>
+          <p className="mt-1.5 max-w-prose text-sm text-on-surface-variant">
+            Priorities, legal context, an effort estimate and a developer brief — all built from
+            this scan.
+          </p>
+          <a className="btn mt-5" href={scanPdfUrl(report.id)} target="_blank" rel="noreferrer">
+            Download plan (PDF)
+          </a>
+        </div>
+      </section>
+    )
+  }
+
+  // panel === 'locked'. Teaser copy below is built entirely from real fields
+  // of `groups[0]` (the highest-priority group — same impact sort the
+  // Findings list above already uses) — nothing about the fix itself is
+  // invented (D-035/D-045: no field without a source).
+  const top = groups[0]
+  const pagesAffected = new Set(top.instances.map((f) => f.page)).size
+
+  return (
+    <section className="mt-10">
+      <h2 className="h2 mt-0">Your remediation plan</h2>
+      <div className="card">
+        <p className="max-w-prose text-sm text-on-surface-variant">
+          <span className="font-semibold text-on-surface">Fix this first: </span>
+          {impactLabel(top.impact).toLowerCase()} issue <span className="font-mono">{top.ruleId}</span>, found{' '}
+          {top.instances.length} time{top.instances.length === 1 ? '' : 's'} across {pagesAffected} page
+          {pagesAffected === 1 ? '' : 's'}. It's ranked first because it's the most severe class of problem this
+          scan found — severe issues are the ones most likely to stop someone from using your site at all. The
+          full plan orders every issue this way, adds the legal basis where one applies, an effort estimate, and
+          a brief you can hand straight to a developer.
+        </p>
+
+        {/* Decorative skeleton standing in for the locked plan body. This is
+            NOT a CSS blur over real text (D-114: obscured-but-still-in-the-DOM
+            text would be readable via view-source and by a screen reader —
+            unacceptable for an accessibility product). These bars carry no
+            content at all — the real plan text lives only in the PDF, behind
+            the server-side gate in worker/routes/scanPdf.js. aria-hidden so a
+            screen reader doesn't announce empty decoration. */}
+        <div className="relative mt-5 overflow-hidden rounded-lg" aria-hidden="true">
+          <div className="space-y-3 p-4">
+            <div className="h-3 w-11/12 rounded-full bg-outline-variant/50" />
+            <div className="h-3 w-full rounded-full bg-outline-variant/50" />
+            <div className="h-3 w-4/5 rounded-full bg-outline-variant/50" />
+            <div className="h-3 w-full rounded-full bg-outline-variant/50" />
+            <div className="h-3 w-3/5 rounded-full bg-outline-variant/50" />
+          </div>
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-surface-container-low to-transparent" />
+        </div>
+
+        <div className="mt-6 flex flex-wrap items-baseline gap-2">
+          <span className="num text-3xl font-bold tracking-tight">€19.99</span>
+          <span className="text-sm text-on-surface-variant">one-time, for this scan</span>
+        </div>
+        <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-on-surface-variant">
+          <li>Every issue type found, ordered by priority</li>
+          <li>Which law applies to your site, and why</li>
+          <li>An effort estimate for each fix</li>
+          <li>A ready brief for your developer</li>
+        </ul>
+
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            disabled
+            aria-describedby="plan-payment-note"
+            className="btn disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-surface-container-low disabled:text-on-surface-variant"
+          >
+            Get the plan — €19.99
+          </button>
+          <Link
+            className="btn-ghost"
+            to={`${paths.requestQuote()}?scanId=${encodeURIComponent(report.id)}`}
+          >
+            Have a specialist do it — plan free
+          </Link>
+        </div>
+        <p id="plan-payment-note" className="mt-2 text-xs text-on-surface-variant">
+          Card payment coming soon.
+        </p>
+
+        <p className="mt-5 max-w-prose text-xs text-on-surface-variant">
+          An estimate for planning, not a compliance certificate or legal advice.
+        </p>
+      </div>
+    </section>
   )
 }
 
