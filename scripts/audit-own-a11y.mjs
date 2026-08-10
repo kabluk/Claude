@@ -9,6 +9,13 @@
 // файловой системы, а не в dist/ — CSS молча не грузится, и любая проверка на
 // цвет/контраст тривиально "проходит" на неокрашенном HTML. Так был потерян
 // реальный баг контраста в первой версии этого скрипта (D-014) — не повторять.
+//
+// ВАЖНО (A2-REPORT-PAYWALL): блок аудита /report/:id ниже требует, чтобы dist/
+// был собран с НЕПУСТЫМ VITE_SCANNER_API (build-time inlining, src/lib/
+// scanner.ts) — иначе страница отчёта рендерит "Scanner is not configured" и
+// paywall-панель не проверяется. CI это делает (ci.yml). Локально:
+// `VITE_SCANNER_API=https://audit-fixture.invalid npm run build && npm run audit-a11y`.
+// Без значения блок отчёта падает БЫСТРО с понятным сообщением (не 30с-таймаут).
 
 import { readFileSync, existsSync, createReadStream, statSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
@@ -158,6 +165,12 @@ const MIME = { '.html': 'text/html', '.css': 'text/css', '.js': 'application/jav
 
 function filePathFor(urlPath) {
   const clean = urlPath.split('?')[0]
+  // A1-REPORT-DIRECT-LINK: в проде functions/report/[[path]].js перехватывает
+  // ЛЮБОЙ путь под /report/ и отдаёт заранее собранный dist/report-shell.html
+  // (200, не 404-фоллбек) — /report/:id клиентский маршрут, не пререндерится,
+  // dist/report/<id>/index.html никогда не существует. Без этой ветки сервер
+  // ниже отдавал бы 404 на любой /report/* запрос, зеркаля прод неверно.
+  if (clean === '/report' || clean.startsWith('/report/')) return join(DIST, 'report-shell.html')
   const direct = join(DIST, clean)
   if (existsSync(direct) && statSync(direct).isFile()) return direct
   return join(DIST, clean, 'index.html')
@@ -178,6 +191,69 @@ const port = server.address().port
 const base = `http://127.0.0.1:${port}`
 
 const results = []
+
+// A1-REPORT-DIRECT-LINK / A2-REPORT-PAYWALL: `/report/:id` is a client-only
+// route (routes.tsx catch-all, not in src/routes' getStaticPaths) — it never
+// exists as a prerendered file in dist/, so it cannot sit in SAMPLE_ROUTES
+// above (that loop skips anything filePathFor() can't find). Its most
+// business-critical surface — the €19.99 paywall panel / unlocked-plan
+// panel (A2-REPORT-PAYWALL, A2-STRIPE-CHECKOUT) — had only unit-test
+// coverage until now. Mounted below by mocking the worker API response
+// (src/lib/scanner.ts::fetchScan hits `${API_BASE}/api/scan/:id`) with a
+// realistic ScanReport fixture, driving an actual Chromium render, and
+// gating it with the same axe run/threshold as every page above.
+//
+// Fixture must satisfy the ScanReport contract EXACTLY (src/lib/scanner.ts)
+// — parseScanProgress/parsePlanUnlocked and the UI trust its shape. Three
+// findings with distinct real axe ruleIds/impacts (image-alt/critical,
+// color-contrast/serious, region/moderate) so groupFindingsByRule() yields
+// >0 groups and both the findings list and the plan-panel teaser (built
+// from groups[0], see LockedPlanPanel) actually render.
+const REPORT_FIXTURE_ID = 'fixture-scan-id'
+const reportFixture = (planUnlocked) => ({
+  id: REPORT_FIXTURE_ID,
+  url: 'https://example.com',
+  status: 'done',
+  pages: ['https://example.com/', 'https://example.com/about'],
+  findings: [
+    {
+      ruleId: 'image-alt',
+      wcag: ['wcag2a', 'wcag111'],
+      impact: 'critical',
+      selector: 'img.hero-logo',
+      page: 'https://example.com/',
+      html: '<img src="/logo.png" class="hero-logo">',
+    },
+    {
+      ruleId: 'color-contrast',
+      wcag: ['wcag2aa', 'wcag143'],
+      impact: 'serious',
+      selector: '.btn-primary',
+      page: 'https://example.com/about',
+      html: '<button class="btn-primary">Submit</button>',
+    },
+    {
+      ruleId: 'region',
+      wcag: ['best-practice'],
+      impact: 'moderate',
+      selector: 'div.legacy-widget',
+      page: 'https://example.com/',
+      html: '<div class="legacy-widget">Site content outside landmarks</div>',
+    },
+  ],
+  score: 68,
+  error: null,
+  errorCode: null,
+  createdAt: '2026-08-01T10:00:00.000Z',
+  completedAt: '2026-08-01T10:01:30.000Z',
+  progress: null,
+  planUnlocked,
+})
+
+const REPORT_STATES = [
+  { label: '/report/:id (locked)', fixture: reportFixture(false) },
+  { label: '/report/:id (unlocked)', fixture: reportFixture(true) },
+]
 
 // В управляемых dev-средах (Claude Code on the web) Chromium предустановлен по
 // фиксированному пути; в обычном CI/локально playwright сам знает, где его
@@ -222,6 +298,55 @@ try {
       results.push({ route: `${route} (open)`, violations: openResults.violations })
     }
   }
+
+  // Two mocked states of the same client-only /report/:id route (fixture
+  // defined above, outside this try, so its length is available to the
+  // final summary too).
+  for (const { label, fixture } of REPORT_STATES) {
+    // scanner.ts::fetchScan calls `${API_BASE}/api/scan/${id}` (GET). The
+    // locked panel's "Get the plan" button would additionally POST
+    // `/api/scan/:id/checkout`, but the audit never clicks it, so this
+    // single route is enough; `status:'done'` also stops reportPolling.ts
+    // from scheduling a second poll (decidePollNext: 'ok'+'done' → keepPolling
+    // false), so one fulfilled response per page load is all that's needed.
+    await page.route('**/api/scan/**', (route) =>
+      route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(fixture) }),
+    )
+    await page.goto(`${base}/report/${REPORT_FIXTURE_ID}/`, { waitUntil: 'load' })
+    // Wait for the actual report render, not a timer: ReportBody's own <h1>
+    // ("Accessibility report for {url}") only appears once state has reached
+    // `{kind:'report'}` with status 'done' — loading/unavailable/not-found
+    // states never render it.
+    //
+    // BUT the report only mounts if the built bundle has a NON-EMPTY
+    // VITE_SCANNER_API inlined at build time (src/lib/scanner.ts: apiFetch
+    // throws ScannerUnavailableError before any fetch when API_BASE is empty,
+    // and the page renders "Scanner is not configured" instead). A plain
+    // `npm run build` (no env) produces exactly that — and this block would
+    // otherwise hang the full 30s Playwright default on a heading that will
+    // never appear, then die with a cryptic TimeoutError. Race the two
+    // possible <h1>s (real report vs. "not configured") and fail FAST with an
+    // actionable message: this is a build-config problem, not an a11y one.
+    // CI builds with a fixture value (ci.yml) so it never hits this branch.
+    const rendered = await Promise.race([
+      page.getByRole('heading', { level: 1, name: /Accessibility report for/ }).waitFor({ timeout: 15000 }).then(() => 'report'),
+      page.getByRole('heading', { level: 1, name: /Scanner is not configured/ }).waitFor({ timeout: 15000 }).then(() => 'unconfigured'),
+    ]).catch(() => 'timeout')
+    if (rendered !== 'report') {
+      throw new Error(
+        `/report/:id did not render (${rendered}) — dist was built without a non-empty VITE_SCANNER_API, ` +
+        `so the report page shows "Scanner is not configured" and its paywall panel cannot be audited. ` +
+        `Rebuild with a value inlined, e.g.  VITE_SCANNER_API=https://audit-fixture.invalid npm run build  ` +
+        `(CI does this in .github/workflows/ci.yml). This is a build-config issue, NOT an accessibility violation.`,
+      )
+    }
+    await page.addScriptTag({ content: AXE_SOURCE })
+    const reportAxeResults = await page.evaluate(
+      async () => await window.axe.run(document, { rules: { 'target-size': { enabled: true } } })
+    )
+    results.push({ route: label, violations: reportAxeResults.violations })
+    await page.unroute('**/api/scan/**')
+  }
 } finally {
   await browser.close()
   server.close()
@@ -247,8 +372,12 @@ for (const r of results) {
   }
 }
 
+// SAMPLE_ROUTES.length + REPORT_STATES.length: /report/:id — не пререндеренный
+// файл, а два мокнутых состояния одного клиентского маршрута (locked/unlocked
+// paywall-панели), поэтому в счётчик страниц идёт отдельно от статического цикла.
+const pageCount = SAMPLE_ROUTES.length + REPORT_STATES.length
 console.log(
-  `\n${totalViolations === 0 ? '✓' : '⚠'} audit-own-a11y: ${SAMPLE_ROUTES.length} страниц (light), ${totalViolations} нарушени${totalViolations === 1 ? 'е' : 'й'} (${seriousOrWorse} serious/critical)`
+  `\n${totalViolations === 0 ? '✓' : '⚠'} audit-own-a11y: ${pageCount} страниц (light), ${totalViolations} нарушени${totalViolations === 1 ? 'е' : 'й'} (${seriousOrWorse} serious/critical)`
 )
 
 if (seriousOrWorse > 0) process.exit(1)

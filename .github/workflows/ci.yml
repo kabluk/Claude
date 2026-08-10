@@ -32,7 +32,21 @@ jobs:
       # бы в CI вообще. Добавлено вместе с самим первым таким тестом (2026-08-06,
       # D-032), чтобы он не оказался зелёным только на локальной машине.
       - run: npm run src:test
-      - run: npm run build
+      # VITE_SCANNER_API — фиктивный, но НЕ пустой (в отличие от deploy.yml,
+      # реальный бэкенд здесь не нужен и не должен быть настоящим секретом):
+      # apiFetch (src/lib/scanner.ts) бросает ScannerUnavailableError ДО
+      # единого fetch(), если API_BASE пуст, — а это строка, впечатанная
+      # Vite в бандл на этапе сборки, рантайм её изменить не может. Пустой
+      # VITE_SCANNER_API здесь означал бы, что audit-a11y ниже (блок
+      # /report/:id locked/unlocked, scripts/audit-own-a11y.mjs) всегда видит
+      # только панель "Scanner is not configured" — мокнутый page.route на
+      # /api/scan/** никогда не сработал бы, и платный paywall-панель
+      # (самая важная бизнес-поверхность продукта) осталась бы непроверенной
+      # молча, зелёным CI.
+      - name: Build (VITE_SCANNER_API-фикстура — иначе /report/:id в audit-a11y не рендерит paywall-панель)
+        run: npm run build
+        env:
+          VITE_SCANNER_API: https://audit-fixture.invalid
       # Все внутренние ссылки должны разрешаться в существующие страницы
       - run: npm run check-links
       - run: npm run audit-a11y
