@@ -987,7 +987,7 @@
       },
       {
         "url": "https://www.telekom-mms.com/blog/artikel/detail/30-jahre-telekom-mms-von-der-mutigen-idee-zur-digitalen-erfolgsgeschichte",
-        "label": "Corporate blog: \"Vor 30 Jahren, am 9. Januar 1995, wurde unser Unternehmen als „Multimedia Software GmbH Dresden\" mit einem Eintrag ins Handelsregister offiziell gegründet.\" (Vorgänger, später T-Systems Multimedia Solutions / Deutsche Telekom MMS); checked 2026-08-07 (пакеты 11-15, третий запуск)"
+        "label": "Corporate blog: \"Vor 30 Jahren, am 9. Januar 1995, wurde unser Unternehmen als „Multimedia Software GmbH Dresden\" mit einem Eintrag ins Handelsregister offiziell gegründet.\" (Vorgänger, später T-Systems Multimedia Solutions / Deutsche Telekom MMS); checked 2026-08-07"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -1108,7 +1108,7 @@
       },
       {
         "url": "https://anatom5.de/agentur/grundsatz",
-        "label": "\"Als wir 2003 anatom5 gegründet haben, stand digitale Barrierefreiheit kaum auf der Agenda\" — пересматривает CLEAR из D-047 (тогда видели только \"seit 2003\" на главной); checked 2026-08-07 (пакеты 11-15, третий запуск)"
+        "label": "\"Als wir 2003 anatom5 gegründet haben, stand digitale Barrierefreiheit kaum auf der Agenda\" — supersedes an earlier assessment (D-047), which had only seen \"seit 2003\" on the homepage; checked 2026-08-07"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -1336,7 +1336,7 @@
       },
       {
         "url": "https://www.linkedin.com/company/inserteffect/",
-        "label": "LinkedIn-Unternehmensprofil (со своего сайта): \"Gegründet 2002\"; checked 2026-08-06"
+        "label": "LinkedIn company profile (linked from their own site): \"Gegründet 2002\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -1855,7 +1855,7 @@
       },
       {
         "url": "https://www.hcltech.com/about-us",
-        "label": "\"Our Journey\" timeline, запись 1976: \"HCL is founded as one of the original tech, computing and engineering startups of India\"; checked 2026-08-07 (пакеты 11-15, третий запуск)"
+        "label": "\"Our Journey\" timeline, 1976 entry: \"HCL is founded as one of the original tech, computing and engineering startups of India\"; checked 2026-08-07"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -1916,7 +1916,7 @@
       },
       {
         "url": "https://www.barrierbreak.com/accessibility-barrierbreak/",
-        "label": "\"...an accessibility testing and consulting company based in India, founded in the year 2004 with a strong belief that that technology can empower people with disabilities...\"; checked 2026-08-07 (пакеты 11-15, третий запуск)"
+        "label": "\"...an accessibility testing and consulting company based in India, founded in the year 2004 with a strong belief that that technology can empower people with disabilities...\"; checked 2026-08-07"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -2514,7 +2514,7 @@
       },
       {
         "url": "https://www.continualengine.com/about-us/",
-        "label": "About: \"Since our inception in 2017, we have come a long way\" + таймлайн \"2017 Continual Engine inception\"; checked 2026-08-06"
+        "label": "About: \"Since our inception in 2017, we have come a long way\" + timeline \"2017 Continual Engine inception\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -2604,7 +2604,7 @@
       },
       {
         "url": "https://www.brailleinstitute.org/about-us/history/",
-        "label": "History: \"...founded the Universal Braille Press in 1919, which was later incorporated as Braille Institute of America, Inc.\"; checked 2026-08-07 (пакеты 11-15, третий запуск)"
+        "label": "History: \"...founded the Universal Braille Press in 1919, which was later incorporated as Braille Institute of America, Inc.\"; checked 2026-08-07"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -2695,7 +2695,7 @@
       },
       {
         "url": "https://normeris.nl/diensten/wcag-onderzoek/",
-        "label": "prijzen (бренд Normeris): \"WCAG-onderzoek … € 1.950,-\", \"Quickscan … € 595,-\"; checked 2026-08-06"
+        "label": "prijzen (Normeris brand): \"WCAG-onderzoek … € 1.950,-\", \"Quickscan … € 595,-\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -2914,7 +2914,7 @@
       },
       {
         "url": "https://www.properaccess.nl/auditbureau-digitale-toegankelijkheid/",
-        "label": "\"Opgericht in 2019, 900+ audits uitgevoerd\"; checked 2026-08-07 (пакеты 11-15, третий запуск)"
+        "label": "\"Opgericht in 2019, 900+ audits uitgevoerd\"; checked 2026-08-07"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -3012,7 +3012,7 @@
       },
       {
         "url": "https://www.cardan.com/over-cardan",
-        "label": "\"Wij zijn in 2002 ontstaan om mensen die zelfstandig lastiger aan een baan kunnen komen, een kans te geven om zich verder te ontwikkelen.\" (specialisatie in digitale toegankelijkheid sinds 2016, zelfde organisatie); checked 2026-08-07 (пакеты 11-15, третий запуск)"
+        "label": "\"Wij zijn in 2002 ontstaan om mensen die zelfstandig lastiger aan een baan kunnen komen, een kans te geven om zich verder te ontwikkelen.\" (specialisatie in digitale toegankelijkheid sinds 2016, zelfde organisatie); checked 2026-08-07"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -3061,7 +3061,7 @@
       },
       {
         "url": "https://level-level.com/accessibility/diensten/audits/",
-        "label": "audits: \"WCAG Audit … €2.450,-\", \"WCAG Audit + … Vanaf €4.500,-\" (Quickscan €875,-); checked 2026-08-06 по архивной копии — живая страница отдаёт 403 автоматике"
+        "label": "audits: \"WCAG Audit … €2.450,-\", \"WCAG Audit + … Vanaf €4.500,-\" (Quickscan €875,-); checked 2026-08-06 via archived copy — the live page returns 403 to automated requests"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -4021,7 +4021,7 @@
       },
       {
         "url": "https://www.rockit.at/leistungen/barrierefreiheits-analyse",
-        "label": "\"Quickcheck … startet bei etwa 1.500 Euro. Vollaudits grösserer Sites mit Konformitätserklärung bewegen sich zwischen 4.000 und 12.000 Euro\"; checked 2026-08-06 (live-страница за анти-бот защитой, текст снят прямым HTTP-запросом)"
+        "label": "\"Quickcheck … startet bei etwa 1.500 Euro. Vollaudits grösserer Sites mit Konformitätserklärung bewegen sich zwischen 4.000 und 12.000 Euro\"; checked 2026-08-06 (live page behind anti-bot protection, text retrieved via direct HTTP request)"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -4522,7 +4522,7 @@
       },
       {
         "url": "https://digitelle.no/om-oss/",
-        "label": "\"...startet han Digitelle i 2016...\" + footer \"Etablert i 2016, med over 20 års WordPress-erfaring.\"; checked 2026-08-07 (пакеты 11-15, третий запуск)"
+        "label": "\"...startet han Digitelle i 2016...\" + footer \"Etablert i 2016, med over 20 års WordPress-erfaring.\"; checked 2026-08-07"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -4609,7 +4609,7 @@
       },
       {
         "url": "https://avaava.fi/yritys/yritystarina",
-        "label": "\"Vuonna 2017 perustettiin Avaava Digital Oy yhdessä hallituksen puheenjohtajan Petteri Alinikulan kanssa.\" (Avaava-merkki syntyi 2009 emoyhtiö Karanttia Oy:n sisällä, yhtiöitettiin Avaava Digital Oy:ksi 2017); checked 2026-08-07 (пакеты 11-15, третий запуск)"
+        "label": "\"Vuonna 2017 perustettiin Avaava Digital Oy yhdessä hallituksen puheenjohtajan Petteri Alinikulan kanssa.\" (Avaava-merkki syntyi 2009 emoyhtiö Karanttia Oy:n sisällä, yhtiöitettiin Avaava Digital Oy:ksi 2017); checked 2026-08-07"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -4709,7 +4709,7 @@
       },
       {
         "url": "https://www.visionaustralia.org/about-us/who-we-are/history",
-        "label": "\"In 2004 Vision Australia became Australia's first national blindness agency. Vision Australia was formed following the merger of the Royal Blind Society (RBS), the Royal Victorian Institute for the Blind (RVIB), Vision Australia Foundation (VAF), and the National Information Library Services (NILS) in July 2004.\"; checked 2026-08-07 (пакеты 11-15, третий запуск)"
+        "label": "\"In 2004 Vision Australia became Australia's first national blindness agency. Vision Australia was formed following the merger of the Royal Blind Society (RBS), the Royal Victorian Institute for the Blind (RVIB), Vision Australia Foundation (VAF), and the National Information Library Services (NILS) in July 2004.\"; checked 2026-08-07"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -4832,7 +4832,7 @@
       },
       {
         "url": "https://www.skynettechnologies.com/about-us",
-        "label": "Stat-плитка на странице About Us: \"2002\" с подписью \"Founded in\" сразу под числом; checked 2026-08-07 (пакеты 11-15, третий запуск)"
+        "label": "Stat tile on the About Us page: \"2002\" labeled \"Founded in\" directly below the number; checked 2026-08-07"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -4886,7 +4886,7 @@
       },
       {
         "url": "https://sierra7.com/our-leadership/",
-        "label": "Leadership bio: \"...has been a Sierra7 partner since its founding in 2009\"; checked 2026-08-07 (пакеты 11-15, третий запуск)"
+        "label": "Leadership bio: \"...has been a Sierra7 partner since its founding in 2009\"; checked 2026-08-07"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -5014,7 +5014,7 @@
       },
       {
         "url": "https://www.linkedin.com/company/axes4/",
-        "label": "LinkedIn-Unternehmensprofil (со своего сайта): \"Gegründet 2015\"; checked 2026-08-06"
+        "label": "LinkedIn company profile (linked from their own site): \"Gegründet 2015\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -5547,7 +5547,7 @@
       },
       {
         "url": "https://jimbyrne.co.uk/about-jim-byrne-associates-accessible-website-design/",
-        "label": "Заявление от первого лица: \"In 2003, I started my own business to provide accessibility auditing and accessible website design services to a wider group of organisations.\"; checked 2026-08-07 (пакеты 11-15, третий запуск)"
+        "label": "First-person statement: \"In 2003, I started my own business to provide accessibility auditing and accessible website design services to a wider group of organisations.\"; checked 2026-08-07"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -5763,7 +5763,7 @@
       },
       {
         "url": "https://web.archive.org/web/20260101053403/https://www.webusability.co.uk/about-us/",
-        "label": "\"Web Usability is a strategic user experience consultancy, established in 2001.\" — живой сайт был за anti-bot (sgcaptcha), подтверждено через архивную копию Wayback того же URL; пересматривает CLEAR из D-047 (\"год не опубликован нигде на сайте\" — тогда сайт тоже был недоступен); checked 2026-08-07 (пакеты 11-15, третий запуск)"
+        "label": "\"Web Usability is a strategic user experience consultancy, established in 2001.\" — the live site was behind anti-bot protection (sgcaptcha), confirmed via a Wayback archive copy of the same URL; supersedes an earlier assessment (D-047: \"year not published anywhere on the site\" — the site was also unreachable at that time); checked 2026-08-07"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -5860,7 +5860,7 @@
       },
       {
         "url": "https://tetralogical.com/about/",
-        "label": "\"We formed TetraLogical in 2019 because we saw the market become more driven by legal compliance than meeting the needs of different people.\"; checked 2026-08-07 (пакеты 11-15, третий запуск)"
+        "label": "\"We formed TetraLogical in 2019 because we saw the market become more driven by legal compliance than meeting the needs of different people.\"; checked 2026-08-07"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -9258,7 +9258,7 @@
       },
       {
         "url": "https://www.linkedin.com/company/kolibri-online/",
-        "label": "LinkedIn-Unternehmensprofil (со своего сайта): \"Gegründet 2008\"; checked 2026-08-06"
+        "label": "LinkedIn company profile (linked from their own site): \"Gegründet 2008\"; checked 2026-08-06"
       }
     ],
     "lastVerified": "2026-08-04"
@@ -11462,7 +11462,7 @@
       },
       {
         "url": "https://alpanet.pl/o-nas",
-        "label": "Таймлайн истории, заголовок \"Powstanie firmy ALPANET\": \"2000 Powstanie firmy ALPANET Firma ALPANET rozpoczęła swoją działalność, stawiając na innowacje i nowoczesne technologie.\"; checked 2026-08-07 (пакеты 11-15, третий запуск)"
+        "label": "History timeline, heading \"Powstanie firmy ALPANET\": \"2000 Powstanie firmy ALPANET Firma ALPANET rozpoczęła swoją działalność, stawiając na innowacje i nowoczesne technologie.\"; checked 2026-08-07"
       }
     ],
     "lastVerified": "2026-08-04",
@@ -11524,7 +11524,7 @@
       },
       {
         "url": "https://vobacom.pl/o-firmie",
-        "label": "Таймлайн \"Historia\": \"1999 Początkowo firma działa jako spółka cywilna BMPG (Business Media Professional Group)...\" (в 2006 преобразована в sp. z o.o. и переименована в VOBACOM — смена формы, не основание; взята более ранняя дата старта деятельности); checked 2026-08-07 (пакеты 11-15, третий запуск)"
+        "label": "Timeline \"Historia\": \"1999 Początkowo firma działa jako spółka cywilna BMPG (Business Media Professional Group)...\" (in 2006 converted to sp. z o.o. and renamed VOBACOM — a change of legal form, not a founding; the earlier start-of-activity date was used); checked 2026-08-07"
       }
     ],
     "lastVerified": "2026-08-04",
