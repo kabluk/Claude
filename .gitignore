@@ -7,3 +7,4 @@ data/a11y/collect/_existing-domains.txt
 .wrangler/
 .env
 .env.local
+.vite-react-ssg-temp/
