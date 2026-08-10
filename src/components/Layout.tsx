@@ -136,9 +136,6 @@ export function Layout({
             <Link className="hover:text-on-surface" to="/guides/">
               {t.nav.knowledge}
             </Link>
-            <Link className="hover:text-on-surface" to={paths.agencies()}>
-              {t.nav.experts}
-            </Link>
           </nav>
           <Link
             /* CN-BRANDBOOK-V2: primary-container сменил роль на «средний тон
@@ -195,6 +192,13 @@ export function Layout({
               secondary — это навигация по разделам, не мелкий шрифт правовых
               ссылок ниже. Так каждый из 8 разделов сохраняет site-wide линк. */}
           <nav aria-label={t.ariaExplore} className="flex flex-wrap gap-x-4 gap-y-1 pt-2">
+            {/* Experts (директория агентств) стоит первой в Explore: из вынесенных
+                разделов она важнее прочих (ядро «найти, кто починит» + воронка
+                лидов). Перенесена из шапки по прямой просьбе владельца — сама
+                шапка сведена к Scan/Countries/Knowledge. */}
+            <Link className="hover:text-on-surface" to={paths.agencies()}>
+              {t.nav.experts}
+            </Link>
             <Link className="hover:text-on-surface" to={paths.services()}>
               {t.nav.services}
             </Link>
