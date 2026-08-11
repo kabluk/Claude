@@ -421,6 +421,36 @@ try {
       )
       results.push({ route: `${label} (open)`, violations: openResults.violations })
     }
+    // A3-CRON-SUBSCRIBE-FORM (D-135): the monitoring signup at the foot of a
+    // done report has a state that only exists after a real submit — the form
+    // is replaced by the double-opt-in success panel, focus is moved into it,
+    // and it renders inside a live region. None of that is in the static
+    // HTML, so without this pass the audited page would only ever be the
+    // empty form. Same rubric as the INTERACT map above: drive the real
+    // interaction, then run the same axe/target-size gate on the open state.
+    // POST /api/subscribe is mocked with the exact 201 body of the contract
+    // (INTERFACES.md §2) — the audit must never hit a live worker.
+    const subscribeButton = page.getByRole('button', { name: /Email me when this changes/ })
+    if (await subscribeButton.count()) {
+      await page.route('**/api/subscribe', (route) =>
+        route.fulfill({
+          status: 201,
+          contentType: 'application/json',
+          body: JSON.stringify({ subscriptionId: 'fixture-subscription-id' }),
+        }),
+      )
+      await page.getByLabel('Your email').fill('audit-fixture@example.com')
+      await subscribeButton.click()
+      // Wait for the success panel's own text, not a timeout: the request is
+      // mocked but still async, and racing axe against it would silently
+      // audit the pre-submit form again and report a false "clean".
+      await page.getByText('One more step').waitFor({ timeout: 5000 })
+      const subscribeResults = await page.evaluate(
+        async () => await window.axe.run(document, { rules: { 'target-size': { enabled: true } } })
+      )
+      results.push({ route: `${label} (subscription sent)`, violations: subscribeResults.violations })
+      await page.unroute('**/api/subscribe')
+    }
     await page.unroute('**/api/scan/**')
   }
 } finally {

@@ -136,7 +136,11 @@ export function isValidScanUrl(value: string): boolean {
   }
 }
 
-async function apiFetch(path: string, init?: RequestInit): Promise<Response> {
+// export (A3-CRON-SUBSCRIBE-FORM): единственная точка, где склеивается адрес
+// воркера. Подписка на мониторинг (src/lib/subscribeForm.ts) бьёт в тот же
+// origin, и второй собственный API_BASE рядом означал бы вторую копию
+// нормализации хвостовых слэшей из D-104 — ровно ту, которую там забыли.
+export async function apiFetch(path: string, init?: RequestInit): Promise<Response> {
   if (!API_BASE) throw new ScannerUnavailableError('VITE_SCANNER_API is not configured')
   return fetch(`${API_BASE}${path}`, init)
 }

@@ -22,6 +22,7 @@ import { estimateCost, formatCostEstimate, type CostCurrency, type CostEstimate 
 import { conversionDisclaimer } from '@/lib/currency'
 import { decidePollNext, type PollAttempt } from '@/lib/reportPolling'
 import { MatchedAgencies } from '@/components/MatchedAgencies'
+import { SubscribeForm } from '@/components/SubscribeForm'
 import { useToasts, ToastRegion } from '@/components/library/Toast'
 import { Accordion } from '@/components/library/Accordion'
 import { uncoveredRows } from '@/lib/coverage'
@@ -512,6 +513,21 @@ function ReportBody({ report }: { report: ScanReport }) {
       {cost && <ReportBrief report={report} groups={groups} cost={cost} />}
 
       <MatchedAgencies findings={report.findings} priceBand={cost?.band} scanId={report.id} />
+
+      {/* A3-CRON-SUBSCRIBE-FORM (D-135): последний блок отчёта, СОЗНАТЕЛЬНО
+          после воронки. Всё выше — просьбы действовать сейчас (план,
+          «короткая версия», агентства), и вставлять бесплатную отсрочку
+          («мы просто последим») перед ними значило бы предлагать отложить
+          починку раньше, чем саму починку. Ниже агентств это честный путь
+          для того, кто сегодня не готов ни платить, ни звать подрядчика, —
+          и это единственный шов, который не рвёт соседства D-130: «the plan
+          below» у чек-листа и «leads straight into MatchedAgencies below» у
+          короткой версии остаются верными дословно. Рендерится в обеих
+          ветках done-отчёта (и с находками, и с чистым сканом — чистому
+          сайту мониторинг нужен ровно затем, чтобы таким и остаться), но
+          недоступен для running/error: у неудавшегося скана нечего
+          отслеживать, и ReportBody до этого места не доходит. */}
+      <SubscribeForm url={report.url} />
     </div>
   )
 }
