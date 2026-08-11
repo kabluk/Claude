@@ -4,6 +4,7 @@ import { handlePostPlanCheckout } from './routes/planCheckout.js'
 import { handlePostExplain } from './routes/explain.js'
 import { handlePostLead } from './routes/lead.js'
 import { handlePostClaim, handleGetClaimVerify } from './routes/claim.js'
+import { handlePostSubscribe, handleGetSubscribeVerify, handleUnsubscribe } from './routes/subscribe.js'
 import { handlePostStripeHook } from './routes/stripeHook.js'
 import { deleteExpiredScans } from './lib/retention.js'
 import { handleScanQueueBatch } from './lib/scanJob.js'
@@ -71,6 +72,23 @@ export default {
 
     if (request.method === 'GET' && url.pathname === '/api/claim/verify') {
       return withCors(await handleGetClaimVerify(request, env), cors)
+    }
+
+    // A3-CRON-SUBSCRIBE-API: точные pathname-совпадения, поэтому порядок
+    // между ними не важен (в отличие от /api/scan/:id выше, который матчится
+    // по префиксу). unsubscribe принимает и GET (клик по ссылке из письма), и
+    // POST (RFC 8058 List-Unsubscribe-Post, будущий A3-CRON-DIGEST-EMAIL) —
+    // один и тот же обработчик, токен в query в обоих случаях.
+    if (request.method === 'POST' && url.pathname === '/api/subscribe') {
+      return withCors(await handlePostSubscribe(request, env), cors)
+    }
+
+    if (request.method === 'GET' && url.pathname === '/api/subscribe/verify') {
+      return withCors(await handleGetSubscribeVerify(request, env), cors)
+    }
+
+    if ((request.method === 'GET' || request.method === 'POST') && url.pathname === '/api/subscribe/unsubscribe') {
+      return withCors(await handleUnsubscribe(request, env), cors)
     }
 
     // Stripe вызывает это server-to-server (не из браузера) — CORS ему не
