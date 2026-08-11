@@ -90,9 +90,17 @@ const EUR: CostCurrency = { code: 'EUR', symbol: '€' }
 // up) degrades honestly to the real EUR number rather than showing a wrong
 // figure or crashing.
 export function formatCostEstimate(estimate: CostEstimate, currency: CostCurrency = EUR): string {
+  // A currency with no rate in EUR_REFERENCE_RATES (e.g. a country added to
+  // taxonomies.json before the rate table catches up) must degrade the SYMBOL
+  // along with the amount — showing the unconverted EUR number under the
+  // unknown currency's symbol (e.g. "X$30k+" for a EUR figure) would be
+  // exactly the kind of misleading-number bug this project won't tolerate.
+  // Resolve both together, once, so they can never disagree.
+  const resolved: CostCurrency =
+    currency.code === 'EUR' || convertFromEur(estimate.lowerAmount, currency.code) !== null ? currency : EUR
   const toCurrency = (amountEur: number): number =>
-    currency.code === 'EUR' ? amountEur : (convertFromEur(amountEur, currency.code) ?? amountEur)
-  const symbol = currency.code === 'EUR' ? '€' : currency.symbol
+    resolved.code === 'EUR' ? amountEur : (convertFromEur(amountEur, resolved.code) ?? amountEur)
+  const symbol = resolved.code === 'EUR' ? '€' : resolved.symbol
   if (estimate.upperAmount === null) return `${symbol}${formatAmount(toCurrency(estimate.lowerAmount))}+`
   if (estimate.lowerAmount === 0) return `Under ${symbol}${formatAmount(toCurrency(estimate.upperAmount))}`
   return `${symbol}${formatAmount(toCurrency(estimate.lowerAmount))}–${formatAmount(toCurrency(estimate.upperAmount))}`

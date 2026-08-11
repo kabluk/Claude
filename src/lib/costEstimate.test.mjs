@@ -139,7 +139,13 @@ test('formatCostEstimate: "Under X" and range forms both convert every bound sho
   assert.equal(formatCostEstimate(mid, { code: 'INR', symbol: '₹' }), `₹${lowK}k–${highK}k`)
 })
 
-test('formatCostEstimate: an unrecognized currency code degrades honestly to the real EUR number, never a wrong figure or a crash', () => {
+// Родительская проверка (D-126 review): исходная версия этого теста ожидала
+// 'Z30k+' — правильное ЧИСЛО (необращённые 30k евро), но под символом чужой
+// валюты. Это и есть нечестная деградация, которую тест должен был ловить:
+// цифра принадлежит евро, а рядом стоит символ, будто это уже пересчитано.
+// Символ обязан откатываться на € вместе с числом, иначе показываем "Z30k+"
+// пользователю, который прочитает это как 30 тысяч чего-то, чего не существует.
+test('formatCostEstimate: an unrecognized currency code degrades honestly to the real EUR figure — number AND symbol both fall back, never a mismatched pair', () => {
   const est = { band: 'enterprise', lowerAmount: 30000, upperAmount: null }
-  assert.equal(formatCostEstimate(est, { code: 'ZZZ', symbol: 'Z' }), 'Z30k+')
+  assert.equal(formatCostEstimate(est, { code: 'ZZZ', symbol: 'Z' }), '€30k+', 'symbol must fall back to € together with the number, not stay "Z" over a EUR figure')
 })
