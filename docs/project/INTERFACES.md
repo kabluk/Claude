@@ -37,6 +37,9 @@
 | `POST /api/claim` | `{agencySlug, email}` → verify-link | `{claimId}` | 2 |
 | `POST /api/stripe-hook` | Stripe event | 200 | 2 |
 | `GET /api/account/…` | magic-link cookie | сайты, сканы, дельты | 3 |
+| `POST /api/subscribe` | `{email, url, turnstileToken?}` | `{subscriptionId}` (201) · 400 `bad_request` · 403 `forbidden` (Turnstile) · 429 `rate_limited` | 3 | ✅ A3-CRON-SUBSCRIBE-API — `subscriptionId` НИКОГДА не `token` (D-023); письмо не отправляется (см. A3-CRON-CONFIRM-EMAIL) |
+| `GET /api/subscribe/verify?token=` | — | `{subscriptionId, url, verified:true, status}` (200) · 400 без token · 404 `not_found` | 3 | ✅ переводит `pending→active`; `unsubscribed` не воскрешает |
+| `GET\|POST /api/subscribe/unsubscribe?token=` | — | `{subscriptionId, url, status:'unsubscribed', alreadyUnsubscribed}` (200) · 404 `not_found` | 3 | ✅ идемпотентно; POST — задел под RFC 8058 one-click (A3-CRON-DIGEST-EMAIL) |
 
 \* `/api/explain`: код полный и протестирован (400 на невалидный ruleId, 429 на
 rate-limit, 503 без ключа, 502 с ошибкой парсится корректно — проверено вживую

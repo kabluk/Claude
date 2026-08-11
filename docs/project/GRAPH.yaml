@@ -1530,7 +1530,7 @@ nodes:
   - id: A3-CRON-SUBSCRIBE-API
     title: "POST /api/subscribe (создание pending-подписки) + GET /api/subscribe/verify (пометка verified) + unsubscribe-эндпоинт — БЕЗ отправки писем"
     owner: backend-engineer
-    status: ready
+    status: done
     depends_on: [A3-CRON-SCHEMA]
     inputs: [docs/project/INTERFACES.md, worker/routes/claim.js, worker/lib/turnstile.js, worker/lib/ratelimit.js]
     scope: [worker/routes/subscribe.js, worker/index.js]
@@ -1538,18 +1538,18 @@ nodes:
     node_kind: agent
     on_failure: escalate
     verify:
-      - npm run worker:test
+      - "npm run worker:test — 418/418 (было 386, +32), подтверждено независимо родительской сессией"
       - "400 на невалидный email/url"
-      - "201 {subscriptionId} — token НЕ в ответе (та же проверка, что должна была ловить D-023 с самого начала: явный тест 'subscriptionId != token')"
+      - "201 {subscriptionId} — token НЕ в ответе: тест грепает СЫРОЕ тело ответа и все заголовки на значение токена, не просто typeof-проверку"
       - "GET verify?token=... помечает verified=1, status=active; неизвестный токен -> 404"
       - "unsubscribe (GET или POST, токен в ссылке) переводит status=unsubscribed, идемпотентно (повтор не ошибка)"
       - "тот же rate-limit/Turnstile паттерн, что /api/lead и /api/claim"
-      - "email этим узлом НЕ отправляется — лог/TODO вместо Resend, реальная отправка это A3-CRON-CONFIRM-EMAIL"
+      - "email этим узлом НЕ отправляется — тест ловит отсутствие fetch даже при заданном RESEND_API_KEY, реальная отправка это A3-CRON-CONFIRM-EMAIL"
     max_attempts: 4
-    attempts: 0
+    attempts: 1
     risk: medium
     approval_required: false
-    notes: "Не approval — только D1 + локальная логика, по прецеденту A2-CLAIM-API (тоже medium risk, тоже false). status: blocked до закрытия A3-CRON-SCHEMA, переходит в ready автоматически, когда та станет done."
+    notes: "DONE 2026-08-11. Контракт добавлен в INTERFACES.md §2 (три строки таблицы Worker API). Второй файл тестов на настоящем node:sqlite (не только заглушка D1) — заглушка слепа к невалидному SQL/переставленным bind-параметрам, EXPLAIN QUERY PLAN подтвердил verify-lookup идёт по idx_subscriptions_token. Дедупликации (email,url) намеренно нет — иначе эндпоинт стал бы оракулом «следит ли X за Y», см. комментарий в коде. Разблокировал A3-CRON-SUBSCRIBE-FORM (уже ready по SCHEMA) и один из двух depends_on A3-CRON-CONFIRM-EMAIL."
 
   - id: A3-CRON-SUBSCRIBE-FORM
     title: "Форма подписки на мониторинг на /report/:id (email+URL, БЕЗ реальной отправки — submit подключается в A3-CRON-SUBSCRIBE-API)"
@@ -1576,7 +1576,7 @@ nodes:
   - id: A3-CRON-CONFIRM-EMAIL
     title: "Письмо double opt-in (verify-ссылка подписки) через Resend"
     owner: backend-engineer
-    status: blocked
+    status: ready
     depends_on: [A3-CRON-SUBSCRIBE-API, A3-CRON-RESEND-DOMAIN]
     inputs: [docs/project/INTERFACES.md, worker/lib/resend.js, worker/routes/claim.js]
     scope: [worker/lib/resend.js, worker/routes/subscribe.js]
@@ -1591,12 +1591,12 @@ nodes:
     attempts: 0
     risk: high
     approval_required: true
-    notes: "БЛОКИРОВАНО: approval — реальная рассылка живым сторонним адресатам (CLAUDE.md), плюс технически невозможно живьём проверить до A3-CRON-RESEND-DOMAIN (тот же sandbox-барьер D-024). Код можно писать раньше (as review, not done) тем же способом, что A2-CLAIM-EMAIL был написан до верификации домена и ждал её отдельно — но 'done' здесь означает 'реальный сторонний email получен', не 'функция написана'."
+    notes: "Обе зависимости закрыты 2026-08-11 (A3-CRON-SUBSCRIBE-API, A3-CRON-RESEND-DOMAIN) — технически разблокирован, sandbox-барьер D-024 снят. НО approval на этот КОНКРЕТНЫЙ узел ещё не запрошен: D-022 явно требует не переносить одобрение с одного узла на следующий автоматически — approval на A3-CRON-RESEND-DOMAIN (DNS/домен) не покрывает A3-CRON-CONFIRM-EMAIL (реальная рассылка живым подписчикам). Прежде чем писать/запускать код — отдельный AskUserQuestion владельцу."
 
   - id: A3-CRON-RESCAN-DELTA
     title: "Еженедельный re-scan подписанных URL (переиспользует SCAN_QUEUE) + дельта относительно предыдущего скана (новые/исчезнувшие находки, изменение score)"
     owner: backend-engineer
-    status: blocked
+    status: ready
     depends_on: [A3-CRON-SUBSCRIBE-API]
     inputs: [worker/index.js, worker/lib/scanJob.js, worker/lib/retention.js, wrangler.jsonc, docs/project/INTERFACES.md]
     scope: [worker/lib/subscriptionCron.js, worker/lib/scanDelta.js, worker/index.js, wrangler.jsonc]
