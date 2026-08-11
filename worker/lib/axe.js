@@ -140,6 +140,12 @@ const AXE_VERSION = '4.10.2'
 const AXE_CDN_URL = `https://cdn.jsdelivr.net/npm/axe-core@${AXE_VERSION}/axe.min.js`
 const USER_AGENT = 'VerscalaBot/1.0 (+https://verscala.com/about; accessibility scanner)'
 const MAX_PDF_FINDINGS_PER_PAGE = 1 // одна агрегирующая находка на страницу, не по PDF — иначе счёт взрывается
+// D-131: потолок на per-node failureSummary axe-core, по той же причине, что
+// html.slice(0, 300) ниже — findings_json целиком лежит одним блобом в D1, и
+// поле без границы растит строку пропорционально числу находок. 600 — не
+// круглое число «на глаз»: живой прогон axe по 6 страницам en.zebrakita.de
+// (126 узлов, тот же сайт, что D-129) дал максимум 359 символов, запас ~1.7×.
+const MAX_FAILURE_SUMMARY_CHARS = 600
 
 async function getAxeSource(env) {
   // Тестовый шов (D-067): env.AXE_SOURCE_URL позволяет локальному прогону
@@ -535,6 +541,19 @@ export async function scanSite(env, targetUrl, onProgress = async () => {}, coun
             selector: node.target.join(' '),
             page: pageUrl,
             html: node.html ? node.html.slice(0, 300) : undefined,
+            // D-131: axe-core's OWN fix guidance, already present in this very
+            // results object and until now thrown away. help/helpUrl are
+            // rule-level (identical for every node of one violation),
+            // failureSummary is per-node ("Fix any of the following: ...") and
+            // genuinely differs between two elements failing the same rule.
+            // Only axe-core findings have them — our own a11y-*/scan-meta-*
+            // checks below never set these fields, and nothing invents a
+            // placeholder for them (D-035/D-046).
+            help: violation.help || undefined,
+            helpUrl: violation.helpUrl || undefined,
+            failureSummary: node.failureSummary
+              ? node.failureSummary.slice(0, MAX_FAILURE_SUMMARY_CHARS)
+              : undefined,
           })
         }
       }

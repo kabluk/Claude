@@ -11,10 +11,16 @@
 //     (mirror of src/lib/wcag.ts::OURS_DESCRIPTIONS, gated — see that file)
 //   - legal context                                   -> the jurisdiction object
 //     the caller resolved via worker/lib/jurisdiction.js (not reproduced here)
-// We do NOT have prose for plain axe-core rules — only the WCAG SC title. A
-// ruleId with neither an OURS_DESCRIPTIONS entry nor a coverage.json row (real
-// example: 'landmark-one-main', 'region' — axe best-practice rules with no WCAG
-// SC tag at all) degrades honestly: no invented title, just the ruleId.
+//   - fix guidance for plain axe-core rules            -> the finding's own
+//     help/helpUrl/failureSummary, captured verbatim from axe-core's result
+//     object at scan time (worker/lib/axe.js, D-131) — Deque's text, not ours
+// Before D-131 we had NO prose for plain axe-core rules — only the WCAG SC
+// title — and scans made before it still don't: those degrade to that older
+// behaviour, never to a guessed sentence or a constructed Deque URL. A ruleId
+// with neither an OURS_DESCRIPTIONS entry, nor a coverage.json row, nor axe
+// help (real example: 'landmark-one-main', 'region' — axe best-practice rules
+// with no WCAG SC tag at all) degrades honestly: no invented title, just the
+// ruleId.
 
 import coverageJson from '../../data/a11y/en301549-coverage.json' with { type: 'json' }
 import { OURS_DESCRIPTIONS } from './oursDescriptions.js'
@@ -101,7 +107,15 @@ export function sortByPriority(groups) {
 // beyond-standard checks, whose `html` field is already a real descriptive
 // sentence written by worker/lib/axe.js at scan time (e.g. "no accessibility
 // statement link found on the home page") — not prose we invent here.
-export function describeRule(ruleId, firstInstanceHtml) {
+//
+// `axeHelp` (D-131) is axe-core's OWN rule-level fix guidance, captured at scan
+// time (worker/lib/axe.js) from the same results object the findings come from:
+// { help, helpUrl }. Rule-level means identical for every instance of one
+// ruleId, so the caller may take it from any instance of the group. It is
+// present only on axe-core findings and only on scans made after D-131 — when
+// it is absent this function degrades to exactly its pre-D-131 output, never to
+// a guess (no constructed Deque URL from a ruleId, no invented sentence).
+export function describeRule(ruleId, firstInstanceHtml, axeHelp = null) {
   const coverage = resolveCoverage(ruleId)
   const ours = OURS_DESCRIPTIONS[ruleId]
   const beyond = BEYOND_STANDARD_INFO[ruleId]
@@ -129,18 +143,42 @@ export function describeRule(ruleId, firstInstanceHtml) {
       link: null,
     }
   }
+  const help = axeHelp?.help || null
+  const helpUrl = axeHelp?.helpUrl || null
+
   if (coverage) {
-    // Honest naming: this is the WCAG criterion NAME, not a prose explanation
-    // of the specific issue — we don't have prose for plain axe-core rules
-    // (see file header). Calling it "what to fix" in the UI, not "explanation".
+    // D-131: with axe-core's own `help` we finally have a real "what to fix"
+    // line for a plain axe rule, so it becomes `what`, and the WCAG criterion
+    // name moves to the context it always was (it stays in wcagTitle/link,
+    // rendered on its own line — it is not removed, just no longer pretending
+    // to be fix guidance). Without it: exactly the pre-D-131 output, including
+    // the caveat that admits `what` is only the criterion name.
     return {
       kind: 'axe',
-      what: coverage.title,
-      caveat: 'this names the WCAG criterion, not the specific problem on the page — see the html/selector below for that',
+      what: help ?? coverage.title,
+      caveat: help
+        ? null
+        : 'this names the WCAG criterion, not the specific problem on the page — see the html/selector below for that',
       wcag: coverage.wcag,
       wcagTitle: coverage.title,
       clause: coverage.clause,
       link: `${BASE_URL}/wcag/${wcagSlug(coverage.wcag)}`,
+      helpUrl,
+    }
+  }
+  // No coverage row (real case: axe best-practice rules with no WCAG SC tag —
+  // 'region', 'landmark-one-main'). Pre-D-131 this was a dead end; axe's own
+  // help still describes the fix, so it is used when it is really there.
+  if (help) {
+    return {
+      kind: 'axe',
+      what: help,
+      caveat: 'axe-core flags this rule outside the WCAG criteria we map — it is a best-practice check, not a conformance failure',
+      wcag: null,
+      wcagTitle: null,
+      clause: null,
+      link: null,
+      helpUrl,
     }
   }
   return {
@@ -152,6 +190,64 @@ export function describeRule(ruleId, firstInstanceHtml) {
     clause: null,
     link: null,
   }
+}
+
+// D-131: the ~19 WCAG criteria in coverage.json that NOTHING automated checks
+// (status 'none' — neither an axe-core rule nor one of our own). One-line
+// mirror of src/lib/coverage.ts::uncoveredRows(), restated here because the
+// worker is plain ESM and cannot import the .ts (same reason as costEstimate /
+// oursDescriptions above, D-010).
+export const uncoveredRows = () => coverageJson.rows.filter((r) => r.status === 'none')
+
+// W3C's own "Understanding SC" page slug per criterion. NOT derivable from the
+// title: W3C writes "prerecorded" where our coverage.json title says
+// "pre-recorded", and drops the parenthesised list in 3.3.4 entirely — a
+// mechanical lowercase-and-hyphenate would produce dead links in a document
+// people pay for. Every slug below was read out of W3C's own index HTML
+// (https://www.w3.org/WAI/WCAG22/Understanding/, the <a href> next to the
+// matching <span class="secno">) and then each final URL was fetched live
+// (HTTP 200, page <title> = "Understanding Success Criterion <n>: <title>",
+// 2026-08-11) — same live-fact-check discipline as the legal citations,
+// D-057/D-058. A criterion missing from this map gets NO link, never a
+// constructed one.
+const UNDERSTANDING_SLUG = {
+  '1.2.3': 'audio-description-or-media-alternative-prerecorded',
+  '1.2.4': 'captions-live',
+  '1.2.5': 'audio-description-prerecorded',
+  '1.3.2': 'meaningful-sequence',
+  '1.3.3': 'sensory-characteristics',
+  '1.4.5': 'images-of-text',
+  '1.4.11': 'non-text-contrast',
+  '1.4.13': 'content-on-hover-or-focus',
+  '2.1.4': 'character-key-shortcuts',
+  '2.3.1': 'three-flashes-or-below-threshold',
+  '2.5.1': 'pointer-gestures',
+  '2.5.2': 'pointer-cancellation',
+  '2.5.4': 'motion-actuation',
+  '3.2.1': 'on-focus',
+  '3.2.2': 'on-input',
+  '3.3.1': 'error-identification',
+  '3.3.3': 'error-suggestion',
+  '3.3.4': 'error-prevention-legal-financial-data',
+  '4.1.3': 'status-messages',
+}
+
+export function understandingUrl(wcag) {
+  const slug = UNDERSTANDING_SLUG[wcag]
+  return slug ? `https://www.w3.org/WAI/WCAG22/Understanding/${slug}.html` : null
+}
+
+// Same content as /report/:id's "Check these yourself" (D-130) — the paid plan
+// repeats it because a printable document is what someone actually works
+// through, and the free page is not. wcag/title/clause are taken verbatim from
+// coverage.json; nothing is rephrased or invented per criterion.
+export function buildCheckYourself() {
+  return uncoveredRows().map((r) => ({
+    wcag: r.wcag,
+    title: r.title,
+    clause: r.clause,
+    understandingUrl: understandingUrl(r.wcag),
+  }))
 }
 
 // Legal context (block 2). `jurisdiction` is whatever
@@ -202,6 +298,17 @@ export const MAX_INSTANCES_SHOWN = 8
 
 // Single entry point: (scan row from D1, resolved jurisdiction) -> plan data.
 // No I/O, no Date.now() dependence beyond stamping when the document was built.
+// D-131: help/helpUrl are rule-level in axe-core — identical on every node of
+// one violation — so any instance of the group carries the same pair. Taken
+// from the FIRST instance that actually has one (not blindly instances[0]):
+// findings for one ruleId can be merged across pages, and a scan made partly
+// before D-131 could have a help-less instance first.
+function groupAxeHelp(group) {
+  const withHelp = group.instances.find((i) => i.help || i.helpUrl)
+  if (!withHelp) return null
+  return { help: withHelp.help ?? null, helpUrl: withHelp.helpUrl ?? null }
+}
+
 export function buildPlanData(scan, jurisdiction) {
   const groups = groupFindings(scan.findings)
   const ordered = sortByPriority(groups)
@@ -211,17 +318,20 @@ export function buildPlanData(scan, jurisdiction) {
     impact: g.impact,
     instanceCount: g.instances.length,
     pageCount: distinctPageCount(g),
-    ...describeRule(g.ruleId, g.instances[0]?.html),
+    ...describeRule(g.ruleId, g.instances[0]?.html, groupAxeHelp(g)),
   }))
 
   const devBrief = ordered.map((g) => ({
     ruleId: g.ruleId,
     impact: g.impact,
-    ...describeRule(g.ruleId, g.instances[0]?.html),
+    ...describeRule(g.ruleId, g.instances[0]?.html, groupAxeHelp(g)),
     instances: g.instances.slice(0, MAX_INSTANCES_SHOWN).map((i) => ({
       page: i.page,
       selector: i.selector,
       html: i.html ?? null,
+      // Per-instance, unlike help/helpUrl: two elements failing the same rule
+      // get different "Fix any of the following" bullets from axe-core.
+      failureSummary: i.failureSummary ?? null,
     })),
     moreInstances: Math.max(0, g.instances.length - MAX_INSTANCES_SHOWN),
   }))
@@ -238,6 +348,7 @@ export function buildPlanData(scan, jurisdiction) {
     legal: buildLegalContext(scan.findings, jurisdiction),
     priorities,
     devBrief,
+    checkYourself: buildCheckYourself(),
     effort: cost ? { band: cost.band, formatted: formatCostEstimate(cost) } : null,
   }
 }

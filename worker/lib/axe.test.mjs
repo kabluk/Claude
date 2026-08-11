@@ -53,6 +53,10 @@ function makeFakePage(opts, shared, browser) {
   const {
     hangOnAxeRun = null, neverIdle = false, homeHtml = HOME_HTML,
     navFails = () => null, axeAttaches = () => true, dieAfterAxeRuns = null,
+    // D-131: подменяет ответ axe.run(), чтобы проверить ЗАХВАТ полей
+    // help/helpUrl/failureSummary. Функция от currentUrl — per-node
+    // failureSummary должен оставаться разным у разных элементов.
+    axeViolations = null,
   } = opts
   let currentUrl = null
 
@@ -97,6 +101,7 @@ function makeFakePage(opts, shared, browser) {
         if (index === hangOnAxeRun) return new Promise(() => {})
         shared.axeRuns.push(currentUrl)
         if (dieAfterAxeRuns !== null && shared.axeRuns.length === dieAfterAxeRuns) browser.connected = false
+        if (axeViolations) return { violations: axeViolations(currentUrl) }
         return {
           violations: [{
             id: 'fake-rule', tags: ['wcag2aa', 'cat.text'], impact: 'serious',
@@ -472,4 +477,92 @@ test('SCAN-RESILIENCE: политика блокировки — чистая ф
   assert.equal(shouldBlockRequest('data:text/html,hi', 'script'), false)
   assert.equal(isTrackerHost('HOTJAR.COM'), true)
   assert.equal(isTrackerHost('hotjar.com.evil.test'), false)
+})
+
+// --- D-131: захват собственных подсказок axe-core ----------------------------
+//
+// help/helpUrl/failureSummary лежат в ТОМ ЖЕ results-объекте, который цикл по
+// violations уже перебирает, и до D-131 просто выбрасывались. Строки ниже —
+// настоящий вывод axe-core 4.x с живого прогона по en.zebrakita.de (тот же
+// сайт, что D-129), не выдуманный текст «похожей формы».
+const REAL_HELP = 'Images must have alternative text'
+const REAL_HELP_URL = 'https://dequeuniversity.com/rules/axe/4.13/image-alt?application=axeAPI'
+
+test('D-131: help/helpUrl/failureSummary попадают в находку из того же axe-результата', async () => {
+  const { env } = makeFakeEnv({
+    axeViolations: (url) => [{
+      id: 'image-alt', tags: ['wcag2a', 'wcag111'], impact: 'critical',
+      help: REAL_HELP, helpUrl: REAL_HELP_URL,
+      nodes: [
+        { target: ['img.a'], html: '<img class="a">', failureSummary: `Fix any of the following:\n  no alt on ${url} first image` },
+        { target: ['img.b'], html: '<img class="b">', failureSummary: 'Fix any of the following:\n  Element has no title attribute' },
+      ],
+    }],
+  })
+
+  await withStubbedAxeFetch(async () => {
+    const result = await scanSite(env, TARGET)
+    const found = findingsFor(result, 'image-alt')
+    assert.ok(found.length >= 2)
+    // help/helpUrl — УРОВНЯ ПРАВИЛА: одинаковы у всех инстансов.
+    for (const finding of found) {
+      assert.equal(finding.help, REAL_HELP)
+      assert.equal(finding.helpUrl, REAL_HELP_URL)
+    }
+    // failureSummary — УРОВНЯ ЭЛЕМЕНТА: у двух элементов одного правила разный.
+    const onHome = found.filter((x) => x.page === TARGET)
+    assert.equal(onHome.length, 2)
+    assert.notEqual(onHome[0].failureSummary, onHome[1].failureSummary)
+    assert.match(onHome[0].failureSummary, /no alt on https:\/\/example\.test\/ first image/)
+  })
+})
+
+test('D-131: violation/node БЕЗ этих полей не падает и не подставляет заглушку', async () => {
+  const { env } = makeFakeEnv({
+    axeViolations: () => [{
+      id: 'region', tags: ['cat.keyboard'], impact: 'moderate',
+      nodes: [{ target: ['div'], html: '<div></div>' }], // ни help, ни helpUrl, ни failureSummary
+    }],
+  })
+
+  await withStubbedAxeFetch(async () => {
+    const result = await scanSite(env, TARGET)
+    const found = findingsFor(result, 'region')
+    assert.ok(found.length > 0)
+    for (const finding of found) {
+      assert.equal(finding.help, undefined)
+      assert.equal(finding.helpUrl, undefined)
+      assert.equal(finding.failureSummary, undefined)
+      // Ключевое: undefined, а НЕ '' и не выдуманная строка/сконструированный URL.
+      assert.ok(!('help' in JSON.parse(JSON.stringify(finding))), 'undefined не должен переживать сериализацию в findings_json')
+    }
+  })
+})
+
+test('D-131: собственные a11y-* проверки этих полей не получают вовсе', async () => {
+  const { env } = makeFakeEnv({})
+  await withStubbedAxeFetch(async () => {
+    const result = await scanSite(env, TARGET)
+    for (const finding of result.findings.filter((x) => x.ruleId.startsWith('a11y-'))) {
+      assert.equal(finding.help, undefined, `${finding.ruleId} не должен иметь help`)
+      assert.equal(finding.helpUrl, undefined)
+      assert.equal(finding.failureSummary, undefined)
+    }
+  })
+})
+
+test('D-131: слишком длинный failureSummary обрезается, а не растит findings_json без границы', async () => {
+  const long = 'Fix any of the following:\n  ' + 'x'.repeat(2000)
+  const { env } = makeFakeEnv({
+    axeViolations: () => [{
+      id: 'image-alt', tags: ['wcag2a'], impact: 'critical', help: REAL_HELP, helpUrl: REAL_HELP_URL,
+      nodes: [{ target: ['img'], html: '<img>', failureSummary: long }],
+    }],
+  })
+  await withStubbedAxeFetch(async () => {
+    const result = await scanSite(env, TARGET)
+    const finding = findingsFor(result, 'image-alt')[0]
+    assert.equal(finding.failureSummary.length, 600)
+    assert.ok(long.startsWith(finding.failureSummary), 'обрезка — префикс исходной строки, не пересказ')
+  })
 })

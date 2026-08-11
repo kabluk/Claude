@@ -64,7 +64,22 @@ D-016). `sampleHtml` из черновика убран — конфликтов
 ```ts
 type ScanFinding = { ruleId: string; wcag: string[]; impact: 'minor'|'moderate'|'serious'|'critical';
   selector: string; page: string; html?: string; jurisdictionNote?: string;
-  jurisdictionCountry?: string };
+  jurisdictionCountry?: string;
+  help?: string; helpUrl?: string; failureSummary?: string };
+// help/helpUrl/failureSummary (D-131): собственные подсказки axe-core, снятые
+// в worker/lib/axe.js из ТОГО ЖЕ results-объекта, из которого берутся сами
+// находки — ничего не выдумано и не достроено по ruleId. help/helpUrl —
+// уровня ПРАВИЛА (одинаковы у всех nodes одного violation, помощник
+// groupAxeHelp() в pdfPlan.js берёт первый непустой в группе),
+// failureSummary — уровня ЭЛЕМЕНТА («Fix any of the following: ...»), обрезан
+// до MAX_FAILURE_SUMMARY_CHARS=600 (живой замер: максимум 359 на 126 узлах
+// en.zebrakita.de) — findings_json лежит одним блобом, поле без границы растёт
+// пропорционально числу находок. МИГРАЦИИ НЕТ и не нужно: колонка
+// scans.findings_json — JSON-блоб (worker/lib/db.js::completeScan/getScan).
+// Полей нет вовсе у наших собственных a11y-*/scan-meta-* проверок и у любой
+// записи D1 до D-131 — потребитель обязан работать без них (тот же рубеж
+// обратной совместимости, что progress/countryCode). Единственный потребитель
+// — платный PDF-план; бесплатный /report/:id их сознательно НЕ показывает.
 // ruleId: либо реальный axe-core ruleId (напр. "color-contrast"), либо один из
 // собственных проверок вне axe (D-030, 2026-08-06), namespace "a11y-*"/"scan-meta-*":
 //   a11y-statement-missing / a11y-statement-incomplete — A3-STATEMENT (Anlage 3)
@@ -145,6 +160,12 @@ type ScanReport = { id: string; url: string; status: 'running'|'done'|'error'; p
 // Пейволл — отдельный узел (A2-REPORT-PAYWALL): гейт встаёт ПЕРЕД генерацией.
 // Маршрут обязан матчиться РАНЬШЕ `/api/scan/:id`, иначе тот съест путь как
 // id="<uuid>/pdf" и молча вернёт 404 (см. worker/index.js).
+// Секции документа (порядок в pdfPlanHtml.js::renderPlanHtml): cover →
+// Scan coverage → Priorities → Legal context → Effort estimate → Developer
+// brief → Check these yourself (D-131: ~19 критериев coverage.json со
+// status='none', с ЖИВО ПРОВЕРЕННЫМИ ссылками на W3C Understanding —
+// pdfPlan.js::UNDERSTANDING_SLUG, slug читается из индекса W3C, не строится
+// из заголовка; критерий без slug идёт БЕЗ ссылки, а не с угаданной).
 // Решение владельца по показу (D-114): находки на /report/:id остаются
 // ОТКРЫТЫМИ, закрывается только план; закрытая часть НЕ отдаётся клиенту —
 // CSS-блюр поверх реального текста запрещён (обходится view-source и даёт

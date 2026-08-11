@@ -151,14 +151,27 @@ function renderBriefEntry(item, rank) {
     ? `<p>${esc(item.what)}</p>`
     : `<p class="muted">${esc(item.caveat ?? 'no automated description available')}</p>`
   const caveatLine = item.what && item.caveat ? `<p class="muted"><em>${esc(item.caveat)}</em></p>` : ''
+  // D-131: Deque's own maintained page for this exact rule. Attributed, not
+  // passed off as ours — it is the source of the `help` sentence above it.
+  const helpUrlLine = item.helpUrl
+    ? `<p class="muted">Fix guidance for this rule: <a href="${esc(item.helpUrl)}">${esc(item.helpUrl)}</a> (Deque, maintainers of axe-core)</p>`
+    : ''
 
+  // D-131: failureSummary is per-instance and multi-line ("Fix any of the
+  // following:\n  ..."), so it gets its own full-width row under the element
+  // rather than a fourth column — a 4th column would squeeze the selector and
+  // html columns that are already the widest thing on the page.
   const instanceRows = item.instances
     .map(
       (inst) => `<tr>
         <td class="mono">${esc(inst.page)}</td>
         <td class="mono">${esc(inst.selector)}</td>
         <td class="mono wrap">${inst.html ? esc(inst.html) : '<span class="muted">—</span>'}</td>
-      </tr>`,
+      </tr>${
+        inst.failureSummary
+          ? `<tr class="summary-row"><td colspan="3" class="summary">${esc(inst.failureSummary)}</td></tr>`
+          : ''
+      }`,
     )
     .join('')
   const moreLine = item.moreInstances > 0
@@ -170,6 +183,7 @@ function renderBriefEntry(item, rank) {
     <p class="criterion">${criterionLine}</p>
     ${whatLine}
     ${caveatLine}
+    ${helpUrlLine}
     <table class="instances">
       <thead><tr><th>Page</th><th>Selector</th><th>HTML</th></tr></thead>
       <tbody>${instanceRows}</tbody>
@@ -184,10 +198,53 @@ function renderDevBriefSection(devBrief) {
   }
   return `<section class="block">
     <h2>Developer brief</h2>
-    <p class="muted">One entry per rule — what to fix, where, and which standard it maps to. This
-    names WCAG criteria and, where we have one, describes what our own check looks for; it is not a
-    substitute for a manual accessibility review.</p>
+    <p class="muted">One entry per rule — what to fix, where, and which standard it maps to. Fix
+    guidance for axe-core rules is axe-core's own text (Deque), reproduced as it was recorded during
+    the scan; for our own checks it describes what that check looks for. It is not a substitute for
+    a manual accessibility review.</p>
     ${devBrief.map((item, i) => renderBriefEntry(item, i + 1)).join('')}
+  </section>`
+}
+
+// D-131: same content as /report/:id's "Check these yourself" (D-130), in the
+// document someone actually works through. Every criterion here is one that NO
+// automated scan reached — including this one — so this section reports no
+// pass and no fail, only what was never examined.
+function renderCheckYourselfSection(rows) {
+  if (!rows || rows.length === 0) return ''
+  const items = rows
+    .map((r) => {
+      // The full URL is the link TEXT on purpose: this document gets printed,
+      // and a printed "How to check it" is a dead end. Same choice as the
+      // Deque link in the developer brief.
+      const link = r.understandingUrl
+        ? `<a class="mono" href="${esc(r.understandingUrl)}">${esc(r.understandingUrl)}</a>`
+        : '<span class="muted">no verified W3C reference link for this criterion</span>'
+      return `<tr>
+        <td class="mono nowrap">${esc(r.wcag)}</td>
+        <td>${esc(r.title)}</td>
+        <td class="mono nowrap">${esc(r.clause)}</td>
+        <td>${link}</td>
+      </tr>`
+    })
+    .join('')
+
+  return `<section class="block">
+    <h2>Check these yourself</h2>
+    <p>The ${rows.length} criteria below are outside what any automated scan can check — this one
+    included. Whether they pass depends on judgement about your own content: whether a video's audio
+    description is adequate, whether an error message really tells someone how to correct their
+    input. This scan neither found nor ruled out a problem for any of them; they were simply never
+    examined.</p>
+    <p>Some of this you can verify yourself. Each row links to W3C's own "Understanding" page for
+    that criterion, which explains what it means and how to test it. Whatever you or your team
+    confirm here is work a specialist does not have to start from scratch, which can reduce how much
+    you need from them for the rest. We deliberately put no figure on that — a scan gives us no way
+    to measure it.</p>
+    <table class="check-yourself">
+      <thead><tr><th>WCAG</th><th>Criterion</th><th>EN 301 549</th><th>Reference</th></tr></thead>
+      <tbody>${items}</tbody>
+    </table>
   </section>`
 }
 
@@ -220,6 +277,20 @@ const STYLE = `
     display: inline-block; border: 1px solid; border-radius: 999px;
     padding: 1px 8px; font-size: 9px; font-weight: 600; text-transform: uppercase;
   }
+  /* D-131: axe-core's per-instance failureSummary. Full-width row under its
+     element, pre-wrap because axe generates real newlines ("Fix any of the
+     following:\\n  ...") that would otherwise collapse into one run-on line. */
+  tr.summary-row td.summary {
+    white-space: pre-wrap; color: #374151; background: #f9fafb;
+    font-size: 10px; padding-top: 2px; border-bottom: 1px solid #e5e7eb;
+  }
+  /* D-131: the criterion numbers are short and must never wrap — .mono's
+     break-word (needed for selectors/URLs) split "1.4.11" across two lines. */
+  .nowrap { white-space: nowrap; }
+  table.check-yourself { table-layout: fixed; }
+  table.check-yourself th:nth-child(1), table.check-yourself td:nth-child(1) { width: 8%; }
+  table.check-yourself th:nth-child(2), table.check-yourself td:nth-child(2) { width: 34%; }
+  table.check-yourself th:nth-child(3), table.check-yourself td:nth-child(3) { width: 12%; }
   .cover { margin-bottom: 28px; }
   .cover .meta { color: #6b7280; margin-top: 6px; }
   .estimate { font-size: 20px; font-weight: 700; margin: 6px 0; }
@@ -255,6 +326,7 @@ export function renderPlanHtml(planData) {
   ${renderLegalSection(planData.legal)}
   ${renderEffortSection(planData.effort)}
   ${renderDevBriefSection(planData.devBrief)}
+  ${renderCheckYourselfSection(planData.checkYourself)}
 </body>
 </html>`
 }

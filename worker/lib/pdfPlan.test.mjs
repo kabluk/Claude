@@ -5,7 +5,9 @@ import assert from 'node:assert/strict'
 import {
   buildPlanData, groupFindings, sortByPriority, describeRule, resolveCoverage,
   buildLegalContext, buildScanCoverage, MAX_INSTANCES_SHOWN,
+  buildCheckYourself, understandingUrl,
 } from './pdfPlan.js'
+import coverageJson from '../../data/a11y/en301549-coverage.json' with { type: 'json' }
 
 const f = (over) => ({ ruleId: 'x', impact: 'moderate', selector: 'body', page: 'https://x.test/', wcag: [], ...over })
 
@@ -196,4 +198,157 @@ test('buildPlanData: only non-engineering findings still yields the lowest band,
   const scan = scanFixture({ findings: [f({ ruleId: 'a11y-statement-missing', impact: 'critical' })] })
   const plan = buildPlanData(scan, DE_JURISDICTION)
   assert.equal(plan.effort.band, 'budget')
+})
+
+// --- D-131: axe-core's own fix guidance (help/helpUrl/failureSummary) --------
+//
+// The strings below are REAL axe-core 4.x output, copied from a live run
+// against en.zebrakita.de (the same site as D-129) — not plausible-looking
+// prose written for a test. If axe ever stops emitting them, describeRule's
+// no-help branch (asserted below) is what production falls back to.
+const REAL_IMAGE_ALT_HELP = 'Images must have alternative text'
+const REAL_IMAGE_ALT_HELP_URL = 'https://dequeuniversity.com/rules/axe/4.13/image-alt?application=axeAPI'
+const REAL_REGION_HELP = 'All page content should be contained by landmarks'
+
+test('D-131: describeRule prefers axe-core help over the bare WCAG title, and keeps the criterion', () => {
+  const described = describeRule('image-alt', undefined, {
+    help: REAL_IMAGE_ALT_HELP,
+    helpUrl: REAL_IMAGE_ALT_HELP_URL,
+  })
+  assert.equal(described.kind, 'axe')
+  assert.equal(described.what, REAL_IMAGE_ALT_HELP)
+  assert.equal(described.helpUrl, REAL_IMAGE_ALT_HELP_URL)
+  // The WCAG criterion is CONTEXT, not fix guidance — it must survive, not be
+  // replaced (owner's requirement: add real guidance alongside, don't remove).
+  assert.equal(described.wcag, resolveCoverage('image-alt').wcag)
+  assert.equal(described.wcagTitle, resolveCoverage('image-alt').title)
+  assert.equal(described.clause, resolveCoverage('image-alt').clause)
+  assert.match(described.link, /verscala\.com\/wcag\//)
+  // The old caveat ("this names the WCAG criterion, not the problem") is a lie
+  // once `what` is real guidance — it must be gone, not kept for safety.
+  assert.equal(described.caveat, null)
+})
+
+test('D-131: without help, describeRule degrades to EXACTLY the pre-D-131 output (no fabrication)', () => {
+  const before = describeRule('color-contrast', undefined)
+  const withEmptyHelp = describeRule('color-contrast', undefined, { help: null, helpUrl: null })
+  for (const described of [before, withEmptyHelp]) {
+    assert.equal(described.kind, 'axe')
+    assert.equal(described.what, resolveCoverage('color-contrast').title)
+    assert.match(described.caveat, /not the specific problem/)
+    // No Deque URL is ever constructed from the ruleId when axe didn't give one.
+    assert.ok(!described.helpUrl, 'helpUrl must stay absent, never guessed from the ruleId')
+  }
+})
+
+test('D-131: a ruleId with no coverage row still gets axe help, honestly labelled best-practice', () => {
+  // 'region' is a real axe rule with no WCAG SC tag (asserted above via
+  // landmark-one-main); before D-131 it had no description at all.
+  assert.equal(resolveCoverage('region'), null)
+  const described = describeRule('region', undefined, { help: REAL_REGION_HELP, helpUrl: null })
+  assert.equal(described.kind, 'axe')
+  assert.equal(described.what, REAL_REGION_HELP)
+  assert.equal(described.wcag, null)
+  assert.match(described.caveat, /best-practice/)
+})
+
+test('D-131: our own a11y-* checks keep their own prose — axe help never overrides it', () => {
+  const described = describeRule('a11y-keyboard-trap', undefined, { help: 'axe would never say this', helpUrl: 'https://x.test/' })
+  assert.equal(described.kind, 'ours')
+  assert.match(described.what, /Tab key/)
+})
+
+test('D-131: buildPlanData carries help/helpUrl per group and failureSummary per instance', () => {
+  const scan = scanFixture({
+    findings: [
+      f({
+        ruleId: 'image-alt', impact: 'critical', page: 'https://example.com/a', selector: 'img:nth-child(1)',
+        help: REAL_IMAGE_ALT_HELP, helpUrl: REAL_IMAGE_ALT_HELP_URL,
+        failureSummary: 'Fix any of the following:\n  Element does not have an alt attribute',
+      }),
+      f({
+        ruleId: 'image-alt', impact: 'critical', page: 'https://example.com/b', selector: 'img:nth-child(2)',
+        help: REAL_IMAGE_ALT_HELP, helpUrl: REAL_IMAGE_ALT_HELP_URL,
+        failureSummary: 'Fix any of the following:\n  Element has no title attribute',
+      }),
+    ],
+  })
+  const plan = buildPlanData(scan, DE_JURISDICTION)
+  assert.equal(plan.devBrief[0].what, REAL_IMAGE_ALT_HELP)
+  assert.equal(plan.devBrief[0].helpUrl, REAL_IMAGE_ALT_HELP_URL)
+  assert.equal(plan.priorities[0].what, REAL_IMAGE_ALT_HELP)
+  // Per-INSTANCE, not per-rule: the two rows must keep their own summaries.
+  assert.deepEqual(
+    plan.devBrief[0].instances.map((i) => i.failureSummary),
+    [
+      'Fix any of the following:\n  Element does not have an alt attribute',
+      'Fix any of the following:\n  Element has no title attribute',
+    ],
+  )
+})
+
+test('D-131: help on a LATER instance is still found (group help is not blindly instances[0])', () => {
+  const scan = scanFixture({
+    findings: [
+      f({ ruleId: 'image-alt', impact: 'critical', page: 'https://example.com/a' }), // pre-D-131 shape
+      f({ ruleId: 'image-alt', impact: 'critical', page: 'https://example.com/b', help: REAL_IMAGE_ALT_HELP, helpUrl: REAL_IMAGE_ALT_HELP_URL }),
+    ],
+  })
+  const plan = buildPlanData(scan, DE_JURISDICTION)
+  assert.equal(plan.devBrief[0].what, REAL_IMAGE_ALT_HELP)
+})
+
+test('D-131: an old scan (no help anywhere) produces a plan with null summaries and no helpUrl', () => {
+  const scan = scanFixture({ findings: [f({ ruleId: 'image-alt', impact: 'critical' })] })
+  const plan = buildPlanData(scan, DE_JURISDICTION)
+  assert.equal(plan.devBrief[0].instances[0].failureSummary, null)
+  assert.ok(!plan.devBrief[0].helpUrl)
+  assert.equal(plan.devBrief[0].what, resolveCoverage('image-alt').title)
+})
+
+// --- D-131: "Check these yourself" data --------------------------------------
+
+test('D-131: buildCheckYourself is exactly coverage.json status==="none", verbatim', () => {
+  const rows = buildCheckYourself()
+  const expected = coverageJson.rows.filter((r) => r.status === 'none')
+  assert.equal(rows.length, expected.length)
+  assert.ok(rows.length > 0, 'coverage.json must still have uncovered criteria')
+  assert.deepEqual(rows.map((r) => r.wcag), expected.map((r) => r.wcag))
+  // Titles are copied, never rephrased for the paid document.
+  assert.deepEqual(rows.map((r) => r.title), expected.map((r) => r.title))
+  assert.deepEqual(rows.map((r) => r.clause), expected.map((r) => r.clause))
+})
+
+test('D-131: every uncovered criterion carries a REAL W3C Understanding URL', () => {
+  // The slugs were read out of W3C's own index and each URL fetched live
+  // (HTTP 200, title matched the criterion) on 2026-08-11 — see
+  // pdfPlan.js::UNDERSTANDING_SLUG. This test guards the shape and the
+  // completeness, and is the canary if coverage.json gains a new 'none' row.
+  for (const row of buildCheckYourself()) {
+    assert.ok(row.understandingUrl, `no verified W3C URL for ${row.wcag} — add it or leave the row link-less on purpose`)
+    assert.match(row.understandingUrl, /^https:\/\/www\.w3\.org\/WAI\/WCAG22\/Understanding\/[a-z0-9-]+\.html$/)
+  }
+})
+
+test('D-131: slugs are NOT mechanically derived from titles (the trap this guards)', () => {
+  // Two real W3C exceptions: "pre-recorded" in our title vs "prerecorded" in
+  // W3C's slug, and 3.3.4's parenthesised list dropped entirely. A
+  // lowercase-and-hyphenate helper would produce dead links for both.
+  assert.equal(
+    understandingUrl('1.2.3'),
+    'https://www.w3.org/WAI/WCAG22/Understanding/audio-description-or-media-alternative-prerecorded.html',
+  )
+  assert.equal(
+    understandingUrl('3.3.4'),
+    'https://www.w3.org/WAI/WCAG22/Understanding/error-prevention-legal-financial-data.html',
+  )
+})
+
+test('D-131: an unknown criterion gets NO link rather than a constructed one', () => {
+  assert.equal(understandingUrl('9.9.9'), null)
+})
+
+test('D-131: buildPlanData exposes checkYourself even for a scan with zero findings', () => {
+  const plan = buildPlanData(scanFixture({ findings: [] }), DE_JURISDICTION)
+  assert.equal(plan.checkYourself.length, buildCheckYourself().length)
 })

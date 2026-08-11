@@ -3,7 +3,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { renderPlanHtml, buildHeaderTemplate, buildFooterTemplate } from './pdfPlanHtml.js'
-import { buildPlanData } from './pdfPlan.js'
+import { buildPlanData, buildCheckYourself } from './pdfPlan.js'
 
 const f = (over) => ({ ruleId: 'x', impact: 'moderate', selector: 'body', page: 'https://x.test/', wcag: [], ...over })
 
@@ -137,4 +137,91 @@ test('priorities table is present and sorted the same as plan.priorities', () =>
   const minorIdx = html.indexOf('minor-rule')
   assert.ok(criticalIdx > -1 && minorIdx > -1)
   assert.ok(criticalIdx < minorIdx, 'critical must render before minor')
+})
+
+// --- D-131: axe-core's own fix guidance in the Developer brief ---------------
+
+const REAL_IMAGE_ALT_HELP = 'Images must have alternative text'
+const REAL_IMAGE_ALT_HELP_URL = 'https://dequeuniversity.com/rules/axe/4.13/image-alt?application=axeAPI'
+const REAL_FAILURE_SUMMARY = 'Fix any of the following:\n  Element does not have an alt attribute'
+
+test('D-131: the brief renders axe-core help text, its Deque link, and per-instance failureSummary', () => {
+  const plan = buildPlanData(
+    scanFixture({
+      findings: [f({
+        ruleId: 'image-alt', impact: 'critical', selector: 'img.logo',
+        help: REAL_IMAGE_ALT_HELP, helpUrl: REAL_IMAGE_ALT_HELP_URL, failureSummary: REAL_FAILURE_SUMMARY,
+      })],
+    }),
+    DE_JURISDICTION,
+  )
+  const html = renderPlanHtml(plan)
+  assert.match(html, /Images must have alternative text/)
+  assert.match(html, /href="https:\/\/dequeuniversity\.com\/rules\/axe\/4\.13\/image-alt\?application=axeAPI"/)
+  assert.match(html, /Deque, maintainers of axe-core/, 'the third-party source must be attributed, not passed off as ours')
+  assert.match(html, /Element does not have an alt attribute/, 'failureSummary must be VISIBLE, not merely carried in the data')
+  // The WCAG criterion survives alongside the new guidance (owner: add, don't replace).
+  assert.match(html, /WCAG 1\.1\.1/)
+})
+
+test('D-131: without help/failureSummary the brief renders exactly the old way, nothing empty or invented', () => {
+  const plan = buildPlanData(
+    scanFixture({ findings: [f({ ruleId: 'image-alt', impact: 'critical', selector: 'img.logo' })] }),
+    DE_JURISDICTION,
+  )
+  const html = renderPlanHtml(plan)
+  assert.doesNotMatch(html, /dequeuniversity\.com/, 'no Deque link may be constructed from a ruleId')
+  assert.doesNotMatch(html, /class="summary-row"/, 'no empty failureSummary row')
+  assert.match(html, /not the specific problem on the page/, 'the honest pre-D-131 caveat is still there')
+})
+
+// --- D-131: "Check these yourself" section ------------------------------------
+
+test('D-131: the plan carries a "Check these yourself" section with every uncovered criterion', () => {
+  const plan = buildPlanData(scanFixture({ findings: [f({ ruleId: 'image-alt', impact: 'critical' })] }), DE_JURISDICTION)
+  const html = renderPlanHtml(plan)
+  assert.match(html, /<h2>Check these yourself<\/h2>/)
+  for (const row of buildCheckYourself()) {
+    assert.ok(html.includes(row.title), `criterion "${row.title}" is missing from the rendered plan`)
+    assert.ok(html.includes(`href="${row.understandingUrl}"`), `W3C link for ${row.wcag} is missing`)
+  }
+})
+
+test('D-131: the section is honest about WHY these are listed — no pass/fail is claimed for them', () => {
+  const plan = buildPlanData(scanFixture({ findings: [] }), DE_JURISDICTION)
+  const html = renderPlanHtml(plan)
+  assert.match(html, /outside what any automated scan can check/)
+  assert.match(html, /neither found nor ruled out/)
+})
+
+test('D-131: the value sentence never invents a saving (R1 / D-035, applies to the PAID document too)', () => {
+  const plan = buildPlanData(scanFixture({ findings: [f({ ruleId: 'image-alt', impact: 'critical' })] }), DE_JURISDICTION)
+  const section = renderPlanHtml(plan).split('<h2>Check these yourself</h2>')[1]
+  assert.ok(section, 'section must exist')
+  // No money, no percentage, no hours/days saved anywhere in this section.
+  assert.doesNotMatch(section, /(?:€|EUR|\$|£)\s?\d/i)
+  assert.doesNotMatch(section, /\d+\s?%/)
+  assert.doesNotMatch(section, /\bsave[sd]?\b|\bsaving/i)
+  assert.doesNotMatch(section, /\b\d+\s?(hours?|days?|weeks?|months?)\b/i)
+  // ...and it does say the honest version.
+  // \s+ not a literal space: the source template wraps this sentence across lines.
+  assert.match(section, /can reduce how much\s+you need from them/)
+})
+
+test('D-131: every W3C link in the rendered plan points at w3.org, never a guessed host or path', () => {
+  const plan = buildPlanData(scanFixture({ findings: [] }), DE_JURISDICTION)
+  const html = renderPlanHtml(plan)
+  const understandingLinks = [...html.matchAll(/href="([^"]*Understanding[^"]*)"/g)].map((m) => m[1])
+  assert.equal(understandingLinks.length, buildCheckYourself().length)
+  for (const url of understandingLinks) {
+    assert.match(url, /^https:\/\/www\.w3\.org\/WAI\/WCAG22\/Understanding\/[a-z0-9-]+\.html$/)
+  }
+})
+
+test('D-131: a plan built by an OLDER worker (no checkYourself field) renders without the section, not a crash', () => {
+  const plan = buildPlanData(scanFixture({ findings: [] }), DE_JURISDICTION)
+  delete plan.checkYourself
+  const html = renderPlanHtml(plan)
+  assert.doesNotMatch(html, /Check these yourself/)
+  assert.match(html, /^<!doctype html>/)
 })
