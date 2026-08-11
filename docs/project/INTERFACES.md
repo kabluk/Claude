@@ -161,11 +161,19 @@ type ScanReport = { id: string; url: string; status: 'running'|'done'|'error'; p
 // Маршрут обязан матчиться РАНЬШЕ `/api/scan/:id`, иначе тот съест путь как
 // id="<uuid>/pdf" и молча вернёт 404 (см. worker/index.js).
 // Секции документа (порядок в pdfPlanHtml.js::renderPlanHtml): cover →
-// Scan coverage → Priorities → Legal context → Effort estimate → Developer
+// Scan coverage → Priorities → Effort estimate → Legal context → Developer
 // brief → Check these yourself (D-131: ~19 критериев coverage.json со
 // status='none', с ЖИВО ПРОВЕРЕННЫМИ ссылками на W3C Understanding —
 // pdfPlan.js::UNDERSTANDING_SLUG, slug читается из индекса W3C, не строится
 // из заголовка; критерий без slug идёт БЕЗ ссылки, а не с угаданной).
+// D-132: Effort перед Legal — так эти два виджета стоят в макете владельца.
+// Документ ОБЯЗАН оставаться самодостаточным: никаких <link>/<script>/CDN —
+// setContent() Browser Rendering'а их не резолвит. Шрифты приходят base64-woff2
+// из worker/lib/pdfFonts.js, иконки — инлайновый SVG, а единственные внешние
+// URL в выводе это цели <a href> (w3.org, dequeuniversity.com, verscala.com).
+// buildHeaderTemplate/buildFooterTemplate Chromium рендерит в ИЗОЛИРОВАННОМ
+// документе: @font-face туда не достаёт, у них системный шрифт — это предел
+// платформы, а не недоделка.
 // Решение владельца по показу (D-114): находки на /report/:id остаются
 // ОТКРЫТЫМИ, закрывается только план; закрытая часть НЕ отдаётся клиенту —
 // CSS-блюр поверх реального текста запрещён (обходится view-source и даёт

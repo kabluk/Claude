@@ -2,6 +2,48 @@
 
 Обновлено: 2026-08-11 (см. также подробный legacy-статус: `research/STATE.md`)
 
+## Последнее (2026-08-11, платный PDF-план: новая визуальная система из макетов Stitch / D-132)
+
+`GET /api/scan/:id/pdf` перерисован целиком по 4 HTML-макетам Google Stitch,
+которые сдал владелец. Только PDF: `verscala.com` со своим Brand Book (D-072)
+не тронут, `src/` в коммите — ноль изменений, `worker/lib/pdfPlan.js` и
+`worker/routes/scanPdf.js` не изменены (меняется только рендер того же
+`planData`).
+
+Общий для всех макетов блок `tailwind.config` принят единственным источником
+токенов: палитра (`primary #4450b7`, `error #ba1a1a`, surface-семейство),
+радиусы, шкала кегля (display 48 / headline-lg 32 / headline-md 24 / body-lg
+16 / body-md 14 / label-md 13 / label-sm 11) перенесены в CSS-переменные
+точными значениями, руками — Tailwind в рантайме нет и быть не может.
+Geist и JetBrains Mono вшиты base64-woff2 в новый `worker/lib/pdfFonts.js`
+из уже бывших в `package.json` пакетов `@fontsource-variable/*` (latin +
+latin-ext, переменная ось): `setContent()` не умеет тянуть CDN, а молчаливый
+откат на системный шрифт в документе за 19.99 EUR недопустим. Иконочный
+шрифт Material Symbols не вшивался — 7 иконок перерисованы инлайновым SVG.
+
+Удалено осознанно: навигация приложения (`REPORT`/`ARCHIVE`/аватар — в PDF
+некуда идти) и **значки «ISO 27001» / «GDPR COMPLIANT»** — таких
+сертификаций у Verscala нет, это была бы ложная заявка (D-035/D-046/D-114).
+«© 2024 ACCESSATLAS» заменено на Verscala с годом из `generatedAt`, а не
+зашитым в шаблон. Слово при скоре взято из своего правила D-107
+(`scoreGrade`: 44 → «Poor»), а не из выдуманного макетом «Needs Improvement».
+
+`failureSummary` (D-131), которому в макете dev-brief слота не было, получил
+callout на всю ширину под своим элементом; печатной единицей стал инстанс
+(`<tbody class="instance">` с `break-inside: avoid`), а прежний
+`break-inside: avoid` на всём правиле снят — правило на 8 инстансов выше
+страницы, и Chromium терял на нём полстраницы, всё равно разрывая (21 → 19
+страниц).
+
+Проверка: `worker:test` **386/386** (было 378), `typecheck` чисто,
+`src:test` 60/60, `src/` без изменений, бандл воркера 286 → 393 KiB gzip
+(лимит 3 MB). Живой PDF на 19 страниц собран локальным Chromium (техника
+D-129/D-131) по реальному скану en.zebrakita.de, обогащённому живым axe-core
+4.10.2 (125/128 находок). Грепы по итоговому HTML: `cdn.tailwindcss.com`,
+`fonts.googleapis.com`, `material-symbols`, `ISO 27001`, `GDPR`,
+`AccessAtlas`, `2024`, `<link`, `<script` — все 0; `dequeuniversity.com`
+только внутри `<a href>`. Три канарейки покраснели и восстановлены.
+
 ## Последнее (2026-08-11, платный PDF-план: настоящее руководство по починке + «Check these yourself» / D-131)
 
 `GET /api/scan/:id/pdf` перестал выдавать за «что чинить» просто заголовок

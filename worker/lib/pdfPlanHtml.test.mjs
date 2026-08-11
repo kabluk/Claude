@@ -37,6 +37,147 @@ test('rendered plan is one self-contained HTML document with no external asset r
   assert.doesNotMatch(html, /fonts\.googleapis\.com|cdn\.jsdelivr\.net/i)
 })
 
+// --- D-132: the Stitch design system, translated for a printed document -------
+// The mockups are Tailwind-CDN pages. Everything they load over the network has
+// to become something that survives page.setContent(), or the document silently
+// renders as unstyled fallback. These tests hold that translation in place.
+
+test('D-132: nothing the Stitch mockups loaded over the network survives into the output', () => {
+  const plan = buildPlanData(scanFixture({ findings: [f({ ruleId: 'color-contrast', impact: 'serious' })] }), DE_JURISDICTION)
+  const html = renderPlanHtml(plan)
+  assert.doesNotMatch(html, /cdn\.tailwindcss\.com/i, 'no runtime Tailwind')
+  assert.doesNotMatch(html, /<script/i, 'no <script> at all — nothing to execute or fetch')
+  assert.doesNotMatch(html, /material-symbols/i, 'the Material Symbols icon font must be gone, not merely unstyled')
+  // The real property: no external URL may sit anywhere the renderer would
+  // FETCH it. Link targets and visible text are fine (and necessary — the Deque
+  // and W3C URLs are the point); a src/@import/url() is not.
+  assert.doesNotMatch(html, /\ssrc=["']?https?:/i, 'no element may fetch a remote resource')
+  assert.doesNotMatch(html, /url\(\s*["']?https?:/i, 'no CSS url() may point off-document')
+  assert.doesNotMatch(html, /@import/i, 'no CSS @import')
+})
+
+test('D-132: the real Geist and JetBrains Mono files are embedded, not linked and not faked', () => {
+  const html = renderPlanHtml(buildPlanData(scanFixture(), DE_JURISDICTION))
+  const faces = [...html.matchAll(/@font-face\s*\{[^}]*\}/g)].map((m) => m[0])
+  assert.ok(faces.length >= 4, `expected both families x both subsets, got ${faces.length} @font-face rules`)
+  for (const family of ['Geist', 'JetBrains Mono']) {
+    const own = faces.filter((face) => face.includes(`font-family: "${family}"`))
+    assert.ok(own.length > 0, `no @font-face for ${family}`)
+    for (const face of own) {
+      // A real woff2 payload, inline. wOF2 is the file's magic number, and
+      // base64 of the bytes 0x77 0x4F 0x46 0x32 always starts "d09GMg".
+      assert.match(face, /src: url\(data:font\/woff2;base64,d09GMg[A-Za-z0-9+/=]{1000,}\) format\("woff2"\)/,
+        `${family} must carry real inline woff2 bytes`)
+      // Variable axis declared, so 400/500/600 are cut from the real font
+      // instead of being synthesised by the renderer.
+      assert.match(face, /font-weight: 100 (?:800|900)/, `${family} must declare its variable weight axis`)
+    }
+  }
+  // ...and the families are actually USED, not merely defined.
+  assert.match(html, /font-family: "Geist"/)
+  assert.match(html, /font-family: "JetBrains Mono"/)
+})
+
+test('D-132: icons are inline SVG — a missing icon can never print as a ligature word', () => {
+  const plan = buildPlanData(scanFixture({ findings: [f({ ruleId: 'image-alt', impact: 'critical', helpUrl: REAL_IMAGE_ALT_HELP_URL })] }), DE_JURISDICTION)
+  const html = renderPlanHtml(plan)
+  assert.match(html, /<svg class="icon" viewBox="0 0 24 24"[^>]*stroke="currentColor"/)
+  // The Material Symbols ligature names must not appear as text anywhere: that
+  // is exactly what a reader sees when an icon font fails to load.
+  for (const name of ['auto_awesome_motion', 'calendar_today', 'find_in_page', 'work_history', 'open_in_new']) {
+    assert.ok(!html.includes(name), `icon ligature name "${name}" leaked into the document as text`)
+  }
+})
+
+test('D-132: no app chrome and no fabricated certification reaches a customer-facing document', () => {
+  const html = renderPlanHtml(buildPlanData(scanFixture({ findings: [f({ ruleId: 'image-alt', impact: 'critical' })] }), DE_JURISDICTION))
+  // Verscala holds neither certification — shipping either would be a false
+  // claim (D-035/D-046/D-114). Case-insensitive: the mockups shout them.
+  assert.doesNotMatch(html, /ISO\s*27001/i, 'fabricated ISO 27001 certification badge')
+  assert.doesNotMatch(html, /GDPR\s*COMPLIANT/i, 'fabricated GDPR-compliance badge')
+  // Public brand is Verscala; AccessAtlas is the internal name (HANDOFF.md).
+  assert.doesNotMatch(html, /AccessAtlas/i, 'internal codename must not reach a paying customer')
+  assert.match(html, /Verscala/)
+  // The dashboard nav the mockups carry has nothing to navigate to in a PDF.
+  assert.doesNotMatch(html, /ARCHIVE/i)
+  assert.doesNotMatch(html, /position:\s*fixed/i, 'no fixed app header in a paginated document')
+})
+
+test('D-132: the colophon year comes from the plan, so it cannot rot the way the mockup\'s hardcoded 2024 had', () => {
+  const html2026 = renderPlanHtml(buildPlanData(scanFixture(), DE_JURISDICTION))
+  const thisYear = String(new Date().getUTCFullYear())
+  assert.match(html2026, new RegExp(`&copy; ${thisYear} Verscala`))
+
+  // Same renderer, a plan built at a different time -> a different year. If the
+  // year were a literal in the template this assertion could not pass.
+  const older = buildPlanData(scanFixture(), DE_JURISDICTION)
+  older.generatedAt = '2031-02-03T00:00:00Z'
+  const html2031 = renderPlanHtml(older)
+  assert.match(html2031, /&copy; 2031 Verscala/)
+  assert.doesNotMatch(html2031, new RegExp(`&copy; ${thisYear} Verscala`))
+  assert.doesNotMatch(html2031, /2024/)
+})
+
+test('D-132: the score word is the project\'s own scoreGrade rule (D-107), not the mockup\'s invented wording', () => {
+  const grade = (score) => renderPlanHtml(buildPlanData(scanFixture({ score }), DE_JURISDICTION))
+  assert.match(grade(95), /Excellent &middot; 95 \/ 100/)
+  assert.match(grade(70), /Good &middot; 70 \/ 100/)
+  assert.match(grade(50), /Needs work &middot; 50 \/ 100/)
+  assert.match(grade(49), /Poor &middot; 49 \/ 100/)
+  // Stitch wrote "Needs Improvement" for a score of 44. That is not a band this
+  // project has; the real rule calls 44 "Poor".
+  assert.doesNotMatch(grade(44), /Needs Improvement/i)
+  // A scan with no score says so rather than drawing a 0 dial.
+  const none = renderPlanHtml(buildPlanData(scanFixture({ score: null }), DE_JURISDICTION))
+  assert.match(none, /not available for this scan/)
+  // No dial ELEMENT is drawn (the .score-dial rule still lives in the inlined
+  // stylesheet either way, so the markup is what has to be checked).
+  assert.doesNotMatch(none, /class="score-dial"/)
+  assert.match(grade(44), /class="score-dial"/)
+})
+
+test('D-132: every instance stays welded to its own failureSummary across a page break', () => {
+  const plan = buildPlanData(
+    scanFixture({
+      findings: [
+        f({ ruleId: 'image-alt', impact: 'critical', selector: 'img.a', failureSummary: 'Fix any of the following:\n  first' }),
+        f({ ruleId: 'image-alt', impact: 'critical', selector: 'img.b', failureSummary: 'Fix any of the following:\n  second' }),
+      ],
+    }),
+    DE_JURISDICTION,
+  )
+  const html = renderPlanHtml(plan)
+  // Both summaries are really rendered, each in its own row.
+  assert.match(html, /first/)
+  assert.match(html, /second/)
+  // One <tbody class="instance"> per instance, each holding that instance's row
+  // AND its summary row — this is what tbody.instance{break-inside:avoid} acts
+  // on. Two instances -> two groups.
+  const groups = html.match(/<tbody class="instance">[\s\S]*?<\/tbody>/g) ?? []
+  assert.equal(groups.length, 2, 'each instance needs its own unbreakable group')
+  for (const g of groups) {
+    assert.match(g, /class="summary-row"/, 'a summary must sit inside the same group as its element')
+    assert.equal((g.match(/class="summary-row"/g) ?? []).length, 1, 'one summary per group, not both in one')
+  }
+  assert.match(STYLE_PROBE(html), /tbody\.instance \{ break-inside: avoid; \}/)
+})
+
+// The stylesheet is inlined, so "does the print rule exist" is answerable from
+// the rendered document itself rather than from a private constant.
+function STYLE_PROBE(html) {
+  return html.slice(html.indexOf('<style>'), html.indexOf('</style>'))
+}
+
+test('D-132: print discipline survives — sections do not split, long blocks are allowed to', () => {
+  const css = STYLE_PROBE(renderPlanHtml(buildPlanData(scanFixture(), DE_JURISDICTION)))
+  assert.match(css, /section\.block \{[^}]*break-inside: avoid-page/, 'a card must not be sliced across pages')
+  // The dev-brief and check-yourself blocks are MANY pages long. Forcing those
+  // whole would push the document onto blank pages, so they are explicitly
+  // allowed to flow — a deliberate exception, not an oversight.
+  assert.match(css, /section\.brief-block, section\.check-block \{ break-inside: auto; \}/)
+  assert.match(css, /thead \{ display: table-header-group; \}/, 'table headers must repeat on continuation pages')
+})
+
 test('no fine amount is ever rendered, for a jurisdiction WITH a verified citation (DE)', () => {
   const plan = buildPlanData(
     scanFixture({ findings: [f({ ruleId: 'a11y-statement-missing', impact: 'critical' })] }),
