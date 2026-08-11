@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { handlePostSubscribe, handleGetSubscribeVerify, handleUnsubscribe } from './subscribe.js'
+import { handlePostSubscribe, handleGetSubscribeVerify, handleUnsubscribe, buildConfirmEmail } from './subscribe.js'
 
 // Мини-D1 над subscriptions — тот же приём, что worker/routes/claim.test.mjs::fakeDb.
 // Осознанное ограничение: это не SQLite, а сопоставление по регуляркам, то есть
@@ -182,20 +182,151 @@ test('two subscriptions for the same email/url get different, unpredictable ids 
   assert.notEqual(a.token, b.token)
 })
 
-test('no email is sent by this endpoint (no network call on the happy path) — that is A3-CRON-CONFIRM-EMAIL', async (t) => {
-  let fetchCalled = false
+// --- A3-CRON-CONFIRM-EMAIL: письмо double opt-in ---------------------------
+// До этого узла тут стоял обратный тест («fetch не вызывается даже при
+// заданном RESEND_API_KEY»); он снят намеренно — контракт эндпоинта изменился,
+// а не сломался. Условие «без ключа сети нет» сохранено ниже.
+
+// Перехват fetch на время одного теста: возвращает записанные вызовы.
+function captureFetch(t, respond = () => new Response(JSON.stringify({ id: 'evt_live' }), { status: 200 })) {
+  const calls = []
   const originalFetch = globalThis.fetch
-  globalThis.fetch = async (...fetchArgs) => {
-    fetchCalled = true
-    return originalFetch(...fetchArgs)
+  globalThis.fetch = async (url, options) => {
+    calls.push({ url, options })
+    return respond(url, options)
   }
   t.after(() => {
     globalThis.fetch = originalFetch
   })
+  return calls
+}
 
-  const res = await handlePostSubscribe(req(VALID_BODY), env({ RESEND_API_KEY: 're_test' }))
+test('no RESEND_API_KEY -> subscription is still created 201, no network call, no error (D-024 best-effort)', async (t) => {
+  const calls = captureFetch(t)
+  const e = env() // ключа нет
+  const res = await handlePostSubscribe(req(VALID_BODY), e)
+
+  assert.equal(res.status, 201, 'a missing secret must never turn a written subscription into a 5xx')
+  assert.equal(typeof (await res.json()).subscriptionId, 'string')
+  assert.equal(e.DB.rows.length, 1, 'the row is written regardless of email delivery')
+  assert.equal(e.DB.rows[0].status, 'pending')
+  assert.equal(calls.length, 0, 'without a key the Resend module must not be called at all')
+})
+
+test('with RESEND_API_KEY -> confirm email is sent to the subscriber with the real verify link', async (t) => {
+  const calls = captureFetch(t)
+  const e = env({ RESEND_API_KEY: 're_test_secret' })
+  const res = await handlePostSubscribe(req(VALID_BODY), e)
+
   assert.equal(res.status, 201)
-  assert.equal(fetchCalled, false, 'handlePostSubscribe must not call Resend, even with a key configured')
+  assert.equal(calls.length, 1, 'exactly one Resend call')
+  const [{ url, options }] = calls
+  assert.equal(url, 'https://api.resend.com/emails')
+  assert.equal(options.headers.authorization, 'Bearer re_test_secret')
+
+  const sent = JSON.parse(options.body)
+  assert.deepEqual(sent.to, ['owner@example.com'])
+  assert.equal(sent.from, 'Verscala <notify@verscala.com>', 'verified domain, not the sandbox sender')
+  assert.match(sent.subject, /Confirm your Verscala monitoring subscription/)
+
+  // Главное: ссылка ведёт на реальный GET-эндпоинт с РЕАЛЬНЫМ токеном строки
+  // D1 — не с плейсхолдером и не с id подписки.
+  const token = e.DB.rows[0].token
+  const expectedLink = `https://worker.example/api/subscribe/verify?token=${token}`
+  assert.ok(sent.text.includes(expectedLink), `verify link missing from text body:\n${sent.text}`)
+  assert.ok(sent.html.includes(`href="${expectedLink}"`), `verify link missing from html body:\n${sent.html}`)
+  assert.equal(sent.text.includes(e.DB.rows[0].id), false, 'the link must carry the token, not the public id')
+  assert.ok(sent.text.includes('https://example.com'), 'the subscriber must see which URL is being monitored')
+})
+
+test('the verify link from the email actually verifies the subscription end to end', async (t) => {
+  const calls = captureFetch(t)
+  const e = env({ RESEND_API_KEY: 're_test_secret' })
+  await handlePostSubscribe(req(VALID_BODY), e)
+
+  // Достаём ссылку из тела письма, а не из строки D1: проверяем именно то, что
+  // получит подписчик (кодирование токена, путь, query-параметр).
+  const sentText = JSON.parse(calls[0].options.body).text
+  const link = sentText.match(/https:\/\/\S*\/api\/subscribe\/verify\?token=\S+/)[0]
+
+  const verifyRes = await handleGetSubscribeVerify(new Request(link), e)
+  assert.equal(verifyRes.status, 200)
+  const data = await verifyRes.json()
+  assert.equal(data.verified, true)
+  assert.equal(data.status, 'active')
+  assert.equal(e.DB.rows[0].verified, 1)
+})
+
+test('a failing Resend call does not fail the subscription (error is swallowed and logged)', async (t) => {
+  const calls = captureFetch(t, () => new Response(JSON.stringify({ message: 'Invalid `to` field.' }), { status: 422 }))
+  const errors = []
+  const originalError = console.error
+  console.error = (...args) => errors.push(args.join(' '))
+  t.after(() => {
+    console.error = originalError
+  })
+
+  const e = env({ RESEND_API_KEY: 're_test_secret' })
+  const res = await handlePostSubscribe(req(VALID_BODY), e)
+
+  assert.equal(res.status, 201, 'Resend 422 must not become a 5xx for the caller')
+  assert.equal(e.DB.rows.length, 1)
+  assert.equal(calls.length, 1)
+  assert.ok(
+    errors.some((line) => /A3-CRON-CONFIRM-EMAIL/.test(line)),
+    'the failure must be observable in the logs, not silent',
+  )
+})
+
+test('a thrown network error inside Resend does not fail the subscription either', async (t) => {
+  captureFetch(t, () => {
+    throw new TypeError('network unreachable')
+  })
+  const originalError = console.error
+  console.error = () => {}
+  t.after(() => {
+    console.error = originalError
+  })
+
+  const e = env({ RESEND_API_KEY: 're_test_secret' })
+  const res = await handlePostSubscribe(req(VALID_BODY), e)
+  assert.equal(res.status, 201)
+  assert.equal(e.DB.rows.length, 1)
+})
+
+test('neither the token nor the verify link is written to the logs', async (t) => {
+  captureFetch(t)
+  const lines = []
+  const originalLog = console.log
+  console.log = (...args) => lines.push(args.join(' '))
+  t.after(() => {
+    console.log = originalLog
+  })
+
+  const e = env({ RESEND_API_KEY: 're_test_secret' })
+  await handlePostSubscribe(req(VALID_BODY), e)
+  const token = e.DB.rows[0].token
+  for (const line of lines) {
+    assert.equal(line.includes(token), false, `token leaked into a log line: ${line}`)
+    assert.equal(line.includes('token='), false, `verify link leaked into a log line: ${line}`)
+  }
+  assert.ok(
+    lines.some((line) => /confirm email sent/.test(line)),
+    'the successful send must still be observable',
+  )
+})
+
+test('buildConfirmEmail escapes the subscriber-supplied URL in the HTML body', () => {
+  const mail = buildConfirmEmail({
+    // Синтаксически валидный http(s)-URL, который проходит isHttpUrl и при этом
+    // содержит кавычку и угловые скобки — то, что сломало бы href="...".
+    url: 'https://example.com/?q="><script>alert(1)</script>',
+    token: 'abc123',
+    origin: 'https://worker.example',
+  })
+  assert.equal(mail.html.includes('<script>'), false, 'raw script tag must not reach the HTML body')
+  assert.ok(mail.html.includes('&lt;script&gt;'))
+  assert.ok(mail.html.includes('href="https://worker.example/api/subscribe/verify?token=abc123"'))
 })
 
 test('rate limit: blocks the 6th request from the same IP within the window', async () => {

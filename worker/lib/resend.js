@@ -17,6 +17,18 @@ const RESEND_API_URL = 'https://api.resend.com/emails'
 // домен сайта, A0-ORIGIN) это ограничение Resend, не нашего кода.
 export const SANDBOX_FROM = 'Verscala <onboarding@resend.dev>'
 
+// Собственный верифицированный домен (A3-CRON-RESEND-DOMAIN, done 2026-08-11:
+// DKIM `resend._domainkey.verscala.com` + MX/SPF под `send.verscala.com`,
+// статус `verified` в Resend API). В отличие от SANDBOX_FROM, доставляет
+// произвольным сторонним получателям — именно это снимает барьер D-024 для
+// писем подписчикам (A3-CRON-CONFIRM-EMAIL / A3-CRON-DIGEST-EMAIL).
+//
+// SANDBOX_FROM намеренно НЕ удалён и не переписан на этот адрес: claim.js и
+// lead.js не входят в scope узла, их переключение — отдельное изменение с
+// отдельной живой проверкой (переключить отправителя вслепую = узнать о
+// проблеме с репутацией домена из недоставленных писем реальным агентствам).
+export const VERIFIED_FROM = 'Verscala <notify@verscala.com>'
+
 export async function sendEmail(apiKey, { from, to, subject, text, html }) {
   const res = await fetch(RESEND_API_URL, {
     method: 'POST',

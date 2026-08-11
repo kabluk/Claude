@@ -1576,7 +1576,7 @@ nodes:
   - id: A3-CRON-CONFIRM-EMAIL
     title: "Письмо double opt-in (verify-ссылка подписки) через Resend"
     owner: backend-engineer
-    status: ready
+    status: done
     depends_on: [A3-CRON-SUBSCRIBE-API, A3-CRON-RESEND-DOMAIN]
     inputs: [docs/project/INTERFACES.md, worker/lib/resend.js, worker/routes/claim.js]
     scope: [worker/lib/resend.js, worker/routes/subscribe.js]
@@ -1588,10 +1588,10 @@ nodes:
       - "best-effort graceful degradation — отсутствие RESEND_API_KEY не превращает успешную запись подписки в 5xx (паттерн D-024, НЕ 503-if-missing)"
       - "живой прогон: реальное verify-письмо доставлено на реальный сторонний email (не на email владельца аккаунта Resend) — доказывает, что A3-CRON-RESEND-DOMAIN реально снял sandbox-ограничение"
     max_attempts: 4
-    attempts: 0
+    attempts: 1
     risk: high
     approval_required: true
-    notes: "Обе зависимости закрыты 2026-08-11 (A3-CRON-SUBSCRIBE-API, A3-CRON-RESEND-DOMAIN) — технически разблокирован, sandbox-барьер D-024 снят. НО approval на этот КОНКРЕТНЫЙ узел ещё не запрошен: D-022 явно требует не переносить одобрение с одного узла на следующий автоматически — approval на A3-CRON-RESEND-DOMAIN (DNS/домен) не покрывает A3-CRON-CONFIRM-EMAIL (реальная рассылка живым подписчикам). Прежде чем писать/запускать код — отдельный AskUserQuestion владельцу."
+    notes: "DONE 2026-08-11 (D-136). Владелец дал approval именно на этот узел и сузил живой прогон до СВОЕГО адреса (email владельца проекта, тот же, что в git author) вместо стороннего получателя — verify-критерий про «реального стороннего email» исполнен в ослабленном виде осознанно: доказательство снятия sandbox-барьера всё равно получено (from: notify@verscala.com, а не onboarding@resend.dev, HTTP 200 без 422, GET /emails/{id} last_event=delivered, msg c200c33c-f42d-48ea-b726-1c1a6d492012), а рассылка незнакомым людям ради проверки инфраструктуры — цена, которую платить не надо. worker/lib/resend.js: добавлена VERIFIED_FROM, SANDBOX_FROM оставлена claim.js/lead.js (вне scope, см. D-136). worker/routes/subscribe.js: buildConfirmEmail (text+HTML, URL подписчика экранируется — он попадает в href) + sendConfirmEmailBestEffort после INSERT. worker:test 457/457 (в дереве были незакоммиченные файлы параллельного A3-CRON-RESCAN-DELTA; вклад этого узла — subscribe.test.mjs 25 -> 31). Ссылка в живом письме вела на https://verscala.com/api/subscribe/verify?token=... — маршрут закоммичен, но ещё НЕ задеплоен, поэтому до ближайшего деплоя воркера этот конкретный клик отдаст 404; токен из прогона в D1 не писался (заглушка в скрипте), подписка мёртвая."
 
   - id: A3-CRON-RESCAN-DELTA
     title: "Еженедельный re-scan подписанных URL (переиспользует SCAN_QUEUE) + дельта относительно предыдущего скана (новые/исчезнувшие находки, изменение score)"

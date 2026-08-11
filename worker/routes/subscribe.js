@@ -4,12 +4,13 @@
 //   GET  /api/subscribe/verify?token=...    -> 200 (double opt-in подтверждён)
 //   GET|POST /api/subscribe/unsubscribe?token=... -> 200 (идемпотентно)
 //
-// Письмо с verify-ссылкой этим узлом НЕ отправляется — здесь только запись в
-// D1. Реальная отправка — отдельный узел A3-CRON-CONFIRM-EMAIL (GRAPH.yaml),
-// заблокированный approval'ом владельца на A3-CRON-RESEND-DOMAIN: пока домен
-// не верифицирован в Resend, `onboarding@resend.dev` доставляет только на
-// email владельца аккаунта, и код рассылки был бы написан впустую (D-135 п.3).
-// Тот же порядок, что был у A2-CLAIM-API -> A2-CLAIM-EMAIL.
+// A3-CRON-CONFIRM-EMAIL (2026-08-11) подключил к POST /api/subscribe реальную
+// отправку письма double opt-in с verify-ссылкой через worker/lib/resend.js —
+// best-effort, поверх уже сделанного INSERT (см. sendConfirmEmailBestEffort и
+// D-024). Отправитель — `notify@verscala.com` (VERIFIED_FROM), а не
+// sandbox-адрес: домен верифицирован узлом A3-CRON-RESEND-DOMAIN, поэтому
+// письмо доходит произвольному стороннему подписчику, а не только владельцу
+// аккаунта Resend. Тот же порядок работ, что был у A2-CLAIM-API -> A2-CLAIM-EMAIL.
 //
 // ГЛАВНЫЙ ИНВАРИАНТ (D-023, повторён в шапке migrations/0010_subscriptions.sql
 // и в INTERFACES.md §4): `id` — публичный идентификатор подписки, и он
@@ -27,6 +28,7 @@
 // worker/routes/lead.js (leads) и worker/routes/claim.js (claims).
 
 import { verifyTurnstile } from '../lib/turnstile.js'
+import { sendEmail, VERIFIED_FROM } from '../lib/resend.js'
 
 // KV fixed-window rate limiter — тот же паттерн, что worker/lib/ratelimit.js
 // (checkFixedWindow), worker/routes/lead.js (checkLeadRateLimit) и
@@ -104,21 +106,78 @@ async function insertSubscription(db, sub) {
 }
 
 // Наблюдаемость без утечки: в лог уходит публичный id и хост цели, но НЕ token
-// и НЕ полный email. Пока A3-CRON-CONFIRM-EMAIL не подключён, это единственный
-// след того, что подписка создана; сам token при необходимости достаётся из D1
-// вручную (wrangler d1 execute), а не из логов.
-function logNewSubscription({ id, url }) {
+// и НЕ полный email. Verify-ссылка тоже НЕ логируется (она содержит token) —
+// сам token при необходимости достаётся из D1 вручную (wrangler d1 execute).
+// `emailSent` различает две ситуации, которые иначе выглядят в логах
+// одинаково: «письмо ушло» и «ключа нет / Resend отказал» — без этого
+// молчаливая деградация D-024 становится невидимой.
+function logNewSubscription({ id, url, emailSent }) {
   let host = 'unparseable'
   try {
     host = new URL(url).host
   } catch {
     /* url уже провалидирован выше; ветка — на случай будущих правок */
   }
-  // TODO(A3-CRON-CONFIRM-EMAIL): отсюда уйдёт письмо double opt-in с
-  // ${origin}/api/subscribe/verify?token=... через worker/lib/resend.js,
-  // best-effort (D-024: отсутствие RESEND_API_KEY не превращает уже
-  // записанную подписку в 5xx). Ссылка НЕ логируется и НЕ возвращается.
-  console.log(`A3-CRON-SUBSCRIBE-API: subscription ${id} created for ${host} (pending, verify email not sent yet)`)
+  const mail = emailSent ? 'confirm email sent' : 'confirm email NOT sent'
+  console.log(`A3-CRON-SUBSCRIBE-API: subscription ${id} created for ${host} (pending, ${mail})`)
+}
+
+// Минимальное экранирование для HTML-тела письма. url приходит от вызывающего
+// (провалидирован только как http(s)-URL) и попадает и в текст, и в атрибут —
+// без экранирования подписчик мог бы прислать URL с кавычкой и разломать
+// разметку письма. Кавычки экранируем обе, потому что значение идёт внутрь
+// href="...".
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
+// origin берётся из самого запроса (new URL(request.url).origin), не из
+// конфига — тот же выбор и та же причина, что в claim.js::buildVerifyEmail:
+// воркер отвечает и на workers.dev, и на кастомном домене, а ссылка в письме
+// обязана вести туда, куда реально можно постучаться прямо сейчас.
+//
+// Unsubscribe-ссылки здесь намеренно нет: это письмо-ЗАПРОС подтверждения,
+// подписка ещё не активна (verified=0/pending) и по бездействию не активируется
+// — «отписаться» не от чего, а лишняя ссылка на тот же секретный токен только
+// расширила бы поверхность. Обязательный unsubscribe появляется в первом
+// РЕАЛЬНОМ письме подписчику — дайджесте (A3-CRON-DIGEST-EMAIL, RFC 8058).
+export function buildConfirmEmail({ url, token, origin }) {
+  const verifyUrl = `${origin}/api/subscribe/verify?token=${encodeURIComponent(token)}`
+  return {
+    subject: 'Confirm your Verscala monitoring subscription',
+    text: `Click the link below to confirm you want weekly accessibility monitoring emails for ${url}.
+
+${verifyUrl}
+
+If you didn't request this, ignore this email — nothing is sent until the link is opened.`,
+    html: `<p>Click the link below to confirm you want weekly accessibility monitoring emails for <strong>${escapeHtml(url)}</strong>.</p>
+<p><a href="${escapeHtml(verifyUrl)}">Confirm my subscription</a></p>
+<p>If you didn't request this, ignore this email — nothing is sent until the link is opened.</p>`,
+  }
+}
+
+// Best-effort (D-024, тот же паттерн, что claim.js::sendVerifyEmailBestEffort):
+// строка в subscriptions уже записана к моменту вызова, и её ценность не
+// зависит от письма (токен есть в D1). Отсутствие RESEND_API_KEY или сетевая
+// ошибка Resend НЕ превращают успешно созданную подписку в 5xx — это именно
+// НЕ «503 if missing». Возвращает true/false для лога, никогда не бросает.
+async function sendConfirmEmailBestEffort(env, { email, url, token, origin }) {
+  if (!env.RESEND_API_KEY) return false
+  const { subject, text, html } = buildConfirmEmail({ url, token, origin })
+  try {
+    await sendEmail(env.RESEND_API_KEY, { from: VERIFIED_FROM, to: email, subject, text, html })
+    return true
+  } catch (err) {
+    // Сообщение ошибки Resend может содержать эхо адреса, но не токен —
+    // сам токен в письмо кладём мы, а в ответ API он не возвращается.
+    console.error('A3-CRON-CONFIRM-EMAIL: failed to send confirm email', err?.message ?? err)
+    return false
+  }
 }
 
 // POST /api/subscribe {email, url, turnstileToken?} -> 201 {subscriptionId}
@@ -165,8 +224,16 @@ export async function handlePostSubscribe(request, env) {
   const email = body.email.trim()
   const url = body.url.trim()
 
+  // Порядок важен: INSERT первым и без try/catch (провал записи — настоящая
+  // 5xx, подписки не существует), отправка письма — отдельным некритичным
+  // шагом после. Не ctx.waitUntil: ответ 201 обещает, что подписка создана,
+  // а не что письмо доставлено, но задержка одного HTTP-вызова здесь дешевле
+  // потери наблюдаемости (лог ниже знает исход отправки).
   await insertSubscription(env.DB, { id, email, url, token, createdAt: new Date().toISOString() })
-  logNewSubscription({ id, url })
+
+  const origin = new URL(request.url).origin
+  const emailSent = await sendConfirmEmailBestEffort(env, { email, url, token, origin })
+  logNewSubscription({ id, url, emailSent })
 
   // Ровно одно поле. Любое расширение этого объекта обязано пройти мимо
   // token — см. тест «the verify token never appears anywhere in the response».
