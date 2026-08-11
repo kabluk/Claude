@@ -1,6 +1,35 @@
 # STATUS — фактическое состояние
 
-Обновлено: 2026-08-10 (см. также подробный legacy-статус: `research/STATE.md`)
+Обновлено: 2026-08-11 (см. также подробный legacy-статус: `research/STATE.md`)
+
+## Последнее (2026-08-11, САЙТ РЕАЛЬНО НА ПРОДЕ — D-121/D-122/D-124 доехали / D-125)
+
+Владелец сам обновил `CLOUDFLARE_API_TOKEN` в GitHub repo secrets (проверен
+in-memory перед этим: `/user/tokens/verify` ложно ответил «invalid» — это
+известная особенность Cloudflare, тот эндпоинт требует отдельное право User
+Details, которого у scoped-токена может не быть; прямой вызов того же
+`/accounts/:id/pages/projects/verscala`, что падал в CI, прошёл и вернул
+реальный проект). API-триггер деплоя (`rerun_workflow_run`/`run_workflow`)
+снова дал 403 (та же интеграция, что и в D-120) — задеплоено push'ем
+накопленных коммитов D-121…D-124 из ветки итерации в `accessatlas`
+(fast-forward, без расхождений).
+
+**CI run `31445184123` — success.** Живая проверка на самом verscala.com
+(curl, не по логу):
+- `/` → 200
+- `/agencies/akse/` → 0 вхождений U+FFFD, `Aksé — accessibility audit agency,
+  France` читается с настоящим é (D-121 подтверждён на проде)
+- `/switzerland/accessibility-remediation/` → 0 вхождений U+FFFD
+- `/sitemap.xml` → 200
+- `/report/:id` (report-shell) → 200
+- Прод-чанк `ReportPage-DReP9lMx.js` (реальный хэш с CDN, не локальный билд)
+  содержит `unlocking your plan`/`Checkout cancelled`/`Payment successful` —
+  D-124 реально задеплоен, не старый кэш.
+
+Воронка (D-114…D-116) теперь видна пользователю на проде вместе с воркером
+(Version `145c7628`, D-120). Задача сессии (главная — SSG-баг — и попутная —
+чекаут-тост) закрыта: найдена, исправлена, проверена в CI, задеплоена,
+подтверждена живьём на домене.
 
 ## Последнее (2026-08-10, хвост ?checkout=success|cancel на /report/:id / D-124)
 
