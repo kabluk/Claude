@@ -93,25 +93,28 @@ D-099/D-101) собирает с `VITE_SCANNER_API`, гоняет гейты, к
 
 ## Что осталось
 
-**A4-SITE-COUNTRY (D-126, 2026-08-11) — код готов и проверен, НЕ смёржено в
-`accessatlas`, НЕ задеплоено.** Автоопределение страны сканируемого сайта
-(`worker/lib/siteCountry.js`: user-override > schema-org JSON-LD > ccTLD >
-unknown, override-wins-пат­терн jurisdiction.js, но НЕ тот же модуль —
-см. заголовки обоих файлов) + конвертация оценки стоимости ремонта в валюту
-рынка на `/report/:id` (реальные курсы ECB, `src/lib/currency.ts`, дата
-2026-08-10, ручной override `<select>` — чисто локальный, без сети). Миграция
-`migrations/0009_country.sql` (`country_code`, `country_source` в `scans`)
-применена ЛОКАЛЬНО (`npm run db:migrate:local`), проверена реальным round-trip
-через `wrangler d1 execute --local`; на remote D1 — НЕ применялась (нужно
-`db:migrate:remote`, решение владельца). Гейты: typecheck чисто, worker:test
-355/355 (было 327), src:test 60/60 (было 47), scripts:test 48/48,
-check-links 501-0, audit-a11y 54/0, канарейка на `select-name`/
-`label-title-only` подтверждена. Живой Playwright-прогон против `dist/`
-(US → `$`, unknown → `€` без падения, ручной override без единого сетевого
-запроса) — все 9 проверок прошли, throwaway-скрипт удалён, не закоммичен.
-Осталось: владелец проверяет курсы ECB лично (единственное место, где неверное
-число было бы нечестным, не просто багом), затем решает про мёрж/push в
-`accessatlas` (автодеплой, D-099/D-101) и про `db:migrate:remote`.
+**✅ A4-SITE-COUNTRY НА ПРОДЕ (D-126…D-128, 2026-08-11).** Автоопределение
+страны сканируемого сайта (`worker/lib/siteCountry.js`: user-override >
+schema-org JSON-LD > ccTLD > unknown, override-wins-паттерн jurisdiction.js,
+но НЕ тот же модуль) + конвертация оценки стоимости ремонта в валюту рынка на
+`/report/:id` (реальные курсы ECB, `src/lib/currency.ts`, дата 2026-08-10,
+ручной override `<select>` — чисто локальный, без сети). Миграция
+`migrations/0009_country.sql` применена на РЕАЛЬНОЙ D1 (проверено
+`PRAGMA table_info` через `wrangler d1 execute --remote`), воркер задеплоен
+(Version `9c5841c8`), сайт задеплоен (push 5dcdd6c, CI+деплой success).
+Родительская проверка (D-127) нашла и починила баг (символ валюты не
+откатывался вместе с суммой при неизвестном коде — `torn fallback`, см.
+LEARNING_LOG), курсы ECB перепроверены независимым WebFetch.
+
+**Живая проверка — реальный скан боевого воркера**, не мок: `www.ladwp.com`
+(тот самый сайт из исходной жалобы) → `countryCode: null`, `countrySource:
+'unknown'`. Это ожидаемо, не баг — `.com` вне ccTLD-карты по дизайну, на
+сайте нет schema.org-адреса; честный `€`-фоллбэк + ручной выбор валюты
+работают именно для этого случая (проверено live Playwright против `dist/`
+до деплоя — тот же бандл, что сейчас на проде). Прямую Playwright-проверку
+против самого `verscala.com` из песочницы не делал — сетевой прокси сессии
+не пускает headless Chromium на внешние домены (`ERR_CONNECTION_RESET`),
+известное ограничение среды, не код; curl/API работают нормально.
 
 1. **`A0-GSC` — верификация и sitemap сделаны владельцем напрямую (D-123,
    2026-08-10).** Domain property `verscala.com` подтверждена через провайдера
