@@ -7,6 +7,7 @@ import { handlePostClaim, handleGetClaimVerify } from './routes/claim.js'
 import { handlePostSubscribe, handleGetSubscribeVerify, handleUnsubscribe } from './routes/subscribe.js'
 import { handlePostStripeHook } from './routes/stripeHook.js'
 import { deleteExpiredScans } from './lib/retention.js'
+import { runSubscriptionRescans } from './lib/subscriptionCron.js'
 import { handleScanQueueBatch } from './lib/scanJob.js'
 
 function corsHeaders(env) {
@@ -101,10 +102,24 @@ export default {
     return withCors(Response.json({ error: 'not found', code: 'not_found' }, { status: 404 }), cors)
   },
 
-  // Cron Trigger (wrangler.jsonc: triggers.crons) — удаляет сканы старше
-  // RETENTION_DAYS (worker/lib/retention.js, D-019, RISKS.md R6).
+  // Cron Trigger (wrangler.jsonc: triggers.crons, `0 3 * * *`) — ОДИН тик, две
+  // независимые задачи:
+  //   1. retention: удаляет сканы старше RETENTION_DAYS (worker/lib/retention.js,
+  //      D-019, RISKS.md R6);
+  //   2. A3-CRON-RESCAN-DELTA (D-135): ставит в SCAN_QUEUE еженедельные ре-сканы
+  //      подписок (worker/lib/subscriptionCron.js). Второе расписание НЕ
+  //      заводилось: тик ежедневный, а недельность обеспечивается фильтром по
+  //      каждой подписке — обоснование в шапке subscriptionCron.js.
+  // Два ОТДЕЛЬНЫХ waitUntil, а не один общий промис: задачи ничем не связаны, и
+  // падение одной не должно отменять другую. runSubscriptionRescans к тому же
+  // не бросает сама — .catch() ниже это второй рубеж, а не основной.
   async scheduled(event, env, ctx) {
     ctx.waitUntil(deleteExpiredScans(env.DB))
+    ctx.waitUntil(
+      runSubscriptionRescans(env).catch((err) => {
+        console.error(`A3-CRON-RESCAN: unexpected failure: ${err?.message ?? err}`)
+      }),
+    )
   },
 
   // Consumer очереди accessatlas-scan-queue (D-110): одно сообщение — один скан.

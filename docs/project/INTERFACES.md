@@ -272,6 +272,37 @@ subscriptions(id TEXT PK, email TEXT, url TEXT, token TEXT NULL, verified INT DE
 исчерпавшее повторы сообщение отбрасывается, строку в `running` закрывает
 рубеж (2) — реап D-109 при первом GET.
 
+**Cron-тик `0 3 * * *` (один, два потребителя; A3-CRON-RESCAN-DELTA, D-135).**
+`worker/index.js::scheduled` вызывает `deleteExpiredScans` (D-019) И
+`runSubscriptionRescans` (`worker/lib/subscriptionCron.js`) — двумя отдельными
+`ctx.waitUntil`, падение одного не отменяет другой. Второго cron-элемента нет
+намеренно: тик ежедневный, а недельная периодичность держится фильтром по
+каждой подписке. **Cadence-фильтр:** подписка due, если `verified = 1 AND
+status = 'active'` и `scans.created_at` строки, на которую смотрит
+`last_scan_id` (LEFT JOIN), старше 7 суток — либо этой строки нет вовсе
+(NULL/удалена retention'ом). Именно `created_at` (момент постановки), не
+`completed_at`: у идущего скана он NULL и был бы неотличим от «никогда не
+сканировали». `last_scan_id` перезаписывается сразу ПОСЛЕ успешной постановки
+в очередь, не после завершения скана. Потолок `MAX_RESCANS_PER_TICK = 25`
+ре-сканов за тик (оплачиваемый Browser Rendering), остаток — следующей ночью,
+дольше всех ждавшие первыми. Ре-скан кладёт в `SCAN_QUEUE` ровно то же
+сообщение `buildScanJobMessage`, что `POST /api/scan`; `scans.email` при этом
+NULL (адрес уже есть в `subscriptions`, дублировать не за чем — R6).
+
+**Дельта двух сканов** — `worker/lib/scanDelta.js`, чистая функция
+`computeScanDelta(previousFindings, currentFindings, options?)` →
+`{new, resolved, scoreChange, scoreBefore, scoreAfter, scopedOutPages}`.
+Тождество находки — `(ruleId, page, selector)`, у агрегатных правил
+(`a11y-pdf-present`, где `selector` = «N pdf link(s)») — `(ruleId, page)`;
+порядок массива не участвует, `html`/`impact` в ключ не входят. `scan-meta-*`
+исключены из new/resolved (как и из score, D-113). Знак `scoreChange` =
+`scoreAfter − scoreBefore`: положительное значение = стало лучше.
+`options.previousPages/currentPages` (из `ScanReport.pages`) ограничивают
+new/resolved страницами, которые обошли ОБА скана — набор обойдённых страниц
+между сканами плавает (`pickPriorityLinks`), и без этого дельта отчиталась бы
+об изменениях там, где просто поменялась шапка сайта; score всегда считается
+по полным наборам и равен `scans.score`.
+
 ## 5. Матчинг «отчёт → агентства» (контракт Фазы 1)
 
 Вход: страна пользователя (гео/выбор), стандарт (страна → закон из `taxonomies.json`),
