@@ -29,6 +29,28 @@ test('sendEmail posts to the Resend API with the expected shape', async () => {
   }
 })
 
+test('sendEmail forwards custom email headers (RFC 8058 List-Unsubscribe) but omits the key when none are given', async () => {
+  const originalFetch = globalThis.fetch
+  let captured
+  globalThis.fetch = async (_url, options) => {
+    captured = JSON.parse(options.body)
+    return new Response(JSON.stringify({ id: 'evt' }), { status: 200 })
+  }
+  try {
+    await sendEmail('re_test', {
+      from: SANDBOX_FROM, to: 'a@example.com', subject: 's', text: 't',
+      headers: { 'List-Unsubscribe': '<https://x/u?token=1>', 'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click' },
+    })
+    assert.equal(captured.headers['List-Unsubscribe'], '<https://x/u?token=1>')
+
+    // confirm/claim-путь заголовки не передаёт — ключ не должен появиться в теле
+    await sendEmail('re_test', { from: SANDBOX_FROM, to: 'a@example.com', subject: 's', text: 't' })
+    assert.equal('headers' in captured, false, 'no headers key when the caller passes none (confirm/claim body unchanged)')
+  } finally {
+    globalThis.fetch = originalFetch
+  }
+})
+
 test('sendEmail throws with the response body on a non-2xx status', async () => {
   const originalFetch = globalThis.fetch
   globalThis.fetch = async () =>

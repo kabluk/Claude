@@ -29,14 +29,20 @@ export const SANDBOX_FROM = 'Verscala <onboarding@resend.dev>'
 // проблеме с репутацией домена из недоставленных писем реальным агентствам).
 export const VERIFIED_FROM = 'Verscala <notify@verscala.com>'
 
-export async function sendEmail(apiKey, { from, to, subject, text, html }) {
+// `headers` — необязательные КАСТОМНЫЕ заголовки письма (не HTTP-заголовки
+// запроса): Resend прокидывает их в исходящее письмо as-is. Нужны дайджесту
+// (A3-CRON-DIGEST-EMAIL) под RFC 8058 one-click unsubscribe
+// (`List-Unsubscribe` + `List-Unsubscribe-Post`). Confirm-письмо их не передаёт
+// — `undefined` выпадает из JSON.stringify, тело для него байт в байт прежнее,
+// поэтому расширение не меняет контракт claim/confirm-путей.
+export async function sendEmail(apiKey, { from, to, subject, text, html, headers }) {
   const res = await fetch(RESEND_API_URL, {
     method: 'POST',
     headers: {
       'content-type': 'application/json',
       authorization: `Bearer ${apiKey}`,
     },
-    body: JSON.stringify({ from, to: [to], subject, text, html }),
+    body: JSON.stringify({ from, to: [to], subject, text, html, headers }),
   })
   if (!res.ok) {
     const body = await res.text().catch(() => '')

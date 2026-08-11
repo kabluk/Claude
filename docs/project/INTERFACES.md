@@ -254,9 +254,14 @@ accounts(id TEXT PK, email TEXT UNIQUE, sites_json TEXT, plan TEXT, created_at T
 -- last_scan_id — логическая ссылка на scans.id БЕЗ FK (как leads.scan_id): сканы
 -- удаляются по TTL, FK ронял бы удаление или каскадом сносил подписку. NULL до
 -- первого перескана. cadence на MVP всегда 'weekly', колонка заведена заранее.
+-- last_digest_scan_id (migrations/0011, D-137) — скан, ПО КОТОРЫЙ подписчику уже
+-- отправлен/оценён дайджест. Делает две работы: (1) «предыдущий скан» для дельты
+-- письма («что изменилось с прошлого письма»), (2) маркер идемпотентности — пока
+-- == last_scan_id, дайджест по этому скану уже обработан и повторно не шлётся.
 subscriptions(id TEXT PK, email TEXT, url TEXT, token TEXT NULL, verified INT DEFAULT 0,
               status TEXT DEFAULT 'pending',   -- pending | active | unsubscribed
               last_scan_id TEXT NULL, cadence TEXT DEFAULT 'weekly',
+              last_digest_scan_id TEXT NULL,   -- 0011, D-137: prev-скан + маркер «дайджест отправлен»
               created_at TEXT, unsubscribed_at TEXT NULL)
 -- индексы: token (verify-lookup), status (cron-выборка active), url/email (дедуп), created_at
 ```
@@ -302,6 +307,24 @@ new/resolved страницами, которые обошли ОБА скана
 между сканами плавает (`pickPriorityLinks`), и без этого дельта отчиталась бы
 об изменениях там, где просто поменялась шапка сайта; score всегда считается
 по полным наборам и равен `scans.score`.
+
+**Дайджест-письмо** (A3-CRON-DIGEST-EMAIL, D-137) — ТРЕТИЙ потребитель того же
+cron-тика `0 3 * * *` (`runSubscriptionDigests`, отдельный `ctx.waitUntil`).
+Проход независим от ре-скана: поставленный ре-скан ещё `running`, дельты нет —
+она появляется, когда консьюмер завершит скан (минутами-часами позже), поэтому
+дайджест смотрит на подписки с УЖЕ `done` новейшим сканом. Кандидат — подписка
+`verified=1 AND status='active'`, чей `last_scan_id` завершён и `!=
+last_digest_scan_id`. Сравнивается `last_digest_scan_id` (последний, о котором
+писали) с `last_scan_id` через `computeScanDelta`; **пустая дельта письма НЕ
+шлёт**, только продвигает маркер. Письмо (отправитель `VERIFIED_FROM`, best-effort
+D-024) несёт ссылку на `/report/:scanId`, рабочую unsubscribe-ссылку
+`${ALLOWED_ORIGIN}/api/subscribe/unsubscribe?token=…` и заголовки RFC 8058
+`List-Unsubscribe` + `List-Unsubscribe-Post: List-Unsubscribe=One-Click`
+(POST-ветку принимает `handleUnsubscribe`). `sendEmail` расширен необязательным
+полем `headers` (без него тело confirm/claim байт-в-байт прежнее). origin — из
+`env.ALLOWED_ORIGIN` (у cron нет request); без него проход ничего не шлёт.
+Маркер продвигается на baseline (первый скан)/пустой дельте/УСПЕШНОЙ отправке;
+при сбое Resend — НЕ продвигается (перешлётся следующим тиком).
 
 ## 5. Матчинг «отчёт → агентства» (контракт Фазы 1)
 

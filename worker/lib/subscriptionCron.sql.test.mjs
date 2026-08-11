@@ -17,7 +17,9 @@ import { readdirSync, readFileSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
 import {
   runSubscriptionRescans,
+  runSubscriptionDigests,
   selectDueSubscriptions,
+  selectDueDigests,
   MAX_RESCANS_PER_TICK,
 } from './subscriptionCron.js'
 import { SCAN_JOB_VERSION } from './scanJob.js'
@@ -297,4 +299,175 @@ test('real SQLite: MAX_RESCANS_PER_TICK caps one tick, the rest are picked up on
 
   const second = await runSubscriptionRescans(env, new Date(NOW.getTime() + DAY_MS))
   assert.equal(second.enqueued, 3, 'the leftovers must come first on the next tick, not starve')
+})
+
+// ===========================================================================
+// A3-CRON-DIGEST-EMAIL (D-137): дайджест-проход на настоящем SQLite и настоящей
+// миграции 0011 (last_digest_scan_id). Резенд перехватывается на fetch — то же,
+// что resend.test.mjs / subscribe.test.mjs; сеть наружу не идёт.
+// ===========================================================================
+
+const ORIGIN = 'https://verscala.com'
+
+// Завершённый скан с реальными findings_json/pages_json/score — то, что читает
+// getScan и передаёт в computeScanDelta.
+function addDoneScan(db, { id, url, findings = [], pages = [url], completedAt = daysAgo(1) }) {
+  db.raw
+    .prepare(
+      `INSERT INTO scans (id, url, status, findings_json, pages_json, score, created_at, completed_at)
+       VALUES (?, ?, 'done', ?, ?, ?, ?, ?)`,
+    )
+    .run(id, url, JSON.stringify(findings), JSON.stringify(pages), null, completedAt, completedAt)
+}
+
+function addDigestSub(db, { id, url, lastScanId, lastDigestScanId = null, status = 'active', verified = 1, token = `tok-${id}` }) {
+  db.raw
+    .prepare(
+      `INSERT INTO subscriptions (id, email, url, token, verified, status, last_scan_id, last_digest_scan_id, cadence, created_at)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'weekly', ?)`,
+    )
+    .run(id, `${id}@example.com`, url, token, verified, status, lastScanId, lastDigestScanId, daysAgo(30))
+}
+
+const finding = (ruleId, selector, impact = 'serious', page = 'https://site.example/') => ({ ruleId, page, selector, impact })
+
+// Перехват Resend: записывает распарсенные тела писем. respond умеет провалить
+// конкретного получателя (по to) 422-ответом.
+function captureResend(t, { failFor = null } = {}) {
+  const sent = []
+  const original = globalThis.fetch
+  globalThis.fetch = async (url, options) => {
+    const body = JSON.parse(options.body)
+    if (failFor && body.to?.includes(failFor)) {
+      return new Response(JSON.stringify({ message: 'Invalid `to` field.' }), { status: 422 })
+    }
+    sent.push({ url, ...body })
+    return new Response(JSON.stringify({ id: `evt_${sent.length}` }), { status: 200 })
+  }
+  t.after(() => {
+    globalThis.fetch = original
+  })
+  return sent
+}
+
+const digestEnv = (db, overrides = {}) => ({ DB: db, ALLOWED_ORIGIN: ORIGIN, RESEND_API_KEY: 're_test', ...overrides })
+const subRow = (db, id) => db.subs().find((s) => s.id === id)
+
+test('real SQLite: a non-empty delta sends exactly one digest with the real unsubscribe token + List-Unsubscribe header', { skip }, async (t) => {
+  const db = realDb()
+  addDoneScan(db, { id: 'prev', url: 'https://site.example/', findings: [finding('img-alt', 'img#a')] })
+  // новый скан: img-alt исправлен, добавился contrast — дельта не пустая
+  addDoneScan(db, { id: 'curr', url: 'https://site.example/', findings: [finding('contrast', '.btn')], completedAt: daysAgo(0) })
+  addDigestSub(db, { id: 'sub-1', url: 'https://site.example/', lastScanId: 'curr', lastDigestScanId: 'prev', token: 'realtoken123' })
+
+  const sent = captureResend(t)
+  const summary = await runSubscriptionDigests(digestEnv(db), NOW)
+
+  assert.equal(summary.sent, 1)
+  assert.equal(sent.length, 1, 'exactly one email')
+  const mail = sent[0]
+  assert.deepEqual(mail.to, ['sub-1@example.com'])
+  assert.equal(mail.from, 'Verscala <notify@verscala.com>')
+  const unsub = `${ORIGIN}/api/subscribe/unsubscribe?token=realtoken123`
+  assert.ok(mail.text.includes(unsub), `text must carry the real unsubscribe link:\n${mail.text}`)
+  assert.equal(mail.headers['List-Unsubscribe'], `<${unsub}>`)
+  assert.equal(mail.headers['List-Unsubscribe-Post'], 'List-Unsubscribe=One-Click')
+  assert.ok(mail.text.includes(`${ORIGIN}/report/curr`), 'report link points at the new scan')
+
+  // маркер продвинут на новый скан — повтора на следующем тике не будет
+  assert.equal(subRow(db, 'sub-1').last_digest_scan_id, 'curr')
+  const second = await runSubscriptionDigests(digestEnv(db), NOW)
+  assert.equal(second.candidates, 0, 'an already-digested scan is not a candidate again')
+})
+
+test('real SQLite: an EMPTY delta sends NO email but still advances the marker (no zero-update spam, no daily re-eval)', { skip }, async (t) => {
+  const db = realDb()
+  const same = [finding('img-alt', 'img#a')]
+  addDoneScan(db, { id: 'prev', url: 'https://site.example/', findings: same })
+  addDoneScan(db, { id: 'curr', url: 'https://site.example/', findings: same, completedAt: daysAgo(0) })
+  addDigestSub(db, { id: 'sub-1', url: 'https://site.example/', lastScanId: 'curr', lastDigestScanId: 'prev' })
+
+  const sent = captureResend(t)
+  const summary = await runSubscriptionDigests(digestEnv(db), NOW)
+
+  assert.equal(summary.sent, 0)
+  assert.equal(summary.skippedEmpty, 1)
+  assert.equal(sent.length, 0, 'an unchanged site must never trigger a digest email')
+  assert.equal(subRow(db, 'sub-1').last_digest_scan_id, 'curr', 'marker advances so we do not re-evaluate every daily tick')
+})
+
+test('real SQLite: the first completed re-scan is a baseline — no email, marker recorded', { skip }, async (t) => {
+  const db = realDb()
+  addDoneScan(db, { id: 'curr', url: 'https://site.example/', findings: [finding('img-alt', 'img#a')], completedAt: daysAgo(0) })
+  addDigestSub(db, { id: 'sub-1', url: 'https://site.example/', lastScanId: 'curr', lastDigestScanId: null })
+
+  const sent = captureResend(t)
+  const summary = await runSubscriptionDigests(digestEnv(db), NOW)
+
+  assert.equal(summary.baseline, 1)
+  assert.equal(sent.length, 0, 'nothing to compare against on the first scan')
+  assert.equal(subRow(db, 'sub-1').last_digest_scan_id, 'curr')
+})
+
+test('real SQLite, best-effort: no RESEND_API_KEY does not throw, does not lose the subscription (marker stays, still a candidate)', { skip }, async (t) => {
+  const db = realDb()
+  addDoneScan(db, { id: 'prev', url: 'https://site.example/', findings: [finding('img-alt', 'img#a')] })
+  addDoneScan(db, { id: 'curr', url: 'https://site.example/', findings: [finding('contrast', '.btn')], completedAt: daysAgo(0) })
+  addDigestSub(db, { id: 'sub-1', url: 'https://site.example/', lastScanId: 'curr', lastDigestScanId: 'prev' })
+
+  const sent = captureResend(t)
+  const summary = await runSubscriptionDigests(digestEnv(db, { RESEND_API_KEY: undefined }), NOW)
+
+  assert.equal(summary.failed, 1)
+  assert.equal(sent.length, 0, 'without a key the Resend module must not be called at all')
+  assert.equal(subRow(db, 'sub-1').last_digest_scan_id, 'prev', 'a non-delivered digest must not advance the marker — retried next tick')
+  assert.equal((await selectDueDigests(db)).length, 1, 'still a candidate')
+})
+
+test('real SQLite: one failing recipient (422) does not stop the digests for the others in the same tick', { skip }, async (t) => {
+  const db = realDb()
+  for (const n of ['a', 'b', 'c']) {
+    addDoneScan(db, { id: `prev-${n}`, url: `https://${n}.example/`, findings: [finding('img-alt', 'img#a', 'serious', `https://${n}.example/`)] })
+    addDoneScan(db, { id: `curr-${n}`, url: `https://${n}.example/`, findings: [finding('contrast', '.btn', 'serious', `https://${n}.example/`)], completedAt: daysAgo(0) })
+    addDigestSub(db, { id: `sub-${n}`, url: `https://${n}.example/`, lastScanId: `curr-${n}`, lastDigestScanId: `prev-${n}` })
+  }
+
+  const sent = captureResend(t, { failFor: 'sub-b@example.com' })
+  const summary = await runSubscriptionDigests(digestEnv(db), NOW)
+
+  assert.equal(summary.sent, 2)
+  assert.equal(summary.failed, 1)
+  assert.deepEqual(sent.map((m) => m.to[0]).sort(), ['sub-a@example.com', 'sub-c@example.com'])
+  // упавший получатель НЕ продвинут (перешлётся), успешные — продвинуты
+  assert.equal(subRow(db, 'sub-b').last_digest_scan_id, 'prev-b', 'the 422 recipient is retried next tick')
+  assert.equal(subRow(db, 'sub-a').last_digest_scan_id, 'curr-a')
+  assert.equal(subRow(db, 'sub-c').last_digest_scan_id, 'curr-c')
+})
+
+test('real SQLite: only verified+active subscriptions with a DONE newest scan are digest candidates', { skip }, async () => {
+  const db = realDb()
+  addDoneScan(db, { id: 'done-scan', url: 'https://a.example/' })
+  db.raw.prepare(`INSERT INTO scans (id, url, status, created_at) VALUES ('running-scan', 'https://b.example/', 'running', ?)`).run(daysAgo(0))
+
+  addDigestSub(db, { id: 'ok', url: 'https://a.example/', lastScanId: 'done-scan' })
+  addDigestSub(db, { id: 'unverified', url: 'https://a.example/', lastScanId: 'done-scan', verified: 0 })
+  addDigestSub(db, { id: 'unsub', url: 'https://a.example/', lastScanId: 'done-scan', status: 'unsubscribed' })
+  addDigestSub(db, { id: 'still-running', url: 'https://b.example/', lastScanId: 'running-scan' })
+
+  const due = await selectDueDigests(db)
+  assert.deepEqual(due.map((s) => s.id), ['ok'], 'unverified/unsubscribed/not-yet-done are all excluded')
+})
+
+test('real SQLite: without a configured ALLOWED_ORIGIN the pass sends nothing and touches no marker (broken links > no links)', { skip }, async (t) => {
+  const db = realDb()
+  addDoneScan(db, { id: 'prev', url: 'https://site.example/', findings: [finding('img-alt', 'img#a')] })
+  addDoneScan(db, { id: 'curr', url: 'https://site.example/', findings: [finding('contrast', '.btn')], completedAt: daysAgo(0) })
+  addDigestSub(db, { id: 'sub-1', url: 'https://site.example/', lastScanId: 'curr', lastDigestScanId: 'prev' })
+
+  const sent = captureResend(t)
+  const summary = await runSubscriptionDigests(digestEnv(db, { ALLOWED_ORIGIN: undefined }), NOW)
+
+  assert.equal(summary.error, 'origin_unavailable')
+  assert.equal(sent.length, 0)
+  assert.equal(subRow(db, 'sub-1').last_digest_scan_id, 'prev', 'nothing consumed; retried once origin is configured')
 })

@@ -7,7 +7,7 @@ import { handlePostClaim, handleGetClaimVerify } from './routes/claim.js'
 import { handlePostSubscribe, handleGetSubscribeVerify, handleUnsubscribe } from './routes/subscribe.js'
 import { handlePostStripeHook } from './routes/stripeHook.js'
 import { deleteExpiredScans } from './lib/retention.js'
-import { runSubscriptionRescans } from './lib/subscriptionCron.js'
+import { runSubscriptionRescans, runSubscriptionDigests } from './lib/subscriptionCron.js'
 import { handleScanQueueBatch } from './lib/scanJob.js'
 
 function corsHeaders(env) {
@@ -110,14 +110,23 @@ export default {
   //      подписок (worker/lib/subscriptionCron.js). Второе расписание НЕ
   //      заводилось: тик ежедневный, а недельность обеспечивается фильтром по
   //      каждой подписке — обоснование в шапке subscriptionCron.js.
-  // Два ОТДЕЛЬНЫХ waitUntil, а не один общий промис: задачи ничем не связаны, и
-  // падение одной не должно отменять другую. runSubscriptionRescans к тому же
-  // не бросает сама — .catch() ниже это второй рубеж, а не основной.
+  //   3. A3-CRON-DIGEST-EMAIL (D-137): шлёт письмо-дайджест по УЖЕ завершённым
+  //      ре-сканам предыдущих тиков (runSubscriptionDigests). Отдельный проход,
+  //      а не хвост ре-скана: поставленный сейчас скан ещё `running`, дельты нет
+  //      — она появляется, когда консьюмер его завершит, минутами-часами позже.
+  // Три ОТДЕЛЬНЫХ waitUntil, а не один общий промис: задачи ничем не связаны, и
+  // падение одной не должно отменять другие. runSubscription* к тому же не
+  // бросают сами — .catch() ниже это второй рубеж, а не основной.
   async scheduled(event, env, ctx) {
     ctx.waitUntil(deleteExpiredScans(env.DB))
     ctx.waitUntil(
       runSubscriptionRescans(env).catch((err) => {
         console.error(`A3-CRON-RESCAN: unexpected failure: ${err?.message ?? err}`)
+      }),
+    )
+    ctx.waitUntil(
+      runSubscriptionDigests(env).catch((err) => {
+        console.error(`A3-CRON-DIGEST: unexpected failure: ${err?.message ?? err}`)
       }),
     )
   },

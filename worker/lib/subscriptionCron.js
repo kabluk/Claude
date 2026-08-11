@@ -19,8 +19,10 @@
 // тот же консьюмер (worker/lib/scanJob.js). Никакого второго браузерного пути
 // (D-135: «новый браузерный путь не создаётся»).
 
-import { insertScanPending, failScan } from './db.js'
+import { insertScanPending, failScan, getScan } from './db.js'
 import { buildScanJobMessage } from './scanJob.js'
+import { computeScanDelta, isEmptyDelta } from './scanDelta.js'
+import { sendEmail, VERIFIED_FROM } from './resend.js'
 
 // Единственная cadence на MVP. Колонка `cadence` в таблице есть
 // (0010_subscriptions.sql), но пишется в неё только 'weekly'
@@ -235,39 +237,298 @@ export async function runSubscriptionRescans(env, now = new Date()) {
     }
   }
 
-  // TODO(A3-CRON-DIGEST-EMAIL): письмо подписчику отсюда НЕ уходит — это
-  // отдельный узел графа. Что ему нужно и откуда это брать, точно:
-  //   1. Дельта считается ТОЛЬКО функцией
-  //      `computeScanDelta(previousFindings, currentFindings)` из
-  //      worker/lib/scanDelta.js -> {new, resolved, scoreChange, scoreBefore,
-  //      scoreAfter}; «письмо не шлём на нулевой дельте» — предикат
-  //      `isEmptyDelta(delta)` оттуда же, не переписанный заново.
-  //   2. Пара сканов для неё — `pairs[i].previousScanId` (старый скан) и
-  //      `pairs[i].scanId` (только что поставленный), findings берутся
-  //      `getScan(env.DB, id).findings` (worker/lib/db.js). Туда же ОБЯЗАТЕЛЬНО
-  //      передать третий аргумент `{previousPages, currentPages}` из
-  //      `getScan(...).pages` обоих сканов: набор обойдённых страниц между
-  //      сканами плавает (pickPriorityLinks выбирает ≤6 ссылок по живой
-  //      главной), и без page-scope письмо будет отчитываться о «десятках
-  //      изменений» там, где просто поменялась шапка сайта.
-  //   3. Слать письмо ЗДЕСЬ нельзя: `scanId` в этот момент ещё `running` —
-  //      скан выполнится в консьюмере через минуты. Дайджест обязан
-  //      запускаться ПОСЛЕ завершения скана (отдельный проход, читающий
-  //      завершённые сканы подписок), и это решение принимает тот узел.
-  //   4. `previousScanId === null` — первый ре-скан подписки: сравнивать не с
-  //      чем, письмо не отправляется, этот тик только заводит базовую линию.
-  //   5. Внимание на след, который оставляет этот модуль: `last_scan_id` уже
-  //      ПЕРЕЗАПИСАН на новый скан (см. setLastScanId выше), поэтому старый id
-  //      после возврата из этой функции в БД больше не хранится нигде. Если
-  //      дайджесту нужна пара после перезапуска воркера — восстанавливать её
-  //      придётся либо запросом по `scans` того же url
-  //      (`WHERE url = ? AND status = 'done' ORDER BY created_at DESC LIMIT 2`),
-  //      либо новой колонкой (миграция 0011, напр. `prev_scan_id`). Выбор — за
-  //      тем узлом; здесь он назван, а не умолчан.
+  // Дайджест-письмо отсюда НЕ уходит и уйти не может: `scanId` в этот момент
+  // ещё `running` (скан выполнится в консьюмере через минуты). Его шлёт
+  // ОТДЕЛЬНЫЙ проход runSubscriptionDigests (ниже), запускаемый следующими
+  // тиками уже по ЗАВЕРШЁННЫМ ре-сканам. Архитектурный долг «пара сканов не
+  // переживает тик» решён колонкой `last_digest_scan_id` (migrations/0011,
+  // D-137), а НЕ правкой этого enqueue-пути — см. шапку миграции.
   console.log(
     `A3-CRON-RESCAN: due=${summary.due} enqueued=${summary.enqueued} failed=${summary.failed}` +
       (summary.due >= MAX_RESCANS_PER_TICK ? ` (hit MAX_RESCANS_PER_TICK=${MAX_RESCANS_PER_TICK}, rest continues tomorrow)` : ''),
   )
 
+  return summary
+}
+
+// ===========================================================================
+// A3-CRON-DIGEST-EMAIL (D-137): письмо-дайджест с дельтой двух сканов.
+//
+// Запускается ОТДЕЛЬНЫМ проходом от ре-скана (см. runSubscriptionRescans выше):
+// ре-скан кладёт скан в очередь и завершается позже в консьюмере, поэтому в тик
+// постановки дельты ещё нет. Дайджест смотрит на подписки, чей `last_scan_id`
+// уже `done`, и сравнивает его с `last_digest_scan_id` — сканом, о котором
+// подписчику писали в ПРОШЛЫЙ раз (migrations/0011). «Что изменилось с прошлого
+// письма», а не «между двумя соседними ре-сканами»: это переживает упавший
+// промежуточный ре-скан и рестарт воркера.
+// ===========================================================================
+
+// Потолок писем за тик — тот же порядок, что MAX_RESCANS_PER_TICK. За тик
+// завершается не больше ре-сканов, чем их поставили (≤25), так что практически
+// это страховка от внезапного всплеска, а не рабочее ограничение. Остаток —
+// следующей ночью (ORDER BY completed_at ASC отдаёт дольше всех ждавших первыми).
+export const MAX_DIGESTS_PER_TICK = 25
+
+// Кандидаты на дайджест: verified+active подписка, чей новейший скан
+// (`last_scan_id`) ЗАВЕРШЁН и ещё НЕ отражён в отправленном дайджесте
+// (`last_digest_scan_id != last_scan_id`). JOIN, а не LEFT JOIN: без завершённого
+// нового скана письмо строить не из чего. Сравнение с scans по PK (SEARCH).
+const DUE_DIGESTS_SQL = `
+  SELECT s.id AS id, s.email AS email, s.url AS url, s.token AS token,
+         s.last_scan_id AS last_scan_id, s.last_digest_scan_id AS last_digest_scan_id
+    FROM subscriptions s
+    JOIN scans cur ON cur.id = s.last_scan_id
+   WHERE s.verified = 1
+     AND s.status = 'active'
+     AND cur.status = 'done'
+     AND (s.last_digest_scan_id IS NULL OR s.last_digest_scan_id != s.last_scan_id)
+   ORDER BY cur.completed_at ASC
+   LIMIT ?`
+
+// Экспортируется отдельно, чтобы прогнать SQL по настоящему SQLite
+// (subscriptionCron.sql.test.mjs), как selectDueSubscriptions.
+export async function selectDueDigests(db, limit = MAX_DIGESTS_PER_TICK) {
+  const { results } = await db.prepare(DUE_DIGESTS_SQL).bind(limit).all()
+  return (results ?? []).map((row) => ({
+    id: row.id,
+    email: row.email,
+    url: row.url,
+    token: row.token,
+    lastScanId: row.last_scan_id ?? null,
+    lastDigestScanId: row.last_digest_scan_id ?? null,
+  }))
+}
+
+// Продвигает маркер «дайджест по этому скану обработан». Гейт по status='active'
+// — тот же рубеж, что setLastScanId: подписку, отписавшуюся между выборкой и
+// этим UPDATE, не трогаем.
+async function setLastDigestScanId(db, { subscriptionId, scanId }) {
+  await db
+    .prepare(`UPDATE subscriptions SET last_digest_scan_id = ? WHERE id = ? AND status = 'active'`)
+    .bind(scanId, subscriptionId)
+    .run()
+}
+
+// origin для ссылок письма. У cron НЕТ запроса (в отличие от confirm-письма,
+// берущего origin из request.url), поэтому единственный источник —
+// env.ALLOWED_ORIGIN (боевой домен, wrangler.jsonc vars; тот же выбор, что
+// planCheckout.js::resolveSiteOrigin). '*' — не адрес, значит «не настроено».
+// Без валидного origin ссылки письма (report, unsubscribe) вели бы в никуда, а
+// письмо без рабочей unsubscribe-ссылки нарушает verify-критерий узла и RFC 8058
+// — поэтому дайджест-проход тогда честно не шлёт ничего (см. runSubscriptionDigests).
+function resolveSiteOrigin(env) {
+  const configured = env?.ALLOWED_ORIGIN
+  if (typeof configured === 'string' && configured && configured !== '*') return configured.replace(/\/+$/, '')
+  return null
+}
+
+// Минимальное HTML-экранирование — та же функция, что subscribe.js::escapeHtml
+// (url подписчика попадает и в текст, и в href="..."). Держим локальную копию,
+// а не общий импорт: escapeHtml в subscribe.js не экспортируется, а тащить его
+// в export ради письма расширило бы контракт роут-модуля.
+function escapeHtml(value) {
+  return String(value)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+}
+
+function hostForSubject(url) {
+  try {
+    return new URL(url).host
+  } catch {
+    return url
+  }
+}
+
+// Человекочитаемая строка изменения score со знаком-направлением. score в этом
+// проекте «больше = лучше» (score.js), поэтому рост — это улучшение.
+function scoreLine(delta) {
+  const dir = delta.scoreChange > 0 ? 'improved' : delta.scoreChange < 0 ? 'declined' : 'unchanged'
+  return `Accessibility score ${dir}: ${delta.scoreBefore} → ${delta.scoreAfter} (out of 100).`
+}
+
+// Чистый билдер письма — экспортируется и тестируется отдельно (как
+// subscribe.js::buildConfirmEmail): по одной и той же дельте один и тот же текст,
+// заголовки и ссылки. `scanId` — id ТЕКУЩЕГО (нового) скана, на его /report
+// ведёт письмо. Возвращает {subject, text, html, headers}.
+export function buildDigestEmail({ url, scanId, token, origin, delta }) {
+  const host = hostForSubject(url)
+  const reportUrl = `${origin}/report/${encodeURIComponent(scanId)}`
+  const unsubscribeUrl = `${origin}/api/subscribe/unsubscribe?token=${encodeURIComponent(token)}`
+
+  const newCount = delta.new.length
+  const resolvedCount = delta.resolved.length
+  const scopedOut = delta.scopedOutPages.length
+
+  const summaryLines = [
+    `${newCount} new ${newCount === 1 ? 'issue' : 'issues'} detected.`,
+    `${resolvedCount} ${resolvedCount === 1 ? 'issue' : 'issues'} resolved.`,
+    scoreLine(delta),
+  ]
+  if (scopedOut > 0) {
+    // Честно называем страницы, которые в этот раз не обошли (плавающий набор
+    // pickPriorityLinks), а не выдаём их за изменения — та же оговорка, что в
+    // scanDelta.js::pageScope.
+    summaryLines.push(`(${scopedOut} ${scopedOut === 1 ? 'page was' : 'pages were'} not crawled this time and were excluded from the comparison.)`)
+  }
+
+  const subject = `Your Verscala accessibility monitoring update for ${host}`
+
+  const text = `Here's what changed on ${url} since your last Verscala monitoring update.
+
+${summaryLines.join('\n')}
+
+Full report: ${reportUrl}
+
+You're receiving this because you subscribed to weekly accessibility monitoring for this site.
+Unsubscribe: ${unsubscribeUrl}`
+
+  const html = `<p>Here's what changed on <strong>${escapeHtml(url)}</strong> since your last Verscala monitoring update.</p>
+<ul>
+<li>${newCount} new ${newCount === 1 ? 'issue' : 'issues'} detected.</li>
+<li>${resolvedCount} ${resolvedCount === 1 ? 'issue' : 'issues'} resolved.</li>
+<li>${escapeHtml(scoreLine(delta))}</li>
+${scopedOut > 0 ? `<li>${scopedOut} ${scopedOut === 1 ? 'page was' : 'pages were'} not crawled this time and were excluded from the comparison.</li>` : ''}
+</ul>
+<p><a href="${escapeHtml(reportUrl)}">View the full report</a></p>
+<p style="color:#666;font-size:12px">You're receiving this because you subscribed to weekly accessibility monitoring for this site. <a href="${escapeHtml(unsubscribeUrl)}">Unsubscribe</a>.</p>`
+
+  // RFC 8058 one-click unsubscribe: List-Unsubscribe несёт ту же ссылку, а
+  // List-Unsubscribe-Post разрешает почтовому клиенту отписать POST'ом без
+  // открытия страницы — POST-ветку принимает уже готовый handleUnsubscribe.
+  const headers = {
+    'List-Unsubscribe': `<${unsubscribeUrl}>`,
+    'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
+  }
+
+  return { subject, text, html, headers }
+}
+
+// Best-effort отправка (D-024, тот же паттерн, что sendConfirmEmailBestEffort):
+// отсутствие ключа или ошибка Resend НЕ бросает и НЕ роняет проход. Возвращает
+// true/false для лога и учёта в сводке.
+async function sendDigestBestEffort(env, { email, url, scanId, token, origin, delta }) {
+  if (!env.RESEND_API_KEY) return false
+  const { subject, text, html, headers } = buildDigestEmail({ url, scanId, token, origin, delta })
+  try {
+    await sendEmail(env.RESEND_API_KEY, { from: VERIFIED_FROM, to: email, subject, text, html, headers })
+    return true
+  } catch (err) {
+    console.error(`A3-CRON-DIGEST: failed to send digest for ${hostOf(url)}: ${err?.message ?? err}`)
+    return false
+  }
+}
+
+// Точка входа для worker/index.js::scheduled — соседний с retention и ре-сканом
+// проход. НИКОГДА не бросает: живёт в одном тике с ними, падение не имеет права
+// утащить соседей. Все ошибки логируются и попадают в сводку.
+//
+// Возвращает {candidates, sent, skippedEmpty, baseline, failed, error?}.
+export async function runSubscriptionDigests(env, now = new Date()) {
+  const summary = { candidates: 0, sent: 0, skippedEmpty: 0, baseline: 0, failed: 0 }
+
+  if (!env?.DB) {
+    console.error('A3-CRON-DIGEST: no DB binding, skipping digests')
+    return { ...summary, error: 'db_unavailable' }
+  }
+
+  const origin = resolveSiteOrigin(env)
+  if (!origin) {
+    // Без боевого origin письмо получило бы нерабочие report/unsubscribe-ссылки.
+    // Молча слать такое нельзя (нарушит unsubscribe-инвариант RFC 8058), поэтому
+    // проход громко не делает НИЧЕГО — маркеры не двигаются, кандидаты дождутся
+    // тика с настроенным ALLOWED_ORIGIN.
+    console.error('A3-CRON-DIGEST: ALLOWED_ORIGIN is not configured, cannot build working links; no digests sent')
+    return { ...summary, error: 'origin_unavailable' }
+  }
+
+  let due
+  try {
+    due = await selectDueDigests(env.DB)
+  } catch (err) {
+    console.error(`A3-CRON-DIGEST: due-digest query failed: ${err?.message ?? err}`)
+    return { ...summary, error: 'query_failed' }
+  }
+
+  summary.candidates = due.length
+  if (due.length === 0) {
+    console.log('A3-CRON-DIGEST: no completed re-scans awaiting a digest')
+    return summary
+  }
+
+  for (const sub of due) {
+    try {
+      const curr = await getScan(env.DB, sub.lastScanId)
+      // SQL уже гейтит status='done', но getScan мог вернуть null, если скан
+      // удалён retention'ом между выборкой и чтением — тогда сравнивать нечем.
+      if (!curr || curr.status !== 'done') continue
+
+      // previousScanId === null: первый завершённый ре-скан подписки (или прошлый
+      // удалён retention'ом) — базовая линия, сравнивать не с чем, письма нет.
+      let delta = null
+      if (sub.lastDigestScanId) {
+        const prev = await getScan(env.DB, sub.lastDigestScanId)
+        if (prev && prev.status === 'done') {
+          // Третий аргумент {previousPages, currentPages} ОБЯЗАТЕЛЕН: набор
+          // обойдённых страниц плавает (pickPriorityLinks), без page-scope письмо
+          // отчиталось бы о десятках изменений на сменившейся шапке сайта.
+          delta = computeScanDelta(prev.findings, curr.findings, {
+            previousPages: prev.pages,
+            currentPages: curr.pages,
+          })
+        }
+      }
+
+      if (!delta) {
+        summary.baseline += 1
+        await setLastDigestScanId(env.DB, { subscriptionId: sub.id, scanId: sub.lastScanId })
+        console.log(`A3-CRON-DIGEST: subscription ${sub.id} baseline recorded (${hostOf(sub.url)}), no email`)
+        continue
+      }
+
+      // «Письмо не шлём на нулевой дельте» (verify-критерий) — предикат из
+      // scanDelta.js, не переписанный здесь заново.
+      if (isEmptyDelta(delta)) {
+        summary.skippedEmpty += 1
+        await setLastDigestScanId(env.DB, { subscriptionId: sub.id, scanId: sub.lastScanId })
+        console.log(`A3-CRON-DIGEST: subscription ${sub.id} unchanged (${hostOf(sub.url)}), no email`)
+        continue
+      }
+
+      const emailSent = await sendDigestBestEffort(env, {
+        email: sub.email,
+        url: sub.url,
+        scanId: sub.lastScanId,
+        token: sub.token,
+        origin,
+        delta,
+      })
+
+      if (emailSent) {
+        // Маркер двигаем ТОЛЬКО при успешной отправке: транзиентный сбой Resend
+        // тогда просто перешлётся следующим тиком (дайджест — продукт, терять его
+        // из-за минутного сбоя хуже, чем письмо на день позже). После успеха
+        // маркер == last_scan_id, и повторов до следующего ре-скана нет.
+        summary.sent += 1
+        await setLastDigestScanId(env.DB, { subscriptionId: sub.id, scanId: sub.lastScanId })
+        console.log(`A3-CRON-DIGEST: subscription ${sub.id} digest sent (${hostOf(sub.url)}), scan ${sub.lastScanId}, +${delta.new.length}/-${delta.resolved.length} score ${delta.scoreChange >= 0 ? '+' : ''}${delta.scoreChange}`)
+      } else {
+        summary.failed += 1
+        console.error(`A3-CRON-DIGEST: subscription ${sub.id} digest NOT sent (${hostOf(sub.url)}) — will retry next tick`)
+      }
+    } catch (err) {
+      // Один упавший подписчик не срывает остальных: маркер не сдвинут, кандидат
+      // вернётся следующим тиком.
+      summary.failed += 1
+      console.error(`A3-CRON-DIGEST: subscription ${sub.id} digest failed: ${err?.message ?? err}`)
+    }
+  }
+
+  console.log(
+    `A3-CRON-DIGEST: candidates=${summary.candidates} sent=${summary.sent} empty=${summary.skippedEmpty} baseline=${summary.baseline} failed=${summary.failed}`,
+  )
   return summary
 }

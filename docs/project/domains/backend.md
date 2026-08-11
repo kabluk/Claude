@@ -1455,3 +1455,89 @@ countryCode: null}))`; отказ `send` → `failScan` (иначе строка
 восстанавливать запросом по `scans` того же url (`WHERE url = ? AND status =
 'done' ORDER BY created_at DESC LIMIT 2`) либо новой колонкой (миграция 0011,
 напр. `prev_scan_id`); выбор — за тем узлом.
+
+## A3-CRON-DIGEST-EMAIL — done (D-137), не задеплоено
+
+Письмо-дайджест подписчику с дельтой двух сканов через Resend. Файлы:
+`worker/lib/subscriptionCron.js` (+`runSubscriptionDigests`, `selectDueDigests`,
+`buildDigestEmail`, `MAX_DIGESTS_PER_TICK=25`), `worker/lib/resend.js`
+(`sendEmail` +необязательный `headers`), `worker/index.js` (третий `ctx.waitUntil`),
+`migrations/0011_subscriptions_digest.sql`.
+
+### Архитектурный долг — решён колонкой `last_digest_scan_id`, НЕ `prev_scan_id`
+
+Долг из notes RESCAN-DELTA: `last_scan_id` перезаписывается на новый скан сразу
+при постановке ре-скана, а новый скан тогда ещё `running` — пара {prev,new} не
+переживает тик. Вариант B из notes предлагал `prev_scan_id` (копировать старый
+`last_scan_id` при enqueue). Выбран РЕФИНИРОВАННЫЙ B: одна колонка
+`last_digest_scan_id` (скан, по который дайджест уже отправлен/оценён). Почему
+лучше:
+- НЕ трогает enqueue-путь закрытого узла RESCAN-DELTA (обновляет её только
+  дайджест-проход) — нулевой риск для готового кода;
+- одна колонка делает ДВЕ работы: «предыдущий скан» для дельты И маркер
+  идемпотентности. Дельта значит «что изменилось с прошлого ПИСЬМА», а не «между
+  двумя соседними ре-сканами» — устойчиво к упавшему промежуточному ре-скану
+  (сравниваем с последним, что человек реально видел) и к рестарту воркера;
+- без маркера каждый из 6 ежедневных тиков между недельными ре-сканами слал бы
+  один и тот же дайджест заново.
+
+### Проход `runSubscriptionDigests(env, now)`
+
+Отдельный от ре-скана (поставленный скан ещё `running`, дельты нет). Кандидат:
+`verified=1 AND status='active'`, `last_scan_id` завершён (`JOIN scans cur ...
+cur.status='done'`) и `!= last_digest_scan_id`. Для каждого: `curr =
+getScan(last_scan_id)`, `prev = getScan(last_digest_scan_id)`; если prev нет —
+baseline (первый скан или prev удалён retention'ом), письма нет, маркер
+продвигается. Иначе `computeScanDelta(prev.findings, curr.findings,
+{previousPages, currentPages})` — page-scope ОБЯЗАТЕЛЕН (плавающий набор
+pickPriorityLinks). `isEmptyDelta` → письма нет, маркер продвигается (не спамить
+и не переоценивать каждый тик). Непустая → `sendDigestBestEffort`.
+
+Маркер (`setLastDigestScanId`, гейт `status='active'`) двигается на baseline /
+пустой дельте / УСПЕШНОЙ отправке. При сбое Resend НЕ двигается → перешлётся
+следующим тиком (дайджест — продукт, терять его из-за минутного сбоя хуже, чем
+письмо на день позже; постоянный 422 на мёртвый адрес даёт ≤7 холостых попыток
+до следующего ре-скана, ноль доставленного спама). origin ссылок — только
+`env.ALLOWED_ORIGIN` (у cron нет request, в отличие от confirm-письма); без него
+проход громко не делает ничего (нерабочая unsubscribe-ссылка хуже, чем никакой).
+
+### Письмо (`buildDigestEmail`, чистый билдер, тестируется отдельно)
+
+Тема `Your Verscala accessibility monitoring update for {host}`; тело — N новых /
+M исправленных / score было→стало (направление словом по знаку, «больше=лучше»),
+scopedOutPages названы как исключённые, ссылка `/report/:scanId` нового скана,
+unsubscribe-ссылка `${origin}/api/subscribe/unsubscribe?token=…` (реальный token
+строки). RFC 8058: заголовки `List-Unsubscribe: <url>` +
+`List-Unsubscribe-Post: List-Unsubscribe=One-Click` — POST-ветку принимает уже
+готовый `handleUnsubscribe`. `sendEmail` расширен полем `headers`: `undefined`
+выпадает из `JSON.stringify`, поэтому тело confirm/claim байт-в-байт прежнее.
+
+### Тесты (+15: 472→487)
+
+`worker/lib/subscriptionDigest.test.mjs` — чистый билдер (unsubscribe-ссылка с
+реальным token, List-Unsubscribe, /report/:scanId, тема с host, направление
+score, экранирование url). `worker/lib/subscriptionCron.sql.test.mjs` — на
+настоящем SQLite + миграции 0011: непустая дельта → одно письмо с реальным
+token+заголовком и продвинутым маркером; пустая дельта → 0 писем, маркер
+продвинут; baseline; best-effort (нет ключа → не падает, маркер не двинут, ещё
+кандидат); один упавший получатель (422) не срывает остальных; выборка кандидатов
+(unverified/unsubscribed/не-done исключены); нет ALLOWED_ORIGIN → ничего не
+шлётся, маркер не тронут. `resend.test.mjs` — проброс headers + отсутствие ключа
+в теле без них. Гейт scheduled: три waitUntil, дайджест на том же тике.
+
+### Живой прогон (verify-критерий)
+
+Собран дайджест с правдоподобной дельтой (2 новых регресса, 3 исправленных, score
+71→78) и реально отправлен через Resend на `zincroom@gmail.com`. Resend `200 {id:
+b86e6afb-d730-4be7-9687-6bd81a8a051f}`, `GET /emails/{id}` → `last_event:
+delivered`. Unsubscribe-ссылка в письме реальна, заголовок List-Unsubscribe
+присутствует. Ключ — только in-memory (env-переменная процесса), в файл/коммит/
+лог не попадал.
+
+ОСЛАБЛЕНИЕ verify-критерия (названо честно): дельта живого прогона —
+синтетические, но реалистичные находки, а НЕ органическая дельта из двух живых
+сканов. Произвести органическую дельту из двух живых сканов в песочнице
+непрактично (нужны два реальных обхода одного сайта с реальным изменением между
+ними). Логика дельты при этом покрыта юнит-тестами scanDelta на стабильном ключе,
+проверенном на живых страницах узлом RESCAN-DELTA; ослаблен только ВХОД живого
+письма, не сам путь отправки/доставки/заголовков (они реальны).

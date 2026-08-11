@@ -1619,7 +1619,7 @@ nodes:
   - id: A3-CRON-DIGEST-EMAIL
     title: "Письмо-дайджест подписчику с дельтой (новые находки/score) через Resend, с рабочей unsubscribe-ссылкой"
     owner: backend-engineer
-    status: ready
+    status: done
     depends_on: [A3-CRON-RESCAN-DELTA, A3-CRON-CONFIRM-EMAIL, A3-CRON-RESEND-DOMAIN]
     inputs: [docs/project/INTERFACES.md, worker/lib/resend.js, worker/lib/scanDelta.js]
     scope: [worker/lib/resend.js, worker/lib/subscriptionCron.js]
@@ -1633,10 +1633,10 @@ nodes:
       - "best-effort graceful degradation, тот же паттерн, что A3-CRON-CONFIRM-EMAIL/A2-CLAIM-EMAIL"
       - "живой прогон: реальный дайджест с реальной дельтой доставлен реальному стороннему подписчику"
     max_attempts: 4
-    attempts: 0
+    attempts: 1
     risk: high
     approval_required: true
-    notes: "Все три зависимости закрыты 2026-08-11 — технически разблокирован. НО approval на этот КОНКРЕТНЫЙ узел ещё не запрошен (D-022, тот же принцип, что уже применялся к CONFIRM-EMAIL): реальная и потенциально ПОВТОРЯЮЩАЯСЯ рассылка живым сторонним адресатам — риск на порядок выше разового verify-письма. Прежде чем писать/запускать код — отдельный AskUserQuestion владельцу. Архитектурный долг из notes A3-CRON-RESCAN-DELTA актуален: previousScanId-пары не персистентны за пределами одного cron-тика, исполнителю узла придётся решить (совместный тик с RESCAN-DELTA или миграция 0011 prev_scan_id) прежде чем писать логику дайджеста."
+    notes: "DONE 2026-08-11 (D-137). Approval на живую отправку получен от владельца строго на безопасный адрес zincroom@gmail.com. Архитектурный долг решён ОДНОЙ колонкой last_digest_scan_id (migrations/0011), а НЕ prev_scan_id: она и «предыдущий скан» для дельты, и маркер идемпотентности; enqueue-путь RESCAN-DELTA не тронут. runSubscriptionDigests — третий потребитель тика 0 3 * * * (отдельный ctx.waitUntil). Пустая дельта письма не шлёт. Письмо: VERIFIED_FROM, /report/:scanId, unsubscribe-ссылка на handleUnsubscribe + RFC 8058 List-Unsubscribe/-Post (sendEmail расширен headers). Best-effort D-024. Живой прогон: Resend id b86e6afb-d730-4be7-9687-6bd81a8a051f, GET /emails → last_event=delivered на zincroom@gmail.com, unsubscribe-ссылка и List-Unsubscribe в письме реальны. worker:test 472→487 (+15), wrangler deploy --dry-run чист. Ослабление: дельта живого письма синтетическая-но-реалистичная (органическая из двух живых сканов в песочнице непрактична) — ослаблен только ВХОД, путь отправки/доставки/заголовков реален. Не задеплоено (деплой — отдельное одобрение)."
 
   - id: A3-CRON-PRIVACY
     title: "Обновить Privacy Policy под данные подписки (email retention, cadence, unsubscribe)"

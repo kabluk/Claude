@@ -119,13 +119,18 @@ test('MAX_RESCANS_PER_TICK is a sane positive cap (paid Browser Rendering per re
 // ГЕЙТ ПРОТИВ РЕГРЕССИИ RETENTION: ре-скан добавлен В ТОТ ЖЕ обработчик
 // scheduled, что и deleteExpiredScans (D-019). Самый дешёвый способ сломать
 // retention — заменить его вызов вместо того, чтобы добавить свой рядом.
-test('scheduled() runs BOTH retention and the subscription re-scan on one tick', async () => {
-  const seen = { deleteSql: null, dueSql: null }
+test('scheduled() runs retention, the re-scan AND the digest on one tick', async () => {
+  const seen = { deleteSql: null, dueSql: null, digestSql: null }
   const env = {
+    // digest-проход строит ссылки от боевого origin — без него он отказывается
+    // рано и до выборки не доходит (см. resolveSiteOrigin), поэтому в тестовом
+    // env он задан, иначе гейт «digest бежит на этом тике» был бы вакуумным.
+    ALLOWED_ORIGIN: 'https://verscala.com',
     DB: {
       prepare(sql) {
         if (sql.includes('DELETE FROM scans')) seen.deleteSql = sql
-        if (sql.includes('FROM subscriptions')) seen.dueSql = sql
+        if (sql.includes('last_digest_scan_id')) seen.digestSql = sql
+        else if (sql.includes('FROM subscriptions')) seen.dueSql = sql
         return {
           bind: () => ({
             run: async () => ({ meta: { changes: 0 } }),
@@ -139,11 +144,12 @@ test('scheduled() runs BOTH retention and the subscription re-scan on one tick',
 
   const pending = []
   await worker.scheduled({ cron: '0 3 * * *' }, env, { waitUntil: (p) => pending.push(p) })
-  assert.equal(pending.length, 2, 'both tasks must be kept alive by their own waitUntil')
+  assert.equal(pending.length, 3, 'all three tasks must be kept alive by their own waitUntil')
   await Promise.all(pending)
 
   assert.ok(seen.deleteSql, 'retention (D-019) must still run on the cron tick')
   assert.ok(seen.dueSql, 'the subscription re-scan must run on the same tick')
+  assert.ok(seen.digestSql, 'the digest pass (D-137) must run on the same tick')
 })
 
 test('scheduled(): a broken re-scan never takes retention down with it', async () => {
