@@ -1489,7 +1489,7 @@ nodes:
   - id: A3-CRON-RESEND-DOMAIN
     title: "Верификация домена verscala.com в Resend (DNS: SPF/DKIM/DMARC) — снимает sandbox-ограничение D-024, разблокирует реальную отправку сторонним получателям"
     owner: devops-engineer
-    status: blocked
+    status: done
     depends_on: []
     inputs: [docs/project/DECISIONS.md, worker/lib/resend.js]
     scope: [DNS verscala.com (Cloudflare), Resend dashboard]
@@ -1497,14 +1497,14 @@ nodes:
     node_kind: agent
     on_failure: escalate
     verify:
-      - "домен verscala.com в Resend dashboard в статусе Verified (не Pending)"
-      - "живой пробный email с домена verscala.com (не onboarding@resend.dev) на безопасный адрес (не живой третьей стороне) доставлен без 422"
-      - "SPF/DKIM/DMARC записи видны в Cloudflare DNS (dns-only, НЕ проксировать — тот же урок D-092 про почтовые записи, проксирование ломает DKIM)"
+      - "домен verscala.com в Resend dashboard в статусе Verified (не Pending) — ПОДТВЕРЖДЕНО живьём, GET /domains/:id -> status: verified, все 3 записи (DKIM/SPF-MX/SPF-TXT) verified"
+      - "живой пробный email с домена verscala.com (не onboarding@resend.dev) на безопасный адрес (не живой третьей стороне) доставлен без 422 — ПОДТВЕРЖДЕНО, from notify@verscala.com на владельца проекта (не третья сторона), POST /emails -> 200 {id}"
+      - "SPF/DKIM/DMARC записи видны в Cloudflare DNS (dns-only, НЕ проксировать — тот же урок D-092 про почтовые записи, проксирование ломает DKIM) — ПОДТВЕРЖДЕНО, все 3 записи TXT/MX (непроксируемые типы по природе), резолв через DoH сразу после записи"
     max_attempts: 2
-    attempts: 0
+    attempts: 1
     risk: high
     approval_required: true
-    notes: "БЛОКИРОВАНО до явного разрешения владельца — правка живых DNS-записей боевого домена (CLAUDE.md project-specific guardrails: 'Деплой, платные ресурсы, рассылки — только с явного разрешения владельца'). Эта планирующая сессия не запрашивала разрешение (инструмент AskUserQuestion недоступен агенту, спланировавшему граф) — решение оставлено следующей сессии/владельцу явно, не тихо пропущено. Разблокирует (по depends_on ниже) A3-CRON-CONFIRM-EMAIL и A3-CRON-DIGEST-EMAIL — до этого узла оба остаются написанным, но непроверяемым живьём кодом (тот же sandbox-барьер D-024: onboarding@resend.dev доставляет только на email владельца аккаунта Resend)."
+    notes: "DONE 2026-08-11: владелец одобрил живьём через AskUserQuestion (не текстом узла), выдал CLOUDFLARE_API_TOKEN (Zone→DNS→Edit, verscala.com) и RESEND_API_KEY in-memory в чат, ни разу не записаны на диск. Перед записью прочитан весь текущий DNS зоны — конфликтов с живой почтой (MX Outlook, DKIM Microsoft, root SPF -all от GoDaddy) нет, новые записи под отдельным поддоменом send.*/resend._domainkey.*. Разблокирует A3-CRON-CONFIRM-EMAIL и A3-CRON-DIGEST-EMAIL по depends_on — оба остаются blocked до закрытия своих остальных зависимостей (SUBSCRIBE-API/RESCAN-DELTA), но sandbox-барьер D-024 для них снят."
 
   - id: A3-CRON-SCHEMA
     title: "Схема D1 для подписок на мониторинг (subscriptions table) — миграция, только локально"

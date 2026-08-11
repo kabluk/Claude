@@ -107,19 +107,21 @@ D-135). Модель делегированных субагентов — **Opu
   10/10, `worker:test` 386/386 — подтверждено дважды (агентом и независимо
   родительской сессией). Разблокировал `A3-CRON-SUBSCRIBE-API`/
   `A3-CRON-SUBSCRIBE-FORM` → `ready`.
-- **`A3-CRON-RESEND-DOMAIN` — in progress, approval получен живьём.**
-  Владелец выдал `CLOUDFLARE_API_TOKEN` (Zone→DNS→Edit, verscala.com) и
-  `RESEND_API_KEY` in-memory в чат (никогда на диск). 3 DNS-записи (DKIM
-  TXT `resend._domainkey`, MX+SPF TXT под `send.*`) добавлены в Cloudflare
-  без конфликта с живой почтой (MX Outlook/DKIM Microsoft/root SPF на месте —
-  новые записи под отдельным поддоменом), резолв подтверждён живьём через
-  DoH сразу после записи. Resend-сторона верификации асинхронна и была
-  **pending** на момент этой записи — проверить текущий статус (Resend
-  dashboard или `GET /domains/:id`) прежде чем продолжать `A3-CRON-CONFIRM-EMAIL`/
-  `A3-CRON-DIGEST-EMAIL` (оба `blocked` до `verified`).
-- Остальные под-узлы (`SUBSCRIBE-API`/`SUBSCRIBE-FORM` теперь `ready`;
-  `CONFIRM-EMAIL`/`RESCAN-DELTA`/`DIGEST-EMAIL`/`PRIVACY` — статус в
-  `GRAPH.yaml`).
+- **`A3-CRON-RESEND-DOMAIN` — done.** Владелец выдал `CLOUDFLARE_API_TOKEN`
+  (Zone→DNS→Edit, verscala.com) и `RESEND_API_KEY` in-memory в чат (никогда
+  на диск). 3 DNS-записи (DKIM TXT `resend._domainkey`, MX+SPF TXT под
+  `send.*`) добавлены в Cloudflare без конфликта с живой почтой (MX
+  Outlook/DKIM Microsoft/root SPF на месте — новые записи под отдельным
+  поддоменом). Домен `verscala.com` подтверждён `verified` в Resend API
+  (все 3 записи), живая канарейка — реальное письмо `from:
+  notify@verscala.com` (не `onboarding@resend.dev`) владельцу проекта (не
+  постороннему третьему адресату) доставлено без 422. Sandbox-барьер
+  D-024 снят: реальные сторонние получатели теперь доступны. Разблокировал
+  `A3-CRON-CONFIRM-EMAIL`/`A3-CRON-DIGEST-EMAIL` по `depends_on` — оба
+  остаются `blocked` до своих остальных зависимостей.
+- Остальные под-узлы (`SUBSCRIBE-API`/`SUBSCRIBE-FORM` — `ready`, первый в
+  работе; `CONFIRM-EMAIL`/`RESCAN-DELTA`/`DIGEST-EMAIL`/`PRIVACY` — статус
+  в `GRAPH.yaml`).
 
 **✅ ВСЁ НА ПРОДЕ: D-130…D-134, 2026-08-11.** `/report/:id` (два блока —
 «Check these yourself» + «The short version», D-130), платный PDF-план с

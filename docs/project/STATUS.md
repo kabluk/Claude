@@ -2,7 +2,26 @@
 
 Обновлено: 2026-08-11 (см. также подробный legacy-статус: `research/STATE.md`)
 
-## Последнее (2026-08-11, A3-CRON: DNS Resend добавлены + A3-CRON-SCHEMA done)
+## Последнее (2026-08-11, A3-CRON-RESEND-DOMAIN done — домен verified живьём)
+
+Продолжение записи ниже: Resend-сторона верификации, бывшая `pending` на
+момент предыдущей записи, флипнула в `verified` (все 3 записи — DKIM/
+SPF-MX/SPF-TXT — `status: verified` в `GET /domains/:id`, проверено прямым
+запросом, опережающим очередной тик фонового монитора). Живая канарейка
+всех трёх verify-критериев узла: (1) `status: verified` в Resend API; (2)
+реальное письмо `POST /emails` с `from: notify@verscala.com` (не
+`onboarding@resend.dev`) на владельца проекта (не постороннего третьего
+адресата) — `200 {id}`, без 422; (3) все добавленные записи — TXT/MX,
+непроксируемые типы по своей природе, `dns-only` подтверждён составом
+записи (проксирование к ним просто неприменимо, как и к остальным
+существующим почтовым записям зоны). `GRAPH.yaml`: `A3-CRON-RESEND-DOMAIN`
+→ `done`. Разблокирует по `depends_on` `A3-CRON-CONFIRM-EMAIL` и
+`A3-CRON-DIGEST-EMAIL` — оба остаются `blocked` до своих остальных
+зависимостей (`A3-CRON-SUBSCRIBE-API` в работе параллельно, `A3-CRON-RESCAN-DELTA`
+не начат), но sandbox-барьер D-024 для реальной отправки сторонним
+получателям снят навсегда, не только для этого узла.
+
+## Ранее (2026-08-11, A3-CRON: DNS Resend добавлены + A3-CRON-SCHEMA done)
 
 Владелец одобрил старт `A3-CRON-RESEND-DOMAIN` живьём (не только текстом узла).
 In-memory секреты (`CLOUDFLARE_API_TOKEN` с правами Zone→DNS→Edit на зоне
