@@ -1509,7 +1509,7 @@ nodes:
   - id: A3-CRON-SCHEMA
     title: "Схема D1 для подписок на мониторинг (subscriptions table) — миграция, только локально"
     owner: backend-engineer
-    status: ready
+    status: done
     depends_on: []
     inputs: [docs/project/INTERFACES.md, migrations/0004_claims.sql, migrations/0001_init.sql]
     scope: [migrations/, docs/project/INTERFACES.md]
@@ -1530,7 +1530,7 @@ nodes:
   - id: A3-CRON-SUBSCRIBE-API
     title: "POST /api/subscribe (создание pending-подписки) + GET /api/subscribe/verify (пометка verified) + unsubscribe-эндпоинт — БЕЗ отправки писем"
     owner: backend-engineer
-    status: blocked
+    status: ready
     depends_on: [A3-CRON-SCHEMA]
     inputs: [docs/project/INTERFACES.md, worker/routes/claim.js, worker/lib/turnstile.js, worker/lib/ratelimit.js]
     scope: [worker/routes/subscribe.js, worker/index.js]
@@ -1554,7 +1554,7 @@ nodes:
   - id: A3-CRON-SUBSCRIBE-FORM
     title: "Форма подписки на мониторинг на /report/:id (email+URL, БЕЗ реальной отправки — submit подключается в A3-CRON-SUBSCRIBE-API)"
     owner: frontend-engineer
-    status: blocked
+    status: ready
     depends_on: [A3-CRON-SCHEMA]
     inputs: [docs/project/VISION.md, src/components/library/, src/pages/ReportPage.tsx, src/lib/leadForm.ts]
     scope: [src/components/, src/lib/subscribeForm.ts, src/pages/ReportPage.tsx]

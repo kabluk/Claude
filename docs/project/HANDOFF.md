@@ -93,25 +93,33 @@ D-099/D-101) собирает с `VITE_SCANNER_API`, гоняет гейты, к
 
 ## Что осталось
 
-**➡️ СЛЕДУЮЩИЙ УЗЕЛ: `A3-CRON` — scoping ЗАКРЫТ (D-135, 2026-08-11), граф
-готов, исполнение ждёт владельца.** Три решения владельца: (1) подписчик =
-email+URL без аккаунта, `A3-AUTH` НЕ зависимость; (2) подписка бесплатна на
-старте, recurring Stripe billing — отдельное будущее решение фазы 2; (3)
-порядок — СНАЧАЛА верификация домена Resend, ПОТОМ дайджест/отправка.
-Разбит на 8 sub-узлов GRAPH.yaml по образцу Фазы 2 (детали — BACKLOG.md
-«A3-CRON — под-узлы», DECISIONS.md D-135): `A3-CRON-RESEND-DOMAIN` (DNS,
-**approval**) → {`A3-CRON-CONFIRM-EMAIL`, `A3-CRON-DIGEST-EMAIL`} (оба
-**approval**, реальная рассылка); `A3-CRON-SCHEMA` → `A3-CRON-SUBSCRIBE-API`
-→ `A3-CRON-RESCAN-DELTA` (переиспользует `accessatlas-scan-queue`, cron уже
-есть); `A3-CRON-SUBSCRIBE-FORM`/`A3-CRON-PRIVACY` независимы, зависят только
-от SCHEMA. Модель делегированных субагентов — **Opus** (владелец через
-`AskUserQuestion`, D-075/D-135). **Ни один approval-гейт не выполнен этой
-сессией** — планирующий агент не имел доступа к `AskUserQuestion`, решение
-явно оставлено следующей сессии: сначала спросить владельца про
-`A3-CRON-RESEND-DOMAIN` (правка живых DNS-записей verscala.com), только
-затем `/task-loop A3-CRON-RESEND-DOMAIN`. **`A3-CRON-SCHEMA`** — единственный
-узел без approval и без незакрытых зависимостей, готов к `/task-loop`
-немедленно, не дожидаясь ответа владельца на approval-вопрос.
+**➡️ В РАБОТЕ: `A3-CRON` — scoping закрыт (D-135), исполнение началось.**
+Три решения владельца: (1) подписчик = email+URL без аккаунта, `A3-AUTH` НЕ
+зависимость; (2) подписка бесплатна на старте, recurring Stripe billing —
+отдельное будущее решение фазы 2; (3) порядок — СНАЧАЛА верификация домена
+Resend, ПОТОМ дайджест/отправка. Разбит на 8 sub-узлов GRAPH.yaml по
+образцу Фазы 2 (детали — BACKLOG.md «A3-CRON — под-узлы», DECISIONS.md
+D-135). Модель делегированных субагентов — **Opus** (владелец через
+`AskUserQuestion`, D-075/D-135).
+
+- **`A3-CRON-SCHEMA` — done.** `migrations/0010_subscriptions.sql` (id≠token
+  double opt-in, образец claims D-023) + `INTERFACES.md` §4. `db:migrate:local`
+  10/10, `worker:test` 386/386 — подтверждено дважды (агентом и независимо
+  родительской сессией). Разблокировал `A3-CRON-SUBSCRIBE-API`/
+  `A3-CRON-SUBSCRIBE-FORM` → `ready`.
+- **`A3-CRON-RESEND-DOMAIN` — in progress, approval получен живьём.**
+  Владелец выдал `CLOUDFLARE_API_TOKEN` (Zone→DNS→Edit, verscala.com) и
+  `RESEND_API_KEY` in-memory в чат (никогда на диск). 3 DNS-записи (DKIM
+  TXT `resend._domainkey`, MX+SPF TXT под `send.*`) добавлены в Cloudflare
+  без конфликта с живой почтой (MX Outlook/DKIM Microsoft/root SPF на месте —
+  новые записи под отдельным поддоменом), резолв подтверждён живьём через
+  DoH сразу после записи. Resend-сторона верификации асинхронна и была
+  **pending** на момент этой записи — проверить текущий статус (Resend
+  dashboard или `GET /domains/:id`) прежде чем продолжать `A3-CRON-CONFIRM-EMAIL`/
+  `A3-CRON-DIGEST-EMAIL` (оба `blocked` до `verified`).
+- Остальные под-узлы (`SUBSCRIBE-API`/`SUBSCRIBE-FORM` теперь `ready`;
+  `CONFIRM-EMAIL`/`RESCAN-DELTA`/`DIGEST-EMAIL`/`PRIVACY` — статус в
+  `GRAPH.yaml`).
 
 **✅ ВСЁ НА ПРОДЕ: D-130…D-134, 2026-08-11.** `/report/:id` (два блока —
 «Check these yourself» + «The short version», D-130), платный PDF-план с

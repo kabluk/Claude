@@ -2,7 +2,39 @@
 
 Обновлено: 2026-08-11 (см. также подробный legacy-статус: `research/STATE.md`)
 
-## Последнее (2026-08-11, A3-CRON разбит на 8 под-узлов GRAPH.yaml / D-135)
+## Последнее (2026-08-11, A3-CRON: DNS Resend добавлены + A3-CRON-SCHEMA done)
+
+Владелец одобрил старт `A3-CRON-RESEND-DOMAIN` живьём (не только текстом узла).
+In-memory секреты (`CLOUDFLARE_API_TOKEN` с правами Zone→DNS→Edit на зоне
+`verscala.com`, `RESEND_API_KEY`) получены в чате, ни разу не записаны на
+диск. Cloudflare-токен прошёл ложный `/user/tokens/verify` (тот же баг, что
+D-122) — подтверждён реальным запросом `GET /zones?name=verscala.com`
+(200, права `dns_records:edit` в списке). Resend `POST /domains` создал
+домен `verscala.com` (не был зарегистрирован), вернул 3 DNS-записи
+(DKIM TXT `resend._domainkey`, MX + SPF TXT под `send.`). Перед записью в
+Cloudflare прочитан полный текущий DNS зоны — конфликтов с живой почтой
+(MX Outlook, DKIM Microsoft, root SPF `-all` от GoDaddy) нет: все три новые
+записи живут под отдельным поддоменом `send.*`/`resend._domainkey.*`.
+Добавлены все три (`ttl: 1` = auto, `dns-only` — MX/TXT и не проксируются
+в принципе). DNS-резолв подтверждён живьём через `cloudflare-dns.com`
+DoH сразу после записи — все три отдают верные значения. Resend-сторона
+верификации (`POST /domains/:id/verify`) на момент этой записи ещё
+**pending** — асинхронный чек на их стороне, опрашивается фоновым
+монитором; узел `A3-CRON-RESEND-DOMAIN` остаётся `blocked`/in-progress до
+первого `verified`.
+
+Параллельно (без approval, независимый узел): `A3-CRON-SCHEMA` выполнен
+backend-engineer (Opus, решение владельца D-135) —
+`migrations/0010_subscriptions.sql` (таблица `subscriptions`, id≠token
+double opt-in по образцу claims D-023) + контракт в `INTERFACES.md` §4.
+Проверено дважды: агентом (`db:migrate:local` 10/10, `worker:test` 386/386,
+round-trip на реальной локальной D1 — id≠token подтверждён запросом, не
+только чтением кода) и независимо родительской сессией (`npm run
+worker:test` — 386/386, тот же результат). `GRAPH.yaml`: `A3-CRON-SCHEMA`
+→ `done`, `A3-CRON-SUBSCRIBE-API`/`A3-CRON-SUBSCRIBE-FORM` разблокированы
+→ `ready` (единственная зависимость закрыта).
+
+## Ранее (2026-08-11, A3-CRON разбит на 8 под-узлов GRAPH.yaml / D-135)
 
 Владелец закрыл scoping-разговор по A3-CRON тремя решениями: (1) подписчик =
 email+URL без аккаунта, A3-AUTH не зависимость; (2) подписка бесплатна на
