@@ -241,6 +241,21 @@ featured(agency_slug TEXT PK, until TEXT, stripe_ref TEXT)
 -- СЕРВЕРНОЕ время обработки подписанного вебхука, НЕ из данных Stripe/клиента.
 plan_purchases(scan_id TEXT PK, stripe_ref TEXT, paid_at TEXT NOT NULL)
 accounts(id TEXT PK, email TEXT UNIQUE, sites_json TEXT, plan TEXT, created_at TEXT)
+
+-- A3-CRON («мониторинг как подписка»), migrations/0010_subscriptions.sql (D-135):
+-- подписчик = пара (email, url) без аккаунта; double opt-in по образцу claims (D-023).
+-- id — ПУБЛИЧНЫЙ идентификатор подписки, единственное, что возвращает POST /api/subscribe;
+-- token — СЕКРЕТ verify-ссылки, отдельная колонка, генерируется независимо от id и
+-- НИКОГДА не возвращается синхронно в ответе API (иначе double opt-in обходится
+-- значением из самого ответа). verified — факт перехода по ссылке, отдельно от status.
+-- last_scan_id — логическая ссылка на scans.id БЕЗ FK (как leads.scan_id): сканы
+-- удаляются по TTL, FK ронял бы удаление или каскадом сносил подписку. NULL до
+-- первого перескана. cadence на MVP всегда 'weekly', колонка заведена заранее.
+subscriptions(id TEXT PK, email TEXT, url TEXT, token TEXT NULL, verified INT DEFAULT 0,
+              status TEXT DEFAULT 'pending',   -- pending | active | unsubscribed
+              last_scan_id TEXT NULL, cadence TEXT DEFAULT 'weekly',
+              created_at TEXT, unsubscribed_at TEXT NULL)
+-- индексы: token (verify-lookup), status (cron-выборка active), url/email (дедуп), created_at
 ```
 
 Правило: D1-оверлеи (claims/featured) подхватываются ежедневным ребилдом; статический
