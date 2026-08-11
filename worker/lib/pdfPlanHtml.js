@@ -12,20 +12,35 @@
 // output are <a href> targets a human clicks — real destinations (w3.org,
 // dequeuniversity.com, verscala.com), never resources the renderer fetches.
 //
-// DESIGN SYSTEM (D-132). The visual language below is the owner's own, produced
-// in Google Stitch and handed over as four HTML mockups (cover/summary, a
-// dev-brief rule page, "Check these yourself", and a fuller Priorities table).
-// Those mockups are Tailwind-CDN pages with a shared `tailwind.config` token
-// block; every token used here was translated by hand into the real CSS custom
-// properties in :root below, at the exact values that config declares — there
-// is no Tailwind at runtime and no approximated palette. What could NOT be
-// carried over, and why, is recorded in DECISIONS.md D-132:
+// DESIGN SYSTEM (D-132) + PRINT GEOMETRY (D-133). The visual language is the
+// owner's own, produced in Google Stitch and handed over as four HTML mockups
+// (cover/summary, a dev-brief rule page, "Check these yourself", and a fuller
+// Priorities table). Every token below is the mockups' shared tailwind.config
+// verbatim — palette hexes, radii, the full type scale — there is no Tailwind
+// at runtime and no approximated palette.
+//
+// D-133 corrects D-132's one real mistake: D-132 kept the mockups' raw pixel
+// sizes but dropped their 1200px sheet and 12-column grid, so 48px headlines
+// were laid out in a 698px A4 column — the document ballooned to 19 half-empty
+// pages and the owner rejected it. The fix is NOT a re-derived "print" type
+// scale (that was tried and looked like neither the mockup nor the old
+// document); it is reproducing the mockups' native geometry exactly and scaling
+// the WHOLE sheet down uniformly at print time:
+//   - this stylesheet is written at the mockups' own numbers: a 1200px sheet
+//     (max-w-container-max) with 32px padding -> an 1136px content column, the
+//     cover's 12-column grid with an 8/4 split, 48px display type, py-4 table
+//     rows — every px is the mockup's px;
+//   - worker/routes/scanPdf.js prints it with page.pdf({ scale }) from
+//     buildPdfOptions() below: Chromium then lays the page out at
+//     (A4 content width / scale) CSS px — exactly the mockup's 1136px column —
+//     and scales the rendered result down onto the paper, preserving every
+//     ratio at once (fonts, paddings, icons, the grid) with no hand-tuning.
+// What could NOT be carried over from the mockups, and why, is in DECISIONS.md
+// D-132 (unchanged by D-133):
 //   - the fixed app nav (REPORT / ARCHIVE / avatar) — web-app chrome with
 //     nothing to navigate to inside a downloaded document;
 //   - "ISO 27001" / "GDPR COMPLIANT" footer badges — Verscala holds neither
 //     certification, so shipping them would be a false claim (D-035/D-046/D-114);
-//   - the 12-column desktop grid — A4 gives this document a 698px content
-//     column, which the priorities and dev-brief tables need in full;
 //   - box-shadow / backdrop-blur depth — replaced with borders and tinted
 //     fills, which print deterministically.
 
@@ -37,6 +52,31 @@ function esc(value) {
   })[c])
 }
 
+// --- Print geometry (D-133) --------------------------------------------------
+// The mockups are designed on a 1200px sheet ("container-max" in their shared
+// config) with 32px padding ("margin" token) — the sheet IS the page. A4 at
+// Chromium's 96dpi is 793.92px wide, so mapping sheet -> paper means one
+// uniform factor: 793.92 / 1200 = 0.6616. The mockup's 32px sheet padding maps
+// to the paper margin at that same factor (32 x 0.6616 ≈ 21px), which leaves
+// Chromium a layout viewport of (793.92 - 2x21) / 0.6616 ≈ 1136.5 CSS px —
+// the mockup's own content column (1200 - 2x32 = 1136) to half a pixel.
+// Top/bottom margins are the one deliberate exception: the running header and
+// footer live there, and Chromium renders those OUTSIDE the scaled content, so
+// they need real paper room (64px/52px) rather than the mockup's 21px.
+export const PDF_PAGE_SCALE = 0.6616
+
+export function buildPdfOptions(siteUrl) {
+  return {
+    format: 'a4',
+    printBackground: true,
+    displayHeaderFooter: true,
+    headerTemplate: buildHeaderTemplate(siteUrl),
+    footerTemplate: buildFooterTemplate(),
+    scale: PDF_PAGE_SCALE,
+    margin: { top: '64px', bottom: '52px', left: '21px', right: '21px' },
+  }
+}
+
 // --- Icons -------------------------------------------------------------------
 // The mockups draw these with Material Symbols Outlined, loaded from Google
 // Fonts. An icon webfont is the wrong shape for this document twice over: it is
@@ -44,7 +84,9 @@ function esc(value) {
 // icon font (hundreds of KB) to draw seven glyphs is absurd. Each is redrawn
 // below as a stroke SVG in Material's own 24px grid and line style, inheriting
 // currentColor and sized by CSS — so an icon can never render as a stray
-// ligature word ("calendar_today") the way a missing icon font does.
+// ligature word ("calendar_today") the way a missing icon font does. Because
+// they are sized in the same CSS px as the text next to them, the uniform
+// print scale shrinks them in lockstep with that text — no separate rescale.
 const ICONS = {
   // calendar_today
   calendar:
@@ -164,8 +206,8 @@ function legalField(label, value, dot) {
 
 function renderLegalSection(legal) {
   if (!legal?.known) {
-    return `<section class="block card">
-      <div class="card-head">${icon('gavel')}<h2>Legal context</h2></div>
+    return `<section class="block card side-card">
+      <div class="card-head">${icon('gavel', 'icon icon-20')}<h2 class="card-title">Legal context</h2></div>
       <p class="muted">We could not determine a specific national transposition law for this site's
       jurisdiction from the domain alone. General EU Accessibility Act requirements may still apply if
       the site serves an EU market — this section is left blank rather than guessed.</p>
@@ -178,7 +220,7 @@ function renderLegalSection(legal) {
        country.</p>`
   // The status dot is the mockup's cue on this field, coloured by what the scan
   // actually found — not decoration: 'missing' is a critical finding in the
-  // priorities table above it.
+  // priorities table beside it.
   const statementDot = { missing: '#ba1a1a', incomplete: '#b25c00' }[legal.statementStatus] ?? '#767684'
   const statementLine = legal.statementRequired
     ? `${legalField('Accessibility statement', esc(STATEMENT_STATUS_TEXT[legal.statementStatus] ?? ''), statementDot)}${
@@ -188,8 +230,8 @@ function renderLegalSection(legal) {
       }`
     : `<p class="muted">${esc(STATEMENT_STATUS_TEXT['not-required'])}</p>`
 
-  return `<section class="block card">
-    <div class="card-head">${icon('gavel')}<h2>Legal context</h2></div>
+  return `<section class="block card side-card">
+    <div class="card-head">${icon('gavel', 'icon icon-20')}<h2 class="card-title">Legal context</h2></div>
     <div class="fields">
       ${legalField('Jurisdiction', `${esc(legal.country)} — ${lawLine}`)}
       ${citation}
@@ -219,7 +261,7 @@ function renderCoverageSection(coverage) {
   return `<section class="block">
     <h2>Scan coverage</h2>
     <div class="card media">
-      <div class="media-icon">${icon('findInPage')}</div>
+      <div class="media-icon">${icon('findInPage', 'icon icon-24')}</div>
       <div class="media-body">
         <p class="media-title">${pages.length} page${pages.length === 1 ? '' : 's'} scanned.</p>
         ${skippedNote}
@@ -230,20 +272,21 @@ function renderCoverageSection(coverage) {
 
 function renderEffortSection(effort) {
   if (!effort) {
-    return `<section class="block">
-      <h2>Effort estimate</h2>
+    return `<section class="block card side-card">
+      <div class="card-head">${icon('workHistory', 'icon icon-20')}<h2 class="card-title">Effort estimate</h2></div>
       <p class="muted">No engineering-relevant findings on the scanned pages — no estimate to show.</p>
     </section>`
   }
-  // The mockup runs this as a narrow sidebar widget with the figure stacked over
-  // the disclaimer. On A4 that column does not exist, so it becomes a full-width
-  // band with the figure and the disclaimer side by side — same card, same
-  // inverted primary treatment, laid out for the page it actually prints on.
+  // The mockup's sidebar widget, restored by D-133: the inverted indigo card
+  // with the figure stacked over a hairline divider and the disclaimer. (D-132
+  // had flattened this into a horizontal full-width band because it had dropped
+  // the sidebar column entirely — that was the rejected deviation.) The
+  // decorative blurred highlight circle stays out: blur does not print
+  // deterministically (D-132).
   return `<section class="block effort">
-    <div class="effort-figure">
-      <div class="effort-head">${icon('workHistory')}<span class="eyebrow">Effort estimate</span></div>
-      <p class="effort-value">${esc(effort.formatted)}</p>
-    </div>
+    <div class="effort-head">${icon('workHistory', 'icon icon-20')}<span class="eyebrow">Effort estimate</span></div>
+    <p class="effort-value">${esc(effort.formatted)}</p>
+    <div class="effort-divider"></div>
     <p class="effort-note">A rough estimate based on the number and severity of issues found on the
     scanned pages — <strong>not a quote, an offer, or legal advice</strong>. Actual cost depends on your
     codebase, team, and how the fixes are made.</p>
@@ -273,9 +316,15 @@ function renderPrioritiesSection(priorities) {
       <p class="muted">No findings on the scanned pages beyond scan-quality notes.</p>
     </section>`
   }
-  return `<section class="block card panel">
-    <h2>Priorities</h2>
-    <p class="muted">Sorted by severity, then by how many pages are affected.</p>
+  // Lives in the cover grid's main column (mockup 1); chip colours per severity
+  // are mockup 4's. `flow` lets a long table continue onto the next page instead
+  // of pushing the whole section there — spilling the tail is the mockups'
+  // intent, a half-empty first page is not.
+  return `<section class="block flow">
+    <div class="sec-head">
+      <h2>Priorities</h2>
+      <p class="muted">Sorted by severity, then by how many pages are affected.</p>
+    </div>
     <table class="priorities">
       <thead><tr><th class="num">#</th><th>Severity</th><th>Rule</th><th>WCAG criterion</th><th class="num">Instances</th><th class="num">Pages</th></tr></thead>
       <tbody>${priorities.map((p, i) => renderPriorityRow(p, i + 1)).join('')}</tbody>
@@ -297,7 +346,7 @@ function renderBriefEntry(item, rank) {
   // D-131: Deque's own maintained page for this exact rule. Attributed, not
   // passed off as ours — it is the source of the `help` sentence above it.
   const helpUrlLine = item.helpUrl
-    ? `<p class="help-line">${icon('help')}<span>Fix guidance for this rule:
+    ? `<p class="help-line">${icon('help', 'icon icon-20')}<span>Fix guidance for this rule:
        <a href="${esc(item.helpUrl)}">${esc(item.helpUrl)}</a>
        <span class="muted">(Deque, maintainers of axe-core)</span></span></p>`
     : ''
@@ -306,9 +355,9 @@ function renderBriefEntry(item, rank) {
   // the following:\n  ..."), so it gets its own full-width row under the
   // element rather than a fourth column. The Stitch dev-brief mockup has no
   // slot for it at all — its instance grid is Page / Selector / HTML and stops
-  // there — so this callout treatment is ours: the note styling the design
-  // system already uses elsewhere (tinted fill, primary left rule), applied to
-  // a row that spans the full table width.
+  // there (the mockup predates the feature) — so this callout treatment is
+  // ours: the note styling the design system already uses elsewhere (tinted
+  // fill, primary left rule), applied to a row that spans the full table width.
   // One <tbody> per instance (valid HTML — a table may have many) so the
   // stylesheet can keep an element and its failureSummary on the same printed
   // page without also gluing the whole rule together.
@@ -385,6 +434,7 @@ function renderCheckYourselfSection(rows) {
 
   return `<section class="block check-block">
     <h2>Check these yourself</h2>
+    <div class="check-intro">
     <p>The ${rows.length} criteria below are outside what any automated scan can check — this one
     included. Whether they pass depends on judgement about your own content: whether a video's audio
     description is adequate, whether an error message really tells someone how to correct their
@@ -395,6 +445,7 @@ function renderCheckYourselfSection(rows) {
     confirm here is work a specialist does not have to start from scratch, which can reduce how much
     you need from them for the rest. We deliberately put no figure on that — a scan gives us no way
     to measure it.</p>
+    </div>
     <table class="check-yourself">
       <thead><tr><th>WCAG</th><th>Criterion</th><th>EN 301 549</th><th>Reference</th></tr></thead>
       <tbody>${items}</tbody>
@@ -403,14 +454,13 @@ function renderCheckYourselfSection(rows) {
 }
 
 // --- Stylesheet --------------------------------------------------------------
-// Hand-written equivalent of the mockups' Tailwind utility classes. Every value
-// in :root is copied from the `tailwind.config` block those mockups embed — the
-// colours are that config's hexes verbatim, the radii are its
-// DEFAULT/lg/xl/full (0.125/0.25/0.5/0.75rem), the type scale is its
-// display/headline-lg/headline-md/body-lg/body-md/label-md/label-sm with the
-// line-height, letter-spacing and weight it declares for each. Spacing that the
-// mockups take from Tailwind's default scale (py-4, gap-6, ...) is translated at
-// Tailwind's own 4px unit.
+// Hand-written equivalent of the mockups' Tailwind utility classes, at the
+// mockups' NATIVE pixel values (D-133): the print scale in buildPdfOptions()
+// shrinks the whole laid-out sheet uniformly, so nothing here is re-derived
+// for A4 — 48px display type IS the mockup's 48px, py-4 rows ARE 16px,
+// grid gaps ARE the 24/32px gutter/margin tokens. Alpha'd borders/fills
+// (outline-variant/20 etc.) are precomputed flat blends over their real
+// backgrounds so they print with no dependence on stacking.
 //
 // COLOPHON. Each mockup ends in a fixed app footer carrying two certification
 // chips Verscala does not hold. Both are removed outright rather than restyled —
@@ -449,6 +499,14 @@ ${FONT_FACE_CSS}
     --secondary: #5c5f60;
     --error: #ba1a1a;
 
+    /* The mockups' alpha'd outline-variant borders, blended flat over white:
+       /20 -> #f4f3f7, /30 -> #eeeef2, /40 -> #e8e8ee. And
+       surface-container-low/50 over white -> #fbf9fb (cover disclaimer fill). */
+    --ov-20: #f4f3f7;
+    --ov-30: #eeeef2;
+    --ov-40: #e8e8ee;
+    --note-bg: #fbf9fb;
+
     /* borderRadius: DEFAULT .125rem / lg .25rem / xl .5rem / full .75rem */
     --r-sm: 2px;
     --r-lg: 4px;
@@ -456,6 +514,7 @@ ${FONT_FACE_CSS}
     --r-full: 12px;
 
     /* spacing tokens: unit 4px, gutter 24px, margin 32px */
+    --unit: 4px;
     --gutter: 24px;
     --margin: 32px;
   }
@@ -467,9 +526,9 @@ ${FONT_FACE_CSS}
     /* The mockups paint the sheet "surface" (#fcf8fb) and float it on a darker
        desk. On paper the sheet IS the page, and Chromium only paints a body
        background inside the content box — printing #fcf8fb here drew a visible
-       tinted rectangle with white gutters around it on every page. The paper is
-       "surface-container-lowest" instead (the same token the Priorities mockup
-       gives its panel), so the card fills read against it exactly as designed. */
+       tinted rectangle with white gutters around it on every page (D-132). The
+       paper stays "surface-container-lowest"; the card fills read against it
+       exactly as designed. */
     background: var(--surface-container-lowest);
     color: var(--on-surface);
     /* fontSize.body-md — 14px / 1.5 / 0 / 400 */
@@ -486,7 +545,7 @@ ${FONT_FACE_CSS}
     font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
   }
 
-  a { color: var(--primary); text-decoration: underline; text-underline-offset: 2px; }
+  a { color: var(--primary); text-decoration: underline; text-underline-offset: 4px; }
   strong { font-weight: 600; }
   p { margin: 8px 0; }
   .muted { color: var(--on-surface-variant); }
@@ -506,9 +565,9 @@ ${FONT_FACE_CSS}
     font-size: 24px; line-height: 1.3; letter-spacing: -0.01em; font-weight: 500;
     margin: 0 0 8px;
   }
-  h3 {
+  h3, .check-block h2 {
     /* fontSize.headline-lg — 32px / 1.2 / -0.02em / 600 (per-rule title in the
-       dev-brief mockup) */
+       dev-brief mockup; the check-block page title) */
     font-size: 32px; line-height: 1.2; letter-spacing: -0.02em; font-weight: 600;
     margin: 0;
   }
@@ -520,13 +579,15 @@ ${FONT_FACE_CSS}
   }
 
   /* --- print discipline ---------------------------------------------------
-     Sections and per-rule cards must not be sliced across a page boundary. The
-     dev-brief and check-yourself blocks are DELIBERATELY excluded: both are
-     many pages long, and forcing them whole would push most of the document
-     onto blank pages. Their inner units (article.brief-item, each table row)
-     carry the rule instead. */
+     Sections and cards must not be sliced across a page boundary — except the
+     blocks that are deliberately longer than a page. The dev-brief and
+     check-yourself blocks flow; so does the Priorities section (.flow): its
+     table may spill its tail onto the next page (mockup intent), but must not
+     abandon a half-empty first page by jumping there whole. Inner units
+     (tbody.instance, tr) carry the no-slice rule instead. */
   section.block { margin: 0 0 var(--margin); break-inside: avoid-page; }
   section.brief-block, section.check-block { break-inside: auto; }
+  section.flow { break-inside: auto; }
   /* article.brief-item is deliberately NOT "break-inside: avoid". A rule with 8
      instances is routinely taller than a page, and Chromium's behaviour then is
      to push the whole thing to a fresh page, discover it still does not fit, and
@@ -537,52 +598,58 @@ ${FONT_FACE_CSS}
   tbody.instance { break-inside: avoid; }
   tr { break-inside: avoid; }
   thead { display: table-header-group; }
-  h2, h3, .brief-head, .card-head { break-after: avoid; }
+  h2, h3, .brief-head, .card-head, .sec-head { break-after: avoid; }
 
   /* --- cards --------------------------------------------------------------
      The mockups build depth with shadow-sm / shadow-xl / backdrop-blur. None of
      those print predictably (Chromium rasterises blurs, and a soft shadow on a
      printer is a smudge or nothing at all), so the same hierarchy is carried by
-     the 1px outline-variant border and the tinted surface fills the palette
-     already provides. */
+     the 1px alpha'd outline-variant border and the tinted surface fills the
+     palette already provides. */
   .card {
     background: var(--surface-container-low);
-    border: 1px solid var(--outline-variant);
+    border: 1px solid var(--ov-20);
     border-radius: var(--r-xl);
     padding: var(--gutter);
   }
-  .card.panel { background: var(--surface-container-lowest); padding: var(--margin); }
-  .card h2 { margin-top: 0; }
 
+  /* Sidebar cards (mockup 1's right column): p-6, gap-5 head with a hairline. */
+  .side-card { border-color: var(--ov-30); }
   .card-head {
     display: flex; align-items: center; gap: 8px;
-    border-bottom: 1px solid var(--outline-variant);
-    padding-bottom: 12px; margin-bottom: 16px;
+    border-bottom: 1px solid var(--ov-20);
+    padding-bottom: 12px; margin-bottom: 20px;
   }
-  .card-head h2 { margin: 0; }
+  .card-head .card-title {
+    /* mockup: font-headline-md text-[18px] font-semibold */
+    font-size: 18px; line-height: 1.3; letter-spacing: -0.01em; font-weight: 600;
+    margin: 0;
+  }
   .card-head .icon { color: var(--primary); }
 
   .icon { width: 18px; height: 18px; flex: 0 0 auto; }
+  .icon-20 { width: 20px; height: 20px; }
+  .icon-24 { width: 24px; height: 24px; }
   .dot { display: inline-block; width: 8px; height: 8px; border-radius: var(--r-full); margin-right: 8px; vertical-align: middle; }
 
-  /* --- cover --------------------------------------------------------------- */
-  .cover { padding-bottom: var(--margin); border-bottom: 1px solid var(--outline-variant); margin-bottom: var(--margin); }
+  /* --- cover (mockup 1) ---------------------------------------------------- */
+  .cover { padding: 24px 0 var(--margin); border-bottom: 1px solid var(--ov-30); margin-bottom: 0; }
   .cover-eyebrow { display: flex; align-items: center; gap: 8px; margin-bottom: var(--gutter); }
   .cover-eyebrow .rule { display: inline-block; width: 32px; height: 2px; background: var(--primary); }
   .cover-top { display: flex; align-items: flex-end; justify-content: space-between; gap: var(--margin); }
-  .cover-title { flex: 1 1 auto; }
+  .cover-title { flex: 1 1 auto; max-width: 672px; }
   .cover-url {
     /* fontSize.body-lg — 16px / 1.6 / 0 / 400 */
     font-size: 16px; line-height: 1.6; font-weight: 400;
     display: inline-flex; align-items: center; gap: 8px; margin-top: 16px;
   }
-  .cover-url .icon { width: 14px; height: 14px; }
+  .cover-url .icon { width: 18px; height: 18px; }
 
   .score-card {
     flex: 0 0 auto;
     display: flex; align-items: center; gap: var(--gutter);
     background: var(--surface-container-low);
-    border: 1px solid var(--outline-variant);
+    border: 1px solid var(--ov-20);
     border-radius: var(--r-xl);
     padding: var(--gutter);
   }
@@ -602,78 +669,97 @@ ${FONT_FACE_CSS}
   /* The bordered note treatment the mockups use for the cover disclaimer —
      reused for every "read this caveat" block in the document. */
   .note {
-    background: var(--surface-container-low);
+    background: var(--note-bg);
     border-left: 2px solid var(--primary);
     border-radius: 0 var(--r-lg) var(--r-lg) 0;
     padding: 16px;
     color: var(--on-surface-variant);
+    max-width: 768px;
     margin-top: var(--gutter);
   }
   .inset {
     background: var(--surface);
-    border: 1px solid var(--outline-variant);
+    border: 1px solid var(--ov-20);
     border-radius: var(--r-lg);
     padding: 16px;
-    margin-top: 16px;
-    font-size: 13px;
+    margin-top: 8px;
+    font-size: 13px; line-height: 1.625;
     color: var(--on-surface-variant);
   }
 
+  /* --- cover grid (mockup 1's grid-cols-12: main col-span-8, sidebar
+     col-span-4, gap-margin). 747:357 is that 12-column split resolved to
+     track widths at the 1136px content column, so the ratio is the mockup's
+     exactly. --- */
+  .cover-grid {
+    display: grid;
+    grid-template-columns: 747fr 357fr;
+    gap: var(--margin);
+    margin: var(--margin) 0;
+    break-inside: auto;
+  }
+  .cover-main { display: flex; flex-direction: column; gap: 48px; min-width: 0; }
+  .cover-side { display: flex; flex-direction: column; gap: var(--margin); min-width: 0; }
+  .cover-main section.block, .cover-side section.block { margin: 0; }
+
+  .sec-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: var(--gutter); }
+  .sec-head h2, .sec-head p { margin: 0; }
+
   /* --- coverage card ------------------------------------------------------- */
-  .media { display: flex; align-items: flex-start; gap: 16px; }
+  .media { display: flex; align-items: flex-start; gap: 16px; margin-top: 16px; }
   .media-icon {
     width: 40px; height: 40px; border-radius: var(--r-full);
     background: var(--primary-fixed); color: var(--on-primary-fixed);
     display: flex; align-items: center; justify-content: center; flex: 0 0 auto;
   }
-  .media-icon .icon { width: 20px; height: 20px; }
   .media-body { flex: 1 1 auto; min-width: 0; }
   .media-title { font-size: 24px; line-height: 1.3; letter-spacing: -0.01em; font-weight: 500; margin: 0; }
+  .media-body .muted { margin: 4px 0 0; }
   ul.plain { margin: 8px 0 0; padding-left: 18px; color: var(--on-surface-variant); }
   ul.plain li { margin-bottom: 4px; }
 
-  /* --- effort band --------------------------------------------------------- */
+  /* --- effort widget (mockup 1 sidebar: p-8 indigo card, 56px figure) ------ */
   .effort {
-    display: flex; align-items: center; gap: var(--margin);
     background: var(--primary); color: var(--on-primary);
     border-radius: 16px; /* rounded-2xl, Tailwind default 1rem */
     padding: var(--margin);
   }
-  .effort-figure { flex: 0 0 auto; }
-  .effort-head { display: flex; align-items: center; gap: 8px; }
-  .effort-head .eyebrow { color: var(--primary-fixed-dim); }
-  .effort-head .icon { color: var(--primary-fixed-dim); width: 20px; height: 20px; }
-  .effort-value { font-size: 48px; line-height: 1.1; letter-spacing: -0.02em; font-weight: 600; margin: 8px 0 0; white-space: nowrap; }
+  .effort-head { display: flex; align-items: center; gap: 8px; opacity: 0.8; }
+  .effort-head .eyebrow { color: var(--on-primary); }
+  .effort-head .icon { color: var(--on-primary); }
+  .effort-value {
+    font-size: 56px; line-height: 1; letter-spacing: -0.05em; font-weight: 600;
+    margin: 16px 0 0; white-space: nowrap;
+  }
+  .effort-divider { width: 100%; height: 1px; background: #697491; /* white/20 over primary */ margin: 16px 0 8px; }
   .effort-note {
-    flex: 1 1 auto; margin: 0; font-size: 13px; line-height: 1.6;
+    margin: 8px 0 0; font-size: 13px; line-height: 1.625;
     color: var(--primary-fixed);
-    border-left: 1px solid rgba(255,255,255,0.2); padding-left: var(--gutter);
   }
   .effort-note strong { color: #ffffff; font-weight: 500; }
 
   /* --- legal fields -------------------------------------------------------- */
   .fields { display: flex; flex-direction: column; gap: 16px; }
-  .field { display: flex; flex-direction: column; gap: 2px; }
+  .field { display: flex; flex-direction: column; gap: 4px; }
   .field-label {
+    /* mockup: font-label-sm text-[13px] uppercase tracking-wider */
     font-family: "JetBrains Mono", ui-monospace, monospace;
-    font-size: 11px; line-height: 1.2; letter-spacing: 0.05em; font-weight: 500;
+    font-size: 13px; line-height: 1.2; letter-spacing: 0.05em; font-weight: 500;
     text-transform: uppercase; color: var(--on-surface-variant);
   }
   .field-value { font-weight: 500; }
 
   /* --- tables -------------------------------------------------------------- */
-  table { width: 100%; border-collapse: collapse; margin-top: 16px; table-layout: fixed; }
+  table { width: 100%; border-collapse: collapse; table-layout: fixed; }
   th {
     /* fontSize.label-sm, uppercase tracking-wider (.05em) */
     font-family: "JetBrains Mono", ui-monospace, monospace;
     font-size: 11px; line-height: 1.2; letter-spacing: 0.05em; font-weight: 500;
     text-transform: uppercase; color: var(--on-surface-variant);
-    text-align: left; padding: 10px 8px;
-    border-bottom: 1px solid var(--outline-variant);
+    text-align: left; padding: 16px;
   }
   td {
-    text-align: left; padding: 10px 8px; vertical-align: top;
-    border-bottom: 1px solid var(--surface-variant);
+    text-align: left; padding: 16px; vertical-align: top;
     word-break: break-word;
   }
   td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
@@ -682,34 +768,53 @@ ${FONT_FACE_CSS}
   .crit-title { color: var(--on-surface-variant); }
   .chip {
     display: inline-block; border: 1px solid; border-radius: var(--r-full);
-    padding: 2px 8px; white-space: nowrap;
+    padding: 4px 8px; white-space: nowrap;
     font-family: "JetBrains Mono", ui-monospace, monospace;
     font-size: 11px; line-height: 1.2; letter-spacing: 0.05em; font-weight: 500;
     text-transform: uppercase;
   }
 
-  /* Priorities column widths. The mockup sets min-w-[800px] and lets the page
-     scroll; a printed page cannot scroll, so the six columns are proportioned
-     to the 698px A4 content column instead. */
+  /* Priorities table (mockup 1 geometry, mockup 4 chips): heavier 2px rule
+     under the header, hairline row separators, py-4 cells. The mockup sets
+     min-w-[800px] and lets the browser scroll; a printed column cannot, so the
+     six columns are proportioned to the grid's 747-track main column. */
+  table.priorities thead tr { border-bottom: 2px solid var(--ov-40); }
+  table.priorities tbody tr { border-bottom: 1px solid var(--ov-20); }
   table.priorities td.mono { font-size: 13px; letter-spacing: 0.02em; }
+  table.priorities th, table.priorities td { padding: 16px 12px; }
   table.priorities th:nth-child(1), table.priorities td:nth-child(1) { width: 5%; }
-  table.priorities th:nth-child(2), table.priorities td:nth-child(2) { width: 14%; }
-  table.priorities th:nth-child(3), table.priorities td:nth-child(3) { width: 27%; }
-  table.priorities th:nth-child(4), table.priorities td:nth-child(4) { width: 34%; }
-  table.priorities th:nth-child(5), table.priorities td:nth-child(5) { width: 10%; }
-  table.priorities th:nth-child(6), table.priorities td:nth-child(6) { width: 10%; }
+  table.priorities th:nth-child(2), table.priorities td:nth-child(2) { width: 15%; }
+  table.priorities th:nth-child(3), table.priorities td:nth-child(3) { width: 26%; }
+  table.priorities th:nth-child(4), table.priorities td:nth-child(4) { width: 36%; }
+  table.priorities th:nth-child(5), table.priorities td:nth-child(5) { width: 9%; }
+  table.priorities th:nth-child(6), table.priorities td:nth-child(6) { width: 9%; }
 
-  /* --- developer brief ----------------------------------------------------- */
-  article.brief-item { margin: var(--margin) 0 0; padding-top: var(--gutter); border-top: 1px solid var(--outline-variant); }
-  .brief-head { display: flex; align-items: baseline; gap: 16px; }
+  /* --- developer brief (mockup 2) ------------------------------------------ */
+  article.brief-item { margin: 48px 0 0; padding-top: var(--margin); border-top: 1px solid var(--outline-variant); }
+  section.brief-block > .muted { max-width: 768px; }
+  .brief-head { display: flex; align-items: center; gap: 16px; }
   .brief-head h3 .mono { font-weight: 600; }
-  .criterion { font-size: 16px; line-height: 1.6; color: var(--on-surface-variant); margin: 8px 0 0; }
-  .brief-what { margin: 16px 0 0; }
-  .brief-caveat { margin: 4px 0 0; font-style: italic; color: var(--on-surface-variant); }
+  .criterion { font-size: 16px; line-height: 1.6; color: var(--on-surface-variant); margin: 4px 0 0; }
+  .brief-what { margin: 8px 0 0; max-width: 768px; }
+  .brief-caveat { margin: 4px 0 0; font-style: italic; color: var(--on-surface-variant); max-width: 768px; }
   .help-line { display: flex; align-items: flex-start; gap: 8px; margin-top: 16px; }
-  .help-line .icon { color: var(--primary); margin-top: 3px; width: 20px; height: 20px; }
+  .help-line .icon { color: var(--primary); margin-top: 1px; }
   .help-line a { word-break: break-all; }
 
+  /* Instance grid: the mockup's 12-col rows (Page 4 / Selector 3 / HTML 5,
+     gap-gutter), as table columns with the gutter carried by padding. Header
+     band is surface-container-low with a full outline-variant rule above and
+     below (mockup); rows are py-6 with outline-variant separators. */
+  table.instances { margin-top: 16px; border-top: 1px solid var(--outline-variant); }
+  table.instances th {
+    letter-spacing: 0.1em; /* tracking-widest */
+    background: var(--surface-container-low);
+    border-bottom: 1px solid var(--outline-variant);
+    padding: 16px 24px 16px 0;
+  }
+  table.instances td { padding: 24px 24px 24px 0; border-bottom: 1px solid var(--outline-variant); }
+  table.instances th:first-child, table.instances td:first-child { padding-left: 16px; }
+  table.instances th:last-child, table.instances td:last-child { padding-right: 16px; }
   table.instances th:nth-child(1), table.instances td:nth-child(1) { width: 33%; }
   table.instances th:nth-child(2), table.instances td:nth-child(2) { width: 25%; }
   table.instances th:nth-child(3), table.instances td:nth-child(3) { width: 42%; }
@@ -722,13 +827,13 @@ ${FONT_FACE_CSS}
     color: var(--on-surface-variant);
     background: var(--surface-container);
     border-radius: var(--r-sm);
-    padding: 2px 6px;
+    padding: 4px 8px;
     word-break: break-all;
   }
   .html-frag {
     background: var(--surface-container-high);
     border-radius: var(--r-lg);
-    padding: 10px;
+    padding: 12px;
     font-size: 11px; line-height: 1.4; letter-spacing: 0.05em;
     white-space: pre-wrap; word-break: break-all;
   }
@@ -739,21 +844,28 @@ ${FONT_FACE_CSS}
      otherwise collapse into one run-on line. */
   tr.summary-row td.summary {
     white-space: pre-wrap;
-    background: var(--surface-container-low);
+    background: var(--note-bg);
     border-left: 2px solid var(--primary);
-    border-bottom: 1px solid var(--surface-variant);
+    border-bottom: 1px solid var(--outline-variant);
     color: var(--on-surface-variant);
     font-size: 13px; line-height: 1.5;
-    padding: 10px 12px;
+    padding: 12px 16px;
   }
 
-  /* --- check yourself ------------------------------------------------------ */
+  /* --- check yourself (mockup 3) ------------------------------------------- */
+  .check-block h2 { margin-bottom: 16px; }
+  .check-intro { max-width: 768px; color: var(--on-surface-variant); }
+  .check-intro p { margin: 0 0 16px; }
+  table.check-yourself { margin-top: 8px; }
+  table.check-yourself thead tr { border-bottom: 1px solid var(--ov-30); }
+  table.check-yourself th { padding: 12px 16px; }
+  table.check-yourself td { padding: 16px; border-bottom: 1px solid var(--ov-20); }
   table.check-yourself th:nth-child(1), table.check-yourself td:nth-child(1) { width: 10%; }
-  table.check-yourself th:nth-child(2), table.check-yourself td:nth-child(2) { width: 32%; }
-  table.check-yourself th:nth-child(3), table.check-yourself td:nth-child(3) { width: 13%; }
-  table.check-yourself th:nth-child(4), table.check-yourself td:nth-child(4) { width: 45%; }
+  table.check-yourself th:nth-child(2), table.check-yourself td:nth-child(2) { width: 33%; }
+  table.check-yourself th:nth-child(3), table.check-yourself td:nth-child(3) { width: 14%; }
+  table.check-yourself th:nth-child(4), table.check-yourself td:nth-child(4) { width: 43%; }
   table.check-yourself td.mono { font-size: 13px; letter-spacing: 0.02em; }
-  table.check-yourself td a { font-size: 11px; letter-spacing: 0.05em; line-height: 1.4; }
+  table.check-yourself td a { font-size: 13px; letter-spacing: 0.02em; line-height: 1.4; }
 
   /* --- colophon (see the note above STYLE in the JS source) --- */
   .colophon {
@@ -771,6 +883,11 @@ ${FONT_FACE_CSS}
 // output. Kept as one string builder (not a template engine) — there is no
 // runtime dependency to justify one, and the whole thing must stay debuggable
 // by reading it top to bottom.
+//
+// D-133 structure = mockup 1's composition: cover header full-width, then the
+// 12-column grid — coverage + priorities in the 8-track main column, the
+// effort widget stacked over the legal card in the 4-track sidebar — then the
+// full-width dev-brief and check-yourself blocks.
 export function renderPlanHtml(planData) {
   const year = fmtDate(planData.generatedAt).slice(0, 4) || String(new Date().getUTCFullYear())
   return `<!doctype html>
@@ -799,10 +916,17 @@ export function renderPlanHtml(planData) {
     guarantee full accessibility — manual review by a qualified auditor is still required.</p>
   </section>
 
-  ${renderCoverageSection(planData.coverage)}
-  ${renderPrioritiesSection(planData.priorities)}
-  ${renderEffortSection(planData.effort)}
-  ${renderLegalSection(planData.legal)}
+  <div class="cover-grid">
+    <div class="cover-main">
+      ${renderCoverageSection(planData.coverage)}
+      ${renderPrioritiesSection(planData.priorities)}
+    </div>
+    <aside class="cover-side">
+      ${renderEffortSection(planData.effort)}
+      ${renderLegalSection(planData.legal)}
+    </aside>
+  </div>
+
   ${renderDevBriefSection(planData.devBrief)}
   ${renderCheckYourselfSection(planData.checkYourself)}
 
@@ -820,12 +944,14 @@ export function renderPlanHtml(planData) {
 // system sans stack and CANNOT use Geist; that is a platform limit, not a
 // choice). See PDFOptions.headerTemplate in
 // node_modules/@cloudflare/puppeteer/lib/types.d.ts. `.pageNumber`/`.totalPages`
-// classes are filled in by Chromium itself.
+// classes are filled in by Chromium itself. They render OUTSIDE the D-133 print
+// scale, in paper space — the 21px side padding lines them up with the scaled
+// content column's edges (buildPdfOptions' left/right margins).
 //
 // D-132: restyled to the new palette (outline #767684 on the mockups' letter
 // spacing) — content deliberately unchanged.
 const RUNNING_STYLE =
-  'font-size:8px;width:100%;padding:0 48px;color:#767684;letter-spacing:0.05em;' +
+  'font-size:8px;width:100%;padding:0 21px;color:#767684;letter-spacing:0.05em;' +
   'text-transform:uppercase;font-family:-apple-system,Helvetica,Arial,sans-serif;' +
   'display:flex;justify-content:space-between;'
 

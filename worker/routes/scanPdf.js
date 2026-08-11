@@ -10,7 +10,7 @@ import { getScan, reapStaleScan, isPlanUnlocked } from '../lib/db.js'
 import { isScanStale } from './scan.js'
 import { resolveJurisdiction } from '../lib/jurisdiction.js'
 import { buildPlanData } from '../lib/pdfPlan.js'
-import { renderPlanHtml, buildHeaderTemplate, buildFooterTemplate } from '../lib/pdfPlanHtml.js'
+import { renderPlanHtml, buildPdfOptions } from '../lib/pdfPlanHtml.js'
 
 // worker/lib/axe.js keeps launchBrowser/closeBrowserSafely private and must not
 // be touched functionally for this task — so the same PATTERN (not the same
@@ -96,14 +96,11 @@ async function generatePdf(env, planData) {
       // signal — the small cost is irrelevant for a document with no external
       // resources to wait for.
       await page.setContent(html, { waitUntil: 'load' })
-      return page.pdf({
-        format: 'a4',
-        printBackground: true,
-        displayHeaderFooter: true,
-        headerTemplate: buildHeaderTemplate(planData.url),
-        footerTemplate: buildFooterTemplate(),
-        margin: { top: '90px', bottom: '70px', left: '48px', right: '48px' },
-      })
+      // Display options (format/margins/scale/header/footer) live with the
+      // stylesheet they are calibrated against, in pdfPlanHtml.js — D-133's
+      // uniform print scale only reproduces the mockups' geometry if the HTML
+      // and these options always travel together.
+      return page.pdf(buildPdfOptions(planData.url))
     })()
     // Same D-108 lesson as axe.js: a promise that never settles must still be
     // handled once the watchdog wins the race, or it becomes an unhandled
