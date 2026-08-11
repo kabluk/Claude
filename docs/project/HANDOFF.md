@@ -121,16 +121,31 @@ MVP «мониторинг как подписка» готов в коде на
 confirm-письмо `delivered` → `verify` → `active` → `unsubscribe` →
 `unsubscribed`; тестовые строки удалены. D-023 держится на проде.
 
-**⚠️ СЛЕДУЮЩИЙ ШАГ — САЙТ (нужно отдельное явное одобрение владельца, D-022).**
-Backend живой, но UI-формы на проде НЕТ: форма на `/report/:id` и обновлённая
-Privacy поедут автодеплоем ТОЛЬКО при push ветки
-`claude/accessatlas-a3-cron-monitoring-9ff4iw` в `accessatlas`. До этого
-реальный пользователь подписаться через сайт не может (API живой, но точки
-входа в UI нет). `worker:test` 487/487, `src:test` 67/67,
-build/typecheck/audit-a11y/check-links — все зелёные. Отдельно:
-`TURNSTILE_SECRET_KEY` на проде не задан — все формы (scan/lead/claim/
-subscribe) идут без Turnstile; преждее состояние, решение по нему — вне
-этого деплоя.
+**✅ САЙТ ТОЖЕ НА ПРОДЕ — фича A3-CRON целиком доступна пользователям
+(D-138, 2026-08-11).** Владелец одобрил push в `accessatlas`. Форма на
+`/report/:id` и обновлённая Privacy — живьём на `verscala.com` (проверено
+curl'ом ПОСЛЕ деплоя: Privacy-секция про подписку + Resend, чанк ReportPage
+с `/api/subscribe` отдаёт 200, адрес воркера в бандле). Полный живой цикл
+(подписка → confirm-письмо `delivered` → verify → active → unsubscribe)
+подтверждён против боевого воркера и D1.
+
+**⚠️ ВАЖНО про деплой сайта (стоячий долг, рецидив D-122):** CI-шаг
+`Deploy to Cloudflare Pages` (`deploy.yml`) ПАДАЕТ на протухшем GitHub
+Actions-секрете `CLOUDFLARE_API_TOKEN` (`Invalid access token 9109`) — это
+ДРУГОЙ токен, чем даёт владелец в чат. Пока владелец не обновит этот
+GitHub-секрет (Settings → Secrets and variables → Actions), автодеплой
+сайта при push в `accessatlas` не работает — деплоить Pages приходится
+ВРУЧНУЮ: `VITE_SCANNER_API=https://accessatlas-worker.zincroom.workers.dev
+npm run build` затем `wrangler pages deploy dist --project-name verscala
+--branch main` с рабочим CF-токеном (право Pages обязательно). Именно так
+задеплоен этот заход. `worker:test` 487/487, `src:test` 67/67,
+build/typecheck/audit-a11y/check-links — все зелёные.
+
+Мелкие хвосты (не блокируют): `TURNSTILE_SECRET_KEY` на проде не задан — все
+формы (scan/lead/claim/subscribe) идут без Turnstile-проверки (преждее
+состояние, отдельное решение); визуальные страницы verify/unsubscribe —
+голый JSON; авто-ретенция/самоудаление подписок (RISKS.md R14, GDPR Art. 17
+сейчас ручной).
 
 Мелкий хвост на будущее (не блокирует): страницы verify/unsubscribe сейчас
 отдают голый JSON (по образцу claim verify) — визуальную страницу

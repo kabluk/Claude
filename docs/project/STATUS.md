@@ -17,11 +17,18 @@ in-memory), после чего confirm-письмо реально ушло (Re
 `verify?token` → `active`/`verified=1`; `unsubscribe?token` →
 `unsubscribed`, идемпотентно. Тестовые строки удалены (прод-D1 = 0 подписок).
 
-**НЕ сделано (ждёт отдельного решения владельца):** push в `accessatlas`
-(автодеплой САЙТА — форма на `/report/:id`, Privacy). До него backend
-живой, но UI-формы на проде нет, реальный пользователь подписаться не может.
-`TURNSTILE_SECRET_KEY` на проде не задан (все формы идут без Turnstile —
-преждее состояние, не введено этим деплоем). Детали — D-138.
+**САЙТ ТОЖЕ ЗАДЕПЛОЕН — фича A3-CRON целиком на проде для пользователей.**
+Владелец одобрил push в `accessatlas`. CI — success, но CI-шаг Pages-деплоя
+упал на протухшем GitHub-секрете `CLOUDFLARE_API_TOKEN` (рецидив D-122).
+Обход: Pages задеплоен напрямую in-memory токеном (`wrangler pages deploy
+dist --project-name verscala --branch main`, dist собран с реальным
+`VITE_SCANNER_API` из живого бандла). Живая проверка боевого `verscala.com`
+ПОСЛЕ деплоя (curl, не лог): `/privacy/` — новая секция про подписку + Resend;
+чанк ReportPage (форма) — 200, содержит `/api/subscribe`; адрес воркера в
+бандле присутствует. **Стоячий долг**: CI-деплой будет падать на каждый push
+в `accessatlas`, пока владелец не обновит GitHub-секрет `CLOUDFLARE_API_TOKEN`.
+`TURNSTILE_SECRET_KEY` на проде не задан (все формы без Turnstile — преждее
+состояние). Детали — D-138.
 
 ## Ранее (2026-08-11, A3-CRON ЗАКРЫТ ПОЛНОСТЬЮ — 8/8 узлов done, НЕ задеплоено)
 
