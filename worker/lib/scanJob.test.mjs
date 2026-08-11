@@ -34,12 +34,13 @@ function fakeScansDb(initialRows = [], { failReads = false, failWrites = false }
             async run() {
               if (failWrites) throw new Error('D1_ERROR: database is unavailable')
               if (/^UPDATE scans SET status = 'done'/.test(sql)) {
-                const [pages, findings, score, completed, id] = args
+                const [pages, findings, score, completed, countryCode, countrySource, id] = args
                 const row = find(id)
                 if (!row) return { meta: { changes: 0 } }
                 Object.assign(row, {
                   status: 'done', pages_json: pages, findings_json: findings,
                   score, completed_at: completed, progress_json: null,
+                  country_code: countryCode, country_source: countrySource,
                 })
                 return { meta: { changes: 1 } }
               }
@@ -128,6 +129,60 @@ test('D-110: happy path — скан выполнен, completeScan записа
   assert.equal(typeof db.rows[0].score, 'number')
   const findings = JSON.parse(db.rows[0].findings_json)
   assert.equal(findings[0].jurisdictionCountry, 'DE')
+})
+
+// A4-SITE-COUNTRY: the country resolveCountry() attaches inside scanSite (via
+// the real scan() dependency's `country` field) must reach the DB row, same
+// as findings/score already do. body.countryCode also reaches scanSite as a
+// 4th argument now — separately asserted below.
+test('A4-SITE-COUNTRY: country from scan() result is written to the DB row', async () => {
+  const db = fakeScansDb([row('cc1', 'running')])
+  const msg = fakeMessage(jobBody('cc1'))
+
+  await runScanJob({ DB: db }, msg, {
+    async scan(env, url) {
+      return {
+        pages: [url], findings: [],
+        country: { code: 'US', source: 'schema-org' },
+      }
+    },
+  })
+
+  assert.equal(db.rows[0].country_code, 'US')
+  assert.equal(db.rows[0].country_source, 'schema-org')
+})
+
+test('A4-SITE-COUNTRY: scan() result with no country field (older/test double) writes both columns null, does not crash', async () => {
+  const db = fakeScansDb([row('cc2', 'running')])
+  const msg = fakeMessage(jobBody('cc2'))
+
+  const outcome = await runScanJob({ DB: db }, msg, {
+    async scan(env, url) { return { pages: [url], findings: [] } },
+  })
+
+  assert.equal(outcome, 'completed')
+  assert.equal(db.rows[0].country_code, null)
+  // Fallback default is {code:null, source:'unknown'} (an honest "we don't
+  // know", not the ABSENCE of the field a legacy row would have) — different
+  // from the db.test.mjs case of completeScan called with no country arg at
+  // ALL, which writes source:null. Both collapse to countryCode:null via
+  // getScan's `?? null`, so the distinction only matters at this raw-row level.
+  assert.equal(db.rows[0].country_source, 'unknown')
+})
+
+test('A4-SITE-COUNTRY: body.countryCode is passed to scan() as a 4th argument (the override, same field as jurisdiction)', async () => {
+  const db = fakeScansDb([row('cc3', 'running')])
+  const msg = fakeMessage(jobBody('cc3', 'https://shop.example.de/', 'FR'))
+  let receivedOverride
+
+  await runScanJob({ DB: db }, msg, {
+    async scan(env, url, onProgress, countryCodeOverride) {
+      receivedOverride = countryCodeOverride
+      return { pages: [url], findings: [] }
+    },
+  })
+
+  assert.equal(receivedOverride, 'FR')
 })
 
 test('D-110: countryCode из сообщения перебивает TLD (D-032 пережил переезд в очередь)', async () => {

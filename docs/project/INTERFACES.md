@@ -110,7 +110,22 @@ type ScanReport = { id: string; url: string; status: 'running'|'done'|'error'; p
   findings: ScanFinding[]; score: number|null; error: string|null;
   errorCode: 'unreachable'|'refused'|'tls'|'timeout'|'blocked'|'busy'|'internal'|null;
   createdAt: string; completedAt: string|null; progress: ScanProgress|null;
-  planUnlocked: boolean };
+  planUnlocked: boolean;
+  countryCode: string|null; countrySource: 'user-override'|'schema-org'|'tld'|'unknown'|null };
+// A4-SITE-COUNTRY (D-126, migrations/0009_country.sql): which of taxonomies.json's
+// 19 countries the scanned site belongs to — drives which currency the
+// repair-cost estimate on /report/:id shows (was always €, confusing for a US
+// site like ladwp.com). Detected by worker/lib/siteCountry.js::resolveCountry,
+// SEPARATE module from jurisdiction.js (deliberately — see that module's
+// header): same override-wins-over-heuristics shape as jurisdiction
+// (user-override > schema-org JSON-LD address.addressCountry > ccTLD > null),
+// but a lower-stakes, best-effort "which market" question, not a legal one —
+// its TLD map covers all 19 countries, not just the legally-verified subset.
+// countrySource:null only for rows from before migrations/0009_country.sql or
+// scans that never reached 'done' (written only by completeScan, same rubric
+// as progress being null on a finished scan). countryCode flows from the SAME
+// countryCode field already accepted by POST /api/scan for jurisdiction
+// (worker/routes/scan.js) — one user fact, seeds two independent heuristics.
 // planUnlocked (A2-REPORT-PAYWALL + A2-STRIPE-CHECKOUT): true iff a lead was
 // left for this scan_id (hasLeadForScan) OR the €19.99 plan was paid via
 // Stripe Checkout (hasPaidPlanForScan) — единый хелпер isPlanUnlocked
@@ -180,7 +195,9 @@ type Lead = { id: string; scanId?: string; country: string; standard: StandardSl
 scans(id TEXT PK, url TEXT, status TEXT DEFAULT 'running', pages_json TEXT,
       findings_json TEXT, score INT, error TEXT, error_code TEXT, email TEXT NULL,
       created_at TEXT, completed_at TEXT,
-      progress_json TEXT)  -- JSON ScanProgress (§3), NULL когда скан завершён/старая запись
+      progress_json TEXT,  -- JSON ScanProgress (§3), NULL когда скан завершён/старая запись
+      country_code TEXT, country_source TEXT)  -- A4-SITE-COUNTRY, migrations/0009_country.sql
+      -- (D-126): пишутся только completeScan, NULL для running/error и для строк до миграции.
 
 -- ниже — черновик, Фаза 2+, ещё не реализовано
 leads(id TEXT PK, scan_id TEXT NULL, country TEXT, standard TEXT, service TEXT, budget TEXT,

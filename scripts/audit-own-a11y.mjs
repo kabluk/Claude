@@ -209,11 +209,18 @@ const results = []
 // color-contrast/serious, region/moderate) so groupFindingsByRule() yields
 // >0 groups and both the findings list and the plan-panel teaser (built
 // from groups[0], see LockedPlanPanel) actually render.
+// A4-SITE-COUNTRY (D-126): countryCode/countrySource added to every 'done'
+// fixture so the new currency <select> on the remediation-estimate card
+// actually renders (it's conditional on `cost`, which needs findings — same
+// gate as before, this just adds the two new ScanReport fields alongside it)
+// and gets audited, same precedent as D-124 adding the checkout-toast state.
 const REPORT_FIXTURE_ID = 'fixture-scan-id'
 const reportFixture = (planUnlocked) => ({
   id: REPORT_FIXTURE_ID,
   url: 'https://example.com',
   status: 'done',
+  countryCode: 'US',
+  countrySource: 'tld',
   pages: ['https://example.com/', 'https://example.com/about'],
   findings: [
     {
@@ -280,6 +287,8 @@ const REPORT_STATES = [
       id: REPORT_FIXTURE_ID,
       url: 'https://example.com',
       status: 'error',
+      countryCode: null,
+      countrySource: null,
       pages: [],
       findings: [],
       score: null,

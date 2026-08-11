@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Link, useParams, useSearchParams } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
 import { ScanStream } from '@/components/ScanStream'
-import { paths } from '@/lib/data'
+import { paths, tax } from '@/lib/data'
 import {
   ScannerUnavailableError,
   fetchScan,
@@ -18,10 +18,24 @@ import {
   createPlanCheckout,
   type ScanReport,
 } from '@/lib/scanner'
-import { estimateCost, formatCostEstimate } from '@/lib/costEstimate'
+import { estimateCost, formatCostEstimate, type CostCurrency } from '@/lib/costEstimate'
+import { conversionDisclaimer } from '@/lib/currency'
 import { decidePollNext, type PollAttempt } from '@/lib/reportPolling'
 import { MatchedAgencies } from '@/components/MatchedAgencies'
 import { useToasts, ToastRegion } from '@/components/library/Toast'
+
+// A4-SITE-COUNTRY (D-126): EUR — the estimate's native currency (BAND_BOUNDS in
+// costEstimate.ts) — is always a valid choice, plus every currency actually
+// used by one of the 19 markets in taxonomies.json, deduped and sorted (there
+// are fewer unique currencies than countries — several EU markets share EUR).
+// Computed once at module scope, not per-render: `tax` is static build-time
+// data, not per-report state.
+const EUR_CURRENCY: CostCurrency = { code: 'EUR', symbol: '€' }
+const CURRENCY_OPTIONS: CostCurrency[] = Array.from(
+  new Map(
+    [EUR_CURRENCY, ...Object.values(tax.countries).map((c) => c.currency)].map((c) => [c.code, c]),
+  ).values(),
+).sort((a, b) => a.code.localeCompare(b.code))
 
 // A2-STRIPE-CHECKOUT tail: Stripe redirects the browser back to
 // success_url/cancel_url set in worker/routes/planCheckout.js, both of which
@@ -241,6 +255,18 @@ export default function ReportPage() {
 }
 
 function ReportBody({ report }: { report: ScanReport }) {
+  // A4-SITE-COUNTRY (D-126): '' means "use the auto-detected default" — the
+  // ONLY thing this state remembers is an explicit user choice, never a
+  // synced copy of the detected default. That sidesteps an effect entirely:
+  // report.countryCode is null while status is 'running' (ReportBody mounts
+  // then already, before the early returns below) and only becomes real once
+  // status flips to 'done' — a useState initializer reading it would freeze
+  // the stale null from first mount, and syncing it in a useEffect would risk
+  // clobbering a choice the user already made. Declared unconditionally here,
+  // before the early returns, per the rules of hooks (this component must
+  // call the same hooks on every render regardless of report.status).
+  const [currencyOverride, setCurrencyOverride] = useState('')
+
   // CN-SCAN-STREAM: running/error рисуются deploy-подобным потоком шагов
   // (ScanStream) из РЕАЛЬНЫХ полей API. Прежний текст «Scanned N pages so far»
   // снят как раз поэтому: pages_json пишется одним куском при завершении,
@@ -276,6 +302,15 @@ function ReportBody({ report }: { report: ScanReport }) {
   const groups = groupFindingsByRule(report.findings)
   const uniquePages = report.pages.length
   const cost = estimateCost(report.findings)
+  // A4-SITE-COUNTRY (D-126): default currency comes from the detected site
+  // country (worker/lib/siteCountry.js); falls back to EUR display when
+  // countryCode is null/unrecognized (never crash, never guess a currency).
+  // An explicit user pick (currencyOverride) always wins over the detected
+  // default — same override-wins pattern the jurisdiction `<select>` already
+  // uses on ScanPage — and this override is PURELY local display state: it
+  // re-renders the already-known EUR figure, it never re-fetches the report.
+  const defaultCurrency = (report.countryCode && tax.countries[report.countryCode]?.currency) || EUR_CURRENCY
+  const activeCurrency = CURRENCY_OPTIONS.find((c) => c.code === currencyOverride) ?? defaultCurrency
   // Кольцо-визуализация (D-107, макет владельца): длина окружности постоянна
   // (r=45 → 2πr≈282.7), меняется только dashoffset — 0 при 100/100 (кольцо
   // закрыто целиком), полная окружность при 0 (кольцо пустое). score может
@@ -348,14 +383,44 @@ function ReportBody({ report }: { report: ScanReport }) {
         {cost && (
           <div className="card flex flex-col justify-between">
             <div>
-              <span className="text-xs font-medium uppercase tracking-widest text-on-surface-variant">
-                Remediation estimate
-              </span>
-              <div className="num mt-3 text-4xl font-bold tracking-tight">{formatCostEstimate(cost)}</div>
-              <p className="mt-3 text-xs text-on-surface-variant">
+              <div className="flex flex-wrap items-start justify-between gap-2">
+                <span className="text-xs font-medium uppercase tracking-widest text-on-surface-variant">
+                  Remediation estimate
+                </span>
+                {/* A4-SITE-COUNTRY (D-126): local display state only — changes
+                    which currency the already-known EUR estimate is shown in,
+                    never triggers a new scan or request. Same override-wins
+                    spirit as the jurisdiction <select> on ScanPage, but this
+                    one corrects DISPLAY, not the scan's legal analysis. */}
+                <label htmlFor="report-currency" className="sr-only">
+                  Show remediation estimate in
+                </label>
+                <select
+                  id="report-currency"
+                  value={currencyOverride}
+                  onChange={(e) => setCurrencyOverride(e.target.value)}
+                  aria-describedby="report-currency-help"
+                  className="input px-2 py-1 text-xs"
+                >
+                  <option value="">
+                    Auto ({defaultCurrency.code}
+                    {report.countryCode ? ` — ${report.countryCode}` : ''})
+                  </option>
+                  {CURRENCY_OPTIONS.map((c) => (
+                    <option key={c.code} value={c.code}>
+                      {c.code}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="num mt-3 text-4xl font-bold tracking-tight">
+                {formatCostEstimate(cost, activeCurrency)}
+              </div>
+              <p id="report-currency-help" className="mt-3 text-xs text-on-surface-variant">
                 A rough estimate based on the number and severity of issues found here — not a
                 quote or an offer. Actual cost depends on your codebase, team, and how the fixes
                 are made.
+                {activeCurrency.code !== 'EUR' && <> {conversionDisclaimer()}</>}
               </p>
             </div>
             <Link

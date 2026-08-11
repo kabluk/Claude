@@ -6,6 +6,7 @@
 import type { ScanFinding } from './scanner'
 import { groupFindingsByRule } from './scanner'
 import type { PriceBand } from '@data/a11y/types'
+import { convertFromEur } from './currency'
 
 // Границы диапазонов в евро — держим числа здесь, не парсим локализованные строки
 // из taxonomies.priceBands (те — только для отображения меток, не для арифметики).
@@ -70,14 +71,29 @@ export function estimateCost(findings: ScanFinding[]): CostEstimate | null {
   return { band, lowerAmount, upperAmount }
 }
 
-// Без символа валюты — используется внутри диапазона, где € уже стоит один раз
-// в начале (конвенция проекта, см. taxonomies.json priceBands: "€3k–10k").
+// Без символа валюты — используется внутри диапазона, где символ уже стоит один
+// раз в начале (конвенция проекта, см. taxonomies.json priceBands: "€3k–10k").
 function formatAmount(amount: number): string {
   return amount >= 1000 ? `${Math.round(amount / 1000)}k` : String(amount)
 }
 
-export function formatCostEstimate(estimate: CostEstimate): string {
-  if (estimate.upperAmount === null) return `€${formatAmount(estimate.lowerAmount)}+`
-  if (estimate.lowerAmount === 0) return `Under €${formatAmount(estimate.upperAmount)}`
-  return `€${formatAmount(estimate.lowerAmount)}–${formatAmount(estimate.upperAmount)}`
+export type CostCurrency = { code: string; symbol: string }
+const EUR: CostCurrency = { code: 'EUR', symbol: '€' }
+
+// A4-SITE-COUNTRY (D-126): band bounds are ALWAYS computed in EUR
+// (BAND_BOUNDS above) — `currency` only changes what's shown, never the
+// underlying estimate. Defaults to EUR/no conversion, so every existing
+// caller (worker/lib/pdfPlan.js's mirror, any test not passing this param)
+// keeps rendering exactly the same string as before this feature existed.
+// An unknown currency code (convertFromEur returns null — e.g. a country
+// added to taxonomies.json before src/lib/currency.ts's rate table catches
+// up) degrades honestly to the real EUR number rather than showing a wrong
+// figure or crashing.
+export function formatCostEstimate(estimate: CostEstimate, currency: CostCurrency = EUR): string {
+  const toCurrency = (amountEur: number): number =>
+    currency.code === 'EUR' ? amountEur : (convertFromEur(amountEur, currency.code) ?? amountEur)
+  const symbol = currency.code === 'EUR' ? '€' : currency.symbol
+  if (estimate.upperAmount === null) return `${symbol}${formatAmount(toCurrency(estimate.lowerAmount))}+`
+  if (estimate.lowerAmount === 0) return `Under ${symbol}${formatAmount(toCurrency(estimate.upperAmount))}`
+  return `${symbol}${formatAmount(toCurrency(estimate.lowerAmount))}–${formatAmount(toCurrency(estimate.upperAmount))}`
 }

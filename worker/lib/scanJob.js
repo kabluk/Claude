@@ -124,9 +124,15 @@ export async function runScanJob(env, msg, deps = {}) {
   try {
     // CN-SCAN-PHASES (D-067): промежуточный прогресс пишется по ходу скана,
     // completeScan/failScan затирают его в NULL.
-    const { pages, findings } = await scan(env, url, makeProgressReporter(env.DB, id))
+    // A4-SITE-COUNTRY: body.countryCode — тот же вход, что уже используется
+    // строкой выше для юрисдикции, ПОВТОРНО передаётся сюда как
+    // countryCodeOverride (D-032-style override-wins, worker/lib/siteCountry.js).
+    // `country` в fallback на случай тестового `deps.scan`, отдающего только
+    // {pages, findings} (scanJob.test.mjs) — реальный scanSite всегда отдаёт его.
+    const { pages, findings, country = { code: null, source: 'unknown' } } =
+      await scan(env, url, makeProgressReporter(env.DB, id), body.countryCode)
     const weighted = applyJurisdictionWeight(findings, jurisdiction)
-    record = () => completeScan(env.DB, { id, pages, findings: weighted, score: scoreFromFindings(weighted) })
+    record = () => completeScan(env.DB, { id, pages, findings: weighted, score: scoreFromFindings(weighted), country })
     outcome = 'completed'
   } catch (err) {
     const message = err?.message ?? String(err)

@@ -32,10 +32,13 @@ function fakeScansDb(initialRows = []) {
                 // гейт из реального SQL: только running-строка принимает прогресс
                 if (row && row.status === 'running') row.progress_json = progress
               } else if (/^UPDATE scans SET status = 'done'/.test(sql)) {
-                const [pages, findings, score, completed, id] = args
+                const [pages, findings, score, completed, countryCode, countrySource, id] = args
                 const row = find(id)
                 assert.match(sql, /progress_json = NULL/, 'completeScan обязан перезаписывать прогресс')
-                Object.assign(row, { status: 'done', pages_json: pages, findings_json: findings, score, completed_at: completed, progress_json: null })
+                Object.assign(row, {
+                  status: 'done', pages_json: pages, findings_json: findings, score, completed_at: completed,
+                  progress_json: null, country_code: countryCode, country_source: countrySource,
+                })
               } else if (/^UPDATE scans SET status = 'error'/.test(sql)) {
                 const [error, code, completed, id] = args
                 const row = find(id)
@@ -229,6 +232,45 @@ test('isPlanUnlocked: no lead -> falls through to the paid check (second query r
   assert.equal(await isPlanUnlocked(db, 's'), true)
   assert.equal(db.calls.length, 2, 'no lead -> both leads then plan_purchases are queried')
   assert.match(db.calls[1].sql, /FROM plan_purchases/)
+})
+
+// A4-SITE-COUNTRY (migrations/0009_country.sql): completeScan writes
+// country_code/country_source, getScan reads them back as countryCode/
+// countrySource (camelCase, same convention as errorCode/error_code).
+test('completeScan writes country, getScan reads it back as countryCode/countrySource', async () => {
+  const db = fakeScansDb()
+  await insertScanPending(db, { id: 'c1', url: 'https://shop.example.us', createdAt: '2026-08-11T00:00:00Z' })
+  await completeScan(db, {
+    id: 'c1', pages: ['https://shop.example.us'], findings: [], score: 100,
+    country: { code: 'US', source: 'tld' },
+  })
+
+  const scan = await getScan(db, 'c1')
+  assert.equal(scan.countryCode, 'US')
+  assert.equal(scan.countrySource, 'tld')
+})
+
+test('completeScan with no country argument (older caller/test) writes both columns null, not undefined/crash', async () => {
+  const db = fakeScansDb()
+  await insertScanPending(db, { id: 'c2', url: 'https://example.com', createdAt: '2026-08-11T00:00:00Z' })
+  await completeScan(db, { id: 'c2', pages: [], findings: [], score: 50 })
+
+  const scan = await getScan(db, 'c2')
+  assert.equal(scan.countryCode, null)
+  assert.equal(scan.countrySource, null)
+})
+
+test('backward compatibility: rows without the country columns read as countryCode/countrySource: null', async () => {
+  // Строка «из старой БД»: колонок country_code/country_source нет вовсе
+  // (undefined, не null) — ровно то, что вернёт задеплоенный воркер со старой
+  // схемой, до применения migrations/0009_country.sql.
+  const legacy = { id: 'old2', url: 'https://old.example', status: 'done', pages_json: '[]',
+    findings_json: '[]', score: 90, error: null, error_code: null,
+    created_at: '2026-08-01T00:00:00Z', completed_at: '2026-08-01T00:01:00Z' }
+  const db = fakeScansDb([legacy])
+  const scan = await getScan(db, 'old2')
+  assert.equal(scan.countryCode, null)
+  assert.equal(scan.countrySource, null)
 })
 
 test('backward compatibility: rows without the progress column read as progress: null', async () => {

@@ -6,7 +6,7 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import {
   scoreGrade, scoreGradeLabel, scoreGradeChipClass, parsePlanUnlocked, decidePlanPanel,
-  interpretCheckoutResponse,
+  interpretCheckoutResponse, parseCountryCode, parseCountrySource,
 } from './scanner.ts'
 
 function jsonResponse(status, body) {
@@ -59,6 +59,31 @@ test('parsePlanUnlocked: only literal `true` unlocks; missing/garbage stays lock
 // is testable without rendering. A scan with zero issue groups has nothing to
 // build a plan from — must hide, never sell an empty plan, regardless of
 // planUnlocked.
+// A4-SITE-COUNTRY: same strict-to-garbage rubric as parsePlanUnlocked above —
+// an older deployed worker (D-022) simply won't send these fields at all.
+test('parseCountryCode: valid non-empty string uppercased/trimmed; garbage/absent -> null', () => {
+  assert.equal(parseCountryCode('US'), 'US')
+  assert.equal(parseCountryCode('de'), 'DE')
+  assert.equal(parseCountryCode(' fr '), 'FR')
+  assert.equal(parseCountryCode(''), null)
+  assert.equal(parseCountryCode('   '), null)
+  assert.equal(parseCountryCode(undefined), null)
+  assert.equal(parseCountryCode(null), null)
+  assert.equal(parseCountryCode(42), null)
+  assert.equal(parseCountryCode({}), null)
+})
+
+test('parseCountrySource: only the 4 known source strings pass; anything else (incl. a future worker\'s new source) -> null', () => {
+  assert.equal(parseCountrySource('user-override'), 'user-override')
+  assert.equal(parseCountrySource('schema-org'), 'schema-org')
+  assert.equal(parseCountrySource('tld'), 'tld')
+  assert.equal(parseCountrySource('unknown'), 'unknown')
+  assert.equal(parseCountrySource('geo-ip'), null) // hypothetical future source — not silently trusted
+  assert.equal(parseCountrySource(undefined), null)
+  assert.equal(parseCountrySource(null), null)
+  assert.equal(parseCountrySource(123), null)
+})
+
 test('decidePlanPanel: zero finding groups always hides the panel', () => {
   assert.equal(decidePlanPanel({ planUnlocked: true }, 0), 'hidden')
   assert.equal(decidePlanPanel({ planUnlocked: false }, 0), 'hidden')

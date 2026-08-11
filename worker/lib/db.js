@@ -20,14 +20,21 @@ export async function updateScanProgress(db, { id, phase, pagesDone, pagesTotal 
     .run()
 }
 
-export async function completeScan(db, { id, pages, findings, score }) {
+// A4-SITE-COUNTRY (migrations/0009_country.sql): country — the result of
+// worker/lib/siteCountry.js::resolveCountry, {code, source}. Optional param
+// (defaults to both-null) so callers/tests that predate this feature keep
+// working without passing it — same backward-compat rubric as progress_json.
+export async function completeScan(db, { id, pages, findings, score, country }) {
   await db
     .prepare(
       // Финал перезаписывает прогресс в NULL (D-067): у завершённого скана
       // промежуточного состояния нет по определению.
-      `UPDATE scans SET status = 'done', pages_json = ?, findings_json = ?, score = ?, completed_at = ?, progress_json = NULL WHERE id = ?`
+      `UPDATE scans SET status = 'done', pages_json = ?, findings_json = ?, score = ?, completed_at = ?, progress_json = NULL, country_code = ?, country_source = ? WHERE id = ?`
     )
-    .bind(JSON.stringify(pages), JSON.stringify(findings), score, new Date().toISOString(), id)
+    .bind(
+      JSON.stringify(pages), JSON.stringify(findings), score, new Date().toISOString(),
+      country?.code ?? null, country?.source ?? null, id,
+    )
     .run()
 }
 
@@ -126,5 +133,10 @@ export async function getScan(db, id) {
     // завершённых сканов — обратная совместимость обязательна (D-064 fallback
     // в UI). SELECT * не падает на отсутствующей колонке — undefined → null.
     progress: row.progress_json ? JSON.parse(row.progress_json) : null,
+    // A4-SITE-COUNTRY (migrations/0009_country.sql): null для строк до этой
+    // миграции и для running/error сканов (country пишется только completeScan) —
+    // тот же fallback-принцип, что у progress выше.
+    countryCode: row.country_code ?? null,
+    countrySource: row.country_source ?? null,
   }
 }

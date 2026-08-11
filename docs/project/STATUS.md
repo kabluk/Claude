@@ -2,6 +2,35 @@
 
 Обновлено: 2026-08-11 (см. также подробный legacy-статус: `research/STATE.md`)
 
+## Последнее (2026-08-11, валюта оценки ремонта по стране сайта — D-126, НЕ задеплоено)
+
+Баг владельца: скан ladwp.com (US) показывал оценку ремонта в `€30k+` —
+сбивает с толку для американского сайта. Реализовано: `worker/lib/
+siteCountry.js` (новый, отдельный от `jurisdiction.js` — user-override >
+schema-org JSON-LD > ccTLD (все 19 стран + `.uk`→GB) > unknown), пробрасывается
+через `scanSite`/`scanJob.js` в `completeScan`; `migrations/0009_country.sql`
+(`country_code`/`country_source`, nullable) — применена ЛОКАЛЬНО, проверена
+и юнит-тестами на fake-D1, и отдельным реальным round-trip через `wrangler d1
+execute --local`. `data/a11y/types.ts::CountryMeta.currency` + все 19 записей
+в `taxonomies.json` (не дефолт EUR для всей Европы — DK/PL/SE/CH/NO/GB свои).
+Курсы конвертации — реальные, из ECB (`eurofxref-daily.xml`, получено
+2026-08-11, дата фида 2026-08-10), в новом `src/lib/currency.ts` с честной
+оговоркой «снэпшот, не live». `formatCostEstimate` — необязательный параметр
+валюты (дефолт EUR = старое поведение без изменений); `ReportPage.tsx` —
+дефолт из страны сайта + ручной override `<select>`, чисто локальное
+состояние, без сетевых запросов.
+
+Гейты: typecheck чисто, `worker:test` **355/355** (было 327), `src:test`
+**60/60** (было 47), `scripts:test` 48/48, `check-links` 501-0, `audit-a11y`
+54/0. Канарейка (снят `htmlFor` у лейбла `<select>` → `select-name`
+critical + `label-title-only` serious покраснели ровно на 3 report-состояниях
+→ восстановлено → снова чисто) подтверждена. Живой Playwright-прогон против
+собранного `dist/` (throwaway, удалён после): US-фикстура → `$`, unknown →
+честный `€` без падения, ручной override на GBP → `£` без единого сетевого
+запроса — все 9 проверок прошли. Подробности, включая источник курсов и
+что именно НЕ сделано (`db:migrate:remote`, мёрж в `accessatlas`,
+`worker/lib/costEstimate.js` для PDF) — DECISIONS.md D-126.
+
 ## Последнее (2026-08-11, САЙТ РЕАЛЬНО НА ПРОДЕ — D-121/D-122/D-124 доехали / D-125)
 
 Владелец сам обновил `CLOUDFLARE_API_TOKEN` в GitHub repo secrets (проверен

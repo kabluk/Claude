@@ -20,7 +20,8 @@
 
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { estimateCost, effortScore } from './costEstimate.ts'
+import { estimateCost, effortScore, formatCostEstimate } from './costEstimate.ts'
+import { EUR_REFERENCE_RATES } from './currency.ts'
 
 const f = (ruleId, impact) => ({ ruleId, impact, wcag: [], selector: 'x', page: 'p' })
 
@@ -104,4 +105,41 @@ test('enterprise достижим только на действительно �
   const many = Array.from({ length: 14 }, (_, i) => f(`rule-${i}`, i % 2 ? 'serious' : 'moderate'))
   const est = estimateCost(many)
   assert.equal(est.band, 'enterprise')
+})
+
+// A4-SITE-COUNTRY (D-126): formatCostEstimate currency param — default (no arg,
+// or EUR) must render EXACTLY the string it always did, so no existing caller
+// (or test) needed a code change. Non-EUR currencies convert via the real ECB
+// rate table (src/lib/currency.ts), never re-deriving numbers here.
+test('formatCostEstimate: no currency arg (default) renders EUR exactly as before this feature', () => {
+  assert.equal(formatCostEstimate({ band: 'enterprise', lowerAmount: 30000, upperAmount: null }), '€30k+')
+  assert.equal(formatCostEstimate({ band: 'budget', lowerAmount: 0, upperAmount: 3000 }), 'Under €3k')
+  assert.equal(formatCostEstimate({ band: 'mid', lowerAmount: 3000, upperAmount: 10000 }), '€3k–10k')
+})
+
+test('formatCostEstimate: explicit EUR currency is identical to the default', () => {
+  const est = { band: 'premium', lowerAmount: 10000, upperAmount: 30000 }
+  assert.equal(formatCostEstimate(est, { code: 'EUR', symbol: '€' }), formatCostEstimate(est))
+})
+
+test('formatCostEstimate: US site converts to USD using the real ECB rate, not a made-up number', () => {
+  const est = { band: 'enterprise', lowerAmount: 30000, upperAmount: null }
+  const expectedK = Math.round((30000 * EUR_REFERENCE_RATES.USD) / 1000)
+  assert.equal(formatCostEstimate(est, { code: 'USD', symbol: '$' }), `$${expectedK}k+`)
+})
+
+test('formatCostEstimate: "Under X" and range forms both convert every bound shown, keeping the k/+/– conventions', () => {
+  const under = { band: 'budget', lowerAmount: 0, upperAmount: 3000 }
+  const expectedUnderK = Math.round((3000 * EUR_REFERENCE_RATES.DKK) / 1000)
+  assert.equal(formatCostEstimate(under, { code: 'DKK', symbol: 'kr' }), `Under kr${expectedUnderK}k`)
+
+  const mid = { band: 'mid', lowerAmount: 3000, upperAmount: 10000 }
+  const lowK = Math.round((3000 * EUR_REFERENCE_RATES.INR) / 1000)
+  const highK = Math.round((10000 * EUR_REFERENCE_RATES.INR) / 1000)
+  assert.equal(formatCostEstimate(mid, { code: 'INR', symbol: '₹' }), `₹${lowK}k–${highK}k`)
+})
+
+test('formatCostEstimate: an unrecognized currency code degrades honestly to the real EUR number, never a wrong figure or a crash', () => {
+  const est = { band: 'enterprise', lowerAmount: 30000, upperAmount: null }
+  assert.equal(formatCostEstimate(est, { code: 'ZZZ', symbol: 'Z' }), 'Z30k+')
 })

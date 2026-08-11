@@ -61,7 +61,20 @@ export type ScanReport = {
   // €19.99 plan); Stripe-paid unlock is a separate, later node. Only ever
   // true when status === 'done' (worker/routes/scan.js::withPlanUnlocked).
   planUnlocked: boolean
+  // A4-SITE-COUNTRY (D-126): which of taxonomies.json's 19 markets the
+  // scanned site belongs to — drives the currency shown on the repair-cost
+  // estimate (was always €, wrong for e.g. a US site). null when undetected,
+  // or on a scan from before migrations/0009_country.sql, or one that never
+  // reached 'done' (worker/lib/db.js::completeScan is the only writer).
+  countryCode: string | null
+  countrySource: CountrySource | null
 }
+
+// Mirrors worker/lib/siteCountry.js::resolveCountry's `source` values exactly —
+// keep in sync by hand (worker is plain ESM, D-010, same reason jurisdictions.ts
+// is a hand-copy of jurisdiction.js rather than a shared import).
+export const COUNTRY_SOURCES = ['user-override', 'schema-org', 'tld', 'unknown'] as const
+export type CountrySource = (typeof COUNTRY_SOURCES)[number]
 
 // Парсер прогресса — строгий к чужим формам, мягкий к отсутствию: всё, что не
 // соответствует контракту (нет объекта, неизвестная фаза — в т.ч. от БОЛЕЕ
@@ -143,18 +156,41 @@ export function parsePlanUnlocked(raw: unknown): boolean {
   return raw === true
 }
 
+// A4-SITE-COUNTRY: same strict-to-garbage rubric as parseScanProgress — a
+// countryCode that isn't a non-empty string (wrong type, absent field from an
+// older deployed worker) reads as null, never a half-trusted guess. Uppercased
+// defensively (worker already uppercases, but this is the client's own
+// validation boundary, not a re-trust of the server's formatting).
+export function parseCountryCode(raw: unknown): string | null {
+  return typeof raw === 'string' && raw.trim() ? raw.trim().toUpperCase() : null
+}
+
+export function parseCountrySource(raw: unknown): CountrySource | null {
+  return typeof raw === 'string' && (COUNTRY_SOURCES as readonly string[]).includes(raw)
+    ? (raw as CountrySource)
+    : null
+}
+
 export async function fetchScan(id: string): Promise<ScanReport | null> {
   const res = await apiFetch(`/api/scan/${encodeURIComponent(id)}`)
   if (res.status === 404) return null
   if (!res.ok) throw new Error(`failed to load scan: HTTP ${res.status}`)
-  const raw = (await res.json()) as Omit<ScanReport, 'progress' | 'planUnlocked'> & {
+  const raw = (await res.json()) as Omit<ScanReport, 'progress' | 'planUnlocked' | 'countryCode' | 'countrySource'> & {
     progress?: unknown
     planUnlocked?: unknown
+    countryCode?: unknown
+    countrySource?: unknown
   }
   // Задеплоенный воркер может быть старше этого клиента (D-022: деплой — решение
-  // владельца): поля progress/planUnlocked может не быть вовсе — парсеры дают
-  // null/false, UI живёт.
-  return { ...raw, progress: parseScanProgress(raw.progress), planUnlocked: parsePlanUnlocked(raw.planUnlocked) }
+  // владельца): полей progress/planUnlocked/countryCode/countrySource может не
+  // быть вовсе — парсеры дают null/false/null/null, UI живёт.
+  return {
+    ...raw,
+    progress: parseScanProgress(raw.progress),
+    planUnlocked: parsePlanUnlocked(raw.planUnlocked),
+    countryCode: parseCountryCode(raw.countryCode),
+    countrySource: parseCountrySource(raw.countrySource),
+  }
 }
 
 // A2-REPORT-PAYWALL: the unlocked PDF plan is downloaded straight from the

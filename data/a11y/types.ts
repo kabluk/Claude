@@ -126,4 +126,10 @@ export interface CountryMeta {
   // локальная имплементация EAA и дедлайн — двигатель спроса по стране
   law?: { name: string; slug: StandardSlug; inForce?: string }
   topCities?: string[]
+  // A4-SITE-COUNTRY (D-126): реальная ISO 4217 валюта рынка — НЕ все страны ЕС
+  // из этого списка в еврозоне (DK/PL/SE — свои валюты), поэтому это не
+  // производное поле от `region`, а отдельный факт на страну. Источник курсов
+  // конвертации — src/lib/currency.ts (не здесь: код валюты — постоянный факт,
+  // курс обмена — не постоянный).
+  currency: { code: string; symbol: string }
 }

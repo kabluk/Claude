@@ -38,6 +38,7 @@ import {
   checkReflow320, checkKeyboardTraversal, checkMedia, checkResize200,
   detectAndDismissCookieBanner, checkEmptyHeadings,
 } from './domChecks.js'
+import { resolveCountry } from './siteCountry.js'
 import { runSiteChecks } from './siteChecks.js'
 
 const MAX_PAGES = 6
@@ -332,7 +333,14 @@ async function gotoSettled(page, url, settleMs) {
 // необязателен: без него scanSite работает как раньше (тесты/переиспользование).
 // Каждая точка эмиссии стоит РОВНО там, где соответствующая работа реально
 // начинается — фазы не выдумываются наперёд (тот же принцип, что D-064).
-export async function scanSite(env, targetUrl, onProgress = async () => {}) {
+//
+// A4-SITE-COUNTRY: countryCodeOverride — тот же countryCode, что уже приходит
+// в POST /api/scan для юрисдикции (worker/lib/jurisdiction.js), пробрасывается
+// сюда consumer'ом (scanJob.js) как есть, отдельным параметром, а не через
+// env/сообщение — это тот же факт от пользователя, просто нужен ДВУМ разным
+// эвристикам (юридической и валютной), которые намеренно не делят код
+// (см. worker/lib/siteCountry.js header).
+export async function scanSite(env, targetUrl, onProgress = async () => {}, countryCodeOverride) {
   await onProgress('discovering', 0, null)
   const axeSource = await getAxeSource(env)
   const settleMs = resolveSettleMs(env)
@@ -344,6 +352,10 @@ export async function scanSite(env, targetUrl, onProgress = async () => {}) {
   let scanAborted = false // взводится в finally: гонка сторожа с перезапуском браузера
   const findings = []
   const pagesScanned = []
+  // A4-SITE-COUNTRY: default до фактического обнаружения (главная навигация
+  // может ещё не случиться, если скан упадёт раньше — тогда return ниже и не
+  // будет достигнут, но переменная всё равно должна существовать заранее).
+  let detectedCountry = { code: null, source: 'unknown' }
 
   // Тело скана вынесено в функцию, чтобы целиком отдать его сторожевому таймауту
   // ниже. Ловить каждое отдельное место, где браузер может залипнуть, — заведомо
@@ -421,6 +433,10 @@ export async function scanSite(env, targetUrl, onProgress = async () => {}) {
     // джоб целиком, чем усложнять фазу discovering.
     await navigateWithRetry(targetUrl)
     const homeHtml = await page.content()
+    // A4-SITE-COUNTRY: same homeHtml already captured for pickPriorityLinks/
+    // findStatementLink/detectFeedbackChannel below — no second fetch. Override
+    // (if any) wins inside resolveCountry regardless of what html/TLD say.
+    detectedCountry = resolveCountry({ html: homeHtml, url: targetUrl, countryCodeOverride })
     // A3-PAGESELECT: транзакционные/формовые страницы (корзина, вход, контакт)
     // приоритетнее первых-N ссылок в DOM-порядке — жалобы и надзор бьют по ним.
     const toVisit = [targetUrl, ...pickPriorityLinks(homeHtml, targetUrl, MAX_PAGES - 1)]
@@ -665,5 +681,5 @@ export async function scanSite(env, targetUrl, onProgress = async () => {}) {
   // Прогресс, записанный в D1 до этого момента, трогать не нужно: таймаут — это
   // просто ещё один путь в .catch() в routes/scan.js, а failScan сам стирает
   // progress_json, как и на любой другой ошибке.
-  return { pages: pagesScanned, findings }
+  return { pages: pagesScanned, findings, country: detectedCountry }
 }
