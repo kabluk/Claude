@@ -2,6 +2,50 @@
 
 Обновлено: 2026-08-11 (см. также подробный legacy-статус: `research/STATE.md`)
 
+## Последнее (2026-08-11, A3-CRON разбит на 8 под-узлов GRAPH.yaml / D-135)
+
+Владелец закрыл scoping-разговор по A3-CRON тремя решениями: (1) подписчик =
+email+URL без аккаунта, A3-AUTH не зависимость; (2) подписка бесплатна на
+старте, recurring Stripe billing — отдельное будущее решение; (3) порядок
+работ — сначала верификация домена Resend, потом дайджест/отправка. Полный
+текст и обоснование — `DECISIONS.md` D-135.
+
+Узел разбит на 8 sub-узлов GRAPH.yaml по образцу Фазы 2 (`A2-LEAD`/`A2-CLAIM`/
+`A2-STRIPE`, D-022): `A3-CRON-RESEND-DOMAIN` (DNS, approval), `A3-CRON-SCHEMA`
+(D1, готов к `/task-loop` сразу), `A3-CRON-SUBSCRIBE-API` (POST subscribe +
+verify + unsubscribe, без отправки писем), `A3-CRON-SUBSCRIBE-FORM`
+(фронтенд), `A3-CRON-CONFIRM-EMAIL` (double opt-in письмо, approval, зависит
+от `RESEND-DOMAIN`), `A3-CRON-RESCAN-DELTA` (переиспользует
+`accessatlas-scan-queue`, добавляет дельту находок), `A3-CRON-DIGEST-EMAIL`
+(письмо-дайджест, approval, зависит от `RESEND-DOMAIN`+`CONFIRM-EMAIL`),
+`A3-CRON-PRIVACY` (Privacy Policy под новые данные). Модель делегированных
+субагентов — Opus, выбор владельца через `AskUserQuestion` (D-075/D-135):
+цена ошибки — новая таблица D1 в проде + DNS живого почтового домена; совет
+Model Advisor (`haiku` по длине промпта) отклонён как неприменимая метрика
+для этого узла.
+
+**Ни один из трёх approval-гейтов (`RESEND-DOMAIN`/`CONFIRM-EMAIL`/
+`DIGEST-EMAIL`) не выполнялся этой сессией** — правка DNS живого домена и
+рассылка живым сторонним адресатам требуют явного разрешения владельца
+(CLAUDE.md), а инструмент `AskUserQuestion` недоступен агенту, спланировавшему
+граф (эта сессия — оркестратор, не интерактивная). Решение явно оставлено
+следующей сессии: сначала спросить владельца про `A3-CRON-RESEND-DOMAIN`,
+затем `/task-loop A3-CRON-RESEND-DOMAIN`. `A3-CRON-SCHEMA` — единственный
+узел без approval и без незакрытых зависимостей, готов к `/task-loop`
+немедленно, независимо от ответа владельца на approval-вопрос.
+
+Переиспользуемая инфраструктура зафиксирована в notes каждого узла и в
+D-135: Cron Trigger `0 3 * * *` уже вызывает `deleteExpiredScans`, очередь
+`accessatlas-scan-queue`/`handleScanQueueBatch` переиспользуется для
+re-scan'ов (новый браузерный путь не создаётся), `worker/lib/resend.js` и
+best-effort graceful degradation (D-024) переиспользуются как есть, схема
+double opt-in claims (`id` публичный ≠ `token` секрет, D-023) — образец,
+который `A3-CRON-SCHEMA`/`A3-CRON-SUBSCRIBE-API` обязаны повторить, не
+переизобретать.
+
+Проверок кода в этой итерации не было — итерация чисто плановая
+(DECISIONS.md/BACKLOG.md/GRAPH.yaml), никакой код не менялся.
+
 ## Последнее (2026-08-11, воркер задеплоен — D-131/D-132/D-133 на проде, подтверждено живым сканом / D-134)
 
 Владелец дал новый CF-токен (проверен `/accounts/:id/pages/projects/verscala`,

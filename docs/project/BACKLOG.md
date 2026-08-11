@@ -236,9 +236,27 @@ FAQPage-разметку — решение применили к коду и з
 
 | ID | Задача |
 |---|---|
-| A3-AUTH | Magic-link аккаунты |
-| A3-CRON | Re-scan по расписанию + дельта + дайджест. **Подтверждено конкурентным анализом UserWay (2026-08-11, живой фактчек их сайта)**: у них «Accessibility Monitoring» — платная подписка поверх сканера; у нас весь механизм (сканер+D1+cron) уже есть — потенциальный recurring-revenue поверх разового €19.99. Их ЯДРО (overlay-виджет) сознательно НЕ копировать: Overlay Fact Sheet, 1031 подпись (W3C/Google/Microsoft-эксперты) — overlay не даёт соответствия и не снимает юр-риск, скринридер-пользователям мешает; наша модель «найти→показать→починить в коде» этой критике не подвержена |
+| A3-AUTH | Magic-link аккаунты. **НЕ зависимость A3-CRON** (D-135, 2026-08-11) — подписчик мониторинга опознаётся email+URL без аккаунта, тот же паттерн double opt-in, что claims |
+| A3-CRON | Re-scan по расписанию + дельта + дайджест. **Подтверждено конкурентным анализом UserWay (2026-08-11, живой фактчек их сайта)**: у них «Accessibility Monitoring» — платная подписка поверх сканера; у нас весь механизм (сканер+D1+cron) уже есть — потенциальный recurring-revenue поверх разового €19.99. Их ЯДРО (overlay-виджет) сознательно НЕ копировать: Overlay Fact Sheet, 1031 подпись (W3C/Google/Microsoft-эксперты) — overlay не даёт соответствия и не снимает юр-риск, скринридер-пользователям мешает; наша модель «найти→показать→починить в коде» этой критике не подвержена. **Scoping закрыт, разбит на 8 под-узлов GRAPH.yaml (D-135, 2026-08-11)** — см. таблицу ниже |
 | A3-DASH | Compliance Dashboard (чек-листы, история, R2-хранилище отчётов) |
+
+### A3-CRON — под-узлы (D-135, 2026-08-11)
+
+Разбита на 8 узлов в `GRAPH.yaml` по образцу Фазы 2 (A2-LEAD/A2-CLAIM/A2-STRIPE,
+D-022) — см. там owner/depends_on/verify/approval_required для каждого.
+
+| ID (backlog) | Sub-узлы GRAPH.yaml | Владелец | Approval | Статус |
+|---|---|---|---|---|
+| A3-CRON | `A3-CRON-SCHEMA` → `A3-CRON-SUBSCRIBE-API` → {`A3-CRON-CONFIRM-EMAIL`, `A3-CRON-RESCAN-DELTA` → `A3-CRON-DIGEST-EMAIL`}; `A3-CRON-SUBSCRIBE-FORM`/`A3-CRON-PRIVACY` (независимы от API, зависят только от SCHEMA); `A3-CRON-RESEND-DOMAIN` (без зависимостей) | backend + frontend + devops + product-lead | `RESEND-DOMAIN` (DNS живого домена), `CONFIRM-EMAIL`, `DIGEST-EMAIL` (реальная рассылка) требуют approval владельца | `RESEND-DOMAIN`/`SUBSCRIBE-API`/`SUBSCRIBE-FORM`/`CONFIRM-EMAIL`/`RESCAN-DELTA`/`DIGEST-EMAIL`/`PRIVACY` — todo; `SCHEMA` — todo, готов к `/task-loop` без ожидания (единственный без approval и без незакрытых зависимостей) |
+
+Порядок работ владельца (D-135, пункт 3): **сначала `A3-CRON-RESEND-DOMAIN`**
+(верификация домена Resend снимает sandbox-ограничение D-024 — на сторонних
+получателей письма сейчас не доходят), **потом** `A3-CRON-CONFIRM-EMAIL`/
+`A3-CRON-DIGEST-EMAIL` — оба зависят от `RESEND-DOMAIN` в GRAPH.yaml
+(`depends_on`), не только по договорённости в тексте. `A3-CRON-RESEND-DOMAIN`
+не делегирован этой планирующей сессией — approval требует
+`AskUserQuestion`, недоступного агенту, спланировавшему граф; решение явно
+оставлено следующей сессии/владельцу.
 
 ## Growth (параллельно, не блокирует)
 

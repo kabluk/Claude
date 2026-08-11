@@ -1,5 +1,5 @@
 version: 1
-updated_at: 2026-08-07
+updated_at: 2026-08-11
 limits:
   max_parallel: 3
   max_nodes_per_iteration: 8
@@ -1467,3 +1467,196 @@ nodes:
     risk: low
     approval_required: false
     notes: "Готово 2026-08-08 (D-074). Выбран из-за самой частой ошибки паттерна: показ только по mouseover делает подсказку невидимой для клавиатуры — здесь фокус первичен, hover дополнителен. Escape скрывает, НЕ уводя фокус (WCAG 1.4.13 dismissible): пользователь только читал подпись, отнимать позицию нельзя. Hoverable — grace-период 150мс + mouseenter на пузырьке. Проектное ограничение в типе: content — string, не слот для детей; ARIA-роль tooltip не поддерживает интерактивное содержимое, для такого нужен popover — тип делает нарушение невозможным, а не отговаривает в документации."
+
+  # ---------------------------------------------------------------------
+  # Фаза 3 — A3-CRON (мониторинг как подписка). Разбито 2026-08-11 (D-135) по
+  # образцу Фазы 2 (A2-LEAD/A2-CLAIM/A2-STRIPE, D-022): SCHEMA → API → EMAIL,
+  # approval_required только на новых внешних/платных/DNS-действиях. Три
+  # решения владельца зафиксированы в D-135: (1) подписчик = email+URL без
+  # аккаунта, A3-AUTH НЕ зависимость; (2) подписка бесплатна на старте,
+  # recurring Stripe billing НЕ в этом узле; (3) порядок — RESEND-DOMAIN
+  # раньше CONFIRM-EMAIL/DIGEST-EMAIL, закодировано ниже как depends_on, не
+  # только текстом. Модель делегированных субагентов — Opus (решение
+  # владельца, D-135, цена ошибки — новая таблица D1 в проде + DNS живого
+  # почтового домена). Переиспользовать: Cron Trigger 0 3 * * * (уже вызывает
+  # deleteExpiredScans), очередь accessatlas-scan-queue/handleScanQueueBatch
+  # (не создавать новый браузерный путь для re-scan), worker/lib/resend.js
+  # (уже используется A2-CLAIM-EMAIL, тот же best-effort паттерн), схема
+  # double opt-in claims (id публичный ≠ token секрет — D-023, обязательна
+  # к повторению, не к переизобретению).
+  # ---------------------------------------------------------------------
+
+  - id: A3-CRON-RESEND-DOMAIN
+    title: "Верификация домена verscala.com в Resend (DNS: SPF/DKIM/DMARC) — снимает sandbox-ограничение D-024, разблокирует реальную отправку сторонним получателям"
+    owner: devops-engineer
+    status: blocked
+    depends_on: []
+    inputs: [docs/project/DECISIONS.md, worker/lib/resend.js]
+    scope: [DNS verscala.com (Cloudflare), Resend dashboard]
+    outputs: []
+    node_kind: agent
+    on_failure: escalate
+    verify:
+      - "домен verscala.com в Resend dashboard в статусе Verified (не Pending)"
+      - "живой пробный email с домена verscala.com (не onboarding@resend.dev) на безопасный адрес (не живой третьей стороне) доставлен без 422"
+      - "SPF/DKIM/DMARC записи видны в Cloudflare DNS (dns-only, НЕ проксировать — тот же урок D-092 про почтовые записи, проксирование ломает DKIM)"
+    max_attempts: 2
+    attempts: 0
+    risk: high
+    approval_required: true
+    notes: "БЛОКИРОВАНО до явного разрешения владельца — правка живых DNS-записей боевого домена (CLAUDE.md project-specific guardrails: 'Деплой, платные ресурсы, рассылки — только с явного разрешения владельца'). Эта планирующая сессия не запрашивала разрешение (инструмент AskUserQuestion недоступен агенту, спланировавшему граф) — решение оставлено следующей сессии/владельцу явно, не тихо пропущено. Разблокирует (по depends_on ниже) A3-CRON-CONFIRM-EMAIL и A3-CRON-DIGEST-EMAIL — до этого узла оба остаются написанным, но непроверяемым живьём кодом (тот же sandbox-барьер D-024: onboarding@resend.dev доставляет только на email владельца аккаунта Resend)."
+
+  - id: A3-CRON-SCHEMA
+    title: "Схема D1 для подписок на мониторинг (subscriptions table) — миграция, только локально"
+    owner: backend-engineer
+    status: ready
+    depends_on: []
+    inputs: [docs/project/INTERFACES.md, migrations/0004_claims.sql, migrations/0001_init.sql]
+    scope: [migrations/, docs/project/INTERFACES.md]
+    outputs: [migrations/0010_subscriptions.sql]
+    node_kind: agent
+    on_failure: escalate
+    verify:
+      - npm run db:migrate:local
+      - npm run worker:test
+      - "поля: id PK (публичный), email, url, token (секрет verify-ссылки, отдельный от id — D-023), verified INT DEFAULT 0, status (pending|active|unsubscribed), last_scan_id, cadence (фикс. значение на MVP, напр. weekly), created_at, unsubscribed_at NULL"
+      - "id != token тем же способом, что claims (migrations/0006_claim_token.sql) — не переизобретать, скопировать паттерн"
+    max_attempts: 3
+    attempts: 0
+    risk: low
+    approval_required: false
+    notes: "Не заблокирован — не требует ни домена, ни approval, копирует уже проверенный паттерн claims (D-023). Первый узел, готовый к /task-loop без ожидания владельца."
+
+  - id: A3-CRON-SUBSCRIBE-API
+    title: "POST /api/subscribe (создание pending-подписки) + GET /api/subscribe/verify (пометка verified) + unsubscribe-эндпоинт — БЕЗ отправки писем"
+    owner: backend-engineer
+    status: blocked
+    depends_on: [A3-CRON-SCHEMA]
+    inputs: [docs/project/INTERFACES.md, worker/routes/claim.js, worker/lib/turnstile.js, worker/lib/ratelimit.js]
+    scope: [worker/routes/subscribe.js, worker/index.js]
+    outputs: [worker/routes/subscribe.js]
+    node_kind: agent
+    on_failure: escalate
+    verify:
+      - npm run worker:test
+      - "400 на невалидный email/url"
+      - "201 {subscriptionId} — token НЕ в ответе (та же проверка, что должна была ловить D-023 с самого начала: явный тест 'subscriptionId != token')"
+      - "GET verify?token=... помечает verified=1, status=active; неизвестный токен -> 404"
+      - "unsubscribe (GET или POST, токен в ссылке) переводит status=unsubscribed, идемпотентно (повтор не ошибка)"
+      - "тот же rate-limit/Turnstile паттерн, что /api/lead и /api/claim"
+      - "email этим узлом НЕ отправляется — лог/TODO вместо Resend, реальная отправка это A3-CRON-CONFIRM-EMAIL"
+    max_attempts: 4
+    attempts: 0
+    risk: medium
+    approval_required: false
+    notes: "Не approval — только D1 + локальная логика, по прецеденту A2-CLAIM-API (тоже medium risk, тоже false). status: blocked до закрытия A3-CRON-SCHEMA, переходит в ready автоматически, когда та станет done."
+
+  - id: A3-CRON-SUBSCRIBE-FORM
+    title: "Форма подписки на мониторинг на /report/:id (email+URL, БЕЗ реальной отправки — submit подключается в A3-CRON-SUBSCRIBE-API)"
+    owner: frontend-engineer
+    status: blocked
+    depends_on: [A3-CRON-SCHEMA]
+    inputs: [docs/project/VISION.md, src/components/library/, src/pages/ReportPage.tsx, src/lib/leadForm.ts]
+    scope: [src/components/, src/lib/subscribeForm.ts, src/pages/ReportPage.tsx]
+    outputs: [src/components/SubscribeForm.tsx, src/lib/subscribeForm.ts]
+    node_kind: agent
+    on_failure: escalate
+    verify:
+      - npm run build
+      - npm run typecheck
+      - npm run audit-a11y
+      - "клиентская валидация email/url по тому же паттерну, что leadForm.ts"
+      - "0 сетевых вызовов при submit, пока /api/subscribe не готов — явный TODO/дисклеймер в UI, не тихая заглушка (прецедент A2-LEAD-FORM)"
+    max_attempts: 4
+    attempts: 0
+    risk: low
+    approval_required: false
+    notes: "Независим от A3-CRON-SUBSCRIBE-API по духу (как A2-LEAD-FORM был независим от A2-LEAD-API) — зависит только от SCHEMA ради согласованных названий полей, не от готового бэкенда."
+
+  - id: A3-CRON-CONFIRM-EMAIL
+    title: "Письмо double opt-in (verify-ссылка подписки) через Resend"
+    owner: backend-engineer
+    status: blocked
+    depends_on: [A3-CRON-SUBSCRIBE-API, A3-CRON-RESEND-DOMAIN]
+    inputs: [docs/project/INTERFACES.md, worker/lib/resend.js, worker/routes/claim.js]
+    scope: [worker/lib/resend.js, worker/routes/subscribe.js]
+    outputs: []
+    node_kind: agent
+    on_failure: escalate
+    verify:
+      - npm run worker:test
+      - "best-effort graceful degradation — отсутствие RESEND_API_KEY не превращает успешную запись подписки в 5xx (паттерн D-024, НЕ 503-if-missing)"
+      - "живой прогон: реальное verify-письмо доставлено на реальный сторонний email (не на email владельца аккаунта Resend) — доказывает, что A3-CRON-RESEND-DOMAIN реально снял sandbox-ограничение"
+    max_attempts: 4
+    attempts: 0
+    risk: high
+    approval_required: true
+    notes: "БЛОКИРОВАНО: approval — реальная рассылка живым сторонним адресатам (CLAUDE.md), плюс технически невозможно живьём проверить до A3-CRON-RESEND-DOMAIN (тот же sandbox-барьер D-024). Код можно писать раньше (as review, not done) тем же способом, что A2-CLAIM-EMAIL был написан до верификации домена и ждал её отдельно — но 'done' здесь означает 'реальный сторонний email получен', не 'функция написана'."
+
+  - id: A3-CRON-RESCAN-DELTA
+    title: "Еженедельный re-scan подписанных URL (переиспользует SCAN_QUEUE) + дельта относительно предыдущего скана (новые/исчезнувшие находки, изменение score)"
+    owner: backend-engineer
+    status: blocked
+    depends_on: [A3-CRON-SUBSCRIBE-API]
+    inputs: [worker/index.js, worker/lib/scanJob.js, worker/lib/retention.js, wrangler.jsonc, docs/project/INTERFACES.md]
+    scope: [worker/lib/subscriptionCron.js, worker/lib/scanDelta.js, worker/index.js, wrangler.jsonc]
+    outputs: [worker/lib/subscriptionCron.js, worker/lib/scanDelta.js]
+    node_kind: agent
+    on_failure: escalate
+    verify:
+      - npm run worker:test
+      - npx wrangler deploy --dry-run
+      - "только verified/active подписки re-scan'ятся (unverified/unsubscribed пропущены)"
+      - "re-scan кладётся в СУЩЕСТВУЮЩУЮ SCAN_QUEUE через тот же producer-путь, что POST /api/scan — не новый браузерный путь"
+      - "scanDelta.js — чистая функция (findings A, findings B) -> {new, resolved, scoreChange}, юнит-тесты на синтетических находках"
+      - "cadence не чаще заданного в схеме (weekly на MVP) — подписка, re-scan'нутая вчера, сегодня не re-scan'ится повторно"
+    max_attempts: 4
+    attempts: 0
+    risk: medium
+    approval_required: false
+    notes: "Не approval — Browser Rendering уже одобрен ресурс (A1-SCAN), re-scan запускается только для URL, которые сам подписчик добровольно указал (не сканирование чужих сайтов без повода). Решение по механике расписания (новый triggers.crons-элемент vs ветвление по event.cron в существующем 0 3 * * *) оставлено исполнителю узла — зафиксировать выбор в notes при закрытии."
+
+  - id: A3-CRON-DIGEST-EMAIL
+    title: "Письмо-дайджест подписчику с дельтой (новые находки/score) через Resend, с рабочей unsubscribe-ссылкой"
+    owner: backend-engineer
+    status: blocked
+    depends_on: [A3-CRON-RESCAN-DELTA, A3-CRON-CONFIRM-EMAIL, A3-CRON-RESEND-DOMAIN]
+    inputs: [docs/project/INTERFACES.md, worker/lib/resend.js, worker/lib/scanDelta.js]
+    scope: [worker/lib/resend.js, worker/lib/subscriptionCron.js]
+    outputs: []
+    node_kind: agent
+    on_failure: escalate
+    verify:
+      - npm run worker:test
+      - "пустая дельта (0 новых/0 исчезнувших находок) НЕ шлёт письмо — не спамить подписчика нулевым апдейтом"
+      - "письмо содержит рабочую unsubscribe-ссылку (сгенерированную из уже реализованного A3-CRON-SUBSCRIBE-API unsubscribe-эндпоинта)"
+      - "best-effort graceful degradation, тот же паттерн, что A3-CRON-CONFIRM-EMAIL/A2-CLAIM-EMAIL"
+      - "живой прогон: реальный дайджест с реальной дельтой доставлен реальному стороннему подписчику"
+    max_attempts: 4
+    attempts: 0
+    risk: high
+    approval_required: true
+    notes: "БЛОКИРОВАНО: approval — реальная (потенциально повторяющаяся) рассылка живым сторонним адресатам, последний узел в цепочке владельца 'сначала домен, потом дайджест' (D-135, пункт 3). Зависит от CONFIRM-EMAIL не только транзитивно через домен, но и по смыслу — дайджест не должен уйти раньше, чем реально работает double opt-in (иначе email+URL от чужого человека без его согласия запускает рассылку ему же, тот же класс риска, что D-023 закрывал для claims)."
+
+  - id: A3-CRON-PRIVACY
+    title: "Обновить Privacy Policy под данные подписки (email retention, cadence, unsubscribe)"
+    owner: product-lead
+    status: blocked
+    depends_on: [A3-CRON-SCHEMA]
+    inputs: [worker/routes/subscribe.js, migrations/0010_subscriptions.sql, src/pages/PrivacyPage.tsx, docs/project/RISKS.md]
+    scope: [src/pages/PrivacyPage.tsx, docs/project/RISKS.md]
+    outputs: [src/pages/PrivacyPage.tsx]
+    node_kind: agent
+    on_failure: escalate
+    verify:
+      - npm run typecheck
+      - npm run build
+      - npm run audit-a11y
+      - npm run check-links
+      - "текст сверен с реальным кодом worker/routes/subscribe.js, не с предположением (прецедент A1-PRIVACY)"
+      - "явно назван unsubscribe-путь и то, что подписка удаляется/останавливается по запросу, не только заводится"
+    max_attempts: 3
+    attempts: 0
+    risk: low
+    approval_required: false
+    notes: "По прецеденту A1-PRIVACY: узел не технически блокирован API, зависимость на SCHEMA — смысловая (описывает реальные поля таблицы), не жёсткая. Можно начинать сразу после SCHEMA, параллельно с SUBSCRIBE-API."
