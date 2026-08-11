@@ -115,15 +115,15 @@ export function SubscribeForm({ url }: { url: string }) {
               <span className="font-mono break-words text-on-surface">{url}</span> once a week and
               compare it with this report.
             </p>
-            {/* Честно про то, чего ещё нет: еженедельный пересканы работают
-                (A3-CRON-RESCAN-DELTA), а само письмо-дайджест ещё не включено
-                (A3-CRON-DIGEST-EMAIL). Оговорка стоит ДО кнопки, а не в
-                состоянии успеха: человек должен знать это, когда решает
-                оставить адрес, а не после. Тот же принцип, что у honest
-                degradation в панели плана. */}
+            {/* Вся цепочка A3-CRON закрыта (RESCAN-DELTA + CONFIRM-EMAIL +
+                DIGEST-EMAIL — done, дайджест доставлен живьём): переcканы идут
+                еженедельно, письмо-дайджест уходит только при изменениях
+                (пустая дельта письма не порождает). Оговорка стоит ДО кнопки:
+                человек должен знать частоту и условие письма, когда решает
+                оставить адрес. */}
             <p className="mt-2 text-xs text-on-surface-variant">
-              The weekly summary email is still being switched on. Re-scans and change tracking run
-              already — confirm your address now and you’ll be on the list for the first one.
+              We email you only when something changes — a new issue, a fixed one, or a score shift.
+              No changes that week, no email. You can unsubscribe from any of them in one click.
             </p>
 
             <div className="mt-4">

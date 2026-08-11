@@ -1552,9 +1552,9 @@ nodes:
     notes: "DONE 2026-08-11. Контракт добавлен в INTERFACES.md §2 (три строки таблицы Worker API). Второй файл тестов на настоящем node:sqlite (не только заглушка D1) — заглушка слепа к невалидному SQL/переставленным bind-параметрам, EXPLAIN QUERY PLAN подтвердил verify-lookup идёт по idx_subscriptions_token. Дедупликации (email,url) намеренно нет — иначе эндпоинт стал бы оракулом «следит ли X за Y», см. комментарий в коде. Разблокировал A3-CRON-SUBSCRIBE-FORM (уже ready по SCHEMA) и один из двух depends_on A3-CRON-CONFIRM-EMAIL."
 
   - id: A3-CRON-SUBSCRIBE-FORM
-    title: "Форма подписки на мониторинг на /report/:id (email+URL, БЕЗ реальной отправки — submit подключается в A3-CRON-SUBSCRIBE-API)"
+    title: "Форма подписки на мониторинг на /report/:id (email+URL, submit подключён к реальному /api/subscribe)"
     owner: frontend-engineer
-    status: ready
+    status: done
     depends_on: [A3-CRON-SCHEMA]
     inputs: [docs/project/VISION.md, src/components/library/, src/pages/ReportPage.tsx, src/lib/leadForm.ts]
     scope: [src/components/, src/lib/subscribeForm.ts, src/pages/ReportPage.tsx]
@@ -1562,16 +1562,15 @@ nodes:
     node_kind: agent
     on_failure: escalate
     verify:
-      - npm run build
-      - npm run typecheck
-      - npm run audit-a11y
-      - "клиентская валидация email/url по тому же паттерну, что leadForm.ts"
-      - "0 сетевых вызовов при submit, пока /api/subscribe не готов — явный TODO/дисклеймер в UI, не тихая заглушка (прецедент A2-LEAD-FORM)"
+      - "npm run build — 453 HTML, sitemap 415, U+FFFD нет (подтверждено независимо родительской сессией)"
+      - "npm run typecheck — чист"
+      - "npm run audit-a11y — 54 стр., 0 нарушений (0 serious/critical), включая 3 новых состояния /report/:id (subscription sent)"
+      - "клиентская валидация email/url по тому же паттерну, что leadForm.ts/воркер"
     max_attempts: 4
-    attempts: 0
+    attempts: 1
     risk: low
     approval_required: false
-    notes: "Независим от A3-CRON-SUBSCRIBE-API по духу (как A2-LEAD-FORM был независим от A2-LEAD-API) — зависит только от SCHEMA ради согласованных названий полей, не от готового бэкенда."
+    notes: "DONE 2026-08-11. ОТКЛОНЕНИЕ от буквы узла (осознанное): исходный verify-критерий «0 сетевых вызовов + TODO-заглушка» ОТМЕНЁН — узел писался до существования /api/subscribe, но зависимость (SUBSCRIBE-API + CONFIRM-EMAIL) закрылась раньше старта, поэтому submit подключён к настоящему POST /api/subscribe (заглушка была бы враньём в обратную сторону). Форма — последним блоком ReportBody (после MatchedAgencies): отсрочка «просто последим» не должна опережать саму починку; единственный шов, не рвущий соседства D-130. Success-панель честно про double opt-in («check your inbox», подписка не активна до клика). Turnstile — виджет формы скана (не лид-формы: /api/subscribe проверяет токен как /api/scan, без виджета прод давал бы 403). src:test 60→67, независимо перепроверено родительской сессией (67/67). В UI осталась честная оговорка «дайджест ещё включается» — снять одной строкой теперь, когда DIGEST-EMAIL done (см. STATUS)."
 
   - id: A3-CRON-CONFIRM-EMAIL
     title: "Письмо double opt-in (verify-ссылка подписки) через Resend"
@@ -1641,7 +1640,7 @@ nodes:
   - id: A3-CRON-PRIVACY
     title: "Обновить Privacy Policy под данные подписки (email retention, cadence, unsubscribe)"
     owner: product-lead
-    status: ready
+    status: done
     depends_on: [A3-CRON-SCHEMA]
     inputs: [worker/routes/subscribe.js, migrations/0010_subscriptions.sql, src/pages/PrivacyPage.tsx, docs/project/RISKS.md]
     scope: [src/pages/PrivacyPage.tsx, docs/project/RISKS.md]
@@ -1649,14 +1648,14 @@ nodes:
     node_kind: agent
     on_failure: escalate
     verify:
-      - npm run typecheck
-      - npm run build
-      - npm run audit-a11y
-      - npm run check-links
-      - "текст сверен с реальным кодом worker/routes/subscribe.js, не с предположением (прецедент A1-PRIVACY)"
-      - "явно назван unsubscribe-путь и то, что подписка удаляется/останавливается по запросу, не только заводится"
+      - "npm run typecheck — чист (прогнан родительской сессией: product-lead-агент без shell-инструмента, гейты и коммит выполнены родителем)"
+      - "npm run build — 453 HTML"
+      - "npm run audit-a11y — 54 стр., 0 нарушений"
+      - "npm run check-links — 501 ссылка, битых нет"
+      - "текст сверен с реальным кодом worker/routes/subscribe.js/retention.js/migrations, не с предположением — перечень сверок в отчёте агента (прецедент A1-PRIVACY)"
+      - "явно назван unsubscribe-путь и то, что подписка ОСТАНАВЛИВАЕТСЯ по запросу (soft-delete: status='unsubscribed', строка хранится; полное удаление — по запросу через Contact вручную)"
     max_attempts: 3
-    attempts: 0
+    attempts: 1
     risk: low
     approval_required: false
-    notes: "По прецеденту A1-PRIVACY: узел не технически блокирован API, зависимость на SCHEMA — смысловая (описывает реальные поля таблицы), не жёсткая. Можно начинать сразу после SCHEMA, параллельно с SUBSCRIBE-API."
+    notes: "DONE 2026-08-11. Новая секция «If you subscribe to accessibility monitoring» на /privacy/: email+url, weekly cadence с подавлением пустой дельты, double opt-in, unsubscribe=немедленный стоп, Resend/notify@verscala.com как процессор, ЯВНО названо отсутствие 90-дневной авто-ретенции для подписок (в отличие от сканов). Все факты сверены с кодом построчно (не по предположению — прецедент A1-PRIVACY). Расхождение soft-delete vs GDPR-erasure записано как RISKS.md R14 (право на удаление Art. 17 — пока ручной запрос, авто-ретенция подписок = будущий узел, не выдумывать что код уже удаляет). product-lead-агент не имеет Bash — правки сделал он, 4 гейта и коммит выполнены родительской сессией."

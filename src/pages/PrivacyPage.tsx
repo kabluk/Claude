@@ -6,14 +6,14 @@ export default function PrivacyPage() {
   return (
     <Layout
       title="Privacy Policy"
-      description="What Verscala does and does not collect — including the accessibility scanner. Static catalog, no accounts, no tracking scripts."
+      description="What Verscala does and does not collect — the accessibility scanner and the monitoring subscription. Static catalog, no accounts, no tracking scripts."
       path={paths.privacy()}
       crumbs={[]}
     >
       <h1 className="h1">Privacy Policy</h1>
       <div className="prose-guide mt-6 max-w-2xl">
         <p>
-          <em>Last reviewed: 2026-08-06.</em> This describes what actually happens on this site
+          <em>Last reviewed: 2026-08-11.</em> This describes what actually happens on this site
           today, not a generic template.
         </p>
 
@@ -83,6 +83,53 @@ export default function PrivacyPage() {
           </li>
         </ul>
 
+        <h2>If you subscribe to accessibility monitoring</h2>
+        <p>
+          Monitoring is an optional, free subscription that is separate from both the static
+          catalog and the one-off scan tool. If you sign up, we store two pieces of information in
+          our database:
+        </p>
+        <ul>
+          <li>
+            <strong>Your email address</strong> and{' '}
+            <strong>the URL of the site you want monitored</strong>. We use them for one purpose:
+            to re-scan that site on a schedule and email you a digest when its accessibility
+            findings change. Signing up does not create an account — there is no password and no
+            login, just this email-and-URL pair.
+          </li>
+          <li>
+            <strong>How often we email you:</strong> re-scans run weekly, and we only send a
+            digest when something actually changed since the previous scan (new or resolved
+            findings, or a score change). A week with no changes produces no email — we don't send
+            empty updates.
+          </li>
+          <li>
+            <strong>Confirmation before we use your address (double opt-in):</strong> right after
+            you sign up we send a single confirmation email asking you to click a link. Until you
+            click it, the subscription stays inactive: no re-scans and no digests are sent, and the
+            address is never emailed again. If you didn't sign up, ignoring that email is enough —
+            nothing further happens.
+          </li>
+          <li>
+            <strong>How to stop it (unsubscribe):</strong> every digest email contains an
+            unsubscribe link. Opening it stops the subscription immediately — no further re-scans
+            and no further emails. For transparency: unsubscribing marks the subscription as
+            cancelled rather than erasing the row on the spot; we retain the email-and-URL record
+            so the cancellation is honoured and the same address isn't quietly re-subscribed. If
+            you want your monitoring record deleted entirely, ask us via the{' '}
+            <Link className="underline underline-offset-2" to={paths.contact()}>Contact</Link> page
+            and we'll remove it.
+          </li>
+          <li>
+            <strong>Who sends the emails:</strong> confirmation and digest emails are delivered
+            through <strong>Resend</strong>, our email provider, from{' '}
+            <code>notify@verscala.com</code>. Resend processes your email address only to deliver
+            those messages on our behalf. Note that monitoring subscription records are not covered
+            by the 90-day scan retention above: they are kept until you unsubscribe or ask us to
+            delete them.
+          </li>
+        </ul>
+
         <h2>What is collected if you email us</h2>
         <p>
           If you email us, we receive whatever your email contains (address, name if you give one,
@@ -106,7 +153,7 @@ export default function PrivacyPage() {
 
         <h2>If this changes</h2>
         <p>
-          If we later add analytics, a lead-routing form, scan report deletion controls, or any
+          If we later add analytics, paid monitoring plans, scan report deletion controls, or any
           other feature that changes what personal data is collected, this page will be updated to
           describe it accurately before that feature goes live — not after.
         </p>

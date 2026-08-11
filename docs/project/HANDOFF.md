@@ -93,34 +93,43 @@ D-099/D-101) собирает с `VITE_SCANNER_API`, гоняет гейты, к
 
 ## Что осталось
 
-**➡️ В РАБОТЕ: `A3-CRON` — 5/8 узлов done, исполнение продолжается.**
-Три решения владельца (D-135): (1) подписчик = email+URL без аккаунта,
-`A3-AUTH` НЕ зависимость; (2) подписка бесплатна на старте, recurring
-Stripe billing — отдельное будущее решение фазы 2; (3) порядок — СНАЧАЛА
-верификация домена Resend, ПОТОМ дайджест/отправка (соблюдён). Модель
-делегированных субагентов — **Opus** (владелец через `AskUserQuestion`,
-D-075/D-135). Approval на живую рассылку/DNS запрашивается ОТДЕЛЬНО на
-каждый approval-узел (D-022 — не переносится автоматически); так уже было
-запрошено дважды в этой сессии (`RESEND-DOMAIN`, `CONFIRM-EMAIL`), оба раза
-через `AskUserQuestion`, оба раза «да».
+**✅ `A3-CRON` — ЗАКРЫТ ПОЛНОСТЬЮ (8/8 узлов done, 2026-08-11), НЕ задеплоен.**
+MVP «мониторинг как подписка» готов в коде на ветке
+`claude/accessatlas-a3-cron-monitoring-9ff4iw`. Три решения владельца (D-135):
+(1) подписчик = email+URL без аккаунта, `A3-AUTH` НЕ зависимость; (2) подписка
+бесплатна на старте, recurring Stripe billing — будущее решение фазы 2;
+(3) порядок — сначала домен Resend, потом рассылка (соблюдён). Субагенты —
+**Opus** (D-075/D-135). Approval на DNS/живую рассылку запрашивался ОТДЕЛЬНО
+на каждый approval-узел (D-022) — 3 раза через `AskUserQuestion`
+(`RESEND-DOMAIN`, `CONFIRM-EMAIL`, `DIGEST-EMAIL`), все «да».
 
 | Узел | Статус | Суть |
 |---|---|---|
 | `A3-CRON-SCHEMA` | ✅ done | `migrations/0010_subscriptions.sql`, id≠token (D-023) |
-| `A3-CRON-RESEND-DOMAIN` | ✅ done | `verscala.com` verified в Resend, sandbox-барьер D-024 снят навсегда |
-| `A3-CRON-SUBSCRIBE-API` | ✅ done | POST subscribe / GET verify / unsubscribe, `worker/routes/subscribe.js` |
-| `A3-CRON-CONFIRM-EMAIL` | ✅ done | Double opt-in письмо, живой Resend-прогон подтверждён (`delivered`) |
-| `A3-CRON-RESCAN-DELTA` | ✅ done | Ежедневный тик, cadence на уровне строки, `scanDelta.js` по стабильному ключу |
-| `A3-CRON-SUBSCRIBE-FORM` | `ready` | Не начат — форма на `/report/:id` |
-| `A3-CRON-DIGEST-EMAIL` | `ready`, **approval не запрошен** | Все 3 depends_on закрыты, но рассылка живым подписчикам ПОВТОРЯЮЩАЯСЯ — отдельный AskUserQuestion перед стартом |
-| `A3-CRON-PRIVACY` | `ready` | Не начат — обновить Privacy Policy под подписку |
+| `A3-CRON-RESEND-DOMAIN` | ✅ done | `verscala.com` verified в Resend, sandbox D-024 снят навсегда |
+| `A3-CRON-SUBSCRIBE-API` | ✅ done | POST subscribe / GET verify / unsubscribe |
+| `A3-CRON-CONFIRM-EMAIL` | ✅ done | Double opt-in письмо, живой прогон `delivered` |
+| `A3-CRON-RESCAN-DELTA` | ✅ done | Ежедневный тик, cadence на уровне строки, `scanDelta.js` |
+| `A3-CRON-SUBSCRIBE-FORM` | ✅ done | Форма на `/report/:id`, submit → реальный API |
+| `A3-CRON-DIGEST-EMAIL` | ✅ done (D-137) | Дайджест с дельтой, `last_digest_scan_id` (миграция 0011), живой прогон `delivered` |
+| `A3-CRON-PRIVACY` | ✅ done | Privacy Policy покрывает подписку, RISKS.md R14 |
 
-Известный архитектурный долг для `DIGEST-EMAIL`: `last_scan_id` в
-`subscriptions` перезаписывается сразу при постановке ре-скана в очередь —
-пара `{previousScanId, scanId}` персистентна только внутри одного
-cron-тика (детали — `STATUS.md`, notes узла `A3-CRON-RESCAN-DELTA` в
-`GRAPH.yaml`). Ничего из A3-CRON не задеплоено на прод — только код в
-ветке; `migrations/0010` на прод-D1 не применена.
+**⚠️ СЛЕДУЮЩИЙ ШАГ — деплой (нужно явное одобрение владельца).** Вся фича
+только в ветке. Для запуска живым пользователям: `npm run worker:deploy`
+(воркер с subscribe-роутами + cron-проходы re-scan/digest) + `npm run
+db:migrate:remote` (миграции `0010`+`0011` на прод-D1). Сайт (форма, Privacy)
+поедет автодеплоем при push ветки в `accessatlas`. До деплоя на проде формы
+нет, verify-ссылки из писем 404-ят, cron подписок не идёт. Живые прогоны
+писем (confirm + digest) слались на адрес владельца — оба `delivered`;
+органический end-to-end (подписка → письмо → клик → active в проде) можно
+пройти только ПОСЛЕ деплоя. `worker:test` 487/487, `src:test` 67/67,
+build/typecheck/audit-a11y/check-links — все зелёные.
+
+Мелкий хвост на будущее (не блокирует): страницы verify/unsubscribe сейчас
+отдают голый JSON (по образцу claim verify) — визуальную страницу
+подтверждения можно добавить отдельным узлом; авто-ретенция/самостоятельное
+удаление подписок (RISKS.md R14, GDPR Art. 17 сейчас ручной) — тоже
+отдельный будущий узел.
 
 **✅ ВСЁ НА ПРОДЕ: D-130…D-134, 2026-08-11.** `/report/:id` (два блока —
 «Check these yourself» + «The short version», D-130), платный PDF-план с
