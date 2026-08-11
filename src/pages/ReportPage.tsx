@@ -18,11 +18,35 @@ import {
   createPlanCheckout,
   type ScanReport,
 } from '@/lib/scanner'
-import { estimateCost, formatCostEstimate, type CostCurrency } from '@/lib/costEstimate'
+import { estimateCost, formatCostEstimate, type CostCurrency, type CostEstimate } from '@/lib/costEstimate'
 import { conversionDisclaimer } from '@/lib/currency'
 import { decidePollNext, type PollAttempt } from '@/lib/reportPolling'
 import { MatchedAgencies } from '@/components/MatchedAgencies'
 import { useToasts, ToastRegion } from '@/components/library/Toast'
+import { Accordion } from '@/components/library/Accordion'
+import { uncoveredRows } from '@/lib/coverage'
+import type { PriceBand } from '@data/a11y/types'
+
+// A4-REPORT-CHECKLIST (D-130): the exact same static rows the public /wcag/
+// index already labels "manual review only" (WcagIndexPage.tsx) — criteria
+// automated scanning cannot detect at all (needs human judgement: does this
+// heading actually describe the section, is this alt text meaningful). Real
+// site data (en301549-coverage.json via coverage.ts), not scan-dependent —
+// computed once at module scope, same reasoning as CURRENCY_OPTIONS above.
+const UNCOVERED_ROWS = uncoveredRows()
+
+// A4-REPORT-BRIEF (D-130): scope language, never a duration. This project has
+// no time-to-fix field anywhere (no such column in data/a11y/types.ts or
+// agencies.json) — inventing "usually takes 2 weeks" would be exactly the
+// fabricated-number dishonesty D-035/D-046 exist to rule out. Keyed off the
+// same cost.band already shown on the Remediation estimate card above
+// (costEstimate.ts's BAND_BOUNDS) — never a second scale.
+const SCOPE_PHRASE: Record<PriceBand, string> = {
+  budget: 'a small number of straightforward fixes',
+  mid: 'a moderate, well-scoped project',
+  premium: 'a substantial engineering effort',
+  enterprise: 'a large-scale remediation project',
+}
 
 // A4-SITE-COUNTRY (D-126): EUR — the estimate's native currency (BAND_BOUNDS in
 // costEstimate.ts) — is always a valid choice, plus every currency actually
@@ -477,26 +501,122 @@ function ReportBody({ report }: { report: ScanReport }) {
         </section>
       )}
 
+      <CheckYourselfSection />
+
       <RemediationPlanPanel report={report} groups={groups} />
 
-      <MatchedAgencies findings={report.findings} priceBand={cost?.band} scanId={report.id} />
+      {/* A4-REPORT-BRIEF (D-130): folds in the copy of the former standalone
+          "Want someone else to fix this?" block (removed here, same primary-
+          on-primary card treatment) — leads straight into MatchedAgencies
+          below, so the page doesn't stack two redundant "want help" CTAs. */}
+      {cost && <ReportBrief report={report} groups={groups} cost={cost} />}
 
-      {/* Замена «Book a call» из макета владельца (Stitch): бронирования звонков
-          у нас нет и не выдумываем — ведёт на РЕАЛЬНЫЙ /request-quote/ (тот же
-          путь, что и текстовая ссылка внутри MatchedAgencies чуть выше), просто
-          с визуальным весом, каким в макете был контакт с «экспертом». */}
-      <div className="mt-8 rounded-3xl bg-[color:var(--color-primary)] p-8 text-[color:var(--color-on-primary)]">
-        <h3 className="text-lg font-bold">Want someone else to fix this?</h3>
-        <p className="mt-2 max-w-prose text-sm text-[color:var(--color-on-primary)]/80">
-          Send this report to matching agencies from our catalog and get quotes — no obligation.
-        </p>
-        <Link
-          className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[color:var(--color-on-primary)] px-5 py-2.5 text-sm font-bold text-[color:var(--color-primary)]"
-          to={`${paths.requestQuote()}?scanId=${encodeURIComponent(report.id)}`}
-        >
-          Request a quote →
-        </Link>
+      <MatchedAgencies findings={report.findings} priceBand={cost?.band} scanId={report.id} />
+    </div>
+  )
+}
+
+// A4-REPORT-CHECKLIST (D-130): always renders — uncoveredRows() is static
+// site data, not scan-dependent (unlike everything else on this page). ~19
+// rows (50 - 31 per /methodology/'s own coverage numbers) is too many to
+// leave permanently expanded above the findings/plan below, so the list sits
+// inside the shared Accordion primitive (D-068) rather than a hand-rolled
+// disclosure. A single-item Accordion is a clean fit: the item's own heading
+// (h3, nested correctly under this section's h2) doubles as the disclosure
+// trigger, and its panel already ships the right ARIA (aria-expanded/
+// aria-controls, region+aria-labelledby) — no new pattern to invent or audit.
+function CheckYourselfSection() {
+  return (
+    <section className="mt-8">
+      <h2 className="h2 mt-0">Check these yourself</h2>
+      <p className="lede">
+        Automated scanning has real limits — some checks need a human to judge, not a machine to
+        detect (does this heading actually describe the section, is this alt text meaningful). These{' '}
+        {UNCOVERED_ROWS.length} WCAG criteria are outside what any automated scanner, including this
+        one, can check. Review them yourself, or have a specialist do it as part of the plan below.
+      </p>
+      <div className="mt-4 max-w-2xl">
+        <Accordion
+          headingLevel={3}
+          items={[
+            {
+              title: `Show all ${UNCOVERED_ROWS.length} criteria`,
+              content: (
+                <ul className="grid gap-1.5 sm:grid-cols-2">
+                  {UNCOVERED_ROWS.map((r) => (
+                    <li key={r.clause}>
+                      <span className="num">{r.wcag}</span> {r.title}
+                    </li>
+                  ))}
+                </ul>
+              ),
+            },
+          ]}
+        />
       </div>
+      <p className="mt-3 text-sm text-on-surface-variant">
+        Full reference:{' '}
+        <Link className="underline underline-offset-2" to={paths.wcag()}>
+          what our scanner can and can't check
+        </Link>
+        .
+      </p>
+    </section>
+  )
+}
+
+// A4-REPORT-BRIEF (D-130): plain-language summary that states the problem
+// from numbers already computed above (never a second count), states scope
+// QUALITATIVELY via SCOPE_PHRASE (never a duration — see the note at that
+// constant's definition), and pitches the free lead in the report's existing
+// honest, non-alarmist tone (R1 — no invented urgency, no legal-threat
+// language beyond what's already stated elsewhere on this page, e.g. the
+// jurisdictionNote blocks above). Only mounted when cost is non-null (see
+// call site) — a clean scan has nothing to summarize, same rubric
+// estimateCost() itself uses to return null.
+function ReportBrief({
+  report,
+  groups,
+  cost,
+}: {
+  report: ScanReport
+  groups: ReturnType<typeof groupFindingsByRule>
+  cost: CostEstimate
+}) {
+  const criticalCount = groups.filter((g) => g.impact === 'critical').length
+  const seriousCount = groups.filter((g) => g.impact === 'serious').length
+  const severityPhrase = [
+    criticalCount > 0 ? `${criticalCount} critical` : null,
+    seriousCount > 0 ? `${seriousCount} serious` : null,
+  ]
+    .filter(Boolean)
+    .join(' and ')
+  // Same top-priority pick LockedPlanPanel's teaser already uses above
+  // (groups[0], the highest-impact rule, same sort as Findings) — not a
+  // second "find the worst issue" implementation.
+  const top = groups[0]
+
+  return (
+    <div className="mt-10 rounded-3xl bg-[color:var(--color-primary)] p-8 text-[color:var(--color-on-primary)]">
+      <h2 className="h2 mt-0">The short version</h2>
+      <p className="mt-2 max-w-prose text-sm text-[color:var(--color-on-primary)]/80">
+        This scan found {report.findings.length} issue instance{report.findings.length === 1 ? '' : 's'} across{' '}
+        {groups.length} distinct rule{groups.length === 1 ? '' : 's'}
+        {severityPhrase && <> — {severityPhrase}</>}. The single biggest priority:{' '}
+        {impactLabel(top.impact).toLowerCase()} issue <span className="font-mono">{top.ruleId}</span>. Fixing
+        everything here is {SCOPE_PHRASE[cost.band]} — we won't put a timeline on that, since it depends on your
+        codebase and team, not on us.
+      </p>
+      <p className="mt-4 max-w-prose text-sm text-[color:var(--color-on-primary)]/80">
+        You don't have to do this yourself. Send this report to matching agencies from our real catalog and get
+        quotes — free, no obligation, and it's the same free branch that unlocks your full PDF plan at no cost.
+      </p>
+      <Link
+        className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[color:var(--color-on-primary)] px-5 py-2.5 text-sm font-bold text-[color:var(--color-primary)]"
+        to={`${paths.requestQuote()}?scanId=${encodeURIComponent(report.id)}`}
+      >
+        Request a quote →
+      </Link>
     </div>
   )
 }

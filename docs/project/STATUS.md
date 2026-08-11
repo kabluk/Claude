@@ -2,6 +2,37 @@
 
 Обновлено: 2026-08-11 (см. также подробный legacy-статус: `research/STATE.md`)
 
+## Последнее (2026-08-11, `/report/:id` — чек-лист «Check these yourself» + сводка «The short version», чистый фронтенд / D-130)
+
+Два новых блока на `/report/:id`, оба из уже загруженных данных, без
+API/схемы: **«Check these yourself»** (после Findings, до плана) — те же ~19
+непокрытых WCAG-критериев (`uncoveredRows()`), что честно помечены «manual
+review only» на публичном `/wcag/`, в едином `Accordion`-item из библиотеки
+компонентов (D-068); рендерится всегда (статичные данные), кроме
+`error`-состояния (там нечего проверять). **«The short version»** (перед
+`MatchedAgencies`, заменил бывший отдельный «Want someone else to fix this?»
+внизу страницы) — проблема числами, уже посчитанными выше
+(`report.findings.length`, critical/serious из `groups`, топ-приоритет из
+`groups[0]`, тот же паттерн, что тизер `LockedPlanPanel`), масштаб
+КАЧЕСТВЕННО через `SCOPE_PHRASE[cost.band]` (budget/mid/premium/enterprise →
+4 фразы объёма, ни разу не длительность — у проекта нет поля time-to-fix
+нигде, D-035/D-046), скрыт целиком при `cost === null`. Питч — бесплатный
+лид, честный тон R1.
+
+Проверка: `typecheck` чисто, `src:test` 60/60, `audit-a11y` **54 страницы, 0
+нарушений** (включая новый `(open)`-проход чек-листа для трёх `done`-фикстур).
+Канарейка (2 попытки): heading-order (h2→h4) — `moderate`, гейт НЕ упал
+(`seriousOrWorse===0`) — оставлено уроком в LEARNING_LOG; contrast-регрессия
+питча (`/80`→`/20`) — `[serious] color-contrast`, exit 1 ровно на новом `<p>`
+во всех трёх `done`-состояниях, восстановлено → снова 0/0. Живой Playwright
+против `dist/` (throwaway, удалён): 3 строки чек-листа сверены дословно с
+`en301549-coverage.json`; фраза объёма реально меняется между
+6-находочной/critical-серьёзной фикстурой («a substantial engineering
+effort») и 1-minor-находочной («a small number of straightforward fixes»);
+0-находочная фикстура не рендерит «The short version», чек-лист остаётся,
+падения нет; grep блока на `day/week/hour/month` — 0 совпадений. Детали,
+включая точный текст 4 фраз объёма — `DECISIONS.md` D-130.
+
 ## Последнее (2026-08-11, живой PDF-план сгенерирован на реальном скане — рендер подтверждён, гейт через лид всё ещё не проверен / D-129)
 
 Владелец попросил показать PDF на `https://en.zebrakita.de/`. Реальный скан

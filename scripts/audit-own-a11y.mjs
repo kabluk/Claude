@@ -399,6 +399,28 @@ try {
       async () => await window.axe.run(document, { rules: { 'target-size': { enabled: true } } })
     )
     results.push({ route: label, violations: reportAxeResults.violations })
+
+    // A4-REPORT-CHECKLIST (D-130): same open-state gate the INTERACT map
+    // above applies to /components/accordion/ — done states (not the error
+    // state, which returns from a different ReportBody branch before
+    // CheckYourselfSection ever renders, so the toggle legitimately doesn't
+    // exist there) carry the "Check these yourself" single-item Accordion.
+    // Click it open and audit again so the expanded panel (real aria-expanded
+    // flip + the actual WCAG-criteria list) stays a permanent gate, not a
+    // one-off Playwright check. Waits on aria-labelledby, not a timeout —
+    // FindingGroupCard's own "View all N instances" buttons also carry
+    // aria-expanded on this page, so a generic [aria-expanded="true"]
+    // selector would be ambiguous; the button's real id disambiguates it.
+    const checklistToggle = page.getByRole('button', { name: /^Show all \d+ criteria$/ })
+    if (await checklistToggle.count()) {
+      const btnId = await checklistToggle.getAttribute('id')
+      await checklistToggle.click()
+      await page.waitForSelector(`[aria-labelledby="${btnId}"]`, { state: 'visible' })
+      const openResults = await page.evaluate(
+        async () => await window.axe.run(document, { rules: { 'target-size': { enabled: true } } })
+      )
+      results.push({ route: `${label} (open)`, violations: openResults.violations })
+    }
     await page.unroute('**/api/scan/**')
   }
 } finally {

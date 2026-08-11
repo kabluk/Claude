@@ -93,6 +93,12 @@ D-099/D-101) собирает с `VITE_SCANNER_API`, гоняет гейты, к
 
 ## Что осталось
 
+**✅ `/report/:id` — два новых чисто фронтендовых блока (D-130, 2026-08-11,**
+**не задеплоено — коммит на ветке итерации, деплой = отдельный push в**
+**`accessatlas`).** «Check these yourself» (непокрытые WCAG-критерии,
+`Accordion`) + «The short version» (сводка + бесплатный питч лида,
+масштаб КАЧЕСТВЕННО, не длительностью). Детали — `DECISIONS.md` D-130.
+
 **✅ A4-SITE-COUNTRY НА ПРОДЕ (D-126…D-128, 2026-08-11).** Автоопределение
 страны сканируемого сайта (`worker/lib/siteCountry.js`: user-override >
 schema-org JSON-LD > ccTLD > unknown, override-wins-паттерн jurisdiction.js,
