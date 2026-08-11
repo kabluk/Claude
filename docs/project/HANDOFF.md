@@ -129,16 +129,18 @@ curl'ом ПОСЛЕ деплоя: Privacy-секция про подписку 
 (подписка → confirm-письмо `delivered` → verify → active → unsubscribe)
 подтверждён против боевого воркера и D1.
 
-**⚠️ ВАЖНО про деплой сайта (стоячий долг, рецидив D-122):** CI-шаг
-`Deploy to Cloudflare Pages` (`deploy.yml`) ПАДАЕТ на протухшем GitHub
-Actions-секрете `CLOUDFLARE_API_TOKEN` (`Invalid access token 9109`) — это
-ДРУГОЙ токен, чем даёт владелец в чат. Пока владелец не обновит этот
-GitHub-секрет (Settings → Secrets and variables → Actions), автодеплой
-сайта при push в `accessatlas` не работает — деплоить Pages приходится
-ВРУЧНУЮ: `VITE_SCANNER_API=https://accessatlas-worker.zincroom.workers.dev
-npm run build` затем `wrangler pages deploy dist --project-name verscala
---branch main` с рабочим CF-токеном (право Pages обязательно). Именно так
-задеплоен этот заход. `worker:test` 487/487, `src:test` 67/67,
+**✅ Автодеплой сайта ВОССТАНОВЛЕН (долг D-122 закрыт в тот же день).**
+Изначально CI-шаг `Deploy to Cloudflare Pages` падал на протухшем GitHub
+Actions-секрете `CLOUDFLARE_API_TOKEN` (`Invalid access token 9109`).
+Владелец обновил секрет (вписал рабочий `cfat_`-токен с правом Pages;
+по пути чуть не перепутал его с account id — поймано по скриншоту).
+Повторный push в `accessatlas` (`1881aa7`) → `deploy.yml` прогон `30`
+**success**. Штатный автодеплой при push в `accessatlas` снова работает.
+Ручной путь (если секрет опять протухнет): `VITE_SCANNER_API=https://
+accessatlas-worker.zincroom.workers.dev npm run build` затем `wrangler pages
+deploy dist --project-name verscala --branch main`. Напоминание: API-триггер
+rerun/run_workflow из сессии даёт 403 (интеграция только читает workflow) —
+перезапуск делать push'ем. `worker:test` 487/487, `src:test` 67/67,
 build/typecheck/audit-a11y/check-links — все зелёные.
 
 Мелкие хвосты (не блокируют): `TURNSTILE_SECRET_KEY` на проде не задан — все

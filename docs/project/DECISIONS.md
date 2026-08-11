@@ -51,13 +51,20 @@ subscribe to accessibility monitoring» + Resend; чанк ReportPage
 (SubscribeForm) — 200, содержит `/api/subscribe`; адрес воркера присутствует
 в задеплоенном бандле. Фича A3-CRON целиком доступна реальным пользователям.
 
-**⚠️ СТОЯЧИЙ ДОЛГ (D-122 рецидив):** CI-деплой (`deploy.yml`) БУДЕТ падать на
-каждый следующий push в `accessatlas`, пока владелец не обновит GitHub
-Actions-секрет `CLOUDFLARE_API_TOKEN` (Settings → Secrets and variables →
-Actions) на валидный. До тех пор сайт деплоится только вручную прямым
-`wrangler pages deploy` с рабочим токеном. Секреты этой сессии
-(`CLOUDFLARE_API_TOKEN`, `RESEND_API_KEY`) — строго in-memory, ни разу не на
-диске/в коммите (проверено грепом staged-дифов).
+**⚠️ СТОЯЧИЙ ДОЛГ (D-122 рецидив) — ЗАКРЫТ в тот же день.** Изначально
+CI-деплой (`deploy.yml`) падал на протухшем GitHub Actions-секрете
+`CLOUDFLARE_API_TOKEN`. Владелец обновил секрет через GitHub UI — по пути
+чуть не вписал в `CLOUDFLARE_API_TOKEN` значение account id
+(`d081eb07…`), поймано по присланному скриншоту ДО сохранения (account id —
+это отдельный секрет `CLOUDFLARE_ACCOUNT_ID`; в токен-секрет вписан рабочий
+`cfat_`-токен с правом Pages). Повторный push в `accessatlas` (`1881aa7`) →
+прогон `deploy.yml` `30` **success**: штатный автодеплой сайта восстановлен.
+API-триггер повторного прогона из сессии снова дал 403 (та же интеграция,
+что D-120/D-122 — только чтение workflow), поэтому перезапуск сделан push'ем,
+а не rerun'ом. Секреты этой сессии (`CLOUDFLARE_API_TOKEN`, `RESEND_API_KEY`)
+— строго in-memory, ни разу не на диске/в коммите (проверено грепом
+staged-дифов). Урок для LEARNING_LOG: account id ≠ API token, и путаница их
+местами даёт ровно `Invalid access token 9109`, как и протухший токен.
 
 ## D-137 · 2026-08-11 · accepted
 **`A3-CRON-DIGEST-EMAIL`: еженедельное письмо-дайджест подписчику с дельтой двух
