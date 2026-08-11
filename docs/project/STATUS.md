@@ -2,7 +2,53 @@
 
 Обновлено: 2026-08-11 (см. также подробный legacy-статус: `research/STATE.md`)
 
-## Последнее (2026-08-11, A3-CRON-RESEND-DOMAIN done — домен verified живьём)
+## Последнее (2026-08-11, A3-CRON: CONFIRM-EMAIL + RESCAN-DELTA done — 5/8 узлов закрыты)
+
+Два узла закрыты параллельно после approval на `A3-CRON-CONFIRM-EMAIL`
+(владелец сузил живую проверку до собственного адреса, не третьей стороны
+— осознанное ослабление verify-критерия узла, записано в его notes).
+
+**`A3-CRON-CONFIRM-EMAIL` — done.** `POST /api/subscribe` теперь реально
+шлёт письмо double opt-in (`worker/lib/resend.js::VERIFIED_FROM =
+notify@verscala.com`), best-effort поверх уже сделанного `INSERT` (D-024:
+INSERT без try/catch, отправка — отдельный некритичный шаг). Живой прогон
+не мок: Resend `POST /emails` → `200 {id: c200c33c-…}`, `GET /emails/{id}`
+→ `last_event: delivered`, получатель — владелец проекта (не третье лицо).
+`D-136` зафиксировал решение: `claim.js`/`lead.js` остаются на
+sandbox-отправителе — не в scope узла, своя будущая канарейка. Тесты
+подтверждены дважды (агент 467/467, родительская сессия перепроверила
+диф best-effort порядка кода).
+
+**`A3-CRON-RESCAN-DELTA` — done**, выполнен параллельно тем же тиком.
+`worker/lib/scanDelta.js` (чистая функция, ключ `(ruleId, page, selector)`,
+не порядок массива — проверено на живых страницах bundesregierung.de/
+europarl.europa.eu/gov.uk, не только фикстурами) + `worker/lib/subscriptionCron.js`
+(выборка `verified=1 AND status='active'`, cadence-cutoff по
+`sc.created_at < now-7d` через `LEFT JOIN scans`, кладёт джобы в
+существующую `SCAN_QUEUE`). Расписание — БЕЗ нового `triggers.crons`:
+ежедневный тик, недельность на уровне строки (избегает thundering herd
+при `max_concurrency: 2`). `worker/index.js::scheduled` — два независимых
+`ctx.waitUntil` (retention/re-scan), подтверждено чтением кода, что падение
+одного не валит другой. Проверено независимо родительской сессией:
+`worker:test` 472/472 (было 418, оба узла вместе добавили 54), `wrangler
+deploy --dry-run` чист.
+
+Архитектурный долг, унаследованный `A3-CRON-DIGEST-EMAIL`: `last_scan_id`
+перезаписывается сразу после постановки в очередь (не после завершения —
+иначе ежедневный повтор при падении скана), поэтому пара
+`{previousScanId, scanId}` персистентна только внутри одного cron-тика.
+Исполнителю DIGEST-EMAIL нужно решить: либо считать дельту в ТОМ ЖЕ тике,
+либо завести `prev_scan_id` (новая миграция 0011).
+
+`GRAPH.yaml` обновлён (родительской сессией — оба субагента не тронули
+статусы узлов сами): `RESCAN-DELTA` → `done`, `DIGEST-EMAIL` → `ready`
+(все 3 зависимости закрыты, approval на сам узел ещё НЕ запрошен — D-022,
+рассылка потенциально повторяющаяся, риск выше разового verify-письма),
+`PRIVACY` → `ready` (была пропущена при закрытии SCHEMA, исправлено сейчас).
+Открытыми остались только `SUBSCRIBE-FORM`, `DIGEST-EMAIL`, `PRIVACY` — 5/8
+узлов A3-CRON закрыты за одну итерацию.
+
+## Ранее (2026-08-11, A3-CRON-RESEND-DOMAIN done — домен verified живьём)
 
 Продолжение записи ниже: Resend-сторона верификации, бывшая `pending` на
 момент предыдущей записи, флипнула в `verified` (все 3 записи — DKIM/

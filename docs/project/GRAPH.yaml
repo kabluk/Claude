@@ -1596,7 +1596,7 @@ nodes:
   - id: A3-CRON-RESCAN-DELTA
     title: "Еженедельный re-scan подписанных URL (переиспользует SCAN_QUEUE) + дельта относительно предыдущего скана (новые/исчезнувшие находки, изменение score)"
     owner: backend-engineer
-    status: ready
+    status: done
     depends_on: [A3-CRON-SUBSCRIBE-API]
     inputs: [worker/index.js, worker/lib/scanJob.js, worker/lib/retention.js, wrangler.jsonc, docs/project/INTERFACES.md]
     scope: [worker/lib/subscriptionCron.js, worker/lib/scanDelta.js, worker/index.js, wrangler.jsonc]
@@ -1614,12 +1614,12 @@ nodes:
     attempts: 0
     risk: medium
     approval_required: false
-    notes: "Не approval — Browser Rendering уже одобрен ресурс (A1-SCAN), re-scan запускается только для URL, которые сам подписчик добровольно указал (не сканирование чужих сайтов без повода). Решение по механике расписания (новый triggers.crons-элемент vs ветвление по event.cron в существующем 0 3 * * *) оставлено исполнителю узла — зафиксировать выбор в notes при закрытии."
+    notes: "DONE 2026-08-11. Не approval — Browser Rendering уже одобрен ресурс (A1-SCAN), re-scan запускается только для URL, которые сам подписчик добровольно указал. Решение по расписанию: НЕ новый triggers.crons-элемент — ежедневный тик существующего `0 3 * * *`, недельность на уровне строки (cutoff `sc.created_at < now-7d`, LEFT JOIN scans переживает retention-удаление старого скана), иначе `thundering herd` всех подписок в одну ночь при `max_concurrency: 2`. `last_scan_id` обновляется сразу после постановки в очередь (не после completion — иначе ежедневный повтор при падении скана). Дельта — по стабильному ключу `(ruleId, page, selector)`, не по порядку массива, проверено на живых страницах (bundesregierung.de/europarl.europa.eu/gov.uk), не только фикстурами. `worker:test` 418→472, `wrangler deploy --dry-run` чист — оба подтверждены независимо родительской сессией. АРХИТЕКТУРНЫЙ ДОЛГ для A3-CRON-DIGEST-EMAIL: `last_scan_id` перезаписывается сразу, старый scan_id нигде не хранится персистентно после этого тика — пары {previousScanId, scanId} собраны в момент ре-скана (см. TODO в subscriptionCron.js), но digest-узлу либо нужен отдельный проход в ТОМ ЖЕ тике, либо новая колонка `prev_scan_id` (миграция 0011) — выбор оставлен исполнителю DIGEST-EMAIL."
 
   - id: A3-CRON-DIGEST-EMAIL
     title: "Письмо-дайджест подписчику с дельтой (новые находки/score) через Resend, с рабочей unsubscribe-ссылкой"
     owner: backend-engineer
-    status: blocked
+    status: ready
     depends_on: [A3-CRON-RESCAN-DELTA, A3-CRON-CONFIRM-EMAIL, A3-CRON-RESEND-DOMAIN]
     inputs: [docs/project/INTERFACES.md, worker/lib/resend.js, worker/lib/scanDelta.js]
     scope: [worker/lib/resend.js, worker/lib/subscriptionCron.js]
@@ -1636,12 +1636,12 @@ nodes:
     attempts: 0
     risk: high
     approval_required: true
-    notes: "БЛОКИРОВАНО: approval — реальная (потенциально повторяющаяся) рассылка живым сторонним адресатам, последний узел в цепочке владельца 'сначала домен, потом дайджест' (D-135, пункт 3). Зависит от CONFIRM-EMAIL не только транзитивно через домен, но и по смыслу — дайджест не должен уйти раньше, чем реально работает double opt-in (иначе email+URL от чужого человека без его согласия запускает рассылку ему же, тот же класс риска, что D-023 закрывал для claims)."
+    notes: "Все три зависимости закрыты 2026-08-11 — технически разблокирован. НО approval на этот КОНКРЕТНЫЙ узел ещё не запрошен (D-022, тот же принцип, что уже применялся к CONFIRM-EMAIL): реальная и потенциально ПОВТОРЯЮЩАЯСЯ рассылка живым сторонним адресатам — риск на порядок выше разового verify-письма. Прежде чем писать/запускать код — отдельный AskUserQuestion владельцу. Архитектурный долг из notes A3-CRON-RESCAN-DELTA актуален: previousScanId-пары не персистентны за пределами одного cron-тика, исполнителю узла придётся решить (совместный тик с RESCAN-DELTA или миграция 0011 prev_scan_id) прежде чем писать логику дайджеста."
 
   - id: A3-CRON-PRIVACY
     title: "Обновить Privacy Policy под данные подписки (email retention, cadence, unsubscribe)"
     owner: product-lead
-    status: blocked
+    status: ready
     depends_on: [A3-CRON-SCHEMA]
     inputs: [worker/routes/subscribe.js, migrations/0010_subscriptions.sql, src/pages/PrivacyPage.tsx, docs/project/RISKS.md]
     scope: [src/pages/PrivacyPage.tsx, docs/project/RISKS.md]

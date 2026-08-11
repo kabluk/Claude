@@ -93,35 +93,34 @@ D-099/D-101) собирает с `VITE_SCANNER_API`, гоняет гейты, к
 
 ## Что осталось
 
-**➡️ В РАБОТЕ: `A3-CRON` — scoping закрыт (D-135), исполнение началось.**
-Три решения владельца: (1) подписчик = email+URL без аккаунта, `A3-AUTH` НЕ
-зависимость; (2) подписка бесплатна на старте, recurring Stripe billing —
-отдельное будущее решение фазы 2; (3) порядок — СНАЧАЛА верификация домена
-Resend, ПОТОМ дайджест/отправка. Разбит на 8 sub-узлов GRAPH.yaml по
-образцу Фазы 2 (детали — BACKLOG.md «A3-CRON — под-узлы», DECISIONS.md
-D-135). Модель делегированных субагентов — **Opus** (владелец через
-`AskUserQuestion`, D-075/D-135).
+**➡️ В РАБОТЕ: `A3-CRON` — 5/8 узлов done, исполнение продолжается.**
+Три решения владельца (D-135): (1) подписчик = email+URL без аккаунта,
+`A3-AUTH` НЕ зависимость; (2) подписка бесплатна на старте, recurring
+Stripe billing — отдельное будущее решение фазы 2; (3) порядок — СНАЧАЛА
+верификация домена Resend, ПОТОМ дайджест/отправка (соблюдён). Модель
+делегированных субагентов — **Opus** (владелец через `AskUserQuestion`,
+D-075/D-135). Approval на живую рассылку/DNS запрашивается ОТДЕЛЬНО на
+каждый approval-узел (D-022 — не переносится автоматически); так уже было
+запрошено дважды в этой сессии (`RESEND-DOMAIN`, `CONFIRM-EMAIL`), оба раза
+через `AskUserQuestion`, оба раза «да».
 
-- **`A3-CRON-SCHEMA` — done.** `migrations/0010_subscriptions.sql` (id≠token
-  double opt-in, образец claims D-023) + `INTERFACES.md` §4. `db:migrate:local`
-  10/10, `worker:test` 386/386 — подтверждено дважды (агентом и независимо
-  родительской сессией). Разблокировал `A3-CRON-SUBSCRIBE-API`/
-  `A3-CRON-SUBSCRIBE-FORM` → `ready`.
-- **`A3-CRON-RESEND-DOMAIN` — done.** Владелец выдал `CLOUDFLARE_API_TOKEN`
-  (Zone→DNS→Edit, verscala.com) и `RESEND_API_KEY` in-memory в чат (никогда
-  на диск). 3 DNS-записи (DKIM TXT `resend._domainkey`, MX+SPF TXT под
-  `send.*`) добавлены в Cloudflare без конфликта с живой почтой (MX
-  Outlook/DKIM Microsoft/root SPF на месте — новые записи под отдельным
-  поддоменом). Домен `verscala.com` подтверждён `verified` в Resend API
-  (все 3 записи), живая канарейка — реальное письмо `from:
-  notify@verscala.com` (не `onboarding@resend.dev`) владельцу проекта (не
-  постороннему третьему адресату) доставлено без 422. Sandbox-барьер
-  D-024 снят: реальные сторонние получатели теперь доступны. Разблокировал
-  `A3-CRON-CONFIRM-EMAIL`/`A3-CRON-DIGEST-EMAIL` по `depends_on` — оба
-  остаются `blocked` до своих остальных зависимостей.
-- Остальные под-узлы (`SUBSCRIBE-API`/`SUBSCRIBE-FORM` — `ready`, первый в
-  работе; `CONFIRM-EMAIL`/`RESCAN-DELTA`/`DIGEST-EMAIL`/`PRIVACY` — статус
-  в `GRAPH.yaml`).
+| Узел | Статус | Суть |
+|---|---|---|
+| `A3-CRON-SCHEMA` | ✅ done | `migrations/0010_subscriptions.sql`, id≠token (D-023) |
+| `A3-CRON-RESEND-DOMAIN` | ✅ done | `verscala.com` verified в Resend, sandbox-барьер D-024 снят навсегда |
+| `A3-CRON-SUBSCRIBE-API` | ✅ done | POST subscribe / GET verify / unsubscribe, `worker/routes/subscribe.js` |
+| `A3-CRON-CONFIRM-EMAIL` | ✅ done | Double opt-in письмо, живой Resend-прогон подтверждён (`delivered`) |
+| `A3-CRON-RESCAN-DELTA` | ✅ done | Ежедневный тик, cadence на уровне строки, `scanDelta.js` по стабильному ключу |
+| `A3-CRON-SUBSCRIBE-FORM` | `ready` | Не начат — форма на `/report/:id` |
+| `A3-CRON-DIGEST-EMAIL` | `ready`, **approval не запрошен** | Все 3 depends_on закрыты, но рассылка живым подписчикам ПОВТОРЯЮЩАЯСЯ — отдельный AskUserQuestion перед стартом |
+| `A3-CRON-PRIVACY` | `ready` | Не начат — обновить Privacy Policy под подписку |
+
+Известный архитектурный долг для `DIGEST-EMAIL`: `last_scan_id` в
+`subscriptions` перезаписывается сразу при постановке ре-скана в очередь —
+пара `{previousScanId, scanId}` персистентна только внутри одного
+cron-тика (детали — `STATUS.md`, notes узла `A3-CRON-RESCAN-DELTA` в
+`GRAPH.yaml`). Ничего из A3-CRON не задеплоено на прод — только код в
+ветке; `migrations/0010` на прод-D1 не применена.
 
 **✅ ВСЁ НА ПРОДЕ: D-130…D-134, 2026-08-11.** `/report/:id` (два блока —
 «Check these yourself» + «The short version», D-130), платный PDF-план с
