@@ -114,16 +114,23 @@ MVP «мониторинг как подписка» готов в коде на
 | `A3-CRON-DIGEST-EMAIL` | ✅ done (D-137) | Дайджест с дельтой, `last_digest_scan_id` (миграция 0011), живой прогон `delivered` |
 | `A3-CRON-PRIVACY` | ✅ done | Privacy Policy покрывает подписку, RISKS.md R14 |
 
-**⚠️ СЛЕДУЮЩИЙ ШАГ — деплой (нужно явное одобрение владельца).** Вся фича
-только в ветке. Для запуска живым пользователям: `npm run worker:deploy`
-(воркер с subscribe-роутами + cron-проходы re-scan/digest) + `npm run
-db:migrate:remote` (миграции `0010`+`0011` на прод-D1). Сайт (форма, Privacy)
-поедет автодеплоем при push ветки в `accessatlas`. До деплоя на проде формы
-нет, verify-ссылки из писем 404-ят, cron подписок не идёт. Живые прогоны
-писем (confirm + digest) слались на адрес владельца — оба `delivered`;
-органический end-to-end (подписка → письмо → клик → active в проде) можно
-пройти только ПОСЛЕ деплоя. `worker:test` 487/487, `src:test` 67/67,
-build/typecheck/audit-a11y/check-links — все зелёные.
+**✅ ВОРКЕР ЗАДЕПЛОЕН + живой end-to-end на проде (D-138, 2026-08-11).**
+Миграции `0010`+`0011` на боевой D1 (подтверждено `PRAGMA`), воркер Version
+`d9165edd` (cron `0 3 * * *`), секрет `RESEND_API_KEY` поставлен. Живой
+цикл через задеплоенный воркер: `POST /api/subscribe` → `201` без токена →
+confirm-письмо `delivered` → `verify` → `active` → `unsubscribe` →
+`unsubscribed`; тестовые строки удалены. D-023 держится на проде.
+
+**⚠️ СЛЕДУЮЩИЙ ШАГ — САЙТ (нужно отдельное явное одобрение владельца, D-022).**
+Backend живой, но UI-формы на проде НЕТ: форма на `/report/:id` и обновлённая
+Privacy поедут автодеплоем ТОЛЬКО при push ветки
+`claude/accessatlas-a3-cron-monitoring-9ff4iw` в `accessatlas`. До этого
+реальный пользователь подписаться через сайт не может (API живой, но точки
+входа в UI нет). `worker:test` 487/487, `src:test` 67/67,
+build/typecheck/audit-a11y/check-links — все зелёные. Отдельно:
+`TURNSTILE_SECRET_KEY` на проде не задан — все формы (scan/lead/claim/
+subscribe) идут без Turnstile; преждее состояние, решение по нему — вне
+этого деплоя.
 
 Мелкий хвост на будущее (не блокирует): страницы verify/unsubscribe сейчас
 отдают голый JSON (по образцу claim verify) — визуальную страницу
