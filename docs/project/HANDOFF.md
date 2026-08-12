@@ -143,11 +143,18 @@ rerun/run_workflow из сессии даёт 403 (интеграция толь
 перезапуск делать push'ем. `worker:test` 487/487, `src:test` 67/67,
 build/typecheck/audit-a11y/check-links — все зелёные.
 
+**✅ UX подтверждения/отписки исправлен (D-139, задеплоено+проверено живьём).**
+Был прод-инцидент: клик verify-ссылки давал сырой JSON на домене workers.dev.
+Теперь письма ведут на брендовые страницы сайта `verscala.com/monitoring/confirm`
+и `/monitoring/unsubscribe` (client-side зовут воркер, показывают человеческую
+страницу). Машинный `List-Unsubscribe` остался на воркер (`WORKER_ORIGIN` в
+wrangler.jsonc). Живой прогон на проде: ссылка = verscala.com, страница 200
+брендовая, подписка активируется. Воркер Version `83dd9a25`, сайт на `f05a20f`.
+
 Мелкие хвосты (не блокируют): `TURNSTILE_SECRET_KEY` на проде не задан — все
-формы (scan/lead/claim/subscribe) идут без Turnstile-проверки (преждее
-состояние, отдельное решение); визуальные страницы verify/unsubscribe —
-голый JSON; авто-ретенция/самоудаление подписок (RISKS.md R14, GDPR Art. 17
-сейчас ручной).
+формы (scan/lead/claim/subscribe) идут без Turnstile (преждее состояние,
+отдельное решение); авто-ретенция/самоудаление подписок (RISKS.md R14, GDPR
+Art. 17 сейчас ручной).
 
 Мелкий хвост на будущее (не блокирует): страницы verify/unsubscribe сейчас
 отдают голый JSON (по образцу claim verify) — визуальную страницу
