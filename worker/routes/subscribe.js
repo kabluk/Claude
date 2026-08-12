@@ -136,18 +136,38 @@ function escapeHtml(value) {
     .replace(/'/g, '&#39;')
 }
 
-// origin берётся из самого запроса (new URL(request.url).origin), не из
-// конфига — тот же выбор и та же причина, что в claim.js::buildVerifyEmail:
-// воркер отвечает и на workers.dev, и на кастомном домене, а ссылка в письме
-// обязана вести туда, куда реально можно постучаться прямо сейчас.
+// A3-CRON-MONITORING-PAGES (D-139): боевой origin САЙТА для ссылок письма —
+// env.ALLOWED_ORIGIN (wrangler.jsonc vars, тот же токен, что CORS). Локальная
+// копия того же выбора, что subscriptionCron.js::resolveSiteOrigin (тот файл
+// его не экспортирует, а тащить в export ради одной ссылки расширило бы контракт
+// модуля — тот же довод, что у дублирующегося escapeHtml). '*' — не адрес,
+// значит «не настроено» → fallback на origin запроса (dev: wrangler dev на
+// localhost, где ALLOWED_ORIGIN может быть пуст). На проде это всегда сайт-домен.
+function resolveSiteOrigin(env) {
+  const configured = env?.ALLOWED_ORIGIN
+  if (typeof configured === 'string' && configured && configured !== '*') return configured.replace(/\/+$/, '')
+  return null
+}
+
+// A3-CRON-MONITORING-PAGES (D-139): siteOrigin — БОЕВОЙ домен сайта
+// (env.ALLOWED_ORIGIN), а НЕ origin запроса. Прежде ссылка вела на
+// `${request.origin}/api/subscribe/verify` — то есть прямо на JSON-эндпоинт
+// воркера на домене *.workers.dev. Прод-инцидент: подписчик кликал её и получал
+// СЫРОЙ JSON (браузер предлагал скачать verify.json) на чужом домене — и то и
+// другое подрывает доверие. Теперь ссылка ведёт на брендовую страницу САЙТА
+// `${siteOrigin}/monitoring/confirm?token=…`, которая client-side зовёт тот же
+// GET /api/subscribe/verify и показывает человеческий результат. Сам эндпоинт
+// не тронут — он остаётся JSON-API, у него просто сменился потребитель.
+// siteOrigin приходит из resolveSiteOrigin(env) с fallback на request origin в
+// dev (см. handlePostSubscribe) — но это ВСЕГДА сайт-домен на проде.
 //
 // Unsubscribe-ссылки здесь намеренно нет: это письмо-ЗАПРОС подтверждения,
 // подписка ещё не активна (verified=0/pending) и по бездействию не активируется
 // — «отписаться» не от чего, а лишняя ссылка на тот же секретный токен только
 // расширила бы поверхность. Обязательный unsubscribe появляется в первом
 // РЕАЛЬНОМ письме подписчику — дайджесте (A3-CRON-DIGEST-EMAIL, RFC 8058).
-export function buildConfirmEmail({ url, token, origin }) {
-  const verifyUrl = `${origin}/api/subscribe/verify?token=${encodeURIComponent(token)}`
+export function buildConfirmEmail({ url, token, siteOrigin }) {
+  const verifyUrl = `${siteOrigin}/monitoring/confirm?token=${encodeURIComponent(token)}`
   return {
     subject: 'Confirm your Verscala monitoring subscription',
     text: `Click the link below to confirm you want weekly accessibility monitoring emails for ${url}.
@@ -166,9 +186,9 @@ If you didn't request this, ignore this email — nothing is sent until the link
 // зависит от письма (токен есть в D1). Отсутствие RESEND_API_KEY или сетевая
 // ошибка Resend НЕ превращают успешно созданную подписку в 5xx — это именно
 // НЕ «503 if missing». Возвращает true/false для лога, никогда не бросает.
-async function sendConfirmEmailBestEffort(env, { email, url, token, origin }) {
+async function sendConfirmEmailBestEffort(env, { email, url, token, siteOrigin }) {
   if (!env.RESEND_API_KEY) return false
-  const { subject, text, html } = buildConfirmEmail({ url, token, origin })
+  const { subject, text, html } = buildConfirmEmail({ url, token, siteOrigin })
   try {
     await sendEmail(env.RESEND_API_KEY, { from: VERIFIED_FROM, to: email, subject, text, html })
     return true
@@ -231,8 +251,11 @@ export async function handlePostSubscribe(request, env) {
   // потери наблюдаемости (лог ниже знает исход отправки).
   await insertSubscription(env.DB, { id, email, url, token, createdAt: new Date().toISOString() })
 
-  const origin = new URL(request.url).origin
-  const emailSent = await sendConfirmEmailBestEffort(env, { email, url, token, origin })
+  // A3-CRON-MONITORING-PAGES (D-139): ссылка письма ведёт на сайт-домен
+  // (ALLOWED_ORIGIN), а не на origin запроса-воркера; fallback на request origin
+  // только в dev, когда ALLOWED_ORIGIN не настроен.
+  const siteOrigin = resolveSiteOrigin(env) ?? new URL(request.url).origin
+  const emailSent = await sendConfirmEmailBestEffort(env, { email, url, token, siteOrigin })
   logNewSubscription({ id, url, emailSent })
 
   // Ровно одно поле. Любое расширение этого объекта обязано пройти мимо

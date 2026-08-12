@@ -94,6 +94,9 @@ function req(body, headers = {}) {
 
 const VALID_BODY = { email: 'owner@example.com', url: 'https://example.com' }
 
+// A3-CRON-MONITORING-PAGES (D-139): боевой домен сайта — база ссылок письма.
+const SITE_ORIGIN = 'https://verscala.com'
+
 test('invalid JSON body -> 400 bad_request', async () => {
   const res = await handlePostSubscribe(
     new Request('https://worker.example/api/subscribe', { method: 'POST', body: '{not json' }),
@@ -213,9 +216,9 @@ test('no RESEND_API_KEY -> subscription is still created 201, no network call, n
   assert.equal(calls.length, 0, 'without a key the Resend module must not be called at all')
 })
 
-test('with RESEND_API_KEY -> confirm email is sent to the subscriber with the real verify link', async (t) => {
+test('with RESEND_API_KEY -> confirm email links to the branded SITE page, not the raw worker JSON api (D-139)', async (t) => {
   const calls = captureFetch(t)
-  const e = env({ RESEND_API_KEY: 're_test_secret' })
+  const e = env({ RESEND_API_KEY: 're_test_secret', ALLOWED_ORIGIN: SITE_ORIGIN })
   const res = await handlePostSubscribe(req(VALID_BODY), e)
 
   assert.equal(res.status, 201)
@@ -229,27 +232,46 @@ test('with RESEND_API_KEY -> confirm email is sent to the subscriber with the re
   assert.equal(sent.from, 'Verscala <notify@verscala.com>', 'verified domain, not the sandbox sender')
   assert.match(sent.subject, /Confirm your Verscala monitoring subscription/)
 
-  // Главное: ссылка ведёт на реальный GET-эндпоинт с РЕАЛЬНЫМ токеном строки
-  // D1 — не с плейсхолдером и не с id подписки.
+  // D-139: ссылка ведёт на брендовую страницу САЙТА с РЕАЛЬНЫМ токеном строки D1
+  // — НЕ на голый JSON-эндпоинт воркера и НЕ на домен *.workers.dev (прод-инцидент).
   const token = e.DB.rows[0].token
-  const expectedLink = `https://worker.example/api/subscribe/verify?token=${token}`
-  assert.ok(sent.text.includes(expectedLink), `verify link missing from text body:\n${sent.text}`)
-  assert.ok(sent.html.includes(`href="${expectedLink}"`), `verify link missing from html body:\n${sent.html}`)
+  const expectedLink = `${SITE_ORIGIN}/monitoring/confirm?token=${token}`
+  assert.ok(sent.text.includes(expectedLink), `confirm link missing from text body:\n${sent.text}`)
+  assert.ok(sent.html.includes(`href="${expectedLink}"`), `confirm link missing from html body:\n${sent.html}`)
+  assert.equal(sent.text.includes('/api/subscribe/verify'), false, 'the email must not expose the raw JSON verify endpoint')
+  assert.equal(sent.text.includes('workers.dev'), false, 'the email must not point the subscriber at the worker domain')
   assert.equal(sent.text.includes(e.DB.rows[0].id), false, 'the link must carry the token, not the public id')
   assert.ok(sent.text.includes('https://example.com'), 'the subscriber must see which URL is being monitored')
 })
 
-test('the verify link from the email actually verifies the subscription end to end', async (t) => {
+test('with no ALLOWED_ORIGIN configured the confirm link falls back to the request origin (dev) but still points at /monitoring/confirm', async (t) => {
   const calls = captureFetch(t)
-  const e = env({ RESEND_API_KEY: 're_test_secret' })
+  const e = env({ RESEND_API_KEY: 're_test_secret' }) // ALLOWED_ORIGIN не задан
+  await handlePostSubscribe(req(VALID_BODY), e)
+  const token = e.DB.rows[0].token
+  const sent = JSON.parse(calls[0].options.body)
+  assert.ok(
+    sent.text.includes(`https://worker.example/monitoring/confirm?token=${token}`),
+    `dev fallback link missing:\n${sent.text}`,
+  )
+})
+
+test('the confirm link from the email carries the token that actually verifies the subscription end to end', async (t) => {
+  const calls = captureFetch(t)
+  const e = env({ RESEND_API_KEY: 're_test_secret', ALLOWED_ORIGIN: SITE_ORIGIN })
   await handlePostSubscribe(req(VALID_BODY), e)
 
-  // Достаём ссылку из тела письма, а не из строки D1: проверяем именно то, что
-  // получит подписчик (кодирование токена, путь, query-параметр).
+  // D-139: «verify-ссылка» письма теперь — страница САЙТА /monitoring/confirm.
+  // Именно её токен страница передаёт в GET /api/subscribe/verify. Достаём токен
+  // из ссылки (то, что получает подписчик) и проходим тот путь, что делает страница.
   const sentText = JSON.parse(calls[0].options.body).text
-  const link = sentText.match(/https:\/\/\S*\/api\/subscribe\/verify\?token=\S+/)[0]
+  const link = sentText.match(/https:\/\/\S*\/monitoring\/confirm\?token=\S+/)[0]
+  const token = new URL(link).searchParams.get('token')
 
-  const verifyRes = await handleGetSubscribeVerify(new Request(link), e)
+  const verifyRes = await handleGetSubscribeVerify(
+    new Request(`https://worker.example/api/subscribe/verify?token=${encodeURIComponent(token)}`),
+    e,
+  )
   assert.equal(verifyRes.status, 200)
   const data = await verifyRes.json()
   assert.equal(data.verified, true)
@@ -322,11 +344,11 @@ test('buildConfirmEmail escapes the subscriber-supplied URL in the HTML body', (
     // содержит кавычку и угловые скобки — то, что сломало бы href="...".
     url: 'https://example.com/?q="><script>alert(1)</script>',
     token: 'abc123',
-    origin: 'https://worker.example',
+    siteOrigin: 'https://worker.example',
   })
   assert.equal(mail.html.includes('<script>'), false, 'raw script tag must not reach the HTML body')
   assert.ok(mail.html.includes('&lt;script&gt;'))
-  assert.ok(mail.html.includes('href="https://worker.example/api/subscribe/verify?token=abc123"'))
+  assert.ok(mail.html.includes('href="https://worker.example/monitoring/confirm?token=abc123"'))
 })
 
 test('rate limit: blocks the 6th request from the same IP within the window', async () => {

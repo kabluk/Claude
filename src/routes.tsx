@@ -67,6 +67,13 @@ export const routes: RouteRecord[] = [
     getStaticPaths: () => guides.map((g) => `/guides/${g.slug}/`),
   },
   { path: '/scan', lazy: page(() => import('./pages/ScanPage')) },
+  // A3-CRON-MONITORING-PAGES (D-139): брендовые страницы подтверждения/отписки
+  // подписки на мониторинг. Токен-gated, noindex (index={false} внутри), в
+  // публичный sitemap не входят — из письма, не из поиска. Статические маршруты
+  // (без ':'), поэтому пререндерятся: page-lists.test.mjs требует их в обоих
+  // списках (audit — по факту, sitemap — как явное исключение с причиной).
+  { path: '/monitoring/confirm', lazy: page(() => import('./pages/MonitoringConfirmPage')) },
+  { path: '/monitoring/unsubscribe', lazy: page(() => import('./pages/MonitoringUnsubscribePage')) },
   { path: '/methodology', lazy: page(() => import('./pages/MethodologyPage')) },
   // CN-COMPONENTS (§22, D-068): библиотека доступных компонентов. Индекс честно
   // перечисляет все 13 паттернов; собственные страницы имеют только готовые

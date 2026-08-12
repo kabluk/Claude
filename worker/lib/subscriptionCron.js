@@ -322,6 +322,25 @@ function resolveSiteOrigin(env) {
   return null
 }
 
+// A3-CRON-MONITORING-PAGES (D-139): origin самого ВОРКЕРА — нужен ТОЛЬКО
+// машинному заголовку List-Unsubscribe (RFC 8058 one-click POST): почтовый
+// клиент шлёт POST прямо на воркер, минуя сайт, и обслуживает эту POST-ветку
+// только воркер (handleUnsubscribe). Видимая пользователю ссылка отписки в теле
+// письма при этом ведёт на САЙТ (siteOrigin/monitoring/unsubscribe) — бренд-домен.
+//
+// В cron-контексте запроса НЕТ (в отличие от confirm-письма, берущего origin из
+// request.url), поэтому origin воркера неоткуда взять из request — берём из
+// env.WORKER_ORIGIN (wrangler.jsonc vars), а если не задан — из известного
+// публичного адреса деплоя (D-138: снят из живого прод-бандла VITE_SCANNER_API,
+// не угадан). Константа — именно fallback, а не зашитый вслепую адрес: env-переменная
+// имеет приоритет, поэтому смена домена воркера не требует правки кода.
+const DEFAULT_WORKER_ORIGIN = 'https://accessatlas-worker.zincroom.workers.dev'
+function resolveWorkerOrigin(env) {
+  const configured = env?.WORKER_ORIGIN
+  if (typeof configured === 'string' && configured && configured !== '*') return configured.replace(/\/+$/, '')
+  return DEFAULT_WORKER_ORIGIN
+}
+
 // Минимальное HTML-экранирование — та же функция, что subscribe.js::escapeHtml
 // (url подписчика попадает и в текст, и в href="..."). Держим локальную копию,
 // а не общий импорт: escapeHtml в subscribe.js не экспортируется, а тащить его
@@ -354,10 +373,16 @@ function scoreLine(delta) {
 // subscribe.js::buildConfirmEmail): по одной и той же дельте один и тот же текст,
 // заголовки и ссылки. `scanId` — id ТЕКУЩЕГО (нового) скана, на его /report
 // ведёт письмо. Возвращает {subject, text, html, headers}.
-export function buildDigestEmail({ url, scanId, token, origin, delta }) {
+export function buildDigestEmail({ url, scanId, token, siteOrigin, workerOrigin, delta }) {
   const host = hostForSubject(url)
-  const reportUrl = `${origin}/report/${encodeURIComponent(scanId)}`
-  const unsubscribeUrl = `${origin}/api/subscribe/unsubscribe?token=${encodeURIComponent(token)}`
+  const reportUrl = `${siteOrigin}/report/${encodeURIComponent(scanId)}`
+  // A3-CRON-MONITORING-PAGES (D-139): видимая ссылка отписки ведёт на брендовую
+  // страницу САЙТА (client-side зовёт GET /api/subscribe/unsubscribe и показывает
+  // человеческий результат), а НЕ на голый JSON-эндпоинт воркера.
+  const unsubscribeUrl = `${siteOrigin}/monitoring/unsubscribe?token=${encodeURIComponent(token)}`
+  // Машинная ссылка для заголовка List-Unsubscribe — на воркер напрямую: почтовый
+  // клиент шлёт сюда POST (one-click), домен там не важен, POST обслуживает воркер.
+  const unsubscribeApiUrl = `${workerOrigin}/api/subscribe/unsubscribe?token=${encodeURIComponent(token)}`
 
   const newCount = delta.new.length
   const resolvedCount = delta.resolved.length
@@ -400,7 +425,7 @@ ${scopedOut > 0 ? `<li>${scopedOut} ${scopedOut === 1 ? 'page was' : 'pages were
   // List-Unsubscribe-Post разрешает почтовому клиенту отписать POST'ом без
   // открытия страницы — POST-ветку принимает уже готовый handleUnsubscribe.
   const headers = {
-    'List-Unsubscribe': `<${unsubscribeUrl}>`,
+    'List-Unsubscribe': `<${unsubscribeApiUrl}>`,
     'List-Unsubscribe-Post': 'List-Unsubscribe=One-Click',
   }
 
@@ -410,9 +435,9 @@ ${scopedOut > 0 ? `<li>${scopedOut} ${scopedOut === 1 ? 'page was' : 'pages were
 // Best-effort отправка (D-024, тот же паттерн, что sendConfirmEmailBestEffort):
 // отсутствие ключа или ошибка Resend НЕ бросает и НЕ роняет проход. Возвращает
 // true/false для лога и учёта в сводке.
-async function sendDigestBestEffort(env, { email, url, scanId, token, origin, delta }) {
+async function sendDigestBestEffort(env, { email, url, scanId, token, siteOrigin, workerOrigin, delta }) {
   if (!env.RESEND_API_KEY) return false
-  const { subject, text, html, headers } = buildDigestEmail({ url, scanId, token, origin, delta })
+  const { subject, text, html, headers } = buildDigestEmail({ url, scanId, token, siteOrigin, workerOrigin, delta })
   try {
     await sendEmail(env.RESEND_API_KEY, { from: VERIFIED_FROM, to: email, subject, text, html, headers })
     return true
@@ -436,6 +461,10 @@ export async function runSubscriptionDigests(env, now = new Date()) {
   }
 
   const origin = resolveSiteOrigin(env)
+  // Origin воркера для машинного заголовка List-Unsubscribe (см. resolveWorkerOrigin).
+  // Всегда разрешается (env или fallback-константа), поэтому отдельного гейта, как
+  // у siteOrigin ниже, ему не нужно.
+  const workerOrigin = resolveWorkerOrigin(env)
   if (!origin) {
     // Без боевого origin письмо получило бы нерабочие report/unsubscribe-ссылки.
     // Молча слать такое нельзя (нарушит unsubscribe-инвариант RFC 8058), поэтому
@@ -503,7 +532,8 @@ export async function runSubscriptionDigests(env, now = new Date()) {
         url: sub.url,
         scanId: sub.lastScanId,
         token: sub.token,
-        origin,
+        siteOrigin: origin,
+        workerOrigin,
         delta,
       })
 

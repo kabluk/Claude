@@ -75,7 +75,15 @@
   "vars": {
     // Дублирует ORIGIN из src/lib/seo.tsx / scripts/gen-a11y-sitemap.mjs — боевой
     // домен (A0-ORIGIN, куплен 2026-08-08); держать в синхроне, иначе CORS у
-    // /api/scan будет закрыт.
-    "ALLOWED_ORIGIN": "https://verscala.com"
+    // /api/scan будет закрыт. Также база всех ссылок в письмах, ведущих на САЙТ
+    // (confirm/unsubscribe-страницы, /report/:id — A3-CRON-MONITORING-PAGES, D-139).
+    "ALLOWED_ORIGIN": "https://verscala.com",
+    // A3-CRON-MONITORING-PAGES (D-139): публичный origin САМОГО воркера. Нужен
+    // ТОЛЬКО машинному заголовку List-Unsubscribe дайджеста (RFC 8058 one-click
+    // POST шлётся прямо на воркер, минуя сайт). У cron нет request, origin воркера
+    // взять неоткуда — берётся отсюда (fallback-константа в subscriptionCron.js,
+    // если var пуст). Значение — реальный адрес деплоя (D-138), совпадает с
+    // VITE_SCANNER_API сайта.
+    "WORKER_ORIGIN": "https://accessatlas-worker.zincroom.workers.dev"
   }
 }

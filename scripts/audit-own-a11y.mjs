@@ -96,6 +96,12 @@ const SAMPLE_ROUTES = [
   // axe-гейтом.
   '/reports/', '/reports/verified-audit-market/', '/reports/en301549-automation-coverage/', '/reports/jurisdiction-coverage-gap/',
   '/about/', '/contact/', '/privacy/', '/imprint/', '/accessibility-statement/', '/404/',
+  // A3-CRON-MONITORING-PAGES (D-139): брендовые страницы confirm/unsubscribe —
+  // пререндеренные статические маршруты. БЕЗ ?token= в URL они не делают
+  // сетевого вызова и рендерят ветку «нет токена» — её и аудитирует этот проход.
+  // Состояния success/error (появляются только после мокнутого ответа воркера)
+  // аудитируются отдельным блоком MONITORING_STATES ниже, как /report/:id.
+  '/monitoring/confirm/', '/monitoring/unsubscribe/',
 ]
 
 // Маршруты, где живой пример раскрывается только по действию пользователя:
@@ -302,6 +308,46 @@ const REPORT_STATES = [
   },
 ]
 
+// A3-CRON-MONITORING-PAGES (D-139): /monitoring/confirm и /monitoring/unsubscribe
+// — пререндеренные статические маршруты, но их success/error-состояния существуют
+// только ПОСЛЕ клиентского вызова JSON-API воркера (src/lib/monitoring.ts). Мокаем
+// ответ точными формами контракта (INTERFACES.md §2), гоним реальный Chromium и
+// тот же axe/target-size-гейт. Аудит НИКОГДА не бьёт в живой воркер. no-token
+// состояние обеих страниц уже покрыто SAMPLE_ROUTES (там URL без ?token=).
+// Определено на уровне модуля (как REPORT_STATES), чтобы длина была видна в
+// финальном счётчике страниц, а сам прогон — внутри try с открытым браузером.
+const MONITORING_TOKEN = 'a'.repeat(64)
+const MONITORING_STATES = [
+  {
+    label: '/monitoring/confirm/ (success)',
+    route: '/monitoring/confirm/',
+    glob: '**/api/subscribe/verify**',
+    fulfill: { status: 200, body: { subscriptionId: 's', url: 'https://example.com/', verified: true, status: 'active' } },
+    ready: /a new issue, a fixed one/,
+  },
+  {
+    label: '/monitoring/confirm/ (error)',
+    route: '/monitoring/confirm/',
+    glob: '**/api/subscribe/verify**',
+    fulfill: { status: 404, body: { error: 'subscription not found for this token', code: 'not_found' } },
+    ready: /invalid or has expired/,
+  },
+  {
+    label: '/monitoring/unsubscribe/ (success)',
+    route: '/monitoring/unsubscribe/',
+    glob: '**/api/subscribe/unsubscribe**',
+    fulfill: { status: 200, body: { subscriptionId: 's', url: 'https://example.com/', status: 'unsubscribed', alreadyUnsubscribed: false } },
+    ready: /No more monitoring emails/,
+  },
+  {
+    label: '/monitoring/unsubscribe/ (error)',
+    route: '/monitoring/unsubscribe/',
+    glob: '**/api/subscribe/unsubscribe**',
+    fulfill: { status: 404, body: { error: 'subscription not found for this token', code: 'not_found' } },
+    ready: /you may already be unsubscribed/,
+  },
+]
+
 // В управляемых dev-средах (Claude Code on the web) Chromium предустановлен по
 // фиксированному пути; в обычном CI/локально playwright сам знает, где его
 // поставил `npx playwright install` — используем явный путь только если он есть.
@@ -453,6 +499,25 @@ try {
     }
     await page.unroute('**/api/scan/**')
   }
+
+  // A3-CRON-MONITORING-PAGES (D-139): success/error of the two token-gated
+  // landing pages, mocked per the contract (see MONITORING_STATES above).
+  for (const { label, route, glob, fulfill, ready } of MONITORING_STATES) {
+    await page.route(glob, (r) =>
+      r.fulfill({ status: fulfill.status, contentType: 'application/json', body: JSON.stringify(fulfill.body) }),
+    )
+    await page.goto(`${base}${route}?token=${MONITORING_TOKEN}`, { waitUntil: 'load' })
+    // Wait for the state's own distinctive copy, not a timeout: the request is
+    // mocked but still async, and racing axe against it would silently audit the
+    // pre-fetch "working" view instead of the success/error state under test.
+    await page.getByText(ready).first().waitFor({ timeout: 15000 })
+    await page.addScriptTag({ content: AXE_SOURCE })
+    const axeResults = await page.evaluate(
+      async () => await window.axe.run(document, { rules: { 'target-size': { enabled: true } } }),
+    )
+    results.push({ route: label, violations: axeResults.violations })
+    await page.unroute(glob)
+  }
 } finally {
   await browser.close()
   server.close()
@@ -481,7 +546,7 @@ for (const r of results) {
 // SAMPLE_ROUTES.length + REPORT_STATES.length: /report/:id — не пререндеренный
 // файл, а два мокнутых состояния одного клиентского маршрута (locked/unlocked
 // paywall-панели), поэтому в счётчик страниц идёт отдельно от статического цикла.
-const pageCount = SAMPLE_ROUTES.length + REPORT_STATES.length
+const pageCount = SAMPLE_ROUTES.length + REPORT_STATES.length + MONITORING_STATES.length
 console.log(
   `\n${totalViolations === 0 ? '✓' : '⚠'} audit-own-a11y: ${pageCount} страниц (light), ${totalViolations} нарушени${totalViolations === 1 ? 'е' : 'й'} (${seriousOrWorse} serious/critical)`
 )

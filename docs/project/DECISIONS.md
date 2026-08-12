@@ -3,6 +3,44 @@
 Формат: ID | дата | решение | причина | последствия. Новые решения добавлять сверху.
 Статусы: `accepted` (принято), `proposed` (ждёт подтверждения владельца).
 
+## D-139 · 2026-08-11 · accepted
+**Ссылки подтверждения/отписки в письмах ведут на БРЕНДОВЫЕ страницы сайта
+(`verscala.com/monitoring/confirm|unsubscribe`), а не на JSON-эндпоинт
+воркера.** Повод — прод-инцидент: владелец кликнул verify-ссылку живого
+письма и получил (а) сырой JSON, браузер предложил скачать `verify.json`,
+(б) домен `accessatlas-worker.zincroom.workers.dev` — чужой домен в письме
+подрывает доверие. Причина: `buildConfirmEmail` строил ссылку из
+`new URL(request.url).origin` (= воркер), ведущую прямо на JSON-API.
+
+Решение (полный вариант, выбор владельца через AskUserQuestion, модель
+Opus): две новые страницы сайта `MonitoringConfirmPage`/
+`MonitoringUnsubscribePage` (`/monitoring/confirm`, `/monitoring/unsubscribe`,
+оба `index={false}`) читают `?token=`, client-side зовут тот же воркер-API
+(`apiFetch`, `API_BASE` → workers.dev) через общий `src/lib/monitoring.ts`
+и рендерят человеческую страницу (loading/success/error/no-token) токенами
+дизайн-системы, WCAG 2.2 AA. Логика воркер-эндпоинтов
+`verify`/`unsubscribe` НЕ менялась — их JSON теперь потребляет страница, а
+не человек. Архитектура сайт↔воркер сохранена (нет `/api/*`-роута под
+verscala.com; страница ходит в воркер client-side, как все формы).
+
+Ссылки в письмах: `buildConfirmEmail` и `buildDigestEmail` берут
+`siteOrigin = env.ALLOWED_ORIGIN` (fallback на request origin в dev). НО
+машинный заголовок `List-Unsubscribe` (RFC 8058 one-click POST) остаётся на
+ВОРКЕР напрямую (`env.WORKER_ORIGIN`, новая var в wrangler.jsonc, fallback-
+константа в `subscriptionCron.js`): почтовый клиент шлёт POST туда, минуя
+сайт, домен там не важен, а POST-ветку `handleUnsubscribe` обслуживает
+только воркер. Видимая пользователю ссылка отписки в теле дайджеста — на
+сайт. Разнесение «человеку — бренд-домен, машине — воркер» осознанное.
+
+Проверки (независимо родительской сессией): typecheck чист, `src:test`
+71/71, `worker:test` 488/488 (тесты подтверждают: confirm-ссылка →
+`${ALLOWED_ORIGIN}/monitoring/confirm`, НЕ workers.dev/api; дайджест тело →
+сайт, заголовок List-Unsubscribe → воркер), `build` 455 HTML, `audit-a11y`
+60 стр. 0 нарушений (обе новые страницы в success/error), `check-links` 505
+ссылок без битых, `page-lists` 48/48. Реализовано субагентом (Opus); агент
+упал на недельном лимите API на этапе доков — код и проверки завершены,
+`DECISIONS`/коммит/деплой доделаны родительской сессией.
+
 ## D-138 · 2026-08-11 · accepted
 **A3-CRON задеплоен на прод (ВОРКЕР + миграции D1), подтверждён живым
 end-to-end. Сайт-половина (форма/Privacy) ещё НЕ задеплоена — ждёт push в

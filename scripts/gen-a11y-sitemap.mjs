@@ -38,6 +38,13 @@ const inCountry = (code) =>
 
 // 404 сюда не идёт — index=false в самой странице, в принципе не индексируется.
 // Imprint индексируется с A0-ORIGIN (реквизиты и домен закрыты, D-089) — в sitemap.
+//
+// A3-CRON-MONITORING-PAGES (D-139): /monitoring/confirm и /monitoring/unsubscribe
+// СОЗНАТЕЛЬНО НЕ добавлены в этот список — они noindex/токен-gated (открываются
+// только по ссылке из письма, для поиска ценности ноль), ровно как /report/:id.
+// Их отсутствие в публичном sitemap зафиксировано как явное исключение с причиной
+// в scripts/page-lists.test.mjs (SITEMAP_EXCEPTIONS); a11y-гейт они при этом
+// проходят обязательно — они в SAMPLE_ROUTES у audit-own-a11y.mjs.
 const urls = [
   '/', '/scan/', '/methodology/', '/bfsg-check/', '/request-quote/', '/agencies/', '/countries/', '/services/', '/standards/',
   '/wcag/', '/components/', '/reports/', '/about/', '/contact/', '/privacy/', '/accessibility-statement/', '/imprint/',

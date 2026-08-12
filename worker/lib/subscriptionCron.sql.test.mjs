@@ -308,6 +308,8 @@ test('real SQLite: MAX_RESCANS_PER_TICK caps one tick, the rest are picked up on
 // ===========================================================================
 
 const ORIGIN = 'https://verscala.com'
+// A3-CRON-MONITORING-PAGES (D-139): origin воркера — только для List-Unsubscribe.
+const WORKER_ORIGIN = 'https://accessatlas-worker.zincroom.workers.dev'
 
 // Завершённый скан с реальными findings_json/pages_json/score — то, что читает
 // getScan и передаёт в computeScanDelta.
@@ -350,7 +352,7 @@ function captureResend(t, { failFor = null } = {}) {
   return sent
 }
 
-const digestEnv = (db, overrides = {}) => ({ DB: db, ALLOWED_ORIGIN: ORIGIN, RESEND_API_KEY: 're_test', ...overrides })
+const digestEnv = (db, overrides = {}) => ({ DB: db, ALLOWED_ORIGIN: ORIGIN, WORKER_ORIGIN, RESEND_API_KEY: 're_test', ...overrides })
 const subRow = (db, id) => db.subs().find((s) => s.id === id)
 
 test('real SQLite: a non-empty delta sends exactly one digest with the real unsubscribe token + List-Unsubscribe header', { skip }, async (t) => {
@@ -368,9 +370,10 @@ test('real SQLite: a non-empty delta sends exactly one digest with the real unsu
   const mail = sent[0]
   assert.deepEqual(mail.to, ['sub-1@example.com'])
   assert.equal(mail.from, 'Verscala <notify@verscala.com>')
-  const unsub = `${ORIGIN}/api/subscribe/unsubscribe?token=realtoken123`
-  assert.ok(mail.text.includes(unsub), `text must carry the real unsubscribe link:\n${mail.text}`)
-  assert.equal(mail.headers['List-Unsubscribe'], `<${unsub}>`)
+  // D-139: тело ведёт на брендовую страницу сайта, заголовок — на воркер напрямую.
+  const siteUnsub = `${ORIGIN}/monitoring/unsubscribe?token=realtoken123`
+  assert.ok(mail.text.includes(siteUnsub), `text must carry the site unsubscribe link:\n${mail.text}`)
+  assert.equal(mail.headers['List-Unsubscribe'], `<${WORKER_ORIGIN}/api/subscribe/unsubscribe?token=realtoken123>`)
   assert.equal(mail.headers['List-Unsubscribe-Post'], 'List-Unsubscribe=One-Click')
   assert.ok(mail.text.includes(`${ORIGIN}/report/curr`), 'report link points at the new scan')
 

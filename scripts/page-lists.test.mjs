@@ -32,6 +32,11 @@ function staticRoutes() {
 const SITEMAP_EXCEPTIONS = new Map([
   ['/imprint/', 'index=false — ждёт реквизитов владельца'],
   ['/404/', 'страница ошибки в принципе не индексируется'],
+  // A3-CRON-MONITORING-PAGES (D-139): noindex/токен-gated, открываются только по
+  // ссылке из письма — как /report/:id, для поиска ценности ноль. В a11y-аудите
+  // при этом присутствуют обязательно (SAMPLE_ROUTES + отдельный прогон состояний).
+  ['/monitoring/confirm/', 'index=false — токен-gated landing из письма, не для поиска'],
+  ['/monitoring/unsubscribe/', 'index=false — токен-gated landing из письма, не для поиска'],
 ])
 
 const listOf = (file) => [...read(file).matchAll(/'(\/[^']*)'/g)].map((m) => m[1])
