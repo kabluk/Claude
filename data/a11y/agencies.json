@@ -12839,5 +12839,858 @@
       }
     ],
     "lastVerified": "2026-08-12"
+  },
+  {
+    "slug": "garsen",
+    "name": "Garsen",
+    "website": "garsen.es",
+    "hq": {
+      "city": "Terrassa",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "monitoring",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Garsen audits websites against WCAG 2.2, the Spanish UNE-EN 301549 standard and the European Accessibility Act, detecting barriers and providing remediation to help Spanish organizations comply before penalties apply."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://garsen.es/accesibilidad-web/",
+        "label": "own accessibility-web service page: 'Auditorías de accesibilidad web según WCAG 2.2, UNE-EN 301549 y European Accessibility Act'; audit, remediation, training, monitoring, consulting; Terrassa (Barcelona) HQ; live fetch 2026-08-12"
+      }
+    ],
+    "lastVerified": "2026-08-12"
+  },
+  {
+    "slug": "pinchaaqui",
+    "name": "pinchaaqui.es",
+    "website": "pinchaaqui.es",
+    "hq": {
+      "city": "Madrid",
+      "countryCode": "ES"
+    },
+    "offices": [
+      {
+        "city": "Valencia",
+        "countryCode": "ES"
+      },
+      {
+        "city": "Castellón",
+        "countryCode": "ES"
+      }
+    ],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "monitoring",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "pinchaaqui.es specializes in web accessibility for private and public-sector clients in Spain, building inclusive digital solutions with a team qualified across the whole project lifecycle, from audit to AENOR certification consulting."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.pinchaaqui.es/servicios/accesibilidad-web",
+        "label": "web accessibility services page: audits, design/dev integration, remediation, periodic compliance verification, content-editor training, AENOR certification consulting; WCAG 2.1, EN 301 549:2018/UNE-EN 301 549:2019, UNE 139803:2012; Madrid HQ with Valencia/Castellón offices; live fetch 2026-08-12"
+      }
+    ],
+    "lastVerified": "2026-08-12"
+  },
+  {
+    "slug": "access-for-all",
+    "name": "\"Access for all\" Foundation (Stiftung Zugang für alle)",
+    "website": "access-for-all.ch",
+    "hq": {
+      "city": "Zurich",
+      "countryCode": "CH"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CH"
+    ],
+    "languages": [
+      "de",
+      "fr",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "priceBand": "mid",
+    "certs": [],
+    "description": {
+      "en": "\"Access for all\" is the independent certification organisation for accessible websites and, since 2022, also for mobile apps in Switzerland; it specialises in assessing the accessibility of websites and apps against WCAG."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://access-for-all.ch/en/services/accessibility-certification/",
+        "label": "accessibility certification service page: 'independent certification organisation for accessible websites and since 2022 also for mobile apps'; audit/testing, certification, consulting, training; WCAG 2.1 primary (WCAG 2.2 on request), eCH-0059; published pricing 'Audit: CHF 3,800–8,500 (depending on complexity)'; Zurich (Friedheimstrasse 8) HQ; live fetch 2026-08-12"
+      }
+    ],
+    "lastVerified": "2026-08-12"
+  },
+  {
+    "slug": "inclusive-ibex",
+    "name": "Inclusive Ibex",
+    "website": "inclusiveibex.eu",
+    "hq": {
+      "city": "",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "monitoring",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "eaa"
+    ],
+    "industries": [],
+    "priceBand": "mid",
+    "certs": [],
+    "description": {
+      "en": "Inclusive Ibex runs WCAG 2.1 AA accessibility audits scaled from 100 to 25,000 pages, drafts AGID-compliant accessibility declarations for Italian public bodies (Legge 4/2004, UNI EN 301549), and offers quarterly monitoring and team training."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://inclusiveibex.eu/it/servizi/",
+        "label": "services/pricing page (IT): 'Audit WCAG 2.1 AA', 'Dichiarazioni AGID' (Legge 4/2004, UNI EN 301549), 'Monitoraggio Continuo', 'Formazione Team'; audit tiers 'Starter 100-500 pagine €2.500' / 'Professional 500-5.000 pagine €7.500'; European Accessibility Act cited; Firecrawl fetch 2026-08-12 (WebFetch returned empty/blocked)"
+      },
+      {
+        "url": "https://inclusiveibex.eu/contatti",
+        "label": "contact page confirming Italian-market focus (no physical address published); Firecrawl fetch 2026-08-12"
+      }
+    ],
+    "lastVerified": "2026-08-12"
+  },
+  {
+    "slug": "accessibility-partners-canada",
+    "name": "Accessibility Partners",
+    "website": "accessibilitypartners.ca",
+    "hq": {
+      "city": "",
+      "countryCode": "CA"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CA"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "vpat",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Accessibility Partners delivers website accessibility audits that go beyond automated reports, providing actionable strategies to remove barriers and align digital presence with WCAG 2.1, WCAG 2.2 and AODA compliance standards."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://accessibilitypartners.ca/website-accessibility-audits/",
+        "label": "website accessibility audits page: WCAG 2.1/2.2 and AODA audits, VPAT reports, document remediation, training, compliance consulting; Canada-focused; live fetch 2026-08-12"
+      }
+    ],
+    "lastVerified": "2026-08-12"
+  },
+  {
+    "slug": "zwebra",
+    "name": "ZWEBRA",
+    "website": "zwebra.ca",
+    "hq": {
+      "city": "Toronto",
+      "countryCode": "CA"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CA"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "monitoring",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "ZWEBRA provides web accessibility audits, remediation and consulting services to organizations and businesses of all sizes in Ontario and across Canada, testing against WCAG 2.0/2.1, AODA and the Accessible Canada Act."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://zwebra.ca/wcag-accessibility-audit",
+        "label": "WCAG accessibility audit page: Toronto, Ontario; WCAG 2.0/2.1, AODA, ACA; audit remediation and compliance monitoring; published price '$2,400–$6,000 for AODA website accessibility audits'; live fetch 2026-08-12"
+      }
+    ],
+    "lastVerified": "2026-08-12"
+  },
+  {
+    "slug": "techno-access",
+    "name": "Techno Access",
+    "website": "technoaccess.ca",
+    "hq": {
+      "city": "Toronto",
+      "countryCode": "CA"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CA"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "vpat",
+      "remediation",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Techno Access is a technology consulting and accessibility company in Toronto dedicated to building inclusive digital solutions, offering WCAG/AODA/ACA audits, manual and automated testing, VPAT reporting and continuous accessibility monitoring."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://technoaccess.ca/website-accessibility-testing-and-compliance-services/",
+        "label": "accessibility testing & compliance services page: Toronto, Ontario; WCAG 2.0/2.1/2.2, Section 508, ADA, AODA, EN 301 549, PDF/UA; audits, VPAT, remediation, continuous monitoring; live fetch 2026-08-12"
+      }
+    ],
+    "lastVerified": "2026-08-12"
+  },
+  {
+    "slug": "canadapt-solutions",
+    "name": "CanAdapt Solutions",
+    "website": "davidmacd.com",
+    "hq": {
+      "city": "Ottawa",
+      "countryCode": "CA"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CA",
+      "US"
+    ],
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "vpat",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "en-301-549",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "CanAdapt Solutions integrates accessibility into web and mobile lifecycles, offering WCAG audits and evaluations, mobile app accessibility testing, Section 508 VPAT completion, and AODA/ADA consulting; its consultant served as WCAG advisor to the Government of Canada for Bill C-81."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.davidmacd.com/",
+        "label": "own site (CanAdapt Solutions): 'Your website doesn't have to change. It CanAdapt'; WCAG 2.0/2.1/2.2, Section 508, EN 301 549, ADA, AODA; audits, training, VPAT, mobile testing; Ottawa, Canada; English and French; live fetch 2026-08-12"
+      }
+    ],
+    "lastVerified": "2026-08-12"
+  },
+  {
+    "slug": "ux-konsulenten",
+    "name": "UX konsulenten",
+    "website": "uxkonsulenten.dk",
+    "hq": {
+      "city": "",
+      "countryCode": "DK"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DK"
+    ],
+    "languages": [
+      "da"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "priceBand": "mid",
+    "certs": [],
+    "description": {
+      "en": "UX konsulenten (Mikkel Michelsen) offers WCAG 2.1/2.2 accessibility audits for Danish websites ahead of the EU Accessibility Act, testing with screen readers and assistive tools and reporting pass/fail/advice per element."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://uxkonsulenten.dk/wcag-accessibility-audit/",
+        "label": "WCAG accessibility audit service page: WCAG 2.1/2.2, EU Accessibility Act (2025); published price '30.000 DKK + moms' for an accessibility audit; Denmark; live fetch 2026-08-12"
+      }
+    ],
+    "lastVerified": "2026-08-12"
+  },
+  {
+    "slug": "wp-saavutettavuus",
+    "name": "WP Saavutettavuus",
+    "website": "wpsaavutettavuus.fi",
+    "hq": {
+      "city": "",
+      "countryCode": "FI"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FI"
+    ],
+    "languages": [
+      "fi"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "priceBand": "budget",
+    "certs": [],
+    "description": {
+      "en": "WP Saavutettavuus audits WordPress sites against WCAG 2.1/2.2 AA using manual expert evaluation with screen readers and assistive technologies, then delivers prioritized remediation and correction work."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://wpsaavutettavuus.fi/",
+        "label": "own site: WCAG 2.1/2.2 AA accessibility audits and WordPress remediation for Finnish sites; published pricing 'Riskikartoitus 490 €' (risk mapping) and 'Syväauditointi 1 290 €' (in-depth audit); live fetch 2026-08-12"
+      }
+    ],
+    "lastVerified": "2026-08-12"
+  },
+  {
+    "slug": "saavutettavuuskonsultointi",
+    "name": "Saavutettavuuskonsultointi",
+    "website": "saavutettavuuskonsultointi.fi",
+    "hq": {
+      "city": "",
+      "countryCode": "FI"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FI"
+    ],
+    "languages": [
+      "fi"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Saavutettavuuskonsultointi (Jyri Hokkinen) audits websites, webshops and mobile apps against WCAG 2.1, drafts Finnish accessibility statements, and provides WCAG/Digipalvelulaki training, remediation and accessible WordPress development."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.saavutettavuuskonsultointi.fi/",
+        "label": "own site: accessibility audits for websites/webshops/mobile apps, saavutettavuusseloste drafting, WCAG 2.1 and Digipalvelulaki (Digital Services Act) training, remediation, accessible WordPress builds; Finland; live fetch 2026-08-12"
+      }
+    ],
+    "lastVerified": "2026-08-12"
+  },
+  {
+    "slug": "webaccess-ie",
+    "name": "WebAccess",
+    "website": "webaccess.ie",
+    "hq": {
+      "city": "",
+      "countryCode": "IE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IE"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa",
+      "section-508"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "WebAccess helps make Irish websites and apps accessible to people with disabilities by applying WCAG 2.1 AA as adopted by the European Accessibility Act, offering audits, staff training, technical guidance and ongoing content monitoring."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.webaccess.ie/",
+        "label": "own site: 'I help make websites & apps accessible to people with disabilities, by applying WCAG 2.1 AA standards as adopted by the European Accessibility Act (EAA)'; DHS Section 508 accreditation mentioned; Republic of Ireland; live fetch 2026-08-12"
+      }
+    ],
+    "lastVerified": "2026-08-12"
+  },
+  {
+    "slug": "effector",
+    "name": "Effector",
+    "website": "effector.ie",
+    "hq": {
+      "city": "Dublin",
+      "countryCode": "IE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IE"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "priceBand": "budget",
+    "certs": [],
+    "description": {
+      "en": "Effector helps Irish businesses meet WCAG 2.2 AA accessibility standards, reduce legal risk and improve SEO, offering audits, remediation, screen-reader and keyboard-navigation testing, and accessibility-statement reviews."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://effector.ie/web-accessibility/",
+        "label": "web accessibility service page: WCAG 2.2 AA compliance audits, remediation, EAA; published price 'Website Accessibility Audit: from €490 + VAT'; Dublin, Ireland; live fetch 2026-08-12"
+      }
+    ],
+    "lastVerified": "2026-08-12"
+  },
+  {
+    "slug": "wcag-networks",
+    "name": "WCAG Networks",
+    "website": "wcagnetworks.com",
+    "hq": {
+      "city": "Stockholm",
+      "countryCode": "SE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "SE"
+    ],
+    "languages": [
+      "sv",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "WCAG Networks reviews Swedish websites and apps against WCAG and EN 301 549, builds inclusive websites, adapts documents for accessibility, and runs accessibility training through its WCAG Learning platform."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.wcagnetworks.com/om-wcag-networks/",
+        "label": "'Om WCAG Networks' page: accessibility reviews against WCAG 2.1/2.2 and EN 301 549, inclusive web design/build, document accessibility, iOS/Android app accessibility analysis, training via WCAG Learning; Stockholm HQ (Valhallavägen 176); live fetch 2026-08-12"
+      }
+    ],
+    "lastVerified": "2026-08-12"
+  },
+  {
+    "slug": "centre-for-accessibility-australia",
+    "name": "Centre For Accessibility Australia",
+    "website": "accessibility.org.au",
+    "hq": {
+      "city": "Cloverdale",
+      "countryCode": "AU"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AU"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Centre For Accessibility Australia (CFA Australia) is a W3C member offering website and app auditing, digital access maturity assessment, remediation, training and user testing against WCAG 2.2 AA and the WCAG-EM evaluation methodology."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.accessibility.org.au/services/auditing/",
+        "label": "auditing services page: Heads-Up Audit, Full Audit, Digital Access Maturity Assessment (DAMA), remediation, training, user testing; WCAG 2.2 AA, WCAG-EM 1.0; W3C member; Cloverdale, Western Australia; live fetch 2026-08-12"
+      }
+    ],
+    "lastVerified": "2026-08-12"
+  },
+  {
+    "slug": "restive",
+    "name": "Restive",
+    "website": "restive.com.au",
+    "hq": {
+      "city": "Melbourne",
+      "countryCode": "AU"
+    },
+    "offices": [
+      {
+        "city": "Sydney",
+        "countryCode": "AU"
+      },
+      {
+        "city": "Brisbane",
+        "countryCode": "AU"
+      },
+      {
+        "city": "Perth",
+        "countryCode": "AU"
+      },
+      {
+        "city": "Kuala Lumpur",
+        "countryCode": "MY"
+      }
+    ],
+    "countriesServed": [
+      "AU",
+      "MY"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Restive's digital accessibility consultants audit, design and build WCAG 2.2 compliant products, embedding directly into product and engineering teams from initial audit through design, implementation, testing and governance."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.restive.com.au/digital-accessibility/",
+        "label": "digital accessibility page: 'Audit, design, and build products that every one of your users can access'; WCAG 2.2/2.1 AA; offices Melbourne (HQ), Sydney, Brisbane, Perth, Kuala Lumpur; live fetch 2026-08-12"
+      }
+    ],
+    "lastVerified": "2026-08-12"
+  },
+  {
+    "slug": "exceedability",
+    "name": "ExceedAbility",
+    "website": "exceedability.com",
+    "hq": {
+      "city": "Lilli Pilli",
+      "countryCode": "AU"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AU"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "ExceedAbility (Exceed Ability Online Pty Ltd) is an Australian digital accessibility consultancy providing WCAG 2.2 audits of websites, apps and documents, training, remediation and embedded specialist services aligned to the Disability Discrimination Act 1992."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://exceedability.com/audit-and-compliance.html",
+        "label": "audit and compliance page: WCAG 2.2 (AA/AAA), Section 508, EN 301 549, PDF/UA; audits, training, document remediation, consulting; Lilli Pilli, NSW, Australia; live fetch 2026-08-12"
+      }
+    ],
+    "lastVerified": "2026-08-12"
+  },
+  {
+    "slug": "butterfly-au",
+    "name": "Butterfly",
+    "website": "butterfly.com.au",
+    "hq": {
+      "city": "Melbourne",
+      "countryCode": "AU"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AU"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training",
+      "monitoring",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Butterfly builds and maintains digital experiences that meet WCAG 2.2 AA through compliance audits, inclusive design and development, platform-agnostic remediation across WordPress, Drupal and Wagtail, team training and ongoing compliance monitoring."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://butterfly.com.au/services/website-accessibility/",
+        "label": "website accessibility services page: WCAG 2.2/2.1 (Level AA) audits, inclusive design/development, remediation (WordPress, Drupal, Wagtail, custom CMS), consulting, training, ongoing compliance monitoring; Melbourne, Victoria, Australia; live fetch 2026-08-12"
+      }
+    ],
+    "lastVerified": "2026-08-12"
+  },
+  {
+    "slug": "enabled-in",
+    "name": "Enabled.in",
+    "website": "enabled.in",
+    "hq": {
+      "city": "Chennai",
+      "countryCode": "IN"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IN",
+      "US",
+      "GB",
+      "remote-global"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "vpat",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada",
+      "en-301-549",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Enabled.in helps businesses build accessible digital products through WCAG 2.2 AA compliance audits, assistive-technology testing, VPAT/ACR reporting, remediation support and validation by people with disabilities, serving US, EU, UK and Indian clients."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://enabled.in/",
+        "label": "homepage: WCAG 2.2 AA, Section 508, ADA Title II, VPAT/ACR, EN 301 549, EAA, SEBI/IS 17802 (India), Equality Act 2010/PSBAR 2018 (UK); audits, AT testing, user testing, remediation, VPAT certification; Chennai, India; countries served USA/EU/UK/India; live fetch 2026-08-12"
+      }
+    ],
+    "lastVerified": "2026-08-12"
+  },
+  {
+    "slug": "enable-by-sis",
+    "name": "enable by SIS",
+    "website": "sisenable.com",
+    "hq": {
+      "city": "Mumbai",
+      "countryCode": "IN"
+    },
+    "offices": [
+      {
+        "city": "Pune",
+        "countryCode": "IN"
+      }
+    ],
+    "countriesServed": [
+      "IN"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "vpat",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "enable by SIS offers web accessibility testing services to help businesses make static, dynamic and transaction-focused digital platforms compliant with WCAG, including disabled-user testing, VPAT creation, design review, training and document/video remediation."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://sisenable.com/accessibility-testing.html",
+        "label": "accessibility testing page: web accessibility testing/audits, disabled-user case testing, VPAT creation, design review, training, PDF/video remediation; WCAG, Section 508, ADA, AODA, EN 301 549, GIGW, PDF/UA; Mumbai HQ with Pune office, India; live fetch 2026-08-12"
+      }
+    ],
+    "lastVerified": "2026-08-12"
+  },
+  {
+    "slug": "q2e-online-agentur",
+    "name": "Q2E Online-Agentur",
+    "website": "q2e.at",
+    "hq": {
+      "city": "St. Pölten",
+      "countryCode": "AT"
+    },
+    "offices": [
+      {
+        "city": "Amstetten",
+        "countryCode": "AT"
+      }
+    ],
+    "countriesServed": [
+      "AT"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Q2E Online-Agentur builds, advises on and maintains digital solutions for Austrian mid-market companies, including accessible web development, a bookable web-accessibility audit and its 'Barrierefrei.Seminar' accessibility training."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.q2e.at/web-accessibility-audit",
+        "label": "web accessibility audit page: bookable WCAG audit, accessible web development, 'Barrierefrei.Seminar' training; St. Pölten HQ with Amstetten office, Austria; live fetch 2026-08-12"
+      }
+    ],
+    "lastVerified": "2026-08-12"
   }
 ]
