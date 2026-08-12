@@ -3,6 +3,30 @@
 Формат: ID | дата | решение | причина | последствия. Новые решения добавлять сверху.
 Статусы: `accepted` (принято), `proposed` (ждёт подтверждения владельца).
 
+## D-141 · 2026-08-12 · accepted
+**Платная ветка (€19.99 PDF-план через Stripe) подтверждена ЖИВЬЁМ end-to-end
+на проде — последний непроверенный хвост воронки закрыт.** Владелец выдал
+тестовые ключи Stripe in-memory: `STRIPE_SECRET_KEY` (`sk_test_…`) и
+`STRIPE_WEBHOOK_SECRET` (`whsec_…`, из нового Stripe «event destination» —
+Payload style **Snapshot**, событие `checkout.session.completed`, Endpoint
+URL = воркер `accessatlas-worker.zincroom.workers.dev/api/stripe-hook`, НЕ
+verscala.com: `/api/*` под сайтом не проксируется, вебхук машина-к-машине
+идёт прямо на воркер). Оба — `wrangler secret put`, in-memory, не на диске.
+
+Смоук перед живым тестом: checkout на несуществующем скане → уже не `503
+checkout_unavailable`, а `404` (ключ подхвачен); создание сессии на реальном
+скане вернуло настоящую `checkout.stripe.com/c/pay/cs_test_…`; вебхук на
+поддельной подписи → `400 invalid webhook signature` (секрет активен, подпись
+проверяется), не `503`.
+
+**Живой прогон владельцем (браузер, тест-карта 4242):** скан `ya.ru`
+(`ebd87f0a…`) → кнопка €19.99 → Stripe Checkout → оплата → `plan_purchases`
+получил строку с верным `scan_id` + `stripe_ref: cs_test_…` + `paid_at`
+(вебхук доставился и подпись прошла) → `GET /api/scan/ebd87f0a…/pdf` = **200
+application/pdf, 522 KB, реальный `%PDF-`**. Контроль: НЕоплаченный второй
+скан ya.ru → `402 plan_locked` (пейволл держит). PDF отправлен владельцу.
+START-хвост №1 (тестовый платёж Stripe) — **закрыт**.
+
 ## D-140 · 2026-08-11 · accepted
 **Turnstile включён на проде для живых форм (scan + subscribe).** Владелец
 создал Turnstile-виджет (Managed, хосты verscala.com + www) и передал оба

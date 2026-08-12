@@ -2,7 +2,19 @@
 
 Обновлено: 2026-08-11 (см. также подробный legacy-статус: `research/STATE.md`)
 
-## Последнее (2026-08-11, Turnstile включён на проде для scan+subscribe / D-140)
+## Последнее (2026-08-12, платный PDF-план через Stripe подтверждён живьём / D-141)
+
+Владелец дал тестовые ключи Stripe (`sk_test_`/`whsec_`, in-memory →
+`wrangler secret put`). Вебхук — новый Stripe «event destination» (Snapshot,
+`checkout.session.completed`, URL = воркер `/api/stripe-hook`, не verscala.com
+— API под сайтом не проксируется). Живой прогон владельцем: скан `ya.ru`
+(`ebd87f0a…`) → €19.99 → тест-карта 4242 → `plan_purchases` строка (верный
+scan_id, stripe_ref cs_test_, paid_at) → `GET .../pdf` = 200 application/pdf
+522 KB реальный %PDF. Контроль: неоплаченный скан → 402 plan_locked. PDF
+отправлен владельцу. **START-хвост №1 (Stripe-тест) закрыт.** Секреты воркера
+теперь: ANTHROPIC/RESEND/TURNSTILE/STRIPE_SECRET/STRIPE_WEBHOOK. Детали D-141.
+
+## Ранее (2026-08-11, Turnstile включён на проде для scan+subscribe / D-140)
 
 Владелец создал Turnstile-виджет (Managed, verscala.com+www), передал ключи.
 Site key (публичный) захардкожен в `deploy.yml` build-env; secret key —
