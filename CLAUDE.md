@@ -72,6 +72,19 @@ A task is complete only when:
 на разговорных ответах, уточнениях, показе файла, продолжении уже выбранного
 владельцем пункта меню. Никогда не утверждай, что знаешь активную модель сессии.
 
+## Ссылки владельцу (указание 2026-08-11)
+
+Когда упоминаешь владельцу любой путь в внешней панели (Cloudflare Dash,
+GitHub Settings, Stripe, Resend, Search Console и т.п.) — **сначала дай
+прямую кликабельную ссылку прямо на нужный экран**, чтобы владелец открыл её
+одним тапом, а не искал раздел вручную. Не «зайдите в Dash → Turnstile», а
+готовый URL на этот экран. Известные якоря: аккаунт Cloudflare
+`d081eb07e64dd1cec115eaef90a12c1a` (Turnstile:
+`https://dash.cloudflare.com/d081eb07e64dd1cec115eaef90a12c1a/turnstile`;
+Workers/D1/Pages — по тому же префиксу `/<account_id>/…`); GitHub-секреты
+репо: `https://github.com/kabluk/Claude/settings/secrets/actions`. Владелец
+на телефоне — экономь ему шаги.
+
 ## Execution modes
 
 Use direct for one local task, verification-loop for one testable task, graph for
