@@ -15,12 +15,30 @@ test('maps real .de sites (bundesregierung.de, manufactum.de) to BFSG, verified 
   }
 })
 
-test('maps a real .fr site (impots.gouv.fr) to RGAA, statement required but NOT verified (no fine figure)', () => {
+// D-154: FR verified по первоисточнику (Légifrance) — ссылка теперь на частный
+// сектор EAA (Code de la consommation art. L412-13), не на публичный RGAA.
+test('maps a .fr site to the private-sector EAA law (Code de la consommation), verified', () => {
   const j = jurisdictionForUrl('https://www.impots.gouv.fr/')
   assert.equal(j.country, 'FR')
-  assert.equal(j.law, 'RGAA')
+  assert.match(j.law, /L412-13/)
+  assert.doesNotMatch(j.law, /RGAA/) // RGAA — публичный сектор, больше не наша ссылка
   assert.equal(j.statementRequired, true)
-  assert.equal(j.verified, false)
+  assert.equal(j.verified, true)
+})
+
+// D-154: топ-5 рынков сверены с первоисточниками — FR/NL/IT/ES → verified:true
+// (частный сектор EAA подтверждён), PL — ссылка исправлена, но verified:false
+// (тело закона не прочитано из первоисточника). Сумм штрафов по-прежнему нет.
+test('D-154 top-5: FR/NL/IT/ES verified private-sector; PL corrected but still unverified; no fine figures', () => {
+  for (const [url, code] of [['https://x.fr/', 'FR'], ['https://x.nl/', 'NL'], ['https://x.it/', 'IT'], ['https://x.es/', 'ES']]) {
+    const j = jurisdictionForUrl(url)
+    assert.equal(j.country, code, url)
+    assert.equal(j.verified, true, `${code} should be verified after D-154`)
+    assert.doesNotMatch(JSON.stringify(j), /€|\bEUR\b|\beuros?\b/i)
+  }
+  const pl = jurisdictionForUrl('https://x.pl/')
+  assert.match(pl.law, /Dz\.U\. 2024 poz\. 731/)
+  assert.equal(pl.verified, false)
 })
 
 test('unmapped TLD returns honest unknown, does not guess a jurisdiction', () => {
@@ -34,9 +52,10 @@ test('unmapped TLD returns honest unknown, does not guess a jurisdiction', () =>
 // страны (RIS/Finlex/Lovdata/retsinformation.dk/riksdagen.se/ejustice.just.fgov.be/
 // irishstatutebook.ie), не по агрегатору. Все — verified:false (нет проверенной суммы
 // штрафа), тот же стандарт, что у FR/ES/NL/PL с самого начала A3-JURISDICTION.
-test('new EAA-transposition jurisdictions (IT/IE/AT/BE/SE/DK/FI/NO) require a statement but stay unverified (no fine figure)', () => {
+// D-154: IT переведён в verified (см. отдельный тест выше). Здесь — «остальные»,
+// ещё ждущие сверки первоисточника на частный сектор: IE/AT/BE/SE/DK/FI/NO.
+test('the still-unverified EAA jurisdictions (IE/AT/BE/SE/DK/FI/NO) require a statement but stay unverified (no fine figure)', () => {
   const cases = [
-    ['https://example.it/', 'IT', 'D.Lgs. 82/2022'],
     ['https://example.ie/', 'IE', 'S.I. No. 636/2023'],
     ['https://example.at/', 'AT', 'BaFG'],
     ['https://example.be/', 'BE', 'Loi du 5.11.2023 (2023046827)'],
@@ -76,8 +95,9 @@ test('applyJurisdictionWeight bumps missing-statement to critical in a verified 
   assert.equal(out[1].impact, 'serious') // не юридически-decisive правило — не трогаем
 })
 
-test('applyJurisdictionWeight bumps to critical in an unverified jurisdiction too, but omits the fine figure', () => {
-  const jurisdiction = jurisdictionForUrl('https://www.impots.gouv.fr/')
+test('applyJurisdictionWeight bumps to critical in a still-unverified jurisdiction too, but omits the fine figure', () => {
+  // .ie (Ireland) — ещё unverified после D-154, поэтому note помечен «not verified».
+  const jurisdiction = jurisdictionForUrl('https://example.ie/')
   const out = applyJurisdictionWeight([{ ruleId: 'a11y-statement-missing', impact: 'serious' }], jurisdiction)
   assert.equal(out[0].impact, 'critical')
   assert.doesNotMatch(out[0].jurisdictionNote, /€|\bEUR\b|\beuros?\b/i) // никаких сумм в отчёте

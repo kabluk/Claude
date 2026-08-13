@@ -3,6 +3,45 @@
 Формат: ID | дата | решение | причина | последствия. Новые решения добавлять сверху.
 Статусы: `accepted` (принято), `proposed` (ждёт подтверждения владельца).
 
+## D-154 · 2026-08-13 · accepted
+**Юр-слой: топ-5 рынков сверены с ПЕРВОИСТОЧНИКАМИ на частный сектор — FR/NL/IT/ES
+переведены в `verified:true`, PL — ссылка исправлена (verified:false), 4 из 5
+прежних ссылок были на ГОС-сектор.** По просьбе владельца («как сделать
+verified?») и его решению «топ-5, потом остальные». Модель — Opus (выбор
+владельца); исследование вёл Opus-субагент по официальным порталам, родитель
+независимо перепроверил FR (Légifrance L412-13) и NL (wetten.overheid.nl)
+своим WebFetch — оба подтвердили частный сектор.
+
+**Ключевая находка:** у 4 из 5 стран мы цитировали НЕ ТОТ закон — публичного
+сектора (транспозиция Web Accessibility Directive 2016), а не частного (EAA
+2019/882, действует с 28.06.2025). Исправлено:
+- **FR**: `RGAA` (публичный) → `Code de la consommation art. L412-13 (ord.
+  2023-859)`. verified:true. Цитата: «les opérateurs économiques… fournissent
+  des services conformes aux exigences d'accessibilité».
+- **NL**: `…overheid` (гос) → `Implementatiewet toegankelijkheidsvoorschriften
+  producten en diensten (2024)`. verified:true. Покрывает e-handelsdiensten.
+- **ES**: `RD 1112/2018` (гос) → `Ley 11/2023 (+ RD 193/2023)`. verified:true.
+- **IT**: `D.Lgs. 82/2022` (был верный) → verified:true (частный сектор
+  подтверждён: commercio elettronico, servizi bancari).
+- **PL**: `Ustawa o dostępności cyfrowej` (гос) → `Ustawa z 26.04.2024 (Dz.U.
+  2024 poz. 731)`. verified:**false** — идентификатор закона подтверждён на
+  офиц. портале ELI, но ТЕЛО статей не прочитано из первоисточника (CAPTCHA/
+  бинарный PDF); честно держим «ориентировочно» до читаемой сверки.
+- IE/AT/BE/SE/DK/FI/NO — пока verified:false, «остальные», ждут той же сверки.
+
+**Контракт-изменение (guardrail):** правка в `worker/lib/jurisdiction.js` (law/
+lawFull/verified) И зеркале `src/lib/jurisdictions.ts` — строки `law` обязаны
+совпадать (тест `jurisdictions.test.mjs` это держит, 6/6). Внутренние пометки
+(«сверено родителем», «D-154») в `lawFull` НЕ попали — только чистый юр-текст
+(поймал и убрал одну такую в IT). Сумм штрафов нет нигде (D-035, тесты держат).
+Обновлены фикстуры, кодировавшие старое состояние: worker `jurisdiction.test.mjs`
+(FR/IT verified; «остальные» без IT) 504/504; frontend `reportRisk.test.mjs`
+(пример unverified → IE; FR теперь verified-формат) 127/127. verified влияет
+ТОЛЬКО на отображение (метка «applies» vs «indicative — not verified»), не на
+severity/скоринг (`applyJurisdictionWeight` завязан на statementRequired, не на
+verified). Деплой: сайт (карточка чекера + report) — push; воркер (юр-note
+скана) — отдельный wrangler с токеном владельца.
+
 ## D-153 · 2026-08-13 · accepted
 **Авто-восстановление от протухших чанков после деплоя («Importing a module
 script failed»).** Владелец поймал живьём на проде: часть чекеров давала

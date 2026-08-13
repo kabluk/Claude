@@ -39,29 +39,52 @@ const JURISDICTIONS = {
   // во Франции идёт отдельным путём — Code de la consommation, Section 3
   // «Accessibilité des produits et services» (L412-13 и далее, ordonnance
   // 2023-859); его санкции по первоисточнику НЕ установлены (и не понадобятся — сумм не показываем).
+  // D-154: verified по первоисточнику (Légifrance, сверено родителем). RGAA —
+  // публичный сектор; частный сектор EAA во Франции идёт через Code de la
+  // consommation art. L412-13 (ord. 2023-859), применяется с 28.06.2025.
   FR: {
-    country: 'FR', law: 'RGAA', lawFull: "Référentiel général d'amélioration de l'accessibilité",
-    statementRequired: true, verified: false,
+    country: 'FR', law: 'Code de la consommation art. L412-13 (ord. 2023-859)',
+    lawFull: 'Code de la consommation, art. L412-13 (créé par ordonnance n° 2023-859 du 6 septembre 2023) — transposition de la directive (UE) 2019/882 pour le secteur privé; applicable au 28 juin 2025',
+    statementRequired: true, verified: true,
   },
+  // D-154: verified (BOE, сверено родителем). RD 1112/2018 — публичный сектор;
+  // частный сектор EAA — Ley 11/2023 (Título I), reglamento RD 193/2023.
   ES: {
-    country: 'ES', law: 'RD 1112/2018', lawFull: 'Real Decreto de accesibilidad de sitios web',
+    country: 'ES', law: 'Ley 11/2023 (+ RD 193/2023)',
+    lawFull: 'Ley 11/2023, de 8 de mayo (Título I: transposición de la directiva (UE) 2019/882 al sector privado; desarrollada por el Real Decreto 193/2023); aplicable desde el 28 de junio de 2025',
+    statementRequired: true, verified: true,
+  },
+  // D-154: verified (wetten.overheid.nl, сверено родителем). Прежняя ссылка была
+  // на ГОС-сектор («overheid»); частный сектор EAA — Implementatiewet 2024.
+  NL: {
+    country: 'NL', law: 'Implementatiewet toegankelijkheidsvoorschriften producten en diensten (2024)',
+    lawFull: 'Implementatiewet toegankelijkheidsvoorschriften producten en diensten (Stb. 2024, 87) — transpositie richtlijn (EU) 2019/882; e-handelsplicht in het Burgerlijk Wetboek; van kracht 28-06-2025',
+    statementRequired: true, verified: true,
+  },
+  // D-154: ссылка исправлена на частный сектор EAA (Dz.U. 2024 poz. 731,
+  // идентификатор подтверждён на офиц. портале ELI), но verified:false — текст
+  // статей не удалось прочитать из первоисточника (CAPTCHA/бинарный PDF), честно
+  // держим «ориентировочно» до читаемой сверки тела закона.
+  PL: {
+    country: 'PL', law: 'Ustawa z 26.04.2024 (Dz.U. 2024 poz. 731)',
+    lawFull: 'Ustawa z dnia 26 kwietnia 2024 r. o zapewnianiu spełniania wymagań dostępności niektórych produktów i usług przez podmioty gospodarcze (Dz.U. 2024 poz. 731) — transpozycja dyrektywy (UE) 2019/882 dla sektora prywatnego',
     statementRequired: true, verified: false,
   },
-  NL: { country: 'NL', law: 'Tijdelijk besluit digitale toegankelijkheid overheid', statementRequired: true, verified: false },
-  PL: { country: 'PL', law: 'Ustawa o dostępności cyfrowej', statementRequired: true, verified: false },
   // Добавлено 2026-08-06 (research по запросу владельца "юрисдикции") — 8 стран,
   // где в каталоге реально есть агентства (data/a11y/agencies.json), с законом
   // транспозиции EAA (Directive (EU) 2019/882), подтверждённым по первоисточнику
-  // (официальный правовой портал страны, не агрегатор/блог вендора) — та же
-  // дисциплина, что у FR/ES/NL/PL: verified:false, БЕЗ суммы штрафа, т.к. сумма
-  // нигде не сверена с текстом закона напрямую (только само требование заявления
-  // подтверждено первоисточником). Статья EAA об accessibility statement (Art. 22)
+  // (официальный правовой портал страны, не агрегатор/блог вендора). БЕЗ суммы
+  // штрафа (D-035). D-154 (2026-08-13): сверка первоисточников на частный сектор
+  // проведена для топ-5 рынков — FR/ES/NL/IT переведены в verified:true (частный
+  // сектор EAA подтверждён), PL — ссылка исправлена, но verified:false (тело
+  // закона не прочитано из первоисточника); IE/AT/BE/SE/DK/FI/NO пока verified:
+  // false — «остальные», ждут такой же сверки. Статья EAA об statement (Art. 22)
   // единая по всему ЕС — каждая страна транспонирует то же требование под
   // локальным названием, поэтому statementRequired:true консистентно у всех.
   IT: {
-    country: 'IT', law: 'EAA transposition (D.Lgs. 82/2022)',
-    lawFull: 'Decreto Legislativo 27 maggio 2022, n. 82 (attuazione direttiva (UE) 2019/882); obbligo di dichiarazione di accessibilità radicato nella Legge Stanca (L. 4/2004) per la PA, esteso al privato',
-    statementRequired: true, verified: false,
+    country: 'IT', law: 'D.Lgs. 82/2022 (attuazione dir. 2019/882)',
+    lawFull: 'Decreto Legislativo 27 maggio 2022, n. 82 (attuazione direttiva (UE) 2019/882); copre gli operatori economici privati (servizi di commercio elettronico, servizi bancari per consumatori); applicabile dal 28 giugno 2025',
+    statementRequired: true, verified: true,
   },
   IE: {
     country: 'IE', law: 'S.I. No. 636/2023',

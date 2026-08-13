@@ -47,17 +47,27 @@ test('без юрисдикции нет ни плашки, ни единого 
   assert.doesNotMatch(lede, /EAA|European Accessibility Act|BFSG|2019\/882|28 June/)
 })
 
-test('DE (единственная verified) называет закон, срок EAA и национальный надзор', () => {
+test('DE verified называет закон, срок EAA и национальный надзор', () => {
   const c = lawCallout(resolveReportJurisdiction({ ...base, countryCode: 'DE', countrySource: 'tld' }))
   assert.equal(c?.title, 'BFSG / EN 301 549 applies.')
   assert.match(c.body, /has applied since 28 June 2025/)
   assert.doesNotMatch(c.body, /indicative/)
 })
 
-test('не-verified страна ЕС получает ту же оговорку, что и jurisdictionNote воркера', () => {
+// D-154: FR/NL/IT/ES сверены с первоисточниками → verified. Пример «ещё не
+// сверено» переехал на Ирландию (IE остаётся verified:false — «остальные»).
+test('не-verified страна ЕС (IE) получает оговорку «not verified»', () => {
+  const c = lawCallout(resolveReportJurisdiction({ ...base, countryCode: 'IE', countrySource: 'tld' }))
+  assert.match(c.title, /European Accessibility Act applies in Ireland/)
+  assert.match(c.body, /indicative — not verified against primary law/)
+})
+
+// D-154: verified-страна называет закон в DE-формате, БЕЗ оговорки «indicative».
+test('verified страна ЕС (FR после D-154) называет закон без оговорки', () => {
   const c = lawCallout(resolveReportJurisdiction({ ...base, countryCode: 'FR', countrySource: 'tld' }))
-  assert.match(c.title, /European Accessibility Act applies in France/)
-  assert.match(c.body, /National basis: RGAA \(indicative — not verified against primary law\)/)
+  assert.equal(c?.title, 'Code de la consommation art. L412-13 (ord. 2023-859) / EN 301 549 applies.')
+  assert.match(c.body, /has applied since 28 June 2025/)
+  assert.doesNotMatch(c.body, /indicative/)
 })
 
 test('Норвегия (ЕЭЗ, не ЕС) не получает срок EAA', () => {

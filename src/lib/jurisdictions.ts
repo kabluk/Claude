@@ -36,15 +36,15 @@ export const JURISDICTION_OPTIONS: JurisdictionOption[] = [
   { code: 'BE', label: 'Belgium', law: 'Loi du 5.11.2023 (2023046827)', verified: false, eaa: true },
   { code: 'DK', label: 'Denmark', law: 'LOV nr 801 af 07/06/2022', verified: false, eaa: true },
   { code: 'FI', label: 'Finland', law: 'Laki 306/2019 + asetus 179/2023', verified: false, eaa: true },
-  { code: 'FR', label: 'France', law: 'RGAA', verified: false, eaa: true },
+  { code: 'FR', label: 'France', law: 'Code de la consommation art. L412-13 (ord. 2023-859)', verified: true, eaa: true },
   { code: 'DE', label: 'Germany', law: 'BFSG', verified: true, eaa: true },
   { code: 'IE', label: 'Ireland', law: 'S.I. No. 636/2023', verified: false, eaa: true },
-  { code: 'IT', label: 'Italy', law: 'EAA transposition (D.Lgs. 82/2022)', verified: false, eaa: true },
+  { code: 'IT', label: 'Italy', law: 'D.Lgs. 82/2022 (attuazione dir. 2019/882)', verified: true, eaa: true },
   {
     code: 'NL',
     label: 'Netherlands',
-    law: 'Tijdelijk besluit digitale toegankelijkheid overheid',
-    verified: false,
+    law: 'Implementatiewet toegankelijkheidsvoorschriften producten en diensten (2024)',
+    verified: true,
     eaa: true,
   },
   {
@@ -54,8 +54,8 @@ export const JURISDICTION_OPTIONS: JurisdictionOption[] = [
     verified: false,
     eaa: false,
   },
-  { code: 'PL', label: 'Poland', law: 'Ustawa o dostępności cyfrowej', verified: false, eaa: true },
-  { code: 'ES', label: 'Spain', law: 'RD 1112/2018', verified: false, eaa: true },
+  { code: 'PL', label: 'Poland', law: 'Ustawa z 26.04.2024 (Dz.U. 2024 poz. 731)', verified: false, eaa: true },
+  { code: 'ES', label: 'Spain', law: 'Ley 11/2023 (+ RD 193/2023)', verified: true, eaa: true },
   { code: 'SE', label: 'Sweden', law: 'Lag (2023:254)', verified: false, eaa: true },
 ]
 
