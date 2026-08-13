@@ -1,17 +1,17 @@
 {
   "source": "data/a11y/agencies.json",
-  "total": 245,
+  "total": 270,
   "hqCountries": {
     "count": 19,
     "distribution": [
       {
-        "code": "DE",
-        "name": "Germany",
-        "count": 40
-      },
-      {
         "code": "US",
         "name": "United States",
+        "count": 42
+      },
+      {
+        "code": "DE",
+        "name": "Germany",
         "count": 40
       },
       {
@@ -25,28 +25,33 @@
         "count": 28
       },
       {
+        "code": "NL",
+        "name": "Netherlands",
+        "count": 26
+      },
+      {
         "code": "GB",
         "name": "United Kingdom",
         "count": 25
       },
       {
-        "code": "NL",
-        "name": "Netherlands",
-        "count": 25
+        "code": "ES",
+        "name": "Spain",
+        "count": 11
       },
       {
         "code": "AT",
         "name": "Austria",
-        "count": 9
-      },
-      {
-        "code": "ES",
-        "name": "Spain",
-        "count": 9
+        "count": 10
       },
       {
         "code": "IE",
         "name": "Ireland",
+        "count": 10
+      },
+      {
+        "code": "AU",
+        "name": "Australia",
         "count": 8
       },
       {
@@ -55,68 +60,63 @@
         "count": 7
       },
       {
+        "code": "CA",
+        "name": "Canada",
+        "count": 7
+      },
+      {
         "code": "IT",
         "name": "Italy",
-        "count": 5
+        "count": 6
       },
       {
         "code": "DK",
         "name": "Denmark",
-        "count": 4
-      },
-      {
-        "code": "AU",
-        "name": "Australia",
-        "count": 3
-      },
-      {
-        "code": "CA",
-        "name": "Canada",
-        "count": 3
-      },
-      {
-        "code": "SE",
-        "name": "Sweden",
-        "count": 3
+        "count": 5
       },
       {
         "code": "FI",
         "name": "Finland",
-        "count": 2
+        "count": 4
       },
       {
         "code": "IN",
         "name": "India",
+        "count": 4
+      },
+      {
+        "code": "SE",
+        "name": "Sweden",
+        "count": 4
+      },
+      {
+        "code": "CH",
+        "name": "Switzerland",
         "count": 2
       },
       {
         "code": "NO",
         "name": "Norway",
         "count": 2
-      },
-      {
-        "code": "CH",
-        "name": "Switzerland",
-        "count": 1
       }
     ]
   },
-  "countriesCovered": 20,
+  "countriesCovered": 21,
   "standards": [
     {
       "slug": "wcag-2-2",
       "label": "WCAG 2.2",
-      "count": 152
+      "count": 177
     },
     {
       "slug": "en-301-549",
       "label": "EN 301 549",
-      "count": 99
+      "count": 109
     },
     {
       "slug": "eaa",
       "label": "European Accessibility Act",
-      "count": 57
+      "count": 64
     },
     {
       "slug": "bitv",
@@ -126,25 +126,25 @@
     {
       "slug": "ada",
       "label": "ADA",
-      "count": 35
+      "count": 40
+    },
+    {
+      "slug": "section-508",
+      "label": "Section 508",
+      "count": 37
     },
     {
       "slug": "rgaa",
       "label": "RGAA",
       "count": 31
-    },
-    {
-      "slug": "section-508",
-      "label": "Section 508",
-      "count": 29
     }
   ],
   "priceBands": {
-    "withBand": 17,
-    "withoutBand": 228,
+    "withBand": 22,
+    "withoutBand": 248,
     "distribution": {
-      "budget": 8,
-      "mid": 9,
+      "budget": 10,
+      "mid": 12,
       "premium": 0,
       "enterprise": 0
     }
@@ -167,14 +167,14 @@
   },
   "founded": {
     "withYear": 109,
-    "withoutYear": 136,
+    "withoutYear": 161,
     "oldest": 1894,
     "newest": 2026,
     "median": 2003
   },
   "sources": {
-    "totalRefs": 832,
-    "recordsWithMultiple": 241,
+    "totalRefs": 866,
+    "recordsWithMultiple": 246,
     "minPerRecord": 1,
     "everyRecordHasAtLeastOne": true
   }

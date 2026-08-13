@@ -46,7 +46,7 @@
         "statementRequired": true,
         "verified": false,
         "citation": null,
-        "agencyCount": 25
+        "agencyCount": 26
       },
       {
         "country": "AT",
@@ -56,7 +56,7 @@
         "statementRequired": true,
         "verified": false,
         "citation": null,
-        "agencyCount": 11
+        "agencyCount": 12
       },
       {
         "country": "ES",
@@ -66,7 +66,7 @@
         "statementRequired": true,
         "verified": false,
         "citation": null,
-        "agencyCount": 9
+        "agencyCount": 11
       },
       {
         "country": "IE",
@@ -76,7 +76,7 @@
         "statementRequired": true,
         "verified": false,
         "citation": null,
-        "agencyCount": 8
+        "agencyCount": 10
       },
       {
         "country": "BE",
@@ -96,13 +96,23 @@
         "statementRequired": true,
         "verified": false,
         "citation": null,
-        "agencyCount": 5
+        "agencyCount": 6
       },
       {
         "country": "DK",
         "name": "Denmark",
         "law": "LOV nr 801 af 07/06/2022",
         "lawFull": "Lov om tilgængelighedskrav for produkter og tjenester",
+        "statementRequired": true,
+        "verified": false,
+        "citation": null,
+        "agencyCount": 5
+      },
+      {
+        "country": "FI",
+        "name": "Finland",
+        "law": "Laki 306/2019 + asetus 179/2023",
+        "lawFull": "Laki digitaalisten palvelujen tarjoamisesta (306/2019), EAA-vaatimukset täydennetty asetuksella 179/2023",
         "statementRequired": true,
         "verified": false,
         "citation": null,
@@ -116,17 +126,7 @@
         "statementRequired": true,
         "verified": false,
         "citation": null,
-        "agencyCount": 3
-      },
-      {
-        "country": "FI",
-        "name": "Finland",
-        "law": "Laki 306/2019 + asetus 179/2023",
-        "lawFull": "Laki digitaalisten palvelujen tarjoamisesta (306/2019), EAA-vaatimukset täydennetty asetuksella 179/2023",
-        "statementRequired": true,
-        "verified": false,
-        "citation": null,
-        "agencyCount": 2
+        "agencyCount": 4
       },
       {
         "country": "NO",
@@ -145,7 +145,6 @@
   "thinnestCoverage": {
     "agencyCount": 2,
     "jurisdictions": [
-      "FI",
       "NO"
     ]
   },
