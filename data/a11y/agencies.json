@@ -22126,5 +22126,1845 @@
       }
     ],
     "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "pubcom",
+    "name": "PubCom",
+    "website": "pubcom.com",
+    "hq": {
+      "city": "Washington",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "section-508",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Washington DC-area firm offering remediation of Word, PowerPoint, InDesign and PDF files plus workflow assessments and live/online classes for Section 508 and WCAG-compliant document publishing, serving federal agencies since 2001."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.pubcom.com/services/accessibility.shtml",
+        "label": "site lists 'Remediation of Word, PowerPoint, Adobe InDesign and PDF files to meet accessibility requirements' and 'Testing, review, and certification of your public-facing documents for PDF/UA and WCAG compliance'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "pope-tech",
+    "name": "Pope Tech",
+    "website": "pope.tech",
+    "hq": {
+      "city": "Providence",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "monitoring",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada"
+    ],
+    "industries": [
+      "public-sector",
+      "education",
+      "banking"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Utah-based WAVE-powered accessibility monitoring platform for websites that has expanded into consulting, manual-testing tracking and training support alongside its automated scanning dashboards, serving higher-ed, government and banking clients."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.pope.tech/about",
+        "label": "site states 'Services expand to include consulting and web accessibility' and 'Pope Tech gives you the tools, training and support needed'; HQ 'PO Box 460, Providence, UT 84332'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "brisk-ada-compliance",
+    "name": "Brisk ADA Compliance",
+    "website": "accessibilitywebsites.us",
+    "hq": {
+      "city": "The Woodlands",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Houston-area (The Woodlands, TX) firm offering manual ADA/WCAG accessibility audits combined with expert code-level remediation, explicitly positioning itself against overlay-widget quick fixes."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://accessibilitywebsites.us/",
+        "label": "site states 'Manual testing by certified experts' and 'Expert code modifications', HQ 'The Woodlands, TX 77381', warns against 'Using accessibility overlay tools'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "a11y-pros",
+    "name": "A11Y Pros",
+    "website": "a11ypros.com",
+    "hq": {
+      "city": "Denver",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Denver, Colorado consultancy offering forensic manual WCAG testing with screen readers, hands-on website remediation, VPAT/ACR authoring and ADA litigation support, staffed with IAAP and DHS Trusted Tester-certified testers."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://a11ypros.com/",
+        "label": "site lists 'WCAG Compliance Auditing', 'Forensic manual testing with screen readers (JAWS, NVDA, VoiceOver)', 'VPAT & ACR Authoring'; HQ '1905 Sherman St, Ste 200 #2042, Denver, CO 80203'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "inclusive-web",
+    "name": "Inclusive Web",
+    "website": "inclusiveweb.co",
+    "hq": {
+      "city": "New York",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada"
+    ],
+    "industries": [
+      "healthcare",
+      "banking"
+    ],
+    "certs": [],
+    "description": {
+      "en": "New York City accessibility consultancy offering hands-on WCAG audits, a step-by-step remediation plan with a fix guarantee, and accessibility training, with dedicated support for healthcare and financial-services clients."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.inclusiveweb.co/",
+        "label": "site offers 'Web Audits' described as 'comprehensive, hands-on evaluation by specialists—no automated shortcuts' and 'Step-by-Step Remediation Plan'; HQ '368 9th Ave 6th floor, New York, NY 10001'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ecomback",
+    "name": "EcomBack",
+    "website": "ecomback.com",
+    "hq": {
+      "city": "Los Angeles",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [
+      "ecommerce"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Los Angeles firm specializing in manual, code-level ADA/WCAG accessibility audits and remediation for e-commerce sites on Shopify, WordPress, SquareSpace, Wix, WooCommerce, Magento and Webflow, explicitly warning against overlay widgets."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.ecomback.com/",
+        "label": "site states process is 'Done manually — end to end. Audit: find every barrier. Fix: correct the code. Certify: document compliance'; HQ Los Angeles, California; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "wandke-accessibility",
+    "name": "Wandke Accessibility",
+    "website": "wandke.com",
+    "hq": {
+      "city": "Bellingham",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Disability-owned consultancy in Bellingham, Washington founded by Daman Wandke, offering digital accessibility audits, testing, remediation and disability-inclusion training for organizations ranging from nonprofits to Fortune 500 companies."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.wandke.com/",
+        "label": "site lists service areas 'Audits', 'Testing', 'Remediation', 'Training' referencing ADA and WCAG 2.1; company confirmed based in Bellingham, WA; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "spiderboost",
+    "name": "SpiderBoost",
+    "website": "spiderboost.com",
+    "hq": {
+      "city": "Miami",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [
+      "ecommerce"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Miami-based digital agency with a dedicated ADA/WCAG compliance service line covering accessible web design, development and digital audits across WordPress, Magento and Shopify platforms."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://spiderboost.com/ada-website-accessibility-wcag-compliance/",
+        "label": "site details WCAG 2.1 A/AA/AAA compliance service, 4.5:1 contrast, focus order and a 'Digital Audit' offering; HQ '1000 Brickell Ave, #715 PMB, Miami, FL 33131'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "3play-media",
+    "name": "3Play Media",
+    "website": "3playmedia.com",
+    "hq": {
+      "city": "Boston",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada"
+    ],
+    "industries": [
+      "education"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Boston media-accessibility platform providing captioning, audio description, subtitling and dubbing to help organizations in media, education and government meet ADA, Section 504/508 and WCAG requirements for video content."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.3playmedia.com/",
+        "label": "site states HQ '255 State St. Floor 6 Boston, MA 02109' and offers captioning/audio description/subtitling/dubbing 'guaranteeing compliance with ADA, 504/508, CVAA, WCAG, EAA, and ACA'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accessibility-partners",
+    "name": "Accessibility Partners",
+    "website": "accessibilitypartners.com",
+    "hq": {
+      "city": "Rockville",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "founded": 2003,
+    "description": {
+      "en": "Maryland-based, woman-owned GSA-contract accessibility firm founded in 2003 offering Corporate Accessibility Audits, document remediation, VPAT creation and training for government agencies, educational institutions and nonprofits."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.accessibilitypartners.com/accessibility-consulting/",
+        "label": "site offers 'Corporate Accessibility Audits' measuring ADA/Section 508 compliance, 'Document Remediation', 'VPAT Creation', 'Training'; phone area code 301 (Maryland); live fetch 2026-08-13"
+      },
+      {
+        "url": "http://www.accessibilitypartners.com/about-us/",
+        "label": "site states 'The foundations of Accessibility Partners were laid in 2003 before expanding to an official LLC partnership in 2009' and describes firm as woman-owned; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "508-documents",
+    "name": "508 Documents",
+    "website": "508docs.com",
+    "hq": {
+      "city": "Mandeville",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "remediation"
+    ],
+    "standards": [
+      "section-508",
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Louisiana-based document-accessibility specialist offering PDF, Word, PowerPoint and Excel remediation to Section 508, WCAG, PDF/UA and ADA Title II standards, including high-volume document remediation for government and enterprise clients."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://508docs.com/",
+        "label": "site lists 'PDF Remediation', 'Microsoft Word Remediation', 'Microsoft PowerPoint Remediation', 'Microsoft Excel Remediation' against Section 508, WCAG, PDF/UA, ADA Title II; 985 area-code (Louisiana) phone; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "word-wizards",
+    "name": "Word Wizards",
+    "website": "wordwizardsinc.com",
+    "hq": {
+      "city": "Silver Spring",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "remediation",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "section-508",
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Silver Spring, Maryland document-accessibility firm remediating PDF, Word, Excel, PowerPoint, forms and video to Section 508, WCAG and ADA standards, positioning itself as a one-stop shop for accessible documents and ICT compliance consulting."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://wordwizardsinc.com/",
+        "label": "site lists 'Accessibility Compliance' service covering 'PDF, Word, Excel, PowerPoint, Forms, and Video' against 'Section 508, WCAG, ADA, and WC3 standards'; HQ '8609 2nd Avenue, Unit 406B, Silver Spring, MD 20910'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "idiz",
+    "name": "iDiz",
+    "website": "cuidiz.com",
+    "hq": {
+      "city": "Indianapolis",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [
+      "banking"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Indianapolis firm specializing in credit-union and financial-services website accessibility, offering standalone WCAG 2.1 AA audits, consulting on third-party audit findings, and remediation of existing sites."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.cuidiz.com/what-we-do/accessibility-services/",
+        "label": "site offers 'Website Accessibility Audits and Consulting' using 'a combination of automated tools and in-person testing' against WCAG 2.1 AA; HQ Indianapolis, IN 46220; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "pure-accessibility",
+    "name": "Pure Accessibility",
+    "website": "pureaccessibility.com",
+    "hq": {
+      "city": "Denver",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Denver, Colorado consultancy providing WCAG 2.2 AA and ADA accessibility audits with developer-ready remediation guidance and VPAT authoring, reporting over 650 audits and 200+ VPATs completed in five years."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.pureaccessibility.com/",
+        "label": "site states HQ 'Denver, Colorado, USA' and offers 'Comprehensive WCAG 2.2 AA and ADA/EAA accessibility audits with developer-ready remediation guidance', citing '650 accessibility audits, 200+ VPATs'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "devop-solutions",
+    "name": "DevOp Solutions",
+    "website": "devop.solutions",
+    "hq": {
+      "city": "Phoenix",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Phoenix, Arizona firm offering WCAG 2.2 AA compliance auditing using DHS Trusted Tester methodology, combining expert manual code review with assistive-technology testing and real-user validation for ADA and Section 508 compliance."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://devop.solutions/wcag-compliance",
+        "label": "site describes 'Expert manual testing using DHS Trusted Tester methodology to catch issues automated tools miss' against WCAG 2.2 AA, ADA Title III, Section 508, EN 301 549; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "vanachibald",
+    "name": "vanAchibald",
+    "website": "vanachibald.com",
+    "hq": {
+      "city": "Leipzig",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "monitoring",
+      "consulting"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Leipzig digital agency that runs a comprehensive accessibility audit against WCAG 2.2 and BFSG requirements before starting a project, followed by design/code remediation, accessibility-statement drafting, post-launch monitoring, and content-team training."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.vanachibald.com/leistungen/barrierefreiheitsstaerkungsgesetz/barrierefreie-webseiten.html",
+        "label": "\"Bevor wir starten, prüfen wir Ihre Webseite in einem umfassenden Barrierefreiheits-Audit\"; accessibility audits against WCAG 2.2 and BFSG, remediation, accessibility statement, post-launch monitoring and team training; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "boewa",
+    "name": "böwa GmbH",
+    "website": "boewa.de",
+    "hq": {
+      "city": "Bremen",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Bremen software and web-development company offering accessibility services from consulting and BITV-Test/WCAG 2.2 analysis through remediation to practical workshops and staff training."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.boewa.de/_/Webdesign/Barrierefreie-Website-Agentur",
+        "label": "\"Von der ersten Beratung über die qualifizierte Analyse und Umsetzung bis hin zu Schulungen bieten wir Ihnen umfassende Leistungen\"; testing against BITV-Test and WCAG 2.2; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "frese-wolff",
+    "name": "Frese & Wolff Werbeagentur",
+    "website": "frese-wolff.de",
+    "hq": {
+      "city": "Oldenburg",
+      "countryCode": "DE"
+    },
+    "offices": [
+      {
+        "city": "Bremen",
+        "countryCode": "DE"
+      },
+      {
+        "city": "Hannover",
+        "countryCode": "DE"
+      }
+    ],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "monitoring"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Oldenburg advertising agency with offices in Bremen and Hannover, offering a three-step accessibility service: analysis/audit of an existing site, WCAG/BITV-oriented remediation, and ongoing compliance monitoring."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://frese-wolff.de/leistungen/agentur-barrierefreie-websites/",
+        "label": "\"In drei Schritten sorgen wir dafür, dass deine Website in Sachen Barrierefreiheit optimal aufgestellt ist\"; accessibility analysis/auditing, WCAG/BITV-oriented remediation, ongoing compliance monitoring; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "danubius-bfsg360",
+    "name": "danubius GmbH",
+    "website": "bfsg360.de",
+    "hq": {
+      "city": "Straubing",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "bitv"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Straubing-based agency analysing websites, documents and digital offerings for WCAG 2.2 and EN 301 549 conformity, and explicitly rejecting overlay tools in favour of proper code- and content-level remediation."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.bfsg360.de/",
+        "label": "\"Wir analysieren Ihre Website, Dokumente und digitalen Angebote auf Konformität mit WCAG 2.2 und der EN 301 549\"; \"Overlay-Tools nehmen nur oberflächliche, visuelle Anpassungen vor\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "mewigo",
+    "name": "MEWIGO",
+    "website": "mewigo.de",
+    "hq": {
+      "city": "Berlin",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "monitoring",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "bitv"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Berlin WordPress agency running detailed accessibility audits against WCAG 2.2 AA and EN 301 549, producing prioritized reports, implementing remediation, generating BFSG accessibility statements, and offering training including Leichte Sprache and sign-language content."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.mewigo.de/barrierefreiheit/",
+        "label": "\"Wir führen ausführliche Barrierefreiheit-Audits durch, um zu prüfen, ob Ihre Website barrierefrei ist oder wo es noch Anpassungen geben muss\"; WCAG 2.2 AA/EN 301 549, remediation, BFSG-Barrierefreiheitserklärung, training in Leichte Sprache and sign language; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ikonum",
+    "name": "IKONUM",
+    "website": "ikonum.com",
+    "hq": {
+      "city": "Dresden",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Dresden agency performing largely manual WCAG 2.2/BITV/EN 301 549 audits and risk assessment, remediation, coordination of external BIK BITV-Test certification, and accessibility statements, stating that \"Barrierefreiheit lässt sich nicht mit einem Plugin nachrüsten\"."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://ikonum.com/leistungen/barrierefreie-websites/",
+        "label": "\"ihre Website auf Barrierefreiheit zu prüfen, Risiken realistisch einzuschätzen, die richtigen Maßnahmen abzuleiten und die gesetzlichen Anforderungen umzusetzen\"; \"Den Großteil bewerten wir manuell\"; \"Barrierefreiheit lässt sich nicht mit einem Plugin nachrüsten\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "aha-handelsmarketing",
+    "name": "aha! Agentur für Handelsmarketing",
+    "website": "aha.biz",
+    "hq": {
+      "city": "Köln",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "monitoring",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "bitv"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Cologne trade-marketing agency offering BFSG-driven website accessibility checks analysed against WCAG 2.1/2.2, followed by remediation, implementation support and long-term monitoring."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://aha.biz/en/node/489",
+        "label": "\"Wir prüfen Ihre Website fundiert auf Barrierefreiheit: Analyse nach WCAG 2.1 und WCAG 2.2\"; BFSG audits, remediation/implementation support, long-term monitoring; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "augustin-digitale-barrierefreiheit",
+    "name": "Digitale Barrierefreiheit München (M. Augustin)",
+    "website": "digital-barrierefrei.de",
+    "hq": {
+      "city": "München",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Munich accessibility consultancy run by CPWA-certified tester Monika Augustin, a member of the BIK BITV-Test and BIT inklusiv testing networks, offering BITV/WCAG/EN 301 549 website, software and PDF testing, audits, and workshops from analysis through to implementation."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://digital-barrierefrei.de/bitv-wcag-test-beratung.php",
+        "label": "\"Ziel ist es, Ihnen ganzheitliche Lösungen anzubieten, die von der Analyse bis zur Umsetzung und Schulung reichen\"; BITV testing for websites/apps, PDF/UA and EN 301 549 document testing, workshops, CPWA-certified tester and BIK-Prüfverbund/BIT-inklusiv network member; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "bitstudios",
+    "name": "bitSTUDIOS",
+    "website": "bitstudios.at",
+    "hq": {
+      "city": "Graz",
+      "countryCode": "AT"
+    },
+    "offices": [
+      {
+        "city": "Wien",
+        "countryCode": "AT"
+      }
+    ],
+    "countriesServed": [
+      "AT"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Graz web agency with a Vienna office offering accessibility audits of existing sites, remediation such as colour-contrast and heading-structure fixes aligned with WCAG 2.1/2.2, and editor training, positioned around Austria's BaFG/EAA requirements in force since 28 June 2025."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.bitstudios.at/barrierefreie-websites/",
+        "label": "\"Am Anfang steht eine ehrliche Analyse. Wir prüfen Ihre bestehende Website auf typische Barrieren und technische Schwachstellen\"; remediation of contrasts/headings, editor training/Schulungen, WCAG 2.1/2.2 and Austrian BaFG/EAA referenced; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "bitsfabrik",
+    "name": "bitsfabrik",
+    "website": "bitsfabrik.com",
+    "hq": {
+      "city": "Wien",
+      "countryCode": "AT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AT"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Vienna agency combining manual WCAG 2.2 AA audits with automated scanning (WAVE, axe, Lighthouse), EN 301 549-aligned design and development, editorial training, and ongoing accessibility maintenance; conducted the WCAG 2.1 AA accessibility review for ORF's ORF ON streaming platform."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://bitsfabrik.com/barrierefreiheit-accessibility/",
+        "label": "\"Manuelle Audits nach WCAG 2.2 AA\"; \"Automatisierte Scans mit Tools wie WAVE, axe und Lighthouse\"; \"Redaktionsschulungen, damit Inhalte dauerhaft barrierefrei bleiben\"; \"Bitsfabrik wurde mit der Accessibility-Prüfung (WCAG 2.1 AA) für die neue ORF-Streamingplattform ORF ON beauftragt\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "seocon-teamcon",
+    "name": "seoCon (teamCon GmbH)",
+    "website": "seocon.at",
+    "hq": {
+      "city": "Linz",
+      "countryCode": "AT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AT"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Linz-headquartered digital agency offering accessibility checks and WCAG 2.1/EN 301 549-aligned implementation support, positioning services around the Austrian and EU requirements in force from 28 June 2025."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.seocon.at/barrierefreie-websites/",
+        "label": "\"Das Barrierefreiheitsstärkungsgesetz (BFSG) schreibt vor, dass Websites ab 28.06.2025 mindestens die Barrierefreiheitskriterien des Levels AA erfüllen müssen\"; \"Accessibility Checks, unterstützt Sie bei der Umsetzung und Integration\"; WCAG 2.1 and EN 301 549 referenced; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "limesoda",
+    "name": "LimeSoda Interactive Marketing",
+    "website": "limesoda.com",
+    "hq": {
+      "city": "Wien",
+      "countryCode": "AT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AT"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2",
+      "en-301-549",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Vienna agency with certified web-accessibility experts running full audits with prioritized recommendations, remediation across design/development/content, and training workshops, referencing WCAG 2.1 AA, BITV 2.0, EN 301 549 and the EAA/BaFG; holds WACA Silver certification for its own site."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.limesoda.com/leistungen/beratung-consulting/barrierefreies-webdesign",
+        "label": "\"Unsere zertifizierten Web-Accessibility-Expert:innen führen in der Folge ein vollständiges Audit mit priorisierten Handlungsempfehlungen durch\"; WCAG 2.1 AA, BITV 2.0, EN 301 549 and EAA/BaFG referenced, Schulungen & Workshops service listed; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "iqual",
+    "name": "iqual AG",
+    "website": "iqual.ch",
+    "hq": {
+      "city": "Bern",
+      "countryCode": "CH"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CH"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Bern web agency that explains and prioritizes WCAG requirements with clients, designs and builds accessible sites from the outset, trains client teams on accessible content, and supports certification through the Access for all foundation, referencing EN 301 549 and BehiG."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.iqual.ch/de/barrierefreie-website",
+        "label": "\"Barrierefreiheitsrichtlinien wie WCAG erklären wir dir verständlich und priorisieren gemeinsam die relevanten Anforderungen\"; \"Dein Team schulen wir im Umgang mit barrierefreiem Content\"; \"Standard für gesetzliche Vorgaben (z. B. EN 301 549, BehiG)\"; European Accessibility Act referenced; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "beyondweb",
+    "name": "Beyondweb",
+    "website": "beyondweb.ch",
+    "hq": {
+      "city": "Rotkreuz",
+      "countryCode": "CH"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CH"
+    ],
+    "languages": [
+      "de",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "monitoring",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "bitv",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Rotkreuz (Zug)-based WordPress agency serving Swiss SMEs, building sites to WCAG 2.1/2.2 AA, referencing Germany's Barrierefreiheitsstärkungsgesetz and the European Accessibility Act, and employing a dedicated web accessibility specialist."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.beyondweb.ch/en/barrierefreie-website-erstellen-lassen/",
+        "label": "\"Hier bieten wir eine Auswahl von Organisationen, die ihre Website mit uns bereits nach WCAG 2.2 AA Kriterien barrierefrei gestaltet haben\"; \"...den gesetzlichen Anforderungen wie dem Barrierefreiheitsstärkungsgesetz und dem European Accessibility Act entspricht\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "agenza",
+    "name": "Agenza GmbH",
+    "website": "agenza.ch",
+    "hq": {
+      "city": "Kriens",
+      "countryCode": "CH"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CH"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Kriens (Lucerne) agency designing and developing websites and online shops under official WCAG guidelines, offering a free accessibility analysis, remediation through custom development, an in-house accessibility label, and client training on maintaining accessibility after launch."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://agenza.ch/loesungen/barrierefreie-websites/",
+        "label": "\"Wir konzipieren, gestalten und entwickeln deine Website oder deinen Online-Shop unter Berücksichtigung der offiziellen WCAG-Richtlinien für die digitale Barrierefreiheit\"; \"Mit dem European Accessibility Act wird die digitale Barrierefreiheit ab 2025 in der EU Pflicht\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "adi-heutschi-webdesign",
+    "name": "Adi Heutschi Webdesign",
+    "website": "adiheutschi.ch",
+    "hq": {
+      "city": "Niederbipp",
+      "countryCode": "CH"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CH"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Solo Joomla web-design studio in Niederbipp (canton Bern) building WCAG-oriented accessible websites for Swiss SMEs, associations and organisations, including ongoing website maintenance and monitoring."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.adiheutschi.ch/webdesign/barrierefreie-webseiten-und-zugaenglichkeit",
+        "label": "\"Um Web-Accessibility zu gewährleisten, werden Websites und Anwendungen so entwickelt, dass sie für alle Menschen, unabhängig von ihren Fähigkeiten, zugänglich sind\"; WCAG-oriented development and maintenance/monitoring services; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "laluciole",
+    "name": "La Luciole",
+    "website": "laluciole.dev",
+    "hq": {
+      "city": "Nantes",
+      "countryCode": "FR"
+    },
+    "offices": [
+      {
+        "city": "Grenoble",
+        "countryCode": "FR"
+      },
+      {
+        "city": "Toulouse",
+        "countryCode": "FR"
+      }
+    ],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "La Luciole is a French web agency based in Nantes, Grenoble, and Toulouse that offers RGAA compliance audits assessing website accessibility against France's official accessibility framework."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://laluciole.dev/",
+        "label": "\"Nous évaluons la conformité de votre site internet avec le Référentiel général d'amélioration de l'accessibilité (RGAA).\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "eleven-labs",
+    "name": "Eleven Labs",
+    "website": "eleven-labs.com",
+    "hq": {
+      "city": "Nantes",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Eleven Labs is a French digital consultancy based in Nantes offering RGAA accessibility audits and compliance support to help organizations evaluate and improve their website's accessibility level."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://eleven-labs.com/conseil-it/audit-rgaa/",
+        "label": "\"Réaliser un audit RGAA permet d'évaluer précisément le niveau d'accessibilité d'un site web au regard du référentiel officiel.\" / \"Basée à Nantes mais intervenant sur tout le territoire national\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "adimeo",
+    "name": "Adimeo",
+    "website": "adimeo.com",
+    "hq": {
+      "city": "Paris",
+      "countryCode": "FR"
+    },
+    "offices": [
+      {
+        "city": "Metz",
+        "countryCode": "FR"
+      },
+      {
+        "city": "Nantes",
+        "countryCode": "FR"
+      },
+      {
+        "city": "Nice",
+        "countryCode": "FR"
+      },
+      {
+        "city": "Montpellier",
+        "countryCode": "FR"
+      },
+      {
+        "city": "Lille",
+        "countryCode": "FR"
+      }
+    ],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Adimeo is a French digital agency headquartered in Paris with offices across France, offering digital accessibility audits that measure website and application compliance against RGAA and WCAG criteria."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.adimeo.com/audit-accessibilite-numerique",
+        "label": "\"Un audit d'accessibilité numérique est une démarche d'évaluation qui permet de mesurer le niveau de conformité d'un service Web aux critères d'accessibilité\", referencing \"le référentiel international WCAG et, pour la France, le RGAA\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "indexel",
+    "name": "Indexel",
+    "website": "indexel.com",
+    "hq": {
+      "city": "Paris",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Indexel is a Paris-based digital agency offering RGAA and WCAG accessibility audits that combine automated testing with manual expert review to identify accessibility barriers."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.indexel.com/site-web/agence-accessibilite-numerique",
+        "label": "\"Nous combinons tests automatiques et contrôles manuels pour détecter les obstacles d'accessibilité\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "nobilito",
+    "name": "Nobilito",
+    "website": "nobilito.fr",
+    "hq": {
+      "city": "Nantes",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Nobilito is a Nantes-based communication agency offering website accessibility audits, improvement recommendations, and support with accessibility statements for French organizations."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.nobilito.fr/digital/accessibilite-web/",
+        "label": "\"Les experts web de Nobilito vous accompagnent dans la mise en place d'un site web accessible numériquement via différentes prestations\" (audit, recommendations, and accessibility declaration support); live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "sismeo",
+    "name": "Sisméo",
+    "website": "sismeo.com",
+    "hq": {
+      "city": "Paris",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "priceBand": "budget",
+    "description": {
+      "en": "Sisméo is a Paris-based agency offering a flat-rate RGAA accessibility audit covering all 106 RGAA 4.1.2 criteria along with the mandatory legal accessibility documents."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.sismeo.com/accessibilite-rgaa.php",
+        "label": "\"Sisméo audite votre site sur les 106 critères du RGAA 4.1.2 et produit tous les documents légaux obligatoires\", priced at \"1 490 € HT\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "warren-walter",
+    "name": "Warren Walter",
+    "website": "warren-walter.com",
+    "hq": {
+      "city": "Paris",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Warren Walter is a Paris-based consultancy offering digital accessibility evaluations of websites and applications against the RGAA, WCAG, and RAAM frameworks."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.warren-walter.com/expertise-accessibilite-numerique/",
+        "label": "\"Évaluation du niveau d'accessibilité de vos sites et applications selon les référentiels RGAA, WCAG ou RAAM.\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "siway",
+    "name": "Siway",
+    "website": "siway.fr",
+    "hq": {
+      "city": "Paris",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Siway is a Paris-based web agency offering RGAA accessibility audits, accessibility statements, and remediation of website accessibility issues."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.siway.fr/agence-web/diagnostic-accessibilite-numerique-site-internet-rgaa",
+        "label": "\"SIWAY propose l'audit RGAA, la déclaration et la correction de l'accessibilité de votre site\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "concept-image",
+    "name": "Concept Image",
+    "website": "concept-image.fr",
+    "hq": {
+      "city": "Rennes",
+      "countryCode": "FR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FR"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "rgaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Concept Image is a Rennes-based agency offering digital accessibility audits that evaluate whether a website complies with France's RGAA standards."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.concept-image.fr/expertises/audit-daccessibilite-numerique/",
+        "label": "\"L'audit d'accessibilité numérique évalue si un site web respecte les normes françaises du RGAA\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "blue2blond",
+    "name": "Blue 2 Blond",
+    "website": "blue2blond.nl",
+    "hq": {
+      "city": "Groningen",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Blue 2 Blond is a Groningen-based digital agency offering WCAG accessibility quickscans and comprehensive audits covering semantics, focus, and contrast for organizations seeking digital inclusivity."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.blue2blond.nl/website-audit-scannen/wcag-website-audit-toegankelijkheid.html",
+        "label": "\"In alle gevallen lenen we ons voor het doen van quickscans of uitgebreide audits\" tested against \"internationale WCAG 2.1 richtlijnen\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "digitaaltoegankelijke-websites",
+    "name": "Digitaal Toegankelijke Websites",
+    "website": "digitaaltoegankelijkewebsites.nl",
+    "hq": {
+      "city": "Almere",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Digitaal Toegankelijke Websites, a service of Sedney Grafisch Buro based in Almere, builds and scans websites for WCAG accessibility compliance and provides clients a report with improvement points."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://digitaaltoegankelijkewebsites.nl/",
+        "label": "\"Laat ons je website scannen. We analyseren je website en geven je een rapport met alle verbeterpunten.\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "jvdmedia",
+    "name": "JVDmedia",
+    "website": "jvdmedia.nl",
+    "hq": {
+      "city": "Assen",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "JVDmedia is an Assen-based agency offering a WCAG Quick Scan service that gives organizations a rapid analysis of their website's accessibility against WCAG 2.1 AA guidelines."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://jvdmedia.nl/digitale-toegankelijkheid/",
+        "label": "\"Onze WCAG Quick scan biedt een snelle analyse volgens de WCAG 2.1 AA richtlijnen.\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "redfactory",
+    "name": "Redfactory",
+    "website": "redfactory.nl",
+    "hq": {
+      "city": "Den Haag",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "priceBand": "budget",
+    "description": {
+      "en": "Redfactory is a Den Haag-based agency offering WCAG and EAA compliance services, including a full WCAG scan and structured remediation sprints to bring websites into compliance."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://redfactory.nl/wcag-eaa-compliant/",
+        "label": "\"Van scan tot volledig compliant in korte sprints\", with a \"Volledige WCAG scan\" priced at €499; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "dappr",
+    "name": "Dappr",
+    "website": "dappr.nl",
+    "hq": {
+      "city": "Hoogeveen",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Dappr is a Hoogeveen-based agency offering WCAG 2.2 website audits and analysis, remediation development, and ongoing accessibility monitoring support."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.dappr.nl/voorbereid-op-wcag-2.2/",
+        "label": "\"Bij dappr. bieden we een reeks diensten aan om je te helpen aan de WCAG 2.2-richtlijnen te voldoen: Website Audits en Analyse, Aanpassingen en Ontwikkeling, Doorlopende Ondersteuning en Monitoring\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "adevo-solutions",
+    "name": "ADEVO Solutions",
+    "website": "adevo.be",
+    "hq": {
+      "city": "Charleroi",
+      "countryCode": "BE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "BE"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "ADEVO Solutions is a Charleroi-based agency offering website accessibility audits that assess compliance with WCAG 2.1 AA standards and the European Accessibility Act."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.adevo.be/audit-accessibilite-web",
+        "label": "Page titled \"Audit d'accessibilité web (WCAG / EAA)\": \"Audit détaillé de votre site : Analyse approfondie selon les critères WCAG 2.1 AA\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "retis-belgique",
+    "name": "Retis",
+    "website": "retis.be",
+    "hq": {
+      "city": "Liège",
+      "countryCode": "BE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "BE"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "priceBand": "budget",
+    "description": {
+      "en": "Retis is a Liège-based consultancy offering digital accessibility audits against WCAG 2.1 AA standards, with flat-rate pricing for simple websites."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.retis.be/publications/reglementations/accessibilite-web/",
+        "label": "\"Retis propose des audits d'accessibilité numérique\"; \"94 % des sites e-commerce analysés ne respectent pas les normes d'accessibilité WCAG 2.1 AA\"; priced from \"480 € HTVA\" for simple sites; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "michel-dvorak",
+    "name": "Michel Dvorak",
+    "website": "micheldvorak.eu",
+    "hq": {
+      "city": "Brussels",
+      "countryCode": "BE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "BE"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Michel Dvorak is a Brussels-based independent consultant offering WCAG 2.1 accessibility audits and web accessibility training."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://micheldvorak.eu/audit-accessibilite-web-formation-wcag-rgaa/",
+        "label": "\"Audit d'accessibilité (WCAG 2.1) et formation à l'accessibilité web\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
   }
 ]

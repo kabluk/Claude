@@ -1,0 +1,630 @@
+[
+  {
+    "slug": "vanachibald",
+    "name": "vanAchibald",
+    "website": "vanachibald.com",
+    "hq": {
+      "city": "Leipzig",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "monitoring",
+      "consulting"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Leipzig digital agency that runs a comprehensive accessibility audit against WCAG 2.2 and BFSG requirements before starting a project, followed by design/code remediation, accessibility-statement drafting, post-launch monitoring, and content-team training."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.vanachibald.com/leistungen/barrierefreiheitsstaerkungsgesetz/barrierefreie-webseiten.html",
+        "label": "\"Bevor wir starten, prüfen wir Ihre Webseite in einem umfassenden Barrierefreiheits-Audit\"; accessibility audits against WCAG 2.2 and BFSG, remediation, accessibility statement, post-launch monitoring and team training; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "boewa",
+    "name": "böwa GmbH",
+    "website": "boewa.de",
+    "hq": {
+      "city": "Bremen",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Bremen software and web-development company offering accessibility services from consulting and BITV-Test/WCAG 2.2 analysis through remediation to practical workshops and staff training."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.boewa.de/_/Webdesign/Barrierefreie-Website-Agentur",
+        "label": "\"Von der ersten Beratung über die qualifizierte Analyse und Umsetzung bis hin zu Schulungen bieten wir Ihnen umfassende Leistungen\"; testing against BITV-Test and WCAG 2.2; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "frese-wolff",
+    "name": "Frese & Wolff Werbeagentur",
+    "website": "frese-wolff.de",
+    "hq": {
+      "city": "Oldenburg",
+      "countryCode": "DE"
+    },
+    "offices": [
+      {
+        "city": "Bremen",
+        "countryCode": "DE"
+      },
+      {
+        "city": "Hannover",
+        "countryCode": "DE"
+      }
+    ],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "monitoring"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Oldenburg advertising agency with offices in Bremen and Hannover, offering a three-step accessibility service: analysis/audit of an existing site, WCAG/BITV-oriented remediation, and ongoing compliance monitoring."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://frese-wolff.de/leistungen/agentur-barrierefreie-websites/",
+        "label": "\"In drei Schritten sorgen wir dafür, dass deine Website in Sachen Barrierefreiheit optimal aufgestellt ist\"; accessibility analysis/auditing, WCAG/BITV-oriented remediation, ongoing compliance monitoring; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "danubius-bfsg360",
+    "name": "danubius GmbH",
+    "website": "bfsg360.de",
+    "hq": {
+      "city": "Straubing",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "bitv"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Straubing-based agency analysing websites, documents and digital offerings for WCAG 2.2 and EN 301 549 conformity, and explicitly rejecting overlay tools in favour of proper code- and content-level remediation."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.bfsg360.de/",
+        "label": "\"Wir analysieren Ihre Website, Dokumente und digitalen Angebote auf Konformität mit WCAG 2.2 und der EN 301 549\"; \"Overlay-Tools nehmen nur oberflächliche, visuelle Anpassungen vor\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "mewigo",
+    "name": "MEWIGO",
+    "website": "mewigo.de",
+    "hq": {
+      "city": "Berlin",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "monitoring",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "bitv"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Berlin WordPress agency running detailed accessibility audits against WCAG 2.2 AA and EN 301 549, producing prioritized reports, implementing remediation, generating BFSG accessibility statements, and offering training including Leichte Sprache and sign-language content."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.mewigo.de/barrierefreiheit/",
+        "label": "\"Wir führen ausführliche Barrierefreiheit-Audits durch, um zu prüfen, ob Ihre Website barrierefrei ist oder wo es noch Anpassungen geben muss\"; WCAG 2.2 AA/EN 301 549, remediation, BFSG-Barrierefreiheitserklärung, training in Leichte Sprache and sign language; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ikonum",
+    "name": "IKONUM",
+    "website": "ikonum.com",
+    "hq": {
+      "city": "Dresden",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Dresden agency performing largely manual WCAG 2.2/BITV/EN 301 549 audits and risk assessment, remediation, coordination of external BIK BITV-Test certification, and accessibility statements, stating that \"Barrierefreiheit lässt sich nicht mit einem Plugin nachrüsten\"."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://ikonum.com/leistungen/barrierefreie-websites/",
+        "label": "\"ihre Website auf Barrierefreiheit zu prüfen, Risiken realistisch einzuschätzen, die richtigen Maßnahmen abzuleiten und die gesetzlichen Anforderungen umzusetzen\"; \"Den Großteil bewerten wir manuell\"; \"Barrierefreiheit lässt sich nicht mit einem Plugin nachrüsten\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "aha-handelsmarketing",
+    "name": "aha! Agentur für Handelsmarketing",
+    "website": "aha.biz",
+    "hq": {
+      "city": "Köln",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "monitoring",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "bitv"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Cologne trade-marketing agency offering BFSG-driven website accessibility checks analysed against WCAG 2.1/2.2, followed by remediation, implementation support and long-term monitoring."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://aha.biz/en/node/489",
+        "label": "\"Wir prüfen Ihre Website fundiert auf Barrierefreiheit: Analyse nach WCAG 2.1 und WCAG 2.2\"; BFSG audits, remediation/implementation support, long-term monitoring; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "augustin-digitale-barrierefreiheit",
+    "name": "Digitale Barrierefreiheit München (M. Augustin)",
+    "website": "digital-barrierefrei.de",
+    "hq": {
+      "city": "München",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Munich accessibility consultancy run by CPWA-certified tester Monika Augustin, a member of the BIK BITV-Test and BIT inklusiv testing networks, offering BITV/WCAG/EN 301 549 website, software and PDF testing, audits, and workshops from analysis through to implementation."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://digital-barrierefrei.de/bitv-wcag-test-beratung.php",
+        "label": "\"Ziel ist es, Ihnen ganzheitliche Lösungen anzubieten, die von der Analyse bis zur Umsetzung und Schulung reichen\"; BITV testing for websites/apps, PDF/UA and EN 301 549 document testing, workshops, CPWA-certified tester and BIK-Prüfverbund/BIT-inklusiv network member; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "bitstudios",
+    "name": "bitSTUDIOS",
+    "website": "bitstudios.at",
+    "hq": {
+      "city": "Graz",
+      "countryCode": "AT"
+    },
+    "offices": [
+      {
+        "city": "Wien",
+        "countryCode": "AT"
+      }
+    ],
+    "countriesServed": [
+      "AT"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Graz web agency with a Vienna office offering accessibility audits of existing sites, remediation such as colour-contrast and heading-structure fixes aligned with WCAG 2.1/2.2, and editor training, positioned around Austria's BaFG/EAA requirements in force since 28 June 2025."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.bitstudios.at/barrierefreie-websites/",
+        "label": "\"Am Anfang steht eine ehrliche Analyse. Wir prüfen Ihre bestehende Website auf typische Barrieren und technische Schwachstellen\"; remediation of contrasts/headings, editor training/Schulungen, WCAG 2.1/2.2 and Austrian BaFG/EAA referenced; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "bitsfabrik",
+    "name": "bitsfabrik",
+    "website": "bitsfabrik.com",
+    "hq": {
+      "city": "Wien",
+      "countryCode": "AT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AT"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Vienna agency combining manual WCAG 2.2 AA audits with automated scanning (WAVE, axe, Lighthouse), EN 301 549-aligned design and development, editorial training, and ongoing accessibility maintenance; conducted the WCAG 2.1 AA accessibility review for ORF's ORF ON streaming platform."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://bitsfabrik.com/barrierefreiheit-accessibility/",
+        "label": "\"Manuelle Audits nach WCAG 2.2 AA\"; \"Automatisierte Scans mit Tools wie WAVE, axe und Lighthouse\"; \"Redaktionsschulungen, damit Inhalte dauerhaft barrierefrei bleiben\"; \"Bitsfabrik wurde mit der Accessibility-Prüfung (WCAG 2.1 AA) für die neue ORF-Streamingplattform ORF ON beauftragt\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "seocon-teamcon",
+    "name": "seoCon (teamCon GmbH)",
+    "website": "seocon.at",
+    "hq": {
+      "city": "Linz",
+      "countryCode": "AT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AT"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Linz-headquartered digital agency offering accessibility checks and WCAG 2.1/EN 301 549-aligned implementation support, positioning services around the Austrian and EU requirements in force from 28 June 2025."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.seocon.at/barrierefreie-websites/",
+        "label": "\"Das Barrierefreiheitsstärkungsgesetz (BFSG) schreibt vor, dass Websites ab 28.06.2025 mindestens die Barrierefreiheitskriterien des Levels AA erfüllen müssen\"; \"Accessibility Checks, unterstützt Sie bei der Umsetzung und Integration\"; WCAG 2.1 and EN 301 549 referenced; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "limesoda",
+    "name": "LimeSoda Interactive Marketing",
+    "website": "limesoda.com",
+    "hq": {
+      "city": "Wien",
+      "countryCode": "AT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AT"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2",
+      "en-301-549",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Vienna agency with certified web-accessibility experts running full audits with prioritized recommendations, remediation across design/development/content, and training workshops, referencing WCAG 2.1 AA, BITV 2.0, EN 301 549 and the EAA/BaFG; holds WACA Silver certification for its own site."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.limesoda.com/leistungen/beratung-consulting/barrierefreies-webdesign",
+        "label": "\"Unsere zertifizierten Web-Accessibility-Expert:innen führen in der Folge ein vollständiges Audit mit priorisierten Handlungsempfehlungen durch\"; WCAG 2.1 AA, BITV 2.0, EN 301 549 and EAA/BaFG referenced, Schulungen & Workshops service listed; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "iqual",
+    "name": "iqual AG",
+    "website": "iqual.ch",
+    "hq": {
+      "city": "Bern",
+      "countryCode": "CH"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CH"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Bern web agency that explains and prioritizes WCAG requirements with clients, designs and builds accessible sites from the outset, trains client teams on accessible content, and supports certification through the Access for all foundation, referencing EN 301 549 and BehiG."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.iqual.ch/de/barrierefreie-website",
+        "label": "\"Barrierefreiheitsrichtlinien wie WCAG erklären wir dir verständlich und priorisieren gemeinsam die relevanten Anforderungen\"; \"Dein Team schulen wir im Umgang mit barrierefreiem Content\"; \"Standard für gesetzliche Vorgaben (z. B. EN 301 549, BehiG)\"; European Accessibility Act referenced; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "beyondweb",
+    "name": "Beyondweb",
+    "website": "beyondweb.ch",
+    "hq": {
+      "city": "Rotkreuz",
+      "countryCode": "CH"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CH"
+    ],
+    "languages": [
+      "de",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "monitoring",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "bitv",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Rotkreuz (Zug)-based WordPress agency serving Swiss SMEs, building sites to WCAG 2.1/2.2 AA, referencing Germany's Barrierefreiheitsstärkungsgesetz and the European Accessibility Act, and employing a dedicated web accessibility specialist."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.beyondweb.ch/en/barrierefreie-website-erstellen-lassen/",
+        "label": "\"Hier bieten wir eine Auswahl von Organisationen, die ihre Website mit uns bereits nach WCAG 2.2 AA Kriterien barrierefrei gestaltet haben\"; \"...den gesetzlichen Anforderungen wie dem Barrierefreiheitsstärkungsgesetz und dem European Accessibility Act entspricht\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "agenza",
+    "name": "Agenza GmbH",
+    "website": "agenza.ch",
+    "hq": {
+      "city": "Kriens",
+      "countryCode": "CH"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CH"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Kriens (Lucerne) agency designing and developing websites and online shops under official WCAG guidelines, offering a free accessibility analysis, remediation through custom development, an in-house accessibility label, and client training on maintaining accessibility after launch."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://agenza.ch/loesungen/barrierefreie-websites/",
+        "label": "\"Wir konzipieren, gestalten und entwickeln deine Website oder deinen Online-Shop unter Berücksichtigung der offiziellen WCAG-Richtlinien für die digitale Barrierefreiheit\"; \"Mit dem European Accessibility Act wird die digitale Barrierefreiheit ab 2025 in der EU Pflicht\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "adi-heutschi-webdesign",
+    "name": "Adi Heutschi Webdesign",
+    "website": "adiheutschi.ch",
+    "hq": {
+      "city": "Niederbipp",
+      "countryCode": "CH"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CH"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Solo Joomla web-design studio in Niederbipp (canton Bern) building WCAG-oriented accessible websites for Swiss SMEs, associations and organisations, including ongoing website maintenance and monitoring."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.adiheutschi.ch/webdesign/barrierefreie-webseiten-und-zugaenglichkeit",
+        "label": "\"Um Web-Accessibility zu gewährleisten, werden Websites und Anwendungen so entwickelt, dass sie für alle Menschen, unabhängig von ihren Fähigkeiten, zugänglich sind\"; WCAG-oriented development and maintenance/monitoring services; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  }
+]

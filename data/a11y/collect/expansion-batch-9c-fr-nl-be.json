@@ -1,0 +1,320 @@
+[
+  {
+    "slug": "laluciole",
+    "name": "La Luciole",
+    "website": "laluciole.dev",
+    "hq": { "city": "Nantes", "countryCode": "FR" },
+    "offices": [
+      { "city": "Grenoble", "countryCode": "FR" },
+      { "city": "Toulouse", "countryCode": "FR" }
+    ],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit"],
+    "standards": ["rgaa"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "La Luciole is a French web agency based in Nantes, Grenoble, and Toulouse that offers RGAA compliance audits assessing website accessibility against France's official accessibility framework." },
+    "sourceRefs": [
+      { "url": "https://laluciole.dev/", "label": "\"Nous évaluons la conformité de votre site internet avec le Référentiel général d'amélioration de l'accessibilité (RGAA).\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "eleven-labs",
+    "name": "Eleven Labs",
+    "website": "eleven-labs.com",
+    "hq": { "city": "Nantes", "countryCode": "FR" },
+    "offices": [],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit", "consulting"],
+    "standards": ["rgaa"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Eleven Labs is a French digital consultancy based in Nantes offering RGAA accessibility audits and compliance support to help organizations evaluate and improve their website's accessibility level." },
+    "sourceRefs": [
+      { "url": "https://eleven-labs.com/conseil-it/audit-rgaa/", "label": "\"Réaliser un audit RGAA permet d'évaluer précisément le niveau d'accessibilité d'un site web au regard du référentiel officiel.\" / \"Basée à Nantes mais intervenant sur tout le territoire national\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "adimeo",
+    "name": "Adimeo",
+    "website": "adimeo.com",
+    "hq": { "city": "Paris", "countryCode": "FR" },
+    "offices": [
+      { "city": "Metz", "countryCode": "FR" },
+      { "city": "Nantes", "countryCode": "FR" },
+      { "city": "Nice", "countryCode": "FR" },
+      { "city": "Montpellier", "countryCode": "FR" },
+      { "city": "Lille", "countryCode": "FR" }
+    ],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit"],
+    "standards": ["rgaa", "wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Adimeo is a French digital agency headquartered in Paris with offices across France, offering digital accessibility audits that measure website and application compliance against RGAA and WCAG criteria." },
+    "sourceRefs": [
+      { "url": "https://www.adimeo.com/audit-accessibilite-numerique", "label": "\"Un audit d'accessibilité numérique est une démarche d'évaluation qui permet de mesurer le niveau de conformité d'un service Web aux critères d'accessibilité\", referencing \"le référentiel international WCAG et, pour la France, le RGAA\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "indexel",
+    "name": "Indexel",
+    "website": "indexel.com",
+    "hq": { "city": "Paris", "countryCode": "FR" },
+    "offices": [],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit"],
+    "standards": ["rgaa", "wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Indexel is a Paris-based digital agency offering RGAA and WCAG accessibility audits that combine automated testing with manual expert review to identify accessibility barriers." },
+    "sourceRefs": [
+      { "url": "https://www.indexel.com/site-web/agence-accessibilite-numerique", "label": "\"Nous combinons tests automatiques et contrôles manuels pour détecter les obstacles d'accessibilité\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "nobilito",
+    "name": "Nobilito",
+    "website": "nobilito.fr",
+    "hq": { "city": "Nantes", "countryCode": "FR" },
+    "offices": [],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit", "remediation"],
+    "standards": ["rgaa"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Nobilito is a Nantes-based communication agency offering website accessibility audits, improvement recommendations, and support with accessibility statements for French organizations." },
+    "sourceRefs": [
+      { "url": "https://www.nobilito.fr/digital/accessibilite-web/", "label": "\"Les experts web de Nobilito vous accompagnent dans la mise en place d'un site web accessible numériquement via différentes prestations\" (audit, recommendations, and accessibility declaration support); live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "sismeo",
+    "name": "Sisméo",
+    "website": "sismeo.com",
+    "hq": { "city": "Paris", "countryCode": "FR" },
+    "offices": [],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit"],
+    "standards": ["rgaa"],
+    "industries": [],
+    "certs": [],
+    "priceBand": "budget",
+    "description": { "en": "Sisméo is a Paris-based agency offering a flat-rate RGAA accessibility audit covering all 106 RGAA 4.1.2 criteria along with the mandatory legal accessibility documents." },
+    "sourceRefs": [
+      { "url": "https://www.sismeo.com/accessibilite-rgaa.php", "label": "\"Sisméo audite votre site sur les 106 critères du RGAA 4.1.2 et produit tous les documents légaux obligatoires\", priced at \"1 490 € HT\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "warren-walter",
+    "name": "Warren Walter",
+    "website": "warren-walter.com",
+    "hq": { "city": "Paris", "countryCode": "FR" },
+    "offices": [],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit"],
+    "standards": ["rgaa", "wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Warren Walter is a Paris-based consultancy offering digital accessibility evaluations of websites and applications against the RGAA, WCAG, and RAAM frameworks." },
+    "sourceRefs": [
+      { "url": "https://www.warren-walter.com/expertise-accessibilite-numerique/", "label": "\"Évaluation du niveau d'accessibilité de vos sites et applications selon les référentiels RGAA, WCAG ou RAAM.\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "siway",
+    "name": "Siway",
+    "website": "siway.fr",
+    "hq": { "city": "Paris", "countryCode": "FR" },
+    "offices": [],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit", "remediation"],
+    "standards": ["rgaa"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Siway is a Paris-based web agency offering RGAA accessibility audits, accessibility statements, and remediation of website accessibility issues." },
+    "sourceRefs": [
+      { "url": "https://www.siway.fr/agence-web/diagnostic-accessibilite-numerique-site-internet-rgaa", "label": "\"SIWAY propose l'audit RGAA, la déclaration et la correction de l'accessibilité de votre site\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "concept-image",
+    "name": "Concept Image",
+    "website": "concept-image.fr",
+    "hq": { "city": "Rennes", "countryCode": "FR" },
+    "offices": [],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit"],
+    "standards": ["rgaa"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Concept Image is a Rennes-based agency offering digital accessibility audits that evaluate whether a website complies with France's RGAA standards." },
+    "sourceRefs": [
+      { "url": "https://www.concept-image.fr/expertises/audit-daccessibilite-numerique/", "label": "\"L'audit d'accessibilité numérique évalue si un site web respecte les normes françaises du RGAA\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "blue2blond",
+    "name": "Blue 2 Blond",
+    "website": "blue2blond.nl",
+    "hq": { "city": "Groningen", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Blue 2 Blond is a Groningen-based digital agency offering WCAG accessibility quickscans and comprehensive audits covering semantics, focus, and contrast for organizations seeking digital inclusivity." },
+    "sourceRefs": [
+      { "url": "https://www.blue2blond.nl/website-audit-scannen/wcag-website-audit-toegankelijkheid.html", "label": "\"In alle gevallen lenen we ons voor het doen van quickscans of uitgebreide audits\" tested against \"internationale WCAG 2.1 richtlijnen\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "digitaaltoegankelijke-websites",
+    "name": "Digitaal Toegankelijke Websites",
+    "website": "digitaaltoegankelijkewebsites.nl",
+    "hq": { "city": "Almere", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit", "remediation"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Digitaal Toegankelijke Websites, a service of Sedney Grafisch Buro based in Almere, builds and scans websites for WCAG accessibility compliance and provides clients a report with improvement points." },
+    "sourceRefs": [
+      { "url": "https://digitaaltoegankelijkewebsites.nl/", "label": "\"Laat ons je website scannen. We analyseren je website en geven je een rapport met alle verbeterpunten.\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "jvdmedia",
+    "name": "JVDmedia",
+    "website": "jvdmedia.nl",
+    "hq": { "city": "Assen", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "JVDmedia is an Assen-based agency offering a WCAG Quick Scan service that gives organizations a rapid analysis of their website's accessibility against WCAG 2.1 AA guidelines." },
+    "sourceRefs": [
+      { "url": "https://jvdmedia.nl/digitale-toegankelijkheid/", "label": "\"Onze WCAG Quick scan biedt een snelle analyse volgens de WCAG 2.1 AA richtlijnen.\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "redfactory",
+    "name": "Redfactory",
+    "website": "redfactory.nl",
+    "hq": { "city": "Den Haag", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit", "remediation"],
+    "standards": ["wcag-2-2", "eaa"],
+    "industries": [],
+    "certs": [],
+    "priceBand": "budget",
+    "description": { "en": "Redfactory is a Den Haag-based agency offering WCAG and EAA compliance services, including a full WCAG scan and structured remediation sprints to bring websites into compliance." },
+    "sourceRefs": [
+      { "url": "https://redfactory.nl/wcag-eaa-compliant/", "label": "\"Van scan tot volledig compliant in korte sprints\", with a \"Volledige WCAG scan\" priced at €499; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "dappr",
+    "name": "Dappr",
+    "website": "dappr.nl",
+    "hq": { "city": "Hoogeveen", "countryCode": "NL" },
+    "offices": [],
+    "countriesServed": ["NL"],
+    "languages": ["nl"],
+    "services": ["audit", "remediation", "monitoring"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Dappr is a Hoogeveen-based agency offering WCAG 2.2 website audits and analysis, remediation development, and ongoing accessibility monitoring support." },
+    "sourceRefs": [
+      { "url": "https://www.dappr.nl/voorbereid-op-wcag-2.2/", "label": "\"Bij dappr. bieden we een reeks diensten aan om je te helpen aan de WCAG 2.2-richtlijnen te voldoen: Website Audits en Analyse, Aanpassingen en Ontwikkeling, Doorlopende Ondersteuning en Monitoring\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "adevo-solutions",
+    "name": "ADEVO Solutions",
+    "website": "adevo.be",
+    "hq": { "city": "Charleroi", "countryCode": "BE" },
+    "offices": [],
+    "countriesServed": ["BE"],
+    "languages": ["fr"],
+    "services": ["audit"],
+    "standards": ["wcag-2-2", "eaa"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "ADEVO Solutions is a Charleroi-based agency offering website accessibility audits that assess compliance with WCAG 2.1 AA standards and the European Accessibility Act." },
+    "sourceRefs": [
+      { "url": "https://www.adevo.be/audit-accessibilite-web", "label": "Page titled \"Audit d'accessibilité web (WCAG / EAA)\": \"Audit détaillé de votre site : Analyse approfondie selon les critères WCAG 2.1 AA\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "retis-belgique",
+    "name": "Retis",
+    "website": "retis.be",
+    "hq": { "city": "Liège", "countryCode": "BE" },
+    "offices": [],
+    "countriesServed": ["BE"],
+    "languages": ["fr"],
+    "services": ["audit"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "priceBand": "budget",
+    "description": { "en": "Retis is a Liège-based consultancy offering digital accessibility audits against WCAG 2.1 AA standards, with flat-rate pricing for simple websites." },
+    "sourceRefs": [
+      { "url": "https://www.retis.be/publications/reglementations/accessibilite-web/", "label": "\"Retis propose des audits d'accessibilité numérique\"; \"94 % des sites e-commerce analysés ne respectent pas les normes d'accessibilité WCAG 2.1 AA\"; priced from \"480 € HTVA\" for simple sites; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "michel-dvorak",
+    "name": "Michel Dvorak",
+    "website": "micheldvorak.eu",
+    "hq": { "city": "Brussels", "countryCode": "BE" },
+    "offices": [],
+    "countriesServed": ["BE"],
+    "languages": ["fr"],
+    "services": ["audit", "training"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Michel Dvorak is a Brussels-based independent consultant offering WCAG 2.1 accessibility audits and web accessibility training." },
+    "sourceRefs": [
+      { "url": "https://micheldvorak.eu/audit-accessibilite-web-formation-wcag-rgaa/", "label": "\"Audit d'accessibilité (WCAG 2.1) et formation à l'accessibilité web\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  }
+]

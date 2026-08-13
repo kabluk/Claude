@@ -1,0 +1,274 @@
+[
+  {
+    "slug": "pubcom",
+    "name": "PubCom",
+    "website": "pubcom.com",
+    "hq": { "city": "Washington", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["remediation", "training", "consulting"],
+    "standards": ["section-508", "wcag-2-2"],
+    "industries": ["public-sector"],
+    "certs": [],
+    "description": { "en": "Washington DC-area firm offering remediation of Word, PowerPoint, InDesign and PDF files plus workflow assessments and live/online classes for Section 508 and WCAG-compliant document publishing, serving federal agencies since 2001." },
+    "sourceRefs": [
+      { "url": "https://www.pubcom.com/services/accessibility.shtml", "label": "site lists 'Remediation of Word, PowerPoint, Adobe InDesign and PDF files to meet accessibility requirements' and 'Testing, review, and certification of your public-facing documents for PDF/UA and WCAG compliance'; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "pope-tech",
+    "name": "Pope Tech",
+    "website": "pope.tech",
+    "hq": { "city": "Providence", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["monitoring", "consulting", "training"],
+    "standards": ["wcag-2-2", "section-508", "ada"],
+    "industries": ["public-sector", "education", "banking"],
+    "certs": [],
+    "description": { "en": "Utah-based WAVE-powered accessibility monitoring platform for websites that has expanded into consulting, manual-testing tracking and training support alongside its automated scanning dashboards, serving higher-ed, government and banking clients." },
+    "sourceRefs": [
+      { "url": "https://www.pope.tech/about", "label": "site states 'Services expand to include consulting and web accessibility' and 'Pope Tech gives you the tools, training and support needed'; HQ 'PO Box 460, Providence, UT 84332'; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "brisk-ada-compliance",
+    "name": "Brisk ADA Compliance",
+    "website": "accessibilitywebsites.us",
+    "hq": { "city": "The Woodlands", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation"],
+    "standards": ["wcag-2-2", "section-508", "ada"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Houston-area (The Woodlands, TX) firm offering manual ADA/WCAG accessibility audits combined with expert code-level remediation, explicitly positioning itself against overlay-widget quick fixes." },
+    "sourceRefs": [
+      { "url": "https://accessibilitywebsites.us/", "label": "site states 'Manual testing by certified experts' and 'Expert code modifications', HQ 'The Woodlands, TX 77381', warns against 'Using accessibility overlay tools'; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "a11y-pros",
+    "name": "A11Y Pros",
+    "website": "a11ypros.com",
+    "hq": { "city": "Denver", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "vpat"],
+    "standards": ["wcag-2-2", "section-508", "ada"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Denver, Colorado consultancy offering forensic manual WCAG testing with screen readers, hands-on website remediation, VPAT/ACR authoring and ADA litigation support, staffed with IAAP and DHS Trusted Tester-certified testers." },
+    "sourceRefs": [
+      { "url": "https://a11ypros.com/", "label": "site lists 'WCAG Compliance Auditing', 'Forensic manual testing with screen readers (JAWS, NVDA, VoiceOver)', 'VPAT & ACR Authoring'; HQ '1905 Sherman St, Ste 200 #2042, Denver, CO 80203'; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "inclusive-web",
+    "name": "Inclusive Web",
+    "website": "inclusiveweb.co",
+    "hq": { "city": "New York", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "training"],
+    "standards": ["wcag-2-2", "section-508", "ada"],
+    "industries": ["healthcare", "banking"],
+    "certs": [],
+    "description": { "en": "New York City accessibility consultancy offering hands-on WCAG audits, a step-by-step remediation plan with a fix guarantee, and accessibility training, with dedicated support for healthcare and financial-services clients." },
+    "sourceRefs": [
+      { "url": "https://www.inclusiveweb.co/", "label": "site offers 'Web Audits' described as 'comprehensive, hands-on evaluation by specialists—no automated shortcuts' and 'Step-by-Step Remediation Plan'; HQ '368 9th Ave 6th floor, New York, NY 10001'; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ecomback",
+    "name": "EcomBack",
+    "website": "ecomback.com",
+    "hq": { "city": "Los Angeles", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation"],
+    "standards": ["wcag-2-2", "ada"],
+    "industries": ["ecommerce"],
+    "certs": [],
+    "description": { "en": "Los Angeles firm specializing in manual, code-level ADA/WCAG accessibility audits and remediation for e-commerce sites on Shopify, WordPress, SquareSpace, Wix, WooCommerce, Magento and Webflow, explicitly warning against overlay widgets." },
+    "sourceRefs": [
+      { "url": "https://www.ecomback.com/", "label": "site states process is 'Done manually — end to end. Audit: find every barrier. Fix: correct the code. Certify: document compliance'; HQ Los Angeles, California; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "wandke-accessibility",
+    "name": "Wandke Accessibility",
+    "website": "wandke.com",
+    "hq": { "city": "Bellingham", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "training"],
+    "standards": ["wcag-2-2", "ada"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Disability-owned consultancy in Bellingham, Washington founded by Daman Wandke, offering digital accessibility audits, testing, remediation and disability-inclusion training for organizations ranging from nonprofits to Fortune 500 companies." },
+    "sourceRefs": [
+      { "url": "https://www.wandke.com/", "label": "site lists service areas 'Audits', 'Testing', 'Remediation', 'Training' referencing ADA and WCAG 2.1; company confirmed based in Bellingham, WA; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "spiderboost",
+    "name": "SpiderBoost",
+    "website": "spiderboost.com",
+    "hq": { "city": "Miami", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "consulting"],
+    "standards": ["wcag-2-2", "ada"],
+    "industries": ["ecommerce"],
+    "certs": [],
+    "description": { "en": "Miami-based digital agency with a dedicated ADA/WCAG compliance service line covering accessible web design, development and digital audits across WordPress, Magento and Shopify platforms." },
+    "sourceRefs": [
+      { "url": "https://spiderboost.com/ada-website-accessibility-wcag-compliance/", "label": "site details WCAG 2.1 A/AA/AAA compliance service, 4.5:1 contrast, focus order and a 'Digital Audit' offering; HQ '1000 Brickell Ave, #715 PMB, Miami, FL 33131'; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "3play-media",
+    "name": "3Play Media",
+    "website": "3playmedia.com",
+    "hq": { "city": "Boston", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["remediation", "consulting"],
+    "standards": ["wcag-2-2", "section-508", "ada"],
+    "industries": ["education"],
+    "certs": [],
+    "description": { "en": "Boston media-accessibility platform providing captioning, audio description, subtitling and dubbing to help organizations in media, education and government meet ADA, Section 504/508 and WCAG requirements for video content." },
+    "sourceRefs": [
+      { "url": "https://www.3playmedia.com/", "label": "site states HQ '255 State St. Floor 6 Boston, MA 02109' and offers captioning/audio description/subtitling/dubbing 'guaranteeing compliance with ADA, 504/508, CVAA, WCAG, EAA, and ACA'; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accessibility-partners",
+    "name": "Accessibility Partners",
+    "website": "accessibilitypartners.com",
+    "hq": { "city": "Rockville", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "vpat", "training"],
+    "standards": ["wcag-2-2", "section-508", "ada"],
+    "industries": ["public-sector"],
+    "certs": [],
+    "founded": 2003,
+    "description": { "en": "Maryland-based, woman-owned GSA-contract accessibility firm founded in 2003 offering Corporate Accessibility Audits, document remediation, VPAT creation and training for government agencies, educational institutions and nonprofits." },
+    "sourceRefs": [
+      { "url": "https://www.accessibilitypartners.com/accessibility-consulting/", "label": "site offers 'Corporate Accessibility Audits' measuring ADA/Section 508 compliance, 'Document Remediation', 'VPAT Creation', 'Training'; phone area code 301 (Maryland); live fetch 2026-08-13" },
+      { "url": "http://www.accessibilitypartners.com/about-us/", "label": "site states 'The foundations of Accessibility Partners were laid in 2003 before expanding to an official LLC partnership in 2009' and describes firm as woman-owned; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "508-documents",
+    "name": "508 Documents",
+    "website": "508docs.com",
+    "hq": { "city": "Mandeville", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["remediation"],
+    "standards": ["section-508", "wcag-2-2", "ada"],
+    "industries": ["public-sector"],
+    "certs": [],
+    "description": { "en": "Louisiana-based document-accessibility specialist offering PDF, Word, PowerPoint and Excel remediation to Section 508, WCAG, PDF/UA and ADA Title II standards, including high-volume document remediation for government and enterprise clients." },
+    "sourceRefs": [
+      { "url": "https://508docs.com/", "label": "site lists 'PDF Remediation', 'Microsoft Word Remediation', 'Microsoft PowerPoint Remediation', 'Microsoft Excel Remediation' against Section 508, WCAG, PDF/UA, ADA Title II; 985 area-code (Louisiana) phone; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "word-wizards",
+    "name": "Word Wizards",
+    "website": "wordwizardsinc.com",
+    "hq": { "city": "Silver Spring", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["remediation", "consulting", "training"],
+    "standards": ["section-508", "wcag-2-2", "ada"],
+    "industries": ["public-sector"],
+    "certs": [],
+    "description": { "en": "Silver Spring, Maryland document-accessibility firm remediating PDF, Word, Excel, PowerPoint, forms and video to Section 508, WCAG and ADA standards, positioning itself as a one-stop shop for accessible documents and ICT compliance consulting." },
+    "sourceRefs": [
+      { "url": "https://wordwizardsinc.com/", "label": "site lists 'Accessibility Compliance' service covering 'PDF, Word, Excel, PowerPoint, Forms, and Video' against 'Section 508, WCAG, ADA, and WC3 standards'; HQ '8609 2nd Avenue, Unit 406B, Silver Spring, MD 20910'; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "idiz",
+    "name": "iDiz",
+    "website": "cuidiz.com",
+    "hq": { "city": "Indianapolis", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "consulting", "remediation"],
+    "standards": ["wcag-2-2", "ada"],
+    "industries": ["banking"],
+    "certs": [],
+    "description": { "en": "Indianapolis firm specializing in credit-union and financial-services website accessibility, offering standalone WCAG 2.1 AA audits, consulting on third-party audit findings, and remediation of existing sites." },
+    "sourceRefs": [
+      { "url": "https://www.cuidiz.com/what-we-do/accessibility-services/", "label": "site offers 'Website Accessibility Audits and Consulting' using 'a combination of automated tools and in-person testing' against WCAG 2.1 AA; HQ Indianapolis, IN 46220; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "pure-accessibility",
+    "name": "Pure Accessibility",
+    "website": "pureaccessibility.com",
+    "hq": { "city": "Denver", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "vpat"],
+    "standards": ["wcag-2-2", "section-508", "ada"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Denver, Colorado consultancy providing WCAG 2.2 AA and ADA accessibility audits with developer-ready remediation guidance and VPAT authoring, reporting over 650 audits and 200+ VPATs completed in five years." },
+    "sourceRefs": [
+      { "url": "https://www.pureaccessibility.com/", "label": "site states HQ 'Denver, Colorado, USA' and offers 'Comprehensive WCAG 2.2 AA and ADA/EAA accessibility audits with developer-ready remediation guidance', citing '650 accessibility audits, 200+ VPATs'; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "devop-solutions",
+    "name": "DevOp Solutions",
+    "website": "devop.solutions",
+    "hq": { "city": "Phoenix", "countryCode": "US" },
+    "offices": [],
+    "countriesServed": ["US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "consulting"],
+    "standards": ["wcag-2-2", "section-508", "ada"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Phoenix, Arizona firm offering WCAG 2.2 AA compliance auditing using DHS Trusted Tester methodology, combining expert manual code review with assistive-technology testing and real-user validation for ADA and Section 508 compliance." },
+    "sourceRefs": [
+      { "url": "https://devop.solutions/wcag-compliance", "label": "site describes 'Expert manual testing using DHS Trusted Tester methodology to catch issues automated tools miss' against WCAG 2.2 AA, ADA Title III, Section 508, EN 301 549; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  }
+]

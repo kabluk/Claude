@@ -16,7 +16,7 @@
         "statementRequired": true,
         "verified": true,
         "citation": "Anlage 3 zu §14 BFSG",
-        "agencyCount": 65
+        "agencyCount": 73
       },
       {
         "country": "FR",
@@ -26,7 +26,7 @@
         "statementRequired": true,
         "verified": true,
         "citation": null,
-        "agencyCount": 45
+        "agencyCount": 54
       },
       {
         "country": "PL",
@@ -46,7 +46,7 @@
         "statementRequired": true,
         "verified": true,
         "citation": null,
-        "agencyCount": 32
+        "agencyCount": 37
       },
       {
         "country": "ES",
@@ -76,7 +76,7 @@
         "statementRequired": true,
         "verified": false,
         "citation": null,
-        "agencyCount": 18
+        "agencyCount": 22
       },
       {
         "country": "IE",
@@ -96,7 +96,7 @@
         "statementRequired": true,
         "verified": false,
         "citation": null,
-        "agencyCount": 10
+        "agencyCount": 13
       },
       {
         "country": "DK",
@@ -149,7 +149,7 @@
     ]
   },
   "deepestCoverage": {
-    "agencyCount": 65,
+    "agencyCount": 73,
     "jurisdictions": [
       "DE"
     ]

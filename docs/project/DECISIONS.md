@@ -3,6 +3,25 @@
 Формат: ID | дата | решение | причина | последствия. Новые решения добавлять сверху.
 Статусы: `accepted` (принято), `proposed` (ждёт подтверждения владельца).
 
+## D-162 · 2026-08-13 · accepted
+**Каталог 493 → 541 (батч 9, раунд 6 расширения D-142, НЕ задеплоен).** +48
+верифицированных агентств тремя Sonnet-субагентами (US-вертикали/512-документы +15;
+DACH глубже +16; FR/NL/BE глубже +17). В промпт добавлены уроки D-161 (founded=число,
+statement-named-auditor только гос-декларация) — субагенты их соблюли (0 build-ошибок
+по этим полям в этом раунде). **Родительский дроп:** `cbachleitner.de` (batch-9b) —
+раунд-3 (6b) уже дропнул этот домен как programmatic-SEO; здесь sourceRef снова вёл на
+город-SEO-страницу `/barrierefreies-webdesign-leipzig/` при HQ Unterföhring → дроп для
+консистентности (реальное агентство под низом есть, но evidence — город-лендинг).
+Родитель живьём сверил: bfsg360/danubius (анти-оверлей, ISO), accessibilitywebsites.us=
+Brisk ADA (анти-оверлей, IAAP), 508docs (woman-owned, PDF/UA), digitaaltoegankelijke-
+websites (Sedney, Almere), sismeo/redfactory (цены процитированы для priceBand). Субагенты
+сами отвергли ≥6 оверлеев/автотулзов (AllAccessible, Netalico, scrutia, rgaa-ia, Askem,
+agentur-uebereck) и programmatic-SEO (barrierefrei-digital.net). Дедуп: 48 уникальных, 0
+cross-batch, 0 коллизий. D-051 чист. Гейты зелёные: typecheck 0 · src 140/140 · scripts
+48/48 · worker 504/504 · build (sitemap 752) · audit-a11y 68/0 · check-links 833/0.
+**Сессия: 290 → 541 (+251, 6 раундов, 18 субагентов).** Владелец «добиваем все» — идём к
+600, затем один деплой. Осталось ~59.
+
 ## D-161 · 2026-08-13 · accepted
 **Каталог 457 → 493 (батч 8, раунд 5 расширения D-142, НЕ задеплоен).** +36
 верифицированных агентств тремя параллельными Sonnet-субагентами по НЕПОЧАТЫМ

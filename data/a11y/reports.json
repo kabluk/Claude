@@ -1,23 +1,23 @@
 {
   "source": "data/a11y/agencies.json",
-  "total": 493,
+  "total": 541,
   "hqCountries": {
     "count": 36,
     "distribution": [
       {
-        "code": "DE",
-        "name": "Germany",
-        "count": 62
-      },
-      {
         "code": "US",
         "name": "United States",
-        "count": 59
+        "count": 74
+      },
+      {
+        "code": "DE",
+        "name": "Germany",
+        "count": 70
       },
       {
         "code": "FR",
         "name": "France",
-        "count": 44
+        "count": 53
       },
       {
         "code": "GB",
@@ -32,7 +32,7 @@
       {
         "code": "NL",
         "name": "Netherlands",
-        "count": 32
+        "count": 37
       },
       {
         "code": "IT",
@@ -47,7 +47,7 @@
       {
         "code": "AT",
         "name": "Austria",
-        "count": 16
+        "count": 20
       },
       {
         "code": "CA",
@@ -65,24 +65,24 @@
         "count": 14
       },
       {
+        "code": "BE",
+        "name": "Belgium",
+        "count": 13
+      },
+      {
+        "code": "CH",
+        "name": "Switzerland",
+        "count": 12
+      },
+      {
         "code": "IN",
         "name": "India",
         "count": 12
       },
       {
-        "code": "BE",
-        "name": "Belgium",
-        "count": 10
-      },
-      {
         "code": "DK",
         "name": "Denmark",
         "count": 9
-      },
-      {
-        "code": "CH",
-        "name": "Switzerland",
-        "count": 8
       },
       {
         "code": "NZ",
@@ -191,44 +191,44 @@
     {
       "slug": "wcag-2-2",
       "label": "WCAG 2.2",
-      "count": 351
+      "count": 393
     },
     {
       "slug": "en-301-549",
       "label": "EN 301 549",
-      "count": 151
+      "count": 159
     },
     {
       "slug": "eaa",
       "label": "European Accessibility Act",
-      "count": 116
+      "count": 124
     },
     {
       "slug": "ada",
       "label": "ADA",
-      "count": 59
-    },
-    {
-      "slug": "bitv",
-      "label": "BITV 2.0",
-      "count": 52
+      "count": 73
     },
     {
       "slug": "section-508",
       "label": "Section 508",
-      "count": 52
+      "count": 63
+    },
+    {
+      "slug": "bitv",
+      "label": "BITV 2.0",
+      "count": 62
     },
     {
       "slug": "rgaa",
       "label": "RGAA",
-      "count": 47
+      "count": 56
     }
   ],
   "priceBands": {
-    "withBand": 30,
-    "withoutBand": 463,
+    "withBand": 33,
+    "withoutBand": 508,
     "distribution": {
-      "budget": 15,
+      "budget": 18,
       "mid": 15,
       "premium": 0,
       "enterprise": 0
@@ -251,15 +251,15 @@
     }
   },
   "founded": {
-    "withYear": 125,
-    "withoutYear": 368,
+    "withYear": 126,
+    "withoutYear": 415,
     "oldest": 1894,
     "newest": 2026,
     "median": 2003
   },
   "sources": {
-    "totalRefs": 1110,
-    "recordsWithMultiple": 267,
+    "totalRefs": 1159,
+    "recordsWithMultiple": 268,
     "minPerRecord": 1,
     "everyRecordHasAtLeastOne": true
   }
