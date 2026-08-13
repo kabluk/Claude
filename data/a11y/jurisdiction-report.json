@@ -16,7 +16,7 @@
         "statementRequired": true,
         "verified": true,
         "citation": "Anlage 3 zu §14 BFSG",
-        "agencyCount": 64
+        "agencyCount": 65
       },
       {
         "country": "FR",
@@ -36,7 +36,7 @@
         "statementRequired": true,
         "verified": false,
         "citation": null,
-        "agencyCount": 37
+        "agencyCount": 38
       },
       {
         "country": "NL",
@@ -76,7 +76,7 @@
         "statementRequired": true,
         "verified": false,
         "citation": null,
-        "agencyCount": 16
+        "agencyCount": 18
       },
       {
         "country": "IE",
@@ -89,6 +89,16 @@
         "agencyCount": 15
       },
       {
+        "country": "BE",
+        "name": "Belgium",
+        "law": "Loi du 5.11.2023 (2023046827)",
+        "lawFull": "Loi du 5 novembre 2023 modifiant plusieurs livres du Code de droit économique — transposition partielle directive (UE) 2019/882",
+        "statementRequired": true,
+        "verified": false,
+        "citation": null,
+        "agencyCount": 10
+      },
+      {
         "country": "DK",
         "name": "Denmark",
         "law": "LOV nr 801 af 07/06/2022",
@@ -97,16 +107,6 @@
         "verified": false,
         "citation": null,
         "agencyCount": 10
-      },
-      {
-        "country": "BE",
-        "name": "Belgium",
-        "law": "Loi du 5.11.2023 (2023046827)",
-        "lawFull": "Loi du 5 novembre 2023 modifiant plusieurs livres du Code de droit économique — transposition partielle directive (UE) 2019/882",
-        "statementRequired": true,
-        "verified": false,
-        "citation": null,
-        "agencyCount": 9
       },
       {
         "country": "SE",
@@ -149,7 +149,7 @@
     ]
   },
   "deepestCoverage": {
-    "agencyCount": 64,
+    "agencyCount": 65,
     "jurisdictions": [
       "DE"
     ]

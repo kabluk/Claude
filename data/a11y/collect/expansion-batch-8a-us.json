@@ -1,0 +1,563 @@
+[
+  {
+    "slug": "508-audit",
+    "name": "508 Audit",
+    "website": "508audit.com",
+    "hq": {
+      "city": "Wilmington",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "vpat",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "section-508",
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "description": {
+      "en": "508 Audit is a Wilmington, Delaware federal accessibility consultancy offering manual Section 508 and WCAG audits by DHS Trusted Tester-credentialed evaluators, plus VPAT/ACR authoring and ongoing remediation retainers for government contractors."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://508audit.com/",
+        "label": "Site states 'Manual audits by DHS Trusted Tester credentialed evaluators against Section 508, WCAG 2.1 / 2.2 AA, and EN 301 549' and 'Procurement-ready VPAT 2.5 and OpenACR conformance reports signed by a named evaluator of record'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "a-square-group",
+    "name": "A Square Group",
+    "website": "a2-g.com",
+    "hq": {
+      "city": "Frederick",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "section-508",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "A Square Group is a Frederick, Maryland firm offering Section 508 compliance services for federal clients, conducting evaluations of websites, applications, and digital documents and implementing fixes aligned with Section 508 and WCAG."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://a2-g.com/section-508-compliance-services-federal-accessibility-experts/",
+        "label": "Site states 'Conduct thorough evaluations of your websites, applications, and digital documents to identify and prioritize accessibility issues' and 'align with Section 508, WCAG 2.1'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "oyova",
+    "name": "Oyova",
+    "website": "oyova.com",
+    "hq": {
+      "city": "Jacksonville Beach",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "ada",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Oyova is a Jacksonville Beach, Florida digital agency providing ADA website compliance audits and remediation, combining automated checkers with manual testing techniques to find accessibility gaps."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.oyova.com/services/ada-compliance-audits-remediation/",
+        "label": "Site states 'Our process combines state-of-the-art ADA compliance checkers and manual testing techniques to identify areas where your site may not meet website accessibility guidelines'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "atiba",
+    "name": "Atiba",
+    "website": "atiba.com",
+    "hq": {
+      "city": "Nashville",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "ada",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Atiba is a Nashville, Tennessee technology firm offering ADA website compliance audits that combine automated scanning tools with manual reviews based on WCAG standards."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.atiba.com/does-your-website-need-an-ada-compliance-audit/",
+        "label": "Site describes combining 'powerful automated scanning tools with meticulous manual reviews based on the latest WCAG standards'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "wcag-pros",
+    "name": "WCAG Pros",
+    "website": "wcagpros.com",
+    "hq": {
+      "city": "Norco",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "WCAG Pros is a Norco, California consultancy performing in-depth WCAG audits across every page of a client site and, where a client has no developer available, making the remediation code changes directly."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://wcagpros.com/",
+        "label": "Site states 'Our in-depth audit tests all 54 points of the WCAG Levels A and AAA for every page of your website' and 'we can make the changes for you'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ada-for-web",
+    "name": "ADA for Web",
+    "website": "adaforweb.com",
+    "hq": {
+      "city": "Los Angeles",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "ada",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "ADA for Web is a Los Angeles, California accessibility consulting firm that evaluates digital accessibility compliance, delivers accessibility statements, and provides web accessibility remediation services."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://adaforweb.com/",
+        "label": "Site states 'We evaluate digital accessibility compliance, deliver accessibility statements, and provide web accessibility remediation services'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ada-compliance-pros",
+    "name": "ADA Compliance Pros",
+    "website": "adacompliancepros.com",
+    "hq": {
+      "city": "Pasadena",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "vpat",
+      "consulting"
+    ],
+    "standards": [
+      "section-508",
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "ADA Compliance Pros is a Pasadena, California consultancy offering Section 508 testing, VPAT consultation, and documentation, pairing automated checks with manual and assistive-technology evaluation using JAWS, NVDA, VoiceOver, and screen magnification."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.adacompliancepros.com/section-508",
+        "label": "Site states 'Testing pairs automated checks with manual and assistive-technology evaluation — keyboard navigation, screen readers (JAWS, NVDA, VoiceOver), and screen magnification'; address '556 S. Fair Oaks Avenue, Suite 271, Pasadena, CA 91105'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "promet-source",
+    "name": "Promet Source",
+    "website": "prometsource.com",
+    "hq": {
+      "city": "Chicago",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "ada",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Promet Source is a Chicago, Illinois digital agency whose IAAP and CPACC-certified accessibility team conducts comprehensive website audits and evaluations to help clients meet ADA and WCAG 2.2 requirements, issuing a Statement of Accessibility after audit and remediation."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.prometsource.com/services/accessibility-testing-services",
+        "label": "Site states 'With our team of IAAP and CPACC-certified accessibility experts, we conduct comprehensive audits and meticulous evaluations of your websites to help you follow ADA and WCAG 2.2 requirements'; address '4809 N. Ravenswood Ave., Suite 126, Chicago, IL 60640'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "np-group",
+    "name": "NPGroup",
+    "website": "npgroup.net",
+    "hq": {
+      "city": "Cedar Grove",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "ada",
+      "section-508",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "NPGroup is a Cedar Grove, New Jersey agency offering an end-to-end ADA/508/WCAG accessibility solution, auditing sites to identify issues and providing development support and remediation."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.npgroup.net/design/accessibility-ada-compliance/",
+        "label": "Site states 'Not only can we audit and identify accessibility issues, but we can provide development support and remediation'; address '882 Pompton Ave, Suite A-2, Cedar Grove, NJ 07009'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "insight-designs",
+    "name": "Insight Designs",
+    "website": "insightdesigns.com",
+    "hq": {
+      "city": "Boulder",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Insight Designs is a Boulder, Colorado agency performing WCAG-based accessibility reviews with manual keyboard navigation testing and screen reader review, explicitly rejecting overlay-only fixes as unable to remediate underlying code problems."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.insightdesigns.com/services/accessibility-audits-ada-compliance-reviews/",
+        "label": "Site states 'Overlay tools attempt to fix accessibility issues via JavaScript after the page loads, but they cannot reliably remediate underlying code problems' and offers 'Manual keyboard navigation testing and focus-state review'; address '1919 14th St #700, Boulder, CO 80302'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "modelic",
+    "name": "Modelic",
+    "website": "modelic.io",
+    "hq": {
+      "city": "Salt Lake City",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [
+      "ecommerce"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Modelic is a Salt Lake City, Utah ecommerce agency (Shopify, BigCommerce, WordPress) with a dedicated web accessibility service line combining code-auditing software with manual review by a specialist to identify and remediate WCAG failures."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.modelic.io/web-accessibility-wcag",
+        "label": "Site states 'Our auditing and review process combines industry leading code-auditing software and manual review by our specialist, to identify areas on your site that fail to be accessible'; footer 'Salt Lake City, UT, USA'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "taika-translations",
+    "name": "Taika Translations",
+    "website": "taikatranslations.com",
+    "hq": {
+      "city": "Austin",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "section-508",
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [
+      "education",
+      "public-sector",
+      "healthcare"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Taika Translations is an Austin, Texas language-services firm whose accessibility team works to Section 508, WCAG, ADA, and PDF/UA standards for school districts, government agencies, and healthcare organizations, offering assessments and document/web remediation."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.taikatranslations.com/accessibility-and-compliance-services",
+        "label": "Site states \"Taika's team works to Section 508, WCAG 2.0/2.1/2.2, ADA, and PDF/UA standards for school districts, agencies, and healthcare organizations\"; footer 'Austin, TX'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accessibility-consulting-partners",
+    "name": "Accessibility Consulting Partners",
+    "website": "acpaccessibility.com",
+    "hq": {
+      "city": "Colorado Springs",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Accessibility Consulting Partners is a Colorado Springs, Colorado firm offering website accessibility assessments and WCAG consultancy alongside its physical-facility ADA compliance work, performing detailed site audits against WCAG 2.1 standards."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://acpaccessibility.com/services/",
+        "label": "Site states \"We'll perform a detailed audit of your site, following WCAG 2.1 standards, to find and fix any accessibility barriers\"; address '1055 Big Valley Dr, Colorado Springs, CO 80919'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "appligent",
+    "name": "Appligent",
+    "website": "appligent.com",
+    "hq": {
+      "city": "Lansdowne",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "section-508",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Appligent is a Lansdowne, Pennsylvania document solutions company whose professionals remediate PDFs and other documents for Section 508, WCAG, PDF/UA, and AODA compliance so they work with assistive technology."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://appligent.com/appligent-accessibility-services",
+        "label": "Site states \"Appligent Document Solutions' professionals make your documents accessible to individuals who need to use Assistive Technology (AT)\" covering Section 508, WCAG 2.x, PDF/UA, AODA; address '22 East Baltimore Avenue, Lansdowne, PA 19050 U.S.A.'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "iterators",
+    "name": "Iterators",
+    "website": "iteratorstesting.com",
+    "hq": {
+      "city": "Boston",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "remediation",
+      "audit"
+    ],
+    "standards": [
+      "section-508",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Iterators is a Boston, Massachusetts SBA-certified Women-Owned Small Business providing PDF remediation delivered by Trusted Testers and accessibility-certified professionals, validating documents against Section 508, WCAG 2.2, PDF/UA 1.0, and HHS standards."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://iteratorstesting.com/services/pdf-remediation",
+        "label": "Site states 'Iterators provides expert PDF remediation services delivered by Trusted Testers and accessibility-certified professionals' with 'Validation against Section 508, WCAG 2.2, PDF/UA 1.0, and HHS standards'; 'Iterators is a Boston-based, SBA-certified Women-Owned Small Business (EDWOSB)'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  }
+]

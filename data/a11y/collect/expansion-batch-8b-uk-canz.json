@@ -1,0 +1,148 @@
+[
+  {
+    "slug": "civic-uk",
+    "name": "CIVIC",
+    "website": "civicuk.com",
+    "hq": { "city": "Edinburgh", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "CIVIC is an Edinburgh-based digital agency offering accessibility evaluations and testing services to help clients' online communications meet current accessibility regulations." },
+    "sourceRefs": [
+      { "url": "https://www.civicuk.com/", "label": "Homepage lists \"Accessibility evaluations and testing\" as a service: \"We use our deep understanding of the latest regulations to ensure online communications are accessible for all.\"; HQ at 12 South Charlotte Street, Edinburgh; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "direct-access-group",
+    "name": "Direct Access Group",
+    "website": "directaccessgp.com",
+    "hq": { "city": "Nantwich", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Direct Access Group is a UK accessibility consultancy, headquartered in Nantwich, Cheshire, offering website accessibility audits and WCAG compliance support alongside its built-environment access-audit work." },
+    "sourceRefs": [
+      { "url": "https://directaccessgp.com/uk/", "label": "Site describes itself as \"an award-winning, full-service accessibility consultancy specialising in access audits, regulatory compliance, and inclusive design strategy across built and digital environments,\" listing \"Website Accessibility Audits\" and WCAG compliance support; HQ address \"Pepper House, Market Street, Nantwich, Cheshire, CW5 5DQ\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "labscape",
+    "name": "Labscape",
+    "website": "labscape.co.uk",
+    "hq": { "city": "London", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Labscape is a London-based accessibility firm providing technical testing, design consultancy and training, drawing on over five years of WCAG, Section 508 and DDA experience from its Central London test centre." },
+    "sourceRefs": [
+      { "url": "https://www.labscape.co.uk/", "label": "Site states \"With more than 5 years experience of the WCAG, Section 508 and the DDA, few companies can match our credentials\" and offers \"Accessibility Testing, Training and Consultancy\" from \"a fully-equipped Test Centre in Central London\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "agile-collective",
+    "name": "Agile Collective",
+    "website": "agile.coop",
+    "hq": { "city": "Oxford", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "founded": 2011,
+    "description": { "en": "Agile Collective is an Oxford-based worker co-operative offering accessibility audits, training and consultancy, using manual, real-user and automated testing to assess sites against WCAG 2.1 AA." },
+    "sourceRefs": [
+      { "url": "https://agile.coop/our-services/accessibility-audits-training-consultancy/", "label": "Page titled \"Accessibility Audits, Training and Consultancy\" states they run \"a systematic, reliable, and in-depth assessment...against the Web Content Accessibility Guidelines (WCAG 2.1) 'AA' level\"; address \"21b Park End Street, Oxford OX1 1HU\"; footer copyright \"©2011-2026 Agile Collective Limited\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "net-progress",
+    "name": "Net Progress",
+    "website": "net-progress.co.uk",
+    "hq": { "city": "Carshalton", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Net Progress is a UK digital accessibility and inclusion consultancy providing manual WCAG accessibility audits, assistive-technology testing and user testing for websites, apps and native applications." },
+    "sourceRefs": [
+      { "url": "https://net-progress.co.uk/services/services.html", "label": "Site states \"Manual auditing is the only way to accurately and fully assess WCAG technical compliance,\" covering wireframes, designs, prototypes, coded pages and native applications; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "parachute-design",
+    "name": "Parachute Design",
+    "website": "parachutedesign.ca",
+    "hq": { "city": "Toronto", "countryCode": "CA" },
+    "offices": [],
+    "countriesServed": ["CA"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "training", "monitoring"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Parachute Design is a Toronto-based web design and accessibility firm offering WCAG 2.2 AA compliance audits, remediation, accessible new builds, ongoing monitoring and AODA accessibility-statement support." },
+    "sourceRefs": [
+      { "url": "https://parachutedesign.ca/accessibility-compliance/", "label": "Site states \"We audit your existing website against WCAG 2.2 AA criteria. You get a full report: every issue, the WCAG criterion it fails, severity level, and the fix required\"; address \"29 Dominion Road, Toronto, Ontario M8W 1J5, Canada\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "giov",
+    "name": "GIOV",
+    "website": "giov.io",
+    "hq": { "city": "Montreal", "countryCode": "CA" },
+    "offices": [],
+    "countriesServed": ["CA"],
+    "languages": ["fr"],
+    "services": ["audit", "consulting", "training"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "founded": 2010,
+    "description": { "en": "GIOV is a Montreal digital accessibility consultancy run by Eric Giovannetti, offering accessibility audits, advisory consulting and training aligned with WCAG and Quebec's SGQRI 008 standard." },
+    "sourceRefs": [
+      { "url": "https://giov.io/audit", "label": "Page titled \"Audit d'accessibilite numerique\" lists three service lines \"Audit,\" \"Conseil\" and \"Formation,\" with bio \"Eric Giovannetti, Consultant en accessibilite numerique\"; footer \"(c) GIOV 2010 - 2026\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "canaxess",
+    "name": "Canaxess",
+    "website": "canaxess.com.au",
+    "hq": { "city": "Canberra", "countryCode": "AU" },
+    "offices": [],
+    "countriesServed": ["AU"],
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Canaxess is a Canberra-based digital accessibility consultancy led by director Ross Mullen, offering accessibility assessments against accessibility guidelines plus coaching and training programs." },
+    "sourceRefs": [
+      { "url": "https://www.canaxess.com.au/", "label": "Homepage states \"We specialise in accessibility at every stage of your journey, helping you build better digital products with our accessibility expertise,\" listing website/app accessibility assessments and Accessibility Coaching and Training; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  }
+]

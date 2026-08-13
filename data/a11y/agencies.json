@@ -20769,5 +20769,1362 @@
       }
     ],
     "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "508-audit",
+    "name": "508 Audit",
+    "website": "508audit.com",
+    "hq": {
+      "city": "Wilmington",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "vpat",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "section-508",
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "description": {
+      "en": "508 Audit is a Wilmington, Delaware federal accessibility consultancy offering manual Section 508 and WCAG audits by DHS Trusted Tester-credentialed evaluators, plus VPAT/ACR authoring and ongoing remediation retainers for government contractors."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://508audit.com/",
+        "label": "Site states 'Manual audits by DHS Trusted Tester credentialed evaluators against Section 508, WCAG 2.1 / 2.2 AA, and EN 301 549' and 'Procurement-ready VPAT 2.5 and OpenACR conformance reports signed by a named evaluator of record'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13",
+    "certs": []
+  },
+  {
+    "slug": "a-square-group",
+    "name": "A Square Group",
+    "website": "a2-g.com",
+    "hq": {
+      "city": "Frederick",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "section-508",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "A Square Group is a Frederick, Maryland firm offering Section 508 compliance services for federal clients, conducting evaluations of websites, applications, and digital documents and implementing fixes aligned with Section 508 and WCAG."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://a2-g.com/section-508-compliance-services-federal-accessibility-experts/",
+        "label": "Site states 'Conduct thorough evaluations of your websites, applications, and digital documents to identify and prioritize accessibility issues' and 'align with Section 508, WCAG 2.1'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "oyova",
+    "name": "Oyova",
+    "website": "oyova.com",
+    "hq": {
+      "city": "Jacksonville Beach",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "ada",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Oyova is a Jacksonville Beach, Florida digital agency providing ADA website compliance audits and remediation, combining automated checkers with manual testing techniques to find accessibility gaps."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.oyova.com/services/ada-compliance-audits-remediation/",
+        "label": "Site states 'Our process combines state-of-the-art ADA compliance checkers and manual testing techniques to identify areas where your site may not meet website accessibility guidelines'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "atiba",
+    "name": "Atiba",
+    "website": "atiba.com",
+    "hq": {
+      "city": "Nashville",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "ada",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Atiba is a Nashville, Tennessee technology firm offering ADA website compliance audits that combine automated scanning tools with manual reviews based on WCAG standards."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.atiba.com/does-your-website-need-an-ada-compliance-audit/",
+        "label": "Site describes combining 'powerful automated scanning tools with meticulous manual reviews based on the latest WCAG standards'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "wcag-pros",
+    "name": "WCAG Pros",
+    "website": "wcagpros.com",
+    "hq": {
+      "city": "Norco",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "WCAG Pros is a Norco, California consultancy performing in-depth WCAG audits across every page of a client site and, where a client has no developer available, making the remediation code changes directly."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://wcagpros.com/",
+        "label": "Site states 'Our in-depth audit tests all 54 points of the WCAG Levels A and AAA for every page of your website' and 'we can make the changes for you'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ada-for-web",
+    "name": "ADA for Web",
+    "website": "adaforweb.com",
+    "hq": {
+      "city": "Los Angeles",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "ada",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "ADA for Web is a Los Angeles, California accessibility consulting firm that evaluates digital accessibility compliance, delivers accessibility statements, and provides web accessibility remediation services."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://adaforweb.com/",
+        "label": "Site states 'We evaluate digital accessibility compliance, deliver accessibility statements, and provide web accessibility remediation services'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ada-compliance-pros",
+    "name": "ADA Compliance Pros",
+    "website": "adacompliancepros.com",
+    "hq": {
+      "city": "Pasadena",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "vpat",
+      "consulting"
+    ],
+    "standards": [
+      "section-508",
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "ADA Compliance Pros is a Pasadena, California consultancy offering Section 508 testing, VPAT consultation, and documentation, pairing automated checks with manual and assistive-technology evaluation using JAWS, NVDA, VoiceOver, and screen magnification."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.adacompliancepros.com/section-508",
+        "label": "Site states 'Testing pairs automated checks with manual and assistive-technology evaluation — keyboard navigation, screen readers (JAWS, NVDA, VoiceOver), and screen magnification'; address '556 S. Fair Oaks Avenue, Suite 271, Pasadena, CA 91105'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "promet-source",
+    "name": "Promet Source",
+    "website": "prometsource.com",
+    "hq": {
+      "city": "Chicago",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "ada",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Promet Source is a Chicago, Illinois digital agency whose IAAP and CPACC-certified accessibility team conducts comprehensive website audits and evaluations to help clients meet ADA and WCAG 2.2 requirements, issuing a Statement of Accessibility after audit and remediation."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.prometsource.com/services/accessibility-testing-services",
+        "label": "Site states 'With our team of IAAP and CPACC-certified accessibility experts, we conduct comprehensive audits and meticulous evaluations of your websites to help you follow ADA and WCAG 2.2 requirements'; address '4809 N. Ravenswood Ave., Suite 126, Chicago, IL 60640'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "np-group",
+    "name": "NPGroup",
+    "website": "npgroup.net",
+    "hq": {
+      "city": "Cedar Grove",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "ada",
+      "section-508",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "NPGroup is a Cedar Grove, New Jersey agency offering an end-to-end ADA/508/WCAG accessibility solution, auditing sites to identify issues and providing development support and remediation."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.npgroup.net/design/accessibility-ada-compliance/",
+        "label": "Site states 'Not only can we audit and identify accessibility issues, but we can provide development support and remediation'; address '882 Pompton Ave, Suite A-2, Cedar Grove, NJ 07009'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "insight-designs",
+    "name": "Insight Designs",
+    "website": "insightdesigns.com",
+    "hq": {
+      "city": "Boulder",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Insight Designs is a Boulder, Colorado agency performing WCAG-based accessibility reviews with manual keyboard navigation testing and screen reader review, explicitly rejecting overlay-only fixes as unable to remediate underlying code problems."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.insightdesigns.com/services/accessibility-audits-ada-compliance-reviews/",
+        "label": "Site states 'Overlay tools attempt to fix accessibility issues via JavaScript after the page loads, but they cannot reliably remediate underlying code problems' and offers 'Manual keyboard navigation testing and focus-state review'; address '1919 14th St #700, Boulder, CO 80302'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "modelic",
+    "name": "Modelic",
+    "website": "modelic.io",
+    "hq": {
+      "city": "Salt Lake City",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [
+      "ecommerce"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Modelic is a Salt Lake City, Utah ecommerce agency (Shopify, BigCommerce, WordPress) with a dedicated web accessibility service line combining code-auditing software with manual review by a specialist to identify and remediate WCAG failures."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.modelic.io/web-accessibility-wcag",
+        "label": "Site states 'Our auditing and review process combines industry leading code-auditing software and manual review by our specialist, to identify areas on your site that fail to be accessible'; footer 'Salt Lake City, UT, USA'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "taika-translations",
+    "name": "Taika Translations",
+    "website": "taikatranslations.com",
+    "hq": {
+      "city": "Austin",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "section-508",
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [
+      "education",
+      "public-sector",
+      "healthcare"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Taika Translations is an Austin, Texas language-services firm whose accessibility team works to Section 508, WCAG, ADA, and PDF/UA standards for school districts, government agencies, and healthcare organizations, offering assessments and document/web remediation."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.taikatranslations.com/accessibility-and-compliance-services",
+        "label": "Site states \"Taika's team works to Section 508, WCAG 2.0/2.1/2.2, ADA, and PDF/UA standards for school districts, agencies, and healthcare organizations\"; footer 'Austin, TX'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accessibility-consulting-partners",
+    "name": "Accessibility Consulting Partners",
+    "website": "acpaccessibility.com",
+    "hq": {
+      "city": "Colorado Springs",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Accessibility Consulting Partners is a Colorado Springs, Colorado firm offering website accessibility assessments and WCAG consultancy alongside its physical-facility ADA compliance work, performing detailed site audits against WCAG 2.1 standards."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://acpaccessibility.com/services/",
+        "label": "Site states \"We'll perform a detailed audit of your site, following WCAG 2.1 standards, to find and fix any accessibility barriers\"; address '1055 Big Valley Dr, Colorado Springs, CO 80919'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "appligent",
+    "name": "Appligent",
+    "website": "appligent.com",
+    "hq": {
+      "city": "Lansdowne",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "section-508",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Appligent is a Lansdowne, Pennsylvania document solutions company whose professionals remediate PDFs and other documents for Section 508, WCAG, PDF/UA, and AODA compliance so they work with assistive technology."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://appligent.com/appligent-accessibility-services",
+        "label": "Site states \"Appligent Document Solutions' professionals make your documents accessible to individuals who need to use Assistive Technology (AT)\" covering Section 508, WCAG 2.x, PDF/UA, AODA; address '22 East Baltimore Avenue, Lansdowne, PA 19050 U.S.A.'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "iterators",
+    "name": "Iterators",
+    "website": "iteratorstesting.com",
+    "hq": {
+      "city": "Boston",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "remediation",
+      "audit"
+    ],
+    "standards": [
+      "section-508",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Iterators is a Boston, Massachusetts SBA-certified Women-Owned Small Business providing PDF remediation delivered by Trusted Testers and accessibility-certified professionals, validating documents against Section 508, WCAG 2.2, PDF/UA 1.0, and HHS standards."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://iteratorstesting.com/services/pdf-remediation",
+        "label": "Site states 'Iterators provides expert PDF remediation services delivered by Trusted Testers and accessibility-certified professionals' with 'Validation against Section 508, WCAG 2.2, PDF/UA 1.0, and HHS standards'; 'Iterators is a Boston-based, SBA-certified Women-Owned Small Business (EDWOSB)'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "civic-uk",
+    "name": "CIVIC",
+    "website": "civicuk.com",
+    "hq": {
+      "city": "Edinburgh",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "CIVIC is an Edinburgh-based digital agency offering accessibility evaluations and testing services to help clients' online communications meet current accessibility regulations."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.civicuk.com/",
+        "label": "Homepage lists \"Accessibility evaluations and testing\" as a service: \"We use our deep understanding of the latest regulations to ensure online communications are accessible for all.\"; HQ at 12 South Charlotte Street, Edinburgh; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "direct-access-group",
+    "name": "Direct Access Group",
+    "website": "directaccessgp.com",
+    "hq": {
+      "city": "Nantwich",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Direct Access Group is a UK accessibility consultancy, headquartered in Nantwich, Cheshire, offering website accessibility audits and WCAG compliance support alongside its built-environment access-audit work."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://directaccessgp.com/uk/",
+        "label": "Site describes itself as \"an award-winning, full-service accessibility consultancy specialising in access audits, regulatory compliance, and inclusive design strategy across built and digital environments,\" listing \"Website Accessibility Audits\" and WCAG compliance support; HQ address \"Pepper House, Market Street, Nantwich, Cheshire, CW5 5DQ\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "labscape",
+    "name": "Labscape",
+    "website": "labscape.co.uk",
+    "hq": {
+      "city": "London",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Labscape is a London-based accessibility firm providing technical testing, design consultancy and training, drawing on over five years of WCAG, Section 508 and DDA experience from its Central London test centre."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.labscape.co.uk/",
+        "label": "Site states \"With more than 5 years experience of the WCAG, Section 508 and the DDA, few companies can match our credentials\" and offers \"Accessibility Testing, Training and Consultancy\" from \"a fully-equipped Test Centre in Central London\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "agile-collective",
+    "name": "Agile Collective",
+    "website": "agile.coop",
+    "hq": {
+      "city": "Oxford",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "founded": 2011,
+    "description": {
+      "en": "Agile Collective is an Oxford-based worker co-operative offering accessibility audits, training and consultancy, using manual, real-user and automated testing to assess sites against WCAG 2.1 AA."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://agile.coop/our-services/accessibility-audits-training-consultancy/",
+        "label": "Page titled \"Accessibility Audits, Training and Consultancy\" states they run \"a systematic, reliable, and in-depth assessment...against the Web Content Accessibility Guidelines (WCAG 2.1) 'AA' level\"; address \"21b Park End Street, Oxford OX1 1HU\"; footer copyright \"©2011-2026 Agile Collective Limited\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "net-progress",
+    "name": "Net Progress",
+    "website": "net-progress.co.uk",
+    "hq": {
+      "city": "Carshalton",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Net Progress is a UK digital accessibility and inclusion consultancy providing manual WCAG accessibility audits, assistive-technology testing and user testing for websites, apps and native applications."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://net-progress.co.uk/services/services.html",
+        "label": "Site states \"Manual auditing is the only way to accurately and fully assess WCAG technical compliance,\" covering wireframes, designs, prototypes, coded pages and native applications; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "parachute-design",
+    "name": "Parachute Design",
+    "website": "parachutedesign.ca",
+    "hq": {
+      "city": "Toronto",
+      "countryCode": "CA"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CA"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Parachute Design is a Toronto-based web design and accessibility firm offering WCAG 2.2 AA compliance audits, remediation, accessible new builds, ongoing monitoring and AODA accessibility-statement support."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://parachutedesign.ca/accessibility-compliance/",
+        "label": "Site states \"We audit your existing website against WCAG 2.2 AA criteria. You get a full report: every issue, the WCAG criterion it fails, severity level, and the fix required\"; address \"29 Dominion Road, Toronto, Ontario M8W 1J5, Canada\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "giov",
+    "name": "GIOV",
+    "website": "giov.io",
+    "hq": {
+      "city": "Montreal",
+      "countryCode": "CA"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CA"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "founded": 2010,
+    "description": {
+      "en": "GIOV is a Montreal digital accessibility consultancy run by Eric Giovannetti, offering accessibility audits, advisory consulting and training aligned with WCAG and Quebec's SGQRI 008 standard."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://giov.io/audit",
+        "label": "Page titled \"Audit d'accessibilite numerique\" lists three service lines \"Audit,\" \"Conseil\" and \"Formation,\" with bio \"Eric Giovannetti, Consultant en accessibilite numerique\"; footer \"(c) GIOV 2010 - 2026\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "canaxess",
+    "name": "Canaxess",
+    "website": "canaxess.com.au",
+    "hq": {
+      "city": "Canberra",
+      "countryCode": "AU"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AU"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Canaxess is a Canberra-based digital accessibility consultancy led by director Ross Mullen, offering accessibility assessments against accessibility guidelines plus coaching and training programs."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.canaxess.com.au/",
+        "label": "Homepage states \"We specialise in accessibility at every stage of your journey, helping you build better digital products with our accessibility expertise,\" listing website/app accessibility assessments and Accessibility Coaching and Training; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "monday-consulting",
+    "name": "Monday Consulting",
+    "website": "monday-consulting.com",
+    "hq": {
+      "city": "Hamburg",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "iaap-org-member"
+      }
+    ],
+    "description": {
+      "en": "Hamburg-based digital consultancy offering accessibility audits reviewing applications for WCAG compliance and accessible forms/experiences, and identifying as an IAAP organizational member."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.monday-consulting.com/leistungen/zugaenglichkeit/",
+        "label": "Quotes 'Über Accessibility-Audits prüfen wir Ihre Anwendungen auf WCAG-Konformität' and 'Als Mitglied der IAAP (International Association of Accessibility Professionals) machen wir Ihre digitalen Lösungen für alle nutzbar'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "io-digital",
+    "name": "iO",
+    "website": "iodigital.com",
+    "hq": {
+      "city": "Herentals",
+      "countryCode": "BE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "BE"
+    ],
+    "languages": [
+      "en",
+      "nl",
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Belgian digital agency (iO) running a dedicated digital-accessibility practice offering Quick/Typical/Full WCAG audits and remediation roadmaps, led by staff holding IAAP WAS and CPWA certifications."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.iodigital.com/en/what-we-do/solutions/technology/digital-accessibility",
+        "label": "Quotes audit tiers ('Quick Audit... Typical Audit... Full audit') and 'guide your digital product to fully comply with WCAG 2.1 AA'; staff hold 'WAS... and CPWA... the highest recognitions awarded by the IAAP'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "fonda",
+    "name": "FONDA",
+    "website": "fonda.at",
+    "hq": {
+      "city": "Vienna",
+      "countryCode": "AT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AT"
+    ],
+    "languages": [
+      "de",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Vienna digital agency offering manual and tool-supported accessibility testing against WCAG 2.1/2.2 AA, WACA, EN 301 549 and BFSG, plus accessible design, development, content and training services."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.fonda.at/leistungen/barrierefreiheit/",
+        "label": "Quotes 'Manuelle und toolgestützte Prüfung nach WCAG 2.1/2.2 AA, WACA, EN301549, BFSG' and lists 'Schulungen & Workshops'; address Neubaugasse 57/36, 1070 Wien; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "uxsense",
+    "name": "UX sense",
+    "website": "uxsense.eu",
+    "hq": {
+      "city": "Vienna",
+      "countryCode": "AT"
+    },
+    "offices": [
+      {
+        "city": "Bratislava",
+        "countryCode": "SK"
+      }
+    ],
+    "countriesServed": [
+      "AT",
+      "SK"
+    ],
+    "languages": [
+      "de",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "priceBand": "budget",
+    "description": {
+      "en": "Vienna/Bratislava agency selling tiered accessibility check packages (Quick-Check, Pro-Check, Custom-Check) testing against WCAG 2.1/2.2 AA, BFSG, the EAA and EN 301 549, with remediation support and staff training."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.uxsense.eu/barrierefreiheits-check-accessibility-audit-kosten-wcag-prufung-bfsg-eaa-konform-barrierefreie-website-onepager-homepage-preise-wien-bratislava/",
+        "label": "Quotes testing against 'WCAG 2.1/2.2 (Level AA) sowie den Vorgaben des BFSG, der EU-Richtlinie EAA und der technischen Norm EN 301 549'; lists 'Quick-Check: €890' and 'Pro-Check: €2.290'; offices at Salmgasse 16/4, 1030 Wien and Černyševského 10, Bratislava; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "sii-poland",
+    "name": "Sii Poland",
+    "website": "sii.pl",
+    "hq": {
+      "city": "Warsaw",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Warsaw-headquartered IT and engineering services company running a digital-accessibility practice offering accessibility workshops, audits and prioritized remediation roadmaps aligned to WCAG 2.2 and the EAA."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://sii.pl/en/what-we-offer/digital-accessibility/",
+        "label": "Quotes 'accessibility workshops, audits, and prioritized roadmaps that stay in line with WCAG 2.2 and EAA regulations'; entity 'Sii sp. z o.o.'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ael-data",
+    "name": "AEL Data",
+    "website": "aeldata.com",
+    "hq": {
+      "city": "Chennai",
+      "countryCode": "IN"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IN"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "founded": 2000,
+    "description": {
+      "en": "Chennai-based accessibility and publishing services firm, founded in 2000, offering website accessibility audits, remediation and consulting to help clients meet WCAG requirements, alongside document and educational-material accessibility."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://aeldata.com/web-accessibility/",
+        "label": "Quotes 'Website Audits', 'Fix your website's accessibility by working closely with our accessibility specialist' and 'Our web accessibility consultants will guide you through the process'; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://aeldata.com/about-us/",
+        "label": "Quotes 'Mr. Ratnakumar Bikkani founded AEL Data Services in 2000'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "sugamya-digital-solutions",
+    "name": "Sugamya Digital Solutions",
+    "website": "sugamyadigital.com",
+    "hq": {
+      "city": "Pune",
+      "countryCode": "IN"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IN"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada",
+      "section-508"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Pune-based access-consulting firm providing web, mobile, desktop and document accessibility services spanning audits, remediation support, accessibility training and compliance certification against WCAG, ADA and Section 508."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.sugamyadigital.com/",
+        "label": "Quotes 'Our services encompass web and mobile accessibility, desktop and digital document accessibility, media and workplace accessibility, accessibility training' and expertise in 'WCAG, ADA, GIGW, ARIA'; address Pune Nashik Highway, Pimple Gurav, Pune - 411061; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "equitech-labs",
+    "name": "EquiTech Labs",
+    "website": "equitechlabs.com",
+    "hq": {
+      "city": "Hyderabad",
+      "countryCode": "IN"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IN"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Hyderabad-based digital accessibility firm specializing in thorough accessibility audits of web pages, mobile apps and PDF documents."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://equitechlabs.com/",
+        "label": "Quotes 'Our services encompass the thorough accessibility audit of web pages, mobile apps, and PDF documents'; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://equitechlabs.com/index.php/contact/",
+        "label": "Quotes 'Connect with EquiTech Labs (ETL) in Hyderabad, India!'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "pivotal-accessibility",
+    "name": "Pivotal Accessibility",
+    "website": "pivotalaccessibility.com",
+    "hq": {
+      "city": "New Delhi",
+      "countryCode": "IN"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IN"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting",
+      "vpat",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "founded": 2021,
+    "description": {
+      "en": "Delhi-based accessibility firm established in 2021, offering testing, remediation and compliance validation, VPAT creation and accessibility training for websites, apps, software and documents; empanelled as a web accessibility service provider by India's DEPwD."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.pivotalaccessibility.com/what-we-do/",
+        "label": "Quotes services covering 'accessibility audits, remediation support, design and development guidance, compliance validation, VPAT creation, and accessibility testing'; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://www.pivotalaccessibility.com/about-us/",
+        "label": "States 'Pivotal Accessibility was established in 2021... located in Delhi'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "saralx",
+    "name": "SaralX",
+    "website": "saralx.com",
+    "hq": {
+      "city": "Bengaluru",
+      "countryCode": "IN"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IN"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting",
+      "vpat"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "en-301-549",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Bengaluru-based digital accessibility services company offering audits against WCAG, Section 508 and EN 301 549, remediation with re-audits, role-specific training workshops, and VPAT/ACR certification; empanelled with India's DEPwD."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://saralx.com/solutions/",
+        "label": "Quotes 'Deep checks of your digital products... against WCAG 2.1, Section 508, GIGW 3.0' and 'Ensure conformance with WCAG 2.2, Section 508, EN 301 549, EAA'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ananyoo",
+    "name": "Ananyoo",
+    "website": "ananyoo.com",
+    "hq": {
+      "city": "Kolkata",
+      "countryCode": "IN"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IN"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada",
+      "section-508",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Kolkata-based web accessibility consultancy offering WCAG 2.2 AA audits, hands-on remediation, screen-reader-tested builds and VPAT report generation, guiding clients through ADA, Section 508 and EN 301 549 requirements."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://ananyoo.com/website-accessibility-consultant/",
+        "label": "Quotes 'Full WCAG 2.2 AA audits of your digital properties, then hands-on fixes until they truly pass' and 'Clear guidance through ADA, Section 508, EN 301 549 and WCAG'; address 'M/S. Anblik, Santoshpur, Kolkata 700075, India'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "tekvision",
+    "name": "TekVision",
+    "website": "tekvision.in",
+    "hq": {
+      "city": "Pune",
+      "countryCode": "IN"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IN"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Pune-based accessibility firm ('The Accessibility Company') offering web, mobile, document and dynamic-web-app (React/Angular) accessibility services, training and consulting against WCAG 2.0/2.1, Section 508, ADA and EN 301 549."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://tekvision.in/services/",
+        "label": "Quotes standards 'WCAG2.0, WCAG 2.1, Section 508, ADA, EN 301549' and lists 'Accessibility Training' and 'Accessibility Consulting'; address Tirupati Campus Phase 6, Tingre Nagar, Pune; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "watnx-consulting",
+    "name": "WatNx Consulting",
+    "website": "watnx.com",
+    "hq": {
+      "city": "Bangalore",
+      "countryCode": "IN"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IN"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Bangalore-based accessibility consultancy conducting access audits of websites and mobile applications, retrofitting accessibility into existing products, developer training, and access consulting against WCAG (A/AA/AAA)."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.watnx.com/accessbility_consulting.html",
+        "label": "Quotes 'conducting access audit of your website or mobile application', 'assist them in retrofitting accessibility in products' and 'impart accessibility training to your web developers'; address Indiranagar, Bangalore, Karnataka 560038; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
   }
 ]
