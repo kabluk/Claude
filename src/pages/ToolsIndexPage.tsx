@@ -1,6 +1,6 @@
-// G-TOOL-READABILITY: index of the free tool-magnet pages. Seeded with the
-// two tools that exist today (contrast checker, readability checker); future
-// tools (colour blindness simulator etc. — growth.md) get a card here the
+// G-TOOL-READABILITY / G-CHECKERS-BATCH-1: index of the free tool-magnet
+// pages — contrast checker, readability checker, colour blindness simulator,
+// colour converter, text-to-speech reader. Future tools get a card here the
 // same way. Same card pattern as ReportsIndexPage.tsx, own Meta via Layout.
 
 import { Link } from 'react-router-dom'
@@ -18,6 +18,21 @@ const TOOLS = [
     href: paths.readabilityChecker(),
     title: 'Readability checker',
     dek: 'Paste your text and see six readability formulas — Flesch, Flesch-Kincaid, Gunning Fog, SMOG, Coleman-Liau and ARI — update live, in plain language.',
+  },
+  {
+    href: paths.colorBlindnessSimulator(),
+    title: 'Colour blindness simulator',
+    dek: 'Upload an image, or use the built-in sample, and see it approximated for protanopia, deuteranopia and tritanopia side by side.',
+  },
+  {
+    href: paths.colorConverter(),
+    title: 'Colour converter',
+    dek: 'Enter a colour in hex, rgb() or hsl() and get all three notations at once, with contrast ratios against black and white.',
+  },
+  {
+    href: paths.textToSpeech(),
+    title: 'Text-to-speech reader',
+    dek: 'Paste text and hear it read aloud with your browser’s own voices — adjustable rate and pitch, nothing sent anywhere.',
   },
 ]
 

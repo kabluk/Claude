@@ -118,6 +118,11 @@ export const routes: RouteRecord[] = [
   // инструментов два. Статические сегменты — тот же приоритет над '/:country'.
   { path: '/checkers', lazy: page(() => import('./pages/ToolsIndexPage')) },
   { path: '/checkers/readability-checker', lazy: page(() => import('./pages/ReadabilityCheckerPage')) },
+  // G-CHECKERS-BATCH-1: третий-пятый инструменты того же семейства — та же
+  // дисциплина (статические сегменты, оба захардкоженных списка обязательны).
+  { path: '/checkers/color-blindness-simulator', lazy: page(() => import('./pages/ColorBlindnessPage')) },
+  { path: '/checkers/color-converter', lazy: page(() => import('./pages/ColorConverterPage')) },
+  { path: '/checkers/text-to-speech', lazy: page(() => import('./pages/TextToSpeechPage')) },
   // Скан-отчёты непредсказуемы (id генерируется Worker'ом) — нет getStaticPaths,
   // клиентский маршрут, как /404 catch-all ниже.
   { path: '/report/:id', lazy: page(() => import('./pages/ReportPage')) },

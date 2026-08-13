@@ -174,6 +174,10 @@ export const paths = {
   // G-TOOL-READABILITY: индекс инструментов + второй инструмент (SC 3.1.5, AAA).
   checkers: () => '/checkers/',
   readabilityChecker: () => '/checkers/readability-checker/',
+  // G-CHECKERS-BATCH-1: третий-пятый инструменты того же семейства.
+  colorBlindnessSimulator: () => '/checkers/color-blindness-simulator/',
+  colorConverter: () => '/checkers/color-converter/',
+  textToSpeech: () => '/checkers/text-to-speech/',
   // CN-WCAG-PAGES (D-066): справочник критериев из en301549-coverage.json.
   wcag: () => '/wcag/',
   wcagCriterion: (slug: string) => `/wcag/${slug}/`,

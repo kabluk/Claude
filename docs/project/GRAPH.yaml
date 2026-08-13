@@ -1728,3 +1728,27 @@ nodes:
     risk: medium
     approval_required: true
     notes: "DONE в коде 2026-08-13 (D-147), воркер НЕ задеплоен. Запрос владельца. Модель Sonnet (выбор владельца; совет хука haiku отклонён — security). Скан +10/IP/день (отдельный KV-ключ, не коллизирует с часовым на границе суток). Подписка +3 письма/email/сутки (норм. email) + дедуп lower(email)+url среди pending|active. Родительская поправка: dedup ПЕРЕД per-email лимитом (честный повтор не ломается, атака через разные url режется так же) + регресс-тест. worker:test 488→503, wrangler dry-run чист. approval_required:true — worker deploy только с CF-токеном владельца (D-022)."
+
+  - id: G-CHECKERS-BATCH-1
+    title: "3 клиентских чекера-магнита под /checkers/: color blindness simulator, color converter (hex↔rgb↔hsl), text-to-speech"
+    owner: frontend-engineer
+    status: done
+    depends_on: [G-TOOL-CONTRAST, G-TOOL-READABILITY]
+    inputs: [src/lib/contrast.ts, src/pages/ContrastCheckerPage.tsx, docs/project/domains/growth.md]
+    scope: [src/lib/cvd.ts, src/lib/cvd.test.mjs, src/components/ColorBlindnessSimulator.tsx, src/pages/ColorBlindnessPage.tsx, src/components/ColorConverter.tsx, src/pages/ColorConverterPage.tsx, src/components/TextToSpeech.tsx, src/pages/TextToSpeechPage.tsx, src/routes.tsx, src/lib/data.ts, src/pages/ToolsIndexPage.tsx, scripts/gen-a11y-sitemap.mjs, scripts/audit-own-a11y.mjs]
+    outputs: [src/pages/ColorBlindnessPage.tsx, src/pages/ColorConverterPage.tsx, src/pages/TextToSpeechPage.tsx]
+    node_kind: agent
+    on_failure: escalate
+    verify:
+      - npm run typecheck
+      - npx tsx --test src/lib/cvd.test.mjs
+      - node --test scripts/page-lists.test.mjs
+      - VITE_SCANNER_API=https://audit-fixture.invalid npm run build
+      - npm run audit-a11y
+      - npm run check-links
+      - "живьём: CVD-матрицы сверены независимо (protanopia red={145,142,0}), Playwright — converter/canvas/TTS гидрируются без mismatch"
+    max_attempts: 4
+    attempts: 1
+    risk: medium
+    approval_required: false
+    notes: "DONE 2026-08-13 (D-151). Приоритет по замеру DataForSEO (colorblind 201k / rgb↔hex 23k / TTS 301k, все LOW ads-comp). Матрицы CVD — набор Wickline/HCIRN, задан родителем дословно. Sonnet-субагент, родитель перепроверил живьём. audit-a11y 67 стр. 0 нарушений. НЕ трогать гранулярные a11y-чекеры (aria/heading/tap-target) — спрос ~0, их закрывает сканер. Задеплоено push'ем в accessatlas."
