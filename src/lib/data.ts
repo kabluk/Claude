@@ -167,12 +167,13 @@ export const paths = {
   components: () => '/components/',
   component: (slug: string) => `/components/${slug}/`,
   // G-TOOL-CONTRAST (D-144): бесплатные инструменты-магниты под SEO-кластеры.
-  // Первый — чекер контраста; сегмент /tools/ заведён под будущие (color
+  // Категория «Checkers» (D-149): сегмент /checkers/ — само поисковое слово;
+  // старые /tools/* отдают 301 на /checkers/* (functions/_middleware.js). Будущие
   // blindness simulator, readability и т.д. — growth.md).
-  contrastChecker: () => '/tools/contrast-checker/',
+  contrastChecker: () => '/checkers/contrast-checker/',
   // G-TOOL-READABILITY: индекс инструментов + второй инструмент (SC 3.1.5, AAA).
-  tools: () => '/tools/',
-  readabilityChecker: () => '/tools/readability-checker/',
+  checkers: () => '/checkers/',
+  readabilityChecker: () => '/checkers/readability-checker/',
   // CN-WCAG-PAGES (D-066): справочник критериев из en301549-coverage.json.
   wcag: () => '/wcag/',
   wcagCriterion: (slug: string) => `/wcag/${slug}/`,

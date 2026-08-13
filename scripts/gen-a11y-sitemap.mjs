@@ -46,7 +46,7 @@ const inCountry = (code) =>
 // в scripts/page-lists.test.mjs (SITEMAP_EXCEPTIONS); a11y-гейт они при этом
 // проходят обязательно — они в SAMPLE_ROUTES у audit-own-a11y.mjs.
 const urls = [
-  '/', '/scan/', '/methodology/', '/bfsg-check/', '/tools/', '/tools/contrast-checker/', '/tools/readability-checker/', '/request-quote/', '/agencies/', '/countries/', '/services/', '/standards/',
+  '/', '/scan/', '/methodology/', '/bfsg-check/', '/checkers/', '/checkers/contrast-checker/', '/checkers/readability-checker/', '/request-quote/', '/agencies/', '/countries/', '/services/', '/standards/',
   '/wcag/', '/components/', '/reports/', '/about/', '/contact/', '/privacy/', '/accessibility-statement/', '/imprint/',
 ]
 for (const a of agencies) urls.push(`/agencies/${a.slug}/`)

@@ -42,5 +42,16 @@ export async function onRequest(context) {
     return Response.redirect(url.toString(), 301)
   }
 
+  // 301 /tools/* -> /checkers/* (D-149): категория инструментов переименована в
+  // «Checkers» (само поисковое слово) и URL приведён к нему, пока домен почти не
+  // проиндексирован — менять сейчас дёшево. Страницы жили под /tools/ (в sitemap
+  // и, возможно, уже у краулера), поэтому старые адреса отдаём ПОСТОЯННЫМ
+  // редиректом, чтобы не потерять их вес и не оставить 404 на внешних ссылках.
+  // Точное '/tools' + префикс '/tools/' — не ловит легитимный '/toolsomething'.
+  if (url.pathname === '/tools' || url.pathname.startsWith('/tools/')) {
+    url.pathname = url.pathname.replace(/^\/tools/, '/checkers')
+    return Response.redirect(url.toString(), 301)
+  }
+
   return context.next()
 }

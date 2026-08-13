@@ -32,14 +32,14 @@ export default function ContrastCheckerPage() {
     'Free, instant WCAG 2.2 colour contrast checker. Live AA/AAA pass-fail for normal text, large text and UI — hex, RGB or HSL, with an eyedropper and a shareable link. No sign-up.'
 
   return (
-    <Layout title={title} description={description} path="/tools/contrast-checker/">
+    <Layout title={title} description={description} path={paths.contrastChecker()}>
       <JsonLd
         data={{
           '@context': 'https://schema.org',
           '@type': 'WebApplication',
           name: 'Verscala contrast checker',
           description,
-          url: `${ORIGIN}/tools/contrast-checker/`,
+          url: `${ORIGIN}${paths.contrastChecker()}`,
           applicationCategory: 'DeveloperApplication',
           operatingSystem: 'Any',
           browserRequirements: 'Requires JavaScript',

@@ -130,6 +130,15 @@ export function Layout({
             >
               {t.nav.scan}
             </Link>
+            {/* Категория «Checkers» (D-149) — по прямому решению владельца
+                вынесена в ШАПКУ (раньше жила в футере, D-144). «Checkers» — само
+                поисковое слово. Ведёт на индекс /checkers/. Ссылка НЕ вызывает
+                useId (react-router Link), поэтому даже стоя ДО {children} не
+                сдвигает useId интерактивных компонентов — проверено дифом dist
+                (урок D-087). */}
+            <Link className="hover:text-on-surface" to={paths.checkers()}>
+              {t.nav.checkers}
+            </Link>
             <Link className="hover:text-on-surface" to={paths.countries()}>
               {t.nav.countries}
             </Link>
@@ -210,16 +219,6 @@ export function Layout({
             </Link>
             <Link className="hover:text-on-surface" to={paths.reports()}>
               {t.nav.reports}
-            </Link>
-            {/* G-TOOL-CONTRAST (D-144) / G-TOOL-READABILITY: раздел бесплатных
-                инструментов-магнитов. Ссылка добавлена в футер-nav (site-wide,
-                анти-orphan §23), а не в компактную шапку (D-118). Узел стоит
-                ПОСЛЕ {children} в дереве Layout, поэтому не сдвигает
-                React.useId() интерактивных компонентов на страницах (урок
-                D-087). Теперь, когда инструментов два, ведёт на индекс /tools/
-                вместо прямой ссылки на один инструмент. */}
-            <Link className="hover:text-on-surface" to={paths.tools()}>
-              {t.nav.tools}
             </Link>
           </nav>
           {/* CN-BRANDBOOK-V2: --color-secondary — новый токен, назначенный

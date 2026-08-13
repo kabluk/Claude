@@ -49,7 +49,7 @@ export interface ChromeDict {
     components: string
     reports: string
     experts: string
-    tools: string
+    checkers: string
   }
   ctaScanWebsite: string
   breadcrumbHome: string
@@ -108,7 +108,7 @@ const en: ChromeDict = {
     components: 'Components',
     reports: 'Reports',
     experts: 'Experts',
-    tools: 'Tools',
+    checkers: 'Checkers',
   },
   ctaScanWebsite: 'Scan website',
   breadcrumbHome: 'Home',
@@ -150,7 +150,7 @@ const de: ChromeDict = {
     components: 'Komponenten',
     reports: 'Berichte',
     experts: 'Experten',
-    tools: 'Werkzeuge',
+    checkers: 'Checker',
   },
   ctaScanWebsite: 'Website scannen',
   breadcrumbHome: 'Startseite',
@@ -199,7 +199,7 @@ const fr: ChromeDict = {
     components: 'Composants',
     reports: 'Rapports',
     experts: 'Experts',
-    tools: 'Outils',
+    checkers: 'Vérificateurs',
   },
   ctaScanWebsite: 'Analyser un site',
   breadcrumbHome: 'Accueil',
@@ -256,7 +256,7 @@ const pl: ChromeDict = {
     components: 'Komponenty',
     reports: 'Raporty',
     experts: 'Eksperci',
-    tools: 'Narzędzia',
+    checkers: 'Narzędzia',
   },
   ctaScanWebsite: 'Skanuj stronę',
   breadcrumbHome: 'Strona główna',

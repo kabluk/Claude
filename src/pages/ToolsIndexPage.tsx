@@ -22,14 +22,14 @@ const TOOLS = [
 ]
 
 export default function ToolsIndexPage() {
-  const title = 'Free accessibility tools'
+  const title = 'Free accessibility checkers'
   const description =
     'Free, instant accessibility tools — no sign-up, nothing uploaded. Check colour contrast against WCAG 2.2, or how readable your text is.'
 
   return (
-    <Layout title={title} description={description} path={paths.tools()} crumbs={[]}>
+    <Layout title={title} description={description} path={paths.checkers()} crumbs={[]}>
       <JsonLd data={itemListLd(TOOLS.map((t) => t.href))} />
-      <h1 className="h1">Free tools</h1>
+      <h1 className="h1">Free accessibility checkers</h1>
       <p className="lede max-w-3xl">
         Small, focused checks you can run right now — free, instant, and nothing you enter is
         uploaded anywhere. Each one covers a single WCAG criterion in depth; for a full page, use
