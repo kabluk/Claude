@@ -89,3 +89,22 @@ test('D-165: HTML-entity-encoded apostrophe in a French statement still matches 
   const out = evaluateStatementContent(html)
   assert.equal(out.serviceDescription, true)
 })
+
+// D-166 (live-found on verscala.com): a site that PUBLISHES guides about accessibility
+// statements must not have a guide title hijack the statement link. Ranking must prefer
+// the real /accessibility-statement/ page over an article whose title merely contains
+// the phrase — otherwise the scanner evaluates the wrong page and reports a bogus
+// statement-incomplete. This hits almost every agency in our own catalog.
+test('D-166: a guide title containing the phrase does not hijack the real statement link', () => {
+  const html = `
+    <a href="/guides/audit-rgaa-guide/">Audit RGAA : obligations et déclaration d'accessibilité</a>
+    <a href="/guides/barrierefreiheitserklaerung-bfsg-anlage3/">Barrierefreiheitserklärung nach BFSG</a>
+    <footer><a href="/accessibility-statement/">Accessibility Statement</a></footer>`
+  assert.equal(findStatementLink(html, 'https://x.test'), 'https://x.test/accessibility-statement/')
+})
+
+test('D-166: a statement-looking href wins even when the link text is generic', () => {
+  const html = '<a href="/blog/a11y-tips/">Accessibility statement basics</a>' +
+    '<a href="/barrierefreiheitserklaerung/">Mehr erfahren</a>'
+  assert.equal(findStatementLink(html, 'https://x.test'), 'https://x.test/barrierefreiheitserklaerung/')
+})

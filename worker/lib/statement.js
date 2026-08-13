@@ -45,26 +45,51 @@ function decodeEntities(s) {
     .replace(/&amp;/gi, '&')
 }
 
+// Путь, который сам по себе выдаёт страницу заявления (сильнее любого текста ссылки).
+const STATEMENT_HREF_HINTS = [
+  'accessibility-statement', 'accessibility-declaration', 'barrierefreiheitserklaerung',
+  'erklaerung-zur-barrierefreiheit', 'declaration-accessibilite', 'declaration-d-accessibilite',
+  'toegankelijkheidsverklaring', 'deklaracja-dostepnosci', 'declaracion-de-accesibilidad',
+]
+// Путь статьи/гайда — НЕ страница заявления, даже если заголовок содержит фразу.
+const ARTICLE_PATH_RE = /\/(guides?|blog|news|articles?|artykul|ratgeber|wissen|knowledge|magazin)\//i
+
 // Ищет ссылку на заявление о доступности на переданной странице (обычно — главная,
 // т.к. Anlage 3 требует "на видном месте", как правило футер/навигация главной).
-// Возвращает абсолютный URL или null. Матчим по тексту ссылки, не по произвольному
-// вхождению фразы в HTML — иначе много ложных срабатываний.
+// Возвращает абсолютный URL или null.
+//
+// D-165/D-166: НЕ «первая подходящая ссылка», а лучший кандидат по рангу. Живая
+// проверка на verscala.com показала настоящий баг first-match: сайт, который ПУБЛИКУЕТ
+// гайды про заявления (мы сами и почти любое a11y-агентство из каталога), отдавал
+// заголовок гайда «Audit RGAA … déclaration d'accessibilité» → сканер оценивал ЧУЖУЮ
+// страницу и выдавал ложный statement-incomplete, не заметив настоящего
+// /accessibility-statement/ ниже в футере.
 export function findStatementLink(html, baseUrl) {
   const anchors = extractAnchors(html)
+  let best = null
   for (const { href, text } of anchors) {
-    if (!text) continue
+    if (!text || !href) continue
     const normText = normalize(decodeEntities(text))
-    const strong = NORMALIZED_STRONG.some((phrase) => normText.includes(phrase))
-    const weak = NORMALIZED_WEAK.some((word) => normText === word)
-    if (strong || weak) {
-      try {
-        return new URL(href, baseUrl).toString()
-      } catch {
-        continue
-      }
-    }
+    const normHref = normalize(href)
+    const strongPhrase = NORMALIZED_STRONG.find((phrase) => normText.includes(phrase))
+    const weakExact = NORMALIZED_WEAK.some((word) => normText === word)
+    const hrefHint = STATEMENT_HREF_HINTS.some((h) => normHref.includes(h))
+    if (!strongPhrase && !weakExact && !hrefHint) continue
+
+    let score = 0
+    if (hrefHint) score += 100                                   // путь — самый надёжный сигнал
+    if (strongPhrase && normText === strongPhrase) score += 60   // текст ровно «Accessibility Statement»
+    else if (strongPhrase && normText.length <= strongPhrase.length + 12) score += 30
+    else if (strongPhrase) score += 5                            // длинный заголовок, лишь содержащий фразу
+    if (weakExact) score += 40                                   // ссылка ровно «Accessibility»
+    if (ARTICLE_PATH_RE.test(href)) score -= 80                  // /guides/…, /blog/… — это статья
+    if (score <= 0) continue
+
+    let abs
+    try { abs = new URL(href, baseUrl).toString() } catch { continue }
+    if (!best || score > best.score) best = { url: abs, score }
   }
-  return null
+  return best ? best.url : null
 }
 
 // Anlage 3 к §14 BFSG требует 4 содержательных пункта на самой странице заявления:
