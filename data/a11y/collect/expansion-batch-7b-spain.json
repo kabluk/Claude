@@ -1,0 +1,243 @@
+[
+  {
+    "slug": "acuarela-digital",
+    "name": "Acuarela Digital",
+    "website": "acuareladigital.com",
+    "hq": {
+      "city": "Pamplona",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "founded": 2009,
+    "priceBand": "budget",
+    "description": {
+      "en": "Pamplona-based digital agency (Acuarela Digital S.L., tracing its roots to 2004) offering web accessibility consulting: comprehensive audits, error remediation, staff training and ongoing compliance advisory against WCAG and UNE-EN 301549."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://acuareladigital.com/es/servicios/consultoria-en-accesibilidad-web/",
+        "label": "quotes 'Auditoría básica: 350€ + IVA' and cites WCAG 2.1 / UNE-EN 301549 v2.1.2 as the compliance standards; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://acuareladigital.com/es/sobre-nosotros/",
+        "label": "quotes 'Nuestra trayectoria comenzó en 2004 y, en 2009, consolidamos nuestra identidad como Acuarela Digital S.L.'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "inkluxio",
+    "name": "Inkluxio",
+    "website": "inkluxio.es",
+    "hq": {
+      "city": "Leioa",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Accessibility consultancy based in Leioa, Bizkaia (Basque Country) offering web, digital and physical accessibility audits, consulting and training, explicitly auditing against WCAG 2.2 and UNE-EN 301549."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.inkluxio.es/servicios/auditoria-de-accesibilidad/",
+        "label": "quotes audits follow 'WCAG 2.2 y la UNE-EN 301549, normativa oficial en accesibilidad digital en España y Europa' and references EAA compliance; office address 'Estartetxe Kalea, 5 - 2º Dpto. 217, 48940 LEIOA'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "tech4access",
+    "name": "Tech4access",
+    "website": "tech4access.com",
+    "hq": {
+      "city": "Valencia",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "monitoring",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Valencia-headquartered digital accessibility firm (with a London office) delivering its SIA (Servicio Integral de Accesibilidad digital) offering: web/app audits and consulting, continuous monitoring, document remediation and WCAG 2.2 AA certification support."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://tech4access.com/sia-servicio-integral-accesibilidad-digital/",
+        "label": "quotes address 'C/ Doctor Vicente Zaragozá 1-1, 46020 Valencia, España' and cites 'WCAG 2.2 Level AA', 'EN 301 549' and Ley 11/2023 (EAA transposition) compliance; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "mtp-global",
+    "name": "MTP",
+    "website": "mtp.global",
+    "hq": {
+      "city": "Madrid",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Madrid-headquartered digital assurance company running an accessibility and UX practice that evaluates digital products against WCAG and EN 301 549, and offers an internal 'Dinclusive' certification for compliance."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://mtp.global/es/servicios/accesibilidad-digital-y-ux/",
+        "label": "quotes evaluation 'según normativas internacionales como WCAG o EN 301549'; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://mtp.global/contact/",
+        "label": "quotes Madrid office address 'Calle de Santa Leonor 65 Edificio C, Planta 4 28037 Madrid' and 'Adecuamos tus activos a legislaciones como EN 301 549 o ADA'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "kalyma-studio",
+    "name": "Kalyma Studio",
+    "website": "kalymastudio.es",
+    "hq": {
+      "city": "Madrid",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "priceBand": "mid",
+    "description": {
+      "en": "WordPress-focused studio offering accessibility remediation and certification for agencies: manual audits and code-level corrections (explicitly not overlay plugins) against WCAG 2.1 AA and UNE-EN 301549, priced in fixed tiers."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://kalymastudio.es/soluciones/accesibilidad-web-espana/",
+        "label": "quotes tiered pricing 'Auditoría: 290€', 'Remediación core: 1.490€', 'Certificación total: 3.900€' and cites WCAG 2.1 AA, UNE-EN 301549, RD 1112/2018; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accede-me",
+    "name": "Accede Me",
+    "website": "accedeme.com",
+    "hq": {
+      "city": "Valladolid",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "eaa",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Valladolid-based (Castilla y León) accessibility consultancy offering full WCAG 2.2 compliance audits with detailed reports, technical guidance for dev teams, continuous monitoring and conformity certification, led by an IAAP-certified team."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://accedeme.com/",
+        "label": "quotes standards list 'EAA WCAG 2.2 EN 301 549 RD 1112/2018 ADA Section 508 AODA RGAA BITV 2.0' and notes 'consultants carry IAAP ... certification'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  }
+]

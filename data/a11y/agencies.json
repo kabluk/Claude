@@ -19541,5 +19541,1233 @@
       }
     ],
     "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "bowler-hat",
+    "name": "Bowler Hat",
+    "website": "bowlerhat.co.uk",
+    "hq": {
+      "city": "Birmingham",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Birmingham-based digital agency offering WCAG 2.2 accessibility audits, remediation, compliance monitoring and team training alongside screen-reader optimisation and accessible design implementation."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.bowlerhat.co.uk/services/wcag-compliance-services/",
+        "label": "Detailed audits assess website against WCAG 2.2 standards, identify barriers and provide a comprehensive action plan; based at Custard Factory, Birmingham; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "2i-testing",
+    "name": "2i Testing",
+    "website": "2itesting.com",
+    "hq": {
+      "city": "Edinburgh",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Edinburgh-headquartered software testing company with a dedicated accessibility testing practice validating digital products against WCAG 2.2 AA through combined manual and automated methods."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://2itesting.com/services/non-functional-testing/accessibility-testing",
+        "label": "'We use a proven accessibility testing framework to ensure all accessibility requirements are adhered to... combination of both manual and automated accessibility testing'; Edinburgh Headquarters listed; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "opace",
+    "name": "Opace",
+    "website": "opace.agency",
+    "hq": {
+      "city": "Birmingham",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "monitoring",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Birmingham digital transformation agency running manual and automated WCAG 2.2 AA accessibility audits, remediation planning, assistive-technology testing and staff accessibility training."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://opace.agency/services/digital-transformation/digital-accessibility/",
+        "label": "'WCAG accessibility audit: Manual and automated testing against WCAG 2.2 Level AA criteria'; address 11 Brindley Place, Birmingham; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "priority-pixels",
+    "name": "Priority Pixels",
+    "website": "prioritypixels.co.uk",
+    "hq": {
+      "city": "Newton Abbot",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "monitoring",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Devon-based web accessibility agency delivering WCAG 2.2 AA audits, remediation of live sites, accessibility statements and ongoing compliance monitoring for organisations under regulatory pressure."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://prioritypixels.co.uk/services/website-accessibility/",
+        "label": "'WCAG 2.2 AA accessibility audits, remediation and ongoing compliance for organisations under regulatory pressure'; headquartered in Newton Abbot, Devon; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "we-create-digital",
+    "name": "We Create Digital",
+    "website": "wecreate.digital",
+    "hq": {
+      "city": "Colchester",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Colchester, Essex digital agency that designs and develops accessible websites meeting WCAG level AA/AAA, provides accessibility reviews, remediation and tailored accessibility training for client teams."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://wecreate.digital/services/digital-accessibility/",
+        "label": "'We specialise in designing and developing accessible and inclusive websites, that meet WCAG level AA or AAA, as well as carrying out detailed accessibility reviews'; based in Colchester, Essex; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "eyekiller",
+    "name": "Eyekiller",
+    "website": "eyekiller.com",
+    "hq": {
+      "city": "Bangor",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB",
+      "IE"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Digital agency based in Bangor, Co. Down, Northern Ireland, offering WCAG 2.2-standard accessible website design, ongoing compliance audits and CMS/editor training for clients across the UK and Ireland."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://eyekiller.com/services/accessible-website-design",
+        "label": "'We offer audits to assess compliance, ensuring long-term usability and an inclusive experience'; designs to WCAG 2.2 standards; registered office Bangor, Co Down; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "i-finity",
+    "name": "I-Finity",
+    "website": "i-finity.co.uk",
+    "hq": {
+      "city": "York",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "York-based technical agency offering website accessibility audits against WCAG 2.1/2.2 that identify barriers for disabled users and deliver actionable remediation plans for public and private sector clients."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.i-finity.co.uk/technical-audits/website-accessibility-audits",
+        "label": "'Our expert Website Accessibility Audits thoroughly review your existing website to assess its accessibility for users with disabilities'; office at Blake House, Bootham, York; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "joom-team",
+    "name": "joom.team",
+    "website": "joomteam.co.uk",
+    "hq": {
+      "city": "Manchester",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Manchester-based Joomla specialist agency offering manual accessibility audits with screen readers, template/ARIA remediation of existing Joomla sites, and accessibility training for editors and developers."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.joomteam.co.uk/joomla-accessibility",
+        "label": "'We manually test your Joomla site with screen readers and accessibility tools, produce an audit report and give you clear next steps'; based at Wilsons Business Park Centre, Manchester; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accessibility-ie",
+    "name": "Accessibility.ie",
+    "website": "accessibility.ie",
+    "hq": {
+      "city": "Dublin",
+      "countryCode": "IE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IE"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "European Accessibility Act compliance service from Dublin agency TotalDigital.ie, running WCAG-based accessibility audits, inclusive-design reviews, code remediation and accessibility-statement drafting."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://accessibility.ie/",
+        "label": "'We provide accessibility audits, inclusive design and expert development to help you become compliant in 4 easy steps'; an initiative by TotalDigital.ie, a Dublin-based design and development agency; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "new-graphic",
+    "name": "New Graphic",
+    "website": "newgraphic.ie",
+    "hq": {
+      "city": "Dublin",
+      "countryCode": "IE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IE"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Dublin digital agency offering website accessibility audits, remediation to WCAG 2.1 AA, accessible design/development, disabled-user UX testing and accessibility-statement creation; won an Excellence in Digital Accessibility award in 2022."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://newgraphic.ie/services/digital-accessibility/",
+        "label": "'Website Accessibility Audits: Identify and prioritize accessibility issues on your existing website'; office at 32 Vicar Street, Dublin; recognised with Excellence in Digital Accessibility Award 2022; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "acuarela-digital",
+    "name": "Acuarela Digital",
+    "website": "acuareladigital.com",
+    "hq": {
+      "city": "Pamplona",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "founded": 2009,
+    "priceBand": "budget",
+    "description": {
+      "en": "Pamplona-based digital agency (Acuarela Digital S.L., tracing its roots to 2004) offering web accessibility consulting: comprehensive audits, error remediation, staff training and ongoing compliance advisory against WCAG and UNE-EN 301549."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://acuareladigital.com/es/servicios/consultoria-en-accesibilidad-web/",
+        "label": "quotes 'Auditoría básica: 350€ + IVA' and cites WCAG 2.1 / UNE-EN 301549 v2.1.2 as the compliance standards; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://acuareladigital.com/es/sobre-nosotros/",
+        "label": "quotes 'Nuestra trayectoria comenzó en 2004 y, en 2009, consolidamos nuestra identidad como Acuarela Digital S.L.'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "inkluxio",
+    "name": "Inkluxio",
+    "website": "inkluxio.es",
+    "hq": {
+      "city": "Leioa",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Accessibility consultancy based in Leioa, Bizkaia (Basque Country) offering web, digital and physical accessibility audits, consulting and training, explicitly auditing against WCAG 2.2 and UNE-EN 301549."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.inkluxio.es/servicios/auditoria-de-accesibilidad/",
+        "label": "quotes audits follow 'WCAG 2.2 y la UNE-EN 301549, normativa oficial en accesibilidad digital en España y Europa' and references EAA compliance; office address 'Estartetxe Kalea, 5 - 2º Dpto. 217, 48940 LEIOA'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "tech4access",
+    "name": "Tech4access",
+    "website": "tech4access.com",
+    "hq": {
+      "city": "Valencia",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "monitoring",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Valencia-headquartered digital accessibility firm (with a London office) delivering its SIA (Servicio Integral de Accesibilidad digital) offering: web/app audits and consulting, continuous monitoring, document remediation and WCAG 2.2 AA certification support."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://tech4access.com/sia-servicio-integral-accesibilidad-digital/",
+        "label": "quotes address 'C/ Doctor Vicente Zaragozá 1-1, 46020 Valencia, España' and cites 'WCAG 2.2 Level AA', 'EN 301 549' and Ley 11/2023 (EAA transposition) compliance; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "mtp-global",
+    "name": "MTP",
+    "website": "mtp.global",
+    "hq": {
+      "city": "Madrid",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Madrid-headquartered digital assurance company running an accessibility and UX practice that evaluates digital products against WCAG and EN 301 549, and offers an internal 'Dinclusive' certification for compliance."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://mtp.global/es/servicios/accesibilidad-digital-y-ux/",
+        "label": "quotes evaluation 'según normativas internacionales como WCAG o EN 301549'; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://mtp.global/contact/",
+        "label": "quotes Madrid office address 'Calle de Santa Leonor 65 Edificio C, Planta 4 28037 Madrid' and 'Adecuamos tus activos a legislaciones como EN 301 549 o ADA'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "kalyma-studio",
+    "name": "Kalyma Studio",
+    "website": "kalymastudio.es",
+    "hq": {
+      "city": "Madrid",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "priceBand": "mid",
+    "description": {
+      "en": "WordPress-focused studio offering accessibility remediation and certification for agencies: manual audits and code-level corrections (explicitly not overlay plugins) against WCAG 2.1 AA and UNE-EN 301549, priced in fixed tiers."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://kalymastudio.es/soluciones/accesibilidad-web-espana/",
+        "label": "quotes tiered pricing 'Auditoría: 290€', 'Remediación core: 1.490€', 'Certificación total: 3.900€' and cites WCAG 2.1 AA, UNE-EN 301549, RD 1112/2018; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accede-me",
+    "name": "Accede Me",
+    "website": "accedeme.com",
+    "hq": {
+      "city": "Valladolid",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "eaa",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Valladolid-based (Castilla y León) accessibility consultancy offering full WCAG 2.2 compliance audits with detailed reports, technical guidance for dev teams, continuous monitoring and conformity certification, led by an IAAP-certified team."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://accedeme.com/",
+        "label": "quotes standards list 'EAA WCAG 2.2 EN 301 549 RD 1112/2018 ADA Section 508 AODA RGAA BITV 2.0' and notes 'consultants carry IAAP ... certification'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "web-leaders-srl",
+    "name": "Web Leaders Srl",
+    "website": "webleaders.it",
+    "hq": {
+      "city": "Padua",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Web Leaders is a Padua-based digital agency offering website accessibility evaluation against WCAG, remediation of content, graphics and code, and staff training on digital accessibility."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://webleaders.it/accessibilita-siti-web/",
+        "label": "\"Analisi WCAG per identificare gli interventi necessari\" and \"Adeguamento accessibilità dei contenuti, grafica e codice\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "sferica",
+    "name": "Sferica Srl",
+    "website": "sferica.io",
+    "hq": {
+      "city": "Palermo",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Sferica is a Palermo-based firm offering full-site accessibility audits against WCAG 2.1 AA, technical remediation, and consulting to update accessibility policy and documentation."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.sferica.io/accessibilita-web-il-tempo-e-scaduto/",
+        "label": "\"Audit completo del sito esistente\" and \"Report dettagliato sugli errori di accessibilità (WCAG 2.1 AA)\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "webforma",
+    "name": "Forma S.r.l. (Webforma)",
+    "website": "webforma.it",
+    "hq": {
+      "city": "Vicenza",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Forma S.r.l. (Webforma) is a Vicenza-based company building and remediating accessible websites, web apps and software to WCAG 2.1 A/AA and EN 301549, offering audits, accessibility-declaration support and staff training."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.webforma.it/servizi-web/accessibilita-web-dichiarazione-siti-internet-software-web-app-aziende-private-pubbliche-amministrazioni",
+        "label": "\"WCAG 2.1 livello A e AA\" and \"norma tecnica europea armonizzata UNI CEI EN 301549\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "easytech-group",
+    "name": "Easytech Group",
+    "website": "easytechgroup.it",
+    "hq": {
+      "city": "Bergamo",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Easytech Group is a Bergamo-based technology company offering manual accessibility audits, WCAG 2.1 remediation, accessibility-statement preparation, and annual compliance monitoring."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://easytechgroup.it/accessibilita-digitale/",
+        "label": "\"Analisi manuale del sito web con il supporto di tools\" and \"Interventi tecnici e di ottimizzazione UX e UI, atti al rispetto delle WCAG 2.1\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "web-domus-italia",
+    "name": "Web Domus Italia",
+    "website": "webdomus.net",
+    "hq": {
+      "city": "Campobasso",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting",
+      "training",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "founded": 1997,
+    "description": {
+      "en": "Web Domus Italia is a Campobasso-based digital agency, active since 1997, offering accessibility audits and WCAG 2.1 AA remediation using automated tools, manual testing (NVDA, VoiceOver, JAWS) and real-user testing, plus staff training and periodic monitoring."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.webdomus.net/",
+        "label": "\"Dal 1997 supportiamo aziende e professionisti nella realizzazione di siti web performanti\"; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://www.webdomus.net/accessibilita-web/",
+        "label": "\"Analizziamo il tuo sito per identificare e correggere le barriere all'accessibilità\" and \"conforme il tuo sito alle WCAG 2.1 livello AA\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "gruppo-euris",
+    "name": "Gruppo Euris S.p.A.",
+    "website": "euris.it",
+    "hq": {
+      "city": "Trieste",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Gruppo Euris is a Trieste-based company offering technical accessibility audits, design/code/content remediation to WCAG 2.1 AA, staff training programs, and continuous monitoring to support European Accessibility Act compliance."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.euris.it/services/accessibilita-digitale-accessibility-act/",
+        "label": "\"i criteri di accessibilità stabiliti dalle linee guida WCAG 2.1 almeno al livello AA\" and \"Interveniamo sul design, sul codice e sui contenuti digitali\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accessiway",
+    "name": "Accessiway",
+    "website": "accessiway.com",
+    "hq": {
+      "city": "Turin",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Accessiway is a Turin-headquartered digital accessibility specialist offering audit and remediation, accessibility statements, an internal training academy, and user testing with IAAP-certified experts."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.accessiway.com/legal-guidance/en-301-549",
+        "label": "Footer: \"Headquarter: Via Perrone n. 5, Torino - 10122 (TO)\"; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://www.accessiway.com/",
+        "label": "\"Audit & Remediation\", \"Dichiarazione di Accessibilità\", \"Accessiway Academy\", \"Esperti di Accessibilità Web – Certificati IAAP\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "bello-e-accessibile",
+    "name": "Bello E Accessibile S.r.l.",
+    "website": "belloeaccessibile.it",
+    "hq": {
+      "city": "Milan",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Bello E Accessibile is a Milan-based accessibility consultancy (a Società Benefit) offering automated and manual accessibility verification, WCAG-based remediation strategy, accessibility-declaration preparation, and training for managers and technical staff."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.belloeaccessibile.it/panoramica-servizi/servizio-accessibilita-digitale/",
+        "label": "\"Verifica dell'accessibilità tramite analisi automatica e manuale\" and \"Momenti di formazione pianificati sia per i responsabili sia per i tecnici\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "creatiwe",
+    "name": "Creatiwe",
+    "website": "creatiwe.it",
+    "hq": {
+      "city": "Bentivoglio",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Creatiwe is a Bologna-area (Bentivoglio) digital agency offering WCAG 2.1 AA code audits, AgID self-assessment documentation, remediation report-and-repair services, and corporate training, delivered in collaboration with accessibility specialists Siti Accessibili."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.creatiwe.it/siti-accessibili",
+        "label": "\"Scopri gratuitamente se il codice del tuo sito è conforme alle WCAG 2.1 AA\" and \"redazione dell'allegato 2 – modello di autovalutazione AgID\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "xonex",
+    "name": "Xonex",
+    "website": "xonex.it",
+    "hq": {
+      "city": "Rome",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "founded": 2005,
+    "description": {
+      "en": "Xonex is a Rome and Milan digital agency, active since 2005, offering technical and functional accessibility audits, remediation of code, text and design, inclusive design, and ongoing accessibility training and support."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.xonex.it/",
+        "label": "\"La nostra agenzia web fa questo lavoro dal 2005\"; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://www.xonex.it/soluzioni-digitali/accessibilita/",
+        "label": "\"Correzione barriere digitali: miglioramento codice, testi e design\" and \"allineati alle linee guida WCAG\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ndplanet",
+    "name": "NDPLANET",
+    "website": "ndplanet.com",
+    "hq": {
+      "city": "Rome",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "NDPLANET is a Rome-based web agency specializing in AGID and Legge Stanca accessibility compliance for public-sector and private clients, offering audits, WCAG 2.1 AA remediation, staff training, and accessibility-declaration support."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://ndplanet.com/accessibilita-agid-enti-pubblici/",
+        "label": "\"tutti i siti delle pubbliche amministrazioni devono rispettare le WCAG 2.1 livello AA\" and \"dall'audit iniziale alla remediation\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "made-for-web",
+    "name": "MADE",
+    "website": "madeforweb.it",
+    "hq": {
+      "city": "Pistoia",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "MADE is a Pistoia-based web design studio offering WCAG 2.1 accessibility audits, technical verification and consulting for corporate and e-commerce websites."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://madeforweb.it/accessibilita-siti-web",
+        "label": "\"Audit di accessibilità, verifica tecnica e supporto operativo\" and \"Audit accessibilità WCAG 2.1\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "simplenetworks",
+    "name": "SimpleNetworks",
+    "website": "simplenetworks.it",
+    "hq": {
+      "city": "Rimini",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "SimpleNetworks is a Rimini-based digital agency offering website accessibility scoring, WCAG and AGID-guideline compliance consulting, and user-experience-based accessibility assessment."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.simplenetworks.it/accessibilita-web-e-italia-in-digitale/",
+        "label": "\"Richiedi il tuo punteggio di accessibilità\" and reference to \"Web Content Accessibility Guidelines\" / Legge Stanca and AGID guidelines; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "znetguru",
+    "name": "ZnetGuru",
+    "website": "znetguru.com",
+    "hq": {
+      "city": "Aveiro",
+      "countryCode": "PT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PT"
+    ],
+    "languages": [
+      "pt"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [
+      "ecommerce"
+    ],
+    "certs": [],
+    "description": {
+      "en": "ZnetGuru is an Aveiro-based web design, SEO and digital marketing agency offering accessibility audits, WCAG 2.1 AA remediation and staff training for WordPress/WooCommerce sites and online stores, aligned with Portugal's Decreto-Lei n.º 82/2022."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://znetguru.com/outros/acessibilidade-digital-sites-lojas-online-legislacao-implementacao-portugal/",
+        "label": "\"boas práticas das WCAG 2.1 AA\" and \"Formar equipas técnicas e de conteúdos em acessibilidade digital\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ascend-marketing-solutions",
+    "name": "Ascend Marketing Solutions",
+    "website": "ascend.pt",
+    "hq": {
+      "city": "Viseu",
+      "countryCode": "PT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PT"
+    ],
+    "languages": [
+      "pt",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [
+      "ecommerce"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Ascend Marketing Solutions is a Viseu-based agency offering complete accessibility audits against WCAG 2.1 AA, technical remediation (code correction, accessible components), conformance documentation, continuous monitoring, and internal team training for online stores."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://ascend.pt/en/lei-da-acessibilidade-digital-o-que-a-sua-loja-online-precisa-implementar/",
+        "label": "\"complete audit that identifies all non-conformities\" and \"Web Content Accessibility Guidelines (WCAG) 2.1, level AA\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "dual-up-consultores",
+    "name": "Dual Up Consultores",
+    "website": "dualup.pt",
+    "hq": {
+      "city": "Porto",
+      "countryCode": "PT"
+    },
+    "offices": [
+      {
+        "city": "Carnaxide",
+        "countryCode": "PT"
+      }
+    ],
+    "countriesServed": [
+      "PT"
+    ],
+    "languages": [
+      "pt"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Dual Up Consultores is a Porto and Lisbon-area management consulting firm offering a four-stage digital accessibility service: an initial WCAG 2.1 audit, technical remediation, support obtaining Portugal's Selo de Usabilidade e Acessibilidade, and ongoing compliance training."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://dualup.pt/o-seu-site-esta-ilegal-o-que-as-pmes-portuguesas-precisam-de-saber-sobre-acessibilidade-digital/",
+        "label": "\"Auditoria inicial: avaliamos o estado atual do seu site face às normas WCAG 2.1\" and \"O selo atesta que o website cumpre as normas WCAG 2.1, nível AA\"; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://dualup.pt/contactos/",
+        "label": "\"Rua da Constituição, 2105 3.º Sala 22 4250-170 Porto\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
   }
 ]

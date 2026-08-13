@@ -1,0 +1,182 @@
+[
+  {
+    "slug": "bowler-hat",
+    "name": "Bowler Hat",
+    "website": "bowlerhat.co.uk",
+    "hq": { "city": "Birmingham", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "training", "monitoring"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Birmingham-based digital agency offering WCAG 2.2 accessibility audits, remediation, compliance monitoring and team training alongside screen-reader optimisation and accessible design implementation." },
+    "sourceRefs": [
+      { "url": "https://www.bowlerhat.co.uk/services/wcag-compliance-services/", "label": "Detailed audits assess website against WCAG 2.2 standards, identify barriers and provide a comprehensive action plan; based at Custard Factory, Birmingham; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "2i-testing",
+    "name": "2i Testing",
+    "website": "2itesting.com",
+    "hq": { "city": "Edinburgh", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Edinburgh-headquartered software testing company with a dedicated accessibility testing practice validating digital products against WCAG 2.2 AA through combined manual and automated methods." },
+    "sourceRefs": [
+      { "url": "https://2itesting.com/services/non-functional-testing/accessibility-testing", "label": "'We use a proven accessibility testing framework to ensure all accessibility requirements are adhered to... combination of both manual and automated accessibility testing'; Edinburgh Headquarters listed; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "opace",
+    "name": "Opace",
+    "website": "opace.agency",
+    "hq": { "city": "Birmingham", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "training", "monitoring", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Birmingham digital transformation agency running manual and automated WCAG 2.2 AA accessibility audits, remediation planning, assistive-technology testing and staff accessibility training." },
+    "sourceRefs": [
+      { "url": "https://opace.agency/services/digital-transformation/digital-accessibility/", "label": "'WCAG accessibility audit: Manual and automated testing against WCAG 2.2 Level AA criteria'; address 11 Brindley Place, Birmingham; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "priority-pixels",
+    "name": "Priority Pixels",
+    "website": "prioritypixels.co.uk",
+    "hq": { "city": "Newton Abbot", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "monitoring", "training"],
+    "standards": ["wcag-2-2"],
+    "industries": ["public-sector"],
+    "certs": [],
+    "description": { "en": "Devon-based web accessibility agency delivering WCAG 2.2 AA audits, remediation of live sites, accessibility statements and ongoing compliance monitoring for organisations under regulatory pressure." },
+    "sourceRefs": [
+      { "url": "https://prioritypixels.co.uk/services/website-accessibility/", "label": "'WCAG 2.2 AA accessibility audits, remediation and ongoing compliance for organisations under regulatory pressure'; headquartered in Newton Abbot, Devon; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "we-create-digital",
+    "name": "We Create Digital",
+    "website": "wecreate.digital",
+    "hq": { "city": "Colchester", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "training"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Colchester, Essex digital agency that designs and develops accessible websites meeting WCAG level AA/AAA, provides accessibility reviews, remediation and tailored accessibility training for client teams." },
+    "sourceRefs": [
+      { "url": "https://wecreate.digital/services/digital-accessibility/", "label": "'We specialise in designing and developing accessible and inclusive websites, that meet WCAG level AA or AAA, as well as carrying out detailed accessibility reviews'; based in Colchester, Essex; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "eyekiller",
+    "name": "Eyekiller",
+    "website": "eyekiller.com",
+    "hq": { "city": "Bangor", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB", "IE"],
+    "languages": ["en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Digital agency based in Bangor, Co. Down, Northern Ireland, offering WCAG 2.2-standard accessible website design, ongoing compliance audits and CMS/editor training for clients across the UK and Ireland." },
+    "sourceRefs": [
+      { "url": "https://eyekiller.com/services/accessible-website-design", "label": "'We offer audits to assess compliance, ensuring long-term usability and an inclusive experience'; designs to WCAG 2.2 standards; registered office Bangor, Co Down; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "i-finity",
+    "name": "I-Finity",
+    "website": "i-finity.co.uk",
+    "hq": { "city": "York", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "remediation"],
+    "standards": ["wcag-2-2"],
+    "industries": ["public-sector"],
+    "certs": [],
+    "description": { "en": "York-based technical agency offering website accessibility audits against WCAG 2.1/2.2 that identify barriers for disabled users and deliver actionable remediation plans for public and private sector clients." },
+    "sourceRefs": [
+      { "url": "https://www.i-finity.co.uk/technical-audits/website-accessibility-audits", "label": "'Our expert Website Accessibility Audits thoroughly review your existing website to assess its accessibility for users with disabilities'; office at Blake House, Bootham, York; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "joom-team",
+    "name": "joom.team",
+    "website": "joomteam.co.uk",
+    "hq": { "city": "Manchester", "countryCode": "GB" },
+    "offices": [],
+    "countriesServed": ["GB"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "training"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Manchester-based Joomla specialist agency offering manual accessibility audits with screen readers, template/ARIA remediation of existing Joomla sites, and accessibility training for editors and developers." },
+    "sourceRefs": [
+      { "url": "https://www.joomteam.co.uk/joomla-accessibility", "label": "'We manually test your Joomla site with screen readers and accessibility tools, produce an audit report and give you clear next steps'; based at Wilsons Business Park Centre, Manchester; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accessibility-ie",
+    "name": "Accessibility.ie",
+    "website": "accessibility.ie",
+    "hq": { "city": "Dublin", "countryCode": "IE" },
+    "offices": [],
+    "countriesServed": ["IE"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "consulting"],
+    "standards": ["eaa"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "European Accessibility Act compliance service from Dublin agency TotalDigital.ie, running WCAG-based accessibility audits, inclusive-design reviews, code remediation and accessibility-statement drafting." },
+    "sourceRefs": [
+      { "url": "https://accessibility.ie/", "label": "'We provide accessibility audits, inclusive design and expert development to help you become compliant in 4 easy steps'; an initiative by TotalDigital.ie, a Dublin-based design and development agency; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "new-graphic",
+    "name": "New Graphic",
+    "website": "newgraphic.ie",
+    "hq": { "city": "Dublin", "countryCode": "IE" },
+    "offices": [],
+    "countriesServed": ["IE"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "consulting"],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Dublin digital agency offering website accessibility audits, remediation to WCAG 2.1 AA, accessible design/development, disabled-user UX testing and accessibility-statement creation; won an Excellence in Digital Accessibility award in 2022." },
+    "sourceRefs": [
+      { "url": "https://newgraphic.ie/services/digital-accessibility/", "label": "'Website Accessibility Audits: Identify and prioritize accessibility issues on your existing website'; office at 32 Vicar Street, Dublin; recognised with Excellence in Digital Accessibility Award 2022; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  }
+]

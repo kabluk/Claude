@@ -1,6 +1,6 @@
 {
   "source": "data/a11y/agencies.json",
-  "total": 425,
+  "total": 457,
   "hqCountries": {
     "count": 36,
     "distribution": [
@@ -25,19 +25,24 @@
         "count": 37
       },
       {
+        "code": "GB",
+        "name": "United Kingdom",
+        "count": 34
+      },
+      {
         "code": "NL",
         "name": "Netherlands",
         "count": 32
       },
       {
-        "code": "GB",
-        "name": "United Kingdom",
-        "count": 26
+        "code": "IT",
+        "name": "Italy",
+        "count": 23
       },
       {
         "code": "ES",
         "name": "Spain",
-        "count": 15
+        "count": 21
       },
       {
         "code": "AT",
@@ -50,19 +55,14 @@
         "count": 14
       },
       {
+        "code": "IE",
+        "name": "Ireland",
+        "count": 14
+      },
+      {
         "code": "AU",
         "name": "Australia",
         "count": 13
-      },
-      {
-        "code": "IE",
-        "name": "Ireland",
-        "count": 12
-      },
-      {
-        "code": "IT",
-        "name": "Italy",
-        "count": 10
       },
       {
         "code": "BE",
@@ -82,6 +82,11 @@
       {
         "code": "NZ",
         "name": "NZ",
+        "count": 7
+      },
+      {
+        "code": "PT",
+        "name": "PT",
         "count": 7
       },
       {
@@ -122,11 +127,6 @@
       {
         "code": "NO",
         "name": "Norway",
-        "count": 4
-      },
-      {
-        "code": "PT",
-        "name": "PT",
         "count": 4
       },
       {
@@ -191,17 +191,17 @@
     {
       "slug": "wcag-2-2",
       "label": "WCAG 2.2",
-      "count": 292
+      "count": 322
     },
     {
       "slug": "en-301-549",
       "label": "EN 301 549",
-      "count": 137
+      "count": 145
     },
     {
       "slug": "eaa",
       "label": "European Accessibility Act",
-      "count": 104
+      "count": 111
     },
     {
       "slug": "bitv",
@@ -216,7 +216,7 @@
     {
       "slug": "ada",
       "label": "ADA",
-      "count": 44
+      "count": 46
     },
     {
       "slug": "section-508",
@@ -225,11 +225,11 @@
     }
   ],
   "priceBands": {
-    "withBand": 27,
-    "withoutBand": 398,
+    "withBand": 29,
+    "withoutBand": 428,
     "distribution": {
-      "budget": 13,
-      "mid": 14,
+      "budget": 14,
+      "mid": 15,
       "premium": 0,
       "enterprise": 0
     }
@@ -251,15 +251,15 @@
     }
   },
   "founded": {
-    "withYear": 118,
-    "withoutYear": 307,
+    "withYear": 121,
+    "withoutYear": 336,
     "oldest": 1894,
     "newest": 2026,
     "median": 2003
   },
   "sources": {
-    "totalRefs": 1033,
-    "recordsWithMultiple": 258,
+    "totalRefs": 1071,
+    "recordsWithMultiple": 264,
     "minPerRecord": 1,
     "everyRecordHasAtLeastOne": true
   }

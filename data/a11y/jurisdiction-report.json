@@ -56,7 +56,17 @@
         "statementRequired": true,
         "verified": true,
         "citation": null,
-        "agencyCount": 17
+        "agencyCount": 23
+      },
+      {
+        "country": "IT",
+        "name": "Italy",
+        "law": "D.Lgs. 82/2022 (attuazione dir. 2019/882)",
+        "lawFull": "Decreto Legislativo 27 maggio 2022, n. 82 (attuazione direttiva (UE) 2019/882); copre gli operatori economici privati (servizi di commercio elettronico, servizi bancari per consumatori); applicabile dal 28 giugno 2025",
+        "statementRequired": true,
+        "verified": true,
+        "citation": null,
+        "agencyCount": 23
       },
       {
         "country": "AT",
@@ -76,7 +86,7 @@
         "statementRequired": true,
         "verified": false,
         "citation": null,
-        "agencyCount": 12
+        "agencyCount": 15
       },
       {
         "country": "DK",
@@ -85,16 +95,6 @@
         "lawFull": "Lov om tilgængelighedskrav for produkter og tjenester",
         "statementRequired": true,
         "verified": false,
-        "citation": null,
-        "agencyCount": 10
-      },
-      {
-        "country": "IT",
-        "name": "Italy",
-        "law": "D.Lgs. 82/2022 (attuazione dir. 2019/882)",
-        "lawFull": "Decreto Legislativo 27 maggio 2022, n. 82 (attuazione direttiva (UE) 2019/882); copre gli operatori economici privati (servizi di commercio elettronico, servizi bancari per consumatori); applicabile dal 28 giugno 2025",
-        "statementRequired": true,
-        "verified": true,
         "citation": null,
         "agencyCount": 10
       },
