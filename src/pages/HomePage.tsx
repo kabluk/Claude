@@ -292,15 +292,15 @@ export default function HomePage() {
                   to={paths.country(c)}
                   className="card flex items-center justify-between gap-3"
                 >
-                  <span className="flex items-center gap-3">
+                  <span className="flex min-w-0 items-center gap-3">
                     <span
                       aria-hidden="true"
                       className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-surface-container text-lg"
                     >
                       {flagEmoji(c.code)}
                     </span>
-                    <span>
-                      <span className="block font-semibold text-on-surface">{c.name}</span>
+                    <span className="min-w-0">
+                      <span className="block truncate font-semibold text-on-surface">{c.name}</span>
                       <span className="label block text-on-surface-variant">{c.count} agencies</span>
                     </span>
                   </span>
