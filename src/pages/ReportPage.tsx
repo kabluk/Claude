@@ -319,6 +319,22 @@ export default function ReportPage() {
 function usePlanUnlock(reportId: string, notify: Notify) {
   const [loading, setLoading] = useState(false)
 
+  // Возврат из Stripe (или из PDF) кнопкой «Назад» восстанавливает эту страницу
+  // из bfcache браузера с СОХРАНЁННЫМ состоянием JS — а redirect ниже намеренно
+  // оставляет loading=true («страница уходит»). Без сброса кнопка залипала бы на
+  // «Redirecting…» после возврата (найдено владельцем живьём на iOS Safari, где
+  // bfcache особенно агрессивен). `pageshow` с persisted=true — канонический
+  // сигнал восстановления из bfcache; на обычной загрузке loading и так false,
+  // так что сброс безопасен в любом случае.
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const onPageShow = (e: PageTransitionEvent) => {
+      if (e.persisted) setLoading(false)
+    }
+    window.addEventListener('pageshow', onPageShow)
+    return () => window.removeEventListener('pageshow', onPageShow)
+  }, [])
+
   const start = useCallback(async () => {
     setLoading(true)
     try {
