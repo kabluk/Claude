@@ -147,11 +147,13 @@ export function Layout({
             </Link>
           </nav>
           <Link
-            /* CN-BRANDBOOK-V2: primary-container сменил роль на «средний тон
-               hover» (#5e6ad2) — текст на hover переключён на on-primary
-               (белый, 4.70:1), а не on-primary-container (#00006e даёт на
-               новом фоне только 3.65:1, провал AA). */
-            className="ml-auto inline-flex items-center rounded-full bg-secondary-container px-4 py-1.5 font-mono text-xs font-medium tracking-[0.05em] uppercase text-on-secondary-container transition hover:bg-primary-container hover:text-on-primary"
+            /* D-152: CTA скана — сплошная СИНЯЯ (primary) кнопка по прямому
+               указанию владельца: скан — главная функция, и её blue-CTA должен
+               быть заметен вверху КАЖДОЙ страницы. bg-primary/text-on-primary —
+               та же AA-пара, что у .btn (проверено audit-a11y на всех страницах).
+               Раньше был светлый secondary-container pill (D-072 «один акцент») —
+               владелец сознательно поднял вес скан-действия выше этого правила. */
+            className="ml-auto inline-flex items-center rounded-full bg-primary px-4 py-1.5 font-mono text-xs font-medium tracking-[0.05em] uppercase text-on-primary transition hover:bg-primary-hover"
             to={paths.scan()}
           >
             {t.ctaScanWebsite}
