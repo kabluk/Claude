@@ -1,5 +1,5 @@
 version: 1
-updated_at: 2026-08-11
+updated_at: 2026-08-13
 limits:
   max_parallel: 3
   max_nodes_per_iteration: 8
@@ -1659,3 +1659,27 @@ nodes:
     risk: low
     approval_required: false
     notes: "DONE 2026-08-11. Новая секция «If you subscribe to accessibility monitoring» на /privacy/: email+url, weekly cadence с подавлением пустой дельты, double opt-in, unsubscribe=немедленный стоп, Resend/notify@verscala.com как процессор, ЯВНО названо отсутствие 90-дневной авто-ретенции для подписок (в отличие от сканов). Все факты сверены с кодом построчно (не по предположению — прецедент A1-PRIVACY). Расхождение soft-delete vs GDPR-erasure записано как RISKS.md R14 (право на удаление Art. 17 — пока ручной запрос, авто-ретенция подписок = будущий узел, не выдумывать что код уже удаляет). product-lead-агент не имеет Bash — правки сделал он, 4 гейта и коммит выполнены родительской сессией."
+
+  - id: G-TOOL-CONTRAST
+    title: "Бесплатный чекер контраста /tools/contrast-checker/ как страница-магнит (SEO-кластер contrast ≈27k/мес US, LOW-конкуренция)"
+    owner: frontend-engineer
+    status: done
+    depends_on: []
+    inputs: [docs/project/domains/growth.md, src/lib/jurisdictions.ts, src/components/ScanForm.tsx, src/styles.css]
+    scope: [src/lib/contrast.ts, src/lib/contrast.test.mjs, src/components/ContrastChecker.tsx, src/pages/ContrastCheckerPage.tsx, src/routes.tsx, src/lib/data.ts, src/lib/i18n.ts, src/components/Layout.tsx, scripts/gen-a11y-sitemap.mjs, scripts/audit-own-a11y.mjs]
+    outputs: [src/pages/ContrastCheckerPage.tsx]
+    node_kind: agent
+    on_failure: escalate
+    verify:
+      - npm run typecheck
+      - npx tsx --test src/lib/contrast.test.mjs   # математика WCAG сверена с WebAIM/axe
+      - node --test scripts/page-lists.test.mjs     # маршрут в sitemap И audit
+      - VITE_SCANNER_API=https://audit-fixture.invalid npm run build
+      - npm run audit-a11y                          # /tools/contrast-checker/ — 0 нарушений (WCAG 2.2 AA)
+      - npm run check-links
+      - "живая проверка: Playwright против dist/ — гидрация без mismatch, живой пересчёт, swap, permalink в обе стороны"
+    max_attempts: 4
+    attempts: 1
+    risk: medium
+    approval_required: false
+    notes: "DONE 2026-08-13 (D-144). Выбран владельцем после замера DataForSEO. Модель узла — Opus (AskUserQuestion, D-075). Чистый клиент: математика WCAG в src/lib/contrast.ts (порог 0.03928 = совпадение с axe-core/WebAIM; red-on-black=5.25:1 подтверждено живьём), интерактив с дисциплиной SSG-гидрации (permalink/пипетка в useEffect, не в рендере; URL-sync только в обработчиках). Уникальный слой — 13 юрисдикций EN 301 549→WCAG AA из общего JURISDICTION_OPTIONS (verified только DE, сумм штрафов нет, D-035) + мост на /scan/. Ссылка Tools в футер-nav (site-wide, узел после children → useId не сдвигается, D-087). Гейты: src:test 105/105, scripts:test 48/48, worker:test 488/488, audit-a11y 62 стр. 0 нарушений, check-links 539. approval_required:false — платного API/воркера нет; но push в accessatlas (автодеплой сайта) — отдельное разрешение владельца (D-022), пока НЕ задеплоено. Сегмент /tools/ — задел под следующие магниты (growth.md)."

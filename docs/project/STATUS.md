@@ -1,8 +1,34 @@
 # STATUS — фактическое состояние
 
-Обновлено: 2026-08-11 (см. также подробный legacy-статус: `research/STATE.md`)
+Обновлено: 2026-08-13 (см. также подробный legacy-статус: `research/STATE.md`)
 
-## Последнее (2026-08-13, редизайн /report/:id ЗАДЕПЛОЕН + карточка «What's at risk» / D-143)
+## Последнее (2026-08-13, первый бесплатный инструмент-магнит: contrast checker / D-144)
+
+Узел `G-TOOL-CONTRAST` — сделан в коде на ветке `claude/contrast-checker-tool-52501v`,
+**НЕ задеплоен** (push в `accessatlas` = автодеплой сайта, отдельное разрешение
+владельца, D-022). Новая страница `/tools/contrast-checker/`: живой чекер контраста
+WCAG 2.2 (hex/RGB/HSL + пипетка EyeDropper, пересчёт без кнопки, матрица AA/AAA ×
+normal/large/UI, превью, swap, permalink `?fg=&bg=`, без email). Уникальный слой —
+«закон юрисдикции рядом с результатом» (13 юрисдикций, EN 301 549 → WCAG AA, из
+общего `JURISDICTION_OPTIONS`; verified только DE, сумм штрафов нет) + мост в
+продукт (CTA на `/scan/`). Модель узла — Opus (выбор владельца, AskUserQuestion).
+
+Математика вынесена в чистый `src/lib/contrast.ts` (15 юнит-тестов, якоря сверены
+с WebAIM/axe-core: порог линеаризации 0.03928 — совпадение с нашим сканером,
+red-on-black=5.25:1). Интерактив `src/components/ContrastChecker.tsx` — дисциплина
+SSG-гидрации (permalink и пипетка читаются в useEffect после монтирования, URL
+синхронизируется только в обработчиках). Ссылка «Tools» добавлена в футер-nav
+(site-wide анти-orphan; узел после `{children}`, useId не сдвигается — урок D-087).
+
+**Живая проверка (не по коду):** Playwright против реального `dist/` — гидрация
+без mismatch-варнингов, живой пересчёт, swap, матрица текстом, permalink в обе
+стороны. Гейты все зелёные: typecheck; src:test 105/105 (+15); scripts:test 48/48
+(page-lists видит маршрут в обоих списках); worker:test 488/488; build 461 URL;
+audit-a11y **62 стр., 0 нарушений** (`/tools/contrast-checker/` — чисто);
+check-links 539, битых нет. Детали — D-144. Следующие магниты (growth.md): color
+blindness simulator (3600 LOW) → readability (7200 LOW) → alt-text → PDF-чекер.
+
+## Ранее (2026-08-13, редизайн /report/:id ЗАДЕПЛОЕН + карточка «What's at risk» / D-143)
 
 Владелец прислал макет Stitch и потребовал перевернуть страницу отчёта:
 конверсия была утоплена вниз, верх — простыня кода. Сделано и **задеплоено**

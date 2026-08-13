@@ -211,6 +211,15 @@ export function Layout({
             <Link className="hover:text-on-surface" to={paths.reports()}>
               {t.nav.reports}
             </Link>
+            {/* G-TOOL-CONTRAST (D-144): раздел бесплатных инструментов-магнитов.
+                Ссылка добавлена в футер-nav (site-wide, анти-orphan §23), а не в
+                компактную шапку (D-118). Узел стоит ПОСЛЕ {children} в дереве
+                Layout, поэтому не сдвигает React.useId() интерактивных компонентов
+                на страницах (урок D-087). Сейчас ведёт прямо на чекер контраста —
+                единственный готовый инструмент; индекс /tools/ появится со вторым. */}
+            <Link className="hover:text-on-surface" to={paths.contrastChecker()}>
+              {t.nav.tools}
+            </Link>
           </nav>
           {/* CN-BRANDBOOK-V2: --color-secondary — новый токен, назначенный
               именно футер-ссылкам в макете (5.8:1 на surface-container-low,

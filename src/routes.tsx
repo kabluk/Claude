@@ -107,6 +107,12 @@ export const routes: RouteRecord[] = [
   // Немецкий входной путь (D-041). Статический сегмент ранжируется react-router
   // выше динамического '/:country' ниже по файлу, поэтому со страной не спорит.
   { path: '/bfsg-check', lazy: page(() => import('./pages/BfsgCheckPage')) },
+  // G-TOOL-CONTRAST (D-144): бесплатный чекер контраста — страница-магнит под
+  // SEO-кластер «contrast checker». Чисто клиентский инструмент (математика
+  // WCAG), но пререндерится (статический сегмент /tools/), поэтому попадает в
+  // оба захардкоженных списка (page-lists.test.mjs). Сегмент /tools/ — задел
+  // под следующие инструменты (growth.md).
+  { path: '/tools/contrast-checker', lazy: page(() => import('./pages/ContrastCheckerPage')) },
   // Скан-отчёты непредсказуемы (id генерируется Worker'ом) — нет getStaticPaths,
   // клиентский маршрут, как /404 catch-all ниже.
   { path: '/report/:id', lazy: page(() => import('./pages/ReportPage')) },
