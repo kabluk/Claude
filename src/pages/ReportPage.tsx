@@ -321,18 +321,28 @@ function usePlanUnlock(reportId: string, notify: Notify) {
 
   // Возврат из Stripe (или из PDF) кнопкой «Назад» восстанавливает эту страницу
   // из bfcache браузера с СОХРАНЁННЫМ состоянием JS — а redirect ниже намеренно
-  // оставляет loading=true («страница уходит»). Без сброса кнопка залипала бы на
-  // «Redirecting…» после возврата (найдено владельцем живьём на iOS Safari, где
-  // bfcache особенно агрессивен). `pageshow` с persisted=true — канонический
-  // сигнал восстановления из bfcache; на обычной загрузке loading и так false,
-  // так что сброс безопасен в любом случае.
+  // оставляет loading=true («страница уходит»). Без сброса кнопка залипает на
+  // «Redirecting…» после возврата (найдено владельцем живьём на iOS Safari).
+  // Первая версия слушала ТОЛЬКО pageshow+persisted — на части iOS-Safari этого
+  // не хватило (владелец: кнопка всё равно осталась «Redirecting…»). Теперь
+  // ловим ЛЮБОЙ сигнал возврата на страницу: pageshow (в т.ч. без persisted) и
+  // возврат видимости вкладки (visibilitychange → visible). Оба означают, что
+  // редирект уже позади и спиннер пора снять. Сброс во время самого редиректа
+  // невозможен: пока идёт await createPlanCheckout, страница ещё ВИДИМА и никто
+  // не уходил, а visibilitychange/pageshow срабатывают только на возврате. На
+  // обычной загрузке loading и так false — повторный сброс безвреден.
   useEffect(() => {
     if (typeof window === 'undefined') return
-    const onPageShow = (e: PageTransitionEvent) => {
-      if (e.persisted) setLoading(false)
+    const reset = () => setLoading(false)
+    const onVisible = () => {
+      if (document.visibilityState === 'visible') reset()
     }
-    window.addEventListener('pageshow', onPageShow)
-    return () => window.removeEventListener('pageshow', onPageShow)
+    window.addEventListener('pageshow', reset)
+    document.addEventListener('visibilitychange', onVisible)
+    return () => {
+      window.removeEventListener('pageshow', reset)
+      document.removeEventListener('visibilitychange', onVisible)
+    }
   }, [])
 
   const start = useCallback(async () => {
@@ -991,7 +1001,10 @@ function WhatsAtRiskCard({
             {unlock.loading ? 'Redirecting…' : 'Get the fix plan — €19.99'}
           </button>
         )}
-        <Link className="btn-ghost" to={`${paths.requestQuote()}?scanId=${encodeURIComponent(report.id)}`}>
+        {/* D-150: владелец попросил синий (primary) и на этой ветке — заявка
+            специалисту ценнее €19.99 (лид), поэтому равный визуальный вес
+            оправдан. .btn = bg-primary text-on-primary (контраст AA проверен). */}
+        <Link className="btn" to={`${paths.requestQuote()}?scanId=${encodeURIComponent(report.id)}`}>
           Have a specialist fix it — free quote
         </Link>
       </div>
@@ -1135,7 +1148,7 @@ function RemediationPlanPanel({
             {unlock.loading ? 'Redirecting…' : 'Get the plan — €19.99'}
           </button>
           <Link
-            className="btn-ghost"
+            className="btn"
             to={`${paths.requestQuote()}?scanId=${encodeURIComponent(report.id)}`}
           >
             Have a specialist do it — plan free
