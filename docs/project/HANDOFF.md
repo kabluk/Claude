@@ -93,6 +93,32 @@ D-099/D-101) собирает с `VITE_SCANNER_API`, гоняет гейты, к
 
 ## Что осталось
 
+**📌 СЕССИЯ 2026-08-13 (ветка `claude/contrast-checker-tool-52501v`, всё задеплоено
+на прод, кроме воркер-note). Свежей сессии — стартовать отсюда:**
+- **6 чекеров-магнитов live под `/checkers/`** (категория «Checkers» в шапке, синяя
+  scan-CTA, 301 со старых `/tools/*`): contrast (D-144), readability (D-145),
+  color-blindness / color-converter / text-to-speech (D-151), **color palette
+  generator** (G-CHECKER-PALETTE). Приоритеты — по замерам DataForSEO (growth.md
+  не обновлял по 6-му; см. GRAPH + DECISIONS). Следующий кандидат-чекер по данным:
+  image color picker (40.5k) либо оптимизация; крупные accessibility-ниши уже взяты.
+- **verified топ-5 юрисдикций (D-154):** FR/NL/IT/ES переведены в verified по
+  ПЕРВОИСТОЧНИКАМ (4 из 5 прежних ссылок были на ГОС-сектор — исправлены на частный
+  сектор EAA); PL — ссылка исправлена, verified:false честно. **Live только на САЙТЕ**
+  (карточка чекера + report). **ХВОСТ: воркер НЕ передеплоен** — юр-note в отчёте
+  скана всё ещё по-старому; нужен `wrangler deploy` с CF-**токеном** владельца
+  (in-memory). Остальные 7 юрисдикций (IE/AT/BE/SE/DK/FI/NO) — «потом», той же сверкой.
+- **3 новых гайда live (G-GUIDES-BATCH-2):** how-to-write-alt-text, aria-labels-guide,
+  accessibility-statement-guide (EN). Большие темы (ADA/508/WCAG/VPAT/EAA) уже покрыты.
+- **anti-abuse воркер задеплоен (D-147):** 10 сканов/IP/день + email-лимит/дедуп.
+- **Прочее live:** каталог 290, фиксы `/report/:id` (bfcache-кнопка D-148/150 +
+  синие CTA), chunk-recovery `vite:preloadError` (D-153), SEO-план сохранён
+  (`docs/project/SEO-INDEXING-PLAN.md`).
+- **ХВОСТЫ владельца (не блокируют):** (1) 🔑 CF-токен → `wrangler deploy` воркера
+  (юр-note отчёта догонит verified); (2) 🔍 Level-0 SEO — GSC покрытие + запросить
+  индексацию + Bing (SEO-INDEXING-PLAN.md, самое действенное); (3) 📱 проверить
+  bfcache-кнопку оплаты на iOS. **Правило усвоено (D-154 инцидент):** перед push в
+  accessatlas гнать ВЕСЬ набор гейтов (вкл. `scripts:test` — дрейф снапшотов).
+
 **✅ G-TOOL-CONTRAST — первый бесплатный инструмент-магнит СДЕЛАН в коде
 (D-144, 2026-08-13).** Ветка `claude/contrast-checker-tool-52501v`.
 Новая страница `/tools/contrast-checker/`: живой чекер контраста WCAG 2.2

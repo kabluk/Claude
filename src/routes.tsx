@@ -123,6 +123,12 @@ export const routes: RouteRecord[] = [
   { path: '/checkers/color-blindness-simulator', lazy: page(() => import('./pages/ColorBlindnessPage')) },
   { path: '/checkers/color-converter', lazy: page(() => import('./pages/ColorConverterPage')) },
   { path: '/checkers/text-to-speech', lazy: page(() => import('./pages/TextToSpeechPage')) },
+  // G-CHECKER-PALETTE: sixth tool — accessible colour palette generator, same
+  // discipline (static segment, both hardcoded lists mandatory).
+  {
+    path: '/checkers/color-palette-generator',
+    lazy: page(() => import('./pages/ColorPaletteGeneratorPage')),
+  },
   // Скан-отчёты непредсказуемы (id генерируется Worker'ом) — нет getStaticPaths,
   // клиентский маршрут, как /404 catch-all ниже.
   { path: '/report/:id', lazy: page(() => import('./pages/ReportPage')) },

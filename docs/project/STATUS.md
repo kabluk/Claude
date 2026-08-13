@@ -9,7 +9,7 @@
 = 200, `/tools/*` = 301 → `/checkers/*`, «Checkers» в шапке site-wide. useId не
 сдвинулся (стеш-диф, урок D-087).
 
-**5 бесплатных чекеров-магнитов на проде (D-144/145/151):** contrast, readability,
+**6 бесплатных чекеров-магнитов на проде (D-144/145/151 + G-CHECKER-PALETTE):** contrast, readability, accessible colour palette generator,
 + **color blindness simulator / color converter / text-to-speech** (батч по замеру
 DataForSEO: colorblind 201k, rgb↔hex 23k, TTS 301k — все клиентские). Матрицы CVD
 (Wickline) сверены независимо (protanopia red={145,142,0}), Playwright-гидрация

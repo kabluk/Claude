@@ -1774,3 +1774,24 @@ nodes:
     risk: low
     approval_required: false
     notes: "DONE 2026-08-13. Приоритет по замеру DataForSEO (alt text 5.4k / aria labels 4.4k / accessibility statement ~1k, все LOW) — большие темы (ADA/508/WCAG/VPAT/EAA) уже покрыты, взяты ПРОБЕЛЫ. Sonnet-субагент, родитель факт-чекнул: субагент верно поймал '4 правила ARIA' против моей ошибочной памяти о 5 — пример «сверять первоисточник, не память». Сумм штрафов нет (D-035), гайды кросс-линкуют друг друга + сканер + BFSG-гайды (анти-orphan §23). Автоинтеграция глобом (src/lib/guides.ts) — routes/sitemap не трогали. Полный прогон гейтов перед push (урок после дрейф-фейла D-154)."
+
+  - id: G-CHECKER-PALETTE
+    title: "6-й чекер: accessible colour palette generator — /checkers/color-palette-generator/ (кластер color palette 90-165k)"
+    owner: frontend-engineer
+    status: done
+    depends_on: [G-TOOL-CONTRAST, G-CHECKERS-BATCH-1]
+    inputs: [src/lib/contrast.ts, src/pages/ContrastCheckerPage.tsx, docs/project/domains/growth.md]
+    scope: [src/lib/palette.ts, src/lib/palette.test.mjs, src/components/ColorPaletteGenerator.tsx, src/pages/ColorPaletteGeneratorPage.tsx, src/routes.tsx, src/lib/data.ts, src/pages/ToolsIndexPage.tsx, scripts/gen-a11y-sitemap.mjs, scripts/audit-own-a11y.mjs]
+    outputs: [src/pages/ColorPaletteGeneratorPage.tsx]
+    node_kind: agent
+    on_failure: escalate
+    verify:
+      - npx tsx --test src/lib/palette.test.mjs
+      - npm run typecheck && npm run src:test && npm run scripts:test && npm run worker:test
+      - VITE_SCANNER_API=https://audit-fixture.invalid npm run build && npm run audit-a11y && npm run check-links
+      - "родитель сверил гармонии независимо: complementary(red)=[0,180], триада 120 apart; инвариант contrastRatio(c,white)*contrastRatio(c,black)=21"
+    max_attempts: 4
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "DONE 2026-08-13 (WRAP-UP сессии). Замер DataForSEO: color palette кластер 90-165k LOW-ads (но органика — гиганты; берём нишевый/длинный хвост + наш WCAG-угол: у каждого образца виден контраст и AA). Sonnet-субагент, родитель сверил математику + полный прогон гейтов (palette 13/13, src 140, scripts 48, worker 504, audit 68 стр. 0 нарушений, sitemap 490, check-links 575). Индекс /checkers/ = 6 карточек. Субагент добавил изящный инвариант-тест (max(contrast к white/black) >= sqrt(21) всегда) и — вопреки инструкции — правки в frontend.md/LEARNING_LOG (D-051, оставлены как корректные)."

@@ -1,7 +1,8 @@
-// G-TOOL-READABILITY / G-CHECKERS-BATCH-1: index of the free tool-magnet
-// pages — contrast checker, readability checker, colour blindness simulator,
-// colour converter, text-to-speech reader. Future tools get a card here the
-// same way. Same card pattern as ReportsIndexPage.tsx, own Meta via Layout.
+// G-TOOL-READABILITY / G-CHECKERS-BATCH-1 / G-CHECKER-PALETTE: index of the
+// free tool-magnet pages — contrast checker, readability checker, colour
+// blindness simulator, colour converter, text-to-speech reader, colour
+// palette generator. Future tools get a card here the same way. Same card
+// pattern as ReportsIndexPage.tsx, own Meta via Layout.
 
 import { Link } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
@@ -33,6 +34,11 @@ const TOOLS = [
     href: paths.textToSpeech(),
     title: 'Text-to-speech reader',
     dek: 'Paste text and hear it read aloud with your browser’s own voices — adjustable rate and pitch, nothing sent anywhere.',
+  },
+  {
+    href: paths.colorPaletteGenerator(),
+    title: 'Colour palette generator',
+    dek: 'Generate complementary, triadic and other harmonious palettes — every swatch shows its readable text colour, WCAG contrast ratio and AA pass/fail.',
   },
 ]
 

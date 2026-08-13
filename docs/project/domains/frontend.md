@@ -673,3 +673,61 @@ jurisdiction detected)` (`countryCode: null`, `countrySource: 'unknown'`,
 не только DE-ветка с плашкой. Итог: `typecheck` ✓, `src:test` 90,
 `scripts:test` 48, `build` 485 HTML / sitemap 460, `check-links` 537-0,
 `audit-a11y` 61 состояние, 0 нарушений.
+
+## Шестой чекер: генератор доступных цветовых палитр (2026-08-13, G-CHECKER-PALETTE)
+
+`/checkers/color-palette-generator/` — шестой инструмент семейства
+`/checkers/`, тот же шаблон, что у остальных пяти (contrast checker D-144,
+readability, colour-blindness, colour converter, text-to-speech). УГОЛ,
+отличающий его от типового генератора палитр: контраст — не сноска, а центр
+инструмента — у каждого образца сразу виден реальный WCAG-коэффициент и
+вердикт AA, не только гармоничный оттенок.
+
+**Математика — новый чистый модуль `src/lib/palette.ts`** (13 тестов,
+`palette.test.mjs`, `tsx --test`), поверх уже оттестированных
+`rgbToHsl`/`hslToRgb`/`contrastRatio`/`passes` из `contrast.ts` — ноль
+дублирования цветовой математики (тот же принцип, что у `cvd.ts`).
+
+- `generatePalette(base, scheme)` — вращение hue: `complementary` +180°,
+  `analogous` ±30°, `triadic` +120°/+240°, `tetradic` +90°/+180°/+270°,
+  `split-complementary` +150°/+210°, `monochromatic` — тот же hue, lightness
+  ±20/±40 (клампится 5–95%, иначе на границах чёрного/белого hue физически
+  теряет смысл). Каждая схема возвращает `[база, ...производные]` — база
+  включена буквально (не пересчитана через HSL round-trip).
+- Тест на wrap доказывает это явно: база с hue≈328° + tetradic offset 270°
+  ожидаемо даёт hue < базовой (перешло через 360° и вернулось в 0..360), а не
+  просто «число похоже на правильное».
+- `bestTextColor(rgb)` — выбирает более контрастный из чёрного/белого,
+  возвращает точный `ratio` (через `contrastRatio`+`roundRatio`) и `passesAA`
+  (через `passes(…, 'normal', 'AA')`, тот же порог 4.5:1, что у сканера).
+  **Математический инвариант, зафиксированный тестом, не только заявленный
+  комментарием:** `contrastRatio(c,white) × contrastRatio(c,black) === 21` для
+  любого `c` (произведение отношений яркости телескопируется в 21:1
+  чёрное/белое) ⇒ `max(ratioWhite, ratioBlack) ≥ √21 ≈ 4.58` всегда — выбор
+  между чёрным и белым текстом физически не может провалить AA normal ни на
+  одном образце палитры. Один из трёх тестов на `bestTextColor` — именно этот
+  инвариант на mid-grey (128,128,128) и соседних значениях, а не только
+  «тёмный → белый / светлый → чёрный».
+
+**Компонент `ColorPaletteGenerator.tsx`** — та же дисциплина гидрации, что у
+`ContrastChecker.tsx`: детерминированный дефолт (`#4450b7` + `complementary`),
+`Math.random()` только внутри `onClick` кнопки «Randomise» (никогда при
+рендере), permalink `?base=&scheme=` читается в `useEffect` ПОСЛЕ монтирования
+и синхронизируется в адресную строку только из обработчиков действий, не из
+эффекта на `[base, scheme]` (иначе первый же эффект затёр бы входящий
+permalink — тот же баг класс, что уже задокументирован в `ContrastChecker`).
+Каждый образец — текстовая метка "AA text: Pass/Fail" (не только цвет,
+WCAG 1.4.1), палитра целиком в одном `aria-live="polite"`. «Copy palette»
+(hex-список) и «Copy as CSS variables» переиспользуют `copyText` из
+`CopyButton.tsx`, а не заводят вторую копию Clipboard API + `execCommand`-
+фолбэка.
+
+**Реестр (один автор правок).** `paths.colorPaletteGenerator()` в `data.ts`,
+маршрут в `routes.tsx`, карточка в `ToolsIndexPage.tsx` (индекс — 6
+инструментов), путь в обоих захардкоженных списках
+(`gen-a11y-sitemap.mjs`/`audit-own-a11y.mjs`, гейт `page-lists.test.mjs`).
+
+**Гейты.** `typecheck` ✓, `palette.test.mjs` 13/13, `page-lists.test.mjs`
+3/3, `src:test` 140, `scripts:test` 48, `build` (515 HTML, sitemap 490 URL),
+`audit-a11y` 68 состояний / 0 нарушений (`/checkers/color-palette-generator/`
+— чисто), `check-links` 575 ссылок / 0 битых.
