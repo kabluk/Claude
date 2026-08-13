@@ -40,14 +40,57 @@ import { sendEmail, VERIFIED_FROM } from '../lib/resend.js'
 const WINDOW_SECONDS = 3600
 const SUBSCRIBE_MAX_PER_IP = 5
 
-async function checkSubscribeRateLimit(kv, ip) {
+// A5-ABUSE-LIMITS: суточный лимит по EMAIL — независимый от IP-лимита выше.
+// Он же основной анти-"email bomb" контроль: IP-лимит защищает воркер от
+// одного источника трафика, а этот — защищает ЧУЖОЙ почтовый ящик от того,
+// чтобы кто-то с большим пулом IP завалил его письмами double opt-in. Ключ —
+// нормализованный email (см. normaliseEmail), не сырой ввод пользователя:
+// "Foo@Example.com " и "foo@example.com" обязаны делить один счётчик.
+const DAY_WINDOW_SECONDS = 86400
+const SUBSCRIBE_MAX_PER_EMAIL_DAY = 3
+
+// Общий небольшой fixed-window helper для обеих проверок этого файла — тот же
+// паттерн (ключ = `${prefix}:${windowStart}`, TTL = длина окна), что и
+// worker/lib/ratelimit.js::checkFixedWindow, но не импортируется оттуда:
+// собственная функция в файле роута — намеренный выбор ещё исходного узла
+// (см. комментарий выше), этот узел его не меняет, только добавляет второе
+// окно поверх первого.
+async function checkWindow(kv, key, max, windowSeconds) {
   const now = Math.floor(Date.now() / 1000)
-  const windowKey = `rl:subscribe:ip:${ip}:${now - (now % WINDOW_SECONDS)}`
+  const windowKey = `${key}:${now - (now % windowSeconds)}`
   const countRaw = await kv.get(windowKey)
   const count = Number(countRaw ?? 0)
-  if (count >= SUBSCRIBE_MAX_PER_IP) return { allowed: false, reason: 'ip_limit' }
-  await kv.put(windowKey, String(count + 1), { expirationTtl: WINDOW_SECONDS })
-  return { allowed: true }
+  if (count >= max) return false
+  await kv.put(windowKey, String(count + 1), { expirationTtl: windowSeconds })
+  return true
+}
+
+// windowSeconds=WINDOW_SECONDS (час) и ключ не изменились относительно
+// исходной версии — существующие KV-ключи в проде остаются валидны байт-в-байт.
+async function checkSubscribeRateLimit(kv, ip) {
+  const allowed = await checkWindow(kv, `rl:subscribe:ip:${ip}`, SUBSCRIBE_MAX_PER_IP, WINDOW_SECONDS)
+  return allowed ? { allowed: true } : { allowed: false, reason: 'ip_limit' }
+}
+
+// trim+lowercase — та же нормализация, что уже применяется к телу запроса
+// (body.email.trim()) плюс регистронезависимость: почтовые адреса
+// регистронезависимы по локальной части на практике повсеместных провайдеров,
+// а нам важно не дать варьированием регистра обойти суточный счётчик.
+// Используется ТОЛЬКО как ключ лимита и как сторона сравнения в dedup-запросе
+// (lower(email) в SQL) — то, что реально пишется в строку subscriptions,
+// остаётся email так, как ввёл пользователь (см. insertSubscription ниже).
+function normaliseEmail(email) {
+  return email.trim().toLowerCase()
+}
+
+async function checkSubscribeEmailRateLimit(kv, email) {
+  const allowed = await checkWindow(
+    kv,
+    `rl:subscribe:email:${normaliseEmail(email)}`,
+    SUBSCRIBE_MAX_PER_EMAIL_DAY,
+    DAY_WINDOW_SECONDS,
+  )
+  return allowed ? { allowed: true } : { allowed: false, reason: 'email_limit' }
 }
 
 // Тот же EMAIL_RE, что в lead.js/claim.js — намеренно одинаково нестрогий:
@@ -95,6 +138,27 @@ function generateToken() {
 
 // last_scan_id = NULL (первого перескана ещё не было), cadence = 'weekly' —
 // единственное значение на MVP, колонка заведена заранее (0010_subscriptions.sql).
+// A5-ABUSE-LIMITS: dedup lookup для (email, url). `lower(email) = lower(?)`
+// на ОБЕИХ сторонах (не только на стороне значения) — колонка email хранит
+// то, что ввёл пользователь (см. insertSubscription), регистр в ней не
+// нормализован, значит сравнение обязано игнорировать регистр с обеих
+// сторон, а не только у входного параметра. `url` сравнивается точно (после
+// trim в handlePostSubscribe) — в отличие от email, у URL нет общепринятой
+// регистронезависимости, менять семантику подписки по регистру пути мы не
+// вправе. `status IN ('pending','active')` — намеренно ИСКЛЮЧАЕТ
+// 'unsubscribed': отписавшийся пользователь, снова заполнивший форму, обязан
+// получить НОВОЕ письмо double opt-in и новую строку, а не молча слиться со
+// старой мёртвой записью (симметрично тому, что verify не воскрешает
+// unsubscribed — см. handleGetSubscribeVerify).
+async function findExistingSubscription(db, { email, url }) {
+  return db
+    .prepare(
+      `SELECT id FROM subscriptions WHERE lower(email) = lower(?) AND url = ? AND status IN ('pending', 'active')`,
+    )
+    .bind(email, url)
+    .first()
+}
+
 async function insertSubscription(db, sub) {
   await db
     .prepare(
@@ -111,12 +175,22 @@ async function insertSubscription(db, sub) {
 // `emailSent` различает две ситуации, которые иначе выглядят в логах
 // одинаково: «письмо ушло» и «ключа нет / Resend отказал» — без этого
 // молчаливая деградация D-024 становится невидимой.
-function logNewSubscription({ id, url, emailSent }) {
+// `dedup` (A5-ABUSE-LIMITS): различает в логах «новая строка вставлена» от
+// «запрос схлопнулся с уже существующей (email,url) подпиской, ничего не
+// вставлено и не отправлено» — снаружи (в HTTP-ответе) эти два случая
+// намеренно неотличимы (см. handlePostSubscribe), но в логах воркера это
+// разные события, и наблюдаемость не обязана жертвовать точностью там, где
+// приватность её не требует.
+function logNewSubscription({ id, url, emailSent, dedup = false }) {
   let host = 'unparseable'
   try {
     host = new URL(url).host
   } catch {
     /* url уже провалидирован выше; ветка — на случай будущих правок */
+  }
+  if (dedup) {
+    console.log(`A3-CRON-SUBSCRIBE-API: subscription ${id} dedup-hit for ${host} (no insert, no email sent)`)
+    return
   }
   const mail = emailSent ? 'confirm email sent' : 'confirm email NOT sent'
   console.log(`A3-CRON-SUBSCRIBE-API: subscription ${id} created for ${host} (pending, ${mail})`)
@@ -202,13 +276,23 @@ async function sendConfirmEmailBestEffort(env, { email, url, token, siteOrigin }
 
 // POST /api/subscribe {email, url, turnstileToken?} -> 201 {subscriptionId}
 // Синхронная запись (как /api/lead и /api/claim, в отличие от /api/scan):
-// один INSERT, сетевых вызовов нет — ctx.waitUntil не нужен.
+// один INSERT (или ни одного, при dedup-хите — см. ниже), сетевых вызовов
+// нет вне письма — ctx.waitUntil не нужен.
 //
-// Дедупликации «этот email уже подписан на этот url» здесь намеренно НЕТ:
-// ответ вида «у вас уже есть подписка» превратил бы открытый эндпоинт в
-// оракул, отвечающий на вопрос «следит ли адрес X за сайтом Y» без всякой
-// верификации. Дубликаты схлопываются позже, в cron-выборке
-// (A3-CRON-RESCAN-DELTA), где строки уже отфильтрованы по verified/active.
+// A5-ABUSE-LIMITS добавил dedup «этот email уже подписан на этот url»,
+// намеренно НЕ через отдельный статус-код или поле ответа: старая версия
+// этого комментария (до этого узла) отказывалась от дедупа именно потому, что
+// видимый ответ «уже подписан» превращает открытый эндпоинт в оракул —
+// сторонний вызывающий мог бы перебором url узнавать, следит ли адрес X за
+// сайтом Y, без всякой верификации владения адресом. Инвариант СОХРАНЁН, а не
+// снят: dedup-хит и свежая подписка отдают ОДИНАКОВЫЙ 201 {subscriptionId}
+// (id уже существующей строки в первом случае) — снаружи неотличимы. Что
+// реально изменилось при дедупе: не выполняется повторный INSERT и не уходит
+// повторное письмо double opt-in (см. findExistingSubscription ниже) — это
+// защита от накопления мёртвых строк и повторной заливки одного и того же
+// адреса письмами при пуле IP, обходящем IP-лимит, а не раскрытие факта
+// подписки. Дубликаты с ДРУГИМ url для того же email дедупу не подлежат (это
+// не дубликат) и по-прежнему считаются в суточный per-email лимит ниже.
 export async function handlePostSubscribe(request, env) {
   let body
   try {
@@ -239,10 +323,36 @@ export async function handlePostSubscribe(request, env) {
     return Response.json({ error: `rate limit exceeded (${rl.reason})`, code: 'rate_limited' }, { status: 429 })
   }
 
-  const id = crypto.randomUUID()
-  const token = generateToken()
   const email = body.email.trim()
   const url = body.url.trim()
+
+  // A5-ABUSE-LIMITS: dedup ПЕРВЫМ среди abuse-проверок — РАНЬШЕ суточного
+  // per-email лимита (осознанный порядок, выбран родительской сессией при
+  // ревью). Смысл: повторная отправка ТОЙ ЖЕ формы (email+url уже pending/
+  // active) — не атака и не должна тратить квоту адресата; она схлопывается
+  // здесь в тот же 201 без нового INSERT и без нового письма. Инвариант
+  // неотличимости сохранён (см. комментарий над handlePostSubscribe): dedup-хит
+  // и свежая подписка отдают одинаковый ответ. Защита от «письмо-бомбера» от
+  // этого не слабеет: заливка чужого ящика идёт через РАЗНЫЕ url (каждый —
+  // свежая, не дедуп-пара), а их режет per-email лимит ниже.
+  const existing = await findExistingSubscription(env.DB, { email, url })
+  if (existing) {
+    logNewSubscription({ id: existing.id, url, emailSent: false, dedup: true })
+    return Response.json({ subscriptionId: existing.id }, { status: 201 })
+  }
+
+  // A5-ABUSE-LIMITS: суточный per-email лимит — ПОСЛЕ IP-лимита и ПОСЛЕ dedup.
+  // Считает только СВЕЖИЕ (email,url), реально порождающие письмо double
+  // opt-in, поэтому счётчик = «сколько подтверждений ушло на этот адрес
+  // сегодня» (потолок 3) — ровно та величина, что защита и ограничивает; при
+  // этом честный повтор одной формы (выше) квоту не жжёт.
+  const emailRl = await checkSubscribeEmailRateLimit(env.RATE_LIMIT_KV, email)
+  if (!emailRl.allowed) {
+    return Response.json({ error: `rate limit exceeded (${emailRl.reason})`, code: 'rate_limited' }, { status: 429 })
+  }
+
+  const id = crypto.randomUUID()
+  const token = generateToken()
 
   // Порядок важен: INSERT первым и без try/catch (провал записи — настоящая
   // 5xx, подписки не существует), отправка письма — отдельным некритичным

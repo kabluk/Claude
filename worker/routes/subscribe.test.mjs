@@ -58,6 +58,18 @@ function fakeDb(initialRows = []) {
                 const [token] = args
                 return rows.find((r) => r.token === token) ?? null
               }
+              // A5-ABUSE-LIMITS dedup lookup: lower(email)=lower(?) AND url=? AND status IN (...)
+              if (/^SELECT id FROM subscriptions WHERE lower\(email\)/.test(sql)) {
+                const [email, url] = args
+                return (
+                  rows.find(
+                    (r) =>
+                      r.email.toLowerCase() === email.toLowerCase() &&
+                      r.url === url &&
+                      (r.status === 'pending' || r.status === 'active'),
+                  ) ?? null
+                )
+              }
               return null
             },
           }
@@ -176,10 +188,10 @@ test('the verify token never appears anywhere in the POST /api/subscribe respons
   assert.equal(res.status, 201, 'not a redirect: a 3xx could carry the token in Location')
 })
 
-test('two subscriptions for the same email/url get different, unpredictable ids and tokens', async () => {
+test('two subscriptions for DIFFERENT (email,url) pairs get different, unpredictable ids and tokens', async () => {
   const e = env()
   await handlePostSubscribe(req(VALID_BODY), e)
-  await handlePostSubscribe(req(VALID_BODY), e)
+  await handlePostSubscribe(req({ email: 'someone-else@example.com', url: VALID_BODY.url }), e)
   const [a, b] = e.DB.rows
   assert.notEqual(a.id, b.id)
   assert.notEqual(a.token, b.token)
@@ -351,12 +363,17 @@ test('buildConfirmEmail escapes the subscriber-supplied URL in the HTML body', (
   assert.ok(mail.html.includes('href="https://worker.example/monitoring/confirm?token=abc123"'))
 })
 
+// Каждый вызов — свой email (и свой url, чтобы заодно не задеть dedup ниже):
+// иначе на 4-м вызове раньше сработал бы новый суточный per-email лимит
+// (A5-ABUSE-LIMITS, 3/сутки) и тест проверял бы не то, что заявлено в имени.
+const distinctBody = (i) => ({ email: `ip-limit-${i}@example.com`, url: `https://example.com/page-${i}` })
+
 test('rate limit: blocks the 6th request from the same IP within the window', async () => {
   const e = env()
   for (let i = 0; i < 5; i++) {
-    assert.equal((await handlePostSubscribe(req(VALID_BODY), e)).status, 201, `request ${i} should succeed`)
+    assert.equal((await handlePostSubscribe(req(distinctBody(i)), e)).status, 201, `request ${i} should succeed`)
   }
-  const sixth = await handlePostSubscribe(req(VALID_BODY), e)
+  const sixth = await handlePostSubscribe(req(distinctBody(5)), e)
   assert.equal(sixth.status, 429)
   assert.equal((await sixth.json()).code, 'rate_limited')
 })
@@ -364,10 +381,127 @@ test('rate limit: blocks the 6th request from the same IP within the window', as
 test('rate limit is tracked independently per IP', async () => {
   const e = env()
   for (let i = 0; i < 5; i++) {
-    await handlePostSubscribe(req(VALID_BODY, { 'cf-connecting-ip': '9.9.9.9' }), e)
+    await handlePostSubscribe(req(distinctBody(i), { 'cf-connecting-ip': '9.9.9.9' }), e)
   }
-  const otherIp = await handlePostSubscribe(req(VALID_BODY, { 'cf-connecting-ip': '8.8.8.8' }), e)
+  const otherIp = await handlePostSubscribe(req(distinctBody(99), { 'cf-connecting-ip': '8.8.8.8' }), e)
   assert.equal(otherIp.status, 201)
+})
+
+// --- A5-ABUSE-LIMITS: per-email daily cap ----------------------------------
+
+test('per-email daily cap: blocks the 4th subscribe for the same email within a day (429 email_limit)', async () => {
+  const e = env()
+  const emailBody = (i) => ({ email: 'bombed@example.com', url: `https://example.com/target-${i}` })
+  for (let i = 0; i < 3; i++) {
+    assert.equal((await handlePostSubscribe(req(emailBody(i)), e)).status, 201, `request ${i} should succeed`)
+  }
+  const fourth = await handlePostSubscribe(req(emailBody(3)), e)
+  assert.equal(fourth.status, 429)
+  const data = await fourth.json()
+  assert.equal(data.code, 'rate_limited')
+  assert.match(data.error, /email_limit/)
+})
+
+test('per-email daily cap is tracked independently per email (a different email is unaffected)', async () => {
+  const e = env()
+  const emailBody = (i) => ({ email: 'bombed2@example.com', url: `https://example.com/target-${i}` })
+  for (let i = 0; i < 3; i++) await handlePostSubscribe(req(emailBody(i)), e)
+  const otherEmail = await handlePostSubscribe(req({ email: 'victim@example.com', url: 'https://example.com/target-0' }), e)
+  assert.equal(otherEmail.status, 201)
+})
+
+test('per-email daily cap is keyed on the NORMALISED email (case/whitespace do not evade it)', async () => {
+  const e = env()
+  const variants = [
+    'Case@Example.com',
+    ' case@example.com ',
+    'CASE@EXAMPLE.COM',
+  ]
+  for (const [i, email] of variants.entries()) {
+    const res = await handlePostSubscribe(req({ email, url: `https://example.com/case-${i}` }), e)
+    assert.equal(res.status, 201, `variant ${i} should succeed`)
+  }
+  const fourth = await handlePostSubscribe(req({ email: 'case@example.com', url: 'https://example.com/case-3' }), e)
+  assert.equal(fourth.status, 429)
+  assert.match((await fourth.json()).error, /email_limit/)
+})
+
+// --- A5-ABUSE-LIMITS: dedup by (email, url) --------------------------------
+
+test('dedup: a second subscribe for the same (email,url) with an existing pending row does not insert or email again, and returns the SAME 201 shape', async (t) => {
+  const calls = captureFetch(t)
+  const e = env({ RESEND_API_KEY: 're_test_secret' })
+
+  const first = await handlePostSubscribe(req(VALID_BODY), e)
+  assert.equal(first.status, 201)
+  const firstData = await first.json()
+  assert.equal(e.DB.rows.length, 1)
+  assert.equal(calls.length, 1, 'the first subscribe sends exactly one confirm email')
+
+  const second = await handlePostSubscribe(req(VALID_BODY), e)
+  assert.equal(second.status, 201)
+  const secondData = await second.json()
+
+  assert.equal(e.DB.rows.length, 1, 'no new row is inserted on a dedup hit')
+  assert.equal(secondData.subscriptionId, firstData.subscriptionId, 'same subscription id returned')
+  assert.equal(calls.length, 1, 'no second confirm email is sent on a dedup hit')
+})
+
+test('dedup: a DIFFERENT url for the same email is NOT deduped (still processed, subject to the per-email cap)', async (t) => {
+  captureFetch(t)
+  const e = env()
+  const first = await handlePostSubscribe(req(VALID_BODY), e)
+  const second = await handlePostSubscribe(req({ ...VALID_BODY, url: 'https://other-example.com' }), e)
+  assert.equal(second.status, 201)
+  assert.equal(e.DB.rows.length, 2, 'a different url is a genuinely different subscription')
+  const firstId = (await first.json()).subscriptionId
+  const secondId = (await second.json()).subscriptionId
+  assert.notEqual(firstId, secondId)
+})
+
+test('dedup: an UNSUBSCRIBED existing row for the same (email,url) is NOT deduped — a fresh row is created', async (t) => {
+  captureFetch(t)
+  const e = env()
+  const first = await handlePostSubscribe(req(VALID_BODY), e)
+  const { subscriptionId: firstId } = await first.json()
+  await handleUnsubscribe(unsubReq(e.DB.rows[0].token), e)
+  assert.equal(e.DB.rows[0].status, 'unsubscribed')
+
+  const second = await handlePostSubscribe(req(VALID_BODY), e)
+  assert.equal(second.status, 201)
+  const { subscriptionId: secondId } = await second.json()
+  assert.notEqual(secondId, firstId, 'unsubscribed rows must not be reused by dedup')
+  assert.equal(e.DB.rows.length, 2)
+})
+
+test('dedup runs BEFORE the per-email cap: re-submitting the SAME (email,url) more than 3× never trips email_limit (honest re-submit ≠ attack)', async (t) => {
+  // Регресс-щит на порядок проверок (родительское ревью A5-ABUSE-LIMITS): если
+  // per-email лимит вернуть ВЫШЕ dedup, 4-й одинаковый сабмит начнёт отдавать
+  // 429, хотя ни одного лишнего письма не уходит (dedup их гасит) — это ломало
+  // бы честного пользователя, кликнувшего «подписаться» несколько раз. Здесь
+  // 5 идентичных запросов подряд обязаны все вернуть 201 и не создать дублей.
+  const calls = captureFetch(t)
+  const e = env({ RESEND_API_KEY: 're_test_secret' })
+  for (let i = 0; i < 5; i++) {
+    assert.equal((await handlePostSubscribe(req(VALID_BODY), e)).status, 201, `identical submit ${i} must not be rate-limited`)
+  }
+  assert.equal(e.DB.rows.length, 1, 'still exactly one row after 5 identical submits')
+  assert.equal(calls.length, 1, 'still exactly one confirm email after 5 identical submits')
+})
+
+test('dedup indistinguishability: a dedup-hit response has the exact same status and body shape as a fresh subscribe', async (t) => {
+  captureFetch(t)
+  const e = env()
+  const fresh = await handlePostSubscribe(req(VALID_BODY), e)
+  const freshBody = await fresh.json()
+
+  const dedupHit = await handlePostSubscribe(req(VALID_BODY), e)
+  const dedupBody = await dedupHit.json()
+
+  assert.equal(dedupHit.status, fresh.status, 'same HTTP status')
+  assert.deepEqual(Object.keys(dedupBody).sort(), Object.keys(freshBody).sort(), 'same set of response fields')
+  assert.deepEqual(Object.keys(dedupBody), ['subscriptionId'], 'no extra field revealing "already subscribed"')
+  assert.equal(typeof dedupBody.subscriptionId, 'string')
 })
 
 test('turnstile: no TURNSTILE_SECRET_KEY configured -> verification is skipped (dev mode)', async () => {

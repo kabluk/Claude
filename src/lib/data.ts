@@ -170,6 +170,9 @@ export const paths = {
   // Первый — чекер контраста; сегмент /tools/ заведён под будущие (color
   // blindness simulator, readability и т.д. — growth.md).
   contrastChecker: () => '/tools/contrast-checker/',
+  // G-TOOL-READABILITY: индекс инструментов + второй инструмент (SC 3.1.5, AAA).
+  tools: () => '/tools/',
+  readabilityChecker: () => '/tools/readability-checker/',
   // CN-WCAG-PAGES (D-066): справочник критериев из en301549-coverage.json.
   wcag: () => '/wcag/',
   wcagCriterion: (slug: string) => `/wcag/${slug}/`,

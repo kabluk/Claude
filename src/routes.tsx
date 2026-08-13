@@ -113,6 +113,11 @@ export const routes: RouteRecord[] = [
   // оба захардкоженных списка (page-lists.test.mjs). Сегмент /tools/ — задел
   // под следующие инструменты (growth.md).
   { path: '/tools/contrast-checker', lazy: page(() => import('./pages/ContrastCheckerPage')) },
+  // G-TOOL-READABILITY: второй инструмент-магнит того же семейства (SC 3.1.5,
+  // AAA — честно отмечено на самой странице) + индекс /tools/ теперь, когда
+  // инструментов два. Статические сегменты — тот же приоритет над '/:country'.
+  { path: '/tools', lazy: page(() => import('./pages/ToolsIndexPage')) },
+  { path: '/tools/readability-checker', lazy: page(() => import('./pages/ReadabilityCheckerPage')) },
   // Скан-отчёты непредсказуемы (id генерируется Worker'ом) — нет getStaticPaths,
   // клиентский маршрут, как /404 catch-all ниже.
   { path: '/report/:id', lazy: page(() => import('./pages/ReportPage')) },

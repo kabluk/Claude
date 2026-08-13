@@ -1,0 +1,407 @@
+[
+  {
+    "slug": "linelab",
+    "name": "Linelab",
+    "website": "linelab.cz",
+    "hq": { "city": "Brno", "countryCode": "CZ" },
+    "offices": [],
+    "countriesServed": ["CZ"],
+    "languages": ["cs"],
+    "services": ["audit"],
+    "standards": ["wcag-2-2", "eaa"],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Linelab runs website accessibility audits for Czech organizations combining goal-setting analysis, WCAG-based testing, manual testing with users with disabilities, results analysis and optional post-fix re-testing ahead of the European Accessibility Act deadline."
+    },
+    "sourceRefs": [
+      { "url": "https://linelab.cz/audit-webovych-stranek/audit-pristupnosti", "label": "audit přístupnosti service page: 'Testy podle WCAG', manuální testování with users with disabilities, results analysis with remediation recommendations, optional re-testing; WCAG 2.1 level AA and European Accessibility Act (effective 28 June 2025); Brno, Pražákova 1008/69; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "lioncode",
+    "name": "Lioncode",
+    "website": "lioncode.gr",
+    "hq": { "city": "Thessaloniki", "countryCode": "GR" },
+    "offices": [],
+    "countriesServed": ["GR"],
+    "languages": ["el", "en"],
+    "services": ["audit", "remediation", "consulting"],
+    "standards": ["wcag-2-2", "eaa"],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Lioncode offers free initial accessibility assessments and comprehensive technical and functional WCAG audits for Greek websites and platforms, followed by remediation of existing sites, accessible platform design/development, and ongoing technical guidance toward Directive (EU) 2019/882 compliance."
+    },
+    "sourceRefs": [
+      { "url": "https://lioncode.gr/en/web-accessibility/", "label": "web accessibility page: 'Free initial website/platform accessibility assessment', 'Comprehensive technical and functional WCAG accessibility audit', 'Full compliance with WCAG 2.1 Level AAA' and Directive (EU) 2019/882; Thessaloniki, Balkan Center Building C; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "adcert",
+    "name": "ADC (ADCERT)",
+    "website": "adcert.gr",
+    "hq": { "city": "Thessaloniki", "countryCode": "GR" },
+    "offices": [],
+    "countriesServed": ["GR"],
+    "languages": ["el"],
+    "services": ["audit", "remediation", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "ADC (ADCERT) describes itself as the only company in Greece offering WCAG 2.1 AAA accessibility certification, combining automated and manual compliance checks, expert-guided remediation of issues found, and annual certification renewal aligned with client business objectives."
+    },
+    "sourceRefs": [
+      { "url": "https://adcert.gr/", "label": "homepage: 'WCAG 2.1 AAA Πιστοποίηση προσβασιμότητας'; automated and manual checks ('αυτόματους αλλά και χειροκίνητους ελέγχους'); described as 'η μοναδική εταιρεία στην Ελλάδα' (the only company in Greece) offering this; Thessaloniki, Greece; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "akadalymentes-web",
+    "name": "Akadálymentes Web",
+    "website": "akadalymentesweb.hu",
+    "hq": { "city": "Budapest", "countryCode": "HU" },
+    "offices": [],
+    "countriesServed": ["HU"],
+    "languages": ["hu"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["wcag-2-2", "en-301-549"],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Akadálymentes Web (Károly Szántai, CPWA/CPACC/WAS certified) audits Hungarian websites against WCAG 2.x, ISO/IEC 40500 and MSZ EN 301 549, and is registered with the Budapest authority as an accessibility expert; it also provides developer accessibility training and consulting."
+    },
+    "sourceRefs": [
+      { "url": "https://www.akadalymentesweb.hu/szolgaltatasaim/honlap-akadalymentessegi-audit/", "label": "honlap akadálymentességi audit page: audits against 'WCAG 2.x, ISO 40500, MSZ EN 301 549'; registration as accessibility expert (F-446/2024); pricing 'legalább nettó 80.000 Ft alapárral' for a basic 'A' level site examination; training and consulting also offered; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "precognox",
+    "name": "Precognox",
+    "website": "precognox.com",
+    "hq": { "city": "Kaposvár", "countryCode": "HU" },
+    "offices": [],
+    "countriesServed": ["HU"],
+    "languages": ["hu", "en"],
+    "services": ["audit", "remediation", "training", "consulting"],
+    "standards": ["wcag-2-2", "en-301-549", "eaa", "section-508", "ada"],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Precognox performs full-scope WCAG-EM accessibility audits of websites, design systems, mobile apps, documents and kiosks, delivers practical remediation plans, offers in-house or outsourced bug-fixing, and provides developer training against the European Accessibility Act, EN 301 549, ADA, AODA and Section 508."
+    },
+    "sourceRefs": [
+      { "url": "https://precognox.com/hu/termekek/wcag-audit/", "label": "WCAG audit product page: 'Teljes körű audit' using WCAG-EM methodology; remediation plans, bug-fixing service, developer training; standards 'Az Európai Akadálymentesítési Irányelv (EAA)', EN 301 549, ADA, AODA, Section 508; Kaposvár, H-7400 Fő utca 65; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "worksdot",
+    "name": "Worksdot",
+    "website": "worksdot.hu",
+    "hq": { "city": "Budapest", "countryCode": "HU" },
+    "offices": [],
+    "countriesServed": ["HU"],
+    "languages": ["hu"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Worksdot examines Hungarian websites and applications with assistive technology to find and solve accessibility problems ('Akadálymentes audit'), offers accessible interface design support during development, accessibility consulting, and awareness workshops/training, based on WCAG guidelines."
+    },
+    "sourceRefs": [
+      { "url": "https://akadalymentes.worksdot.hu/", "label": "own site: 'Akadálymentes audit', 'Akadálymentes tervezés', 'Akadálymentes tanácsadás', 'Képzés'; 'A WCAG (Web Content Accessibility Guidelines) iránymutatását vesszük alapul', WCAG 2.1; Budapest, Himfy utca 1, 1118 Budapest; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accesibilitate-web-ro",
+    "name": "Accesibilitate Web",
+    "website": "accesibilitateweb.ro",
+    "hq": { "city": "Bucharest", "countryCode": "RO" },
+    "offices": [],
+    "countriesServed": ["RO"],
+    "languages": ["ro"],
+    "services": ["audit", "monitoring", "consulting"],
+    "standards": ["wcag-2-2", "en-301-549"],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Accesibilitate Web audits Romanian websites, web applications, UX/UI and mobile apps (iOS/Android) against WCAG 2.1 and EN 301 549, offers tiered packages from single-page basic checks to full multi-device platform reviews, and runs continuous accessibility monitoring to keep sites aligned with the standard over time."
+    },
+    "sourceRefs": [
+      { "url": "https://www.accesibilitateweb.ro/audit-de-accesibilitate-digitala/", "label": "audit de accesibilitate digitală page: website, web app, UX/UI and mobile (iOS/Android) audits; 'in conformitate cu standardele WCAG 2.1' and EN 301 549; Starter/Extended/Complete packages; Bucharest, Str. Inginer Zablovschi 10; live fetch 2026-08-13" },
+      { "url": "https://www.accesibilitateweb.ro/monitorizare-accesibilitate-web/", "label": "monitorizare accesibilitate web page: 'proces regulat și continuu de testare și evaluare'; 'servicii de monitorizare continuă a accesibilității web... aliniată la standardele WCAG 2.1'; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "digitalna-dostopnost",
+    "name": "Zavod za digitalno dostopnost A11Y.si",
+    "website": "digitalnadostopnost.si",
+    "hq": { "city": "Izola", "countryCode": "SI" },
+    "offices": [],
+    "countriesServed": ["SI"],
+    "languages": ["sl"],
+    "services": ["consulting", "training"],
+    "standards": ["wcag-2-2", "eaa"],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Zavod za digitalno dostopnost A11Y.si is a Slovenian nonprofit institute that raises awareness of universal accessibility, builds stakeholder competencies, and provides consulting and support ('svetovanje in podporo') to public and private organizations implementing and expanding digital accessibility ahead of the European Accessibility Act."
+    },
+    "sourceRefs": [
+      { "url": "https://www.digitalnadostopnost.si/", "label": "homepage: 'Zavod za digitalno dostopnost A11Y.si'; three focus areas 'Osveščamo in zagovarjamo univerzalno dostopnost; Dvigujemo kompetence vseh deležnikov; Nudimo svetovanje in podporo'; helps 'organizacijam javnega in zasebnega prava'; EAA effective 28 June 2025; Izola, Ilirska ulica 30; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "e-dostopen",
+    "name": "e-dostopen.si",
+    "website": "e-dostopen.si",
+    "hq": { "city": "", "countryCode": "SI" },
+    "offices": [],
+    "countriesServed": ["SI"],
+    "languages": ["sl"],
+    "services": ["audit", "consulting"],
+    "standards": ["wcag-2-2", "en-301-549"],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "e-dostopen.si analyzes Slovenian websites and mobile apps for WCAG 2.2 AA and EN 301 549 compliance through tiered manual-plus-automated packages (Basic up to 10 pages, Advanced up to 20 pages, Custom for large enterprises), each delivered with a PDF report, and offers a free orientation review."
+    },
+    "sourceRefs": [
+      { "url": "https://e-dostopen.si/", "label": "own site: 'Naročite analizo skladnosti vašega spletnega mesta ali mobilne aplikacije z WCAG standardi'; Basic (10 key pages)/Advanced (20 key pages)/Custom tiers; manual and automated testing with PDF report; WCAG 2.2 AA and EN 301 549; free orientation review; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "basta-digital",
+    "name": "Basta Digital",
+    "website": "bastadigital.com",
+    "hq": { "city": "Bratislava", "countryCode": "SK" },
+    "offices": [],
+    "countriesServed": ["SK"],
+    "languages": ["sk", "en"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["wcag-2-2", "en-301-549"],
+    "industries": [],
+    "priceBand": "mid",
+    "certs": [],
+    "description": {
+      "en": "Basta Digital audits Slovak websites against WCAG and EN 301 549 under the Law on Accessibility of Products and Services, covering color contrast, keyboard navigation and text alternatives, and delivers results with a 90-minute workshop presentation to the client's team."
+    },
+    "sourceRefs": [
+      { "url": "https://bastadigital.com/audit-pristupnosti/", "label": "audit prístupnosti webu page: 'audit webovej prístupnosti podľa Zákona o prístupnosti výrobkov a služieb'; WCAG and EN 301 549 ('Požiadavky na prístupnosť produktov a služieb'); price 'Cena kompletného auditu vrátane workshopu k výsledkom je od 2 250 € bez DPH'; delivery '2 týždňov až po 1 mesiac'; Bratislava, Račianska 22/A; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "pristupne",
+    "name": "prístupne (ÚNSS)",
+    "website": "pristupne.sk",
+    "hq": { "city": "Košice", "countryCode": "SK" },
+    "offices": [],
+    "countriesServed": ["SK"],
+    "languages": ["sk"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["wcag-2-2", "eaa"],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "prístupne.sk (operated as prístupne s.r.o., wholly owned by the Slovak Union of the Blind and Partially Sighted, ÚNSS) delivers detailed website and mobile app accessibility audits against WCAG 2.1/2.2 and Slovak/European legislation, plus developer training, design consultations and accessibility statements, with a free 20-minute consultation or mini-audit."
+    },
+    "sourceRefs": [
+      { "url": "https://pristupne.sk/", "label": "own site: 'Detailná analýza webu alebo mobilnej aplikácie podľa platnej európskej a slovenskej legislatívy'; WCAG 2.1/2.2, European Accessibility Act; training/lectures, development consultations, accessibility statements; 'Bezplatná 20-minútová konzultácia alebo miniaudit zdarma'; Košice, Park obrancov mieru 1; live fetch 2026-08-13" },
+      { "url": "https://unss.sk/audit-pristupnosti-webovych-stranok-a-mobilnych-aplikacii/", "label": "ÚNSS audit prístupnosti page confirming prístupne s.r.o. is wholly owned by Únia nevidiacich a slabozrakých Slovenska; Basic audit 'Hodnotených je 90 pravidiel prístupnosti' priced at €590 bez DPH; STN EN 301 549; Bratislava; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "estart",
+    "name": "eStart",
+    "website": "estart.hr",
+    "hq": { "city": "Zagreb", "countryCode": "HR" },
+    "offices": [],
+    "countriesServed": ["HR"],
+    "languages": ["hr"],
+    "services": ["audit", "remediation", "training", "consulting"],
+    "standards": ["wcag-2-2", "eaa"],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "eStart's digital accessibility service audits and tests existing Croatian websites against WCAG 2.2, adapts design contrast/colors/fonts/navigation, optimizes content and interactive elements for screen readers, publishes accessibility statements, and trains client teams to maintain accessible content."
+    },
+    "sourceRefs": [
+      { "url": "https://estart.hr/usluge/digitalna-pristupacnost/", "label": "digitalna pristupačnost service page: 'Analizu i testiranje postojećeg weba prema WCAG 2.2 smjernicama', design/contrast adaptation, screen-reader content optimization ('alt oznake, ARIA oznake'), interactive element/form adaptation, 'Izradu i objavu Izjave o pristupačnosti', team training; 'Europski akt o pristupačnosti'; Zagreb, Gjure Szaba 11; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "catch-design",
+    "name": "Catch Design",
+    "website": "catchdesign.co.nz",
+    "hq": { "city": "Wellington", "countryCode": "NZ" },
+    "offices": [
+      { "city": "Auckland", "countryCode": "NZ" }
+    ],
+    "countriesServed": ["NZ"],
+    "languages": ["en"],
+    "services": ["audit"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Catch Design provides independent, comprehensive Website and Mobile App Accessibility Audits for New Zealand organizations, assessing compliance against WCAG 2.1/2.2 and the NZ Government Web Accessibility Standard and reporting issues, impacts and recommendations."
+    },
+    "sourceRefs": [
+      { "url": "https://www.catchdesign.co.nz/what-we-do/accessibility", "label": "accessibility service page: 'independent, comprehensive Website and Mobile App Accessibility Audits'; WCAG 2.1/2.2 and NZ Government Web Accessibility Standard; offices at Level 3/239 Ponsonby Road, Auckland and Level 1, 24 Blair Street, Wellington; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "openaccess-nz",
+    "name": "OpenAccess",
+    "website": "openaccess.nz",
+    "hq": { "city": "", "countryCode": "NZ" },
+    "offices": [],
+    "countriesServed": ["NZ", "AU"],
+    "languages": ["en"],
+    "services": ["audit"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "OpenAccess works with clients across New Zealand and Australia, offering Basic/Standard/Full tiered accessibility audits against WCAG 2.2 and the NZ Government Web Accessibility Standard, combining human expert review with screen-reader and keyboard-only testing and a plain-language fix-guidance report."
+    },
+    "sourceRefs": [
+      { "url": "https://www.openaccess.nz/services/audits/", "label": "audits service page: Basic ('from $1,000')/Standard ('from $2,000')/Full ('from $5,000') tiers; 'Audits test against industry standards, including WCAG 2.2 and the NZ Government Web Accessibility Standard'; human expert review, screen reader and keyboard-only testing; consultant on NZ Ministry of Disabled People's Accessibility Advisory Group; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "somar-digital",
+    "name": "Somar Digital",
+    "website": "somar.co.nz",
+    "hq": { "city": "Wellington", "countryCode": "NZ" },
+    "offices": [],
+    "countriesServed": ["NZ"],
+    "languages": ["en"],
+    "services": ["audit", "remediation"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Somar Digital helps New Zealand organizations implement website accessibility guidelines through a thorough audit of the site, identification of accessibility barriers, and implementation of the changes needed against WCAG 2.0/2.1 and the NZ Government Web Accessibility Standard."
+    },
+    "sourceRefs": [
+      { "url": "https://www.somar.co.nz/blog/website-accessibility-guidelines/", "label": "website accessibility guidelines page: 'Our approach encompasses a thorough audit of your site, identification of potential accessibility barriers, and the implementation of necessary changes to enhance inclusivity'; WCAG 2.0/2.1, NZ Government Web Accessibility Standard 1.1/1.3, WCAG 3.0 noted as upcoming; Wellington, Level 6, 56 Victoria Street; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "pieejams-lv",
+    "name": "Pieejams.lv",
+    "website": "pieejams.lv",
+    "hq": { "city": "Riga", "countryCode": "LV" },
+    "offices": [],
+    "countriesServed": ["LV"],
+    "languages": ["lv"],
+    "services": ["audit", "remediation", "monitoring", "training"],
+    "standards": ["wcag-2-2", "en-301-549"],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Pieejams.lv (SIA Amber Cloud) performs full website and app accessibility audits against WCAG 2.1 AA and EN 301 549 for Latvian organizations, improves content into plain/easy language, prepares accessibility statements, runs annual monitoring, and trains staff."
+    },
+    "sourceRefs": [
+      { "url": "https://pieejams.lv/", "label": "own site: 'Veicam pilnu tīmekļa vietņu un lietotņu piekļūstamības auditu atbilstoši WCAG 2.1 AA un EN 301 549 standartiem'; plain-language content improvements, accessibility statements, annual monitoring, staff training; Riga, Ieroču iela 14; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "magit",
+    "name": "MAGIT",
+    "website": "magit.lt",
+    "hq": { "city": "Vilnius", "countryCode": "LT" },
+    "offices": [],
+    "countriesServed": ["LT"],
+    "languages": ["lt"],
+    "services": ["audit"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "MAGIT tests Lithuanian websites, web systems and iOS/Android mobile apps with screen readers (NVDA, JAWS, VoiceOver) including validation by a professional blind tester, checking WCAG 2.1/2.2 compliance and delivering detailed reports with developer recommendations."
+    },
+    "sourceRefs": [
+      { "url": "https://www.magit.lt/it-paslaugos/prieinamumo-testavimas/", "label": "prieinamumo testavimas page: 'Svetainių ir web sistemų testavimą ekrano skaitytuvais (NVDA, JAWS, VoiceOver)'; mobile app testing for iOS/Android; 'profesionalus neregys testuotojas'; WCAG 2.1/2.2 requirements; Vilnius, Verkių g. 46; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "javali",
+    "name": "JAVALI (SCANA)",
+    "website": "javali.pt",
+    "hq": { "city": "Caparica", "countryCode": "PT" },
+    "offices": [],
+    "countriesServed": ["PT"],
+    "languages": ["pt"],
+    "services": ["audit", "consulting"],
+    "standards": ["wcag-2-2", "eaa"],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "JAVALI's SCANA service audits and consults on accessibility for Portuguese digital products, combining automated analysis, specialized manual audit and assistive-technology testing against WCAG 2.1/2.2 (levels A and AA), Portuguese Decree-Law 83/2018 and the European Accessibility Act."
+    },
+    "sourceRefs": [
+      { "url": "https://www.javali.pt/servicos/solucoes-javali", "label": "soluções JAVALI page: 'SCANA - Consultoria e Auditoria de Normas de Acessibilidade'; 'análise automatizada, auditoria manual especializada e testes com tecnologias de apoio'; WCAG 2.1/2.2 (nível A e AA); 'Decreto-Lei n.º 83/2018 e a European Accessibility Act'; Caparica, Edifício Madan Parque, Rua dos Inventores; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "createweb-bg",
+    "name": "CreateWeb",
+    "website": "createweb.bg",
+    "hq": { "city": "", "countryCode": "BG" },
+    "offices": [],
+    "countriesServed": ["BG"],
+    "languages": ["bg"],
+    "services": ["audit", "remediation"],
+    "standards": ["wcag-2-2", "en-301-549"],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "CreateWeb, a Bulgarian full-service digital agency, offers website accessibility audits (automated plus manual testing) and WCAG remediation/correction work, along with accessible WordPress builds, aligned to WCAG 2.1 AA and EN 301 549 European Accessibility Act requirements."
+    },
+    "sourceRefs": [
+      { "url": "https://createweb.bg/ueb-dostapnost-sait-za-hora-s-uvrezhdaniya/", "label": "уеб достъпност page: 'CreateWeb предлага пълен спектър от уеб дизайн и UI/UX услуги, включващи одит за достъпност' (automated + manual testing) and WCAG correction; WCAG 2.1 AA and EN 301 549; indicative price 'одит за достъпност ... за малък сайт е от 500 до 1 500 евро'; described as 'българска full-service агенция'; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ligipaasuke",
+    "name": "Ligipääsuke",
+    "website": "ligipaasuke.ee",
+    "hq": { "city": "", "countryCode": "EE" },
+    "offices": [],
+    "countriesServed": ["EE"],
+    "languages": ["et"],
+    "services": ["audit", "consulting"],
+    "standards": ["wcag-2-2", "en-301-549"],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Ligipääsuke provides digital accessibility consulting and audits for Estonian websites, mobile apps, information systems and TV apps, run by CPWA-certified (IAAP) staff, with client work including audits for Elisa's e-shop, mobile apps and TV app and partnerships with LHV Bank and Swedbank."
+    },
+    "sourceRefs": [
+      { "url": "https://ligipaasuke.ee/", "label": "own site: 'Digiligipääsetavuse nõustamine ja audit'; audits of websites, mobile apps, information systems, TV apps; staff hold CPWA (IAAP) certification; standard 'Euroopa Liidu digiligipääsetavuse standardi en 301 549'; client examples Elisa, LHV Bank, Swedbank; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  }
+]

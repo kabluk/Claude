@@ -211,13 +211,14 @@ export function Layout({
             <Link className="hover:text-on-surface" to={paths.reports()}>
               {t.nav.reports}
             </Link>
-            {/* G-TOOL-CONTRAST (D-144): раздел бесплатных инструментов-магнитов.
-                Ссылка добавлена в футер-nav (site-wide, анти-orphan §23), а не в
-                компактную шапку (D-118). Узел стоит ПОСЛЕ {children} в дереве
-                Layout, поэтому не сдвигает React.useId() интерактивных компонентов
-                на страницах (урок D-087). Сейчас ведёт прямо на чекер контраста —
-                единственный готовый инструмент; индекс /tools/ появится со вторым. */}
-            <Link className="hover:text-on-surface" to={paths.contrastChecker()}>
+            {/* G-TOOL-CONTRAST (D-144) / G-TOOL-READABILITY: раздел бесплатных
+                инструментов-магнитов. Ссылка добавлена в футер-nav (site-wide,
+                анти-orphan §23), а не в компактную шапку (D-118). Узел стоит
+                ПОСЛЕ {children} в дереве Layout, поэтому не сдвигает
+                React.useId() интерактивных компонентов на страницах (урок
+                D-087). Теперь, когда инструментов два, ведёт на индекс /tools/
+                вместо прямой ссылки на один инструмент. */}
+            <Link className="hover:text-on-surface" to={paths.tools()}>
               {t.nav.tools}
             </Link>
           </nav>

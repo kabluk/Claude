@@ -157,6 +157,23 @@ test('real SQLite: an old verify link does not resurrect an unsubscribed row', {
   assert.equal(row.verified, 1)
 })
 
+test('real SQLite: A5-ABUSE-LIMITS dedup query (lower(email)=lower(?) AND url=? AND status IN (...)) runs against the real schema and matches an existing pending row', { skip }, async () => {
+  const e = env()
+  const first = await handlePostSubscribe(post({ email: 'Real@Example.com', url: 'https://example.com' }), e)
+  const { subscriptionId: firstId } = await first.json()
+
+  // Тот же (email,url), но с другим регистром email — dedup обязан найти
+  // строку через настоящий SQLite lower(), а не через JS-эмуляцию из
+  // subscribe.test.mjs::fakeDb.
+  const second = await handlePostSubscribe(post({ email: 'real@example.com', url: 'https://example.com' }), e)
+  assert.equal(second.status, 201)
+  const { subscriptionId: secondId } = await second.json()
+  assert.equal(secondId, firstId, 'dedup must hit despite the email case difference')
+
+  const count = e.DB.raw.prepare('SELECT COUNT(*) AS n FROM subscriptions').get().n
+  assert.equal(count, 1, 'no second row inserted')
+})
+
 test('real SQLite: the token lookup uses the index created by the migration (no full scan)', { skip }, async () => {
   const e = env()
   await handlePostSubscribe(post(), e)

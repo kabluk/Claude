@@ -2,7 +2,29 @@
 
 Обновлено: 2026-08-13 (см. также подробный legacy-статус: `research/STATE.md`)
 
-## Последнее (2026-08-13, первый бесплатный инструмент-магнит: contrast checker / D-144)
+## Последнее (2026-08-13, readability checker + индекс /tools/ + каталог 290 / D-145, D-146)
+
+**G-TOOL-READABILITY (D-145) — второй инструмент-магнит, готов в коде, НЕ
+задеплоен.** `/tools/readability-checker/`: живой чекер читаемости (Flesch/FK/
+Gunning Fog/SMOG/Coleman-Liau/ARI, `src/lib/readability.ts`, 16 тестов) +
+интерактив с той же SSG-дисциплиной, что contrast. Честно про стандарт:
+SC 3.1.5 Reading Level = **AAA, не базовый AA** (сказано прямо), формулы
+англоязычные, мост на `/scan/`. Появился 2-й инструмент → создан индекс
+`/tools/` (`ToolsIndexPage`), футер-ссылка «Tools» ведёт на него. Модель узла —
+Sonnet (выбор владельца), сборка субагентом, родительская Opus-проверка живьём
+(Playwright против dist: гидрация чистая, пересчёт верного направления).
+
+**Каталог 270 → 290 (D-146) — батч 3 расширения, НЕ задеплоен.** +20 агентств
+в непочатых рынках (CZ/GR/HU/RO/SI…), рецепт D-142 (Sonnet-субагент
+WebSearch+WebFetch), снапшоты пересобраны. Родительская проверка живым WebFetch:
+`lioncode.gr`, `linelab.cz` — реальны, совпадают с записью.
+
+Общие гейты после обоих: typecheck; src:test **121/121** (+16 readability);
+scripts:test 48/48 (page-lists видит `/tools/`+`/tools/readability-checker/`;
+drift зелёный); build **483 URL**; audit-a11y **64 стр., 0 нарушений**;
+check-links 563. Оба поедут на сайт push'ем в `accessatlas`.
+
+## Ранее (2026-08-13, первый бесплатный инструмент-магнит: contrast checker / D-144)
 
 Узел `G-TOOL-CONTRAST` — сделан в коде на ветке `claude/contrast-checker-tool-52501v`,
 **НЕ задеплоен** (push в `accessatlas` = автодеплой сайта, отдельное разрешение

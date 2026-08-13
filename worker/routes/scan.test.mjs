@@ -286,6 +286,83 @@ test('D-110: невалидный url отсекается ДО очереди (
   assert.equal(queue.sent.length, 0)
 })
 
+// ── A5-ABUSE-LIMITS: суточный per-IP лимит поверх часового ─────────────────
+// Юнит-покрытие самой логики окон — worker/lib/ratelimit.test.mjs. Здесь —
+// что handlePostScan реально пробрасывает reason='ip_daily_limit' в 429, а не
+// только checkRateLimit его возвращает где-то в вакууме.
+test('A5-ABUSE-LIMITS: 11th scan from one IP within a day -> 429 ip_daily_limit, even across hourly window resets', async (t) => {
+  const DAY_START = Date.UTC(2026, 0, 3, 0, 0, 0)
+  t.mock.timers.enable({ apis: ['Date'], now: DAY_START })
+  const db = fakeScansDb([])
+  const kv = fakeKv()
+  const makeReq = (i) =>
+    new Request('https://api.test/api/scan', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'cf-connecting-ip': '203.0.113.55' },
+      body: JSON.stringify({ url: `https://site${i}.example.com/` }),
+    })
+
+  for (let hour = 0; hour < 10; hour++) {
+    t.mock.timers.setTime(DAY_START + hour * 3_600_000)
+    const res = await handlePostScan(makeReq(hour), { DB: db, RATE_LIMIT_KV: kv, SCAN_QUEUE: fakeQueue() }, recordingCtx())
+    assert.equal(res.status, 202, `scan ${hour} should be accepted`)
+  }
+
+  t.mock.timers.setTime(DAY_START + 10 * 3_600_000)
+  const eleventh = await handlePostScan(
+    makeReq(10),
+    { DB: db, RATE_LIMIT_KV: kv, SCAN_QUEUE: fakeQueue() },
+    recordingCtx(),
+  )
+  assert.equal(eleventh.status, 429)
+  const body = await eleventh.json()
+  assert.equal(body.code, 'rate_limited')
+  assert.match(body.error, /ip_daily_limit/)
+})
+
+test('A5-ABUSE-LIMITS: the hourly cap still independently blocks the 6th scan from one IP within an hour', async () => {
+  const db = fakeScansDb([])
+  const kv = fakeKv()
+  const makeReq = (i) =>
+    new Request('https://api.test/api/scan', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'cf-connecting-ip': '203.0.113.56' },
+      body: JSON.stringify({ url: `https://other${i}.example.com/` }),
+    })
+  for (let i = 0; i < 5; i++) {
+    const res = await handlePostScan(makeReq(i), { DB: db, RATE_LIMIT_KV: kv, SCAN_QUEUE: fakeQueue() }, recordingCtx())
+    assert.equal(res.status, 202)
+  }
+  const sixth = await handlePostScan(makeReq(5), { DB: db, RATE_LIMIT_KV: kv, SCAN_QUEUE: fakeQueue() }, recordingCtx())
+  assert.equal(sixth.status, 429)
+  assert.match((await sixth.json()).error, /ip_limit/)
+})
+
+test('A5-ABUSE-LIMITS: a different IP is unaffected by another IP exhausting its daily cap', async (t) => {
+  const DAY_START = Date.UTC(2026, 0, 4, 0, 0, 0)
+  t.mock.timers.enable({ apis: ['Date'], now: DAY_START })
+  const db = fakeScansDb([])
+  const kv = fakeKv()
+  const reqFor = (ip, i) =>
+    new Request('https://api.test/api/scan', {
+      method: 'POST',
+      headers: { 'content-type': 'application/json', 'cf-connecting-ip': ip },
+      body: JSON.stringify({ url: `https://x${i}.example.com/` }),
+    })
+
+  for (let hour = 0; hour < 10; hour++) {
+    t.mock.timers.setTime(DAY_START + hour * 3_600_000)
+    await handlePostScan(reqFor('198.51.100.1', hour), { DB: db, RATE_LIMIT_KV: kv, SCAN_QUEUE: fakeQueue() }, recordingCtx())
+  }
+  t.mock.timers.setTime(DAY_START + 10 * 3_600_000)
+  const otherIp = await handlePostScan(
+    reqFor('198.51.100.2', 10),
+    { DB: db, RATE_LIMIT_KV: kv, SCAN_QUEUE: fakeQueue() },
+    recordingCtx(),
+  )
+  assert.equal(otherIp.status, 202)
+})
+
 test('D-109: isScanStale — done/error не протухают никогда, а running без парсибельной даты протух сразу', () => {
   const e = { SCAN_TIMEOUT_MS: ENV_TIMEOUT }
   assert.equal(isScanStale({ status: 'done', createdAt: '2020-01-01T00:00:00Z' }, e), false)

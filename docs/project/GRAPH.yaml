@@ -1683,3 +1683,48 @@ nodes:
     risk: medium
     approval_required: false
     notes: "DONE 2026-08-13 (D-144). Выбран владельцем после замера DataForSEO. Модель узла — Opus (AskUserQuestion, D-075). Чистый клиент: математика WCAG в src/lib/contrast.ts (порог 0.03928 = совпадение с axe-core/WebAIM; red-on-black=5.25:1 подтверждено живьём), интерактив с дисциплиной SSG-гидрации (permalink/пипетка в useEffect, не в рендере; URL-sync только в обработчиках). Уникальный слой — 13 юрисдикций EN 301 549→WCAG AA из общего JURISDICTION_OPTIONS (verified только DE, сумм штрафов нет, D-035) + мост на /scan/. Ссылка Tools в футер-nav (site-wide, узел после children → useId не сдвигается, D-087). Гейты: src:test 105/105, scripts:test 48/48, worker:test 488/488, audit-a11y 62 стр. 0 нарушений, check-links 539. approval_required:false — платного API/воркера нет; но push в accessatlas (автодеплой сайта) — отдельное разрешение владельца (D-022), пока НЕ задеплоено. Сегмент /tools/ — задел под следующие магниты (growth.md)."
+
+  - id: G-TOOL-READABILITY
+    title: "Бесплатный readability checker /tools/readability-checker/ + индекс /tools/ (SEO-кластер readability 7200/мес LOW)"
+    owner: frontend-engineer
+    status: done
+    depends_on: [G-TOOL-CONTRAST]
+    inputs: [docs/project/domains/growth.md, src/lib/contrast.ts, src/components/ContrastChecker.tsx, src/pages/ContrastCheckerPage.tsx]
+    scope: [src/lib/readability.ts, src/lib/readability.test.mjs, src/components/ReadabilityChecker.tsx, src/pages/ReadabilityCheckerPage.tsx, src/pages/ToolsIndexPage.tsx, src/routes.tsx, src/lib/data.ts, src/components/Layout.tsx, scripts/gen-a11y-sitemap.mjs, scripts/audit-own-a11y.mjs]
+    outputs: [src/pages/ReadabilityCheckerPage.tsx, src/pages/ToolsIndexPage.tsx]
+    node_kind: agent
+    on_failure: escalate
+    verify:
+      - npm run typecheck
+      - npx tsx --test src/lib/readability.test.mjs
+      - node --test scripts/page-lists.test.mjs
+      - VITE_SCANNER_API=https://audit-fixture.invalid npm run build
+      - npm run audit-a11y
+      - npm run check-links
+      - "живая проверка: Playwright против dist/ — гидрация без mismatch, живой пересчёт формул"
+    max_attempts: 4
+    attempts: 1
+    risk: medium
+    approval_required: false
+    notes: "DONE 2026-08-13 (D-145). Модель Sonnet (выбор владельца, шаблон contrast уже есть). Чистые формулы (Flesch/FK/Gunning Fog/SMOG/Coleman-Liau/ARI) в readability.ts, 16 тестов. Честность про стандарт: SC 3.1.5 Reading Level = AAA, НЕ базовый AA (сказано прямо), формулы англоязычные, сумм штрафов нет, мост на /scan/. Появился 2-й инструмент → создан индекс /tools/, футер-Tools ведёт на него. Родительская Opus-проверка живьём: Playwright против dist — гидрация чистая, пересчёт верного направления. Гейты: src:test 121/121, scripts:test 48/48, audit-a11y 64 стр. 0 нарушений, check-links 563. НЕ задеплоено (push в accessatlas)."
+
+  - id: A5-ABUSE-LIMITS
+    title: "Anti-abuse: суточный лимит скана 10/IP + защита подписки от email-бомбинга (per-email лимит + дедуп)"
+    owner: backend-engineer
+    status: done
+    depends_on: []
+    inputs: [worker/lib/ratelimit.js, worker/routes/scan.js, worker/routes/subscribe.js, migrations/0010_subscriptions.sql]
+    scope: [worker/lib/ratelimit.js, worker/lib/ratelimit.test.mjs, worker/routes/scan.test.mjs, worker/routes/subscribe.js, worker/routes/subscribe.test.mjs, worker/routes/subscribe.sql.test.mjs]
+    outputs: []
+    node_kind: agent
+    on_failure: escalate
+    verify:
+      - npm run worker:test
+      - "npx wrangler deploy --dry-run — бандл собирается, биндинги без изменений"
+      - "порядок dedup ПЕРЕД per-email лимитом (регресс-тест): честный повтор одной формы не жжёт квоту и не 429-ит"
+      - "неотличимость dedup-хита от свежей подписки (тот же 201, тот же набор полей — не оракул)"
+    max_attempts: 4
+    attempts: 1
+    risk: medium
+    approval_required: true
+    notes: "DONE в коде 2026-08-13 (D-147), воркер НЕ задеплоен. Запрос владельца. Модель Sonnet (выбор владельца; совет хука haiku отклонён — security). Скан +10/IP/день (отдельный KV-ключ, не коллизирует с часовым на границе суток). Подписка +3 письма/email/сутки (норм. email) + дедуп lower(email)+url среди pending|active. Родительская поправка: dedup ПЕРЕД per-email лимитом (честный повтор не ломается, атака через разные url режется так же) + регресс-тест. worker:test 488→503, wrangler dry-run чист. approval_required:true — worker deploy только с CF-токеном владельца (D-022)."
