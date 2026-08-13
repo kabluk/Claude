@@ -89,14 +89,19 @@ export async function checkKeyboardTraversal(page, pageUrl) {
         // DOCUMENT_POSITION_FOLLOWING = prev идёт ПОСЛЕ el, т.е. фокус ушёл назад
         backwards = Boolean(el.compareDocumentPosition(prev) & Node.DOCUMENT_POSITION_FOLLOWING)
       }
+      // Trap = фокус реально застрял на ОДНОМ И ТОМ ЖЕ УЗЛЕ. Сравниваем identity узла
+      // (prev === el), НЕ строку-селектор: ряд одинаковых карточек (напр.
+      // `a.card.flex...`) даёт совпадающие селекторы на РАЗНЫХ узлах, и сравнение по
+      // строке ложно объявляло ловушку, пока фокус нормально шёл по карточкам (D-165).
+      const sameAsPrev = Boolean(prev && prev === el)
       window.__aaPrevFocused = el
       const tabindex = el.getAttribute('tabindex')
       const positiveTabindex = tabindex !== null && Number(tabindex) > 0
 
-      return { sel, invisible, backwards, positiveTabindex }
+      return { sel, invisible, backwards, positiveTabindex, sameAsPrev }
     })
     if (step === null) break // вышли за пределы фокусируемых элементов — конец обхода
-    if (selectors.length && selectors[selectors.length - 1] === step.sel) {
+    if (step.sameAsPrev) {
       sameStreak++
       if (sameStreak >= TRAP_REPEAT_THRESHOLD) {
         trapSelector = step.sel

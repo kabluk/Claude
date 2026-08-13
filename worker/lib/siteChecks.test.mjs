@@ -120,6 +120,24 @@ test('a longer form of the same label is not a violation ("Contact" vs "Contact 
   assert.deepEqual(checkConsistentIdentification([{ url: 'p1', html: a }, { url: 'p2', html: b }]), [])
 })
 
+// D-165: the check is locale-aware. A multilingual site labels the same destination
+// differently per language by design — that is a translation, not a 3.2.4 violation.
+// verscala.com's own scan produced 5 false positives here (countries/länder,
+// knowledge/wissen, experts/experten…) before this fix.
+test('the same destination across two site languages is not a violation (locale-aware, D-165)', () => {
+  const en = '<html lang="en"><nav><a href="/countries/">Countries</a></nav></html>'
+  const de = '<html lang="de"><nav><a href="/countries/">Länder</a></nav></html>'
+  assert.deepEqual(checkConsistentIdentification([{ url: 'p1', html: en }, { url: 'p2', html: de }]), [])
+})
+
+test('conflicting labels WITHIN one language are still flagged (D-165 regression guard)', () => {
+  const a = '<html lang="en"><nav><a href="/contact">Contact</a></nav></html>'
+  const b = '<html lang="en"><nav><a href="/contact">Support</a></nav></html>'
+  const out = checkConsistentIdentification([{ url: 'p1', html: a }, { url: 'p2', html: b }])
+  assert.equal(out.length, 1)
+  assert.equal(out[0].ruleId, 'a11y-inconsistent-identification')
+})
+
 test('links outside <nav> are ignored — that is what caused the real false positives', () => {
   const a = '<a href="/">Bundesregierung | Startseite</a>'
   const b = '<a href="/">Der Bundesadler, die Flagge</a>'

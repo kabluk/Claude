@@ -169,22 +169,37 @@ function navAnchors(html) {
   return blocks.flatMap((b) => extractAnchors(b))
 }
 
+// WCAG 3.2.4 Consistent Identification действует в пределах ОДНОГО набора страниц
+// одного языка: тот же компонент на странице ДРУГОГО языка обязан называться иначе
+// («countries» на en-странице vs «Länder» на de-странице — это перевод, не нарушение).
+// Первая версия сравнивала ярлыки по всем страницам без учёта локали и ложно
+// помечала мультиязычные сайты (наш собственный скан verscala.com дал 5 фейков —
+// countries/länder, knowledge/wissen, experts/experten…). Поэтому ключ бакета —
+// (lang, href): сравниваем ярлыки только внутри одного языка (D-165).
+function pageLang(html) {
+  const m = /<html[^>]*\blang\s*=\s*["']?([a-zA-Z]{2})/.exec(html || '')
+  return m ? m[1].toLowerCase() : ''
+}
+
 export function checkConsistentIdentification(pages) {
-  const byHref = new Map() // href -> Map(label -> первая страница, где встретилась)
+  // ключ "lang\x00href" -> { href, labels: Map(label -> первая страница) }
+  const byKey = new Map()
   for (const { url, html } of pages) {
+    const lang = pageLang(html)
     for (const { href, text } of navAnchors(html)) {
-      const key = normalizeText(href)
+      const nhref = normalizeText(href)
       const label = normalizeText(text)
-      if (!key || label.length < MIN_LABEL_LEN) continue
-      if (key.startsWith('#') || key.startsWith('javascript:')) continue
-      if (!byHref.has(key)) byHref.set(key, new Map())
-      const labels = byHref.get(key)
-      if (!labels.has(label)) labels.set(label, url)
+      if (!nhref || label.length < MIN_LABEL_LEN) continue
+      if (nhref.startsWith('#') || nhref.startsWith('javascript:')) continue
+      const key = `${lang} ${nhref}`
+      if (!byKey.has(key)) byKey.set(key, { href: nhref, labels: new Map() })
+      const entry = byKey.get(key)
+      if (!entry.labels.has(label)) entry.labels.set(label, url)
     }
   }
 
   const findings = []
-  for (const [href, labels] of byHref) {
+  for (const { href, labels } of byKey.values()) {
     if (labels.size < 2) continue
     const list = [...labels.keys()]
     // Нарушение только если есть ДВА взаимно несовместимых названия, а не просто

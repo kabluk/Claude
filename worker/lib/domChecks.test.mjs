@@ -85,6 +85,23 @@ test('A3-KEYBOARD: detects a real focus trap (element re-focuses itself on blur)
   })
 })
 
+// D-165 regression: a row of links sharing identical classes must NOT be read as a
+// trap. Trap detection now compares node identity (prev === el), not the class-based
+// selector string, which collided across sibling cards and produced a false CRITICAL
+// on verscala.com's own home page (`a.card.flex.items-center.justify-between.gap-3`).
+test('A3-KEYBOARD: a row of cards with identical classes is not a false trap (D-165)', async () => {
+  const html = `<a href="/1" class="card flex items-center">one</a>
+    <a href="/2" class="card flex items-center">two</a>
+    <a href="/3" class="card flex items-center">three</a>
+    <a href="/4" class="card flex items-center">four</a>
+    <a href="/5" class="card flex items-center">five</a>
+    <a href="/6" class="card flex items-center">six</a>`
+  await withPage(html, { width: 1280, height: 800 }, async (page) => {
+    const findings = await checkKeyboardTraversal(page, 'p1')
+    assert.equal(findings.filter((f) => f.ruleId === 'a11y-keyboard-trap').length, 0)
+  })
+})
+
 test('A3-KEYBOARD: flags a link with focus outline explicitly suppressed and not replaced', async () => {
   const html = `<style>a:focus{outline:none;box-shadow:none}</style>
     <a href="#">first</a><a href="#" id="last">second, invisible focus</a>`
