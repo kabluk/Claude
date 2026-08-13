@@ -220,6 +220,18 @@ const results = []
 // actually renders (it's conditional on `cost`, which needs findings — same
 // gate as before, this just adds the two new ScanReport fields alongside it)
 // and gets audited, same precedent as D-124 adding the checkout-toast state.
+// D-143 (редизайн /report/:id): фикстура выросла с 3 до 9 РАЗЛИЧНЫХ правил,
+// потому что новая композиция имеет состояния, которых у трёх находок просто
+// не бывает: фильтр-кнопки по серьёзности появляются только когда есть и
+// critical, и serious; «Show remaining N» — только когда правил больше шести
+// (VISIBLE_FINDINGS в ReportPage.tsx). Каждое правило подобрано так, чтобы
+// покрыть свою ВЕТКУ карточки: правило axe с критерием (image-alt),
+// best-practice без критерия (region), наша собственная проверка с описанием
+// и оговоркой (a11y-reflow-320), правило вне главы 9 с человеческим текстом
+// вместо разметки в html (a11y-pdf-present) и находка с правовой пометкой
+// (a11y-statement-missing, jurisdictionCountry DE — раньше amber-блок Legal
+// basis не аудитировался вовсе). Все ruleId/impact/wcag — настоящие
+// (worker/lib/axe.js, data/a11y/en301549-coverage.json), не выдуманные.
 const REPORT_FIXTURE_ID = 'fixture-scan-id'
 const reportFixture = (planUnlocked) => ({
   id: REPORT_FIXTURE_ID,
@@ -238,6 +250,22 @@ const reportFixture = (planUnlocked) => ({
       html: '<img src="/logo.png" class="hero-logo">',
     },
     {
+      ruleId: 'image-alt',
+      wcag: ['wcag2a', 'wcag111'],
+      impact: 'critical',
+      selector: 'img.teaser',
+      page: 'https://example.com/about',
+      html: '<img src="/teaser.png" class="teaser">',
+    },
+    {
+      ruleId: 'label',
+      wcag: ['wcag2a', 'wcag412'],
+      impact: 'critical',
+      selector: 'input#search',
+      page: 'https://example.com/',
+      html: '<input id="search" type="text">',
+    },
+    {
       ruleId: 'color-contrast',
       wcag: ['wcag2aa', 'wcag143'],
       impact: 'serious',
@@ -246,12 +274,55 @@ const reportFixture = (planUnlocked) => ({
       html: '<button class="btn-primary">Submit</button>',
     },
     {
+      ruleId: 'link-name',
+      wcag: ['wcag2a', 'wcag412'],
+      impact: 'serious',
+      selector: 'a.icon-only',
+      page: 'https://example.com/',
+      html: '<a class="icon-only" href="/cart"><svg></svg></a>',
+    },
+    {
+      ruleId: 'html-has-lang',
+      wcag: ['wcag2a', 'wcag311'],
+      impact: 'serious',
+      selector: 'html',
+      page: 'https://example.com/',
+      html: '<html>',
+    },
+    {
+      ruleId: 'a11y-statement-missing',
+      wcag: [],
+      impact: 'serious',
+      selector: 'body',
+      page: 'https://example.com/',
+      html: 'no accessibility statement link found on the home page',
+      jurisdictionNote:
+        'German BFSG (Barrierefreiheitsstärkungsgesetz) requires an accessibility statement for covered services.',
+      jurisdictionCountry: 'DE',
+    },
+    {
       ruleId: 'region',
       wcag: ['best-practice'],
       impact: 'moderate',
       selector: 'div.legacy-widget',
       page: 'https://example.com/',
       html: '<div class="legacy-widget">Site content outside landmarks</div>',
+    },
+    {
+      ruleId: 'a11y-reflow-320',
+      wcag: ['wcag21aa', 'wcag1410'],
+      impact: 'moderate',
+      selector: 'body',
+      page: 'https://example.com/about',
+      html: '<table class="pricing">',
+    },
+    {
+      ruleId: 'a11y-pdf-present',
+      wcag: [],
+      impact: 'moderate',
+      selector: '2 pdf link(s)',
+      page: 'https://example.com/about',
+      html: 'https://example.com/terms.pdf, https://example.com/report.pdf',
     },
   ],
   score: 68,
@@ -467,6 +538,31 @@ try {
       )
       results.push({ route: `${label} (open)`, violations: openResults.violations })
     }
+    // D-143: the findings list ships COLLAPSED (first 6 rules) with a
+    // severity filter above it — two states that exist only after a click and
+    // that carry real ARIA: aria-pressed on the filter buttons, aria-expanded/
+    // aria-controls on "Show remaining N". Drive both, then audit: press a
+    // severity filter, go back to "All" (so every card is in the DOM again),
+    // expand the rest, and re-run the same axe/target-size gate. Same rubric
+    // as the INTERACT map above — a state that only a user action can reach
+    // becomes a permanent gate, not a one-off Playwright check.
+    const severityFilter = page.getByRole('button', { name: /^Critical: \d+ findings?$/ })
+    if (await severityFilter.count()) {
+      await severityFilter.click()
+      await page.getByRole('button', { name: /^All: \d+ findings?$/ }).click()
+      const showRemaining = page.getByRole('button', { name: /^Show remaining \d+$/ })
+      if (await showRemaining.count()) {
+        await showRemaining.click()
+        // Wait for the button's own state flip, not a timeout: the label
+        // becomes "Show fewer findings" only once the extra cards rendered.
+        await page.getByRole('button', { name: 'Show fewer findings' }).waitFor({ timeout: 5000 })
+      }
+      const expandedResults = await page.evaluate(
+        async () => await window.axe.run(document, { rules: { 'target-size': { enabled: true } } })
+      )
+      results.push({ route: `${label} (findings expanded)`, violations: expandedResults.violations })
+    }
+
     // A3-CRON-SUBSCRIBE-FORM (D-135): the monitoring signup at the foot of a
     // done report has a state that only exists after a real submit — the form
     // is replaced by the double-opt-in success panel, focus is moved into it,

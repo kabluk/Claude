@@ -6,7 +6,11 @@ import { useRef, useState } from 'react'
 // polite live region (the visible label change alone is invisible to them), and
 // the "Copied" state reverts after two seconds.
 
-async function copyText(text: string): Promise<boolean> {
+// Экспортируется (D-143): кнопка «Share» на /report/:id копирует ссылку тем же
+// путём, а не второй копией той же пары «Clipboard API + execCommand-фолбэк».
+// Отличается только объявление результата: там это тост страницы, здесь —
+// собственный live-регион кнопки.
+export async function copyText(text: string): Promise<boolean> {
   try {
     if (navigator.clipboard?.writeText) {
       await navigator.clipboard.writeText(text)

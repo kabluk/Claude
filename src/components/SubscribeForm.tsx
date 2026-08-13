@@ -32,7 +32,15 @@ type Stage =
   | { kind: 'sent'; email: string }
   | { kind: 'failed'; code: SubscribeErrorCode }
 
-export function SubscribeForm({ url }: { url: string }) {
+// D-143: `tone="inverted"` — правая панель нижней конверсионной пары на
+// /report/:id (макет владельца: тёмная primary-панель). Инвертируется ТОЛЬКО
+// оболочка (заголовок и подводка белым на primary — 7:1); сама форма остаётся
+// на светлой карточке, потому что label/hint/error `FormField` покрашены
+// токенами `on-surface-variant` и на индиго-фоне провалили бы контраст. Это не
+// компромисс ради простоты: перекрашивать общий примитив формы ради одной
+// панели значило бы завести вторую, непроверенную цветовую пару в компоненте,
+// который используется и на других страницах.
+export function SubscribeForm({ url, tone = 'plain' }: { url: string; tone?: 'plain' | 'inverted' }) {
   const [email, setEmail] = useState('')
   const [emailError, setEmailError] = useState<string | undefined>(undefined)
   const [stage, setStage] = useState<Stage>({ kind: 'idle' })
@@ -96,18 +104,30 @@ export function SubscribeForm({ url }: { url: string }) {
   if (!canMonitorUrl(url)) return null
 
   const submitting = stage.kind === 'submitting'
+  const inverted = tone === 'inverted'
 
   return (
-    <section className="mt-10" aria-labelledby={headingId}>
-      <h2 id={headingId} className="h2 mt-0">
-        Watch this site for regressions
+    <section
+      // id — якорь для главной CTA чистого скана («Watch this site for
+      // regressions»): продавать план такому сайту нечего, а мониторинг —
+      // осмысленное следующее действие (ReportPage, planPanel === 'hidden').
+      id="monitoring"
+      aria-labelledby={headingId}
+      className={
+        inverted
+          ? 'flex h-full flex-col rounded-2xl bg-[color:var(--color-primary)] p-5 text-[color:var(--color-on-primary)] sm:p-6'
+          : 'mt-10'
+      }
+    >
+      <h2 id={headingId} className={`h2 mt-0 mb-0 ${inverted ? 'text-[color:var(--color-on-primary)]' : ''}`}>
+        {inverted ? 'Continuous monitoring' : 'Watch this site for regressions'}
       </h2>
-      <p className="lede">
+      <p className={inverted ? 'mt-2 text-sm text-[color:var(--color-on-primary)]' : 'lede'}>
         Accessibility drifts back. A redesign, a new plugin or a routine CMS update can quietly
         reintroduce issues you already fixed — and nobody notices until someone can’t use the site.
       </p>
 
-      <div className="card mt-4 max-w-2xl">
+      <div className={`card mt-4 ${inverted ? 'border-transparent' : 'max-w-2xl'}`}>
         {stage.kind !== 'sent' && (
           <form onSubmit={handleSubmit} noValidate>
             <p className="text-sm text-on-surface-variant">

@@ -28,6 +28,13 @@ export const wcagPages: WcagPage[] = coverageRows
 
 export const wcagPageBySlug = (slug: string) => wcagPages.find((p) => p.slug === slug)
 
+// Какой критерий тестирует правило сканера — по той же единственной точке
+// правды (en301549-coverage.json), что и сами страницы /wcag/. Нужно отчёту
+// (D-143): карточка находки ведёт на УЖЕ существующую публичную страницу
+// критерия вместо того, чтобы показывать сырой ruleId и ничего больше.
+export const wcagPageForRule = (ruleId: string): WcagPage | undefined =>
+  wcagPages.find((p) => p.row.ours === ruleId || p.row.axeRules.includes(ruleId))
+
 // Сосед по списку покрытых критериев — для перелинковки prev/next.
 export const wcagNeighbours = (slug: string) => {
   const i = wcagPages.findIndex((p) => p.slug === slug)
@@ -80,4 +87,59 @@ export const OURS_DESCRIPTIONS: Record<string, { does: string; caveat?: string }
   'a11y-inconsistent-identification': {
     does: 'flags the same navigation destination labelled with conflicting names on different pages', // worker/lib/siteChecks.js
   },
+}
+
+// Правила, которые ВНЕ главы 9 EN 301 549 (в coverage.json их нет вовсе):
+// собственные проверки воркера про заявление о доступности, канал обратной
+// связи и PDF-документы. Ручное зеркало `BEYOND_STANDARD_INFO` из
+// worker/lib/pdfPlan.js (воркер — plain ESM, общего модуля с фронтендом нет,
+// D-010) — но формулировка здесь описывает НАХОДКУ («чего не хватает»), а не
+// требование («что должно быть»): в плане это пункт чек-листа, в отчёте —
+// заголовок карточки конкретной проблемы.
+// `basis` — дословно из того же worker/lib/pdfPlan.js: правовое/нормативное
+// основание проверки. Без него карточка называла бы находку «best-practice
+// правилом», что неверно: требование заявления о доступности — не вкусовщина,
+// а Directive (EU) 2019/882.
+export const BEYOND_STANDARD_INFO: Record<string, { title: string; basis: string }> = {
+  'a11y-statement-missing': { title: 'No accessibility statement found', basis: 'Directive (EU) 2019/882' },
+  'a11y-statement-incomplete': { title: 'Accessibility statement is incomplete', basis: 'Directive (EU) 2019/882' },
+  'a11y-feedback-missing': { title: 'No accessible way to report problems', basis: 'Directive (EU) 2019/882' },
+  'a11y-pdf-present': { title: 'Linked PDF documents need a manual check', basis: 'EN 301 549 ch. 10' },
+}
+
+// D-143 / D-131 ГРАНИЦА. Публичная (бесплатная) справка о правиле для карточки
+// находки на /report/:id. Собирается ТОЛЬКО из данных сайта, которые и так
+// опубликованы на /wcag/ и /methodology/: название критерия, ссылка на его
+// страницу, описание СОБСТВЕННОЙ проверки воркера. Здесь сознательно нет
+// ничего из `ScanFinding.help` / `helpUrl` / `failureSummary` — подсказки
+// axe-core «как это чинить» остаются тем, за что берут деньги (D-131), и
+// доходят до пользователя только в PDF-плане за серверным гейтом. Функция
+// чистая: принимает ruleId, а не находку, — передать сюда help физически
+// нечем.
+export type PublicRuleInfo = {
+  /** Человеческий заголовок карточки; null — только когда сказать честно
+   *  нечего (best-practice-правило axe вне главы 9), тогда UI показывает сам
+   *  ruleId моноширинным, а не выдуманное название. */
+  title: string | null
+  /** Страница критерия на нашем сайте, если мы её публикуем. */
+  page: WcagPage | null
+  /** Что делает наша собственная проверка (та же строка, что на /wcag/). */
+  ours: string | null
+  /** Честное ограничение нашей проверки, если оно записано. */
+  caveat: string | null
+  /** Основание для правил вне главы 9 (директива / глава EN 301 549). */
+  basis: string | null
+}
+
+export function publicRuleInfo(ruleId: string): PublicRuleInfo {
+  const page = wcagPageForRule(ruleId) ?? null
+  const ours = page?.row.ours === ruleId ? OURS_DESCRIPTIONS[ruleId] : undefined
+  const beyond = BEYOND_STANDARD_INFO[ruleId]
+  return {
+    title: page?.row.title ?? beyond?.title ?? null,
+    page,
+    ours: ours?.does ?? null,
+    caveat: ours?.caveat ?? null,
+    basis: beyond?.basis ?? null,
+  }
 }
