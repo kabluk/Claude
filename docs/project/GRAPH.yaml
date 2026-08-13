@@ -1752,3 +1752,25 @@ nodes:
     risk: medium
     approval_required: false
     notes: "DONE 2026-08-13 (D-151). Приоритет по замеру DataForSEO (colorblind 201k / rgb↔hex 23k / TTS 301k, все LOW ads-comp). Матрицы CVD — набор Wickline/HCIRN, задан родителем дословно. Sonnet-субагент, родитель перепроверил живьём. audit-a11y 67 стр. 0 нарушений. НЕ трогать гранулярные a11y-чекеры (aria/heading/tap-target) — спрос ~0, их закрывает сканер. Задеплоено push'ем в accessatlas."
+
+  - id: G-GUIDES-BATCH-2
+    title: "3 новых гайда под пробелы спроса: how-to-write-alt-text, aria-labels, accessibility-statement (EN)"
+    owner: growth-strategist
+    status: done
+    depends_on: []
+    inputs: [docs/project/domains/growth.md, data/a11y/guides/wcag-audit-guide.md]
+    scope: [data/a11y/guides/how-to-write-alt-text.md, data/a11y/guides/aria-labels-guide.md, data/a11y/guides/accessibility-statement-guide.md]
+    outputs: [data/a11y/guides/how-to-write-alt-text.md, data/a11y/guides/aria-labels-guide.md, data/a11y/guides/accessibility-statement-guide.md]
+    node_kind: agent
+    on_failure: escalate
+    verify:
+      - node --test scripts/no-fine-amounts.test.mjs
+      - VITE_SCANNER_API=https://audit-fixture.invalid npm run build
+      - npm run check-links
+      - npm run audit-a11y
+      - "родитель факт-чекнул первоисточники: ARIA 4 правила (W3C using-aria), accessible-name precedence, WCAG 1.1.1 Level A, MDN-ссылка 200, юр-claims statement-гайда честно захеджированы"
+    max_attempts: 4
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "DONE 2026-08-13. Приоритет по замеру DataForSEO (alt text 5.4k / aria labels 4.4k / accessibility statement ~1k, все LOW) — большие темы (ADA/508/WCAG/VPAT/EAA) уже покрыты, взяты ПРОБЕЛЫ. Sonnet-субагент, родитель факт-чекнул: субагент верно поймал '4 правила ARIA' против моей ошибочной памяти о 5 — пример «сверять первоисточник, не память». Сумм штрафов нет (D-035), гайды кросс-линкуют друг друга + сканер + BFSG-гайды (анти-orphan §23). Автоинтеграция глобом (src/lib/guides.ts) — routes/sitemap не трогали. Полный прогон гейтов перед push (урок после дрейф-фейла D-154)."
