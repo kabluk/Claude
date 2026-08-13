@@ -1,0 +1,755 @@
+[
+  {
+    "slug": "52eins",
+    "name": "52eins",
+    "website": "52eins.de",
+    "hq": {
+      "city": "Radolfzell am Bodensee",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Radolfzell (Lake Constance) web design agency offering accessible-web-design consulting and BITV-oriented accessibility testing, listed as a BIK-recommended provider for accessible websites."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.52eins.de/",
+        "label": "\"Webdesign, Beratung, Barrierefreiheit\" — barrierefrei website design and consulting service line; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "bruns-digital",
+    "name": "BRUNS_digital",
+    "website": "brunsdigital.de",
+    "hq": {
+      "city": "Minden",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "eaa",
+      "wcag-2-2",
+      "bitv"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Minden-based TYPO3 digital agency offering a free BFSG check-up and accessibility analysis of client websites against WCAG, ahead of implementing BFSG-compliant remediation."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.brunsdigital.de/bfsg/",
+        "label": "\"Unsere Expert:innen analysieren Ihre digitalen Angebote auf Barrierefreiheit\" plus free \"BFSG_checkup\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "distriko",
+    "name": "Distriko",
+    "website": "distriko.de",
+    "hq": {
+      "city": "Immenhausen",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting",
+      "monitoring"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Immenhausen (North Hesse, near Kassel) agency covering accessibility holistically: accessibility audits and monitoring, accessible web design, accessible PDF remediation, and staff training, working to BITV/WCAG/EN 301 549."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://distriko.de/",
+        "label": "\"Barrierefreiheit ganzheitlich umgesetzt – Kommunikation, Webdesign, Beratung\" listing Accessibility Audits, Monitoring, barrierefreies Webdesign, Schulungen; \"Seit 2020\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "hansolu",
+    "name": "HANSOLU",
+    "website": "hansolu.de",
+    "hq": {
+      "city": "Lübeck",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Lübeck web design agency building websites to WCAG 2.2 and EN 301 549 for northern-Germany SMEs, including dedicated accessibility audits, workshops, and ongoing maintenance for accessible sites."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://hansolu.de/",
+        "label": "\"Wir erstellen barrierefreie Websites nach internationalen Standards wie WCAG 2.2 und EN 301 549\" and \"Website-Audit nach WCAG 2.2 & EN 301 549\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "pfeiffer-boysen",
+    "name": "Pfeiffer & Boysen",
+    "website": "pfeifferundboysen.de",
+    "hq": {
+      "city": "Flensburg",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Flensburg web development studio building websites for accessibility so that they are usable \"regardless of visitors' abilities,\" with reference client work delivered to BITV 2.0 and WCAG 2.1 standards."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.pfeifferundboysen.de/",
+        "label": "\"Wir setzen auf Barrierefreiheit, um sicherzustellen, dass Ihre Website für alle Besuchenden, unabhängig von ihren Fähigkeiten, zugänglich ist\" and a portfolio piece built \"Nach Standards der BITV 2.0 und WCAG 2.1\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "sandstein-neue-medien",
+    "name": "Sandstein Neue Medien",
+    "website": "sandstein.de",
+    "hq": {
+      "city": "Dresden",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Dresden full-service internet agency (since 2005) offering BITV/WCAG accessibility consulting and testing coordinated with external examiners, notable for building the barrierefrei.bayern.de accessibility portal."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.sandstein.de/internetagentur/barrierefreie-website.php",
+        "label": "\"Für entwicklungsbegleitende und abschließende Tests arbeiten wir mit externen Prüfern zusammen\" and \"Wir beraten Sie gern zum Thema digitale Barrierefreiheit\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "sunzinet",
+    "name": "SUNZINET",
+    "website": "sunzinet.com",
+    "hq": {
+      "city": "Köln",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "eaa",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Cologne-headquartered digital agency with a dedicated accessibility offering spanning WCAG audits with tools like Cypress, BFSG compliance consulting, technical remediation, and staff training courses."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.sunzinet.com/en/accessibility-agency",
+        "label": "\"We assess the accessibility of your platforms using modern testing tools like Cypress\" and \"We support you from consultation to implementation\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "yagemi",
+    "name": "Yagemi",
+    "website": "yagemi.de",
+    "hq": {
+      "city": "Hannover",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Hannover-area consultancy offering WCAG 2.2 AA audits (automated and manual), technical remediation (semantic HTML, ARIA, keyboard navigation, contrast), editorial/dev training, and ongoing accessibility monitoring."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.yagemi.de/barrierefreiheit-wcag-umsetzung-analyse-beratung-hannover/",
+        "label": "\"Wir prüfen Ihre Website auf WCAG-2.2-AA-Konformität — automatisiert und manuell\" and \"Wir überwachen Ihre Seite laufend und dokumentieren den Stand\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "webmen",
+    "name": "Webmen",
+    "website": "webmen.de",
+    "hq": {
+      "city": "Bremen",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "bitv"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Bremen digital agency offering accessibility audits of existing shops/websites, compliance review (Konformitätsprüfung), and training for editorial teams to create their own accessible content."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.webmen.de/website/barrierefreiheit",
+        "label": "\"Test and Evaluation of the bestehenden Shops bzw. der Website\", \"Schulung zur Erstellung eigener barrierefreier Inhalte\", \"Konformitätsprüfung\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ppw-digitalagentur",
+    "name": "PPW Digitalagentur",
+    "website": "ppw.de",
+    "hq": {
+      "city": "Köln",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Cologne agency (pietzpluswild GmbH) with over 20 years in accessible implementation, testing sites and web applications against a standardized BITV/WCAG catalog and delivering a formal test report plus a BITV-compliant concept."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.ppw.de/leistungen/barrierefreiheit-nach-bitv/",
+        "label": "\"Wir prüfen Ihre Website/Web-Anwendung nach unserem standardisierten Prüfkatalog und liefern Ihnen einen Prüfbericht\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "medienfreunde",
+    "name": "Medienfreunde",
+    "website": "medienfreunde.de",
+    "hq": {
+      "city": "Leipzig",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Leipzig digital agency supporting BFSG implementation end-to-end: accessibility checks of existing websites, design/development of accessible solutions, content optimization, and training and consulting."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://medienfreunde.de/barrierefreies-webdesign/",
+        "label": "\"As an experienced digital agency in Leipzig, we support you comprehensively in implementing the requirements of the BFSG\" listing accessibility check, design & development, and training & consulting; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "netzpluslogik",
+    "name": "netzpluslogik",
+    "website": "netzpluslogik.de",
+    "hq": {
+      "city": "Hemer",
+      "countryCode": "DE"
+    },
+    "offices": [
+      {
+        "city": "Ense",
+        "countryCode": "DE"
+      },
+      {
+        "city": "Aachen",
+        "countryCode": "DE"
+      }
+    ],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "eaa",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "NRW agency (registered in Ense, with Hemer and Aachen offices) offering a full accessibility audit against WCAG 2.1 conformance levels A/AA/AAA plus BFSG-focused consulting on accessible websites."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://netzpluslogik.de/loesungen/barrierefreie-websites-nach-bfsg-und-wcag/",
+        "label": "\"Vollständiges Accessibility-Audit nach WCAG 2.1 Standards (Konformitätsstufen A, AA, AAA)\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "t3-media",
+    "name": "t3-media",
+    "website": "t3-media.de",
+    "hq": {
+      "city": "Stadthagen",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "bitv",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Stadthagen (Lower Saxony) TYPO3/Shopware agency offering BITV testing of existing web applications, examining navigation, contrast, semantic structure, form accessibility and technical robustness against WCAG criteria."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://t3-media.de/barrierefreie-webseiten.html",
+        "label": "\"Mit einem BITV-Test können wir ihre bestehende Webanwendung auf ihre tatsächliche Barrierefreiheit prüfen\" and \"Bei einem BITV-Test prüfen wir Ihre Webseite anhand definierter WCAG-Kriterien\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "queonext",
+    "name": "queonext",
+    "website": "queonext.de",
+    "hq": {
+      "city": "Dresden",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "bitv"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Dresden full-service agency (queo group) offering a free website accessibility audit that runs a 98-step BITV test using tools such as WAVE WEBAIM and Google Lighthouse."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://queonext.de/barrierefreie-websites/",
+        "label": "\"Mit unserem kostenlosen Website-Audit prüfen wir Ihre Seite auf Herz und Barrieren\" and a BITV-Test with 98 examination steps; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "feld-wald-wiese",
+    "name": "feld.wald.wiese",
+    "website": "feldwaldwiese.de",
+    "hq": {
+      "city": "Hamburg",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "bitv",
+      "eaa"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Hamburg digital agency for environmental, social and cultural-sector clients, offering BFSG consulting and accessible implementation (Contao/TYPO3), with accessible-web-development work dating back to 2001."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://feldwaldwiese.de/",
+        "label": "\"Barrierefreie Umsetzung\" and \"Accessibility-Consulting\" service listings; \"Wir entwickeln seit 2001\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13",
+    "founded": 2001
+  },
+  {
+    "slug": "d1ma",
+    "name": "d1ma",
+    "website": "d1ma.de",
+    "hq": {
+      "city": "Kassel",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Kassel-based web consultancy serving North Hesse businesses, building new sites accessible-by-design to WCAG 2.1 Level AA with an accompanying test protocol and accessibility statement rather than retrofitting existing sites."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.d1ma.de/barrierefreie-website-kassel",
+        "label": "\"Nach WCAG 2.1 Level AA, mit Prüfprotokoll und Barrierefreiheitserklärung\" serving \"Unternehmen in der ganzen Region rund um Kassel\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "compositum",
+    "name": "compositum",
+    "website": "compositum.de",
+    "hq": {
+      "city": "Fulda",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Fulda-region agency for digital accessibility, auditing existing websites and shops against WCAG and BFSG, delivering an action plan (Maßnahmenplan) with recommendations, and offering full interdisciplinary implementation of remediation."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://compositum.de/leistungen/barrierefreiheit/agentur/",
+        "label": "\"Wir als Agentur für Barrierefreiheit untersuchen Ihre bestehende Webseite oder Ihren Shop auf Basis der WCAG sowie der Anforderungen des BFSG\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "alles-jeden",
+    "name": "ALLES + JEDEN",
+    "website": "alles-jeden.de",
+    "hq": {
+      "city": "Schwerin",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "en-301-549",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Schwerin agency for digital accessibility offering accessibility audits, consulting and project support, plus workshops on creating accessible Word/Excel/PowerPoint/PDF/InDesign documents, to EN 301 549 and WCAG 2.2 A/AA standards."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://alles-jeden.de/barrierefreiheit/",
+        "label": "\"Barrierefreiheits-Audits\", \"Beratung\", \"Projektbegleitung\" service listing under \"Agentur für digitale Barrierefreiheit\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "living-concept",
+    "name": "LIVING CONCEPT",
+    "website": "livingconcept.de",
+    "hq": {
+      "city": "Münster",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "en-301-549",
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Münster communications and advertising agency offering accessible-website consulting and implementation to EN 301 549 (which incorporates the essential requirements of WCAG 2.1) for BFSG compliance."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.livingconcept.de/de/leistungen/barrierefreie-websites/",
+        "label": "\"Digitale Barrierefreiheit umsetzen\" describing EN 301 549, WCAG 2.1 and BFSG compliance consulting; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "tp-werbeagentur",
+    "name": "tp werbeagentur",
+    "website": "tp-werbeagentur.de",
+    "hq": {
+      "city": "Freiburg im Breisgau",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Freiburg advertising/digital agency offering BFSG accessibility audits via an analysis tool checked against WCAG 2.2 AA, remediation typically delivered within 2-4 weeks, and individualized accessibility statements."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.tp-werbeagentur.de/leistungen/digital-design/barrierefreiheit/",
+        "label": "\"Mit unserem professionellen Analyse-Tool ermitteln wir den Zustand deiner Webseite im Hinblick auf die Barrierefreiheits­vorgaben (WCAG 2.2 AA)\", remediation \"in der Regel innerhalb von 2 – 4 Wochen\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  }
+]

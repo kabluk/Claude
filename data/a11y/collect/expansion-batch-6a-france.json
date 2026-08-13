@@ -1,0 +1,293 @@
+[
+  {
+    "slug": "agence-kn",
+    "name": "Agence KN",
+    "website": "agence-kn.fr",
+    "hq": { "city": "Tassin-la-Demi-Lune", "countryCode": "FR" },
+    "offices": [],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit", "remediation", "training", "consulting"],
+    "standards": ["rgaa"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Lyon-area (Tassin-la-Demi-Lune) digital agency offering RGAA audits with manual and technical testing, WordPress accessibility remediation, and editorial staff training." },
+    "sourceRefs": [
+      { "url": "https://www.agence-kn.fr/votre-projet/accessibilite-rgaa/", "label": "\"Analyse manuelle et technique de vos gabarits clés : tests clavier, tests lecteurs d'écran\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "madiloweb",
+    "name": "Madiloweb",
+    "website": "madiloweb.com",
+    "hq": { "city": "Bordeaux", "countryCode": "FR" },
+    "offices": [],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit", "consulting"],
+    "standards": ["rgaa"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Bordeaux-based independent digital-accessibility consultancy offering tiered RGAA audits (pre-audit, compliance audit, detailed audit, control audit) for websites in Gironde and remotely." },
+    "sourceRefs": [
+      { "url": "https://madiloweb.com/accessibilite-web-bordeaux/audit-accessibilite-numerique-rgaa", "label": "\"Audit RGAA rapide ou pré-audit pour une préévaluation du niveau de conformité de votre site au RGAA\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "piweb",
+    "name": "Piweb",
+    "website": "piweb.fr",
+    "hq": { "city": "Nantes", "countryCode": "FR" },
+    "offices": [],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit", "remediation"],
+    "standards": ["rgaa"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Nantes-based provider of manual RGAA accessibility audits, offering tiered packages that include compliance documentation, correction guidance, and control-audit follow-up." },
+    "sourceRefs": [
+      { "url": "https://www.piweb.fr/audit-rgaa-accessibilite-nantes/", "label": "\"Je réalise l'audit d'accessibilité de votre site web, en conformité avec le référentiel RGAA.\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "paradigmes",
+    "name": "Paradigmes",
+    "website": "paradigmes.studio",
+    "hq": { "city": "Lille", "countryCode": "FR" },
+    "offices": [],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit", "remediation", "consulting"],
+    "standards": ["rgaa"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Lille digital agency providing RGAA accessibility audits (quick and full compliance formulas), detailed remediation guidance, and official accessibility declaration drafting." },
+    "sourceRefs": [
+      { "url": "https://paradigmes.studio/audit-accessibilite-rgaa/", "label": "\"Audit d'accessibilité RGAA\" / \"106 critères inclus dans le référentiel\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "akyos",
+    "name": "Akyos",
+    "website": "akyos.com",
+    "hq": { "city": "Dijon", "countryCode": "FR" },
+    "offices": [],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit", "remediation", "consulting", "monitoring"],
+    "standards": ["rgaa"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Dijon digital agency conducting full RGAA audits (106 criteria) and providing technical implementation of accessibility corrections plus ongoing compliance monitoring." },
+    "sourceRefs": [
+      { "url": "https://rgaa.akyos.com/", "label": "\"réalise votre audit RGAA et la mise en conformité accessibilité de votre site internet\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "agence-galopins",
+    "name": "Agence Galopins",
+    "website": "agencegalopins.com",
+    "hq": { "city": "Nantes", "countryCode": "FR" },
+    "offices": [ { "city": "Marseille", "countryCode": "FR" } ],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit", "remediation", "training"],
+    "standards": ["rgaa"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Nantes and Marseille digital agency offering RGAA 4.1.2 audits, accessibility conformity implementation, and accessibility training, with a structured prioritized-analysis methodology." },
+    "sourceRefs": [
+      { "url": "https://agencegalopins.com/audit-accessibilite-web-rgaa/", "label": "\"Audit RGAA 4.1.2\" / offices at \"1 rue du Pont Sauvetout, 44000 Nantes\" and \"19 Pl. Jean Jaurès, 13005 Marseille\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "audit-web",
+    "name": "Audit-Web",
+    "website": "audit-web.com",
+    "hq": { "city": "Nice", "countryCode": "FR" },
+    "offices": [],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["rgaa", "wcag-2-2", "en-301-549"],
+    "founded": 2007,
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Nice-based accessibility expertise firm, established in 2007, performing 100% manually conducted RGAA/WCAG/EN 301 549 audits and offering training for auditors, developers and designers." },
+    "sourceRefs": [
+      { "url": "https://audit-web.com/", "label": "\"Cabinet d'expertise · depuis 2007\"; RGAA 4.1.2, WCAG 2.2, EN 301 549 referenced; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "novius",
+    "name": "Novius",
+    "website": "novius.com",
+    "hq": { "city": "Villeurbanne", "countryCode": "FR" },
+    "offices": [ { "city": "Paris", "countryCode": "FR" } ],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit", "remediation", "consulting"],
+    "standards": ["rgaa", "wcag-2-2"],
+    "industries": ["public-sector"],
+    "certs": [],
+    "description": { "en": "Villeurbanne (Lyon metro) and Paris digital agency delivering systematic RGAA 4.2 audits, accessibility remediation, and accessible-by-design integration for public-sector and other clients." },
+    "sourceRefs": [
+      { "url": "https://www.novius.com/service/accessibilite-numerique", "label": "\"Évaluation systématique de votre site sur les 106 critères du RGAA 4.2\"; HQ \"55 avenue Galline 69100 Villeurbanne\" per mentions légales; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "artwai",
+    "name": "artwaï",
+    "website": "artwai.com",
+    "hq": { "city": "Langouët", "countryCode": "FR" },
+    "offices": [],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit", "remediation"],
+    "standards": ["rgaa", "wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Small web agency based in Langouët near Rennes offering accessibility audits, accessibility declarations, and RGAA/WCAG-compliant inclusive site design." },
+    "sourceRefs": [
+      { "url": "https://www.artwai.com/", "label": "\"We propose accessibility audits, accompanied by accessibility declarations and compliance services for your website\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "webgazelle",
+    "name": "WebGazelle",
+    "website": "webgazelle.net",
+    "hq": { "city": "Rennes", "countryCode": "FR" },
+    "offices": [ { "city": "Brest", "countryCode": "FR" }, { "city": "Paris", "countryCode": "FR" } ],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit", "consulting"],
+    "standards": ["rgaa"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Rennes-headquartered web agency (Cognix Systems, also in Brest and Paris) offering RGAA accessibility audits with conformity reporting and official declaration filing." },
+    "sourceRefs": [
+      { "url": "https://www.webgazelle.net/audit-rgaa.php", "label": "\"L'audit proposé par WebGazelle répond à toutes les obligations légales en vigueur : Analyse de votre site selon les critères du RGAA\"; HQ \"50 rue Paul Langevin, 35200 Rennes\" per mentions légales; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "redactionseo-accessibilite",
+    "name": "RedactionSEO (Murielle Germain)",
+    "website": "redactionseo.com",
+    "hq": { "city": "Épinal", "countryCode": "FR" },
+    "offices": [],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["training", "consulting", "remediation"],
+    "standards": ["rgaa"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Épinal-based independent consultant (Vosges, Grand Est) providing RGAA editorial-accessibility training, content remediation, and inclusive editorial-charter consulting." },
+    "sourceRefs": [
+      { "url": "https://redactionseo.com/accessibilite", "label": "\"Formation « rédiger accessible »\" for RGAA-compliant editorial content; \"70 % des blocages se situent dans les contenus, pas dans le code\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "coqpit",
+    "name": "Coqpit",
+    "website": "coqpit.fr",
+    "hq": { "city": "Clermont-Ferrand", "countryCode": "FR" },
+    "offices": [],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit", "remediation", "training", "monitoring"],
+    "standards": ["rgaa"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Clermont-Ferrand communication and web-marketing agency offering RGAA diagnostics, technical remediation, staff training, and ongoing compliance monitoring." },
+    "sourceRefs": [
+      { "url": "https://www.coqpit.fr/accompagnement-rgaa-mise-en-conformite-rgaa/", "label": "\"Nous réalisons un diagnostic complet de votre site : tests automatisés, vérifications manuelles, rapport détaillé avec plan d'action priorisé.\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "debussac-dbm",
+    "name": "Debussac (DBM)",
+    "website": "debussac.net",
+    "hq": { "city": "Clermont-Ferrand", "countryCode": "FR" },
+    "offices": [],
+    "countriesServed": ["FR"],
+    "languages": ["fr", "en"],
+    "services": ["audit", "remediation", "training", "consulting"],
+    "standards": ["rgaa", "wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Clermont-Ferrand digital agency (DBM) providing RGAA/WCAG accessibility audits, technical and editorial remediation support, and team training workshops." },
+    "sourceRefs": [
+      { "url": "https://www.debussac.net/en/digital-accessibility-audit-by-dbm/", "label": "\"A digital accessibility audit allows you to assess the level of compliance of your website or application with the RGAA and WCAG standards.\"; address \"44 avenue des États-Unis, 63000\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "julien-vogler",
+    "name": "Julien Vogler Web et Accessibilité",
+    "website": "julienvogler.fr",
+    "hq": { "city": "Arvière-en-Valromey", "countryCode": "FR" },
+    "offices": [],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit", "remediation", "consulting"],
+    "standards": ["rgaa", "wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Independent web-accessibility practitioner based in Arvière-en-Valromey (Ain, between Lyon, Chambéry and Geneva) offering RGAA/WCAG audits and support for digital-service compliance remediation." },
+    "sourceRefs": [
+      { "url": "https://www.julienvogler.fr/accessibilite-numerique", "label": "\"Audit RGAA, accompagnement pour la mise en conformité de vos services numériques\"; registered address \"290B Route des Fruitières 01260 Arvière-en-Valromey\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "kiwik",
+    "name": "Kiwik",
+    "website": "kiwik.com",
+    "hq": { "city": "Orléans", "countryCode": "FR" },
+    "offices": [],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit", "remediation", "consulting"],
+    "standards": ["rgaa", "wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Orléans web agency offering RGAA accessibility audits with representative sampling, technical corrections, and mandatory accessibility declaration and multi-year schema drafting." },
+    "sourceRefs": [
+      { "url": "https://www.kiwik.com/audit-accessibilite-rgaa/", "label": "\"Méthode selon la grille officielle de notation RGAA avec un échantillonnage représentatif\"; office \"5 rue Claude Lewy, 45100 Orléans\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ads-com",
+    "name": "ads-COM",
+    "website": "ads-com.fr",
+    "hq": { "city": "Orléans", "countryCode": "FR" },
+    "offices": [],
+    "countriesServed": ["FR"],
+    "languages": ["fr"],
+    "services": ["audit", "remediation"],
+    "standards": ["rgaa"],
+    "founded": 1997,
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Orléans digital agency, established in 1997, offering RGAA accessibility audits covering all 106 criteria, accessibility declarations, correction services and counter-audits." },
+    "sourceRefs": [
+      { "url": "https://www.ads-com.fr/mentions-legales", "label": "\"Depuis 1997\"; registered address \"15 rue de la Bourie Blanche 45 000 Orléans\"; live fetch 2026-08-13" },
+      { "url": "https://www.ads-com.fr/services/audit-daccessibilite-rgaa", "label": "\"ads-COM vous propose de mener un audit d'accessibilité selon les normes en vigueur du RGAA\", \"les 106 critères du RGAA\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  }
+]

@@ -1,0 +1,500 @@
+[
+  {
+    "slug": "goldfizh",
+    "name": "Goldfizh",
+    "website": "goldfizh.nl",
+    "hq": {
+      "city": "Utrecht",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Utrecht-based digital agency offering WCAG accessibility audits and EAA compliance consulting alongside its broader web, healthcare-marketing and e-learning services."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.goldfizh.nl/services/products/digitale-toegankelijkheid",
+        "label": "\"Met onze WCAG-audit controleren we of jouw digitale omgeving voldoet aan de laatste WCAG-richtlijnen\" — dedicated WCAG audit service; HQ Tractieweg 41K, Utrecht; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "emble",
+    "name": "Emble",
+    "website": "emble.nl",
+    "hq": {
+      "city": "Zwolle",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Zwolle-based digital agency (Drupal, Laravel, React development) running a dedicated WCAG accessibility-audit practice that tests sites against the WCAG 2.2 AA standard."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://emble.nl/diensten/wcag-toegankelijkheidsaudit",
+        "label": "\"Een WCAG toegankelijkheidsaudit is een onderzoek naar de toegankelijkheid van een website\", tested against 55 criteria; office at Hanzelaan 95-50, Zwolle; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://emble.nl/diensten/wcag-toegankelijkheidsanalyse",
+        "label": "\"De WCAG 2.2 AA-standaard is opgedeeld in 55 criteria\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "antum",
+    "name": "Antum",
+    "website": "antum.nl",
+    "hq": {
+      "city": "Krimpen aan den IJssel",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "eaa"
+    ],
+    "industries": [
+      "ecommerce"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Rotterdam-region web agency building WCAG-proof WordPress and WooCommerce sites, with a certified WCAG specialist embedded in the project team for design, build and accessibility research."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.antum.nl/toegankelijke-website/",
+        "label": "\"we build WCAG-proof WordPress websites and WooCommerce web shops\"; certified WCAG specialist in the project team; compliance with Wet digitale toegankelijkheid and the EAA; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "stuurlui",
+    "name": "Stuurlui",
+    "website": "stuurlui.nl",
+    "hq": {
+      "city": "Utrecht",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "ISO-certified Utrecht WordPress agency with a dedicated website-accessibility specialization, committing all delivered work to WCAG 2.2 AA compliance."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://stuurlui.nl/specialisaties/website-toegankelijkheid/",
+        "label": "\"al het werk wat we opleveren, voldoet aan de WCAG 2.2 standaarden\"; office at Nijverheidsweg 16G, Utrecht; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "webmix",
+    "name": "Webmix",
+    "website": "webmix.nl",
+    "hq": {
+      "city": "Elsloo",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "priceBand": "mid",
+    "description": {
+      "en": "Limburg-based web development bureau offering WCAG compliance audits carried out by accessibility experts in its network, priced from roughly EUR 1,500 to 3,500 depending on site complexity."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://webmix.nl/toegankelijkheid-wcag-compliance/",
+        "label": "\"De toegankelijkheidexperts in ons netwerk onderzoeken je website op het gebied van toegankelijkheid\"; audits priced EUR 1.500-3.500 excl. VAT; office Business Park Stein 194, Elsloo; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "afdeling-online",
+    "name": "Afdeling Online",
+    "website": "afdelingonline.nl",
+    "hq": {
+      "city": "Helmond",
+      "countryCode": "NL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NL"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Helmond-based digital agency offering WCAG website, webshop, document, social-media and video accessibility scans alongside its analytics and training services."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.afdelingonline.nl/analyse-meting/digitale-toegankelijkheid-wcag/",
+        "label": "\"Met de website & webshop check ben je direct op de hoogte van alle drempels en oplossingen die nodig zijn om je website of webshop WCAG-proof te maken\"; office 't Patronaat 2e Haagstraat 40, Helmond; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "krakweb",
+    "name": "Krakweb",
+    "website": "krakweb.pl",
+    "hq": {
+      "city": "Kraków",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training",
+      "remediation"
+    ],
+    "standards": [
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "founded": 2006,
+    "description": {
+      "en": "Kraków interactive agency and software house running a full WCAG/EAA accessibility practice: audits, expert consulting, team training and implementation support for remediation."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.krakweb.pl/audyty-dostepnosci-cyfrowej-zgodnie-z-wcag-i-eaa",
+        "label": "\"Eksperci Krakweb wykonują kompleksowe audyty...Analizę zgodności z wytycznymi WCAG 2.1\", audyty zgodne z WCAG i EAA; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://www.krakweb.pl/agencja-wcag-audyty-wcag-doradztwo-i-konsultacje-szkolenia-i-warsztaty-wdrazanie-dostepnych-stron-i-aplikacji",
+        "label": "\"Audyt dostępności to podstawowy krok...\", \"Agencje oferują specjalistyczne doradztwo\", \"Edukacja zespołu\", \"agencje aktywnie współpracują przy wdrożeniu zmian\"; footer \"Krakweb sp. z o.o. ... Kraków 2006-2025\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "rodin",
+    "name": "RODIN",
+    "website": "rodin.pl",
+    "hq": {
+      "city": "Straszyn",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl",
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "priceBand": "budget",
+    "description": {
+      "en": "B2B marketing agency near Gdańsk offering tiered WCAG accessibility audits (Basic/Extended/Premium) combining automated tools with manual testing."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://rodin.pl/en/wcag-audit/",
+        "label": "\"A WCAG accessibility audit is a structured evaluation of your website or mobile app against the Web Content Accessibility Guidelines (WCAG)\"; \"We combine automated tools with thorough manual testing\"; packages from EUR 139/209/299; office Ksiezycowa 3, Straszyn; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ideacto",
+    "name": "Ideacto",
+    "website": "ideacto.pl",
+    "hq": {
+      "city": "Wrocław",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [
+      "banking",
+      "ecommerce"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Wrocław agency performing manual WCAG 2.1/2.2 compliance audits by accessibility specialists (not automated-only), plus post-audit implementation consultations and WCAG training for designers and developers; clients include ING Bank and Wittchen."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.ideacto.pl/en/uslugi/audyt-wcag",
+        "label": "\"Automated tools detect only 30% of accessibility problems. Our audits are always performed by Accessibility Specialists\"; manual WCAG 2.1 and 2.2 audits; office ul. Agrestowa 139/7, Wrocław; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "avangardo",
+    "name": "Avangardo",
+    "website": "avangardo.pl",
+    "hq": {
+      "city": "Szczecin",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Szczecin web agency offering WCAG 2.2 accessibility audits covering 40-60 representative pages, combining automated tools with expert manual review and delivering a remediation-priority report plus accessibility-declaration template."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://avangardo.pl/audyt-dostepnosci-wcag/",
+        "label": "\"Audyt WCAG to proces, w którym łączymy automatyczne testy z wykorzystaniem narzędzi online z analizą ekspercką przeprowadzoną przez wykwalifikowanego programistę\"; office ul. Wendy 10 lok. 3C, Szczecin; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "logonet",
+    "name": "Logonet",
+    "website": "audytwcag.pl",
+    "hq": {
+      "city": "Bydgoszcz",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit",
+      "training"
+    ],
+    "standards": [],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Bydgoszcz IT company (Logonet Sp. z o.o.) offering expert WCAG 2.1 AA accessibility audits and training; has completed over 100 paid audits including for government BIP sites and courts."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://audytwcag.pl/",
+        "label": "\"audyt ekspercki\" verifying compliance with \"Web Content Accessibility Guidelines WCAG 2.1 AA\"; \"przeprowadziliśmy ponad 100 odpłatnych audytów\"; Logonet Sp. z o.o., ul. Piotrowskiego 7-9, Bydgoszcz; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "evostudio",
+    "name": "Evostudio",
+    "website": "evostudio.pl",
+    "hq": {
+      "city": "Reda",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Interactive agency near Gdańsk/Gdynia combining automated tools (Wave, Axe, Lighthouse) with manual work by accessibility auditors, testing HTML, ARIA and content structure with real assistive technology."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://evostudio.pl/audyt-wcag/",
+        "label": "\"Łączymy analizę automatyczną (Wave, Axe, Lighthouse) z manualną pracą audytorów dostępności\"; office ul. Gdańska 26/11, Reda; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "intersynergy",
+    "name": "InterSynergy",
+    "website": "intersynergy.pl",
+    "hq": {
+      "city": "Łódź",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Łódź software house offering digital accessibility audits against WCAG 2.1 guidelines, covering structure, visual/text optimization, form auditing, code review and testing with assistive technologies."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.intersynergy.pl/uslugi/wcag/",
+        "label": "\"Audyt dostępności cyfrowej zaczyna się od szczegółowej analizy strony lub aplikacji, w której sprawdzamy, czy spełnia ona wytyczne WCAG 2.1\"; office ul. Piwna 3/4, Łódź; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "drupalninja",
+    "name": "DrupalNinja (Hektorweb)",
+    "website": "drupalninja.pl",
+    "hq": {
+      "city": "Poznań",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl",
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "priceBand": "budget",
+    "description": {
+      "en": "Poznań Drupal development studio run by Łukasz Rubiński (Hektorweb) offering WCAG level-AA accessibility audits covering navigation, contrast, forms, multimedia and code quality, from 640 PLN net for simple sites."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.drupalninja.pl/audyty-dostepnosci-wcag",
+        "label": "\"Sprawdzamy stronę pod kątem zaleceń WCAG poziomu AA\"; entry audits from 640 PLN net; office ul. Sielska 17a, Poznań; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  }
+]

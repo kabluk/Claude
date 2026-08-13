@@ -1,37 +1,37 @@
 {
   "source": "data/a11y/agencies.json",
-  "total": 375,
+  "total": 425,
   "hqCountries": {
     "count": 36,
     "distribution": [
+      {
+        "code": "DE",
+        "name": "Germany",
+        "count": 61
+      },
+      {
+        "code": "FR",
+        "name": "France",
+        "count": 44
+      },
       {
         "code": "US",
         "name": "United States",
         "count": 44
       },
       {
-        "code": "DE",
-        "name": "Germany",
-        "count": 41
-      },
-      {
         "code": "PL",
         "name": "Poland",
-        "count": 29
-      },
-      {
-        "code": "FR",
-        "name": "France",
-        "count": 28
-      },
-      {
-        "code": "GB",
-        "name": "United Kingdom",
-        "count": 26
+        "count": 37
       },
       {
         "code": "NL",
         "name": "Netherlands",
+        "count": 32
+      },
+      {
+        "code": "GB",
+        "name": "United Kingdom",
         "count": 26
       },
       {
@@ -191,17 +191,27 @@
     {
       "slug": "wcag-2-2",
       "label": "WCAG 2.2",
-      "count": 266
+      "count": 292
     },
     {
       "slug": "en-301-549",
       "label": "EN 301 549",
-      "count": 131
+      "count": 137
     },
     {
       "slug": "eaa",
       "label": "European Accessibility Act",
-      "count": 93
+      "count": 104
+    },
+    {
+      "slug": "bitv",
+      "label": "BITV 2.0",
+      "count": 52
+    },
+    {
+      "slug": "rgaa",
+      "label": "RGAA",
+      "count": 47
     },
     {
       "slug": "ada",
@@ -209,27 +219,17 @@
       "count": 44
     },
     {
-      "slug": "bitv",
-      "label": "BITV 2.0",
-      "count": 42
-    },
-    {
       "slug": "section-508",
       "label": "Section 508",
       "count": 41
-    },
-    {
-      "slug": "rgaa",
-      "label": "RGAA",
-      "count": 31
     }
   ],
   "priceBands": {
-    "withBand": 24,
-    "withoutBand": 351,
+    "withBand": 27,
+    "withoutBand": 398,
     "distribution": {
-      "budget": 11,
-      "mid": 13,
+      "budget": 13,
+      "mid": 14,
       "premium": 0,
       "enterprise": 0
     }
@@ -251,15 +251,15 @@
     }
   },
   "founded": {
-    "withYear": 114,
-    "withoutYear": 261,
+    "withYear": 118,
+    "withoutYear": 307,
     "oldest": 1894,
     "newest": 2026,
     "median": 2003
   },
   "sources": {
-    "totalRefs": 980,
-    "recordsWithMultiple": 255,
+    "totalRefs": 1033,
+    "recordsWithMultiple": 258,
     "minPerRecord": 1,
     "everyRecordHasAtLeastOne": true
   }
