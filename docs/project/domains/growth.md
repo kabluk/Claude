@@ -110,3 +110,65 @@ accessibility statement 390. Сырые JSON — scratchpad `vol_*.json` (вне
 **Самый дешёвый следующий growth-ход по данным**: FR-гайд под голое
 `rgaa` (8100/мес, CPC $3.63, интент информационный) — largest gap между
 измеренным спросом и текущим контентом. Кандидат узла: G-GUIDES-RGAA-FR.
+
+## Keyword+SERP замер 2026-08-13 (DataForSEO, ключ владельца in-memory)
+
+Повод: владелец прислал скриншот Ahrefs по конкуренту `accessibleweb.com` —
+тот берёт трафик не каталогом, а БЕСПЛАТНЫМ ИНСТРУМЕНТОМ (contrast checker,
+их позиции 2-4 по кластеру). Проверено своим замером, не со слов.
+
+**Объёмы US (Google Ads, live):**
+
+| Запрос | Объём/мес | Конкуренция | CPC |
+|---|---|---|---|
+| color contrast checker | 12 100 | LOW | $13.08 |
+| contrast checker | 8 100 | LOW | $13.80 |
+| ada compliance checker | 8 100 | HIGH | $10.68 |
+| section 508 compliance | 8 100 | LOW | $9.86 |
+| vpat | 5 400 | MEDIUM | $29.92 |
+| ada website compliance | 5 400 | MEDIUM | $20.53 |
+| accessibility checker | 4 400 | MEDIUM | $8.54 |
+| color blindness simulator | 3 600 | LOW | $2.21 |
+| website accessibility checker / test | 3 600 | MEDIUM | $14.22 |
+| wcag color contrast | 1 900 | LOW | $12.22 |
+| pdf accessibility checker | 1 900 | MEDIUM | $6.59 |
+| color contrast analyzer | 1 600 | LOW | $15.65 |
+| wcag contrast checker | 1 600 | LOW | $10.83 |
+| accessibility color checker | 1 600 | LOW | $10.24 |
+| free accessibility checker | 1 000 | MEDIUM | $14.12 |
+| accessibility scanner | 1 000 | LOW | $10.09 |
+| **accessibility audit** (наш текущий фокус) | **720** | LOW | $33.74 |
+| web accessibility audit | 390 | LOW | $33.32 |
+| accessibility consultant | 320 | MEDIUM | $33.94 |
+| accessibility audit company | 30 | MEDIUM | — |
+
+DE: `bfsg` 3600 LOW · `kontrast checker` 1900 LOW ·
+`barrierefreiheitserklärung` 880 MEDIUM · `bitv test` 260 MEDIUM.
+
+**Ключевой вывод**: кластер «контраст» ≈ **27 000/мес суммарно, весь LOW**,
+и у нас под него НОЛЬ страниц. Каталожно-аудиторские запросы, на которые
+нацелен продукт сегодня, дают 720+390+320+30 ≈ 1 460/мес — в ~18 раз меньше.
+
+**SERP-проверка (organic top-10, US) — важнее объёмов:**
+
+- `color contrast checker`: 1. webaim.org · 2. coolors.co · 3. color.adobe.com ·
+  4. colourcontrast.cc · **5. accessibleweb.com** · 7. levelaccess.com ·
+  8. audioeye.com · 9. siteimprove.com. verscala — нет.
+  ⇒ **ЗАХОДИТЬ МОЖНО**: #1 у WebAIM не отнять (канонический инструмент отрасли),
+  но позиции 5-10 держат ВЕНДОРЫ уровня нас, включая маленький accessibleweb.
+- `section 508 compliance`: топ — section508.gov, dodcio.defense.gov,
+  state.gov, regulations.gov (+ wcag.com, levelaccess).
+  ⇒ **НЕ дешёвая победа** (первоначальная гипотеза этой же сессии ОПРОВЕРГНУТА
+  замером): против первоисточника закона контентом не выигрывают. Наш
+  `section-508-compliance-guide.md` в топ по голому запросу не выведет.
+- `vpat`: топ — itic.org (автор стандарта VPAT), Wikipedia, section508.gov,
+  университеты. ⇒ та же стена канонических владельцев, несмотря на CPC $29.92.
+- `website accessibility checker`: топ — accessibilitychecker.org, WAVE,
+  accessibe, audioeye, skynettechnologies. ⇒ вендоры ранжируются, место есть,
+  но плотнее контраста. Естественный таргет для страницы сканера.
+
+**Рекомендация по данным**: инструментальная страница-чекер контраста —
+лучшая ставка (спрос + LOW-конкуренция + доказанная проходимость для мелких
+вендоров + естественный вход в нашу воронку: проверил цвет → «а весь сайт?» →
+скан → отчёт → PDF/агентство). Section 508 / VPAT из списка быстрых побед
+вычеркнуты этим замером.
