@@ -14,14 +14,17 @@
 // поддержку, которую не проверяли.
 
 export function detectPdfLinks(html, baseUrl) {
-  const re = /href="([^"]+\.pdf(?:[?#][^"]*)?)"/gi
+  // D-165: href в двойных, одинарных ИЛИ без кавычек (как extractAnchors) — иначе
+  // сайты с одинарными/неквотированными атрибутами теряли обнаружение PDF целиком.
+  const re = /href\s*=\s*(?:"([^"]+\.pdf(?:[?#][^"]*)?)"|'([^']+\.pdf(?:[?#][^']*)?)'|([^\s"'>]+\.pdf(?:[?#][^\s"'>]*)?))/gi
   const out = []
   const seen = new Set()
   let m
   while ((m = re.exec(html))) {
+    const raw = m[1] ?? m[2] ?? m[3]
     let abs
     try {
-      abs = baseUrl ? new URL(m[1], baseUrl).toString() : m[1]
+      abs = baseUrl ? new URL(raw, baseUrl).toString() : raw
     } catch {
       continue
     }

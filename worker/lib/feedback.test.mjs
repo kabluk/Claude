@@ -51,3 +51,21 @@ test('no feedback channel found on a page with none of the patterns', () => {
     found: false, matchedPhrase: null, contactLink: null,
   })
 })
+
+// D-165: a plain reachable contact channel (footer email/phone) counts even without
+// an accessibility-specific phrase — otherwise a11y-feedback-missing false-fired.
+test('D-165: a footer mailto: address is a reachable feedback channel', () => {
+  const html = '<footer><a href="mailto:info@example.com">info@example.com</a></footer>'
+  const r = detectFeedbackChannel(html)
+  assert.equal(r.found, true)
+})
+
+test('D-165: a tel: link alone is a reachable channel', () => {
+  const r = detectFeedbackChannel('<a href="tel:+49301234567">Call us</a>')
+  assert.equal(r.found, true)
+})
+
+test('D-165: a share widget (mailto: with no address) is NOT treated as a channel', () => {
+  const r = detectFeedbackChannel('<a href="mailto:?subject=Check%20this">Share by email</a>')
+  assert.equal(r.found, false)
+})

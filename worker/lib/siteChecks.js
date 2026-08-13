@@ -32,7 +32,7 @@ export function detectWayfindingSignals(html) {
   const hasSearch =
     /<input[^>]+type\s*=\s*["']search["']/i.test(html) ||
     /role\s*=\s*["']search["']/i.test(html) ||
-    /<input[^>]+name\s*=\s*["'][^"']*(?:search|suche|szukaj|recherche|buscar|sok|haku|ricerca)[^"']*["']/i.test(html) ||
+    /<input[^>]+name\s*=\s*["'][^"']*?(?<![a-z])(?:search|suche|szukaj|recherche|buscar|sok|haku|ricerca)(?![a-z])[^"']*["']/i.test(html) ||
     /<input[^>]+name\s*=\s*["'](q|s)["']/i.test(html) ||
     /<form[^>]+action\s*=\s*["'][^"']*(?:search|suche|szukaj|recherche|buscar|ricerca)[^"']*["']/i.test(html) ||
     // Ссылка на страницу поиска. Нужна как устойчивый признак для сайтов, где сам
@@ -45,6 +45,9 @@ export function detectWayfindingSignals(html) {
     /<a[^>]+href\s*=\s*["'][^"'#]*\/(?:search|suche|szukaj|recherche|buscar|ricerca|sok|haku)\b[^"']*["']/i.test(html)
 
   const hasSitemapLink = anchors.some(({ href, text }) => {
+    // XML/TXT-карта (sitemap.xml) — для поисковиков, не человеко-навигируемый способ
+    // найти страницу по смыслу WCAG 2.4.5 (D-165).
+    if (/\.(xml|txt)(?:[?#]|$)/i.test(href)) return false
     const hay = `${normalizeText(text)} ${normalizeText(href)}`
     return SITEMAP_HINTS.some((h) => hay.includes(normalizeText(h)))
   })
@@ -183,15 +186,22 @@ function pageLang(html) {
 
 export function checkConsistentIdentification(pages) {
   // ключ "lang\x00href" -> { href, labels: Map(label -> первая страница) }
+  // D-165: если сайт МУЛЬТИЯЗЫЧНЫЙ (>=2 разных явных lang), страница без lang-атрибута
+  // может быть на любом языке — не сравниваем её ярлыки с другими (иначе дыра: все lang-less
+  // страницы схлопывались в один бакет и countries vs länder снова ложно конфликтовали). Изолируем такую
+  // страницу по URL. На монолингвальном сайте (0-1 явный язык) lang-less страницы сравниваем как раньше.
+  const explicitLangs = new Set(pages.map((p) => pageLang(p.html)).filter(Boolean))
+  const multilingual = explicitLangs.size >= 2
   const byKey = new Map()
   for (const { url, html } of pages) {
     const lang = pageLang(html)
+    const bucket = lang || (multilingual ? ` ${url}` : '')
     for (const { href, text } of navAnchors(html)) {
       const nhref = normalizeText(href)
       const label = normalizeText(text)
       if (!nhref || label.length < MIN_LABEL_LEN) continue
       if (nhref.startsWith('#') || nhref.startsWith('javascript:')) continue
-      const key = `${lang} ${nhref}`
+      const key = `${bucket} ${nhref}`
       if (!byKey.has(key)) byKey.set(key, { href: nhref, labels: new Map() })
       const entry = byKey.get(key)
       if (!entry.labels.has(label)) entry.labels.set(label, url)

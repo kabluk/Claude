@@ -138,6 +138,29 @@ test('conflicting labels WITHIN one language are still flagged (D-165 regression
   assert.equal(out[0].ruleId, 'a11y-inconsistent-identification')
 })
 
+// D-165 hole: on a MULTILINGUAL site, pages that omit <html lang> could be any language,
+// so their labels must not be cross-compared (else the fix's '' bucket re-collapsed them).
+test('multilingual site: pages missing <html lang> are not cross-compared', () => {
+  const enExplicit = '<html lang="en"><nav><a href="/x/">X</a></nav></html>'
+  const deExplicit = '<html lang="de"><nav><a href="/x/">X</a></nav></html>'
+  const noLangEn = '<nav><a href="/countries/">Countries</a></nav>'
+  const noLangDe = '<nav><a href="/countries/">Länder</a></nav>'
+  const out = checkConsistentIdentification([
+    { url: 'p1', html: enExplicit }, { url: 'p2', html: deExplicit },
+    { url: 'p3', html: noLangEn }, { url: 'p4', html: noLangDe },
+  ])
+  assert.deepEqual(out, [])
+})
+
+// But a monolingual site with no lang attr at all is still compared (check preserved).
+test('monolingual site without <html lang>: a real conflict is still flagged', () => {
+  const a = '<nav><a href="/contact">Contact</a></nav>'
+  const b = '<nav><a href="/contact">Support</a></nav>'
+  const out = checkConsistentIdentification([{ url: 'p1', html: a }, { url: 'p2', html: b }])
+  assert.equal(out.length, 1)
+  assert.equal(out[0].ruleId, 'a11y-inconsistent-identification')
+})
+
 test('links outside <nav> are ignored — that is what caused the real false positives', () => {
   const a = '<a href="/">Bundesregierung | Startseite</a>'
   const b = '<a href="/">Der Bundesadler, die Flagge</a>'

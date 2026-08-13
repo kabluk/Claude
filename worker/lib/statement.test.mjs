@@ -60,3 +60,32 @@ test('empty page has all four parts missing', () => {
   assert.equal(result.complete, false)
   assert.equal(result.missingParts.length, 4)
 })
+
+// D-165: strong-phrase vs weak-word link matching.
+test('D-165: a bare "Accessibility" link IS recognised as the statement link', () => {
+  const html = '<footer><a href="/a11y/">Accessibility</a></footer>'
+  assert.equal(findStatementLink(html, 'https://x.test'), 'https://x.test/a11y/')
+})
+
+test('D-165: "Barrierefreiheit am Arbeitsplatz" (careers) is NOT taken as the statement link', () => {
+  const html = '<nav><a href="/karriere/">Barrierefreiheit am Arbeitsplatz</a></nav>'
+  assert.equal(findStatementLink(html, 'https://x.test'), null)
+})
+
+test('D-165: single-quoted href on the statement link is found (extractAnchors fix)', () => {
+  const html = "<a href='/erklaerung/'>Barrierefreiheitserklärung</a>"
+  assert.equal(findStatementLink(html, 'https://x.test'), 'https://x.test/erklaerung/')
+})
+
+test('D-165: an unrelated "financial audit" no longer makes methodology complete', () => {
+  const html = '<p>This statement applies to our site. Partially compliant. ' +
+    'Read our 2025 financial audit report. Enforcement body: the ombudsman, complaints procedure here.</p>'
+  const out = evaluateStatementContent(html)
+  assert.equal(out.methodology, false)
+})
+
+test('D-165: HTML-entity-encoded apostrophe in a French statement still matches scope', () => {
+  const html = '<p>Cette d&eacute;claration s&rsquo;applique au site.</p>'
+  const out = evaluateStatementContent(html)
+  assert.equal(out.serviceDescription, true)
+})

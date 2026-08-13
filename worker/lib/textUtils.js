@@ -12,13 +12,17 @@ export function normalizeText(text) {
 
 // Извлекает <a href="...">текст</a> пары из HTML — упрощённый парсинг без DOM,
 // но с текстом ссылки (нужен для матчинга по видимому тексту, не по href).
+// D-165: href матчится в двойных, одинарных ИЛИ без кавычек. Первая версия ловила
+// только `href="..."`, поэтому CMS/шаблоны с одинарными или неквотированными
+// атрибутами были НЕВИДИМЫ разом для обнаружения страниц, PDF, ссылки на заявление
+// и навигации — тихий системный пропуск без ошибки.
 export function extractAnchors(html) {
   const out = []
-  const re = /<a\b[^>]*href="([^"]*)"[^>]*>([\s\S]*?)<\/a>/gi
+  const re = /<a\b[^>]*?\bhref\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s"'>]+))[^>]*>([\s\S]*?)<\/a>/gi
   let m
   while ((m = re.exec(html))) {
-    const href = m[1]
-    const text = m[2].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
+    const href = m[1] ?? m[2] ?? m[3] ?? ''
+    const text = m[4].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim()
     out.push({ href, text })
   }
   return out

@@ -23,7 +23,12 @@ export function scoreFromFindings(findings) {
   for (const f of findings) {
     if (isMetaFinding(f)) continue
     const current = worstByRule.get(f.ruleId)
-    if (!current || IMPACT_WEIGHT[f.impact] > IMPACT_WEIGHT[current]) {
+    // D-165: сравниваем через `?? -1`, иначе если ПЕРВЫМ для ruleId записан
+    // неизвестный impact (вес undefined), законно худший 'critical' (12) не
+    // перезапишет его, т.к. `12 > undefined` === false — правило тихо считалось бы
+    // по fallback-весу 1. Латентно (все генераторы шлют известные impact), но
+    // это реальная дыра в агрегации.
+    if (!current || (IMPACT_WEIGHT[f.impact] ?? 1) > (IMPACT_WEIGHT[current] ?? -1)) {
       worstByRule.set(f.ruleId, f.impact)
     }
   }

@@ -43,3 +43,13 @@ test('scan-meta-* findings do not affect the score', () => {
   assert.equal(scoreFromFindings([...real, ...meta]), scoreFromFindings(real))
   assert.equal(scoreFromFindings([...real, ...meta]), 93)
 })
+
+// D-165: an unknown impact recorded first for a ruleId must not block a later 'critical'
+// from taking over as the worst severity (guards the `> undefined` === false hole).
+test('D-165: a later critical overrides an unknown impact seen first for the same rule', () => {
+  const findings = [
+    { ruleId: 'x', impact: 'weird' },     // unknown weight, seen first
+    { ruleId: 'x', impact: 'critical' },  // must win → penalty 12 → score 88
+  ]
+  assert.equal(scoreFromFindings(findings), 100 - 12)
+})

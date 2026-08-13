@@ -109,7 +109,10 @@ test('A3-KEYBOARD: flags a link with focus outline explicitly suppressed and not
     const findings = await checkKeyboardTraversal(page, 'p1')
     assert.equal(findings.length, 1)
     assert.equal(findings[0].ruleId, 'a11y-focus-invisible')
-    assert.equal(findings[0].selector, '#last')
+    // D-165: now reports EVERY tab stop with suppressed focus, not just the last one.
+    // Both links in this fixture have outline:none, so both are surfaced.
+    assert.match(findings[0].selector, /#last/)
+    assert.match(findings[0].html, /2 focusable/)
   })
 })
 
@@ -141,6 +144,19 @@ test('A3-MEDIA: flags autoplay-without-mute and missing captions; clean video pa
     { width: 1280, height: 800 },
     async (page) => {
       assert.deepEqual(await checkMedia(page, 'p2'), [])
+    },
+  )
+})
+
+// D-165: a muted looping background video with no controls carries no dialogue —
+// there is nothing to caption under 1.2.2, so it must not be flagged.
+test('A3-MEDIA: a muted looping decorative background video is not flagged for missing captions (D-165)', async () => {
+  await withPage(
+    '<video muted loop autoplay src="data:video/mp4;base64,AAAA"></video>',
+    { width: 1280, height: 800 },
+    async (page) => {
+      const ruleIds = (await checkMedia(page, 'p1')).map((f) => f.ruleId)
+      assert.equal(ruleIds.includes('a11y-video-no-captions'), false)
     },
   )
 })
@@ -268,6 +284,17 @@ test('A3-HEADINGS: a heading whose name comes from aria-label or an image alt is
 
 test('A3-HEADINGS: hidden and aria-hidden headings are skipped (invisible to everyone)', async () => {
   const html = '<h2 style="display:none"></h2><h2 aria-hidden="true"></h2><h1>Visible</h1>'
+  await withPage(html, { width: 1280, height: 800 }, async (page) => {
+    assert.equal(await checkEmptyHeadings(page, 'p1'), null)
+  })
+})
+
+// D-165: display:none is not inherited, so an empty heading inside a display:none
+// ANCESTOR (closed accordion, inactive tab, mobile drawer) is imperceptible and must
+// not be flagged — caught via getClientRects()/closest('[aria-hidden]').
+test('A3-HEADINGS: an empty heading hidden by a display:none ANCESTOR is skipped (D-165)', async () => {
+  const html = '<div style="display:none"><h3></h3></div>' +
+    '<section aria-hidden="true"><h4></h4></section><h1>Visible</h1>'
   await withPage(html, { width: 1280, height: 800 }, async (page) => {
     assert.equal(await checkEmptyHeadings(page, 'p1'), null)
   })

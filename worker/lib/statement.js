@@ -9,37 +9,54 @@
 
 import { normalizeText, extractAnchors } from './textUtils.js'
 
-// Локализованные фразы для поиска ссылки на страницу заявления в HTML.
-// Каждая фраза матчится регистронезависимо и без учёта диакритики (нормализуем текст ссылки).
-const STATEMENT_LINK_PHRASES = [
-  // en
+// D-165: раньше все фразы матчились по ВХОЖДЕНИЮ, и голое немецкое слово
+// «barrierefreiheit» ловило непрофильные ссылки («Barrierefreiheit am Arbeitsplatz» —
+// карьерная страница), а английское требовало полную фразу «accessibility statement»,
+// пропуская обычную ссылку просто «Accessibility». Делим на СИЛЬНЫЕ (специфичные для
+// заявления — по вхождению) и СЛАБЫЕ (голое слово «доступность» — только если текст
+// ссылки РАВЕН этому слову, т.е. ссылка буквально «Accessibility»/«Barrierefreiheit»).
+const STRONG_LINK_PHRASES = [
   'accessibility statement', 'accessibility declaration',
-  // de (BFSG/BITV)
-  'barrierefreiheitserklärung', 'erklärung zur barrierefreiheit', 'barrierefreiheit',
-  // fr (RGAA)
-  "déclaration d'accessibilité", 'declaration accessibilite', 'accessibilité',
-  // nl
+  'barrierefreiheitserklärung', 'erklärung zur barrierefreiheit',
+  "déclaration d'accessibilité", 'declaration accessibilite',
   'toegankelijkheidsverklaring',
-  // pl
   'deklaracja dostępności', 'deklaracja dostepnosci',
-  // es
   'declaración de accesibilidad', 'declaracion de accesibilidad',
+]
+const WEAK_LINK_WORDS = [
+  'accessibility', 'barrierefreiheit', 'accessibilité', 'zugänglichkeit',
+  'toegankelijkheid', 'dostępność', 'accesibilidad',
 ]
 
 const normalize = normalizeText
-const NORMALIZED_PHRASES = STATEMENT_LINK_PHRASES.map(normalize)
+const NORMALIZED_STRONG = STRONG_LINK_PHRASES.map(normalize)
+const NORMALIZED_WEAK = WEAK_LINK_WORDS.map(normalize)
+
+// Декод самых частых HTML-сущностей до сравнения — CMS кодируют апострофы/акценты
+// (`s&rsquo;applique`, `Accessibilit&eacute;`), и без декода реальный текст не матчился
+// бы (ложный «пункт отсутствует» / пропуск ссылки) (D-165).
+function decodeEntities(s) {
+  return s
+    .replace(/&(?:rsquo|lsquo|apos|#8217|#8216|#39);/gi, "'")
+    .replace(/&(?:nbsp|#160);/gi, ' ')
+    .replace(/&(?:eacute|#233);/gi, 'e').replace(/&(?:egrave|#232);/gi, 'e')
+    .replace(/&(?:agrave|#224);/gi, 'a').replace(/&(?:ccedil|#231);/gi, 'c')
+    .replace(/&(?:ndash|#8211|mdash|#8212);/gi, '-')
+    .replace(/&amp;/gi, '&')
+}
 
 // Ищет ссылку на заявление о доступности на переданной странице (обычно — главная,
 // т.к. Anlage 3 требует "на видном месте", как правило футер/навигация главной).
-// Возвращает абсолютный URL или null. Консервативно: матчим по тексту ссылки,
-// не по произвольному вхождению фразы в HTML — иначе много ложных срабатываний
-// (упоминание слова "accessibility" где угодно на странице).
+// Возвращает абсолютный URL или null. Матчим по тексту ссылки, не по произвольному
+// вхождению фразы в HTML — иначе много ложных срабатываний.
 export function findStatementLink(html, baseUrl) {
   const anchors = extractAnchors(html)
   for (const { href, text } of anchors) {
     if (!text) continue
-    const normText = normalize(text)
-    if (NORMALIZED_PHRASES.some((phrase) => normText.includes(phrase))) {
+    const normText = normalize(decodeEntities(text))
+    const strong = NORMALIZED_STRONG.some((phrase) => normText.includes(phrase))
+    const weak = NORMALIZED_WEAK.some((word) => normText === word)
+    if (strong || weak) {
       try {
         return new URL(href, baseUrl).toString()
       } catch {
@@ -88,8 +105,10 @@ const CONTENT_PATTERNS = {
     'auto-évaluation', "a été évalué", "méthode d'évaluation", 'méthode utilisée', 'audit de conformité',
     'samoocena', 'została przetestowana', 'metoda oceny', 'metoda przygotowania',
     'autoevaluación', 'método utilizado', 'evaluación externa',
-    'audit', // общий заимствованный термин, встречается во всех локалях (RGAA-отчёты
-             // называют аудитора поимённо, "L'audit de conformité réalisé par ...")
+    // D-165: голое «audit» убрано — ловило непрофильное «financial audit report» и
+    // ложно ставило methodology:true, маскируя реально отсутствующий пункт (FN-безопаснее
+    // недосказать). Реальные a11y-случаи покрыты специфичными фразами выше
+    // ('audit de conformité', 'conducted an audit', 'bitv-test', 'externe prüfung' …).
   ],
   enforcementBody: [
     'durchsetzungsstelle', 'überwachungsstelle', 'schlichtungsstelle', 'bundesfachstelle',
@@ -101,7 +120,7 @@ const CONTENT_PATTERNS = {
 }
 
 export function evaluateStatementContent(html) {
-  const text = normalize(html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' '))
+  const text = normalize(decodeEntities(html.replace(/<[^>]+>/g, ' ')).replace(/\s+/g, ' '))
   const result = {}
   const missing = []
   for (const [key, phrases] of Object.entries(CONTENT_PATTERNS)) {

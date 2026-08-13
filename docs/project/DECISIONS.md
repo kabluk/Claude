@@ -3,6 +3,55 @@
 Формат: ID | дата | решение | причина | последствия. Новые решения добавлять сверху.
 Статусы: `accepted` (принято), `proposed` (ждёт подтверждения владельца).
 
+## D-166 · 2026-08-13 · accepted (код готов, воркер НЕ передеплоен)
+**Полный аудит движка сканера + харденинг (продолжение D-165, «делаем сканер
+идеальным»).** 3 параллельных Sonnet-ревьюера прошли domChecks/siteChecks+statement/
+axe+scanJob+score на FP/FN/корректность (по строкам, review-only); родитель (opus)
+верифицировал каждую находку по коду и починил подтверждённые с тестами. Итог
+**worker:test 520/520** (+11 к D-165). Реализовано (все с регресс-тестами):
+
+*Ложные срабатывания (бьют по доверию):*
+- **keyboard-trap:** `activeElement` читался только на top-документе → фокус в
+  same-origin `<iframe>`/open-shadow-DOM выглядел застрявшим → фейк CRITICAL. Теперь
+  рекурсивный спуск до реального узла (`domChecks.js`).
+- **reflow-320/resize-200:** классическая полоса прокрутки (~15px) + `100vw` → фейк.
+  Вычитаем ширину полосы (`offsetWidth − clientWidth`) из порога — реальный оверфлоу
+  сохраняется (у verscala.com 85px/52px — РЕАЛЬНЫЙ, остаётся, это правка CSS сайта).
+- **inconsistent-identification:** дыра фикса D-165 — страницы БЕЗ `<html lang>` на
+  мультиязычном сайте схлопывались в один бакет. Теперь при ≥2 явных языках lang-less
+  страницы изолируются по URL (`siteChecks.js`); заодно убран NUL-байт в ключе.
+- **empty-heading:** предок `display:none` не виден в computed-style самого заголовка →
+  `getClientRects()===0` + `closest([aria-hidden])`. **video-no-captions:** muted-loop
+  декоративное фоновое видео пропускается (нечего субтитрировать).
+- **feedback-missing:** реальный `mailto:`/`tel:`/контакт-страница теперь standalone-
+  сигнал (share-виджеты `mailto:?` не считаются). **statement:** голое «barrierefreiheit»
+  ловило «Barrierefreiheit am Arbeitsplatz», голое «audit» — «financial audit» → делёж
+  на сильные фразы (по вхождению) и слабые слова (только точное совпадение текста
+  ссылки); HTML-сущности декодируются. **multiple-ways:** «research» больше не матчит
+  «search» (граница токена), `sitemap.xml` не считается человеко-навигацией.
+
+*Пропуски (не видел реальные нарушения):*
+- **extractAnchors/detectPdfLinks:** ловили только `href="..."` (двойные кавычки) —
+  одинарные/без кавычек невидимы → рушило обнаружение страниц/PDF/ссылки заявления/
+  навигации разом. Расширены на все три формы (`textUtils.js`, `pdf.js`).
+- **focus-invisible:** репортил только ПОСЛЕДНИЙ таб-стоп (`lastInvisible` перезаписывался)
+  → теперь все невидимые. **statement-unreachable:** ссылка есть, но 404 → раньше молчал,
+  теперь `a11y-statement-unreachable` (serious). **scan-meta-check-skipped:** падение
+  под-проверки больше не глотается как «чисто» (прозрачность, как page-skipped;
+  scan-meta не влияет на score). **score:** guard от сравнения веса с `undefined`.
+  **viewport-restore:** fallback-дефолт, если viewport не задан.
+
+**Осознанно ОТЛОЖЕНО (продуктовые решения / риск шума, НЕ трогал вслепую — backlog):**
+surfacing axe `incomplete` (needs-review), breadth-scoring (site-wide dedup vs per-page),
+keyboard-trap на всех страницах (не только home), эвристика non-escaping-modal FN,
+role="navigation" regex + href-нормализация (слэш/query) в nav-сравнении, down-weight
+best-practice-правил в score. Требуют явного решения владельца, зафиксированы в
+`domains/backend.md`/BACKLOG.
+
+**ХВОСТ:** воркер НЕ передеплоен — нужен `wrangler deploy` с CF-токеном (in-memory);
+после — живой ре-скан verscala.com для подтверждения. verscala reflow/resize-находки
+РЕАЛЬНЫ (85px/52px оверфлоу) → отдельная правка CSS сайта.
+
 ## D-165 · 2026-08-13 · accepted (код готов, воркер НЕ передеплоен)
 **Два ложных срабатывания сканера пойманы на собственном скане verscala.com и
 исправлены в коде воркера (модель — opus, выбор владельца).** Скан verscala.com дал

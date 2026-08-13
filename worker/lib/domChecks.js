@@ -15,16 +15,25 @@ const VIEWPORT_TOLERANCE_PX = 1 // избегаем false positive на субп
 // горизонтальной прокрутки (кроме таблиц/карт данных — эту оговорку не проверяем,
 // эвристика намеренно грубая: false positive безопаснее молчания).
 export async function checkReflow320(page, pageUrl) {
-  const original = page.viewport ? page.viewport() : null
+  // Fallback на известный дефолт, если viewport не задан (defaultViewport:null) —
+  // иначе `if (original)` тихо пропускал восстановление и ВСЕ следующие проверки
+  // (resize/media/headings/axe) шли на застрявшем 320px viewport (D-165).
+  const original = (page.viewport && page.viewport()) || { width: 1280, height: 800 }
   await page.setViewport({ width: 320, height: 800 })
   // Даём странице время на CSS-реакцию (resize-листенеры, matchMedia) — без сна
   // некоторые сайты ещё не успели перестроить layout к моменту чтения scrollWidth.
   await page.evaluate(() => new Promise((r) => requestAnimationFrame(() => requestAnimationFrame(r))))
   const overflow = await page.evaluate((tol) => {
     const root = document.documentElement
-    return { scrollWidth: root.scrollWidth, clientWidth: root.clientWidth, over: root.scrollWidth > root.clientWidth + tol }
+    // Классическая (не-overlay) вертикальная полоса прокрутки в headless Chromium
+    // съедает ~15-17px из clientWidth, а элементы `width:100vw` меряются от полной
+    // ширины окна (включая полосу) → ложный оверфлоу на полностью адаптивной
+    // странице. Вычитаем ширину полосы (offsetWidth − clientWidth) из порога:
+    // реальный оверфлоу (обычно десятки-сотни px) остаётся, артефакт полосы — нет (D-165).
+    const scrollbar = Math.max(0, root.offsetWidth - root.clientWidth)
+    return { scrollWidth: root.scrollWidth, clientWidth: root.clientWidth, over: root.scrollWidth > root.clientWidth + tol + scrollbar }
   }, VIEWPORT_TOLERANCE_PX)
-  if (original) await page.setViewport(original)
+  await page.setViewport(original)
 
   if (!overflow.over) return null
   return {
@@ -58,7 +67,7 @@ export async function checkKeyboardTraversal(page, pageUrl) {
   const selectors = []
   let sameStreak = 0
   let trapSelector = null
-  let lastInvisible = false // невидимость фокуса ПОСЛЕДНЕГО реально сфокусированного шага
+  const invisibleSels = [] // ВСЕ таб-стопы без видимого индикатора фокуса (9.2.4.7)
   const outOfOrder = [] // шаги, где фокус ушёл назад по документу (9.2.4.3)
 
   for (let i = 0; i < MAX_TAB_STEPS; i++) {
@@ -71,7 +80,24 @@ export async function checkKeyboardTraversal(page, pageUrl) {
     // "невидимый фокус". Читаем sel и invisible ЗА ОДИН evaluate, пока элемент точно
     // ещё в фокусе.
     const step = await page.evaluate(() => {
-      const el = document.activeElement
+      // Разрешаем activeElement РЕКУРСИВНО: если фокус ушёл в same-origin <iframe>
+      // (видео/Stripe/чат-виджет) или в открытый shadow-root веб-компонента,
+      // document.activeElement на ВЕРХНЕМ документе остаётся на host-узле, и фокус
+      // выглядел бы «застрявшим» 4 раза подряд, хотя пользователь нормально ходит по
+      // контролам внутри — ложный CRITICAL (D-165). Спускаемся до реально
+      // сфокусированного узла.
+      let el = document.activeElement
+      for (let depth = 0; el && depth < 20; depth++) {
+        if (el.tagName === 'IFRAME') {
+          let inner = null
+          try { inner = el.contentDocument && el.contentDocument.activeElement } catch { inner = null }
+          if (inner && inner !== el.contentDocument.body && inner !== el) { el = inner; continue }
+        }
+        if (el.shadowRoot && el.shadowRoot.activeElement && el.shadowRoot.activeElement !== el) {
+          el = el.shadowRoot.activeElement; continue
+        }
+        break
+      }
       if (!el || el === document.body) return null
       const sel = el.id ? `#${el.id}` : el.tagName.toLowerCase() +
         (typeof el.className === 'string' && el.className ? `.${el.className.trim().split(/\s+/).join('.')}` : '')
@@ -111,8 +137,8 @@ export async function checkKeyboardTraversal(page, pageUrl) {
       sameStreak = 0
     }
     if (step.backwards) outOfOrder.push({ sel: step.sel, positiveTabindex: step.positiveTabindex })
+    if (step.invisible && !invisibleSels.includes(step.sel)) invisibleSels.push(step.sel)
     selectors.push(step.sel)
-    lastInvisible = step.invisible
   }
 
   const findings = []
@@ -143,11 +169,14 @@ export async function checkKeyboardTraversal(page, pageUrl) {
     })
   }
 
-  if (selectors.length && !trapSelector && lastInvisible) {
+  // Репортим КАЖДЫЙ таб-стоп без видимого индикатора, а не только последний: раньше
+  // `lastInvisible` перезаписывался на каждом шаге, поэтому невидимый фокус на всей
+  // шапке/навигации терялся, если ПОСЛЕДНИЙ элемент случайно имел UA-outline (D-165).
+  if (invisibleSels.length && !trapSelector) {
     findings.push({
       ruleId: 'a11y-focus-invisible', wcag: ['wcag2.4.7'], impact: 'serious',
-      selector: selectors[selectors.length - 1], page: pageUrl,
-      html: 'focused element has no detectable outline or box-shadow (heuristic, may false-positive on custom focus styles)',
+      selector: invisibleSels.slice(0, 5).join(', '), page: pageUrl,
+      html: `${invisibleSels.length} focusable element${invisibleSels.length === 1 ? '' : 's'} with no detectable outline or box-shadow (heuristic, may false-positive on custom focus styles)`,
     })
   }
 
@@ -161,8 +190,12 @@ export async function checkMedia(page, pageUrl) {
     for (const v of document.querySelectorAll('video')) {
       const sel = v.id ? `#${v.id}` : 'video'
       if (v.autoplay && !v.muted) out.push({ kind: 'autoplay', selector: sel })
+      // Декоративное фоновое видео (muted+loop, без controls) не несёт диалога/аудио —
+      // субтитрировать нечего, 1.2.2 к нему неприменим. Флагать его = шум на почти
+      // каждом современном hero-разделе (D-165).
+      const decorative = v.muted && v.loop && !v.controls
       const hasCaptions = [...v.querySelectorAll('track')].some((t) => t.kind === 'captions' || t.kind === 'subtitles')
-      if (!hasCaptions) out.push({ kind: 'captions', selector: sel })
+      if (!hasCaptions && !decorative) out.push({ kind: 'captions', selector: sel })
     }
     for (const a of document.querySelectorAll('audio')) {
       if (a.autoplay && !a.muted) out.push({ kind: 'autoplay', selector: a.id ? `#${a.id}` : 'audio' })
@@ -186,9 +219,13 @@ export async function checkResize200(page, pageUrl) {
     const root = document.documentElement
     const prevZoom = root.style.zoom
     root.style.zoom = '200%'
-    const result = { scrollWidth: root.scrollWidth, clientWidth: root.clientWidth }
+    // Та же поправка на полосу прокрутки, что в reflow-320: при 200% контент выше →
+    // появляется вертикальная полоса, съедающая clientWidth, тогда как full-bleed
+    // элементы меряются от полной ширины → ложный оверфлоу (D-165).
+    const scrollbar = Math.max(0, root.offsetWidth - root.clientWidth)
+    const result = { scrollWidth: root.scrollWidth, clientWidth: root.clientWidth, scrollbar }
     root.style.zoom = prevZoom
-    return { ...result, over: result.scrollWidth > result.clientWidth + tol }
+    return { ...result, over: result.scrollWidth > result.clientWidth + tol + scrollbar }
   }, VIEWPORT_TOLERANCE_PX)
 
   if (!overflow.over) return null
@@ -279,7 +316,12 @@ export async function checkEmptyHeadings(page, pageUrl) {
     for (const h of nodes) {
       const cs = getComputedStyle(h)
       if (cs.display === 'none' || cs.visibility === 'hidden') continue
-      if (h.getAttribute('aria-hidden') === 'true') continue
+      // display:none НЕ наследуется, поэтому computed-style самого заголовка не видит
+      // скрытого ПРЕДКА (закрытый аккордеон, неактивная вкладка, мобильное меню).
+      // getClientRects().length===0 = элемент не отрисован (сам или предок display:none);
+      // closest('[aria-hidden]') ловит скрытие от AT через предка (D-165).
+      if (h.getClientRects().length === 0) continue
+      if (h.closest('[aria-hidden="true"]')) continue
       const labelled = (h.getAttribute('aria-label') || '').trim()
       const labelledBy = h.getAttribute('aria-labelledby')
       const fromRef = labelledBy

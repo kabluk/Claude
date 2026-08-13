@@ -488,6 +488,15 @@ export async function scanSite(env, targetUrl, onProgress = async () => {}, coun
           html: `accessibility statement is missing: ${content.missingParts.join(', ')}`,
         })
       }
+    } else {
+      // D-165: ссылка на заявление ЕСТЬ, но страница недостижима (404/таймаут). Раньше
+      // это не попадало ни в одну ветку и молчало — хуже, чем явно отсутствующее
+      // заявление, ведь обязательный по закону документ пользователю недоступен.
+      findings.push({
+        ruleId: 'a11y-statement-unreachable', wcag: [], impact: 'serious',
+        selector: 'body', page: targetUrl,
+        html: `accessibility statement link found (${statementLink}) but the page could not be loaded (broken/unreachable)`,
+      })
     }
 
     // A3-FEEDBACK: ищем на главной И на странице заявления (оба паттерна встретились
@@ -574,21 +583,38 @@ export async function scanSite(env, targetUrl, onProgress = async () => {}, coun
         })
       }
 
+      // D-165: падение под-проверки НЕ должно быть неотличимо от «проверка прошла,
+      // чисто». Раньше .catch(()=>null/[]) молча возвращал пустой результат, и
+      // упавший keyboard-trap выглядел как «ловушек нет». Как и scan-meta-page-skipped,
+      // явно сообщаем, что проверка не отработала (scan-meta-* не влияет на score).
+      const runCheck = async (name, fn) => {
+        try {
+          return await fn()
+        } catch {
+          pageFindings.push({
+            ruleId: 'scan-meta-check-skipped', wcag: [], impact: 'minor',
+            selector: 'body', page: pageUrl,
+            html: `the "${name}" check could not run on this page and was skipped — its result is unknown, not verified clean`,
+          })
+          return null
+        }
+      }
+
       // A3-REFLOW / A3-RESIZE / A3-MEDIA — на каждой обойдённой странице, дёшево.
-      const reflow = await checkReflow320(page, pageUrl).catch(() => null)
+      const reflow = await runCheck('reflow-320', () => checkReflow320(page, pageUrl))
       if (reflow) pageFindings.push(reflow)
-      const resize = await checkResize200(page, pageUrl).catch(() => null)
+      const resize = await runCheck('resize-200', () => checkResize200(page, pageUrl))
       if (resize) pageFindings.push(resize)
-      const media = await checkMedia(page, pageUrl).catch(() => [])
-      pageFindings.push(...media)
-      const emptyHeadings = await checkEmptyHeadings(page, pageUrl).catch(() => null)
+      const media = await runCheck('media', () => checkMedia(page, pageUrl))
+      if (media) pageFindings.push(...media)
+      const emptyHeadings = await runCheck('empty-heading', () => checkEmptyHeadings(page, pageUrl))
       if (emptyHeadings) pageFindings.push(emptyHeadings)
 
       // A3-KEYBOARD — только на первой странице (представительно; Tab-обход всех 6
       // стоил бы заметно больше времени скана без пропорциональной пользы).
       if (isHome) {
-        const keyboard = await checkKeyboardTraversal(page, pageUrl).catch(() => [])
-        pageFindings.push(...keyboard)
+        const keyboard = await runCheck('keyboard-traversal', () => checkKeyboardTraversal(page, pageUrl))
+        if (keyboard) pageFindings.push(...keyboard)
       }
 
       return { pageFindings, pageDoc: { url: pageUrl, html: pageHtml }, bannerResult }
