@@ -1,0 +1,395 @@
+[
+  {
+    "slug": "aurora-design-and-consulting",
+    "name": "Aurora Design and Consulting",
+    "website": "aurorahawaii.com",
+    "hq": {
+      "city": "Honolulu",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Honolulu-based web design and IT firm running a dedicated Section 508/WCAG accessibility practice offering website testing, repair and remediation, mobile app and document accessibility, and training for government agencies, businesses and nonprofits."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.aurorahawaii.com/services/accessibility/website-accessibility/section-508-wcag-compliance-testing/",
+        "label": "site states 'Aurora provides website accessibility testing services to help government agencies, businesses, and non-profit organizations achieve compliance with accessibility laws (i.e. Section 508 and ADA Title III) and the W3C's Web Content Accessibility Guidelines'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "zenyth-group",
+    "name": "Zenyth Group",
+    "website": "zenythgroup.com",
+    "hq": {
+      "city": "Santa Monica",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada",
+      "section-508"
+    ],
+    "industries": [
+      "ecommerce"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Santa Monica, California firm pairing an AI-assisted first-pass scan with mandatory human expert review to deliver WCAG audits, code-level remediation and VPAT documentation for eCommerce platforms, explicitly stating that overlays 'do not fix your code, they layer over it'."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.zenythgroup.com/",
+        "label": "site states 'WCAG audits, VPAT documentation, and ongoing compliance monitoring' and 'Overlays do not fix your code, they layer over it... Zenyth remediates at the code level', HQ '1541 Ocean Ave, Suite 200, Santa Monica CA 90401'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "library-siteworks",
+    "name": "Library Siteworks",
+    "website": "librarysiteworks.com",
+    "hq": {
+      "city": "Winchester",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "priceBand": "budget",
+    "description": {
+      "en": "Winchester, Massachusetts consultancy (a division of Stirling Brandworks) offering priced WCAG 2.1/2.2 technical audits, training and remediation support built specifically for public libraries facing the 2027-2028 ADA Title II digital-accessibility deadlines."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://librarysiteworks.com/2026-ada-compliance/",
+        "label": "site quotes a 'Technical Audit' starting at $1,280 described as 'A deep-dive code review against WCAG 2.1/2.2 standards to secure your technical foundation', HQ '1 Mount Vernon Street, Third Floor, Winchester, MA 01890'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ionicnet",
+    "name": "IonicNET",
+    "website": "ionicnet.com",
+    "hq": {
+      "city": "Edison",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [
+      "public-sector",
+      "education"
+    ],
+    "certs": [],
+    "founded": 2004,
+    "description": {
+      "en": "Edison, New Jersey firm (established 2004) providing comprehensive WCAG/ADA Title II accessibility evaluations, Accessibility Conformance Reports, consulting and training, focused mainly on public libraries and government institutions."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://ionicnet.com/services/wcag-ada-accessibility-audits-for-library-websites/",
+        "label": "site states 'Comprehensive accessibility evaluations that identify WCAG compliance barriers across websites and digital services. Audits include testing with assistive technologies, detailed findings, and Accessibility Conformance Reports'; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://ionicnet.com/contact/",
+        "label": "footer states 'Established / Based 2004. Edison, NJ USA'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accessibility-consulting-partners",
+    "name": "Accessibility Consulting Partners",
+    "website": "acpaccessibility.com",
+    "hq": {
+      "city": "Colorado Springs",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "consulting",
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Colorado Springs, Colorado consultancy offering 'WCAG consultancy' as part of its ADA Title II and Title III accessibility services, alongside physical/public-right-of-way accessibility assessments, for government and business clients across the western and northeastern US."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://acpaccessibility.com/",
+        "label": "site lists 'WCAG consultancy' under both Title II and Title III service descriptions, footer address '1055 Big Valley Dr, Colorado Springs, CO'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "bekee-gibson",
+    "name": "Bekee Gibson",
+    "website": "bekee.com",
+    "hq": {
+      "city": "Madison",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "priceBand": "budget",
+    "description": {
+      "en": "Madison, Wisconsin independent WordPress consultant running priced WCAG 2.1 AA accessibility audits for small businesses and nonprofits, combining automated scanning, code-level detection and manual review."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://bekee.com/services/accessibility-audit/",
+        "label": "site quotes 'I run WCAG 2.1 AA accessibility audits for small businesses and nonprofits, starting at $1,500'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "stratcomm",
+    "name": "StratComm Inc",
+    "website": "stratcomminc.com",
+    "hq": {
+      "city": "Framingham",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "section-508",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Framingham, Massachusetts service-disabled-veteran-owned firm that audits and remediates both documents and websites for Section 508/WCAG compliance under federal contracts, including work for the VA Employee Education System and SBA."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://stratcomminc.com/what-we-do/508-compliance",
+        "label": "site states the firm 'provide[s] remediation of existing PDFs to be 508 compliant' and has 'substantial experience providing 508 compliance support services', footer address '161 Worcester Road, Suite 204, Framingham, MA 01701'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "aspiritech",
+    "name": "Aspiritech",
+    "website": "aspiritech.org",
+    "hq": {
+      "city": "Evanston",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "monitoring",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508"
+    ],
+    "industries": [
+      "banking"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Evanston, Illinois nonprofit employing neurodivergent technology professionals, several DHS Section 508 Trusted Tester-certified, who run comprehensive WCAG 2.1 audits with real assistive technologies and ongoing regression testing for financial-services clients."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://aspiritech.org/financial-services-insurance/digital-accessibility/",
+        "label": "site states 'Comprehensive WCAG 2.1 audits using real assistive technologies to uncover gaps automated tools often miss' and 'Our accessibility team ... have completed and passed the Department of Homeland Security's Section 508 Trusted Tester certification program'; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://aspiritech.org/contact/",
+        "label": "contact page lists address '939 Chicago Ave, Evanston, IL 60202 USA'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accessibilities",
+    "name": "Accessibilities",
+    "website": "accessibilities.co",
+    "hq": {
+      "city": "Beverly Hills",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Beverly Hills, California firm offering manual website accessibility inspections, PDF and website remediation, and consultation, explicitly distinguishing its human-led testing from automated plugins: 'We're not a plugin. Not a bot. We're real people.'"
+    },
+    "sourceRefs": [
+      {
+        "url": "https://accessibilities.co/",
+        "label": "site states 'Manual website accessibility inspections done by real people. We identify accessibility barriers, map each issue to WCAG criteria...' and \"We're not a plugin. Not a bot. We're real people who care\", HQ '8671 Wilshire Blvd, Suite 700, Beverly Hills, CA 90211'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "houston-web-compliance",
+    "name": "Houston Web Compliance",
+    "website": "houstonwebcompliance.com",
+    "hq": {
+      "city": "Houston",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Houston, Texas independent practice offering WCAG 2.1 accessibility audits and direct code-level remediation (semantic HTML, ARIA labels, color contrast, keyboard navigation) for small business websites, typically completed in 2-5 business days."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://houstonwebcompliance.com/about",
+        "label": "site states it is 'Based in Houston, Texas' and describes 'Full site scans identifying WCAG 2.1 violations' plus remediation covering 'semantic HTML, ARIA labels, color contrast, and keyboard navigation'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  }
+]

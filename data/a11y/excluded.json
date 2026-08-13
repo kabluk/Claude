@@ -58,5 +58,23 @@
     "slug": "cimeos",
     "reason": "General digital-communication agency building websites/digital ecosystems for municipalities (Narbonne, Annecy, Nanterre); no mention anywhere of accessibility audits, RGAA, WCAG, remediation, or training.",
     "checked": "2026-08-05"
+  },
+  {
+    "domain": "extra-web.it",
+    "slug": "extra-web",
+    "reason": "Programmatic-SEO: dozens of identical per-city landing pages (/agenzia-...-<city>) with keyword-stuffed brand, no genuine single-location service. Live-confirmed 3x across rounds (D-157/D-161/D-162). Not a real audit agency.",
+    "checked": "2026-08-13"
+  },
+  {
+    "domain": "accesibilidadprimero.com",
+    "slug": "accesibilidad-primero",
+    "reason": "Bot-verification wall (\"verifying your browser\") on every WebFetch across 2+ independent sessions — own-site content never verifiable per hard rule. Dropped repeatedly (round-1, D-158).",
+    "checked": "2026-08-13"
+  },
+  {
+    "domain": "cbachleitner.de",
+    "slug": "cbachleitner",
+    "reason": "Real Munich agency but markets via templated per-city SEO landing pages (/barrierefreies-webdesign-<city>/); evidence sourced from a city-landing page, not a core service page. Dropped round-3 and round-6 (D-157/D-162) for programmatic-SEO pattern.",
+    "checked": "2026-08-13"
   }
 ]

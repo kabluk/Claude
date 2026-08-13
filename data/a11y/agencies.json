@@ -23966,5 +23966,1297 @@
       }
     ],
     "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "aurora-design-and-consulting",
+    "name": "Aurora Design and Consulting",
+    "website": "aurorahawaii.com",
+    "hq": {
+      "city": "Honolulu",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Honolulu-based web design and IT firm running a dedicated Section 508/WCAG accessibility practice offering website testing, repair and remediation, mobile app and document accessibility, and training for government agencies, businesses and nonprofits."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.aurorahawaii.com/services/accessibility/website-accessibility/section-508-wcag-compliance-testing/",
+        "label": "site states 'Aurora provides website accessibility testing services to help government agencies, businesses, and non-profit organizations achieve compliance with accessibility laws (i.e. Section 508 and ADA Title III) and the W3C's Web Content Accessibility Guidelines'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "zenyth-group",
+    "name": "Zenyth Group",
+    "website": "zenythgroup.com",
+    "hq": {
+      "city": "Santa Monica",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada",
+      "section-508"
+    ],
+    "industries": [
+      "ecommerce"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Santa Monica, California firm pairing an AI-assisted first-pass scan with mandatory human expert review to deliver WCAG audits, code-level remediation and VPAT documentation for eCommerce platforms, explicitly stating that overlays 'do not fix your code, they layer over it'."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.zenythgroup.com/",
+        "label": "site states 'WCAG audits, VPAT documentation, and ongoing compliance monitoring' and 'Overlays do not fix your code, they layer over it... Zenyth remediates at the code level', HQ '1541 Ocean Ave, Suite 200, Santa Monica CA 90401'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "library-siteworks",
+    "name": "Library Siteworks",
+    "website": "librarysiteworks.com",
+    "hq": {
+      "city": "Winchester",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "priceBand": "budget",
+    "description": {
+      "en": "Winchester, Massachusetts consultancy (a division of Stirling Brandworks) offering priced WCAG 2.1/2.2 technical audits, training and remediation support built specifically for public libraries facing the 2027-2028 ADA Title II digital-accessibility deadlines."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://librarysiteworks.com/2026-ada-compliance/",
+        "label": "site quotes a 'Technical Audit' starting at $1,280 described as 'A deep-dive code review against WCAG 2.1/2.2 standards to secure your technical foundation', HQ '1 Mount Vernon Street, Third Floor, Winchester, MA 01890'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ionicnet",
+    "name": "IonicNET",
+    "website": "ionicnet.com",
+    "hq": {
+      "city": "Edison",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [
+      "public-sector",
+      "education"
+    ],
+    "certs": [],
+    "founded": 2004,
+    "description": {
+      "en": "Edison, New Jersey firm (established 2004) providing comprehensive WCAG/ADA Title II accessibility evaluations, Accessibility Conformance Reports, consulting and training, focused mainly on public libraries and government institutions."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://ionicnet.com/services/wcag-ada-accessibility-audits-for-library-websites/",
+        "label": "site states 'Comprehensive accessibility evaluations that identify WCAG compliance barriers across websites and digital services. Audits include testing with assistive technologies, detailed findings, and Accessibility Conformance Reports'; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://ionicnet.com/contact/",
+        "label": "footer states 'Established / Based 2004. Edison, NJ USA'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "bekee-gibson",
+    "name": "Bekee Gibson",
+    "website": "bekee.com",
+    "hq": {
+      "city": "Madison",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "priceBand": "budget",
+    "description": {
+      "en": "Madison, Wisconsin independent WordPress consultant running priced WCAG 2.1 AA accessibility audits for small businesses and nonprofits, combining automated scanning, code-level detection and manual review."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://bekee.com/services/accessibility-audit/",
+        "label": "site quotes 'I run WCAG 2.1 AA accessibility audits for small businesses and nonprofits, starting at $1,500'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "stratcomm",
+    "name": "StratComm Inc",
+    "website": "stratcomminc.com",
+    "hq": {
+      "city": "Framingham",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "section-508",
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Framingham, Massachusetts service-disabled-veteran-owned firm that audits and remediates both documents and websites for Section 508/WCAG compliance under federal contracts, including work for the VA Employee Education System and SBA."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://stratcomminc.com/what-we-do/508-compliance",
+        "label": "site states the firm 'provide[s] remediation of existing PDFs to be 508 compliant' and has 'substantial experience providing 508 compliance support services', footer address '161 Worcester Road, Suite 204, Framingham, MA 01701'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "aspiritech",
+    "name": "Aspiritech",
+    "website": "aspiritech.org",
+    "hq": {
+      "city": "Evanston",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "monitoring",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508"
+    ],
+    "industries": [
+      "banking"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Evanston, Illinois nonprofit employing neurodivergent technology professionals, several DHS Section 508 Trusted Tester-certified, who run comprehensive WCAG 2.1 audits with real assistive technologies and ongoing regression testing for financial-services clients."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://aspiritech.org/financial-services-insurance/digital-accessibility/",
+        "label": "site states 'Comprehensive WCAG 2.1 audits using real assistive technologies to uncover gaps automated tools often miss' and 'Our accessibility team ... have completed and passed the Department of Homeland Security's Section 508 Trusted Tester certification program'; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://aspiritech.org/contact/",
+        "label": "contact page lists address '939 Chicago Ave, Evanston, IL 60202 USA'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accessibilities",
+    "name": "Accessibilities",
+    "website": "accessibilities.co",
+    "hq": {
+      "city": "Beverly Hills",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Beverly Hills, California firm offering manual website accessibility inspections, PDF and website remediation, and consultation, explicitly distinguishing its human-led testing from automated plugins: 'We're not a plugin. Not a bot. We're real people.'"
+    },
+    "sourceRefs": [
+      {
+        "url": "https://accessibilities.co/",
+        "label": "site states 'Manual website accessibility inspections done by real people. We identify accessibility barriers, map each issue to WCAG criteria...' and \"We're not a plugin. Not a bot. We're real people who care\", HQ '8671 Wilshire Blvd, Suite 700, Beverly Hills, CA 90211'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "houston-web-compliance",
+    "name": "Houston Web Compliance",
+    "website": "houstonwebcompliance.com",
+    "hq": {
+      "city": "Houston",
+      "countryCode": "US"
+    },
+    "offices": [],
+    "countriesServed": [
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Houston, Texas independent practice offering WCAG 2.1 accessibility audits and direct code-level remediation (semantic HTML, ARIA labels, color contrast, keyboard navigation) for small business websites, typically completed in 2-5 business days."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://houstonwebcompliance.com/about",
+        "label": "site states it is 'Based in Houston, Texas' and describes 'Full site scans identifying WCAG 2.1 violations' plus remediation covering 'semantic HTML, ARIA labels, color contrast, and keyboard navigation'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "agenzia-grafica-milano",
+    "name": "Agenzia Grafica Milano",
+    "website": "agenziagraficamilano.it",
+    "hq": {
+      "city": "Milan",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "founded": 2013,
+    "description": {
+      "en": "Agenzia Grafica Milano is a Milan web agency (Corso Buenos Aires 45) offering a hybrid accessibility service combining automated scanning with manual screen-reader testing to remediate sites against WCAG 2.2 AA and prepare accessibility declarations for the European Accessibility Act."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.agenziagraficamilano.it/normativa-accessibilita-siti-web",
+        "label": "quotes 'I nostri sviluppatori navigano il sito usando screen reader (come NVDA o VoiceOver) per capire l'esperienza reale', cites WCAG 2.2 Level AA and the EAA (effective 28 June 2025), lists address 'Corso Buenos Aires 45, 20124 Milano', and footer '© Il team di Agenzia Grafica Milano 2013 - 2026'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accessibilita-online",
+    "name": "Accessibilità Online (Astrelia Srl)",
+    "website": "accessibilita.online",
+    "hq": {
+      "city": "San Benedetto del Tronto",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Accessibilità Online, run by Astrelia Srl in San Benedetto del Tronto, offers a free preliminary manual accessibility audit of a site's main pages followed by paid remediation guidance and monitoring against WCAG and EAA requirements, explicitly positioning itself against overlay widgets as a full solution."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.accessibilita.online/servizi",
+        "label": "quotes audit method 'Durante l'audit preliminare, vengono prese in considerazione alcune della pagine principale e valutati diversi aspetti, tra cui la struttura della pagina, la navigazione, i colori utilizzati, la leggibilità dei testi, l'accessibilità delle immagini', notes 'L'audit preliminare è GRATUITO', and lists 'Astrelia Srl, Via Mattei, 1, San Benedetto del Tronto, 63074 (AP)'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "techmucho",
+    "name": "TechMucho",
+    "website": "techmucho.com",
+    "hq": {
+      "city": "Genova",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "founded": 2013,
+    "description": {
+      "en": "TechMucho is an IT firm founded in 2013 by Ilyass Mouchafi offering full technical accessibility audits ('check-up del sito') that identify barriers against WCAG and the European Accessibility Act, effective in Italy since 28 June 2025."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://techmucho.com/accessibilita-siti-web/",
+        "label": "quotes 'offriamo audit tecnici completi. Sono veri check-up del sito. Identificano barriere e criticità' and 'Seguiamo normative WCAG e European Accessibility Act. Quest'ultimo è in vigore dal 28 giugno 2025'; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://techmucho.com/",
+        "label": "quotes 'Il progetto nasce nel 2013, dal fondatore Ilyass Mouchafi'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "redmango-agency",
+    "name": "Redmango Agency",
+    "website": "redmango.agency",
+    "hq": {
+      "city": "Torino",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Redmango is a Turin-based agency offering website accessibility testing against WCAG 2.1 and current European regulation, positioned as ongoing compliance support with annual follow-ups rather than a one-off check."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://redmango.agency/servizi/test-accessibilita-siti-web",
+        "label": "quotes 'valutiamo il sito web secondo le linee guida WCAG 2.1 (Web Content Accessibility Guidelines)' and 'follow-up annuali e aggiornamenti costanti nel tempo, non soluzioni standard'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "comacesso",
+    "name": "comAcesso",
+    "website": "comacesso.pt",
+    "hq": {
+      "city": "",
+      "countryCode": "PT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PT"
+    ],
+    "languages": [
+      "pt"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "founded": 2010,
+    "description": {
+      "en": "comAcesso, presented in January 2010 by Norberto Sousa and Ricardo Monteiro, is a Portuguese consultancy performing full manual-plus-automated audits of websites and digital products, accessibility consulting for web pages and apps, and accessibility training."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.comacesso.pt/servicos/",
+        "label": "quotes 'Prestamos consultoria em acessibilidade de páginas web, Apps e conteúdos digitais', 'Ministramos ações de formação em acessibilidade' and 'Realizamos a peritagem completa de um Site ou produto digital, que inclui testes automáticos e manuais'; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://www.comacesso.pt/sobre-a-comacesso/",
+        "label": "quotes project 'apresentado em janeiro de 2010' and founders' backgrounds (Norberto Sousa ~10 years with assistive technologies, Ricardo Monteiro's accessibility/design postgraduate work); live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "welcom",
+    "name": "Welcom",
+    "website": "welcom.se",
+    "hq": {
+      "city": "Göteborg",
+      "countryCode": "SE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "SE"
+    ],
+    "languages": [
+      "sv",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "remediation"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Gothenburg-based communication agency (part of Rud Pedersen Group) offering WCAG accessibility reviews for websites, combining automated testing, manual review including keyboard and screen-reader checks, and remediation recommendations."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://welcom.se/wcag-genomlysning",
+        "label": "\"WCAG-genomlysning\" service page describing accessibility assessment methodology (automated + manual keyboard/screen-reader review) and listing HQ address \"Kungsgatan 57, 411 15 Göteborg\" — live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "verkkovaraani",
+    "name": "Verkkovaraani",
+    "website": "verkkovaraani.fi",
+    "hq": {
+      "city": "Helsinki",
+      "countryCode": "FI"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FI"
+    ],
+    "languages": [
+      "fi",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Helsinki-based digital agency offering accessibility testing (saavutettavuustestaus) against the WCAG 2.2 AA standard, accessible website development, and accessibility statements, with case studies for public-sector clients such as YTHS and the City of Helsinki's housing arm."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://verkkovaraani.fi/palvelut/saavutettavuustestaus-eli-saavutettavuusauditointi/",
+        "label": "\"Saavutettavuustestaus eli saavutettavuusauditointi\" service page quoting \"WCAG 2.2 -standardin\" and \"AA-taso\", with office address \"Sörnäisten rantatie 25 A, 00500 Helsinki\" — live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "synergia-consulting",
+    "name": "Synergia Consulting",
+    "website": "synergiaconsulting.pl",
+    "hq": {
+      "city": "Rokiciny Kolonia",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Polish consulting firm performing digital accessibility audits against the WCAG 2.1 standard for public-sector organizations, combining automated validators with expert manual analysis and delivering remediation-priority reports."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://synergiaconsulting.pl/nasze-uslugi__trashed/audyt-wcag/",
+        "label": "\"Audyt dostępności strony WCAG 2.1\" service page quoting \"WCAG 2.1 (ang. Web Content Accessibility Guidelines) według ustawy z dnia 4 kwietnia 2019 r.\" with company address \"ul. Adama Mickiewicza 3, 97-221 Rokiciny Kolonia\" — live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "validsoftware",
+    "name": "ValidSoftware",
+    "website": "validsoftware.ro",
+    "hq": {
+      "city": "Focșani",
+      "countryCode": "RO"
+    },
+    "offices": [],
+    "countriesServed": [
+      "RO"
+    ],
+    "languages": [
+      "ro"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector",
+      "education"
+    ],
+    "certs": [],
+    "founded": 2012,
+    "description": {
+      "en": "Romanian IT firm based in Focșani offering full website accessibility audits, consulting, and implementation of WCAG 2.1-compliant accessibility modules (keyboard navigation, visual adjustment) plus accessibility declarations for public institutions and schools."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://validsoftware.ro/accesibilizare-site/",
+        "label": "\"Accesibilizare site\" page listing HQ \"Str. Unirea Principatelor nr. 2, Focșani 620006, Vrancea\" and stating \"Servicii informatice din 2012\" — live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "tobalt",
+    "name": "Tobalt",
+    "website": "tobalt.lt",
+    "hq": {
+      "city": "Kaunas",
+      "countryCode": "LT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "LT"
+    ],
+    "languages": [
+      "lt"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Kaunas-based technology audit firm whose public-sector service line includes a dedicated \"Prieinamumo ir naudojimo kliūčių auditas\" (accessibility and usability barrier audit) evaluating WCAG 2.1 AA compliance alongside security and GDPR reviews."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://tobalt.lt/it-patarimai/technologiju-auditas/",
+        "label": "\"Technologijų auditas\" page listing address \"Donelaičio g. 33, Kaunas\" and offering \"Prieinamumo ir naudojimo kliūčių auditas\" with WCAG 2.1 AA compliance evaluation for public-sector clients — live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "webouky",
+    "name": "Webouky",
+    "website": "webouky.cz",
+    "hq": {
+      "city": "Ostrava",
+      "countryCode": "CZ"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CZ"
+    ],
+    "languages": [
+      "cs"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "founded": 2024,
+    "description": {
+      "en": "Ostrava-based web studio offering accessibility status assessment, drafting of the mandatory Czech accessibility statement (Prohlášení o přístupnosti), and implementation of remediation changes per WCAG 2.2."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://webouky.cz/pristupnost-webu-wcag",
+        "label": "\"Přístupnost webu podle WCAG\" page quoting \"Pomohu vám zjistit stav přístupnosti vašeho webu, vypracovat Prohlášení o přístupnosti a implementovat všechny potřebné změny podle WCAG 2.2\", HQ \"Cholevova 1464/35, Ostrava, 700 30\", registered in the Trade Register 3 June 2024 — live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "netvenlig",
+    "name": "Netvenlig User Experience",
+    "website": "netvenlig.dk",
+    "hq": {
+      "city": "Helsinge",
+      "countryCode": "DK"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DK"
+    ],
+    "languages": [
+      "da",
+      "en"
+    ],
+    "services": [
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Danish agency \"Netvenlig User Experience\", based in Helsinge, providing corporate training courses, workshops and advisory services on WCAG 2.2 web accessibility compliance, delivered in-house and in English."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://netvenlig.dk/firmakurser/tilgaengelighed/",
+        "label": "\"Kursus: Tilgængelighed på nettet. Lær om WCAG 2.2\" page describing advisory/training services and listing address \"Rådhusvej 68, st. th, 3200 Helsinge\" — live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "net-group",
+    "name": "Net Group",
+    "website": "netgroup.com",
+    "hq": {
+      "city": "Tallinn",
+      "countryCode": "EE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "EE"
+    ],
+    "languages": [
+      "et",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Tallinn-based digital agency Net Group OÜ offering a dedicated digital-accessibility line (\"Digiligipääsetavus\") covering audits and mapping, WCAG-compliant development and updates, and testing with real users, plus a free 30-minute mini-audit consultation."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://netgroup.com/special/digiligipaasetavus/",
+        "label": "\"Digiligipääsetavus\" service page listing \"Audit ja kaardistus\" among services, HQ \"A.H. Tammsaare tee 92, Tallinn 13423, Estonia\" — live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "pxl",
+    "name": "PXL",
+    "website": "pxl.no",
+    "hq": {
+      "city": "Hamar",
+      "countryCode": "NO"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NO"
+    ],
+    "languages": [
+      "no",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Norwegian developer-led agency based in Hamar offering \"Universell utforming – WCAG-revisjon & utbedring\": accessibility audits, hands-on code-level development and remediation (React, Vue, WordPress, Optimizely, Sanity), training, and design systems."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://pxl.no/en/services/accessibility",
+        "label": "\"Accessibility\" services page listing Accessibility Audit, Development and Remediation, Training and Competence, Design Systems, quoting \"We work directly in the code -- whether you use React, Vue, WordPress, Optimizely, or Sanity\" — live fetch 2026-08-13"
+      },
+      {
+        "url": "https://pxl.no/en/contact",
+        "label": "Contact page listing office address \"Brygga 11, 2317 Hamar, Norway\" — live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "digitas-institute",
+    "name": "DIGITAS Institute",
+    "website": "digitas.si",
+    "hq": {
+      "city": "Ljubljana",
+      "countryCode": "SI"
+    },
+    "offices": [],
+    "countriesServed": [
+      "SI"
+    ],
+    "languages": [
+      "sl",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Ljubljana-based Slovenian institute (Inštitut Digitas) providing digital-accessibility compliance reviews and testing of websites and mobile apps against national and international standards, user testing with people with disabilities, consulting, and training for public-sector bodies, companies and NGOs."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://digitas.si/digitalna-dostopnost/",
+        "label": "\"Digitalna dostopnost\" page quoting \"Preglede skladnosti z nacionalnimi in mednarodnimi standardi in testiranje dostopnosti spletišč, mobilnih aplikacij\" and listing consulting/training among services — live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "d2i-technology",
+    "name": "D2i Technology",
+    "website": "d2itechnology.com",
+    "hq": {
+      "city": "Noida",
+      "countryCode": "IN"
+    },
+    "offices": [
+      {
+        "city": "Charlottesville",
+        "countryCode": "US"
+      }
+    ],
+    "countriesServed": [
+      "IN",
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "D2i Technology is a Noida, India-based IT services firm offering IAAP-certified web accessibility testing, remediation, and VPAT reports to help clients meet WCAG, Section 508, and ADA compliance."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://d2itechnology.com/",
+        "label": "\"IAAP-certified engineers follow WCAG and provide VPAT reports for compliance\"; \"Accessibility Remediation... Section 508, ADA, and WCAG 2.0/2.1 compliance\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "vervali-systems",
+    "name": "Vervali Systems",
+    "website": "vervali.com",
+    "hq": {
+      "city": "Vasai West",
+      "countryCode": "IN"
+    },
+    "offices": [
+      {
+        "city": "Dubai",
+        "countryCode": "AE"
+      },
+      {
+        "city": "Auckland",
+        "countryCode": "NZ"
+      }
+    ],
+    "countriesServed": [
+      "IN",
+      "AE",
+      "NZ"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Vervali Systems is an IT services company headquartered in Vasai West, India, with offices in Dubai and Auckland, offering website accessibility audits and remediation against WCAG and Section 508 requirements."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.vervali.com/",
+        "label": "\"commissioned to audit, identify and remedy over 2,000 URLs across all client platforms and solutions in accordance to the WCAG 2.0 guidelines with the objective to achieve AA Level of the 508 certifications\"; offices in \"Dubai, UAE, and Auckland, New Zealand\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "iaap-audit",
+    "name": "IAAP Audit",
+    "website": "iaapaudit.com",
+    "hq": {
+      "city": "Ahmedabad",
+      "countryCode": "IN"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IN"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "IAAP Audit is an Ahmedabad, India-based accessibility auditing firm branded as an IAAP Empaneled Auditor, testing websites, apps, PDFs, and design systems against WCAG, Section 508, EN 301 549, and India's GIGW/IS 17802 government guidelines."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://iaapaudit.com/",
+        "label": "\"IAAP Empaneled Auditor\"; audits mapped against \"WCAG 2.1 AA, WCAG 2.2 AA, IS 17802, GIGW, Section 508, and EN 301 549\"; based in \"Ahmedabad, Gujarat\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "itqcr",
+    "name": "ITQCR",
+    "website": "itqcr.com",
+    "hq": {
+      "city": "Navi Mumbai",
+      "countryCode": "IN"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IN"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "en-301-549"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "ITQCR is a testing and certification lab headquartered in Navi Mumbai, India, offering automated and manual web accessibility testing, VPAT preparation, and remediation testing against WCAG, Section 508, and EN 301 549 as a DEPwD/STQC-empanelled lab."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://itqcr.com/accessibility-testing",
+        "label": "\"automated web accessibility testing, manual web access testing, mobile accessibility, voluntary product accessibility template (VPAT) testing, electronic documents testing, software testing, remediation testing\"; \"IAAP Accessibility Audit\" / DEPwD empanelment; address \"C-202, Tower no-8... Navi Mumbai... Maharashtra (India)\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "infoaxia",
+    "name": "Infoaxia",
+    "website": "infoaxia.co.jp",
+    "hq": {
+      "city": "Tokyo",
+      "countryCode": "JP"
+    },
+    "offices": [],
+    "countriesServed": [
+      "JP"
+    ],
+    "languages": [
+      "ja"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "founded": 2004,
+    "description": {
+      "en": "Infoaxia is a Tokyo-based web accessibility consulting firm founded in 2004, led by Makoto Ueki, providing accessibility audits, training, and compliance support for JIS X 8341-3 and WCAG 2.0 to Japanese enterprises."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://infoaxia.co.jp/about-us/",
+        "label": "Establishment \"2004年10月\" in \"東京都中央区\" (Chuo Ward, Tokyo); services \"Webアクセシビリティ診断\" (accessibility audits), \"教育・研修の企画および実施\" (training), support for \"「JIS X 8341-3」および「WCAG 2.0」\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "iguale-digital",
+    "name": "Iguale Digital",
+    "website": "igualedigital.com.br",
+    "hq": {
+      "city": "São Paulo",
+      "countryCode": "BR"
+    },
+    "offices": [],
+    "countriesServed": [
+      "BR"
+    ],
+    "languages": [
+      "pt"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Iguale Digital is a São Paulo, Brazil-based consultancy offering digital accessibility evaluations, a three-phase consulting process, and training workshops aligned with WCAG 2.1 and Brazil's Lei Brasileira de Inclusão (LBI)."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://igualedigital.com.br/servicos/consultoria.php",
+        "label": "\"Avaliação de acessibilidade\"; compliance with \"W3C/WCAG 2.1 and a LBI (Lei Brasileira de Inclusão)\"; \"Treinamentos e Workshops\"; address \"Rua Girassol, 34... São Paulo/SP - Brasil\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "comclar",
+    "name": "Comclar",
+    "website": "comclar.ie",
+    "hq": {
+      "city": "Dublin",
+      "countryCode": "IE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IE",
+      "ES"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Comclar is a Dublin-based digital accessibility firm offering WCAG 2.2 AA audits, direct code remediation, formal VPAT/Accessibility Conformance Reports, content-editor training, and developer consultation for European SMEs facing EAA compliance deadlines."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://comclar.ie/",
+        "label": "\"Manual and automated testing against WCAG 2.2 AA standards\"; \"Issuance of a formal Accessibility Conformance Report (VPAT)\"; \"Direct Code Remediation\"; \"Content Editor Training\"; \"Developer Consultation\"; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://comclar.ie/contact",
+        "label": "office address \"3 Belgard Road, Newlands, Dublin 22, D22 KP44\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "salkreation",
+    "name": "Salkreation",
+    "website": "salkreation.ca",
+    "hq": {
+      "city": "Kitchener",
+      "countryCode": "CA"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CA"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Salkreation is a Kitchener, Ontario IT consulting firm offering AODA/WCAG accessibility audits, prioritized remediation reports, and training for development teams and content authors across the Greater Toronto Area and Southern Ontario."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://salkreation.ca/services/accessibility",
+        "label": "\"Ontario's Accessibility for Ontarians with Disabilities Act (AODA) requires organizations with 50 or more employees to meet Web Content Accessibility Guidelines (WCAG) 2.0 Level AA requirements\"; combines \"automated testing, manual expert review\"; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://salkreation.ca/contact",
+        "label": "\"Location Kitchener, Ontario, Canada\"; \"Based in the GTA — serving the Greater Toronto Area, Kitchener-Waterloo, and Southern Ontario\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accessmind",
+    "name": "AccessMind",
+    "website": "accessmind.co.il",
+    "hq": {
+      "city": "Tel Aviv",
+      "countryCode": "IL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IL"
+    ],
+    "languages": [
+      "he"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training",
+      "vpat"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "AccessMind is a Tel Aviv-based digital accessibility consultancy offering manual and automated audits of websites and mobile apps, VPAT documentation, and organizational training, operating from the Center for the Blind in Israel building and testing against WCAG, Section 508, EN 301 549, and Israeli Standard 5568."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://accessmind.co.il/accessibility-consulting/",
+        "label": "\"בדיקות נגישות ידניות ואוטמטיות לאתרי אינטרנט, אפליקציות Web ומובייל\" (manual and automated accessibility testing for websites and Web/mobile apps); standards \"WCAG 2.2\", \"Section 508\", \"EN 301 549\", \"Israeli Standard 5568\"; not an overlay vendor; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://accessmind.co.il/contact/",
+        "label": "address \"דוד חכמי 10, קומה 1 (בית המרכז לעיוור)\" [David Hakhami St 10, Floor 1, Center for the Blind in Israel building, Tel Aviv]; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
   }
 ]

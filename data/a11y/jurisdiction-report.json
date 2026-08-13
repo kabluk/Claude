@@ -36,7 +36,7 @@
         "statementRequired": true,
         "verified": false,
         "citation": null,
-        "agencyCount": 38
+        "agencyCount": 39
       },
       {
         "country": "NL",
@@ -49,16 +49,6 @@
         "agencyCount": 37
       },
       {
-        "country": "ES",
-        "name": "Spain",
-        "law": "Ley 11/2023 (+ RD 193/2023)",
-        "lawFull": "Ley 11/2023, de 8 de mayo (Título I: transposición de la directiva (UE) 2019/882 al sector privado; desarrollada por el Real Decreto 193/2023); aplicable desde el 28 de junio de 2025",
-        "statementRequired": true,
-        "verified": true,
-        "citation": null,
-        "agencyCount": 23
-      },
-      {
         "country": "IT",
         "name": "Italy",
         "law": "D.Lgs. 82/2022 (attuazione dir. 2019/882)",
@@ -66,7 +56,17 @@
         "statementRequired": true,
         "verified": true,
         "citation": null,
-        "agencyCount": 23
+        "agencyCount": 27
+      },
+      {
+        "country": "ES",
+        "name": "Spain",
+        "law": "Ley 11/2023 (+ RD 193/2023)",
+        "lawFull": "Ley 11/2023, de 8 de mayo (Título I: transposición de la directiva (UE) 2019/882 al sector privado; desarrollada por el Real Decreto 193/2023); aplicable desde el 28 de junio de 2025",
+        "statementRequired": true,
+        "verified": true,
+        "citation": null,
+        "agencyCount": 24
       },
       {
         "country": "AT",
@@ -86,7 +86,7 @@
         "statementRequired": true,
         "verified": false,
         "citation": null,
-        "agencyCount": 15
+        "agencyCount": 16
       },
       {
         "country": "BE",
@@ -106,7 +106,7 @@
         "statementRequired": true,
         "verified": false,
         "citation": null,
-        "agencyCount": 10
+        "agencyCount": 11
       },
       {
         "country": "SE",
@@ -116,7 +116,7 @@
         "statementRequired": true,
         "verified": false,
         "citation": null,
-        "agencyCount": 7
+        "agencyCount": 8
       },
       {
         "country": "FI",
@@ -126,7 +126,7 @@
         "statementRequired": true,
         "verified": false,
         "citation": null,
-        "agencyCount": 6
+        "agencyCount": 7
       },
       {
         "country": "NO",
@@ -136,14 +136,14 @@
         "statementRequired": true,
         "verified": false,
         "citation": null,
-        "agencyCount": 4
+        "agencyCount": 5
       }
     ]
   },
   "verifiedLawCount": 5,
   "unverifiedLawCount": 8,
   "thinnestCoverage": {
-    "agencyCount": 4,
+    "agencyCount": 5,
     "jurisdictions": [
       "NO"
     ]

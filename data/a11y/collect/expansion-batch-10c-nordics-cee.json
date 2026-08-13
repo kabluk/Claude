@@ -1,0 +1,376 @@
+[
+  {
+    "slug": "welcom",
+    "name": "Welcom",
+    "website": "welcom.se",
+    "hq": {
+      "city": "Göteborg",
+      "countryCode": "SE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "SE"
+    ],
+    "languages": [
+      "sv",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "remediation"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Gothenburg-based communication agency (part of Rud Pedersen Group) offering WCAG accessibility reviews for websites, combining automated testing, manual review including keyboard and screen-reader checks, and remediation recommendations."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://welcom.se/wcag-genomlysning",
+        "label": "\"WCAG-genomlysning\" service page describing accessibility assessment methodology (automated + manual keyboard/screen-reader review) and listing HQ address \"Kungsgatan 57, 411 15 Göteborg\" — live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "verkkovaraani",
+    "name": "Verkkovaraani",
+    "website": "verkkovaraani.fi",
+    "hq": {
+      "city": "Helsinki",
+      "countryCode": "FI"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FI"
+    ],
+    "languages": [
+      "fi",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Helsinki-based digital agency offering accessibility testing (saavutettavuustestaus) against the WCAG 2.2 AA standard, accessible website development, and accessibility statements, with case studies for public-sector clients such as YTHS and the City of Helsinki's housing arm."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://verkkovaraani.fi/palvelut/saavutettavuustestaus-eli-saavutettavuusauditointi/",
+        "label": "\"Saavutettavuustestaus eli saavutettavuusauditointi\" service page quoting \"WCAG 2.2 -standardin\" and \"AA-taso\", with office address \"Sörnäisten rantatie 25 A, 00500 Helsinki\" — live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "synergia-consulting",
+    "name": "Synergia Consulting",
+    "website": "synergiaconsulting.pl",
+    "hq": {
+      "city": "Rokiciny Kolonia",
+      "countryCode": "PL"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PL"
+    ],
+    "languages": [
+      "pl"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Polish consulting firm performing digital accessibility audits against the WCAG 2.1 standard for public-sector organizations, combining automated validators with expert manual analysis and delivering remediation-priority reports."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://synergiaconsulting.pl/nasze-uslugi__trashed/audyt-wcag/",
+        "label": "\"Audyt dostępności strony WCAG 2.1\" service page quoting \"WCAG 2.1 (ang. Web Content Accessibility Guidelines) według ustawy z dnia 4 kwietnia 2019 r.\" with company address \"ul. Adama Mickiewicza 3, 97-221 Rokiciny Kolonia\" — live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "validsoftware",
+    "name": "ValidSoftware",
+    "website": "validsoftware.ro",
+    "hq": {
+      "city": "Focșani",
+      "countryCode": "RO"
+    },
+    "offices": [],
+    "countriesServed": [
+      "RO"
+    ],
+    "languages": [
+      "ro"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector",
+      "education"
+    ],
+    "certs": [],
+    "founded": 2012,
+    "description": {
+      "en": "Romanian IT firm based in Focșani offering full website accessibility audits, consulting, and implementation of WCAG 2.1-compliant accessibility modules (keyboard navigation, visual adjustment) plus accessibility declarations for public institutions and schools."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://validsoftware.ro/accesibilizare-site/",
+        "label": "\"Accesibilizare site\" page listing HQ \"Str. Unirea Principatelor nr. 2, Focșani 620006, Vrancea\" and stating \"Servicii informatice din 2012\" — live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "tobalt",
+    "name": "Tobalt",
+    "website": "tobalt.lt",
+    "hq": {
+      "city": "Kaunas",
+      "countryCode": "LT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "LT"
+    ],
+    "languages": [
+      "lt"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Kaunas-based technology audit firm whose public-sector service line includes a dedicated \"Prieinamumo ir naudojimo kliūčių auditas\" (accessibility and usability barrier audit) evaluating WCAG 2.1 AA compliance alongside security and GDPR reviews."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://tobalt.lt/it-patarimai/technologiju-auditas/",
+        "label": "\"Technologijų auditas\" page listing address \"Donelaičio g. 33, Kaunas\" and offering \"Prieinamumo ir naudojimo kliūčių auditas\" with WCAG 2.1 AA compliance evaluation for public-sector clients — live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "webouky",
+    "name": "Webouky",
+    "website": "webouky.cz",
+    "hq": {
+      "city": "Ostrava",
+      "countryCode": "CZ"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CZ"
+    ],
+    "languages": [
+      "cs"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "founded": 2024,
+    "description": {
+      "en": "Ostrava-based web studio offering accessibility status assessment, drafting of the mandatory Czech accessibility statement (Prohlášení o přístupnosti), and implementation of remediation changes per WCAG 2.2."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://webouky.cz/pristupnost-webu-wcag",
+        "label": "\"Přístupnost webu podle WCAG\" page quoting \"Pomohu vám zjistit stav přístupnosti vašeho webu, vypracovat Prohlášení o přístupnosti a implementovat všechny potřebné změny podle WCAG 2.2\", HQ \"Cholevova 1464/35, Ostrava, 700 30\", registered in the Trade Register 3 June 2024 — live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "netvenlig",
+    "name": "Netvenlig User Experience",
+    "website": "netvenlig.dk",
+    "hq": {
+      "city": "Helsinge",
+      "countryCode": "DK"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DK"
+    ],
+    "languages": [
+      "da",
+      "en"
+    ],
+    "services": [
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Danish agency \"Netvenlig User Experience\", based in Helsinge, providing corporate training courses, workshops and advisory services on WCAG 2.2 web accessibility compliance, delivered in-house and in English."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://netvenlig.dk/firmakurser/tilgaengelighed/",
+        "label": "\"Kursus: Tilgængelighed på nettet. Lær om WCAG 2.2\" page describing advisory/training services and listing address \"Rådhusvej 68, st. th, 3200 Helsinge\" — live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "net-group",
+    "name": "Net Group",
+    "website": "netgroup.com",
+    "hq": {
+      "city": "Tallinn",
+      "countryCode": "EE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "EE"
+    ],
+    "languages": [
+      "et",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Tallinn-based digital agency Net Group OÜ offering a dedicated digital-accessibility line (\"Digiligipääsetavus\") covering audits and mapping, WCAG-compliant development and updates, and testing with real users, plus a free 30-minute mini-audit consultation."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://netgroup.com/special/digiligipaasetavus/",
+        "label": "\"Digiligipääsetavus\" service page listing \"Audit ja kaardistus\" among services, HQ \"A.H. Tammsaare tee 92, Tallinn 13423, Estonia\" — live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "pxl",
+    "name": "PXL",
+    "website": "pxl.no",
+    "hq": {
+      "city": "Hamar",
+      "countryCode": "NO"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NO"
+    ],
+    "languages": [
+      "no",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Norwegian developer-led agency based in Hamar offering \"Universell utforming – WCAG-revisjon & utbedring\": accessibility audits, hands-on code-level development and remediation (React, Vue, WordPress, Optimizely, Sanity), training, and design systems."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://pxl.no/en/services/accessibility",
+        "label": "\"Accessibility\" services page listing Accessibility Audit, Development and Remediation, Training and Competence, Design Systems, quoting \"We work directly in the code -- whether you use React, Vue, WordPress, Optimizely, or Sanity\" — live fetch 2026-08-13"
+      },
+      {
+        "url": "https://pxl.no/en/contact",
+        "label": "Contact page listing office address \"Brygga 11, 2317 Hamar, Norway\" — live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "digitas-institute",
+    "name": "DIGITAS Institute",
+    "website": "digitas.si",
+    "hq": {
+      "city": "Ljubljana",
+      "countryCode": "SI"
+    },
+    "offices": [],
+    "countriesServed": [
+      "SI"
+    ],
+    "languages": [
+      "sl",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Ljubljana-based Slovenian institute (Inštitut Digitas) providing digital-accessibility compliance reviews and testing of websites and mobile apps against national and international standards, user testing with people with disabilities, consulting, and training for public-sector bodies, companies and NGOs."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://digitas.si/digitalna-dostopnost/",
+        "label": "\"Digitalna dostopnost\" page quoting \"Preglede skladnosti z nacionalnimi in mednarodnimi standardi in testiranje dostopnosti spletišč, mobilnih aplikacij\" and listing consulting/training among services — live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  }
+]

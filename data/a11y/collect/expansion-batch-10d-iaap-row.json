@@ -1,0 +1,173 @@
+[
+  {
+    "slug": "d2i-technology",
+    "name": "D2i Technology",
+    "website": "d2itechnology.com",
+    "hq": { "city": "Noida", "countryCode": "IN" },
+    "offices": [
+      { "city": "Charlottesville", "countryCode": "US" }
+    ],
+    "countriesServed": ["IN", "US"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "vpat"],
+    "standards": ["wcag-2-2", "section-508", "ada"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "D2i Technology is a Noida, India-based IT services firm offering IAAP-certified web accessibility testing, remediation, and VPAT reports to help clients meet WCAG, Section 508, and ADA compliance." },
+    "sourceRefs": [
+      { "url": "https://d2itechnology.com/", "label": "\"IAAP-certified engineers follow WCAG and provide VPAT reports for compliance\"; \"Accessibility Remediation... Section 508, ADA, and WCAG 2.0/2.1 compliance\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "vervali-systems",
+    "name": "Vervali Systems",
+    "website": "vervali.com",
+    "hq": { "city": "Vasai West", "countryCode": "IN" },
+    "offices": [
+      { "city": "Dubai", "countryCode": "AE" },
+      { "city": "Auckland", "countryCode": "NZ" }
+    ],
+    "countriesServed": ["IN", "AE", "NZ"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "consulting"],
+    "standards": ["wcag-2-2", "section-508"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Vervali Systems is an IT services company headquartered in Vasai West, India, with offices in Dubai and Auckland, offering website accessibility audits and remediation against WCAG and Section 508 requirements." },
+    "sourceRefs": [
+      { "url": "https://www.vervali.com/", "label": "\"commissioned to audit, identify and remedy over 2,000 URLs across all client platforms and solutions in accordance to the WCAG 2.0 guidelines with the objective to achieve AA Level of the 508 certifications\"; offices in \"Dubai, UAE, and Auckland, New Zealand\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "iaap-audit",
+    "name": "IAAP Audit",
+    "website": "iaapaudit.com",
+    "hq": { "city": "Ahmedabad", "countryCode": "IN" },
+    "offices": [],
+    "countriesServed": ["IN"],
+    "languages": ["en"],
+    "services": ["audit"],
+    "standards": ["wcag-2-2", "section-508", "en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [],
+    "description": { "en": "IAAP Audit is an Ahmedabad, India-based accessibility auditing firm branded as an IAAP Empaneled Auditor, testing websites, apps, PDFs, and design systems against WCAG, Section 508, EN 301 549, and India's GIGW/IS 17802 government guidelines." },
+    "sourceRefs": [
+      { "url": "https://iaapaudit.com/", "label": "\"IAAP Empaneled Auditor\"; audits mapped against \"WCAG 2.1 AA, WCAG 2.2 AA, IS 17802, GIGW, Section 508, and EN 301 549\"; based in \"Ahmedabad, Gujarat\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "itqcr",
+    "name": "ITQCR",
+    "website": "itqcr.com",
+    "hq": { "city": "Navi Mumbai", "countryCode": "IN" },
+    "offices": [],
+    "countriesServed": ["IN"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "vpat"],
+    "standards": ["wcag-2-2", "section-508", "en-301-549"],
+    "industries": ["public-sector"],
+    "certs": [],
+    "description": { "en": "ITQCR is a testing and certification lab headquartered in Navi Mumbai, India, offering automated and manual web accessibility testing, VPAT preparation, and remediation testing against WCAG, Section 508, and EN 301 549 as a DEPwD/STQC-empanelled lab." },
+    "sourceRefs": [
+      { "url": "https://itqcr.com/accessibility-testing", "label": "\"automated web accessibility testing, manual web access testing, mobile accessibility, voluntary product accessibility template (VPAT) testing, electronic documents testing, software testing, remediation testing\"; \"IAAP Accessibility Audit\" / DEPwD empanelment; address \"C-202, Tower no-8... Navi Mumbai... Maharashtra (India)\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "infoaxia",
+    "name": "Infoaxia",
+    "website": "infoaxia.co.jp",
+    "hq": { "city": "Tokyo", "countryCode": "JP" },
+    "offices": [],
+    "countriesServed": ["JP"],
+    "languages": ["ja"],
+    "services": ["audit", "training", "consulting"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "founded": 2004,
+    "description": { "en": "Infoaxia is a Tokyo-based web accessibility consulting firm founded in 2004, led by Makoto Ueki, providing accessibility audits, training, and compliance support for JIS X 8341-3 and WCAG 2.0 to Japanese enterprises." },
+    "sourceRefs": [
+      { "url": "https://infoaxia.co.jp/about-us/", "label": "Establishment \"2004年10月\" in \"東京都中央区\" (Chuo Ward, Tokyo); services \"Webアクセシビリティ診断\" (accessibility audits), \"教育・研修の企画および実施\" (training), support for \"「JIS X 8341-3」および「WCAG 2.0」\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "iguale-digital",
+    "name": "Iguale Digital",
+    "website": "igualedigital.com.br",
+    "hq": { "city": "São Paulo", "countryCode": "BR" },
+    "offices": [],
+    "countriesServed": ["BR"],
+    "languages": ["pt"],
+    "services": ["audit", "consulting", "training"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Iguale Digital is a São Paulo, Brazil-based consultancy offering digital accessibility evaluations, a three-phase consulting process, and training workshops aligned with WCAG 2.1 and Brazil's Lei Brasileira de Inclusão (LBI)." },
+    "sourceRefs": [
+      { "url": "https://igualedigital.com.br/servicos/consultoria.php", "label": "\"Avaliação de acessibilidade\"; compliance with \"W3C/WCAG 2.1 and a LBI (Lei Brasileira de Inclusão)\"; \"Treinamentos e Workshops\"; address \"Rua Girassol, 34... São Paulo/SP - Brasil\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "comclar",
+    "name": "Comclar",
+    "website": "comclar.ie",
+    "hq": { "city": "Dublin", "countryCode": "IE" },
+    "offices": [],
+    "countriesServed": ["IE", "ES"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "vpat", "training", "consulting"],
+    "standards": ["wcag-2-2", "eaa"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Comclar is a Dublin-based digital accessibility firm offering WCAG 2.2 AA audits, direct code remediation, formal VPAT/Accessibility Conformance Reports, content-editor training, and developer consultation for European SMEs facing EAA compliance deadlines." },
+    "sourceRefs": [
+      { "url": "https://comclar.ie/", "label": "\"Manual and automated testing against WCAG 2.2 AA standards\"; \"Issuance of a formal Accessibility Conformance Report (VPAT)\"; \"Direct Code Remediation\"; \"Content Editor Training\"; \"Developer Consultation\"; live fetch 2026-08-13" },
+      { "url": "https://comclar.ie/contact", "label": "office address \"3 Belgard Road, Newlands, Dublin 22, D22 KP44\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "salkreation",
+    "name": "Salkreation",
+    "website": "salkreation.ca",
+    "hq": { "city": "Kitchener", "countryCode": "CA" },
+    "offices": [],
+    "countriesServed": ["CA"],
+    "languages": ["en"],
+    "services": ["audit", "remediation", "training"],
+    "standards": ["wcag-2-2"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "Salkreation is a Kitchener, Ontario IT consulting firm offering AODA/WCAG accessibility audits, prioritized remediation reports, and training for development teams and content authors across the Greater Toronto Area and Southern Ontario." },
+    "sourceRefs": [
+      { "url": "https://salkreation.ca/services/accessibility", "label": "\"Ontario's Accessibility for Ontarians with Disabilities Act (AODA) requires organizations with 50 or more employees to meet Web Content Accessibility Guidelines (WCAG) 2.0 Level AA requirements\"; combines \"automated testing, manual expert review\"; live fetch 2026-08-13" },
+      { "url": "https://salkreation.ca/contact", "label": "\"Location Kitchener, Ontario, Canada\"; \"Based in the GTA — serving the Greater Toronto Area, Kitchener-Waterloo, and Southern Ontario\"; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accessmind",
+    "name": "AccessMind",
+    "website": "accessmind.co.il",
+    "hq": { "city": "Tel Aviv", "countryCode": "IL" },
+    "offices": [],
+    "countriesServed": ["IL"],
+    "languages": ["he"],
+    "services": ["audit", "consulting", "training", "vpat"],
+    "standards": ["wcag-2-2", "section-508", "en-301-549"],
+    "industries": [],
+    "certs": [],
+    "description": { "en": "AccessMind is a Tel Aviv-based digital accessibility consultancy offering manual and automated audits of websites and mobile apps, VPAT documentation, and organizational training, operating from the Center for the Blind in Israel building and testing against WCAG, Section 508, EN 301 549, and Israeli Standard 5568." },
+    "sourceRefs": [
+      { "url": "https://accessmind.co.il/accessibility-consulting/", "label": "\"בדיקות נגישות ידניות ואוטמטיות לאתרי אינטרנט, אפליקציות Web ומובייל\" (manual and automated accessibility testing for websites and Web/mobile apps); standards \"WCAG 2.2\", \"Section 508\", \"EN 301 549\", \"Israeli Standard 5568\"; not an overlay vendor; live fetch 2026-08-13" },
+      { "url": "https://accessmind.co.il/contact/", "label": "address \"דוד חכמי 10, קומה 1 (בית המרכז לעיוור)\" [David Hakhami St 10, Floor 1, Center for the Blind in Israel building, Tel Aviv]; live fetch 2026-08-13" }
+    ],
+    "lastVerified": "2026-08-13"
+  }
+]

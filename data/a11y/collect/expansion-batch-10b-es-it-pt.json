@@ -1,0 +1,236 @@
+[
+  {
+    "slug": "agenzia-grafica-milano",
+    "name": "Agenzia Grafica Milano",
+    "website": "agenziagraficamilano.it",
+    "hq": {
+      "city": "Milan",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "founded": 2013,
+    "description": {
+      "en": "Agenzia Grafica Milano is a Milan web agency (Corso Buenos Aires 45) offering a hybrid accessibility service combining automated scanning with manual screen-reader testing to remediate sites against WCAG 2.2 AA and prepare accessibility declarations for the European Accessibility Act."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.agenziagraficamilano.it/normativa-accessibilita-siti-web",
+        "label": "quotes 'I nostri sviluppatori navigano il sito usando screen reader (come NVDA o VoiceOver) per capire l'esperienza reale', cites WCAG 2.2 Level AA and the EAA (effective 28 June 2025), lists address 'Corso Buenos Aires 45, 20124 Milano', and footer '© Il team di Agenzia Grafica Milano 2013 - 2026'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accessibilita-online",
+    "name": "Accessibilità Online (Astrelia Srl)",
+    "website": "accessibilita.online",
+    "hq": {
+      "city": "San Benedetto del Tronto",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Accessibilità Online, run by Astrelia Srl in San Benedetto del Tronto, offers a free preliminary manual accessibility audit of a site's main pages followed by paid remediation guidance and monitoring against WCAG and EAA requirements, explicitly positioning itself against overlay widgets as a full solution."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.accessibilita.online/servizi",
+        "label": "quotes audit method 'Durante l'audit preliminare, vengono prese in considerazione alcune della pagine principale e valutati diversi aspetti, tra cui la struttura della pagina, la navigazione, i colori utilizzati, la leggibilità dei testi, l'accessibilità delle immagini', notes 'L'audit preliminare è GRATUITO', and lists 'Astrelia Srl, Via Mattei, 1, San Benedetto del Tronto, 63074 (AP)'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "techmucho",
+    "name": "TechMucho",
+    "website": "techmucho.com",
+    "hq": {
+      "city": "Genova",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "founded": 2013,
+    "description": {
+      "en": "TechMucho is an IT firm founded in 2013 by Ilyass Mouchafi offering full technical accessibility audits ('check-up del sito') that identify barriers against WCAG and the European Accessibility Act, effective in Italy since 28 June 2025."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://techmucho.com/accessibilita-siti-web/",
+        "label": "quotes 'offriamo audit tecnici completi. Sono veri check-up del sito. Identificano barriere e criticità' and 'Seguiamo normative WCAG e European Accessibility Act. Quest'ultimo è in vigore dal 28 giugno 2025'; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://techmucho.com/",
+        "label": "quotes 'Il progetto nasce nel 2013, dal fondatore Ilyass Mouchafi'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "redmango-agency",
+    "name": "Redmango Agency",
+    "website": "redmango.agency",
+    "hq": {
+      "city": "Torino",
+      "countryCode": "IT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IT"
+    ],
+    "languages": [
+      "it"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Redmango is a Turin-based agency offering website accessibility testing against WCAG 2.1 and current European regulation, positioned as ongoing compliance support with annual follow-ups rather than a one-off check."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://redmango.agency/servizi/test-accessibilita-siti-web",
+        "label": "quotes 'valutiamo il sito web secondo le linee guida WCAG 2.1 (Web Content Accessibility Guidelines)' and 'follow-up annuali e aggiornamenti costanti nel tempo, non soluzioni standard'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "mtp-global",
+    "name": "MTP",
+    "website": "mtp.global",
+    "hq": {
+      "city": "Madrid",
+      "countryCode": "ES"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ES"
+    ],
+    "languages": [
+      "es"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "MTP is a Madrid-headquartered digital consultancy (with additional Spanish offices in Sevilla, Almeria and Alicante) offering digital-accessibility consulting, its own DInclusive accessibility certification, and training through MTP Academy, evaluated against WCAG and EN 301549."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://mtp.global/es/servicios/accesibilidad-digital-y-ux/",
+        "label": "quotes 'Evaluamos y mejoramos tus productos según normativas internacionales como WCAG o EN 301549, entre otras' and lists 'Consultoría de Accesibilidad Digital', 'Certificación de accesibilidad digital Dinclusive' and 'MTP Academy'; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://mtp.global/es/",
+        "label": "quotes HQ address 'Calle de Santa Leonor 65, Edificio C, Planta 4, 28037 Madrid'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "comacesso",
+    "name": "comAcesso",
+    "website": "comacesso.pt",
+    "hq": {
+      "city": "",
+      "countryCode": "PT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "PT"
+    ],
+    "languages": [
+      "pt"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "founded": 2010,
+    "description": {
+      "en": "comAcesso, presented in January 2010 by Norberto Sousa and Ricardo Monteiro, is a Portuguese consultancy performing full manual-plus-automated audits of websites and digital products, accessibility consulting for web pages and apps, and accessibility training."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.comacesso.pt/servicos/",
+        "label": "quotes 'Prestamos consultoria em acessibilidade de páginas web, Apps e conteúdos digitais', 'Ministramos ações de formação em acessibilidade' and 'Realizamos a peritagem completa de um Site ou produto digital, que inclui testes automáticos e manuais'; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://www.comacesso.pt/sobre-a-comacesso/",
+        "label": "quotes project 'apresentado em janeiro de 2010' and founders' backgrounds (Norberto Sousa ~10 years with assistive technologies, Ricardo Monteiro's accessibility/design postgraduate work); live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  }
+]
