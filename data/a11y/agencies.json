@@ -16319,5 +16319,1366 @@
       }
     ],
     "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ux-capital",
+    "name": "UX Capital",
+    "website": "theuxcapital.com",
+    "hq": {
+      "city": "Luxembourg City",
+      "countryCode": "LU"
+    },
+    "offices": [],
+    "countriesServed": [
+      "LU"
+    ],
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "UX Capital is a Luxembourg-based UX design and development consultancy offering paid accessibility audits that examine over 150 elements against WCAG and European Accessibility Act requirements."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.theuxcapital.com/audit-accessibility",
+        "label": "\"We test and assure that your platform meets accessibility standards. Perfect for public and private platforms\", audit examines more than 150 elements with WCAG and EAA compliance testing; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "webdigitales",
+    "name": "Webdigitales",
+    "website": "webdigitales.be",
+    "hq": {
+      "city": "Namur",
+      "countryCode": "BE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "BE"
+    ],
+    "languages": [
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Webdigitales is a Namur-based web agency offering digital accessibility audits and remediation to help Belgian organisations identify and correct WCAG issues."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.webdigitales.be/post/une-accessibilite-numerique-pour-tous-belgian-web-accessibility",
+        "label": "\"Nous vous aidons à identifier et à corriger les différents problèmes rencontrés, en travaillant selon les normes WCAG et les exigences de la directive européenne\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "digital-astronaut",
+    "name": "Digital Astronaut",
+    "website": "digitalastronaut.be",
+    "hq": {
+      "city": "Oudenaarde",
+      "countryCode": "BE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "BE"
+    ],
+    "languages": [
+      "nl"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Digital Astronaut is an Oudenaarde-based Belgian web agency offering WCAG 2.2 accessibility audits covering keyboard navigation, screen-reader compatibility, contrast and alt text, aimed at European Accessibility Act compliance."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://digitalastronaut.be/diensten/audits/wcag-accessibility",
+        "label": "\"We toetsen de website af aan de concrete richtlijnen zoals voorzien door de Web Content Accessibility Guidelines\", WCAG 2.2 Level A and EAA compliance since 28 June 2025 referenced; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "xeit",
+    "name": "xeit",
+    "website": "xeit.ch",
+    "hq": {
+      "city": "Zürich",
+      "countryCode": "CH"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CH"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "xeit AG is a Zürich-based agency offering accessible-website consulting, WCAG 2.2 audits combining automated tools and expert manual testing, remediation, and training."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://xeit.ch/webseiten-apps/websites/barrierefreiheit-agentur-fuer-barrierefreie-webseiten/",
+        "label": "\"Neben dem automatisierten Testen mit Entwickler-Tools wie Lighthouse (Google), axe und WAVE (von WebAIM), empfehlen wir auf jeden Fall ein manuelles Testing durch Expert*innen\", WCAG 2.2 referenced; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "zeix",
+    "name": "Zeix",
+    "website": "zeix.com",
+    "hq": {
+      "city": "Zürich",
+      "countryCode": "CH"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CH"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "remediation"
+    ],
+    "standards": [],
+    "founded": 2000,
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Zeix is a Zürich-based user-centered design agency, founded in 2000, offering accessibility reviews against WCAG guidelines and accessible coding of websites and web applications in HTML, CSS and JavaScript."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://zeix.com/leistungen/barrierefreies-webdesign",
+        "label": "\"Barrierefreies Coding: Programmieren von barrierefreien Websites und Webapplikationen in Html, CSS und Javascript nach den Richtlinien der WCAG\"; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://www.swissmadesoftware.org/en/companies/zeix-ag/home.html",
+        "label": "\"Since 2000 we create efficient and user-friendly frontends for web and software\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "digital-inclusion-academy",
+    "name": "Digital Inclusion Academy",
+    "website": "digital-inclusion-academy.ch",
+    "hq": {
+      "city": "Zürich",
+      "countryCode": "CH"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CH"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "training",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Digital Inclusion Academy, created by mobile-software firm Bitforge in Zürich, offers practical courses and consulting on digital accessibility for Swiss professionals and organisations such as ZVV and ETH Zurich."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://digital-inclusion-academy.ch/",
+        "label": "\"Praxisnahe Kursangebote und Beratungsleistungen zur digitalen Barrierefreiheit\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "digital-barrierefrei",
+    "name": "Digital Barrierefrei",
+    "website": "digital-barrierefrei.ch",
+    "hq": {
+      "city": "Hedingen",
+      "countryCode": "CH"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CH"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "remediation",
+      "training"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Digital Barrierefrei, based in Hedingen, offers Swiss SMEs a website accessibility check, WCAG-oriented consulting, accessible web development, content development, and workshops."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://digital-barrierefrei.ch/",
+        "label": "\"Du willst wissen, wo deine Website in Sachen Barrierefreiheit wirklich steht?\" website-check, consulting, workshops and WCAG 2.1 AA referenced; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "edana",
+    "name": "Edana",
+    "website": "edana.ch",
+    "hq": {
+      "city": "Geneva",
+      "countryCode": "CH"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CH"
+    ],
+    "languages": [
+      "en",
+      "fr",
+      "de",
+      "it"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "eaa"
+    ],
+    "industries": [
+      "healthcare",
+      "banking",
+      "ecommerce"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Edana is a Geneva-based digital agency whose accessibility experts run full WCAG 2.1 AA audits, define remediation plans, and integrate accessibility into clients' digital roadmaps ahead of EAA 2025 requirements."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://edana.ch/en/2025/12/07/web-accessibility-wcag-requirements-best-practices-and-challenges-for-swiss-companies/",
+        "label": "\"Our digital accessibility experts are ready to conduct a full audit, define a remediation plan, and integrate best practices into your digital roadmap—from prototyping to maintenance\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "8ratio",
+    "name": ":ratio",
+    "website": "8ratio.ch",
+    "hq": {
+      "city": "Lausanne",
+      "countryCode": "CH"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CH"
+    ],
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": ":ratio is a Lausanne-based UX agency serving French-speaking Switzerland that offers standalone accessibility audits built systematically on WCAG criteria."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://8ratio.ch/en/services/audit-ux/",
+        "label": "\"Our audits are systematically built upon accessibility criteria (WCAG). A truly ergonomic interface works for everyone\", also offering \"comprehensive accessibility audits\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ithelps-digital",
+    "name": "ithelps digital",
+    "website": "ithelps-digital.com",
+    "hq": {
+      "city": "Vienna",
+      "countryCode": "AT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AT",
+      "DE"
+    ],
+    "languages": [
+      "de",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "ithelps digital, headquartered in Vienna with an Innsbruck office, offers WCAG 2.2 AA accessibility quick-checks and full audits with remediation, plus new accessible site builds and BaFG compliance consulting."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.ithelps-digital.com/de/leistungen/webdesign/barrierefrei",
+        "label": "\"Ein WCAG-Audit stellt sicher, dass Ihre Website die Anforderungen an Barrierefreiheit nach WCAG 2.2 AA erfüllt\", audit priced from €2,400; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "evario",
+    "name": "Evario",
+    "website": "evario.at",
+    "hq": {
+      "city": "Au an der Donau",
+      "countryCode": "AT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AT"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Evario, based in Au an der Donau, Upper Austria, offers WCAG 2.1 accessibility checks and audits, technical remediation, accessibility-statement drafting, and compliance consulting under Austria's BaFG and the EU Accessibility Act."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://evario.at/agentur-fuer-barrierefreies-webdesign/",
+        "label": "\"Wir gestalten barrierefreie Websites, die Menschen mit und ohne Einschränkungen gleichermaßen erreichen\", Barrierefreiheits-Check & WCAG-Audit and BaFG/EU 2019/882 referenced; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "dacc",
+    "name": "dacc",
+    "website": "dacc.at",
+    "hq": {
+      "city": "Klagenfurt",
+      "countryCode": "AT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AT"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "dacc, an accessibility brand of Klagenfurt agency designation, makes websites and PDF documents accessible for clients across Carinthia, Vienna, Graz, Salzburg and Linz, and trains staff on accessible content management."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.dacc.at/",
+        "label": "\"Wir machen Ihre Website und Ihre PDF-Dokumente barrierefrei!\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "aronda-digital",
+    "name": "aronda digital",
+    "website": "aronda.at",
+    "hq": {
+      "city": "Graz",
+      "countryCode": "AT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AT"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "priceBand": "budget",
+    "description": {
+      "en": "aronda digital GmbH, based in Graz, offers a fixed-price WCAG 2.2 AA accessibility check analysing usability, design and technical code, with a detailed findings report and optimisation recommendations."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.aronda.at/barrierefreiheitscheck/",
+        "label": "\"Wir analysieren Ihre Website auf digitale Barrierefreiheit nach den WCAG 2.2 AA-Richtlinien\", priced \"ab € 499 statt € 799\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "friday-ie",
+    "name": "Friday",
+    "website": "friday.ie",
+    "hq": {
+      "city": "Dublin",
+      "countryCode": "IE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IE"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Friday is a Dublin-based digital agency offering website accessibility audits against WCAG 2.2 AA and the European Accessibility Act, covering screen-reader compatibility, keyboard navigation and remediation roadmaps."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.friday.ie/expertise/user-experience/accessibility/",
+        "label": "\"Our accessibility audit will highlight areas of non-compliance and provide a clear roadmap for remediation\", WCAG 2.2 AA and EAA referenced; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "jsc-consultancy",
+    "name": "JSC Consultancy",
+    "website": "jscconsultancy.com",
+    "hq": {
+      "city": "Dublin",
+      "countryCode": "IE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "IE"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "JSC Consultancy, based in Dublin, assesses websites, e-learning and apps for WCAG 2.1 AA compliance and usability, provides improvement roadmaps, and runs in-person or virtual accessibility and inclusion training for teams."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://jscconsultancy.com/services",
+        "label": "\"We assess websites, e-learning, and apps for usability and WCAG 2.1 AA compliance, then provide an improvement roadmap your team can act on\"; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://jscconsultancy.com/",
+        "label": "header reads \"Accessibility Consultancy · Dublin, Ireland\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "meta-digital-nz",
+    "name": "Meta Digital",
+    "website": "metadigital.co.nz",
+    "hq": {
+      "city": "Christchurch",
+      "countryCode": "NZ"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NZ"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Meta Digital is a full-service website design and development agency based in Christchurch, New Zealand that assesses content, design, structure and code against WCAG standards and provides ongoing monitoring and remediation for clients."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.metadigital.co.nz/services/accessibility/",
+        "label": "\"We assess content, design, structure and code against WCAG 2.1 AA standards to identify barriers for users with disabilities\"; describes itself as \"a full service website design and development agency based in Christchurch, New Zealand\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "access-advisors-nz",
+    "name": "Access Advisors",
+    "website": "accessadvisors.nz",
+    "hq": {
+      "city": "Springston",
+      "countryCode": "NZ"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NZ"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Access Advisors is a New Zealand digital accessibility consultancy offering website and app reviews, design and development guidance, and training and research to help organisations become more digitally inclusive."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://accessadvisors.nz/",
+        "label": "\"From reviews and discovery to design, development and testing, Access Advisors can help make your organisation become more digitally inclusive\"; address listed as 33b Leeston Road, Springston 7616; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "webscape-nz",
+    "name": "Webscape",
+    "website": "webscape.co.nz",
+    "hq": {
+      "city": "Christchurch",
+      "countryCode": "NZ"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NZ"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Webscape is a Christchurch, New Zealand web agency offering WCAG 2.2 Level AA audits, remediation, screen reader and keyboard testing, compliance monitoring, and training for content editors and developers."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://webscape.co.nz/services/web-accessibility",
+        "label": "\"WCAG 2.2 Level AA Audits: A thorough manual and automated review of your website against all WCAG 2.2 Level AA success criteria\"; site states \"Webscape is based in Christchurch, Canterbury, New Zealand\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "vine-digital-nz",
+    "name": "Vine Digital",
+    "website": "vinedigital.co.nz",
+    "hq": {
+      "city": "Auckland",
+      "countryCode": "NZ"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NZ"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Vine Digital is an Auckland, New Zealand UI/UX and web design agency that advises brands on meeting the Web Content Accessibility Guidelines (WCAG) as part of its digital design services."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.vinedigital.co.nz/web-design/ui-ux-agency/",
+        "label": "\"Web accessibility makes your website accessible to everyone. Brands are expected to meet standards such as the Web Content Accessibility Guidelines (WCAG)\"; address listed as 28 Constellation Drive, Rosedale, Auckland 0632; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "bradshaw-leroux-consulting",
+    "name": "Bradshaw LeRoux Consulting",
+    "website": "bradshawleroux.co.za",
+    "hq": {
+      "city": "Kloof",
+      "countryCode": "ZA"
+    },
+    "offices": [],
+    "countriesServed": [
+      "ZA"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "founded": 1998,
+    "description": {
+      "en": "Bradshaw LeRoux Consulting is a South African disability inclusion consultancy, established in 1998, whose services include Environmental & Digital Accessibility Audits alongside disability recruitment, training and workplace inclusion consulting."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://bradshawleroux.co.za/",
+        "label": "Lists \"Environmental & Digital Accessibility Audits\" among its core services; \"Established in 1998\" by Lesa Bradshaw; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "level-playing-field-ca",
+    "name": "Level Playing Field",
+    "website": "levelplayingfield.ca",
+    "hq": {
+      "city": "Calgary",
+      "countryCode": "CA"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CA"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation"
+    ],
+    "standards": [
+      "en-301-549",
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Level Playing Field is a Calgary, Alberta accessibility consultancy conducting comprehensive testing and audits against EN 301 549:2021 and WCAG, delivering detailed reports with clear remediation recommendations."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.levelplayingfield.ca/",
+        "label": "\"We conduct comprehensive accessibility testing and audits for EN 301 549:2021 and WCAG compliance, delivering detailed reports with clear remediation recommendations\"; address #800, 322 11 Avenue SW, Calgary, Alberta; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "david-berman-communications",
+    "name": "David Berman Communications",
+    "website": "davidberman.com",
+    "hq": {
+      "city": "Ottawa",
+      "countryCode": "CA"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CA"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "founded": 1999,
+    "description": {
+      "en": "David Berman Communications is an Ottawa, Canada accessibility firm founded in 1999 that has audited government and business websites, including work for the World Wide Web Foundation, covering WCAG, AODA, Section 508 and PDF/UA compliance."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://davidberman.com/accessibility/accessibility-audit-services/",
+        "label": "\"We have performed accessibility audit and review for Tim Berners-Lee's World Wide Web Foundation, on both government and business websites\"; footer copyright reads \"© 1999-2026 David Berman Developments Inc\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "consultation-boreale",
+    "name": "Consultation Boréale",
+    "website": "consultation-boreale.com",
+    "hq": {
+      "city": "Quebec City",
+      "countryCode": "CA"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CA"
+    ],
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Consultation Boréale is a Quebec City-based web accessibility consultancy led by Vincent François, offering formal and functional page assessments, remediation and evaluation, and technical training on HTML/CSS/JavaScript accessibility aligned with WCAG and SGQRI 008."
+    },
+    "sourceRefs": [
+      {
+        "url": "http://consultation-boreale.com/index-en.php",
+        "label": "\"Formal and functional assessments of a sample of selected pages\", with training covering \"HTML, JavaScript, CSS\" linked to WCAG 2.0 standards; address 705 Sutherland #3, Quebec, G1R 2Z1; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accessibrand",
+    "name": "Accessibrand",
+    "website": "accessibrand.com",
+    "hq": {
+      "city": "Waterloo Region",
+      "countryCode": "CA"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CA"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "training",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Accessibrand is a Waterloo Region, Ontario collective of design and marketing professionals impacted by disability, offering accessible websites and documents, accessibility training, and user testing conducted by people with lived disability experience."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://accessibrand.com/",
+        "label": "\"Our designs and marketing materials are created and tested by professionals impacted with varying disabilities to ensure they reach everyone\"; lists ACCESSIBLE DOCS, WEBSITES and ACCESSIBLE TRAINING as services; \"Headquarters located in Waterloo Region\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "advancedbytez",
+    "name": "AdvancedBytez",
+    "website": "advancedbytez.com",
+    "hq": {
+      "city": "Toronto",
+      "countryCode": "CA"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CA"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "AdvancedBytez is a Toronto-based disability tech company offering accessible web design, WCAG 2.1 audits using automated, manual and functional testing, accessibility remediation, and consulting."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://advancedbytez.com/",
+        "label": "\"Assess your website with our automated, manual and functional testing workflow to meet WCAG 2.1 compliance\"; office located \"mid town Toronto at the bustling Yonge Eglington Centre\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "rocio-alvarado-accessibility",
+    "name": "Rocío Alvarado",
+    "website": "rocioalvarado.ca",
+    "hq": {
+      "city": "Montreal",
+      "countryCode": "CA"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CA"
+    ],
+    "languages": [
+      "en",
+      "fr"
+    ],
+    "services": [
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Rocío Alvarado is a Montreal-based independent digital accessibility consultant specialising in WCAG compliance evaluations for websites, documents and mobile applications."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.rocioalvarado.ca/",
+        "label": "\"I offer tools and techniques to make your content more accessible\"; based in Montréal, Canada; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "studio-locale",
+    "name": "Studio Locale",
+    "website": "studiolocale.com",
+    "hq": {
+      "city": "Kitchener-Waterloo",
+      "countryCode": "CA"
+    },
+    "offices": [],
+    "countriesServed": [
+      "CA"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "monitoring"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Studio Locale is a Kitchener-Waterloo, Ontario creative branding and marketing agency that audits and tests websites, applications and PDF documents against AODA and WCAG 2.1 standards, with remediation support, training and ongoing monitoring."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.studiolocale.com/services/aoda-accessibility-audits-and-accessibility-testing/",
+        "label": "\"Audit and test your website, application or documents (PDF) against AODA, WCAG 2.1 standards\"; \"Studio Locale is a creative branding and marketing agency located in Kitchener-Waterloo\"; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "me2-accessibility",
+    "name": "me2 Accessibility",
+    "website": "me2accessibility.com.au",
+    "hq": {
+      "city": "Brisbane",
+      "countryCode": "AU"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AU"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "me2 Accessibility is a Brisbane, Queensland accessibility consultancy whose consultants have together completed over 1,000 WCAG audits, evaluations and assessments, helping organisations comply with the Disability Discrimination Act and government DSS mandates."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.me2accessibility.com.au/about-us.html",
+        "label": "\"Our consultants have together completed over 1,000 WCAG accessibility audits, evaluations and assessments\"; office at 477 Boundary Street, Spring Hill, QLD 4000; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "think-creative-agency-au",
+    "name": "Think Creative Agency",
+    "website": "thinkcreativeagency.com.au",
+    "hq": {
+      "city": "Chatswood",
+      "countryCode": "AU"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AU"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Think Creative Agency is a Chatswood, NSW creative and web agency offering accessibility audits and remediation with manual and automated testing checked against WCAG 2.1/2.2 Level AA, plus accessible design, development and training."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://thinkcreativeagency.com.au/creative-services/wcag-accessible-design-services/",
+        "label": "\"Accessibility Audits & Remediation\" featuring \"Manual and automated testing using leading tools. Compliance checks against WCAG 2.1/2.2 Level AA\"; office at Suite 2, Level 10, Tower 1, 495 Victoria Ave, Chatswood NSW 2067; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "get-skilled-access",
+    "name": "Get Skilled Access",
+    "website": "getskilledaccess.com.au",
+    "hq": {
+      "city": "Melbourne",
+      "countryCode": "AU"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AU"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Get Skilled Access is a Melbourne disability inclusion consultancy that conducts digital audits against the W3C Web Content Accessibility Guidelines and works with client teams to interpret findings and support implementation."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://getskilledaccess.com.au/services/digital-audits-wcag-2-1/",
+        "label": "\"A digital audit helps identify barriers to accessibility across your organisation's websites, apps, and other digital platforms\", audited \"against the World Wide Web Consortium (W3C) Web Content Accessibility Guidelines (WCAG)\"; office at Level 6, 461 Bourke St, Melbourne; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "cali-digital-au",
+    "name": "Cali Digital",
+    "website": "calidigital.com.au",
+    "hq": {
+      "city": "Kiama",
+      "countryCode": "AU"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AU"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Cali Digital is a Kiama, NSW accessibility agency offering UX and accessibility reviews checked against the WCAG success criteria of all versions and levels, along with co-design support for agile teams and organisation-wide accessibility training."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.calidigital.com.au/",
+        "label": "\"Professional UX and Accessibility reviews\" conducted \"against the WCAG success criteria of all versions and levels\"; located in Kiama, NSW 2533 Australia; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "bee-accessible-au",
+    "name": "Bee Accessible",
+    "website": "beeaccessible.com",
+    "hq": {
+      "city": "Sydney",
+      "countryCode": "AU"
+    },
+    "offices": [],
+    "countriesServed": [
+      "AU"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Bee Accessible is a Sydney web accessibility consultancy offering website and app reviews and audits analysed against WCAG standards, with remediation suggestions and detailed audit reports plus bespoke accessibility consulting."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://beeaccessible.com/",
+        "label": "Service offerings listed as \"Audit against standards\" with \"Remediation suggestions\" and \"Detailed audit report\"; address 7 Buckinbah Place, Lilli Pilli NSW 2229; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "bi-ikt",
+    "name": "BI IKT (Sergey Yurchenko)",
+    "website": "bi-ikt.de",
+    "hq": {
+      "city": "Berlin",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "bitv"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "bitv-pruefstelle"
+      }
+    ],
+    "description": {
+      "en": "BI IKT is a Berlin-based ICT consulting practice run by Sergey Yurchenko, offering digital accessibility audits, expert assessments, remediation guidance and training against WCAG, EN 301 549 and BITV 2.0. It is listed as one of the Berlin-region member organisations of the official BIK BITV-Test Prüfverbund (testing consortium)."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://bitvtest.de/bik-bitv-test-pruefverbund",
+        "label": "Official BIK BITV-Test Prüfverbund member list shows 'Sergey Yurchenko | https://bi-ikt.de' under Berlin as a Prüfstelle of the testing consortium; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://bi-ikt.de/dienstleistungen",
+        "label": "BI IKT's own services page lists Beratung (consulting), Validierung, Audit, Qualitätssicherung, Gutachten/Maßnahmenkataloge (remediation) and Schulungen (training) covering WCAG, EN 301 549 and BITV 2.0; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accessifylabs",
+    "name": "AccessifyLabs",
+    "website": "accessifylabs.com",
+    "hq": {
+      "city": "Totowa",
+      "countryCode": "US"
+    },
+    "offices": [
+      {
+        "city": "New Delhi",
+        "countryCode": "IN"
+      }
+    ],
+    "countriesServed": [
+      "US",
+      "IN"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "iaap-org-member"
+      }
+    ],
+    "description": {
+      "en": "AccessifyLabs is a US-based (Totowa, NJ) digital accessibility firm with an India office, offering WCAG audits and testing, remediation, program strategy/consulting and VPAT/ACR drafting, and states it is a member of IAAP."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://accessifylabs.com/",
+        "label": "AccessifyLabs' own homepage states 'As members of the International Association of Accessibility Professionals (IAAP), we connect with a global network committed to advancing digital inclusion' and lists audit, remediation, VPAT/ACR and consulting services; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "recite-me",
+    "name": "Recite Me",
+    "website": "reciteme.com",
+    "hq": {
+      "city": "Gateshead",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB",
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "iaap-org-member"
+      }
+    ],
+    "founded": 2009,
+    "description": {
+      "en": "Recite Me is a UK-based (Gateshead) accessibility company, incorporated in 2009, providing an assistive toolbar plus manual accessibility auditing, PDF remediation and free accessibility training aligned to WCAG 2.2. It announced membership of IAAP (International Association of Accessibility Professionals)."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://reciteme.com/us/news/recite-me-joins-the-iaap/",
+        "label": "Recite Me's own news page confirms it 'is now a member of the International Association of Accessibility Professionals (IAAP)' and describes its accessibility auditing, PDF remediation and training services; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://reciteme.com/about-us/",
+        "label": "Recite Me's own About Us page states the company was 'officially incorporated in 2009, based out of a small office in Gateshead, England' with UK HQ at Baltimore House, Baltic Business Quarter, Gateshead; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accessible-minds-tech",
+    "name": "Accessible Minds Tech",
+    "website": "accessiblemindstech.com",
+    "hq": {
+      "city": "Sheridan",
+      "countryCode": "US"
+    },
+    "offices": [
+      {
+        "city": "Noida",
+        "countryCode": "IN"
+      },
+      {
+        "city": "Riga",
+        "countryCode": "LV"
+      }
+    ],
+    "countriesServed": [
+      "US",
+      "IN",
+      "LV"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada",
+      "section-508"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "iaap-org-member"
+      }
+    ],
+    "description": {
+      "en": "Accessible Minds Tech (branded 'Accessible Minds') is a US-headquartered (Sheridan, Wyoming) digital accessibility firm with offices in Noida, India and Riga, Latvia, offering accessibility testing, website/document remediation, VPAT/ACR drafting, consulting and training. It has been named an Associate Corporate Partner of IAAP. Not to be confused with the unrelated Dutch agency accessibleminds.nl."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://accessiblemindstech.com/we-are-now-proudly-associated-with-international-association-of-accessibility-professionals-iaap-as-associate-corporate-partner/",
+        "label": "Accessible Minds' own blog post states 'Accessible Minds has been named an Associate Corporate Partner of the International Association of Accessibility Professionals (IAAP)' and lists testing, remediation, VPAT/ACR and consulting services; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://accessiblemindstech.com/about-us/",
+        "label": "Company's own About Us page confirms offices in Sheridan Wyoming (USA), Noida (India) and Riga (Latvia) and describes accessibility testing, consulting, remediation and compliance services; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
   }
 ]

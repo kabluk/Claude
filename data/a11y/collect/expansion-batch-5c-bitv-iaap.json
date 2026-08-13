@@ -1,0 +1,203 @@
+[
+  {
+    "slug": "bi-ikt",
+    "name": "BI IKT (Sergey Yurchenko)",
+    "website": "bi-ikt.de",
+    "hq": {
+      "city": "Berlin",
+      "countryCode": "DE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DE"
+    ],
+    "languages": [
+      "de"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "bitv"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "bitv-pruefstelle"
+      }
+    ],
+    "description": {
+      "en": "BI IKT is a Berlin-based ICT consulting practice run by Sergey Yurchenko, offering digital accessibility audits, expert assessments, remediation guidance and training against WCAG, EN 301 549 and BITV 2.0. It is listed as one of the Berlin-region member organisations of the official BIK BITV-Test Prüfverbund (testing consortium)."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://bitvtest.de/bik-bitv-test-pruefverbund",
+        "label": "Official BIK BITV-Test Prüfverbund member list shows 'Sergey Yurchenko | https://bi-ikt.de' under Berlin as a Prüfstelle of the testing consortium; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://bi-ikt.de/dienstleistungen",
+        "label": "BI IKT's own services page lists Beratung (consulting), Validierung, Audit, Qualitätssicherung, Gutachten/Maßnahmenkataloge (remediation) and Schulungen (training) covering WCAG, EN 301 549 and BITV 2.0; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accessifylabs",
+    "name": "AccessifyLabs",
+    "website": "accessifylabs.com",
+    "hq": {
+      "city": "Totowa",
+      "countryCode": "US"
+    },
+    "offices": [
+      {
+        "city": "New Delhi",
+        "countryCode": "IN"
+      }
+    ],
+    "countriesServed": [
+      "US",
+      "IN"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "section-508",
+      "ada"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "iaap-org-member"
+      }
+    ],
+    "description": {
+      "en": "AccessifyLabs is a US-based (Totowa, NJ) digital accessibility firm with an India office, offering WCAG audits and testing, remediation, program strategy/consulting and VPAT/ACR drafting, and states it is a member of IAAP."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://accessifylabs.com/",
+        "label": "AccessifyLabs' own homepage states 'As members of the International Association of Accessibility Professionals (IAAP), we connect with a global network committed to advancing digital inclusion' and lists audit, remediation, VPAT/ACR and consulting services; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "recite-me",
+    "name": "Recite Me",
+    "website": "reciteme.com",
+    "hq": {
+      "city": "Gateshead",
+      "countryCode": "GB"
+    },
+    "offices": [],
+    "countriesServed": [
+      "GB",
+      "US"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "iaap-org-member"
+      }
+    ],
+    "founded": 2009,
+    "description": {
+      "en": "Recite Me is a UK-based (Gateshead) accessibility company, incorporated in 2009, providing an assistive toolbar plus manual accessibility auditing, PDF remediation and free accessibility training aligned to WCAG 2.2. It announced membership of IAAP (International Association of Accessibility Professionals)."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://reciteme.com/us/news/recite-me-joins-the-iaap/",
+        "label": "Recite Me's own news page confirms it 'is now a member of the International Association of Accessibility Professionals (IAAP)' and describes its accessibility auditing, PDF remediation and training services; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://reciteme.com/about-us/",
+        "label": "Recite Me's own About Us page states the company was 'officially incorporated in 2009, based out of a small office in Gateshead, England' with UK HQ at Baltimore House, Baltic Business Quarter, Gateshead; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "accessible-minds-tech",
+    "name": "Accessible Minds Tech",
+    "website": "accessiblemindstech.com",
+    "hq": {
+      "city": "Sheridan",
+      "countryCode": "US"
+    },
+    "offices": [
+      {
+        "city": "Noida",
+        "countryCode": "IN"
+      },
+      {
+        "city": "Riga",
+        "countryCode": "LV"
+      }
+    ],
+    "countriesServed": [
+      "US",
+      "IN",
+      "LV"
+    ],
+    "languages": [
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "vpat",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "ada",
+      "section-508"
+    ],
+    "industries": [],
+    "certs": [
+      {
+        "kind": "iaap-org-member"
+      }
+    ],
+    "description": {
+      "en": "Accessible Minds Tech (branded 'Accessible Minds') is a US-headquartered (Sheridan, Wyoming) digital accessibility firm with offices in Noida, India and Riga, Latvia, offering accessibility testing, website/document remediation, VPAT/ACR drafting, consulting and training. It has been named an Associate Corporate Partner of IAAP. Not to be confused with the unrelated Dutch agency accessibleminds.nl."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://accessiblemindstech.com/we-are-now-proudly-associated-with-international-association-of-accessibility-professionals-iaap-as-associate-corporate-partner/",
+        "label": "Accessible Minds' own blog post states 'Accessible Minds has been named an Associate Corporate Partner of the International Association of Accessibility Professionals (IAAP)' and lists testing, remediation, VPAT/ACR and consulting services; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://accessiblemindstech.com/about-us/",
+        "label": "Company's own About Us page confirms offices in Sheridan Wyoming (USA), Noida (India) and Riga (Latvia) and describes accessibility testing, consulting, remediation and compliance services; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  }
+]

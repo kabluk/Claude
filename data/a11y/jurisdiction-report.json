@@ -16,7 +16,7 @@
         "statementRequired": true,
         "verified": true,
         "citation": "Anlage 3 zu §14 BFSG",
-        "agencyCount": 42
+        "agencyCount": 44
       },
       {
         "country": "FR",
@@ -66,6 +66,16 @@
         "statementRequired": true,
         "verified": false,
         "citation": null,
+        "agencyCount": 16
+      },
+      {
+        "country": "IE",
+        "name": "Ireland",
+        "law": "S.I. No. 636/2023",
+        "lawFull": "European Union (Accessibility Requirements of Products and Services) Regulations 2023",
+        "statementRequired": true,
+        "verified": false,
+        "citation": null,
         "agencyCount": 12
       },
       {
@@ -73,16 +83,6 @@
         "name": "Denmark",
         "law": "LOV nr 801 af 07/06/2022",
         "lawFull": "Lov om tilgængelighedskrav for produkter og tjenester",
-        "statementRequired": true,
-        "verified": false,
-        "citation": null,
-        "agencyCount": 10
-      },
-      {
-        "country": "IE",
-        "name": "Ireland",
-        "law": "S.I. No. 636/2023",
-        "lawFull": "European Union (Accessibility Requirements of Products and Services) Regulations 2023",
         "statementRequired": true,
         "verified": false,
         "citation": null,
@@ -106,7 +106,7 @@
         "statementRequired": true,
         "verified": false,
         "citation": null,
-        "agencyCount": 7
+        "agencyCount": 9
       },
       {
         "country": "SE",
@@ -149,7 +149,7 @@
     ]
   },
   "deepestCoverage": {
-    "agencyCount": 42,
+    "agencyCount": 44,
     "jurisdictions": [
       "DE"
     ]

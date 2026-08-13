@@ -1,18 +1,18 @@
 {
   "source": "data/a11y/agencies.json",
-  "total": 339,
+  "total": 375,
   "hqCountries": {
-    "count": 34,
+    "count": 36,
     "distribution": [
       {
         "code": "US",
         "name": "United States",
-        "count": 42
+        "count": 44
       },
       {
         "code": "DE",
         "name": "Germany",
-        "count": 40
+        "count": 41
       },
       {
         "code": "PL",
@@ -25,14 +25,14 @@
         "count": 28
       },
       {
-        "code": "NL",
-        "name": "Netherlands",
+        "code": "GB",
+        "name": "United Kingdom",
         "count": 26
       },
       {
-        "code": "GB",
-        "name": "United Kingdom",
-        "count": 25
+        "code": "NL",
+        "name": "Netherlands",
+        "count": 26
       },
       {
         "code": "ES",
@@ -42,12 +42,22 @@
       {
         "code": "AT",
         "name": "Austria",
-        "count": 10
+        "count": 14
+      },
+      {
+        "code": "CA",
+        "name": "Canada",
+        "count": 14
+      },
+      {
+        "code": "AU",
+        "name": "Australia",
+        "count": 13
       },
       {
         "code": "IE",
         "name": "Ireland",
-        "count": 10
+        "count": 12
       },
       {
         "code": "IT",
@@ -55,23 +65,23 @@
         "count": 10
       },
       {
+        "code": "BE",
+        "name": "Belgium",
+        "count": 9
+      },
+      {
         "code": "DK",
         "name": "Denmark",
         "count": 9
       },
       {
-        "code": "AU",
-        "name": "Australia",
+        "code": "CH",
+        "name": "Switzerland",
         "count": 8
       },
       {
-        "code": "BE",
-        "name": "Belgium",
-        "count": 7
-      },
-      {
-        "code": "CA",
-        "name": "Canada",
+        "code": "NZ",
+        "name": "NZ",
         "count": 7
       },
       {
@@ -145,16 +155,6 @@
         "count": 3
       },
       {
-        "code": "NZ",
-        "name": "NZ",
-        "count": 3
-      },
-      {
-        "code": "CH",
-        "name": "Switzerland",
-        "count": 2
-      },
-      {
         "code": "BG",
         "name": "BG",
         "count": 1
@@ -170,43 +170,53 @@
         "count": 1
       },
       {
+        "code": "LU",
+        "name": "LU",
+        "count": 1
+      },
+      {
         "code": "MT",
         "name": "MT",
+        "count": 1
+      },
+      {
+        "code": "ZA",
+        "name": "ZA",
         "count": 1
       }
     ]
   },
-  "countriesCovered": 35,
+  "countriesCovered": 37,
   "standards": [
     {
       "slug": "wcag-2-2",
       "label": "WCAG 2.2",
-      "count": 242
+      "count": 266
     },
     {
       "slug": "en-301-549",
       "label": "EN 301 549",
-      "count": 128
+      "count": 131
     },
     {
       "slug": "eaa",
       "label": "European Accessibility Act",
-      "count": 88
+      "count": 93
     },
     {
       "slug": "ada",
       "label": "ADA",
-      "count": 41
+      "count": 44
     },
     {
       "slug": "bitv",
       "label": "BITV 2.0",
-      "count": 41
+      "count": 42
     },
     {
       "slug": "section-508",
       "label": "Section 508",
-      "count": 38
+      "count": 41
     },
     {
       "slug": "rgaa",
@@ -215,17 +225,17 @@
     }
   ],
   "priceBands": {
-    "withBand": 23,
-    "withoutBand": 316,
+    "withBand": 24,
+    "withoutBand": 351,
     "distribution": {
-      "budget": 10,
+      "budget": 11,
       "mid": 13,
       "premium": 0,
       "enterprise": 0
     }
   },
   "evidence": {
-    "recordsWithAnyCert": 121,
+    "recordsWithAnyCert": 125,
     "recordsWithNamedAuditorStatement": 96,
     "namedAuditorByDeclarant": {
       "public-body": 83,
@@ -234,22 +244,22 @@
     },
     "certKinds": {
       "statement-named-auditor": 96,
-      "bitv-pruefstelle": 19,
-      "iaap-org-member": 8,
+      "bitv-pruefstelle": 20,
+      "iaap-org-member": 11,
       "dhs-trusted-tester": 0,
       "iaap-certified-staff": 0
     }
   },
   "founded": {
-    "withYear": 110,
-    "withoutYear": 229,
+    "withYear": 114,
+    "withoutYear": 261,
     "oldest": 1894,
     "newest": 2026,
     "median": 2003
   },
   "sources": {
-    "totalRefs": 939,
-    "recordsWithMultiple": 250,
+    "totalRefs": 980,
+    "recordsWithMultiple": 255,
     "minPerRecord": 1,
     "everyRecordHasAtLeastOne": true
   }
