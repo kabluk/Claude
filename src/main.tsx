@@ -11,4 +11,29 @@ import '@fontsource-variable/geist'
 import '@fontsource-variable/jetbrains-mono'
 import './styles.css'
 
-export const createRoot = ViteReactSSG({ routes, basename: '/' })
+// D-153: авто-восстановление от протухших чанков после деплоя. Новый билд
+// перехэшировывает чанки; у вкладки, открытой ДО деплоя, ленивый import()
+// старого чанка даёт 404 → Vite шлёт событие `vite:preloadError`, а React
+// Router показывает «Importing a module script failed» (владелец поймал живьём
+// после серии деплоев). Один полный reload тянет свежий HTML + актуальные чанки
+// и чинит навсегда. Защита от петли перезагрузок (реальный сбой сети/CDN, а не
+// протухший чанк) — короткий TTL в sessionStorage: не чаще одного reload в 10с;
+// если sessionStorage недоступен (приватный режим) — молча не перезагружаем,
+// пользователь видит прежнее поведение (ручной refresh), но петли нет.
+const setupClient = (): void => {
+  if (typeof window === 'undefined') return
+  window.addEventListener('vite:preloadError', () => {
+    try {
+      const KEY = 'vrs:preload-reload-at'
+      const last = Number(window.sessionStorage.getItem(KEY) || 0)
+      if (Date.now() - last > 10_000) {
+        window.sessionStorage.setItem(KEY, String(Date.now()))
+        window.location.reload()
+      }
+    } catch {
+      /* sessionStorage недоступен — не перезагружаем, чтобы не словить петлю */
+    }
+  })
+}
+
+export const createRoot = ViteReactSSG({ routes, basename: '/' }, setupClient)
