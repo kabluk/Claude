@@ -21,8 +21,8 @@
       {
         "country": "PL",
         "name": "Poland",
-        "law": "Ustawa o dostępności cyfrowej",
-        "lawFull": null,
+        "law": "Ustawa z 26.04.2024 (Dz.U. 2024 poz. 731)",
+        "lawFull": "Ustawa z dnia 26 kwietnia 2024 r. o zapewnianiu spełniania wymagań dostępności niektórych produktów i usług przez podmioty gospodarcze (Dz.U. 2024 poz. 731) — transpozycja dyrektywy (UE) 2019/882 dla sektora prywatnego",
         "statementRequired": true,
         "verified": false,
         "citation": null,
@@ -31,20 +31,20 @@
       {
         "country": "FR",
         "name": "France",
-        "law": "RGAA",
-        "lawFull": "Référentiel général d'amélioration de l'accessibilité",
+        "law": "Code de la consommation art. L412-13 (ord. 2023-859)",
+        "lawFull": "Code de la consommation, art. L412-13 (créé par ordonnance n° 2023-859 du 6 septembre 2023) — transposition de la directive (UE) 2019/882 pour le secteur privé; applicable au 28 juin 2025",
         "statementRequired": true,
-        "verified": false,
+        "verified": true,
         "citation": null,
         "agencyCount": 28
       },
       {
         "country": "NL",
         "name": "Netherlands",
-        "law": "Tijdelijk besluit digitale toegankelijkheid overheid",
-        "lawFull": null,
+        "law": "Implementatiewet toegankelijkheidsvoorschriften producten en diensten (2024)",
+        "lawFull": "Implementatiewet toegankelijkheidsvoorschriften producten en diensten (Stb. 2024, 87) — transpositie richtlijn (EU) 2019/882; e-handelsplicht in het Burgerlijk Wetboek; van kracht 28-06-2025",
         "statementRequired": true,
-        "verified": false,
+        "verified": true,
         "citation": null,
         "agencyCount": 26
       },
@@ -61,10 +61,10 @@
       {
         "country": "ES",
         "name": "Spain",
-        "law": "RD 1112/2018",
-        "lawFull": "Real Decreto de accesibilidad de sitios web",
+        "law": "Ley 11/2023 (+ RD 193/2023)",
+        "lawFull": "Ley 11/2023, de 8 de mayo (Título I: transposición de la directiva (UE) 2019/882 al sector privado; desarrollada por el Real Decreto 193/2023); aplicable desde el 28 de junio de 2025",
         "statementRequired": true,
-        "verified": false,
+        "verified": true,
         "citation": null,
         "agencyCount": 11
       },
@@ -91,10 +91,10 @@
       {
         "country": "IT",
         "name": "Italy",
-        "law": "EAA transposition (D.Lgs. 82/2022)",
-        "lawFull": "Decreto Legislativo 27 maggio 2022, n. 82 (attuazione direttiva (UE) 2019/882); obbligo di dichiarazione di accessibilità radicato nella Legge Stanca (L. 4/2004) per la PA, esteso al privato",
+        "law": "D.Lgs. 82/2022 (attuazione dir. 2019/882)",
+        "lawFull": "Decreto Legislativo 27 maggio 2022, n. 82 (attuazione direttiva (UE) 2019/882); copre gli operatori economici privati (servizi di commercio elettronico, servizi bancari per consumatori); applicabile dal 28 giugno 2025",
         "statementRequired": true,
-        "verified": false,
+        "verified": true,
         "citation": null,
         "agencyCount": 6
       },
@@ -140,8 +140,8 @@
       }
     ]
   },
-  "verifiedLawCount": 1,
-  "unverifiedLawCount": 12,
+  "verifiedLawCount": 5,
+  "unverifiedLawCount": 8,
   "thinnestCoverage": {
     "agencyCount": 2,
     "jurisdictions": [

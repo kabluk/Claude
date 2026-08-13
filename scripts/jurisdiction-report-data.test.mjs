@@ -83,7 +83,9 @@ test('agencyCount per jurisdiction matches an independent recount straight from 
   }
 })
 
-test('verified/unverified law counts reconcile, and only DE is verified (D-034)', () => {
+// D-154: топ-5 рынков сверены с первоисточниками — DE + FR/NL/IT/ES verified
+// (частный сектор EAA подтверждён), PL и IE/AT/BE/SE/DK/FI/NO пока indicative.
+test('verified/unverified law counts reconcile; DE + FR/NL/IT/ES verified (D-154)', () => {
   assert.equal(
     fresh.verifiedLawCount + fresh.unverifiedLawCount,
     fresh.totalJurisdictions,
@@ -91,7 +93,7 @@ test('verified/unverified law counts reconcile, and only DE is verified (D-034)'
   )
   const allRows = [...fresh.uncovered.jurisdictions, ...fresh.covered.jurisdictions]
   const verifiedCodes = allRows.filter((r) => r.verified).map((r) => r.country).sort()
-  assert.deepEqual(verifiedCodes, ['DE'], 'ровно DE должна быть verified:true (D-034) — остальные 12 legal-basis indicative')
+  assert.deepEqual(verifiedCodes, ['DE', 'ES', 'FR', 'IT', 'NL'], 'DE + топ-4 рынка (FR/NL/IT/ES) verified после сверки первоисточников (D-154); остальные legal-basis indicative')
 })
 
 test('thinnest/deepest coverage figures are consistent with the covered list', () => {
