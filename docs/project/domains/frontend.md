@@ -545,9 +545,11 @@ email» → обратно в поле; невалидный submit тоже в�
    дисклеймер D-006. Справа: `ScoreRing` (SVG-кольцо, `aria-hidden`, число и
    грейд — обычный текст рядом) и `SeverityBreakdown` по РАЗЛИЧИМЫМ ПРАВИЛАМ,
    не инстансам (тот же дедуп, что в score/effort).
-2. **«The short version»** (D-130, переехал наверх) + карточка оценки
-   ремедиации с валютным `<select>` (A1-COST/D-126) — обе цифры отвечают на
-   один вопрос «во что это обойдётся», поэтому стоят рядом.
+2. **«What's at risk»** (`WhatsAtRiskCard`, 2026-08-13 — заменила «The short
+   version» D-130 на этом же месте, вариант C владельца) + карточка оценки
+   ремедиации с валютным `<select>` (A1-COST/D-126) — обе отвечают на один
+   вопрос «во что это обойдётся», поэтому стоят рядом. Подробности блока —
+   в разделе «Карточка “What's at risk”» ниже.
 3. **«Detailed findings»** (`FindingsSection`) — фильтр по серьёзности
    (кнопки `aria-pressed` в `role="group"`, счётчик в `aria-label`, фильтр с
    нулём не рендерится) + первые `VISIBLE_FINDINGS = 6` карточек, остальное за
@@ -602,3 +604,72 @@ critical, и serious; `Show remaining` — больше шести правил)
 находка с правовой пометкой — amber-блок Legal basis впервые под аудитом).
 Добавлен постоянный INTERACT-проход `(findings expanded)` на все три
 done-состояния; проходы `(open)` и `(subscription sent)` работают как раньше.
+
+## Карточка «What's at risk» (2026-08-13, D-143 дополнение)
+
+Владелец посмотрел три рендера вердикт-блока и выбрал вариант C с кнопкой из
+варианта B: блок «The short version» (D-130) заменён карточкой **«What's at
+risk»** на том же месте (под hero, слева от оценки ремедиации), тот же
+h2-уровень — иерархия заголовков страницы не изменилась.
+
+**Вид.** Светлая карточка (`surface-container-low`, `rounded-2xl`,
+`border-outline-variant`) с левой полосой `border-l-4` цвета `--color-serious`.
+Индиго-заливку владелец снял явно: тёмная панель на странице теперь ровно одна
+(Continuous monitoring), иначе две подряд конкурировали за внимание. Внутри:
+заголовок, подводка, янтарная правовая плашка (`serious-soft` + `serious-border`
++ текст `serious` — та же согласованная пара, что у `chip-serious`; иконка
+закона — инлайн SVG, `aria-hidden`, смысл несёт текст), маркированный список
+рисков (точки — `aria-hidden`-спаны, не `list-style`, чтобы держать выравнивание
+многострочных строк), две кнопки, две строки мелким кеглем.
+
+**Кнопки — существующие флоу, ни одного нового.** `Get the fix plan — €19.99` —
+тот же `usePlanUnlock` (Stripe checkout), что hero-CTA и `FixTeaser`, с тем же
+disabled+«Redirecting…»; при `planPanel === 'unlocked'` вместо неё ссылка на
+`scanPdfUrl(report.id)` (как в `FixTeaser`). `Have a specialist fix it — free
+quote` — тот же lead-флоу `/request-quote/?scanId=…`, что прежняя «Request a
+quote». Обе — `.btn`/`.btn-ghost` (label-sm mono, px-5 py-2.5 → target ≥24px),
+на 375px переносятся в колонку (`flex-wrap`).
+
+**Честность правовой плашки — вся логика в `src/lib/reportRisk.ts`** (чистые
+функции, 11 тестов в `reportRisk.test.mjs`; в JSX осталась только вёрстка):
+
+- `resolveReportJurisdiction(report)` — плашка появляется ТОЛЬКО при реально
+  определённой юрисдикции. Источника два, оба из воркера:
+  `finding.jurisdictionCountry` (сильнее: режим уже применён к отчёту) и
+  `report.countryCode` при `countrySource !== 'unknown'`. Страна вне наших 13
+  (US/GB) или `unknown` → `null` → плашки нет вовсе.
+- `riskLede(j)` — при `null` подводка называет пробел словами: «We couldn't
+  determine which country's rules apply to this site, so we don't name a law
+  here — the WCAG failures below apply regardless of jurisdiction». Тест
+  запрещает в этой ветке слова EAA / BFSG / 2019/882 / 28 June.
+- `lawCallout(j)` — три ветки: verified (сегодня только DE) называет закон
+  («BFSG / EN 301 549 applies.») и срок EAA; не-verified страна ЕС говорит «The
+  European Accessibility Act applies in <страна>» и добавляет национальную
+  основу с оговоркой воркера «indicative — not verified against primary law»
+  (D-034: RGAA/NL — акты ПУБЛИЧНОГО сектора, называть их «применяется» нельзя);
+  Норвегия (ЕЭЗ, forskrift 2013 старше EAA) — без срока EAA вовсе.
+- Названия законов не пишутся заново: `src/lib/jurisdictions.ts` (зеркало
+  воркера) получил `law`/`verified`/`eaa`, и `jurisdictions.test.mjs` сверяет их
+  с настоящим `worker/lib/jurisdiction.js`. Раньше зеркало держало только код и
+  человеческую подпись — теперь мы называем закон вслух, и молчаливый дрейф
+  означал бы неверную юридическую ссылку пользователю.
+- Сумм штрафов нет ни в одной ветке (D-035) — отдельный тест. Оговорка про
+  микропредприятия (Art. 4(5), «not legal advice») показывается только вместе с
+  плашкой: без названного закона оговаривать нечего.
+- `riskRows()` — строки из данных: «N critical issues» только при N>0 и по
+  РАЗЛИЧИМЫМ правилам (та же шкала, что `SeverityBreakdown`, не второй счёт по
+  инстансам); строка про заявление — только при реальной находке
+  `a11y-statement-missing`/`-incomplete`, причём «separately enforceable»
+  звучит только при известной стране, иначе нейтральное «No accessibility
+  statement found on the pages we scanned»; третья строка — единственная без
+  данных и без единой цифры.
+- Противовес страху (R1) остался внизу карточки: качественный объём работ
+  (`SCOPE_PHRASE`, D-130 — без выдуманного срока) и прямое «бесплатная заявка
+  даёт тот же PDF».
+
+**Гейт.** В `scripts/audit-own-a11y.mjs` добавлено состояние `/report/:id (no
+jurisdiction detected)` (`countryCode: null`, `countrySource: 'unknown'`,
+находки без `jurisdictionCountry`) — под аудитом теперь ОБЕ ветки карточки, а
+не только DE-ветка с плашкой. Итог: `typecheck` ✓, `src:test` 90,
+`scripts:test` 48, `build` 485 HTML / sitemap 460, `check-links` 537-0,
+`audit-a11y` 61 состояние, 0 нарушений.

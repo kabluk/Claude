@@ -62,6 +62,54 @@ tabpanel'а с одним и тем же списком были бы фикти
 `(findings expanded)` на все три done-состояния, и впервые под аудит попал
 amber-блок Legal basis (`jurisdictionCountry: 'DE'`).
 
+**Дополнение 2026-08-13 (решение владельца после показа трёх рендеров вердикт-
+блока): «The short version» заменена карточкой «What's at risk» (вариант C +
+кнопка из варианта B).** Та же позиция под hero, рядом с оценкой ремедиации,
+тот же h2-уровень. Индиго-заливка убрана явным указанием владельца — светлая
+карточка с левой полосой `serious`; тёмной панелью на странице остаётся ровно
+одна (Continuous monitoring). Кнопки: `GET THE FIX PLAN — €19.99` (тот же
+`usePlanUnlock`, что hero-CTA и `FixTeaser`; при `planUnlocked` — прямая ссылка
+на PDF) и `HAVE A SPECIALIST FIX IT — FREE QUOTE` (тот же lead-флоу
+`/request-quote/?scanId=…`, что прежняя «Request a quote»). Из D-130 сохранён
+качественный объём работ (`SCOPE_PHRASE`, без срока) и обещание «бесплатная
+ветка даёт тот же PDF».
+
+**Правило честности правовой плашки (главное в этом дополнении).** Карточка
+впервые говорит с пользователем про закон, поэтому вся логика вынесена в чистый
+`src/lib/reportRisk.ts` (11 юнит-тестов, `reportRisk.test.mjs`):
+- янтарная плашка рендерится **только** при реально определённой юрисдикции.
+  Источники ровно два, оба из воркера: `finding.jurisdictionCountry` (режим уже
+  применён к отчёту) и `report.countryCode` при `countrySource !== 'unknown'`.
+  Страна вне наших 13 (US/GB и др.) или `unknown` → плашки НЕТ ВОВСЕ, и
+  подводка честно называет пробел: «We couldn't determine which country's rules
+  apply to this site, so we don't name a law here — the WCAG failures below
+  apply regardless of jurisdiction». Тест запрещает слова EAA/BFSG/2019-882/
+  28 June в этой ветке;
+- названия законов не сочиняются: `src/lib/jurisdictions.ts` (зеркало воркера)
+  получил поля `law`/`verified`/`eaa`, и `jurisdictions.test.mjs` сверяет их с
+  РЕАЛЬНЫМ `worker/lib/jurisdiction.js` (`supportedJurisdictions()` +
+  `resolveJurisdiction()`), т.к. теперь мы называем закон пользователю вслух;
+- срок «has applied since 28 June 2025» — дословно формулировка гайдов
+  (`european-accessibility-act-guide.md`) и только для стран EAA; у Норвегии
+  (ЕЭЗ, forskrift 2013 старше EAA) своя ветка без срока; у не-verified стран
+  рядом стоит та же оговорка, что уже пишет `jurisdictionNote` («indicative —
+  not verified against primary law») — D-034 про FR/NL здесь не потеряна;
+- сумм штрафов нет ни в одной ветке (D-035), тест это фиксирует отдельно;
+  оговорка про микропредприятия (Art. 4(5)) показывается только вместе с
+  плашкой;
+- риск-строки — из данных: «N critical issues» только при N>0 и по РАЗЛИЧИМЫМ
+  правилам (та же шкала, что `SeverityBreakdown`); строка про заявление — только
+  при реальной находке `a11y-statement-missing`/`-incomplete`, и слова
+  «separately enforceable» звучат только при известной стране; третья строка
+  («Every week this stays unfixed…») — единственная без данных и без цифр.
+
+**Гейты дополнения.** `typecheck` ✓, `src:test` 90 (было 76: +11 `reportRisk`,
++3 зеркало юрисдикций), `scripts:test` 48, `build` 485 HTML / sitemap 460,
+`check-links` 537-0, `audit-a11y` **61 состояние, 0 нарушений** — в
+`scripts/audit-own-a11y.mjs` добавлено состояние `/report/:id (no jurisdiction
+detected)` (`countrySource: 'unknown'`, находки без `jurisdictionCountry`),
+чтобы под аудит попала и ветка БЕЗ плашки, а не только DE-ветка с ней.
+
 ## D-142 · 2026-08-12 · accepted
 **Начато расширение каталога 245 → 600 (SEO, решение владельца). Пилот
 добавил 4 проверенных агентства; метод подтверждён, найден инструментальный

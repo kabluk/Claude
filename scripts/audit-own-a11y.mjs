@@ -341,8 +341,29 @@ const reportFixture = (planUnlocked) => ({
 // unaudited until now. The wait below races the state's own heading against
 // "Scanner is not configured" so a build without VITE_SCANNER_API fails fast
 // and clearly instead of hanging.
+// D-143 (карточка «What's at risk»): второе состояние ТОЙ ЖЕ карточки —
+// юрисдикция не определена (сайт на .com без schema.org: countrySource
+// 'unknown', и ни на одной находке нет jurisdictionCountry). Тогда янтарной
+// правовой плашки нет вовсе, а подводка и строка про заявление звучат иначе
+// (src/lib/reportRisk.ts — правило проверяется юнит-тестами, здесь проверяется
+// его ДОСТУПНОСТЬ: контраст и структура другой ветки разметки).
+const noJurisdictionFixture = () => {
+  const base = reportFixture(false)
+  return {
+    ...base,
+    countryCode: null,
+    countrySource: 'unknown',
+    findings: base.findings.map(({ jurisdictionNote, jurisdictionCountry, ...f }) => f),
+  }
+}
+
 const REPORT_STATES = [
   { label: '/report/:id (locked)', fixture: reportFixture(false), heading: /Accessibility report for/ },
+  {
+    label: '/report/:id (no jurisdiction detected)',
+    fixture: noJurisdictionFixture(),
+    heading: /Accessibility report for/,
+  },
   { label: '/report/:id (unlocked)', fixture: reportFixture(true), heading: /Accessibility report for/ },
   {
     // A2-STRIPE-CHECKOUT tail: ?checkout=success (worker/routes/planCheckout.js

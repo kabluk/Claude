@@ -21,6 +21,14 @@ import {
   type ScanReport,
 } from '@/lib/scanner'
 import { publicRuleInfo } from '@/lib/wcag'
+import {
+  LEGAL_SCOPE_NOTE,
+  lawCallout,
+  resolveReportJurisdiction,
+  riskLede,
+  riskRows,
+  statementState,
+} from '@/lib/reportRisk'
 import { estimateCost, formatCostEstimate, type CostCurrency, type CostEstimate } from '@/lib/costEstimate'
 import { conversionDisclaimer } from '@/lib/currency'
 import { decidePollNext, type PollAttempt } from '@/lib/reportPolling'
@@ -407,15 +415,22 @@ function ReportBody({ report, notify }: { report: ScanReport; notify: Notify }) 
     <div>
       <ReportHero report={report} groups={groups} planPanel={planPanel} unlock={unlock} notify={notify} />
 
-      {/* A4-REPORT-BRIEF (D-130) переехал НАВЕРХ (D-143): это и есть «главное
-          сразу» — простыми словами, что нашли, насколько это большой объём
-          работы и бесплатный путь к плану через заявку. Рядом — оценка
-          стоимости (A1-COST), потому что обе цифры отвечают на один и тот же
-          вопрос «во что мне это обойдётся». */}
+      {/* A4-REPORT-RISK (D-143, вариант C владельца — заменил «The short
+          version» D-130 на этом же месте): что найденное значит юридически и
+          по деньгам. Рядом — оценка стоимости (A1-COST), потому что обе
+          карточки отвечают на один и тот же вопрос «во что мне это обойдётся».
+          Правовая плашка внутри появляется только при определённой юрисдикции
+          (reportRisk.ts). */}
       {cost && (
         <div className="mt-6 grid gap-6 lg:grid-cols-3">
           <div className="lg:col-span-2">
-            <ReportBrief report={report} groups={groups} cost={cost} />
+            <WhatsAtRiskCard
+              report={report}
+              groups={groups}
+              cost={cost}
+              planPanel={planPanel}
+              unlock={unlock}
+            />
           </div>
           <div className="card flex flex-col justify-between">
             <div>
@@ -876,59 +891,130 @@ function CheckYourselfSection() {
   )
 }
 
-// A4-REPORT-BRIEF (D-130): plain-language summary that states the problem
-// from numbers already computed above (never a second count), states scope
-// QUALITATIVELY via SCOPE_PHRASE (never a duration — see the note at that
-// constant's definition), and pitches the free lead in the report's existing
-// honest, non-alarmist tone (R1 — no invented urgency, no legal-threat
-// language beyond what's already stated elsewhere on this page, e.g. the
-// jurisdictionNote blocks above). Only mounted when cost is non-null (see
-// call site) — a clean scan has nothing to summarize, same rubric
-// estimateCost() itself uses to return null.
-function ReportBrief({
+// A4-REPORT-RISK (D-143, выбор владельца — вариант C вместо «The short version»
+// D-130): та же позиция под hero, тот же материал (числа из ЭТОГО отчёта, ни
+// одной новой метрики), но отвечает на вопрос, которого сводка не касалась —
+// «и что мне за это будет». Светлая карточка с левой полосой serious: тёмной
+// панелью на странице остаётся только Continuous monitoring (решение владельца
+// против второй яркой заливки подряд).
+//
+// ВСЯ правовая часть — из reportRisk.ts, где она покрыта тестами: плашка с
+// законом появляется только при РЕАЛЬНО определённой юрисдикции, иначе её нет
+// вовсе и подводка честно говорит почему. Здесь остаётся только вёрстка.
+// Смонтирована только когда cost не null (см. место вызова) — у чистого скана
+// нечего резюмировать.
+function WhatsAtRiskCard({
   report,
   groups,
   cost,
+  planPanel,
+  unlock,
 }: {
   report: ScanReport
   groups: FindingGroup[]
   cost: CostEstimate
+  planPanel: PlanPanelState
+  unlock: Unlock
 }) {
-  const criticalCount = groups.filter((g) => g.impact === 'critical').length
-  const seriousCount = groups.filter((g) => g.impact === 'serious').length
-  const severityPhrase = [
-    criticalCount > 0 ? `${criticalCount} critical` : null,
-    seriousCount > 0 ? `${seriousCount} serious` : null,
-  ]
-    .filter(Boolean)
-    .join(' and ')
-  // Same top-priority pick LockedPlanPanel's teaser already uses above
-  // (groups[0], the highest-impact rule, same sort as Findings) — not a
-  // second "find the worst issue" implementation.
-  const top = groups[0]
+  const jurisdiction = resolveReportJurisdiction(report)
+  const callout = lawCallout(jurisdiction)
+  // Та же шкала «различных правил», что в hero (SeverityBreakdown) и в списке
+  // находок — не второй счёт по инстансам (§25).
+  const criticalRules = groups.filter((g) => g.impact === 'critical').length
+  const rows = riskRows({
+    criticalRules,
+    statement: statementState(report.findings),
+    jurisdictionLabel: jurisdiction?.label ?? null,
+  })
 
   return (
-    <div className="h-full rounded-2xl bg-[color:var(--color-primary)] p-6 text-[color:var(--color-on-primary)] sm:p-8">
-      <h2 className="h2 mt-0 text-[color:var(--color-on-primary)]">The short version</h2>
-      <p className="mt-2 max-w-prose text-sm text-[color:var(--color-on-primary)]/90">
-        This scan found {report.findings.length} issue instance{report.findings.length === 1 ? '' : 's'} across{' '}
-        {groups.length} distinct rule{groups.length === 1 ? '' : 's'}
-        {severityPhrase && <> — {severityPhrase}</>}. The single biggest priority:{' '}
-        {impactLabel(top.impact).toLowerCase()} issue <span className="font-mono">{top.ruleId}</span>. Fixing
-        everything here is {SCOPE_PHRASE[cost.band]} — we won't put a timeline on that, since it depends on your
-        codebase and team, not on us.
+    <section className="h-full rounded-2xl border border-outline-variant border-l-4 border-l-[color:var(--color-serious)] bg-surface-container-low p-5 shadow-sm sm:p-6">
+      <h2 className="h2 mt-0 mb-0">What’s at risk</h2>
+      <p className="mt-2 max-w-prose text-sm text-on-surface-variant">{riskLede(jurisdiction)}</p>
+
+      {callout && (
+        <div className="mt-4 flex gap-3 rounded-lg border border-[color:var(--color-serious-border)] bg-[color:var(--color-serious-soft)] px-4 py-3">
+          <LawIcon />
+          <p className="text-sm text-[color:var(--color-serious)]">
+            <span className="font-semibold">{callout.title}</span> {callout.body}
+          </p>
+        </div>
+      )}
+
+      <ul className="mt-4 space-y-2">
+        {rows.map((row) => (
+          <li key={row} className="flex gap-2.5 text-sm">
+            <span
+              aria-hidden="true"
+              className="mt-[0.45rem] h-1.5 w-1.5 shrink-0 rounded-full bg-[color:var(--color-serious)]"
+            />
+            <span>{row}</span>
+          </li>
+        ))}
+      </ul>
+
+      <div className="mt-5 flex flex-wrap gap-3">
+        {/* Та же пара действий, что в hero, и ровно те же механизмы: платная
+            ветка — usePlanUnlock (Stripe checkout), уже разблокированный план —
+            прямая ссылка на PDF, как в FixTeaser. Бесплатная ветка — заявка
+            специалисту: она же снимает пейволл (planUnlocked = «по этому скану
+            оставлена заявка», scanner.ts), поэтому обещание «free quote» ничего
+            не скрывает. */}
+        {planPanel === 'unlocked' && (
+          <a className="btn" href={scanPdfUrl(report.id)} target="_blank" rel="noreferrer">
+            Download the fix plan (PDF)
+          </a>
+        )}
+        {planPanel === 'locked' && (
+          <button
+            type="button"
+            onClick={unlock.start}
+            disabled={unlock.loading}
+            className="btn disabled:pointer-events-none disabled:cursor-not-allowed disabled:bg-surface-container-low disabled:text-on-surface-variant"
+          >
+            {unlock.loading ? 'Redirecting…' : 'Get the fix plan — €19.99'}
+          </button>
+        )}
+        <Link className="btn-ghost" to={`${paths.requestQuote()}?scanId=${encodeURIComponent(report.id)}`}>
+          Have a specialist fix it — free quote
+        </Link>
+      </div>
+
+      {/* Противовес всей карточке (R1): объём — качественный, без выдуманного
+          срока (SCOPE_PHRASE, D-130), и прямо сказано, что бесплатная ветка
+          даёт тот же PDF. Карточка пугает ровно настолько, насколько это
+          подтверждено данными, и ни строчкой больше. */}
+      <p className="mt-4 max-w-prose text-xs text-on-surface-variant">
+        Fixing everything here is {SCOPE_PHRASE[cost.band]} — we won’t put a timeline on that, since it depends
+        on your codebase and team, not on us. The specialist request is free, no obligation, and it unlocks the
+        same PDF plan at no cost.
       </p>
-      <p className="mt-4 max-w-prose text-sm text-[color:var(--color-on-primary)]/90">
-        You don't have to do this yourself. Send this report to matching agencies from our real catalog and get
-        quotes — free, no obligation, and it's the same free branch that unlocks your full PDF plan at no cost.
-      </p>
-      <Link
-        className="mt-5 inline-flex items-center gap-2 rounded-lg bg-[color:var(--color-on-primary)] px-5 py-2.5 font-mono text-[11px] font-medium tracking-[0.05em] uppercase text-[color:var(--color-primary)]"
-        to={`${paths.requestQuote()}?scanId=${encodeURIComponent(report.id)}`}
-      >
-        Request a quote →
-      </Link>
-    </div>
+      {callout && <p className="mt-2 max-w-prose text-xs text-on-surface-variant">{LEGAL_SCOPE_NOTE}</p>}
+    </section>
+  )
+}
+
+// Классическое здание суда/закона — единственная иконка карточки. Декоративна
+// (смысл несёт текст рядом), поэтому aria-hidden и без focusable.
+function LawIcon() {
+  return (
+    <svg
+      width="18"
+      height="18"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      className="mt-0.5 shrink-0 text-[color:var(--color-serious)]"
+    >
+      <path d="M12 3.5 21 8H3l9-4.5Z" />
+      <path d="M5.5 8v10M12 8v10M18.5 8v10" />
+      <path d="M3.5 18h17" />
+      <path d="M2.5 21h19" />
+    </svg>
   )
 }
 
