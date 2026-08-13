@@ -2,7 +2,38 @@
 
 Обновлено: 2026-08-13 (см. также подробный legacy-статус: `research/STATE.md`)
 
-## Последнее (2026-08-13, readability checker + индекс /tools/ + каталог 290 / D-145, D-146)
+## Последнее (2026-08-13, 5 чекеров под /checkers/ + anti-abuse воркер задеплоен / D-147…D-151)
+
+**Категория «Checkers» в шапке, URL `/tools/`→`/checkers/` + 301 (D-149).** «Checkers»
+— само поисковое слово; сменили пока домен не проиндексирован. Живьём: `/checkers/*`
+= 200, `/tools/*` = 301 → `/checkers/*`, «Checkers» в шапке site-wide. useId не
+сдвинулся (стеш-диф, урок D-087).
+
+**5 бесплатных чекеров-магнитов на проде (D-144/145/151):** contrast, readability,
++ **color blindness simulator / color converter / text-to-speech** (батч по замеру
+DataForSEO: colorblind 201k, rgb↔hex 23k, TTS 301k — все клиентские). Матрицы CVD
+(Wickline) сверены независимо (protanopia red={145,142,0}), Playwright-гидрация
+чистая, audit-a11y **67 стр. 0 нарушений**. Индекс `/checkers/` = 5 карточек.
+Гранулярные a11y-чекеры (aria/heading/tap-target) НЕ делаем — спрос ~0, их
+закрывает сканер. **Важно:** DataForSEO `competition` = конкуренция рекламодателей,
+не органика (см. LEARNING_LOG).
+
+**✅ Anti-abuse воркер ЗАДЕПЛОЕН (D-147, Version `c7acc751`).** 10 сканов/IP/день +
+email-лимит/дедуп подписки живьём (владелец перекатил CF-токен + обновил
+GitHub-секрет). Живьём: воркер up (404 на несуществующий скан), Turnstile гейтит
+(`/api/subscribe` без токена → 403). Rate-limit-логику курлом на проде не
+проверить — Turnstile отбивает неаутентифицированные запросы ДО лимитера (это и
+есть первый рубеж); логика доказана worker:test 503/503.
+
+**Фиксы `/report/:id` (D-150):** bfcache-сброс кнопки оплаты усилен (pageshow +
+visibilitychange — первый вариант D-148 на iOS Safari не хватило), CTA «специалист»
+→ синий. Финал bfcache — на устройстве владельца.
+
+**SEO-план сохранён в репо** (`docs/project/SEO-INDEXING-PLAN.md`, D-…) с
+комментариями; Level-0 (GSC покрытие + запросить индексацию + Bing) — за владельцем.
+Каталог 290.
+
+## Ранее (2026-08-13, readability checker + индекс /tools/ + каталог 290 / D-145, D-146)
 
 **G-TOOL-READABILITY (D-145) — второй инструмент-магнит, готов в коде, НЕ
 задеплоен.** `/tools/readability-checker/`: живой чекер читаемости (Flesch/FK/
