@@ -1,0 +1,627 @@
+[
+  {
+    "slug": "metamatrix-se",
+    "name": "Metamatrix",
+    "website": "metamatrix.se",
+    "hq": {
+      "city": "Stockholm",
+      "countryCode": "SE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "SE"
+    ],
+    "languages": [
+      "sv"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Stockholm-based Swedish agency, founded in 1999, offering WCAG 2.2 and EN 301 549 accessibility audits, accessibility training, expert consulting, and accessible website development."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://metamatrix.se/tjanster/tillganglighet/",
+        "label": "Site states 'Vår tillgänglighetsanalys ger er en tydlig nulägesbild av hur väl er webbplats eller digitala tjänst uppfyller kraven på digital tillgänglighet enligt WCAG 2.2 och EN 301 549'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "the-generation-se",
+    "name": "The Generation",
+    "website": "thegeneration.se",
+    "hq": {
+      "city": "Stockholm",
+      "countryCode": "SE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "SE"
+    ],
+    "languages": [
+      "sv",
+      "en"
+    ],
+    "services": [
+      "consulting",
+      "remediation"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Stockholm-based WordPress web agency listing 'Accessibility and WCAG' as a dedicated service line, building sites on an accessibility-focused theme framework and advising clients on WCAG compliance."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://thegeneration.se/en/what-is-wcag/",
+        "label": "Site lists 'Accessibility and WCAG' as a dedicated service with a page on 'how we work with accessibility'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "doba-dk",
+    "name": "DOBA",
+    "website": "doba.dk",
+    "hq": {
+      "city": "Stenløse",
+      "countryCode": "DK"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DK"
+    ],
+    "languages": [
+      "da"
+    ],
+    "services": [
+      "audit",
+      "monitoring",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Danish agency based in Stenløse offering WCAG 2.1 AA web accessibility audits, ongoing accessibility monitoring, and tailored consulting ahead of Denmark's June 2025 private-sector accessibility law deadline."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.doba.dk/kompetencer/webtilgaengelighed",
+        "label": "Site states 'alle leve op til WCAG 2.1 standarden på niveau AA' and offers audit, 'løbende overvågning' (ongoing monitoring), and tailored consulting; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "kruso-dk",
+    "name": "Kruso",
+    "website": "kruso.group",
+    "hq": {
+      "city": "Aarhus",
+      "countryCode": "DK"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DK"
+    ],
+    "languages": [
+      "da",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Aarhus-based digital agency publishing WCAG 2.2 guidance and offering accessibility auditing, training webinars, and consulting to help organizations meet web accessibility legislation."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.kruso.group/da-DK/insights/introduction-to-wcag-2-2-new-guidelines-for-web-accessibility",
+        "label": "Page 'Introduction to WCAG 2.2: New guidelines for web accessibility' promotes on-demand webinars 'Drive Profits for Your Business with Web Accessibility' and 'The Most Important Tools for Web Accessibility'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "special-minds-it-dk",
+    "name": "Special Minds IT",
+    "website": "specialmindsit.dk",
+    "hq": {
+      "city": "Aarhus",
+      "countryCode": "DK"
+    },
+    "offices": [],
+    "countriesServed": [
+      "DK"
+    ],
+    "languages": [
+      "da"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Aarhus-based IT consultancy offering WCAG 2.1 (A/AA) website and app accessibility testing packages, document remediation, and accessibility-declaration preparation for Danish organizations."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://specialmindsit.dk/test-af-websted/",
+        "label": "Page 'Sådan tester I jeres websted og app for tilgængelighed' describes WCAG 2.1 A/AA audit packages, prioritized fixes and accessibility-declaration documentation; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "novicell-dk",
+    "name": "Novicell",
+    "website": "novicell.com",
+    "hq": {
+      "city": "Aarhus",
+      "countryCode": "DK"
+    },
+    "offices": [
+      {
+        "city": "Aalborg",
+        "countryCode": "DK"
+      },
+      {
+        "city": "Copenhagen",
+        "countryCode": "DK"
+      },
+      {
+        "city": "London",
+        "countryCode": "GB"
+      },
+      {
+        "city": "Barcelona",
+        "countryCode": "ES"
+      }
+    ],
+    "countriesServed": [
+      "DK",
+      "GB",
+      "ES"
+    ],
+    "languages": [
+      "da",
+      "en",
+      "es"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting",
+      "training"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Aarhus-headquartered digital agency with offices across Denmark, the UK and Spain, offering WCAG 2.1 accessibility testing of existing sites, accessible development, consulting, and training for web editors."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.novicell.com/dk/services/webudvikling/webtilgaengelighed/",
+        "label": "Page lists 'Tilgængelighedstest af eksisterende sites' (accessibility testing of existing sites) and 'Uddannelse af webredaktører' (training of web editors) among their WCAG accessibility services; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "marvel-consulting-group-fi",
+    "name": "Marvel Consulting Group",
+    "website": "marvelconsulting.fi",
+    "hq": {
+      "city": "Espoo",
+      "countryCode": "FI"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FI"
+    ],
+    "languages": [
+      "fi",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Espoo-based Finnish consultancy whose accessibility expert evaluates, designs and develops the accessibility of digital services against WCAG guidelines as part of software development engagements."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.marvelconsulting.fi/palvelut/saavutettavuusasiantuntija",
+        "label": "Page states 'Saavutettavuusasiantuntija arvioi, suunnittelee ja kehittää digitaalisten palveluiden saavutettavuutta osana ohjelmistokehitystä', covering structure, contrast, keyboard use and screen-reader support; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "kisko-labs-fi",
+    "name": "Kisko Labs",
+    "website": "kiskolabs.com",
+    "hq": {
+      "city": "Helsinki",
+      "countryCode": "FI"
+    },
+    "offices": [],
+    "countriesServed": [
+      "FI"
+    ],
+    "languages": [
+      "fi",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Helsinki-based software consultancy offering accessibility testing and automation, developer training, and consulting to help clients meet WCAG and the EU Accessibility Directive requirements."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.kiskolabs.com/blog/saavutettavuuden-testaus-ja-automatisointi-kuinka-varmistua-saavutettavuudesta",
+        "label": "Article 'Saavutettavuuden testaus ja automatisointi' states testing ensures services work for all users and covers manual/automated testing, team training, and consulting toward WCAG/EU Accessibility Directive; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ideo-solutions-no",
+    "name": "Ideo Solutions",
+    "website": "ideosolutions.no",
+    "hq": {
+      "city": "Drammen",
+      "countryCode": "NO"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NO"
+    ],
+    "languages": [
+      "no"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Drammen-based Norwegian digital agency offering WCAG 2.1/2.2 website assessment and testing, remediation of existing solutions, accessibility-statement assistance, and compliance consulting."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.ideosolutions.no/blogg/er-nettsiden-din-digitalt-tilgjengelig-slik-flger-du-wcag-21-kravene-i-2025-,2293",
+        "label": "Page states 'Vurdering og testing av nettsider i henhold til WCAG 2.1 og 2.2, tilrettelegging og forbedring av eksisterende løsninger, hjelp med tilgjengelighetserklæring og kravoppfølging'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "useit-no",
+    "name": "Useit Consulting Norway",
+    "website": "useit.no",
+    "hq": {
+      "city": "Oslo",
+      "countryCode": "NO"
+    },
+    "offices": [],
+    "countriesServed": [
+      "NO",
+      "SE",
+      "DK"
+    ],
+    "languages": [
+      "no",
+      "sv",
+      "da",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "training",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "en-301-549",
+      "eaa"
+    ],
+    "industries": [
+      "banking"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Oslo-based accessibility consultancy offering full WCAG 2.1/2.2 and EN 301 549 expert evaluations via its proprietary Aceit testing platform, accessibility-statement development, and universal-design courses for developers, designers and content producers."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://useit.no/vi-tilbyr/analyse-av-nettside-eller-appen/",
+        "label": "Page describes 'full WCAG 2.1/2.2 & EN 301 549 analyses' delivered through their Aceit testing platform plus post-analysis consultation; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://useit.no/aktuelt/useit-far-midler-fra-bufdir-for-a-avslore-skjulte-barrierer-i-banksektoren/",
+        "label": "Article 'Universell utforming i banksektoren: Useit får Bufdir-støtte for å styrke WCAG- og EAA-kravene' describes their work assessing accessibility barriers in the banking sector; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "hara-digital-ee",
+    "name": "Hara Digital",
+    "website": "haradigital.ee",
+    "hq": {
+      "city": "Tallinn",
+      "countryCode": "EE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "EE"
+    ],
+    "languages": [
+      "et"
+    ],
+    "services": [
+      "audit"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Tallinn-based digital agency (Hara Digiagentuur) offering website accessibility audits that identify where and how a site can be made easier to use for everyone."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://haradigital.ee/veebilehed/veebilehe-juurdepaasetavuse-audit/",
+        "label": "Page states 'Meie saame teha teie veebilehele auditi, milles toome välja kõik punktid, kust ja kuidas saab teie veebilehte muuta lihtsasti kasutatavaks kõigile'; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "ux-estonia-ee",
+    "name": "UX Estonia",
+    "website": "uxestonia.ee",
+    "hq": {
+      "city": "Tallinn",
+      "countryCode": "EE"
+    },
+    "offices": [],
+    "countriesServed": [
+      "EE"
+    ],
+    "languages": [
+      "et",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2",
+      "eaa"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Tallinn-based UX consultancy offering accessibility audits aligned with WCAG guidelines, EU accessibility directives, and Estonian legislation, covering websites, e-shops, apps and TV services."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://uxestonia.ee/teenused/ligipaasetavuse-audit",
+        "label": "Page states 'Ligipääsetavuse audit annab sulle ülevaate sellest, kas ja mis osades vastab sinu teenus...ligipääsetavuse nõuetele', evaluated against WCAG and EU directives; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "testdevlab-lv",
+    "name": "TestDevLab",
+    "website": "testdevlab.com",
+    "hq": {
+      "city": "Riga",
+      "countryCode": "LV"
+    },
+    "offices": [
+      {
+        "city": "Ventspils",
+        "countryCode": "LV"
+      }
+    ],
+    "countriesServed": [
+      "LV",
+      "EE",
+      "LT"
+    ],
+    "languages": [
+      "lv",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting",
+      "training"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "founded": 2011,
+    "description": {
+      "en": "Riga-headquartered QA and software-testing company, founded in 2011 with roots in Ventspils, running a dedicated accessibility practice offering web and mobile accessibility testing, digital accessibility audits, consulting and training."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://accessibility.testdevlab.com/lv/web-accessibility-testing",
+        "label": "Accessibility subsite lists 'web accessibility testing, digital accessibility audits, accessibility consulting, accessibility training, mobile accessibility testing'; live fetch 2026-08-13"
+      },
+      {
+        "url": "https://www.testdevlab.com/company/about-us",
+        "label": "About page states the company was founded in 2011, opened its first office in Ventspils in 2012, and today has its headquarters office in Riga; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "cube-agency-lv",
+    "name": "Cube",
+    "website": "cube.lv",
+    "hq": {
+      "city": "Riga",
+      "countryCode": "LV"
+    },
+    "offices": [],
+    "countriesServed": [
+      "LV"
+    ],
+    "languages": [
+      "lv",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [
+      "en-301-549"
+    ],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Riga-based digital agency offering digital accessibility audits against the EN 301 549 standard using the ACT methodology, testing around 50 requirements per page and delivering remediation guidance plus accessibility statements."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.cube.lv/pakalpojums/pieklustamibas-audits",
+        "label": "Page states 'Piekļūstamības audits ir vietnes vai lietotnes atbilstības novērtējums Eiropas digitālās piekļūstamības standartam EN 301 549', describing the ACT methodology and remediation guidance; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "dizi-lt",
+    "name": "Dizi",
+    "website": "dizi.lt",
+    "hq": {
+      "city": "Vilnius",
+      "countryCode": "LT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "LT"
+    ],
+    "languages": [
+      "lt",
+      "en"
+    ],
+    "services": [
+      "audit",
+      "consulting"
+    ],
+    "standards": [
+      "wcag-2-2"
+    ],
+    "industries": [
+      "public-sector"
+    ],
+    "certs": [],
+    "description": {
+      "en": "Vilnius-based agency offering website accessibility testing and evaluation conducted together with disabled users, referencing WCAG standards, with work for Lithuanian government and cultural-sector clients."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://www.dizi.lt",
+        "label": "Site lists 'Testavimas ir prieinamumo vertinimas' as a core service and states 'Atliekame prieinamumo (pritaikymo neįgaliesiems) vertinimą kartu su neįgaliaisiais naudotojais', referencing WCAG and work with government/cultural clients; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  },
+  {
+    "slug": "proweb-lt",
+    "name": "Proweb",
+    "website": "proweb.lt",
+    "hq": {
+      "city": "Panevėžys",
+      "countryCode": "LT"
+    },
+    "offices": [],
+    "countriesServed": [
+      "LT"
+    ],
+    "languages": [
+      "lt"
+    ],
+    "services": [
+      "audit",
+      "remediation",
+      "consulting"
+    ],
+    "standards": [],
+    "industries": [],
+    "certs": [],
+    "description": {
+      "en": "Panevėžys-based Lithuanian web agency offering a standalone website-accessibility service covering accessibility analysis, structure and navigation assessment, and contrast/readability improvements."
+    },
+    "sourceRefs": [
+      {
+        "url": "https://proweb.lt/interneto-svetainiu-kurimas/interneto-svetainiu-prieinamumas",
+        "label": "Page lists 'Interneto svetainių prieinamumo analizę, struktūros ir navigacijos vertinimą, kontrasto ir įskaitomumo gerinimą' as a standalone service; live fetch 2026-08-13"
+      }
+    ],
+    "lastVerified": "2026-08-13"
+  }
+]

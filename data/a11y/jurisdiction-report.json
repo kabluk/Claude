@@ -19,6 +19,16 @@
         "agencyCount": 42
       },
       {
+        "country": "FR",
+        "name": "France",
+        "law": "Code de la consommation art. L412-13 (ord. 2023-859)",
+        "lawFull": "Code de la consommation, art. L412-13 (créé par ordonnance n° 2023-859 du 6 septembre 2023) — transposition de la directive (UE) 2019/882 pour le secteur privé; applicable au 28 juin 2025",
+        "statementRequired": true,
+        "verified": true,
+        "citation": null,
+        "agencyCount": 29
+      },
+      {
         "country": "PL",
         "name": "Poland",
         "law": "Ustawa z 26.04.2024 (Dz.U. 2024 poz. 731)",
@@ -27,16 +37,6 @@
         "verified": false,
         "citation": null,
         "agencyCount": 29
-      },
-      {
-        "country": "FR",
-        "name": "France",
-        "law": "Code de la consommation art. L412-13 (ord. 2023-859)",
-        "lawFull": "Code de la consommation, art. L412-13 (créé par ordonnance n° 2023-859 du 6 septembre 2023) — transposition de la directive (UE) 2019/882 pour le secteur privé; applicable au 28 juin 2025",
-        "statementRequired": true,
-        "verified": true,
-        "citation": null,
-        "agencyCount": 28
       },
       {
         "country": "NL",
@@ -49,6 +49,16 @@
         "agencyCount": 26
       },
       {
+        "country": "ES",
+        "name": "Spain",
+        "law": "Ley 11/2023 (+ RD 193/2023)",
+        "lawFull": "Ley 11/2023, de 8 de mayo (Título I: transposición de la directiva (UE) 2019/882 al sector privado; desarrollada por el Real Decreto 193/2023); aplicable desde el 28 de junio de 2025",
+        "statementRequired": true,
+        "verified": true,
+        "citation": null,
+        "agencyCount": 17
+      },
+      {
         "country": "AT",
         "name": "Austria",
         "law": "BaFG",
@@ -59,14 +69,14 @@
         "agencyCount": 12
       },
       {
-        "country": "ES",
-        "name": "Spain",
-        "law": "Ley 11/2023 (+ RD 193/2023)",
-        "lawFull": "Ley 11/2023, de 8 de mayo (Título I: transposición de la directiva (UE) 2019/882 al sector privado; desarrollada por el Real Decreto 193/2023); aplicable desde el 28 de junio de 2025",
+        "country": "DK",
+        "name": "Denmark",
+        "law": "LOV nr 801 af 07/06/2022",
+        "lawFull": "Lov om tilgængelighedskrav for produkter og tjenester",
         "statementRequired": true,
-        "verified": true,
+        "verified": false,
         "citation": null,
-        "agencyCount": 11
+        "agencyCount": 10
       },
       {
         "country": "IE",
@@ -75,6 +85,16 @@
         "lawFull": "European Union (Accessibility Requirements of Products and Services) Regulations 2023",
         "statementRequired": true,
         "verified": false,
+        "citation": null,
+        "agencyCount": 10
+      },
+      {
+        "country": "IT",
+        "name": "Italy",
+        "law": "D.Lgs. 82/2022 (attuazione dir. 2019/882)",
+        "lawFull": "Decreto Legislativo 27 maggio 2022, n. 82 (attuazione direttiva (UE) 2019/882); copre gli operatori economici privati (servizi di commercio elettronico, servizi bancari per consumatori); applicabile dal 28 giugno 2025",
+        "statementRequired": true,
+        "verified": true,
         "citation": null,
         "agencyCount": 10
       },
@@ -89,24 +109,14 @@
         "agencyCount": 7
       },
       {
-        "country": "IT",
-        "name": "Italy",
-        "law": "D.Lgs. 82/2022 (attuazione dir. 2019/882)",
-        "lawFull": "Decreto Legislativo 27 maggio 2022, n. 82 (attuazione direttiva (UE) 2019/882); copre gli operatori economici privati (servizi di commercio elettronico, servizi bancari per consumatori); applicabile dal 28 giugno 2025",
-        "statementRequired": true,
-        "verified": true,
-        "citation": null,
-        "agencyCount": 6
-      },
-      {
-        "country": "DK",
-        "name": "Denmark",
-        "law": "LOV nr 801 af 07/06/2022",
-        "lawFull": "Lov om tilgængelighedskrav for produkter og tjenester",
+        "country": "SE",
+        "name": "Sweden",
+        "law": "Lag (2023:254)",
+        "lawFull": "Lag (2023:254) om vissa produkters och tjänsters tillgänglighet",
         "statementRequired": true,
         "verified": false,
         "citation": null,
-        "agencyCount": 5
+        "agencyCount": 7
       },
       {
         "country": "FI",
@@ -116,17 +126,7 @@
         "statementRequired": true,
         "verified": false,
         "citation": null,
-        "agencyCount": 4
-      },
-      {
-        "country": "SE",
-        "name": "Sweden",
-        "law": "Lag (2023:254)",
-        "lawFull": "Lag (2023:254) om vissa produkters och tjänsters tillgänglighet",
-        "statementRequired": true,
-        "verified": false,
-        "citation": null,
-        "agencyCount": 4
+        "agencyCount": 6
       },
       {
         "country": "NO",
@@ -136,14 +136,14 @@
         "statementRequired": true,
         "verified": false,
         "citation": null,
-        "agencyCount": 2
+        "agencyCount": 4
       }
     ]
   },
   "verifiedLawCount": 5,
   "unverifiedLawCount": 8,
   "thinnestCoverage": {
-    "agencyCount": 2,
+    "agencyCount": 4,
     "jurisdictions": [
       "NO"
     ]
