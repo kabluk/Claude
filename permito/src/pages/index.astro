@@ -1,0 +1,124 @@
+---
+import Base from '../layouts/Base.astro';
+import { loadCopy, loadCities, cityStats, TRADES, fmtMoney } from '../lib/data.mjs';
+
+const copy = loadCopy();
+const cities = loadCities();
+const stats = cities.map((c) => ({ city: c, s: cityStats(c) }));
+const totalPermits = stats.reduce((n, x) => n + x.s.total, 0);
+const totalValuation = stats.reduce((n, x) => n + x.s.totalValuation, 0);
+
+const tradeTotals = Object.fromEntries(TRADES.map((t) => [t.slug, 0]));
+for (const { s } of stats) for (const t of TRADES) tradeTotals[t.slug] += s.byTrade[t.slug];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: copy.brand.name,
+  description: copy.brand.tagline,
+  url: Astro.site?.href,
+};
+---
+
+<Base title={`${copy.brand.name} — ${copy.brand.tagline}`} description={copy.landing.heroSubtitle} schema={schema}>
+  <section class="hero">
+    <div class="wrap">
+      <h1>{copy.landing.heroTitle}</h1>
+      <p class="sub">{copy.landing.heroSubtitle}</p>
+      <a class="btn" href="#pricing">{copy.landing.heroCta}</a>
+      <a class="btn ghost" href="/permits/" style="margin-left:10px">Browse live permits</a>
+      <div class="hero-stats">
+        <div class="stat"><b>{totalPermits.toLocaleString('en-US')}</b><span>permits in the last 90 days</span></div>
+        <div class="stat"><b>{cities.length}</b><span>cities covered</span></div>
+        <div class="stat"><b>{fmtMoney(totalValuation)}</b><span>reported construction value</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <h2 class="sec">Why permit data</h2>
+      <p class="sec-sub">{copy.landing.socialProof}</p>
+      <div class="grid c3">
+        {copy.landing.valueProps.map((v) => (
+          <div class="card"><h3>{v.title}</h3><p>{v.text}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="sec">Live permit coverage</h2>
+      <p class="sec-sub">Fresh building permits from official city open-data portals, normalized into one feed.</p>
+      <div class="grid c3">
+        {stats.map(({ city, s }) => (
+          <a class="card link-card" href={`/permits/${city.city}/`}>
+            <h3>{city.cityName}, {city.state}</h3>
+            <p>{s.total.toLocaleString('en-US')} permits · last 90 days</p>
+            <p class="kpi">{s.last30.toLocaleString('en-US')} in the last 30 days · {fmtMoney(s.totalValuation)} reported value</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <h2 class="sec">Leads by trade</h2>
+      <p class="sec-sub">Every permit is classified by trade, so you only see jobs in your line of work.</p>
+      <div class="grid c4">
+        {TRADES.map((t) => (
+          <a class="card link-card" href={`/leads/${t.slug}/`}>
+            <h3>{t.name}</h3>
+            <p>{tradeTotals[t.slug].toLocaleString('en-US')} recent permits</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="sec">How it works</h2>
+      <div class="grid c3">
+        {copy.landing.howItWorks.map((s, i) => (
+          <div class="card"><h3>{i + 1}. {s.title}</h3><p>{s.text}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="pricing">
+    <div class="wrap">
+      <h2 class="sec">{copy.pricing.title}</h2>
+      <p class="sec-sub">{copy.pricing.subtitle}</p>
+      <div class="plans">
+        {copy.pricing.plans.map((p, i) => (
+          <div class={`plan${i === 1 ? ' featured' : ''}`}>
+            <h3>{p.name}</h3>
+            <div class="price">{p.price}</div>
+            <ul>{p.features.map((f) => <li>{f}</li>)}</ul>
+            <form class="waitlist" data-plan={p.slug}>
+              <input type="email" required placeholder="Work email" aria-label="Work email" />
+              <button class="btn" type="submit">{copy.pricing.ctaLabel}</button>
+              <span class="done">You're on the list — we'll be in touch.</span>
+            </form>
+          </div>
+        ))}
+      </div>
+      <p class="sec-sub" style="margin-top:18px">{copy.pricing.disclaimer}</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="sec">FAQ</h2>
+      <div class="faq">
+        {copy.landing.faq.map((f) => (
+          <details><summary>{f.q}</summary><p>{f.a}</p></details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>
