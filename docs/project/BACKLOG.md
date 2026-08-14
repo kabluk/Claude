@@ -58,10 +58,13 @@ Stripe (Stripe-Signature: t=…,v1=…, HMAC-SHA256 над `"{t}.{raw_body}"`,
 поля 1:1 с INTERFACES.md §4, `db:migrate:local` + `worker:test` 39/39 зелёные;
 разблокировало `A2-LEAD-API`). `A2-LEAD-FORM` — **done** (RequestQuotePage +
 LeadForm + leadForm.ts; клиентская валидация, client-only превью совпадений через
-уже готовый `matchAgencies()`, 0 сетевых вызовов при submit; `/request-quote/`
-добавлена в постоянный CI a11y-гейт и sitemap, плюс закрыт orphan-page пробел —
-CTA «Request a quote» добавлен в `MatchedAgencies.tsx` на `/report/:id`, страница
-раньше была недостижима ни по одной ссылке в UI). `A2-LEAD-API` — **done**
+уже готовый `matchAgencies()`; `/request-quote/` добавлена в постоянный CI
+a11y-гейт и sitemap, плюс закрыт orphan-page пробел — CTA «Request a quote»
+добавлен в `MatchedAgencies.tsx` на `/report/:id`, страница раньше была
+недостижима ни по одной ссылке в UI). **Подключена к `A2-LEAD-API` (D-172,
+2026-08-14):** второй явный шаг «Send my request» после preview реально
+шлёт `POST /api/lead` (было: 0 сетевых вызовов при submit — устарело).
+`A2-LEAD-API` — **done**
 (`worker/routes/lead.js` + `worker/lib/matchAgenciesServer.js`: POST /api/lead
 реально пишет в D1 `leads` и возвращает `{leadId, matched: slug[]}` по тому же
 алгоритму, что и `matchAgencies.ts`; rate-limit 5/ч на IP и Turnstile-паттерн

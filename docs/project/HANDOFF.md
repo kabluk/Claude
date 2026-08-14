@@ -256,9 +256,11 @@ wrangler.jsonc). Живой прогон на проде: ссылка = verscal
 `deploy.yml` build-env (`VITE_TURNSTILE_SITE_KEY`); secret key — секрет
 воркера `TURNSTILE_SECRET_KEY`. Живые формы scan+subscribe рендерят виджет и
 дают токен; воркер требует токен (без токена → 403). Порядок деплоя был:
-сайт-с-ключом → потом секрет воркера (иначе окно 403). **Долг:** LeadForm
-пока preview-only (в `/api/lead` не ходит); когда её подключат к A2-LEAD-API
-— добавить `<TurnstileWidget>`, иначе лид-сабмиты пойдут в 403.
+сайт-с-ключом → потом секрет воркера (иначе окно 403). **✅ Долг закрыт
+(D-172, 2026-08-14): LeadForm подключена к `/api/lead`**, `<TurnstileWidget>`
+добавлен — второй явный шаг «Send my request» после preview. Код на ветке
+`claude/accessatlas-continuation-48dzlw`, НЕ задеплоено — ждёт разрешения
+владельца на push в `accessatlas` (D-022).
 
 Мелкие хвосты (не блокируют): авто-ретенция/самоудаление подписок (RISKS.md
 R14, GDPR Art. 17 сейчас ручной).

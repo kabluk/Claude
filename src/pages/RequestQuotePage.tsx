@@ -1,6 +1,7 @@
-// RFQ landing page (A2-LEAD-FORM). Pure UI: the form validates client-side and
-// previews matching agencies from the already-bundled catalog, but does not
-// submit anywhere — POST /api/lead doesn't exist yet (A2-LEAD-API, INTERFACES.md §2).
+// RFQ landing page (A2-LEAD-FORM). The form validates client-side and previews
+// matching agencies from the already-bundled catalog (no network) — sending
+// the request to POST /api/lead (A2-LEAD-API) is a separate, explicit second
+// step ("Send my request") so the visitor sees who would receive it first.
 import { useSearchParams } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
 import { LeadForm } from '@/components/LeadForm'
@@ -21,17 +22,18 @@ export default function RequestQuotePage() {
     >
       <h1 className="h1">Request accessibility quotes</h1>
       <p className="lede">
-        One form, matched against the directory's verified agencies. This build previews matches
-        instantly from catalog data already on this page — it does not send your request to
-        agencies yet.
+        One form, matched against the directory's agencies. See who would match first — nothing
+        goes out until you choose to send it.
       </p>
 
       <div
         role="note"
         className="mt-4 max-w-2xl rounded-md border border-outline-variant bg-surface-container-low px-4 py-3 text-sm text-on-surface-variant"
       >
-        <strong>Nothing is sent when you submit this form.</strong> Live request routing to
-        agencies (email, tracking, responses) isn't connected on this build. Until then, use the{' '}
+        <strong>Two steps, no surprises.</strong> "Preview matching agencies" only reads the
+        catalog already on this page — nothing is sent. Only "Send my request", after you've seen
+        the matches, submits your request. We currently notify agencies that have claimed and
+        verified their listing; others may not respond. You can always use the{' '}
         <a className="underline underline-offset-2" href={paths.contact()}>
           contact email
         </a>{' '}

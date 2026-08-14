@@ -165,6 +165,23 @@ const INTERACT = {
     await page.click('[data-a11y-demo-listbox] button[aria-haspopup="listbox"]')
     await page.waitForSelector('[role="listbox"]', { state: 'visible' })
   },
+  // A2-LEAD-FORM: static HTML holds only the empty form — the preview grid
+  // (AgencyCard matches, unclaimed note, "Send my request" button, the
+  // invisible-until-execute Turnstile widget) exists only after "Preview
+  // matching agencies" is clicked (LeadForm.tsx). getByLabel, not #id: the
+  // fields' ids come from useId() and aren't stable selectors across builds.
+  // Post-send states (sent/send-failed, which need a mocked POST /api/lead)
+  // are audited separately below (LEAD_SEND_STATES) — this pass only covers
+  // the un-sent preview, same rubric as the INTERACT map everywhere else.
+  '/request-quote/': async (page) => {
+    await page.getByLabel('Country').selectOption('DE')
+    await page.getByLabel('Standard you need to meet').selectOption('wcag-2-2')
+    await page.getByLabel('Service').selectOption('audit')
+    await page.getByLabel('Budget').selectOption('budget')
+    await page.getByLabel('Contact email').fill('audit-fixture@example.com')
+    await page.getByRole('button', { name: 'Preview matching agencies' }).click()
+    await page.getByRole('heading', { name: 'Agencies that would match' }).waitFor({ state: 'visible' })
+  },
 }
 
 const MIME = { '.html': 'text/html', '.css': 'text/css', '.js': 'application/javascript', '.json': 'application/json', '.svg': 'image/svg+xml', '.woff2': 'font/woff2', '.png': 'image/png' }
@@ -660,6 +677,51 @@ try {
     )
     results.push({ route: label, violations: axeResults.violations })
     await page.unroute(glob)
+  }
+
+  // A2-LEAD-API подключение (2026-08-14, domains/product.md «Lead Marketplace»):
+  // "Send my request" — реальный POST /api/lead, состояние существует только
+  // после клика (LeadForm.tsx stage 'sent'/'send-failed'). Мокаем ответ точной
+  // формой контракта (worker/routes/lead.js: 201 {leadId, matched} · 4xx),
+  // аудит НИКОГДА не бьёт в живой воркер. Preview-состояние (до отправки) уже
+  // покрыто через INTERACT['/request-quote/'] выше — здесь только пост-send.
+  // matched-слаги — реальные агентства, уже в SAMPLE_ROUTES выше.
+  const LEAD_SEND_STATES = [
+    {
+      label: '/request-quote/ (sent)',
+      status: 201,
+      body: { leadId: 'fixture-lead-id', matched: ['deque-systems', 'tpgi'] },
+      ready: /Request sent/,
+    },
+    {
+      label: '/request-quote/ (send failed)',
+      status: 429,
+      body: { error: 'rate limit exceeded', code: 'rate_limited' },
+      ready: /Too many requests/,
+    },
+  ]
+  for (const { label, status, body, ready } of LEAD_SEND_STATES) {
+    await page.route('**/api/lead', (r) =>
+      r.fulfill({ status, contentType: 'application/json', body: JSON.stringify(body) }),
+    )
+    await page.goto(`${base}/request-quote/`, { waitUntil: 'load' })
+    await page.getByLabel('Country').selectOption('DE')
+    await page.getByLabel('Standard you need to meet').selectOption('wcag-2-2')
+    await page.getByLabel('Service').selectOption('audit')
+    await page.getByLabel('Budget').selectOption('budget')
+    await page.getByLabel('Contact email').fill('audit-fixture@example.com')
+    await page.getByRole('button', { name: 'Preview matching agencies' }).click()
+    await page.getByRole('button', { name: 'Send my request' }).click()
+    // Wait for the state's own distinctive copy, not a timeout: the request is
+    // mocked but still async, and racing axe against it would silently audit
+    // the pre-response "Sending…" view instead of the sent/failed state.
+    await page.getByText(ready).first().waitFor({ timeout: 15000 })
+    await page.addScriptTag({ content: AXE_SOURCE })
+    const axeResults = await page.evaluate(
+      async () => await window.axe.run(document, { rules: { 'target-size': { enabled: true } } }),
+    )
+    results.push({ route: label, violations: axeResults.violations })
+    await page.unroute('**/api/lead')
   }
 } finally {
   await browser.close()
