@@ -1,0 +1,65 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { loadCopy, loadCities, TRADES, tradePermits } from '../../../lib/data.mjs';
+
+export function getStaticPaths() {
+  return TRADES.map((trade) => ({ params: { trade: trade.slug }, props: { trade } }));
+}
+
+const { trade } = Astro.props;
+const copy = loadCopy();
+const cities = loadCities();
+const tradeCopy = copy.trades[trade.slug] || {};
+const rows = cities
+  .map((c) => ({ city: c, count: tradePermits(c, trade.slug).length }))
+  .filter((r) => r.count > 0)
+  .sort((a, b) => b.count - a.count);
+const total = rows.reduce((n, r) => n + r.count, 0);
+---
+
+<Base
+  title={`${trade.name} Leads from Building Permits`}
+  description={`${tradeCopy.blurb || ''} Live ${trade.leadLabel} volume across ${rows.length} US cities.`}
+>
+  <div class="wrap"><p class="crumbs"><a href="/">Home</a> › <a href="/leads/">Trades</a> › {trade.name}</p></div>
+
+  <section style="padding-top:20px">
+    <div class="wrap">
+      <h1 class="sec" style="font-size:32px">{trade.name} leads from building permits</h1>
+      <p class="sec-sub">{tradeCopy.blurb}</p>
+      <div class="hero-stats" style="margin:0">
+        <div class="stat"><b>{total.toLocaleString('en-US')}</b><span>{trade.pluralLabel} · last 90 days</span></div>
+        <div class="stat"><b>{rows.length}</b><span>cities with activity</span></div>
+        {tradeCopy.avgTicket && <div class="stat"><b>{tradeCopy.avgTicket}</b><span>typical job value</span></div>}
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <h2 class="sec">{trade.name} permit volume by city</h2>
+      <div class="grid c3">
+        {rows.map(({ city, count }) => (
+          <a class="card link-card" href={count >= 3 ? `/leads/${trade.slug}/${city.city}/` : `/permits/${city.city}/`}>
+            <h3>{city.cityName}, {city.state}</h3>
+            <p>{count.toLocaleString('en-US')} {trade.pluralLabel} · 90 days</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="card" style="max-width:640px">
+        <h3>Get {trade.leadLabel} in your area</h3>
+        <p>Daily feed of new {trade.pluralLabel} with addresses and job values. Join the early-access list.</p>
+        <form class="waitlist" data-plan={`trade-${trade.slug}`} style="margin-top:14px">
+          <input type="email" required placeholder="Work email" aria-label="Work email" />
+          <button class="btn" type="submit">Join the waitlist</button>
+          <span class="done">You're on the list — we'll be in touch.</span>
+        </form>
+      </div>
+    </div>
+  </section>
+</Base>

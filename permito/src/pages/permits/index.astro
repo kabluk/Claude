@@ -1,0 +1,37 @@
+---
+import Base from '../../layouts/Base.astro';
+import { loadCities, cityStats, fmtMoney, fmtDate } from '../../lib/data.mjs';
+
+const cities = loadCities();
+const rows = cities.map((c) => ({ city: c, s: cityStats(c) }));
+---
+
+<Base
+  title="Building Permits by City — Live Records & Stats"
+  description="Browse recent building permits across major US cities: counts, construction value, top contractors, and trade breakdowns from official open-data sources."
+>
+  <section>
+    <div class="wrap">
+      <h1 class="sec" style="font-size:32px">Building permits by city</h1>
+      <p class="sec-sub">Normalized permit records from official city open-data portals, refreshed from source snapshots.</p>
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr><th>City</th><th class="num">Permits (90d)</th><th class="num">Last 30 days</th><th class="num">Reported value</th><th>Newest permit</th></tr>
+          </thead>
+          <tbody>
+            {rows.map(({ city, s }) => (
+              <tr>
+                <td><a href={`/permits/${city.city}/`}><b>{city.cityName}, {city.state}</b></a></td>
+                <td class="num">{s.total.toLocaleString('en-US')}</td>
+                <td class="num">{s.last30.toLocaleString('en-US')}</td>
+                <td class="num">{fmtMoney(s.totalValuation)}</td>
+                <td>{fmtDate(s.newestDate)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</Base>

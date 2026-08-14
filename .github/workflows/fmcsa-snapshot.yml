@@ -1,0 +1,56 @@
+name: FMCSA daily snapshot
+
+# Ежедневный снимок открытых данных FMCSA (data.transportation.gov).
+# Raw-файлы уходят в release-ассеты (тег fmcsa-YYYY-MM-DD), манифест и
+# сводка коммитятся в ветку — так исторический слой копится без сервера.
+
+on:
+  schedule:
+    - cron: '20 9 * * *' # 09:20 UTC ежедневно, до обновления датасетов США
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fmcsa-snapshot
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: claude/saas-mvp-concept-ranking-h0pji4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Take snapshot
+        run: node carrierradar/scripts/snapshot.mjs
+
+      - name: Summarize census
+        run: node carrierradar/scripts/summarize.mjs
+
+      - name: Upload raw files as release assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          DATE=$(date -u +%F)
+          TAG="fmcsa-$DATE"
+          gh release create "$TAG" --title "FMCSA snapshot $DATE" \
+            --notes "Automated daily snapshot of FMCSA open data (census, authority history, SMS census). Manifest with sha256 checksums is committed to carrierradar/data/manifests/$DATE.json." \
+            --target "${{ github.sha }}" || true
+          gh release upload "$TAG" carrierradar/data/raw/$DATE/*.gz --clobber
+
+      - name: Commit manifest and summary
+        run: |
+          DATE=$(date -u +%F)
+          git config user.name "fmcsa-snapshot-bot"
+          git config user.email "actions@github.com"
+          git add carrierradar/data/manifests/$DATE.json carrierradar/data/summaries/$DATE.json
+          git commit -m "FMCSA snapshot $DATE: manifest + census summary" || echo "nothing to commit"
+          git push

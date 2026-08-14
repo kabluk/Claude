@@ -5,7 +5,9 @@ import type { StaysData } from '@data/types'
 // Национальный контекст из detention stays (Deportation Data Project):
 // медиана длительности + доля выдворений. Только агрегатные числа, честно,
 // без ложной надежды и без продвижения залога/parole.
-const META = (stays as StaysData).meta
+// tsc выводит вложенные массивы JSON как (string | number)[][], а не как
+// кортеж [string, number][] — каст через unknown, данные в рантайме верны.
+const META = (stays as unknown as StaysData).meta
 
 export function NationalStats({ ui }: { ui: UIStrings }) {
   const removed = META.leave.find(([k]) => k === 'Removed')?.[1]
