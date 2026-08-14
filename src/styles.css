@@ -333,13 +333,20 @@ body {
   /* Поля форм CN-BRANDBOOK-V2: 0.5rem (rounded-lg), как кнопки — не pill;
      фокус — глобальное кольцо :focus-visible (не подавляется) + смена цвета
      рамки для mouse-фокуса. Плейсхолдер — on-surface-variant (8.9:1 на
-     surface), НЕ outline-variant (1.6:1, провал AA). */
+     surface), НЕ outline-variant (1.6:1, провал AA). disabled:opacity-100 +
+     disabled:text-on-surface-variant (D-171) по той же причине: UA-стиль
+     Chromium сам приглушает disabled-поле через opacity ~0.7, роняя контраст
+     ниже AA непредсказуемо — так собственный аудит поймал disabled-select
+     "Loading voices…" на /checkers/text-to-speech/ (флап от гонки
+     speechSynthesis.getVoices()/voiceschanged, не от разметки). Явный токен
+     вместо UA-затемнения убирает саму возможность провала, а не гоняется за
+     таймингом гонки. */
   .input {
-    @apply rounded-lg border border-outline bg-surface px-4 py-2 text-sm text-on-surface placeholder:text-on-surface-variant focus:border-primary;
+    @apply rounded-lg border border-outline bg-surface px-4 py-2 text-sm text-on-surface placeholder:text-on-surface-variant focus:border-primary disabled:opacity-100 disabled:text-on-surface-variant;
   }
   /* Многострочные поля — тот же радиус, что у остальных полей. */
   .input-area {
-    @apply rounded-lg border border-outline bg-surface px-4 py-2 text-sm text-on-surface placeholder:text-on-surface-variant focus:border-primary;
+    @apply rounded-lg border border-outline bg-surface px-4 py-2 text-sm text-on-surface placeholder:text-on-surface-variant focus:border-primary disabled:opacity-100 disabled:text-on-surface-variant;
   }
 
   /* Типографика тела гайдов (markdown → HTML без typography-плагина) */

@@ -448,6 +448,32 @@ const launchOptions = existsSync(PREINSTALLED_CHROMIUM) ? { executablePath: PREI
 const browser = await chromium.launch(launchOptions)
 try {
   const page = await browser.newPage()
+  // D-171: стаб Turnstile для этого прогона — аудит проверяет доступность
+  // разметки, а не реальный анти-бот раунд-трип к Cloudflare. dist/ здесь
+  // собран с настоящим VITE_TURNSTILE_SITE_KEY (тем же, что в проде — см.
+  // deploy.yml), поэтому TurnstileWidget рендерит по-настоящему; в headless
+  // Chromium это либо зависает (Turnstile сам распознаёт автоматизированный
+  // браузер), либо зависит от сети до challenges.cloudflare.com — оба сценария
+  // чужеродны для a11y-гейта и не то, что он проверяет. Стаб определяет
+  // window.turnstile ДО того, как TurnstileWidget попытается догрузить
+  // настоящий скрипт (loadTurnstileScript коротко замыкается, если
+  // window.turnstile уже есть), и резолвит execute() синхронно тем же
+  // callback-контрактом, что ждёт настоящий виджет.
+  await page.addInitScript(() => {
+    const widgets = new Map()
+    let nextId = 0
+    window.turnstile = {
+      render: (_el, opts) => {
+        const id = String(nextId++)
+        widgets.set(id, opts)
+        return id
+      },
+      remove: (id) => widgets.delete(id),
+      execute: (id) => {
+        widgets.get(id)?.callback('audit-fixture-turnstile-token')
+      },
+    }
+  })
   // D-073 (реверс части CN-BRANDBOOK/D-072 по прямому указанию владельца,
   // 2026-08-08): тёмной темы больше нет — сайт всегда рендерит светлые
   // значения токенов, поэтому второй проход с emulateMedia({colorScheme:

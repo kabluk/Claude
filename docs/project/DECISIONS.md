@@ -3,6 +3,55 @@
 Формат: ID | дата | решение | причина | последствия. Новые решения добавлять сверху.
 Статусы: `accepted` (принято), `proposed` (ждёт подтверждения владельца).
 
+## D-171 · 2026-08-14 · accepted
+**CI-регрессия от D-169, найдена сразу при первой попытке деплоя** (владелец
+сказал «Сейчас» — запушил `cc5191b` на `accessatlas`, деплой упал на шаге
+`npm run audit-a11y`: `locator.waitFor: Timeout 5000ms exceeded` на
+`getByText('One more step')`, `scripts/audit-own-a11y.mjs:610`. Прод НЕ
+затронут — шаг `Deploy to Cloudflare Pages` корректно пропущен CI, verscala.com
+остался на `b70a70c` (состояние D-168) всё время инцидента.
+
+**Причина подтверждена, не угадана:** `deploy.yml` собирает `dist/` для этого
+же аудита с настоящим `VITE_TURNSTILE_SITE_KEY` (тем же, что в проде) — значит
+`TurnstileWidget` (D-169, `appearance:'execute'`) реально пытается догрузить
+`challenges.cloudflare.com/turnstile/v0/api.js` и пройти раунд-трип в headless
+Chromium CI-раннера. `SubscribeForm.tsx`'s `handleSubmit` теперь `await`ит
+`turnstileRef.current?.execute()` ДО вызова `submitSubscription()` — колбэк
+Turnstile так и не срабатывает в этом контексте (managed-режим Cloudflare
+специально распознаёт автоматизированные браузеры), промис никогда не
+резолвится/отклоняется, `/api/subscribe` не вызывается, панель успеха
+«One more step» не появляется — `waitFor` истекает необработанным исключением.
+
+**Фикс — стаб `window.turnstile` в самом аудите** (`page.addInitScript`,
+`scripts/audit-own-a11y.mjs`), определяется ДО того, как `loadTurnstileScript()`
+успевает догрузить настоящий скрипт (та функция сама коротко замыкается, если
+`window.turnstile` уже есть) — `execute()` стаба синхронно вызывает тот же
+`callback(token)`, что ждёт настоящий виджет. Тот же принцип, что уже
+применялся к `POST /api/subscribe` (мок вместо живого воркера): аудит проверяет
+доступность разметки, а не настоящий анти-бот раунд-трип к Cloudflare —
+последний тут посторонний и недетерминированный по своей природе.
+
+**Побочная находка при повторных прогонах фикса (флап, НЕ связанный с
+Turnstile):** 1 из 3 прогонов `audit-a11y` без стаба репортил `serious
+color-contrast` на `/checkers/text-to-speech/`; `TextToSpeech.tsx` в этой
+сессии не менялся — гонка `speechSynthesis.getVoices()`/`voiceschanged`
+(Web Speech API в headless Chromium иногда отдаёт пустой список синхронно),
+из-за которой `<select disabled>` «Loading voices…» иногда попадает под
+axe в момент, когда voices ещё не загружены. UA-стиль Chromium сам приглушает
+`:disabled`-поля через `opacity` ~0.7 — наши `.input`/`.input-area` не
+переопределяли это, так что контраст disabled-состояния был не гарантирован,
+а зависел от таймингов рендера. Фикс — `disabled:opacity-100
+disabled:text-on-surface-variant` на `.input`/`.input-area` (`src/styles.css`):
+явный AA-совместимый токен вместо UA-затемнения убирает саму возможность
+провала, а не гоняется за конкретной гонкой. Подтверждено 3 чистых прогона
+подряд после фикса (было: 1 из 3 падал).
+
+**Живая проверка перед повторным пушем:** полный локальный набор ворот CI —
+`typecheck`, `src:test` (140), `scripts:test` (48), `worker:test` (522),
+`build` (те же `VITE_SCANNER_API`/`VITE_TURNSTILE_SITE_KEY`, что в
+`deploy.yml`), `check-links` (868 ссылок, 0 битых), `audit-a11y` ×3 подряд
+(68 страниц, 0 нарушений каждый раз) — все зелёные до пуша.
+
 ## D-168 · 2026-08-13 · accepted (код готов, НЕ задеплоен)
 **D-167 не долечил всё — второй, НЕСВЯЗАННЫЙ CSS-оверфлоу найден после деплоя,
 живой проверкой на реальном контенте прода.** Владелец попросил «проверь на
