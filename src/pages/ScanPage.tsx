@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
-import { TurnstileWidget } from '@/components/TurnstileWidget'
+import { TurnstileWidget, type TurnstileHandle } from '@/components/TurnstileWidget'
 import { useScanForm } from '@/components/ScanForm'
 import { JURISDICTION_OPTIONS } from '@/lib/jurisdictions'
 import { paths } from '@/lib/data'
@@ -13,7 +13,7 @@ export default function ScanPage() {
   // '' = определить по домену (поведение до D-032, остаётся по умолчанию —
   // не заставляем выбирать страну ради простого скана).
   const [countryCode, setCountryCode] = useState('')
-  const [turnstileToken, setTurnstileToken] = useState<string | undefined>()
+  const turnstileRef = useRef<TurnstileHandle>(null)
 
   // D-041: `?country=DE` предвыбирает юрисдикцию — так работает ссылка с
   // немецкого входного пути (/bfsg-check/), где страна уже известна и повторно
@@ -32,8 +32,17 @@ export default function ScanPage() {
     if (raw && JURISDICTION_OPTIONS.some((j) => j.code === raw)) setCountryCode(raw)
   }, [searchParams])
 
-  function handleSubmit(e: React.FormEvent) {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+    // D-169: execute() запускает невидимую проверку ровно в момент сабмита —
+    // провал/незагруженный виджет не блокирует отправку, сервер сам решает,
+    // обязателен ли токен.
+    let turnstileToken: string | undefined
+    try {
+      turnstileToken = await turnstileRef.current?.execute()
+    } catch {
+      turnstileToken = undefined
+    }
     void submit({ turnstileToken, ...(countryCode ? { countryCode } : {}) })
   }
 
@@ -109,7 +118,7 @@ export default function ScanPage() {
         </div>
 
         <div className="mt-4">
-          <TurnstileWidget onToken={setTurnstileToken} />
+          <TurnstileWidget ref={turnstileRef} />
         </div>
       </form>
 

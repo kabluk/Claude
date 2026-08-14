@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import { useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
 import { JsonLd, ORIGIN, SITE_NAME } from '@/lib/seo'
 import { useScanForm } from '@/components/ScanForm'
-import { TurnstileWidget } from '@/components/TurnstileWidget'
+import { TurnstileWidget, type TurnstileHandle } from '@/components/TurnstileWidget'
 import {
   SERVICES,
   STANDARDS,
@@ -93,7 +93,7 @@ export default function HomePage() {
   // разметка. Никаких выдуманных счётчиков («sites scanned today» показывать
   // нечем — реального агрегата в D1 у статической главной нет, D-063).
   const { url, setUrl, state, submit } = useScanForm()
-  const [turnstileToken, setTurnstileToken] = useState<string | undefined>()
+  const turnstileRef = useRef<TurnstileHandle>(null)
 
   // CN-BRANDBOOK-V2 bento (§6 задачи): top-N стран по числу агентств.
   // `countries` уже отсортирован по count убывания (src/lib/data.ts), поэтому
@@ -171,7 +171,19 @@ export default function HomePage() {
           <form
             onSubmit={(e) => {
               e.preventDefault()
-              void submit({ turnstileToken })
+              void (async () => {
+                // D-169: execute() запускает невидимую проверку ровно в момент
+                // сабмита. Провал/незагруженный виджет не блокирует отправку —
+                // сервер сам решает, обязателен ли токен (та же деградация,
+                // что была при eager-рендере).
+                let turnstileToken: string | undefined
+                try {
+                  turnstileToken = await turnstileRef.current?.execute()
+                } catch {
+                  turnstileToken = undefined
+                }
+                void submit({ turnstileToken })
+              })()
             }}
             className="mx-auto mt-6 max-w-xl"
             noValidate
@@ -220,7 +232,7 @@ export default function HomePage() {
                 Advanced options
               </Link>
             </p>
-            <TurnstileWidget onToken={setTurnstileToken} />
+            <TurnstileWidget ref={turnstileRef} />
           </form>
         </div>
 

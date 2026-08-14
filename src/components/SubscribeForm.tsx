@@ -17,7 +17,7 @@
 
 import { useEffect, useId, useRef, useState } from 'react'
 import { FormField } from './library/FormField'
-import { TurnstileWidget } from './TurnstileWidget'
+import { TurnstileWidget, type TurnstileHandle } from './TurnstileWidget'
 import {
   canMonitorUrl,
   subscribeErrorMessage,
@@ -51,7 +51,7 @@ export function SubscribeForm({ url, tone = 'plain' }: { url: string; tone?: 'pl
   // проверяет Turnstile ровно так же, как /api/scan, поэтому форма, которая
   // реально бьёт в API, обязана уметь отдать токен — иначе на проде с
   // настроенным секретом каждая подписка возвращала бы 403.
-  const [turnstileToken, setTurnstileToken] = useState('')
+  const turnstileRef = useRef<TurnstileHandle>(null)
   const formId = useId()
   const headingId = `${formId}-heading`
   const successRef = useRef<HTMLDivElement>(null)
@@ -85,6 +85,15 @@ export function SubscribeForm({ url, tone = 'plain' }: { url: string; tone?: 'pl
     }
     setEmailError(undefined)
     setStage({ kind: 'submitting' })
+    // D-169: execute() запускает невидимую проверку ровно в момент сабмита —
+    // провал/незагруженный виджет не блокирует отправку, сервер сам решает,
+    // обязателен ли токен.
+    let turnstileToken: string | undefined
+    try {
+      turnstileToken = await turnstileRef.current?.execute()
+    } catch {
+      turnstileToken = undefined
+    }
     const outcome = await submitSubscription({
       email: result.value.email,
       url: result.value.url,
@@ -167,7 +176,7 @@ export function SubscribeForm({ url, tone = 'plain' }: { url: string; tone?: 'pl
             </div>
 
             <div className="mt-4">
-              <TurnstileWidget onToken={setTurnstileToken} />
+              <TurnstileWidget ref={turnstileRef} />
             </div>
 
             <button
