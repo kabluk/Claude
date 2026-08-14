@@ -52,6 +52,16 @@ disabled:text-on-surface-variant` на `.input`/`.input-area` (`src/styles.css`)
 `deploy.yml`), `check-links` (868 ссылок, 0 битых), `audit-a11y` ×3 подряд
 (68 страниц, 0 нарушений каждый раз) — все зелёные до пуша.
 
+**ЗАДЕПЛОЕНО и подтверждено живьём** (run 31759335874, commit `52622b1`, все
+14 шагов success, `audit-a11y` и `Deploy to Cloudflare Pages` включительно):
+`curl https://verscala.com/accessibility-statement/` → «partially compliant»
+(D-170 живой); `assets/TurnstileWidget-*.js` реального прод-бандла содержит
+строку `execute` (D-169 живой, режим execute реально задеплоен, не только в
+коде ветки); статическая главная HTML не содержит `cf-turnstile`/
+`challenges.cloudflare.com` — согласуется с execute-режимом (виджет не
+рендерит iframe до сабмита). D-167/D-168 (CSS-оверфлоу) остаются live с
+предыдущего деплоя, не затронуты этим пушем.
+
 ## D-168 · 2026-08-13 · accepted (код готов, НЕ задеплоен)
 **D-167 не долечил всё — второй, НЕСВЯЗАННЫЙ CSS-оверфлоу найден после деплоя,
 живой проверкой на реальном контенте прода.** Владелец попросил «проверь на
