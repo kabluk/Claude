@@ -29,24 +29,39 @@ jobs:
         with:
           node-version: 22
 
+      # snapshot.mjs ретраит сетевые сбои сам и падает (exit 1) только если
+      # ВСЕ источники недоступны — иначе продолжает, чтобы частичный успех
+      # не пропадал зря. continue-on-error здесь — подстраховка на этот
+      # крайний случай: даже тогда хотим закоммитить манифест с ошибками.
       - name: Take snapshot
+        continue-on-error: true
         run: node carrierradar/scripts/snapshot.mjs
 
       - name: Summarize census
+        if: always()
+        continue-on-error: true
         run: node carrierradar/scripts/summarize.mjs
 
       - name: Upload raw files as release assets
+        if: always()
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           DATE=$(date -u +%F)
           TAG="fmcsa-$DATE"
+          shopt -s nullglob
+          FILES=(carrierradar/data/raw/$DATE/*.gz)
+          if [ ${#FILES[@]} -eq 0 ]; then
+            echo "Нет скачанных файлов — пропускаем публикацию релиза."
+            exit 0
+          fi
           gh release create "$TAG" --title "FMCSA snapshot $DATE" \
             --notes "Automated daily snapshot of FMCSA open data (census, authority history, SMS census). Manifest with sha256 checksums is committed to carrierradar/data/manifests/$DATE.json." \
             --target "${{ github.sha }}" || true
-          gh release upload "$TAG" carrierradar/data/raw/$DATE/*.gz --clobber
+          gh release upload "$TAG" "${FILES[@]}" --clobber
 
       - name: Commit manifest and summary
+        if: always()
         run: |
           DATE=$(date -u +%F)
           git config user.name "fmcsa-snapshot-bot"
@@ -54,3 +69,20 @@ jobs:
           git add carrierradar/data/manifests/$DATE.json carrierradar/data/summaries/$DATE.json
           git commit -m "FMCSA snapshot $DATE: manifest + census summary" || echo "nothing to commit"
           git push
+
+      - name: Fail the run if every source errored
+        if: always()
+        run: |
+          DATE=$(date -u +%F)
+          MANIFEST="carrierradar/data/manifests/$DATE.json"
+          if [ -f "$MANIFEST" ]; then
+            node -e "
+              const m = require('./$MANIFEST');
+              const failed = m.sources.filter(s => s.error).length;
+              if (failed > 0 && failed === m.sources.length) {
+                console.error(\`Все \${failed} источник(ов) не удалось скачать.\`);
+                process.exit(1);
+              }
+              if (failed > 0) console.log(\`Частичный успех: \${failed}/\${m.sources.length} источник(ов) не удалось скачать — см. манифест.\`);
+            "
+          fi
