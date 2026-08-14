@@ -83,7 +83,7 @@ export default function AccessibilityStatementPage() {
 
         <h2>Conformity status</h2>
         <p>
-          <strong>Self-assessed, partially conformant.</strong> This status comes from automated
+          <strong>Self-assessed, partially compliant.</strong> This status comes from automated
           testing we run on our own site, not from an external audit — Anlage 3 accepts
           self-assessment as one of two valid methods, alongside third-party testing, and we name
           which one this is.
