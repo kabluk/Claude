@@ -1,0 +1,291 @@
+<title>Реестр или каталог</title>
+<style>
+  :root {
+    --paper:      #F4F2EC;
+    --surface:    #FFFFFF;
+    --surface-2:  #ECE7DA;
+    --ink:        #1C1810;
+    --ink-2:      #55503F;
+    --ink-3:      #857E68;
+    --accent:     #9A6A12;
+    --accent-ink: #7A5209;
+    --accent-bg:  #F3E6C9;
+    --good:       #2C6A4B;
+    --good-bg:    #E1EFE7;
+    --risk:       #A3392C;
+    --risk-bg:    #F7E4E0;
+    --watch:      #6B5B12;
+    --watch-bg:   #F2ECD3;
+    --line:       #DED7C2;
+    --line-soft:  #EBE6D8;
+    --serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:#161310; --surface:#1E1A15; --surface-2:#28221A;
+      --ink:#EDE7D8; --ink-2:#B7AE97; --ink-3:#867C64;
+      --accent:#D9A94E; --accent-ink:#EEC375; --accent-bg:#332711;
+      --good:#63BF92; --good-bg:#16291F; --risk:#E3796C; --risk-bg:#2E1917;
+      --watch:#D9C25E; --watch-bg:#2E2810;
+      --line:#332C21; --line-soft:#241F18;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:#161310; --surface:#1E1A15; --surface-2:#28221A;
+    --ink:#EDE7D8; --ink-2:#B7AE97; --ink-3:#867C64;
+    --accent:#D9A94E; --accent-ink:#EEC375; --accent-bg:#332711;
+    --good:#63BF92; --good-bg:#16291F; --risk:#E3796C; --risk-bg:#2E1917;
+    --watch:#D9C25E; --watch-bg:#2E2810;
+    --line:#332C21; --line-soft:#241F18;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:16.5px; line-height:1.62; -webkit-font-smoothing:antialiased; }
+  .page { max-width:1120px; margin:0 auto; padding:0 24px 96px; }
+  .masthead { border-bottom:2px solid var(--ink); padding:56px 0 22px; margin-bottom:44px; display:flex; flex-direction:column; gap:14px; }
+  .eyebrow { font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); display:flex; flex-wrap:wrap; gap:8px 18px; }
+  .masthead h1 { font-family:var(--serif); font-weight:600; font-size:clamp(34px,5.4vw,54px); line-height:1.06; letter-spacing:-.015em; margin:0; text-wrap:balance; }
+  .standfirst { font-family:var(--serif); font-size:clamp(17px,2.2vw,20px); line-height:1.5; color:var(--ink-2); max-width:66ch; margin:0; }
+  section { margin-bottom:60px; scroll-margin-top:24px; }
+  .sec-head { display:flex; gap:14px; align-items:baseline; border-bottom:1px solid var(--line); padding-bottom:10px; margin-bottom:22px; }
+  .sec-num { font-family:var(--mono); font-size:13px; color:var(--accent-ink); font-weight:600; flex:none; }
+  .sec-head h2 { font-family:var(--serif); font-weight:600; font-size:clamp(22px,3vw,29px); letter-spacing:-.012em; margin:0; text-wrap:balance; }
+  p { max-width:72ch; }
+  p.lede { font-size:17.5px; color:var(--ink-2); }
+  strong { font-weight:650; }
+  .rule {
+    background:var(--surface); border:1px solid var(--line); border-radius:6px;
+    padding:26px 28px; margin:24px 0; display:flex; flex-direction:column; gap:14px;
+  }
+  .rule .label { font-family:var(--mono); font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-ink); }
+  .rule .statement { font-family:var(--serif); font-size:21px; line-height:1.4; margin:0; max-width:66ch; }
+  .rule .statement b { color:var(--accent-ink); }
+  .split { display:grid; gap:16px; grid-template-columns:1fr 1fr; margin-top:6px; }
+  .split .box { border-radius:5px; padding:14px 16px; font-size:14.5px; }
+  .split .dies { background:var(--risk-bg); color:var(--risk); }
+  .split .lives { background:var(--good-bg); color:var(--good); }
+  .split .box b { display:block; font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; margin-bottom:4px; }
+  @media (max-width:640px){ .split{grid-template-columns:1fr;} }
+  .callout { background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:4px; padding:18px 22px; margin:22px 0; }
+  .callout h4 { margin:0 0 6px; font-size:12px; font-family:var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); }
+  .callout p { margin:0; max-width:76ch; }
+  .callout p + p { margin-top:10px; }
+  .tbl-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:4px; background:var(--surface); margin:20px 0; }
+  table { border-collapse:collapse; width:100%; font-size:14.5px; min-width:640px; }
+  th, td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--line-soft); vertical-align:top; }
+  thead th { font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); background:var(--surface-2); border-bottom:1px solid var(--line); white-space:nowrap; }
+  tbody tr:last-child td { border-bottom:0; }
+  td.num, th.num { text-align:right; font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .chip { display:inline-block; font-family:var(--mono); font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; padding:3px 8px; border-radius:3px; background:var(--surface-2); color:var(--ink-2); white-space:nowrap; }
+  .chip.build { background:var(--good-bg); color:var(--good); }
+  .chip.watch { background:var(--watch-bg); color:var(--watch); }
+  .chip.skip { background:var(--risk-bg); color:var(--risk); }
+  .kicker { font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin:26px 0 10px; }
+  ul.tight { max-width:74ch; padding-left:20px; }
+  ul.tight li { margin-bottom:7px; }
+  .rank-list { display:flex; flex-direction:column; gap:14px; margin:20px 0; counter-reset:rank; }
+  .rank { border:1px solid var(--line); border-radius:6px; background:var(--surface); padding:18px 22px; display:flex; gap:16px; align-items:flex-start; }
+  .rank .no { font-family:var(--serif); font-size:26px; font-weight:600; color:var(--accent-ink); min-width:34px; }
+  .rank .body h3 { font-family:var(--serif); font-size:19px; margin:0 0 4px; font-weight:600; }
+  .rank .body p { margin:0; font-size:14.5px; color:var(--ink-2); }
+  .rank .meta { font-family:var(--mono); font-size:12px; color:var(--ink-3); margin-top:6px; }
+  .footnote { font-size:13.5px; color:var(--ink-3); border-top:1px solid var(--line); padding-top:18px; margin-top:44px; }
+  .footnote p { max-width:80ch; }
+  a { color:var(--accent-ink); }
+  :focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <div class="eyebrow">
+      <span>Раунд 2 · метод niche-finder</span>
+      <span>DataForSEO · 6 выгрузок · 24 живые проверки выдачи</span>
+      <span>14 августа 2026</span>
+    </div>
+    <h1>Реестр или каталог</h1>
+    <p class="standfirst">
+      36 новых кандидатов из вертикалей, которых мы ещё не касались: кибербезопасность-комплаенс,
+      экология, качество производства, торговля, право, инспекции. Взяли методику параллельной
+      сессии (взвешенная оценка + обязательная живая проверка «нет каталога в топ-10») и прогнали
+      её на нашем ключе DataForSEO. Результат резче, чем ожидалось.
+    </p>
+  </header>
+
+  <!-- 1 -->
+  <section id="rule">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Правило, которое всё объясняет</h2></div>
+    <p class="lede">
+      Из 36 отсеянных кандидатов первого прохода мы живьём проверили 24 самых денежных
+      по составному баллу (объём × CPC). <strong>Все 24 убиты одной и той же причиной</strong> —
+      но причина не «конкуренция высокая», а куда более систематичная.
+    </p>
+    <div class="rule">
+      <span class="label">Общий знаменатель 24 отказов</span>
+      <p class="statement">
+        Ниша живёт, если регулятор публикует <b>сырые данные</b> и останавливается.
+        Ниша мертва, если регулятор (или орган по аккредитации, которому он делегировал контроль)
+        сам публикует <b>готовый каталог квалифицированных поставщиков</b> — потому что обойти
+        по доверию источник, который сам и раздаёт квалификацию, невозможно.
+      </p>
+      <div class="split">
+        <div class="box dies">
+          <b>Умирает</b>
+          ISO 27001/9001 → IAF/ANAB. PCI QSA → PCI SSC. CMMC → Cyber-AB Marketplace.
+          HITRUST → HITRUST Alliance. FedRAMP → fedramp.gov. OSHA-тренеры → osha.gov.
+          Асбест/свинец → EPA + реестры 50 штатов. NAID → i-SIGMA. LEED → GBCI.
+        </div>
+        <div class="box lives">
+          <b>Выживает</b>
+          FMCSA публикует регистрацию перевозчика, но не «каталог надёжных» — отсюда
+          CarrierRadar. EAA/WCAG не имеет органа аккредитации «кто вправе аудировать
+          доступность» — отсюда каталог доступности в параллельной ветке.
+        </div>
+      </div>
+    </div>
+    <p>
+      Это переформулирует чек-лист «отклонить немедленно» из методики niche-finder: пункт
+      «дублирует существующий каталог» на практике почти всегда сводится к одному вопросу —
+      <strong>есть ли у ниши единый аккредитующий орган?</strong> Если да — у него уже есть
+      или скоро будет официальный локатор, и вопрос закрыт до всякого SEO-анализа.
+    </p>
+  </section>
+
+  <!-- 2 -->
+  <section id="screen">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Скрининг: 36 ниш, 6 вертикалей</h2></div>
+    <p class="lede">
+      Шесть выгрузок DataForSEO (США, ~210 ключей, $0.54) по секторам из методики niche-finder:
+      Cybersecurity, Compliance, Construction, Manufacturing, Logistics, Legal, Healthcare,
+      Vertical SaaS. Топ-14 по составному баллу (объём × CPC) ушли на живую проверку выдачи.
+    </p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Ниша</th><th class="num">SV</th><th class="num">wCPC</th><th>Живая проверка нашла</th><th>Вердикт</th></tr></thead>
+        <tbody>
+          <tr><td>Инспекции плесени/асбеста/свинца</td><td class="num">61 020</td><td class="num">$21.06</td><td>Yelp/Thumbtack (плесень) + AbatementFinder.com (асбест) + EPA/реестры 50 штатов (свинец)</td><td><span class="chip skip">skip</span></td></tr>
+          <tr><td>SOC 1/2 аудиторы</td><td class="num">2 750</td><td class="num">$149.81</td><td>5 существующих каталогов: AuditXYZ (600+ фирм), soc2auditors.io (293), Drata, soc2certification.com</td><td><span class="chip skip">skip</span></td></tr>
+          <tr><td>1031-биржа, квалифиц. посредники</td><td class="num">15 040</td><td class="num">$24.33</td><td>4 существующих каталога + официальный локатор FEA (отраслевая ассоциация)</td><td><span class="chip skip">skip</span></td></tr>
+          <tr><td>Землемеры (land surveyors)</td><td class="num">57 600</td><td class="num">$4.95</td><td>«near me»-интент, Comp 25 — локальный пак</td><td><span class="chip skip">skip</span></td></tr>
+          <tr><td>ISO 27001 органы сертификации</td><td class="num">1 060</td><td class="num">$227.95</td><td>Официальный реестр IAF + 2 готовых каталога-стартапа (AuditOne, certbetter.com)</td><td><span class="chip skip">skip</span></td></tr>
+          <tr><td>Структурные инженеры (PE)</td><td class="num">18 170</td><td class="num">$13.10</td><td>«near me»-интент, Comp 67 — локальный пак + советы штатов</td><td><span class="chip skip">skip</span></td></tr>
+          <tr><td>ISO 9001 органы сертификации</td><td class="num">2 990</td><td class="num">$54.86</td><td>Официальный ANAB/IAS + те же 2 каталога-стартапа</td><td><span class="chip skip">skip</span></td></tr>
+          <tr><td>HIPAA compliance-консультанты</td><td class="num">540</td><td class="num">$276.17</td><td>Только джоб-борды и разрозненные сайты фирм — офиц. органа аккредитации нет</td><td><span class="chip watch">watch</span></td></tr>
+          <tr><td>CMMC / C3PAO</td><td class="num">1 140</td><td class="num">$71.98</td><td>Официальный Cyber-AB Marketplace — 250 аккредитованных C3PAO</td><td><span class="chip skip">skip</span></td></tr>
+          <tr><td>HITRUST-ассессоры</td><td class="num">1 350</td><td class="num">$49.42</td><td>Официальный локатор hitrustalliance.net</td><td><span class="chip skip">skip</span></td></tr>
+          <tr><td>PCI QSA</td><td class="num">1 070</td><td class="num">$36.50</td><td>Официальный реестр PCI SSC</td><td><span class="chip skip">skip</span></td></tr>
+          <tr><td>Морские сюрвейеры</td><td class="num">3 090</td><td class="num">$7.23</td><td>4 существующих каталога + 2 официальные ассоциации (NAMS, SAMS)</td><td><span class="chip skip">skip</span></td></tr>
+          <tr><td>Адвокаты по франчайзингу</td><td class="num">4 080</td><td class="num">$34.15</td><td>FindLaw / LawInfo / SuperLawyers — крупные юридические каталоги</td><td><span class="chip skip">skip</span></td></tr>
+          <tr><td>FedRAMP 3PAO</td><td class="num">260</td><td class="num">$49.01</td><td>Официальный FedRAMP Marketplace</td><td><span class="chip skip">skip</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="kicker">Второй раунд проверки — ещё 10 кандидатов, тот же результат</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Ниша</th><th>Живая проверка нашла</th><th>Вердикт</th></tr></thead>
+        <tbody>
+          <tr><td>AS9100 (аэрокосмич. качество)</td><td>ANAB + официальная база OASIS (IAQG)</td><td><span class="chip skip">skip</span></td></tr>
+          <tr><td>GSA schedule консультанты</td><td>ReqoData и gsaschedule.com уже держат каталоги</td><td><span class="chip skip">skip</span></td></tr>
+          <tr><td>Лифтовые инспекции</td><td>Реестры штатов (MN, IL) + ElevatorSource.com</td><td><span class="chip skip">skip</span></td></tr>
+          <tr><td>LEED-консультанты</td><td>Официальный GBCI + BDC Network directory</td><td><span class="chip skip">skip</span></td></tr>
+          <tr><td>Инспекторы свинцовой краски</td><td>EPA firm-search + реестры 4+ штатов</td><td><span class="chip skip">skip</span></td></tr>
+          <tr><td>Архивное хранение / уничтожение данных</td><td>Официальный directory.isigmaonline.org (NAID/i-SIGMA)</td><td><span class="chip skip">skip</span></td></tr>
+          <tr><td>OSHA-тренеры (аутрич)</td><td>Официальный osha.gov/training/outreach/find-a-trainer</td><td><span class="chip skip">skip</span></td></tr>
+          <tr><td>Коммерческие коллекторские агентства</td><td>BBB + CLLA (офиц. сертификатор) + 3 готовых каталога</td><td><span class="chip skip">skip</span></td></tr>
+          <tr><td>NetSuite implementation partners</td><td>Официальный Partner Directory от Oracle/NetSuite</td><td><span class="chip skip">skip</span></td></tr>
+          <tr><td>Контрактные производители / co-packers</td><td>ThomasNet доминирует с 1898 года</td><td><span class="chip skip">skip</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <h4>Мёртвые по объёму данных, не по SERP</h4>
+      <p>
+        Ещё одна волна кандидатов не дошла до проверки выдачи — спрос не созрел до измеримого:
+        консультанты по EU AI Act (0 SV в US, 0 SV в DE даже на «ai act berater»), CSRD/ESG-аудиторы
+        (0–50 SV), карбоновая верификация ISO 14064 (0), дефенсибл-спейс инспекторы против лесных
+        пожаров (0), сюрвейеры сертификатов возвышения FEMA (20–1 600, слишком тонко). Регуляторная
+        волна реальна, но покупатель пока не гуглит — решения идут через Big4 и отраслевые контакты,
+        не через поиск. Возможно, актуально в 2027–2028.
+      </p>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section id="ranking">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Итоговый рейтинг</h2></div>
+    <p class="lede">
+      Ноль чистых новых «строить немедленно» в этом раунде — и это тоже валидный результат
+      строгой методики (сама методика в среднем даёт ~1 финалиста на 50–80 кандидатов).
+      Рейтинг ниже сводит воедино то, что реально прошло проверку выдачи — из этого раунда
+      и из двух предыдущих циклов исследования в этом проекте.
+    </p>
+    <div class="rank-list">
+      <div class="rank">
+        <div class="no">1</div>
+        <div class="body">
+          <h3>Каталог доступности EAA/WCAG/ADA <span class="chip build">build</span></h3>
+          <p>Найдено параллельной сессией (ветка <code>niche-finder-directory-seo</code>), подтверждено 33 живыми проверками выдачи. Спрос ~45 000/мес по 8 рынкам, CPC до $86, нет единого аккредитующего органа «кто вправе аудировать доступность» — ровно та структурная причина, что убила 34 ниши в этом раунде. Уже на 80% построено: 254 агентства, 378 страниц, 12 гайдов.</p>
+          <div class="meta">SV ≈45 000/мес · CPC $4–86 · без офиц. локатора · готовность ~80%</div>
+        </div>
+      </div>
+      <div class="rank">
+        <div class="no">2</div>
+        <div class="body">
+          <h3>CarrierRadar — FMCSA carrier intelligence <span class="chip build">build</span></h3>
+          <p>Наш собственный вывод из предыдущего раунда. FMCSA публикует сырую регистрацию, но не «каталог надёжных перевозчиков» — институционально та же структура, что у доступности. Монетизация $53–97 за клик, окно модернизации MOTUS до конца 2026.</p>
+          <div class="meta">SV ≈40 000+/мес · CPC $5–97 · без офиц. локатора качества · готовность: два отчёта, кода нет</div>
+        </div>
+      </div>
+      <div class="rank">
+        <div class="no">3</div>
+        <div class="body">
+          <h3>HIPAA compliance-консультанты <span class="chip watch">watch</span></h3>
+          <p>Единственный выживший в этом раунде — но с оговоркой: объём крошечный (540/мес), выживает не из-за размера рынка, а из-за отсутствия аккредитующего органа (в отличие от SOC/ISO/HITRUST/PCI, HIPAA-аудит — нерегулируемая консультационная услуга). CPC $276–291 говорит о высоком LTV на клиента. Нужна отдельная проверка: достаточно ли глубок рынок для каталога, а не только для контент-сайта.</p>
+          <div class="meta">SV 540/мес · CPC $177–291 · без офиц. локатора · требует доп. валидации объёма</div>
+        </div>
+      </div>
+      <div class="rank">
+        <div class="no">4</div>
+        <div class="body">
+          <h3>Частный поиск подземных коммуникаций (не 811) <span class="chip watch">watch</span></h3>
+          <p>811 «Call Before You Dig» покрывает только публичную разметку по заявке; коммерческие застройщики отдельно нанимают приватных локаторов для непубличных линий на площадке — сегмент фрагментирован по штатам без национального агрегатора. Слабый сигнал по объёму (980 SV), нужна более глубокая проверка спроса перед ставкой.</p>
+          <div class="meta">SV 980/мес · CPC $6–19 · фрагментация вместо офиц. локатора · низкая уверенность</div>
+        </div>
+      </div>
+    </div>
+    <div class="callout">
+      <h4>Резерв на будущее, не на сейчас</h4>
+      <p>
+        EU AI Act / CSRD-консультанты структурно похожи на доступность (новая регуляторная волна,
+        пока без единого аккредитора), но спрос в поиске ещё не материализовался — 0 SV даже
+        в Германии. Стоит переизмерить через 12–18 месяцев по мере приближения дедлайнов
+        принуждения; слишком рано для ставки в 2026.
+      </p>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section id="verdict">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Что это значит для решения</h2></div>
+    <ul class="tight">
+      <li><strong>Рейтинг не изменился по существу</strong> — CarrierRadar и каталог доступности остаются двумя реальными кандидатами; широкий скрининг их не потеснил, а подтвердил структурным правилом «сырые данные vs готовый реестр».</li>
+      <li><strong>Каталог доступности впереди по готовности</strong> — 80% построено в соседней ветке против двух документов-исследований у CarrierRadar.</li>
+      <li><strong>HIPAA-консультанты — не самостоятельный MVP</strong>, но возможный второй вертикальный слой поверх каталога доступности (общая архитектура «B2B compliance каталог без аккредитора»), если объём подтвердится отдельным замером.</li>
+      <li>Ни один из 36 новых кандидатов не стал самостоятельной третьей ставкой — честный ноль лучше раздутого списка.</li>
+    </ul>
+  </section>
+
+  <div class="footnote">
+    <p>
+      Методика: адаптация <code>.claude/agents/niche-finder.md</code> из ветки
+      <code>claude/niche-finder-directory-seo-vj520j</code> (взвешенная оценка, обязательная
+      живая SERP-проверка, reject-правила). Источники объёма: DataForSEO Keywords Data API
+      (Google Ads, США/Германия), 6 выгрузок 14 августа 2026, суммарно $0.54, ~215 ключей.
+      Источники проверки выдачи: 30 запросов WebSearch 14 августа 2026 — все ссылки на
+      официальные реестры и существующие каталоги приведены внутри отчёта по тексту.
+    </p>
+  </div>
+
+</div>
