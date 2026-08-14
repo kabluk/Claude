@@ -6,7 +6,9 @@ import type { StaysData } from '@data/types'
 // прошлых данных (Deportation Data Project), не прогноз. Показываем только там,
 // где данных достаточно (см. minN в скрипте). Числа агрегатные, персональных
 // данных нет.
-const BY = (stays as StaysData).byCode
+// tsc выводит вложенные массивы JSON как (string | number)[][], а не как
+// кортеж [string, number][] — каст через unknown, данные в рантайме верны.
+const BY = (stays as unknown as StaysData).byCode
 
 export function FacilityStay({ code, ui }: { code: string; ui: UIStrings }) {
   const s = BY[code]
