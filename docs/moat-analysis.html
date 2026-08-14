@@ -1,0 +1,302 @@
+<title>Чем защититься от копии</title>
+<style>
+  :root {
+    --paper:      #F2F5F4;
+    --surface:    #FFFFFF;
+    --surface-2:  #E8EEEC;
+    --ink:        #101816;
+    --ink-2:      #45534F;
+    --ink-3:      #76847F;
+    --accent:     #0E6E5C;
+    --accent-ink: #0A5546;
+    --accent-bg:  #DFEEEA;
+    --gold:       #96660F;
+    --gold-bg:    #F5EDDA;
+    --risk:       #A2382F;
+    --risk-bg:    #F7E5E3;
+    --line:       #D5DEDB;
+    --line-soft:  #E4EAE8;
+    --serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:#0C1311; --surface:#131C19; --surface-2:#1A2521;
+      --ink:#E4ECE9; --ink-2:#A0AFAA; --ink-3:#71807B;
+      --accent:#5FBCA6; --accent-ink:#8CD2C1; --accent-bg:#12302A;
+      --gold:#D2A34C; --gold-bg:#2A2212; --risk:#E3796C; --risk-bg:#2E1917;
+      --line:#24312D; --line-soft:#1B2622;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:#0C1311; --surface:#131C19; --surface-2:#1A2521;
+    --ink:#E4ECE9; --ink-2:#A0AFAA; --ink-3:#71807B;
+    --accent:#5FBCA6; --accent-ink:#8CD2C1; --accent-bg:#12302A;
+    --gold:#D2A34C; --gold-bg:#2A2212; --risk:#E3796C; --risk-bg:#2E1917;
+    --line:#24312D; --line-soft:#1B2622;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:16.5px; line-height:1.62; -webkit-font-smoothing:antialiased; }
+  .page { max-width:1120px; margin:0 auto; padding:0 24px 96px; }
+  .masthead { border-bottom:2px solid var(--ink); padding:56px 0 22px; margin-bottom:44px; display:flex; flex-direction:column; gap:14px; }
+  .eyebrow { font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); display:flex; flex-wrap:wrap; gap:8px 18px; }
+  .masthead h1 { font-family:var(--serif); font-weight:600; font-size:clamp(34px,5.4vw,54px); line-height:1.06; letter-spacing:-.015em; margin:0; text-wrap:balance; }
+  .standfirst { font-family:var(--serif); font-size:clamp(17px,2.2vw,20px); line-height:1.5; color:var(--ink-2); max-width:64ch; margin:0; }
+  section { margin-bottom:60px; scroll-margin-top:24px; }
+  .sec-head { display:flex; gap:14px; align-items:baseline; border-bottom:1px solid var(--line); padding-bottom:10px; margin-bottom:22px; }
+  .sec-num { font-family:var(--mono); font-size:13px; color:var(--accent); font-weight:600; flex:none; }
+  .sec-head h2 { font-family:var(--serif); font-weight:600; font-size:clamp(22px,3vw,29px); letter-spacing:-.012em; margin:0; text-wrap:balance; }
+  p { max-width:72ch; }
+  p.lede { font-size:17.5px; color:var(--ink-2); }
+  strong { font-weight:650; }
+  .callout { background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:4px; padding:18px 22px; margin:22px 0; }
+  .callout.warn { border-left-color:var(--risk); }
+  .callout.gold { border-left-color:var(--gold); }
+  .callout h4 { margin:0 0 6px; font-size:12px; font-family:var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); }
+  .callout p { margin:0; max-width:76ch; }
+  .callout p + p { margin-top:10px; }
+  .tbl-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:4px; background:var(--surface); margin:20px 0; }
+  table { border-collapse:collapse; width:100%; font-size:14.5px; min-width:660px; }
+  th, td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--line-soft); vertical-align:top; }
+  thead th { font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); background:var(--surface-2); border-bottom:1px solid var(--line); white-space:nowrap; }
+  tbody tr:last-child td { border-bottom:0; }
+  td.num, th.num { text-align:right; font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .chip { display:inline-block; font-family:var(--mono); font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; padding:3px 8px; border-radius:3px; background:var(--surface-2); color:var(--ink-2); white-space:nowrap; }
+  .chip.open { background:var(--accent-bg); color:var(--accent-ink); }
+  .chip.gold { background:var(--gold-bg); color:var(--gold); }
+  .chip.no { background:var(--risk-bg); color:var(--risk); }
+  .kicker { font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin:26px 0 10px; }
+  ul.tight { max-width:74ch; padding-left:20px; }
+  ul.tight li { margin-bottom:7px; }
+  .grid2 { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); margin:20px 0; }
+  .side { background:var(--surface); border:1px solid var(--line); border-radius:4px; padding:18px 22px; }
+  .side h3 { font-family:var(--serif); font-size:19px; margin:0 0 8px; font-weight:600; }
+  .side p { font-size:14.5px; color:var(--ink-2); margin:0 0 8px; }
+  .side p:last-child { margin-bottom:0; }
+  .moat { border:1px solid var(--line); border-radius:4px; background:var(--surface); padding:20px 22px; margin-bottom:14px; }
+  .moat h3 { font-family:var(--serif); font-size:20px; margin:0 0 4px; font-weight:600; }
+  .moat .why { font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); margin-bottom:10px; }
+  .moat p { font-size:15px; color:var(--ink-2); margin:0; max-width:80ch; }
+  .moat p + p { margin-top:8px; }
+  .footnote { font-size:13.5px; color:var(--ink-3); border-top:1px solid var(--line); padding-top:18px; margin-top:44px; }
+  .footnote p { max-width:80ch; }
+  a { color:var(--accent-ink); }
+  :focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <div class="eyebrow">
+      <span>CarrierRadar + резерв «Лицензии»</span>
+      <span>Конкурентная разведка · 87 запросов к живым источникам</span>
+      <span>14 августа 2026</span>
+    </div>
+    <h1>Чем защититься от копии</h1>
+    <p class="standfirst">
+      Карта конкурентов двух ниш по состоянию на август 2026 — с реальными ценами
+      и слабостями, — и главный вопрос: что в нашем сервисе нельзя будет повторить,
+      когда любой код и любой контент воспроизводятся с помощью AI за неделю.
+    </p>
+  </header>
+
+  <!-- 1 -->
+  <section id="honest">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Честная поправка к «голубому океану»</h2></div>
+    <p class="lede">
+      Вчерашний скрининг по метрикам DataForSEO показал океан. Разведка по живым источникам
+      показывает: <strong>океан обитаем</strong>. В carrier-вертикали десяток игроков от $19 до
+      enterprise, двое уже строят entity-pSEO. В лицензиях — $200M+ венчурных денег в приватном
+      B2B-слое и минимум один сайт, исполняющий наш сценарий дословно.
+    </p>
+    <p>
+      Это не приговор, а уточнение координат: свободна не ниша целиком, а <strong>три конкретные
+      щели</strong> в ней — и все три защищаются не кодом, а тем, что накапливается со временем.
+      Разбор ниже.
+    </p>
+  </section>
+
+  <!-- 2 -->
+  <section id="carrier-map">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Карта: carrier-вертикаль</h2></div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Игрок</th><th class="num">Цена</th><th>Суть</th><th>Публичные страницы перевозчиков</th><th>Уязвимость</th></tr></thead>
+        <tbody>
+          <tr><td><b>Highway</b> <span class="chip">enterprise</span></td><td class="num">contact-sales, ~$50–500/место + $2–10/перевозчик</td><td>Идентичность за MC-номером: девайсы, ELD, VoIP. 1 050+ брокеров, инвестиции FTV Capital (2025)</td><td><span class="chip no">Нет</span></td><td>Недоступен брокеру из 1–10 человек — «шестизначный комплаенс-бюджет»</td></tr>
+          <tr><td><b>Carrier411</b></td><td class="num">~$35–99/мес</td><td>Ветеран вертикали; моат — FreightGuard-репорты брокеров</td><td><span class="chip no">Нет</span></td><td><b>Кризис доверия:</b> с окт. 2024 репорты навечно; кампания OOIDA, проигранный иск на $612 400 за ложный репорт</td></tr>
+          <tr><td><b>MyCarrierPortal</b> (Descartes)</td><td class="num">от $515/мес</td><td>Онбординг-пакеты + скоринг; куплен Descartes за ~$24M (2024)</td><td><span class="chip no">Нет</span></td><td>Цена — болевой порог малого брокера</td></tr>
+          <tr><td><b>RMIS / SaferWatch</b> (Truckstop)</td><td class="num">$340/мес · $99.95/мес</td><td>Легаси-мониторинг; SaferWatch — ближайший к нашей цене</td><td><span class="chip no">Нет</span></td><td>Многолетние жалобы на устаревшие данные; продукт стареет внутри портфеля</td></tr>
+          <tr><td><b>CarrierOK</b></td><td class="num">$149–999/мес</td><td>Данные+API, 300+ полей; new-registrants фид $199/мес</td><td><span class="chip open">Да, /fmcsa-snapshot/</span></td><td>Платный вендор данных: публичный слой — витрина, не продукт; ни комьюнити, ни аффилиата</td></tr>
+          <tr><td><b>CarrierSource</b></td><td class="num">free + тарифы для перевозчиков</td><td>«G2 для грузоперевозок»: отзывы + FMCSA, 75k отзывов</td><td><span class="chip open">Да, самый полный pSEO</span></td><td>Покрытие 40k из 1,8M; монетизирует сторону перевозчика; $800K привлечено — тонкий кошелёк; нет мониторинга/фрода</td></tr>
+          <tr><td><b>VerifyCarrier</b></td><td class="num">$0–99/мес</td><td>Новичок 2025–26: лукап + API + открытый риск-скор; бьёт в нашу ценовую щель</td><td><span class="chip gold">Тулзы, не entity</span></td><td>Аноним без бренда, без комьюнити, без пакетов онбординга</td></tr>
+          <tr><td><b>CarrierIQ</b></td><td class="num">$79–149/мес за штат</td><td>Данные для страховых агентов: new ventures, реновалы, отмены</td><td><span class="chip no">Нет</span></td><td>Узкий сегмент; цена за штат раздражает мультирегиональных</td></tr>
+          <tr><td><b>GenLogs</b> <span class="chip">enterprise</span></td><td class="num">enterprise</td><td>Сеть дорожных камер/сенсоров, $81M, Series B от Battery (2026)</td><td><span class="chip no">Нет</span></td><td>Не конкурент за SMB — но забирает «правду о фроде» в проприетарный слой</td></tr>
+          <tr><td><b>DAT / Truckstop</b> (бандлинг)</td><td class="num">в цене борды $99–300/мес</td><td>Вшивают веттинг в лоадборды (Carrier Management Suite, Risk Factors)</td><td><span class="chip no">Нет</span></td><td><b>Главная угроза</b> подписочной ноге: «достаточно хорошо» бесплатно</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <h4>Контекст платёжеспособности малого брокера</h4>
+      <p>
+        Брокер уже несёт фикс: бонд $75K (~$3.3K/год премия), contingent cargo ~$800/год,
+        лоадборда $99–300/мес. Инструмент за $49–99 — в пределах нормы; $340–515 — болевой порог.
+        В диапазоне до $100 сегодня: стареющий SaferWatch, токсичный Carrier411 и анонимный
+        VerifyCarrier. <strong>Щель реальна.</strong>
+      </p>
+    </div>
+    <div class="callout gold">
+      <h4>Окно MOTUS</h4>
+      <p>
+        FMCSA перезапускает реестр: система MOTUS, Phase II — с Q2 2026, идентификация заявителей
+        через IDEMIA. Инструменты, построенные на легаси-SAFER, ждёт переделка пламбинга.
+        Новый игрок, строящий на MOTUS с первого дня, получает временну́ю фору — окно на 12–18 месяцев.
+      </p>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section id="license-map">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Карта: лицензии (резерв №1) — статус понижен</h2></div>
+    <p class="lede">
+      Разведка охладила эту нишу сильнее, чем carrier-вертикаль. Три причины.
+    </p>
+    <ul class="tight">
+      <li><strong>FCRA — мина под B2B-ногой.</strong> Если работодатели используют сайт для решений о найме, сервис по функции становится «consumer reporting agency» (прецедент FTC: Filiquarian) — до $1 000 штрафа за нарушение и классовые иски. Дисклеймера недостаточно: нужны процедуры точности и оспаривания. Именно наш план «мониторинг для стаффинг-агентств» триггерит классификацию.</li>
+      <li><strong>Данные закрыты сильнее, чем казалось.</strong> Nursys прямо запрещает скрейпинг и репаблишинг; NCSBN консолидирует лукапы штатов на boardsofnursing.org (усиливая .gov в выдаче); CNA — 50 разрозненных реестров; свободный bulk — лишь у ~10–15 штатов (FL — ежедневные выгрузки, CA — API).</li>
+      <li><strong>Сценарий уже исполняется.</strong> nurselicenseguide.com делает per-state pSEO + апселлы «NurseVerify API / NurseWatch Monitoring»; Mesh ($13M, Greycroft) гонит state+profession гайды как лидген своего API; B2B-слой скуплен венчуром: Medallion $130M, Certify $40M, Verifiable $50M, Baton, Propelus.</li>
+    </ul>
+    <div class="callout">
+      <h4>Что остаётся живым в нише</h4>
+      <p>
+        Два клина, где пусто: <strong>фармацевты</strong> (нет бесплатного национального агрегатора;
+        NABP Verify — $65/год и принимается одним штатом) и <strong>CNA</strong> (50 реестров, ноль
+        национальных инструментов, боль стаффинга). Архитектура — только «умный роутер к первоисточнику»
+        без репаблишинга записей; монетизация — EDU-лиды ($20–60 за лид) и travel-nurse рефералы
+        (до $2 000 за размещение). Но это проект №2, не №1.
+      </p>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section id="moats">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Что нельзя повторить с помощью AI</h2></div>
+    <p class="lede">
+      Сначала — что моатом <strong>не является</strong>: парсер FMCSA (пишется агентом за вечер),
+      риск-скор на публичных данных (VerifyCarrier раздаёт бесплатно), интерфейс, контентные
+      страницы, чат-бот. Всё это AI копирует за дни. Защищается только то, что накапливается
+      во времени, в отношениях или в юридическом статусе.
+    </p>
+
+    <div class="moat">
+      <h3>1 · Исторические срезы — данные, у которых нет машины времени</h3>
+      <div class="why">Почему AI бессилен: прошлое нельзя скачать задним числом</div>
+      <p>
+        FMCSA публикует только текущее состояние. История — как перевозчик мигал authority,
+        рвал страховку, менял имена и адреса (отпечаток фрода и MC-takeover) — существует лишь
+        у того, кто начал снимать ежедневные дельты раньше. Конкурент с лучшей моделью и
+        бесконечным бюджетом не сгенерирует вчерашний снапшот.
+      </p>
+      <p>
+        <strong>Действие:</strong> поднять ежедневный снапшоттер Census + L&amp;I сегодня —
+        до продукта, до домена, до названия. Каждый день промедления — день форы, отданный рынку.
+      </p>
+    </div>
+
+    <div class="moat">
+      <h3>2 · Комьюнити-слой: показания людей, а не контент</h3>
+      <div class="why">Почему AI бессилен: свидетельство нельзя сгенерировать — его можно только собрать</div>
+      <p>
+        Моат Carrier411 — FreightGuard-репорты — сейчас его главная уязвимость: пожизненные записи
+        без права ответа, кампания OOIDA, проигранные иски. Мы строим «fair FreightGuard»:
+        структурированные инциденты с обязательными доказательствами, право ответа перевозчика,
+        срок давности, статус «оспорено». В эпоху, когда любой текст может быть синтетическим,
+        цена верифицированного человеческого свидетельства растёт, а не падает.
+      </p>
+      <p>
+        <strong>Действие:</strong> плюс claimed-профили — перевозчик подтверждает владение страницей
+        через телефон/email из реестра FMCSA. Код скопируют; десять тысяч заявленных профилей — нет.
+      </p>
+    </div>
+
+    <div class="moat">
+      <h3>3 · Стать источником, который цитирует сам AI</h3>
+      <div class="why">Почему AI бессилен: ответу нужен канонический первоисточник — им и надо быть</div>
+      <p>
+        Поисковый трафик частично уйдёт в LLM-ответы. Проигрывает тот, чей контент пересказали;
+        выигрывает тот, на кого сослались. Ответ на «is X carrier legit» требует свежих данных
+        по конкретному DOT — LLM обязан к кому-то сходить. Канонические entity-URL, структурированные
+        данные, открытый лимитированный API, «last verified» на каждой странице — и AI-ответы
+        превращаются из угрозы в канал дистрибуции.
+      </p>
+    </div>
+
+    <div class="moat">
+      <h3>4 · Подписанные отношения: аффилиаты и данные, которых нет в открытом доступе</h3>
+      <div class="why">Почему AI бессилен: контракт не генерируется — он подписывается</div>
+      <p>
+        Партнёрки факторинга ($250–500 за клиента), страховые лид-каналы, топливные карты —
+        это одобренные аккаунты и выстроенные отношения. Следующий уровень — эксклюзивные данные
+        от партнёров (например, паттерны дефолтов от факторинговой компании в обмен на поток лидов):
+        петля, в которой каждый новый партнёр делает данные лучше, а данные — приводят партнёров.
+      </p>
+    </div>
+
+    <div class="moat">
+      <h3>5 · Накопленный рабочий контекст пользователя</h3>
+      <div class="why">Почему AI бессилен: switching cost живёт у клиента, не у нас</div>
+      <p>
+        Списки отслеживаемых перевозчиков, история проверок, настроенные алерты, интеграции в TMS.
+        Через полгода использования уйти — значит потерять свою же память. Это единственный моат,
+        который работает даже против бесплатного клона.
+      </p>
+    </div>
+
+    <div class="callout warn">
+      <h4>Anti-moat: чего не делать</h4>
+      <p>
+        Не строить ставку на «у нас лучше интерфейс» или «у нас умнее скор» — это копируется.
+        Не повторять ошибку Carrier411 (карательная система без права ответа — юридическая бомба).
+        Не лезть в проприетарную сенсорику против GenLogs/Highway — их капитал, их война.
+        И не строить лицензии первыми — FCRA-архитектура съест месяцы до первого доллара.
+      </p>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section id="positioning">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Позиционирование: одна фраза против каждого</h2></div>
+    <div class="grid2">
+      <div class="side"><h3>vs Highway</h3><p>«Та же уверенность в перевозчике — без шестизначного комплаенс-бюджета». Self-serve, $49–99, карта не нужна для лукапа.</p></div>
+      <div class="side"><h3>vs Carrier411</h3><p>«Репутация с правом на ответ». Инциденты с доказательствами, сроком давности и голосом перевозчика — против пожизненных анонимных приговоров.</p></div>
+      <div class="side"><h3>vs CarrierSource</h3><p>Они — отзывы для маркетинга перевозчиков. Мы — риск и мониторинг для брокера, платит demand-сторона; отзывы лишь один сигнал из многих.</p></div>
+      <div class="side"><h3>vs CarrierOK</h3><p>Они продают данные за пейволлом, витрина — приманка. У нас публичный слой — сам продукт (аффилиат-выручка), подписка — только за мониторинг и инциденты.</p></div>
+      <div class="side"><h3>vs VerifyCarrier</h3><p>Инструмент против института: у них лукап без лица, у нас — бренд, claimed-профили, комьюнити и история изменений.</p></div>
+      <div class="side"><h3>vs DAT/Truckstop бандлы</h3><p>Нейтральность: лоадборда судит перевозчиков, с которых сама кормится. Независимый арбитр + история + инциденты — то, что бандл не даст.</p></div>
+    </div>
+  </section>
+
+  <!-- 6 -->
+  <section id="verdict">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Вердикт и порядок действий</h2></div>
+    <ul class="tight">
+      <li><strong>CarrierRadar остаётся ставкой №1</strong>, но тезис уточнён: побеждаем не «первым pSEO», а связкой <em>хвост entity-страниц (1,8M против 40k у CarrierSource) + честный инцидент-слой + цена $49–99 + окно MOTUS</em>.</li>
+      <li><strong>Запустить снапшоттер FMCSA немедленно</strong> — моат №1 начинает тикать только с первого снимка.</li>
+      <li><strong>Лицензии понижены до «резерв со звёздочкой»:</strong> вход только через клинья фармацевтов/CNA, архитектура «роутер, не репаблишер», и лишь после carrier-теста.</li>
+      <li>Смоук-тест CarrierRadar из прошлого отчёта в силе; добавить в него проверку «fair incident»-гипотезы: 10 интервью с малыми брокерами — платили бы они $49–99 за мониторинг с инцидентами, которым можно доверять?</li>
+    </ul>
+  </section>
+
+  <div class="footnote">
+    <p>
+      Источники: 87 запросов к живым страницам (август 2026) — прайсинги carrier-ok.com, carrieriq.io,
+      mycarrierportal.com, verifycarrier.com, loadmanager.com; Overdrive и FreightWaves по кризису
+      Carrier411 и Carrier Assure; Federal Register 2026-08334 по MOTUS; PRNewswire по раундам GenLogs,
+      Verifiable, Medallion; nursys.com/ToS, ftc.gov по FCRA-прецеденту Filiquarian; данные спроса —
+      выгрузки DataForSEO от 13–14.08.2026. Цены Carrier411 и минимальные контракты Highway — по
+      вторичным источникам, помечены как требующие проверки.
+    </p>
+  </div>
+
+</div>
