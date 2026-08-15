@@ -1,5 +1,5 @@
 version: 1
-updated_at: 2026-08-13
+updated_at: 2026-08-15
 limits:
   max_parallel: 3
   max_nodes_per_iteration: 8
@@ -423,7 +423,7 @@ nodes:
     attempts: 1
     risk: medium
     approval_required: true
-    notes: "Владелец явно одобрил узел «в проде» 2026-08-06 (D-026) — approval снят. scripts/apply-d1-overlay.mjs написан и живьём проверен против реальной локальной D1: патчит claimed/featured, снимает истёкший featured (проверено — удалил D1-запись, поле реально исчезло из agencies.json), идемпотентность подтверждена побайтовым сравнением второго прогона с первым, не только тестом. patch_json намеренно не применяется (см. комментарий в скрипте — ни один узел ещё не собирает такие патчи). 7 юнит-тестов на чистых функциях computeOverlay/applyOverlay. status=review, не done: реальное включение в прод-CI (cron + деплой) невозможно прямо сейчас — A0-DEPLOY (цель деплоя) сам ещё заблокирован A0-OWNER-LEGAL, добавлять cron сейчас означало бы либо падать на отсутствующем секрете, либо собирать в пустоту. Approval сохраняется на будущее, повторно спрашивать не нужно, когда A0-DEPLOY решится. Побочно: worker:test (117)/scripts:test (7) добавлены в ci.yml — не запускались в CI вообще до этого прохода."
+    notes: "Владелец явно одобрил узел «в проде» 2026-08-06 (D-026) — approval снят. scripts/apply-d1-overlay.mjs написан и живьём проверен против реальной локальной D1: патчит claimed/featured, снимает истёкший featured (проверено — удалил D1-запись, поле реально исчезло из agencies.json), идемпотентность подтверждена побайтовым сравнением второго прогона с первым, не только тестом. patch_json намеренно не применяется (см. комментарий в скрипте — ни один узел ещё не собирает такие патчи). 7 юнит-тестов на чистых функциях computeOverlay/applyOverlay. status=review, не done: реальное включение в прод-CI (cron + деплой) невозможно прямо сейчас — A0-DEPLOY (цель деплоя) сам ещё заблокирован A0-OWNER-LEGAL, добавлять cron сейчас означало бы либо падать на отсутствующем секрете, либо собирать в пустоту. Approval сохраняется на будущее, повторно спрашивать не нужно, когда A0-DEPLOY решится. Побочно: worker:test (117)/scripts:test (7) добавлены в ci.yml — не запускались в CI вообще до этого прохода. ДРЕЙФ НАЙДЕН И ЗАФИКСИРОВАН 2026-08-15 (replan D-174): блокер A0-DEPLOY, названный выше, закрыт ещё 2026-08-08 (D-094) — формальной причины держать узел в review больше нет, CI-обвязка (cron + шаг в pipeline) просто не была заведена следующей сессией. Технически разблокирован. Тем не менее по новому приоритету Фазы 2 (D-174) НЕ первоочередной: сейчас 0 claimed/featured записей в D1, оверлею нечего накладывать — заводить cron имеет смысл, когда появится хотя бы один claim, а claim-поток сам ждёт объёма лидов. approval_required остаётся true (реальный прод-CI-шаг)."
 
   - id: A2-STRIPE-SCHEMA
     title: "Схема D1 для featured (featured table) — миграция, только локально"
@@ -476,7 +476,7 @@ nodes:
     attempts: 3
     risk: high
     approval_required: true
-    notes: "approval: владелец явно одобрил (2026-08-06) — Payment Link вручную в Dashboard, НЕ через API (STRIPE_SECRET_KEY не выдан и не нужен), scope сужен владельцем до одного продукта: featured €590/год, разовый платёж (не месячная подписка, не lead-пакет — оба explicitly deferred). D-027: Dashboard-ссылка не умеет нести динамическую metadata → agency приходит через Stripe custom field в session.custom_fields, не session.metadata. D-028: первая версия Payment Link подтверждена настоящим оплаченным платежом ($10, Apple Pay) — реальный key custom field не совпал с видимым label (`yourslugaccessatlas`, не `agency_slug`), код исправлен под подтверждённое значение. D-029: владелец переименовал label на 'Your agency name' (понятнее не-технической аудитории, включая себя самого) — код теперь принимает и точный slug, и название агентства (`agencies[].name`, case-insensitive), не только slug, иначе люди печатали бы название и молча получали отказ; 245/245 имён в каталоге уникальны, дубликат намеренно не резолвился бы (см. D-029). 126/126 worker:test, typecheck и wrangler deploy --dry-run чистые, живьём подтверждено (значение 'Deque Systems' → верная строка featured). Владелец пересоздаёт саму Payment Link под новый label — ОСТАЁТСЯ: подтвердить key НОВОГО custom field тем же способом (один реальный тестовый платёж → прислать JSON события), настроить Stripe webhook endpoint (checkout.session.completed -> /api/stripe-hook) в Dashboard, передать реальный STRIPE_WEBHOOK_SECRET для `wrangler secret put`, и по желанию задать Statement descriptor на уровне Price, чтобы в выписке было не 'Y2KGLOBAL.COM'."
+    notes: "approval: владелец явно одобрил (2026-08-06) — Payment Link вручную в Dashboard, НЕ через API (STRIPE_SECRET_KEY не выдан и не нужен), scope сужен владельцем до одного продукта: featured €590/год, разовый платёж (не месячная подписка, не lead-пакет — оба explicitly deferred). D-027: Dashboard-ссылка не умеет нести динамическую metadata → agency приходит через Stripe custom field в session.custom_fields, не session.metadata. D-028: первая версия Payment Link подтверждена настоящим оплаченным платежом ($10, Apple Pay) — реальный key custom field не совпал с видимым label (`yourslugaccessatlas`, не `agency_slug`), код исправлен под подтверждённое значение. D-029: владелец переименовал label на 'Your agency name' (понятнее не-технической аудитории, включая себя самого) — код теперь принимает и точный slug, и название агентства (`agencies[].name`, case-insensitive), не только slug, иначе люди печатали бы название и молча получали отказ; 245/245 имён в каталоге уникальны, дубликат намеренно не резолвился бы (см. D-029). 126/126 worker:test, typecheck и wrangler deploy --dry-run чистые, живьём подтверждено (значение 'Deque Systems' → верная строка featured). Владелец пересоздаёт саму Payment Link под новый label — ОСТАЁТСЯ: подтвердить key НОВОГО custom field тем же способом (один реальный тестовый платёж → прислать JSON события), настроить Stripe webhook endpoint (checkout.session.completed -> /api/stripe-hook) в Dashboard, передать реальный STRIPE_WEBHOOK_SECRET для `wrangler secret put`, и по желанию задать Statement descriptor на уровне Price, чтобы в выписке было не 'Y2KGLOBAL.COM'. ОБНОВЛЕНИЕ 2026-08-15 (D-174): владелец деприоритизировал и этот узел — featured продавать некому (0 claimed-профилей), а claimed-профили по новому критическому пути сами ждут появления реального объёма лидов через `/request-quote/`, а не наоборот. Технические шаги выше остаются актуальными на будущее, просто не сейчас."
 
   - id: A2-OUTREACH-PREP
     title: "Список 99 агентств из гос-деклараций + черновик письма «заберите профиль» — без отправки"
@@ -511,7 +511,7 @@ nodes:
     attempts: 0
     risk: high
     approval_required: true
-    notes: "Resend одобрен владельцем 2026-08-06 для этого узла (D-024) — approval снят, но узел остаётся заблокирован ДВУМЯ независимыми от Resend причинами: (1) реальный домен ещё не куплен (A0-ORIGIN ждёт A0-OWNER-LEGAL) — письмо не может честно ссылаться на несуществующий https://accessatlas.example; (2) подтверждено живым API-пробником (безопасно, на example.com, не на живом человеке, D-024): sandbox-домен Resend в принципе не может доставить письмо стороннему получателю без верифицированного собственного домена — 422 на любой адрес кроме email владельца аккаунта Resend. A2-CLAIM-API готов (done), ссылка «заберите профиль» вела бы на рабочий claim-поток технически, но физически ни одно из 96 писем сейчас доставить нельзя. status=todo сохранён (не blocked, как A2-LEAD-EMAIL) — здесь единственный путь вперёд один и понятен (домен), а не открытый вопрос о модели данных."
+    notes: "Resend одобрен владельцем 2026-08-06 для этого узла (D-024) — approval снят, но узел остаётся заблокирован ДВУМЯ независимыми от Resend причинами: (1) реальный домен ещё не куплен (A0-ORIGIN ждёт A0-OWNER-LEGAL) — письмо не может честно ссылаться на несуществующий https://accessatlas.example; (2) подтверждено живым API-пробником (безопасно, на example.com, не на живом человеке, D-024): sandbox-домен Resend в принципе не может доставить письмо стороннему получателю без верифицированного собственного домена — 422 на любой адрес кроме email владельца аккаунта Resend. A2-CLAIM-API готов (done), ссылка «заберите профиль» вела бы на рабочий claim-поток технически, но физически ни одно из 96 писем сейчас доставить нельзя. status=todo сохранён (не blocked, как A2-LEAD-EMAIL) — здесь единственный путь вперёд один и понятен (домен), а не открытый вопрос о модели данных. ОБНОВЛЕНИЕ 2026-08-15 (D-174, критический путь Фазы 2 развёрнут владельцем): домен сегодня давно куплен (verscala.com, D-091) — прежний технический блокер (2) снят. Тем не менее узел ЯВНО деприоритизирован по новой причине: через `/request-quote/` пока прошло 0 реальных лидов (форма подключена только 2026-08-15, D-172) — рассылать outreach 96 агентствам ради доставки лидов, которых ещё физически не существует, не имеет ценности прямо сейчас. Не начинать этот узел раньше появления реального потока лидов, даже если Resend/домен технически готовы."
 
   # --- Сканер: разрыв с тем, что реально проверяют регуляторы (BACKLOG.md, 2026-08-06) ---
   # Владелец: "Начинай все по порядку" — все 9 узлов сделаны последовательно в одной
@@ -1795,3 +1795,158 @@ nodes:
     risk: low
     approval_required: false
     notes: "DONE 2026-08-13 (WRAP-UP сессии). Замер DataForSEO: color palette кластер 90-165k LOW-ads (но органика — гиганты; берём нишевый/длинный хвост + наш WCAG-угол: у каждого образца виден контраст и AA). Sonnet-субагент, родитель сверил математику + полный прогон гейтов (palette 13/13, src 140, scripts 48, worker 504, audit 68 стр. 0 нарушений, sitemap 490, check-links 575). Индекс /checkers/ = 6 карточек. Субагент добавил изящный инвариант-тест (max(contrast к white/black) >= sqrt(21) всегда) и — вопреки инструкции — правки в frontend.md/LEARNING_LOG (D-051, оставлены как корректные)."
+
+  # --- Фаза R: Надёжность и автоматизация (ROADMAP.md §Фаза R, D-173/D-174, 2026-08-15) ---
+  # Заведена по прямому запросу владельца: "чтобы меньше нужно было проверять вручную".
+  # R-SMOKE-DEPLOY был сделан 2026-08-15 (D-173), но узел графа для него не был заведён
+  # той же сессией — драфт найден и исправлен этим replan'ом (D-174, см. notes ниже).
+  # Остальные 5 узлов формально заводятся здесь впервые (ранее существовали только
+  # как строки таблицы в BACKLOG.md/ROADMAP.md).
+
+  - id: R-SMOKE-DEPLOY
+    title: "Smoke-тест ЖИВОГО сайта сразу после деплоя (scripts/smoke-prod.mjs + шаг в deploy.yml)"
+    owner: devops-engineer
+    status: done
+    depends_on: []
+    inputs: [.github/workflows/deploy.yml, data/a11y/agencies.json]
+    scope: [scripts/smoke-prod.mjs, .github/workflows/deploy.yml]
+    outputs: [scripts/smoke-prod.mjs]
+    verify:
+      - node scripts/smoke-prod.mjs   # 12 проверок против ЖИВОГО verscala.com
+      - "canary: подставить неверное число агентств -> проверка падает; откатить"
+      - "canary: подставить неверный адрес воркера -> 2 проверки падают; откатить"
+    max_attempts: 3
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "done (D-173, 2026-08-15). 12 проверок: 7 ключевых страниц по СВОЕМУ маркеру контента (не просто «200 и не пусто» — SPA-фоллбэк отдаёт 200 на любой путь), число агентств из agencies.json ЭТОГО коммита на живой главной (ловит «сборка прошла, данные не доехали»), 404 на несуществующем пути (доказывает настоящий SSG, не catch-all), адрес воркера в ЖИВОМ бандле (rel=modulepreload, не только src=), живой воркер (404 на несуществующий скан = поднялся и достал до D1), sitemap. Доказан негативно тремя канарейками — первый прогон против прода нашёл баг в самой проверке (regex ловил только src=, адрес воркера живёт в чанке под rel=modulepreload) — починено до коммита. worker:test 522/522, typecheck/src/scripts зелёные, deploy.yml валиден (14 шагов, smoke последний, retry с 40с ожиданием раскатки CDN). Деплоя НЕ было — вступит в силу на следующем push в accessatlas. Узел графа отсутствовал до replan'а D-174 (найденный драфт памяти проекта, Шаг 7) — добавлен ретроактивно тем же статусом, что уже зафиксирован в BACKLOG.md/DECISIONS.md."
+
+  - id: R-HEALTH-CRON
+    title: "Ежедневный health-check прода из уже существующего worker-cron (0 3 * * *) + письмо владельцу через Resend при поломке"
+    owner: backend-engineer
+    status: todo
+    depends_on: [R-SMOKE-DEPLOY]
+    inputs: [worker/index.js, scripts/smoke-prod.mjs, docs/project/DECISIONS.md]
+    scope: [worker/lib/healthcheck.js, worker/index.js]
+    outputs: [worker/lib/healthcheck.js]
+    verify:
+      - npm run worker:test
+      - "canary: временно испортить один инвариант (напр. вернуть 500 на /api/scan/:id) -> алерт срабатывает; откатить"
+      - "живой прогон: письмо владельцу реально доставлено (Resend delivered) на срабатывании"
+    max_attempts: 4
+    attempts: 0
+    risk: medium
+    approval_required: true
+    notes: "todo. Ловит то, что происходит МЕЖДУ деплоями (протухший токен, упавший воркер, DNS, D1) — R-SMOKE-DEPLOY смотрит только на момент выката. GitHub Actions `schedule` здесь не годится: расписания читаются только из ветки по умолчанию, а `main` этого репо занят detnav — переиспользовать уже задеплоенный worker cron (тот же, что у A3-CRON-RESCAN-DELTA). approval: новый класс автоматического прод-письма владельцу, отдельный от уже одобренных confirm/digest — одобрение по узлам не переносится (D-022). Не в фокусе D-174 (не двигает лиды), но безопасен и мал — кандидат, если появится свободный автономный заход."
+
+  - id: R-SELF-MONITOR
+    title: "Подписать verscala.com на собственный еженедельный мониторинг (A3-CRON уже в проде)"
+    owner: product-lead
+    status: todo
+    depends_on: []
+    inputs: [migrations/0010_subscriptions.sql, worker/routes/subscribe.js]
+    scope: []
+    outputs: []
+    verify:
+      - "живая подписка verscala.com в прод-D1 (реальная строка subscriptions)"
+      - "дождаться минимум одного дайджеста, содержащего реальные находки собственного сайта"
+    max_attempts: 2
+    attempts: 0
+    risk: low
+    approval_required: true
+    notes: "todo. Нулевой новый код — используется уже задеплоенный A3-CRON, узел чисто организационный (одна подписка). approval: запись в прод-D1 + реальная рассылка на email владельца. Ценность: поймал бы `a11y-focus-invisible`, который живёт только на проде и невидим CI (LEARNING_LOG, synthetic monitoring, 2026-08-15). Не в фокусе D-174."
+
+  - id: R-LINKROT
+    title: "Плановая проверка website/sourceRefs 574 агентств на 404/смену домена"
+    owner: data-engineer
+    status: todo
+    depends_on: []
+    inputs: [data/a11y/agencies.json]
+    scope: [scripts/check-linkrot.mjs]
+    outputs: [scripts/check-linkrot.mjs, docs/project/domains/data.md]
+    verify:
+      - node scripts/check-linkrot.mjs   # отчёт 404/redirect/timeout по каждому website + sourceRefs
+      - "canary: подставить заведомо мёртвый URL в тестовую запись -> скрипт его ловит; откатить"
+    max_attempts: 3
+    attempts: 0
+    risk: low
+    approval_required: false
+    notes: "todo, технически разблокирован прямо сейчас — read-only HTTP-проверка внешних сайтов, ничего не пишет в прод, деплоя не требует. Результат — отчёт для review, не автоправка (данные не выдумывать, D-047: находки не превращаются в автоудаление записей без проверки человеком). Не в фокусе D-174 (не двигает лиды), но безопасный кандидат для отдельного захода."
+
+  - id: R-STALE-DATA
+    title: "Отчёт «N профилей не сверялись > 180 дней» из lastVerified"
+    owner: data-engineer
+    status: todo
+    depends_on: []
+    inputs: [data/a11y/agencies.json, data/a11y/types.ts]
+    scope: [scripts/stale-data-report.mjs]
+    outputs: [scripts/stale-data-report.mjs]
+    verify:
+      - node scripts/stale-data-report.mjs
+      - "canary: подставить lastVerified в далёком прошлом в тестовую запись -> запись попадает в отчёт; откатить"
+    max_attempts: 3
+    attempts: 0
+    risk: low
+    approval_required: false
+    notes: "todo, технически разблокирован прямо сейчас — чистый скрипт над уже существующим полем lastVerified, деплоя не требует. Не в фокусе D-174, безопасный маленький кандидат."
+
+  - id: R-WORKER-DEPLOY
+    title: "Деплой воркера кнопкой (workflow_dispatch), не руками с CF-токеном в переписке"
+    owner: devops-engineer
+    status: todo
+    depends_on: []
+    inputs: [.github/workflows/deploy.yml, docs/project/HANDOFF.md]
+    scope: [.github/workflows/worker-deploy.yml]
+    outputs: [.github/workflows/worker-deploy.yml]
+    verify:
+      - "workflow валиден (actionlint/YAML), эквивалент wrangler deploy --dry-run внутри job"
+      - "живой прогон workflow_dispatch деплоит воркер, Version ID меняется, R-SMOKE-DEPLOY/smoke зелёный после"
+    max_attempts: 3
+    attempts: 0
+    risk: medium
+    approval_required: true
+    notes: "todo. approval: секрет CLOUDFLARE_API_TOKEN должен лечь в GitHub Actions secrets (сейчас передаётся в чат in-memory на каждый ручной деплой воркера, см. HANDOFF «Про CF-токены») — операция с секретом уровня аккаунта, не только код. Не в фокусе D-174."
+
+  # --- Growth: трафик к воронке scan -> report -> /request-quote/ (приоритет D-174, 2026-08-15) ---
+  # По новому критическому пути Фазы 2 (спрос раньше outreach) это САМЫЙ релевантный
+  # прямо сейчас трек — источник: docs/project/SEO-INDEXING-PLAN.md (замер 2026-08-13,
+  # >110k/мес спроса под уже написанный контент, но только 157/460 страниц в индексе
+  # Google). Оба узла ниже — код/данные, без платных ресурсов, без немедленного деплоя.
+
+  - id: G-INTERLINK-AUDIT
+    title: "Аудит внутренней перелинковки 24 гайдов (входящая ссылка не только из sitemap/футера + исходящая на релевантные профили) — SEO-INDEXING-PLAN.md п.6"
+    owner: growth-strategist
+    status: todo
+    depends_on: []
+    inputs: [docs/project/SEO-INDEXING-PLAN.md, data/a11y/guides/, src/lib/guides.ts]
+    scope: [data/a11y/guides/, src/pages/, docs/project/domains/growth.md]
+    outputs: [docs/project/domains/growth.md]
+    verify:
+      - npm run check-links
+      - npm run audit-a11y
+      - VITE_SCANNER_API=https://audit-fixture.invalid npm run build
+      - "явный отчёт: у каждого из 24 гайдов минимум 1 входящая ссылка НЕ из автогенерируемого списка/футера (реальная тематическая перелинковка) и минимум 1 исходящая ссылка на релевантный профиль агентства (страна × стандарт совпадают)"
+    max_attempts: 4
+    attempts: 0
+    risk: low
+    approval_required: false
+    notes: "todo, разблокирован прямо сейчас по приоритету D-174 — растит органический трафик к воронке scan→report→request-quote без деплоя платных ресурсов; сама правка (issue-фиксы ссылок) пойдёт обычным push'ем под стандартный approval D-022, как любая другая правка сайта. Источник: SEO-INDEXING-PLAN.md п.6 — слабая перелинковка названа частой причиной, почему написанные страницы не индексируются (краулер ходит по ссылкам, не только по sitemap)."
+
+  - id: G-INDEXNOW
+    title: "IndexNow-протокол: уведомление Bing/Yandex о новых/изменённых URL при каждом деплое — SEO-INDEXING-PLAN.md п.5"
+    owner: devops-engineer
+    status: todo
+    depends_on: []
+    inputs: [docs/project/SEO-INDEXING-PLAN.md, .github/workflows/deploy.yml]
+    scope: [scripts/indexnow-ping.mjs, .github/workflows/deploy.yml, public/]
+    outputs: [scripts/indexnow-ping.mjs]
+    verify:
+      - node scripts/indexnow-ping.mjs --dry-run
+      - "ключевой файл в dist/ совпадает с ключом, который отправляется в API-запросе"
+      - "живой прогон на следующем реальном деплое: IndexNow API отвечает 200/202 на список изменённых URL"
+    max_attempts: 3
+    attempts: 0
+    risk: low
+    approval_required: false
+    notes: "todo, код безопасен построить сейчас (бесплатно, без секрета); реальный эффект — только на следующем реальном деплое сайта, тот же стандартный approval-гейт push'а в accessatlas (D-022), не отдельное разрешение. Google IndexNow не поддерживает (только Bing/Yandex/Naver), но косвенно ускоряет общее обнаружение краулерами. По приоритету D-174 — второй по дешевизне growth-узел после G-INTERLINK-AUDIT."
+
