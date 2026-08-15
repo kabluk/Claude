@@ -347,3 +347,59 @@ accessibilitychecker.org/statement-generator/ · scribely.com/alt-text-checker �
 color.adobe.com/create/color-accessibility · Similarweb (webaim.org,
 wave.webaim.org, accessibilitychecker.org, silktide.com, imagecolorpicker.com,
 coolors.co, subtitletools.com).
+
+### DataForSEO: реальные объёмы по кандидатам-чекерам (2026-08-15, D-182)
+
+Дыра «нет числовых данных» из исследования выше **закрыта** — прогнаны 18 фраз
+через DataForSEO (США, Google, англ.). Сырые данные —
+`research/volumes-checkers-us.json`. Баланс аккаунта на момент прогона —
+**$45.21** (в `STATUS.md` «Инфраструктура» значилось ~$525 — устаревшая
+запись, поправить).
+
+| Фраза | Объём/мес | CPC | Конкуренция |
+|---|---:|---:|---|
+| image color picker | **49 500** | $2.59 | LOW |
+| color picker from image | **49 500** | $2.59 | LOW |
+| alt text generator | 2 900 | $2.94 | LOW |
+| screen reader test | 260 | $7.68 | MEDIUM |
+| accessibility statement example | 210 | **$10.60** | LOW |
+| screen reader online | 140 | $4.10 | LOW |
+| accessibility statement generator | 110 | **$16.23** | LOW |
+| alt text checker | 110 | $5.39 | LOW |
+| heading checker | 70 | — | LOW |
+| h1 tag checker | 50 | **$14.74** | LOW |
+| screen reader simulator | 40 | **$15.95** | LOW |
+| accessibility statement template | 30 | — | LOW |
+| image alt text checker | 20 | — | LOW |
+| heading structure checker | 10 | — | LOW |
+| focus order visualizer · tab order checker · touch target size checker · vpat generator | нет данных | — | — |
+
+**Что данные ИЗМЕНИЛИ в ранжировании исследования.** Субагент поставил
+Accessibility Statement Generator №1 по числу конкурентов — данные показали,
+что по объёму это **110/мес**, то есть крошечная ниша. Но CPC у неё
+**$16.23 — самый высокий во всём наборе**, вчетверо выше «image color
+picker». Это не противоречие, а разные вещи: объём говорит, сколько людей
+ищет, CPC — сколько стоит их внимание рекламодателю, то есть насколько
+коммерчески ценна аудитория. Обе цифры верны, и решение зависит от цели:
+трафик ради трафика → color picker; аудитория, готовая платить → statement
+generator. Узел D-181 уже сделан — и данные его не отменяют, а объясняют:
+мы взяли маленькую, но самую «дорогую» нишу.
+
+**Второй сюрприз: `alt text generator` (2 900) в 26 раз больше, чем `alt text
+checker` (110).** Люди хотят, чтобы alt-текст ЗА НИХ НАПИСАЛИ, а не
+проверили. Но генерация требует ИИ-API, то есть платного вызова на каждый
+запрос — прямое нарушение zero-cost ограничения всех наших чекеров. Это
+честная развилка для владельца, а не задача, которую можно молча закрыть:
+либо отказываемся от объёма, либо заводим первый платный-за-вызов инструмент
+с отдельным решением по бюджету и лимитам.
+
+**Волатильность верхнего кандидата.** У «image color picker» помесячные
+значения за год: 165 000 → 12 100 (размах 13,6×). Годовое среднее 49 500
+скрывает сильную сезонность — планируя под него, нельзя рассчитывать на
+ровный поток.
+
+**Мертвая зона подтверждена данными:** focus order visualizer, tab order
+checker, touch target size checker, vpat generator — DataForSEO не вернул
+объёма вовсе. Субагент отмечал их как «нет данных» по косвенным признакам;
+теперь это подтверждено прямым замером: искать эти инструменты
+практически некому, при том что делать их дорого. **Не брать.**

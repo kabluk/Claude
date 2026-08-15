@@ -1,0 +1,983 @@
+{
+  "location": "US",
+  "language": "en",
+  "fetched_for": 18,
+  "rows": [
+    {
+      "keyword": "image color picker",
+      "volume": 49500,
+      "cpc": 2.59,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 165000
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 60500
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 74000
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 165000
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 40500
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 22200
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 14800
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 27100
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 14800
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 14800
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 12100
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 18100
+        }
+      ]
+    },
+    {
+      "keyword": "color picker from image",
+      "volume": 49500,
+      "cpc": 2.59,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 165000
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 60500
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 74000
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 165000
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 40500
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 22200
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 14800
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 27100
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 14800
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 14800
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 12100
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 18100
+        }
+      ]
+    },
+    {
+      "keyword": "alt text generator",
+      "volume": 2900,
+      "cpc": 2.94,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 2900
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 2900
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 3600
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 4400
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 3600
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 3600
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 2900
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 1900
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 2900
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 2900
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 2900
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 2900
+        }
+      ]
+    },
+    {
+      "keyword": "screen reader test",
+      "volume": 260,
+      "cpc": 7.68,
+      "competition": "MEDIUM",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 210
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 170
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 170
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 260
+        }
+      ]
+    },
+    {
+      "keyword": "accessibility statement example",
+      "volume": 210,
+      "cpc": 10.6,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 210
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 140
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 170
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 140
+        }
+      ]
+    },
+    {
+      "keyword": "screen reader online",
+      "volume": 140,
+      "cpc": 4.1,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 140
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 170
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 170
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 110
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 110
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 110
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 170
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 140
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 110
+        }
+      ]
+    },
+    {
+      "keyword": "accessibility statement generator",
+      "volume": 110,
+      "cpc": 16.23,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 170
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 210
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 140
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 110
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 110
+        }
+      ]
+    },
+    {
+      "keyword": "alt text checker",
+      "volume": 110,
+      "cpc": 5.39,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 140
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 140
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 140
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 140
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 140
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 110
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 110
+        }
+      ]
+    },
+    {
+      "keyword": "heading checker",
+      "volume": 70,
+      "cpc": null,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 140
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 50
+        }
+      ]
+    },
+    {
+      "keyword": "h1 tag checker",
+      "volume": 50,
+      "cpc": 14.74,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 50
+        }
+      ]
+    },
+    {
+      "keyword": "screen reader simulator",
+      "volume": 40,
+      "cpc": 15.95,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 40
+        }
+      ]
+    },
+    {
+      "keyword": "accessibility statement template",
+      "volume": 30,
+      "cpc": null,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 30
+        }
+      ]
+    },
+    {
+      "keyword": "image alt text checker",
+      "volume": 20,
+      "cpc": null,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 20
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 30
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 30
+        }
+      ]
+    },
+    {
+      "keyword": "heading structure checker",
+      "volume": 10,
+      "cpc": null,
+      "competition": "LOW",
+      "monthly": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 20
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 10
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 10
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 10
+        }
+      ]
+    },
+    {
+      "keyword": "focus order visualizer",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    },
+    {
+      "keyword": "tab order checker",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    },
+    {
+      "keyword": "touch target size checker",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    },
+    {
+      "keyword": "vpat generator",
+      "volume": null,
+      "cpc": null,
+      "competition": null
+    }
+  ]
+}
