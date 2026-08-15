@@ -9,7 +9,7 @@ import { createInterface } from 'node:readline';
 // Использование: node scripts/summarize.mjs [YYYY-MM-DD]
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
-const date = process.argv[2] || new Date().toISOString().slice(0, 10);
+const date = process.argv[2] || process.env.SNAPSHOT_DATE || new Date().toISOString().slice(0, 10);
 const censusPath = join(ROOT, 'data', 'raw', date, 'census.csv.gz');
 if (!existsSync(censusPath)) {
   console.error(`Нет файла ${censusPath} — сначала node scripts/snapshot.mjs`);
