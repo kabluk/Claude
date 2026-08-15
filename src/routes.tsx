@@ -126,6 +126,11 @@ export const routes: RouteRecord[] = [
     path: '/checkers/accessibility-statement-generator',
     lazy: page(() => import('./pages/StatementGeneratorPage')),
   },
+  { path: '/checkers/alt-text-checker', lazy: page(() => import('./pages/AltTextCheckerPage')) },
+  {
+    path: '/checkers/heading-structure-checker',
+    lazy: page(() => import('./pages/HeadingCheckerPage')),
+  },
   { path: '/checkers/text-to-speech', lazy: page(() => import('./pages/TextToSpeechPage')) },
   // G-CHECKER-PALETTE: sixth tool — accessible colour palette generator, same
   // discipline (static segment, both hardcoded lists mandatory).

@@ -57,11 +57,23 @@ export const CHECKERS: CheckerEntry[] = [
     href: paths.statementGenerator(),
     title: 'Accessibility statement generator',
     dek: 'Fill in a short form and copy a ready accessibility statement — plain text or HTML, built on the W3C WAI structure, with EU “compliant” wording where it applies.',
-    // topic 'text' — не по «работе с текстом», а по аудитории: это
-    // документ-инструмент, ближе к читаемости и синтезу речи, чем к
-    // подбору цветов. Цветовая четвёрка иначе вытеснила бы его из выдачи
-    // друг у друга навсегда (D-181).
-    topic: 'text',
+    // topic 'markup' — не «работа с текстом» и не «цвет»: это инструменты по
+    // разбору/составлению разметки и документов, отдельная семья от colour
+    // (D-181/D-183). Без своей темы они вытеснялись бы цветовой четвёркой из
+    // выдачи друг у друга.
+    topic: 'markup',
+  },
+  {
+    href: paths.altTextChecker(),
+    title: 'Alt text checker',
+    dek: 'Paste your HTML and check every image for missing, empty, redundant or file-name alt text against WCAG 1.1.1 — entirely in your browser.',
+    topic: 'markup',
+  },
+  {
+    href: paths.headingChecker(),
+    title: 'Heading structure checker',
+    dek: 'Paste your HTML and see the heading outline plus structural problems — missing or multiple h1, skipped levels, empty headings.',
+    topic: 'markup',
   },
 ]
 

@@ -1994,7 +1994,7 @@ nodes:
   - id: G-CHECKER-HTML-PARSER
     title: "Alt Text Checker + Heading Structure Analyzer на общем paste-HTML/DOMParser-движке"
     owner: frontend-engineer
-    status: todo
+    status: done
     depends_on: []
     inputs: [docs/project/domains/growth.md]
     scope: [src/pages/, src/lib/, src/components/]
@@ -2006,7 +2006,7 @@ nodes:
       - "обе новые страницы в gen-a11y-sitemap.mjs И audit-own-a11y.mjs"
       - "чистые функции разбора покрыты тестами на реальных фрагментах HTML, не только на синтетике"
     max_attempts: 4
-    attempts: 0
+    attempts: 1
     risk: low
     approval_required: false
-    notes: "todo. Кандидаты №3 и №4 по исследованию (growth.md, D-179), объединены в один узел намеренно: оба строятся на ОДНОМ DOMParser-движке по вставленному HTML — один парсер, два URL, два кластера запросов. Heading analyzer даёт двойной кластер (a11y + SEO: «h1 tag checker», «heading hierarchy»), то есть трафик шире ниши. Числовых данных о спросе нет ни по одному (growth.md честно помечает). ВАЖНОЕ ограничение (подтверждено внешним источником, wcagkit.com): ввод URL невозможен на клиенте из-за CORS — только вставка HTML/загрузка файла; инструмент с вводом URL это наш серверный сканер, не чекер."
+    notes: "done (D-183, 2026-08-15). Три слоя: htmlAudit.ts (чистое ядро, 16 тестов) + htmlExtract.ts (DOMParser-обёртка) + HtmlAuditTool.tsx (общий UI, mode=alt|headings → 2 URL). Живая Playwright-проверка обеих страниц. По ходу пойманы hydration mismatch (переписано на useEffect) и ложные check-links на src внутри textarea (общий фикс + канарейка). src:test 191/191, audit-a11y 71/0 ×3. Реестр чекеров = 9. Кандидаты №3 и №4 по исследованию (growth.md, D-179), объединены в один узел намеренно: оба строятся на ОДНОМ DOMParser-движке по вставленному HTML — один парсер, два URL, два кластера запросов. Heading analyzer даёт двойной кластер (a11y + SEO: «h1 tag checker», «heading hierarchy»), то есть трафик шире ниши. Числовых данных о спросе нет ни по одному (growth.md честно помечает). ВАЖНОЕ ограничение (подтверждено внешним источником, wcagkit.com): ввод URL невозможен на клиенте из-за CORS — только вставка HTML/загрузка файла; инструмент с вводом URL это наш серверный сканер, не чекер."

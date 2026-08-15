@@ -182,6 +182,8 @@ export const paths = {
   // swatch shows its WCAG contrast, not just a hue).
   colorPaletteGenerator: () => '/checkers/color-palette-generator/',
   statementGenerator: () => '/checkers/accessibility-statement-generator/',
+  altTextChecker: () => '/checkers/alt-text-checker/',
+  headingChecker: () => '/checkers/heading-structure-checker/',
   // CN-WCAG-PAGES (D-066): справочник критериев из en301549-coverage.json.
   wcag: () => '/wcag/',
   wcagCriterion: (slug: string) => `/wcag/${slug}/`,

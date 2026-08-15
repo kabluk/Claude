@@ -39,8 +39,17 @@ const broken = []
 let checked = 0
 const seen = new Set()
 
+// Содержимое <textarea> — это ТЕКСТ, который печатает/видит пользователь
+// (образцы HTML в наших чекерах alt-text/heading, D-183), а не ссылки самой
+// страницы. Внутри него `src="/foo.png"` из примера — не битая ссылка сайта,
+// а часть демонстрируемого кода. Регекс href/src этого не различает, поэтому
+// вырезаем содержимое textarea перед проверкой (сам тег оставляем). Узкое,
+// точное вырезание — только textarea, не <pre>/<code>: там пример ссылки
+// теоретически может БЫТЬ настоящей ссылкой, которую стоит проверять.
+const stripTextareas = (html) => html.replace(/(<textarea\b[^>]*>)[\s\S]*?(<\/textarea>)/gi, '$1$2')
+
 for (const file of files) {
-  const html = readFileSync(file, 'utf8')
+  const html = stripTextareas(readFileSync(file, 'utf8'))
   let m
   while ((m = HREF_RE.exec(html))) {
     const url = m[1]

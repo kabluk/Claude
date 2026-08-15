@@ -5,7 +5,7 @@
 // `tsx --test` (src:test) утащил бы за собой всю эту цепочку. Здесь — только
 // типы и функция, оба без побочных эффектов.
 
-export type CheckerTopic = 'colour' | 'text'
+export type CheckerTopic = 'colour' | 'text' | 'markup'
 
 export interface CheckerEntry {
   href: string
