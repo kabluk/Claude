@@ -11,6 +11,13 @@
 `git log --oneline -3` содержит D-1xx-коммиты и есть
 `docs/project/HANDOFF.md`.
 
+⚠️ **Проверяй `git remote -v` перед КАЖДЫМ push** (замечено 2026-08-15,
+дважды за одну сессию): среда периодически сбрасывает `origin` на
+`https://github.com/kabluk/accessatlas` — это ДРУГОЙ, пустой репозиторий,
+push туда «успешно» создаёт ветку в пустоте и выглядит как нормальный
+результат. Рабочий адрес — `https://github.com/kabluk/Claude.git`;
+чинится `git remote set-url origin https://github.com/kabluk/Claude.git`.
+
 ⚠️ **Push в `accessatlas` = автодеплой сайта на прод** (D-099/D-101):
 CI собирает с `VITE_SCANNER_API`, гоняет все гейты и катит на
 Cloudflare Pages. Пушить туда только то, что готово ехать пользователям;
