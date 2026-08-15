@@ -16,6 +16,7 @@
     "check-links": "node scripts/check-links.mjs",
     "audit-a11y": "node scripts/audit-own-a11y.mjs",
     "smoke": "node scripts/smoke-prod.mjs",
+    "indexnow": "node scripts/indexnow-ping.mjs",
     "worker:test": "node --test worker/**/*.test.mjs",
     "scripts:test": "node --test scripts/**/*.test.mjs",
     "src:test": "tsx --test src/**/*.test.mjs",

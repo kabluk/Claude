@@ -14,6 +14,21 @@ const DIST = join(ROOT, 'dist')
 const ORIGIN = 'https://verscala.com'
 const THRESHOLD = 3
 
+// G-INDEXNOW (D-178, 2026-08-15): ключ верификации IndexNow-протокола —
+// НЕ секрет (наоборот, он обязан быть публично читаем по HTTPS, это и есть
+// весь механизм проверки владения доменом у протокола), поэтому спокойно
+// живёт в коде, как и остальные публичные константы этого файла. Значение
+// зафиксировано раз и навсегда: смена ключа между прогонами обнулила бы уже
+// накопленное доверие поисковика к этому ключу.
+//
+// Продублирован (не импортирован) в scripts/indexnow-ping.mjs — держать в
+// синхроне ЗНАЧЕНИЕ, не модуль: этот файл — top-level исполняемый скрипт
+// (падает, если нет dist/), импорт константы отсюда потянул бы за собой
+// весь запуск генерации sitemap как побочный эффект. Тот же принцип
+// дублирования, что jurisdictions.ts/jurisdiction.js в этом проекте — цена
+// связности выше цены синхронизации одной строки.
+const INDEXNOW_KEY = '2fdd39895be44fab5144134f6bf047f0'
+
 if (!existsSync(DIST)) {
   console.error('Нет dist/ — сперва SSG-сборка (npm run build).')
   process.exit(1)
@@ -114,6 +129,9 @@ ${urls.map((u) => `  <url><loc>${ORIGIN}${u}</loc><lastmod>${today}</lastmod></u
 `
 writeFileSync(join(DIST, 'sitemap.xml'), xml)
 writeFileSync(join(DIST, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${ORIGIN}/sitemap.xml\n`)
+// IndexNow требует ключевой файл по адресу <host>/<key>.txt, содержащий
+// РОВНО ключ и ничего больше (протокол сверяет байты, не парсит формат).
+writeFileSync(join(DIST, `${INDEXNOW_KEY}.txt`), INDEXNOW_KEY)
 
 // Cloudflare Pages/Netlify ищут ровно dist/404.html в корне вывода,
 // а не dist/404/index.html (dirStyle: 'nested' пишет именно так). Копируем.

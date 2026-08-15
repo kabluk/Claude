@@ -116,3 +116,9 @@ jobs:
           npm run smoke || (echo "::warning::первая попытка не прошла — ждём раскатки CDN и пробуем ещё раз" && sleep 40 && npm run smoke)
         env:
           VITE_SCANNER_API: ${{ vars.VITE_SCANNER_API }}
+
+      # G-INDEXNOW (D-178): уведомление Bing/Yandex о полном списке URL сайта
+      # (SEO-INDEXING-PLAN.md п.5). Намеренно ПОСЛЕ smoke-теста (реальный
+      # сайт уже подтверждён живым) и намеренно НЕ гейт — сбой стороннего API
+      # не должен ронять деплой, скрипт сам best-effort (см. его шапку).
+      - run: npm run indexnow
