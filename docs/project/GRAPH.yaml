@@ -1974,7 +1974,7 @@ nodes:
   - id: G-CHECKER-STATEMENT-GEN
     title: "Accessibility Statement Generator — форма → готовый HTML заявления о доступности (чистый клиент)"
     owner: frontend-engineer
-    status: todo
+    status: done
     depends_on: []
     inputs: [docs/project/domains/growth.md, data/a11y/guides/accessibility-statement-guide.md, src/pages/AccessibilityStatementPage.tsx]
     scope: [src/pages/, src/lib/, data/a11y/]
@@ -1986,10 +1986,10 @@ nodes:
       - "новая страница в gen-a11y-sitemap.mjs И audit-own-a11y.mjs (правило проекта, ловит page-lists.test.mjs)"
       - "юридические формулировки — из уже проверенных источников (EU-шаблон, наш собственный /accessibility-statement/), НЕ выдуманные"
     max_attempts: 4
-    attempts: 0
+    attempts: 1
     risk: medium
     approval_required: false
-    notes: "todo. Кандидат №1 по исследованию рынка (D-179, growth.md): самый плотный кластер конкурентов — минимум 8 игроков ниши имеют такой генератор, включая платящих $5–8 CPC за трафик. Числовых данных о спросе НЕТ (публичных keyword-volume в нише нет вовсе), сигнал косвенный, но сильный. Максимальная близость к воронке: человек, генерирующий заявление, обязан подтвердить фактическое соответствие → прямой переход в скан → агентства. risk: medium именно из-за юридических формулировок — заявление о доступности это регуляторный документ (EAA/BFSG Anlage 3), выдумывать в нём нельзя; брать формулировки из уже проверенных источников проекта."
+    notes: "done (D-181, 2026-08-15). Кандидат №1 по исследованию рынка (D-179, growth.md): самый плотный кластер конкурентов — минимум 8 игроков ниши имеют такой генератор, включая платящих $5–8 CPC за трафик. Числовых данных о спросе НЕТ (публичных keyword-volume в нише нет вовсе), сигнал косвенный, но сильный. Максимальная близость к воронке: человек, генерирующий заявление, обязан подтвердить фактическое соответствие → прямой переход в скан → агентства. risk: medium именно из-за юридических формулировок — заявление о доступности это регуляторный документ (EAA/BFSG Anlage 3), выдумывать в нём нельзя; брать формулировки из уже проверенных источников проекта."
 
   - id: G-CHECKER-HTML-PARSER
     title: "Alt Text Checker + Heading Structure Analyzer на общем paste-HTML/DOMParser-движке"

@@ -122,6 +122,10 @@ export const routes: RouteRecord[] = [
   // дисциплина (статические сегменты, оба захардкоженных списка обязательны).
   { path: '/checkers/color-blindness-simulator', lazy: page(() => import('./pages/ColorBlindnessPage')) },
   { path: '/checkers/color-converter', lazy: page(() => import('./pages/ColorConverterPage')) },
+  {
+    path: '/checkers/accessibility-statement-generator',
+    lazy: page(() => import('./pages/StatementGeneratorPage')),
+  },
   { path: '/checkers/text-to-speech', lazy: page(() => import('./pages/TextToSpeechPage')) },
   // G-CHECKER-PALETTE: sixth tool — accessible colour palette generator, same
   // discipline (static segment, both hardcoded lists mandatory).

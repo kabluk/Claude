@@ -53,6 +53,16 @@ export const CHECKERS: CheckerEntry[] = [
     dek: 'Generate complementary, triadic and other harmonious palettes — every swatch shows its readable text colour, WCAG contrast ratio and AA pass/fail.',
     topic: 'colour',
   },
+  {
+    href: paths.statementGenerator(),
+    title: 'Accessibility statement generator',
+    dek: 'Fill in a short form and copy a ready accessibility statement — plain text or HTML, built on the W3C WAI structure, with EU “compliant” wording where it applies.',
+    // topic 'text' — не по «работе с текстом», а по аудитории: это
+    // документ-инструмент, ближе к читаемости и синтезу речи, чем к
+    // подбору цветов. Цветовая четвёрка иначе вытеснила бы его из выдачи
+    // друг у друга навсегда (D-181).
+    topic: 'text',
+  },
 ]
 
 export const relatedCheckers = (currentHref: string, limit = 3): CheckerEntry[] =>
