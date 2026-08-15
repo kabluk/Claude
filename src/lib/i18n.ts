@@ -90,6 +90,7 @@ export interface ChromeDict {
     ctaTitle: string
     ctaSubtitle: string
     relatedAgencies: string
+    relatedGuides: string
   }
 }
 
@@ -132,6 +133,7 @@ const en: ChromeDict = {
     ctaTitle: 'Ready for the next step?',
     ctaSubtitle: 'Compare verified providers — every listing cites its sources.',
     relatedAgencies: 'Verified agencies for this topic',
+    relatedGuides: 'Related guides',
   },
 }
 
@@ -174,6 +176,7 @@ const de: ChromeDict = {
     ctaTitle: 'Bereit für den nächsten Schritt?',
     ctaSubtitle: 'Vergleichen Sie geprüfte Anbieter — jeder Eintrag nennt seine Quellen.',
     relatedAgencies: 'Geprüfte Anbieter zu diesem Thema',
+    relatedGuides: 'Verwandte Ratgeber',
   },
 }
 
@@ -223,6 +226,7 @@ const fr: ChromeDict = {
     ctaTitle: 'Prêt pour la suite ?',
     ctaSubtitle: 'Comparez des prestataires vérifiés — chaque fiche cite ses sources.',
     relatedAgencies: 'Prestataires vérifiés sur ce sujet',
+    relatedGuides: 'Guides associés',
   },
 }
 
@@ -283,6 +287,7 @@ const pl: ChromeDict = {
     ctaTitle: 'Gotowy na kolejny krok?',
     ctaSubtitle: 'Porównaj zweryfikowanych dostawców — każdy wpis podaje swoje źródła.',
     relatedAgencies: 'Zweryfikowani dostawcy w tym temacie',
+    relatedGuides: 'Powiązane przewodniki',
   },
 }
 

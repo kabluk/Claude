@@ -2,7 +2,7 @@ import { Link, useParams } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
 import { AgencyCard } from '@/components/AgencyCard'
 import { JsonLd, ORIGIN, SITE_NAME } from '@/lib/seo'
-import { guideBySlug } from '@/lib/guides'
+import { guideBySlug, relatedGuides } from '@/lib/guides'
 import { agencyBySlug, countryByCode, paths, standardLabel } from '@/lib/data'
 import { chromeDict, type ChromeLocale } from '@/lib/i18n'
 
@@ -12,6 +12,7 @@ export default function GuidePage() {
   if (!g) return null
   const related = g.relatedAgencies.map(agencyBySlug).filter((a) => a != null)
   const country = g.countryCode ? countryByCode(g.countryCode) : undefined
+  const otherGuides = relatedGuides(g)
   const path = `/guides/${g.slug}/`
 
   const articleLd = {
@@ -104,6 +105,21 @@ export default function GuidePage() {
           </section>
         )}
       </article>
+
+      {otherGuides.length > 0 && (
+        <section className="mt-10 max-w-3xl">
+          <h2 className="h2">{t.guide.relatedGuides}</h2>
+          <ul className="mt-3 space-y-2">
+            {otherGuides.map((o) => (
+              <li key={o.slug}>
+                <Link className="underline underline-offset-2" to={`/guides/${o.slug}/`} lang={o.locale}>
+                  {o.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {g.cta && (
         <div className="mt-10 max-w-3xl rounded-xl border border-outline-variant bg-secondary-container p-6">

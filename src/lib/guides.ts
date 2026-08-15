@@ -64,3 +64,14 @@ export const guidesFor = (opts: { standard?: StandardSlug; countryCode?: string 
       (opts.standard && g.standard === opts.standard) ||
       (opts.countryCode && g.countryCode === opts.countryCode),
   )
+
+// G-INTERLINK-AUDIT (2026-08-15): у гайда САМОГО ПО СЕБЕ раньше не было
+// ссылок на другие гайды — только на агентства. Индекс `/guides/` линкует на
+// все 27, поэтому формально ни один не orphan, но SEO-план (п.6) специально
+// требует связей ГУЩЕ, чем один центральный список: краулер и посетитель
+// должны иметь путь от гайда к гайду напрямую. Логика матчинга — в
+// guideRelations.ts (см. его шапку — вынесена ради тестируемости, эта строка
+// выше, import.meta.glob, ломает импорт модуля вне Vite-сборки).
+export { relatedGuidesFor } from './guideRelations'
+import { relatedGuidesFor as relatedGuidesForImpl } from './guideRelations'
+export const relatedGuides = (g: GuideDoc, limit = 4): GuideDoc[] => relatedGuidesForImpl(guides, g, limit)

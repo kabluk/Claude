@@ -1916,7 +1916,7 @@ nodes:
   - id: G-INTERLINK-AUDIT
     title: "Аудит внутренней перелинковки 24 гайдов (входящая ссылка не только из sitemap/футера + исходящая на релевантные профили) — SEO-INDEXING-PLAN.md п.6"
     owner: growth-strategist
-    status: todo
+    status: done
     depends_on: []
     inputs: [docs/project/SEO-INDEXING-PLAN.md, data/a11y/guides/, src/lib/guides.ts]
     scope: [data/a11y/guides/, src/pages/, docs/project/domains/growth.md]
@@ -1927,10 +1927,10 @@ nodes:
       - VITE_SCANNER_API=https://audit-fixture.invalid npm run build
       - "явный отчёт: у каждого из 24 гайдов минимум 1 входящая ссылка НЕ из автогенерируемого списка/футера (реальная тематическая перелинковка) и минимум 1 исходящая ссылка на релевантный профиль агентства (страна × стандарт совпадают)"
     max_attempts: 4
-    attempts: 0
+    attempts: 1
     risk: low
     approval_required: false
-    notes: "todo, разблокирован прямо сейчас по приоритету D-174 — растит органический трафик к воронке scan→report→request-quote без деплоя платных ресурсов; сама правка (issue-фиксы ссылок) пойдёт обычным push'ем под стандартный approval D-022, как любая другая правка сайта. Источник: SEO-INDEXING-PLAN.md п.6 — слабая перелинковка названа частой причиной, почему написанные страницы не индексируются (краулер ходит по ссылкам, не только по sitemap)."
+    notes: "done (D-176, 2026-08-15). Аудит построчным разбором всех 27 файлов data/a11y/guides/*.md (не 24 — каталог вырос): все имеют standard, все имеют relatedAgencies (2-4), 12/27 имеют countryCode. Formально orphan нет (индекс /guides/ линкует все 27), реальный пробел — гайд не ссылался НИ НА ОДИН другой гайд, только на агентства. Фикс: relatedGuidesFor() (src/lib/guideRelations.ts, вынесен из guides.ts отдельно — import.meta.glob в guides.ts ломает tsx --test на импорте, даже когда сама функция глоб не трогает), приоритет standard → добор countryCode, лимит 4; секция «Related guides» в GuidePage.tsx, i18n en/de/fr/pl. 6 новых тестов на РЕАЛЬНЫХ slug/standard/countryCode (не синтетика), включая негативный кейс недобора. Живой dist/ проверен (bfsg-pflichten-guide → 4 верные ссылки, немецкий текст). typecheck/src:test 154/154/worker:test 522/522/scripts:test 48/48/build 787 URL/check-links 868 (0 битых)/audit-a11y 68 стр. 0 нарушений ×3 (D-171). Не задеплоено, ждёт push в accessatlas под стандартный approval (D-022)."
 
   - id: G-INDEXNOW
     title: "IndexNow-протокол: уведомление Bing/Yandex о новых/изменённых URL при каждом деплое — SEO-INDEXING-PLAN.md п.5"
