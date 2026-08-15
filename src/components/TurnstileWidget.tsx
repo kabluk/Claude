@@ -1,4 +1,4 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef } from 'react'
+import { forwardRef, useImperativeHandle, useRef } from 'react'
 import { TURNSTILE_SITE_KEY } from '@/lib/scanner'
 
 const SCRIPT_SRC = 'https://challenges.cloudflare.com/turnstile/v0/api.js'
@@ -46,67 +46,67 @@ export interface TurnstileHandle {
   execute: () => Promise<string>
 }
 
-// D-169 (владелец, 2026-08-14): appearance:'execute' — виджет НЕ рендерит UI и
-// НЕ запускает проверку сам при монтировании формы, только когда явно вызван
-// execute() (обычно — в момент сабмита). Не снижает защиту: тот же движок,
-// тот же поведенческий сигнал Cloudflare, что и в always-режиме — разница
-// только в том, что не показывается визуально до нужного момента. Раньше
-// виджет рендерился сразу при открытии страницы — то, что он у легитимного
-// браузера сразу проходит без пазла, было ОЖИДАЕМЫМ поведением managed-режима
-// (не признаком, что защита не работает), но визуально это выглядело как
-// «всегда зелёный», поэтому по прямой просьбе владельца убран с глаз.
+// D-184 (владелец, 2026-08-15): ПОЛНОСТЬЮ ленивая загрузка. Раньше (D-169)
+// виджет рендерился в appearance:'execute' — визуально скрыт, НО скрипт
+// Cloudflare (challenges.cloudflare.com) грузился и `render()` вызывался уже
+// при МОНТИРОВАНИИ формы, то есть при открытии любой страницы со сканом/
+// подпиской/лид-формой. Скрытый UI ≠ отсутствие виджета: сам факт загрузки
+// стороннего скрипта и созданного виджета владелец видел «постоянно». По
+// прямой просьбе — ничего не грузить и не рендерить, пока пользователь не
+// нажмёт submit: скрипт, render() и execute() происходят ВСЕ вместе, в
+// момент первого вызова execute(). До этого на странице нет ни строчки
+// Cloudflare.
+//
+// Цена — задержка первого сабмита на загрузку скрипта (~200–500мс); сабмит и
+// так асинхронный и показывает «Sending…», так что она не заметна. Виджет
+// по-прежнему appearance:'execute' — у легитимного браузера проверка проходит
+// невидимо; challenge всплывёт только если Cloudflare сочтёт запрос
+// подозрительным, что и есть «появляется при проверке».
 export const TurnstileWidget = forwardRef<TurnstileHandle>(function TurnstileWidget(_props, ref) {
   const containerRef = useRef<HTMLDivElement>(null)
   const widgetIdRef = useRef<string | null>(null)
   const pendingRef = useRef<{ resolve: (token: string) => void; reject: (err: Error) => void } | null>(null)
 
-  useEffect(() => {
-    if (!TURNSTILE_SITE_KEY || !containerRef.current) return
-    let cancelled = false
-    loadTurnstileScript()
-      .then(() => {
-        if (cancelled || !containerRef.current || !window.turnstile) return
-        widgetIdRef.current = window.turnstile.render(containerRef.current, {
-          sitekey: TURNSTILE_SITE_KEY,
-          appearance: 'execute',
-          callback: (token) => {
-            pendingRef.current?.resolve(token)
-            pendingRef.current = null
-          },
-          'error-callback': () => {
-            pendingRef.current?.reject(new Error('Turnstile verification failed'))
-            pendingRef.current = null
-          },
-        })
-      })
-      // Скрипт не загрузился (сеть/блокировщик) — execute() ниже сам отклонится
-      // за отсутствием widgetIdRef, вызывающий код деградирует штатно. Здесь
-      // только гасим unhandled rejection, не re-throw.
-      .catch(() => {})
-    return () => {
-      cancelled = true
-      if (widgetIdRef.current && window.turnstile) window.turnstile.remove(widgetIdRef.current)
+  // Ленивая инициализация: грузит скрипт и рендерит виджет ОДИН раз, при
+  // первом вызове. Повторные execute() переиспользуют уже отрендеренный
+  // виджет. Возвращает widgetId или бросает, если не удалось.
+  async function ensureWidget(): Promise<string> {
+    if (widgetIdRef.current) return widgetIdRef.current
+    await loadTurnstileScript()
+    if (!containerRef.current || !window.turnstile) {
+      throw new Error('Turnstile is not available')
     }
-    // Колбэки читают pendingRef.current на момент вызова, не замыкают старое
-    // значение — пересоздавать виджет при каждом ре-рендере формы не нужно.
-  }, [])
+    widgetIdRef.current = window.turnstile.render(containerRef.current, {
+      sitekey: TURNSTILE_SITE_KEY,
+      appearance: 'execute',
+      callback: (token) => {
+        pendingRef.current?.resolve(token)
+        pendingRef.current = null
+      },
+      'error-callback': () => {
+        pendingRef.current?.reject(new Error('Turnstile verification failed'))
+        pendingRef.current = null
+      },
+    })
+    return widgetIdRef.current
+  }
 
   useImperativeHandle(ref, () => ({
-    execute: () =>
-      new Promise<string>((resolve, reject) => {
-        if (!TURNSTILE_SITE_KEY) {
-          resolve('')
-          return
-        }
-        if (!window.turnstile || !widgetIdRef.current) {
-          reject(new Error('Turnstile is not ready yet'))
-          return
-        }
+    execute: async () => {
+      // Без сайт-ключа виджета нет вовсе — сервер сам пропустит проверку без
+      // токена (worker/lib/turnstile.js). Тот же graceful degrade, что был.
+      if (!TURNSTILE_SITE_KEY) return ''
+      const widgetId = await ensureWidget()
+      return new Promise<string>((resolve, reject) => {
         pendingRef.current = { resolve, reject }
-        window.turnstile.execute(widgetIdRef.current)
-      }),
+        window.turnstile!.execute(widgetId)
+      })
+    },
   }))
 
+  // Контейнер нужен, чтобы render() было куда монтировать виджет, — но пустой
+  // <div> до первого сабмита не грузит ничего стороннего и ничего не рисует.
+  // Без сайт-ключа не рендерим и его.
   if (!TURNSTILE_SITE_KEY) return null
   return <div ref={containerRef} />
 })
