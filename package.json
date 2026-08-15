@@ -15,6 +15,7 @@
     "enrich": "node scripts/enrich-a11y.mjs",
     "check-links": "node scripts/check-links.mjs",
     "audit-a11y": "node scripts/audit-own-a11y.mjs",
+    "smoke": "node scripts/smoke-prod.mjs",
     "worker:test": "node --test worker/**/*.test.mjs",
     "scripts:test": "node --test scripts/**/*.test.mjs",
     "src:test": "tsx --test src/**/*.test.mjs",
