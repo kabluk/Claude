@@ -1893,7 +1893,7 @@ nodes:
   - id: R-WORKER-DEPLOY
     title: "Деплой воркера кнопкой (workflow_dispatch), не руками с CF-токеном в переписке"
     owner: devops-engineer
-    status: todo
+    status: review
     depends_on: []
     inputs: [.github/workflows/deploy.yml, docs/project/HANDOFF.md]
     scope: [.github/workflows/worker-deploy.yml]
@@ -1902,10 +1902,10 @@ nodes:
       - "workflow валиден (actionlint/YAML), эквивалент wrangler deploy --dry-run внутри job"
       - "живой прогон workflow_dispatch деплоит воркер, Version ID меняется, R-SMOKE-DEPLOY/smoke зелёный после"
     max_attempts: 3
-    attempts: 0
+    attempts: 1
     risk: medium
     approval_required: true
-    notes: "todo. approval: секрет CLOUDFLARE_API_TOKEN должен лечь в GitHub Actions secrets (сейчас передаётся в чат in-memory на каждый ручной деплой воркера, см. HANDOFF «Про CF-токены») — операция с секретом уровня аккаунта, не только код. Не в фокусе D-174."
+    notes: "review (D-177, 2026-08-15). Владелец одобрил («2» на предложенный список). worker-deploy.yml написан: typecheck → worker:test → wrangler deploy --dry-run → wrangler deploy → пост-деплой smoke-check (GET /api/scan/<мусорный id> == 404). Переиспользует secrets.CLOUDFLARE_API_TOKEN, уже настроенный для deploy.yml — токен никогда не проходит через сессию. YAML валиден, typecheck/worker:test 522/522 зелёные. status=review, не done: живой прогон workflow_dispatch НЕ выполнялся — это отдельное решение (реальный деплой воркера), не подразумеваемое написанием workflow-файла; requires either token scope verification (может быть Pages-only, см. заметку в самом workflow) or a live trigger by the owner via GitHub UI."
 
   # --- Growth: трафик к воронке scan -> report -> /request-quote/ (приоритет D-174, 2026-08-15) ---
   # По новому критическому пути Фазы 2 (спрос раньше outreach) это САМЫЙ релевантный

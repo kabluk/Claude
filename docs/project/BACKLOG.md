@@ -289,7 +289,7 @@ D-022) — см. там owner/depends_on/verify/approval_required для каж�
 | `R-SELF-MONITOR` | Подписать `verscala.com` на СОБСТВЕННЫЙ еженедельный мониторинг (A3-CRON уже в проде) — продукт проверяет сам себя, нового кода ноль | product-lead | todo, **approval владельца** (запись в прод-D1 + реальная рассылка). Поймал бы `a11y-focus-invisible`, который живёт только на проде и невидим CI |
 | `R-LINKROT` | Плановая проверка `website`/`sourceRefs` 574 агентств на 404/смену домена | data-engineer | todo |
 | `R-STALE-DATA` | Отчёт «N профилей не сверялись > 180 дней» из `lastVerified` | data-engineer | todo |
-| `R-WORKER-DEPLOY` | Деплой воркера кнопкой (`workflow_dispatch`), а не руками с токеном в переписке | devops-engineer | todo, **approval владельца** (секрет в GitHub) |
+| `R-WORKER-DEPLOY` | Деплой воркера кнопкой (`workflow_dispatch`), а не руками с токеном в переписке | devops-engineer | **review** (D-177) — workflow написан и одобрен владельцем, живой прогон ещё не запускался |
 
 Все 6 строк формально заведены как узлы `GRAPH.yaml` при replan'е D-174
 (2026-08-15) — до этого граф отставал от этой таблицы (`R-SMOKE-DEPLOY`
