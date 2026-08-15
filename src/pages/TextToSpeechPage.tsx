@@ -6,6 +6,7 @@
 
 import { Link } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
+import { OtherCheckers } from '@/components/OtherCheckers'
 import { TextToSpeech } from '@/components/TextToSpeech'
 import { JsonLd, ORIGIN, SITE_NAME } from '@/lib/seo'
 import { paths } from '@/lib/data'
@@ -96,6 +97,8 @@ export default function TextToSpeechPage() {
           , criterion by criterion.
         </p>
       </section>
+
+      <OtherCheckers current={paths.textToSpeech()} />
     </Layout>
   )
 }

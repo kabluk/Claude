@@ -274,3 +274,76 @@ generator (ИИ)** — оба привлекательны по спросу (99
   единственная точка, где 270 агентств каталога становятся естественным
   следующим шагом («проверьте черновик у агентства»), а не отдельным
   списком без связи с чекером.
+
+## Рынок бесплатных a11y-чекеров — исследование 2026-08-15 (D-179/D-181)
+
+Запрошено владельцем вместе с перелинковкой чекеров. Полный отчёт субагента
+(веб-исследование, WebSearch/WebFetch) — сводка ниже, источники в конце.
+
+**Честная оговорка про цифры.** Публичных keyword-volume данных по нише в
+открытом доступе НЕТ (Ahrefs/Semrush/SpyFu отдают объёмы только в закрытом
+UI). Спрос ниже оценён прокси-трафиком доменов по Similarweb; где данных нет
+— так и написано «нет данных», числа не выдумывались.
+
+### Ключевое техническое ограничение (подтверждено внешним источником)
+
+wcagkit.com прямо документирует: «Browsers enforce CORS restrictions…
+stays static-only and does not use a server-side crawler». **Любой чекер с
+вводом URL требует сервера/прокси.** Zero-cost клиентские чекеры работают
+только через: ввод значений, вставку HTML, загрузку файла. Это же объясняет,
+почему наш серверный сканер — актив, а не дублирование чекеров.
+
+### Чего у конкурентов есть, а у нас нет (по частоте)
+
+1. **Accessibility Statement Generator** — минимум у 8 игроков ниши
+   (accessibilitychecker.org, UserWay, accessiBe, Termly, Recite Me,
+   DigitalA11Y, Azuro, WebYes). Самый плотный кластер.
+2. **Alt text checker** (wcagkit, Scribely, Silktide)
+3. **Heading structure analyzer** (wcagkit, VertaaUX, Silktide)
+4. **Screen reader simulator** (Silktide и ещё 4+ игрока)
+5. **ARIA validator / landmark / form / table checkers** (wcagkit — 18
+   клиентских инструментов, покомпонентный аналог нашей стратегии)
+6. **Focus/tab order visualizer** (wcagkit, taba11y)
+7. **Touch target checker** (WCAG 2.2 SC 2.5.8 — свежий критерий)
+8. **Пипетка/палитра из изображения** (Adobe Color, Coolors, imagecolorpicker)
+
+### Шорт-лист кандидатов (ранжирован)
+
+| # | Кандидат | Клиентский? | Спрос | Близость к воронке |
+|---|---|---|---|---|
+| 1 | **Accessibility Statement Generator** | да, форма→HTML | нет числовых данных; 8+ конкурентов, платящих $5–8 CPC | **максимальная** — генерирующий заявление обязан подтвердить соответствие |
+| 2 | **Image Color Picker / Extract Palette** | да, canvas+FileReader | Similarweb ~3.1M визитов у imagecolorpicker.com (70% органика) + прежние ~40.5k/мес DataForSEO | низкая (дизайнерская аудитория) |
+| 3 | **Alt Text Checker** (вставь HTML) | да, DOMParser | нет данных | высокая — ядро WCAG 1.1.1 |
+| 4 | **Heading Structure Analyzer** | да, DOMParser | нет данных | высокая + двойной кластер (a11y **и** SEO) |
+| 5 | **Screen Reader Preview** | да — переиспользует наш TTS-чекер (Web Speech API) | нет данных | высокая, самый демонстративный |
+| 6 | **Vision Impairment Simulator** (blur/катаракта/глаукома) | да, CSS/SVG-фильтры | нет данных | средняя; переиспользует код симулятора дальтонизма |
+| 7 | **Focus/Tab Order Visualizer** | да, `iframe srcdoc sandbox` | нет данных | высокая (WCAG 2.4.3), качественных веб-версий почти нет |
+| 8 | **SRT↔VTT конвертер** | да, FileReader | Similarweb ~609.4K у subtitletools.com | низкая (видео-аудитория) |
+
+**НЕ рекомендовано сейчас:** PDF accessibility checker (трудоёмкий pdf.js,
+неполный результат), keyboard trap detector и animation/reduced-motion
+checker (не решаются на клиенте), AI alt-text generator (платный API —
+нарушает zero-cost ограничение), VPAT-генератор (малый объём, но держать в
+бэклоге как B2B-магнит).
+
+### Стратегический вывод
+
+wcagkit.com — почти покомпонентный аналог плана (18 клиентских инструментов).
+Отличаться количеством инструментов бессмысленно; наше отличие — **каталог
+574 агентств + серверный сканер**, которых у него нет. Отсюда правило для
+КАЖДОГО нового чекера: заканчиваться не «вот отчёт», а «вот отчёт → скан
+всего сайта → агентства, которые это чинят».
+
+### Дыра в данных, которую стоит закрыть перед выбором очерёдности
+
+По кандидатам 1/3/4/5/7 числовых данных о спросе нет вовсе. Прогнать через
+DataForSEO конкретные фразы (`accessibility statement generator`, `alt text
+checker`, `heading structure checker`, `screen reader simulator`) — дешёвая
+проверка, снимающая главную неопределённость ранжирования.
+
+Источники: W3C WAI Tools List · WebAIM Resources · wcagkit.com/tools/ ·
+wcagkit site-checker (CORS) · silktide.com/tools/ ·
+accessibilitychecker.org/statement-generator/ · scribely.com/alt-text-checker ·
+color.adobe.com/create/color-accessibility · Similarweb (webaim.org,
+wave.webaim.org, accessibilitychecker.org, silktide.com, imagecolorpicker.com,
+coolors.co, subtitletools.com).

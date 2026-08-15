@@ -13,6 +13,7 @@
 
 import { Link } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
+import { OtherCheckers } from '@/components/OtherCheckers'
 import { ReadabilityChecker } from '@/components/ReadabilityChecker'
 import { JsonLd, ORIGIN, SITE_NAME } from '@/lib/seo'
 import { paths } from '@/lib/data'
@@ -145,6 +146,8 @@ export default function ReadabilityCheckerPage() {
           , criterion by criterion.
         </p>
       </section>
+
+      <OtherCheckers current={paths.readabilityChecker()} />
     </Layout>
   )
 }

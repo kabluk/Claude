@@ -1950,3 +1950,63 @@ nodes:
     approval_required: false
     notes: "done (D-178, 2026-08-15). scripts/indexnow-ping.mjs + шаг в deploy.yml после smoke-теста; весь sitemap на каждый деплой (нет инфраструктуры diff'а между деплоями, и IndexNow не штрафует за повтор известного URL); ключ верификации не секрет (протокол требует его публичной читаемости), продублирован, не импортирован, из gen-a11y-sitemap.mjs. Best-effort — сбой стороннего API не роняет деплой. 5 новых тестов (scripts:test 53/53), --dry-run проверен против реального dist/ (787 URL). Google IndexNow не поддерживает (только Bing/Yandex/Naver), эффект косвенный. Не задеплоено — push в accessatlas ждёт отдельного разрешения (D-022), реальный первый пинг API случится на следующем деплое."
 
+
+  - id: G-CHECKER-INTERLINK
+    title: "Перелинковка 6 чекеров между собой (блок «Other free checkers» + общий реестр) — тот же дефект «звезды», что D-176 у гайдов"
+    owner: frontend-engineer
+    status: done
+    depends_on: []
+    inputs: [src/pages/ToolsIndexPage.tsx, src/lib/data.ts]
+    scope: [src/lib/checkers.ts, src/lib/checkerRelations.ts, src/components/OtherCheckers.tsx, src/pages/]
+    outputs: [src/lib/checkers.ts, src/lib/checkerRelations.ts, src/components/OtherCheckers.tsx]
+    verify:
+      - npm run typecheck
+      - npm run src:test
+      - npm run check-links
+      - npm run audit-a11y
+      - "живой dist/: у КАЖДОЙ из 6 страниц чекера блок присутствует и ведёт на 3 других; contrast-checker ссылается наружу (был сток)"
+    max_attempts: 3
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "done (D-179, 2026-08-15). Аудит по просьбе владельца после D-176: 5 из 6 чекеров ссылались на contrast-checker, а он сам — ни на один (чистый сток); между собой чекеры не связаны, единственный путь чекер→чекер через индекс /checkers/. Реестр вынесен из ToolsIndexPage.tsx в src/lib/checkers.ts, чистая логика — checkerRelations.ts (прецедент D-176: реестр тянет paths из data.ts, ломает tsx --test), общий компонент OtherCheckers.tsx на всех 6 страницах. Приоритет — тематическая семья (colour/text), затем добор. 6 новых тестов, src:test 160/160, check-links 870 (было 868). Живой dist/ проверен по всем 6. Не задеплоено."
+
+  - id: G-CHECKER-STATEMENT-GEN
+    title: "Accessibility Statement Generator — форма → готовый HTML заявления о доступности (чистый клиент)"
+    owner: frontend-engineer
+    status: todo
+    depends_on: []
+    inputs: [docs/project/domains/growth.md, data/a11y/guides/accessibility-statement-guide.md, src/pages/AccessibilityStatementPage.tsx]
+    scope: [src/pages/, src/lib/, data/a11y/]
+    outputs: [src/pages/StatementGeneratorPage.tsx]
+    verify:
+      - npm run typecheck
+      - npm run src:test
+      - npm run audit-a11y
+      - "новая страница в gen-a11y-sitemap.mjs И audit-own-a11y.mjs (правило проекта, ловит page-lists.test.mjs)"
+      - "юридические формулировки — из уже проверенных источников (EU-шаблон, наш собственный /accessibility-statement/), НЕ выдуманные"
+    max_attempts: 4
+    attempts: 0
+    risk: medium
+    approval_required: false
+    notes: "todo. Кандидат №1 по исследованию рынка (D-179, growth.md): самый плотный кластер конкурентов — минимум 8 игроков ниши имеют такой генератор, включая платящих $5–8 CPC за трафик. Числовых данных о спросе НЕТ (публичных keyword-volume в нише нет вовсе), сигнал косвенный, но сильный. Максимальная близость к воронке: человек, генерирующий заявление, обязан подтвердить фактическое соответствие → прямой переход в скан → агентства. risk: medium именно из-за юридических формулировок — заявление о доступности это регуляторный документ (EAA/BFSG Anlage 3), выдумывать в нём нельзя; брать формулировки из уже проверенных источников проекта."
+
+  - id: G-CHECKER-HTML-PARSER
+    title: "Alt Text Checker + Heading Structure Analyzer на общем paste-HTML/DOMParser-движке"
+    owner: frontend-engineer
+    status: todo
+    depends_on: []
+    inputs: [docs/project/domains/growth.md]
+    scope: [src/pages/, src/lib/, src/components/]
+    outputs: [src/lib/htmlAudit.ts]
+    verify:
+      - npm run typecheck
+      - npm run src:test
+      - npm run audit-a11y
+      - "обе новые страницы в gen-a11y-sitemap.mjs И audit-own-a11y.mjs"
+      - "чистые функции разбора покрыты тестами на реальных фрагментах HTML, не только на синтетике"
+    max_attempts: 4
+    attempts: 0
+    risk: low
+    approval_required: false
+    notes: "todo. Кандидаты №3 и №4 по исследованию (growth.md, D-179), объединены в один узел намеренно: оба строятся на ОДНОМ DOMParser-движке по вставленному HTML — один парсер, два URL, два кластера запросов. Heading analyzer даёт двойной кластер (a11y + SEO: «h1 tag checker», «heading hierarchy»), то есть трафик шире ниши. Числовых данных о спросе нет ни по одному (growth.md честно помечает). ВАЖНОЕ ограничение (подтверждено внешним источником, wcagkit.com): ввод URL невозможен на клиенте из-за CORS — только вставка HTML/загрузка файла; инструмент с вводом URL это наш серверный сканер, не чекер."

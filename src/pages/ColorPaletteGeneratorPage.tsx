@@ -13,6 +13,7 @@
 
 import { Link } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
+import { OtherCheckers } from '@/components/OtherCheckers'
 import { ColorPaletteGenerator } from '@/components/ColorPaletteGenerator'
 import { JsonLd, ORIGIN, SITE_NAME } from '@/lib/seo'
 import { paths } from '@/lib/data'
@@ -121,6 +122,8 @@ export default function ColorPaletteGeneratorPage() {
           , criterion by criterion.
         </p>
       </section>
+
+      <OtherCheckers current={paths.colorPaletteGenerator()} />
     </Layout>
   )
 }

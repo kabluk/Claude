@@ -16,6 +16,7 @@
 
 import { Link } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
+import { OtherCheckers } from '@/components/OtherCheckers'
 import { ContrastChecker } from '@/components/ContrastChecker'
 import { JsonLd, ORIGIN, SITE_NAME } from '@/lib/seo'
 import { JURISDICTION_OPTIONS } from '@/lib/jurisdictions'
@@ -176,6 +177,8 @@ export default function ContrastCheckerPage() {
           , criterion by criterion.
         </p>
       </section>
+
+      <OtherCheckers current={paths.contrastChecker()} />
     </Layout>
   )
 }

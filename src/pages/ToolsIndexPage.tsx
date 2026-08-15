@@ -1,46 +1,18 @@
 // G-TOOL-READABILITY / G-CHECKERS-BATCH-1 / G-CHECKER-PALETTE: index of the
-// free tool-magnet pages — contrast checker, readability checker, colour
-// blindness simulator, colour converter, text-to-speech reader, colour
-// palette generator. Future tools get a card here the same way. Same card
-// pattern as ReportsIndexPage.tsx, own Meta via Layout.
+// free tool-magnet pages. Same card pattern as ReportsIndexPage.tsx, own Meta
+// via Layout.
+//
+// D-179: список переехал в `src/lib/checkers.ts` (общий реестр) — раньше он
+// был захардкожен здесь, и потому существовал только для индекса; сами
+// страницы чекеров о соседях не знали. Новый чекер достаточно добавить в
+// реестр: карточка появится и тут, и в блоке «Other checkers» на всех
+// остальных страницах.
 
 import { Link } from 'react-router-dom'
 import { Layout } from '@/components/Layout'
 import { JsonLd, itemListLd } from '@/lib/seo'
 import { paths } from '@/lib/data'
-
-const TOOLS = [
-  {
-    href: paths.contrastChecker(),
-    title: 'Colour contrast checker',
-    dek: 'Enter two colours and get a live WCAG 2.2 AA/AAA pass or fail for normal text, large text and UI — hex, RGB or HSL.',
-  },
-  {
-    href: paths.readabilityChecker(),
-    title: 'Readability checker',
-    dek: 'Paste your text and see six readability formulas — Flesch, Flesch-Kincaid, Gunning Fog, SMOG, Coleman-Liau and ARI — update live, in plain language.',
-  },
-  {
-    href: paths.colorBlindnessSimulator(),
-    title: 'Colour blindness simulator',
-    dek: 'Upload an image, or use the built-in sample, and see it approximated for protanopia, deuteranopia and tritanopia side by side.',
-  },
-  {
-    href: paths.colorConverter(),
-    title: 'Colour converter',
-    dek: 'Enter a colour in hex, rgb() or hsl() and get all three notations at once, with contrast ratios against black and white.',
-  },
-  {
-    href: paths.textToSpeech(),
-    title: 'Text-to-speech reader',
-    dek: 'Paste text and hear it read aloud with your browser’s own voices — adjustable rate and pitch, nothing sent anywhere.',
-  },
-  {
-    href: paths.colorPaletteGenerator(),
-    title: 'Colour palette generator',
-    dek: 'Generate complementary, triadic and other harmonious palettes — every swatch shows its readable text colour, WCAG contrast ratio and AA pass/fail.',
-  },
-]
+import { CHECKERS as TOOLS } from '@/lib/checkers'
 
 export default function ToolsIndexPage() {
   const title = 'Free accessibility checkers'
