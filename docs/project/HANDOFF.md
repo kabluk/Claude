@@ -257,10 +257,10 @@ wrangler.jsonc). Живой прогон на проде: ссылка = verscal
 воркера `TURNSTILE_SECRET_KEY`. Живые формы scan+subscribe рендерят виджет и
 дают токен; воркер требует токен (без токена → 403). Порядок деплоя был:
 сайт-с-ключом → потом секрет воркера (иначе окно 403). **✅ Долг закрыт
-(D-172, 2026-08-14): LeadForm подключена к `/api/lead`**, `<TurnstileWidget>`
-добавлен — второй явный шаг «Send my request» после preview. Код на ветке
-`claude/accessatlas-continuation-48dzlw`, НЕ задеплоено — ждёт разрешения
-владельца на push в `accessatlas` (D-022).
+и ЗАДЕПЛОЕНО (D-172, 2026-08-15): LeadForm подключена к `/api/lead`**,
+`<TurnstileWidget>` добавлен — второй явный шаг «Send my request» после
+preview. Владелец одобрил push в `accessatlas`, CI success, подтверждено
+живьём curl'ом (`/request-quote/` отдаёт новый текст).
 
 Мелкие хвосты (не блокируют): авто-ретенция/самоудаление подписок (RISKS.md
 R14, GDPR Art. 17 сейчас ручной).

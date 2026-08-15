@@ -44,9 +44,11 @@ claimed+verified совпадения уведомляются, без ручн�
 `/request-quote/` (preview/sent/send-failed) добавлены в `audit-own-a11y.mjs`
 (`INTERACT` + `LEAD_SEND_STATES`, мок `POST /api/lead`, никогда не бьёт в
 живой воркер) — ранее preview-состояние вообще не аудировалось (пробел,
-закрыт попутно). **Деплоя НЕ было** — код на ветке
-`claude/accessatlas-continuation-48dzlw`, push в `accessatlas` требует
-отдельного разрешения владельца (D-022).
+закрыт попутно). **✅ Задеплоено 2026-08-15**: владелец дал разрешение,
+push `a09ef20` в `accessatlas` (fast-forward от `e661f0a`), CI run
+`31855515609` success, живая проверка curl'ом после деплоя подтвердила
+новый текст на `/request-quote/` и «574 verified audit agencies» на
+главной.
 
 ## D-171 · 2026-08-14 · accepted
 **CI-регрессия от D-169, найдена сразу при первой попытке деплоя** (владелец
