@@ -1,0 +1,94 @@
+name: FMCSA daily snapshot
+
+# Ежедневный снимок открытых данных FMCSA (data.transportation.gov).
+# Raw-файлы уходят в release-ассеты (тег fmcsa-YYYY-MM-DD), манифест и
+# сводка коммитятся в main — так исторический слой копится без сервера.
+
+on:
+  schedule:
+    - cron: '20 9 * * *' # 09:20 UTC ежедневно
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: fmcsa-snapshot
+  cancel-in-progress: false
+
+jobs:
+  snapshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Дата фиксируется один раз и живёт весь прогон в $SNAPSHOT_DATE:
+      # Census тянется 8–23 минуты, прогон может перевалить за полночь UTC —
+      # пошаговый вызов `date` уже приводил к рассинхрону путей (15.08.2026).
+      - name: Pin snapshot date
+        run: echo "SNAPSHOT_DATE=$(date -u +%F)" >> "$GITHUB_ENV"
+
+      # snapshot.mjs ретраит сетевые сбои сам и падает (exit 1) только если
+      # ВСЕ источники недоступны; continue-on-error — чтобы даже тогда
+      # закоммитить манифест с зафиксированными ошибками.
+      - name: Take snapshot
+        continue-on-error: true
+        run: node scripts/snapshot.mjs
+
+      - name: Summarize census
+        if: always()
+        continue-on-error: true
+        run: node scripts/summarize.mjs "$SNAPSHOT_DATE"
+
+      - name: Upload raw files as release assets
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          TAG="fmcsa-$SNAPSHOT_DATE"
+          shopt -s nullglob
+          FILES=(data/raw/$SNAPSHOT_DATE/*.gz)
+          if [ ${#FILES[@]} -eq 0 ]; then
+            echo "Нет скачанных файлов — пропускаем публикацию релиза."
+            exit 0
+          fi
+          gh release create "$TAG" --title "FMCSA snapshot $SNAPSHOT_DATE" \
+            --notes "Automated daily snapshot of FMCSA open data (census, authority history, SMS census). Manifest with sha256 checksums is committed to data/manifests/$SNAPSHOT_DATE.json." \
+            --target "${{ github.sha }}" || true
+          gh release upload "$TAG" "${FILES[@]}" --clobber
+
+      # git pull --rebase перед push: бот и человек уже дважды сталкивались
+      # пушами в одну ветку (14–15.08) — ретрай обязателен, не вежливость.
+      - name: Commit manifest and summary
+        if: always()
+        run: |
+          git config user.name "fmcsa-snapshot-bot"
+          git config user.email "actions@github.com"
+          git add "data/manifests/$SNAPSHOT_DATE.json" "data/summaries/$SNAPSHOT_DATE.json"
+          git commit -m "FMCSA snapshot $SNAPSHOT_DATE: manifest + census summary" || { echo "nothing to commit"; exit 0; }
+          for i in 1 2 3; do
+            git push && exit 0
+            git pull --rebase && continue
+          done
+          git push
+
+      - name: Fail the run if every source errored
+        if: always()
+        run: |
+          MANIFEST="data/manifests/$SNAPSHOT_DATE.json"
+          if [ -f "$MANIFEST" ]; then
+            node -e "
+              const m = require('./$MANIFEST');
+              const failed = m.sources.filter(s => s.error).length;
+              if (failed > 0 && failed === m.sources.length) {
+                console.error(\`Все \${failed} источник(ов) не удалось скачать.\`);
+                process.exit(1);
+              }
+              if (failed > 0) console.log(\`Частичный успех: \${failed}/\${m.sources.length} — см. манифест.\`);
+            "
+          fi
