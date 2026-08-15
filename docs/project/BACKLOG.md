@@ -73,6 +73,10 @@ a11y-гейт и sitemap, плюс закрыт orphan-page пробел — CTA
 недостижима ни по одной ссылке в UI). **Подключена к `A2-LEAD-API` (D-172,
 2026-08-14):** второй явный шаг «Send my request» после preview реально
 шлёт `POST /api/lead` (было: 0 сетевых вызовов при submit — устарело).
+**Владелец уведомляется о КАЖДОМ лиде (D-175, 2026-08-15):** пока
+claimed-профилей 0, письмо агентствам никого не находит — `notifyOwnerBestEffort`
+шлёт `info@verscala.com` по каждому лиду безусловно, это единственный сигнал
+«спрос начался» на время cold-start (D-174).
 `A2-LEAD-API` — **done**
 (`worker/routes/lead.js` + `worker/lib/matchAgenciesServer.js`: POST /api/lead
 реально пишет в D1 `leads` и возвращает `{leadId, matched: slug[]}` по тому же

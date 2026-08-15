@@ -237,12 +237,19 @@ test('no RESEND_API_KEY: no fetch call happens even when a matched agency is cla
   assert.equal(fetchCalled, false, 'without RESEND_API_KEY, notifyClaimedAgenciesBestEffort must no-op')
 })
 
-test('RESEND_API_KEY configured, no matched agency is claimed: no email sent', async (t) => {
-  let fetchCalled = false
+// D-174 (2026-08-15): владелец получает письмо о КАЖДОМ лиде безусловно —
+// это единственный канал, который узнаёт о лиде, пока claimed-профилей нет
+// (см. buildOwnerNotificationEmail в lead.js). Тесты ниже обновлены под это
+// поведение — раньше «нет claimed-совпадения» означало «fetch не вызывался
+// вовсе», теперь означает «вызывался один раз, владельцу».
+const OWNER_EMAIL = 'info@verscala.com'
+
+test('RESEND_API_KEY configured, no matched agency is claimed: owner notified, no agency email', async (t) => {
+  const calls = []
   const originalFetch = globalThis.fetch
-  globalThis.fetch = async (...args) => {
-    fetchCalled = true
-    return originalFetch(...args)
+  globalThis.fetch = async (url, options) => {
+    calls.push({ url, body: JSON.parse(options.body) })
+    return new Response(JSON.stringify({ id: 'evt_1' }), { status: 200 })
   }
   t.after(() => {
     globalThis.fetch = originalFetch
@@ -250,10 +257,13 @@ test('RESEND_API_KEY configured, no matched agency is claimed: no email sent', a
 
   const res = await handlePostLead(req(VALID_BODY), env({ RESEND_API_KEY: 're_test' }))
   assert.equal(res.status, 201)
-  assert.equal(fetchCalled, false, 'no claims table rows -> nothing to notify')
+  assert.equal(calls.length, 1, 'no claims table rows -> nothing to notify agencies, but owner still gets one email')
+  assert.deepEqual(calls[0].body.to, [OWNER_EMAIL])
+  assert.match(calls[0].body.from, /notify@verscala\.com/, 'owner email uses the verified sender, not the sandbox one')
+  assert.match(calls[0].body.text, /not been claimed yet|NOT routed/i, 'must tell the owner nobody was auto-notified')
 })
 
-test('RESEND_API_KEY configured, matched agency is claimed+verified: exactly one notification sent', async (t) => {
+test('RESEND_API_KEY configured, matched agency is claimed+verified: agency AND owner both notified', async (t) => {
   const calls = []
   const originalFetch = globalThis.fetch
   globalThis.fetch = async (url, options) => {
@@ -267,11 +277,18 @@ test('RESEND_API_KEY configured, matched agency is claimed+verified: exactly one
   const claimedDb = fakeDb([{ agency_slug: MATCHED_SLUG, email: 'owner@example.com' }])
   const res = await handlePostLead(req(VALID_BODY), env({ DB: claimedDb, RESEND_API_KEY: 're_test' }))
   assert.equal(res.status, 201)
-  assert.equal(calls.length, 1)
-  assert.equal(calls[0].url, 'https://api.resend.com/emails')
-  assert.deepEqual(calls[0].body.to, ['owner@example.com'])
-  assert.match(calls[0].body.text, /DE/)
-  assert.match(calls[0].body.text, /buyer@example\.com/)
+  assert.equal(calls.length, 2, 'one email to the matched claimed agency, one to the site owner')
+
+  const toAgency = calls.find((c) => c.body.to?.[0] === 'owner@example.com')
+  const toOwner = calls.find((c) => c.body.to?.[0] === OWNER_EMAIL)
+  assert.ok(toAgency, 'agency notification sent')
+  assert.equal(toAgency.url, 'https://api.resend.com/emails')
+  assert.match(toAgency.body.text, /DE/)
+  assert.match(toAgency.body.text, /buyer@example\.com/)
+
+  assert.ok(toOwner, 'owner notification sent')
+  assert.match(toOwner.body.text, /buyer@example\.com/)
+  assert.match(toOwner.body.text, /1 of them are claimed/i)
 })
 
 test('RESEND_API_KEY configured but Resend fails: lead still succeeds (best-effort, not 5xx)', async (t) => {
@@ -287,12 +304,12 @@ test('RESEND_API_KEY configured but Resend fails: lead still succeeds (best-effo
   assert.equal(claimedDb.rows.length, 1, 'the lead row must still exist in D1 despite the notification failure')
 })
 
-test('claimed agency NOT in the matched set is not notified', async (t) => {
-  let fetchCalled = false
+test('claimed agency NOT in the matched set: agency not notified, owner still is', async (t) => {
+  const calls = []
   const originalFetch = globalThis.fetch
-  globalThis.fetch = async (...args) => {
-    fetchCalled = true
-    return originalFetch(...args)
+  globalThis.fetch = async (url, options) => {
+    calls.push({ url, body: JSON.parse(options.body) })
+    return new Response(JSON.stringify({ id: 'evt_1' }), { status: 200 })
   }
   t.after(() => {
     globalThis.fetch = originalFetch
@@ -302,15 +319,16 @@ test('claimed agency NOT in the matched set is not notified', async (t) => {
   const claimedDb = fakeDb([{ agency_slug: 'not-in-the-matched-set', email: 'owner@example.com' }])
   const res = await handlePostLead(req(VALID_BODY), env({ DB: claimedDb, RESEND_API_KEY: 're_test' }))
   assert.equal(res.status, 201)
-  assert.equal(fetchCalled, false)
+  assert.equal(calls.length, 1, 'the unrelated claimed agency gets nothing, but the owner is still told about the lead')
+  assert.deepEqual(calls[0].body.to, [OWNER_EMAIL])
 })
 
-test('claim exists for a matched agency but is not yet verified: not notified', async (t) => {
-  let fetchCalled = false
+test('claim exists for a matched agency but is not yet verified: agency not notified, owner still is', async (t) => {
+  const calls = []
   const originalFetch = globalThis.fetch
-  globalThis.fetch = async (...args) => {
-    fetchCalled = true
-    return originalFetch(...args)
+  globalThis.fetch = async (url, options) => {
+    calls.push({ url, body: JSON.parse(options.body) })
+    return new Response(JSON.stringify({ id: 'evt_1' }), { status: 200 })
   }
   t.after(() => {
     globalThis.fetch = originalFetch
@@ -319,5 +337,6 @@ test('claim exists for a matched agency but is not yet verified: not notified', 
   const claimedDb = fakeDb([{ agency_slug: MATCHED_SLUG, email: 'owner@example.com', verified: 0 }])
   const res = await handlePostLead(req(VALID_BODY), env({ DB: claimedDb, RESEND_API_KEY: 're_test' }))
   assert.equal(res.status, 201)
-  assert.equal(fetchCalled, false, 'an unverified claim must not be treated as a trusted contact')
+  assert.equal(calls.length, 1, 'an unverified claim must not be treated as a trusted contact, but owner is still notified')
+  assert.deepEqual(calls[0].body.to, [OWNER_EMAIL])
 })

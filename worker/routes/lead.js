@@ -19,7 +19,15 @@
 
 import { matchAgencies, agencies, taxonomies } from '../lib/matchAgenciesServer.js'
 import { verifyTurnstile } from '../lib/turnstile.js'
-import { sendEmail, SANDBOX_FROM } from '../lib/resend.js'
+import { sendEmail, SANDBOX_FROM, VERIFIED_FROM } from '../lib/resend.js'
+
+// Владелец: cold-start-приоритет D-174 (2026-08-15) сознательно отложил
+// outreach агентствам ДО появления реального объёма лидов — а значит сейчас
+// (0 claimed-профилей) каждый лид пишется в D1 и молча уходит в никуда, если
+// ни одно совпавшее агентство не заявлено. Пока это так, единственный
+// адресат, которому есть смысл сообщать о новом лиде, — владелец: это и есть
+// сигнал «спрос начался», ради которого продукт сейчас существует.
+const OWNER_NOTIFY_EMAIL = 'info@verscala.com'
 
 // KV fixed-window rate limiter, тот же паттерн, что worker/lib/ratelimit.js
 // (checkFixedWindow) — держим отдельную реализацию тут, а не расширяем
@@ -103,14 +111,17 @@ function buildLeadNotificationEmail({ agencyName, lead }) {
 
 // Best-effort, как sendVerifyEmailBestEffort в claim.js: запись лида в D1 не
 // зависит от Resend, отправка уведомлений — некритичный побочный эффект.
+// Возвращает число НАЙДЕННЫХ claimed-совпадений (не число реально доставленных
+// писем — та же степень точности, что уже была нужна вызывающему коду до этой
+// правки, просто раньше значение никуда не уходило за пределы функции).
 async function notifyClaimedAgenciesBestEffort(env, { matchedSlugs, lead }) {
-  if (!env.RESEND_API_KEY || matchedSlugs.length === 0) return
+  if (!env.RESEND_API_KEY || matchedSlugs.length === 0) return 0
   let claimed
   try {
     claimed = await findClaimedEmails(env.DB, matchedSlugs)
   } catch (err) {
     console.error('A2-LEAD-EMAIL: failed to look up claimed agencies', err?.message ?? err)
-    return
+    return 0
   }
   for (const { agency_slug: agencySlug, email } of claimed) {
     const agency = agencies.find((a) => a.slug === agencySlug)
@@ -120,6 +131,52 @@ async function notifyClaimedAgenciesBestEffort(env, { matchedSlugs, lead }) {
     } catch (err) {
       console.error(`A2-LEAD-EMAIL: failed to notify ${agencySlug}`, err?.message ?? err)
     }
+  }
+  return claimed.length
+}
+
+// D-174 (2026-08-15): каждый лид владельцу, безусловно — не только когда есть
+// claimed-совпадение. Сейчас (0 claimed-профилей) это ЕДИНСТВЕННЫЙ канал,
+// который вообще узнаёт о лиде: claimedCount=0 означает, что письмо выше
+// никому не ушло, а лид без этого уведомления был бы виден только тому, кто
+// вручную открыл D1. Как только появятся claimed-профили, это письмо не
+// теряет смысла — оно же телеметрия «пришёл ли реальный спрос», ради которой
+// D-174 сознательно отложил outreach.
+function buildOwnerNotificationEmail({ lead, scanId, matchedSlugs, claimedCount }) {
+  const matchedNames = matchedSlugs
+    .map((slug) => agencies.find((a) => a.slug === slug)?.name ?? slug)
+    .slice(0, 5)
+  const lines = [
+    `New request-a-quote lead on Verscala.`,
+    '',
+    `Country: ${lead.country}`,
+    `Standard: ${lead.standard}`,
+    `Service: ${lead.service}`,
+    `Budget: ${lead.budget}`,
+    lead.deadline ? `Deadline: ${lead.deadline}` : null,
+    '',
+    `Contact: ${lead.contact.email}${lead.contact.company ? ` (${lead.contact.company})` : ''}`,
+    scanId ? `From scan report: ${scanId}` : null,
+    '',
+    matchedNames.length
+      ? `Matched agencies (${matchedSlugs.length}): ${matchedNames.join(', ')}${matchedSlugs.length > matchedNames.length ? '…' : ''}`
+      : 'Matched agencies: none for this country/service combination.',
+    claimedCount > 0
+      ? `${claimedCount} of them are claimed+verified and were emailed directly.`
+      : 'None of them are claimed yet — this lead was NOT routed to any agency automatically. Reply to this email to follow up by hand.',
+  ].filter((l) => l !== null)
+  return { subject: `New lead: ${lead.service} / ${lead.country}`, text: lines.join('\n') }
+}
+
+// Best-effort, тот же принцип, что notifyClaimedAgenciesBestEffort: запись
+// лида в D1 уже случилась и не зависит от Resend.
+async function notifyOwnerBestEffort(env, { matchedSlugs, claimedCount, lead, scanId }) {
+  if (!env.RESEND_API_KEY) return
+  const { subject, text } = buildOwnerNotificationEmail({ lead, scanId, matchedSlugs, claimedCount })
+  try {
+    await sendEmail(env.RESEND_API_KEY, { from: VERIFIED_FROM, to: OWNER_NOTIFY_EMAIL, subject, text })
+  } catch (err) {
+    console.error('A2-LEAD-EMAIL: failed to notify owner', err?.message ?? err)
   }
 }
 
@@ -187,6 +244,7 @@ export async function handlePostLead(request, env) {
 
   const id = crypto.randomUUID()
   const createdAt = new Date().toISOString()
+  const scanId = typeof body.scanId === 'string' ? body.scanId : undefined
   const contact = {
     email: body.contact.email.trim(),
     company: typeof body.contact.company === 'string' && body.contact.company.trim() ? body.contact.company.trim() : undefined,
@@ -201,15 +259,10 @@ export async function handlePostLead(request, env) {
     contact,
   }
 
-  await insertLead(env.DB, {
-    id,
-    scanId: typeof body.scanId === 'string' ? body.scanId : undefined,
-    ...lead,
-    matched,
-    createdAt,
-  })
+  await insertLead(env.DB, { id, scanId, ...lead, matched, createdAt })
 
-  await notifyClaimedAgenciesBestEffort(env, { matchedSlugs: matched, lead })
+  const claimedCount = await notifyClaimedAgenciesBestEffort(env, { matchedSlugs: matched, lead })
+  await notifyOwnerBestEffort(env, { matchedSlugs: matched, claimedCount, lead, scanId })
 
   return Response.json({ leadId: id, matched }, { status: 201 })
 }
