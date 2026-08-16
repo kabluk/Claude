@@ -8,9 +8,10 @@
 
 ## A. Технически готово (проверено)
 
-- [x] Launch-флаг: `PUBLIC_LAUNCH=1 npm run build` снимает `X-Robots-Tag: noindex`,
-      пишет `robots.txt: Allow` + `Sitemap`, sitemap на `detnav.com`. Обычная
-      сборка — превью (noindex, `Disallow: /`). Проверено.
+- [x] Launch-флаг живёт в `launch.config.json` (`indexLangs`) — по языкам,
+      в репозитории. Открытые языки: индексируются и попадают в sitemap;
+      закрытые: `noindex` + `Disallow`. Пустой список — весь сайт превью.
+      Все три режима проверены на сборке.
 - [x] `hreflang` (en/es/ru + x-default), `canonical`, `<html lang>` по каталогу.
 - [x] Соцпревью: OG/Twitter-теги на всех страницах + `og.png` (1200×630).
 - [x] CSP `default-src 'self'`, шрифты свои (`font-src 'self'`), без Google Fonts;
@@ -34,9 +35,12 @@
 3. **Custom domain на Worker:** Workers & Pages → проект `detnav` → Settings →
    Domains & Routes → Add custom domain → `detnav.com` (и `www` при желании).
    SSL Cloudflare выпустит сам.
-4. **Включить индексацию:** в настройках сборки проекта (Cloudflare build env)
-   добавить переменную `PUBLIC_LAUNCH = 1`, затем пересобрать/передеплоить ветку
-   `main`. Проверить, что деплой прошёл именно с этой переменной.
+4. **Включить индексацию:** в `launch.config.json` вписать открываемые языки в
+   `indexLangs` (например `["en","ru"]`), закоммитить и запушить в `main` —
+   дашборд Cloudflare не нужен. Закрытые языки получают `X-Robots-Tag: noindex`
+   на `/<lang>/*`, `Disallow: /<lang>/` в robots.txt и не попадают в sitemap.
+   Пустой список = весь сайт в превью. Язык открываем только после вычитки
+   его контента носителем (раздел B).
 5. **Проверка после запуска:**
    - `https://detnav.com/ru/` открывается, языковой редирект с `/` работает;
    - `curl -I https://detnav.com/robots.txt` → `Allow: /` + `Sitemap`;

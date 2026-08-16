@@ -23,10 +23,10 @@ for (const key of Object.keys(slugs)) {
   }
 }
 
-const xml = `<?xml version="1.0" encoding="UTF-8"?>
+const buildXml = (list) => `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
-${urls
+${list
   .map(
     (u) => `  <url>
     <loc>${u.loc}</loc>
@@ -91,30 +91,42 @@ for (const lang of ['', ...LANGS]) {
     }
   }
 }
-// До открытия detnav.com превью не должно попадать в поисковики
-// (правило №7: не публиковать до проверки юристом и носителем испанского).
-// Перед настоящим запуском собрать с PUBLIC_LAUNCH=1.
-const isLaunch = process.env.PUBLIC_LAUNCH === '1'
+// Что попадает в поисковики, решает launch.config.json (indexLangs) —
+// файл в репозитории, а не переменная в дашборде хостинга: переключение
+// языка = одна строка + пуш. Язык открывают только после вычитки его
+// контента носителем (docs/LAUNCH-CHECKLIST.md, раздел B).
+// PUBLIC_LAUNCH=1 сохранён как разовое переопределение «открыть всё».
+const cfg = JSON.parse(readFileSync(join(ROOT, 'launch.config.json'), 'utf8'))
+const openLangs =
+  process.env.PUBLIC_LAUNCH === '1' ? [...LANGS] : LANGS.filter((l) => cfg.indexLangs.includes(l))
+const closedLangs = LANGS.filter((l) => !openLangs.includes(l))
+const isLaunch = openLangs.length > 0
+
 const scriptSrc = ['\'self\'', ...inlineHashes].join(' ')
-writeFileSync(
-  join(DIST, '_headers'),
-  `/*
+// Заголовки: общий блок для всех, плюс noindex адресно на закрытые языки.
+// Корень «/» — редирект по языку, отдельного контента не несёт.
+const headers = `/*
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   Referrer-Policy: no-referrer
   Permissions-Policy: geolocation=(), camera=(), microphone=()
 ${isLaunch ? '' : '  X-Robots-Tag: noindex\n'}  Content-Security-Policy: default-src 'self'; script-src ${scriptSrc}; font-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:
-`,
-)
+${isLaunch ? closedLangs.map((l) => `\n/${l}/*\n  X-Robots-Tag: noindex\n`).join('') : ''}`
+writeFileSync(join(DIST, '_headers'), headers)
 console.log(`gen-sitemap: _headers записан (${inlineHashes.size} script-хэшей)`)
 
-writeFileSync(join(DIST, 'sitemap.xml'), xml)
+// В sitemap идут только открытые языки: закрытые не предлагаем поисковику.
+const sitemapUrls = urls.filter((u) => openLangs.some((l) => u.loc.startsWith(`${ORIGIN}/${l}/`)))
+writeFileSync(join(DIST, 'sitemap.xml'), buildXml(sitemapUrls))
 writeFileSync(
   join(DIST, 'robots.txt'),
   isLaunch
-    ? `User-agent: *\nAllow: /\nSitemap: ${ORIGIN}/sitemap.xml\n`
+    ? `User-agent: *\nAllow: /\n${closedLangs.map((l) => `Disallow: /${l}/\n`).join('')}Sitemap: ${ORIGIN}/sitemap.xml\n`
     : `User-agent: *\nDisallow: /\n`,
 )
 console.log(
-  `gen-sitemap: ${urls.length} URL записано в dist/sitemap.xml (${isLaunch ? 'запуск' : 'превью, noindex'})`,
+  `gen-sitemap: ${sitemapUrls.length} URL записано в dist/sitemap.xml ` +
+    (isLaunch
+      ? `(индексируются: ${openLangs.join(', ')}${closedLangs.length ? `; закрыты: ${closedLangs.join(', ')}` : ''})`
+      : '(превью, noindex)'),
 )
