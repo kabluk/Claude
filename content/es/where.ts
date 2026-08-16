@@ -30,10 +30,10 @@ const c: PageContent = {
     {
       kind: 'callout',
       tone: 'y',
-      title: 'Vacío no quiere decir que no esté',
+      title: 'Que no aparezca no quiere decir que no esté',
       body: [
         'Los registros se cargan con retraso: el propio sistema advierte que la persona puede aparecer hasta 72 horas después del arresto.',
-        'Un resultado vacío en las primeras horas es común.',
+        'Que no aparezca en el sistema en las primeras horas es común.',
       ],
     },
     { kind: 'h2', text: 'Qué significa el resultado' },

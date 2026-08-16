@@ -34,10 +34,10 @@ const c: HomeContent = {
   heroPoints: [
     'encontrar a la persona en el sistema',
     'recibir su lista de tareas en 2 minutos',
-    'arreglar el contacto con el detenido — llamadas, cartas',
-    'ver dónde consiguen dinero las familias — colectas y fondos',
+    'establecer contacto con el detenido — llamadas, cartas',
+    'conocer cómo consiguen dinero las familias — colectas y fondos',
     'armar el paquete para el abogado',
-    'con seguridad: no guardamos nada sobre usted',
+    'Seguridad: no guardamos nada sobre usted',
   ],
   demoLabel: 'ASÍ FUNCIONA',
   demoTaskLabel: 'SU TAREA',
@@ -49,9 +49,9 @@ const c: HomeContent = {
       a: ['Mío', 'Suyo', 'De los dos'],
       pick: 1,
       t: [
-        'Hable con el arrendador antes de un pago perdido',
-        'El contrato no está a su nombre. Esa conversación es distinta antes de un pago perdido que después.',
-        'la renta está a nombre de él',
+        'Hable con el arrendador antes de un pago atrasado',
+        'El contrato no está a su nombre. Esa conversación es distinta antes de un pago atrasado que después.',
+        'la renta está a su nombre',
       ],
     },
     {
@@ -81,7 +81,7 @@ const c: HomeContent = {
   benefits: [
     {
       b: 'Su propia lista de tareas en 2 minutos',
-      p: 'No son consejos generales — son tareas para sus circunstancias. Cada una dice para qué es, cómo hacerla y dónde conseguir las cosas.',
+      p: 'No son consejos generales — son tareas para sus circunstancias. Cada una indica para qué sirve, cómo hacerla y dónde conseguir las cosas.',
     },
     {
       b: 'La primera noche sin pánico',
@@ -98,16 +98,16 @@ const c: HomeContent = {
   stepsTitle: 'Tres pasos',
   steps: [
     {
-      b: 'Responde las preguntas',
+      b: 'Responda las preguntas',
       p: 'Sencillas, cada una explica para qué sirve. ¿No sabe la respuesta? Dígalo — es normal.',
     },
     {
-      b: 'Recibe su lista',
-      p: 'No es un consejo general: son tareas para sus circunstancias. Cada una dice para qué es y qué hacer paso a paso.',
+      b: 'Reciba su lista',
+      p: 'No es un consejo general: son tareas para sus circunstancias. Cada una indica para qué sirve y qué hacer paso a paso.',
     },
     {
-      b: 'Sigue el mapa',
-      p: 'Se ve dónde está y qué sigue. Doce pasos desde «lo encontramos» hasta la corte.',
+      b: 'Siga el mapa',
+      p: 'Vea dónde está y qué sigue. Doce pasos desde «lo encontramos» hasta la corte.',
     },
   ],
   dataTitle: 'Sus datos',
@@ -120,12 +120,12 @@ const c: HomeContent = {
   freeTitle: 'Todo lo que necesita ahora',
   freeAmt: 'GRATIS',
   freeItems: [
-    'Cómo encontrar a una persona y qué significa un resultado vacío',
+    'Cómo encontrar a una persona y qué significa cuando no aparece en el sistema',
     'Qué hacen los documentos que dan a firmar',
-    'La primera llamada: qué preguntar y sobre qué callar',
+    'La primera llamada: qué preguntar y qué no decir',
     'Verificación del abogado en los registros oficiales',
     'Llamadas, dinero en la cuenta, cartas',
-    'Los caminos de salida: qué funciona ahora y las primeras preguntas al abogado',
+    'Las opciones de salida: qué funciona ahora y las primeras preguntas al abogado',
     'El cuestionario y su lista personal de tareas',
     'Armar el paquete de documentos para el abogado',
   ],
@@ -133,7 +133,7 @@ const c: HomeContent = {
   paidAmt: 'EN PREPARACIÓN',
   paidItems: [
     'El expediente de la familia y el archivo de pruebas',
-    'Registro: si no se reporta — sale su mensaje',
+    'Registro: si no se reporta — se le notifica',
     'Aviso si trasladan a la persona',
     'Acceso compartido para los familiares',
   ],
@@ -147,7 +147,7 @@ const c: HomeContent = {
     },
     {
       // upl-ok: отрицание — мы говорим, что НЕ советуем адвокатов
-      b: 'No recomendamos abogados concretos',
+      b: 'No recomendamos abogados específicos',
       p: 'Mostramos los registros oficiales — usted verifica por su cuenta.',
     },
     {

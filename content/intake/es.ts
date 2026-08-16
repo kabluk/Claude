@@ -15,7 +15,7 @@ const c: IntakeContent = {
     resultHint:
       'Armada con sus respuestas. Nada se fue a nuestro servidor — la lista vive solo en este navegador. Toque una tarea para abrirla.',
     resultIntro:
-      'No se preocupe: con todo esto se puede, y no en un solo día. Vaya paso a paso desde arriba — dentro de cada tarea dice para qué es, cómo hacerla y dónde conseguir las cosas. Muchas tareas tienen enlace a una página con la instrucción completa. Guarde o imprima la lista para que no se pierda.',
+      'No se preocupe: con todo esto se puede, y no en un solo día. Vaya paso a paso desde arriba — dentro de cada tarea se indica para qué sirve, cómo hacerla y dónde conseguir las cosas. Muchas tareas tienen enlace a una página con la instrucción completa. Guarde o imprima la lista para que no se pierda.',
     moreLabel: 'Instrucción completa',
     groups: { now: 'Ahora', soon: 'Esta semana', later: 'Cuando haya tiempo' },
     whyPrefix: 'por qué está en la lista',

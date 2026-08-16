@@ -3,6 +3,18 @@
 Новые/переписанные испанские тексты после проверки 28.07.2026.
 Проверить естественность и точность формулировок. Ниже — по страницам.
 
+**Целевой диалект:** US Spanish (мексиканский/центральноамериканский).
+**Регистр:** везде **usted**, без исключений — императивы формы `tú`
+(`Responde`, `Recibe`, `Sigue`) считать ошибкой.
+
+**Состояние:** главная (`es/home.ts`) вычитана 16.08.2026 ✅.
+Остальные разделы ждут носителя.
+
+Найденные на главной кальки стоит искать и на остальных страницах:
+«pago perdido» → «pago atrasado», «resultado vacío» → «cuando no aparece
+en el sistema», «dice para qué es» → «indica para qué sirve», «sobre qué
+callar» → «qué no decir», «abogados concretos» → «abogados específicos».
+
 ## Mantener contacto (llamadas, dinero, cartas)  (`es/connect.ts`)
 
 - Cómo comunicarse con la persona
@@ -210,7 +222,13 @@
 - Oficina de ICE: a dónde acudir y dónde reportarse
 - Si a la persona le ordenaron reportarse (grillete, ISAP) o necesita saber qué oficina cubre la zona, busque la oficina más cercana por ciudad o estado.
 
-## Portada (tarjetas)  (`es/home.ts`)
+## Portada (tarjetas)  (`es/home.ts`) — ✅ ВЫЧИТАНО 16.08.2026
+
+> Носитель (US Spanish) прошёл эту страницу; 16 правок внесены в код
+> 16.08.2026 — регистр tú→usted в «Tres pasos», кальки с английского
+> («pago perdido», «resultado vacío», «dice para qué es» и др.), стилистика.
+> Фрагменты ниже приведены в ИСХОДНОМ виде, до правок — как история.
+> Повторно вычитывать эту страницу не нужно.
 
 - ¿Se llevaron a alguien?\n¿Quiere estar preparado?
 - Responda las preguntas y reciba su propia lista de tareas. En lenguaje claro, paso a paso.

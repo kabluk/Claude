@@ -14,7 +14,7 @@ export const about: PageContent = {
       items: [
         'No damos asesoría legal y no evaluamos situaciones',
         // upl-ok: отрицание — мы говорим, что НЕ советуем адвокатов
-        'No recomendamos abogados concretos — mostramos los registros oficiales',
+        'No recomendamos abogados específicos — mostramos los registros oficiales',
         'No redactamos documentos legales — explicamos y señalamos el formulario oficial',
       ],
     },
