@@ -14,7 +14,15 @@ const ES = join(ROOT, 'content/es')
 const OUT = join(ROOT, 'docs/ES-review-packet.md')
 
 // Вычитано носителем — в пакет не попадает. Формат: ['имя файла без .ts', 'дата'].
-const REVIEWED = [['home', '16.08.2026']]
+const REVIEWED = [
+  ['home', '16.08.2026'],
+  ['firstcall', '16.08.2026'],
+  ['connect', '16.08.2026'],
+  ['prepare', '16.08.2026'],
+  ['deadlines', '16.08.2026'],
+  ['habeas', '16.08.2026'],
+  ['journey', '16.08.2026'],
+]
 
 // Человеческие названия разделов; для остальных берётся title из файла.
 const NAMES = {
@@ -114,6 +122,11 @@ const md = `# Пакет ES-контента на вычитку носител�
 
 **Уже вычитано (в пакет не входит):** ${doneLine}.
 
+**Частично вычитано:** \`content/intake/es.ts\` — носитель нашёл там отдельные
+ошибки (регистр в скрипте разговора, кальки), они исправлены, но файл самый
+большой и остаётся в пакете целиком. Это самый важный раздел: опрос формирует
+персональный список задач, его читают все.
+
 На главной странице носитель нашёл такие кальки с английского — их стоит
 искать и здесь:
 
@@ -126,6 +139,17 @@ const md = `# Пакет ES-контента на вычитку носител�
 | abogados concretos | abogados específicos |
 | arreglar el contacto | establecer contacto |
 | sale su mensaje | se le notifica |
+| fondear la cuenta | recargar la cuenta |
+| gente viva de al lado | personas que tiene cerca |
+| el juego largo | el proceso a largo plazo |
+| transcripciones de impuestos | declaraciones de impuestos |
+| talones de pago | recibos de nómina |
+| verificación de entrada | verificación de inicio de sesión |
+| no es por fuga | no es por evadir a la corte |
+| jurista | abogado |
+| pasta blanda | pasta suave |
+| billetera | cartera |
+| bodega (= магазин в мекс.) | almacén de depósito (storage) |
 
 Ниже — ${total} фрагментов по разделам. Отмечать нужно только те, где текст
 звучит неестественно или неверно; остальное можно пропускать.

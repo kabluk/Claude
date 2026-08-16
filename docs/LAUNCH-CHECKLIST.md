@@ -16,15 +16,17 @@
 - [x] Соцпревью: OG/Twitter-теги на всех страницах + `og.png` (1200×630).
 - [x] CSP `default-src 'self'`, шрифты свои (`font-src 'self'`), без Google Fonts;
       `Referrer-Policy: no-referrer` (переход на ICE не выдаёт источник).
-- [x] Линтеры UPL и минимизации зелёные; `check-links` без битых; сборка 81 URL.
+- [x] Линтеры UPL и минимизации зелёные; `check-links` без битых; сборка 669 URL.
 - [x] Работает без JavaScript; ничего не уходит на сервер (Zero-Data).
 
 ## B. Человеческие ворота (нужны люди/решения — НЕ код)
 
-- [~] **Вычитка ES носителем.** Главная (`es/home.ts`) вычитана 16.08.2026
-      (US Spanish, мексиканский/центральноамериканский) — 16 правок внесены:
-      регистр tú→usted в «Tres pasos», кальки с английского, стилистика.
-      Остальные ES-страницы из раздела D ещё НЕ вычитаны.
+- [~] **Вычитка ES носителем.** Два круга (16.08.2026, US Spanish):
+      вычитаны `home`, `firstcall`, `connect`, `prepare`, `deadlines`,
+      `habeas`, `journey` — правки внесены (регистр tú→usted, кальки,
+      лексика юга США/Мексики). Частично — `content/intake/es.ts`.
+      Остальные страницы см. `docs/ES-review-packet.md` (926 фрагментов).
+
 - [ ] **Юрлицо** — решение владельца (на чьё имя сайт).
 - [ ] **Кто отвечает на официальный запрос** (subpoena/ведомство) — заранее.
 - [ ] **UPL-конструкция** («карта, а не навигатор», зоны А/Б, Zero-Data) —
@@ -52,27 +54,18 @@
 6. **Sitemap в поиск:** Google Search Console → добавить `detnav.com`,
    отправить `sitemap.xml`.
 
-## D. Новый ES-контент на вычитку носителем (после 28.07)
+## D. ES-контент на вычитку
 
-Проверка носителя 28.07 покрывала прежний объём. С тех пор добавлено/переписано
-(показать носителю **только эти фрагменты**, весь сайт заново не нужно):
+Список не ведётся руками — он генерируется из исходников:
 
-- **`content/es/connect.ts`** — страница «Mantener contacto» переписана целиком
-  (звонки/сообщения/видео/деньги/письма, пошагово).
-- **`content/es/complaints.ts`** — новая страница «Si algo anda mal».
-- **`content/es/forms.ts`** — новая страница «Formularios» + подписи схемы
-  документа (`docMap` в `ui.ts`).
-- **`content/es/prepare.ts`** — новая страница «Un plan por si hay una detención»
-  + блок «Entregue el plan a una persona de confianza» + секция
-  «Dinero y propiedad» (poder financiero, banco, renta, carro, 401(k)/IRA).
-- **`content/es/where.ts`** — секция «Oficina de ICE: a dónde acudir…».
-- **`content/es/home.ts`** — карточки хаба (`hub`): «Se llevaron a alguien» и др.
-- **`content/es/ui.ts`** — новые строки: `national` (estadísticas), `officeFinder`,
-  `visitFinder` (stayTitle/stayLine/stayNote, provenance и пр.), `browserOnly`,
-  `tabs`.
-- **`content/es/attorney.ts`, `documents.ts`, `visit.ts`** — добавленные врезки
-  (consulado, directiva parental, detainer 48h, правила ID на свидании).
-- **`data/states.json`** — заметки ES для NY и FL.
+```
+node scripts/gen-es-review.mjs
+```
+
+Скрипт пишет `docs/ES-review-packet.md`: диалект, регистр, UPL-правило,
+таблица уже найденных калек и все невычитанные фрагменты по страницам.
+Вычитанные страницы перечислены в константе `REVIEWED` внутри скрипта —
+добавить туда страницу и перегенерировать, чтобы она ушла из пакета.
 
 ## E. После запуска
 

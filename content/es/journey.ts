@@ -16,7 +16,7 @@ const c: JourneyContent = {
     { t: 'Salió · qué sigue', p: 'Presentaciones, control electrónico, cambio de dirección. El caso continúa.' },
     { t: 'La primera audiencia en la corte', p: 'La audiencia inicial y en qué se diferencia de la audiencia de fondo.' },
     { t: 'No faltar', p: 'Recordatorios 14, 3 y 1 día antes. Formulario EOIR-33 al mudarse.', page: 'deadlines' },
-    { t: 'El juego largo', p: 'El caso dura meses y años. Qué seguir acumulando todo ese tiempo.' },
+    { t: 'El proceso a largo plazo', p: 'El caso dura meses y años. Qué seguir acumulando todo ese tiempo.' },
   ],
   tracksTitle: 'Vías paralelas',
   tracks: [

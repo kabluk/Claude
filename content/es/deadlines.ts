@@ -10,7 +10,7 @@ const c: PageContent = {
       title: 'No llegó — el caso se decide sin él',
       body: [
         'Si la persona no se presenta a una audiencia programada, el juez puede emitir una orden de deportación en ausencia.',
-        'La mayoría de las veces no es por fuga, sino por una mudanza: la notificación llega a la dirección vieja.',
+        'La mayoría de las veces no es por evadir a la corte, sino por una mudanza: la notificación llega a la dirección vieja.',
       ],
     },
     { kind: 'h2', text: 'Qué hacer' },

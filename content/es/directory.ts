@@ -34,7 +34,7 @@ const c: DirectoryContent = {
     letters: [
       'Una postal por correo normal llega mejor que cualquier servicio',
       'Libros: solo nuevos y enviados directamente por el vendedor',
-      'Pasta blanda: la pasta dura tarda más en revisarse y muchas veces no entra',
+      'Pasta suave: la pasta dura tarda más en revisarse y muchas veces no entra',
       'El número A es obligatorio en el sobre',
     ],
     stateH2: 'Página del estado',

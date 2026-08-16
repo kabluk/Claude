@@ -30,10 +30,10 @@ const c: PageContent = {
     {
       kind: 'list',
       items: [
-        'Dime el número A completo, dígito por dígito',
+        'Dígame el número A completo, dígito por dígito',
         'Cómo se llama exactamente el centro y en qué ciudad está',
-        '¿Firmaste algo? ¿Qué exactamente?',
-        '¿Necesitas medicamentos?',
+        '¿Firmó algo? ¿Qué exactamente?',
+        '¿Necesita medicamentos?',
         'Cómo se pone dinero para las llamadas',
       ],
     },
@@ -54,7 +54,7 @@ const c: PageContent = {
       alts: [
         'Marcar 9233# es gratis desde adentro del centro — conecta con la línea de ayuda sin fines de lucro. Funciona cuando la cuenta está en cero.',
         'Después, en orden: el número de una persona de confianza · el número de un abogado u organización · 1-888-351-4024 (DRIL, la línea oficial de ICE).',
-        'El teléfono es lo primero que quitan. Un papel en la billetera o el bolsillo es lo único que queda con la persona.',
+        'El teléfono es lo primero que quitan. Un papel en la cartera o el bolsillo es lo único que queda con la persona.',
       ],
     },
     {
@@ -62,7 +62,7 @@ const c: PageContent = {
       items: [
         'Copie los números en papel a mano — el teléfono no entra adentro',
         'Agregue el número de la persona de confianza y del abogado cuando esté elegido',
-        'Guarde una copia en la billetera y otra en casa; dé copias a los suyos',
+        'Guarde una copia en la cartera y otra en casa; dé copias a los suyos',
         'Si aún no hay abogado — el 9233# conecta con la línea sin fines de lucro, donde se puede preguntar dónde buscar ayuda gratuita',
       ],
     },

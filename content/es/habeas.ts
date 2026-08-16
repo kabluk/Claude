@@ -35,7 +35,7 @@ const c: PageContent = {
         'Un traslado a otro estado cambia la corte y las reglas aplicables — una razón más para no esperar',
         'Junto con la petición, el abogado puede pedir una orden judicial urgente contra el traslado o la deportación (TRO)',
         'El juez puede fijar una audiencia, ordenar la salida — o negar: el resultado depende del caso concreto',
-        'La petición la prepara y la presenta un abogado — es trabajo para un jurista con práctica federal',
+        'La petición la prepara y la presenta un abogado con experiencia federal',
       ],
     },
     { kind: 'h2', text: 'Su parte — la preparación' },

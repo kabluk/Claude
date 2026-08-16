@@ -17,7 +17,12 @@
 право», «вам следует», «мы рекомендуем», «ваш лучший вариант» недопустимы
 по построению продукта — если такая фраза встретится, это ошибка, сообщите.
 
-**Уже вычитано (в пакет не входит):** `es/home.ts` (16.08.2026).
+**Уже вычитано (в пакет не входит):** `es/home.ts` (16.08.2026), `es/firstcall.ts` (16.08.2026), `es/connect.ts` (16.08.2026), `es/prepare.ts` (16.08.2026), `es/deadlines.ts` (16.08.2026), `es/habeas.ts` (16.08.2026), `es/journey.ts` (16.08.2026).
+
+**Частично вычитано:** `content/intake/es.ts` — носитель нашёл там отдельные
+ошибки (регистр в скрипте разговора, кальки), они исправлены, но файл самый
+большой и остаётся в пакете целиком. Это самый важный раздел: опрос формирует
+персональный список задач, его читают все.
 
 На главной странице носитель нашёл такие кальки с английского — их стоит
 искать и здесь:
@@ -31,8 +36,19 @@
 | abogados concretos | abogados específicos |
 | arreglar el contacto | establecer contacto |
 | sale su mensaje | se le notifica |
+| fondear la cuenta | recargar la cuenta |
+| gente viva de al lado | personas que tiene cerca |
+| el juego largo | el proceso a largo plazo |
+| transcripciones de impuestos | declaraciones de impuestos |
+| talones de pago | recibos de nómina |
+| verificación de entrada | verificación de inicio de sesión |
+| no es por fuga | no es por evadir a la corte |
+| jurista | abogado |
+| pasta blanda | pasta suave |
+| billetera | cartera |
+| bodega (= магазин в мекс.) | almacén de depósito (storage) |
 
-Ниже — 1155 фрагментов по разделам. Отмечать нужно только те, где текст
+Ниже — 926 фрагментов по разделам. Отмечать нужно только те, где текст
 звучит неестественно или неверно; остальное можно пропускать.
 
 **Если времени мало — порядок важности.** Первые три раздела люди читают
@@ -131,79 +147,6 @@
 
 ---
 
-## Cómo comunicarse con la persona  (`es/connect.ts`)
-
-- Cómo comunicarse con la persona
-- La regla clave: él puede llamarla a usted. Usted no puede llamarlo a él. Abajo, paso a paso — llamadas, mensajes, video, dinero y cartas.
-- Por dónde empezar
-- Averigüe qué operador telefónico usa su centro.
-- En su propio teléfono, desactive el bloqueo de números desconocidos — si no, él no podrá comunicarse.
-- Abra una cuenta y ponga un poco de dinero.
-- 1 · Llamadas
-- Él llama desde los teléfonos de la unidad de vivienda. Usted no puede llamarlo — solo él puede llamarla. Si la cuenta está en cero, no hay llamadas.
-- Cómo activar las llamadas
-- Averigüe el operador del centro — casi siempre es `GettingOut` (la empresa ViaPath); algunos usan `Securus` o `ICSolutions`.
-- Abra el sitio del operador en el navegador (o su aplicación) y cree una cuenta.
-- Vincule la cuenta por el `A-Number` y el centro.
-- Elija cómo: fondear su cuenta personal — él llama a cualquiera; o vincularla a su número (AdvancePay) — él la llama solo a usted, y normalmente cuesta menos.
-- Ponga poco — el mínimo suele ser `$10`. Si lo trasladan a otro centro, el dinero no se mueve con él.
-- Sitio de GettingOut — cuenta para llamadas y mensajes
-- 9233# — gratis y sin monitoreo
-- Marcar `9233#` desde un teléfono del centro llega a la línea gratuita de Freedom for Immigrants. Las llamadas normales se graban; ICE no monitorea esta.
-- Los voluntarios hablan muchos idiomas, ayudan y pueden avisar a su familia dónde está la persona. Horario: lun–vie, 8 a.m.–8 p.m. hora del Pacífico.
-- Una llamada normal se graba y tiene tiempo limitado (unos 15–20 minutos). El precio ronda 7 centavos por minuto a nivel nacional, y las internacionales cuestan más; varía según el centro. Decir el A-Number por teléfono es seguro; los detalles del caso no. El programa de llamadas gratuitas que tenían algunos centros lo eliminó ICE en 2026 — cuente con que la comunicación se paga.
-- La primera llamada: cómo desbloquear números
-- 2 · Mensajes (texto)
-- No son mensajes de texto normales a un teléfono. Son mensajes dentro del sistema del operador — él los lee en una tableta.
-- Cómo enviar
-- El mismo operador y la misma cuenta que para las llamadas.
-- Abra la sección «Messages» en el sitio del operador.
-- Pague «estampillas» (créditos) — en el sitio, por teléfono o en la aplicación, mínimo suele ser `$10`.
-- Con ese mismo dinero puede enviar una foto y un videomensaje de 30 segundos.
-- No todos los centros tienen tabletas. La entrega se demora y todo se revisa.
-- 3 · Videollamadas
-- Algunos centros tienen videollamadas — con cita previa, por el sitio del operador o un quiosco en el vestíbulo. De pago, y la cuenta hace falta con anticipación.
-- Esto no es una visita en persona — tiene sus propias reglas y horarios.
-- La visita
-- 4 · Dinero para lo diario (adentro)
-- Esta es una cuenta aparte — no la de las llamadas. De ella la persona compra comida, higiene y a veces tiempo de teléfono adentro. A menudo es otro proveedor.
-- Cómo depositar
-- Busque las instrucciones de dinero en la página de este centro en ICE (la sección commissary / trust account) — los datos cambian por centro.
-- Los métodos, los que haya — depende del lugar: en línea con tarjeta con el proveedor (`Access Corrections`, `TouchPay`, `ViaPath/ConnectNetwork`, `Western Union`); por teléfono con el proveedor; por correo con un money order a la dirección del centro; en persona en un quiosco del vestíbulo.
-- Todos piden el nombre completo y el `A-Number` (a menudo también la fecha de nacimiento).
-- Deposite solo con el proveedor indicado para este centro. Tras un traslado el dinero se queda atascado y es difícil recuperarlo.
-- Si no hay quién ayude
-- El Freedom for Immigrants Commissary Fund pone dinero en la cuenta de quienes no tienen a nadie.
-- El dinero para lo diario no se puede retirar en efectivo — solo se gasta adentro.
-- 5 · Cartas y postales
-- Una postal común por correo llega más seguro que cualquier servicio
-- El A-Number va en el sobre y en cada envío, siempre
-- Libros — solo nuevos y directamente de una tienda o editorial, no de un particular
-- La pasta blanda pasa más rápido: la dura se revisa más y muchas veces no entra
-- Cada centro tiene sus reglas — confirme por teléfono antes de enviar
-- El contacto cálido y regular es lo que más protege a la persona adentro.
-
----
-
-## No faltar a la audiencia  (`es/deadlines.ts`)
-
-- No faltar a la audiencia
-- Faltar a una audiencia es la pérdida irreversible más común. Y casi siempre — por un cambio de dirección.
-- No llegó — el caso se decide sin él
-- Si la persona no se presenta a una audiencia programada, el juez puede emitir una orden de deportación en ausencia.
-- La mayoría de las veces no es por fuga, sino por una mudanza: la notificación llega a la dirección vieja.
-- Qué hacer
-- Revise la fecha de la audiencia en el sistema oficial — por el número A
-- Ponga recordatorios 14, 3 y 1 día antes
-- Después de mudarse, presente el cambio de dirección a la corte con su propio formulario, `EOIR-33`
-- Guarde la constancia de la presentación
-- Revisar la fecha de la audiencia
-- Formulario de cambio de dirección EOIR-33
-- El cambio de dirección en la corte va aparte de todo lo demás
-- Avisar al correo, al banco o a USCIS no cambia la dirección en la corte de inmigración. La corte recibe su propio formulario.
-
----
-
 ## Справочник: штаты и учреждения  (`es/directory.ts`)
 
 - Circuito de D.C.
@@ -213,7 +156,7 @@
 - Cartas y postales
 - Una postal por correo normal llega mejor que cualquier servicio
 - Libros: solo nuevos y enviados directamente por el vendedor
-- Pasta blanda: la pasta dura tarda más en revisarse y muchas veces no entra
+- Pasta suave: la pasta dura tarda más en revisarse y muchas veces no entra
 - El número A es obligatorio en el sobre
 - Página del estado
 - Cortes, centros y ayuda gratuita — por estado.
@@ -293,43 +236,6 @@
 
 ---
 
-## La primera llamada  (`es/firstcall.ts`)
-
-- La primera llamada
-- La primera llamada desde un centro de ICE: qué preguntar y qué no decir · DETNAV
-- Las llamadas desde la detención se graban. Un plan corto: qué averiguar — el centro, el número A, la salud —, qué no hablar por una línea grabada y cómo prepararse para la siguiente llamada.
-- La llamada se graba
-- Las llamadas desde el centro se graban y se escuchan. La excepción son las líneas registradas de abogados.
-- Antes de la llamada
-- Quite el bloqueo de números desconocidos
-- Él llama y el teléfono rechaza la llamada en silencio — la falla más dolorosa de todas. La llamada llegará de un número desconocido.
-- iPhone: Configuración → Teléfono → apagar «Silenciar desconocidos».
-- Android: aplicación Teléfono → configuración → números bloqueados.
-- Revise también el filtro de spam de su operador.
-- Qué preguntar — se puede leer en voz alta
-- Dime el número A completo, dígito por dígito
-- Cómo se llama exactamente el centro y en qué ciudad está
-- ¿Firmaste algo? ¿Qué exactamente?
-- ¿Necesitas medicamentos?
-- Cómo se pone dinero para las llamadas
-- Lo que no debe tocarse en esta línea
-- Deportaciones y órdenes anteriores. Arrestos y antecedentes. Detalles del caso y planes de defensa.
-- La grabación puede ser usada. Eso se habla con un abogado.
-- La tarjeta que se aprende de memoria y se lleva en papel
-- APRENDER Y COPIAR EN PAPEL
-- Marcar 9233# es gratis desde adentro del centro — conecta con la línea de ayuda sin fines de lucro. Funciona cuando la cuenta está en cero.
-- Después, en orden: el número de una persona de confianza · el número de un abogado u organización · 1-888-351-4024 (DRIL, la línea oficial de ICE).
-- El teléfono es lo primero que quitan. Un papel en la billetera o el bolsillo es lo único que queda con la persona.
-- Copie los números en papel a mano — el teléfono no entra adentro
-- Agregue el número de la persona de confianza y del abogado cuando esté elegido
-- Guarde una copia en la billetera y otra en casa; dé copias a los suyos
-- Si aún no hay abogado — el 9233# conecta con la línea sin fines de lucro, donde se puede preguntar dónde buscar ayuda gratuita
-- Antes de llamar
-- Tenga papel y lápiz al lado. Habrá poco tiempo y quizá no pueda repetir la pregunta.
-- Llamadas, dinero, cartas
-
----
-
 ## Formularios y avisos: qué son  (`es/forms.ts`)
 
 - Formularios y avisos: qué son
@@ -355,82 +261,6 @@
 - No interpretamos sus papeles y no damos consejos. Qué significa un documento concreto y qué hacer con él lo determina solo un abogado.
 - Qué no firmar
 - No faltar a la audiencia
-
----
-
-## Habeas corpus · corte federal  (`es/habeas.ts`)
-
-- Habeas corpus · corte federal
-- El camino por el que más se logra la salida ahora. Explicamos cómo funciona. La petición la prepara y la presenta un abogado — esto es un mapa, no instrucciones para presentarla por su cuenta.
-- Qué es
-- El habeas corpus es una petición a una corte federal de distrito: un juez examina si el gobierno mantiene detenida a la persona legalmente.
-- Es otro sistema, no la corte de inmigración. El juez federal no responde a la agencia: puede exigir explicaciones al gobierno, ordenar una audiencia de salida — u ordenar la salida.
-- Por qué se habla de esto ahora
-- Desde 2025 la fianza y el parole se conceden muy rara vez, y el centro de gravedad se movió a las cortes federales: en febrero de 2026 se presentaban en el país unas 2,000 peticiones de habeas por semana — un año antes eran unas 20. Jueces federales de todas las posturas fijan audiencias y ordenan salidas cuando la petición está bien preparada.
-- Los abogados de AILA, la asociación de abogados de inmigración, lo dicen claro: para un número creciente de detenidos, el habeas en la corte federal es en la práctica el único camino a la libertad.
-- Estado a julio de 2026. Es el panorama general, no una predicción para un caso concreto.
-- Cómo funciona
-- La petición se presenta en la corte federal de distrito del lugar de detención — por eso importa tanto dónde está el centro
-- Un traslado a otro estado cambia la corte y las reglas aplicables — una razón más para no esperar
-- Junto con la petición, el abogado puede pedir una orden judicial urgente contra el traslado o la deportación (TRO)
-- El juez puede fijar una audiencia, ordenar la salida — o negar: el resultado depende del caso concreto
-- La petición la prepara y la presenta un abogado — es trabajo para un jurista con práctica federal
-- Su parte — la preparación
-- El expediente de lazos con EE. UU.: dirección, años de residencia, familia, trabajo, comunidad — las tareas están en el cuestionario
-- La cronología: cuándo y dónde detuvieron a la persona, cuándo la trasladaron, qué papeles le dieron
-- El número A y el nombre exacto del centro
-- Documentos médicos, si hay enfermedades
-- Su lista de tareas
-- Armar el paquete de documentos para el abogado
-- Preguntas para el abogado
-- Si el habeas encaja en este caso, y por qué
-- En qué circuito federal está el centro y qué cambia eso
-- Qué hace falta de la familia y para cuándo
-- Qué cambia si trasladan a la persona a otro estado
-- Lo que no hacemos
-- No preparamos ni presentamos peticiones y no damos asesoría legal. Solo un abogado puede determinar si este camino aplica a un caso concreto.
-- Si alguien que no es un abogado con licencia verificada promete «presentar el habeas» y una salida rápida por dinero — verifíquelo en los registros.
-- Abogado: tres caminos
-- La petición de habeas la prepara y la presenta un abogado — ahí empieza el camino.
-- Verificar al abogado
-
----
-
-## Маршрут (12 шагов)  (`es/journey.ts`)
-
-- El camino
-- Doce pasos después de encontrar a la persona. No es su plan — es un mapa del proceso: mostramos todos los pasos que existen. Siete están abiertos, el resto en preparación.
-- EN PREPARACIÓN
-- Encontrado · dónde está
-- El centro, el estado, el circuito. Desde aquí todo se vuelve concreto.
-- Mantener el contacto
-- La cuenta de llamadas, cartas y postales, libros. Por qué no se puede llamar hacia adentro.
-- La visita
-- Horarios, cómo apuntarse, documentos, qué no se puede llevar.
-- Gratis, representante acreditado, de pago. Se puede buscar por idioma.
-- Cómo se cuenta el dinero del abogado
-- Tarifas, fases, el anticipo, qué debe estar en el contrato.
-- Una fila de tareas, de una en una. Fotos del teléfono — un PDF limpio para el abogado.
-- Los caminos de salida
-- Qué mecanismos existen y qué funciona ahora. La primera pregunta al abogado.
-- Habeas corpus · corte federal
-- El camino por el que más se logra la salida ahora. Lo prepara y lo presenta un abogado.
-- Salió · qué sigue
-- Presentaciones, control electrónico, cambio de dirección. El caso continúa.
-- La primera audiencia en la corte
-- La audiencia inicial y en qué se diferencia de la audiencia de fondo.
-- No faltar
-- Recordatorios 14, 3 y 1 día antes. Formulario EOIR-33 al mudarse.
-- El juego largo
-- El caso dura meses y años. Qué seguir acumulando todo ese tiempo.
-- Vías paralelas
-- La escuela, el consentimiento médico, qué decirle al niño. En preparación.
-- El dinero de la familia
-- La renta, el salario perdido, la conversación con el empleador. En preparación.
-- Lo trasladaron
-- Un traslado reinicia al abogado y el dinero de la cuenta. Qué rehacer. En preparación.
-- Medicamentos, enfermedades crónicas, acceso a la información médica. En preparación.
-- Los pasos sin terminar están marcados honestamente «en preparación». Ver la escala del camino completo es útil en sí: el caso no termina con la salida.
 
 ---
 
@@ -497,79 +327,6 @@
 - Hablar con nosotros
 - Esta página normalmente la compartimos en persona. Si recibió el enlace — responda a quien se lo envió y acuerde una conversación corta: 20 minutos, sin compromisos.
 - No somos abogados y no damos asesoría legal — y a su gente se lo decimos en cada página.
-
----
-
-## Un plan por si hay una detención  (`es/prepare.ts`)
-
-- Un plan por si hay una detención
-- Plan familiar por si hay una detención de ICE — plantilla para imprimir · DETNAV
-- Un plan listo para la familia: a quién llamar, quién recoge a los niños, dónde están los papeles, el poder y el banco por adelantado. Se llena a mano en papel — nada se ingresa en línea.
-- Complételo a mano en papel y guárdelo en casa, para que su familia sepa qué hacer en la primera hora. No se ingresa nada en línea.
-- Por qué en papel y no en una aplicación
-- En la primera hora tras una detención, en casa hay pánico y las cosas simples se olvidan: el número de quién, dónde están los papeles, quién recoge a los niños. Una hoja llenada con tiempo responde esas preguntas de inmediato.
-- A propósito no hacemos un formulario en línea: ningún servidor, incluido el nuestro, debe ver estos datos. Es una nota para la familia, no un cuestionario.
-- Imprima esta página, complétela a mano y déjela donde su familia la encuentre. Actualícela cada pocos meses.
-- A quién llamar primero
-- Persona de confianza — quién y teléfono
-- Segunda persona, si la primera no responde
-- Abogado u organización — nombre y teléfono
-- Los niños
-- Quién recoge a los niños de la escuela o guardería
-- Teléfono de esa persona
-- Dónde están los documentos de los niños
-- La casa y lo cotidiano
-- Dónde están los papeles importantes (pasaportes, contratos)
-- Quién paga la renta mientras no estoy
-- Quién cuida a la mascota
-- Los medicamentos que tomo y dónde están
-- Condiciones que deben conocerse
-- Qué saber de memoria
-- El teléfono de la persona de confianza — memorícelo, no solo lo anote
-- El código para llamar gratis a la línea de quejas del DHS OIG desde la detención: 9233#
-- Arme una lista personal de tareas — con anticipación
-- Una encuesta de dos minutos arma una lista de tareas según las circunstancias de la familia — tanto para una detención como para prepararse. Las respuestas se quedan en el navegador. Imprima la lista terminada y guárdela junto con este plan.
-- Hacer la encuesta y recibir la lista de tareas
-- Entregue el plan a una persona de confianza — hoy
-- Entregue con tiempo el plan lleno y el paquete de documentos ya armado a alguien de su confianza. Así empieza a actuar en el momento en que lo detienen, en vez de perder un día en averiguar qué pasó.
-- Acuerden una señal simple: cada noche usted le envía una palabra de que todo está bien. Si faltan dos noches seguidas, empieza con los pasos de abajo.
-- Qué hace la persona de confianza si usted se queda en silencio
-- Lo busca en el localizador de ICE — por nombre y país de nacimiento, o por el número A del plan.
-- Llama al abogado o a la organización cuyos teléfonos están anotados arriba en el plan.
-- No firma nada por usted ni le paga a nadie sin verificar antes.
-- Le entrega al abogado el paquete de documentos que usted le dio con anticipación.
-- Dinero y propiedad: solo funciona si se hace antes
-- Mientras una persona está detenida, la renta, el préstamo del carro y la cuenta del banco no se detienen. Sus seres queridos solo podrán actuar legalmente por ella con documentos firmados de antemano — después ya no se pueden hacer.
-- Poder financiero (durable power of attorney)
-- Un poder financiero duradero, firmado ante notario a nombre de una persona de confianza, le permite a esa persona terminar legalmente el contrato de renta, recoger las pertenencias, tratar con el banco y vender el carro. Sin ese documento, el arrendador y el banco ni siquiera están obligados a atenderla.
-- Se firma ante notario con anticipación. Qué facultades incluir es una pregunta para un abogado: el texto depende del estado.
-- La cuenta del banco
-- La verificación de entrada atada solo a SMS deja de funcionar cuando el teléfono está confiscado o la línea se corta. En la configuración del banco normalmente se puede agregar la verificación por correo electrónico — conservar el acceso al correo es más sencillo.
-- Muchos bancos aceptan un poder solo en su propio formulario y solo en persona. Ir a la sucursal junto con la persona de confianza, por adelantado, quita esa barrera.
-- La vivienda rentada y las pertenencias
-- Un apartamento que se queda sin pagar se convierte en deuda: multas por romper el contrato, cobradores, y las pertenencias van a una bodega o a la calle. Una persona con poder puede terminar el contrato según las reglas y recoger las cosas.
-- El carro financiado o en lease
-- Un carro con pagos vencidos el prestamista lo recupera (repossession) y lo vende en subasta. El saldo de la deuda queda a nombre del dueño, y la parte condonada puede contarse como ingreso gravable (formulario 1099-C).
-- Los caminos legales que existen: un poder con la facultad de vender el vehículo, o el traspaso oficial del préstamo o del lease a otra persona. Las condiciones están en el contrato y con el prestamista.
-- Las cuentas de retiro: 401(k) e IRA
-- Los ahorros en un 401(k) o IRA siguen siendo propiedad de la persona sin importar su estatus migratorio o una deportación — no se pierden.
-- Al retirarlos antes de los 59½ años normalmente aplica una multa del IRS del 10% más impuestos; por eso muchas veces las cuentas se dejan crecer hasta la edad de retiro. Desde el extranjero, el estatus fiscal se certifica con el formulario W-8BEN. Qué hacer con una cuenta concreta es una pregunta para un asesor de impuestos.
-- Formulario W-8BEN — página oficial del IRS
-- Tres tareas para esta semana
-- Cambiar la verificación de entrada al banco de SMS a correo electrónico, o agregar el correo como método de respaldo.
-- Firmar ante notario un poder financiero y registrarlo en el banco en persona.
-- Guardar copias del SSN/ITIN, de los contratos de renta y préstamo y de los papeles del carro en un almacenamiento cifrado, y darle acceso a la persona de confianza.
-- Esto es un mapa, no consejo legal
-- Qué incluir en el poder, cómo terminar un contrato y qué hacer con una cuenta de retiro dependen del estado y del contrato. Esas decisiones se toman con un abogado y un asesor de impuestos, no con una nota de internet.
-- Qué llevar consigo
-- El plan lleno se queda en casa. Consigo, solo la tarjeta de derechos, pequeña. Tome una foto de la tarjeta y guárdela en el teléfono.
-- TARJETA DE DERECHOS · LLEVAR CONSIGO
-- No quiero hablar, responder preguntas ni firmar documentos sin un abogado. No doy consentimiento para entrar a mi casa sin una orden judicial firmada por un juez.
-- I do not want to talk, answer questions, or sign documents without a lawyer. I do not consent to entry into my home without a judicial warrant signed by a judge.
-- No lleve consigo el plan con nombres y teléfonos
-- Si lo encuentran durante una detención, contiene los nombres y direcciones de sus seres queridos. El plan se queda en casa; en el bolsillo, solo la tarjeta de derechos.
-- Qué significan los papeles y qué no firmar
-- Si ya detuvieron a alguien — por dónde empezar
 
 ---
 
@@ -978,7 +735,7 @@
 - Contratos de renta, recibos, registros médicos y escolares
 - Estados de cuenta y transferencias
 - Fotos con fecha, si no hay nada más
-- Transcripciones de impuestos de cada año — gratis
+- Declaraciones de impuestos (tax transcripts) de cada año — gratis
 - irs.gov/individuals/get-transcript
 - La línea de ayuda del IRS
 - El registro de entrada I-94
@@ -997,7 +754,7 @@
 - Registros médicos y el IEP
 - el coordinador de educación especial de la escuela
 - Pida la constancia de trabajo
-- Una carta, talones de pago, impuestos.
+- Una carta, recibos de nómina, impuestos.
 - La historia laboral es parte del expediente sobre los lazos con EE. UU. que se junta para el abogado.
 - Una carta con el puesto, la antigüedad y la nota de que el lugar se conserva
 - Talones de pago de varios meses
@@ -1005,7 +762,7 @@
 - Reúna a medida que lleguen, no lo deje para después
 - Talones de pago
 - recursos humanos o el sistema de nómina — ADP, Paychex
-- Transcripciones de impuestos
+- Declaraciones de impuestos (tax transcripts)
 - Reúna la prueba de ingresos sin carta del empleador
 - El trabajo en efectivo también se puede documentar.
 - No tener empleador formal no significa no tener pruebas — se reúnen de otras fuentes.
@@ -1017,7 +774,7 @@
 - la aplicación Remitly, Wise, Western Union
 - Estados de cuenta por mes
 - la cuenta del banco
-- Transcripciones de impuestos, si se presentaron
+- Declaraciones de impuestos (tax transcripts), si se presentaron
 - La carta de asignación del ITIN — el número para pagar impuestos cuando no hay SSN
 - de su propio archivo de documentos
 - Reúna los documentos de su negocio
@@ -1173,7 +930,7 @@
 - Que se aprenda su número A
 - Acuerden a quién llama primero
 - Diga quién recoge a los niños y quién sabe de los medicamentos
-- Quiero pedirte algo, por si acaso. Si algo me pasa y dejo de estar en contacto — aquí están mis documentos, a estas personas hay que llamar. Espero que no haga falta. ¿Te lo puedo mostrar?
+- Quiero pedirle un favor, por si acaso. Si algo me pasa y dejo de comunicarme — aquí están mis documentos, a estas personas hay que llamar. Espero que no haga falta. ¿Se los puedo mostrar?
 - No lleve el plan y los documentos encima. Guárdelos en un lugar confiable, y dónde exactamente — solo lo saben personas de confianza.
 - Encuentre a la persona que va a actuar
 - Mientras no exista, toda la preparación descansa solo en usted.
@@ -1184,7 +941,7 @@
 - Con una persona basta, pero dos es mejor
 - Tenga las fechas de audiencia bajo control
 - Faltar a una audiencia es la pérdida irreversible más común.
-- Si la persona no llega a una audiencia programada, el caso puede decidirse sin ella y en ausencia. La mayoría de las veces no es por fuga sino por un cambio de dirección: la notificación llega a la vieja.
+- Si la persona no llega a una audiencia programada, el caso puede decidirse sin ella y en ausencia. La mayoría de las veces no es por evadir a la corte sino por un cambio de dirección: la notificación llega a la vieja.
 - Revise la fecha de su audiencia en el sistema oficial
 - Ponga recordatorios 14, 3 y 1 día antes
 - Al mudarse, presente el cambio de dirección a la corte con el formulario aparte EOIR-33
@@ -1212,7 +969,7 @@
 - GettingOut · Securus · ConnectNetwork
 - Cartas y postales a los centros
 - Importante sobre la recarga: en la aplicación GettingOut no se puede poner dinero — la aplicación muestra el saldo y los mensajes, pero el pago no funciona en ella. Hay que recargar por el sitio web del operador en el navegador, desde una computadora o el teléfono. Con otros operadores pasa igual — si la aplicación no tiene botón de pago, busque el sitio, no reinstale la aplicación.
-- Libros — solo nuevos y directamente de una tienda o editorial, no de un particular. La pasta blanda pasa más rápido: la dura tarda más en revisarse y muchas veces no entra. Cada centro tiene sus reglas — confirme por teléfono antes de enviar.
+- Libros — solo nuevos y directamente de una tienda o editorial, no de un particular. La pasta suave pasa más rápido: la dura tarda más en revisarse y muchas veces no entra. Cada centro tiene sus reglas — confirme por teléfono antes de enviar.
 - Mire dónde consiguen el dinero las familias
 - El abogado, la renta, las llamadas — los gastos llegan juntos. Los mecanismos existen.
 - Las colectas por GoFundMe y las redes de apoyo mutuo son un mecanismo reconocido: las familias reúnen decenas de miles de dólares para el abogado y la vida durante el caso. Pedir ayuda públicamente aquí es normal — lo hacen cientos de familias.
@@ -1226,7 +983,7 @@
 - Los casos duran meses. Quien carga con todo solo se quema antes de que termine el proceso. La aplicación es una herramienta, no un reemplazo del apoyo humano.
 - Reparta las tareas entre los familiares, no lo tome todo usted
 - Mantenga sus rutinas: sueño, comida, trabajo
-- Apóyese en la gente viva de al lado
+- Apóyese en las personas que tiene cerca
 - La línea de crisis, las 24 horas y gratis
 - 988 — llamada o mensaje
 - Crisis Text Line

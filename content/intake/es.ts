@@ -405,7 +405,7 @@ const c: IntakeContent = {
         'Fotos con fecha, si no hay nada más',
       ],
       src: [
-        ['Transcripciones de impuestos de cada año — gratis', 'irs.gov/individuals/get-transcript'],
+        ['Declaraciones de impuestos (tax transcripts) de cada año — gratis', 'irs.gov/individuals/get-transcript'],
         ['La línea de ayuda del IRS', '800-829-1040'],
         ['El registro de entrada I-94', 'i94.cbp.dhs.gov'],
       ],
@@ -431,7 +431,7 @@ const c: IntakeContent = {
     ev_work_off: {
       ev: true,
       h: 'Pida la constancia de trabajo',
-      p: 'Una carta, talones de pago, impuestos.',
+      p: 'Una carta, recibos de nómina, impuestos.',
       why: 'La historia laboral es parte del expediente sobre los lazos con EE. UU. que se junta para el abogado.',
       how: [
         'Una carta con el puesto, la antigüedad y la nota de que el lugar se conserva',
@@ -441,7 +441,7 @@ const c: IntakeContent = {
       ],
       src: [
         ['Talones de pago', 'recursos humanos o el sistema de nómina — ADP, Paychex'],
-        ['Transcripciones de impuestos', 'irs.gov/individuals/get-transcript'],
+        ['Declaraciones de impuestos (tax transcripts)', 'irs.gov/individuals/get-transcript'],
       ],
     },
     ev_work_cash: {
@@ -458,7 +458,7 @@ const c: IntakeContent = {
       src: [
         ['El historial de envíos', 'la aplicación Remitly, Wise, Western Union'],
         ['Estados de cuenta por mes', 'la cuenta del banco'],
-        ['Transcripciones de impuestos, si se presentaron', 'irs.gov/individuals/get-transcript'],
+        ['Declaraciones de impuestos (tax transcripts), si se presentaron', 'irs.gov/individuals/get-transcript'],
         ['La carta de asignación del ITIN — el número para pagar impuestos cuando no hay SSN', 'de su propio archivo de documentos'],
       ],
     },
@@ -695,7 +695,7 @@ const c: IntakeContent = {
         'Acuerden a quién llama primero',
         'Diga quién recoge a los niños y quién sabe de los medicamentos',
       ],
-      say: 'Quiero pedirte algo, por si acaso. Si algo me pasa y dejo de estar en contacto — aquí están mis documentos, a estas personas hay que llamar. Espero que no haga falta. ¿Te lo puedo mostrar?',
+      say: 'Quiero pedirle un favor, por si acaso. Si algo me pasa y dejo de comunicarme — aquí están mis documentos, a estas personas hay que llamar. Espero que no haga falta. ¿Se los puedo mostrar?',
       warn: 'No lleve el plan y los documentos encima. Guárdelos en un lugar confiable, y dónde exactamente — solo lo saben personas de confianza.',
     },
     trusted_find: {
@@ -713,7 +713,7 @@ const c: IntakeContent = {
       pages: ['deadlines'],
       h: 'Tenga las fechas de audiencia bajo control',
       p: 'Faltar a una audiencia es la pérdida irreversible más común.',
-      why: 'Si la persona no llega a una audiencia programada, el caso puede decidirse sin ella y en ausencia. La mayoría de las veces no es por fuga sino por un cambio de dirección: la notificación llega a la vieja.',
+      why: 'Si la persona no llega a una audiencia programada, el caso puede decidirse sin ella y en ausencia. La mayoría de las veces no es por evadir a la corte sino por un cambio de dirección: la notificación llega a la vieja.',
       how: [
         'Revise la fecha de su audiencia en el sistema oficial',
         'Ponga recordatorios 14, 3 y 1 día antes',
@@ -753,7 +753,7 @@ const c: IntakeContent = {
         ['Cartas y postales a los centros', 'pigeon.ly'],
       ],
       form: 'Importante sobre la recarga: en la aplicación GettingOut no se puede poner dinero — la aplicación muestra el saldo y los mensajes, pero el pago no funciona en ella. Hay que recargar por el sitio web del operador en el navegador, desde una computadora o el teléfono. Con otros operadores pasa igual — si la aplicación no tiene botón de pago, busque el sitio, no reinstale la aplicación.',
-      warn: 'Libros — solo nuevos y directamente de una tienda o editorial, no de un particular. La pasta blanda pasa más rápido: la dura tarda más en revisarse y muchas veces no entra. Cada centro tiene sus reglas — confirme por teléfono antes de enviar.',
+      warn: 'Libros — solo nuevos y directamente de una tienda o editorial, no de un particular. La pasta suave pasa más rápido: la dura tarda más en revisarse y muchas veces no entra. Cada centro tiene sus reglas — confirme por teléfono antes de enviar.',
     },
     money: {
       pages: ['state-ca'],
@@ -775,7 +775,7 @@ const c: IntakeContent = {
       how: [
         'Reparta las tareas entre los familiares, no lo tome todo usted',
         'Mantenga sus rutinas: sueño, comida, trabajo',
-        'Apóyese en la gente viva de al lado',
+        'Apóyese en las personas que tiene cerca',
       ],
       src: [
         ['La línea de crisis, las 24 horas y gratis', '988 — llamada o mensaje'],

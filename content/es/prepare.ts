@@ -108,7 +108,7 @@ const c: PageContent = {
       tone: 'n',
       title: 'La cuenta del banco',
       body: [
-        'La verificación de entrada atada solo a SMS deja de funcionar cuando el teléfono está confiscado o la línea se corta. En la configuración del banco normalmente se puede agregar la verificación por correo electrónico — conservar el acceso al correo es más sencillo.',
+        'La verificación de inicio de sesión atada solo a SMS deja de funcionar cuando el teléfono está confiscado o la línea se corta. En la configuración del banco normalmente se puede agregar la verificación por correo electrónico — conservar el acceso al correo es más sencillo.',
         'Muchos bancos aceptan un poder solo en su propio formulario y solo en persona. Ir a la sucursal junto con la persona de confianza, por adelantado, quita esa barrera.',
       ],
     },
@@ -117,13 +117,13 @@ const c: PageContent = {
       tone: 'n',
       title: 'La vivienda rentada y las pertenencias',
       body: [
-        'Un apartamento que se queda sin pagar se convierte en deuda: multas por romper el contrato, cobradores, y las pertenencias van a una bodega o a la calle. Una persona con poder puede terminar el contrato según las reglas y recoger las cosas.',
+        'Un apartamento que se queda sin pagar se convierte en deuda: multas por romper el contrato, cobradores, y las pertenencias van a un almacén de depósito (storage) o a la calle. Una persona con poder puede terminar el contrato según las reglas y recoger las cosas.',
       ],
     },
     {
       kind: 'callout',
       tone: 'n',
-      title: 'El carro financiado o en lease',
+      title: 'El carro financiado o en arrendamiento (lease)',
       body: [
         'Un carro con pagos vencidos el prestamista lo recupera (repossession) y lo vende en subasta. El saldo de la deuda queda a nombre del dueño, y la parte condonada puede contarse como ingreso gravable (formulario 1099-C).',
         'Los caminos legales que existen: un poder con la facultad de vender el vehículo, o el traspaso oficial del préstamo o del lease a otra persona. Las condiciones están en el contrato y con el prestamista.',
@@ -147,7 +147,7 @@ const c: PageContent = {
       kind: 'steps',
       title: 'Tres tareas para esta semana',
       items: [
-        'Cambiar la verificación de entrada al banco de SMS a correo electrónico, o agregar el correo como método de respaldo.',
+        'Cambiar la verificación de inicio de sesión del banco de SMS a correo electrónico, o agregar el correo como método de respaldo.',
         'Firmar ante notario un poder financiero y registrarlo en el banco en persona.',
         'Guardar copias del SSN/ITIN, de los contratos de renta y préstamo y de los papeles del carro en un almacenamiento cifrado, y darle acceso a la persona de confianza.',
       ],
