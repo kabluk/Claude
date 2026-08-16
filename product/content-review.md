@@ -27,6 +27,20 @@ off.
 | A9 | Scam signs: **guaranteed result/release, "same-day release", prepaid document packages, a "notario" who is not a licensed attorney/accredited rep** | landing scam section, app | Common predatory patterns | Confirm the list is complete and correctly worded. |
 | A10 | Documents attorneys commonly ask for, **organized by year**: taxes, housing, school, finance, IDs, medical | landing module 4, app Documents | navigator.json | Confirm categories are the right first ask; anything critical missing? |
 
+## A-2. "Prepare in advance" module — financial/property claims (NEW; needs an attorney AND a tax professional)
+
+Source: community guidance circulating among affected families; rewritten in calm,
+hedged form. Every claim below must be verified before release.
+
+| # | Claim (as shown, hedged) | Question for reviewer |
+|---|---|---|
+| A11 | Logging into a US bank app from abroad can trigger security blocks (AML/OFAC screening); moving 2FA from SMS to email, or keeping the US number via eSIM, can help keep access | Accurate and safe to state? Any bank-specific caveats worth adding? |
+| A12 | Many banks ask a financial POA to be registered in person, in advance; a registered POA can let a trusted person handle the account | Confirm banks may refuse/limit POAs and that our "can" hedging is sufficient |
+| A13 | 401(k)/IRA funds generally remain the account holder's property regardless of immigration status; Form W-8BEN can confirm nonresident status and reduce withholding; withdrawal before 59½ usually carries a 10% IRS penalty | Tax professional: confirm each part, esp. W-8BEN applicability and penalty exceptions |
+| A14 | A financed/leased car left behind can be repossessed and auctioned; a remaining deficiency may be billed and can be reported as income (Form 1099-C); options: durable POA authorizing sale to a dealer, or lender-approved loan/lease transfer | Confirm 1099-C framing and that POA/transfer options are stated correctly |
+| A15 | An abandoned rental can mean landlord fees, collections, and belongings moved to storage; a notarized durable financial POA naming a person with status can let them end the lease and collect belongings | State-by-state POA variation — is a blanket statement acceptable with "can"? |
+| A16 | Keeping encrypted scans of SSN/ITIN, IDs, car documents and contracts in cloud storage the family can reach | Any risks we should warn about (e.g. sharing SSN scans)? |
+
 ## B. Framing / disclaimers (should stay, verify wording)
 
 - "This is **not a law firm**, does not give legal advice, does not promise any

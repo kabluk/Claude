@@ -75,6 +75,12 @@
   .t-hint{margin-top:3px;font-size:15px;color:var(--slate);line-height:1.4}
   .t-hint a{font-weight:600}
 
+  /* prepare tab */
+  .t-sum{font-size:15.5px;color:var(--slate);line-height:1.45;margin:-2px 0 10px}
+  .wk3{border-left:3px solid var(--teal);padding-left:13px;margin-bottom:22px}
+  .wk3 .phase-h{color:var(--teal)}
+  .phase-h{font-size:14px;font-family:var(--mono);font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--brass-600);margin:0 0 10px}
+
   /* generic card + list */
   .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 18px;margin-bottom:16px}
   .card h2{font-size:20px;margin-bottom:6px}
@@ -276,6 +282,21 @@
   </section>
 </main>
 
+<!-- ---- PREPARE ---- -->
+  <section class="view" id="v-prep" role="tabpanel">
+    <div class="wrap">
+      <h1 class="h-title" id="prepH"></h1>
+      <p class="h-sub" id="prepSub"></p>
+      <div class="prog">
+        <div class="row"><span class="lab" id="prepProgLab"></span><span class="val"><span id="prepVal">0</span> / <span id="prepTot">0</span></span></div>
+        <div class="bar"><i id="prepBar" style="width:0%"></i></div>
+      </div>
+      <div id="prepList"></div>
+      <p class="disc" id="prepDisc"></p>
+      <p class="privacy"><span class="lock" aria-hidden="true">🔒</span><span data-i18n="privacy">Saved only on this phone. No account needed.</span></p>
+    </div>
+  </section>
+
 <!-- ============ BOTTOM NAV ============ -->
 <nav class="tabs" role="tablist" aria-label="Sections">
   <div class="tabs-in">
@@ -283,6 +304,7 @@
     <button data-tab="case"><span class="ic" aria-hidden="true">▤</span><span data-i18n="tab_case">Locate</span></button>
     <button data-tab="docs"><span class="ic" aria-hidden="true">▦</span><span data-i18n="tab_docs">Documents</span></button>
     <button data-tab="guide"><span class="ic" aria-hidden="true">☎</span><span data-i18n="tab_guide">First call</span></button>
+    <button data-tab="prep"><span class="ic" aria-hidden="true">☂</span><span id="tabPrepLabel">Prepare</span></button>
   </div>
 </nav>
 
@@ -439,6 +461,10 @@ const DOC_CAT_LABEL = {
   ru:{taxes:"Налоги",housing:"Жильё",school:"Школа",finance:"Финансы",ids:"Документы",medical:"Медицина"}
 };
 
+/* ============ Prepare-in-advance content (workflow-authored, verified) ============ */
+const PREP = {"en":{"tab":"Prepare","heading":"Prepare in advance","sub":"A few steps taken ahead of time can help keep your money, car, and home in trusted hands.","topics":[{"key":"banks","title":"Keep access to your bank accounts","summary":"Bank apps sometimes block logins from outside the US. Changing a few settings ahead of time can help keep your money reachable.","items":[{"t":"Switch bank 2FA from SMS to email","h":"Text-message codes often stop working without a US phone number. Email codes usually work from anywhere."},{"t":"Keep your US number alive with an eSIM","h":"If you prefer text codes, an eSIM plan can keep your US number receiving them abroad."},{"t":"Register a financial POA with your bank","h":"Many banks ask you to register a power of attorney in person, in advance. It can let a trusted person handle the account if you cannot."}]},{"key":"retirement","title":"Understand your retirement savings","summary":"401(k) and IRA funds generally remain the account holder's property regardless of immigration status — a tax professional can confirm the details for you.","items":[{"t":"Review who owns the account","h":"Retirement savings generally remain your property wherever you live, so there is usually no need to rush a withdrawal."},{"t":"Ask a tax professional about Form W-8BEN","h":"Many people use this form to confirm nonresident status and reduce tax withholding. A tax professional can confirm what fits your situation."},{"t":"Weigh any early withdrawal calmly","h":"Withdrawing before age 59 1/2 usually carries a 10% IRS penalty, so many people leave the account to grow until retirement. Check with a tax professional first."}]},{"key":"car","title":"Plan for a financed or leased car","summary":"A plan made in advance helps keep the decision about the car in your hands.","items":[{"t":"Prepare a notarized POA for the car","h":"A durable power of attorney that covers selling can let a trusted person sell the car to a dealer such as CarMax or Carvana on your behalf."},{"t":"Ask about a loan or lease transfer","h":"An official transfer can put the car in another person's name. Each lender has its own process, so ask in advance."},{"t":"Understand what happens to a car left behind","h":"A plan made in advance can help you avoid trouble here: if a car is left behind, the lender may repossess it and any remaining balance can follow you. A tax professional can explain Form 1099-C if it comes up."}]},{"key":"home","title":"Arrange care for your rental home","summary":"A trusted person with the right paperwork can close out a lease properly and collect your belongings.","items":[{"t":"Name a trusted person in a POA","h":"A notarized durable financial POA can let a trusted person end your lease and pick up your belongings; an attorney can confirm what your state requires."},{"t":"Write down your lease details for that person","h":"Landlord contact, lease end date, and where belongings should go — kept in one place they can reach."}]},{"key":"vault","title":"Keep key documents within reach","summary":"Encrypted scans in cloud storage can stay available to you and your family from almost anywhere.","items":[{"t":"Scan your SSN or ITIN and IDs","h":"Save the copies in encrypted cloud storage your family can open."},{"t":"Scan car documents and contracts","h":"Title, loan or lease papers, and your rental agreement help a trusted person act on your behalf."},{"t":"Share access with your family","h":"Make sure at least one trusted person knows how to open the storage."}]}],"week3_title":"Three good places to start","week3":[{"t":"Switch bank 2FA to email","h":"In your bank app's security settings, choose email instead of text message for login codes."},{"t":"Sign and register a financial POA","h":"A notarized durable POA, registered in person, can let a trusted person act for you if needed."},{"t":"Save encrypted scans of key documents","h":"IDs, SSN or ITIN, and car and lease papers, stored where your family can reach them."}],"disclaimer":"This is general information, not legal or tax advice — please confirm your situation with a licensed attorney or tax professional."},"es":{"tab":"Prepárese","heading":"Prepárese con anticipación","sub":"Unos pasos tomados con tiempo pueden ayudar a que su dinero, su carro y su vivienda queden en manos de confianza.","topics":[{"key":"banks","title":"Mantenga acceso a sus cuentas bancarias","summary":"Las aplicaciones bancarias a veces bloquean el inicio de sesión desde fuera de EE. UU. Cambiar algunos ajustes con tiempo puede ayudar a mantener su dinero a su alcance.","items":[{"t":"Cambie la verificación de SMS a correo","h":"Los códigos por mensaje de texto pueden dejar de funcionar sin un número de EE. UU. Los códigos por correo electrónico suelen funcionar desde cualquier lugar."},{"t":"Conserve su número de EE. UU. con una eSIM","h":"Si prefiere los códigos por texto, un plan de eSIM puede mantener su número de EE. UU. recibiéndolos en el extranjero."},{"t":"Registre un poder notarial (POA) en su banco","h":"Muchos bancos piden registrar el poder en persona y con anticipación. Puede permitir que una persona de confianza maneje la cuenta si usted no puede."}]},{"key":"retirement","title":"Entienda qué pasa con sus ahorros de retiro","summary":"Por lo general, los fondos de 401(k) e IRA siguen a nombre de quien tiene la cuenta, sin importar el estatus migratorio. Un profesional de impuestos puede confirmar su caso.","items":[{"t":"Confirme que la cuenta sigue a su nombre","h":"Por lo general, los ahorros de retiro siguen a su nombre viva donde viva, y no suele haber necesidad de apresurar un retiro. Confírmelo con el administrador de su plan o un profesional de impuestos."},{"t":"Consulte sobre el formulario W-8BEN","h":"Muchas personas usan este formulario para confirmar su condición de no residente y reducir la retención de impuestos. Un profesional de impuestos puede confirmar qué corresponde a su situación."},{"t":"Evalúe con calma cualquier retiro anticipado","h":"Retirar fondos antes de los 59 años y medio suele tener una multa del 10% del IRS, por eso muchas personas dejan crecer la cuenta hasta el retiro. Consulte primero con un profesional de impuestos."}]},{"key":"car","title":"Planee para un carro financiado o arrendado","summary":"Un plan hecho con anticipación puede ayudarle a decidir con calma qué hacer con el carro.","items":[{"t":"Prepare un poder notarial que cubra la venta","h":"Un poder notarial (POA) duradero puede permitir que una persona de confianza venda el carro en su nombre a un concesionario como CarMax o Carvana."},{"t":"Pregunte al prestamista sobre una transferencia","h":"Una transferencia oficial del préstamo o arrendamiento puede poner el carro a nombre de otra persona. Cada prestamista tiene su propio proceso, así que pregunte con anticipación."},{"t":"Averigüe qué pasa si el carro queda atrás","h":"Un plan hecho con tiempo puede darle más opciones. Si el carro queda atrás, el prestamista puede recuperarlo y puede quedar un saldo pendiente; un profesional de impuestos puede explicarle el formulario 1099-C si llega a aplicar."}]},{"key":"home","title":"Organice el cuidado de su vivienda rentada","summary":"Una persona de confianza con los papeles adecuados puede cerrar el contrato de renta debidamente y recoger sus pertenencias.","items":[{"t":"Nombre a alguien en un poder notarial duradero","h":"Un poder notarial (POA) ante notario puede permitir que una persona de confianza termine su contrato de renta y recoja sus pertenencias. Confirme los requisitos con un abogado o abogada con licencia."},{"t":"Anote los detalles del contrato de renta","h":"El contacto del arrendador, la fecha de fin del contrato y adónde deben ir las pertenencias, todo en un lugar que esa persona pueda consultar."}]},{"key":"vault","title":"Mantenga los documentos clave a la mano","summary":"Copias escaneadas y cifradas en la nube pueden quedar disponibles para usted y su familia desde casi cualquier lugar.","items":[{"t":"Escanee su SSN o ITIN e identificaciones","h":"Guarde las copias en un almacenamiento en la nube cifrado que su familia pueda abrir."},{"t":"Escanee los documentos y contratos del carro","h":"El título, los papeles del préstamo o arrendamiento y su contrato de renta ayudan a que una persona de confianza actúe en su nombre."},{"t":"Comparta el acceso con su familia","h":"Asegúrese de que al menos una persona de confianza sepa cómo abrir el almacenamiento."}]}],"week3_title":"Tres primeros pasos","week3":[{"t":"Cambie la verificación del banco a correo","h":"En los ajustes de seguridad de su aplicación bancaria, elija correo electrónico en lugar de mensaje de texto para los códigos de inicio de sesión."},{"t":"Firme y registre un poder notarial","h":"Un poder notarial (POA) duradero ante notario, registrado en persona, puede permitir que una persona de confianza actúe por usted si hace falta."},{"t":"Guarde copias cifradas de documentos clave","h":"Identificaciones, SSN o ITIN, y papeles del carro y de la renta, guardados donde su familia pueda encontrarlos."}],"disclaimer":"Esta es información general, no asesoría legal ni de impuestos. Por favor confirme su situación con un abogado o abogada con licencia o con un profesional de impuestos."},"ru":{"tab":"Подготовка","heading":"Подготовьтесь заранее","sub":"Несколько шагов, сделанных заранее, помогают сохранить контроль над деньгами, машиной и жильём.","topics":[{"key":"banks","title":"Сохраните доступ к банковским счетам","summary":"Банковские приложения иногда блокируют вход из-за пределов США. Несколько настроек, изменённых заранее, помогают сохранить доступ к вашим деньгам.","items":[{"t":"Переключите 2FA банка с SMS на email","h":"SMS-коды часто перестают приходить без американского номера. Коды по email обычно приходят из любой страны."},{"t":"Сохраните американский номер через eSIM","h":"Если вам удобнее SMS-коды, тариф eSIM обычно позволяет номеру США принимать их и за границей."},{"t":"Зарегистрируйте в банке финансовую доверенность (POA)","h":"Многие банки просят зарегистрировать доверенность лично и заранее. Она может позволить доверенному человеку управлять счётом, если вы не сможете."}]},{"key":"retirement","title":"Пенсионные накопления обычно остаются вашими","summary":"Как правило, средства на 401(k) и IRA остаются собственностью владельца счёта независимо от иммиграционного статуса — уточните детали у налогового специалиста.","items":[{"t":"Проверьте, на чьё имя оформлен счёт","h":"Как правило, пенсионные накопления остаются вашей собственностью, где бы вы ни жили — подтвердите это у налогового специалиста. Обычно нет причин спешить со снятием средств."},{"t":"Спросите налогового специалиста о форме W-8BEN","h":"Многие используют эту форму, чтобы подтвердить статус нерезидента и снизить удержание налога. Налоговый специалист подскажет, что подходит именно в вашей ситуации."},{"t":"Взвесьте досрочное снятие спокойно","h":"Снятие до 59 1/2 лет обычно облагается штрафом IRS в 10%, поэтому многие оставляют счёт расти до пенсии. Сначала посоветуйтесь с налоговым специалистом."}]},{"key":"car","title":"План для машины в кредите или лизинге","summary":"План, составленный заранее, помогает сохранить решение о машине за вами.","items":[{"t":"Оформите нотариальную доверенность (POA) на продажу машины","h":"Долгосрочная доверенность (durable POA) может позволить доверенному человеку продать машину дилеру, например CarMax или Carvana, от вашего имени."},{"t":"Спросите кредитора о переводе кредита или лизинга","h":"Официальный перевод может переоформить машину на другого человека. У каждого кредитора свой порядок, поэтому уточните заранее."},{"t":"Узнайте, что происходит с оставленной машиной","h":"План, составленный заранее, помогает этого избежать: без него кредитор может продать машину с аукциона, а остаток долга иногда остаётся за владельцем. Подробности уточните у кредитора."}]},{"key":"home","title":"Позаботьтесь о съёмном жилье","summary":"Доверенный человек с нужными документами может закрыть договор аренды и забрать ваши вещи.","items":[{"t":"Укажите доверенного человека в финансовой доверенности","h":"Нотариальная долгосрочная доверенность (POA) обычно позволяет доверенному человеку завершить аренду и забрать ваши вещи — формулировки доверенности уточните у юриста."},{"t":"Запишите для этого человека детали аренды","h":"Контакты арендодателя, дата окончания договора и куда отправить вещи — в одном месте, доступном этому человеку."}]},{"key":"vault","title":"Держите ключевые документы под рукой","summary":"Зашифрованные сканы в облачном хранилище могут оставаться доступными вам и вашей семье почти откуда угодно.","items":[{"t":"Отсканируйте SSN или ITIN и удостоверения","h":"Сохраните копии в зашифрованном облачном хранилище, которое сможет открыть ваша семья."},{"t":"Отсканируйте документы на машину и договоры","h":"Тайтл, бумаги по кредиту или лизингу и договор аренды помогут доверенному человеку действовать от вашего имени."},{"t":"Поделитесь доступом с семьёй","h":"Убедитесь, что хотя бы один доверенный человек знает, как открыть хранилище."}]}],"week3_title":"Три дела, с которых можно начать","week3":[{"t":"Переключите 2FA банка на email","h":"В настройках безопасности банковского приложения выберите email вместо SMS для кодов входа."},{"t":"Подпишите финансовую доверенность и зарегистрируйте её в банке","h":"Нотариальная долгосрочная доверенность (POA), зарегистрированная лично, может позволить доверенному человеку действовать за вас при необходимости."},{"t":"Сохраните зашифрованные сканы ключевых документов","h":"Удостоверения, SSN или ITIN, документы на машину и аренду — там, где семья сможет их найти."}],"disclaimer":"Это общая информация, а не юридическая или налоговая консультация — пожалуйста, уточните вашу ситуацию у лицензированного юриста или налогового специалиста."}};
+const PREP_PROG_LAB = {en:"Prepared", es:"Preparado", ru:"Готовность"};
+
 /* ================= state ================= */
 const KEY="dn_app_v1";
 // Read-only demo mode for the design gallery: app.html?demo=today|case|docs|guide|onboarding&lang=en|es|ru
@@ -456,7 +482,7 @@ let S = load();
 function load(){
   if(DEMO) return demoState();
   try{ const s=JSON.parse(localStorage.getItem(KEY)); if(s&&typeof s==="object") return s; }catch(e){}
-  return {lang:"en", onboarded:false, profile:{}, case:{}, tasks:{}, docs:{}, start:null};
+  return {lang:"en", onboarded:false, profile:{}, case:{}, tasks:{}, docs:{}, prep:{}, start:null};
 }
 function save(){ if(DEMO) return; try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
 function todayStamp(){ const d=new Date(); return Date.UTC(d.getFullYear(),d.getMonth(),d.getDate()); }
@@ -542,7 +568,41 @@ function renderDocs(){
   document.getElementById("covBar").style.width=pct+"%";
 }
 
-function renderAll(){ renderTasks(); renderCase(); renderDocs(); }
+function prepRow(id, item){
+  const on=!!(S.prep&&S.prep[id]);
+  const btn=document.createElement("button");
+  btn.className="task"; btn.type="button"; btn.setAttribute("aria-pressed",String(on));
+  btn.innerHTML='<span class="cb" aria-hidden="true">'+(on?"✓":"")+'</span><span class="t-txt"><span class="t-title"></span><span class="t-hint"></span></span>';
+  btn.querySelector(".t-title").textContent=item.t;
+  btn.querySelector(".t-hint").textContent=item.h;
+  btn.addEventListener("click",()=>{ S.prep=S.prep||{}; S.prep[id]=!S.prep[id]; save(); renderPrep(); });
+  return btn;
+}
+function renderPrep(){
+  const d=PREP[S.lang]||PREP.en;
+  document.getElementById("tabPrepLabel").textContent=d.tab;
+  document.getElementById("prepH").textContent=d.heading;
+  document.getElementById("prepSub").textContent=d.sub;
+  document.getElementById("prepProgLab").textContent=PREP_PROG_LAB[S.lang]||PREP_PROG_LAB.en;
+  document.getElementById("prepDisc").textContent=d.disclaimer;
+  const host=document.getElementById("prepList"); host.innerHTML="";
+  let done=0, tot=0;
+  const wk=document.createElement("div"); wk.className="wk3";
+  const wh=document.createElement("h2"); wh.className="phase-h"; wh.textContent=d.week3_title; wk.appendChild(wh);
+  d.week3.forEach((it,i)=>{ tot++; if(S.prep&&S.prep["wk_"+i]) done++; wk.appendChild(prepRow("wk_"+i,it)); });
+  host.appendChild(wk);
+  d.topics.forEach(tp=>{
+    const g=document.createElement("div"); g.className="phase";
+    const h=document.createElement("h2"); h.className="phase-h"; h.textContent=tp.title; g.appendChild(h);
+    const sm=document.createElement("p"); sm.className="t-sum"; sm.textContent=tp.summary; g.appendChild(sm);
+    tp.items.forEach((it,i)=>{ tot++; const id=tp.key+"_"+i; if(S.prep&&S.prep[id]) done++; g.appendChild(prepRow(id,it)); });
+    host.appendChild(g);
+  });
+  document.getElementById("prepVal").textContent=done;
+  document.getElementById("prepTot").textContent=tot;
+  document.getElementById("prepBar").style.width=(tot?Math.round(done/tot*100):0)+"%";
+}
+function renderAll(){ renderTasks(); renderCase(); renderDocs(); renderPrep(); }
 
 /* ================= tabs ================= */
 function showTab(name){
