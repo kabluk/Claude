@@ -1,0 +1,92 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import { loadCopy, tradeCityPairs, tradePermits, fmtMoney, fmtDate, fill } from '../../../../lib/data.mjs';
+
+export function getStaticPaths() {
+  return tradeCityPairs(3).map(({ city, trade }) => ({
+    params: { trade: trade.slug, city: city.city },
+    props: { city, trade },
+  }));
+}
+
+const { city, trade } = Astro.props;
+const copy = loadCopy();
+const tradeCopy = copy.trades[trade.slug] || {};
+const permits = tradePermits(city, trade.slug);
+const recent = permits.slice(0, 25);
+const valuations = permits.map((p) => p.valuation).filter((v) => typeof v === 'number' && v > 0);
+const totalValue = valuations.reduce((s, v) => s + v, 0);
+
+const title = fill(copy.tradePage.titleTemplate, { trade: trade.name, city: city.cityName });
+const intro = fill(copy.tradePage.introTemplate, {
+  trade: trade.name.toLowerCase(),
+  city: city.cityName,
+  count: permits.length.toLocaleString('en-US'),
+});
+const why = fill(copy.tradePage.whyTemplate, {
+  trade: trade.name.toLowerCase(),
+  city: city.cityName,
+  count: permits.length.toLocaleString('en-US'),
+});
+---
+
+<Base title={title} description={intro}>
+  <div class="wrap">
+    <p class="crumbs">
+      <a href="/">Home</a> › <a href="/leads/">Trades</a> › <a href={`/leads/${trade.slug}/`}>{trade.name}</a> › {city.cityName}
+    </p>
+  </div>
+
+  <section style="padding-top:20px">
+    <div class="wrap">
+      <h1 class="sec" style="font-size:32px">{trade.name} leads in {city.cityName}, {city.state}</h1>
+      <p class="sec-sub">{intro}</p>
+      <div class="hero-stats" style="margin:0">
+        <div class="stat"><b>{permits.length.toLocaleString('en-US')}</b><span>{trade.pluralLabel} · last 90 days</span></div>
+        <div class="stat"><b>{fmtMoney(totalValue)}</b><span>reported job value</span></div>
+        {tradeCopy.avgTicket && <div class="stat"><b>{tradeCopy.avgTicket}</b><span>typical US job value</span></div>}
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <h2 class="sec">Recent {trade.pluralLabel} in {city.cityName}</h2>
+      <p class="sec-sub">The latest {recent.length} of {permits.length.toLocaleString('en-US')} matching permits. The full feed with contractor contacts and daily alerts is part of the <a href="/#pricing">lead plans</a>.</p>
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr><th>Issued</th><th>Address</th><th>Work description</th><th class="num">Value</th></tr>
+          </thead>
+          <tbody>
+            {recent.map((p) => (
+              <tr>
+                <td style="white-space:nowrap">{fmtDate(p.issuedDate)}</td>
+                <td>{p.address || '—'}</td>
+                <td><div class="desc-cell" title={p.description || p.type}>{p.description || p.type || '—'}</div></td>
+                <td class="num">{fmtMoney(p.valuation)}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="sec">Why permit data beats bought leads</h2>
+      <p class="sec-sub" style="max-width:760px">{why}</p>
+      <div class="card" style="max-width:640px">
+        <h3>Get {trade.leadLabel} in {city.cityName} daily</h3>
+        <p>New matching permits in your inbox every morning — address, scope, and job value included.</p>
+        <form class="waitlist" data-plan={`pair-${trade.slug}-${city.city}`} style="margin-top:14px">
+          <input type="email" required placeholder="Work email" aria-label="Work email" />
+          <button class="btn" type="submit">Join the waitlist</button>
+          <span class="done">You're on the list — we'll be in touch.</span>
+        </form>
+      </div>
+      <p class="crumbs">Source: <a href={city.source.portal} rel="nofollow">{city.source.name}</a></p>
+    </div>
+  </section>
+</Base>

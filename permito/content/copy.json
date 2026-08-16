@@ -1,0 +1,165 @@
+{
+  "brand": {
+    "name": "Permito",
+    "tagline": "Building permit leads, before your competitors see them.",
+    "metaTitleSuffix": " | Permito — Building Permit Leads"
+  },
+  "landing": {
+    "heroTitle": "Stop paying $60 a click. Start working permits.",
+    "heroSubtitle": "Permito turns official city building permits into fresh, exclusive contractor leads. Every permit is a homeowner or GC who already committed money to a project — no ad auctions, no shared lead lists, no tire-kickers.",
+    "heroCta": "Browse live permits free",
+    "valueProps": [
+      {
+        "title": "Cheaper than any ad click",
+        "text": "Google Ads clicks for contractor keywords run $40–$80 — and a click is not a lead. A permit is a verified project with an address, a valuation, and an issue date, at a fraction of the cost per opportunity."
+      },
+      {
+        "title": "Fresh within 24 hours",
+        "text": "We pull directly from official city open-data portals every day. You see permits issued yesterday, not recycled lists that five other contractors already called last month."
+      },
+      {
+        "title": "Filtered to your trade",
+        "text": "Roofing, HVAC, electrical, plumbing, solar and more — permits are pre-sorted into 10 trade categories so you only see jobs that match the work you actually do."
+      }
+    ],
+    "howItWorks": [
+      {
+        "title": "Pick your city and trade",
+        "text": "Choose from our covered metros and select the trade categories you serve, from roofing to new construction."
+      },
+      {
+        "title": "Get fresh permits daily",
+        "text": "Every morning we ingest the latest permits from official city data portals, normalize them, and match them to your filters — address, valuation, contractor of record, and issue date included."
+      },
+      {
+        "title": "Reach out first",
+        "text": "Call, mail, or knock while the project is still live. Permit holders are mid-project and often need subs, change orders, or follow-on work — the contractor who shows up first wins."
+      }
+    ],
+    "socialProof": "Tracking permits across 5 US cities, updated daily from official open-data portals — hundreds of new records normalized every week.",
+    "faq": [
+      {
+        "q": "Where does the permit data come from?",
+        "a": "Directly from official city open-data portals — the same public records the building departments publish. We normalize them into one consistent format and refresh daily."
+      },
+      {
+        "q": "How is this better than buying leads?",
+        "a": "Purchased leads are typically sold to 3–5 contractors at once and cost $50–$200 each. A permit record is a verified, funded project with a real address, and nobody is reselling your access to it."
+      },
+      {
+        "q": "How fresh are the permits?",
+        "a": "We only surface permits issued within the last 90 days, sorted newest first, and we re-fetch from each city portal every day. Most records appear within 24 hours of issuance."
+      },
+      {
+        "q": "Is it legal to contact permit holders?",
+        "a": "Building permits are public records published by city governments. Standard outreach rules still apply — follow do-not-call regulations and local solicitation laws — but using public permit data for prospecting is a long-established practice in the trades."
+      },
+      {
+        "q": "Which trades does Permito cover?",
+        "a": "Ten categories: roofing, HVAC, electrical, plumbing, solar, pool and spa, fence and deck, remodeling, new construction, and demolition. Every permit is classified into the categories it matches."
+      }
+    ]
+  },
+  "pricing": {
+    "title": "Pricing that beats one week of ad spend",
+    "subtitle": "A single Google Ads lead can cost $80 before you ever pick up the phone. Permito plans start at less than the cost of two clicks a week.",
+    "plans": [
+      {
+        "slug": "starter",
+        "name": "Starter",
+        "price": "$99/mo",
+        "features": [
+          "1 city, up to 3 trade categories",
+          "Daily permit updates",
+          "90 days of permit history",
+          "CSV export",
+          "Email support"
+        ]
+      },
+      {
+        "slug": "pro",
+        "name": "Pro",
+        "price": "$249/mo",
+        "features": [
+          "3 cities, all 10 trade categories",
+          "Daily permit updates with valuation and contractor fields",
+          "Saved filters and daily email digests",
+          "CSV export and spreadsheet-ready formatting",
+          "Priority support",
+          "Early access to new cities"
+        ]
+      },
+      {
+        "slug": "scale",
+        "name": "Scale",
+        "price": "$499/mo",
+        "features": [
+          "All covered cities, all 10 trade categories",
+          "Daily permit updates, newest-first, full record detail",
+          "Multi-seat access for your sales team",
+          "Bulk CSV export across cities",
+          "Priority support with onboarding call",
+          "Vote on which cities we add next"
+        ]
+      }
+    ],
+    "ctaLabel": "Join the waitlist",
+    "disclaimer": "Permito is in early access. Plans shown reflect launch pricing — join the waitlist to lock in your rate before general availability."
+  },
+  "cityPage": {
+    "titleTemplate": "{city} Building Permits — Live Permit Records & Stats",
+    "introTemplate": "Browse {count} building permits issued in {city}, {state} over the last {days} days, pulled daily from the city's official open-data portal. Every record includes the issue date, work description, project address, and reported valuation where available. Permits are sorted newest first so you can see what {city} property owners are building right now.",
+    "leadCtaTemplate": "Want tomorrow's {city} permits in your inbox before your competitors call? Join the Permito waitlist."
+  },
+  "tradePage": {
+    "titleTemplate": "{trade} Leads in {city} — Fresh Building Permit Leads",
+    "introTemplate": "There are {count} recent {trade} permits on record in {city}, each one a funded project with a real address and issue date. These are not form-fills or shared lead lists — they are official public records of work that property owners have already committed to. Permito refreshes {city} permit data daily so the newest jobs surface first.",
+    "whyTemplate": "Permit data is the highest-intent lead source available to {trade} contractors. By the time a permit is filed, the owner has scoped the project, budgeted for it, and paid a filing fee — a level of commitment no ad click can match. Compare that to Google Ads, where contractor keywords cost $40–$80 per click and most clicks never turn into a conversation. A fresh {trade} permit tells you exactly who is building, where, and roughly what the job is worth, so your first call lands while the project is still live and follow-on work is still unassigned."
+  },
+  "trades": {
+    "roofing": {
+      "blurb": "Roof replacements almost always require a permit, which makes permit feeds a near-complete map of active roofing demand in a city. Each record signals a funded job — often storm or age-driven — at a specific address, and neighboring homes of the same age frequently need the same work. Canvassing around fresh roofing permits routinely outperforms cold lists.",
+      "avgTicket": "$9,000–$18,000"
+    },
+    "hvac": {
+      "blurb": "HVAC change-outs, new ductwork, and equipment installs trigger mechanical permits in nearly every US jurisdiction. A fresh mechanical permit means a homeowner or GC is spending real money on comfort systems right now, and remodel or new-construction permits signal upcoming HVAC scope before it goes out to bid. That timing edge is worth far more than a $60 ad click.",
+      "avgTicket": "$7,000–$14,000"
+    },
+    "electrical": {
+      "blurb": "Electrical permits capture everything from panel upgrades and EV charger installs to full rewires — jobs where the customer has already accepted that licensed work is required. Because many electrical permits ride alongside remodels and additions, they also flag larger projects that will need more electrical scope than the original filing shows.",
+      "avgTicket": "$2,500–$8,000"
+    },
+    "plumbing": {
+      "blurb": "Water heater swaps, repipes, and sewer line replacements all generate plumbing permits, and each one marks a property owner mid-spend on their plumbing system. Remodel and new-construction permits are early warnings of rough-in and fixture work to come. Permit-based outreach reaches these owners while the wallet is already open.",
+      "avgTicket": "$3,000–$9,000"
+    },
+    "solar": {
+      "blurb": "Every rooftop solar install requires a permit, so solar permit feeds show you exactly which blocks are converting — and clustered installs are the strongest predictor of the next sale on the street. Fresh electrical and roofing permits also flag homes doing the upgrades that typically precede a solar project, giving installers a warm list no ad platform can match.",
+      "avgTicket": "$18,000–$30,000"
+    },
+    "pool-spa": {
+      "blurb": "Pool and spa construction is heavily permitted — excavation, gas, electrical, and barrier requirements all leave a paper trail. A pool permit marks a five-figure discretionary project and a homeowner who will soon need decking, fencing, heaters, and ongoing service. Builders and service companies that watch permit feeds meet these customers at the start of the spend, not the end.",
+      "avgTicket": "$40,000–$85,000"
+    },
+    "fence-deck": {
+      "blurb": "Decks over a certain height and most new fencing require permits in the majority of US cities, and pool permits guarantee a fence requirement is coming. These records identify homeowners actively investing in their outdoor space — prime prospects for upsells like pergolas, railings, and staining. Fresh permits put you in the conversation before the big-box quote does.",
+      "avgTicket": "$5,000–$15,000"
+    },
+    "remodel": {
+      "blurb": "Remodel permits are the richest lead category in any city feed: kitchens, baths, and additions with reported valuations that tell you the budget before you ever call. A filed remodel means design decisions are made and money is allocated — and mid-project owners frequently expand scope or need specialty subs. No purchased lead list carries that much verified intent.",
+      "avgTicket": "$25,000–$75,000"
+    },
+    "new-construction": {
+      "blurb": "New construction permits reveal who is building, where, and at what declared value — months before the project needs finish trades, landscaping, or punch-out subs. For subcontractors, each record names a GC actively pulling permits in your market; for suppliers and service trades, it is a forward calendar of demand. Permit data turns bid-chasing into a schedule.",
+      "avgTicket": "$150,000–$400,000"
+    },
+    "demolition": {
+      "blurb": "A demolition permit is the earliest public signal that a lot is about to be redeveloped — filed before the new-build permits, the trades, and the bids. Demo contractors get direct leads, while builders and subs get a preview of every project entering the pipeline in their city. Few lead sources offer this much advance notice for this little effort.",
+      "avgTicket": "$8,000–$25,000"
+    }
+  },
+  "footer": {
+    "dataNote": "Permit records are sourced from official city open-data portals, with attribution to each city's dataset on the relevant pages.",
+    "disclaimer": "Permito is an independent service and is not affiliated with, endorsed by, or operated by any city government or building department."
+  }
+}

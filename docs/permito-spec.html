@@ -1,0 +1,774 @@
+<title>Permito Launch Spec</title>
+<style>
+  :root {
+    --paper:      #F1F4F7;
+    --surface:    #FFFFFF;
+    --surface-2:  #E9EEF3;
+    --ink:        #0F1720;
+    --ink-2:      #47535F;
+    --ink-3:      #77848F;
+    --accent:     #1B5EA8;
+    --accent-ink: #14477E;
+    --accent-bg:  #E3EDF8;
+    --stamp:      #9A6C18;
+    --stamp-bg:   #F6EEDD;
+    --good:       #2C6A4B;
+    --good-bg:    #E1EFE7;
+    --risk:       #A2382F;
+    --risk-bg:    #F7E5E3;
+    --line:       #D6DEE6;
+    --line-soft:  #E5EAF0;
+
+    --serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:      #0D131A;
+      --surface:    #141C25;
+      --surface-2:  #1B242F;
+      --ink:        #E5EBF1;
+      --ink-2:      #A2AFBB;
+      --ink-3:      #75828E;
+      --accent:     #6FA8E4;
+      --accent-ink: #9CC5EF;
+      --accent-bg:  #16283C;
+      --stamp:      #D3A24C;
+      --stamp-bg:   #2B2415;
+      --good:       #63BF92;
+      --good-bg:    #16291F;
+      --risk:       #E3796C;
+      --risk-bg:    #2E1917;
+      --line:       #26313D;
+      --line-soft:  #1D2630;
+    }
+  }
+
+  :root[data-theme="dark"] {
+    --paper:      #0D131A;
+    --surface:    #141C25;
+    --surface-2:  #1B242F;
+    --ink:        #E5EBF1;
+    --ink-2:      #A2AFBB;
+    --ink-3:      #75828E;
+    --accent:     #6FA8E4;
+    --accent-ink: #9CC5EF;
+    --accent-bg:  #16283C;
+    --stamp:      #D3A24C;
+    --stamp-bg:   #2B2415;
+    --good:       #63BF92;
+    --good-bg:    #16291F;
+    --risk:       #E3796C;
+    --risk-bg:    #2E1917;
+    --line:       #26313D;
+    --line-soft:  #1D2630;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16.5px;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page { max-width: 1120px; margin: 0 auto; padding: 0 24px 96px; }
+
+  /* ---------- masthead ---------- */
+  .masthead {
+    border-bottom: 2px solid var(--ink);
+    padding: 56px 0 22px;
+    margin-bottom: 44px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .eyebrow {
+    font-family: var(--mono);
+    font-size: 11.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 18px;
+  }
+  .masthead h1 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(34px, 5.4vw, 54px);
+    line-height: 1.06;
+    letter-spacing: -0.015em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .standfirst {
+    font-family: var(--serif);
+    font-size: clamp(17px, 2.2vw, 20px);
+    line-height: 1.5;
+    color: var(--ink-2);
+    max-width: 62ch;
+    margin: 0;
+  }
+
+  /* ---------- sections ---------- */
+  section { margin-bottom: 60px; scroll-margin-top: 24px; }
+  .sec-head {
+    display: flex;
+    gap: 14px;
+    align-items: baseline;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 10px;
+    margin-bottom: 22px;
+  }
+  .sec-num {
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    font-weight: 600;
+    flex: none;
+  }
+  .sec-head h2 {
+    font-family: var(--serif);
+    font-weight: 600;
+    font-size: clamp(22px, 3vw, 29px);
+    letter-spacing: -0.012em;
+    margin: 0;
+    text-wrap: balance;
+  }
+  p { max-width: 72ch; }
+  p.lede { font-size: 17.5px; color: var(--ink-2); }
+  strong { font-weight: 650; }
+  em.q { font-style: normal; background: var(--stamp-bg); color: var(--stamp); padding: 0 4px; border-radius: 3px; }
+
+  /* ---------- callouts ---------- */
+  .callout {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 18px 22px;
+    margin: 22px 0;
+  }
+  .callout.warn { border-left-color: var(--risk); }
+  .callout.stamp { border-left-color: var(--stamp); }
+  .callout h4 {
+    margin: 0 0 6px;
+    font-size: 12px;
+    font-family: var(--mono);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+  }
+  .callout p { margin: 0; max-width: 76ch; }
+  .callout p + p { margin-top: 10px; }
+
+  /* ---------- tables ---------- */
+  .tbl-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: var(--surface);
+    margin: 20px 0;
+  }
+  table { border-collapse: collapse; width: 100%; font-size: 14.5px; min-width: 620px; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--line-soft); vertical-align: top; }
+  thead th {
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--line);
+    white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.num, th.num { text-align: right; font-family: var(--mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  td.kw { font-family: var(--mono); font-size: 13px; }
+  .zero { color: var(--risk); font-weight: 600; }
+  .hot { color: var(--stamp); font-weight: 600; }
+
+  /* ---------- chips ---------- */
+  .chip {
+    display: inline-block;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 3px;
+    background: var(--surface-2);
+    color: var(--ink-2);
+    white-space: nowrap;
+  }
+  .chip.es { background: var(--stamp-bg); color: var(--stamp); }
+  .chip.en { background: var(--accent-bg); color: var(--accent-ink); }
+  .chip.good { background: var(--good-bg); color: var(--good); }
+  .chip.risk { background: var(--risk-bg); color: var(--risk); }
+
+  /* ---------- personas ---------- */
+  .personas { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(310px, 1fr)); }
+  .persona {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .persona-top { display: flex; gap: 10px; align-items: flex-start; flex-wrap: wrap; }
+  .persona h3 { font-family: var(--serif); font-size: 20px; margin: 0; font-weight: 600; letter-spacing: -0.01em; }
+  .persona .role { color: var(--ink-2); font-size: 14px; margin: 0; }
+  .persona dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 7px 14px; font-size: 14px; }
+  .persona dt {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--ink-3);
+    padding-top: 3px;
+    white-space: nowrap;
+  }
+  .persona dd { margin: 0; color: var(--ink-2); }
+  .persona dd b { color: var(--ink); font-weight: 600; }
+  .wtp { margin-top: auto; padding-top: 12px; border-top: 1px dashed var(--line); font-family: var(--mono); font-size: 13px; color: var(--ink-2); }
+  .wtp b { color: var(--ink); }
+
+  /* ---------- journey rails ---------- */
+  .rails { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); margin: 22px 0; }
+  .rail { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; overflow: hidden; }
+  .rail-head { padding: 14px 20px; border-bottom: 1px solid var(--line); background: var(--surface-2); display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .rail-head b { font-family: var(--serif); font-size: 17px; font-weight: 600; }
+  .rail ol { list-style: none; margin: 0; padding: 6px 0; counter-reset: step; }
+  .rail li {
+    position: relative;
+    padding: 11px 20px 11px 54px;
+    counter-increment: step;
+    font-size: 14.5px;
+    border-bottom: 1px solid var(--line-soft);
+  }
+  .rail li:last-child { border-bottom: 0; }
+  .rail li::before {
+    content: counter(step);
+    position: absolute;
+    left: 18px;
+    top: 12px;
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: grid; place-items: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 600;
+    background: var(--accent-bg);
+    color: var(--accent-ink);
+  }
+  .rail.es li::before { background: var(--stamp-bg); color: var(--stamp); }
+  .rail li b { display: block; color: var(--ink); }
+  .rail li span { color: var(--ink-2); }
+  .rail-foot { padding: 13px 20px; background: var(--good-bg); color: var(--good); font-size: 13.5px; font-weight: 600; }
+
+  /* ---------- pain grid ---------- */
+  .pains { display: grid; gap: 0; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; background: var(--surface); }
+  .pain { display: grid; grid-template-columns: minmax(150px, 1fr) minmax(180px, 1.3fr) minmax(180px, 1.3fr); gap: 0; border-bottom: 1px solid var(--line-soft); }
+  .pain:last-child { border-bottom: 0; }
+  .pain > div { padding: 14px 18px; font-size: 14.5px; }
+  .pain > div + div { border-left: 1px solid var(--line-soft); }
+  .pain .p-name { font-weight: 600; }
+  .pain .p-now { color: var(--ink-2); }
+  .pain .p-fix { color: var(--ink-2); }
+  .pain .p-fix b { color: var(--good); font-weight: 600; }
+  .pain-head > div { background: var(--surface-2); font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); padding: 9px 18px; }
+  @media (max-width: 720px) {
+    .pain { grid-template-columns: 1fr; }
+    .pain > div + div { border-left: 0; border-top: 1px solid var(--line-soft); }
+    .pain-head { display: none; }
+  }
+
+  /* ---------- misc ---------- */
+  ul.tight { max-width: 74ch; padding-left: 20px; }
+  ul.tight li { margin-bottom: 7px; }
+  .kicker { font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-3); margin: 26px 0 10px; }
+  .footnote { font-size: 13.5px; color: var(--ink-3); border-top: 1px solid var(--line); padding-top: 18px; margin-top: 44px; }
+  .footnote p { max-width: 80ch; }
+  a { color: var(--accent-ink); }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <div class="eyebrow">
+      <span>Permito · getpermito.com</span>
+      <span>Продуктовая и маркетинговая спецификация</span>
+      <span>14 августа 2026</span>
+    </div>
+    <h1>Кто начал стройку рядом с вами</h1>
+    <p class="standfirst">
+      Спецификация MVP: какую боль решает сервис, кто пять реальных покупателей,
+      что происходит после клика по рекламе — и почему испаноязычный сегмент
+      нельзя ловить поиском. Все числа — живая выгрузка DataForSEO по рынку США.
+    </p>
+  </header>
+
+  <!-- =================== 1 =================== -->
+  <section id="thesis">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Главный тезис: пермит — это не лид</h2></div>
+
+    <p class="lede">
+      В исходной идее заложена логическая дыра, и её надо закрыть до того, как мы потратим
+      деньги на рекламу. Если разрешение на строительство выдано — работа <strong>уже кому-то отдана</strong>.
+      Продавать кровельщику «свежие кровельные пермиты» бессмысленно: по каждому из этих адресов
+      кровельщика уже наняли.
+    </p>
+
+    <div class="callout stamp">
+      <h4>Переформулировка продукта</h4>
+      <p>
+        Permito продаёт не лид на выданную работу, а <strong>сигнал: кто, где, когда и на какую сумму
+        начал проект</strong>. Ценность — в том, что следует за пермитом, а не в нём самом.
+      </p>
+    </div>
+
+    <p class="kicker">Три способа превратить пермит в деньги</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Механика</th><th>Что говорит пермит</th><th>Кто покупает</th><th>Сила сигнала</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><b>Смежный трейд</b></td>
+            <td>Бассейн → по коду FL/TX/AZ обязателен барьер-забор. Новая крыша → идеальный кандидат на солнечные панели на 25 лет вперёд. Кухня → плитка, электрика, вывоз мусора.</td>
+            <td>Подрядчик смежного трейда</td>
+            <td><span class="chip good">Сильный</span></td>
+          </tr>
+          <tr>
+            <td><b>Субподряд под GC</b></td>
+            <td>Имя генподрядчика, который только что получил разрешение на объект с суммой $X и датой старта.</td>
+            <td>Субподрядчики (HVAC, электрика, сантехника, drywall)</td>
+            <td><span class="chip good">Сильный</span></td>
+          </tr>
+          <tr>
+            <td><b>Карта активности</b></td>
+            <td>Кластер пермитов на улице = район, где идёт волна работ (град, реновация квартала).</td>
+            <td>Кровельщики, канвассинг-бригады</td>
+            <td><span class="chip">Средний</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      Отсюда следует и позиционирование, и копирайт на сайте: не «leads», а
+      <em class="q">кто начал работу рядом с вами и что ему понадобится следующим</em>.
+      Сейчас на лендинге стоит «Stop paying $60 a click» — хук верный, но обещание
+      надо переписать под эту механику.
+    </p>
+  </section>
+
+  <!-- =================== 2 =================== -->
+  <section id="data">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Что показали данные — включая неприятное</h2></div>
+
+    <p class="lede">
+      Две выгрузки DataForSEO (Google Ads, США): 30 англоязычных запросов про добычу лидов
+      и 30 испаноязычных. Результат по испанскому — контринтуитивный и меняет весь план каналов.
+    </p>
+
+    <p class="kicker">Английский: боль имеет имя, и это Angi</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Запрос</th><th class="num">SV/мес</th><th class="num">CPC</th><th>Что это значит</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="kw">angi leads</td><td class="num">5 400</td><td class="num">$10.26</td><td>Подрядчики массово ищут (и проклинают) шаренные лиды — готовая аудитория для сравнительного контента</td></tr>
+          <tr><td class="kw">buildzoom</td><td class="num">5 400</td><td class="num">$24.46</td><td>Конкурент на пермит-данных с реальным брендовым трафиком</td></tr>
+          <tr><td class="kw">contractor crm</td><td class="num">390</td><td class="num hot">$151.40</td><td>Максимальная готовность платить во всей нише</td></tr>
+          <tr><td class="kw">lead generation companies for contractors</td><td class="num">90</td><td class="num hot">$112.34</td><td>Покупатель на пике намерения</td></tr>
+          <tr><td class="kw">construction crm</td><td class="num">880</td><td class="num hot">$94.77</td><td>Софт для стройки продаётся дорого</td></tr>
+          <tr><td class="kw">hvac lead generation</td><td class="num">880</td><td class="num">$54.14</td><td>Ядро для Yolanda (персона 2)</td></tr>
+          <tr><td class="kw">roofing lead generation</td><td class="num">1 300</td><td class="num">$43.43</td><td>Самый объёмный трейд-кластер</td></tr>
+          <tr><td class="kw">gutter leads</td><td class="num">170</td><td class="num">$43.64</td><td>Смежный трейд к кровле — подтверждает механику §01</td></tr>
+          <tr><td class="kw">shovels ai</td><td class="num">260</td><td class="num">$11.55</td><td>Прямой конкурент уже имеет узнаваемость</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <h4>Вывод по английскому</h4>
+      <p>
+        Суммарный объём B2B-запросов мал (~16 800 по всей выборке), но клик стоит $40–150.
+        Значит <strong>pSEO на B2B-ключах трафика не даст</strong> — его даст информационный слой,
+        который мы уже измеряли: <span class="chip">chicago building permits · 1 300 · конкуренция 2</span>
+        <span class="chip">miami dade building permits · 720 · конкуренция 2</span>
+        <span class="chip">permit expediter · 1 900</span>. Это два разных слоя воронки, и их надо
+        соединить осознанно — см. §04.
+      </p>
+    </div>
+
+    <p class="kicker">Испанский: подрядчики не ищут инструмент на испанском</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Запрос</th><th class="num">SV/мес</th><th class="num">CPC</th><th>Тип интента</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="kw">plomero cerca de mi</td><td class="num">6 600</td><td class="num hot">$28.69</td><td>Клиент ищет подрядчика</td></tr>
+          <tr><td class="kw">electricista cerca de mi</td><td class="num">2 400</td><td class="num">$11.03</td><td>Клиент ищет подрядчика</td></tr>
+          <tr><td class="kw">companias de techos</td><td class="num">40</td><td class="num hot">$116.89</td><td>Клиент ищет подрядчика</td></tr>
+          <tr><td class="kw">contratista general</td><td class="num">390</td><td class="num">$9.91</td><td>Смешанный</td></tr>
+          <tr><td class="kw">leads para contratistas</td><td class="num zero">0</td><td class="num">—</td><td>B2B-инструмент</td></tr>
+          <tr><td class="kw">clientes para contratistas</td><td class="num zero">0</td><td class="num">—</td><td>B2B-инструмент</td></tr>
+          <tr><td class="kw">publicidad para contratistas</td><td class="num zero">0</td><td class="num">—</td><td>B2B-инструмент</td></tr>
+          <tr><td class="kw">como conseguir clientes para construccion</td><td class="num">10</td><td class="num hot">$52.55</td><td>B2B-инструмент</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout warn">
+      <h4>Ключевой вывод, меняющий план</h4>
+      <p>
+        Испаноязычный B2B-поиск равен <strong>нулю</strong>: «leads para contratistas», «clientes para
+        contratistas», «publicidad para contratistas» — по 0 запросов в месяц. Ни один канал,
+        построенный на поиске, до этой аудитории не достанет.
+      </p>
+      <p>
+        При этом их <strong>клиенты</strong> ищут активно, а CPC на этих запросах — $28.69 за сантехника
+        и $116.89 за кровельные компании. То есть испаноязычные подрядчики <strong>уже платят
+        за рекламу серьёзные деньги</strong> — они платёжеспособны, просто живут не в поиске.
+        Канал для них — Facebook, Instagram, WhatsApp, YouTube и сарафан, на испанском.
+      </p>
+    </div>
+  </section>
+
+  <!-- =================== 3 =================== -->
+  <section id="pains">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Боли: что болит и чем лечится сегодня</h2></div>
+
+    <div class="pains">
+      <div class="pain pain-head">
+        <div>Боль</div><div>Как решают сейчас и почему плохо</div><div>Что даёт Permito</div>
+      </div>
+      <div class="pain">
+        <div class="p-name">Лиды продают конкурентам одновременно</div>
+        <div class="p-now">Angi / HomeAdvisor / Thumbtack: $50–150 за лид, один и тот же клиент уходит 3–5 подрядчикам, разговор сразу про цену.</div>
+        <div class="p-fix"><b>Эксклюзивность.</b> Пермит — публичный факт, но связка «сигнал + смежная работа + фильтр по территории» не продаётся пачкой пяти конкурентам.</div>
+      </div>
+      <div class="pain">
+        <div class="p-name">Реклама съедает маржу</div>
+        <div class="p-now">Google Ads: $40–80 за клик по нашим замерам, нужен человек, который этим управляет. У бригады из шести человек такого человека нет.</div>
+        <div class="p-fix"><b>Фиксированная подписка</b> $49–499/мес вместо аукциона за клик. Сравнение «месяц Permito = два клика в Ads» — центральный аргумент.</div>
+      </div>
+      <div class="pain">
+        <div class="p-name">Канвассинг вслепую</div>
+        <div class="p-now">Кровельные бригады после града объезжают районы наугад, тратя дни на улицы, где работа уже сделана.</div>
+        <div class="p-fix"><b>Карта активности:</b> где за последние 14 дней выдан кластер пермитов — туда и ехать.</div>
+      </div>
+      <div class="pain">
+        <div class="p-name">Субподрядчик узнаёт о проекте последним</div>
+        <div class="p-now">GC уже собрал бригаду, пока сабы узнают о стройке. Единственный способ — личные связи.</div>
+        <div class="p-fix"><b>Имя GC, объект, сумма, дата</b> в день выдачи разрешения. Звонок сметчика за 48 часов до того, как саба выберут.</div>
+      </div>
+      <div class="pain">
+        <div class="p-name">Сезонные простои бригады</div>
+        <div class="p-now">Зимой/в межсезонье загрузка падает, люди уходят.</div>
+        <div class="p-fix"><b>Смежные трейды:</b> когда падает основной поток, видно, где есть работа рядом (бассейн → забор, крыша → водостоки).</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== 4 =================== -->
+  <section id="personas">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Пять покупателей</h2></div>
+
+    <p class="lede">
+      Пять гипотез ICP — по языку, штату и роли в цепочке. Это <strong>гипотезы для проверки
+      интервью</strong>, а не факты: реальные имена и цифры появятся после смоук-теста.
+      Города подобраны по плотности испаноязычного строительного бизнеса и по CPC из наших выгрузок.
+    </p>
+
+    <div class="personas">
+
+      <article class="persona">
+        <div class="persona-top">
+          <div>
+            <h3>Miguel R.</h3>
+            <p class="role">Кровля и водостоки · Хьюстон, Техас</p>
+          </div>
+          <span class="chip es">ES — основной</span>
+        </div>
+        <dl>
+          <dt>Бизнес</dt><dd>Бригада 6 человек, 2 пикапа, <b>оборот ~$900K/год</b></dd>
+          <dt>Сейчас</dt><dd>Канвассинг после града, изредка покупает лиды Angi, злится на них</dd>
+          <dt>Боль</dt><dd>После шторма всё решает скорость: кто первый постучал, тот и подписал</dd>
+          <dt>Сигнал</dt><dd><b>Кластеры кровельных пермитов по улицам</b> за 14 дней = карта, где страховая уже платит</dd>
+          <dt>Канал</dt><dd>Facebook и WhatsApp на испанском, сарафан в бригадах</dd>
+          <dt>Устройство</dt><dd>Телефон, за рулём. Почту не читает — <b>WhatsApp</b></dd>
+        </dl>
+        <div class="wtp">Готовность платить: <b>$99/мес</b>, решение за 1 день</div>
+      </article>
+
+      <article class="persona">
+        <div class="persona-top">
+          <div>
+            <h3>Yolanda M.</h3>
+            <p class="role">HVAC-компания · Финикс, Аризона</p>
+          </div>
+          <span class="chip es">ES/EN</span>
+        </div>
+        <dl>
+          <dt>Бизнес</dt><dd>4 техника, сама ведёт продажи, <b>оборот ~$1.4M/год</b></dd>
+          <dt>Сейчас</dt><dd>Google Ads на «hvac phoenix», $54 за клик по нашим данным</dd>
+          <dt>Боль</dt><dd>Реклама даёт ремонты по $300, а нужны установки по $12K</dd>
+          <dt>Сигнал</dt><dd><b>Новое строительство и крупные реновации + имя GC</b>, где HVAC ещё не законтрактован</dd>
+          <dt>Канал</dt><dd>Google-поиск на английском — бизнес ведёт на английском</dd>
+          <dt>Устройство</dt><dd>Ноутбук в офисе, email рабочий</dd>
+        </dl>
+        <div class="wtp">Готовность платить: <b>$249/мес</b>, нужен триал</div>
+      </article>
+
+      <article class="persona">
+        <div class="persona-top">
+          <div>
+            <h3>David C.</h3>
+            <p class="role">Электромонтаж, субподряд · Лос-Анджелес, Калифорния</p>
+          </div>
+          <span class="chip en">EN</span>
+        </div>
+        <dl>
+          <dt>Бизнес</dt><dd>18 человек, работает только под GC, <b>оборот ~$4M/год</b></dd>
+          <dt>Сейчас</dt><dd>Личные связи с пятью GC, есть сметчик на зарплате</dd>
+          <dt>Боль</dt><dd>Узнаёт о проектах, когда бригада уже собрана. Сметчик простаивает</dd>
+          <dt>Сигнал</dt><dd><b>Все GC с пермитами в радиусе 30 миль</b>, суммы объектов, дата выдачи</dd>
+          <dt>Канал</dt><dd>Поиск на английском, отраслевые ассоциации</dd>
+          <dt>Устройство</dt><dd>Десктоп, нужен экспорт в CSV и в его CRM</dd>
+        </dl>
+        <div class="wtp">Готовность платить: <b>$499/мес</b>, считает ROI по одному контракту</div>
+      </article>
+
+      <article class="persona">
+        <div class="persona-top">
+          <div>
+            <h3>Carlos и Ana</h3>
+            <p class="role">Заборы и террасы · Майами-Дейд, Флорида</p>
+          </div>
+          <span class="chip es">ES — основной</span>
+        </div>
+        <dl>
+          <dt>Бизнес</dt><dd>Семейный бизнес, 2 человека + подёнщики, <b>оборот ~$300K/год</b></dd>
+          <dt>Сейчас</dt><dd>Объявления в испаноязычных группах Facebook, сарафан</dd>
+          <dt>Боль</dt><dd>Поток работы рваный: то три заказа, то пусто две недели</dd>
+          <dt>Сигнал</dt><dd><b>Пермиты на бассейны.</b> По флоридскому коду бассейн обязан иметь барьер — это не догадка, а требование закона</dd>
+          <dt>Канал</dt><dd>Facebook-группы и WhatsApp на испанском. Поиском не пользуется для работы</dd>
+          <dt>Устройство</dt><dd>Только телефон. <b>Английский интерфейс — стоп-фактор</b></dd>
+        </dl>
+        <div class="wtp">Готовность платить: <b>$49/мес</b> — $99 требует раздумий</div>
+      </article>
+
+      <article class="persona">
+        <div class="persona-top">
+          <div>
+            <h3>Ryan T.</h3>
+            <p class="role">Солнечная энергетика, руководитель продаж · Остин, Техас</p>
+          </div>
+          <span class="chip en">EN</span>
+        </div>
+        <dl>
+          <dt>Бизнес</dt><dd>Региональный инсталлятор, 9 сейлзов, <b>оборот ~$11M/год</b></dd>
+          <dt>Сейчас</dt><dd>Покупает лиды по $39.90 за клик, конверсия падает</dd>
+          <dt>Боль</dt><dd>Половина сделок срывается: у дома старая крыша, панели ставить нельзя</dd>
+          <dt>Сигнал</dt><dd><b>Свежие кровельные пермиты.</b> Новая крыша = 25 лет без переустановки = идеальный кандидат</dd>
+          <dt>Канал</dt><dd>Поиск на английском, отраслевые рассылки</dd>
+          <dt>Устройство</dt><dd>Десктоп, нужен API и мультидоступ для команды</dd>
+        </dl>
+        <div class="wtp">Готовность платить: <b>$499+/мес</b>, решает через пилот</div>
+      </article>
+
+    </div>
+
+    <div class="callout warn">
+      <h4>Разрыв, который надо закрыть в коде</h4>
+      <p>
+        Персоны живут в Хьюстоне, Финиксе, Лос-Анджелесе, Майами-Дейд и Остине.
+        В MVP сейчас собраны <strong>Чикаго, Нью-Йорк, Сиэтл, Сан-Франциско и Остин</strong> —
+        совпадает только Остин. Сиэтл, Сан-Франциско и Нью-Йорк — рынки крупных
+        подрядчиков и профсоюзов, а не SMB-бригад. Первое, что надо сделать в продукте:
+        заменить города на <strong>Хьюстон, Финикс, Майами-Дейд, Лос-Анджелес, Даллас</strong>.
+      </p>
+    </div>
+  </section>
+
+  <!-- =================== 5 =================== -->
+  <section id="journey">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Увидел рекламу — открыл сервис — дальше что</h2></div>
+
+    <p class="lede">
+      Два разных маршрута, потому что аудитории живут в разных средах. Общий принцип один:
+      <strong>ценность до регистрации</strong>. Человек должен увидеть реальные адреса своего
+      трейда в своём округе <strong>до</strong> любой формы — иначе подрядчик, обжёгшийся на Angi, уйдёт.
+    </p>
+
+    <div class="rails">
+
+      <div class="rail">
+        <div class="rail-head">
+          <span class="chip en">Английский трек</span>
+          <b>David, Yolanda, Ryan</b>
+        </div>
+        <ol>
+          <li><b>Триггер</b><span>Google-поиск «hvac lead generation» ($54/клик) или органика по «phoenix building permits» (конкуренция 2)</span></li>
+          <li><b>Посадочная — не лендинг, а данные</b><span>Попадает сразу на страницу «HVAC-пермиты, Финикс»: 25 реальных адресов, сумм и дат. Никакой формы</span></li>
+          <li><b>Проверка на вшивость</b><span>Узнаёт улицы, видит знакомые имена GC. Понимает, что данные настоящие</span></li>
+          <li><b>Микроконверсия</b><span>«Забрать эти 25 адресов в CSV» → рабочий email. Без карты</span></li>
+          <li><b>Aha за 5 минут</b><span>Файл приходит на почту. Сметчик звонит первому GC в тот же день</span></li>
+          <li><b>7 дней фида бесплатно</b><span>Каждое утро — новые пермиты по его фильтру</span></li>
+          <li><b>Пейволл</b><span>Контакты GC, история, экспорт, алерты → $249–499/мес</span></li>
+        </ol>
+        <div class="rail-foot">Метрика успеха: звонок GC на первой сессии</div>
+      </div>
+
+      <div class="rail es">
+        <div class="rail-head">
+          <span class="chip es">Испанский трек</span>
+          <b>Miguel, Carlos и Ana</b>
+        </div>
+        <ol>
+          <li><b>Триггер</b><span>Не поиск — его нет. Видео в Facebook/Instagram на испанском: «Mira quién sacó permiso de piscina esta semana en tu zona»</span></li>
+          <li><b>Посадочная на испанском, с телефона</b><span>Страница «Permisos de piscina — Miami-Dade»: 25 адресов, дата, сумма. Крупный шрифт, одна колонка</span></li>
+          <li><b>Проверка на вшивость</b><span>Узнаёт свой район. Видит, что бассейны реальные, а значит заборы будут нужны по коду</span></li>
+          <li><b>Микроконверсия — не email, а WhatsApp</b><span>«Recibir la lista por WhatsApp» → номер телефона. Почтой эта аудитория не пользуется</span></li>
+          <li><b>Aha за 5 минут</b><span>Список приходит в WhatsApp. Он едет по первому адресу в тот же день</span></li>
+          <li><b>7 дней фида бесплатно</b><span>Каждое утро сообщение в WhatsApp: новые бассейны в его округе</span></li>
+          <li><b>Пейволл + сарафан</b><span>$49–99/мес. Реферальная механика: приведи бригаду — месяц бесплатно</span></li>
+        </ol>
+        <div class="rail-foot">Метрика успеха: выезд по адресу на первой неделе</div>
+      </div>
+
+    </div>
+
+    <div class="callout">
+      <h4>Что это значит для продукта прямо сейчас</h4>
+      <p>
+        Три вещи, которых в текущем MVP нет: <strong>испанская версия страниц</strong> (не ради SEO —
+        ради конверсии с соцрекламы), <strong>доставка в WhatsApp</strong> вместо только email, и
+        <strong>логика смежности</strong> (бассейн → забор, крыша → солнце, новостройка → все сабы),
+        потому что именно она превращает пермит в лид по §01.
+      </p>
+    </div>
+  </section>
+
+  <!-- =================== 6 =================== -->
+  <section id="channels">
+    <div class="sec-head"><span class="sec-num">06</span><h2>Каналы и цены</h2></div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Канал</th><th>Сегмент</th><th>Почему именно он</th><th class="num">Приоритет</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>pSEO: страницы городов и трейдов</b></td><td>EN</td><td>Конкуренция 2–11 при 390–1 300 SV на «[city] building permits». Единственный дешёвый трафик в нише</td><td class="num">1</td></tr>
+          <tr><td><b>Facebook / Instagram на испанском</b></td><td>ES</td><td>B2B-поиск на испанском = 0. Другого входа к этой аудитории нет</td><td class="num">1</td></tr>
+          <tr><td><b>Сравнительный контент «Permito vs Angi Leads»</b></td><td>EN</td><td>«angi leads» — 5 400 запросов/мес готовой раздражённой аудитории</td><td class="num">2</td></tr>
+          <tr><td><b>Google Ads, точечно</b></td><td>EN</td><td>$43–151 за клик. Только для проверки гипотез, не как канал роста</td><td class="num">3</td></tr>
+          <tr><td><b>Реферальная программа</b></td><td>ES</td><td>Сарафан внутри бригад — исторически главный канал в этой среде</td><td class="num">2</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="kicker">Тарифы — гипотезы под конкретные персоны</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Тариф</th><th class="num">Цена</th><th>Кому</th><th>Что входит</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Barrio</b></td><td class="num">$49</td><td>Carlos и Ana</td><td>1 трейд, 1 округ, WhatsApp-фид. Новый тариф — в текущем MVP его нет</td></tr>
+          <tr><td><b>Starter</b></td><td class="num">$99</td><td>Miguel</td><td>3 трейда, 1 город, ежедневный фид</td></tr>
+          <tr><td><b>Pro</b></td><td class="num">$249</td><td>Yolanda</td><td>3 города, все трейды, контакты GC, экспорт</td></tr>
+          <tr><td><b>Scale</b></td><td class="num">$499</td><td>David, Ryan</td><td>Все города, мультидоступ, API, история</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- =================== 7 =================== -->
+  <section id="risks">
+    <div class="sec-head"><span class="sec-num">07</span><h2>Риски, которые могут убить проект</h2></div>
+
+    <div class="callout warn">
+      <h4>Юридический — самый серьёзный</h4>
+      <p>
+        <strong>TCPA и Do-Not-Call.</strong> Холодный обзвон домовладельцев на мобильные номера
+        без согласия в США карается штрафами порядка <strong>$500–1 500 за каждый звонок</strong>,
+        и это область активных коллективных исков. Если Permito будет позиционироваться как
+        «телефоны домовладельцев для обзвона» — мы подставим и себя, и клиентов.
+      </p>
+      <p>
+        Это ещё один аргумент за <strong>B2B-механику</strong> из §01: звонок генподрядчику по
+        рабочему номеру — обычная деловая коммуникация, а визит по адресу и прямая почтовая
+        рассылка не подпадают под TCPA. Продукт должен вести туда, а не к обзвону физлиц.
+      </p>
+    </div>
+
+    <ul class="tight">
+      <li><strong>Пермиты не содержат контактов домовладельца.</strong> Есть адрес и имя подрядчика. Дообогащение телефонами — это отдельные деньги и отдельные юридические риски (см. выше).</li>
+      <li><strong>Города MVP не совпадают с ICP.</strong> Собраны Чикаго, Нью-Йорк, Сиэтл, Сан-Франциско; нужны Хьюстон, Финикс, Майами-Дейд, Лос-Анджелес, Даллас.</li>
+      <li><strong>Shovels.ai уже на рынке</strong> и имеет брендовый поиск. Наш ответ — SMB-сегмент, испанский язык и WhatsApp, куда enterprise-игроки не идут.</li>
+      <li><strong>Неполнота данных по трейдам.</strong> В Нью-Йорке и Сиэтле электрика и сантехника лежат в отдельных датасетах — по нашим адаптерам эти трейды почти пустые. Для HVAC- и электро-персон это критично.</li>
+      <li><strong>Испанский сегмент дорог в поддержке:</strong> WhatsApp-канал, испаноязычная поддержка, другой ритм оплаты. Проверять экономику до масштабирования.</li>
+    </ul>
+  </section>
+
+  <!-- =================== 8 =================== -->
+  <section id="test">
+    <div class="sec-head"><span class="sec-num">08</span><h2>Смоук-тест: пороги go / no-go</h2></div>
+
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th class="num">Нед.</th><th>Что делаем</th><th>Порог для «идём дальше»</th><th class="num">Бюджет</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="num">1</td><td>Пересобрать данные на Хьюстон, Финикс, Майами-Дейд, Лос-Анджелес, Даллас; добавить логику смежности</td><td>≥3 города с полными данными по 5 трейдам</td><td class="num">$0</td></tr>
+          <tr><td class="num">2</td><td>Испанская версия страниц + WhatsApp-приём заявок</td><td>Страница открывается с телефона за &lt;2 сек</td><td class="num">$0</td></tr>
+          <tr><td class="num">2–3</td><td>Facebook/Instagram на испанском: Майами (бассейн→забор), Хьюстон (кровля)</td><td>CTR &gt;1.5%, ≥20 номеров в WhatsApp</td><td class="num">$300</td></tr>
+          <tr><td class="num">2–3</td><td>Google Ads на английском: «hvac lead generation», «general contractor leads»</td><td>≥15% кликов оставляют email</td><td class="num">$400</td></tr>
+          <tr><td class="num">3–4</td><td>Консьерж вручную: 20 подрядчиков, реальные списки, ссылка на оплату Stripe</td><td><b>≥3 реальные оплаты</b>, не обещания</td><td class="num">$0</td></tr>
+          <tr><td class="num">3–6</td><td>20 pSEO-страниц в индекс, замер в GSC</td><td>Первые показы за 3 недели</td><td class="num">$15</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <h4>Решающая развилка</h4>
+      <p>
+        Главный вопрос теста — <strong>не «есть ли трафик»</strong> (мы уже знаем, что есть),
+        а <strong>какой сегмент платит первым</strong>. Если платят David и Yolanda (английский,
+        B2B, субподряд под GC) — строим CRM-подобный инструмент и поднимаем цену.
+        Если платят Miguel и Carlos (испанский, WhatsApp, $49–99) — строим мобильный
+        испаноязычный продукт с реферальной механикой. Это два разных продукта,
+        и три оплаты покажут, какой из них настоящий.
+      </p>
+    </div>
+  </section>
+
+  <div class="footnote">
+    <p>
+      Источник цифр: DataForSEO Keywords Data API (Google Ads, локация США, языки en и es),
+      три выгрузки от 13–14 августа 2026, 190 ключевых слов. Данные о пермитах — открытые
+      порталы городов (Socrata). Персоны — гипотезы ICP для проверки интервью, а не реальные лица.
+      Оценки оборотов и готовности платить — рабочие допущения, подлежащие проверке в §08.
+    </p>
+  </div>
+
+</div>

@@ -1,0 +1,74 @@
+---
+import '../styles/global.css';
+import { loadCopy } from '../lib/data.mjs';
+
+const { title, description, schema = null } = Astro.props;
+const copy = loadCopy();
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const fullTitle = title.includes(copy.brand.name)
+  ? title
+  : `${title} | ${copy.brand.name}`;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <link rel="sitemap" href="/sitemap.xml" />
+    {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="logo" href="/">Permit<b>o</b></a>
+        <nav class="nav">
+          <a href="/permits/">Cities</a>
+          <a href="/leads/">Leads by trade</a>
+          <a href="/#pricing">Pricing</a>
+        </nav>
+        <a class="btn" href="/#pricing">Get lead feed</a>
+      </div>
+    </header>
+
+    <slot />
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <div class="footer-links">
+          <a href="/">Home</a>
+          <a href="/permits/">All cities</a>
+          <a href="/leads/">All trades</a>
+        </div>
+        <p>{copy.footer.dataNote}</p>
+        <p>{copy.footer.disclaimer}</p>
+        <p>© {new Date().getFullYear()} {copy.brand.name}</p>
+      </div>
+    </footer>
+
+    <script>
+      // Fake-door смоук-тест: фиксируем интент локально и показываем "спасибо".
+      // TODO(запуск): заменить на реальный POST в Formspree/Tally/бэкенд.
+      document.querySelectorAll('form.waitlist').forEach((form) => {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const email = form.querySelector('input[type="email"]')?.value || '';
+          try {
+            const log = JSON.parse(localStorage.getItem('permito-waitlist') || '[]');
+            log.push({ email, plan: form.dataset.plan || null, path: location.pathname, at: Date.now() });
+            localStorage.setItem('permito-waitlist', JSON.stringify(log));
+          } catch {}
+          form.querySelectorAll('input, button').forEach((el) => (el.style.display = 'none'));
+          const done = form.querySelector('.done');
+          if (done) done.style.display = 'inline';
+        });
+      });
+    </script>
+  </body>
+</html>

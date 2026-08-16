@@ -1,0 +1,304 @@
+<title>16 ниш, один океан</title>
+<style>
+  :root {
+    --paper:      #F2F5F4;
+    --surface:    #FFFFFF;
+    --surface-2:  #E8EEEC;
+    --ink:        #101816;
+    --ink-2:      #45534F;
+    --ink-3:      #76847F;
+    --accent:     #0E6E5C;
+    --accent-ink: #0A5546;
+    --accent-bg:  #DFEEEA;
+    --gold:       #96660F;
+    --gold-bg:    #F5EDDA;
+    --risk:       #A2382F;
+    --risk-bg:    #F7E5E3;
+    --line:       #D5DEDB;
+    --line-soft:  #E4EAE8;
+    --serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:      #0C1311;
+      --surface:    #131C19;
+      --surface-2:  #1A2521;
+      --ink:        #E4ECE9;
+      --ink-2:      #A0AFAA;
+      --ink-3:      #71807B;
+      --accent:     #5FBCA6;
+      --accent-ink: #8CD2C1;
+      --accent-bg:  #12302A;
+      --gold:       #D2A34C;
+      --gold-bg:    #2A2212;
+      --risk:       #E3796C;
+      --risk-bg:    #2E1917;
+      --line:       #24312D;
+      --line-soft:  #1B2622;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:      #0C1311;
+    --surface:    #131C19;
+    --surface-2:  #1A2521;
+    --ink:        #E4ECE9;
+    --ink-2:      #A0AFAA;
+    --ink-3:      #71807B;
+    --accent:     #5FBCA6;
+    --accent-ink: #8CD2C1;
+    --accent-bg:  #12302A;
+    --gold:       #D2A34C;
+    --gold-bg:    #2A2212;
+    --risk:       #E3796C;
+    --risk-bg:    #2E1917;
+    --line:       #24312D;
+    --line-soft:  #1B2622;
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:16.5px; line-height:1.62; -webkit-font-smoothing:antialiased; }
+  .page { max-width:1120px; margin:0 auto; padding:0 24px 96px; }
+  .masthead { border-bottom:2px solid var(--ink); padding:56px 0 22px; margin-bottom:44px; display:flex; flex-direction:column; gap:14px; }
+  .eyebrow { font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); display:flex; flex-wrap:wrap; gap:8px 18px; }
+  .masthead h1 { font-family:var(--serif); font-weight:600; font-size:clamp(34px,5.4vw,54px); line-height:1.06; letter-spacing:-.015em; margin:0; text-wrap:balance; }
+  .standfirst { font-family:var(--serif); font-size:clamp(17px,2.2vw,20px); line-height:1.5; color:var(--ink-2); max-width:64ch; margin:0; }
+  section { margin-bottom:60px; scroll-margin-top:24px; }
+  .sec-head { display:flex; gap:14px; align-items:baseline; border-bottom:1px solid var(--line); padding-bottom:10px; margin-bottom:22px; }
+  .sec-num { font-family:var(--mono); font-size:13px; color:var(--accent); font-weight:600; flex:none; }
+  .sec-head h2 { font-family:var(--serif); font-weight:600; font-size:clamp(22px,3vw,29px); letter-spacing:-.012em; margin:0; text-wrap:balance; }
+  p { max-width:72ch; }
+  p.lede { font-size:17.5px; color:var(--ink-2); }
+  strong { font-weight:650; }
+  .callout { background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:4px; padding:18px 22px; margin:22px 0; }
+  .callout.warn { border-left-color:var(--risk); }
+  .callout.gold { border-left-color:var(--gold); }
+  .callout h4 { margin:0 0 6px; font-size:12px; font-family:var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); }
+  .callout p { margin:0; max-width:76ch; }
+  .callout p + p { margin-top:10px; }
+  .tbl-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:4px; background:var(--surface); margin:20px 0; }
+  table { border-collapse:collapse; width:100%; font-size:14.5px; min-width:620px; }
+  th, td { text-align:left; padding:10px 14px; border-bottom:1px solid var(--line-soft); vertical-align:top; }
+  thead th { font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); background:var(--surface-2); border-bottom:1px solid var(--line); white-space:nowrap; }
+  tbody tr:last-child td { border-bottom:0; }
+  td.num, th.num { text-align:right; font-family:var(--mono); font-variant-numeric:tabular-nums; white-space:nowrap; }
+  td.kw { font-family:var(--mono); font-size:13px; }
+  .hot { color:var(--gold); font-weight:600; }
+  .dead { color:var(--risk); font-weight:600; }
+  .chip { display:inline-block; font-family:var(--mono); font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; padding:3px 8px; border-radius:3px; background:var(--surface-2); color:var(--ink-2); white-space:nowrap; }
+  .chip.win { background:var(--accent-bg); color:var(--accent-ink); }
+  .chip.gold { background:var(--gold-bg); color:var(--gold); }
+  .chip.no { background:var(--risk-bg); color:var(--risk); }
+  .kicker { font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin:26px 0 10px; }
+  ul.tight { max-width:74ch; padding-left:20px; }
+  ul.tight li { margin-bottom:7px; }
+  .grid2 { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); margin:20px 0; }
+  .side { background:var(--surface); border:1px solid var(--line); border-radius:4px; padding:18px 22px; }
+  .side h3 { font-family:var(--serif); font-size:19px; margin:0 0 8px; font-weight:600; }
+  .side p { font-size:14.5px; color:var(--ink-2); margin:0 0 8px; }
+  .side p:last-child { margin-bottom:0; }
+  .footnote { font-size:13.5px; color:var(--ink-3); border-top:1px solid var(--line); padding-top:18px; margin-top:44px; }
+  .footnote p { max-width:80ch; }
+  a { color:var(--accent-ink); }
+  :focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <div class="eyebrow">
+      <span>Скрининг ниш №2 · после Permito</span>
+      <span>DataForSEO · Google Ads · США</span>
+      <span>14 августа 2026</span>
+    </div>
+    <h1>16 ниш, один океан</h1>
+    <p class="standfirst">
+      Три новые выгрузки DataForSEO — 240 ключевых слов, 16 ниш каталогов-агрегаторов.
+      Пятнадцать отсеяны с причинами. Одна прошла все фильтры, на которых споткнулся
+      Permito: данные о грузоперевозчиках FMCSA.
+    </p>
+  </header>
+
+  <!-- 1 -->
+  <section id="method">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Фильтры: чему научил Permito</h2></div>
+    <p class="lede">
+      Разбор Permito вскрыл пять типовых убийц ниши. Теперь каждая кандидатура проверяется
+      на все пять до того, как обсуждаем продукт.
+    </p>
+    <ul class="tight">
+      <li><strong>Парадокс момента.</strong> Сигнал должен приходить <em>до</em> сделки, а не после (пермит выдан — работа уже отдана).</li>
+      <li><strong>Фрагментация данных.</strong> 19 000 городов с разными порталами — не MVP. Идеал — один федеральный источник.</li>
+      <li><strong>Юридика (TCPA).</strong> Монетизация не должна вести к обзвону физлиц: $500–1 500 штрафа за звонок.</li>
+      <li><strong>Канал ≠ аудитория.</strong> Испаноязычный B2B-поиск равен нулю (подтвердилось и в трекинге: максимум 170 SV/мес). Всё, что рассчитано на поиск, работает только на английском.</li>
+      <li><strong>Ложное золото объёма.</strong> Большой SV с навигационным или потребительским интентом не конвертируется в B2B-подписку.</li>
+    </ul>
+  </section>
+
+  <!-- 2 -->
+  <section id="matrix">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Итоговая матрица: 16 ниш</h2></div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Ниша</th><th class="num">SV выборки</th><th class="num">Взвеш. CPC</th><th class="num">Конкуренция</th><th>Вердикт</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><b>Данные перевозчиков FMCSA</b> — проверка USDOT/MC, safety-рейтинги</td><td class="num">40 000+</td><td class="num hot">$5–97</td><td class="num">1–20</td><td><span class="chip win">Победитель</span></td></tr>
+          <tr><td><b>Проверка профлицензий</b> — медсёстры, фармацевты, врачи</td><td class="num">150 000+</td><td class="num">$4–17</td><td class="num">0–5</td><td><span class="chip gold">Резерв №1</span></td></tr>
+          <tr><td><b>Инспекции домов престарелых</b> (CMS)</td><td class="num">191 780</td><td class="num">$14.81</td><td class="num dead">65</td><td><span class="chip gold">Резерв №2</span></td></tr>
+          <tr><td>Лицензии детсадов</td><td class="num">2 530</td><td class="num">$9.19</td><td class="num">3</td><td><span class="chip">Мал объём</span></td></tr>
+          <tr><td>Санинспекции ресторанов</td><td class="num">4 560</td><td class="num">$10.66</td><td class="num">1</td><td><span class="chip">Только реклама</span></td></tr>
+          <tr><td>Реестры новых компаний (SoS)</td><td class="num">600</td><td class="num hot">$39.03</td><td class="num">38</td><td><span class="chip">Entity-игра, данные 50 штатов</span></td></tr>
+          <tr><td>Госконтракты / RFP</td><td class="num">4 890</td><td class="num">$5.69</td><td class="num">31</td><td><span class="chip no">Incumbents</span></td></tr>
+          <tr><td>Unclaimed money</td><td class="num">167 700</td><td class="num dead">$1.31</td><td class="num">10</td><td><span class="chip no">Нет монетизации</span></td></tr>
+          <tr><td>Аукционы storage-юнитов</td><td class="num">100 790</td><td class="num dead">$0.35</td><td class="num">20</td><td><span class="chip no">Монополия StorageTreasures</span></td></tr>
+          <tr><td>Гранты малому бизнесу</td><td class="num">50 600</td><td class="num">$8.12</td><td class="num dead">68</td><td><span class="chip no">Красный океан</span></td></tr>
+          <tr><td>Каталог НКО (IRS 990)</td><td class="num">14 940</td><td class="num">$8.75</td><td class="num">2</td><td><span class="chip no">ProPublica бесплатно</span></td></tr>
+          <tr><td>HOA-каталог</td><td class="num">2 900</td><td class="num">$15.89</td><td class="num">26</td><td><span class="chip no">Нет центр. реестра</span></td></tr>
+          <tr><td>Лицензии на алкоголь → лиды поставщикам</td><td class="num">1 790</td><td class="num">$6.35</td><td class="num">2</td><td><span class="chip no">Спрос тонкий</span></td></tr>
+          <tr><td>Probate-лиды</td><td class="num">1 330</td><td class="num">$12.91</td><td class="num">40</td><td><span class="chip no">Суды округов, PropStream</span></td></tr>
+          <tr><td>Distressed-объекты / code violations</td><td class="num">820</td><td class="num">$12.27</td><td class="num">46</td><td><span class="chip no">DealMachine и др.</span></td></tr>
+          <tr><td>Права на недра</td><td class="num">580</td><td class="num hot">$19.51</td><td class="num">25</td><td><span class="chip no">Микрониша</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section id="winner">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Победитель: интеллект по перевозчикам FMCSA</h2></div>
+
+    <p class="lede">
+      Рабочее название — <strong>CarrierRadar</strong>. Каталог-агрегатор всех ~1,8 млн
+      грузоперевозчиков США на открытых данных FMCSA: профиль компании, статус authority,
+      safety-рейтинг, история инспекций, страховка. То, что государственный сайт SAFER
+      показывает интерфейсом из девяностых, — в человеческом виде.
+    </p>
+
+    <p class="kicker">Слой трафика: спрос есть, рекламной конкуренции нет</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Запрос</th><th class="num">SV/мес</th><th class="num">CPC</th><th class="num">Конкур.</th></tr></thead>
+        <tbody>
+          <tr><td class="kw">fmcsa safer</td><td class="num">12 100</td><td class="num">$5.58</td><td class="num">5</td></tr>
+          <tr><td class="kw">dot number lookup</td><td class="num">12 100</td><td class="num">$4.12</td><td class="num">20</td></tr>
+          <tr><td class="kw">usdot number lookup</td><td class="num">6 600</td><td class="num">$4.28</td><td class="num">17</td></tr>
+          <tr><td class="kw">mc number lookup</td><td class="num">2 900</td><td class="num">$4.20</td><td class="num">9</td></tr>
+          <tr><td class="kw">fmcsa carrier lookup</td><td class="num">1 600</td><td class="num">$12.13</td><td class="num">2</td></tr>
+          <tr><td class="kw">trucking companies in houston</td><td class="num">1 300</td><td class="num">$10.70</td><td class="num">52</td></tr>
+          <tr><td class="kw">trucking companies in texas</td><td class="num">1 000</td><td class="num">$8.26</td><td class="num">28</td></tr>
+          <tr><td class="kw">dot physical near me</td><td class="num">90 500</td><td class="num">$3.92</td><td class="num">55</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="kicker">Слой монетизации: самые дорогие клики из всех наших замеров</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Запрос</th><th class="num">SV/мес</th><th class="num">CPC</th><th>Кто платит</th></tr></thead>
+        <tbody>
+          <tr><td class="kw">truck factoring companies</td><td class="num">1 900</td><td class="num hot">$96.98</td><td>Факторинг: $250–500 за приведённого клиента</td></tr>
+          <tr><td class="kw">factoring for trucking</td><td class="num">320</td><td class="num hot">$92.56</td><td>Факторинг</td></tr>
+          <tr><td class="kw">commercial truck insurance quote</td><td class="num">1 300</td><td class="num hot">$65.73</td><td>Страховые агенты</td></tr>
+          <tr><td class="kw">box truck insurance</td><td class="num">1 300</td><td class="num hot">$61.59</td><td>Страховые агенты</td></tr>
+          <tr><td class="kw">fuel cards for truckers</td><td class="num">1 600</td><td class="num hot">$58.06</td><td>Топливные карты: бонус за активацию</td></tr>
+          <tr><td class="kw">commercial truck insurance</td><td class="num">8 100</td><td class="num hot">$53.10</td><td>Страховые агенты</td></tr>
+          <tr><td class="kw">trucking accounting software</td><td class="num">320</td><td class="num hot">$46.27</td><td>SaaS для перевозчиков</td></tr>
+          <tr><td class="kw">eld devices</td><td class="num">2 400</td><td class="num hot">$32.63</td><td>Телематика</td></tr>
+          <tr><td class="kw">dot compliance services</td><td class="num">880</td><td class="num">$19.96</td><td>Комплаенс-сервисы</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <h4>Почему это работает как система</h4>
+      <p>
+        Трафик и деньги здесь — <strong>одни и те же люди в одной сессии</strong>. Перевозчик,
+        проверяющий свой DOT-номер, — это покупатель страховки ($53–66 за клик), факторинга
+        ($92–97) и топливной карты ($58). Брокер, проверяющий чужой MC-номер, — подписчик
+        мониторинга перевозчиков. Не нужно, как в Permito, склеивать информационный слой
+        с коммерческим — они склеены самим запросом.
+      </p>
+    </div>
+
+    <p class="kicker">Проверка по пяти фильтрам Permito</p>
+    <div class="grid2">
+      <div class="side"><h3>Момент сделки</h3><p>Профиль перевозчика — вечнозелёный (проверяют перед каждой сделкой), а новая MC-authority — настоящий момент лида: страховка и факторинг нужны именно в первые 90 дней. Сигнал приходит до покупки, не после.</p></div>
+      <div class="side"><h3>Один источник данных</h3><p>FMCSA публикует всё федерально: Motor Carrier Census (еженедельный CSV), SMS safety data (ежемесячно), Licensing &amp; Insurance API. Ни одного города, ни одного скрейпера с капчей. Против 19 000 юрисдикций у Permito.</p></div>
+      <div class="side"><h3>TCPA</h3><p>Перевозчики — юрлица, их телефоны публичны в федеральном реестре именно для делового контакта. B2B-коммуникация, не обзвон физлиц.</p></div>
+      <div class="side"><h3>Канал = аудитория</h3><p>Аудитория ищет в Google на английском (испанский снова ~0 — проверено). Никаких WhatsApp-каналов и соцсетей как обязательного условия запуска.</p></div>
+      <div class="side"><h3>Интент трафика</h3><p>«dot number lookup» — рабочая, а не любопытствующая сессия: проверяют контрагента или свой статус. Конверсия в оффер органична.</p></div>
+      <div class="side"><h3>pSEO-масштаб</h3><p>~1,8 млн entity-страниц перевозчиков (модель Bizapedia: бренд-запрос «bizapedia» — 9 900 SV, «opencorporates» — 40 500) + гео-хабы «trucking companies in [city]» + справочный слой.</p></div>
+    </div>
+
+    <p class="kicker">Три источника выручки</p>
+    <ul class="tight">
+      <li><strong>Аффилиат на carrier-стороне</strong> (с первого месяца): факторинг $250–500 за клиента, страховые лиды, топливные карты ~$100+ за активацию, ELD.</li>
+      <li><strong>B2B-подписка на broker-стороне</strong> ($49–99/мес): мониторинг перевозчиков для малых брокеров и шипперов — ответ на эпидемию двойного брокеринга. Carrier411 и Highway дороги и целятся в enterprise; SMB-ниша свободна.</li>
+      <li><strong>Лид-листы новых authority</strong> для страховых агентов и факторинга — проверенный рынок, продаётся напрямую.</li>
+    </ul>
+
+    <div class="callout warn">
+      <h4>Риски</h4>
+      <p>
+        <strong>Incumbents в B2B-верификации:</strong> Carrier411, Highway, FreightValidate — но все целятся в средний+ сегмент; бесплатного современного SAFER с монетизацией через аффилиат нет ни у кого.
+        <strong>Модернизация SAFER:</strong> FMCSA может обновить свой сайт (годами обещает).
+        <strong>Санкции Google к programmatic-страницам:</strong> профили должны нести реальную ценность (агрегация инспекций, история, сравнение), а не быть тонкой обёрткой над CSV.
+      </p>
+    </div>
+  </section>
+
+  <!-- 4 -->
+  <section id="runnerup">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Резервы: №1 лицензии, №2 уход за пожилыми</h2></div>
+    <div class="grid2">
+      <div class="side">
+        <h3>Проверка профлицензий</h3>
+        <p><b>За:</b> кластер с конкуренцией 0 и объёмом 150 000+: «nursing license lookup» 49 500/0, «rn license verification» 18 100/0, «cna license lookup» 18 100/0, «pharmacist license lookup» 5 400 при CPC $16.64. Монетизация: CEU-курсы (22 200 SV), страховка от врачебных ошибок ($33.40 CPC), travel-nurse агентства ($11.35).</p>
+        <p><b>Против:</b> в органике доминируют сайты штатов (.gov) и официальный Nursys; данные — 50 разных бордов, часть без API. Хорошая вторая ставка, если FMCSA не взлетит.</p>
+      </div>
+      <div class="side">
+        <h3>Инспекции домов престарелых</h3>
+        <p><b>За:</b> спрос гигантский («assisted living facilities near me» — 165 000/мес, CPC $13.62), единый федеральный источник — CMS. Referral-экономика: A Place for Mom берёт с операторов тысячи за размещение.</p>
+        <p><b>Против:</b> конкуренция 63–82 — это красный океан с венчурными игроками; referral-модель требует колл-центра. Стоит держать в поле зрения как «трансперенси-сайт» на данных инспекций (низкоконкурентный вход: «nursing home inspection reports» — конкуренция 0), но не как первый MVP.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section id="test">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Смоук-тест CarrierRadar: 4 недели</h2></div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th class="num">Нед.</th><th>Действие</th><th>Порог go</th><th class="num">Бюджет</th></tr></thead>
+        <tbody>
+          <tr><td class="num">1</td><td>Скачать FMCSA Census + SMS, поднять 50–100 тыс. профилей перевозчиков одного штата (Техас) + 30 гео-хабов</td><td>Пайплайн от CSV до страницы за один прогон</td><td class="num">$15</td></tr>
+          <tr><td class="num">2</td><td>Подать заявки в партнёрки: факторинг (OTR, RTS, Apex), страховые лид-формы, топливные карты (AtoB)</td><td>≥2 одобренные партнёрки</td><td class="num">$0</td></tr>
+          <tr><td class="num">2–4</td><td>Индексация в GSC: entity-страницы + «[city] trucking companies»</td><td>≥10 000 показов к концу 4-й недели</td><td class="num">$0</td></tr>
+          <tr><td class="num">3</td><td>Fake door «Carrier monitoring — $49/мес»: LinkedIn-аутрич 30 малым брокерам</td><td>≥3 в вейтлисте с подтверждённой ценой</td><td class="num">$0</td></tr>
+          <tr><td class="num">3–4</td><td>Точечный Google Ads на «fmcsa carrier lookup» (CPC ~$12, конкуренция 2) для замера конверсии в аффилиат-клик</td><td>≥2% CTR в офферы</td><td class="num">$200</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout gold">
+      <h4>Развилка после теста</h4>
+      <p>
+        Если конвертится carrier-сторона (аффилиат) — растим SEO-каталог, выручка с первого месяца.
+        Если брокеры подтверждают $49–99 — строим мониторинг (алерты по изменению статуса/страховки
+        перевозчика) как основной продукт. Обе ветки работают на одних и тех же данных и одном пайплайне.
+      </p>
+    </div>
+  </section>
+
+  <div class="footnote">
+    <p>
+      Источник: DataForSEO Keywords Data API (Google Ads), локация США, языки en/es. Четыре выгрузки
+      13–14 августа 2026: скрининг 16 ниш (92 ключа), углубление шорт-листа (82), carrier-сторона (25),
+      испанский трекинг (15). Совокупная стоимость выгрузок $0.45. SV — среднемесячный поиск;
+      CPC — цена клика Google Ads; конкуренция — Competition Index 0–100. Оценки партнёрских выплат —
+      публичные ориентиры программ, подлежат проверке при подключении.
+    </p>
+  </div>
+
+</div>

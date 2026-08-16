@@ -1,0 +1,33 @@
+---
+import Base from '../../layouts/Base.astro';
+import { loadCopy, loadCities, TRADES, tradePermits } from '../../lib/data.mjs';
+
+const copy = loadCopy();
+const cities = loadCities();
+const rows = TRADES.map((t) => ({
+  trade: t,
+  total: cities.reduce((n, c) => n + tradePermits(c, t.slug).length, 0),
+  blurb: copy.trades[t.slug]?.blurb || '',
+}));
+---
+
+<Base
+  title="Contractor Leads by Trade — Fresh Building Permit Leads"
+  description="Permit-based lead feeds for roofing, HVAC, electrical, plumbing, solar and more. See recent permit volume by trade across covered US cities."
+>
+  <section>
+    <div class="wrap">
+      <h1 class="sec" style="font-size:32px">Leads by trade</h1>
+      <p class="sec-sub">Every permit in our feed is classified by trade. Pick yours to see live volume by city.</p>
+      <div class="grid c3">
+        {rows.map(({ trade, total, blurb }) => (
+          <a class="card link-card" href={`/leads/${trade.slug}/`}>
+            <h3>{trade.name}</h3>
+            <p>{blurb}</p>
+            <p class="kpi">{total.toLocaleString('en-US')} recent permits across {cities.length} cities</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

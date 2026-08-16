@@ -1,0 +1,369 @@
+<title>Три линии, одна карта</title>
+<style>
+  :root {
+    --paper:      #F1F0EC;
+    --surface:    #FFFFFF;
+    --surface-2:  #E7E6F1;
+    --ink:        #17151F;
+    --ink-2:      #4C4A5C;
+    --ink-3:      #7C7A8C;
+    --accent:     #4A4E8C;
+    --accent-ink: #35386B;
+    --accent-bg:  #E8E8F5;
+    --good:       #2C6A4B;
+    --good-bg:    #E1EFE7;
+    --risk:       #A3392C;
+    --risk-bg:    #F7E4E0;
+    --watch:      #92650F;
+    --watch-bg:   #F5EAD3;
+    --line:       #D9D7CE;
+    --line-soft:  #E9E7E0;
+    --serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper:#141319; --surface:#1B1A22; --surface-2:#24222E;
+      --ink:#E9E7F0; --ink-2:#B0AEC0; --ink-3:#7E7C90;
+      --accent:#9B9EE0; --accent-ink:#C1C3ED; --accent-bg:#25254A;
+      --good:#63BF92; --good-bg:#16291F; --risk:#E3796C; --risk-bg:#2E1917;
+      --watch:#E0BB63; --watch-bg:#312712;
+      --line:#2E2C3A; --line-soft:#211F2A;
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper:#141319; --surface:#1B1A22; --surface-2:#24222E;
+    --ink:#E9E7F0; --ink-2:#B0AEC0; --ink-3:#7E7C90;
+    --accent:#9B9EE0; --accent-ink:#C1C3ED; --accent-bg:#25254A;
+    --good:#63BF92; --good-bg:#16291F; --risk:#E3796C; --risk-bg:#2E1917;
+    --watch:#E0BB63; --watch-bg:#312712;
+    --line:#2E2C3A; --line-soft:#211F2A;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font-family:var(--sans); font-size:16.5px; line-height:1.62; -webkit-font-smoothing:antialiased; }
+  .page { max-width:1160px; margin:0 auto; padding:0 24px 100px; }
+  .masthead { border-bottom:2px solid var(--ink); padding:56px 0 22px; margin-bottom:44px; display:flex; flex-direction:column; gap:14px; }
+  .eyebrow { font-family:var(--mono); font-size:11.5px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3); display:flex; flex-wrap:wrap; gap:8px 18px; }
+  .masthead h1 { font-family:var(--serif); font-weight:600; font-size:clamp(34px,5.2vw,52px); line-height:1.08; letter-spacing:-.015em; margin:0; text-wrap:balance; }
+  .standfirst { font-family:var(--serif); font-size:clamp(17px,2.2vw,20px); line-height:1.5; color:var(--ink-2); max-width:68ch; margin:0; }
+  section { margin-bottom:60px; scroll-margin-top:24px; }
+  .sec-head { display:flex; gap:14px; align-items:baseline; border-bottom:1px solid var(--line); padding-bottom:10px; margin-bottom:22px; }
+  .sec-num { font-family:var(--mono); font-size:13px; color:var(--accent-ink); font-weight:600; flex:none; }
+  .sec-head h2 { font-family:var(--serif); font-weight:600; font-size:clamp(22px,3vw,29px); letter-spacing:-.012em; margin:0; text-wrap:balance; }
+  p { max-width:74ch; }
+  p.lede { font-size:17.5px; color:var(--ink-2); }
+  strong { font-weight:650; }
+  a { color:var(--accent-ink); }
+  code { font-family:var(--mono); font-size:.92em; background:var(--surface-2); padding:1px 5px; border-radius:3px; }
+
+  /* project cards */
+  .projects { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); margin:20px 0; }
+  .proj { border:1px solid var(--line); border-radius:6px; background:var(--surface); padding:22px 24px; display:flex; flex-direction:column; gap:12px; }
+  .proj-top { display:flex; justify-content:space-between; align-items:baseline; gap:10px; flex-wrap:wrap; }
+  .proj h3 { font-family:var(--serif); font-size:21px; margin:0; font-weight:600; letter-spacing:-.01em; }
+  .proj .branch { font-family:var(--mono); font-size:11px; color:var(--ink-3); }
+  .proj p { margin:0; font-size:14.5px; color:var(--ink-2); }
+  .proj .facts { list-style:none; margin:4px 0 0; padding:0; display:flex; flex-direction:column; gap:5px; }
+  .proj .facts li { font-size:13.5px; color:var(--ink-2); padding-left:16px; position:relative; }
+  .proj .facts li::before { content:"—"; position:absolute; left:0; color:var(--ink-3); }
+
+  /* chips */
+  .chip { display:inline-block; font-family:var(--mono); font-size:10.5px; letter-spacing:.07em; text-transform:uppercase; padding:3px 8px; border-radius:3px; background:var(--surface-2); color:var(--ink-2); white-space:nowrap; }
+  .chip.good { background:var(--good-bg); color:var(--good); }
+  .chip.watch { background:var(--watch-bg); color:var(--watch); }
+  .chip.risk { background:var(--risk-bg); color:var(--risk); }
+
+  /* maturity matrix */
+  .tbl-wrap { overflow-x:auto; border:1px solid var(--line); border-radius:6px; background:var(--surface); margin:20px 0; }
+  table { border-collapse:collapse; width:100%; font-size:14.5px; min-width:720px; }
+  th, td { text-align:left; padding:11px 14px; border-bottom:1px solid var(--line-soft); vertical-align:top; }
+  thead th { font-family:var(--mono); font-size:11px; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); background:var(--surface-2); border-bottom:1px solid var(--line); white-space:nowrap; }
+  tbody tr:last-child td { border-bottom:0; }
+  td.dim { font-weight:600; white-space:nowrap; }
+  .stat { display:inline-flex; align-items:center; gap:6px; font-size:13.5px; }
+  .dot { width:9px; height:9px; border-radius:50%; flex:none; }
+  .dot.done { background:var(--good); }
+  .dot.partial { background:var(--watch); }
+  .dot.none { background:var(--risk); }
+
+  .callout { background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:4px; padding:18px 22px; margin:22px 0; }
+  .callout.watch { border-left-color:var(--watch); }
+  .callout h4 { margin:0 0 6px; font-size:12px; font-family:var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); }
+  .callout p { margin:0; max-width:78ch; }
+  .callout p + p { margin-top:10px; }
+
+  /* three options */
+  .options { display:grid; gap:16px; grid-template-columns:repeat(auto-fit,minmax(310px,1fr)); margin:24px 0; }
+  .opt { border:1px solid var(--line); border-radius:8px; background:var(--surface); padding:24px 26px; display:flex; flex-direction:column; gap:14px; position:relative; }
+  .opt.rec { border-color:var(--accent); box-shadow:0 0 0 1px var(--accent); }
+  .opt .tag { position:absolute; top:-11px; left:22px; background:var(--accent); color:#fff; font-family:var(--mono); font-size:10.5px; letter-spacing:.08em; text-transform:uppercase; padding:3px 10px; border-radius:99px; }
+  .opt h3 { font-family:var(--serif); font-size:20px; margin:0; font-weight:600; }
+  .opt .lead-in { font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase; color:var(--ink-3); }
+  .opt p { font-size:14.5px; color:var(--ink-2); margin:0; }
+  .opt .tradeoff { display:flex; flex-direction:column; gap:8px; margin-top:4px; padding-top:12px; border-top:1px dashed var(--line); }
+  .opt .tradeoff div { font-size:13.5px; }
+  .opt .tradeoff b { font-family:var(--mono); font-size:10.5px; letter-spacing:.06em; text-transform:uppercase; display:block; margin-bottom:2px; }
+  .opt .win b { color:var(--good); }
+  .opt .cost b { color:var(--risk); }
+
+  /* timeline */
+  .timeline { display:flex; flex-direction:column; border:1px solid var(--line); border-radius:6px; background:var(--surface); overflow:hidden; margin:20px 0; }
+  .tl-row { display:grid; grid-template-columns:120px 1fr; border-bottom:1px solid var(--line-soft); }
+  .tl-row:last-child { border-bottom:0; }
+  .tl-when { padding:16px 18px; background:var(--surface-2); font-family:var(--mono); font-size:12.5px; color:var(--ink-2); font-weight:600; }
+  .tl-what { padding:16px 20px; display:flex; flex-direction:column; gap:6px; }
+  .tl-what .h { font-weight:650; font-size:15px; }
+  .tl-what .d { font-size:13.5px; color:var(--ink-2); }
+  @media (max-width:640px) { .tl-row { grid-template-columns:1fr; } .tl-when { padding:10px 18px; } }
+
+  .kicker { font-family:var(--mono); font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin:26px 0 10px; }
+  ul.tight { max-width:76ch; padding-left:20px; }
+  ul.tight li { margin-bottom:7px; }
+  .footnote { font-size:13.5px; color:var(--ink-3); border-top:1px solid var(--line); padding-top:18px; margin-top:48px; }
+  .footnote p { max-width:82ch; }
+  :focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+</style>
+
+<div class="page">
+
+  <header class="masthead">
+    <div class="eyebrow">
+      <span>Портфельная сверка · три линии</span>
+      <span>saas-mvp-concept-ranking</span>
+      <span>15 августа 2026</span>
+    </div>
+    <h1>Три линии, одна карта</h1>
+    <p class="standfirst">
+      За четыре дня накопилось три параллельных проекта на разной стадии готовности,
+      разбросанных по двум веткам. Здесь — честная сверка того, что реально построено
+      (не того, что казалось построенным), матрица зрелости по общим осям и три варианта,
+      куда идти дальше.
+    </p>
+  </header>
+
+  <!-- 1 -->
+  <section id="inventory">
+    <div class="sec-head"><span class="sec-num">01</span><h2>Что реально есть на руках</h2></div>
+    <p class="lede">
+      Три инициативы, три разных стадии. Ниже — только проверенные факты из репозитория,
+      без округления в свою пользу.
+    </p>
+    <div class="projects">
+
+      <article class="proj">
+        <div class="proj-top">
+          <h3>AccessAtlas (каталог доступности)</h3>
+          <span class="chip good">живой проект в проде</span>
+        </div>
+        <div class="branch">каноническая ветка <code>accessatlas-continuation-48dzlw</code> — 271 коммит, активные сессии</div>
+        <p><strong>Поправка 15.08:</strong> первая версия этого раздела описывала проект замороженным на 80% в ветке niche-finder — это устарело на ~230 коммитов. Каталог развился в AccessAtlas: параллельные сессии ведут его ежедневно, он развёрнут в продакшн (подтверждения «live on prod» в коммитах), есть lead-API, i18n (немецкий), синтетический мониторинг и собственная система оркестрации (.claude: project-orchestrator + 9 ролевых агентов).</p>
+        <ul class="facts">
+          <li>9 веток кластера; канонический тип — continuation-ветки с STATUS/HANDOFF/DECISIONS-памятью</li>
+          <li>Исходная валидация в силе: ~45 000/мес спроса, 33 живые проверки выдачи без конкурентов</li>
+          <li>Эта линия <strong>не требует нашего внимания</strong> — ей занимаются другие сессии; трогать её ветки без координации нельзя</li>
+        </ul>
+      </article>
+
+      <article class="proj">
+        <div class="proj-top">
+          <h3>CarrierRadar</h3>
+          <span class="chip watch">данные копятся, продукта нет</span>
+        </div>
+        <div class="branch">эта ветка — <code>carrierradar/</code></div>
+        <p>Каталог-аналитика перевозчиков США на данных FMCSA. Снапшоттер работает и после вчерашних фиксов устойчив к сетевым сбоям и гонке дат.</p>
+        <ul class="facts">
+          <li>Ежедневный крон в GitHub Actions, исторический слой копится с 14.08 (2 дня)</li>
+          <li>4,48 млн записей реестра на снимок; конкурентная карта — ~13 игроков, ниша не голубой океан, но щель $49–79 подтверждена</li>
+          <li>Юридика разобрана (FCRA/TCPA/деривативные скоры) — рамки заданы, в коде не реализованы</li>
+          <li>Не готово: <strong>нет ни одной страницы каталога</strong> — только пайплайн данных, продукта не существует</li>
+        </ul>
+      </article>
+
+      <article class="proj">
+        <div class="proj-top">
+          <h3>Permito</h3>
+          <span class="chip risk">построен, но не запущен</span>
+        </div>
+        <div class="branch">эта ветка — <code>permito/</code></div>
+        <p>pSEO-каталог строительных разрешений для лидогенерации подрядчиков. Первый MVP этой серии, сайт полностью собирается.</p>
+        <ul class="facts">
+          <li>63 статические страницы (Astro), лендинг с фейк-дор ценами, 5 городов с реальными данными</li>
+          <li>Города MVP (Чикаго, Нью-Йорк, Сиэтл, Сан-Франциско, Остин) <strong>не совпадают</strong> с 4 из 5 портретов покупателя — нужен пересбор на Хьюстон/Финикс/Майами-Дейд/Лос-Анджелес</li>
+          <li>Домен <code>getpermito.com</code> выбран, покупка не подтверждена; деплой-конфига нет — сайт нигде не развёрнут</li>
+          <li>Смоук-тест спроектирован (4 недели, ~$600), <strong>не запущен</strong></li>
+        </ul>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- 2 -->
+  <section id="matrix">
+    <div class="sec-head"><span class="sec-num">02</span><h2>Матрица зрелости</h2></div>
+    <p class="lede">
+      Одни и те же семь осей для всех трёх — так видно не «что интереснее», а
+      <strong>что конкретно недостроено</strong> перед тем, как каждая линия сможет заработать деньги.
+    </p>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Ось</th><th>Каталог доступности</th><th>CarrierRadar</th><th>Permito</th></tr></thead>
+        <tbody>
+          <tr><td class="dim">Спрос подтверждён выдачей</td>
+            <td><span class="stat"><span class="dot done"></span>33 живые проверки, 0 конкурентов</span></td>
+            <td><span class="stat"><span class="dot partial"></span>подтверждён, но ~13 конкурентов</span></td>
+            <td><span class="stat"><span class="dot partial"></span>подтверждён, ниша красная в части кластеров</span></td>
+          </tr>
+          <tr><td class="dim">Данные / пайплайн</td>
+            <td><span class="stat"><span class="dot done"></span>254 записи, воспроизводимый сбор</span></td>
+            <td><span class="stat"><span class="dot done"></span>крон работает, история копится</span></td>
+            <td><span class="stat"><span class="dot done"></span>5 адаптеров городов работают</span></td>
+          </tr>
+          <tr><td class="dim">Юридическая проверка</td>
+            <td><span class="stat"><span class="dot none"></span>не проводилась</span></td>
+            <td><span class="stat"><span class="dot partial"></span>рамки заданы, в продукте не реализованы</span></td>
+            <td><span class="stat"><span class="dot done"></span>TCPA учтён в архитектуре продукта</span></td>
+          </tr>
+          <tr><td class="dim">Продукт-сайт</td>
+            <td><span class="stat"><span class="dot partial"></span>378 страниц, 173 без описаний</span></td>
+            <td><span class="stat"><span class="dot none"></span>ни одной страницы каталога</span></td>
+            <td><span class="stat"><span class="dot done"></span>63 страницы собираются чисто</span></td>
+          </tr>
+          <tr><td class="dim">Развёрнут на домене</td>
+            <td><span class="stat"><span class="dot none"></span>домен не куплен</span></td>
+            <td><span class="stat"><span class="dot none"></span>—</span></td>
+            <td><span class="stat"><span class="dot none"></span>getpermito.com не подтверждён</span></td>
+          </tr>
+          <tr><td class="dim">Монетизация в коде</td>
+            <td><span class="stat"><span class="dot none"></span>не начата</span></td>
+            <td><span class="stat"><span class="dot none"></span>не начата</span></td>
+            <td><span class="stat"><span class="dot partial"></span>фейк-дор форма (localStorage)</span></td>
+          </tr>
+          <tr><td class="dim">Проверено живыми людьми</td>
+            <td><span class="stat"><span class="dot none"></span>0</span></td>
+            <td><span class="stat"><span class="dot none"></span>0</span></td>
+            <td><span class="stat"><span class="dot none"></span>0</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <h4>Общий знаменатель всех трёх</h4>
+      <p>
+        <strong>Ни одна линия не видела ни одного живого пользователя.</strong> Все три прошли
+        аналитическую валидацию (DataForSEO, живая выдача, конкурентная разведка, юридика) —
+        и ни одна не прошла рыночную. Это самый большой общий риск портфеля, не специфичный
+        для конкретного проекта.
+      </p>
+    </div>
+  </section>
+
+  <!-- 3 -->
+  <section id="deps">
+    <div class="sec-head"><span class="sec-num">03</span><h2>Что от чего зависит</h2></div>
+    <ul class="tight">
+      <li><strong>Каталог доступности</strong> заблокирован одним организационным шагом раньше остальных: он физически лежит в несмёрженной ветке. Пока это не решено, любая работа над ним требует переключения контекста, а не строчки кода.</li>
+      <li><strong>CarrierRadar</strong> заблокирован не данными (они уже копятся сами), а отсутствием продукта: 1,8 млн потенциальных страниц нельзя собрать статикой — нужен минимальный рендер-слой (Cloudflare Workers + D1/R2 или аналог) прежде, чем появится хоть один URL для индексации.</li>
+      <li><strong>Permito</strong> заблокирован решением, а не работой: пересобрать города под реальный ICP — день агентной работы, но бессмысленно тратить его, пока не подтверждена покупка домена и не решено, начинаем ли смоук-тест вообще.</li>
+      <li>Все три единообразно упираются в <strong>первый контакт с реальным рынком</strong> — до сих пор не сделан ни для одной.</li>
+    </ul>
+  </section>
+
+  <!-- 4 -->
+  <section id="options">
+    <div class="sec-head"><span class="sec-num">04</span><h2>Три варианта</h2></div>
+    <p class="lede">
+      Не «какой проект лучше» — все три уже прошли разную степень проверки и не сравнимы
+      напрямую. Вопрос в том, <strong>как распорядиться следующими 2–4 неделями</strong> между ними.
+    </p>
+    <div class="options">
+
+      <div class="opt rec">
+        <span class="tag">Рекомендация</span>
+        <span class="lead-in">Вариант 1</span>
+        <h3>Быстрые деньги: докрутить каталог доступности</h3>
+        <p>Смёржить ветку, закрыть 173 описания агентными обходами, добавить About/Privacy/Impressum, купить домен, поднять лид-форму. Написать 99 агентствам из деклараций: «вас назвали аудитором — заберите профиль».</p>
+        <div class="tradeoff">
+          <div class="win"><b>Выигрыш</b>Единственная линия, готовая на 80%. Самый чистый результат живой проверки выдачи (33 из 33). Готовый список из 99 тёплых контактов для первого письма — не холодный старт.</div>
+          <div class="cost"><b>Плата</b>CarrierRadar и Permito стоят на паузе — исторический слой CarrierRadar продолжит копиться сам (крон не требует внимания), а окно Permito по ICP-городам не критично к срокам.</div>
+        </div>
+      </div>
+
+      <div class="opt">
+        <span class="lead-in">Вариант 2</span>
+        <h3>Долгий актив: превратить CarrierRadar в продукт</h3>
+        <p>Пока исторический слой ещё молодой (2 дня из потенциально многолетнего актива), поднять минимальный рендер-слой и первые entity-страницы, чтобы индексация стартовала как можно раньше — до 12-месячного окна, о котором писали в анализе моатов.</p>
+        <div class="tradeoff">
+          <div class="win"><b>Выигрыш</b>Каждый день промедления — потерянный день истории, которую нельзя скачать задним числом. Рынок крупнее (40 000+ спроса), монетизация на клик дороже ($53–97).</div>
+          <div class="cost"><b>Плата</b>Инженерно тяжелее (рендер 1,8М страниц ≠ статика), конкурентнее (13 игроков), дальше до первого доллара. Каталог доступности провисит недостроенным ещё несколько недель.</div>
+        </div>
+      </div>
+
+      <div class="opt">
+        <span class="lead-in">Вариант 3</span>
+        <h3>Портфельный смоук-тест: проверить все три сразу</h3>
+        <p>Параллельно: письма 99 агентствам доступности (без доработки сайта — просто проверить, отвечают ли), точечный $200 Google Ads на CarrierRadar-ключи с лендинга-заглушки, консьерж-тест Permito на одном городе. 2 недели, фиксированный бюджет ~$500 суммарно.</p>
+        <div class="tradeoff">
+          <div class="win"><b>Выигрыш</b>Закрывает общий риск портфеля («0 живых пользователей») по всем трём сразу. Решение о том, куда вкладываться дальше, принимается на рыночном сигнале, а не на аналитике.</div>
+          <div class="cost"><b>Плата</b>Ничего не доводится до конца одновременно — распыление внимания. Слабый лендинг на любой линии может дать ложноотрицательный сигнал и убить перспективный проект раньше времени.</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5 -->
+  <section id="timeline">
+    <div class="sec-head"><span class="sec-num">05</span><h2>Дорожная карта по рекомендованному варианту</h2></div>
+    <p class="lede">Если идём по варианту 1 — вот как раскладываются следующие четыре недели.</p>
+    <div class="timeline">
+      <div class="tl-row">
+        <div class="tl-when">Неделя 1</div>
+        <div class="tl-what">
+          <div class="h">Слияние и юридический минимум</div>
+          <div class="d">Смёржить <code>niche-finder-directory-seo-vj520j</code>. About / Contact / Privacy / Impressum (реквизиты — от владельца). Починить баг иерархии заголовков в <code>AgencyCard.tsx</code>.</div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-when">Неделя 2</div>
+        <div class="tl-what">
+          <div class="h">Данные и домен</div>
+          <div class="d">Агентный обход 173 профилей без описаний. Покупка и подключение домена, замена <code>a11y-directory.example</code> в <code>seo.tsx</code> и <code>gen-a11y-sitemap.mjs</code>, деплой на Cloudflare Pages.</div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-when">Неделя 3</div>
+        <div class="tl-what">
+          <div class="h">Первый контакт с рынком</div>
+          <div class="d">Письма 99 агентствам из деклараций. Лид-форма (Worker + D1) и claim-поток для владельцев профилей. Индексация в Google Search Console.</div>
+        </div>
+      </div>
+      <div class="tl-row">
+        <div class="tl-when">Неделя 4</div>
+        <div class="tl-what">
+          <div class="h">Развилка по сигналу</div>
+          <div class="d">Есть ответы/claim-запросы → доводим монетизацию (Stripe Payment Links). Тишина → разбираем, что не сработало, прежде чем переходить к варианту 2 или 3 из этой карты.</div>
+        </div>
+      </div>
+    </div>
+    <div class="callout watch">
+      <h4>Фон: CarrierRadar не требует внимания в этот месяц</h4>
+      <p>
+        Ежедневный крон в GitHub Actions продолжит копить исторический слой без нашего участия —
+        это единственная причина, по которой можно спокойно поставить линию на паузу: актив
+        растёт сам, откладывается только момент, когда мы начнём строить продукт поверх него.
+      </p>
+    </div>
+  </section>
+
+  <div class="footnote">
+    <p>
+      Источники: git-история и файловая структура репозитория на 15.08.2026 (обе ветки),
+      <code>research/STATE.md</code> из ветки каталога доступности, <code>docs/moat-analysis.html</code>,
+      <code>docs/permito-spec.html</code>, манифесты снапшотов CarrierRadar. Правило «предлагать три
+      варианта на стратегических развилках» зафиксировано в <code>CLAUDE.md</code> и действует
+      для всех последующих сессий по этому репозиторию.
+    </p>
+  </div>
+
+</div>
