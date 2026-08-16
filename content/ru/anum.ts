@@ -2,6 +2,9 @@ import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
   title: 'Где найти A-Number',
+  metaTitle: 'A-Number: что это и где его найти (EAD, грин-карта, NTA) · DETNAV',
+  metaDesc:
+    'Alien Number — девятизначный номер, без которого не работают локатор ICE, суд и адвокат. Где он напечатан: разрешение на работу (EAD), грин-карта, повестка NTA, письма USCIS.',
   lede: 'Это ключ ко всему: поиск, адвокат, суд. Скорее всего, он уже есть у вас дома.',
   blocks: [
     {

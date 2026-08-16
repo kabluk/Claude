@@ -2,6 +2,9 @@ import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
   title: 'How to find him',
+  metaTitle: 'How to find someone detained by ICE — locator by A-Number or name · DETNAV',
+  metaDesc:
+    'Step by step: searching the official ICE Online Detainee Locator by A-Number or by name and country of birth. Why a person may not appear right away and what to do if there is no result.',
   lede: 'The official system does the search. We explain how to use it and what the result means.',
   blocks: [
     { kind: 'h2', text: 'What you need' },
@@ -83,6 +86,7 @@ const c: PageContent = {
       text: 'If the person has been ordered to check in (ankle monitor, ISAP) or you need to know which office covers the area, find the nearest office by city or state.',
     },
     { kind: 'tool', tool: 'officefinder' },
+    { kind: 'ilink', page: 'facilities', label: 'All ICE detention facilities — addresses by state' },
   ],
 }
 

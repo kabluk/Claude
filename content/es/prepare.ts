@@ -2,6 +2,9 @@ import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
   title: 'Un plan por si hay una detención',
+  metaTitle: 'Plan familiar por si hay una detención de ICE — plantilla para imprimir · DETNAV',
+  metaDesc:
+    'Un plan listo para la familia: a quién llamar, quién recoge a los niños, dónde están los papeles, el poder y el banco por adelantado. Se llena a mano en papel — nada se ingresa en línea.',
   lede: 'Complételo a mano en papel y guárdelo en casa, para que su familia sepa qué hacer en la primera hora. No se ingresa nada en línea.',
   blocks: [
     {

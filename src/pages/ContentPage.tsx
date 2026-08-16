@@ -14,7 +14,13 @@ export function ContentPage({
   ui: UIStrings
 }) {
   return (
-    <Layout lang={lang} pageKey={pageKey} ui={ui} title={`${c.title} · DETNAV`} description={c.lede}>
+    <Layout
+      lang={lang}
+      pageKey={pageKey}
+      ui={ui}
+      title={c.metaTitle ?? `${c.title} · DETNAV`}
+      description={c.metaDesc ?? c.lede}
+    >
       <h1 className="page-h1">{c.title}</h1>
       {c.lede && <p className="lede">{c.lede}</p>}
       <Blocks blocks={c.blocks} lang={lang} ui={ui} />

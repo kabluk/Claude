@@ -1,29 +1,1117 @@
 {
-  "home": { "en": "", "es": "", "ru": "" },
-  "where": { "en": "where-is-he", "es": "donde-esta", "ru": "gde-on" },
-  "anum": { "en": "a-number", "es": "numero-a", "ru": "a-number" },
-  "documents": { "en": "what-papers-mean", "es": "que-significan-los-papeles", "ru": "chto-znachat-bumagi" },
-  "firstcall": { "en": "first-call", "es": "primera-llamada", "ru": "pervyy-zvonok" },
-  "verify": { "en": "check-who-you-pay", "es": "verificar-a-quien-paga", "ru": "proverit-komu-platite" },
-  "connect": { "en": "staying-in-touch", "es": "mantener-contacto", "ru": "svyaz" },
-  "visit": { "en": "visiting", "es": "la-visita", "ru": "svidanie" },
-  "journey": { "en": "the-road", "es": "el-camino", "ru": "marshrut" },
-  "attorney": { "en": "attorney", "es": "abogado", "ru": "advokat" },
-  "habeas": { "en": "habeas-corpus", "es": "habeas-corpus", "ru": "habeas-corpus" },
-  "docpack": { "en": "attorney-package", "es": "paquete-para-el-abogado", "ru": "paket-dlya-advokata" },
-  "deadlines": { "en": "do-not-miss", "es": "no-faltar", "ru": "ne-propustit" },
-  "complaints": { "en": "if-something-is-wrong", "es": "si-algo-anda-mal", "ru": "esli-chto-to-ne-tak" },
-  "forms": { "en": "immigration-forms", "es": "formularios", "ru": "formy-i-uvedomleniya" },
-  "prepare": { "en": "family-plan", "es": "plan-familiar", "ru": "plan-na-sluchay" },
-  "intake": { "en": "your-list", "es": "su-lista", "ru": "vash-spisok" },
-  "orgs": { "en": "for-organizations", "es": "para-organizaciones", "ru": "dlya-organizaciy" },
-  "about": { "en": "about", "es": "acerca-de", "ru": "o-servise" },
-  "data": { "en": "your-data", "es": "sus-datos", "ru": "dannye" },
-  "disclaimer": { "en": "disclaimer", "es": "aviso-legal", "ru": "otkaz" },
-  "state-ca": { "en": "state/california", "es": "estado/california", "ru": "shtat/california" },
-  "state-tx": { "en": "state/texas", "es": "estado/texas", "ru": "shtat/texas" },
-  "state-la": { "en": "state/louisiana", "es": "estado/luisiana", "ru": "shtat/louisiana" },
-  "state-ny": { "en": "state/new-york", "es": "estado/nueva-york", "ru": "shtat/new-york" },
-  "state-fl": { "en": "state/florida", "es": "estado/florida", "ru": "shtat/florida" },
-  "facility-adelanto": { "en": "facility/adelanto", "es": "centro/adelanto", "ru": "uchrezhdenie/adelanto" }
+  "home": {
+    "en": "",
+    "es": "",
+    "ru": ""
+  },
+  "where": {
+    "en": "where-is-he",
+    "es": "donde-esta",
+    "ru": "gde-on"
+  },
+  "anum": {
+    "en": "a-number",
+    "es": "numero-a",
+    "ru": "a-number"
+  },
+  "documents": {
+    "en": "what-papers-mean",
+    "es": "que-significan-los-papeles",
+    "ru": "chto-znachat-bumagi"
+  },
+  "firstcall": {
+    "en": "first-call",
+    "es": "primera-llamada",
+    "ru": "pervyy-zvonok"
+  },
+  "verify": {
+    "en": "check-who-you-pay",
+    "es": "verificar-a-quien-paga",
+    "ru": "proverit-komu-platite"
+  },
+  "connect": {
+    "en": "staying-in-touch",
+    "es": "mantener-contacto",
+    "ru": "svyaz"
+  },
+  "visit": {
+    "en": "visiting",
+    "es": "la-visita",
+    "ru": "svidanie"
+  },
+  "journey": {
+    "en": "the-road",
+    "es": "el-camino",
+    "ru": "marshrut"
+  },
+  "attorney": {
+    "en": "attorney",
+    "es": "abogado",
+    "ru": "advokat"
+  },
+  "habeas": {
+    "en": "habeas-corpus",
+    "es": "habeas-corpus",
+    "ru": "habeas-corpus"
+  },
+  "docpack": {
+    "en": "attorney-package",
+    "es": "paquete-para-el-abogado",
+    "ru": "paket-dlya-advokata"
+  },
+  "deadlines": {
+    "en": "do-not-miss",
+    "es": "no-faltar",
+    "ru": "ne-propustit"
+  },
+  "complaints": {
+    "en": "if-something-is-wrong",
+    "es": "si-algo-anda-mal",
+    "ru": "esli-chto-to-ne-tak"
+  },
+  "forms": {
+    "en": "immigration-forms",
+    "es": "formularios",
+    "ru": "formy-i-uvedomleniya"
+  },
+  "prepare": {
+    "en": "family-plan",
+    "es": "plan-familiar",
+    "ru": "plan-na-sluchay"
+  },
+  "intake": {
+    "en": "your-list",
+    "es": "su-lista",
+    "ru": "vash-spisok"
+  },
+  "orgs": {
+    "en": "for-organizations",
+    "es": "para-organizaciones",
+    "ru": "dlya-organizaciy"
+  },
+  "about": {
+    "en": "about",
+    "es": "acerca-de",
+    "ru": "o-servise"
+  },
+  "data": {
+    "en": "your-data",
+    "es": "sus-datos",
+    "ru": "dannye"
+  },
+  "disclaimer": {
+    "en": "disclaimer",
+    "es": "aviso-legal",
+    "ru": "otkaz"
+  },
+  "state-ca": {
+    "en": "state/california",
+    "es": "estado/california",
+    "ru": "shtat/california"
+  },
+  "state-tx": {
+    "en": "state/texas",
+    "es": "estado/texas",
+    "ru": "shtat/texas"
+  },
+  "state-la": {
+    "en": "state/louisiana",
+    "es": "estado/luisiana",
+    "ru": "shtat/louisiana"
+  },
+  "state-ny": {
+    "en": "state/new-york",
+    "es": "estado/nueva-york",
+    "ru": "shtat/new-york"
+  },
+  "state-fl": {
+    "en": "state/florida",
+    "es": "estado/florida",
+    "ru": "shtat/florida"
+  },
+  "facility-adelanto": {
+    "en": "facility/adelanto",
+    "es": "centro/adelanto",
+    "ru": "uchrezhdenie/adelanto"
+  },
+  "facilities": {
+    "en": "detention",
+    "es": "detention",
+    "ru": "detention"
+  },
+  "fac-ADAMSMS": {
+    "en": "detention/adams-county-correctional-center",
+    "es": "detention/adams-county-correctional-center",
+    "ru": "detention/adams-county-correctional-center"
+  },
+  "fac-AGC": {
+    "en": "detention/aguadilla-service-processing-center",
+    "es": "detention/aguadilla-service-processing-center",
+    "ru": "detention/aguadilla-service-processing-center"
+  },
+  "fac-ALAMCNC": {
+    "en": "detention/alamance-county-detention-center",
+    "es": "detention/alamance-county-detention-center",
+    "ru": "detention/alamance-county-detention-center"
+  },
+  "fac-APPSCLA": {
+    "en": "detention/allen-parish-public-safety-complex",
+    "es": "detention/allen-parish-public-safety-complex",
+    "ru": "detention/allen-parish-public-safety-complex"
+  },
+  "fac-ANCHOAK": {
+    "en": "detention/anchorage-correctional-complex",
+    "es": "detention/anchorage-correctional-complex",
+    "ru": "detention/anchorage-correctional-complex"
+  },
+  "fac-FLBAKCI": {
+    "en": "detention/baker-ci",
+    "es": "detention/baker-ci",
+    "ru": "detention/baker-ci"
+  },
+  "fac-BAKERFL": {
+    "en": "detention/baker-county-detention-center",
+    "es": "detention/baker-county-detention-center",
+    "ru": "detention/baker-county-detention-center"
+  },
+  "fac-BALDWAL": {
+    "en": "detention/baldwin-county-correctional-center",
+    "es": "detention/baldwin-county-correctional-center",
+    "ru": "detention/baldwin-county-correctional-center"
+  },
+  "fac-BLBNATX": {
+    "en": "detention/bluebonnet-detention-facility",
+    "es": "detention/bluebonnet-detention-facility",
+    "ru": "detention/bluebonnet-detention-facility"
+  },
+  "fac-BOONEKY": {
+    "en": "detention/boone-county-jail",
+    "es": "detention/boone-county-jail",
+    "ru": "detention/boone-county-jail"
+  },
+  "fac-BOURBKY": {
+    "en": "detention/bourbon-county-detention-center",
+    "es": "detention/bourbon-county-detention-center",
+    "ru": "detention/bourbon-county-detention-center"
+  },
+  "fac-BROKSTX": {
+    "en": "detention/brooks-county-detention-center",
+    "es": "detention/brooks-county-detention-center",
+    "ru": "detention/brooks-county-detention-center"
+  },
+  "fac-BROMMNY": {
+    "en": "detention/broome-county-correctional-facility",
+    "es": "detention/broome-county-correctional-facility",
+    "ru": "detention/broome-county-correctional-facility"
+  },
+  "fac-WCCPBFL": {
+    "en": "detention/broward-transitional-center",
+    "es": "detention/broward-transitional-center",
+    "ru": "detention/broward-transitional-center"
+  },
+  "fac-ABIRJVA": {
+    "en": "detention/brrj-abingdon",
+    "es": "detention/brrj-abingdon",
+    "ru": "detention/brrj-abingdon"
+  },
+  "fac-BTV": {
+    "en": "detention/buffalo-batavia-service-processing-center",
+    "es": "detention/buffalo-batavia-service-processing-center",
+    "ru": "detention/buffalo-batavia-service-processing-center"
+  },
+  "fac-BURLEND": {
+    "en": "detention/burleigh-county-detention-center",
+    "es": "detention/burleigh-county-detention-center",
+    "ru": "detention/burleigh-county-detention-center"
+  },
+  "fac-BUTLEOH": {
+    "en": "detention/butler-county-sheriff-s-office",
+    "es": "detention/butler-county-sheriff-s-office",
+    "ru": "detention/butler-county-sheriff-s-office"
+  },
+  "fac-CALHOMI": {
+    "en": "detention/calhoun-county-correctional-center",
+    "es": "detention/calhoun-county-correctional-center",
+    "ru": "detention/calhoun-county-correctional-center"
+  },
+  "fac-CACTYCA": {
+    "en": "detention/california-city-detention-facility",
+    "es": "detention/california-city-detention-facility",
+    "ru": "detention/california-city-detention-facility"
+  },
+  "fac-CAMBRPA": {
+    "en": "detention/cambria-county-jail-pa",
+    "es": "detention/cambria-county-jail-pa",
+    "ru": "detention/cambria-county-jail-pa"
+  },
+  "fac-CPBDCKY": {
+    "en": "detention/campbell-county-detention-center",
+    "es": "detention/campbell-county-detention-center",
+    "ru": "detention/campbell-county-detention-center"
+  },
+  "fac-CARDFVA": {
+    "en": "detention/caroline-detention-facility",
+    "es": "detention/caroline-detention-facility",
+    "ru": "detention/caroline-detention-facility"
+  },
+  "fac-CASSCNE": {
+    "en": "detention/cass-county-jail",
+    "es": "detention/cass-county-jail",
+    "ru": "detention/cass-county-jail"
+  },
+  "fac-CCANOOH": {
+    "en": "detention/cca-northeast-oh-corrections",
+    "es": "detention/cca-northeast-oh-corrections",
+    "ru": "detention/cca-northeast-oh-corrections"
+  },
+  "fac-CCAFLAZ": {
+    "en": "detention/central-arizona-florence-correctional-center",
+    "es": "detention/central-arizona-florence-correctional-center",
+    "ru": "detention/central-arizona-florence-correctional-center"
+  },
+  "fac-JENADLA": {
+    "en": "detention/central-louisiana-ice-processing-center",
+    "es": "detention/central-louisiana-ice-processing-center",
+    "ru": "detention/central-louisiana-ice-processing-center"
+  },
+  "fac-CHASEKS": {
+    "en": "detention/chase-county-jail",
+    "es": "detention/chase-county-jail",
+    "ru": "detention/chase-county-jail"
+  },
+  "fac-CHSPKVA": {
+    "en": "detention/chesapeake-city-jail",
+    "es": "detention/chesapeake-city-jail",
+    "ru": "detention/chesapeake-city-jail"
+  },
+  "fac-CHIPPMI": {
+    "en": "detention/chippewa-county-correctional-facility",
+    "es": "detention/chippewa-county-correctional-facility",
+    "ru": "detention/chippewa-county-correctional-facility"
+  },
+  "fac-CHRISKY": {
+    "en": "detention/christian-county-jail",
+    "es": "detention/christian-county-jail",
+    "ru": "detention/christian-county-jail"
+  },
+  "fac-CIBOCNM": {
+    "en": "detention/cibola-county-correctional-center",
+    "es": "detention/cibola-county-correctional-center",
+    "ru": "detention/cibola-county-correctional-center"
+  },
+  "fac-OKCIMMC": {
+    "en": "detention/cimarron-correctional-facility",
+    "es": "detention/cimarron-correctional-facility",
+    "ru": "detention/cimarron-correctional-facility"
+  },
+  "fac-CLARKIN": {
+    "en": "detention/clark-county-jail",
+    "es": "detention/clark-county-jail",
+    "ru": "detention/clark-county-jail"
+  },
+  "fac-CLAYCIN": {
+    "en": "detention/clay-county-jail",
+    "es": "detention/clay-county-jail",
+    "ru": "detention/clay-county-jail"
+  },
+  "fac-CLINTPA": {
+    "en": "detention/clinton-county-correctional-facility",
+    "es": "detention/clinton-county-correctional-facility",
+    "ru": "detention/clinton-county-correctional-facility"
+  },
+  "fac-CLINTIN": {
+    "en": "detention/clinton-county-sheriff-s-office",
+    "es": "detention/clinton-county-sheriff-s-office",
+    "ru": "detention/clinton-county-sheriff-s-office"
+  },
+  "fac-MPSIPAN": {
+    "en": "detention/cnmi-department-of-corrections",
+    "es": "detention/cnmi-department-of-corrections",
+    "ru": "detention/cnmi-department-of-corrections"
+  },
+  "fac-CBENDTX": {
+    "en": "detention/coastal-bend-detention-center",
+    "es": "detention/coastal-bend-detention-center",
+    "ru": "detention/coastal-bend-detention-center"
+  },
+  "fac-COLLIFL": {
+    "en": "detention/collier-county-sheriff",
+    "es": "detention/collier-county-sheriff",
+    "ru": "detention/collier-county-sheriff"
+  },
+  "fac-LRDICDF": {
+    "en": "detention/corecivic-laredo-processing-center",
+    "es": "detention/corecivic-laredo-processing-center",
+    "ru": "detention/corecivic-laredo-processing-center"
+  },
+  "fac-WEBDCTX": {
+    "en": "detention/corecivic-webb-county-detention-center",
+    "es": "detention/corecivic-webb-county-detention-center",
+    "ru": "detention/corecivic-webb-county-detention-center"
+  },
+  "fac-OHNORWE": {
+    "en": "detention/corrections-center-of-northwest-ohio-ccno",
+    "es": "detention/corrections-center-of-northwest-ohio-ccno",
+    "ru": "detention/corrections-center-of-northwest-ohio-ccno"
+  },
+  "fac-CROWGMN": {
+    "en": "detention/crow-wing-county-jail",
+    "es": "detention/crow-wing-county-jail",
+    "ru": "detention/crow-wing-county-jail"
+  },
+  "fac-CUMBEME": {
+    "en": "detention/cumberland-county-jail",
+    "es": "detention/cumberland-county-jail",
+    "ru": "detention/cumberland-county-jail"
+  },
+  "fac-DAKOTNE": {
+    "en": "detention/dakota-county-sheriff-office",
+    "es": "detention/dakota-county-sheriff-office",
+    "ru": "detention/dakota-county-sheriff-office"
+  },
+  "fac-DALCOTX": {
+    "en": "detention/dallas-county-jail-lew-sterrett-justice-center",
+    "es": "detention/dallas-county-jail-lew-sterrett-justice-center",
+    "ru": "detention/dallas-county-jail-lew-sterrett-justice-center"
+  },
+  "fac-DVCSDKY": {
+    "en": "detention/daviess-county-detention-center",
+    "es": "detention/daviess-county-detention-center",
+    "ru": "detention/daviess-county-detention-center"
+  },
+  "fac-DHDFNJ": {
+    "en": "detention/delaney-hall-detention-facility",
+    "es": "detention/delaney-hall-detention-facility",
+    "ru": "detention/delaney-hall-detention-facility"
+  },
+  "fac-DENICDF": {
+    "en": "detention/denver-contract-detention-facility-aurora",
+    "es": "detention/denver-contract-detention-facility-aurora",
+    "ru": "detention/denver-contract-detention-facility-aurora"
+  },
+  "fac-CADESVI": {
+    "en": "detention/desert-view-annex",
+    "es": "detention/desert-view-annex",
+    "ru": "detention/desert-view-annex"
+  },
+  "fac-OKDBACK": {
+    "en": "detention/diamondback-correctional-facility",
+    "es": "detention/diamondback-correctional-facility",
+    "ru": "detention/diamondback-correctional-facility"
+  },
+  "fac-DILLSAF": {
+    "en": "detention/dilley-processing-single-female",
+    "es": "detention/dilley-processing-single-female",
+    "ru": "detention/dilley-processing-single-female"
+  },
+  "fac-DODGEWI": {
+    "en": "detention/dodge-detention-facility",
+    "es": "detention/dodge-detention-facility",
+    "ru": "detention/dodge-detention-facility"
+  },
+  "fac-DOUGLWI": {
+    "en": "detention/douglas-county-jail",
+    "es": "detention/douglas-county-jail",
+    "ru": "detention/douglas-county-jail"
+  },
+  "fac-EHDLGTX": {
+    "en": "detention/east-hidalgo-detention-center",
+    "es": "detention/east-hidalgo-detention-center",
+    "ru": "detention/east-hidalgo-detention-center"
+  },
+  "fac-WVEASTR": {
+    "en": "detention/eastern-regional-jail",
+    "es": "detention/eastern-regional-jail",
+    "ru": "detention/eastern-regional-jail"
+  },
+  "fac-EDNDCTX": {
+    "en": "detention/eden-detention-center",
+    "es": "detention/eden-detention-center",
+    "ru": "detention/eden-detention-center"
+  },
+  "fac-EPC": {
+    "en": "detention/el-paso-service-processing-center",
+    "es": "detention/el-paso-service-processing-center",
+    "ru": "detention/el-paso-service-processing-center"
+  },
+  "fac-EPSSFTX": {
+    "en": "detention/el-paso-soft-sided-facility",
+    "es": "detention/el-paso-soft-sided-facility",
+    "ru": "detention/el-paso-soft-sided-facility"
+  },
+  "fac-ELVDFTX": {
+    "en": "detention/el-valle-detention-facility",
+    "es": "detention/el-valle-detention-facility",
+    "ru": "detention/el-valle-detention-facility"
+  },
+  "fac-ELZICDF": {
+    "en": "detention/elizabeth-contract-detention-facility",
+    "es": "detention/elizabeth-contract-detention-facility",
+    "ru": "detention/elizabeth-contract-detention-facility"
+  },
+  "fac-ELMORID": {
+    "en": "detention/elmore-county-detention-center-elmore-county-jail",
+    "es": "detention/elmore-county-detention-center-elmore-county-jail",
+    "ru": "detention/elmore-county-detention-center-elmore-county-jail"
+  },
+  "fac-EAZ": {
+    "en": "detention/eloy-detention-center",
+    "es": "detention/eloy-detention-center",
+    "ru": "detention/eloy-detention-center"
+  },
+  "fac-ERICOPA": {
+    "en": "detention/erie-county-jail-pa",
+    "es": "detention/erie-county-jail-pa",
+    "ru": "detention/erie-county-jail-pa"
+  },
+  "fac-ETOWAAL": {
+    "en": "detention/etowah-county-jail-al",
+    "es": "detention/etowah-county-jail-al",
+    "ru": "detention/etowah-county-jail-al"
+  },
+  "fac-FRMVLVA": {
+    "en": "detention/farmville-detention-center",
+    "es": "detention/farmville-detention-center",
+    "ru": "detention/farmville-detention-center"
+  },
+  "fac-BOPBER": {
+    "en": "detention/federal-correctional-institution-berlin-nh",
+    "es": "detention/federal-correctional-institution-berlin-nh",
+    "ru": "detention/federal-correctional-institution-berlin-nh"
+  },
+  "fac-BOPATL": {
+    "en": "detention/federal-correctional-institution-atlanta",
+    "es": "detention/federal-correctional-institution-atlanta",
+    "ru": "detention/federal-correctional-institution-atlanta"
+  },
+  "fac-BOPLVN": {
+    "en": "detention/federal-correctional-institution-leavenworth",
+    "es": "detention/federal-correctional-institution-leavenworth",
+    "ru": "detention/federal-correctional-institution-leavenworth"
+  },
+  "fac-BOPLEW": {
+    "en": "detention/federal-correctional-institution-lewisburg",
+    "es": "detention/federal-correctional-institution-lewisburg",
+    "ru": "detention/federal-correctional-institution-lewisburg"
+  },
+  "fac-BOPMIM": {
+    "en": "detention/federal-detention-center-miami",
+    "es": "detention/federal-detention-center-miami",
+    "ru": "detention/federal-detention-center-miami"
+  },
+  "fac-BOPPHL": {
+    "en": "detention/federal-detention-center-philadelphia",
+    "es": "detention/federal-detention-center-philadelphia",
+    "ru": "detention/federal-detention-center-philadelphia"
+  },
+  "fac-BOPHON": {
+    "en": "detention/federal-detention-center-honolulu-federal-detention-center-honolulu",
+    "es": "detention/federal-detention-center-honolulu-federal-detention-center-honolulu",
+    "ru": "detention/federal-detention-center-honolulu-federal-detention-center-honolulu"
+  },
+  "fac-FLGLRFL": {
+    "en": "detention/flagler-county-detention-facility",
+    "es": "detention/flagler-county-detention-facility",
+    "ru": "detention/flagler-county-detention-facility"
+  },
+  "fac-FLO": {
+    "en": "detention/florence-service-processing-center",
+    "es": "detention/florence-service-processing-center",
+    "ru": "detention/florence-service-processing-center"
+  },
+  "fac-FLDSSFS": {
+    "en": "detention/florida-soft-sided-facility-south",
+    "es": "detention/florida-soft-sided-facility-south",
+    "ru": "detention/florida-soft-sided-facility-south"
+  },
+  "fac-FLOYDGA": {
+    "en": "detention/floyd-county-jail",
+    "es": "detention/floyd-county-jail",
+    "ru": "detention/floyd-county-jail"
+  },
+  "fac-FIPCDGA": {
+    "en": "detention/folkston-d-ray-ice-processing-center",
+    "es": "detention/folkston-d-ray-ice-processing-center",
+    "ru": "detention/folkston-d-ray-ice-processing-center"
+  },
+  "fac-FIPCAGA": {
+    "en": "detention/folkston-ice-processing-center-annex",
+    "es": "detention/folkston-ice-processing-center-annex",
+    "ru": "detention/folkston-ice-processing-center-annex"
+  },
+  "fac-FIPCMGA": {
+    "en": "detention/folkston-ice-processing-center-main",
+    "es": "detention/folkston-ice-processing-center-main",
+    "ru": "detention/folkston-ice-processing-center-main"
+  },
+  "fac-FREEBMN": {
+    "en": "detention/freeborn-county-jail-services",
+    "es": "detention/freeborn-county-jail-services",
+    "ru": "detention/freeborn-county-jail-services"
+  },
+  "fac-GEAUGOH": {
+    "en": "detention/geauga-county-safety-center",
+    "es": "detention/geauga-county-safety-center",
+    "ru": "detention/geauga-county-safety-center"
+  },
+  "fac-GLADEFL": {
+    "en": "detention/glades-county-detention-center",
+    "es": "detention/glades-county-detention-center",
+    "ru": "detention/glades-county-detention-center"
+  },
+  "fac-GLDSACA": {
+    "en": "detention/golden-state-annex",
+    "es": "detention/golden-state-annex",
+    "ru": "detention/golden-state-annex"
+  },
+  "fac-GFCORND": {
+    "en": "detention/grand-forks-county-correctional-center",
+    "es": "detention/grand-forks-county-correctional-center",
+    "ru": "detention/grand-forks-county-correctional-center"
+  },
+  "fac-GRAYSKY": {
+    "en": "detention/grayson-county-detention-center",
+    "es": "detention/grayson-county-detention-center",
+    "ru": "detention/grayson-county-detention-center"
+  },
+  "fac-GREENMO": {
+    "en": "detention/greene-county-jail",
+    "es": "detention/greene-county-jail",
+    "ru": "detention/greene-county-jail"
+  },
+  "fac-HCPSCMS": {
+    "en": "detention/hancock-county-public-safety-complex",
+    "es": "detention/hancock-county-public-safety-complex",
+    "ru": "detention/hancock-county-public-safety-complex"
+  },
+  "fac-HARDJIA": {
+    "en": "detention/hardin-county-jail",
+    "es": "detention/hardin-county-jail",
+    "ru": "detention/hardin-county-jail"
+  },
+  "fac-HENDENV": {
+    "en": "detention/henderson-detention-center",
+    "es": "detention/henderson-detention-center",
+    "ru": "detention/henderson-detention-center"
+  },
+  "fac-HICOJFL": {
+    "en": "detention/hillsborough-county-jail",
+    "es": "detention/hillsborough-county-jail",
+    "ru": "detention/hillsborough-county-jail"
+  },
+  "fac-HPKNSKY": {
+    "en": "detention/hopkins-county-jail",
+    "es": "detention/hopkins-county-jail",
+    "ru": "detention/hopkins-county-jail"
+  },
+  "fac-HOUICDF": {
+    "en": "detention/houston-contract-detention-facility",
+    "es": "detention/houston-contract-detention-facility",
+    "ru": "detention/houston-contract-detention-facility"
+  },
+  "fac-POLKCTX": {
+    "en": "detention/iah-polk-adult-detention-facility",
+    "es": "detention/iah-polk-adult-detention-facility",
+    "ru": "detention/iah-polk-adult-detention-facility"
+  },
+  "fac-IRADFCA": {
+    "en": "detention/imperial-regional-detention-facility",
+    "es": "detention/imperial-regional-detention-facility",
+    "ru": "detention/imperial-regional-detention-facility"
+  },
+  "fac-IRWINGA": {
+    "en": "detention/irwin-county-detention-center",
+    "es": "detention/irwin-county-detention-center",
+    "ru": "detention/irwin-county-detention-center"
+  },
+  "fac-JKPCCLA": {
+    "en": "detention/jackson-parish-correctional-center",
+    "es": "detention/jackson-parish-correctional-center",
+    "ru": "detention/jackson-parish-correctional-center"
+  },
+  "fac-JCRLYTX": {
+    "en": "detention/joe-corley-processing-center",
+    "es": "detention/joe-corley-processing-center",
+    "ru": "detention/joe-corley-processing-center"
+  },
+  "fac-KANDIMN": {
+    "en": "detention/kandiyohi-county-jail",
+    "es": "detention/kandiyohi-county-jail",
+    "ru": "detention/kandiyohi-county-jail"
+  },
+  "fac-KRNRCTX": {
+    "en": "detention/karnes-county-residential-center2",
+    "es": "detention/karnes-county-residential-center2",
+    "ru": "detention/karnes-county-residential-center2"
+  },
+  "fac-KCOJFOK": {
+    "en": "detention/kay-county-detention-center",
+    "es": "detention/kay-county-detention-center",
+    "ru": "detention/kay-county-detention-center"
+  },
+  "fac-KENTOKY": {
+    "en": "detention/kenton-county-detention-center",
+    "es": "detention/kenton-county-detention-center",
+    "ru": "detention/kenton-county-detention-center"
+  },
+  "fac-KNXDFTN": {
+    "en": "detention/knox-county-detention-facility",
+    "es": "detention/knox-county-detention-facility",
+    "ru": "detention/knox-county-detention-facility"
+  },
+  "fac-KRO": {
+    "en": "detention/krome-north-service-processing-center",
+    "es": "detention/krome-north-service-processing-center",
+    "ru": "detention/krome-north-service-processing-center"
+  },
+  "fac-KRHUBFL": {
+    "en": "detention/krome-miami-hub",
+    "es": "detention/krome-miami-hub",
+    "ru": "detention/krome-miami-hub"
+  },
+  "fac-LSRDCTX": {
+    "en": "detention/la-salle-county-regional-detention-center",
+    "es": "detention/la-salle-county-regional-detention-center",
+    "ru": "detention/la-salle-county-regional-detention-center"
+  },
+  "fac-LARELKY": {
+    "en": "detention/laurel-county-corrections",
+    "es": "detention/laurel-county-corrections",
+    "ru": "detention/laurel-county-corrections"
+  },
+  "fac-LIMESTX": {
+    "en": "detention/limestone-county-detention-center",
+    "es": "detention/limestone-county-detention-center",
+    "ru": "detention/limestone-county-detention-center"
+  },
+  "fac-LINCONE": {
+    "en": "detention/lincoln-county-detention-center",
+    "es": "detention/lincoln-county-detention-center",
+    "ru": "detention/lincoln-county-detention-center"
+  },
+  "fac-LINNJIA": {
+    "en": "detention/linn-county-jail",
+    "es": "detention/linn-county-jail",
+    "ru": "detention/linn-county-jail"
+  },
+  "fac-LOGANOK": {
+    "en": "detention/logan-county-jail",
+    "es": "detention/logan-county-jail",
+    "ru": "detention/logan-county-jail"
+  },
+  "fac-LICEPLA": {
+    "en": "detention/louisiana-ice-processing-center",
+    "es": "detention/louisiana-ice-processing-center",
+    "ru": "detention/louisiana-ice-processing-center"
+  },
+  "fac-LUBBOTX": {
+    "en": "detention/lubbock-county-jail",
+    "es": "detention/lubbock-county-jail",
+    "ru": "detention/lubbock-county-jail"
+  },
+  "fac-MADISMS": {
+    "en": "detention/madison-county-jail-ms",
+    "es": "detention/madison-county-jail-ms",
+    "ru": "detention/madison-county-jail-ms"
+  },
+  "fac-MAHONOH": {
+    "en": "detention/mahoning-county-justice-center",
+    "es": "detention/mahoning-county-justice-center",
+    "ru": "detention/mahoning-county-justice-center"
+  },
+  "fac-MARIOIN": {
+    "en": "detention/marion-county-jail",
+    "es": "detention/marion-county-jail",
+    "ru": "detention/marion-county-jail"
+  },
+  "fac-NEMCCOI": {
+    "en": "detention/mccook-detention-center",
+    "es": "detention/mccook-detention-center",
+    "ru": "detention/mccook-detention-center"
+  },
+  "fac-BOPBRO": {
+    "en": "detention/mdc-brooklyn",
+    "es": "detention/mdc-brooklyn",
+    "ru": "detention/mdc-brooklyn"
+  },
+  "fac-CACFMES": {
+    "en": "detention/mesa-verde-ice-processing-center",
+    "es": "detention/mesa-verde-ice-processing-center",
+    "ru": "detention/mesa-verde-ice-processing-center"
+  },
+  "fac-METROFL": {
+    "en": "detention/metro-dade-jail",
+    "es": "detention/metro-dade-jail",
+    "ru": "detention/metro-dade-jail"
+  },
+  "fac-INMIAMI": {
+    "en": "detention/miami-correctional-facility-mcf",
+    "es": "detention/miami-correctional-facility-mcf",
+    "ru": "detention/miami-correctional-facility-mcf"
+  },
+  "fac-GTMODCU": {
+    "en": "detention/migrant-operations-center-main-av622",
+    "es": "detention/migrant-operations-center-main-av622",
+    "ru": "detention/migrant-operations-center-main-av622"
+  },
+  "fac-MILLRAR": {
+    "en": "detention/miller-county-jail",
+    "es": "detention/miller-county-jail",
+    "ru": "detention/miller-county-jail"
+  },
+  "fac-MONROMI": {
+    "en": "detention/monroe-county-detention-dorm",
+    "es": "detention/monroe-county-detention-dorm",
+    "ru": "detention/monroe-county-detention-dorm"
+  },
+  "fac-MTGPCTX": {
+    "en": "detention/montgomery-processing-center",
+    "es": "detention/montgomery-processing-center",
+    "ru": "detention/montgomery-processing-center"
+  },
+  "fac-MSVPCPA": {
+    "en": "detention/moshannon-valley-processing-center",
+    "es": "detention/moshannon-valley-processing-center",
+    "ru": "detention/moshannon-valley-processing-center"
+  },
+  "fac-MUSCAIA": {
+    "en": "detention/muscatine-county-jail",
+    "es": "detention/muscatine-county-jail",
+    "ru": "detention/muscatine-county-jail"
+  },
+  "fac-NASSANY": {
+    "en": "detention/nassau-county-correctional-center",
+    "es": "detention/nassau-county-correctional-center",
+    "ru": "detention/nassau-county-correctional-center"
+  },
+  "fac-NASTRNY": {
+    "en": "detention/nassau-county-ice-intake",
+    "es": "detention/nassau-county-ice-intake",
+    "ru": "detention/nassau-county-ice-intake"
+  },
+  "fac-NATROWY": {
+    "en": "detention/natrona-county-detention-center",
+    "es": "detention/natrona-county-detention-center",
+    "ru": "detention/natrona-county-detention-center"
+  },
+  "fac-NVSDCNV": {
+    "en": "detention/nevada-southern-detention-center",
+    "es": "detention/nevada-southern-detention-center",
+    "ru": "detention/nevada-southern-detention-center"
+  },
+  "fac-WVNCENT": {
+    "en": "detention/north-central-regional-jail",
+    "es": "detention/north-central-regional-jail",
+    "ru": "detention/north-central-regional-jail"
+  },
+  "fac-NRLKCMI": {
+    "en": "detention/north-lake-processing-center",
+    "es": "detention/north-lake-processing-center",
+    "ru": "detention/north-lake-processing-center"
+  },
+  "fac-WVNORTH": {
+    "en": "detention/northern-regional-jail",
+    "es": "detention/northern-regional-jail",
+    "ru": "detention/northern-regional-jail"
+  },
+  "fac-CSCNWWA": {
+    "en": "detention/northwest-ice-processing-center-nwipc",
+    "es": "detention/northwest-ice-processing-center-nwipc",
+    "ru": "detention/northwest-ice-processing-center-nwipc"
+  },
+  "fac-VTSTALB": {
+    "en": "detention/northwest-state-correctional-center",
+    "es": "detention/northwest-state-correctional-center",
+    "ru": "detention/northwest-state-correctional-center"
+  },
+  "fac-OLDHAKY": {
+    "en": "detention/oldham-county-detention-center",
+    "es": "detention/oldham-county-detention-center",
+    "ru": "detention/oldham-county-detention-center"
+  },
+  "fac-ORANGFL": {
+    "en": "detention/orange-county-jail",
+    "es": "detention/orange-county-jail",
+    "ru": "detention/orange-county-jail"
+  },
+  "fac-ORANGNY": {
+    "en": "detention/orange-county-jail-ny",
+    "es": "detention/orange-county-jail-ny",
+    "ru": "detention/orange-county-jail-ny"
+  },
+  "fac-CCASDCA": {
+    "en": "detention/otay-mesa-detention-center",
+    "es": "detention/otay-mesa-detention-center",
+    "ru": "detention/otay-mesa-detention-center"
+  },
+  "fac-OTRPCNM": {
+    "en": "detention/otero-county-processing-center",
+    "es": "detention/otero-county-processing-center",
+    "ru": "detention/otero-county-processing-center"
+  },
+  "fac-OZARKMO": {
+    "en": "detention/ozark-county-jail",
+    "es": "detention/ozark-county-jail",
+    "ru": "detention/ozark-county-jail"
+  },
+  "fac-PHELPMO": {
+    "en": "detention/phelps-county-jail",
+    "es": "detention/phelps-county-jail",
+    "ru": "detention/phelps-county-jail"
+  },
+  "fac-PHELPNE": {
+    "en": "detention/phelps-county-jail-ne",
+    "es": "detention/phelps-county-jail-ne",
+    "ru": "detention/phelps-county-jail-ne"
+  },
+  "fac-PCKNSAL": {
+    "en": "detention/pickens-county-detention-center",
+    "es": "detention/pickens-county-detention-center",
+    "ru": "detention/pickens-county-detention-center"
+  },
+  "fac-PIKCOPA": {
+    "en": "detention/pike-county-correctional-facility",
+    "es": "detention/pike-county-correctional-facility",
+    "ru": "detention/pike-county-correctional-facility"
+  },
+  "fac-PINEPLA": {
+    "en": "detention/pine-prairie-ice-processing-center",
+    "es": "detention/pine-prairie-ice-processing-center",
+    "ru": "detention/pine-prairie-ice-processing-center"
+  },
+  "fac-PINELFL": {
+    "en": "detention/pinellas-county-jail",
+    "es": "detention/pinellas-county-jail",
+    "ru": "detention/pinellas-county-jail"
+  },
+  "fac-PLYMOMA": {
+    "en": "detention/plymouth-county-correctional-facility",
+    "es": "detention/plymouth-county-correctional-facility",
+    "ru": "detention/plymouth-county-correctional-facility"
+  },
+  "fac-POLKJIA": {
+    "en": "detention/polk-county-jail",
+    "es": "detention/polk-county-jail",
+    "ru": "detention/polk-county-jail"
+  },
+  "fac-PIC": {
+    "en": "detention/port-isabel-service-processing-center",
+    "es": "detention/port-isabel-service-processing-center",
+    "ru": "detention/port-isabel-service-processing-center"
+  },
+  "fac-POTTAIA": {
+    "en": "detention/pottawattamie-county-jail",
+    "es": "detention/pottawattamie-county-jail",
+    "ru": "detention/pottawattamie-county-jail"
+  },
+  "fac-PRLDCTX": {
+    "en": "detention/prairieland-detention-facility",
+    "es": "detention/prairieland-detention-facility",
+    "ru": "detention/prairieland-detention-facility"
+  },
+  "fac-PUTNMTN": {
+    "en": "detention/putnam-county-sheriff",
+    "es": "detention/putnam-county-sheriff",
+    "ru": "detention/putnam-county-sheriff"
+  },
+  "fac-RWCCMLA": {
+    "en": "detention/richwood-correctional-center",
+    "es": "detention/richwood-correctional-center",
+    "ru": "detention/richwood-correctional-center"
+  },
+  "fac-RGRNDTX": {
+    "en": "detention/rio-grande-processing-center",
+    "es": "detention/rio-grande-processing-center",
+    "ru": "detention/rio-grande-processing-center"
+  },
+  "fac-RVRCCLA": {
+    "en": "detention/river-correctional-center",
+    "es": "detention/river-correctional-center",
+    "ru": "detention/river-correctional-center"
+  },
+  "fac-RSREGVA": {
+    "en": "detention/riverside-regional-jail",
+    "es": "detention/riverside-regional-jail",
+    "ru": "detention/riverside-regional-jail"
+  },
+  "fac-RADDFGA": {
+    "en": "detention/robert-a-deyton-detention-facility",
+    "es": "detention/robert-a-deyton-detention-facility",
+    "ru": "detention/robert-a-deyton-detention-facility"
+  },
+  "fac-SLSLCUT": {
+    "en": "detention/salt-lake-county-jail",
+    "es": "detention/salt-lake-county-jail",
+    "ru": "detention/salt-lake-county-jail"
+  },
+  "fac-SLRDCAZ": {
+    "en": "detention/san-luis-regional-detention-center",
+    "es": "detention/san-luis-regional-detention-center",
+    "ru": "detention/san-luis-regional-detention-center"
+  },
+  "fac-SARPYNE": {
+    "en": "detention/sarpy-county-department-of-corrections",
+    "es": "detention/sarpy-county-department-of-corrections",
+    "ru": "detention/sarpy-county-department-of-corrections"
+  },
+  "fac-SENECOH": {
+    "en": "detention/seneca-county-jail",
+    "es": "detention/seneca-county-jail",
+    "ru": "detention/seneca-county-jail"
+  },
+  "fac-SHERBMN": {
+    "en": "detention/sherburne-county-jail-services",
+    "es": "detention/sherburne-county-jail-services",
+    "ru": "detention/sherburne-county-jail-services"
+  },
+  "fac-WVSCENT": {
+    "en": "detention/south-central-regional-jail",
+    "es": "detention/south-central-regional-jail",
+    "ru": "detention/south-central-regional-jail"
+  },
+  "fac-BASILLA": {
+    "en": "detention/south-louisiana-ice-processing-center",
+    "es": "detention/south-louisiana-ice-processing-center",
+    "ru": "detention/south-louisiana-ice-processing-center"
+  },
+  "fac-STFRCTX": {
+    "en": "detention/south-texas-family-residential-center1",
+    "es": "detention/south-texas-family-residential-center1",
+    "ru": "detention/south-texas-family-residential-center1"
+  },
+  "fac-STCDFTX": {
+    "en": "detention/south-texas-ice-processing-center",
+    "es": "detention/south-texas-ice-processing-center",
+    "ru": "detention/south-texas-ice-processing-center"
+  },
+  "fac-WVSOUTH": {
+    "en": "detention/southern-regional-jail",
+    "es": "detention/southern-regional-jail",
+    "ru": "detention/southern-regional-jail"
+  },
+  "fac-STCLAMI": {
+    "en": "detention/st-clair-county-jail",
+    "es": "detention/st-clair-county-jail",
+    "ru": "detention/st-clair-county-jail"
+  },
+  "fac-STGENMO": {
+    "en": "detention/ste-genevieve-county-detention-center",
+    "es": "detention/ste-genevieve-county-detention-center",
+    "ru": "detention/ste-genevieve-county-detention-center"
+  },
+  "fac-STWRTGA": {
+    "en": "detention/stewart-detention-center",
+    "es": "detention/stewart-detention-center",
+    "ru": "detention/stewart-detention-center"
+  },
+  "fac-STRAFNH": {
+    "en": "detention/strafford-county-corrections",
+    "es": "detention/strafford-county-corrections",
+    "ru": "detention/strafford-county-corrections"
+  },
+  "fac-SWEETWY": {
+    "en": "detention/sweetwater-county-detention-center",
+    "es": "detention/sweetwater-county-detention-center",
+    "ru": "detention/sweetwater-county-detention-center"
+  },
+  "fac-CCAHUTX": {
+    "en": "detention/t-don-hutto-detention-center",
+    "es": "detention/t-don-hutto-detention-center",
+    "ru": "detention/t-don-hutto-detention-center"
+  },
+  "fac-TOOELUT": {
+    "en": "detention/tooele-county-jail",
+    "es": "detention/tooele-county-jail",
+    "ru": "detention/tooele-county-jail"
+  },
+  "fac-TOORANM": {
+    "en": "detention/torrance-county-detention-facility",
+    "es": "detention/torrance-county-detention-facility",
+    "ru": "detention/torrance-county-detention-facility"
+  },
+  "fac-TULCOOK": {
+    "en": "detention/tulsa-county-jail",
+    "es": "detention/tulsa-county-jail",
+    "ru": "detention/tulsa-county-jail"
+  },
+  "fac-TGKJLFL": {
+    "en": "detention/turner-guiford-knight-tgk-jail",
+    "es": "detention/turner-guiford-knight-tgk-jail",
+    "ru": "detention/turner-guiford-knight-tgk-jail"
+  },
+  "fac-TBRJLME": {
+    "en": "detention/two-bridges-regional-jail",
+    "es": "detention/two-bridges-regional-jail",
+    "ru": "detention/two-bridges-regional-jail"
+  },
+  "fac-UINTAWY": {
+    "en": "detention/uinta-county-detention-center",
+    "es": "detention/uinta-county-detention-center",
+    "ru": "detention/uinta-county-detention-center"
+  },
+  "fac-URSLATX": {
+    "en": "detention/ursula-centralized-processing-center",
+    "es": "detention/ursula-centralized-processing-center",
+    "ru": "detention/ursula-centralized-processing-center"
+  },
+  "fac-VALVETX": {
+    "en": "detention/val-verde-detention-center",
+    "es": "detention/val-verde-detention-center",
+    "ru": "detention/val-verde-detention-center"
+  },
+  "fac-WLTSOFL": {
+    "en": "detention/walton-county-jail",
+    "es": "detention/walton-county-jail",
+    "ru": "detention/walton-county-jail"
+  },
+  "fac-WASHCUT": {
+    "en": "detention/washington-county-jail",
+    "es": "detention/washington-county-jail",
+    "ru": "detention/washington-county-jail"
+  },
+  "fac-WASHIAR": {
+    "en": "detention/washington-county-jail-ar",
+    "es": "detention/washington-county-jail-ar",
+    "ru": "detention/washington-county-jail-ar"
+  },
+  "fac-WASHONV": {
+    "en": "detention/washoe-county-jail",
+    "es": "detention/washoe-county-jail",
+    "ru": "detention/washoe-county-jail"
+  },
+  "fac-TNWESDF": {
+    "en": "detention/west-tennessee-detention-facility",
+    "es": "detention/west-tennessee-detention-facility",
+    "ru": "detention/west-tennessee-detention-facility"
+  },
+  "fac-WVWESTR": {
+    "en": "detention/western-regional-jail",
+    "es": "detention/western-regional-jail",
+    "ru": "detention/western-regional-jail"
+  },
+  "fac-WVIRGVA": {
+    "en": "detention/western-virginia-regional-jail",
+    "es": "detention/western-virginia-regional-jail",
+    "ru": "detention/western-virginia-regional-jail"
+  },
+  "fac-GTMOACU": {
+    "en": "detention/windward-holding-facility",
+    "es": "detention/windward-holding-facility",
+    "ru": "detention/windward-holding-facility"
+  },
+  "fac-LAWINCI": {
+    "en": "detention/winn-correctional-center",
+    "es": "detention/winn-correctional-center",
+    "ru": "detention/winn-correctional-center"
+  },
+  "fac-WOODBIA": {
+    "en": "detention/woodbury-county-jail",
+    "es": "detention/woodbury-county-jail",
+    "ru": "detention/woodbury-county-jail"
+  },
+  "fac-WYATTRI": {
+    "en": "detention/wyatt-detention-facility",
+    "es": "detention/wyatt-detention-facility",
+    "ru": "detention/wyatt-detention-facility"
+  }
 }

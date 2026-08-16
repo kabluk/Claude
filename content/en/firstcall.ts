@@ -2,6 +2,9 @@ import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
   title: 'The first call',
+  metaTitle: 'First phone call from ICE detention: what to ask, what not to say · DETNAV',
+  metaDesc:
+    'Calls from detention are recorded. A short plan: what to learn from the person — the facility, the A-Number, their health — what not to discuss on a recorded line, and how to prepare for the next call.',
   blocks: [
     {
       kind: 'callout',

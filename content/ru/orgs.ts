@@ -1,4 +1,23 @@
-import type { PageContent } from '@/lib/types'
+import type { Block, PageContent } from '@/lib/types'
+import { SUPPORT_URL } from '@/lib/support'
+
+// Блок «Поддержать» появляется, только когда в src/lib/support.ts вписана
+// ссылка Stripe. Оплата целиком на stripe.com — Zero-Data не нарушается.
+const support: Block[] = SUPPORT_URL
+  ? [
+      { kind: 'h2', text: 'Поддержать проект' },
+      {
+        kind: 'p',
+        text: 'Всё, что нужно семье в кризис, бесплатно и останется бесплатным. Если ваша организация хочет поддержать работу — это можно сделать разовым взносом.',
+      },
+      { kind: 'ext', href: SUPPORT_URL, label: 'Поддержать DETNAV' },
+      {
+        kind: 'p',
+        dim: true,
+        text: 'Оплата происходит на stripe.com. На detnav.com по-прежнему нет ни форм оплаты, ни аккаунтов, ни данных о вас.',
+      },
+    ]
+  : []
 
 const c: PageContent = {
   title: 'Для приходов, организаций и работодателей',
@@ -34,6 +53,7 @@ const c: PageContent = {
         'Мы никогда не берём процент от залога и не продаём ничего семье в первые 72 часа.',
       ],
     },
+    ...support,
     { kind: 'h2', text: 'Поговорить с нами' },
     {
       kind: 'p',

@@ -2,6 +2,9 @@ import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
   title: 'Cómo encontrarlo',
+  metaTitle: 'Cómo encontrar a una persona detenida por ICE — localizador por número A o nombre · DETNAV',
+  metaDesc:
+    'Paso a paso: cómo buscar en el localizador oficial de ICE por número A o por nombre y país de nacimiento. Por qué la persona no aparece de inmediato y qué hacer si no hay resultado.',
   lede: 'La búsqueda la hace el sistema oficial. Aquí explicamos cómo usarlo y qué significa el resultado.',
   blocks: [
     { kind: 'h2', text: 'Qué necesita' },
@@ -83,6 +86,7 @@ const c: PageContent = {
       text: 'Si a la persona le ordenaron reportarse (grillete, ISAP) o necesita saber qué oficina cubre la zona, busque la oficina más cercana por ciudad o estado.',
     },
     { kind: 'tool', tool: 'officefinder' },
+    { kind: 'ilink', page: 'facilities', label: 'Todos los centros de detención de ICE — direcciones por estado' },
   ],
 }
 

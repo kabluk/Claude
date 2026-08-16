@@ -1,4 +1,23 @@
-import type { PageContent } from '@/lib/types'
+import type { Block, PageContent } from '@/lib/types'
+import { SUPPORT_URL } from '@/lib/support'
+
+// The support block only appears once a Stripe link is set in
+// src/lib/support.ts. Payment happens entirely on stripe.com — Zero-Data holds.
+const support: Block[] = SUPPORT_URL
+  ? [
+      { kind: 'h2', text: 'Support the project' },
+      {
+        kind: 'p',
+        text: 'Everything a family needs in a crisis is free and will stay free. If your organization wants to support the work, a one-time contribution is possible.',
+      },
+      { kind: 'ext', href: SUPPORT_URL, label: 'Support DETNAV' },
+      {
+        kind: 'p',
+        dim: true,
+        text: 'Payment happens on stripe.com. detnav.com still has no payment forms, no accounts, and no data about you.',
+      },
+    ]
+  : []
 
 const c: PageContent = {
   title: 'For parishes, organizations and employers',
@@ -34,6 +53,7 @@ const c: PageContent = {
         'We never take a percentage of a bond and we sell nothing to a family in the first 72 hours.',
       ],
     },
+    ...support,
     { kind: 'h2', text: 'Talk to us' },
     {
       kind: 'p',

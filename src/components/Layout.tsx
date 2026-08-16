@@ -15,6 +15,28 @@ const DEFAULT_DESC: Record<Lang, string> = {
 }
 const OG_LOCALE: Record<Lang, string> = { en: 'en_US', es: 'es_ES', ru: 'ru_RU' }
 
+// Structured data для поисковиков. Не исполняется браузером (type=ld+json),
+// CSP script-src на такие блоки не распространяется.
+const JSON_LD = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Organization',
+      // min-ok: имя организации в structured data, не поле пользователя
+      name: 'DETNAV',
+      url: ORIGIN,
+      logo: `${ORIGIN}/og.png`,
+    },
+    {
+      '@type': 'WebSite',
+      // min-ok: название сайта в structured data, не поле пользователя
+      name: 'DETNAV',
+      url: ORIGIN,
+      inLanguage: ['en', 'es', 'ru'],
+    },
+  ],
+})
+
 export function Layout({
   lang,
   pageKey,
@@ -75,6 +97,8 @@ export function Layout({
         <meta name="twitter:title" content={title} />
         <meta name="twitter:description" content={description ?? DEFAULT_DESC[lang]} />
         <meta name="twitter:image" content={`${ORIGIN}/og.png`} />
+        {/* react-helmet рендерит содержимое script как есть, без экранирования */}
+        <script type="application/ld+json">{JSON_LD}</script>
       </Head>
       <header className="site-header">
         <div className="hrow">

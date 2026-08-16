@@ -63,20 +63,23 @@ export function StatePage({
       {stFacilities.length ? (
         stFacilities.map((f) => {
           const slug = ENH_SLUG.get(f.code)
-          return slug ? (
-            <Link key={f.code} className="ghost" to={pathFor(lang, `facility-${slug}`)}>
-              {f.name} →
+          return (
+            <Link
+              key={f.code}
+              className="ghost"
+              to={pathFor(lang, slug ? `facility-${slug}` : `fac-${f.code}`)}
+            >
+              {f.name} · {f.city} →
             </Link>
-          ) : (
-            <div key={f.code} className="kv">
-              <span>{f.name}</span>
-              <span>{f.city}</span>
-            </div>
           )
         })
       ) : (
         <p className="body-p dim">{ui.dirEmpty}</p>
       )}
+
+      <Link className="ghost" to={pathFor(lang, 'facilities')}>
+        {dir.dirIndex.title} →
+      </Link>
 
       <h2 className="page-h2">{d.helpH2}</h2>
       {st.funded_representation && <p className="body-p dim">{d.fundedLine}</p>}

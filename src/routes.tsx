@@ -8,6 +8,8 @@ import { JourneyPage } from './pages/JourneyPage'
 import { IntakePage } from './pages/IntakePage'
 import { StatePage } from './pages/StatePage'
 import { FacilityPage } from './pages/FacilityPage'
+import { FacilityDirPage, DirIndexPage } from './pages/FacilityDirPage'
+import directoryData from '@data/directory.json'
 import uiEn from '@content/en/ui'
 import uiEs from '@content/es/ui'
 import uiRu from '@content/ru/ui'
@@ -109,6 +111,22 @@ export const routes: RouteRecord[] = [
           )),
         }),
       ),
+      {
+        path: routePath(lang, 'facilities'),
+        lazy: lazyFor(lang, 'directory', (m) => (
+          <DirIndexPage lang={lang} ui={ui} dir={m.default} />
+        )),
+      },
+      ...(directoryData as { code: string }[])
+        .filter((f) => f.code !== 'ADLNTCA')
+        .map(
+          (f): RouteRecord => ({
+            path: routePath(lang, `fac-${f.code}`),
+            lazy: lazyFor(lang, 'directory', (m) => (
+              <FacilityDirPage lang={lang} code={f.code} ui={ui} dir={m.default} />
+            )),
+          }),
+        ),
       {
         path: routePath(lang, 'facility-adelanto'),
         lazy: lazyFor(lang, 'directory', (m) => (

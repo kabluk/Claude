@@ -1,4 +1,23 @@
-import type { PageContent } from '@/lib/types'
+import type { Block, PageContent } from '@/lib/types'
+import { SUPPORT_URL } from '@/lib/support'
+
+// El bloque de apoyo aparece solo cuando hay un enlace de Stripe en
+// src/lib/support.ts. El pago ocurre por completo en stripe.com — Zero-Data se mantiene.
+const support: Block[] = SUPPORT_URL
+  ? [
+      { kind: 'h2', text: 'Apoyar el proyecto' },
+      {
+        kind: 'p',
+        text: 'Todo lo que una familia necesita en la crisis es gratis y seguirá siendo gratis. Si su organización quiere apoyar el trabajo, se puede hacer con una aportación única.',
+      },
+      { kind: 'ext', href: SUPPORT_URL, label: 'Apoyar DETNAV' },
+      {
+        kind: 'p',
+        dim: true,
+        text: 'El pago ocurre en stripe.com. En detnav.com sigue sin haber formularios de pago, ni cuentas, ni datos sobre usted.',
+      },
+    ]
+  : []
 
 const c: PageContent = {
   title: 'Para parroquias, organizaciones y empleadores',
@@ -34,6 +53,7 @@ const c: PageContent = {
         'Nunca tomamos un porcentaje de la fianza y no le vendemos nada a una familia en las primeras 72 horas.',
       ],
     },
+    ...support,
     { kind: 'h2', text: 'Hablar con nosotros' },
     {
       kind: 'p',

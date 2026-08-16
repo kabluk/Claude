@@ -2,6 +2,9 @@ import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
   title: 'Dónde encontrar el número A',
+  metaTitle: 'Qué es el número A y dónde encontrarlo (EAD, green card, NTA) · DETNAV',
+  metaDesc:
+    'El Alien Number es la llave de nueve dígitos para el localizador de ICE, la corte y el abogado. Dónde está impreso: el permiso de trabajo (EAD), la green card, el Notice to Appear, cartas de USCIS.',
   lede: 'Es la llave para todo: la búsqueda, el abogado, la corte. Probablemente ya está en su casa.',
   blocks: [
     {

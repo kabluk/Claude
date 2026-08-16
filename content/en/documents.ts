@@ -2,6 +2,9 @@ import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
   title: 'What these papers mean',
+  metaTitle: 'ICE paperwork explained: the NTA, orders, and what not to sign · DETNAV',
+  metaDesc:
+    'What the papers in an immigration case mean — the Notice to Appear, decisions, forms offered for signature — and what not to sign without an attorney. The page works offline.',
   lede: 'This page works without internet. Save it.',
   blocks: [
     {

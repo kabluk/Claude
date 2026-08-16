@@ -30,6 +30,10 @@ export type Block =
 export interface PageContent {
   title: string
   lede?: string
+  // Для поисковой выдачи: <title> и description под формулировки реальных
+  // запросов. H1 остаётся человеческим (title).
+  metaTitle?: string
+  metaDesc?: string
   blocks: Block[]
 }
 
@@ -223,6 +227,26 @@ export interface DirectoryContent {
     helpLinks: { href: string; label: string }[]
     fundedLine: string
     verifyNote: string
+  }
+  // Программные страницы учреждений из data/directory.json.
+  // В шаблонах поддерживаются {name}, {city}, {st}.
+  dirFacility: {
+    metaTitle: string
+    metaDesc: string
+    lede: string
+    countyLabel: string
+    officeLabel: string
+    zipLabel: string
+    findH2: string
+    findLinks: { page: string; label: string }[]
+    sourceNote: string
+  }
+  dirIndex: {
+    title: string
+    metaTitle: string
+    metaDesc: string
+    lede: string
+    note: string
   }
 }
 

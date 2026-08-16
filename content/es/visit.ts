@@ -2,6 +2,9 @@ import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
   title: 'La visita',
+  metaTitle: 'Visitar a una persona en un centro de ICE: reglas, cita, documentos · DETNAV',
+  metaDesc:
+    'Cómo visitar a una persona detenida por ICE: horarios y citas, qué identificación necesita el visitante, reglas de cada centro y qué confirmar con una sola llamada.',
   lede: 'Cómo ver a la persona: horarios, registro, documentos, reglas. Escriba el centro — armamos la respuesta. Si no está en nuestra base, mostramos cómo saberlo todo con una llamada.',
   blocks: [
     { kind: 'tool', tool: 'visitfinder' },

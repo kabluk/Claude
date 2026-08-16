@@ -2,6 +2,9 @@ import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
   title: 'A plan in case of detention',
+  metaTitle: 'Family preparedness plan for ICE detention — printable template · DETNAV',
+  metaDesc:
+    'A ready family plan: who to call, who picks up the children, where the papers are, the power of attorney and the bank arranged in advance. Filled in by hand on paper — nothing goes online.',
   lede: 'Fill it in by hand on paper and keep it at home, so your family knows what to do in the first hour. Nothing is entered online.',
   blocks: [
     {

@@ -2,6 +2,9 @@ import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
   title: 'La primera llamada',
+  metaTitle: 'La primera llamada desde un centro de ICE: qué preguntar y qué no decir · DETNAV',
+  metaDesc:
+    'Las llamadas desde la detención se graban. Un plan corto: qué averiguar — el centro, el número A, la salud —, qué no hablar por una línea grabada y cómo prepararse para la siguiente llamada.',
   blocks: [
     {
       kind: 'callout',

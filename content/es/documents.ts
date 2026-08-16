@@ -2,6 +2,9 @@ import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
   title: 'Qué significan estos papeles',
+  metaTitle: 'Los papeles de inmigración explicados: la NTA, órdenes y qué no firmar · DETNAV',
+  metaDesc:
+    'Qué significan los papeles de un caso de inmigración — el Notice to Appear, decisiones, formularios para firmar — y qué no firmar sin un abogado. La página funciona sin internet.',
   lede: 'Esta página funciona sin internet. Guárdela.',
   blocks: [
     {

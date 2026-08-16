@@ -2,6 +2,9 @@ import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
   title: 'Where to find the A-Number',
+  metaTitle: 'What is an A-Number and where to find it (EAD, green card, NTA) · DETNAV',
+  metaDesc:
+    'The Alien Number is the nine-digit key to the ICE locator, the court and the attorney. Where it is printed: the work permit (EAD), the green card, the Notice to Appear, USCIS letters.',
   lede: 'It is the key to everything: the search, the attorney, court. It is probably already in your home.',
   blocks: [
     {

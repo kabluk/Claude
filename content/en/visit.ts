@@ -2,6 +2,9 @@ import type { PageContent } from '@/lib/types'
 
 const c: PageContent = {
   title: 'Visiting',
+  metaTitle: 'Visiting someone in ICE detention: rules, scheduling, ID · DETNAV',
+  metaDesc:
+    'How to visit a person in ICE detention: hours and scheduling, what ID visitors need, per-facility rules, and what to confirm with a single call.',
   lede: 'How to see the person: hours, sign-up, documents, rules. Enter the facility — we assemble the answer. If it is not in our base, we show how to learn everything with one call.',
   blocks: [
     { kind: 'tool', tool: 'visitfinder' },
