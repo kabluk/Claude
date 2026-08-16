@@ -1,0 +1,11 @@
+// Cloudflare Workers config — deploys the static site in landing/ as an
+// assets-only Worker. No build step: everything in landing/ is plain
+// HTML/CSS/JS with self-hosted fonts. Workers Builds runs `npx wrangler
+// deploy` on push, which uploads these assets.
+{
+  "name": "detnav",
+  "compatibility_date": "2026-07-01",
+  "assets": {
+    "directory": "./landing"
+  }
+}
