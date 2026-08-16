@@ -1,0 +1,13 @@
+{
+  "name": "detnav",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Detention Navigator — static site in landing/, deployed as a Cloudflare assets-only Worker",
+  "scripts": {
+    "build": "echo 'Static site: nothing to build. Assets are served from landing/ via wrangler.jsonc.'",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4"
+  }
+}
