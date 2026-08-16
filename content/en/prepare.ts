@@ -64,6 +64,12 @@ const c: PageContent = {
         'The code for a free call to the DHS OIG complaint line from detention: 9233#',
       ],
     },
+    { kind: 'h2', text: 'Build a personal task list — in advance' },
+    {
+      kind: 'p',
+      text: 'A two-minute survey assembles a task list for the family’s circumstances — both for a detention and for preparing ahead. Answers stay in the browser. Print the finished list and keep it with this plan.',
+    },
+    { kind: 'ilink', page: 'intake', label: 'Take the survey and get the task list' },
     { kind: 'h2', text: 'Give the plan to a trusted person — today' },
     {
       kind: 'p',

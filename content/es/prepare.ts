@@ -64,6 +64,12 @@ const c: PageContent = {
         'El código para llamar gratis a la línea de quejas del DHS OIG desde la detención: 9233#',
       ],
     },
+    { kind: 'h2', text: 'Arme una lista personal de tareas — con anticipación' },
+    {
+      kind: 'p',
+      text: 'Una encuesta de dos minutos arma una lista de tareas según las circunstancias de la familia — tanto para una detención como para prepararse. Las respuestas se quedan en el navegador. Imprima la lista terminada y guárdela junto con este plan.',
+    },
+    { kind: 'ilink', page: 'intake', label: 'Hacer la encuesta y recibir la lista de tareas' },
     { kind: 'h2', text: 'Entregue el plan a una persona de confianza — hoy' },
     {
       kind: 'p',

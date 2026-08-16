@@ -131,6 +131,9 @@
 - Qué saber de memoria
 - El teléfono de la persona de confianza — memorícelo, no solo lo anote
 - El código para llamar gratis a la línea de quejas del DHS OIG desde la detención: 9233#
+- Arme una lista personal de tareas — con anticipación
+- Una encuesta de dos minutos arma una lista de tareas según las circunstancias de la familia — tanto para una detención como para prepararse. Las respuestas se quedan en el navegador. Imprima la lista terminada y guárdela junto con este plan.
+- Hacer la encuesta y recibir la lista de tareas
 - Entregue el plan a una persona de confianza — hoy
 - Entregue con tiempo el plan lleno y el paquete de documentos ya armado a alguien de su confianza. Así empieza a actuar en el momento en que lo detienen, en vez de perder un día en averiguar qué pasó.
 - Acuerden una señal simple: cada noche usted le envía una palabra de que todo está bien. Si faltan dos noches seguidas, empieza con los pasos de abajo.
