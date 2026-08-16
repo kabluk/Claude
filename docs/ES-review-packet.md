@@ -139,6 +139,29 @@
 - Llama al abogado o a la organización cuyos teléfonos están anotados arriba en el plan.
 - No firma nada por usted ni le paga a nadie sin verificar antes.
 - Le entrega al abogado el paquete de documentos que usted le dio con anticipación.
+- Dinero y propiedad: solo funciona si se hace antes
+- Mientras una persona está detenida, la renta, el préstamo del carro y la cuenta del banco no se detienen. Sus seres queridos solo podrán actuar legalmente por ella con documentos firmados de antemano — después ya no se pueden hacer.
+- Poder financiero (durable power of attorney)
+- Un poder financiero duradero, firmado ante notario a nombre de una persona de confianza, le permite a esa persona terminar legalmente el contrato de renta, recoger las pertenencias, tratar con el banco y vender el carro. Sin ese documento, el arrendador y el banco ni siquiera están obligados a atenderla.
+- Se firma ante notario con anticipación. Qué facultades incluir es una pregunta para un abogado: el texto depende del estado.
+- La cuenta del banco
+- La verificación de entrada atada solo a SMS deja de funcionar cuando el teléfono está confiscado o la línea se corta. En la configuración del banco normalmente se puede agregar la verificación por correo electrónico — conservar el acceso al correo es más sencillo.
+- Muchos bancos aceptan un poder solo en su propio formulario y solo en persona. Ir a la sucursal junto con la persona de confianza, por adelantado, quita esa barrera.
+- La vivienda rentada y las pertenencias
+- Un apartamento que se queda sin pagar se convierte en deuda: multas por romper el contrato, cobradores, y las pertenencias van a una bodega o a la calle. Una persona con poder puede terminar el contrato según las reglas y recoger las cosas.
+- El carro financiado o en lease
+- Un carro con pagos vencidos el prestamista lo recupera (repossession) y lo vende en subasta. El saldo de la deuda queda a nombre del dueño, y la parte condonada puede contarse como ingreso gravable (formulario 1099-C).
+- Los caminos legales que existen: un poder con la facultad de vender el vehículo, o el traspaso oficial del préstamo o del lease a otra persona. Las condiciones están en el contrato y con el prestamista.
+- Las cuentas de retiro: 401(k) e IRA
+- Los ahorros en un 401(k) o IRA siguen siendo propiedad de la persona sin importar su estatus migratorio o una deportación — no se pierden.
+- Al retirarlos antes de los 59½ años normalmente aplica una multa del IRS del 10% más impuestos; por eso muchas veces las cuentas se dejan crecer hasta la edad de retiro. Desde el extranjero, el estatus fiscal se certifica con el formulario W-8BEN. Qué hacer con una cuenta concreta es una pregunta para un asesor de impuestos.
+- Formulario W-8BEN — página oficial del IRS
+- Tres tareas para esta semana
+- Cambiar la verificación de entrada al banco de SMS a correo electrónico, o agregar el correo como método de respaldo.
+- Firmar ante notario un poder financiero y registrarlo en el banco en persona.
+- Guardar copias del SSN/ITIN, de los contratos de renta y préstamo y de los papeles del carro en un almacenamiento cifrado, y darle acceso a la persona de confianza.
+- Esto es un mapa, no consejo legal
+- Qué incluir en el poder, cómo terminar un contrato y qué hacer con una cuenta de retiro dependen del estado y del contrato. Esas decisiones se toman con un abogado y un asesor de impuestos, no con una nota de internet.
 - Qué llevar consigo
 - El plan lleno se queda en casa. Consigo, solo la tarjeta de derechos, pequeña. Tome una foto de la tarjeta y guárdela en el teléfono.
 - TARJETA DE DERECHOS · LLEVAR CONSIGO

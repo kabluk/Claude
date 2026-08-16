@@ -56,7 +56,8 @@
 - **`content/es/forms.ts`** — новая страница «Formularios» + подписи схемы
   документа (`docMap` в `ui.ts`).
 - **`content/es/prepare.ts`** — новая страница «Un plan por si hay una detención»
-  + блок «Entregue el plan a una persona de confianza».
+  + блок «Entregue el plan a una persona de confianza» + секция
+  «Dinero y propiedad» (poder financiero, banco, renta, carro, 401(k)/IRA).
 - **`content/es/where.ts`** — секция «Oficina de ICE: a dónde acudir…».
 - **`content/es/home.ts`** — карточки хаба (`hub`): «Se llevaron a alguien» и др.
 - **`content/es/ui.ts`** — новые строки: `national` (estadísticas), `officeFinder`,
