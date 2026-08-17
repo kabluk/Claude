@@ -73,6 +73,7 @@ const c: PageContent = {
     },
     { kind: 'ilink', page: 'documents', label: 'Qué no firmar' },
     { kind: 'ilink', page: 'deadlines', label: 'No faltar a la audiencia' },
+    { kind: 'ilink', page: 'glossary', label: 'Glosario de términos: ICE, EOIR, BIA y más' },
   ],
 }
 

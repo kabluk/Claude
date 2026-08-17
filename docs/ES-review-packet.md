@@ -48,7 +48,7 @@
 | billetera | cartera |
 | bodega (= магазин в мекс.) | almacén de depósito (storage) |
 
-Ниже — 926 фрагментов по разделам. Отмечать нужно только те, где текст
+Ниже — 1021 фрагментов по разделам. Отмечать нужно только те, где текст
 звучит неестественно или неверно; остальное можно пропускать.
 
 **Если времени мало — порядок важности.** Первые три раздела люди читают
@@ -261,6 +261,105 @@
 - No interpretamos sus papeles y no damos consejos. Qué significa un documento concreto y qué hacer con él lo determina solo un abogado.
 - Qué no firmar
 - No faltar a la audiencia
+- Glosario de términos: ICE, EOIR, BIA y más
+
+---
+
+## Glosario de términos  (`es/glossary.ts`)
+
+- Glosario de términos
+- Glosario del caso de inmigración: ICE, EOIR, habeas corpus y más · DETNAV
+- Qué significan ICE, EOIR, BIA, NTA, bond, credible fear, habeas corpus y otros términos del caso de inmigración y la detención. Definiciones claras, sin consejos.
+- Palabras que aparecen en los papeles, las llamadas y las conversaciones con el abogado. Solo definiciones — qué significa el término, no qué hacer con él.
+- Esto es un diccionario, no asesoría legal
+- Las definiciones de abajo son generales y no toman en cuenta un caso concreto. Algunas reglas cambian según el estado y el circuito de apelación, y el texto de la ley es más preciso que este resumen breve. Cómo se aplica un término a un caso en particular lo determina un abogado.
+- Quién es quién
+- Servicio de Inmigración y Control de Aduanas (Immigration and Customs Enforcement). Agencia del Departamento de Seguridad Nacional (DHS) que localiza, detiene y expulsa a personas sin estatus legal dentro del país.
+- Enforcement and Removal Operations — la parte de ICE que hace los arrestos, mantiene a las personas bajo custodia y organiza las expulsiones.
+- Servicio de Aduanas y Protección Fronteriza (Customs and Border Protection). Opera en la frontera, los puertos y los aeropuertos; es una agencia distinta de ICE.
+- Servicio de Ciudadanía e Inmigración (U.S. Citizenship and Immigration Services). Procesa solicitudes de estatus — green card, ciudadanía, permiso de trabajo. No realiza detenciones.
+- Departamento de Seguridad Nacional (Department of Homeland Security). La agencia principal de la que dependen ICE, CBP y USCIS.
+- Oficina Ejecutiva de Revisión de Inmigración (Executive Office for Immigration Review). Parte del Departamento de Justicia, separada del DHS. Atiende los casos de expulsión.
+- Juez de inmigración (Immigration Judge, IJ)
+- Un juez de la corte de inmigración de EOIR, nombrado por el Departamento de Justicia — no es lo mismo que un juez federal.
+- Junta de Apelaciones de Inmigración (Board of Immigration Appeals). Atiende las apelaciones de las decisiones de un juez de inmigración.
+- Oficial del caso (Deportation officer, Officer of Record)
+- El oficial de ICE ERO asignado al caso de una persona detenida en particular.
+- Field office
+- Oficina regional de ICE ERO que cubre un área determinada. Vea la página para buscar la oficina.
+- Detención y estatus
+- Número A, expediente (A-file)
+- Un número de nueve dígitos asignado a una persona en el sistema de inmigración, y el expediente de documentos que se guarda bajo ese número. La llave para buscar en los registros de ICE y EOIR.
+- Detainer (retención de ICE)
+- Una solicitud de ICE a una cárcel local o a la policía para retener a una persona por un tiempo adicional — normalmente hasta 48 horas — después de cuando debería quedar en libertad, para que ICE pueda tomar custodia.
+- Mandatory detention
+- Custodia sin audiencia aparte sobre la posibilidad de fianza, cuando aplica al caso — por ejemplo, bajo ciertas causas penales (`INA § 236(c)`).
+- Bond (fianza)
+- Un pago en dinero con el que se asegura la salida de una persona de la custodia de ICE mientras el caso está pendiente.
+- Bond hearing (audiencia de fianza)
+- Una audiencia aparte ante un juez de inmigración sobre el monto de la fianza, o sobre si se fija alguna.
+- Alternatives to Detention — formas de supervisión fuera de un centro de detención: un grillete electrónico, una aplicación de reportes o citas programadas.
+- Intensive Supervision Appearance Program — un programa privado de ATD que opera bajo contrato con ICE la empresa BI Incorporated.
+- Check-in (reportarse)
+- La obligación de presentarse periódicamente en una oficina de ICE, o de reportarse por teléfono o aplicación, como parte de ATD o después de la liberación.
+- Credible fear interview
+- Una entrevista con un oficial de USCIS para una persona detenida en la frontera o al reingresar al país, sobre si tiene un temor creíble de persecución en su país.
+- Reasonable fear interview
+- Una entrevista parecida para una persona con una orden de expulsión previa o ciertas condenas. El nivel que hay que cumplir es más alto que el de credible fear.
+- El proceso judicial
+- Removal proceedings (proceso de expulsión)
+- El proceso judicial en EOIR que decide si una persona debe salir de Estados Unidos.
+- NTA, Notice to Appear (formulario I-862)
+- El documento con el que empieza el proceso de expulsión: enumera las alegaciones sobre la persona y los cargos.
+- Master calendar hearing
+- Una audiencia corta y administrativa: el juez revisa el estado del caso, fija la próxima fecha y anota si la persona tiene abogado.
+- Individual hearing (merits hearing)
+- La audiencia principal sobre el fondo del caso, donde se presentan las pruebas y se toma una decisión.
+- Posponer una audiencia para una fecha posterior.
+- In absentia order
+- Una orden de expulsión dictada cuando la persona no se presentó a una audiencia programada.
+- La corte de EOIR donde se atiende un caso en particular. Puede cambiar cuando trasladan a la persona entre centros de detención.
+- Docket number (número de caso)
+- El número bajo el cual el caso está registrado en la corte.
+- Caminos de protección y resultados
+- Asylum (asilo)
+- Una forma de protección para una persona que no puede regresar a su país por persecución debido a raza, religión, nacionalidad, opinión política o pertenencia a un grupo social determinado.
+- Withholding of removal
+- Una protección más limitada que el asilo: impide la expulsión a un país específico, pero no lleva a una green card.
+- CAT protection
+- Protección bajo la Convención contra la Tortura (Convention Against Torture) — contra la expulsión a un país donde la persona enfrentaría tortura por parte del gobierno o con su consentimiento.
+- Cancellation of removal
+- Cancela una orden de expulsión cuando se cumplen ciertas condiciones. Las reglas son distintas para residentes permanentes legales (LPR) y para el resto.
+- Voluntary departure (salida voluntaria)
+- Permiso para salir de EE. UU. por cuenta propia y a su costo en lugar de una expulsión forzada. Puede tener un efecto distinto que una orden de expulsión sobre una futura entrada.
+- Prosecutorial discretion
+- Una decisión de ICE o de un fiscal de EOIR de no continuar un caso, o de cerrarlo, según las prioridades de la agencia.
+- Adjustment of status
+- Cambiar el estatus a residencia permanente (green card) sin salir de Estados Unidos.
+- Order of removal
+- La decisión final de la corte de que una persona debe ser expulsada.
+- Stay of removal
+- Una suspensión temporal de la ejecución de una orden de expulsión.
+- Motion to reopen, motion to reconsider
+- Una solicitud para que el caso se revise de nuevo, con base en hechos nuevos o en un error de la decisión.
+- Appeal to the BIA (apelación)
+- Impugnar la decisión de un juez de inmigración ante la Junta de Apelaciones de Inmigración.
+- Habeas corpus
+- Un caso aparte presentado en una corte federal de distrito — no en EOIR — sobre si la detención en sí es legal, bajo `28 U.S.C. § 2241`. Lo prepara y presenta un abogado.
+- Estatus y documentos
+- LPR, green card
+- Lawful Permanent Resident — el estatus de residente permanente de EE. UU.
+- Employment Authorization Document — el permiso de trabajo, distinto de la green card.
+- Temporary Protected Status — un estatus temporal para ciudadanos de ciertos países a los que no es seguro regresar (desastre natural, conflicto armado).
+- Naturalization (naturalización)
+- El proceso para obtener la ciudadanía de EE. UU.
+- Sponsor, petitioner (patrocinador)
+- La persona u organización que presenta una petición a favor de un familiar o trabajador para que pueda obtener un estatus.
+- Dónde encontrar el número A
+- Formularios y avisos: qué son
+- Habeas corpus — en detalle
+- No faltar a la audiencia
+- Verificar al abogado
 
 ---
 
@@ -352,6 +451,7 @@
 - Su lista de tareas
 - Si algo anda mal
 - Diccionario de formularios
+- Glosario de términos
 - Un plan por si hay una detención
 - Para organizaciones
 - Acerca de

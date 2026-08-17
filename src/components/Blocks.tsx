@@ -114,6 +114,21 @@ export function Blocks({ blocks, lang, ui }: { blocks: Block[]; lang: Lang; ui: 
                 ))}
               </div>
             )
+          case 'terms':
+            return (
+              <dl key={i} className="terms">
+                {b.items.map((it, j) => (
+                  <div key={j} className="term-item">
+                    <dt>
+                      <Inline text={it.term} />
+                    </dt>
+                    <dd>
+                      <Inline text={it.def} />
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+            )
           case 'callout':
             return (
               <div key={i} className={`box ${TONE[b.tone]}`}>

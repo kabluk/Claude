@@ -73,6 +73,7 @@ const c: PageContent = {
     },
     { kind: 'ilink', page: 'documents', label: 'What not to sign' },
     { kind: 'ilink', page: 'deadlines', label: 'Do not miss a hearing' },
+    { kind: 'ilink', page: 'glossary', label: 'Glossary of terms: ICE, EOIR, BIA and more' },
   ],
 }
 

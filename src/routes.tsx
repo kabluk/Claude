@@ -36,6 +36,7 @@ function routePath(lang: Lang, key: string): string {
 }
 
 const CONTENT_PAGES = [
+  'glossary',
   'where',
   'anum',
   'documents',

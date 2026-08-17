@@ -73,6 +73,7 @@ const c: PageContent = {
     },
     { kind: 'ilink', page: 'documents', label: 'Что нельзя подписывать' },
     { kind: 'ilink', page: 'deadlines', label: 'Не пропустить слушание' },
+    { kind: 'ilink', page: 'glossary', label: 'Словарь терминов: ICE, EOIR, BIA и другие' },
   ],
 }
 
