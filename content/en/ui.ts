@@ -9,6 +9,7 @@ const ui: UIStrings = {
   disclaimer:
     'We are not attorneys and we do not give legal advice. This page has facts and links to official sources only.',
   updated: 'Information updated July 28, 2026. Rules change — check the date.',
+  updatedShort: 'Updated July 28, 2026',
   nav: {
     where: 'How to find him',
     anum: 'Where to find the A-Number',

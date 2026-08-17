@@ -4,7 +4,18 @@
     "name": { "en": "California", "es": "California", "ru": "Калифорния" },
     "circuit": 9,
     "funded_representation": true,
-    "notes": { "en": "", "es": "", "ru": "" }
+    "notes": { "en": "", "es": "", "ru": "" },
+    "orgs": [
+      {
+        "name": "CHIRLA",
+        "href": "https://www.chirla.org/",
+        "note": {
+          "en": "Coalition for Humane Immigrant Rights — legal services and family support across California.",
+          "es": "Coalition for Humane Immigrant Rights — servicios legales y apoyo a familias en toda California.",
+          "ru": "Коалиция за права иммигрантов (CHIRLA) — юридическая помощь и поддержка семей по всей Калифорнии."
+        }
+      }
+    ]
   },
   {
     "code": "TX",
@@ -15,7 +26,18 @@
       "en": "The Fifth Circuit sided with the government on mandatory detention. People are often transferred to Texas from other states. As of July 2026.",
       "es": "El Quinto Circuito apoyó al gobierno en la detención obligatoria. A Texas trasladan a menudo a personas desde otros estados. A julio de 2026.",
       "ru": "Пятый апелляционный округ поддержал позицию властей об обязательном задержании. В Техас часто перевозят из других штатов. Состояние на июль 2026."
-    }
+    },
+    "orgs": [
+      {
+        "name": "RAICES",
+        "href": "https://raicestexas.org/",
+        "note": {
+          "en": "Nonprofit providing free and low-cost immigration legal aid across Texas.",
+          "es": "Organización sin fines de lucro que ofrece ayuda legal migratoria gratuita y de bajo costo en todo Texas.",
+          "ru": "Некоммерческая организация RAICES — бесплатная и льготная юридическая помощь по иммиграционным делам по всему Техасу."
+        }
+      }
+    ]
   },
   {
     "code": "LA",
@@ -26,7 +48,18 @@
       "en": "The Fifth Circuit sided with the government on mandatory detention. People are often transferred to Louisiana from other states. As of July 2026.",
       "es": "El Quinto Circuito apoyó al gobierno en la detención obligatoria. A Luisiana trasladan a menudo a personas desde otros estados. A julio de 2026.",
       "ru": "Пятый апелляционный округ поддержал позицию властей об обязательном задержании. В Луизиану часто перевозят из других штатов. Состояние на июль 2026."
-    }
+    },
+    "orgs": [
+      {
+        "name": "LAAID",
+        "href": "https://laaid.org/",
+        "note": {
+          "en": "Louisiana Advocates for Immigrants in Detention — volunteers who help around Louisiana's detention centers: transport, visits, support after release.",
+          "es": "Louisiana Advocates for Immigrants in Detention — voluntarios que ayudan cerca de los centros de detención de Luisiana: transporte, visitas, apoyo después de la liberación.",
+          "ru": "Волонтёрская организация LAAID помогает у центров содержания в Луизиане: транспорт, свидания, поддержка после освобождения."
+        }
+      }
+    ]
   },
   {
     "code": "NY",
@@ -37,7 +70,18 @@
       "en": "New York has a program of publicly funded representation for detained immigrants (NYIFUP). Confirm current coverage with the organizations below. As of August 2026.",
       "es": "Nueva York tiene un programa de representación con fondos públicos para inmigrantes detenidos (NYIFUP). Confirme la cobertura actual con las organizaciones de abajo. A agosto de 2026.",
       "ru": "В Нью-Йорке есть программа бесплатного представительства для задержанных иммигрантов (NYIFUP). Актуальный охват уточняйте у организаций ниже. Состояние на август 2026."
-    }
+    },
+    "orgs": [
+      {
+        "name": "NYIFUP",
+        "href": "https://www.vera.org/ending-mass-incarceration/reducing-incarceration/detention-of-immigrants/new-york-immigrant-family-unity-project",
+        "note": {
+          "en": "New York Immigrant Family Unity Project — publicly funded representation for detained New Yorkers who cannot afford an attorney, explained by the Vera Institute.",
+          "es": "New York Immigrant Family Unity Project — representación con fondos públicos para neoyorquinos detenidos que no pueden pagar un abogado, explicado por el Vera Institute.",
+          "ru": "New York Immigrant Family Unity Project — бесплатное представительство для задержанных жителей Нью-Йорка, которые не могут оплатить адвоката; объясняет Vera Institute."
+        }
+      }
+    ]
   },
   {
     "code": "FL",
@@ -48,6 +92,17 @@
       "en": "Florida is in the Eleventh Circuit and has many detention facilities, including Krome and the South Florida site. People are often transferred within the state. As of August 2026.",
       "es": "Florida está en el Undécimo Circuito y tiene muchos centros de detención, incluidos Krome y el sitio del sur de Florida. A las personas se las traslada a menudo dentro del estado. A agosto de 2026.",
       "ru": "Флорида — Одиннадцатый округ, здесь много центров содержания, включая Krome и объект на юге штата. Людей часто перевозят внутри штата. Состояние на август 2026."
-    }
+    },
+    "orgs": [
+      {
+        "name": "Americans for Immigrant Justice",
+        "href": "https://aijustice.org/defense-fund/",
+        "note": {
+          "en": "Immigrant Families Defense Fund — free legal representation at Florida's detention centers.",
+          "es": "Immigrant Families Defense Fund — representación legal gratuita en los centros de detención de Florida.",
+          "ru": "Immigrant Families Defense Fund — бесплатное юридическое представительство у центров содержания во Флориде."
+        }
+      }
+    ]
   }
 ]

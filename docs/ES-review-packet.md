@@ -48,7 +48,7 @@
 | billetera | cartera |
 | bodega (= магазин в мекс.) | almacén de depósito (storage) |
 
-Ниже — 1021 фрагментов по разделам. Отмечать нужно только те, где текст
+Ниже — 1027 фрагментов по разделам. Отмечать нужно только те, где текст
 звучит неестественно или неверно; остальное можно пропускать.
 
 **Если времени мало — порядок важности.** Первые три раздела люди читают
@@ -437,6 +437,7 @@
 - Todas las páginas
 - No somos abogados y no damos asesoría legal. Aquí solo hay hechos y enlaces a fuentes oficiales.
 - Información actualizada el 28 de julio de 2026. Las reglas cambian — mire la fecha.
+- Actualizado el 28 de julio de 2026
 - Cómo encontrarlo
 - Dónde está el número A
 - Qué significan estos papeles
@@ -1155,9 +1156,14 @@
 
 ---
 
-## Заметки по штатам  (`data/states.json`)
+## Заметки по штатам и организации помощи  (`data/states.json`)
 
 - **TX:** El Quinto Circuito apoyó al gobierno en la detención obligatoria. A Texas trasladan a menudo a personas desde otros estados. A julio de 2026.
 - **LA:** El Quinto Circuito apoyó al gobierno en la detención obligatoria. A Luisiana trasladan a menudo a personas desde otros estados. A julio de 2026.
 - **NY:** Nueva York tiene un programa de representación con fondos públicos para inmigrantes detenidos (NYIFUP). Confirme la cobertura actual con las organizaciones de abajo. A agosto de 2026.
 - **FL:** Florida está en el Undécimo Circuito y tiene muchos centros de detención, incluidos Krome y el sitio del sur de Florida. A las personas se las traslada a menudo dentro del estado. A agosto de 2026.
+- **CA · CHIRLA:** Coalition for Humane Immigrant Rights — servicios legales y apoyo a familias en toda California.
+- **TX · RAICES:** Organización sin fines de lucro que ofrece ayuda legal migratoria gratuita y de bajo costo en todo Texas.
+- **LA · LAAID:** Louisiana Advocates for Immigrants in Detention — voluntarios que ayudan cerca de los centros de detención de Luisiana: transporte, visitas, apoyo después de la liberación.
+- **NY · NYIFUP:** New York Immigrant Family Unity Project — representación con fondos públicos para neoyorquinos detenidos que no pueden pagar un abogado, explicado por el Vera Institute.
+- **FL · Americans for Immigrant Justice:** Immigrant Families Defense Fund — representación legal gratuita en los centros de detención de Florida.

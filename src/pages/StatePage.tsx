@@ -37,6 +37,7 @@ export function StatePage({
     <Layout lang={lang} pageKey={pageKey} ui={ui} title={`${st.name[lang]} · DETNAV`} description={d.lede}>
       <h1 className="page-h1">{st.name[lang]}</h1>
       <p className="lede">{d.lede}</p>
+      <p className="updated-badge">{ui.updatedShort}</p>
       <div className="kv">
         <span>{d.circuitLine}</span>
         <span>{dir.circuitNames[String(st.circuit)]}</span>
@@ -83,6 +84,16 @@ export function StatePage({
 
       <h2 className="page-h2">{d.helpH2}</h2>
       {st.funded_representation && <p className="body-p dim">{d.fundedLine}</p>}
+      {st.orgs?.map((o, i) => (
+        <div key={i} style={{ marginBottom: 14 }}>
+          <a className="ghost" href={o.href} target="_blank" rel="noopener noreferrer">
+            {o.name} ↗
+          </a>
+          <p className="body-p dim" style={{ marginTop: 4 }}>
+            {o.note[lang]}
+          </p>
+        </div>
+      ))}
       {d.helpLinks.map((h, i) => (
         <a key={i} className="ghost" href={h.href} target="_blank" rel="noopener noreferrer">
           {h.label} ↗

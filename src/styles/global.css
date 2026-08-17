@@ -284,6 +284,16 @@ ol.steps > li::before {
   height: 0;
   transform: translateY(-3px);
 }
+/* короткий бейдж даты обновления вверху content-страниц */
+.updated-badge {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-dim);
+  margin: 0 0 18px;
+}
+
 /* словарная статья: термин + определение */
 .terms {
   margin: 16px 0 20px;

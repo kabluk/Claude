@@ -23,6 +23,7 @@ export function ContentPage({
     >
       <h1 className="page-h1">{c.title}</h1>
       {c.lede && <p className="lede">{c.lede}</p>}
+      <p className="updated-badge">{ui.updatedShort}</p>
       <Blocks blocks={c.blocks} lang={lang} ui={ui} />
       <Footer ui={ui} />
     </Layout>

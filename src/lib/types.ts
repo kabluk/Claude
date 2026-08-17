@@ -96,6 +96,9 @@ export interface UIStrings {
   allPages: string
   disclaimer: string
   updated: string
+  // Короткая дата для бейджа вверху content-страниц — держать в паре с
+  // updated (тот же день), но без остального предложения.
+  updatedShort: string
   nav: Record<string, string>
   navGroups: { label: string; keys: string[] }[]
   iceGate: {

@@ -94,9 +94,13 @@ if (!reviewedNames.has('intake')) {
 // Заметки по штатам живут в данных, а не в контенте.
 const states = JSON.parse(readFileSync(join(ROOT, 'data/states.json'), 'utf8'))
 const stateNotes = states.filter((s) => s.notes?.es).map((s) => `- **${s.code}:** ${s.notes.es}`)
-if (stateNotes.length) {
-  total += stateNotes.length
-  sections.push(`## Заметки по штатам  (\`data/states.json\`)\n\n${stateNotes.join('\n')}`)
+const orgNotes = states.flatMap((s) =>
+  (s.orgs ?? []).filter((o) => o.note?.es).map((o) => `- **${s.code} · ${o.name}:** ${o.note.es}`),
+)
+const stateSection = [...stateNotes, ...orgNotes]
+if (stateSection.length) {
+  total += stateSection.length
+  sections.push(`## Заметки по штатам и организации помощи  (\`data/states.json\`)\n\n${stateSection.join('\n')}`)
 }
 
 const doneLine = REVIEWED.map(([f, d]) => `\`es/${f}.ts\` (${d})`).join(', ')

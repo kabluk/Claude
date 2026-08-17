@@ -8,6 +8,10 @@ export interface StateRec {
   circuit: number
   funded_representation: boolean
   notes: Record<Lang, string>
+  // Местные некоммерческие организации бесплатной/льготной юридической
+  // помощи по иммиграционным делам в этом штате — в дополнение к общим
+  // общенациональным каталогам (statePage.helpLinks). Необязательное поле.
+  orgs?: { name: string; href: string; note: Record<Lang, string> }[]
 }
 
 export interface CourtRec {
