@@ -70,6 +70,11 @@ approval). `A2-OUTREACH-SEND`/`A2-STRIPE-LIVE`/`A2-CLAIM-REBUILD` техниче
 (подписать сайт на свой мониторинг — 1 клик по verify-письму), Cloudflare
 zone-защита (Zone-токен), Stripe live, outreach.
 
+**Канонический репозиторий (зафиксировано D-185, 2026-08-15): `kabluk/Claude`,
+ветка `accessatlas`** — там весь код, история решений и автодеплой.
+`kabluk/accessatlas` — ПУСТОЙ (0 коммитов), НЕ каноничен, использовать нельзя.
+Репозитории НЕ «совпадают»: один рабочий, другой пуст.
+
 ⚠️ **Remote периодически сбрасывается на пустой `kabluk/accessatlas`** — перед
 КАЖДЫМ push проверяй `git remote -v`, рабочий адрес
 `https://github.com/kabluk/Claude.git` (случалось 3+ раз за сессию 2026-08-15).
