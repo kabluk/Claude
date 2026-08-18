@@ -114,6 +114,28 @@ export function Blocks({ blocks, lang, ui }: { blocks: Block[]; lang: Lang; ui: 
                 ))}
               </div>
             )
+          case 'compare':
+            return (
+              <div key={i} className="cmp">
+                {b.title && <div className="cmp-t">{b.title}</div>}
+                <div className="cmp-grid">
+                  {[b.a, b.b].map((col, j) => (
+                    <div key={j} className="cmp-col">
+                      <div className="cmp-h">{col.h}</div>
+                      <div className="cmp-sub">{col.sub}</div>
+                      <ul>
+                        {col.rows.map((r, k) => (
+                          <li key={k}>
+                            <Inline text={r} />
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+                {b.note && <p className="cmp-note">{b.note}</p>}
+              </div>
+            )
           case 'terms':
             return (
               <dl key={i} className="terms">

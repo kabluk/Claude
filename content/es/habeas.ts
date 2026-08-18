@@ -27,6 +27,39 @@ const c: PageContent = {
       dim: true,
       text: 'Estado a julio de 2026. Es el panorama general, no una predicción para un caso concreto.',
     },
+    { kind: 'h2', text: 'Dos sistemas: dónde se decide la fianza y dónde el habeas' },
+    {
+      kind: 'compare',
+      title: 'Dos caminos hacia la libertad',
+      a: {
+        h: 'Bond · fianza',
+        sub: 'Corte de inmigración (EOIR)',
+        rows: [
+          'La decide un juez de inmigración — EOIR es parte del Departamento de Justicia, un sistema de agencia',
+          'Tras el memo de ICE de 2025 y las decisiones de la BIA, a categorías amplias no les corresponde audiencia de fianza (mandatory detention)',
+          'Incluso una fianza aprobada no resuelve el caso de expulsión — el proceso en la corte continúa',
+        ],
+      },
+      b: {
+        h: 'Habeas corpus',
+        sub: 'Corte federal de distrito',
+        rows: [
+          'La decide un juez federal independiente (`28 U.S.C. § 2241`) — no responde ni a ICE ni a EOIR',
+          'Se revisa si la detención en sí es legal — incluso donde la agencia negó la fianza',
+          'Junto con la petición, el abogado puede pedir que se prohíba el traslado y se pause la expulsión (TRO / stay)',
+        ],
+      },
+      note: 'Los caminos no se excluyen entre sí. Cuál aplica a un caso concreto, y en qué orden, lo determina el abogado.',
+    },
+    {
+      kind: 'callout',
+      tone: 'y',
+      title: 'El habeas es sobre la detención — no un escudo contra la deportación',
+      body: [
+        'Presentar la petición no detiene por sí sola una expulsión. La suspensión (stay) o la orden de emergencia (TRO) es una decisión aparte de la corte — el abogado la solicita.',
+        'Si alguien le dice que presentar el habeas protege «automáticamente» contra la deportación, pregúntele al abogado qué está pidiendo exactamente a la corte en ese caso.',
+      ],
+    },
     { kind: 'h2', text: 'Cómo funciona' },
     {
       kind: 'list',

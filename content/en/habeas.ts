@@ -27,6 +27,39 @@ const c: PageContent = {
       dim: true,
       text: 'As of July 2026. This is the overall picture, not a prediction for a specific case.',
     },
+    { kind: 'h2', text: 'Two systems: where bond is decided, and where habeas is' },
+    {
+      kind: 'compare',
+      title: 'Two paths to release',
+      a: {
+        h: 'Bond',
+        sub: 'Immigration court (EOIR)',
+        rows: [
+          'Decided by an immigration judge — EOIR is part of the Department of Justice, an agency system',
+          'After the 2025 ICE memo and BIA decisions, broad categories get no bond hearing at all (mandatory detention)',
+          'Even a granted bond does not resolve the removal case — the court process continues',
+        ],
+      },
+      b: {
+        h: 'Habeas corpus',
+        sub: 'Federal district court',
+        rows: [
+          'Decided by an independent federal judge (`28 U.S.C. § 2241`) — answerable to neither ICE nor EOIR',
+          'Reviews the lawfulness of the detention itself — including where the agency refused bond',
+          'Alongside the petition, the attorney can ask to bar transfer and pause removal (TRO / stay)',
+        ],
+      },
+      note: 'The paths do not exclude each other. Which applies to a specific case, and in what order, is for the attorney to determine.',
+    },
+    {
+      kind: 'callout',
+      tone: 'y',
+      title: 'Habeas is about the detention — not a shield against deportation',
+      body: [
+        'Filing the petition does not by itself stop a removal. A stay or an emergency order (TRO) is a separate ruling the court makes — the attorney asks for it.',
+        'If someone tells you that filing habeas "automatically" protects against deportation, ask the attorney what exactly they are requesting from the court in that case.',
+      ],
+    },
     { kind: 'h2', text: 'How it works' },
     {
       kind: 'list',

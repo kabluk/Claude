@@ -17,7 +17,7 @@
 право», «вам следует», «мы рекомендуем», «ваш лучший вариант» недопустимы
 по построению продукта — если такая фраза встретится, это ошибка, сообщите.
 
-**Уже вычитано (в пакет не входит):** `es/home.ts` (16.08.2026), `es/firstcall.ts` (16.08.2026), `es/connect.ts` (16.08.2026), `es/prepare.ts` (16.08.2026), `es/deadlines.ts` (16.08.2026), `es/habeas.ts` (16.08.2026), `es/journey.ts` (16.08.2026).
+**Уже вычитано (в пакет не входит):** `es/home.ts` (16.08.2026), `es/firstcall.ts` (16.08.2026), `es/connect.ts` (16.08.2026), `es/prepare.ts` (16.08.2026), `es/deadlines.ts` (16.08.2026), `es/journey.ts` (16.08.2026).
 
 **Частично вычитано:** `content/intake/es.ts` — носитель нашёл там отдельные
 ошибки (регистр в скрипте разговора, кальки), они исправлены, но файл самый
@@ -48,7 +48,7 @@
 | billetera | cartera |
 | bodega (= магазин в мекс.) | almacén de depósito (storage) |
 
-Ниже — 1027 фрагментов по разделам. Отмечать нужно только те, где текст
+Ниже — 1076 фрагментов по разделам. Отмечать нужно только те, где текст
 звучит неестественно или неверно; остальное можно пропускать.
 
 **Если времени мало — порядок важности.** Первые три раздела люди читают
@@ -359,6 +359,60 @@
 - Formularios y avisos: qué son
 - Habeas corpus — en detalle
 - No faltar a la audiencia
+- Verificar al abogado
+
+---
+
+## Habeas corpus · corte federal  (`es/habeas.ts`)
+
+- Habeas corpus · corte federal
+- El camino por el que más se logra la salida ahora. Explicamos cómo funciona. La petición la prepara y la presenta un abogado — esto es un mapa, no instrucciones para presentarla por su cuenta.
+- Qué es
+- El habeas corpus es una petición a una corte federal de distrito: un juez examina si el gobierno mantiene detenida a la persona legalmente.
+- Es otro sistema, no la corte de inmigración. El juez federal no responde a la agencia: puede exigir explicaciones al gobierno, ordenar una audiencia de salida — u ordenar la salida.
+- Por qué se habla de esto ahora
+- Desde 2025 la fianza y el parole se conceden muy rara vez, y el centro de gravedad se movió a las cortes federales: en febrero de 2026 se presentaban en el país unas 2,000 peticiones de habeas por semana — un año antes eran unas 20. Jueces federales de todas las posturas fijan audiencias y ordenan salidas cuando la petición está bien preparada.
+- Los abogados de AILA, la asociación de abogados de inmigración, lo dicen claro: para un número creciente de detenidos, el habeas en la corte federal es en la práctica el único camino a la libertad.
+- Estado a julio de 2026. Es el panorama general, no una predicción para un caso concreto.
+- Dos sistemas: dónde se decide la fianza y dónde el habeas
+- Dos caminos hacia la libertad
+- Bond · fianza
+- Corte de inmigración (EOIR)
+- La decide un juez de inmigración — EOIR es parte del Departamento de Justicia, un sistema de agencia
+- Tras el memo de ICE de 2025 y las decisiones de la BIA, a categorías amplias no les corresponde audiencia de fianza (mandatory detention)
+- Incluso una fianza aprobada no resuelve el caso de expulsión — el proceso en la corte continúa
+- Habeas corpus
+- Corte federal de distrito
+- La decide un juez federal independiente (`28 U.S.C. § 2241`) — no responde ni a ICE ni a EOIR
+- Se revisa si la detención en sí es legal — incluso donde la agencia negó la fianza
+- Junto con la petición, el abogado puede pedir que se prohíba el traslado y se pause la expulsión (TRO / stay)
+- Los caminos no se excluyen entre sí. Cuál aplica a un caso concreto, y en qué orden, lo determina el abogado.
+- El habeas es sobre la detención — no un escudo contra la deportación
+- Presentar la petición no detiene por sí sola una expulsión. La suspensión (stay) o la orden de emergencia (TRO) es una decisión aparte de la corte — el abogado la solicita.
+- Si alguien le dice que presentar el habeas protege «automáticamente» contra la deportación, pregúntele al abogado qué está pidiendo exactamente a la corte en ese caso.
+- Cómo funciona
+- La petición se presenta en la corte federal de distrito del lugar de detención — por eso importa tanto dónde está el centro
+- Un traslado a otro estado cambia la corte y las reglas aplicables — una razón más para no esperar
+- Junto con la petición, el abogado puede pedir una orden judicial urgente contra el traslado o la deportación (TRO)
+- El juez puede fijar una audiencia, ordenar la salida — o negar: el resultado depende del caso concreto
+- La petición la prepara y la presenta un abogado con experiencia federal
+- Su parte — la preparación
+- El expediente de lazos con EE. UU.: dirección, años de residencia, familia, trabajo, comunidad — las tareas están en el cuestionario
+- La cronología: cuándo y dónde detuvieron a la persona, cuándo la trasladaron, qué papeles le dieron
+- El número A y el nombre exacto del centro
+- Documentos médicos, si hay enfermedades
+- Su lista de tareas
+- Armar el paquete de documentos para el abogado
+- Preguntas para el abogado
+- Si el habeas encaja en este caso, y por qué
+- En qué circuito federal está el centro y qué cambia eso
+- Qué hace falta de la familia y para cuándo
+- Qué cambia si trasladan a la persona a otro estado
+- Lo que no hacemos
+- No preparamos ni presentamos peticiones y no damos asesoría legal. Solo un abogado puede determinar si este camino aplica a un caso concreto.
+- Si alguien que no es un abogado con licencia verificada promete «presentar el habeas» y una salida rápida por dinero — verifíquelo en los registros.
+- Abogado: tres caminos
+- La petición de habeas la prepara y la presenta un abogado — ahí empieza el camino.
 - Verificar al abogado
 
 ---

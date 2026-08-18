@@ -11,6 +11,13 @@ export type Block =
   | { kind: 'steps'; title?: string; items: string[] }
   | { kind: 'fields'; title?: string; items: string[] }
   | { kind: 'terms'; items: { term: string; def: string }[] }
+  | {
+      kind: 'compare'
+      title?: string
+      a: { h: string; sub: string; rows: string[] }
+      b: { h: string; sub: string; rows: string[] }
+      note?: string
+    }
   | { kind: 'callout'; tone: Tone; title: string; body: string[] }
   | { kind: 'ext'; href: string; label: string; gate?: boolean }
   | { kind: 'ilink'; page: string; label: string }

@@ -6,3 +6,4 @@ dev-dist/
 detnav-*.zip
 .astro/
 carrierradar/data/raw/
+dist-playbook/
