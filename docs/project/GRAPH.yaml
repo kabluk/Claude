@@ -1859,7 +1859,7 @@ nodes:
   - id: R-LINKROT
     title: "Плановая проверка website/sourceRefs 574 агентств на 404/смену домена"
     owner: data-engineer
-    status: todo
+    status: done
     depends_on: []
     inputs: [data/a11y/agencies.json]
     scope: [scripts/check-linkrot.mjs]
@@ -1868,10 +1868,10 @@ nodes:
       - node scripts/check-linkrot.mjs   # отчёт 404/redirect/timeout по каждому website + sourceRefs
       - "canary: подставить заведомо мёртвый URL в тестовую запись -> скрипт его ловит; откатить"
     max_attempts: 3
-    attempts: 0
+    attempts: 1
     risk: low
     approval_required: false
-    notes: "todo, технически разблокирован прямо сейчас — read-only HTTP-проверка внешних сайтов, ничего не пишет в прод, деплоя не требует. Результат — отчёт для review, не автоправка (данные не выдумывать, D-047: находки не превращаются в автоудаление записей без проверки человеком). Не в фокусе D-174 (не двигает лиды), но безопасный кандидат для отдельного захода."
+    notes: "done (2026-08-18). scripts/check-linkrot.mjs: read-only, 1694 уникальных URL (website + sourceRefs, дедуплицированы) из 574 агентств, concurrency-пул + AbortSignal timeout, классификация UNREACHABLE/NOT_FOUND/DOMAIN_CHANGE/SERVER_ERROR/BLOCKED/REDIRECT/OK (classify() экспортирована, чистая функция). Живой прогон: 83/1694 проблемных (14 UNREACHABLE, 14 NOT_FOUND, 21 DOMAIN_CHANGE, 22 SERVER_ERROR, 12 BLOCKED) — подробности в docs/project/domains/data.md. Канарейка НЕ мутировала agencies.json (правка файла вне scope узла была заблокирована песочницей автоматически — это правильное поведение, не обойдено): вместо этого classify() напрямую вызван с заведомо мёртвым доменом (.invalid) -> UNREACHABLE, control-URL -> OK; дополнительно живой прогон уже поймал настоящий кейс (tpgi.com -> редирект на vispero.com, DOMAIN_CHANGE), что и есть сквозное доказательство на реальных данных. Ничего не автоправлено (D-047) — находки переданы человеку в отчёте."
 
   - id: R-STALE-DATA
     title: "Отчёт «N профилей не сверялись > 180 дней» из lastVerified"

@@ -38,9 +38,10 @@ push в него ничего не задеплоит (0 прогонов `deplo
 не откатился.
 
 **Свободные незаблокированные узлы (zero-cost, approval не нужен):**
-`R-LINKROT` (проверка 574 website/sourceRefs на 404), `R-STALE-DATA`
-(отчёт по `lastVerified` > 180 дней) — оба `status: todo`, `depends_on: []`
-в `GRAPH.yaml`. `R-HEALTH-CRON` тоже `todo`, но `approval_required: true`
+`R-LINKROT` — **done (2026-08-18)**: `scripts/check-linkrot.mjs`, отчёт в
+`docs/project/domains/data.md` (83/1694 проблемных URL, ничего не автоправлено).
+`R-STALE-DATA` (отчёт по `lastVerified` > 180 дней) остаётся `status: todo`,
+`depends_on: []` в `GRAPH.yaml`. `R-HEALTH-CRON` тоже `todo`, но `approval_required: true`
 (новый класс автописьма владельцу). Ждут владельца отдельно:
 `R-SELF-MONITOR` (1 клик), Cloudflare zone-токен, Stripe live, outreach,
 `a11y-focus-invisible` Tab-проверка. Полный список — в теле промпта этой
