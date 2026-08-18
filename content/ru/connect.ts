@@ -33,7 +33,17 @@ const c: PageContent = {
     {
       kind: 'ext',
       href: 'https://www.gettingout.com',
-      label: 'Сайт GettingOut — счёт для звонков и сообщений',
+      label: 'Сайт GettingOut — счёт для звонков и сообщений (приложение — там же)',
+    },
+    {
+      kind: 'ext',
+      href: 'https://securustech.net',
+      label: 'Сайт Securus — если учреждение обслуживает Securus',
+    },
+    {
+      kind: 'ext',
+      href: 'https://www.icsolutions.com',
+      label: 'Сайт ICSolutions — если учреждение обслуживает ICSolutions',
     },
     {
       kind: 'callout',

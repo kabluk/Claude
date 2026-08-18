@@ -1,4 +1,18 @@
-import type { PageContent } from '@/lib/types'
+import type { Block, PageContent } from '@/lib/types'
+import { PWYW_URL } from '@/lib/support'
+
+// Блок «поддержать» появляется, только когда в src/lib/support.ts вписана
+// ссылка Stripe (pay what you want). Скачивание — бесплатно всегда.
+const pwyw: Block[] = PWYW_URL
+  ? [
+      {
+        kind: 'p',
+        dim: true,
+        text: 'Файл бесплатный и останется бесплатным. Если хотите поддержать работу — сумма на ваше усмотрение, оплата на stripe.com.',
+      },
+      { kind: 'ext', href: PWYW_URL, label: 'Поддержать — любая сумма' },
+    ]
+  : []
 
 const c: PageContent = {
   title: 'План на случай задержания',
@@ -184,6 +198,13 @@ const c: PageContent = {
         'Если его найдут при задержании, в нём окажутся имена и адреса близких. Дома — план, в кармане — только карта прав.',
       ],
     },
+    { kind: 'h2', text: 'Плейбук целиком — PDF для печати и пересылки' },
+    {
+      kind: 'p',
+      text: 'Ключевые разделы сайта одним файлом: первая ночь, этот план, карта прав, связь и деньги, маршрут, habeas, словарь — со всеми ссылками. Отправьте файл близким и распечатайте экземпляр домой.',
+    },
+    { kind: 'ext', href: '/playbook/detnav-playbook-ru.pdf', label: 'Скачать плейбук (PDF, ~25 страниц)' },
+    ...pwyw,
     { kind: 'ilink', page: 'docpack', label: 'Собрать пакет документов для адвоката' },
     { kind: 'ilink', page: 'documents', label: 'Что означают бумаги и что не подписывать' },
     { kind: 'ilink', page: 'intake', label: 'Если человека уже задержали — с чего начать' },

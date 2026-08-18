@@ -1,4 +1,18 @@
-import type { PageContent } from '@/lib/types'
+import type { Block, PageContent } from '@/lib/types'
+import { PWYW_URL } from '@/lib/support'
+
+// The support block appears only once a Stripe pay-what-you-want link is set
+// in src/lib/support.ts. The download itself is free, always.
+const pwyw: Block[] = PWYW_URL
+  ? [
+      {
+        kind: 'p',
+        dim: true,
+        text: 'The file is free and will stay free. If you want to support the work — any amount you choose, paid on stripe.com.',
+      },
+      { kind: 'ext', href: PWYW_URL, label: 'Support — any amount' },
+    ]
+  : []
 
 const c: PageContent = {
   title: 'A plan in case of detention',
@@ -184,6 +198,13 @@ const c: PageContent = {
         'If it is found during a detention, it holds the names and addresses of your loved ones. The plan stays home; only the rights card goes in your pocket.',
       ],
     },
+    { kind: 'h2', text: 'The whole playbook — a PDF to print and share' },
+    {
+      kind: 'p',
+      text: 'The key sections of the site in one file: the first night, this plan, the rights card, calls and money, the road, habeas, the glossary — with every link. Send the file to your family and print a copy for home.',
+    },
+    { kind: 'ext', href: '/playbook/detnav-playbook-en.pdf', label: 'Download the playbook (PDF, ~25 pages)' },
+    ...pwyw,
     { kind: 'ilink', page: 'docpack', label: 'Assemble the document packet for the attorney' },
     { kind: 'ilink', page: 'documents', label: 'What the papers mean and what not to sign' },
     { kind: 'ilink', page: 'intake', label: 'If someone is already detained — where to start' },

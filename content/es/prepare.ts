@@ -1,4 +1,18 @@
-import type { PageContent } from '@/lib/types'
+import type { Block, PageContent } from '@/lib/types'
+import { PWYW_URL } from '@/lib/support'
+
+// El bloque de apoyo aparece solo cuando hay un enlace de Stripe (pay what
+// you want) en src/lib/support.ts. La descarga es gratis, siempre.
+const pwyw: Block[] = PWYW_URL
+  ? [
+      {
+        kind: 'p',
+        dim: true,
+        text: 'El archivo es gratis y seguirá siendo gratis. Si quiere apoyar el trabajo — la cantidad que usted elija, el pago ocurre en stripe.com.',
+      },
+      { kind: 'ext', href: PWYW_URL, label: 'Apoyar — cualquier cantidad' },
+    ]
+  : []
 
 const c: PageContent = {
   title: 'Un plan por si hay una detención',
@@ -184,6 +198,13 @@ const c: PageContent = {
         'Si lo encuentran durante una detención, contiene los nombres y direcciones de sus seres queridos. El plan se queda en casa; en el bolsillo, solo la tarjeta de derechos.',
       ],
     },
+    { kind: 'h2', text: 'El playbook completo — un PDF para imprimir y compartir' },
+    {
+      kind: 'p',
+      text: 'Las secciones clave del sitio en un solo archivo: la primera noche, este plan, la tarjeta de derechos, llamadas y dinero, el camino, el habeas, el glosario — con todos los enlaces. Envíe el archivo a sus seres queridos e imprima una copia para la casa.',
+    },
+    { kind: 'ext', href: '/playbook/detnav-playbook-es.pdf', label: 'Descargar el playbook (PDF, ~25 páginas)' },
+    ...pwyw,
     { kind: 'ilink', page: 'documents', label: 'Qué significan los papeles y qué no firmar' },
     { kind: 'ilink', page: 'intake', label: 'Si ya detuvieron a alguien — por dónde empezar' },
   ],

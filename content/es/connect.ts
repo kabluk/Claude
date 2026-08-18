@@ -33,7 +33,17 @@ const c: PageContent = {
     {
       kind: 'ext',
       href: 'https://www.gettingout.com',
-      label: 'Sitio de GettingOut — cuenta para llamadas y mensajes',
+      label: 'Sitio de GettingOut — cuenta para llamadas y mensajes (la aplicación está ahí mismo)',
+    },
+    {
+      kind: 'ext',
+      href: 'https://securustech.net',
+      label: 'Sitio de Securus — si el centro usa Securus',
+    },
+    {
+      kind: 'ext',
+      href: 'https://www.icsolutions.com',
+      label: 'Sitio de ICSolutions — si el centro usa ICSolutions',
     },
     {
       kind: 'callout',

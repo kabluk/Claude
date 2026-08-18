@@ -17,7 +17,7 @@
 право», «вам следует», «мы рекомендуем», «ваш лучший вариант» недопустимы
 по построению продукта — если такая фраза встретится, это ошибка, сообщите.
 
-**Уже вычитано (в пакет не входит):** `es/home.ts` (16.08.2026), `es/firstcall.ts` (16.08.2026), `es/connect.ts` (16.08.2026), `es/prepare.ts` (16.08.2026), `es/deadlines.ts` (16.08.2026), `es/journey.ts` (16.08.2026).
+**Уже вычитано (в пакет не входит):** `es/home.ts` (16.08.2026), `es/firstcall.ts` (16.08.2026), `es/deadlines.ts` (16.08.2026), `es/journey.ts` (16.08.2026).
 
 **Частично вычитано:** `content/intake/es.ts` — носитель нашёл там отдельные
 ошибки (регистр в скрипте разговора, кальки), они исправлены, но файл самый
@@ -48,7 +48,7 @@
 | billetera | cartera |
 | bodega (= магазин в мекс.) | almacén de depósito (storage) |
 
-Ниже — 1076 фрагментов по разделам. Отмечать нужно только те, где текст
+Ниже — 1201 фрагментов по разделам. Отмечать нужно только те, где текст
 звучит неестественно или неверно; остальное можно пропускать.
 
 **Если времени мало — порядок важности.** Первые три раздела люди читают
@@ -144,6 +144,62 @@
 - No presentamos quejas por usted y no damos asesoría legal. Mostramos a dónde acude la gente y qué es importante registrar.
 - Abogado: tres caminos
 - Habeas corpus · corte federal
+
+---
+
+## Cómo comunicarse con la persona  (`es/connect.ts`)
+
+- Cómo comunicarse con la persona
+- La regla clave: él puede llamarla a usted. Usted no puede llamarlo a él. Abajo, paso a paso — llamadas, mensajes, video, dinero y cartas.
+- Por dónde empezar
+- Averigüe qué operador telefónico usa su centro.
+- En su propio teléfono, desactive el bloqueo de números desconocidos — si no, él no podrá comunicarse.
+- Abra una cuenta y ponga un poco de dinero.
+- 1 · Llamadas
+- Él llama desde los teléfonos de la unidad de vivienda. Usted no puede llamarlo — solo él puede llamarla. Si la cuenta está en cero, no hay llamadas.
+- Cómo activar las llamadas
+- Averigüe el operador del centro — casi siempre es `GettingOut` (la empresa ViaPath); algunos usan `Securus` o `ICSolutions`.
+- Abra el sitio del operador en el navegador (o su aplicación) y cree una cuenta.
+- Vincule la cuenta por el `A-Number` y el centro.
+- Elija cómo: recargar su cuenta personal — él llama a cualquiera; o vincularla a su número (AdvancePay) — él la llama solo a usted, y normalmente cuesta menos.
+- Ponga poco — el mínimo suele ser `$10`. Si lo trasladan a otro centro, el dinero no se mueve con él.
+- Sitio de GettingOut — cuenta para llamadas y mensajes (la aplicación está ahí mismo)
+- Sitio de Securus — si el centro usa Securus
+- Sitio de ICSolutions — si el centro usa ICSolutions
+- 9233# — gratis y sin monitoreo
+- Marcar `9233#` desde un teléfono del centro llega a la línea gratuita de Freedom for Immigrants. Las llamadas normales se graban; ICE no monitorea esta.
+- Los voluntarios hablan muchos idiomas, ayudan y pueden avisar a su familia dónde está la persona. Horario: lun–vie, 8 a.m.–8 p.m. hora del Pacífico.
+- Una llamada normal se graba y tiene tiempo limitado (unos 15–20 minutos). El precio ronda 7 centavos por minuto a nivel nacional, y las internacionales cuestan más; varía según el centro. Decir el A-Number por teléfono es seguro; los detalles del caso no. El programa de llamadas gratuitas que tenían algunos centros lo eliminó ICE en 2026 — cuente con que la comunicación se paga.
+- La primera llamada: cómo desbloquear números
+- 2 · Mensajes (texto)
+- No son mensajes de texto normales a un teléfono. Son mensajes dentro del sistema del operador — él los lee en una tableta.
+- Cómo enviar
+- El mismo operador y la misma cuenta que para las llamadas.
+- Abra la sección «Messages» en el sitio del operador.
+- Pague «estampillas» (créditos) — en el sitio, por teléfono o en la aplicación, mínimo suele ser `$10`.
+- Con ese mismo dinero puede enviar una foto y un videomensaje de 30 segundos.
+- No todos los centros tienen tabletas. La entrega se demora y todo se revisa.
+- 3 · Videollamadas
+- Algunos centros tienen videollamadas — con cita previa, por el sitio del operador o un quiosco en el vestíbulo. De pago, y la cuenta hace falta con anticipación.
+- Esto no es una visita en persona — tiene sus propias reglas y horarios.
+- La visita
+- 4 · Dinero para lo diario (adentro)
+- Esta es una cuenta aparte — no la de las llamadas. De ella la persona compra comida, higiene y a veces tiempo de teléfono adentro. A menudo es otro proveedor.
+- Cómo depositar
+- Busque las instrucciones de dinero en la página de este centro en ICE (la sección commissary / trust account) — los datos cambian por centro.
+- Los métodos, los que haya — depende del lugar: en línea con tarjeta con el proveedor (`Access Corrections`, `TouchPay`, `ViaPath/ConnectNetwork`, `Western Union`); por teléfono con el proveedor; por correo con un money order a la dirección del centro; en persona en un quiosco del vestíbulo.
+- Todos piden el nombre completo y el `A-Number` (a menudo también la fecha de nacimiento).
+- Deposite solo con el proveedor indicado para este centro. Tras un traslado el dinero se queda atascado y es difícil recuperarlo.
+- Si no hay quién ayude
+- El Freedom for Immigrants Commissary Fund pone dinero en la cuenta de quienes no tienen a nadie.
+- El dinero para lo diario no se puede retirar en efectivo — solo se gasta adentro.
+- 5 · Cartas y postales
+- Una postal común por correo llega más seguro que cualquier servicio
+- El A-Number va en el sobre y en cada envío, siempre
+- Libros — solo nuevos y directamente de una tienda o editorial, no de un particular
+- La pasta suave pasa más rápido: la dura se revisa más y muchas veces no entra
+- Cada centro tiene sus reglas — confirme por teléfono antes de enviar
+- El contacto cálido y regular es lo que más protege a la persona adentro.
 
 ---
 
@@ -480,6 +536,85 @@
 - Hablar con nosotros
 - Esta página normalmente la compartimos en persona. Si recibió el enlace — responda a quien se lo envió y acuerde una conversación corta: 20 minutos, sin compromisos.
 - No somos abogados y no damos asesoría legal — y a su gente se lo decimos en cada página.
+
+---
+
+## Un plan por si hay una detención  (`es/prepare.ts`)
+
+- El archivo es gratis y seguirá siendo gratis. Si quiere apoyar el trabajo — la cantidad que usted elija, el pago ocurre en stripe.com.
+- Apoyar — cualquier cantidad
+- Un plan por si hay una detención
+- Plan familiar por si hay una detención de ICE — plantilla para imprimir · DETNAV
+- Un plan listo para la familia: a quién llamar, quién recoge a los niños, dónde están los papeles, el poder y el banco por adelantado. Se llena a mano en papel — nada se ingresa en línea.
+- Complételo a mano en papel y guárdelo en casa, para que su familia sepa qué hacer en la primera hora. No se ingresa nada en línea.
+- Por qué en papel y no en una aplicación
+- En la primera hora tras una detención, en casa hay pánico y las cosas simples se olvidan: el número de quién, dónde están los papeles, quién recoge a los niños. Una hoja llenada con tiempo responde esas preguntas de inmediato.
+- A propósito no hacemos un formulario en línea: ningún servidor, incluido el nuestro, debe ver estos datos. Es una nota para la familia, no un cuestionario.
+- Imprima esta página, complétela a mano y déjela donde su familia la encuentre. Actualícela cada pocos meses.
+- A quién llamar primero
+- Persona de confianza — quién y teléfono
+- Segunda persona, si la primera no responde
+- Abogado u organización — nombre y teléfono
+- Los niños
+- Quién recoge a los niños de la escuela o guardería
+- Teléfono de esa persona
+- Dónde están los documentos de los niños
+- La casa y lo cotidiano
+- Dónde están los papeles importantes (pasaportes, contratos)
+- Quién paga la renta mientras no estoy
+- Quién cuida a la mascota
+- Los medicamentos que tomo y dónde están
+- Condiciones que deben conocerse
+- Qué saber de memoria
+- El teléfono de la persona de confianza — memorícelo, no solo lo anote
+- El código para llamar gratis a la línea de quejas del DHS OIG desde la detención: 9233#
+- Arme una lista personal de tareas — con anticipación
+- Una encuesta de dos minutos arma una lista de tareas según las circunstancias de la familia — tanto para una detención como para prepararse. Las respuestas se quedan en el navegador. Imprima la lista terminada y guárdela junto con este plan.
+- Hacer la encuesta y recibir la lista de tareas
+- Entregue el plan a una persona de confianza — hoy
+- Entregue con tiempo el plan lleno y el paquete de documentos ya armado a alguien de su confianza. Así empieza a actuar en el momento en que lo detienen, en vez de perder un día en averiguar qué pasó.
+- Acuerden una señal simple: cada noche usted le envía una palabra de que todo está bien. Si faltan dos noches seguidas, empieza con los pasos de abajo.
+- Qué hace la persona de confianza si usted se queda en silencio
+- Lo busca en el localizador de ICE — por nombre y país de nacimiento, o por el número A del plan.
+- Llama al abogado o a la organización cuyos teléfonos están anotados arriba en el plan.
+- No firma nada por usted ni le paga a nadie sin verificar antes.
+- Le entrega al abogado el paquete de documentos que usted le dio con anticipación.
+- Dinero y propiedad: solo funciona si se hace antes
+- Mientras una persona está detenida, la renta, el préstamo del carro y la cuenta del banco no se detienen. Sus seres queridos solo podrán actuar legalmente por ella con documentos firmados de antemano — después ya no se pueden hacer.
+- Poder financiero (durable power of attorney)
+- Un poder financiero duradero, firmado ante notario a nombre de una persona de confianza, le permite a esa persona terminar legalmente el contrato de renta, recoger las pertenencias, tratar con el banco y vender el carro. Sin ese documento, el arrendador y el banco ni siquiera están obligados a atenderla.
+- Se firma ante notario con anticipación. Qué facultades incluir es una pregunta para un abogado: el texto depende del estado.
+- La cuenta del banco
+- La verificación de inicio de sesión atada solo a SMS deja de funcionar cuando el teléfono está confiscado o la línea se corta. En la configuración del banco normalmente se puede agregar la verificación por correo electrónico — conservar el acceso al correo es más sencillo.
+- Muchos bancos aceptan un poder solo en su propio formulario y solo en persona. Ir a la sucursal junto con la persona de confianza, por adelantado, quita esa barrera.
+- La vivienda rentada y las pertenencias
+- Un apartamento que se queda sin pagar se convierte en deuda: multas por romper el contrato, cobradores, y las pertenencias van a un almacén de depósito (storage) o a la calle. Una persona con poder puede terminar el contrato según las reglas y recoger las cosas.
+- El carro financiado o en arrendamiento (lease)
+- Un carro con pagos vencidos el prestamista lo recupera (repossession) y lo vende en subasta. El saldo de la deuda queda a nombre del dueño, y la parte condonada puede contarse como ingreso gravable (formulario 1099-C).
+- Los caminos legales que existen: un poder con la facultad de vender el vehículo, o el traspaso oficial del préstamo o del lease a otra persona. Las condiciones están en el contrato y con el prestamista.
+- Las cuentas de retiro: 401(k) e IRA
+- Los ahorros en un 401(k) o IRA siguen siendo propiedad de la persona sin importar su estatus migratorio o una deportación — no se pierden.
+- Al retirarlos antes de los 59½ años normalmente aplica una multa del IRS del 10% más impuestos; por eso muchas veces las cuentas se dejan crecer hasta la edad de retiro. Desde el extranjero, el estatus fiscal se certifica con el formulario W-8BEN. Qué hacer con una cuenta concreta es una pregunta para un asesor de impuestos.
+- Formulario W-8BEN — página oficial del IRS
+- Tres tareas para esta semana
+- Cambiar la verificación de inicio de sesión del banco de SMS a correo electrónico, o agregar el correo como método de respaldo.
+- Firmar ante notario un poder financiero y registrarlo en el banco en persona.
+- Guardar copias del SSN/ITIN, de los contratos de renta y préstamo y de los papeles del carro en un almacenamiento cifrado, y darle acceso a la persona de confianza.
+- Esto es un mapa, no consejo legal
+- Qué incluir en el poder, cómo terminar un contrato y qué hacer con una cuenta de retiro dependen del estado y del contrato. Esas decisiones se toman con un abogado y un asesor de impuestos, no con una nota de internet.
+- Qué llevar consigo
+- El plan lleno se queda en casa. Consigo, solo la tarjeta de derechos, pequeña. Tome una foto de la tarjeta y guárdela en el teléfono.
+- TARJETA DE DERECHOS · LLEVAR CONSIGO
+- No quiero hablar, responder preguntas ni firmar documentos sin un abogado. No doy consentimiento para entrar a mi casa sin una orden judicial firmada por un juez.
+- I do not want to talk, answer questions, or sign documents without a lawyer. I do not consent to entry into my home without a judicial warrant signed by a judge.
+- No lleve consigo el plan con nombres y teléfonos
+- Si lo encuentran durante una detención, contiene los nombres y direcciones de sus seres queridos. El plan se queda en casa; en el bolsillo, solo la tarjeta de derechos.
+- El playbook completo — un PDF para imprimir y compartir
+- Las secciones clave del sitio en un solo archivo: la primera noche, este plan, la tarjeta de derechos, llamadas y dinero, el camino, el habeas, el glosario — con todos los enlaces. Envíe el archivo a sus seres queridos e imprima una copia para la casa.
+- /playbook/detnav-playbook-es.pdf
+- Descargar el playbook (PDF, ~25 páginas)
+- Qué significan los papeles y qué no firmar
+- Si ya detuvieron a alguien — por dónde empezar
 
 ---
 

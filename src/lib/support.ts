@@ -4,3 +4,8 @@
 // Оплата целиком на stripe.com — на сайте не появляется ни форм, ни скриптов
 // (Zero-Data не нарушается).
 export const SUPPORT_URL = ''
+
+// Pay-what-you-want за плейбук (Stripe Payment Link с «Customers choose
+// what to pay», минимальная сумма 0 или $1). Пока пусто — блок «поддержать»
+// рядом со скачиванием плейбука не показывается. Скачивание бесплатно всегда.
+export const PWYW_URL = ''
