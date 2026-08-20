@@ -27,8 +27,15 @@ const states = JSON.parse(readFileSync(join(ROOT, 'data/states.json'), 'utf8'))
 const urlFor = (lang, key) =>
   `${ORIGIN}/${lang}/${slugs[key]?.[lang] ? slugs[key][lang] + '/' : ''}`
 
-// Разделы плейбука в порядке следования.
-const PAGES = ['where', 'firstcall', 'connect', 'prepare', 'journey', 'habeas', 'glossary']
+// Структура — путь семьи по времени, а не порядок страниц сайта.
+// 'ORGS' — собранный из data/states.json раздел организаций (внутри части II:
+// это источник бесплатных адвокатов, ему место рядом с поиском адвоката).
+const STRUCTURE = [
+  { part: 'p1', keys: ['where', 'firstcall', 'connect'] },
+  { part: 'p2', keys: ['attorney', 'verify', 'ORGS', 'docpack'] },
+  { part: 'p3', keys: ['habeas'] },
+  { part: 'p4', keys: ['journey', 'prepare', 'glossary'] },
+]
 
 const T = {
   ru: {
@@ -36,6 +43,12 @@ const T = {
     cover1b: 'действий',
     edition: 'Печатная версия · август 2026',
     notes: 'Заметки',
+    parts: {
+      p1: 'Часть I · Первые часы: найти, дозвониться, наладить связь',
+      p2: 'Часть II · Адвокат — главное дело',
+      p3: 'Часть III · Пути выхода',
+      p4: 'Часть IV · Дальше и надолго',
+    },
     cover2: 'Если человека задержала иммиграционная служба США',
     chips: ['БЕСПЛАТНО', 'БЕЗ РЕГИСТРАЦИИ', 'EN · ES · RU', 'ZERO-DATA'],
     coverNote:
@@ -53,6 +66,12 @@ const T = {
     cover1b: 'Step by Step',
     edition: 'Print edition · August 2026',
     notes: 'Notes',
+    parts: {
+      p1: 'Part I · The first hours: find, get the call, stay connected',
+      p2: 'Part II · The attorney — job one',
+      p3: 'Part III · Paths out',
+      p4: 'Part IV · The longer road',
+    },
     cover2: 'When someone is detained by U.S. immigration',
     chips: ['FREE', 'NO SIGN-UP', 'EN · ES · RU', 'ZERO-DATA'],
     coverNote:
@@ -70,6 +89,12 @@ const T = {
     cover1b: 'paso a paso',
     edition: 'Edición impresa · agosto de 2026',
     notes: 'Notas',
+    parts: {
+      p1: 'Parte I · Las primeras horas: encontrar, la llamada, el contacto',
+      p2: 'Parte II · El abogado — lo principal',
+      p3: 'Parte III · Caminos de salida',
+      p4: 'Parte IV · El camino largo',
+    },
     cover2: 'Cuando inmigración detiene a una persona en EE. UU.',
     chips: ['GRATIS', 'SIN REGISTRO', 'EN · ES · RU', 'ZERO-DATA'],
     coverNote:
@@ -161,52 +186,67 @@ async function build(lang) {
   const ui = (await import(`../content/${lang}/ui.ts`)).default
   const sections = []
 
-  for (const key of PAGES) {
-    const c = (await import(`../content/${lang}/${key}.ts`)).default
-    let body
-    if (key === 'journey') {
-      body =
-        `<p class="lede">${esc(c.lede)}</p>` +
-        `<ol class="steps journey">${c.steps.map((s) => `<li><b>${esc(s.t)}</b><br>${inline(s.p)}</li>`).join('')}</ol>` +
-        `<h3>${esc(c.tracksTitle)}</h3>` +
-        `<ul>${c.tracks.map((s) => `<li><b>${esc(s.t)}</b> — ${inline(s.p)}</li>`).join('')}</ul>` +
-        `<p class="dim">${esc(c.note)}</p>`
-    } else {
-      body = (c.lede ? `<p class="lede">${esc(c.lede)}</p>` : '') + renderBlocks(c.blocks, lang)
+  // Разделы по частям: каждый несёт метку части; ORGS собирается из данных.
+  for (const { part, keys } of STRUCTURE) {
+    for (const key of keys) {
+      const num = String(sections.length + 1).padStart(2, '0')
+      const head = (title) =>
+        `<div class="sec-head"><span class="sec-part">${esc(t.parts[part])}</span>` +
+        `<span class="sec-num">${num}</span><h2>${esc(title)}</h2></div>`
+
+      if (key === 'ORGS') {
+        const orgRows = states
+          .flatMap((st) =>
+            (st.orgs ?? []).map(
+              (o) =>
+                `<div class="org"><div class="org-h">${esc(st.name[lang])} · ${A(o.href, esc(o.name))}</div><p>${esc(o.note[lang])}</p><span class="url">${esc(o.href)}</span></div>`,
+            ),
+          )
+          .join('')
+        sections.push({
+          title: t.orgsH,
+          part,
+          html: `<section>${head(t.orgsH)}<p class="lede">${esc(t.orgsLede)}</p>${orgRows}</section>`,
+        })
+        continue
+      }
+
+      const c = (await import(`../content/${lang}/${key}.ts`)).default
+      let body
+      if (key === 'journey') {
+        body =
+          `<p class="lede">${esc(c.lede)}</p>` +
+          `<ol class="steps journey">${c.steps.map((st) => `<li><b>${esc(st.t)}</b><br>${inline(st.p)}</li>`).join('')}</ol>` +
+          `<h3>${esc(c.tracksTitle)}</h3>` +
+          `<ul>${c.tracks.map((st) => `<li><b>${esc(st.t)}</b> — ${inline(st.p)}</li>`).join('')}</ul>` +
+          `<p class="dim">${esc(c.note)}</p>`
+      } else {
+        body = (c.lede ? `<p class="lede">${esc(c.lede)}</p>` : '') + renderBlocks(c.blocks, lang)
+      }
+      sections.push({
+        title: c.title,
+        part,
+        html:
+          `<section>` +
+          head(c.title) +
+          act(urlFor(lang, key), t.online, 'online') +
+          body +
+          `<div class="notes"><span>${esc(t.notes)}</span><i></i><i></i><i></i></div>` +
+          `</section>`,
+      })
     }
-    sections.push({
-      title: c.title,
-      html:
-        `<section>` +
-        `<div class="sec-head"><span class="sec-num">${String(sections.length + 1).padStart(2, '0')}</span><h2>${esc(c.title)}</h2></div>` +
-        act(urlFor(lang, key), t.online, 'online') +
-        body +
-        `<div class="notes"><span>${esc(t.notes)}</span><i></i><i></i><i></i></div>` +
-        `</section>`,
-    })
   }
 
-  const orgRows = states
-    .flatMap((s) =>
-      (s.orgs ?? []).map(
-        (o) =>
-          `<div class="org"><div class="org-h">${esc(s.name[lang])} · ${A(o.href, esc(o.name))}</div><p>${esc(o.note[lang])}</p><span class="url">${esc(o.href)}</span></div>`,
-      ),
-    )
-    .join('')
-  sections.push({
-    title: t.orgsH,
-    html:
-      `<section><div class="sec-head"><span class="sec-num">${String(sections.length + 1).padStart(2, '0')}</span><h2>${esc(t.orgsH)}</h2></div>` +
-      `<p class="lede">${esc(t.orgsLede)}</p>${orgRows}</section>`,
+  // Оглавление с заголовками частей.
+  let toc = ''
+  let lastPart = ''
+  sections.forEach((sec, i) => {
+    if (sec.part !== lastPart) {
+      toc += `<li class="toc-part">${esc(t.parts[sec.part])}</li>`
+      lastPart = sec.part
+    }
+    toc += `<li><span class="toc-num">${String(i + 1).padStart(2, '0')}</span>${esc(sec.title)}</li>`
   })
-
-  const toc = sections
-    .map(
-      (s, i) =>
-        `<li><span class="toc-num">${String(i + 1).padStart(2, '0')}</span>${esc(s.title)}</li>`,
-    )
-    .join('')
 
   const html = `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>
 @page { size: Letter; margin: 0; }
@@ -246,12 +286,14 @@ code { font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 10pt;
 .toc h2 { font-size: 24pt; margin: 0 0 14pt; }
 .toc ol { list-style: none; padding: 0; margin: 0; }
 .toc li { font-size: 13.5pt; font-weight: 600; padding: 8pt 0; border-bottom: 1pt solid var(--line); }
+.toc .toc-part { font-family: 'JetBrains Mono', monospace; font-size: 9pt; letter-spacing: .12em; text-transform: uppercase; color: var(--red); font-weight: 700; border-bottom: none; padding: 14pt 0 2pt; }
 .toc-num { font-family: 'Courier New', monospace; color: var(--red); font-weight: 700; margin-right: 12pt; font-size: 11pt; }
 .toc .meta { margin-top: 18pt; color: var(--dim); font-size: 10pt; line-height: 1.6; }
 
 /* РАЗДЕЛЫ */
 section { page-break-before: always; padding: 18mm 20mm 16mm; }
 .sec-head { border-bottom: 3pt solid var(--red); padding-bottom: 10pt; margin-bottom: 8pt; }
+.sec-part { display: block; font-family: 'JetBrains Mono', monospace; font-size: 8.5pt; letter-spacing: .12em; text-transform: uppercase; color: var(--dim); margin-bottom: 8pt; }
 .sec-num { display: block; font-family: 'JetBrains Mono', monospace; font-size: 13pt; font-weight: 700; color: var(--red); letter-spacing: .1em; margin-bottom: 4pt; }
 section h2 { font-size: 25pt; margin: 0; line-height: 1.05; letter-spacing: -0.01em; text-transform: uppercase; }
 h3 { font-size: 13.5pt; margin: 16pt 0 6pt; text-transform: uppercase; letter-spacing: .02em; }
