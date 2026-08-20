@@ -1,4 +1,4 @@
-# Рассылка организациям: плейбук и материалы DETNAV
+# Рассылка организациям: «Порядок действий» и материалы DETNAV
 
 Август 2026. Цель — чтобы приходы, НКО и сети быстрого реагирования знали о
 detnav.com, раздавали плейбук своим семьям и поставили ссылку (ссылки от
@@ -51,7 +51,8 @@ tracking (nothing about the family is stored — there is nothing to hand over),
 and no legal advice — only facts with links to official sources, checked
 against EOIR/ICE pages and Deportation Data Project data.
 
-There is also a printable playbook (PDF, ~25 pages, all three languages):
+There is also a printable step-by-step guide, “What To Do, Step by Step”
+(PDF, ~25 pages, all three languages):
 detnav.com/en/family-plan/
 
 Two small asks:
@@ -77,7 +78,8 @@ preguntas de la primera noche. Esto es una herramienta que se les puede
 entregar: sin registro, sin rastreo (no se guarda nada sobre la familia) y sin
 consejos legales — solo hechos con enlaces a fuentes oficiales.
 
-También hay un playbook imprimible (PDF, ~25 páginas, en los tres idiomas):
+También hay una guía imprimible, «Qué hacer, paso a paso» (PDF, ~25 páginas,
+en los tres idiomas):
 detnav.com/es/plan-familiar/
 
 Dos favores pequeños:

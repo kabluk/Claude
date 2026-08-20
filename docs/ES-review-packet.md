@@ -609,10 +609,10 @@
 - I do not want to talk, answer questions, or sign documents without a lawyer. I do not consent to entry into my home without a judicial warrant signed by a judge.
 - No lleve consigo el plan con nombres y teléfonos
 - Si lo encuentran durante una detención, contiene los nombres y direcciones de sus seres queridos. El plan se queda en casa; en el bolsillo, solo la tarjeta de derechos.
-- El playbook completo — un PDF para imprimir y compartir
+- «Qué hacer, paso a paso» — un PDF para imprimir y compartir
 - Las secciones clave del sitio en un solo archivo: la primera noche, este plan, la tarjeta de derechos, llamadas y dinero, el camino, el habeas, el glosario — con todos los enlaces. Envíe el archivo a sus seres queridos e imprima una copia para la casa.
 - /playbook/detnav-playbook-es.pdf
-- Descargar el playbook (PDF, ~25 páginas)
+- Descargar «Qué hacer, paso a paso» (PDF, ~25 páginas)
 - Qué significan los papeles y qué no firmar
 - Si ya detuvieron a alguien — por dónde empezar
 

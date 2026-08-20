@@ -11,6 +11,11 @@
 import { readFileSync, writeFileSync, mkdirSync } from 'node:fs'
 import { execFileSync } from 'node:child_process'
 import { join } from 'node:path'
+import { register } from 'node:module'
+
+// Контент-файлы могут импортировать значения по vite-алиасу «@/…» —
+// учим ноду его разрешать (см. scripts/alias-loader.mjs).
+register('./alias-loader.mjs', import.meta.url)
 
 const ROOT = new URL('..', import.meta.url).pathname
 const OUT = join(ROOT, 'dist-playbook')
@@ -27,7 +32,7 @@ const PAGES = ['where', 'firstcall', 'connect', 'prepare', 'journey', 'habeas', 
 
 const T = {
   ru: {
-    cover1: 'Плейбук семьи',
+    cover1: 'Порядок действий',
     cover2: 'Если человека задержала иммиграционная служба США',
     chips: ['БЕСПЛАТНО', 'БЕЗ РЕГИСТРАЦИИ', 'EN · ES · RU', 'ZERO-DATA'],
     coverNote:
@@ -41,7 +46,7 @@ const T = {
       'Мы не адвокаты и не даём юридических консультаций. Здесь только факты и ссылки на официальные источники. Что применимо к конкретному делу — определяет адвокат.',
   },
   en: {
-    cover1: 'The Family Playbook',
+    cover1: 'What To Do, Step by Step',
     cover2: 'When someone is detained by U.S. immigration',
     chips: ['FREE', 'NO SIGN-UP', 'EN · ES · RU', 'ZERO-DATA'],
     coverNote:
@@ -55,7 +60,7 @@ const T = {
       'We are not attorneys and we do not give legal advice. Only facts and links to official sources. What applies to a specific case is for an attorney to determine.',
   },
   es: {
-    cover1: 'El playbook de la familia',
+    cover1: 'Qué hacer, paso a paso',
     cover2: 'Cuando inmigración detiene a una persona en EE. UU.',
     chips: ['GRATIS', 'SIN REGISTRO', 'EN · ES · RU', 'ZERO-DATA'],
     coverNote:
