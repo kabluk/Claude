@@ -54,6 +54,12 @@ export const CHECKERS: CheckerEntry[] = [
     topic: 'colour',
   },
   {
+    href: paths.imageColorPicker(),
+    title: 'Image colour picker',
+    dek: 'Click a photo, or move a crosshair with your keyboard, to pick a colour — hex, RGB, HSL and a live WCAG contrast verdict against white and black, entirely in your browser.',
+    topic: 'colour',
+  },
+  {
     href: paths.statementGenerator(),
     title: 'Accessibility statement generator',
     dek: 'Fill in a short form and copy a ready accessibility statement — plain text or HTML, built on the W3C WAI structure, with EU “compliant” wording where it applies.',

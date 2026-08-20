@@ -43,6 +43,24 @@ push в него ничего не задеплоит (0 прогонов `deplo
 `R-STALE-DATA` — **done (2026-08-20)**: `scripts/stale-data-report.mjs` +
 тест (9 шт., scripts:test 62/62); сегодня отчёт штатно пуст (все 574 записи
 сверены 2026-08-04…13), канарейки прогнаны живьём.
+`G-CHECKER-IMAGEPICKER` — **done (2026-08-20, review, НЕ задеплоено)**:
+десятый бесплатный чекер, image colour picker
+(`/checkers/image-color-picker/`) — крупнейший подтверждённый поисковый
+объём среди всех кандидатов (D-182/D-186, 49 500/мес США), с обязательным
+мостом цвет→контраст→WCAG на каждый выбор (не клон универсального пикера).
+Новый чистый модуль `src/lib/colorPicker.ts` (downscale/геометрия
+перекрестия/палитра-гистограмма, 19 тестов), компонент
+`src/components/ImageColorPicker.tsx`, страница
+`src/pages/ImageColorPickerPage.tsx`. Клавиатура полноценна (стрелки/Shift/
+Enter/Space), два раздельных aria-live-региона (текущий/выбранный цвет
+текстом). Два бага пойманы и починены живым измерением ДО завершения узла:
+гидрация (canvas-ref timing) и сгиб 390×844 (result-hero уводило на
+y≈817+/1890 — переставлен сразу после блока загрузки). Разбор —
+`docs/project/domains/frontend.md`, узел `G-CHECKER-IMAGEPICKER` в
+`GRAPH.yaml`. Все гейты зелёные (typecheck, src:test 210/210, scripts:test
+62/62, worker:test 522/522, build 812 HTML, check-links 879/0, audit-a11y ×3
+подряд 72/0). **Следующий шаг — деплой, ждёт решения владельца.**
+
 `G-CHECKERS-ELEVATION` — **done (2026-08-20, review, НЕ задеплоено)**:
 shadow/elevation-система для 9 бесплатных чекеров `/checkers/` (владелец
 жаловался — «лёгкие и непривлекательные, нужно качество Apple»). Новые

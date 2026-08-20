@@ -181,6 +181,10 @@ export const paths = {
   // G-CHECKER-PALETTE: sixth tool — accessible colour palette generator (every
   // swatch shows its WCAG contrast, not just a hue).
   colorPaletteGenerator: () => '/checkers/color-palette-generator/',
+  // G-CHECKER-IMAGEPICKER: tenth tool — image colour picker (D-182/D-186:
+  // largest confirmed search volume of any checker candidate researched so
+  // far), bridged into the funnel via a WCAG contrast verdict on every pick.
+  imageColorPicker: () => '/checkers/image-color-picker/',
   statementGenerator: () => '/checkers/accessibility-statement-generator/',
   altTextChecker: () => '/checkers/alt-text-checker/',
   headingChecker: () => '/checkers/heading-structure-checker/',

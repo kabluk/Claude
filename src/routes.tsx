@@ -138,6 +138,12 @@ export const routes: RouteRecord[] = [
     path: '/checkers/color-palette-generator',
     lazy: page(() => import('./pages/ColorPaletteGeneratorPage')),
   },
+  // G-CHECKER-IMAGEPICKER: tenth tool — image colour picker, same discipline
+  // (static segment, both hardcoded lists mandatory).
+  {
+    path: '/checkers/image-color-picker',
+    lazy: page(() => import('./pages/ImageColorPickerPage')),
+  },
   // Скан-отчёты непредсказуемы (id генерируется Worker'ом) — нет getStaticPaths,
   // клиентский маршрут, как /404 catch-all ниже.
   { path: '/report/:id', lazy: page(() => import('./pages/ReportPage')) },
