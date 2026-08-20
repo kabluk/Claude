@@ -32,7 +32,9 @@ const PAGES = ['where', 'firstcall', 'connect', 'prepare', 'journey', 'habeas', 
 
 const T = {
   ru: {
-    cover1: 'Порядок действий',
+    cover1a: 'Порядок',
+    cover1b: 'действий',
+    edition: 'Печатная версия · август 2026',
     cover2: 'Если человека задержала иммиграционная служба США',
     chips: ['БЕСПЛАТНО', 'БЕЗ РЕГИСТРАЦИИ', 'EN · ES · RU', 'ZERO-DATA'],
     coverNote:
@@ -46,7 +48,9 @@ const T = {
       'Мы не адвокаты и не даём юридических консультаций. Здесь только факты и ссылки на официальные источники. Что применимо к конкретному делу — определяет адвокат.',
   },
   en: {
-    cover1: 'What To Do, Step by Step',
+    cover1a: 'What To Do,',
+    cover1b: 'Step by Step',
+    edition: 'Print edition · August 2026',
     cover2: 'When someone is detained by U.S. immigration',
     chips: ['FREE', 'NO SIGN-UP', 'EN · ES · RU', 'ZERO-DATA'],
     coverNote:
@@ -60,7 +64,9 @@ const T = {
       'We are not attorneys and we do not give legal advice. Only facts and links to official sources. What applies to a specific case is for an attorney to determine.',
   },
   es: {
-    cover1: 'Qué hacer, paso a paso',
+    cover1a: 'Qué hacer,',
+    cover1b: 'paso a paso',
+    edition: 'Edición impresa · agosto de 2026',
     cover2: 'Cuando inmigración detiene a una persona en EE. UU.',
     chips: ['GRATIS', 'SIN REGISTRO', 'EN · ES · RU', 'ZERO-DATA'],
     coverNote:
@@ -202,23 +208,33 @@ async function build(lang) {
   const html = `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>
 @page { size: Letter; margin: 0; }
 * { box-sizing: border-box; }
-:root { --red: #e4382b; --ink: #14181c; --dim: #5c666f; --line: #d7dbdf; --panel: #f4f5f7; }
-body { font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 12pt; line-height: 1.55; color: var(--ink); margin: 0; }
+/* локальные шрифты сайта — без внешних запросов */
+@font-face { font-family: 'Archivo'; src: url('../public/fonts/archivo-latin.woff2') format('woff2'); unicode-range: U+0000-00FF, U+2000-206F; }
+@font-face { font-family: 'Archivo'; src: url('../public/fonts/archivo-latin-ext.woff2') format('woff2'); unicode-range: U+0100-024F, U+1E00-1EFF; }
+@font-face { font-family: 'Inter'; src: url('../public/fonts/inter-cyrillic.woff2') format('woff2'); unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116; }
+@font-face { font-family: 'JetBrains Mono'; src: url('../public/fonts/jbmono-latin.woff2') format('woff2'); }
+:root { --red: #e4382b; --ink: #14181c; --dim: #5c666f; --line: #d7dbdf; --panel: #f4f5f7; --mut: #97a0a8; }
+body { font-family: 'Archivo', 'Inter', 'Helvetica Neue', Arial, sans-serif; font-size: 12pt; line-height: 1.55; color: var(--ink); margin: 0; }
 a { color: inherit; }
-code { font-family: 'Courier New', monospace; font-size: 10.5pt; background: #eceef0; padding: 0 3pt; border-radius: 3pt; }
-.url { font-family: 'Courier New', monospace; font-size: 8.5pt; color: #7a848d; word-break: break-all; }
+code { font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 10pt; background: #eceef0; padding: 0 3pt; border-radius: 3pt; }
+.url { font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 8.5pt; color: #7a848d; word-break: break-all; }
 
-/* ОБЛОЖКА: тёмная, во всю страницу */
-.cover { background: var(--ink); color: #fff; height: 100vh; padding: 26mm 20mm; display: flex; flex-direction: column; page-break-after: always; }
-.brand { font-size: 15pt; font-weight: 800; letter-spacing: .34em; }
-.brand i { display: inline-block; width: 12px; height: 26px; background: var(--red); margin-right: 12px; vertical-align: -5px; }
+/* ОБЛОЖКА: тёмная, во всю страницу (композиция по макету Stitch) */
+.cover { background: var(--ink); color: #fff; height: 100vh; padding: 18mm 20mm; display: flex; flex-direction: column; page-break-after: always; }
+.cov-top { display: flex; justify-content: space-between; align-items: center; border-bottom: 1pt solid rgba(255,255,255,.25); padding-bottom: 10pt; }
+.brand { font-size: 15pt; font-weight: 800; letter-spacing: .3em; }
+.brand i { display: inline-block; width: 12px; height: 12px; background: var(--red); margin-right: 10px; }
+.cov-chip { font-family: 'JetBrains Mono', monospace; font-size: 8pt; letter-spacing: .14em; text-transform: uppercase; color: var(--mut); border: 1pt solid rgba(255,255,255,.3); border-radius: 99px; padding: 4pt 12pt; }
 .cover .mid { margin: auto 0; }
-.cover h1 { font-size: 40pt; line-height: 1.08; margin: 0 0 10pt; letter-spacing: -0.01em; }
-.cover .sub { font-size: 16pt; color: #c7cdd3; margin: 0 0 26pt; max-width: 140mm; }
-.chips span { display: inline-block; border: 1.3pt solid rgba(255,255,255,.6); border-radius: 99px; padding: 4.5pt 13pt; font-size: 9pt; font-weight: 700; letter-spacing: .1em; margin: 0 7pt 8pt 0; }
-.cover .foot { color: #97a0a8; font-size: 10pt; max-width: 135mm; }
-.cover .foot a { color: #fff; font-weight: 700; text-decoration: none; }
-.cover .site { font-size: 13pt; margin-top: 8pt; }
+.cover h1 { font-size: 52pt; line-height: 0.95; margin: 0 0 14pt; letter-spacing: -0.02em; text-transform: uppercase; font-weight: 700; }
+.cover h1 .mut { color: var(--mut); }
+.cover .sub { font-size: 17pt; line-height: 1.35; color: #c3c7cc; margin: 0 0 26pt; max-width: 145mm; }
+.chips span { display: inline-block; border: 1.3pt solid rgba(255,255,255,.45); border-radius: 99px; padding: 6pt 16pt; font-size: 9.5pt; font-weight: 700; letter-spacing: .1em; margin: 0 8pt 9pt 0; }
+.chips span.hot { border-color: var(--red); color: #ff8d84; }
+.chips span.hot::before { content: ''; display: inline-block; width: 6pt; height: 6pt; border-radius: 50%; background: var(--red); margin-right: 7pt; }
+.cov-bot { display: flex; justify-content: space-between; align-items: flex-end; gap: 14pt; border-top: 1pt solid rgba(255,255,255,.25); padding-top: 12pt; margin-top: auto; }
+.cov-bot .foot { color: var(--mut); font-size: 10pt; max-width: 105mm; margin: 0; }
+.cov-bot .site a { color: #fff; font-weight: 700; font-size: 19pt; text-decoration: underline; text-decoration-thickness: 2pt; text-underline-offset: 5pt; white-space: nowrap; }
 
 /* ОГЛАВЛЕНИЕ */
 .page { padding: 22mm 20mm; }
@@ -298,13 +314,13 @@ ol.journey > li::before { background: var(--red); }
 .footer { padding: 10mm 20mm 14mm; color: var(--dim); font-size: 9.5pt; border-top: 1pt solid var(--line); }
 </style></head><body>
 <div class="cover">
-  <div class="brand"><i></i>DETNAV</div>
+  <div class="cov-top"><div class="brand"><i></i>DETNAV</div><span class="cov-chip">${esc(t.edition)}</span></div>
   <div class="mid">
-    <h1>${esc(t.cover1)}</h1>
+    <h1>${esc(t.cover1a)}<br><span class="mut">${esc(t.cover1b)}</span></h1>
     <p class="sub">${esc(t.cover2)}</p>
-    <div class="chips">${t.chips.map((c) => `<span>${esc(c)}</span>`).join('')}</div>
+    <div class="chips">${t.chips.map((c, i) => `<span${i === t.chips.length - 1 ? ' class="hot"' : ''}>${esc(c)}</span>`).join('')}</div>
   </div>
-  <div class="foot">${esc(t.coverNote)}<div class="site">${A(`${ORIGIN}/${lang}/`, `detnav.com/${lang}/`)}</div></div>
+  <div class="cov-bot"><p class="foot">${esc(t.coverNote)}</p><div class="site">${A(`${ORIGIN}/${lang}/`, `detnav.com/${lang}/`)}</div></div>
 </div>
 <div class="page toc">
   <div class="kicker">DETNAV</div>
