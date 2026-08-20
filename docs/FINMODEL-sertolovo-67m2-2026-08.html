@@ -1,0 +1,328 @@
+<title>Финмодель Сертолово</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Piazzolla:opsz,wght@8..30,600;8..30,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  :root{
+    --ground:#F6F7F4; --surface:#FFFFFF; --ink:#1D2521; --ink-2:#4C5A52; --muted:#75837B;
+    --line:#E0E5DF; --line-soft:#EAEEE8;
+    --accent:#2C6B4C; --accent-ink:#1E5B3D; --slate:#3E5C76; --bar:#3E5C76;
+    --neg:#8C3227; --neg-soft:#F5DFDB; --pos-soft:#DCEDE3;
+    --card:#FFFFFF; --card-alt:#F0F3EE;
+    --shadow:0 1px 2px rgba(29,37,33,.05),0 4px 16px rgba(29,37,33,.06);
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ground:#131816; --surface:#1A211D; --ink:#E5EBE6; --ink-2:#AEBBB2; --muted:#84928A;
+      --line:#2A332E; --line-soft:#232B27;
+      --accent:#63B389; --accent-ink:#8FCCAB; --slate:#8FB0CB; --bar:#7FA5C4;
+      --neg:#E5A093; --neg-soft:#3E2723; --pos-soft:#22352B;
+      --card:#1A211D; --card-alt:#202823;
+      --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.25);
+    }
+  }
+  :root[data-theme="dark"]{
+    --ground:#131816; --surface:#1A211D; --ink:#E5EBE6; --ink-2:#AEBBB2; --muted:#84928A;
+    --line:#2A332E; --line-soft:#232B27;
+    --accent:#63B389; --accent-ink:#8FCCAB; --slate:#8FB0CB; --bar:#7FA5C4;
+    --neg:#E5A093; --neg-soft:#3E2723; --pos-soft:#22352B;
+    --card:#1A211D; --card-alt:#202823;
+    --shadow:0 1px 2px rgba(0,0,0,.3),0 4px 16px rgba(0,0,0,.25);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--ground);color:var(--ink);font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:15.5px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:820px;margin:0 auto;padding:40px 16px 90px}
+  .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-ink);font-weight:500}
+  h1{font-family:Piazzolla,Georgia,serif;font-size:34px;font-weight:700;margin:8px 0 10px;line-height:1.15;text-wrap:balance}
+  h2{font-family:Piazzolla,Georgia,serif;font-size:21px;font-weight:600;margin:0 0 12px}
+  .lede{color:var(--ink-2);max-width:64ch;font-size:16px}
+  .note{font-size:13px;color:var(--muted);max-width:66ch;margin-top:10px}
+  /* summary */
+  .summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:28px 0 8px}
+  .sum-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:16px 18px;box-shadow:var(--shadow);cursor:pointer;text-align:left;font:inherit;color:inherit}
+  .sum-card.active{border-color:var(--accent);outline:2px solid var(--accent);outline-offset:-1px}
+  .sum-card .t{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink)}
+  .sum-card .n{font-weight:600;font-size:15px;margin:3px 0 8px}
+  .sum-card .kv{display:flex;justify-content:space-between;font-size:13px;color:var(--ink-2);margin-top:3px}
+  .sum-card .kv b{font-family:"IBM Plex Mono",monospace;font-weight:500;font-variant-numeric:tabular-nums;color:var(--ink)}
+  /* panel */
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px 22px 26px;box-shadow:var(--shadow);margin-top:18px}
+  .panel .what{color:var(--ink-2);font-size:14px;max-width:70ch;margin-bottom:16px}
+  .glob{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:20px 0 4px}
+  fieldset{border:none}
+  .unit{border-top:1px solid var(--line-soft);padding-top:16px;margin-top:16px}
+  .unit h3{font-size:15px;font-weight:600;margin-bottom:10px}
+  .unit h3 span{color:var(--muted);font-weight:400;font-size:13px}
+  .fields{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}
+  .f label{display:block;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-family:"IBM Plex Mono",monospace;margin-bottom:4px}
+  .f input,.f select{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--card-alt);color:var(--ink);font-family:"IBM Plex Mono",monospace;font-size:14px;font-variant-numeric:tabular-nums}
+  .f input:focus,.f select:focus{outline:2px solid var(--accent);outline-offset:-1px;border-color:var(--accent)}
+  /* results */
+  .res{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:20px}
+  .res .cell{background:var(--card-alt);border-radius:8px;padding:12px 14px}
+  .res .k{font-size:10.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-family:"IBM Plex Mono",monospace}
+  .res .v{font-family:"IBM Plex Mono",monospace;font-size:17px;font-weight:500;margin-top:3px;font-variant-numeric:tabular-nums}
+  .res .v small{font-size:12px;color:var(--muted)}
+  .res .v.bad{color:var(--neg)}
+  /* P&L table */
+  .plwrap{overflow-x:auto;margin-top:20px}
+  table.pl{width:100%;border-collapse:collapse;font-size:13.5px}
+  .pl th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500;text-align:right;padding:7px 10px;border-bottom:1px solid var(--line)}
+  .pl th:first-child{text-align:left}
+  .pl td{padding:6px 10px;border-bottom:1px solid var(--line-soft);text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;color:var(--ink-2)}
+  .pl td:first-child{text-align:left;font-family:"IBM Plex Sans",sans-serif;color:var(--ink)}
+  .pl tr.total td{font-weight:600;color:var(--ink);border-top:1.5px solid var(--line)}
+  .pl td.neg{color:var(--neg)}
+  /* chart */
+  .chart-box{margin-top:22px}
+  .chart-box .t{font-weight:600;font-size:14px}
+  .chart-box .s{font-size:12.5px;color:var(--muted);margin-bottom:8px}
+  #cfchart{width:100%;height:auto;display:block}
+  .cf-tip{position:fixed;pointer-events:none;background:var(--ink);color:var(--ground);font-family:"IBM Plex Mono",monospace;font-size:12px;padding:5px 9px;border-radius:6px;display:none;z-index:9;white-space:nowrap}
+  /* sensitivity */
+  .sens{margin-top:22px}
+  .sens h4{font-size:12px;letter-spacing:.08em;text-transform:uppercase;font-family:"IBM Plex Mono",monospace;color:var(--muted);font-weight:500;margin-bottom:8px}
+  .sens table{width:100%;border-collapse:collapse;font-size:13.5px}
+  .sens td,.sens th{padding:7px 10px;text-align:right;font-family:"IBM Plex Mono",monospace;font-variant-numeric:tabular-nums;border-bottom:1px solid var(--line-soft)}
+  .sens th{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .sens td:first-child,.sens th:first-child{text-align:left;font-family:"IBM Plex Sans",sans-serif}
+  .foot{margin-top:34px;font-size:13px;color:var(--muted);max-width:70ch;border-left:3px solid var(--line);padding-left:16px}
+  .foot p+p{margin-top:8px}
+  @media (max-width:520px){.fields,.glob{grid-template-columns:1fr 1fr}}
+</style>
+
+<div class="wrap">
+  <div class="eyebrow">Сертолово · ул. Дмитрия Кожемякина · 67 м²</div>
+  <h1>Финмодель трёх вариантов</h1>
+  <p class="lede">Все допущения редактируемые — базовые значения собраны из открытых данных франшиз и ставок Сертолово и намеренно консервативнее обещаний франчайзеров. Меняйте цифры под свои переговоры, модель пересчитывается сразу.</p>
+  <p class="note">Валовая маржа — доля выручки после себестоимости товара/услуг. Налог — УСН «доходы − расходы», применяется к положительной прибыли. Ramp — линейный выход с стартовой загрузки на план.</p>
+
+  <div class="summary" id="summary"></div>
+
+  <div class="panel">
+    <h2 id="v-title"></h2>
+    <p class="what" id="v-what"></p>
+
+    <div class="glob" id="glob"></div>
+    <div id="units"></div>
+
+    <div class="res" id="res"></div>
+
+    <div class="plwrap"><table class="pl" id="pl"></table></div>
+
+    <div class="chart-box">
+      <div class="t">Накопленный денежный поток, 48 месяцев</div>
+      <div class="s">Вложения — в нуле оси; точка выхода в плюс отмечена. Наведите/коснитесь для значений.</div>
+      <svg id="cfchart" viewBox="0 0 760 240" role="img" aria-label="Накопленный денежный поток за 48 месяцев"></svg>
+    </div>
+
+    <div class="sens">
+      <h4>Чувствительность к выручке</h4>
+      <table id="senstab"></table>
+    </div>
+  </div>
+
+  <div class="foot">
+    <p>Откуда базовые цифры: аренда 1000–2500 ₽/м²/мес по объявлениям Сертолово (база 1400); «Кладовая здоровья» — наценка ~100%, пример партнёра ~400 тыс. ₽/мес выручки ко второму году; Айкрафт — заявка сети «прибыль от 200 тыс./мес» (в модели консервативнее); КДЛ — чистая прибыль ~250 тыс. ₽/мес к 27-му месяцу по материалам сети, в отзывах франчайзи встречается «доходность ниже ожиданий». Проверяйте цифры на переговорах с франчайзерами — модель для сравнения вариантов, а не оферта.</p>
+    <p>Покупка помещения: переключите «Помещение» на «своё (куплено)» — аренда обнулится, а окупаемость посчитается и по бизнес-вложениям, и с учётом цены помещения.</p>
+  </div>
+</div>
+<div class="cf-tip" id="cftip"></div>
+
+<script>
+'use strict';
+const fmtM = n => (n/1e6).toLocaleString('ru-RU',{maximumFractionDigits:1})+' млн ₽';
+const fmtK = n => Math.round(n/1000).toLocaleString('ru-RU')+' тыс. ₽';
+const fmt = n => Math.abs(n)>=1e6 ? fmtM(n) : fmtK(n);
+
+const G = { rentRate:1400, taxPct:15, own:0, price:12700000 };
+
+const VARIANTS = {
+  A:{ name:'Вариант А · Лаборатория КДЛ', what:'Один арендатор на все 67 м². Выручка — приём биоматериала и выплаты сети; маржа франчайзи ~50% прейскуранта. Роялти символическое (0,1%), но старт дорогой: медлицензия и оборудование.', extraCapex:0,
+    units:[{n:'КДЛ', area:67, rev:1000, margin:50, ramp:18, start:25, fot:180, opex:45, roy:0.1, capex:3500, seasonal:0, extra:0}]},
+  B:{ name:'Вариант Б · Кластер здоровья', what:'Помещение делится перегородкой: ортопедический салон + оптика. Два денежных потока, общий медицинский трафик. В CAPEX добавлено разделение (перегородка, второй вход).', extraCapex:500,
+    units:[
+      {n:'Кладовая здоровья', area:32, rev:550, margin:50, ramp:12, start:35, fot:110, opex:25, roy:0, capex:1700, seasonal:0, extra:0},
+      {n:'Айкрафт оптика', area:35, rev:700, margin:55, ramp:12, start:30, fot:140, opex:30, roy:6, capex:3000, seasonal:0, extra:0}]},
+  C:{ name:'Вариант В · Образовательный кластер', what:'KIBERone по вечерам и выходным + субаренда второй зоны под утренние детские форматы (поле «доп. доход»). Маржа — после выплат преподавателям. Летом (2 мес в году) выручка падает до заданной доли.', extraCapex:0,
+    units:[{n:'KIBERone + студии', area:67, rev:400, margin:70, ramp:12, start:30, fot:60, opex:30, roy:8, capex:1900, seasonal:50, extra:35}]}
+};
+let cur='B';
+
+const FIELDS=[
+  ['rev','Выручка на плане, тыс./мес',1],['margin','Валовая маржа, %',1],
+  ['ramp','Выход на план, мес',1],['start','Старт. загрузка, %',1],
+  ['fot','ФОТ с взносами, тыс./мес',1],['opex','Прочие расходы, тыс./мес',1],
+  ['roy','Роялти, % выручки',1],['area','Площадь, м²',1],
+  ['capex','Вложения, тыс. ₽',1],['extra','Доп. доход, тыс./мес',1],
+];
+
+function unitMonth(u,m){ // m: 0..35 → net profit ₽ for month
+  const rampF = Math.min(1, u.start/100 + (1-u.start/100)*(u.ramp>0? m/u.ramp : 1));
+  const season = (u.seasonal>0 && (m%12===10||m%12===11)) ? u.seasonal/100 : 1;
+  const rev = u.rev*1000*rampF*season;
+  const gross = rev*u.margin/100 + (u.extra||0)*1000;
+  const rent = G.own? 0 : u.area*G.rentRate;
+  const ebit = gross - u.fot*1000 - u.opex*1000 - rent - rev*u.roy/100;
+  const tax = ebit>0 ? ebit*G.taxPct/100 : 0;
+  return {rev, gross, rent, ebit, net: ebit-tax};
+}
+function calc(vk, revMult=1){
+  const v=VARIANTS[vk];
+  const capex=(v.units.reduce((s,u)=>s+u.capex,0)+v.extraCapex)*1000;
+  const months=[]; let cum=-capex, payback=null;
+  const cumArr=[];
+  for(let m=0;m<48;m++){
+    let net=0;
+    for(const u of v.units){ const uu={...u,rev:u.rev*revMult}; net+=unitMonth(uu,m).net; }
+    cum+=net; cumArr.push(cum);
+    if(payback===null && cum>=0) payback=m+1;
+    months.push(net);
+  }
+  // mature P&L (month 35, non-summer)
+  let mat={rev:0,gross:0,rent:0,fot:0,opex:0,roy:0,ebit:0,tax:0,net:0};
+  for(const u of v.units){
+    const uu={...u,rev:u.rev*revMult,seasonal:0};
+    const r=unitMonth(uu,35);
+    mat.rev+=r.rev; mat.gross+=r.gross; mat.rent+=r.rent;
+    mat.fot+=u.fot*1000; mat.opex+=u.opex*1000; mat.roy+=r.rev*u.roy/100;
+  }
+  mat.ebit=mat.gross-mat.fot-mat.opex-mat.rent-mat.roy;
+  mat.tax=mat.ebit>0?mat.ebit*G.taxPct/100:0; mat.net=mat.ebit-mat.tax;
+  // break-even revenue at mature structure
+  const fixed=mat.fot+mat.opex+mat.rent;
+  const wMargin=mat.rev>0 ? v.units.reduce((s,u)=>s+u.rev*revMult*(u.margin-u.roy),0)/v.units.reduce((s,u)=>s+u.rev*revMult,0) : 0;
+  const extraInc=v.units.reduce((s,u)=>s+(u.extra||0)*1000,0);
+  const be=wMargin>0?(fixed-extraInc)/(wMargin/100):0;
+  // payback incl property purchase
+  let pbProp=null;
+  if(G.own){ let c=-(capex+G.price); for(let m=0;m<120;m++){ let net=0; for(const u of v.units){const uu={...u,rev:u.rev*revMult}; net+=unitMonth(uu,m>35?35:m).net;} c+=net; if(c>=0){pbProp=m+1;break;} } }
+  return {capex,months,cumArr,payback,mat,be,pbProp};
+}
+
+function el(html){const d=document.createElement('div');d.innerHTML=html;return d.firstElementChild;}
+
+function renderInputs(){
+  const v=VARIANTS[cur];
+  document.getElementById('v-title').textContent=v.name;
+  document.getElementById('v-what').textContent=v.what;
+  const g=document.getElementById('glob'); g.innerHTML='';
+  g.append(
+    el(`<div class="f"><label>Аренда, ₽/м²/мес</label><input type="number" id="g-rent" value="${G.rentRate}"></div>`),
+    el(`<div class="f"><label>Помещение</label><select id="g-own"><option value="0"${G.own?'':' selected'}>аренда</option><option value="1"${G.own?' selected':''}>своё (куплено)</option></select></div>`),
+    el(`<div class="f"><label>Цена помещения, ₽</label><input type="number" id="g-price" value="${G.price}" step="100000"></div>`),
+    el(`<div class="f"><label>Налог с прибыли, %</label><input type="number" id="g-tax" value="${G.taxPct}"></div>`)
+  );
+  const un=document.getElementById('units'); un.innerHTML='';
+  v.units.forEach((u,i)=>{
+    const fs=el(`<fieldset class="unit"><h3>${u.n} <span>· ${u.area} м²</span></h3><div class="fields"></div></fieldset>`);
+    const fd=fs.querySelector('.fields');
+    for(const [key,label] of FIELDS){
+      if(key==='extra'&&!u.extra&&cur!=='C')continue;
+      fd.append(el(`<div class="f"><label>${label}</label><input type="number" data-u="${i}" data-k="${key}" value="${u[key]}"></div>`));
+    }
+    if(u.seasonal>0) fd.append(el(`<div class="f"><label>Лето (2 мес/год), % выручки</label><input type="number" data-u="${i}" data-k="seasonal" value="${u.seasonal}"></div>`));
+    un.append(fs);
+  });
+  document.querySelectorAll('#glob input,#glob select,#units input').forEach(inp=>inp.addEventListener('input',onInput));
+}
+function onInput(e){
+  const t=e.target;
+  if(t.id==='g-rent')G.rentRate=+t.value||0;
+  else if(t.id==='g-tax')G.taxPct=+t.value||0;
+  else if(t.id==='g-price')G.price=+t.value||0;
+  else if(t.id==='g-own'){G.own=+t.value; }
+  else{ const u=VARIANTS[cur].units[+t.dataset.u]; u[t.dataset.k]=+t.value||0; }
+  renderResults(); renderSummary();
+}
+
+function renderSummary(){
+  const s=document.getElementById('summary'); s.innerHTML='';
+  for(const k of ['A','B','C']){
+    const r=calc(k);
+    const c=el(`<button class="sum-card${k===cur?' active':''}" data-v="${k}">
+      <div class="t">${k==='A'?'Вариант А':k==='B'?'Вариант Б · рекомендуемый':'Вариант В'}</div>
+      <div class="n">${k==='A'?'Лаборатория КДЛ':k==='B'?'Ортопедия + оптика':'Детское образование'}</div>
+      <div class="kv"><span>Вложения</span><b>${fmt(r.capex)}</b></div>
+      <div class="kv"><span>Чистая на плане</span><b>${fmtK(r.mat.net)}/мес</b></div>
+      <div class="kv"><span>Окупаемость</span><b>${r.payback?r.payback+' мес':'&gt;48 мес'}</b></div>
+    </button>`);
+    c.addEventListener('click',()=>{cur=k;renderInputs();renderResults();renderSummary();});
+    s.append(c);
+  }
+}
+
+function renderResults(){
+  const r=calc(cur);
+  const res=document.getElementById('res');
+  const roi=r.capex>0? (r.mat.net*12/r.capex*100):0;
+  res.innerHTML='';
+  res.append(
+    el(`<div class="cell"><div class="k">Вложения в бизнес</div><div class="v">${fmt(r.capex)}</div></div>`),
+    el(`<div class="cell"><div class="k">Чистая прибыль на плане</div><div class="v${r.mat.net<0?' bad':''}">${fmtK(r.mat.net)}<small>/мес</small></div></div>`),
+    el(`<div class="cell"><div class="k">Точка безубыточности</div><div class="v">${fmtK(r.be)}<small> выручки/мес</small></div></div>`),
+    el(`<div class="cell"><div class="k">Окупаемость бизнеса</div><div class="v${r.payback?'':' bad'}">${r.payback?r.payback+' мес':'>48 мес'}</div></div>`),
+    el(`<div class="cell"><div class="k">Годовая отдача на плане</div><div class="v">${roi.toFixed(0)}%<small> от вложений</small></div></div>`)
+  );
+  if(G.own) res.append(el(`<div class="cell"><div class="k">Окупаемость с помещением</div><div class="v${r.pbProp?'':' bad'}">${r.pbProp?r.pbProp+' мес':'>120 мес'}</div></div>`));
+
+  const m=r.mat;
+  document.getElementById('pl').innerHTML=`
+    <tr><th>P&amp;L на плане, месяц</th><th>₽</th><th>% выручки</th></tr>
+    <tr><td>Выручка</td><td>${fmtK(m.rev)}</td><td>100%</td></tr>
+    <tr><td>Валовая прибыль (+доп. доход)</td><td>${fmtK(m.gross)}</td><td>${m.rev?Math.round(m.gross/m.rev*100):0}%</td></tr>
+    <tr><td>ФОТ с взносами</td><td class="neg">−${fmtK(m.fot)}</td><td>${m.rev?Math.round(m.fot/m.rev*100):0}%</td></tr>
+    <tr><td>Аренда</td><td class="neg">${m.rent?'−'+fmtK(m.rent):'0 (своё)'}</td><td>${m.rev?Math.round(m.rent/m.rev*100):0}%</td></tr>
+    <tr><td>Роялти</td><td class="neg">−${fmtK(m.roy)}</td><td>${m.rev?Math.round(m.roy/m.rev*100):0}%</td></tr>
+    <tr><td>Прочие расходы</td><td class="neg">−${fmtK(m.opex)}</td><td>${m.rev?Math.round(m.opex/m.rev*100):0}%</td></tr>
+    <tr><td>Налог (УСН Д−Р)</td><td class="neg">−${fmtK(m.tax)}</td><td>${m.rev?Math.round(m.tax/m.rev*100):0}%</td></tr>
+    <tr class="total"><td>Чистая прибыль</td><td${m.net<0?' class="neg"':''}>${fmtK(m.net)}</td><td>${m.rev?Math.round(m.net/m.rev*100):0}%</td></tr>`;
+
+  drawChart(r);
+
+  const st=document.getElementById('senstab');
+  let rows='<tr><th>Сценарий выручки</th><th>Чистая/мес на плане</th><th>Окупаемость</th></tr>';
+  for(const [lbl,mult] of [['Пессимистичный −30%',0.7],['База',1],['Оптимистичный +30%',1.3]]){
+    const rr=calc(cur,mult);
+    rows+=`<tr><td>${lbl}</td><td${rr.mat.net<0?' class="neg" style="color:var(--neg)"':''}>${fmtK(rr.mat.net)}</td><td>${rr.payback?rr.payback+' мес':'&gt;48 мес'}</td></tr>`;
+  }
+  st.innerHTML=rows;
+}
+
+function drawChart(r){
+  const svg=document.getElementById('cfchart');
+  const W=760,H=240,L=60,R=12,T=14,B=26;
+  const data=r.cumArr;
+  const lo=Math.min(0,...data), hi=Math.max(0,...data);
+  const pad=(hi-lo)*0.08||1;
+  const y=v=>T+(H-T-B)*(1-(v-(lo-pad))/((hi+pad)-(lo-pad)));
+  const x=i=>L+(W-L-R)*i/47;
+  let g='';
+  // gridlines: 0 line + min/max
+  g+=`<line x1="${L}" y1="${y(0)}" x2="${W-R}" y2="${y(0)}" stroke="var(--line)" stroke-width="1"/>`;
+  for(const gv of [lo,hi]){ if(Math.abs(gv)>1){ g+=`<line x1="${L}" y1="${y(gv)}" x2="${W-R}" y2="${y(gv)}" stroke="var(--line-soft)" stroke-width="1"/><text x="${L-6}" y="${y(gv)+4}" text-anchor="end" font-size="10.5" fill="var(--muted)" font-family="IBM Plex Mono,monospace">${(gv/1e6).toFixed(1)}М</text>`;}}
+  g+=`<text x="${L-6}" y="${y(0)+4}" text-anchor="end" font-size="10.5" fill="var(--muted)" font-family="IBM Plex Mono,monospace">0</text>`;
+  for(const mx of [0,12,24,36,47]) g+=`<text x="${x(mx)}" y="${H-8}" text-anchor="middle" font-size="10.5" fill="var(--muted)" font-family="IBM Plex Mono,monospace">${mx+1} мес</text>`;
+  const pts=data.map((v,i)=>`${x(i)},${y(v)}`).join(' ');
+  g+=`<polyline points="${pts}" fill="none" stroke="var(--bar)" stroke-width="2" stroke-linejoin="round"/>`;
+  if(r.payback){ const i=r.payback-1; g+=`<circle cx="${x(i)}" cy="${y(data[i])}" r="4.5" fill="var(--accent)" stroke="var(--card)" stroke-width="2"/><text x="${x(i)}" y="${y(data[i])-10}" text-anchor="middle" font-size="11" fill="var(--accent-ink)" font-family="IBM Plex Mono,monospace">в плюсе: ${r.payback} мес</text>`; }
+  g+=`<rect id="cfhit" x="${L}" y="${T}" width="${W-L-R}" height="${H-T-B}" fill="transparent"/>`;
+  svg.innerHTML=g;
+  const tip=document.getElementById('cftip');
+  const hit=svg.querySelector('#cfhit');
+  const move=ev=>{
+    const pt=svg.createSVGPoint(); const e=ev.touches?ev.touches[0]:ev;
+    pt.x=e.clientX; pt.y=e.clientY;
+    const p=pt.matrixTransform(svg.getScreenCTM().inverse());
+    const i=Math.max(0,Math.min(47,Math.round((p.x-L)/(W-L-R)*47)));
+    tip.style.display='block';
+    tip.style.left=(e.clientX+12)+'px'; tip.style.top=(e.clientY-30)+'px';
+    tip.textContent=`месяц ${i+1}: ${fmt(data[i])}`;
+  };
+  hit.addEventListener('mousemove',move);
+  hit.addEventListener('touchstart',move,{passive:true});
+  hit.addEventListener('touchmove',move,{passive:true});
+  hit.addEventListener('mouseleave',()=>tip.style.display='none');
+  hit.addEventListener('touchend',()=>tip.style.display='none');
+}
+
+renderInputs(); renderResults(); renderSummary();
+</script>
