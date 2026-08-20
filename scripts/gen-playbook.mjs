@@ -35,6 +35,7 @@ const T = {
     cover1a: 'Порядок',
     cover1b: 'действий',
     edition: 'Печатная версия · август 2026',
+    notes: 'Заметки',
     cover2: 'Если человека задержала иммиграционная служба США',
     chips: ['БЕСПЛАТНО', 'БЕЗ РЕГИСТРАЦИИ', 'EN · ES · RU', 'ZERO-DATA'],
     coverNote:
@@ -51,6 +52,7 @@ const T = {
     cover1a: 'What To Do,',
     cover1b: 'Step by Step',
     edition: 'Print edition · August 2026',
+    notes: 'Notes',
     cover2: 'When someone is detained by U.S. immigration',
     chips: ['FREE', 'NO SIGN-UP', 'EN · ES · RU', 'ZERO-DATA'],
     coverNote:
@@ -67,6 +69,7 @@ const T = {
     cover1a: 'Qué hacer,',
     cover1b: 'paso a paso',
     edition: 'Edición impresa · agosto de 2026',
+    notes: 'Notas',
     cover2: 'Cuando inmigración detiene a una persona en EE. UU.',
     chips: ['GRATIS', 'SIN REGISTRO', 'EN · ES · RU', 'ZERO-DATA'],
     coverNote:
@@ -85,6 +88,9 @@ const esc = (s) =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 const inline = (s) => esc(s).replace(/`([^`]+)`/g, '<code>$1</code>')
 const A = (href, text) => `<a href="${esc(href)}">${text}</a>`
+// Карточка-действие: целиком кликабельная, капс-лейбл + жирный URL.
+const act = (href, label, cls = '') =>
+  `<a class="act ${cls}" href="${esc(href)}"><span class="act-l">→ ${esc(label)}</span><span class="act-u">${esc(href)}</span></a>`
 
 function renderBlocks(blocks, lang) {
   let h = ''
@@ -135,18 +141,14 @@ function renderBlocks(blocks, lang) {
           .join('')}</div>${b.note ? `<p class="dim">${esc(b.note)}</p>` : ''}</div>`
         break
       case 'ext':
-        // Ссылка действием, прямо в потоке текста — кликабельная.
-        h += `<p class="act">${A(b.href, '→ ' + esc(b.label))}<br><span class="url">${esc(b.href)}</span></p>`
+        h += act(b.href, b.label)
         break
       case 'onward':
-        for (const s of b.sources ?? [])
-          h += `<p class="act">${A(s.href, '→ ' + esc(s.label))}<br><span class="url">${esc(s.href)}</span></p>`
+        for (const s of b.sources ?? []) h += act(s.href, s.label)
         break
-      case 'ilink': {
-        const u = urlFor(lang, b.page)
-        h += `<p class="act">${A(u, '→ ' + esc(b.label))}<br><span class="url">${esc(u)}</span></p>`
+      case 'ilink':
+        h += act(urlFor(lang, b.page), b.label)
         break
-      }
       default:
         break
     }
@@ -177,8 +179,9 @@ async function build(lang) {
       html:
         `<section>` +
         `<div class="sec-head"><span class="sec-num">${String(sections.length + 1).padStart(2, '0')}</span><h2>${esc(c.title)}</h2></div>` +
-        `<p class="act online">${A(urlFor(lang, key), esc(t.online))}<br><span class="url">${urlFor(lang, key)}</span></p>` +
+        act(urlFor(lang, key), t.online, 'online') +
         body +
+        `<div class="notes"><span>${esc(t.notes)}</span><i></i><i></i><i></i></div>` +
         `</section>`,
     })
   }
@@ -248,20 +251,26 @@ code { font-family: 'JetBrains Mono', 'Courier New', monospace; font-size: 10pt;
 
 /* РАЗДЕЛЫ */
 section { page-break-before: always; padding: 18mm 20mm 16mm; }
-.sec-head { border-bottom: 3pt solid var(--red); padding-bottom: 8pt; margin-bottom: 6pt; }
-.sec-num { font-family: 'Courier New', monospace; font-size: 12pt; font-weight: 700; color: var(--red); letter-spacing: .1em; }
-section h2 { font-size: 23pt; margin: 2pt 0 0; line-height: 1.1; letter-spacing: -0.01em; }
-h3 { font-size: 14.5pt; margin: 16pt 0 6pt; }
+.sec-head { border-bottom: 3pt solid var(--red); padding-bottom: 10pt; margin-bottom: 8pt; }
+.sec-num { display: block; font-family: 'JetBrains Mono', monospace; font-size: 13pt; font-weight: 700; color: var(--red); letter-spacing: .1em; margin-bottom: 4pt; }
+section h2 { font-size: 25pt; margin: 0; line-height: 1.05; letter-spacing: -0.01em; text-transform: uppercase; }
+h3 { font-size: 13.5pt; margin: 16pt 0 6pt; text-transform: uppercase; letter-spacing: .02em; }
 .lede { color: #444c53; font-size: 12.5pt; margin: 8pt 0 10pt; }
 .dim { color: var(--dim); font-size: 10.5pt; }
 ul, ol { margin: 5pt 0 10pt; padding-left: 17pt; }
 li { margin-bottom: 4.5pt; }
 p { margin: 6pt 0; }
 
-/* ссылки-действия */
-.act { margin: 8pt 0; padding: 8pt 12pt; background: var(--panel); border-radius: 8pt; break-inside: avoid; }
-.act a { font-weight: 700; text-decoration: none; color: var(--ink); font-size: 11.5pt; }
-.act.online { background: none; border: 1.2pt dashed var(--line); }
+/* ссылки-действия: карточка целиком кликабельная,캡с-лейбл + жирный URL */
+a.act { display: block; margin: 9pt 0; padding: 10pt 13pt; background: var(--panel); border: 1pt solid var(--line); border-radius: 8pt; break-inside: avoid; text-decoration: none; }
+a.act .act-l { display: block; font-size: 9.5pt; font-weight: 700; letter-spacing: .07em; text-transform: uppercase; color: var(--dim); margin-bottom: 3pt; }
+a.act .act-u { display: block; font-weight: 700; font-size: 11.5pt; color: var(--ink); word-break: break-all; }
+a.act.online { background: none; border-style: dashed; }
+
+/* линейки для заметок в конце раздела */
+.notes { margin-top: 16pt; border-top: 1pt solid var(--ink); padding-top: 7pt; break-inside: avoid; }
+.notes span { font-size: 9pt; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--dim); }
+.notes i { display: block; border-bottom: 1pt solid var(--ink); height: 16pt; }
 
 /* нумерованные шаги — крупные маркеры */
 ol.steps { list-style: none; counter-reset: st; padding-left: 0; }
@@ -275,7 +284,7 @@ ol.journey > li::before { background: var(--red); }
 .box.r { border-color: #c62828; background: #fdf1f0; }
 .box.y { border-color: #d8a200; background: #fdf8e8; }
 .box.g { border-color: #2e7d32; background: #eef7ee; }
-.box-t { font-weight: 700; font-size: 12pt; margin-bottom: 4pt; }
+.box-t { font-weight: 700; font-size: 10pt; letter-spacing: .07em; text-transform: uppercase; margin-bottom: 4pt; }
 .box p { margin: 4pt 0; font-size: 11pt; }
 
 /* карта прав */
