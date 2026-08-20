@@ -50,7 +50,7 @@ export default function StatementGeneratorPage() {
 
       <div
         role="note"
-        className="mt-4 max-w-3xl rounded-md border border-outline-variant bg-surface-container-low px-4 py-3 text-sm text-on-surface-variant"
+        className="mt-4 max-w-3xl rounded-xl border border-outline-variant bg-surface-container-low px-4 py-3 text-sm text-on-surface-variant"
       >
         <strong>This is a template, not legal advice.</strong> What a statement must contain — and
         whether you're required to publish one at all — depends on your country and sector. In EU
@@ -61,7 +61,7 @@ export default function StatementGeneratorPage() {
 
       <StatementGenerator />
 
-      <section className="mt-12 max-w-3xl">
+      <section className="mt-14 max-w-3xl">
         <h2 className="h2">A statement is a claim — make it one you can back</h2>
         <p className="mt-2 text-on-surface-variant">
           Every statement names a conformance status. Writing “fully compliant” is easy; standing

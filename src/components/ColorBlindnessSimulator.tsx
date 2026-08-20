@@ -170,7 +170,7 @@ export function ColorBlindnessSimulator() {
       : ''
 
   return (
-    <div className="mt-8 space-y-6">
+    <div className="panel mt-8 space-y-6">
       <div className="rounded-2xl border border-outline-variant bg-surface-container-low p-5">
         <label htmlFor={fileId} className="label text-on-surface-variant">
           Upload an image

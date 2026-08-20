@@ -140,7 +140,7 @@ export function ColorPaletteGenerator() {
   const baseHex = toHex(base)
 
   return (
-    <div className="mt-8 space-y-6">
+    <div className="panel mt-8 space-y-6">
       <div className="grid gap-4 sm:grid-cols-[minmax(0,1fr)_auto]">
         <fieldset className="rounded-2xl border border-outline-variant bg-surface-container-low p-4">
           <legend className="label px-1 text-on-surface-variant">Base colour</legend>
@@ -224,7 +224,10 @@ export function ColorPaletteGenerator() {
           {swatches.map((s, i) => {
             const hex = toHex(s.rgb)
             return (
-              <li key={`${hex}-${i}`} className="overflow-hidden rounded-2xl border border-outline-variant">
+              <li
+                key={`${hex}-${i}`}
+                className="overflow-hidden rounded-2xl border border-outline-variant shadow-[var(--shadow-card)]"
+              >
                 <div
                   className="flex aspect-[4/3] w-full flex-col justify-end p-4"
                   style={{ backgroundColor: hex, color: s.text.name === 'white' ? '#ffffff' : '#000000' }}

@@ -66,7 +66,7 @@ export function StatementGenerator() {
   const err = (key: keyof typeof errors) => (showErrors ? errors[key] : undefined)
 
   return (
-    <div className="mt-8 grid gap-8 lg:grid-cols-2">
+    <div className="panel mt-8 grid gap-8 lg:grid-cols-2">
       <form className="space-y-4" onSubmit={(e) => e.preventDefault()} noValidate>
         <Field
           id={`${formId}-org`}
@@ -291,7 +291,7 @@ export function StatementGenerator() {
           aria-live="polite"
           aria-label="Generated accessibility statement"
           tabIndex={0}
-          className="mt-4 block max-h-[32rem] overflow-auto rounded-xl border border-outline-variant bg-surface-container-low p-4"
+          className="result-hero mt-4 block max-h-[32rem] overflow-auto"
         >
           <pre className="whitespace-pre-wrap font-mono text-xs text-on-surface">{output}</pre>
         </output>

@@ -43,6 +43,18 @@ push в него ничего не задеплоит (0 прогонов `deplo
 `R-STALE-DATA` — **done (2026-08-20)**: `scripts/stale-data-report.mjs` +
 тест (9 шт., scripts:test 62/62); сегодня отчёт штатно пуст (все 574 записи
 сверены 2026-08-04…13), канарейки прогнаны живьём.
+`G-CHECKERS-ELEVATION` — **done (2026-08-20, review, НЕ задеплоено)**:
+shadow/elevation-система для 9 бесплатных чекеров `/checkers/` (владелец
+жаловался — «лёгкие и непривлекательные, нужно качество Apple»). Новые
+токены `--shadow-card/-card-hover/-panel/-hero` + `--color-surface-elevated`
+и классы `.panel`/`.result-hero` в `src/styles.css`, применены во всех 9
+файлах чекеров. `.card` теперь с тенью В ПОКОЕ (была только на `:hover` —
+на мобильном плоская всегда, это и была причина жалобы). Разбор —
+`docs/project/domains/design.md` §3, `docs/project/domains/frontend.md`,
+узел `G-CHECKERS-ELEVATION` в `GRAPH.yaml`. Все гейты зелёные (typecheck,
+src/scripts/worker:test, build 811 HTML, check-links, audit-a11y ×3 подряд
+71/0). **Следующий шаг — деплой, ждёт решения владельца** (не входило в
+scope узла).
 `R-HEALTH-CRON` тоже `todo`, но `approval_required: true`
 (новый класс автописьма владельцу). Ждут владельца отдельно:
 `R-SELF-MONITOR` (1 клик), Cloudflare zone-токен, Stripe live, outreach,

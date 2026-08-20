@@ -49,7 +49,7 @@ export default function AltTextCheckerPage() {
 
       <HtmlAuditTool mode="alt" />
 
-      <section className="mt-12 max-w-3xl">
+      <section className="mt-14 max-w-3xl">
         <h2 className="h2">What this checks — and what it can't</h2>
         <p className="mt-2 text-on-surface-variant">
           This tool reads the markup you paste and flags the mechanical problems: an image with no{' '}

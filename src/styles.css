@@ -62,6 +62,17 @@
   --color-surface: #fcf8fb;
   --color-surface-container-low: #f6f2f5;
   --color-surface-container: #f0edf0;
+  /* CN-ELEVATION (2026-08-20): приподнятая светлая поверхность для «app-like»
+     chrome (инструмент-панель `.panel`, герой-результат `.result-hero`) —
+     см. их определения в @layer components и разбор ниже у --shadow-*.
+     НЕ замена background/surface-container-low (те не тронуты, D-072); это
+     дополнительная, самая светлая ступень поверх них. Безопасность контраста
+     монотонна в одну сторону: --color-on-surface (#1c1b1d) на белом даёт
+     15.6:1 против 13.7:1 на background — строго ЛУЧШЕ, никогда не хуже, тот
+     же аргумент верен для on-surface-variant/outline/primary текста, у
+     которых сравнение с фоном тоже только светлеет. Контраст-гейт
+     (audit-own-a11y) может от этого токена только улучшиться, не сломаться. */
+  --color-surface-elevated: #ffffff;
   --color-on-surface: #1c1b1d;
   --color-on-surface-variant: #454652;
   --color-outline: #767684;
@@ -97,6 +108,37 @@
   --color-info: #4451c8;
   --color-info-soft: #e0e0ff;
   --color-info-border: #a9b0f5;
+
+  /* CN-ELEVATION (2026-08-20, design-audit узел «checkers-elevation»):
+     shadow-шкала — до этого узла в @theme НЕ БЫЛО ни одного токена тени;
+     .card поднимал тень только на :hover (см. её определение ниже), то есть
+     на телефоне (где hover не существует) карточки были плоскими всегда —
+     это была главная жалоба владельца («лёгкие и непривлекательные»).
+     Три семантические ступени, а не голая численная шкала (sm/md/lg), по
+     месту использования:
+       --shadow-card       — карточка в ПОКОЕ (каталог/гайды/«другие
+                              чекеры»), .card ниже применяет её всегда, не
+                              только на hover.
+       --shadow-card-hover — усиление той же карточки на hover/focus.
+       --shadow-panel      — рамка вокруг целого инструмента (.panel), чтобы
+                              чекер читался как небольшое приложение, а не
+                              продолжение абзаца статьи (диагноз: инструмент
+                              делил bg-surface-container-low+border с соседним
+                              пояснительным блоком — неотличимы).
+       --shadow-hero       — единственный «геройский» результат экрана
+                              (число контраста, сводка readability,
+                              сгенерированное заявление) — самая сильная
+                              тень на странице, ровно одна на экран.
+     Форма каждой тени — два слоя (Apple-манера, «тень как мягкий свет, не
+     обводка»): узкая контактная (малый blur, чуть видна у самого края) +
+     широкая мягкая (большой blur/spread, низкая альфа, далеко от края).
+     Цвет — rgb() от --color-on-surface (28 27 29), НЕ чистый чёрный и не
+     serый rgba(0,0,0,·): тон в цвет текста делает тень визуально «тёплой»,
+     частью той же палитры, а не отдельным серым слоем поверх неё. */
+  --shadow-card: 0 1px 2px 0 rgb(28 27 29 / 0.04), 0 4px 14px -4px rgb(28 27 29 / 0.1);
+  --shadow-card-hover: 0 2px 6px 0 rgb(28 27 29 / 0.06), 0 12px 28px -8px rgb(28 27 29 / 0.16);
+  --shadow-panel: 0 2px 8px 0 rgb(28 27 29 / 0.06), 0 16px 40px -12px rgb(28 27 29 / 0.16);
+  --shadow-hero: 0 4px 12px 0 rgb(28 27 29 / 0.08), 0 24px 56px -16px rgb(28 27 29 / 0.2);
 }
 
 /* Каталог доступности обязан сам быть доступным: видимый фокус везде,
@@ -312,13 +354,51 @@ body {
   /* Карточки/панели: радиус CN-BRANDBOOK-V2 — 1rem = rounded-2xl дефолтной
      шкалы Tailwind (было rounded-xl = 0.5rem под старым переопределением;
      та же utility-класс держится, только сама шкала теперь дефолтная — см.
-     примечание в @theme). Подложка surface-container-low, глубина границей. */
+     примечание в @theme). Подложка surface-container-low, глубина —
+     границей И тенью. CN-ELEVATION (2026-08-20): тень раньше была ТОЛЬКО на
+     hover (hover:shadow-sm, ничего в покое) — на мобильном, где hover не
+     существует, карточка была плоской всегда. Теперь shadow-card в покое
+     всегда, shadow-card-hover усиливает по наведению/фокусу — критично
+     именно для мобильного экрана, где это единственная тень, которую
+     пользователь вообще увидит. */
   .card {
-    @apply block rounded-2xl border border-outline-variant bg-surface-container-low p-4 transition hover:border-outline hover:shadow-sm;
+    @apply block rounded-2xl border border-outline-variant bg-surface-container-low p-4 shadow-[var(--shadow-card)] transition hover:border-outline hover:shadow-[var(--shadow-card-hover)];
+  }
+  /* Под prefers-reduced-motion: reduce отключается САМ переход (интерполяция
+     тени/цвета кадр за кадром), не конечные состояния — карточка в покое и
+     на hover/focus выглядит ровно так же, просто без анимированной
+     интерполяции между ними (§35, тот же принцип, что у .stream-spinner/
+     .modal-panel/.toast-item выше). */
+  @media (prefers-reduced-motion: reduce) {
+    .card {
+      transition: none;
+    }
   }
   /* использовать как class="card tile" */
   .tile {
     @apply flex items-baseline justify-between gap-2;
+  }
+  /* CN-ELEVATION (2026-08-20, design-audit узел «checkers-elevation»):
+     панель инструмента-чекера (.panel) — оборачивает интерактивную часть
+     каждого из 9 бесплатных чекеров под /checkers/. Приподнятая белая
+     поверхность (surface-elevated, не surface-container-low) + заметная
+     тень БЕЗ рамки — глубина светом, не обводкой (Apple-манера, диагноз A).
+     Без border намеренно: у панели и у соседних пояснительных блоков статьи
+     (rounded-xl border bg-surface-container-low) теперь РАЗНЫЕ визуальные
+     языки — рамка+бледная подложка для контента статьи, тень+белая
+     поверхность для самого приложения — то, чего не хватало (диагноз пункт
+     4: инструмент и абзац рядом были неотличимы). Отступ крупнее обычной
+     карточки (p-6/p-8 против p-4) — инструмент композиционно тяжелее одной
+     карточки. */
+  .panel {
+    @apply rounded-2xl bg-surface-elevated p-6 shadow-[var(--shadow-panel)] sm:p-8;
+  }
+  /* Герой-результат (.result-hero) — единственный главный ответ экрана
+     (число контраста, сводка readability, сгенерированный текст заявления и
+     т.п., диагноз пункт E). Самая сильная тень на странице; используется
+     ровно один раз на экран, иначе теряет смысл «геройского» акцента. */
+  .result-hero {
+    @apply rounded-2xl bg-surface-elevated p-6 shadow-[var(--shadow-hero)] sm:p-8;
   }
   /* Кнопки CN-BRANDBOOK-V2: мягкий угол 0.5rem (rounded-lg дефолтной шкалы),
      pill (rounded-full) макет больше не использует ни для кнопок, ни для

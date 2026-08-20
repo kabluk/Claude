@@ -2010,3 +2010,25 @@ nodes:
     risk: low
     approval_required: false
     notes: "done (D-183, 2026-08-15). Три слоя: htmlAudit.ts (чистое ядро, 16 тестов) + htmlExtract.ts (DOMParser-обёртка) + HtmlAuditTool.tsx (общий UI, mode=alt|headings → 2 URL). Живая Playwright-проверка обеих страниц. По ходу пойманы hydration mismatch (переписано на useEffect) и ложные check-links на src внутри textarea (общий фикс + канарейка). src:test 191/191, audit-a11y 71/0 ×3. Реестр чекеров = 9. Кандидаты №3 и №4 по исследованию (growth.md, D-179), объединены в один узел намеренно: оба строятся на ОДНОМ DOMParser-движке по вставленному HTML — один парсер, два URL, два кластера запросов. Heading analyzer даёт двойной кластер (a11y + SEO: «h1 tag checker», «heading hierarchy»), то есть трафик шире ниши. Числовых данных о спросе нет ни по одному (growth.md честно помечает). ВАЖНОЕ ограничение (подтверждено внешним источником, wcagkit.com): ввод URL невозможен на клиенте из-за CORS — только вставка HTML/загрузка файла; инструмент с вводом URL это наш серверный сканер, не чекер."
+
+  - id: G-CHECKERS-ELEVATION
+    title: "Дизайн-проход по 9 бесплатным чекерам /checkers/ — shadow/elevation-система, .panel/.result-hero, ритм отступов"
+    owner: frontend-engineer
+    status: done
+    depends_on: []
+    inputs: [docs/project/domains/design.md, src/styles.css]
+    scope: [src/styles.css, src/components/ContrastChecker.tsx, src/components/ReadabilityChecker.tsx, src/components/ColorConverter.tsx, src/components/ColorBlindnessSimulator.tsx, src/components/ColorPaletteGenerator.tsx, src/components/StatementGenerator.tsx, src/components/TextToSpeech.tsx, src/components/HtmlAuditTool.tsx, src/pages/AltTextCheckerPage.tsx, src/pages/HeadingCheckerPage.tsx, src/pages/StatementGeneratorPage.tsx]
+    outputs: [src/styles.css]
+    verify:
+      - npm run typecheck
+      - npm run src:test
+      - npm run scripts:test
+      - npm run worker:test
+      - "npm run build (VITE_SCANNER_API=https://accessatlas-worker.zincroom.workers.dev, VITE_TURNSTILE_SITE_KEY=0x4AAAAAAEOUfpgaTq7cI0mS)"
+      - npm run check-links
+      - "npm run audit-a11y ×3 подряд (флап-проверка) — все 9 /checkers/* поимённо"
+    max_attempts: 4
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "done (2026-08-20). Владелец: чекеры «лёгкие и непривлекательные, нужно качество уровня Apple». Диагноз (оркестратор, подтверждён чтением кода): 1) background/surface-container-low различаются ~2% яркости, карточка не читалась; 2) .card поднимал тень ТОЛЬКО на :hover — на мобильном (hover не существует) карточки были плоскими всегда, главная причина жалобы; 3) в @theme не было ни одного shadow-токена; 4) инструмент делил border+bg-surface-container-low с соседним пояснительным блоком статьи — неотличим от неё. Решение: 4 shadow-токена (card/card-hover/panel/hero, два слоя, тон от on-surface, не серый/чёрный) + --color-surface-elevated:#ffffff (контраст-безопасен по построению, монотонно лучше на background); .card — тень в покое + reduced-motion guard; новые классы .panel (обёртка инструмента, белая поверхность+тень, без border) и .result-hero (главный ответ, сильнейшая тень, один на экран) — применены во всех 9 чекерах, hero — в 5 из них (Contrast ratio, Readability at-a-glance, ColorConverter all-formats, StatementGenerator output, HtmlAuditTool summary); у остальных 4 (ColorBlindness/ColorPalette/TextToSpeech без единой цифры-результата, а также панель для ColorPalette) применена только .panel-обёртка. Ритм: 3 страницы на mt-12 выровнены на mt-14 (было большинство), rounded-md→rounded-xl на выбросе StatementGeneratorPage. Палитра/гарнитура/радиусы/тёмная тема НЕ трогались (вне scope, зафиксированы D-072/D-073). Гейты: typecheck чисто, src:test 191/191, scripts:test 62/62, worker:test 522/522, build 811 HTML, check-links 877/0 битых, audit-a11y ×3 подряд по 71 странице / 0 нарушений каждый раз, все /checkers/* поимённо чисты. Деплоя не было (не входит в scope узла)."

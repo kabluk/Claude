@@ -69,7 +69,7 @@ export function HtmlAuditTool({ mode }: { mode: Mode }) {
   const computed = result !== null
 
   return (
-    <div className="mt-8 grid gap-8 lg:grid-cols-2">
+    <div className="panel mt-8 grid gap-8 lg:grid-cols-2">
       <div>
         <label htmlFor={`${formId}-html`} className="block text-sm font-medium text-on-surface-variant">
           Paste your HTML
@@ -106,20 +106,25 @@ export function HtmlAuditTool({ mode }: { mode: Mode }) {
             <p className="text-on-surface-variant">Paste some HTML on the left to see results here.</p>
           ) : (
             <>
-              <p className="text-sm">
-                {counts.errors === 0 && counts.warnings === 0 ? (
-                  <span className="font-semibold text-[color:var(--color-success)]">
-                    No {mode === 'alt' ? 'alt-text' : 'heading'} issues found in the pasted markup.
-                  </span>
-                ) : (
-                  <span className="text-on-surface-variant">
-                    <span className="font-semibold text-[color:var(--color-critical)]">{counts.errors}</span>{' '}
-                    {counts.errors === 1 ? 'error' : 'errors'},{' '}
-                    <span className="font-semibold text-[color:var(--color-moderate)]">{counts.warnings}</span>{' '}
-                    {counts.warnings === 1 ? 'warning' : 'warnings'}.
-                  </span>
-                )}
-              </p>
+              {/* Главный результат экрана (диагноз E) — единственный
+                  .result-hero на страницу. */}
+              <div className="result-hero">
+                <p className="label text-on-surface-variant">Result</p>
+                <p className="mt-2 text-xl font-semibold sm:text-2xl">
+                  {counts.errors === 0 && counts.warnings === 0 ? (
+                    <span className="text-[color:var(--color-success)]">
+                      No {mode === 'alt' ? 'alt-text' : 'heading'} issues found in the pasted markup.
+                    </span>
+                  ) : (
+                    <span className="text-on-surface-variant">
+                      <span className="num text-[color:var(--color-critical)]">{counts.errors}</span>{' '}
+                      {counts.errors === 1 ? 'error' : 'errors'},{' '}
+                      <span className="num text-[color:var(--color-moderate)]">{counts.warnings}</span>{' '}
+                      {counts.warnings === 1 ? 'warning' : 'warnings'}.
+                    </span>
+                  )}
+                </p>
+              </div>
 
               {mode === 'headings' && outline && outline.length > 0 && (
                 <div className="mt-4">

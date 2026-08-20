@@ -2,6 +2,39 @@
 
 Обновлено: 2026-08-20 (см. также подробный legacy-статус: `research/STATE.md`)
 
+## Последнее (2026-08-20, G-CHECKERS-ELEVATION done — review, НЕ задеплоено)
+
+Дизайн-проход по 9 бесплатным чекерам `/checkers/` (владелец: «лёгкие и
+непривлекательные, нужно качество уровня Apple»). Диагноз (оркестратор,
+подтверждён чтением кода): `.card` поднимал тень ТОЛЬКО на `:hover` — на
+мобильном (hover не существует) карточки были плоскими всегда, это главная
+причина жалобы; в `@theme` не было вообще ни одного shadow-токена;
+инструмент делил `border+bg-surface-container-low` с соседним пояснительным
+блоком статьи — визуально неотличим от неё.
+
+Решение (`src/styles.css`): 4 новых `--shadow-*` токена (card/card-hover/
+panel/hero, два слоя, тон от `--color-on-surface`, не серый/чёрный) +
+`--color-surface-elevated:#ffffff` (контраст-безопасен по построению —
+монотонно лучше на `background`/`surface-container-low`, гейт может только
+улучшиться). `.card` — тень в покое + reduced-motion guard. Два новых класса:
+`.panel` (белая приподнятая поверхность+тень, без border — обёртка
+инструмента) и `.result-hero` (сильнейшая тень, ровно один на экран — главный
+ответ). Применены во всех 9 файлах чекеров; `.result-hero` — в 5 из них, где
+есть единственный чёткий результат (Contrast ratio, Readability at-a-glance,
+ColorConverter all-formats, StatementGenerator output, HtmlAuditTool
+summary). Ритм: 3 страницы на `mt-12` выровнены на `mt-14` (было у
+большинства); `rounded-md`→`rounded-xl` на выбросе disclaimer-блока
+`StatementGeneratorPage`. Палитра/гарнитура/радиусная шкала/тёмная тема —
+НЕ тронуты (D-072/D-073 вне scope).
+
+Полный разбор — `docs/project/domains/design.md` §3, узел
+`docs/project/GRAPH.yaml` `G-CHECKERS-ELEVATION`.
+
+Проверки: `typecheck` чисто · `src:test` 191/191 · `scripts:test` 62/62 ·
+`worker:test` 522/522 · `build` 811 HTML · `check-links` 877 ссылок/0 битых ·
+`audit-a11y` **3 прогона подряд**, каждый 71 страниц (light)/0 нарушений,
+все 9 `/checkers/*` поимённо чисты. Деплоя не было — задача чисто в коде.
+
 ## Последнее (2026-08-20, R-STALE-DATA done — чистый скрипт, деплой не нужен)
 
 `scripts/stale-data-report.mjs` (Фаза R, zero-cost узел): отчёт «N профилей

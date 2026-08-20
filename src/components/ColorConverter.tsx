@@ -70,7 +70,7 @@ export function ColorConverter() {
   const summary = `${hex} — contrast ${ratioWhite.toFixed(2)}:1 against white, ${ratioBlack.toFixed(2)}:1 against black.`
 
   return (
-    <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,20rem)]">
+    <div className="panel mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,20rem)]">
       <div className="space-y-6">
         <fieldset className="rounded-2xl border border-outline-variant bg-surface-container-low p-4">
           <legend className="label px-1 text-on-surface-variant">Colour to convert</legend>
@@ -115,11 +115,11 @@ export function ColorConverter() {
           </p>
         </fieldset>
 
-        {/* Все три нотации + копирование — один живой регион, SR слышит
-            пересчёт целиком. */}
-        <div className="rounded-2xl border border-outline-variant bg-surface-container-low p-5" aria-live="polite">
+        {/* Все три нотации + копирование — главный результат экрана
+            (диагноз E), один живой регион, SR слышит пересчёт целиком. */}
+        <div className="result-hero" aria-live="polite">
           <p className="label text-on-surface-variant">All formats</p>
-          <dl className="mt-3 space-y-3">
+          <dl className="mt-3 space-y-4">
             {[
               { label: 'HEX', value: hex },
               { label: 'RGB', value: rgbStr },
@@ -131,7 +131,7 @@ export function ColorConverter() {
               <div key={row.label}>
                 <dt className="text-xs text-on-surface-variant">{row.label}</dt>
                 <dd className="mt-1 flex flex-wrap items-center justify-between gap-3">
-                  <span className="num font-mono text-lg text-on-surface">{row.value}</span>
+                  <span className="num font-mono text-2xl text-on-surface sm:text-3xl">{row.value}</span>
                   <CopyButton text={row.value} />
                 </dd>
               </div>

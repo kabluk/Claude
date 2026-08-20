@@ -109,7 +109,7 @@ export function TextToSpeech() {
 
   if (supported === false) {
     return (
-      <div className="mt-8 max-w-2xl rounded-2xl border border-outline-variant bg-surface-container-low p-5">
+      <div className="panel mt-8 max-w-2xl">
         <p className="text-on-surface">
           Your browser doesn&rsquo;t support the Web Speech API this tool relies on, so it can&rsquo;t
           read text aloud here. Try a recent version of Chrome, Edge or Safari, or use your operating
@@ -120,7 +120,7 @@ export function TextToSpeech() {
   }
 
   return (
-    <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,20rem)]">
+    <div className="panel mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,20rem)]">
       <div className="space-y-6">
         <div>
           <label htmlFor={textareaId} className="label text-on-surface-variant">

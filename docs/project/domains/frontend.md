@@ -1,8 +1,54 @@
 # Домен: frontend
 
-Обновлено: 2026-08-08 (CN-BRANDBOOK-V2) · Владелец: frontend-engineer (**+
+Обновлено: 2026-08-20 (CN-ELEVATION) · Владелец: frontend-engineer (**+
 UX/UI-дизайн, явно, D-011** — в ролях `claude-project-orchestrator` нет отдельной
 UX-роли, это не значит «дизайн не делает никто»)
+
+## CN-ELEVATION — сделано (2026-08-20, review, не задеплоено)
+
+Дизайн-проход по 9 бесплатным чекерам под `/checkers/` (владелец: «лёгкие и
+непривлекательные, нужно качество уровня Apple»). Диагноз, спека и решения —
+оркестратор; здесь реализация. Полный разбор токенов/классов и обоснование —
+`docs/project/domains/design.md` §3 (Elevation). Кратко:
+
+- **`src/styles.css`**: 4 новых `--shadow-*` токена (`card`/`card-hover`/
+  `panel`/`hero`, два слоя каждый, тон от `--color-on-surface`, не серый/
+  чёрный) + `--color-surface-elevated: #ffffff` (контраст-безопасен по
+  построению — монотонно лучше `background`/`surface-container-low`).
+  `.card` получил тень В ПОКОЕ (раньше — только `:hover`, на мобильном
+  карточки были плоскими всегда, это и была главная жалоба) + reduced-motion
+  guard на переход. Два новых компонентных класса: `.panel` (белая
+  приподнятая поверхность + заметная тень, БЕЗ border — оборачивает
+  интерактивную часть каждого из 9 чекеров) и `.result-hero` (сильнейшая
+  тень, ровно один экземпляр на экран — главный ответ инструмента: число
+  контраста, «At a glance» readability, «All formats» конвертера,
+  сгенерированное заявление, сводка HTML-аудита).
+- **9 файлов чекеров** (`src/components/ContrastChecker.tsx`,
+  `ReadabilityChecker.tsx`, `ColorConverter.tsx`, `ColorBlindnessSimulator.tsx`,
+  `ColorPaletteGenerator.tsx`, `StatementGenerator.tsx`, `TextToSpeech.tsx`,
+  `HtmlAuditTool.tsx` — общий для alt-text/heading-structure) обёрнуты в
+  `.panel`; у 5 из них главный результат переведён на `.result-hero` с
+  укрупнённым кеглем (там, где такой единственный результат вообще есть —
+  ColorBlindnessSimulator/ColorPaletteGenerator результат уже визуален сам
+  по себе, hero туда не добавлялся).
+- **Ритм** (диагноз F): 3 страницы (`AltTextCheckerPage`, `HeadingCheckerPage`,
+  `StatementGeneratorPage`) использовали `mt-12` для первой секции после
+  инструмента, остальные 6 — `mt-14`; выровнено на `mt-14` у всех девяти.
+  Заодно `rounded-md` → `rounded-xl` на disclaimer-блоке
+  `StatementGeneratorPage` (единственный радиус-выброс среди «callout»-боксов
+  чекеров).
+- **Не тронуто намеренно**: палитра, гарнитура, радиусная шкала брендбука
+  (D-072), тёмная тема (D-073) — все три вне scope этого узла. Callout/
+  disclaimer-боксы статьи (`rounded-xl border bg-surface-container-low`)
+  оставлены плоскими БЕЗ тени — это осознанная часть решения (диагноз
+  пункт 4): инструмент теперь визуально отличается от абзаца статьи именно
+  тем, что у первого есть elevation, а у второго нет.
+- **Гейты**: `typecheck` чисто · `src:test` 191/191 · `scripts:test` 62/62 ·
+  `worker:test` 522/522 · `build` 811 HTML (VITE_SCANNER_API=
+  `https://accessatlas-worker.zincroom.workers.dev`, тот же адрес что в
+  прошлых прогонах) · `check-links` 877 ссылок/38639 вхождений, 0 битых ·
+  `audit-a11y` — **3 прогона подряд**, каждый 71 страниц (light) / 0
+  нарушений, включая все 9 `/checkers/*` поимённо. Деплоя не было.
 
 ## CN-BRANDBOOK-V2 — сделано (2026-08-08, review, не задеплоено)
 

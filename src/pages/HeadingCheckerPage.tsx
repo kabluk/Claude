@@ -45,7 +45,7 @@ export default function HeadingCheckerPage() {
 
       <HtmlAuditTool mode="headings" />
 
-      <section className="mt-12 max-w-3xl">
+      <section className="mt-14 max-w-3xl">
         <h2 className="h2">Why heading order matters</h2>
         <p className="mt-2 text-on-surface-variant">
           Screen-reader users navigate a page by its headings the way sighted users skim it with

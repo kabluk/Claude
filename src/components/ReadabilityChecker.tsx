@@ -95,7 +95,7 @@ export function ReadabilityChecker() {
       : ''
 
   return (
-    <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,20rem)]">
+    <div className="panel mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,20rem)]">
       {/* Левая колонка: ввод текста + результат + таблица формул. */}
       <div className="space-y-6">
         <div>
@@ -126,24 +126,22 @@ export function ReadabilityChecker() {
           </button>
         </div>
 
-        {/* Счётчики + вердикт — один живой регион, SR слышит пересчёт целиком. */}
-        <div
-          className="rounded-2xl border border-outline-variant bg-surface-container-low p-5"
-          aria-live="polite"
-        >
+        {/* Главный результат экрана (диагноз E) — один живой регион, SR
+            слышит пересчёт целиком. */}
+        <div className="result-hero" aria-live="polite">
           <p className="label text-on-surface-variant">At a glance</p>
-          <dl className="mt-2 grid grid-cols-3 gap-3 text-center sm:text-left">
+          <dl className="mt-3 grid grid-cols-3 gap-3 text-center sm:text-left">
             <div>
               <dt className="text-xs text-on-surface-variant">Words</dt>
-              <dd className="num text-2xl font-semibold text-on-surface">{result.stats.words}</dd>
+              <dd className="num text-3xl font-semibold text-on-surface sm:text-4xl">{result.stats.words}</dd>
             </div>
             <div>
               <dt className="text-xs text-on-surface-variant">Sentences</dt>
-              <dd className="num text-2xl font-semibold text-on-surface">{result.stats.sentences}</dd>
+              <dd className="num text-3xl font-semibold text-on-surface sm:text-4xl">{result.stats.sentences}</dd>
             </div>
             <div>
               <dt className="text-xs text-on-surface-variant">Syllables</dt>
-              <dd className="num text-2xl font-semibold text-on-surface">{result.stats.syllables}</dd>
+              <dd className="num text-3xl font-semibold text-on-surface sm:text-4xl">{result.stats.syllables}</dd>
             </div>
           </dl>
           <p className="mt-3 text-sm text-on-surface-variant">{summary}</p>

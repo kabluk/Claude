@@ -220,7 +220,7 @@ export function ContrastChecker() {
         : 'Fails AA for both normal and large text.'
 
   return (
-    <div className="mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,20rem)]">
+    <div className="panel mt-8 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,20rem)]">
       {/* Левая колонка: ввод цветов + результат + матрица */}
       <div className="space-y-6">
         <div className="grid gap-4 sm:grid-cols-2">
@@ -263,17 +263,18 @@ export function ContrastChecker() {
           </span>
         </div>
 
-        {/* Результат: крупное число + сводка, всё в одном live-регионе. */}
-        <div
-          className="rounded-2xl border border-outline-variant bg-surface-container-low p-5"
-          aria-live="polite"
-        >
+        {/* Результат: главный визуальный момент экрана (диагноз E) — крупное
+            число + сводка, всё в одном live-регионе. .result-hero — самая
+            сильная тень на странице, ровно один раз. */}
+        <div className="result-hero" aria-live="polite">
           <p className="label text-on-surface-variant">Contrast ratio</p>
-          <p className="mt-1">
-            <span className="num text-4xl font-semibold text-on-surface">{ratio.toFixed(2)}</span>
-            <span className="text-xl text-on-surface-variant"> : 1</span>
+          <p className="mt-2">
+            <span className="num text-6xl font-semibold tracking-tight text-on-surface sm:text-7xl">
+              {ratio.toFixed(2)}
+            </span>
+            <span className="text-2xl text-on-surface-variant"> : 1</span>
           </p>
-          <p className="mt-2 text-sm text-on-surface-variant">{summary}</p>
+          <p className="mt-3 text-sm text-on-surface-variant">{summary}</p>
         </div>
 
         {/* Матрица AA/AAA × normal/large/UI. Настоящая таблица, scope, текст+иконка. */}
