@@ -449,6 +449,16 @@ export function ImageColorPicker() {
             <h2 className="label text-on-surface-variant" id={canvasDescId}>
               Click the image, or use the arrow keys then Enter/Space
             </h2>
+            {/* Высота канвы намеренно щедрая: это инструмент прицеливания, и
+                чем крупнее картинка, тем точнее попадание — особенно при
+                выборе с клавиатуры, где шаг равен пикселю ИСХОДНИКА, а не
+                экрана. Прежние max-h-40/sm:max-h-64 (160/256px) были
+                рудиментом первой компоновки, где результат стоял ПОД канвой и
+                любая её высота утаскивала ответ под сгиб. Сейчас .result-hero
+                идёт ВЫШЕ канвы, поэтому рост картинки на сгиб не влияет вовсе,
+                а гейт check-fold (D-187) это стережёт. Замерено на загрузке
+                4000×3000: фото 4:3 показывалось 341×256 в поле шириной 878 —
+                мелко, с пустыми полями по бокам. */}
             <canvas
               ref={displayRef}
               tabIndex={0}
@@ -456,7 +466,7 @@ export function ImageColorPicker() {
               onKeyDown={onCanvasKeyDown}
               aria-describedby={`${canvasDescId} ${hintId}`}
               aria-label={`${description}. Use arrow keys to move the crosshair one pixel at a time, Shift plus arrow keys for ten pixels, and Enter or Space to pick the colour underneath it.`}
-              className="mt-2 block h-auto max-h-40 w-full cursor-crosshair rounded-lg border border-outline-variant bg-surface object-contain sm:max-h-64"
+              className="mt-2 block h-auto max-h-72 w-full cursor-crosshair rounded-lg border border-outline-variant bg-surface object-contain sm:max-h-[26rem]"
             />
             {/* «Текущий» цвет под перекрестием — озвучивается отдельно от
                 выбранного, ТЕКСТОМ (hex), не только цветным квадратом. */}
