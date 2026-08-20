@@ -1,0 +1,2185 @@
+{
+  "measured": "2026-08-20",
+  "source": "DataForSEO google_ads/search_volume/live",
+  "location": "US (2840)",
+  "language": "en",
+  "note": "Security/email-auth cluster probe (D-186)",
+  "keywords": [
+    {
+      "keyword": "dns checker",
+      "search_volume": 33100,
+      "cpc": 7.83,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 40500
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 40500
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 33100
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 40500
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 40500
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 33100
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 27100
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 27100
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 33100
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 27100
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 33100
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 33100
+        }
+      ]
+    },
+    {
+      "keyword": "dns lookup",
+      "search_volume": 33100,
+      "cpc": 5,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 33100
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 33100
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 33100
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 40500
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 40500
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 33100
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 33100
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 33100
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 33100
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 40500
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 40500
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 40500
+        }
+      ]
+    },
+    {
+      "keyword": "ssl checker",
+      "search_volume": 9900,
+      "cpc": 7.99,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 8100
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 8100
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 9900
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 9900
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 8100
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 9900
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 8100
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 8100
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 9900
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 9900
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 9900
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 12100
+        }
+      ]
+    },
+    {
+      "keyword": "mx lookup",
+      "search_volume": 9900,
+      "cpc": 13.72,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 8100
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 8100
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 8100
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 9900
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 9900
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 9900
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 9900
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 8100
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 8100
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 9900
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 9900
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 9900
+        }
+      ]
+    },
+    {
+      "keyword": "dmarc checker",
+      "search_volume": 6600,
+      "cpc": 4.17,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 5400
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 6600
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 9900
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 6600
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 6600
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 6600
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 5400
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 5400
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 6600
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 6600
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 8100
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 8100
+        }
+      ]
+    },
+    {
+      "keyword": "spf checker",
+      "search_volume": 5400,
+      "cpc": 2.02,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 4400
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 5400
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 6600
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 5400
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 5400
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 5400
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 5400
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 5400
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 6600
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 6600
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 6600
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 6600
+        }
+      ]
+    },
+    {
+      "keyword": "dkim checker",
+      "search_volume": 5400,
+      "cpc": 3.89,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 5400
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 5400
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 8100
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 6600
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 5400
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 5400
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 5400
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 5400
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 6600
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 6600
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 6600
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 6600
+        }
+      ]
+    },
+    {
+      "keyword": "mx record checker",
+      "search_volume": 4400,
+      "cpc": 6.68,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 3600
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 3600
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 4400
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 5400
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 5400
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 4400
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 5400
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 4400
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 4400
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 5400
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 5400
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 5400
+        }
+      ]
+    },
+    {
+      "keyword": "check mx record",
+      "search_volume": 4400,
+      "cpc": 6.68,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 3600
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 3600
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 4400
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 5400
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 5400
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 4400
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 5400
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 4400
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 4400
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 5400
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 5400
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 5400
+        }
+      ]
+    },
+    {
+      "keyword": "spf record checker",
+      "search_volume": 2900,
+      "cpc": 2.11,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 2400
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 2400
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 2900
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 3600
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 3600
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 2900
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 2900
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 2400
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 2400
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 3600
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 3600
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 3600
+        }
+      ]
+    },
+    {
+      "keyword": "spf lookup",
+      "search_volume": 2400,
+      "cpc": 2.68,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 1900
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 1900
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 2400
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 2900
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 2400
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 2400
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 2400
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 1900
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 1900
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 2400
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 2400
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 2900
+        }
+      ]
+    },
+    {
+      "keyword": "email spam checker",
+      "search_volume": 2400,
+      "cpc": 6.82,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 2400
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 1900
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 1900
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 1900
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 2400
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 1900
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 2400
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 1900
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 2900
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 2900
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 3600
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 3600
+        }
+      ]
+    },
+    {
+      "keyword": "website security checker",
+      "search_volume": 1600,
+      "cpc": 13.2,
+      "competition": "MEDIUM",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 1300
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 1900
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 1600
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 1900
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 1900
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 1900
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 1900
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 1900
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 2400
+        }
+      ]
+    },
+    {
+      "keyword": "check website security",
+      "search_volume": 1600,
+      "cpc": 13.2,
+      "competition": "MEDIUM",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 1300
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 1900
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 1600
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 1900
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 1900
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 1900
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 1900
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 1900
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 2400
+        }
+      ]
+    },
+    {
+      "keyword": "dmarc lookup",
+      "search_volume": 1600,
+      "cpc": 3.29,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 1300
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 1300
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 2400
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 1600
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 1600
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 1600
+        }
+      ]
+    },
+    {
+      "keyword": "dns record checker",
+      "search_volume": 1600,
+      "cpc": 4.97,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 1900
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 1900
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 1600
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 1900
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 1600
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 1600
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 1900
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 1900
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 1900
+        }
+      ]
+    },
+    {
+      "keyword": "dmarc record checker",
+      "search_volume": 1000,
+      "cpc": 3.64,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 1300
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 1000
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 1000
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 1600
+        }
+      ]
+    },
+    {
+      "keyword": "dkim record checker",
+      "search_volume": 880,
+      "cpc": 3.07,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 1000
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 880
+        }
+      ]
+    },
+    {
+      "keyword": "cookie checker",
+      "search_volume": 720,
+      "cpc": 14.07,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 1300
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 590
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 590
+        }
+      ]
+    },
+    {
+      "keyword": "website vulnerability scanner",
+      "search_volume": 720,
+      "cpc": 56.34,
+      "competition": "MEDIUM",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 1300
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 880
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 1000
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 1000
+        }
+      ]
+    },
+    {
+      "keyword": "domain health checker",
+      "search_volume": 720,
+      "cpc": 6.96,
+      "competition": "MEDIUM",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 1000
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 590
+        }
+      ]
+    },
+    {
+      "keyword": "dmarc analyzer",
+      "search_volume": 720,
+      "cpc": 14.07,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 590
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 880
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 720
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 590
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 590
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 720
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 720
+        }
+      ]
+    },
+    {
+      "keyword": "email deliverability checker",
+      "search_volume": 390,
+      "cpc": 9.86,
+      "competition": "MEDIUM",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 480
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 390
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 590
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 590
+        }
+      ]
+    },
+    {
+      "keyword": "security headers checker",
+      "search_volume": 320,
+      "cpc": 17.37,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 320
+        }
+      ]
+    },
+    {
+      "keyword": "http headers checker",
+      "search_volume": 320,
+      "cpc": 17.95,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 210
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 210
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 390
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 390
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 480
+        }
+      ]
+    },
+    {
+      "keyword": "spf validator",
+      "search_volume": 320,
+      "cpc": 4.73,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 390
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 320
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 390
+        }
+      ]
+    },
+    {
+      "keyword": "email security checker",
+      "search_volume": 260,
+      "cpc": 7.52,
+      "competition": "MEDIUM",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 170
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 210
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 170
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 140
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 170
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 170
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 480
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 390
+        }
+      ]
+    },
+    {
+      "keyword": "csp checker",
+      "search_volume": 210,
+      "cpc": 21.83,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 170
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 170
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 260
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 210
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 260
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 260
+        }
+      ]
+    },
+    {
+      "keyword": "hsts checker",
+      "search_volume": 170,
+      "cpc": null,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 170
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 170
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 170
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 170
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 170
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 140
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 170
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 140
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 210
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 210
+        }
+      ]
+    },
+    {
+      "keyword": "email authentication checker",
+      "search_volume": 140,
+      "cpc": 5.33,
+      "competition": "MEDIUM",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 7,
+          "search_volume": 90
+        },
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 140
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 170
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 320
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 480
+        }
+      ]
+    },
+    {
+      "keyword": "security header scanner",
+      "search_volume": 70,
+      "cpc": 29.69,
+      "competition": "LOW",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 110
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 70
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 90
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 70
+        }
+      ]
+    },
+    {
+      "keyword": "content security policy checker",
+      "search_volume": 50,
+      "cpc": 12.58,
+      "competition": "MEDIUM",
+      "monthly_searches": [
+        {
+          "year": 2026,
+          "month": 6,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 5,
+          "search_volume": 30
+        },
+        {
+          "year": 2026,
+          "month": 4,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 3,
+          "search_volume": 50
+        },
+        {
+          "year": 2026,
+          "month": 2,
+          "search_volume": 40
+        },
+        {
+          "year": 2026,
+          "month": 1,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 12,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 11,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 10,
+          "search_volume": 40
+        },
+        {
+          "year": 2025,
+          "month": 9,
+          "search_volume": 70
+        },
+        {
+          "year": 2025,
+          "month": 8,
+          "search_volume": 50
+        },
+        {
+          "year": 2025,
+          "month": 7,
+          "search_volume": 70
+        }
+      ]
+    }
+  ]
+}
