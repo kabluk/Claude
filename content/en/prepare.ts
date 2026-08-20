@@ -1,5 +1,5 @@
 import type { Block, PageContent } from '@/lib/types'
-import { PWYW_URL } from '@/lib/support'
+import { PWYW_URL, pwywFor } from '@/lib/support'
 
 // The support block appears only once a Stripe pay-what-you-want link is set
 // in src/lib/support.ts. The download itself is free, always.
@@ -10,7 +10,7 @@ const pwyw: Block[] = PWYW_URL
         dim: true,
         text: 'The file is free and will stay free. If you want to support the work — any amount you choose, paid on stripe.com.',
       },
-      { kind: 'ext', href: PWYW_URL, label: 'Support — any amount' },
+      { kind: 'ext', href: pwywFor('en'), label: 'Support — any amount' },
     ]
   : []
 
