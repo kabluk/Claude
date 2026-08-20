@@ -184,6 +184,19 @@ c явным `target-size`) — светлая тема, один проход �
 с прежними dark-значениями. Скриншоты D-072/D-073: scratchpad
 `design/brand-light-*.png`, `design/home-light-only.png` (2026-08-08).
 
+## `/scan/` и `/report/:id` на elevation-системе (G-SCAN-REPORT-ELEVATION, 2026-08-20)
+
+Последние две страницы, которые ещё были на плоской системе (`.card` без
+`.panel`/`.result-hero`) после того, как её получили все 10 чекеров. `/report/:id`
+получил ровно один `.result-hero` (score-блок — главный ответ страницы) и
+`.panel` на двух блоках, которые читаются как инструмент (оценка стоимости с
+интерактивным выбором валюты; тизер платного плана) — список находок и
+правовой блок «What's at risk» сознательно НЕ обёрнуты (см. разбор и
+обоснование каждого решения — `domains/frontend.md`, узел
+`G-SCAN-REPORT-ELEVATION`). `/scan/` получил `.panel` на форме ввода,
+`.result-hero` не добавлен — на странице без ответа герой был бы выдумкой.
+Полный разбор — `docs/project/GRAPH.yaml` id `G-SCAN-REPORT-ELEVATION`.
+
 ## Бриф для Stitch по чекерам (2026-08-20)
 
 `docs/project/STITCH_BRIEF_CHECKERS.md` — готовый промпт для Google Stitch,

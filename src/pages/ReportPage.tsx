@@ -458,7 +458,7 @@ function ReportBody({ report, notify }: { report: ScanReport; notify: Notify }) 
               unlock={unlock}
             />
           </div>
-          <div className="card flex flex-col justify-between">
+          <div className="panel flex flex-col justify-between">
             <div>
               <div className="flex flex-wrap items-start justify-between gap-2">
                 <h2 className="label mt-0 mb-0 text-on-surface-variant">Remediation estimate</h2>
@@ -650,7 +650,7 @@ function ReportHero({
         </div>
 
         {grade && report.score != null && (
-          <div className="flex flex-col items-center gap-4 lg:w-60">
+          <div className="result-hero flex flex-col items-center gap-4 lg:w-60">
             <ScoreRing score={report.score} grade={grade} />
             <SeverityBreakdown groups={groups} />
           </div>
@@ -1098,7 +1098,7 @@ function RemediationPlanPanel({
   return (
     <section className="mt-10">
       <h2 className="h2 mt-0">Your remediation plan</h2>
-      <div className="card">
+      <div className="panel">
         <p className="max-w-prose text-sm text-on-surface-variant">
           <span className="font-semibold text-on-surface">Fix this first: </span>
           {impactLabel(top.impact).toLowerCase()} issue <span className="font-mono">{top.ruleId}</span>, found{' '}

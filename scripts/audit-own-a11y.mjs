@@ -22,6 +22,7 @@ import { fileURLToPath } from 'node:url'
 import { dirname, join, extname } from 'node:path'
 import { createServer } from 'node:http'
 import { chromium } from 'playwright'
+import { REPORT_FIXTURE_ID, reportFixture, noJurisdictionFixture } from './lib/report-fixture.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DIST = join(ROOT, 'dist')
@@ -226,153 +227,12 @@ const results = []
 // realistic ScanReport fixture, driving an actual Chromium render, and
 // gating it with the same axe run/threshold as every page above.
 //
-// Fixture must satisfy the ScanReport contract EXACTLY (src/lib/scanner.ts)
-// — parseScanProgress/parsePlanUnlocked and the UI trust its shape. Three
-// findings with distinct real axe ruleIds/impacts (image-alt/critical,
-// color-contrast/serious, region/moderate) so groupFindingsByRule() yields
-// >0 groups and both the findings list and the plan-panel teaser (built
-// from groups[0], see LockedPlanPanel) actually render.
-// A4-SITE-COUNTRY (D-126): countryCode/countrySource added to every 'done'
-// fixture so the new currency <select> on the remediation-estimate card
-// actually renders (it's conditional on `cost`, which needs findings — same
-// gate as before, this just adds the two new ScanReport fields alongside it)
-// and gets audited, same precedent as D-124 adding the checkout-toast state.
-// D-143 (редизайн /report/:id): фикстура выросла с 3 до 9 РАЗЛИЧНЫХ правил,
-// потому что новая композиция имеет состояния, которых у трёх находок просто
-// не бывает: фильтр-кнопки по серьёзности появляются только когда есть и
-// critical, и serious; «Show remaining N» — только когда правил больше шести
-// (VISIBLE_FINDINGS в ReportPage.tsx). Каждое правило подобрано так, чтобы
-// покрыть свою ВЕТКУ карточки: правило axe с критерием (image-alt),
-// best-practice без критерия (region), наша собственная проверка с описанием
-// и оговоркой (a11y-reflow-320), правило вне главы 9 с человеческим текстом
-// вместо разметки в html (a11y-pdf-present) и находка с правовой пометкой
-// (a11y-statement-missing, jurisdictionCountry DE — раньше amber-блок Legal
-// basis не аудитировался вовсе). Все ruleId/impact/wcag — настоящие
-// (worker/lib/axe.js, data/a11y/en301549-coverage.json), не выдуманные.
-const REPORT_FIXTURE_ID = 'fixture-scan-id'
-const reportFixture = (planUnlocked) => ({
-  id: REPORT_FIXTURE_ID,
-  url: 'https://example.com',
-  status: 'done',
-  countryCode: 'US',
-  countrySource: 'tld',
-  pages: ['https://example.com/', 'https://example.com/about'],
-  findings: [
-    {
-      ruleId: 'image-alt',
-      wcag: ['wcag2a', 'wcag111'],
-      impact: 'critical',
-      selector: 'img.hero-logo',
-      page: 'https://example.com/',
-      html: '<img src="/logo.png" class="hero-logo">',
-    },
-    {
-      ruleId: 'image-alt',
-      wcag: ['wcag2a', 'wcag111'],
-      impact: 'critical',
-      selector: 'img.teaser',
-      page: 'https://example.com/about',
-      html: '<img src="/teaser.png" class="teaser">',
-    },
-    {
-      ruleId: 'label',
-      wcag: ['wcag2a', 'wcag412'],
-      impact: 'critical',
-      selector: 'input#search',
-      page: 'https://example.com/',
-      html: '<input id="search" type="text">',
-    },
-    {
-      ruleId: 'color-contrast',
-      wcag: ['wcag2aa', 'wcag143'],
-      impact: 'serious',
-      selector: '.btn-primary',
-      page: 'https://example.com/about',
-      html: '<button class="btn-primary">Submit</button>',
-    },
-    {
-      ruleId: 'link-name',
-      wcag: ['wcag2a', 'wcag412'],
-      impact: 'serious',
-      selector: 'a.icon-only',
-      page: 'https://example.com/',
-      html: '<a class="icon-only" href="/cart"><svg></svg></a>',
-    },
-    {
-      ruleId: 'html-has-lang',
-      wcag: ['wcag2a', 'wcag311'],
-      impact: 'serious',
-      selector: 'html',
-      page: 'https://example.com/',
-      html: '<html>',
-    },
-    {
-      ruleId: 'a11y-statement-missing',
-      wcag: [],
-      impact: 'serious',
-      selector: 'body',
-      page: 'https://example.com/',
-      html: 'no accessibility statement link found on the home page',
-      jurisdictionNote:
-        'German BFSG (Barrierefreiheitsstärkungsgesetz) requires an accessibility statement for covered services.',
-      jurisdictionCountry: 'DE',
-    },
-    {
-      ruleId: 'region',
-      wcag: ['best-practice'],
-      impact: 'moderate',
-      selector: 'div.legacy-widget',
-      page: 'https://example.com/',
-      html: '<div class="legacy-widget">Site content outside landmarks</div>',
-    },
-    {
-      ruleId: 'a11y-reflow-320',
-      wcag: ['wcag21aa', 'wcag1410'],
-      impact: 'moderate',
-      selector: 'body',
-      page: 'https://example.com/about',
-      html: '<table class="pricing">',
-    },
-    {
-      ruleId: 'a11y-pdf-present',
-      wcag: [],
-      impact: 'moderate',
-      selector: '2 pdf link(s)',
-      page: 'https://example.com/about',
-      html: 'https://example.com/terms.pdf, https://example.com/report.pdf',
-    },
-  ],
-  score: 68,
-  error: null,
-  errorCode: null,
-  createdAt: '2026-08-01T10:00:00.000Z',
-  completedAt: '2026-08-01T10:01:30.000Z',
-  progress: null,
-  planUnlocked,
-})
-
-// `heading` — the <h1> that marks THIS state fully rendered (each state renders
-// a different one, ReportPage.tsx). The done states show "Accessibility report
-// for {url}" (ReportBody); the error state renders "Couldn't scan {url}" — a
-// separate, user-facing surface (scanErrorMessage text + "Run a new scan"),
-// unaudited until now. The wait below races the state's own heading against
-// "Scanner is not configured" so a build without VITE_SCANNER_API fails fast
-// and clearly instead of hanging.
-// D-143 (карточка «What's at risk»): второе состояние ТОЙ ЖЕ карточки —
-// юрисдикция не определена (сайт на .com без schema.org: countrySource
-// 'unknown', и ни на одной находке нет jurisdictionCountry). Тогда янтарной
-// правовой плашки нет вовсе, а подводка и строка про заявление звучат иначе
-// (src/lib/reportRisk.ts — правило проверяется юнит-тестами, здесь проверяется
-// его ДОСТУПНОСТЬ: контраст и структура другой ветки разметки).
-const noJurisdictionFixture = () => {
-  const base = reportFixture(false)
-  return {
-    ...base,
-    countryCode: null,
-    countrySource: 'unknown',
-    findings: base.findings.map(({ jurisdictionNote, jurisdictionCountry, ...f }) => f),
-  }
-}
+// The fixture itself (REPORT_FIXTURE_ID/reportFixture/noJurisdictionFixture)
+// now lives in ./lib/report-fixture.mjs, imported above — check-fold.mjs
+// (D-187) needs the same live-rendered report to measure the score's fold
+// position, and a second hand copy would drift from this one silently. Full
+// rationale for the fixture's shape (why 9 distinct rules, why each field)
+// is in that module's own comments, not duplicated here.
 
 const REPORT_STATES = [
   { label: '/report/:id (locked)', fixture: reportFixture(false), heading: /Accessibility report for/ },

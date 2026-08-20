@@ -43,6 +43,7 @@ import { fileURLToPath } from 'node:url'
 import { dirname, join, extname } from 'node:path'
 import { createServer } from 'node:http'
 import { chromium } from 'playwright'
+import { REPORT_FIXTURE_ID, reportFixture } from './lib/report-fixture.mjs'
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..')
 const DIST = join(ROOT, 'dist')
@@ -66,6 +67,21 @@ const PAGES = [
   { path: '/checkers/readability-checker/', what: 'сводка читабельности' },
   { path: '/checkers/color-converter/', what: 'сконвертированные значения' },
   { path: '/checkers/image-color-picker/', what: 'выбранный цвет' },
+  {
+    // /report/:id — клиентский маршрут (routes.tsx catch-all), никогда не
+    // существует как файл в dist/, и без мока API рендерит либо "Scanner is
+    // not configured", либо бесконечно ждёт ответа воркера. Та же фикстура
+    // (планово заблокированный отчёт — самая частая ветка, которую видит
+    // пользователь), что audit-own-a11y.mjs гоняет через axe; здесь измеряем
+    // только положение score-героя. setup() ставит мок ДО navigate.
+    path: `/report/${REPORT_FIXTURE_ID}/`,
+    what: 'оценка отчёта (score)',
+    async setup(page) {
+      await page.route('**/api/scan/**', (route) =>
+        route.fulfill({ status: 200, contentType: 'application/json', body: JSON.stringify(reportFixture(false)) }),
+      )
+    },
+  },
 ]
 
 const MIME = {
@@ -76,12 +92,18 @@ const MIME = {
 }
 
 const server = createServer((req, res) => {
-  let p = decodeURIComponent((req.url || '/').split('?')[0])
-  let file = join(DIST, p)
-  try {
-    if (statSync(file).isDirectory()) file = join(file, 'index.html')
-  } catch {
-    /* ниже отдадим 404 */
+  const p = decodeURIComponent((req.url || '/').split('?')[0])
+  // /report/:id — тот же особый случай, что в audit-own-a11y.mjs
+  // (A1-REPORT-DIRECT-LINK): в проде functions/report/[[path]].js отдаёт
+  // report-shell.html на ЛЮБОЙ /report/* путь, потому что маршрут клиентский
+  // и dist/report/<id>/index.html никогда не существует.
+  let file = p === '/report' || p.startsWith('/report/') ? join(DIST, 'report-shell.html') : join(DIST, p)
+  if (!p.startsWith('/report')) {
+    try {
+      if (statSync(file).isDirectory()) file = join(file, 'index.html')
+    } catch {
+      /* ниже отдадим 404 */
+    }
   }
   if (!existsSync(file)) {
     res.writeHead(404)
@@ -104,9 +126,10 @@ const browser = await chromium.launch(
 const failures = []
 const rows = []
 
-for (const { path, what } of PAGES) {
+for (const { path, what, setup } of PAGES) {
   const ctx = await browser.newContext({ viewport: VIEWPORT })
   const page = await ctx.newPage()
+  if (setup) await setup(page)
   await page.goto(`http://localhost:${PORT}${path}`, { waitUntil: 'networkidle' })
 
   // Инструменты, которым нужен вход (image picker без картинки героя не имеет),
@@ -115,6 +138,12 @@ for (const { path, what } of PAGES) {
   if (await sample.count()) {
     await sample.click()
     await page.waitForTimeout(700)
+  }
+  // /report/:id рендерится клиентским эффектом ПОСЛЕ моканого fetch — тот же
+  // риск гонки с networkidle, что в audit-own-a11y.mjs, но там уже есть
+  // готовое решение: дождаться настоящего <h1>, а не таймера.
+  if (path.startsWith('/report/')) {
+    await page.getByRole('heading', { level: 1, name: /Accessibility report for/ }).waitFor({ timeout: 15000 })
   }
   await page.waitForTimeout(300)
 

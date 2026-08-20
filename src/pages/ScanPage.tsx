@@ -59,7 +59,7 @@ export default function ScanPage() {
         in under a minute. No account or payment required.
       </p>
 
-      <form onSubmit={handleSubmit} className="mt-6 max-w-xl" noValidate>
+      <form onSubmit={handleSubmit} className="panel mt-6 max-w-xl" noValidate>
         <label htmlFor="scan-url" className="block text-sm font-medium text-on-surface-variant">
           Website URL
         </label>
