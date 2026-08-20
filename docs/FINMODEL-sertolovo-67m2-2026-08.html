@@ -95,6 +95,7 @@
   <p class="lede">Все допущения редактируемые — базовые значения собраны из открытых данных франшиз и ставок Сертолово и намеренно консервативнее обещаний франчайзеров. Меняйте цифры под свои переговоры, модель пересчитывается сразу.</p>
   <p class="note" style="border-left:3px solid var(--accent);padding-left:14px;color:var(--ink-2)"><b>Инвентаризация пересобрана по 2ГИС (20.08.2026).</b> Прежние числа шли из Google Maps и оказались занижены в разы — по пунктам Ozon он показал 2 при реальных 44. Проверенная плотность на 72 300 жителей: фитнес 2 точки (1 на 36 150 жителей), ортопедия 3 (1 на 24 100), оптика 6 (1 на 12 050), пекарни и кофейни 8, лаборатории 9 (КДЛ по-прежнему нет), шаверма и фастфуд 10, детские центры 16, кафе 22, аптеки 23, салоны красоты 37, ПВЗ Ozon 44. Настоящих дефицитов осталось два — фитнес и ортопедия; всё остальное занято плотнее, чем предполагалось.</p>
   <p class="note"><b>Как делится помещение.</b> Пополам — нельзя: минимум у сетей считается по торговому залу (Кладовая здоровья 30–60 м², Айкрафт 35–80, «Стандарт» от 40), а половина в 32 м² брутто после подсобки даёт ~26 м² зала и не проходит ни у кого. Делится <b>несимметрично</b> — и только если один из партнёров нетребователен к площади: ПВЗ Ozon заходит от 20 м² при клиентской зоне от 12, поэтому в вариантах Д и Е он берёт 28–40 м², а второму бизнесу остаётся достаточно, чтобы пройти свой минимум. Wildberries так не работает: ему нужно от 50 м² в городах не-миллионниках.</p>
+  <p class="note" style="border-left:3px solid var(--accent);padding-left:14px;color:var(--ink-2)"><b>Если помещение в собственности, считайте премию к вкладу, а не прибыль.</b> Помещение стоимостью около 12,7 млн — это замороженный капитал: при ключевой ставке 14% те же деньги на вкладе дают примерно 148 тыс. ₽ в месяц, ничего не делая. Поэтому честная мера бизнеса — не «чистая прибыль», а сколько он приносит СВЕРХ вклада, и во сколько вам обходится каждый час. Задайте свою цену помещения и свою ставку в полях выше.</p>
   <p class="note"><b>Что реально в пешей доступности</b> (2ГИС, радиус от дома, 241 организация в 900 м): Магнит Экстра 96 м с рейтингом 4,9 — якорный трафик уже создан; Магнит Аптека, табачный и цветочный — 106 м, в вашем же доме; Пятёрочка 161 м; спорткомплекс с бассейном «Атлантика» 204 м; детский сад 232 м; школа 365 м; МФЦ и два банка 337–348 м; Дикси 382 м; ортопедия «Ортелия» 515 м; поликлиники — взрослая 563 м (рейтинг 2,9) и детская 564 м (1,7); больница 546 м. <b>Пунктов выдачи и постаматов: 9 в радиусе 300 м, 15 в 500 м, 46 в 900 м</b> — ближайший Ozon в 52 метрах. Ниша выдачи заказов здесь закрыта наглухо.</p>
   <p class="note"><b>Три якоря вокруг помещения</b> задают суточный профиль: остановка — утренний и вечерний поток на работу и с работы, школа — утро и середина дня, поликлиника — будни с 8 до 15. ПВЗ живёт вечером и в выходные, поэтому сильный партнёр — тот, кто зарабатывает утром и днём: одна аренда отрабатывает две смены вместо одной.</p>
   <p class="note">Валовая маржа — доля выручки после себестоимости товара/услуг. Налог — УСН «доходы − расходы», применяется к положительной прибыли. Ramp — линейный выход с стартовой загрузки на план.</p>
@@ -137,7 +138,7 @@ const fmtM = n => (n/1e6).toLocaleString('ru-RU',{maximumFractionDigits:1})+' м
 const fmtK = n => Math.round(n/1000).toLocaleString('ru-RU')+' тыс. ₽';
 const fmt = n => Math.abs(n)>=1e6 ? fmtM(n) : fmtK(n);
 
-const G = { rentRate:1400, taxPct:15, own:0, price:12700000 };
+const G = { rentRate:1400, taxPct:15, own:0, price:12700000, depRate:14 };
 
 const VARIANTS = {
   A:{ name:'Вариант А · Лаборатория КДЛ', what:'Один арендатор на все 67 м². Выручка — приём биоматериала и выплаты сети; маржа франчайзи ~50% прейскуранта. Роялти символическое (0,1%), но старт дорогой: медлицензия и оборудование.', extraCapex:0,
@@ -217,7 +218,10 @@ function calc(vk, revMult=1){
   let pbProp=null;
   if(G.own){ let c=-(capex+G.price); for(let m=0;m<120;m++){ let net=0; for(const u of v.units){const uu={...u,rev:u.rev*revMult}; net+=unitMonth(uu,m>35?35:m).net;} c+=net; if(c>=0){pbProp=m+1;break;} } }
   const hours=v.units.reduce((s,u)=>s+(u.hours||0),0);
-  return {capex,months,cumArr,payback,mat,be,pbProp,hours};
+  const capital=capex+(G.own?G.price:0);
+  const alt=capital*G.depRate/100/12;
+  const premium=mat.net-alt;
+  return {capex,months,cumArr,payback,mat,be,pbProp,hours,capital,alt,premium};
 }
 
 function el(html){const d=document.createElement('div');d.innerHTML=html;return d.firstElementChild;}
@@ -231,7 +235,8 @@ function renderInputs(){
     el(`<div class="f"><label>Аренда, ₽/м²/мес</label><input type="number" id="g-rent" value="${G.rentRate}"></div>`),
     el(`<div class="f"><label>Помещение</label><select id="g-own"><option value="0"${G.own?'':' selected'}>аренда</option><option value="1"${G.own?' selected':''}>своё (куплено)</option></select></div>`),
     el(`<div class="f"><label>Цена помещения, ₽</label><input type="number" id="g-price" value="${G.price}" step="100000"></div>`),
-    el(`<div class="f"><label>Налог с прибыли, %</label><input type="number" id="g-tax" value="${G.taxPct}"></div>`)
+    el(`<div class="f"><label>Налог с прибыли, %</label><input type="number" id="g-tax" value="${G.taxPct}"></div>`),
+    el(`<div class="f"><label>Ставка по вкладу, %</label><input type="number" id="g-dep" value="${G.depRate}"></div>`)
   );
   const un=document.getElementById('units'); un.innerHTML='';
   v.units.forEach((u,i)=>{
@@ -251,6 +256,7 @@ function onInput(e){
   if(t.id==='g-rent')G.rentRate=+t.value||0;
   else if(t.id==='g-tax')G.taxPct=+t.value||0;
   else if(t.id==='g-price')G.price=+t.value||0;
+  else if(t.id==='g-dep')G.depRate=+t.value||0;
   else if(t.id==='g-own'){G.own=+t.value; }
   else{ const u=VARIANTS[cur].units[+t.dataset.u]; u[t.dataset.k]=+t.value||0; }
   renderResults(); renderSummary();
@@ -268,7 +274,8 @@ function renderSummary(){
       <div class="kv"><span>Чистая на плане</span><b>${fmtK(r.mat.net)}/мес</b></div>
       <div class="kv"><span>Окупаемость</span><b>${r.payback?r.payback+' мес':'&gt;48 мес'}</b></div>
       <div class="kv"><span>Ваших часов/нед</span><b>${r.hours} ч</b></div>
-      <div class="kv"><span>На час времени</span><b>${r.hours>0?Math.round(r.mat.net/(r.hours*4.33)).toLocaleString('ru-RU')+' ₽':'—'}</b></div>
+      <div class="kv"><span>Премия к вкладу</span><b>${r.premium>=0?'+':''}${fmtK(r.premium)}</b></div>
+      <div class="kv"><span>Премия на час</span><b>${r.hours>0?Math.round(r.premium/(r.hours*4.33)).toLocaleString('ru-RU')+' ₽':'—'}</b></div>
     </button>`);
     c.addEventListener('click',()=>{cur=k;renderInputs();renderResults();renderSummary();});
     s.append(c);
@@ -287,9 +294,12 @@ function renderResults(){
     el(`<div class="cell"><div class="k">Окупаемость бизнеса</div><div class="v${r.payback?'':' bad'}">${r.payback?r.payback+' мес':'>48 мес'}</div></div>`),
     el(`<div class="cell"><div class="k">Годовая отдача на плане</div><div class="v">${roi.toFixed(0)}%<small> от вложений</small></div></div>`)
   );
-  const perHour = r.hours>0 ? r.mat.net/(r.hours*4.33) : 0;
+  const perHour = r.hours>0 ? r.premium/(r.hours*4.33) : 0;
   res.append(el(`<div class="cell"><div class="k">Ваших часов в неделю</div><div class="v">${r.hours}<small> ч</small></div></div>`));
-  res.append(el(`<div class="cell" style="background:var(--pos-soft)"><div class="k">Доход на час вашего времени</div><div class="v">${Math.round(perHour).toLocaleString('ru-RU')}<small> ₽/час</small></div></div>`));
+  res.append(el(`<div class="cell"><div class="k">Задействовано капитала</div><div class="v">${fmt(r.capital)}</div></div>`));
+  res.append(el(`<div class="cell"><div class="k">Тот же капитал на вкладе</div><div class="v">${fmtK(r.alt)}<small>/мес</small></div></div>`));
+  res.append(el(`<div class="cell" style="background:${r.premium>=0?'var(--pos-soft)':'var(--neg-soft)'}"><div class="k">Премия к вкладу</div><div class="v${r.premium<0?' bad':''}">${r.premium>=0?'+':''}${fmtK(r.premium)}<small>/мес</small></div></div>`));
+  res.append(el(`<div class="cell" style="background:${r.premium>=0?'var(--pos-soft)':'var(--neg-soft)'}"><div class="k">Премия на час вашего времени</div><div class="v${perHour<0?' bad':''}">${Math.round(perHour).toLocaleString('ru-RU')}<small> ₽/час</small></div></div>`));
   if(G.own) res.append(el(`<div class="cell"><div class="k">Окупаемость с помещением</div><div class="v${r.pbProp?'':' bad'}">${r.pbProp?r.pbProp+' мес':'>120 мес'}</div></div>`));
 
   const m=r.mat;
