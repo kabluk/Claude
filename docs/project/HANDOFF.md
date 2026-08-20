@@ -40,8 +40,10 @@ push в него ничего не задеплоит (0 прогонов `deplo
 **Свободные незаблокированные узлы (zero-cost, approval не нужен):**
 `R-LINKROT` — **done (2026-08-18)**: `scripts/check-linkrot.mjs`, отчёт в
 `docs/project/domains/data.md` (83/1694 проблемных URL, ничего не автоправлено).
-`R-STALE-DATA` (отчёт по `lastVerified` > 180 дней) остаётся `status: todo`,
-`depends_on: []` в `GRAPH.yaml`. `R-HEALTH-CRON` тоже `todo`, но `approval_required: true`
+`R-STALE-DATA` — **done (2026-08-20)**: `scripts/stale-data-report.mjs` +
+тест (9 шт., scripts:test 62/62); сегодня отчёт штатно пуст (все 574 записи
+сверены 2026-08-04…13), канарейки прогнаны живьём.
+`R-HEALTH-CRON` тоже `todo`, но `approval_required: true`
 (новый класс автописьма владельцу). Ждут владельца отдельно:
 `R-SELF-MONITOR` (1 клик), Cloudflare zone-токен, Stripe live, outreach,
 `a11y-focus-invisible` Tab-проверка. Полный список — в теле промпта этой

@@ -1876,19 +1876,19 @@ nodes:
   - id: R-STALE-DATA
     title: "Отчёт «N профилей не сверялись > 180 дней» из lastVerified"
     owner: data-engineer
-    status: todo
+    status: done
     depends_on: []
     inputs: [data/a11y/agencies.json, data/a11y/types.ts]
-    scope: [scripts/stale-data-report.mjs]
-    outputs: [scripts/stale-data-report.mjs]
+    scope: [scripts/stale-data-report.mjs, scripts/stale-data-report.test.mjs]
+    outputs: [scripts/stale-data-report.mjs, scripts/stale-data-report.test.mjs]
     verify:
       - node scripts/stale-data-report.mjs
       - "canary: подставить lastVerified в далёком прошлом в тестовую запись -> запись попадает в отчёт; откатить"
     max_attempts: 3
-    attempts: 0
+    attempts: 1
     risk: low
     approval_required: false
-    notes: "todo, технически разблокирован прямо сейчас — чистый скрипт над уже существующим полем lastVerified, деплоя не требует. Не в фокусе D-174, безопасный маленький кандидат."
+    notes: "done (2026-08-20). Чистая computeStaleReport({now, thresholdDays=180}) + CLI (--days N, --json); строгий парсер ISO-даты (отклоняет 2026-02-31 и «2026»), нечитаемый lastVerified — отдельный список invalid, exit 0 всегда (отчёт, не гейт). Сегодня штатно пуст: все 574 записи 2026-08-04…13. Тест-файл добавлен в scope явно (не молча): 9 тестов на РЕАЛЬНОМ agencies.json с фиксированным clock (D-040), включая границу ровно-180 vs 181. Обе канарейки прогнаны живьём: (1) подсаженный lastVerified=2019-05-01 в agencies.json попал в отчёт, откат byte-identical (git diff пуст); (2) сломанное сравнение порога роняет 5/9 тестов, откат — 9/9. scripts:test 62/62 (было 53), typecheck чистый."
 
   - id: R-WORKER-DEPLOY
     title: "Деплой воркера кнопкой (workflow_dispatch), не руками с CF-токеном в переписке"
