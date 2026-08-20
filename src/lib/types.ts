@@ -45,6 +45,42 @@ export interface PageContent {
   blocks: Block[]
 }
 
+// Печатный документ «Порядок действий» — потребляется только
+// scripts/gen-playbook.mjs, на сайт не рендерится.
+export type PBlock =
+  | { kind: 'p'; text: string; dim?: boolean }
+  | { kind: 'cols'; cards: { h: string; items: string[]; num?: boolean }[] }
+  | { kind: 'why'; label?: string; text: string }
+  | { kind: 'callout'; tone: Tone; title?: string; body: string[] }
+  | { kind: 'mem'; title: string; body: string[] }
+  | { kind: 'act'; href: string; label: string }
+  | { kind: 'table'; head: [string, string]; rows: [string, string, string][] }
+  | { kind: 'list'; items: string[] }
+
+export interface PlaybookContent {
+  mapTitle: string
+  mapSub: string
+  phases: {
+    id: string
+    title: string
+    goal: string
+    items?: { n: string; what: string; how: string; why: string }[]
+    fork?: {
+      a: { h: string; sub: string; text: string }
+      b: { h: string; sub: string; text: string }
+    }
+  }[]
+  spreads: {
+    part: string
+    title: string
+    lede: string
+    sections: { id: string; h: string; blocks: PBlock[] }[]
+  }[]
+  linksTitle: string
+  linksLede: string
+  linksGroups: { official: string; orgs: string; site: string }
+}
+
 export interface HomeContent {
   title: string
   sub: string

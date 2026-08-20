@@ -75,7 +75,7 @@ const c: PageContent = {
       title: 'Qué saber de memoria',
       items: [
         'El teléfono de la persona de confianza — memorícelo, no solo lo anote',
-        'El código para llamar gratis a la línea de quejas del DHS OIG desde la detención: 9233#',
+        'El código para llamar gratis desde la detención a la línea de ayuda de Freedom for Immigrants: 9233#',
       ],
     },
     { kind: 'h2', text: 'Arme una lista personal de tareas — con anticipación' },

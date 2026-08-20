@@ -75,7 +75,7 @@ const c: PageContent = {
       title: 'What to know by heart',
       items: [
         'The trusted person’s phone — memorize it, don’t only write it down',
-        'The code for a free call to the DHS OIG complaint line from detention: 9233#',
+        'The code for a free call from detention to the Freedom for Immigrants help line: 9233#',
       ],
     },
     { kind: 'h2', text: 'Build a personal task list — in advance' },

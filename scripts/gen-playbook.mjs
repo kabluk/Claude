@@ -43,6 +43,7 @@ const T = {
     cover1b: 'действий',
     edition: 'Печатная версия · август 2026',
     notes: 'Заметки',
+    whyLabel: 'Зачем',
     parts: {
       p1: 'Часть I · Первые часы: найти, дозвониться, наладить связь',
       p2: 'Часть II · Адвокат — главное дело',
@@ -66,6 +67,7 @@ const T = {
     cover1b: 'Step by Step',
     edition: 'Print edition · August 2026',
     notes: 'Notes',
+    whyLabel: 'Why',
     parts: {
       p1: 'Part I · The first hours: find, get the call, stay connected',
       p2: 'Part II · The attorney — job one',
@@ -89,6 +91,7 @@ const T = {
     cover1b: 'paso a paso',
     edition: 'Edición impresa · agosto de 2026',
     notes: 'Notas',
+    whyLabel: 'Por qué',
     parts: {
       p1: 'Parte I · Las primeras horas: encontrar, la llamada, el contacto',
       p2: 'Parte II · El abogado — lo principal',
@@ -184,69 +187,114 @@ function renderBlocks(blocks, lang) {
 async function build(lang) {
   const t = T[lang]
   const ui = (await import(`../content/${lang}/ui.ts`)).default
-  const sections = []
+  const pb = (await import(`../content/${lang}/playbook.ts`)).default
+  const glossary = (await import(`../content/${lang}/glossary.ts`)).default
 
-  // Разделы по частям: каждый несёт метку части; ORGS собирается из данных.
-  for (const { part, keys } of STRUCTURE) {
-    for (const key of keys) {
-      const num = String(sections.length + 1).padStart(2, '0')
-      const head = (title) =>
-        `<div class="sec-head"><span class="sec-part">${esc(t.parts[part])}</span>` +
-        `<span class="sec-num">${num}</span><h2>${esc(title)}</h2></div>`
+  const collectedActs = [] // для страницы ссылок
 
-      if (key === 'ORGS') {
-        const orgRows = states
-          .flatMap((st) =>
-            (st.orgs ?? []).map(
-              (o) =>
-                `<div class="org"><div class="org-h">${esc(st.name[lang])} · ${A(o.href, esc(o.name))}</div><p>${esc(o.note[lang])}</p><span class="url">${esc(o.href)}</span></div>`,
-            ),
-          )
-          .join('')
-        sections.push({
-          title: t.orgsH,
-          part,
-          html: `<section>${head(t.orgsH)}<p class="lede">${esc(t.orgsLede)}</p>${orgRows}</section>`,
-        })
-        continue
-      }
-
-      const c = (await import(`../content/${lang}/${key}.ts`)).default
-      let body
-      if (key === 'journey') {
-        body =
-          `<p class="lede">${esc(c.lede)}</p>` +
-          `<ol class="steps journey">${c.steps.map((st) => `<li><b>${esc(st.t)}</b><br>${inline(st.p)}</li>`).join('')}</ol>` +
-          `<h3>${esc(c.tracksTitle)}</h3>` +
-          `<ul>${c.tracks.map((st) => `<li><b>${esc(st.t)}</b> — ${inline(st.p)}</li>`).join('')}</ul>` +
-          `<p class="dim">${esc(c.note)}</p>`
-      } else {
-        body = (c.lede ? `<p class="lede">${esc(c.lede)}</p>` : '') + renderBlocks(c.blocks, lang)
-      }
-      sections.push({
-        title: c.title,
-        part,
-        html:
-          `<section>` +
-          head(c.title) +
-          act(urlFor(lang, key), t.online, 'online') +
-          body +
-          `<div class="notes"><span>${esc(t.notes)}</span><i></i><i></i><i></i></div>` +
-          `</section>`,
+  // --- рендер PBlock-блоков разворота ---
+  const renderPB = (blocks) =>
+    blocks
+      .map((b) => {
+        switch (b.kind) {
+          case 'p':
+            return `<p${b.dim ? ' class="dim"' : ''}>${inline(b.text)}</p>`
+          case 'list':
+            return `<ul>${b.items.map((i) => `<li>${inline(i)}</li>`).join('')}</ul>`
+          case 'cols':
+            return `<div class="pcols">${b.cards
+              .map(
+                (card) =>
+                  `<div class="pcard"><div class="pcard-h">${esc(card.h)}</div><${card.num ? 'ol' : 'ul'}>${card.items
+                    .map((i) => `<li>${inline(i)}</li>`)
+                    .join('')}</${card.num ? 'ol' : 'ul'}></div>`,
+              )
+              .join('')}</div>`
+          case 'why':
+            return `<div class="pwhy"><em>${esc(b.label ?? t.whyLabel)}</em>${inline(b.text)}</div>`
+          case 'callout':
+            return `<div class="box ${b.tone}">${b.title ? `<div class="box-t">${inline(b.title)}</div>` : ''}${b.body
+              .map((p) => `<p>${inline(p)}</p>`)
+              .join('')}</div>`
+          case 'mem':
+            return `<div class="mem"><div class="mem-t">${esc(b.title)}</div>${b.body
+              .map((l) => `<p>${inline(l)}</p>`)
+              .join('')}</div>`
+          case 'act':
+            collectedActs.push({ href: b.href, label: b.label })
+            return act(b.href, b.label)
+          case 'table':
+            return `<table class="ptab"><tr><th></th><th>${esc(b.head[0])}</th><th>${esc(b.head[1])}</th></tr>${b.rows
+              .map((r) => `<tr><td>${esc(r[0])}</td><td>${inline(r[1])}</td><td>${inline(r[2])}</td></tr>`)
+              .join('')}</table>`
+          default:
+            return ''
+        }
       })
-    }
-  }
+      .join('')
 
-  // Оглавление с заголовками частей.
-  let toc = ''
-  let lastPart = ''
-  sections.forEach((sec, i) => {
-    if (sec.part !== lastPart) {
-      toc += `<li class="toc-part">${esc(t.parts[sec.part])}</li>`
-      lastPart = sec.part
-    }
-    toc += `<li><span class="toc-num">${String(i + 1).padStart(2, '0')}</span>${esc(sec.title)}</li>`
-  })
+  // --- страница-карта ---
+  const mapPhases = pb.phases
+    .map((ph) => {
+      const items = (ph.items ?? [])
+        .map(
+          (it) =>
+            `<div class="m-item"><div class="m-top"><span class="m-n">${esc(it.n)}</span><b>${esc(it.what)}</b><span class="m-how">${esc(it.how)}</span></div><div class="m-why"><em>${esc(t.whyLabel)}</em>${esc(it.why)}</div></div>`,
+        )
+        .join('')
+      const fork = ph.fork
+        ? `<div class="m-fork">${[ph.fork.a, ph.fork.b]
+            .map(
+              (f) =>
+                `<div><div class="m-fh">${esc(f.h)}</div><div class="m-fs">${esc(f.sub)}</div><p>${esc(f.text)}</p></div>`,
+            )
+            .join('')}</div>`
+        : ''
+      return `<div class="m-phase"><div class="m-dot">${esc(ph.id)}</div><div class="m-pt">${esc(ph.title)}</div><div class="m-goal">${esc(ph.goal)}</div>${items}${fork}</div>`
+    })
+    .join('')
+  const mapPage = `<section class="map"><div class="sec-head"><span class="sec-part">DETNAV</span><h2>${esc(pb.mapTitle)}</h2></div><p class="lede">${esc(pb.mapSub)}</p>${mapPhases}<p class="dim">${esc(ui.updated)} ${esc(t.disclaimer)}</p></section>`
+
+  // --- развороты ---
+  const partTitle = (id) => pb.phases.find((p) => p.id === id)?.title ?? id
+  const spreadHtml = pb.spreads
+    .map((sp) => {
+      const secs = sp.sections
+        .map(
+          (sec) =>
+            `<div class="psec"><div class="psec-h"><span class="psec-n">${esc(sec.id)}</span><h3>${esc(sec.h)}</h3></div>${renderPB(sec.blocks)}</div>`,
+        )
+        .join('')
+      return `<section><div class="sec-head"><span class="sec-part">${esc(partTitle(sp.part))}</span><h2>${esc(sp.title)}</h2></div><p class="lede">${esc(sp.lede)}</p>${secs}<div class="notes"><span>${esc(t.notes)}</span><i></i><i></i><i></i></div></section>`
+    })
+    .join('\n')
+
+  // --- словарь (из glossary.ts как есть) ---
+  const glossBody = renderBlocks(glossary.blocks.filter((b) => ['h2', 'terms', 'callout'].includes(b.kind)), lang)
+  const glossPage = `<section><div class="sec-head"><span class="sec-part">${esc(partTitle('D'))}</span><h2>${esc(glossary.title)}</h2></div><p class="lede">${esc(glossary.lede ?? '')}</p>${glossBody}</section>`
+
+  // --- страница ссылок ---
+  const sitePages = ['where', 'firstcall', 'connect', 'attorney', 'verify', 'docpack', 'habeas', 'journey', 'prepare', 'glossary']
+  const seen = new Set()
+  const officialRows = collectedActs
+    .filter((a) => (seen.has(a.href) ? false : seen.add(a.href)))
+    .map((a) => `<div class="lrow"><b>${esc(a.label)}</b><span class="url">${A(a.href, esc(a.href))}</span></div>`)
+    .join('')
+  const orgRows = states
+    .flatMap((st) =>
+      (st.orgs ?? []).map(
+        (o) =>
+          `<div class="lrow"><b>${esc(st.name[lang])} · ${esc(o.name)}</b><span>${esc(o.note[lang])}</span><span class="url">${A(o.href, esc(o.href))}</span></div>`,
+      ),
+    )
+    .join('')
+  const siteRows = sitePages
+    .map((k) => {
+      const u = urlFor(lang, k)
+      return `<div class="lrow"><b>${esc(ui.nav[k] ?? k)}</b><span class="url">${A(u, esc(u))}</span></div>`
+    })
+    .join('')
+  const linksPage = `<section><div class="sec-head"><span class="sec-part">${esc(partTitle('D'))}</span><h2>${esc(pb.linksTitle)}</h2></div><p class="lede">${esc(pb.linksLede)}</p><h3>${esc(pb.linksGroups.official)}</h3>${officialRows}<h3>${esc(pb.linksGroups.orgs)}</h3>${orgRows}<h3>${esc(pb.linksGroups.site)}</h3>${siteRows}</section>`
 
   const html = `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><style>
 @page { size: Letter; margin: 0; }
@@ -362,6 +410,47 @@ ol.journey > li::before { background: var(--red); }
 .org-h a { text-decoration: none; color: var(--ink); }
 .org p { margin: 3pt 0; font-size: 10.5pt; color: #3c444b; }
 
+/* --- карта документа --- */
+.map .m-phase { position: relative; padding: 0 0 10pt 26pt; border-left: 2.5pt solid var(--red); margin-left: 8pt; }
+.map .m-phase:last-of-type { border-left-color: transparent; }
+.m-dot { position: absolute; left: -11pt; top: 0; width: 19pt; height: 19pt; border-radius: 50%; background: var(--ink); color: #fff; font-size: 9.5pt; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+.m-pt { font-size: 13pt; font-weight: 800; text-transform: uppercase; }
+.m-goal { color: #44474a; font-size: 10pt; margin: 1pt 0 7pt; }
+.m-item { border: 1pt solid #e4e6e9; border-radius: 7pt; padding: 6pt 9pt; margin-bottom: 6pt; break-inside: avoid; }
+.m-top { display: flex; gap: 6pt; align-items: baseline; }
+.m-n { font-family: 'JetBrains Mono', monospace; color: var(--red); font-weight: 700; font-size: 9.5pt; }
+.m-top b { font-size: 10.5pt; }
+.m-how { font-size: 8.5pt; color: var(--dim); margin-left: auto; text-align: right; max-width: 42%; }
+.m-why { font-size: 9.5pt; color: var(--ink); margin-top: 4pt; line-height: 1.4; background: var(--panel); border-radius: 5pt; padding: 4pt 7pt; }
+.m-why em, .pwhy em { font-style: normal; font-family: 'JetBrains Mono', monospace; font-size: 7.5pt; letter-spacing: .1em; color: var(--red); font-weight: 700; margin-right: 4pt; text-transform: uppercase; }
+.m-fork { display: flex; gap: 7pt; margin: 4pt 0; }
+.m-fork > div { flex: 1; border: 1.6pt solid var(--ink); border-radius: 7pt; padding: 6pt 9pt; }
+.m-fh { font-weight: 800; font-size: 10.5pt; }
+.m-fs { font-family: 'JetBrains Mono', monospace; font-size: 7pt; letter-spacing: .08em; color: var(--dim); text-transform: uppercase; margin-bottom: 3pt; }
+.m-fork p { font-size: 9pt; color: #44474a; margin: 0; line-height: 1.4; }
+
+/* --- секции разворотов --- */
+.psec { margin: 14pt 0 4pt; }
+.psec-h { display: flex; gap: 8pt; align-items: baseline; margin-bottom: 6pt; }
+.psec-n { font-family: 'JetBrains Mono', monospace; font-size: 11pt; font-weight: 700; color: var(--red); }
+.psec-h h3 { margin: 0; font-size: 14pt; }
+.pcols { display: flex; gap: 9pt; margin: 6pt 0; }
+.pcols .pcard { flex: 1; border: 1pt solid var(--line); border-radius: 8pt; padding: 9pt 11pt; break-inside: avoid; }
+.pcard-h { font-weight: 800; font-size: 11.5pt; margin-bottom: 4pt; }
+.pcard ul, .pcard ol { margin: 0; padding-left: 13pt; }
+.pcard li { font-size: 10pt; line-height: 1.45; margin-bottom: 4pt; }
+.pwhy { background: var(--panel); border-radius: 7pt; padding: 7pt 10pt; font-size: 10.5pt; line-height: 1.45; margin: 7pt 0; break-inside: avoid; }
+.ptab { border-collapse: collapse; width: 100%; margin: 8pt 0; break-inside: avoid; }
+.ptab th, .ptab td { border: 1pt solid var(--line); padding: 5pt 7pt; font-size: 9.5pt; text-align: left; vertical-align: top; }
+.ptab th { background: var(--panel); font-size: 8.5pt; text-transform: uppercase; letter-spacing: .05em; }
+.ptab td:first-child { color: var(--dim); font-size: 8pt; text-transform: uppercase; letter-spacing: .04em; width: 90pt; }
+
+/* --- страница ссылок --- */
+.lrow { border-bottom: 1pt solid #eceef0; padding: 6pt 0; break-inside: avoid; }
+.lrow b { display: block; font-size: 11pt; }
+.lrow span { display: block; font-size: 9.5pt; color: #44474a; }
+.lrow .url a { text-decoration: none; color: #44474a; }
+
 .footer { padding: 10mm 20mm 14mm; color: var(--dim); font-size: 9.5pt; border-top: 1pt solid var(--line); }
 </style></head><body>
 <div class="cover">
@@ -373,13 +462,10 @@ ol.journey > li::before { background: var(--red); }
   </div>
   <div class="cov-bot"><p class="foot">${esc(t.coverNote)}</p><div class="site">${A(`${ORIGIN}/${lang}/`, `detnav.com/${lang}/`)}</div></div>
 </div>
-<div class="page toc">
-  <div class="kicker">DETNAV</div>
-  <h2>${esc(t.toc)}</h2>
-  <ol>${toc}</ol>
-  <p class="meta">${esc(ui.updated)}<br>${esc(t.disclaimer)}</p>
-</div>
-${sections.map((s) => s.html).join('\n')}
+${mapPage}
+${spreadHtml}
+${glossPage}
+${linksPage}
 <div class="footer">${esc(ui.disclaimer)} · ${esc(ui.updatedShort)} · ${A(ORIGIN, 'detnav.com')}</div>
 </body></html>`
 
