@@ -2033,6 +2033,23 @@ nodes:
     approval_required: false
     notes: "done (2026-08-20). Владелец: чекеры «лёгкие и непривлекательные, нужно качество уровня Apple». Диагноз (оркестратор, подтверждён чтением кода): 1) background/surface-container-low различаются ~2% яркости, карточка не читалась; 2) .card поднимал тень ТОЛЬКО на :hover — на мобильном (hover не существует) карточки были плоскими всегда, главная причина жалобы; 3) в @theme не было ни одного shadow-токена; 4) инструмент делил border+bg-surface-container-low с соседним пояснительным блоком статьи — неотличим от неё. Решение: 4 shadow-токена (card/card-hover/panel/hero, два слоя, тон от on-surface, не серый/чёрный) + --color-surface-elevated:#ffffff (контраст-безопасен по построению, монотонно лучше на background); .card — тень в покое + reduced-motion guard; новые классы .panel (обёртка инструмента, белая поверхность+тень, без border) и .result-hero (главный ответ, сильнейшая тень, один на экран) — применены во всех 9 чекерах, hero — в 5 из них (Contrast ratio, Readability at-a-glance, ColorConverter all-formats, StatementGenerator output, HtmlAuditTool summary); у остальных 4 (ColorBlindness/ColorPalette/TextToSpeech без единой цифры-результата, а также панель для ColorPalette) применена только .panel-обёртка. Ритм: 3 страницы на mt-12 выровнены на mt-14 (было большинство), rounded-md→rounded-xl на выбросе StatementGeneratorPage. Палитра/гарнитура/радиусы/тёмная тема НЕ трогались (вне scope, зафиксированы D-072/D-073). Гейты: typecheck чисто, src:test 191/191, scripts:test 62/62, worker:test 522/522, build 811 HTML, check-links 877/0 битых, audit-a11y ×3 подряд по 71 странице / 0 нарушений каждый раз, все /checkers/* поимённо чисты. Деплоя не было (не входит в scope узла)."
 
+  - id: G-FOLD-GATE
+    title: "Гейт check-fold — главный ответ инструмента виден на телефоне без прокрутки"
+    owner: qa-engineer
+    status: done
+    depends_on: [G-CHECKERS-ELEVATION, G-CHECKER-IMAGEPICKER]
+    inputs: [scripts/audit-own-a11y.mjs, src/styles.css]
+    scope: [scripts/check-fold.mjs, package.json, .github/workflows/ci.yml, src/pages/ReadabilityCheckerPage.tsx]
+    outputs: [scripts/check-fold.mjs]
+    verify:
+      - npm run check-fold
+      - "канарейка: гейт обязан уметь краснеть на реальном контенте"
+    max_attempts: 3
+    attempts: 1
+    risk: low
+    approval_required: false
+    notes: "done (2026-08-20), решение D-187. Заведён после того, как класс регрессии «главный ответ за краем экрана» выстрелил ДВАЖДЫ за один день при полностью зелёных проверках (G-CHECKERS-ELEVATION: коэффициент на 881px при экране 844; G-CHECKER-IMAGEPICKER: выбранный цвет к y~1400). axe/check-links этот класс не видят принципиально — вопрос не «корректно ли», а «попадает ли на экран». Меряется элемент с самым крупным кеглем внутри .result-hero: дизайн-система сама объявляет этим классом главный ответ экрана, поэтому гейт не знает про конкретные страницы. Порог: низ значения <= 844px на 390x844. ПЕРВАЯ ВЕРСИЯ ГЕЙТА БЫЛА НЕВЕРНОЙ — требовала «120px коробки героя на экране» и падала на contrast/picker, где число помещалось целиком (834 и 817); порог мерил обёртку вместо ответа и был подобран на глаз. Урок D-082/D-093: красный результат новой проверки — сначала повод проверить саму проверку. Найдено при внедрении: readability заканчивался на 846px (обрезан на 2px, нулевой запас) — починено сокращением lede на строку (5 строк -> 4), стало 794px, запас 50px; первая попытка правки убрала слова, но не строку, и не изменила ничего — проверено измерением. Канарейка отдельная не потребовалась: гейт покраснел на настоящем контенте (846) и позеленел после настоящей правки (794). Сознательно НЕ требуется «весь герой целиком»: у statement generator ответ — длинный текст. Список страниц ведётся руками; отсутствие .result-hero на странице из списка = провал, не пропуск (иначе гейт незаметно перестаёт проверять). Chromium запускается по той же конвенции, что audit-own-a11y.mjs (PREINSTALLED_CHROMIUM). В CI после audit-a11y."
+
   - id: G-CHECKER-IMAGEPICKER
     title: "Десятый бесплатный чекер — image colour picker (/checkers/image-color-picker/), мост цвет→контраст→WCAG"
     owner: frontend-engineer

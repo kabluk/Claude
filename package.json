@@ -15,6 +15,7 @@
     "enrich": "node scripts/enrich-a11y.mjs",
     "check-links": "node scripts/check-links.mjs",
     "audit-a11y": "node scripts/audit-own-a11y.mjs",
+    "check-fold": "node scripts/check-fold.mjs",
     "smoke": "node scripts/smoke-prod.mjs",
     "indexnow": "node scripts/indexnow-ping.mjs",
     "worker:test": "node --test worker/**/*.test.mjs",

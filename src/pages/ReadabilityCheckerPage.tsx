@@ -46,10 +46,9 @@ export default function ReadabilityCheckerPage() {
 
       <h1 className="h1 max-w-3xl">Readability checker</h1>
       <p className="lede max-w-3xl">
-        Paste your text and see six well-known readability formulas update live — plus a
-        plain-language read on how easy the text is to follow, and roughly what US school grade it
-        matches. Nothing is uploaded: the whole calculation runs in your browser. Free, instant,
-        no sign-up.
+        Paste your text and see six readability formulas update live, plus a plain-language
+        read on how easy it is to follow. Nothing is uploaded — it runs in your browser.
+        Free, instant, no sign-up.
       </p>
 
       <ReadabilityChecker />
