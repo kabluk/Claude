@@ -13,7 +13,7 @@ export const SUPPORT_URL = ''
 // поэтому делаем его нейтральным («DETNAV · detnav.com»), а интерфейс
 // страницы оплаты Stripe локализует сам — pwywFor() добавляет ?locale=,
 // чтобы он совпал с языком страницы, с которой пришёл человек.
-export const PWYW_URL = ''
+export const PWYW_URL: string = ''
 
 export const pwywFor = (lang: 'en' | 'es' | 'ru'): string =>
   PWYW_URL ? `${PWYW_URL}${PWYW_URL.includes('?') ? '&' : '?'}locale=${lang}` : ''
