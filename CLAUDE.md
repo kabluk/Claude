@@ -85,6 +85,33 @@ Workers/D1/Pages — по тому же префиксу `/<account_id>/…`); G
 репо: `https://github.com/kabluk/Claude/settings/secrets/actions`. Владелец
 на телефоне — экономь ему шаги.
 
+**Нарушено 2026-08-22** (владелец указал повторно): навигация словами
+(«☰ → DNS → Records») вместо URL — это то же нарушение, что «зайдите в
+Dash → …». Описание пути НЕ заменяет ссылку. Поэтому готовые адреса ниже —
+брать отсюда, не собирать по памяти. Префикс аккаунта:
+`https://dash.cloudflare.com/d081eb07e64dd1cec115eaef90a12c1a`, зона —
+`<префикс>/verscala.com`.
+
+| Экран | URL |
+|---|---|
+| DNS-записи зоны | `<зона>/dns/records` |
+| Email Routing | `<зона>/email/routing` |
+| SSL/TLS → Edge Certificates (HSTS) | `<зона>/ssl-tls/edge-certificates` |
+| Security → Bots (Bot Fight Mode) | `<зона>/security/bots` |
+| Security → WAF | `<зона>/security/waf` |
+| Turnstile | `<префикс>/turnstile` |
+| Pages | `<префикс>/pages` |
+| Workers | `<префикс>/workers` |
+| D1 | `<префикс>/workers/d1` |
+| API-токены (профиль, НЕ аккаунт) | `https://dash.cloudflare.com/profile/api-tokens` |
+| GitHub Actions репо | `https://github.com/kabluk/Claude/actions` |
+| GitHub секреты/переменные | `https://github.com/kabluk/Claude/settings/secrets/actions` |
+| GoDaddy Email & Office | `https://email.godaddy.com` |
+| Microsoft 365 admin | `https://admin.microsoft.com` |
+| Resend — домены | `https://resend.com/domains` |
+| Stripe — API-ключи | `https://dashboard.stripe.com/apikeys` |
+| Google Search Console | `https://search.google.com/search-console` |
+
 ## Execution modes
 
 Use direct for one local task, verification-loop for one testable task, graph for
