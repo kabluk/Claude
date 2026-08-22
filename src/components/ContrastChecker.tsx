@@ -255,7 +255,14 @@ export function ContrastChecker() {
             <span aria-hidden="true">⇅</span> Swap colours
           </button>
           <button type="button" className="btn-ghost" onClick={copyLink}>
-            <span aria-hidden="true">🔗</span> Copy link to result
+            {/* «Copy link», а не «Copy link to result»: подпись короче на ~90px,
+                и это не косметика. Ряд из двух кнопок раньше требовал ровно
+                355px при доступных 358 — три пикселя запаса. Любая разница в
+                отрисовке шрифта переносила ряд в столбик (+51px), и ответ
+                уезжал под сгиб: именно так гейт check-fold расходился между
+                машинами (локально 783px, в CI 860px при экране 844). Ссылка
+                и так копируется на результат — «to result» ничего не уточняло. */}
+            <span aria-hidden="true">🔗</span> Copy link
           </button>
           {/* Подтверждение копирования — вежливый live-регион, не самостоятельный фокус. */}
           <span role="status" aria-live="polite" className="text-sm text-on-surface-variant">
