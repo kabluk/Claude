@@ -8,6 +8,7 @@ import { handlePostSubscribe, handleGetSubscribeVerify, handleUnsubscribe } from
 import { handlePostStripeHook } from './routes/stripeHook.js'
 import { deleteExpiredScans } from './lib/retention.js'
 import { runSubscriptionRescans, runSubscriptionDigests } from './lib/subscriptionCron.js'
+import { runHealthCheck } from './lib/healthcheck.js'
 import { handleScanQueueBatch } from './lib/scanJob.js'
 
 function corsHeaders(env) {
@@ -114,9 +115,15 @@ export default {
   //      ре-сканам предыдущих тиков (runSubscriptionDigests). Отдельный проход,
   //      а не хвост ре-скана: поставленный сейчас скан ещё `running`, дельты нет
   //      — она появляется, когда консьюмер его завершит, минутами-часами позже.
-  // Три ОТДЕЛЬНЫХ waitUntil, а не один общий промис: задачи ничем не связаны, и
-  // падение одной не должно отменять другие. runSubscription* к тому же не
-  // бросают сами — .catch() ниже это второй рубеж, а не основной.
+  //   4. R-HEALTH-CRON (D-188): ежедневный health-check прода (4 дешёвых
+  //      проверки — worker/lib/healthcheck.js) + письмо владельцу ТОЛЬКО на
+  //      переходе «было хорошо → стало плохо» (и один раз на восстановлении).
+  //      ЧЕСТНО: если сам этот cron перестанет тикать, эта проверка тоже не
+  //      выполнится — dead man's switch остаётся открытым классом отказа
+  //      (см. шапку healthcheck.js и LEARNING_LOG 2026-08-16).
+  // Четыре ОТДЕЛЬНЫХ waitUntil, а не один общий промис: задачи ничем не связаны,
+  // и падение одной не должно отменять другие. runSubscription*/runHealthCheck
+  // к тому же не бросают сами — .catch() ниже это второй рубеж, а не основной.
   async scheduled(event, env, ctx) {
     ctx.waitUntil(deleteExpiredScans(env.DB))
     ctx.waitUntil(
@@ -127,6 +134,11 @@ export default {
     ctx.waitUntil(
       runSubscriptionDigests(env).catch((err) => {
         console.error(`A3-CRON-DIGEST: unexpected failure: ${err?.message ?? err}`)
+      }),
+    )
+    ctx.waitUntil(
+      runHealthCheck(env).catch((err) => {
+        console.error(`R-HEALTH-CRON: unexpected failure: ${err?.message ?? err}`)
       }),
     )
   },

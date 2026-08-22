@@ -1541,3 +1541,165 @@ delivered`. Unsubscribe-ссылка в письме реальна, загол�
 ними). Логика дельты при этом покрыта юнит-тестами scanDelta на стабильном ключе,
 проверенном на живых страницах узлом RESCAN-DELTA; ослаблен только ВХОД живого
 письма, не сам путь отправки/доставки/заголовков (они реальны).
+
+## R-HEALTH-CRON (D-188, 2026-08-22): ежедневный health-check прода + письмо владельцу
+
+### Где живёт
+
+Четвёртый `ctx.waitUntil` в `worker/index.js::scheduled`, тот же тик `0 3 * * *`
+что retention/re-scan/digest — независимый (`.catch()` вокруг, падение не
+роняет соседей). Логика — `worker/lib/healthcheck.js`. Состояние —
+`migrations/0012_health_check_state.sql`.
+
+### Четыре проверки, порядок = порядок в письме, исполнение параллельное (`Promise.all`)
+
+1. `home_page` — `fetch(env.ALLOWED_ORIGIN + '/')`, ждёт 200 + маркер
+   `HOME_MARKER = 'Check your website'` (та же строка, что уже проверяет
+   `scripts/smoke-prod.mjs` — общий риск с ним назван в комментарии кода).
+2. `worker_scan_route` — `fetch(env.WORKER_ORIGIN + '/api/scan/<PROBE_SCAN_ID>')`,
+   ждёт **404**. Единственная проверка, идущая по публичной сети до самого
+   воркера (а не читающая его код в процессе) — ловит протухший CF-токен/DNS/
+   снятый деплой ровно как реальный клиент. `PROBE_SCAN_ID =
+   '00000000-0000-0000-0000-000000000000'` (тот же приём, что smoke-prod.mjs,
+   но НЕ общая константа — smoke-prod вне воркера, другой рантайм). GET, не
+   POST — Browser Rendering не трогается, деньги не тратятся.
+3. `database` — `env.DB.prepare('SELECT 1 AS ok').first()` напрямую, без HTTP.
+   Отличает «сломан D1» от «сломан только роут /api/scan» (проверка 2 ловит
+   оба одним комком) — читая письмо в 3 часа ночи, это разница между «смотреть
+   в D1 dashboard» и «смотреть в Cloudflare token».
+4. `report_shell` — `fetch(env.ALLOWED_ORIGIN + '/report/<PROBE_SCAN_ID>')`,
+   ждёт 200 + маркер `REPORT_MARKER = 'scan report'` (заголовок шелла,
+   `scripts/gen-a11y-sitemap.mjs`, без em-dash — устойчивее к перекодировке).
+   Отдельный код-путь от главной: `functions/report/[[path]].js` — Pages
+   Function поверх `ASSETS`, не предсобранный SSG-файл (D-103); сюда ведёт
+   КАЖДЫЙ скан и каждое письмо-дайджест.
+
+Почему НЕ весь `smoke-prod.mjs` (12 проверок): у деплоя уже есть свой гейт
+(`R-SMOKE-DEPLOY`) на момент «сборка прошла, прод не тот». Этот узел — про
+другой класс риска, «между деплоями что-то протухло само» (токен/D1/домен/
+функция). Число агентств, sitemap, адрес воркера в бандле — не меняются без
+нового деплоя, гонять их каждую ночь означало бы тратить сетевые вызовы на
+инварианты, которые физически не могут протухнуть сами по себе.
+
+`resolveSiteOrigin`/`resolveWorkerOrigin` — те же имена и то же поведение,
+что private-функции в `subscriptionCron.js` (не переиспользованы напрямую:
+там не экспортированы, и это та же локальная дупликация, что у него самого
+с `escapeHtml`). `DEFAULT_WORKER_ORIGIN` дублирует ту же строку — если когда-
+нибудь заведётся дрейф-гейт а-ля `scanJob.test.mjs`/`wrangler.jsonc`, он
+понадобится ОБОИМ модулям сразу, не только этому.
+
+### Хранилище состояния — D1, singleton-ряд, НЕ KV
+
+`migrations/0012_health_check_state.sql`:
+```sql
+CREATE TABLE health_check_state (
+  id INTEGER PRIMARY KEY CHECK (id = 1),
+  status TEXT NOT NULL,          -- 'ok' | 'down', правда ПОСЛЕДНЕГО тика
+  alerted_status TEXT,           -- 'ok' | 'down' | NULL — идемпотентность
+  updated_at TEXT NOT NULL,
+  last_failures_json TEXT,
+  last_alert_sent_at TEXT
+);
+```
+Три причины за D1 (уже одобренный `accessatlas-scans`, D-021) против KV:
+(1) у состояния нет TTL, а все существующие KV-биндинги проекта построены
+вокруг `expirationTtl`; (2) переиспользовать `RATE_LIMIT_KV` под несвязанный
+смысл ухудшило бы читаемость его имени; (3) новый KV namespace — новый
+инфраструктурный ресурс на живом аккаунте, миграция поверх уже одобренной D1
+— нет. `CHECK(id = 1)` — реальное ограничение движка (проверено на настоящем
+SQLite в `healthcheck.sql.test.mjs`, не только предположено).
+
+`status` и `alerted_status` — РАЗНЫЕ колонки намеренно. `status` — что видно
+ПРЯМО СЕЙЧАС, перезаписывается каждый тик безусловно. `alerted_status` —
+последний статус, о котором владелец УСПЕШНО уведомлён письмом (тот же
+приём, что `last_digest_scan_id`, D-137, LEARNING_LOG «idempotency marker»):
+двигается ТОЛЬКО при подтверждённой отправке Resend, поэтому упавшая
+отправка не глотает алерт молча — следующий тик увидит рассинхрон `status` и
+`alerted_status` и попробует снова.
+
+### Alert — edge-triggered, не level-triggered (LEARNING_LOG, термин дня)
+
+```js
+function decideAlertKind(alertedStatus, status) {
+  if (status === 'down' && alertedStatus !== 'down') return 'down'
+  if (status === 'ok' && alertedStatus === 'down') return 'recovered'
+  return null
+}
+```
+Письмо реагирует на ПЕРЕХОД, не на значение состояния каждый тик — иначе
+владелец получал бы одно и то же письмо каждую ночь, пока поломка не
+починена, и перестал бы их читать (это и есть буквальное требование задачи).
+
+Осознанное отступление от буквы «было хорошо → стало плохо»:
+`alertedStatus === null` (самый первый тик вообще, до любого подтверждённого
+письма) НЕ считается «было хорошо» — если прод уже сломан на первом тике
+этого узла, письмо всё равно уходит немедленно, а не молчит до случайного
+восстановления (тест `runHealthCheck: first-ever tick already broken DOES
+alert`). Симметрично: первый тик здоровым — тихий baseline, `alertedStatus`
+становится `'ok'` без письма (нечего сообщать).
+
+Сбой самой отправки (нет `RESEND_API_KEY`, Resend вернул не-2xx, сеть упала)
+— `alertedStatus` НЕ двигается, следующий тик увидит тот же рассинхрон и
+попробует снова (тест `a failed alert send ... does not consume the
+transition`). Это касается ОБОИХ направлений — и down-алерта, и
+recovered-письма.
+
+### Канарейка (живая, не гипотетическая)
+
+`decideAlertKind` временно переписан на level-triggered
+(`if (status === 'down') return 'down'`, без условия на `alertedStatus`) —
+тест `CANARY: good -> bad sends exactly one email even across three
+consecutive still-broken ticks` немедленно покраснел на втором тике: `'tick
+2, still down, must NOT alert again' — 'down' !== null`. Инвариант возвращён,
+`node --test worker/lib/healthcheck.test.mjs` — 15/15 снова.
+
+### Адресат письма
+
+`info@verscala.com` — тот же адрес, что уже уведомляет о лидах
+(`worker/routes/lead.js::OWNER_NOTIFY_EMAIL`, A2-LEAD-EMAIL); второй адрес не
+заводился, `VERIFIED_FROM` (`notify@verscala.com`) как отправитель — тот же,
+что дайджест/confirm.
+
+### Честная оговорка — dead man's switch (НЕ закрыт этим узлом)
+
+Проверка живёт ВНУТРИ того же Cron Trigger, который проверяет. Если воркер
+вообще перестанет тикать (истёк CF-токен, Cron Trigger случайно удалён
+следующим `wrangler deploy`, заблокирован аккаунт) — `runHealthCheck` просто
+не выполнится, и тишина неотличима от «всё хорошо». Записано в шапке
+`healthcheck.js`, в D-188 и повторяет LEARNING_LOG 2026-08-16 (тот же термин,
+там же разобран). Узел закрывает класс «воркер тикает, но что-то сломано» —
+НЕ класс «воркер вообще перестал тикать»; второе требует наблюдателя СНАРУЖИ
+этой же цепочки (внешний heartbeat/uptime-сервис) и сознательно вне scope.
+
+### Тесты
+
+`worker/lib/healthcheck.test.mjs` (15, fetch-мок с самым длинным совпадающим
+префиксом URL + лёгкий in-memory D1): каждая из 4 проверок отдельно (успех,
+маркер отсутствует, не тот статус, сетевой сбой не бросает), недостающий
+`ALLOWED_ORIGIN` валит именно home_page/report_shell и не трогает остальные
+два, первый-тик-здоровый (baseline, письма нет), первый-тик-сломанный (алерт
+уходит немедленно), канарейка (ровно одно письмо на 4-дневную поломку + одно
+на восстановление + тишина после), сбой отправки не консьюмит переход, нет
+ключа Resend не бросает и не помечает алерт как отправленный, нет DB-биндинга
+возвращает `db_unavailable` без throw. `worker/lib/healthcheck.sql.test.mjs`
+(5, настоящий SQLite + ВСЕ миграции включая 0012): `loadHealthState` на
+пустой таблице → `null`; save→load побайтово; повторный save — тот же
+singleton-ряд (`COUNT(*) = 1`), не второй; `CHECK(id = 1)` реально бросает на
+второй физической строке; NULL не сериализуется строкой `"null"`.
+
+Обновлён существующий гейт `subscriptionCron.test.mjs::'scheduled() runs
+retention, the re-scan, the digest AND the health check on one tick'` — было
+3 `waitUntil`, стало 4 (реальная регрессия, если бы health-check заменил, а
+не дополнил, существующие задачи, тест бы это поймал).
+
+`worker:test`: 527 → 542. Все 8 гейтов зелёные (typecheck; `src:test` 210;
+`scripts:test` 62; `build` с `VITE_SCANNER_API`/`VITE_TURNSTILE_SITE_KEY`,
+812 HTML; `check-links` 879 ссылок/38682 вхождений, 0 битых; `audit-a11y` 72
+стр./0 нарушений; `check-fold` 5 стр.).
+
+### НЕ закрыто этой сессией (по прямому запросу — деплой вне разрешённых действий)
+
+Миграция 0012 не применена к прод-D1 (`wrangler d1 migrations apply
+--remote`), воркер не задеплоен, третий verify-пункт узла («живой прогон:
+письмо владельцу реально доставлено») не выполнен. `GRAPH.yaml` статус —
+`review`, не `done`, до отдельного решения владельца о деплое.

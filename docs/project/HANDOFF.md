@@ -101,8 +101,17 @@ shadow/elevation-система для 9 бесплатных чекеров `/c
 src/scripts/worker:test, build 811 HTML, check-links, audit-a11y ×3 подряд
 71/0). **Следующий шаг — деплой, ждёт решения владельца** (не входило в
 scope узла).
-`R-HEALTH-CRON` тоже `todo`, но `approval_required: true`
-(новый класс автописьма владельцу). Ждут владельца отдельно:
+`R-HEALTH-CRON` — **review (D-188, 2026-08-22)**: владелец дал явное
+одобрение (`approval_required: true`, новый класс автописьма) после того,
+как заработала `info@verscala.com`. Код+тесты готовы (4-й `waitUntil` в
+`worker/index.js::scheduled`, `worker/lib/healthcheck.js`, 4 дешёвые
+проверки, D1-состояние `migrations/0012_health_check_state.sql`, alert
+edge-triggered с идемпотентным маркером `alerted_status`, канарейка живая:
+временный level-triggered баг → тест «CANARY: good -> bad sends exactly one
+email» покраснел, откачено, зелёный). `worker:test` 527→542, все 8 гейтов
+зелёные (числа — D-188). **НЕ задеплоено, миграция не применена к
+прод-D1** — деплой не входит в разрешённые действия этой сессии, следующий
+шаг ждёт отдельного решения владельца. Ждут владельца отдельно:
 `R-SELF-MONITOR` (1 клик), Cloudflare zone-токен, Stripe live, outreach,
 `a11y-focus-invisible` Tab-проверка. Полный список — в теле промпта этой
 сессии/STATUS.md.

@@ -1824,20 +1824,20 @@ nodes:
   - id: R-HEALTH-CRON
     title: "Ежедневный health-check прода из уже существующего worker-cron (0 3 * * *) + письмо владельцу через Resend при поломке"
     owner: backend-engineer
-    status: todo
+    status: review
     depends_on: [R-SMOKE-DEPLOY]
     inputs: [worker/index.js, scripts/smoke-prod.mjs, docs/project/DECISIONS.md]
     scope: [worker/lib/healthcheck.js, worker/index.js]
-    outputs: [worker/lib/healthcheck.js]
+    outputs: [worker/lib/healthcheck.js, migrations/0012_health_check_state.sql]
     verify:
       - npm run worker:test
       - "canary: временно испортить один инвариант (напр. вернуть 500 на /api/scan/:id) -> алерт срабатывает; откатить"
       - "живой прогон: письмо владельцу реально доставлено (Resend delivered) на срабатывании"
     max_attempts: 4
-    attempts: 0
+    attempts: 1
     risk: medium
     approval_required: true
-    notes: "todo. Ловит то, что происходит МЕЖДУ деплоями (протухший токен, упавший воркер, DNS, D1) — R-SMOKE-DEPLOY смотрит только на момент выката. GitHub Actions `schedule` здесь не годится: расписания читаются только из ветки по умолчанию, а `main` этого репо занят detnav — переиспользовать уже задеплоенный worker cron (тот же, что у A3-CRON-RESCAN-DELTA). approval: новый класс автоматического прод-письма владельцу, отдельный от уже одобренных confirm/digest — одобрение по узлам не переносится (D-022). Не в фокусе D-174 (не двигает лиды), но безопасен и мал — кандидат, если появится свободный автономный заход."
+    notes: "review (D-188, 2026-08-22). Одобрение получено явно владельцем 22.08.2026 (после появления рабочей info@verscala.com) — переведено из todo. Реализовано: 4-й ctx.waitUntil в worker/index.js::scheduled (worker/lib/healthcheck.js), 4 дешёвые проверки (home_page/worker_scan_route через публичный WORKER_ORIGIN/database SELECT 1/report_shell), состояние в D1 (migrations/0012_health_check_state.sql, singleton-ряд, НЕ KV — обоснование в D-188), alert edge-triggered с идемпотентным маркером alerted_status (тот же приём, что last_digest_scan_id, D-137) — письмо ТОЛЬКО на переходе good->bad и один раз на recovered, ретраится только при сбое самой отправки Resend. Канарейка живая (decideAlertKind временно level-triggered -> тест 'CANARY: good -> bad sends exactly one email' покраснел, откачено, снова зелёный). Тесты: healthcheck.test.mjs (15) + healthcheck.sql.test.mjs (5, настоящий SQLite/миграции) + обновлённый гейт scheduled() в subscriptionCron.test.mjs (3->4 waitUntil). worker:test 527->542, typecheck/src:test/scripts:test/build/check-links/audit-a11y/check-fold — все зелёные (числа в D-188). НЕ закрыто (по прямому запросу этой сессии — деплой воркера вне разрешённых действий): миграция 0012 не применена к прод-D1, код не задеплоен, третий verify-пункт ('живой прогон: письмо доставлено') остаётся невыполненным до отдельного решения владельца о деплое — поэтому review, не done. Ловит то, что происходит МЕЖДУ деплоями (протухший токен, упавший воркер, DNS, D1) — R-SMOKE-DEPLOY смотрит только на момент выката. GitHub Actions `schedule` здесь не годится: расписания читаются только из ветки по умолчанию, а `main` этого репо занят detnav — переиспользован уже задеплоенный worker cron (тот же, что у A3-CRON-RESCAN-DELTA). Честная оговорка dead man's switch (LEARNING_LOG 2026-08-16) — этот узел НЕ закрывает класс «воркер вообще перестал тикать», только «воркер тикает, но что-то сломано»."
 
   - id: R-SELF-MONITOR
     title: "Подписать verscala.com на собственный еженедельный мониторинг (A3-CRON уже в проде)"

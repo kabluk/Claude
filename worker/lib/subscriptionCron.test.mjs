@@ -119,8 +119,15 @@ test('MAX_RESCANS_PER_TICK is a sane positive cap (paid Browser Rendering per re
 // ГЕЙТ ПРОТИВ РЕГРЕССИИ RETENTION: ре-скан добавлен В ТОТ ЖЕ обработчик
 // scheduled, что и deleteExpiredScans (D-019). Самый дешёвый способ сломать
 // retention — заменить его вызов вместо того, чтобы добавить свой рядом.
-test('scheduled() runs retention, the re-scan AND the digest on one tick', async () => {
-  const seen = { deleteSql: null, dueSql: null, digestSql: null }
+// R-HEALTH-CRON (D-188) добавил четвёртую независимую задачу тика того же тика
+// — health-check касается D1 через `SELECT 1 AS ok`, поэтому он тоже виден в
+// этом же fake DB (fetch наружу здесь НЕ мокается: сетевые проверки
+// home_page/worker_scan_route/report_shell в песочнице без интернета уйдут в
+// failures, а не бросят — это ровно то поведение, которое проверяет
+// healthcheck.test.mjs отдельно и подробно; здесь важен только факт «тик его
+// вызвал и не уронил остальных»).
+test('scheduled() runs retention, the re-scan, the digest AND the health check on one tick', async () => {
+  const seen = { deleteSql: null, dueSql: null, digestSql: null, healthSql: null }
   const env = {
     // digest-проход строит ссылки от боевого origin — без него он отказывается
     // рано и до выборки не доходит (см. resolveSiteOrigin), поэтому в тестовом
@@ -131,11 +138,16 @@ test('scheduled() runs retention, the re-scan AND the digest on one tick', async
         if (sql.includes('DELETE FROM scans')) seen.deleteSql = sql
         if (sql.includes('last_digest_scan_id')) seen.digestSql = sql
         else if (sql.includes('FROM subscriptions')) seen.dueSql = sql
+        if (sql.includes('SELECT 1 AS ok') || sql.includes('health_check_state')) seen.healthSql = sql
         return {
           bind: () => ({
             run: async () => ({ meta: { changes: 0 } }),
             all: async () => ({ results: [] }),
           }),
+          // health-check calls .first() directly on some queries without
+          // .bind() first (no placeholders) — see healthcheck.js.
+          first: async () => null,
+          run: async () => ({ meta: { changes: 0 } }),
         }
       },
     },
@@ -144,12 +156,13 @@ test('scheduled() runs retention, the re-scan AND the digest on one tick', async
 
   const pending = []
   await worker.scheduled({ cron: '0 3 * * *' }, env, { waitUntil: (p) => pending.push(p) })
-  assert.equal(pending.length, 3, 'all three tasks must be kept alive by their own waitUntil')
+  assert.equal(pending.length, 4, 'all four tasks must be kept alive by their own waitUntil')
   await Promise.all(pending)
 
   assert.ok(seen.deleteSql, 'retention (D-019) must still run on the cron tick')
   assert.ok(seen.dueSql, 'the subscription re-scan must run on the same tick')
   assert.ok(seen.digestSql, 'the digest pass (D-137) must run on the same tick')
+  assert.ok(seen.healthSql, 'the health check (D-188) must run on the same tick')
 })
 
 test('scheduled(): a broken re-scan never takes retention down with it', async () => {

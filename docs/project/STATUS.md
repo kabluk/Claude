@@ -1,6 +1,43 @@
 # STATUS — фактическое состояние
 
-Обновлено: 2026-08-20 (см. также подробный legacy-статус: `research/STATE.md`)
+Обновлено: 2026-08-22 (см. также подробный legacy-статус: `research/STATE.md`)
+
+## Последнее (2026-08-22, R-HEALTH-CRON review — НЕ задеплоено)
+
+Ежедневный health-check прода: четвёртый `ctx.waitUntil` в уже существующем
+cron-тике `worker/index.js::scheduled` (`0 3 * * *`), рядом с retention/
+re-scan/digest. `worker/lib/healthcheck.js` — 4 дешёвые проверки (главная,
+`/api/scan/:id` на публичном адресе воркера, `SELECT 1` в D1, шелл
+`/report/:id`), состояние в D1 (`migrations/0012_health_check_state.sql`,
+singleton-ряд, НЕ KV — обоснование в D-188). Письмо владельцу
+(`info@verscala.com`, тот же адрес, что A2-LEAD-EMAIL) — ТОЛЬКО на переходе
+«было хорошо → стало плохо» (edge-triggered, идемпотентный маркер
+`alerted_status`, тот же приём, что `last_digest_scan_id` у дайджеста) и
+одно на восстановлении; сбой самой отправки Resend не глушит алерт навсегда
+(маркер не двигается, ретрай следующим тиком). Одобрение — явное, владелец,
+22.08.2026, после появления рабочей `info@verscala.com` (узел раньше стоял
+именно из-за отсутствия адреса).
+
+Канарейка живая: `decideAlertKind` временно сломан на level-triggered (алерт
+на каждом тике, пока лежит) → тест «CANARY: good -> bad sends exactly one
+email» немедленно покраснел, инвариант возвращён, тест снова зелёный.
+
+Тесты: `worker/lib/healthcheck.test.mjs` (15, fetch/D1-мок), `worker/lib/
+healthcheck.sql.test.mjs` (5, настоящий SQLite + все миграции), гейт
+`scheduled()` в `subscriptionCron.test.mjs` обновлён с 3 на 4 `waitUntil`.
+`worker:test` 527→542. Все 8 гейтов зелёные: typecheck, `src:test` (210),
+`scripts:test` (62), `build` (812 HTML), `check-links` (879 ссылок, 0
+битых), `audit-a11y` (72 стр., 0 нарушений), `check-fold` (5 стр.).
+
+**НЕ закрыто в этой сессии** (деплой вне разрешённых действий): миграция
+0012 не применена к прод-D1, воркер не задеплоен, живая доставка письма при
+реальном прод-инциденте не подтверждена — узел `review`, не `done`.
+Честная оговорка (dead man's switch, LEARNING_LOG 2026-08-16) — этот узел
+ловит «воркер тикает, но что-то сломано», НЕ «воркер вообще перестал
+тикать» — записана в шапке модуля и в D-188.
+
+Подробности: `docs/project/DECISIONS.md` D-188, `docs/project/domains/
+backend.md`.
 
 ## Последнее (2026-08-20, G-SCAN-REPORT-ELEVATION done — НЕ задеплоено)
 
