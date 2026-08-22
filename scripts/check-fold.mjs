@@ -145,6 +145,12 @@ for (const { path, what, setup } of PAGES) {
   if (path.startsWith('/report/')) {
     await page.getByRole('heading', { level: 1, name: /Accessibility report for/ }).waitFor({ timeout: 15000 })
   }
+  // Дождаться ШРИФТОВ, а не только сети. Без этого гейт мерит промежуточный
+  // кадр, набранный запасной гарнитурой, и результат зависит от того, какие
+  // системные шрифты стоят на машине. Именно так он разошёлся с CI 2026-08-21:
+  // локально 834px, на раннере 911px на одном и том же dist/ — воспроизведено
+  // блокировкой woff2 (вводный абзац 154 → 179px, ответ 834 → 894px).
+  await page.evaluate(() => document.fonts.ready)
   await page.waitForTimeout(300)
 
   const hero = await page.evaluate(() => {
@@ -199,7 +205,8 @@ server.close()
 const pad = (s, n) => String(s).padEnd(n)
 console.log(`\ncheck-fold — ${VIEWPORT.width}×${VIEWPORT.height}, низ значения должен быть ≤ ${VIEWPORT.height}px\n`)
 for (const r of rows) {
-  console.log(`  ${r.ok ? '✓' : '✗'} ${pad(r.path, 42)} низ ${pad(r.bottom, 6)} ${r.text}`)
+  const slack = typeof r.bottom === 'number' ? `${VIEWPORT.height - r.bottom}px` : '—'
+  console.log(`  ${r.ok ? '✓' : '✗'} ${pad(r.path, 42)} низ ${pad(r.bottom, 6)} запас ${pad(slack, 7)} ${r.text}`)
 }
 
 if (failures.length) {

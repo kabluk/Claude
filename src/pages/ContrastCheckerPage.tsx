@@ -52,9 +52,8 @@ export default function ContrastCheckerPage() {
 
       <h1 className="h1 max-w-3xl">Colour contrast checker</h1>
       <p className="lede max-w-3xl">
-        Enter two colours and see the WCAG 2.2 contrast ratio update live — with a pass/fail for
-        normal text, large text and UI components at Level AA and AAA. Hex, RGB or HSL, an eyedropper
-        where your browser supports it, and a link you can share. Free, instant, no sign-up.
+        Enter two colours and see the WCAG 2.2 contrast ratio update live, with a pass or fail at
+        Level AA and AAA. Hex, RGB or HSL. Free, instant, no sign-up.
       </p>
 
       <ContrastChecker />

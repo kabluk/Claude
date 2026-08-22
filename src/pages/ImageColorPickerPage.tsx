@@ -58,10 +58,8 @@ export default function ImageColorPickerPage() {
 
       <h1 className="h1 max-w-3xl">Image colour picker</h1>
       <p className="lede max-w-3xl">
-        Click a photo, or move a crosshair with your keyboard, to pick a colour — hex, RGB, HSL and a
-        live WCAG contrast verdict against white and black. This image colour picker (also searched as
-        &ldquo;image color picker&rdquo;) is a colour picker from image files you upload, or our
-        built-in sample. Free, instant, and your image never leaves your browser.
+        A colour picker from image files: click a photo, or move the crosshair with your keyboard,
+        and get hex, RGB, HSL and a live WCAG contrast verdict. Your image never leaves your browser.
       </p>
 
       <ImageColorPicker />
