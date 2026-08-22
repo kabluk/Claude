@@ -133,6 +133,37 @@ writeFileSync(join(DIST, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${O
 // РОВНО ключ и ничего больше (протокол сверяет байты, не парсит формат).
 writeFileSync(join(DIST, `${INDEXNOW_KEY}.txt`), INDEXNOW_KEY)
 
+// G-CHECKER-TTS-NEURAL: убрать <link rel="modulepreload"> на kokoro-чанк из
+// пререндеренного HTML. kokoro-js (2.2MB, 905KB gzip) подключается ТОЛЬКО
+// динамическим import() по явному клику «Load neural voice» — но
+// vite-react-ssg при пререндере вставляет preload и на чанки динамических
+// импортов, достижимых с маршрута, и браузер начинал качать библиотеку ПРИ
+// ОТКРЫТИИ страницы, до всякого согласия посетителя. Фильтр
+// build.modulePreload.resolveDependencies в vite.config.ts эту SSG-вставку
+// НЕ ловит (он про клиентский рантайм), поэтому чистим здесь — в уже
+// существующем месте пост-обработки dist/. Ловится тестом
+// scripts/page-lists.test.mjs? Нет — поэтому проверка ниже громкая: если
+// после зачистки preload всё ещё найден, падаем, а не молчим.
+{
+  let stripped = 0
+  for (const dir of readdirSync(DIST, { recursive: true })) {
+    const p = join(DIST, String(dir))
+    if (!p.endsWith('.html') || !existsSync(p)) continue
+    const html = readFileSync(p, 'utf8')
+    if (!html.includes('kokoro')) continue
+    const cleaned = html.replace(/<link[^>]*rel="modulepreload"[^>]*kokoro[^>]*>/g, '')
+    if (cleaned !== html) {
+      writeFileSync(p, cleaned)
+      stripped += 1
+    }
+    if (/<link[^>]*rel="modulepreload"[^>]*kokoro/.test(cleaned)) {
+      console.error(`✗ kokoro modulepreload остался в ${p} после зачистки`)
+      process.exit(1)
+    }
+  }
+  console.log(`✓ kokoro modulepreload убран из ${stripped} HTML (ленивый чанк остаётся ленивым)`)
+}
+
 // Cloudflare Pages/Netlify ищут ровно dist/404.html в корне вывода,
 // а не dist/404/index.html (dirStyle: 'nested' пишет именно так). Копируем.
 const notFoundNested = join(DIST, '404', 'index.html')
